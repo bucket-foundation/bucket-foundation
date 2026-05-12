@@ -1,0 +1,589 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.5154626,
+            42.9997256
+          ],
+          [
+            11.5154552,
+            42.9996435
+          ],
+          [
+            11.5154478,
+            42.9995613
+          ],
+          [
+            11.5157463,
+            42.9995469
+          ],
+          [
+            11.5157425,
+            42.9995053
+          ],
+          [
+            11.5158656,
+            42.9994994
+          ],
+          [
+            11.5158702,
+            42.9995497
+          ],
+          [
+            11.5159211,
+            42.9995472
+          ],
+          [
+            11.5159762,
+            42.9995648
+          ],
+          [
+            11.5159986,
+            42.9996025
+          ],
+          [
+            11.5159912,
+            42.9996433
+          ],
+          [
+            11.5159671,
+            42.9996707
+          ],
+          [
+            11.5159157,
+            42.9996923
+          ],
+          [
+            11.5158606,
+            42.9997087
+          ],
+          [
+            11.5158649,
+            42.9997567
+          ],
+          [
+            11.5157777,
+            42.9997609
+          ],
+          [
+            11.5157732,
+            42.9997106
+          ],
+          [
+            11.5154626,
+            42.9997256
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-abbey-of-santantimo",
+      "properties": {
+        "snippet": "Abbey",
+        "link": "https://pleiades.stoa.org/places/166434540/osm-location-of-abbey-of-santantimo",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Abbey of Sant'Antimo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/157841605",
+          "citationDetail": "Way 157841605",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=157841605",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-abbey-of-santantimo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": null,
+      "title": "OSM location of Abbey of Sant'Antimo",
+      "provenance": "OpenStreetMap (Way 157841605, version 9, osm:changeset=51875835, 2017-09-09T10:46:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2018-03-14T18:41:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.5154626,
+            42.9997256
+          ],
+          [
+            11.5154552,
+            42.9996435
+          ],
+          [
+            11.5154478,
+            42.9995613
+          ],
+          [
+            11.5157463,
+            42.9995469
+          ],
+          [
+            11.5157425,
+            42.9995053
+          ],
+          [
+            11.5158656,
+            42.9994994
+          ],
+          [
+            11.5158702,
+            42.9995497
+          ],
+          [
+            11.5159211,
+            42.9995472
+          ],
+          [
+            11.5159762,
+            42.9995648
+          ],
+          [
+            11.5159986,
+            42.9996025
+          ],
+          [
+            11.5159912,
+            42.9996433
+          ],
+          [
+            11.5159671,
+            42.9996707
+          ],
+          [
+            11.5159157,
+            42.9996923
+          ],
+          [
+            11.5158606,
+            42.9997087
+          ],
+          [
+            11.5158649,
+            42.9997567
+          ],
+          [
+            11.5157777,
+            42.9997609
+          ],
+          [
+            11.5157732,
+            42.9997106
+          ],
+          [
+            11.5154626,
+            42.9997256
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/166434540/osm-location-of-abbey-of-santantimo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T21:42:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:31:08Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-14T18:42:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-14T18:41:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-14T18:41:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-03-15T02:28:44Z",
+      "associationCertainty": "certain",
+      "title": "Orcia (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/166434540/orcia-river",
+      "connectionType": "near",
+      "id": "orcia-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T21:42:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:31:08Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:28:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:28:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/166434539",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Abbey_of_Sant%27Antimo",
+          "citationDetail": "Abbey of Sant'Antimo",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Abbey_of_Sant%27Antimo",
+      "citationDetail": "Abbey of Sant'Antimo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Abbazia_di_Sant%27Antimo",
+      "citationDetail": "Abbazia di Sant'Antimo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/7302608/abbazia-di-sant-antimo.html",
+      "citationDetail": "7302608: Abbazia di Sant'Antimo",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q334276",
+      "citationDetail": "Abbey of Sant'Antimo (Q334276)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Abbey of Sant'Antimo",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q334276",
+          "citationDetail": "Q334276",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-03-14.9513978952",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-03-15T02:29:49Z",
+      "uri": "https://pleiades.stoa.org/places/166434540/name.2018-03-14.9513978952",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T21:42:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:31:09Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:29:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:29:49Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Abbazia di Sant'Antimo",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q334276",
+          "citationDetail": "Q334276",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-03-14.0177727740",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2018-03-15T02:30:51Z",
+      "uri": "https://pleiades.stoa.org/places/166434540/name.2018-03-14.0177727740",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T21:42:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:31:09Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:30:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-15T02:30:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "166434540",
+  "subject": [],
+  "title": "Abbazia di Sant'Antimo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Abbey of Sant'Antimo was a Benedictine monastery located in the comune of Montalcino, Italy, about 9 km from the line of the Via Francigena. The abbey grew around the site of an oratory to Saint Anthimus, whose relics may have been relocated here in the eighth century. The site was formerly occupied by a Roman villa.",
+  "reprPoint": [
+    11.515721292788312,
+    42.99963014098979
+  ],
+  "placeTypes": [
+    "abbey"
+  ],
+  "bbox": [
+    11.5154478,
+    42.9994994,
+    11.5159986,
+    42.9997609
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/166434539"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-14T18:41:38Z",
+  "uri": "https://pleiades.stoa.org/places/166434540",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q334276",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-12T20:30:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-05T02:49:38Z"
+    },
+    {
+      "comment": "added GeoNames reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-05T02:49:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-25T21:42:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-15T02:31:08Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-15T02:28:01Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-14T18:41:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-14T18:41:38Z"
+    }
+  ]
+}

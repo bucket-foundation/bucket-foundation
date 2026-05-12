@@ -1,0 +1,884 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7172709,
+          54.6531671
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-brocavum-roman-fort",
+      "properties": {
+        "snippet": "Fort-2; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/89127/osm-location-of-brocavum-roman-fort",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Brocavum Roman Fort"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.71741,
+              54.652325,
+              0
+            ],
+            [
+              -2.715899,
+              54.652763,
+              0
+            ],
+            [
+              -2.71696,
+              54.653957,
+              0
+            ],
+            [
+              -2.718515,
+              54.653542,
+              0
+            ],
+            [
+              -2.71741,
+              54.652325,
+              0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-boundary-of-fort-walls-approx",
+      "properties": {
+        "snippet": "Fort, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/89127/imagery-location-boundary-of-fort-walls-approx",
+        "description": "Polygon after Pastscape, traced in Google Earth. Periods after BAtlas.",
+        "location_precision": "precise",
+        "title": "Imagery Location: Boundary of fort walls (approx.)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1660790285",
+          "citationDetail": "Node 1660790285",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1660790285",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-brocavum-roman-fort",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 410,
+      "title": "OSM location of Brocavum Roman Fort",
+      "provenance": "OpenStreetMap (Node 1660790285, version 3, osm:changeset=111376301, 2021-09-18T13:44:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-10-31T03:03:00Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7172709,
+          54.6531671
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/89127/osm-location-of-brocavum-roman-fort",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T15:20:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-31T16:57:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-31T03:03:26Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-31T03:03:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-31T03:03:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-31T03:03:00Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=11988",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "PastScape Monument 11988",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "imagery-location-boundary-of-fort-walls-approx",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "Imagery Location: Boundary of fort walls (approx.)",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "fort",
+        ""
+      ],
+      "description": "Polygon after Pastscape, traced in Google Earth. Periods after BAtlas.",
+      "created": "2012-09-03T00:48:25Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -2.71741,
+              54.652325,
+              0
+            ],
+            [
+              -2.715899,
+              54.652763,
+              0
+            ],
+            [
+              -2.71696,
+              54.653957,
+              0
+            ],
+            [
+              -2.718515,
+              54.653542,
+              0
+            ],
+            [
+              -2.71741,
+              54.652325,
+              0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/89127/imagery-location-boundary-of-fort-walls-approx",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-09-29T22:31:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2012-09-29T22:30:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-09-03T00:48:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-09-03T00:48:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-09-03T00:48:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "9 E6 Brocavum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43014428",
+      "citationDetail": "12",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR BritSep",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZCE8AR3R",
+      "formattedCitation": "<div class=\"csl-entry\">Sheppard Frere, A. L. F. Rivet, N. H. H. Sitwell, and British Academy. <i>Tabula Imperii Romani: Britannia Septentrionalis\u202f: Covering Sheets N.30 and O.30, with Parts of Sheets N.29, N.31 and O.29 of the International 1:1,000,000 Map of the World</i>. Oxford: Oxford University Press; British Academy, 1987. http://www.worldcat.org/oclc/43014428.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=11988",
+      "citationDetail": "monument number 11988",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://list.english-heritage.org.uk/resultsingle.aspx?uid=1007186",
+      "citationDetail": "1007186",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://roman-britain.co.uk/places/brocavum.htm",
+      "citationDetail": "Brocavvm Roman Fort & Marching Camp Minor Settlement Brougham, Cumbria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Brocavum_Roman_Camp",
+      "citationDetail": "Brocavum Roman Camp",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Brocavum Roman Camp.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DB%3Aentry+group%3D6%3Aentry%3Dbrocavum",
+      "citationDetail": "BROCAVUM (Brougham) Cumberland, England",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1007186",
+      "citationDetail": "Brougham Roman fort (Brocavum) and civil settlement and Brougham Castle",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/12085/",
+      "citationDetail": "12085: Brocavum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/14523",
+      "citationDetail": "GEO ID 14523: Brocavum (Brougham)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q16824574",
+      "citationDetail": "Q16824574: Brocavum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikisource.org/wiki/RE:Brocavum",
+      "citationDetail": "Brocavum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "19070",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Brocavum, Brocauum",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/936644063",
+          "citationDetail": "476, 5",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "ItAnt (Cuntz)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4UH8NCU",
+          "formattedCitation": "<div class=\"csl-entry\">Cuntz, Otto, ed. <i>Itineraria Antonini Augusti et Burdigalense</i>. Itineraria Romana 1. Leipzig: Teubner, 1929. http://www.worldcat.org/oclc/936644063.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "brocavum",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        },
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 9 E6 Brocavum",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2009-11-02T09:54:13Z",
+      "uri": "https://pleiades.stoa.org/places/89127/brocavum",
+      "creators": [
+        {
+          "username": null,
+          "name": "A.S. Esmonde Cleary"
+        }
+      ],
+      "attested": "BROCAVVM",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-31T03:04:33Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T09:16:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-12T21:00:42Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-12T20:56:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-12T20:56:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sarcanon",
+          "modified": "2011-11-27T20:32:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2011-11-27T20:32:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2011-11-27T20:32:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-11-23T22:42:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-11-02T10:42:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-11-02T09:54:13Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Brougham",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Brougham,_Cumbria",
+          "citationDetail": "Brougham, Cumbria",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "brougham",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 9 E6 Brocavum",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Present-day name of Roman fort known as Brocavum",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2011-11-27T20:29:41Z",
+      "uri": "https://pleiades.stoa.org/places/89127/brougham",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "attested": "Brougham",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-31T03:05:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sgillies",
+          "modified": "2013-02-28T18:57:36Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T09:16:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-12T21:00:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2011-11-27T20:32:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2011-11-27T20:32:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2011-11-27T20:29:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2011-11-27T20:29:41Z"
+        }
+      ]
+    }
+  ],
+  "id": "89127",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=fort"
+  ],
+  "title": "Brocavum",
+  "provenance": "Barrington Atlas: BAtlas 9 E6 Brocavum",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman fort at modern Brougham in the United Kingdom (sometimes called Brougham Castle Roman Fort).",
+  "reprPoint": [
+    -2.7172354935019487,
+    54.65315712112182
+  ],
+  "placeTypes": [
+    "fort-2",
+    "fort"
+  ],
+  "bbox": [
+    -2.718515,
+    54.652325,
+    -2.715899,
+    54.653957
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-17T14:01:45Z",
+  "uri": "https://pleiades.stoa.org/places/89127",
+  "creators": [
+    {
+      "username": null,
+      "name": "A.S. Esmonde Cleary"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for fort; Edited @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-17T15:19:52Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-17T14:01:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-31T03:02:21Z"
+    },
+    {
+      "comment": "DARMC 19070 = related",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-28T16:11:48Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-28T16:11:04Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-20T11:53:01Z"
+    },
+    {
+      "comment": "modified description; added wikipedia link",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-01T11:39:03Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-01T11:30:05Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:59:55Z"
+    },
+    {
+      "comment": "description",
+      "modifiedBy": "thomase",
+      "modified": "2012-09-29T22:34:20Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2012-09-29T22:32:42Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "thomase",
+      "modified": "2012-09-29T22:32:30Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "sarcanon",
+      "modified": "2012-09-03T00:49:01Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T09:16:57Z"
+    },
+    {
+      "comment": "Description, coordinates, names, references.",
+      "modifiedBy": "thomase",
+      "modified": "2011-12-12T21:02:16Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "sarcanon",
+      "modified": "2011-11-27T20:32:52Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T05:43:32Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:25:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-11-23T22:42:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T10:42:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T09:54:13Z"
+    }
+  ]
+}

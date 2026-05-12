@@ -1,0 +1,742 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4890979,
+          40.7527038
+        ]
+      },
+      "type": "Feature",
+      "id": "casa-di-obellio-firmo",
+      "properties": {
+        "snippet": "Townhouse, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/182931390/casa-di-obellio-firmo",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of the so-called \"Casa di Obellio Firmo\""
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4887795,
+            40.752762
+          ],
+          [
+            14.4891818,
+            40.7522398
+          ],
+          [
+            14.4894608,
+            40.7523536
+          ],
+          [
+            14.4894259,
+            40.7523901
+          ],
+          [
+            14.4895198,
+            40.7524267
+          ],
+          [
+            14.4894232,
+            40.7525547
+          ],
+          [
+            14.4891161,
+            40.7529236
+          ],
+          [
+            14.4887795,
+            40.752762
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-house-of-m-obellius-firmus",
+      "properties": {
+        "snippet": "Townhouse; 200 BC - AD 99",
+        "link": "https://pleiades.stoa.org/places/182931390/osm-location-of-house-of-m-obellius-firmus",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of House of M. Obellius Firmus"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/node/2032848650",
+          "citationDetail": "Node 2032848650",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2032848650",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "casa-di-obellio-firmo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of the so-called \"Casa di Obellio Firmo\"",
+      "provenance": "OpenStreetMap (Node 2032848650, version 1, osm:changeset=14034387, 2012-11-25T20:23:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-05-29T13:51:13Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4890979,
+          40.7527038
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/182931390/casa-di-obellio-firmo",
+      "creators": [
+        {
+          "username": "avarveri",
+          "homepage": null,
+          "name": "Athanasia Varveri",
+          "uri": "https://pleiades.stoa.org/author/avarveri"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-10T15:00:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-10T14:59:58Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-25T04:28:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "avarveri",
+          "modified": "2015-05-29T13:57:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "avarveri",
+          "modified": "2015-05-29T13:55:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "avarveri",
+          "modified": "2015-05-29T13:51:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "avarveri",
+          "modified": "2015-05-29T13:51:15Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/356150421",
+          "citationDetail": "Way 356150421",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=356150421",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-house-of-m-obellius-firmus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 99,
+      "title": "OSM location of House of M. Obellius Firmus",
+      "provenance": "OpenStreetMap (Way 356150421, version 4, osm:changeset=96551895, 2020-12-28T17:44:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-29T12:28:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4887795,
+            40.752762
+          ],
+          [
+            14.4891818,
+            40.7522398
+          ],
+          [
+            14.4894608,
+            40.7523536
+          ],
+          [
+            14.4894259,
+            40.7523901
+          ],
+          [
+            14.4895198,
+            40.7524267
+          ],
+          [
+            14.4894232,
+            40.7525547
+          ],
+          [
+            14.4891161,
+            40.7529236
+          ],
+          [
+            14.4887795,
+            40.752762
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/182931390/osm-location-of-house-of-m-obellius-firmus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-27T14:03:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T12:31:14Z"
+        },
+        {
+          "comment": "supersedes previously published location.",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T12:31:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T12:28:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T12:28:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:56:53Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/182931390/433032",
+      "connectionType": "at",
+      "id": "433032",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-26T01:16:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2020-12-14T20:14:05Z",
+      "associationCertainty": "certain",
+      "title": "Regio IX, Pompeii",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/182931390/regio-ix-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-ix-pompeii",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-15T17:34:00Z"
+        },
+        {
+          "comment": "time period = modern",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-15T17:23:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:14:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:14:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:14:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:14:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/680072866",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://pompeiisites.org/en/archaeological-site/house-of-obelius-firmus/",
+          "citationDetail": "House of Obelius Firmus",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pompeii Sites",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQWYV366",
+          "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo, ed. <i>Pompeii Sites: Portale Ufficiale Parco Archeologico di Pompei</i>. Accessed January 10, 2020. http://pompeiisites.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/pompeii/regio-ix/reg-ix-ins-14/house-of-m-obellius-firmus",
+      "citationDetail": "House of M. Obellius Firmus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AD79",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+      "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.rug.nl/research/portal/publications/m-obellius-mf-firmus-pompeian-duovir(21962aa1-635c-4d2c-a478-1e24cc5385af).html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Jongman 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TV29CI88",
+      "formattedCitation": "<div class=\"csl-entry\">Jongman, W. M. \u201cM. Obellius M. f. Firmus, Pompeian Duovir.\u201d In <i>T\u03b1\u03bb\u03b1\u03bd\u03c4\u03b1. Proceedings of the Dutch Archaeological and Historical Society, 10.1978-79</i>, 62\u201365, Taf, 1978. http://www.rug.nl/research/portal/publications/m-obellius-mf-firmus-pompeian-duovir(21962aa1-635c-4d2c-a478-1e24cc5385af).html.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kocken 1992/93",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EVK37BNW",
+      "formattedCitation": "<div class=\"csl-entry\">Kocken, Marc. \u201cI Due Atri Nella Casa Di M. Obellius Firmus a Pompei. Alcuni Appunti Sulla Storia Edilizia,\u201d 1992, 30\u201341.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27688629",
+      "citationDetail": "House of Obellius Firmus (Q27688629)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/11117",
+      "citationDetail": "Casa IX 14, 2.4 Sog. Casa di Obellius Firmus Pompei, (Pompeii), Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Casa_di_Obellio_Firmo",
+      "citationDetail": "Casa di Obellio Firmo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pompeiisites.org/en/archaeological-site/house-of-obelius-firmus/",
+      "citationDetail": "HOUSE OF OBELIUS FIRMUS",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pompeii Sites",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQWYV366",
+      "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo, ed. <i>Pompeii Sites: Portale Ufficiale Parco Archeologico di Pompei</i>. Accessed January 10, 2020. http://pompeiisites.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pompeiiinpictures.com/pompeiiinpictures/R9/9%2014%2004%20p9.htm",
+      "citationDetail": "IX.14.4 Pompeii. House of M. Obellius Firmus or Casa di MM. Obellii Firmi, pater et filius or Casa del Conte di Torino",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Casa_di_Obellio_Firmo_(Pompeii)",
+      "citationDetail": "Category:Casa di Obellio Firmo (Pompeii)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Casa del Conte di Torino",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.com/books?id=G3-eNIbKnakC&lpg=PA189&dq=Casa%20del%20Conte%20di%20Torino&pg=PA189#v=onepage&q=Casa%20del%20Conte%20di%20Torino&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Tassinari 1993, 189",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2015-07-10.2839056560",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2015-07-10T14:58:43Z",
+      "uri": "https://pleiades.stoa.org/places/182931390/name.2015-07-10.2839056560",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Casa del Conte di Torino",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T21:47:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-25T20:28:35Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-25T20:27:37Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-10T14:58:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-10T14:58:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "182931390",
+  "subject": [],
+  "title": "House of Obellius Firmus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The House of M. Obellius Firmus lies south of the Via di Nola and is also known as the House of the Count of Turin. Excavated in 1910, the house's name is derived from electoral graffiti found on the site. (IX, 14, 2, 4, a, b)",
+  "reprPoint": [
+    14.48912884804276,
+    40.75264069686598
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    14.4887795,
+    40.7522398,
+    14.4895198,
+    40.7529236
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/680072866"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-05-29T13:49:57Z",
+  "uri": "https://pleiades.stoa.org/places/182931390",
+  "creators": [
+    {
+      "username": "avarveri",
+      "homepage": null,
+      "name": "Athanasia Varveri",
+      "uri": "https://pleiades.stoa.org/author/avarveri"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-29T12:34:32Z"
+    },
+    {
+      "comment": "added arachne reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-19T20:08:06Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-11T20:38:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-03T02:30:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-10T15:00:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-10T14:57:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-25T04:26:19Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "avarveri",
+      "modified": "2015-05-29T13:50:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "avarveri",
+      "modified": "2015-05-29T13:49:58Z"
+    }
+  ]
+}

@@ -1,0 +1,951 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2170828,
+            44.3958188
+          ],
+          [
+            12.2172274,
+            44.3955736
+          ],
+          [
+            12.217453,
+            44.3951908
+          ],
+          [
+            12.2181053,
+            44.3956134
+          ],
+          [
+            12.21897,
+            44.3948354
+          ],
+          [
+            12.2190657,
+            44.3948552
+          ],
+          [
+            12.2191637,
+            44.3948603
+          ],
+          [
+            12.2193034,
+            44.3948485
+          ],
+          [
+            12.2193932,
+            44.394822
+          ],
+          [
+            12.2201818,
+            44.3941321
+          ],
+          [
+            12.2203216,
+            44.3941706
+          ],
+          [
+            12.2210127,
+            44.3945173
+          ],
+          [
+            12.2210685,
+            44.3945463
+          ],
+          [
+            12.2190231,
+            44.3963974
+          ],
+          [
+            12.2170828,
+            44.3958188
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-archaeological-area",
+      "properties": {
+        "snippet": "Port; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/393404/location-of-archaeological-area",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Porto romano di Classe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/213878344",
+          "citationDetail": "Way 213878344",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=213878344",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-archaeological-area",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/port"
+      ],
+      "end": 640,
+      "title": "OSM location of Porto romano di Classe",
+      "provenance": "OpenStreetMap (Way 213878344, version 11, osm:changeset=138058956, 2023-07-03T10:51:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/port"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Remains of the Roman port.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "port"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-11T23:06:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2170828,
+            44.3958188
+          ],
+          [
+            12.2172274,
+            44.3955736
+          ],
+          [
+            12.217453,
+            44.3951908
+          ],
+          [
+            12.2181053,
+            44.3956134
+          ],
+          [
+            12.21897,
+            44.3948354
+          ],
+          [
+            12.2190657,
+            44.3948552
+          ],
+          [
+            12.2191637,
+            44.3948603
+          ],
+          [
+            12.2193034,
+            44.3948485
+          ],
+          [
+            12.2193932,
+            44.394822
+          ],
+          [
+            12.2201818,
+            44.3941321
+          ],
+          [
+            12.2203216,
+            44.3941706
+          ],
+          [
+            12.2210127,
+            44.3945173
+          ],
+          [
+            12.2210685,
+            44.3945463
+          ],
+          [
+            12.2190231,
+            44.3963974
+          ],
+          [
+            12.2170828,
+            44.3958188
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/393404/location-of-archaeological-area",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-30T00:09:13Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-07T20:12:00Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T09:44:47Z"
+        },
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T09:44:42Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-17T02:30:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-07T16:30:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-11T23:07:40Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-11T23:07:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-11T23:06:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-11T23:06:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:33:57Z",
+      "associationCertainty": "certain",
+      "title": "Via Popilia (in Aemilia)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/393404/910399260",
+      "connectionType": "connection",
+      "id": "910399260",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/910399260",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:33:58Z",
+      "associationCertainty": "certain",
+      "title": "(H)Adriaticum/Superum Mare",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/393404/1004",
+      "connectionType": "connection",
+      "id": "1004",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/1004",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:33:58Z",
+      "associationCertainty": "certain",
+      "title": "Padusa",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/393404/393470",
+      "connectionType": "connection",
+      "id": "393470",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/393470",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:33:58Z",
+      "associationCertainty": "certain",
+      "title": "Ravenna",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/393404/393480",
+      "connectionType": "near",
+      "id": "393480",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-17T02:34:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/393480",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "40 C4 Classis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/800271538",
+      "citationDetail": "297-362, 375-467",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Susini 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VHDWZDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Carile, Antonio. <i>Storia di Ravenna</i>. Edited by Giancarlo Susini. 1st ed. 5 vols. Venezia: Marsilio Editori, 1990. http://www.worldcat.org/oclc/800271538.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Classe,_ancient_port_of_Ravenna",
+      "citationDetail": "Classe, ancient port of Ravenna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Classe, ancient port of Ravenna.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.academia.edu/317564/A_Hadrianic_Diploma_for_a_Thracian_Sailor_from_the_Misene_Fleet_25_December_119_AD",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Paunov 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T4I7P6X5",
+      "formattedCitation": "<div class=\"csl-entry\">Paunov, Evgeni. \u201cA Hadrianic Diploma for a Thracian Sailor from the Misene Fleet: 25 December 119 AD.\u201d <i>Archaeologia Bulgarica</i> 9, no. 3 (2005): 39\u201351.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/876656084",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Christie and Augenti 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZJ98U7US",
+      "formattedCitation": "<div class=\"csl-entry\">Christie, Neil, and Andrea Augenti, eds. <i>Urbes Extinctae: Archaeologies of Abandoned Classical Towns</i>. 1 vols. Farnham: Ashgate, 2012. http://www.worldcat.org/oclc/876656084.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Civitas_Classis",
+      "citationDetail": "Civitas Classis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Civitas Classis.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Classis_Ravennatis",
+      "citationDetail": "Classis Ravennatis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Classis Ravennatis.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/31930",
+      "citationDetail": "GEO ID 31930: Classis (Classe)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.encquran.brill.nl/entries/supplementum-epigraphicum-graecum/ravenna-area-of-classe-epitaph-2nd-cent-ad-42-924-a42_924",
+      "citationDetail": "42 924",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "SEG",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S3GAFDX3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Supplementum Epigraphicum Graecum</i>, n.d.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/878791635",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Augenti 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3VS6UDJF",
+      "formattedCitation": "<div class=\"csl-entry\">Augenti, Andrea. <i>Classe: indagine sul potenziale archeologico di una citta\u0300 scomparsa</i>. Studi e scavi n.s. 27. Bologna: Ante Quem, 2011. http://www.worldcat.org/oclc/878791635.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "18349",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1398802",
+      "citationDetail": "Civitas Classis (Q1398802)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Classis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "classis",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 40 C4 Classis",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-15T18:32:40Z",
+      "uri": "https://pleiades.stoa.org/places/393404/classis",
+      "creators": [
+        {
+          "username": null,
+          "name": "M. Pearce"
+        },
+        {
+          "username": null,
+          "name": "R. Peretto"
+        },
+        {
+          "username": null,
+          "name": "P. Tozzi"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:39:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-15T18:50:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-15T18:48:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-15T18:32:40Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Classe",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Classe,_ancient_port_of_Ravenna",
+          "citationDetail": "Classe, ancient port of Ravenna",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Classe, ancient port of Ravenna.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "classe",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2012-11-14T17:00:05Z",
+      "uri": "https://pleiades.stoa.org/places/393404/classe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-13T15:18:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-02T22:08:32Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-02T22:08:17Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2012-11-14T17:00:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2012-11-14T17:00:06Z"
+        }
+      ]
+    }
+  ],
+  "id": "393404",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Classis",
+  "provenance": "Barrington Atlas: BAtlas 40 C4 Classis",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/port"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Classe</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A military port near Ravenna, established by Octavian by 12 B.C. as headquarters for the Roman fleet in the Adriatic Sea.",
+  "reprPoint": [
+    12.219072691255393,
+    44.39532429721779
+  ],
+  "placeTypes": [
+    "settlement",
+    "port"
+  ],
+  "bbox": [
+    12.2170828,
+    44.3941321,
+    12.2210685,
+    44.3963974
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/910399260",
+    "https://pleiades.stoa.org/places/1004",
+    "https://pleiades.stoa.org/places/393470",
+    "https://pleiades.stoa.org/places/393480",
+    "https://pleiades.stoa.org/places/524994161",
+    "https://pleiades.stoa.org/places/880538993"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-15T18:32:40Z",
+  "uri": "https://pleiades.stoa.org/places/393404",
+  "creators": [
+    {
+      "username": null,
+      "name": "M. Pearce"
+    },
+    {
+      "username": null,
+      "name": "R. Peretto"
+    },
+    {
+      "username": null,
+      "name": "P. Tozzi"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Civitas Classis (Q1398802)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-19T20:03:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-07T20:13:38Z"
+    },
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T09:45:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-23T15:13:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-17T02:32:10Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-27T04:09:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-09T14:36:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-09T14:34:36Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-12-13T15:34:12Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-11T23:06:08Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-04-13T22:09:49Z"
+    },
+    {
+      "comment": "Remove old citation from description, add connections",
+      "modifiedBy": "sgillies",
+      "modified": "2012-11-16T21:09:17Z"
+    },
+    {
+      "comment": "added connection",
+      "modifiedBy": "jbecker",
+      "modified": "2012-11-14T16:59:17Z"
+    },
+    {
+      "comment": "edited place",
+      "modifiedBy": "jbecker",
+      "modified": "2012-11-14T16:09:06Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:31:56Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:39:07Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T23:16:57Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:37:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-15T18:50:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T18:48:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T18:32:40Z"
+    }
+  ]
+}

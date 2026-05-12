@@ -1,0 +1,525 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.69939490607943,
+            14.131502098735414
+          ],
+          [
+            43.81311966097086,
+            14.091444655343167
+          ],
+          [
+            43.916383608413625,
+            14.067062165713716
+          ],
+          [
+            44.00864099810808,
+            14.030073527733807
+          ],
+          [
+            44.10242186511456,
+            13.993254215984255
+          ],
+          [
+            44.192348824151686,
+            13.949574017890633
+          ],
+          [
+            44.25504409211879,
+            13.916117426410318
+          ],
+          [
+            44.324896519550755,
+            13.8773812162427
+          ],
+          [
+            44.39628545951452,
+            13.8278739975236
+          ],
+          [
+            44.51359282562207,
+            13.75969469708812
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-label-location",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/39310/batlas-label-location",
+        "description": "Centerline of label on Barrington Atlas map 4 digitized in QGIS from a raster image of the map that was georegistered by the Ancient World Mapping Center in 2003.",
+        "location_precision": "precise",
+        "title": "BAtlas Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": null,
+      "name": "Ancient World Mapping Center (AWMC)"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "Ancient World Mapping Center (AWMC)"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "4 B3 Bachylitae",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 45 see \"Bachylitae\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "batlas-label-location",
+      "featureTypeURI": [],
+      "end": 300,
+      "title": "BAtlas Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 9310.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-5-million-scale",
+      "featureType": [],
+      "description": "Centerline of label on Barrington Atlas map 4 digitized in QGIS from a raster image of the map that was georegistered by the Ancient World Mapping Center in 2003.",
+      "created": "2025-10-08T14:15:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.69939490607943,
+            14.131502098735414
+          ],
+          [
+            43.81311966097086,
+            14.091444655343167
+          ],
+          [
+            43.916383608413625,
+            14.067062165713716
+          ],
+          [
+            44.00864099810808,
+            14.030073527733807
+          ],
+          [
+            44.10242186511456,
+            13.993254215984255
+          ],
+          [
+            44.192348824151686,
+            13.949574017890633
+          ],
+          [
+            44.25504409211879,
+            13.916117426410318
+          ],
+          [
+            44.324896519550755,
+            13.8773812162427
+          ],
+          [
+            44.39628545951452,
+            13.8278739975236
+          ],
+          [
+            44.51359282562207,
+            13.75969469708812
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/39310/batlas-label-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-08T14:57:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-08T14:51:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-08T14:15:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-08T14:15:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-08T14:15:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "4 B3 Bachylitae",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Suppl. 11 Zamareni, cols. 1330",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/978/1/421/5032-5042",
+      "citationDetail": "6.158.4",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Plin., NH (Mayhoff: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AK7HSRG",
+      "formattedCitation": "<div class=\"csl-entry\">Plinius Secundus Maior, C. <i>Naturalis Historiae</i>. Edited by Karl Friedrich Theodor Mayhoff. Bibliotheca Scriptorum Graecorum et Romanorum Teubneriana. Lipsiae: Teubner, 1906. http://latin.packhum.org/loc/978/1/0.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bachylitae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://latin.packhum.org/loc/978/1/421/4987-4992#421",
+          "citationDetail": "6.158.4",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Plin., NH (Mayhoff: PHI)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AK7HSRG",
+          "formattedCitation": "<div class=\"csl-entry\">Plinius Secundus Maior, C. <i>Naturalis Historiae</i>. Edited by Karl Friedrich Theodor Mayhoff. Bibliotheca Scriptorum Graecorum et Romanorum Teubneriana. Lipsiae: Teubner, 1906. http://latin.packhum.org/loc/978/1/0.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "bachylitae",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 4 B3 Bachylitae",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2010-09-22T22:03:54Z",
+      "uri": "https://pleiades.stoa.org/places/39310/bachylitae",
+      "creators": [
+        {
+          "username": null,
+          "name": "D.T. Potts"
+        }
+      ],
+      "attested": "Bachylitae",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update Pliny reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-13T21:54:55Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-14T00:43:35Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:38:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-23T16:33:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-22T23:35:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-22T22:03:54Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Datilum",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "datilum",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 4 B3 Bachylitae",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-09-22T22:03:54Z",
+      "uri": "https://pleiades.stoa.org/places/39310/datilum",
+      "creators": [
+        {
+          "username": null,
+          "name": "D.T. Potts"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:38:12Z"
+        },
+        {
+          "comment": "Time periods copied from sibling. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-20T03:20:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-23T16:33:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-22T23:35:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-22T22:03:54Z"
+        }
+      ]
+    }
+  ],
+  "id": "39310",
+  "subject": [],
+  "title": "Bachylitae",
+  "provenance": "Barrington Atlas: BAtlas 4 B3 Bachylitae",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+    "https://pleiades.stoa.org/vocabularies/place-types/people"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Bakil YEM</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 4 B3 Bachylitae",
+  "reprPoint": [
+    44.11660141428049,
+    13.968002102532576
+  ],
+  "placeTypes": [
+    "settlement-modern",
+    "people"
+  ],
+  "bbox": [
+    43.69939490607943,
+    13.75969469708812,
+    44.51359282562207,
+    14.131502098735414
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-09-22T22:03:54Z",
+  "uri": "https://pleiades.stoa.org/places/39310",
+  "creators": [
+    {
+      "username": null,
+      "name": "D.T. Potts"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-13T21:53:59Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-24T02:41:18Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:38:11Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:37:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-23T16:33:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T23:35:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T22:03:54Z"
+    }
+  ]
+}

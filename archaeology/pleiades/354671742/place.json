@@ -1,0 +1,368 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.906221,
+            35.1787993
+          ],
+          [
+            33.9062999,
+            35.1784524
+          ],
+          [
+            33.9067657,
+            35.1785231
+          ],
+          [
+            33.9067511,
+            35.1785873
+          ],
+          [
+            33.9076515,
+            35.1787241
+          ],
+          [
+            33.9075721,
+            35.1790733
+          ],
+          [
+            33.907051,
+            35.1789942
+          ],
+          [
+            33.9065326,
+            35.1789155
+          ],
+          [
+            33.9065477,
+            35.1788489
+          ],
+          [
+            33.906221,
+            35.1787993
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basilica-of-campanopetra",
+      "properties": {
+        "snippet": "Basilica",
+        "link": "https://pleiades.stoa.org/places/354671742/osm-location-of-basilica-of-campanopetra",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Basilica of Campanopetra"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/260786041",
+          "citationDetail": "Way 260786041",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=260786041",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basilica-of-campanopetra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "end": null,
+      "title": "OSM location of Basilica of Campanopetra",
+      "provenance": "OpenStreetMap (Way 260786041, version 7, osm:changeset=156398489, 2024-09-09T14:50:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "basilica"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-10-30T20:36:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.906221,
+            35.1787993
+          ],
+          [
+            33.9062999,
+            35.1784524
+          ],
+          [
+            33.9067657,
+            35.1785231
+          ],
+          [
+            33.9067511,
+            35.1785873
+          ],
+          [
+            33.9076515,
+            35.1787241
+          ],
+          [
+            33.9075721,
+            35.1790733
+          ],
+          [
+            33.907051,
+            35.1789942
+          ],
+          [
+            33.9065326,
+            35.1789155
+          ],
+          [
+            33.9065477,
+            35.1788489
+          ],
+          [
+            33.906221,
+            35.1787993
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/354671742/osm-location-of-basilica-of-campanopetra",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-21T00:15:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-31T21:11:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-31T18:35:16Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-30T20:36:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-30T20:36:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-30T20:36:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-10-30T20:42:32Z",
+      "associationCertainty": "certain",
+      "title": "Salamis/Konstantia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/354671742/salamis-konstantia",
+      "connectionType": "at",
+      "id": "salamis-konstantia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-31T21:11:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-31T18:35:16Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-30T20:42:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-30T20:42:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707617",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Triantaphyllopoulos 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FI7DNEJH",
+      "formattedCitation": "<div class=\"csl-entry\">Triantaphyllopoulos, D\u0113m\u0113tr\u0113s D. \u201cThe Basilica of Campanopetra in Salamis/Constantia: Theories on Its Function and Archaeological Data.\u201d In <i>Salamis of Cyprus\u202f: History and Archaeology from the Earliest Times to Late Antiquity\u202f: Conference in Nicosia, 21-23 May 2015</i>, 730\u201346. M\u00fcnster\u202f; New York: Waxmann, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Roux 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMQM64G3",
+      "formattedCitation": "<div class=\"csl-entry\">Roux, Georges. <i>Salamine de Chypre. XV: La Basilique de La Campanop\u00e9tra</i>. Mission Arch\u00e9ologique Fran\u00e7aise de Salamine 15. Paris: Diffusion de Boccard, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.europeana.eu/en/item/22/_68302",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Department of Antiquities, Republic of Cyprus, Salamis (Famagusta), Basilica of Kampanopetra, view of basilica from west (D17958)",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q123249426",
+      "citationDetail": "Basilica of Campanopetra (Q123249426)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "354671742",
+  "subject": [],
+  "title": "Basilica of Campanopetra",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ruins of a three-aisled basilica of the sixth century CE located at Salamis in Cyprus.",
+  "reprPoint": [
+    33.906923444041,
+    35.178771403064054
+  ],
+  "placeTypes": [
+    "basilica"
+  ],
+  "bbox": [
+    33.906221,
+    35.1784524,
+    33.9076515,
+    35.1790733
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707617"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-10-30T20:36:09Z",
+  "uri": "https://pleiades.stoa.org/places/354671742",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Basilica of Campanopetra (Q123249426)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-21T02:12:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-31T21:11:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-31T18:35:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-31T18:35:10Z"
+    },
+    {
+      "comment": "Roux 1998",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-30T20:39:12Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-30T20:36:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-30T20:36:09Z"
+    }
+  ]
+}

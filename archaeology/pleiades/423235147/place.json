@@ -1,0 +1,327 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.5998731,
+            37.2886702
+          ],
+          [
+            13.6003655,
+            37.2887136
+          ],
+          [
+            13.6003918,
+            37.2885241
+          ],
+          [
+            13.5998995,
+            37.2884808
+          ],
+          [
+            13.5998731,
+            37.2886702
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-juno-hera-lacinia",
+      "properties": {
+        "snippet": "Temple-2; 550 BC - AD 499",
+        "link": "https://pleiades.stoa.org/places/423235147/osm-location-of-temple-of-juno-hera-lacinia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Juno (Hera Lacinia)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/304907852",
+          "citationDetail": "Way 304907852",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=304907852",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-juno-hera-lacinia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 499,
+      "title": "OSM location of Temple of Juno (Hera Lacinia)",
+      "provenance": "OpenStreetMap (Way 304907852, version 10, osm:changeset=140812319, 2023-09-04T15:46:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-16T12:48:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.5998731,
+            37.2886702
+          ],
+          [
+            13.6003655,
+            37.2887136
+          ],
+          [
+            13.6003918,
+            37.2885241
+          ],
+          [
+            13.5998995,
+            37.2884808
+          ],
+          [
+            13.5998731,
+            37.2886702
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423235147/osm-location-of-temple-of-juno-hera-lacinia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-18T16:21:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-16T14:35:33Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-16T12:50:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-16T12:48:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-16T12:48:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-09-16T12:50:06Z",
+      "associationCertainty": "certain",
+      "title": "Akragas/Agrigentum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423235147/6067884669",
+      "connectionType": "at",
+      "id": "6067884669",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-16T12:50:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-16T12:50:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-16T12:50:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462086",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Hera_Lacinia",
+      "citationDetail": "Temple of Hera Lacinia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5578",
+      "citationDetail": "Tempel D, Tempel der Juno Lacinia Agrigent, (\u0391\u03ba\u03c1\u03ac\u03b3\u03b1\u03bd\u03c4\u03b1 / Akragas / Agrigentum), Agrigent (Provinz)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "423235147",
+  "subject": [
+    "Hera",
+    "Temple",
+    "Doric",
+    "Iuno"
+  ],
+  "title": "Temple of Juno (Hera Lacinia)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A temple of the Doric order that was built at Akragas ca. 450 BCE.",
+  "reprPoint": [
+    13.600132489268908,
+    37.28859718383629
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    13.5998731,
+    37.2884808,
+    13.6003918,
+    37.2887136
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462086"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-16T12:50:06Z",
+  "uri": "https://pleiades.stoa.org/places/423235147",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-18T16:21:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-16T14:35:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-16T14:35:25Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-16T12:51:05Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-16T12:50:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-16T12:50:06Z"
+    }
+  ]
+}

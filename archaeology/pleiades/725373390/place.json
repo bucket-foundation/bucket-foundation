@@ -1,0 +1,383 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.8287618,
+            37.5956653
+          ],
+          [
+            12.8286627,
+            37.595856
+          ],
+          [
+            12.8291157,
+            37.5968655
+          ],
+          [
+            12.829866,
+            37.5974376
+          ],
+          [
+            12.8296112,
+            37.5983237
+          ],
+          [
+            12.8302482,
+            37.598963
+          ],
+          [
+            12.8305314,
+            37.5999725
+          ],
+          [
+            12.8355287,
+            37.5976283
+          ],
+          [
+            12.834382,
+            37.5971123
+          ],
+          [
+            12.8332778,
+            37.5968095
+          ],
+          [
+            12.8325558,
+            37.5964393
+          ],
+          [
+            12.8318763,
+            37.5965178
+          ],
+          [
+            12.8310552,
+            37.5969777
+          ],
+          [
+            12.8304889,
+            37.5969441
+          ],
+          [
+            12.8300642,
+            37.596529
+          ],
+          [
+            12.8291582,
+            37.5956429
+          ],
+          [
+            12.828875,
+            37.5956429
+          ],
+          [
+            12.8287618,
+            37.5956653
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-buffa-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/725373390/osm-location-of-buffa-necropolis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Buffa necropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/961976188",
+          "citationDetail": "Way 961976188",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=961976188",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-buffa-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -330,
+      "title": "OSM location of Buffa necropolis",
+      "provenance": "OpenStreetMap (Way 961976188, version 3, osm:changeset=131421969, 2023-01-18T12:41:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-01-19T16:19:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.8287618,
+            37.5956653
+          ],
+          [
+            12.8286627,
+            37.595856
+          ],
+          [
+            12.8291157,
+            37.5968655
+          ],
+          [
+            12.829866,
+            37.5974376
+          ],
+          [
+            12.8296112,
+            37.5983237
+          ],
+          [
+            12.8302482,
+            37.598963
+          ],
+          [
+            12.8305314,
+            37.5999725
+          ],
+          [
+            12.8355287,
+            37.5976283
+          ],
+          [
+            12.834382,
+            37.5971123
+          ],
+          [
+            12.8332778,
+            37.5968095
+          ],
+          [
+            12.8325558,
+            37.5964393
+          ],
+          [
+            12.8318763,
+            37.5965178
+          ],
+          [
+            12.8310552,
+            37.5969777
+          ],
+          [
+            12.8304889,
+            37.5969441
+          ],
+          [
+            12.8300642,
+            37.596529
+          ],
+          [
+            12.8291582,
+            37.5956429
+          ],
+          [
+            12.828875,
+            37.5956429
+          ],
+          [
+            12.8287618,
+            37.5956653
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/725373390/osm-location-of-buffa-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-20T12:10:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T16:20:14Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T16:20:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T16:19:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T16:19:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/79273786",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Meola 1996-",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5KZT56QW",
+      "formattedCitation": "<div class=\"csl-entry\">Meola, Emma, Sicily (Italy), and Assessorato dei beni culturali e ambientali e della pubblica istruzione. <i>Necropoli di Selinunte. I, I,</i>. 3 vols. Palermo: Accademia nazionale di scienze lettere e arti, 1996. http://www.worldcat.org/oclc/79273786.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q111957932",
+      "citationDetail": "Necropolis of Contrada Buffa (Q111957932)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "725373390",
+  "subject": [
+    "classical archaeology",
+    "cemetery",
+    "necropolis",
+    "archaeology",
+    "dare:feature=cemetery"
+  ],
+  "title": "Buffa necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the necropoleis of the ancient city of Selinous, on the Buffa hill in contrada Manuzza, to the NE of the ancient city",
+  "reprPoint": [
+    12.831659932169915,
+    37.59763497138169
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.8286627,
+    37.5956429,
+    12.8355287,
+    37.5999725
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-07-06T15:35:05Z",
+  "uri": "https://pleiades.stoa.org/places/725373390",
+  "creators": [
+    {
+      "username": "jprag",
+      "homepage": null,
+      "name": "Jonathan Prag",
+      "uri": "https://pleiades.stoa.org/author/jprag"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-01-20T12:10:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T16:22:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T16:20:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jprag",
+      "modified": "2021-07-06T15:46:19Z"
+    },
+    {
+      "comment": "added tags",
+      "modifiedBy": "jprag",
+      "modified": "2021-07-06T15:44:54Z"
+    },
+    {
+      "comment": "added citation reference",
+      "modifiedBy": "jprag",
+      "modified": "2021-07-06T15:42:28Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jprag",
+      "modified": "2021-07-06T15:35:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jprag",
+      "modified": "2021-07-06T15:35:05Z"
+    }
+  ]
+}

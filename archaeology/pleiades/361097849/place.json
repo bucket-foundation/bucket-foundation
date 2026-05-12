@@ -1,0 +1,424 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.9519244,
+            40.632277
+          ],
+          [
+            22.951867,
+            40.6323091
+          ],
+          [
+            22.9518386,
+            40.6322799
+          ],
+          [
+            22.9518112,
+            40.6322518
+          ],
+          [
+            22.9517755,
+            40.6322151
+          ],
+          [
+            22.9517229,
+            40.632161
+          ],
+          [
+            22.9516855,
+            40.6321226
+          ],
+          [
+            22.9517429,
+            40.6320904
+          ],
+          [
+            22.9517804,
+            40.6321289
+          ],
+          [
+            22.951833,
+            40.632183
+          ],
+          [
+            22.9518687,
+            40.6322197
+          ],
+          [
+            22.951896,
+            40.6322477
+          ],
+          [
+            22.9519244,
+            40.632277
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-arch-of-galerius",
+      "properties": {
+        "snippet": "Arch; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/361097849/osm-location-of-arch-of-galerius",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Arch of Galerius"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/135678907",
+          "citationDetail": "Way 135678907",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=135678907",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-arch-of-galerius",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/arch"
+      ],
+      "end": 640,
+      "title": "OSM location of Arch of Galerius",
+      "provenance": "OpenStreetMap (Way 135678907, version 18, osm:changeset=156500033, 2024-09-11T19:35:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/arch"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "arch"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-06-13T18:34:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.9519244,
+            40.632277
+          ],
+          [
+            22.951867,
+            40.6323091
+          ],
+          [
+            22.9518386,
+            40.6322799
+          ],
+          [
+            22.9518112,
+            40.6322518
+          ],
+          [
+            22.9517755,
+            40.6322151
+          ],
+          [
+            22.9517229,
+            40.632161
+          ],
+          [
+            22.9516855,
+            40.6321226
+          ],
+          [
+            22.9517429,
+            40.6320904
+          ],
+          [
+            22.9517804,
+            40.6321289
+          ],
+          [
+            22.951833,
+            40.632183
+          ],
+          [
+            22.9518687,
+            40.6322197
+          ],
+          [
+            22.951896,
+            40.6322477
+          ],
+          [
+            22.9519244,
+            40.632277
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/361097849/osm-location-of-arch-of-galerius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-05T13:48:01Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T16:30:09Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-23T14:21:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:35:50Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:35:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:34:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:34:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-13T18:12:43Z",
+      "associationCertainty": "certain",
+      "title": "Thessalonica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/361097849/5638270019",
+      "connectionType": "at",
+      "id": "5638270019",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:12:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:12:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:12:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/491741",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Arch_of_Galerius_and_Rotunda",
+      "citationDetail": "Arch of Galerius and Rotunda",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Arch of Galerius and Rotunda.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "The Galerian complex",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5DAMXDF",
+      "formattedCitation": "<div class=\"csl-entry\">Greece, \u0392\u03b1\u03c3\u03b9\u03bb\u03b9\u03ba\u03ae \u039c\u03b9\u03c3\u03b1\u03b7\u03bb\u03af\u03b4\u03bf\u03c5-\u0394\u03b5\u03c3\u03c0\u03bf\u03c4\u03af\u03b4\u03bf\u03c5, and \u03a6\u03b1\u03bd\u03ae \u0391\u03b8\u03b1\u03bd\u03b1\u03c3\u03af\u03bf\u03c5, eds. <i>The Galerian Complex: A Visual Tour of the Imperial Residence in Thessaloniki</i>. Thessaloniki: 16th Ephorate of Prehistoric and Cultural Antiquities, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pond 1970",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E3JYA58M",
+      "formattedCitation": "<div class=\"csl-entry\">Pond, Margret Sharon. \u201cThe Arch of Galerius: A Sculptural Record of the Age of the Tetrarchies,\u201d 1970.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/503277",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pond Rothman 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y7CC2IY8",
+      "formattedCitation": "<div class=\"csl-entry\">Rothman, Margret S. Pond. \u201cThe Thematic Organization of the Panel Reliefs on the Arch of Galerius.\u201d <i>American Journal of Archaeology</i> 81, no. 4 (1977): 427\u201354. https://doi.org/10.2307/503277.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1258082",
+      "citationDetail": "Arch of Galerius and Rotunda (Q1258082)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "361097849",
+  "subject": [
+    "Arch",
+    "extant remains"
+  ],
+  "title": "Arch of Galerius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/arch"
+  ],
+  "details": "<p>Coordinates taken on 17 July 2013 with a Sony DSC-HX200V GPS camera</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The extant remains of a triumphal arch, constructed from 298 to 299 CE and dedicated in 303 CE under the tetrarch Galerius. It commemorates the capture of Ctesiphon from the Sassanids and forms part of a monumental entrance to the palace of Galerius.",
+  "reprPoint": [
+    22.951804954642988,
+    40.63219975820007
+  ],
+  "placeTypes": [
+    "arch"
+  ],
+  "bbox": [
+    22.9516855,
+    40.6320904,
+    22.9519244,
+    40.6323091
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/491741"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-13T18:12:42Z",
+  "uri": "https://pleiades.stoa.org/places/361097849",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1258082",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-05T13:48:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-01T23:33:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-23T14:21:57Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T19:13:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T18:35:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T18:33:49Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T18:12:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T18:12:42Z"
+    }
+  ]
+}

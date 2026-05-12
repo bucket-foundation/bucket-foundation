@@ -1,0 +1,620 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5634153,
+          42.3015747
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-santa-maria-di-furfona",
+      "properties": {
+        "snippet": "Church-2",
+        "link": "https://pleiades.stoa.org/places/413152/osm-location-of-santa-maria-di-furfona",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Santa Maria di Furfona"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2526310020",
+          "citationDetail": "Node 2526310020",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2526310020",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-santa-maria-di-furfona",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": null,
+      "title": "OSM location of Santa Maria di Furfona",
+      "provenance": "OpenStreetMap (Node 2526310020, version 4, osm:changeset=103225210, 2021-04-19T22:42:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "<p>Writing in\u00a0<em>New Pauly</em>, Giovanni Uggeri indicates that the ancient site is located near the present church.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-04-19T22:42:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5634153,
+          42.3015747
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/413152/osm-location-of-santa-maria-di-furfona",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-21T18:04:12Z"
+        },
+        {
+          "comment": "added place type, changed certainty --> certain",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-20T20:46:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-19T23:01:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-19T23:01:46Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-19T22:42:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-19T22:42:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-19T22:42:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T14:00:34Z",
+      "associationCertainty": "certain",
+      "title": "Vestini",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/413152/413376",
+      "connectionType": "connection",
+      "id": "413376",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413376",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T14:00:35Z",
+      "associationCertainty": "certain",
+      "title": "Via Claudia Nova",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/413152/926033983",
+      "connectionType": "connection",
+      "id": "926033983",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/926033983",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "Furfo was located within the territory of Peltuinum (CIL IX 3524).",
+      "contributors": [],
+      "created": "2021-04-19T23:00:41Z",
+      "associationCertainty": "certain",
+      "title": "Peltuinum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/413152/peltuinum",
+      "connectionType": "part_of_admin",
+      "id": "peltuinum",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-20T11:34:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-19T23:00:46Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-19T23:00:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-19T23:00:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413247",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/929265929",
+          "citationDetail": "442",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nissen II",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNVN3E2D",
+          "formattedCitation": "<div class=\"csl-entry\">Nissen, Heinrich. <i>Italische Landeskunde. 2\u202f: Die Staedte</i>. Amsterdam: Hakkert, 1967. http://www.worldcat.org/oclc/929265929.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_admin"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "42 F4 Furfo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "393-96",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "La Regina 1968a; La Regina 1968",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/835XVZAB",
+      "formattedCitation": "<div class=\"csl-entry\">La Regina, Adriano. \u201cRicerche sugli insediamenti vestini.\u201d <i>MonAnt ser. 8,</i> Memorie (Accademia nazionale dei Lincei. Classe di scienze morali, storiche e filologiche), 13 (1968): 363\u2013446.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/14419",
+      "citationDetail": "GEO ID 14419: Furfo (Santa Maria di Forfona)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "I\u00b2, 756",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "CIL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JCY8WN8B",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Corpus inscriptionum latinarum</i>. Berolini: Apud G. Reimerum, 1862.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.encquran.brill.nl/entries/brill-s-new-pauly/furfo-e416520",
+      "citationDetail": "Furfo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "IX, 3524",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "CIL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JCY8WN8B",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Corpus inscriptionum latinarum</i>. Berolini: Apud G. Reimerum, 1862.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q57563386",
+      "citationDetail": "Q57563386: Furfo",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Furfo",
+      "citationDetail": "Furfo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/929265929",
+      "citationDetail": "442",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nissen II",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNVN3E2D",
+      "formattedCitation": "<div class=\"csl-entry\">Nissen, Heinrich. <i>Italische Landeskunde. 2\u202f: Die Staedte</i>. Amsterdam: Hakkert, 1967. http://www.worldcat.org/oclc/929265929.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "18468",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Furfo",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "furfo",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 42 F4 Furfo",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-12T15:27:51Z",
+      "uri": "https://pleiades.stoa.org/places/413152/furfo",
+      "creators": [
+        {
+          "username": null,
+          "name": "W.V. Harris"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:48:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-14T14:03:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-12T15:52:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-12T15:27:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "413152",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "Jupiter Liber",
+    "dare:major=0"
+  ],
+  "title": "Furfo",
+  "provenance": "Barrington Atlas: BAtlas 42 F4 Furfo",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: S. Maria di Forfona. The cult of Iuppiter Liber is attested, as well as a goddess Angitia. A <em>lex sacra\u00a0</em>dated 13 July 58 B.C. was found at the site.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A vicus of the Vestini located in the upper Aterno valley in Abruzzo. The ancient settlement was located some 15 km south of modern L'Aquila, in the vicinity of S. Maria di Forfona near Barisciano. Furfo lay on the Via Claudia Nova between Amiternum and Peltuinum.",
+  "reprPoint": [
+    13.5634153,
+    42.3015747
+  ],
+  "placeTypes": [
+    "church-2",
+    "settlement"
+  ],
+  "bbox": [
+    13.5634153,
+    42.3015747,
+    13.5634153,
+    42.3015747
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413376",
+    "https://pleiades.stoa.org/places/926033983",
+    "https://pleiades.stoa.org/places/413247",
+    "https://pleiades.stoa.org/places/865942280"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-12T15:27:50Z",
+  "uri": "https://pleiades.stoa.org/places/413152",
+  "creators": [
+    {
+      "username": null,
+      "name": "W.V. Harris"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-30T12:37:07Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-21T18:07:11Z"
+    },
+    {
+      "comment": "added DARMC reference to maintain linkage after retracting less precise location",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-21T18:06:25Z"
+    },
+    {
+      "comment": "Nissen II 442",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-19T22:58:45Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-19T22:39:35Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-19T22:34:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-19T00:34:08Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-23T03:57:46Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:39:20Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:48:35Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T23:19:58Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:41:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-14T14:03:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-12T15:52:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-12T15:27:50Z"
+    }
+  ]
+}

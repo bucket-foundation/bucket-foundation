@@ -1,0 +1,14 @@
+# Hales (river)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/442609
+- **ID**: 442609
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Hales
+
+## Description
+
+An ancient place, cited: BAtlas 45 B4 Hales fl.

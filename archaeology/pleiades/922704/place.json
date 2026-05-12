@@ -1,0 +1,667 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.530136,
+          28.920997
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Fort; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/922704/dare-location",
+        "description": "Representative point location, site precision",
+        "location_precision": "precise",
+        "title": "DARE Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            52.5292838,
+            28.9211414
+          ],
+          [
+            52.5305,
+            28.9213032
+          ],
+          [
+            52.5306246,
+            28.9207728
+          ],
+          [
+            52.5293698,
+            28.9205998
+          ],
+          [
+            52.5292838,
+            28.9211414
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-qaleh-dukhtar",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/922704/osm-location-of-qaleh-dukhtar",
+        "description": "Polygon representing the perimeter of the archaeological site, derived from an OpenStreetMap way. Dates after BAtlas and EncIran.",
+        "location_precision": "precise",
+        "title": "OSM Location of Qaleh Dukhtar"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "P. Flensted Jensen"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://francia.ahlfeldt.se/imperium.php",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Johan \u00c5hlfeldt, Digital Atlas of the Roman Empire, 2012.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": 640,
+      "title": "DARE Location",
+      "provenance": "Digital Atlas of the Roman Empire (2012-10-15)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-3",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative point location, site precision",
+      "created": "2012-10-20T23:01:51Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.530136,
+          28.920997
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/922704/dare-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:01:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:01:52Z"
+        },
+        {
+          "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:01:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:01:51Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/440729082",
+          "citationDetail": "Way 440729082",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=440729082",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.iranicaonline.org/articles/qala-ye-doktar",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "EncIran: Qal\u02bfa-ye Do\u1e35tar",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VIHBGXME",
+          "formattedCitation": "<div class=\"csl-entry\">Dietrich Huff. \u201cQAL\u02bfA-YE DO\u1e34TAR.\u201d <i>Encylopaedia Iranica</i>. New York, November 15, 2006. http://www.iranicaonline.org/articles/qala-ye-doktar.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-qaleh-dukhtar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 640,
+      "title": "OSM Location of Qaleh Dukhtar",
+      "provenance": "OpenStreetMap (Way 440729082, version 5, osm:changeset=110389542, 2021-08-28T17:51:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Polygon representing the perimeter of the archaeological site, derived from an OpenStreetMap way. Dates after BAtlas and EncIran.",
+      "created": "2017-02-03T21:33:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            52.5292838,
+            28.9211414
+          ],
+          [
+            52.5305,
+            28.9213032
+          ],
+          [
+            52.5306246,
+            28.9207728
+          ],
+          [
+            52.5293698,
+            28.9205998
+          ],
+          [
+            52.5292838,
+            28.9211414
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/922704/osm-location-of-qaleh-dukhtar",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-18T00:07:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T21:50:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T21:49:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T21:48:13Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T21:33:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T21:33:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2018-12-27T15:29:53Z",
+      "associationCertainty": "certain",
+      "title": "Sassanid Archaeological Landscape of Fars Region",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/922704/sassanid-archaeological-landscape-of-fars-region",
+      "connectionType": "part_of_analytical",
+      "id": "sassanid-archaeological-landscape-of-fars-region",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T12:09:12Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T12:08:28Z"
+        },
+        {
+          "comment": "date -> modern",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T12:08:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:30:43Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:29:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:29:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/410216617",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "94 C5 Qaleh Dukhtar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Huff 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8FENNPAD",
+      "formattedCitation": "<div class=\"csl-entry\">D. Huff, and P. Gignoux. \u201cAusgrabungen Auf Qal\u2019a-Ye Dukhtar Bei Firuzabad 1976. A. Vorl\u00e4ufiger Grabungsbericht, B. Pithos-Inschriften von Qal'a-Ye Dukhtar.\u201d <i>IranMitt n.F.</i> 11 (1978): 117\u201350.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "22331",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+      "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 22331.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.iranicaonline.org/articles/qala-ye-doktar",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EncIran: Qal\u02bfa-ye Do\u1e35tar",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VIHBGXME",
+      "formattedCitation": "<div class=\"csl-entry\">Huff, Dietrich. \u201cQAL\u02bfA-YE DO\u1e34TAR.\u201d In <i>Encylopaedia Iranica</i>. New York, November 15, 2006. http://www.iranicaonline.org/articles/qala-ye-doktar.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Qal%27eh_Dokhtar",
+      "citationDetail": "Qal'eh Dokhtar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q558514",
+      "citationDetail": "Qal'eh Dokhtar (Q558514)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Qaleh Dukhtar, Qal'eh Dokhtar, Qal\u02bfa-ye Do\u1e35tar, Ghale Dokhtar",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://fa.wikipedia.org/wiki/%D9%82%D9%84%D8%B9%D9%87_%D8%AF%D8%AE%D8%AA%D8%B1_(%D9%81%DB%8C%D8%B1%D9%88%D8%B2%D8%A2%D8%A8%D8%A7%D8%AF)",
+          "citationDetail": "\u0642\u0644\u0639\u0647 \u062f\u062e\u062a\u0631 (\u0641\u06cc\u0631\u0648\u0632\u0622\u0628\u0627\u062f)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Persian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/FJ5B3YGU",
+          "formattedCitation": "\u0648\u06cc\u06a9\u06cc\u200c\u067e\u062f\u06cc\u0627\u060c \u062f\u0627\u0646\u0634\u0646\u0627\u0645\u0647\u0654 \u0622\u0632\u0627\u062f (2001-), \u0642\u0644\u0639\u0647 \u062f\u062e\u062a\u0631 (\u0641\u06cc\u0631\u0648\u0632\u0622\u0628\u0627\u062f).",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "qaleh-dukhtar",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fa",
+      "created": "2017-02-03T22:04:57Z",
+      "uri": "https://pleiades.stoa.org/places/922704/qaleh-dukhtar",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u0642\u0644\u0639\u0647 \u062f\u062e\u062a\u0631",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T22:06:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T22:06:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T22:06:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T22:05:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-03T22:04:57Z"
+        }
+      ]
+    }
+  ],
+  "id": "922704",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=fort",
+    "UWHS"
+  ],
+  "title": "Qaleh Dukhtar",
+  "provenance": "Barrington Atlas: BAtlas 94 C5 Qaleh Dukhtar",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "<p>Huff is the author of the EncIran article from 2006, which should be considered an update and supplement to the 1978 article.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Maiden Castle\" is a large fortification built by Ardashir I in the early third century A.D. It is located about 8 kilometers to the north of Firuzabad in modern Iran. Despite the distance involved, it is listed as part of the \"cultural landscape of Bam\" in the 2004 UNESCO World Heritage List.",
+  "reprPoint": [
+    52.530040261358025,
+    28.920974123439436
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    52.5292838,
+    28.9205998,
+    52.5306246,
+    28.9213032
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/410216617"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-10-06T16:29:46Z",
+  "uri": "https://pleiades.stoa.org/places/922704",
+  "creators": [
+    {
+      "username": null,
+      "name": "A. Hausleiter"
+    },
+    {
+      "username": null,
+      "name": "M. Roaf"
+    },
+    {
+      "username": null,
+      "name": "R. Wenke"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q558514",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-12T15:40:10Z"
+    },
+    {
+      "comment": "wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-27T15:31:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-03T22:14:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-03T22:13:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-03T22:11:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-03T21:52:43Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:01:52Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T09:38:25Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-10T01:06:29Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:34:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-06T17:26:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-06T16:31:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-06T16:29:46Z"
+    }
+  ]
+}

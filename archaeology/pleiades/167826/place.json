@@ -1,0 +1,430 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.6577141373063,
+              44.979643276226795
+            ],
+            [
+              6.673180633844197,
+              44.972504893209305
+            ],
+            [
+              6.689836860885009,
+              44.96596137544327
+            ],
+            [
+              6.710657144686024,
+              44.95584866616849
+            ],
+            [
+              6.725528775972464,
+              44.950494878905374
+            ],
+            [
+              6.73861581150453,
+              44.94335649588788
+            ],
+            [
+              6.760625825808461,
+              44.93383865186456
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/167826/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "Matrona M.",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "17 H4 Matrona",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": 640,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:15:54Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.6577141373063,
+              44.979643276226795
+            ],
+            [
+              6.673180633844197,
+              44.972504893209305
+            ],
+            [
+              6.689836860885009,
+              44.96596137544327
+            ],
+            [
+              6.710657144686024,
+              44.95584866616849
+            ],
+            [
+              6.725528775972464,
+              44.950494878905374
+            ],
+            [
+              6.73861581150453,
+              44.94335649588788
+            ],
+            [
+              6.760625825808461,
+              44.93383865186456
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/167826/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "E. Bertrand"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-28T13:49:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-27T20:34:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:15:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "17 H4 Matrona M.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/b.html#Barruol-1969",
+      "formattedCitation": "Barruol 1969, 61",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/p.html#Prieur-1969",
+      "formattedCitation": "Prieur 1969",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Matrona",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "Matrona-M",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 17 H4 Matrona M.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-06-23T12:17:48Z",
+      "uri": "https://pleiades.stoa.org/places/167826/Matrona-M",
+      "creators": [
+        {
+          "username": null,
+          "name": "E. Bertrand"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "programmatically changing titles, summaries, name languages, and romanized/attested forms as part of site-wide cleanup of mountains imported from the Barrington Atlas",
+          "modifiedBy": "admin",
+          "modified": "2021-03-01T22:40:37Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:34:50Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T00:13:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-06-23T13:52:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-06-23T12:31:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-06-23T12:17:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "167826",
+  "subject": [],
+  "title": "Matrona (mountain)",
+  "provenance": "Barrington Atlas: BAtlas 17 H4 Matrona M.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/mountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "The Barrington Atlas Directory notes: Mont-Gen\u00e8vre",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Mont-Gen\u00e8vre.",
+  "reprPoint": [
+    6.709224246725483,
+    44.956842539489095
+  ],
+  "placeTypes": [
+    "mountain",
+    "label"
+  ],
+  "bbox": [
+    6.6577141373063,
+    44.93383865186456,
+    6.760625825808461,
+    44.979643276226795
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-06-23T12:17:47Z",
+  "uri": "https://pleiades.stoa.org/places/167826",
+  "creators": [
+    {
+      "username": null,
+      "name": "E. Bertrand"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "programmatically changing titles, summaries, name languages, and romanized/attested forms as part of site-wide cleanup of mountains imported from the Barrington Atlas",
+      "modifiedBy": "admin",
+      "modified": "2021-03-01T22:40:22Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:34:50Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:13:57Z"
+    },
+    {
+      "comment": "Finding mountains by their titles and setting feature types",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-18T21:49:21Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:00:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-06-23T13:52:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-23T12:31:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-23T12:17:48Z"
+    }
+  ]
+}

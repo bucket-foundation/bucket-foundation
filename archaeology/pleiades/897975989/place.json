@@ -1,0 +1,809 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1592036,
+          36.3586329
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-representative-point-for-alkhosr",
+      "properties": {
+        "snippet": "River",
+        "link": "https://pleiades.stoa.org/places/897975989/osm-representative-point-for-alkhosr",
+        "description": "Location based on OpenStreetMap node is a representative point for the river",
+        "location_precision": "precise",
+        "title": "OSM representative point for Alkhosr "
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2126110975",
+          "citationDetail": "Node 2126110975",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2126110975",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-representative-point-for-alkhosr",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "end": null,
+      "title": "OSM representative point for Alkhosr ",
+      "provenance": "OpenStreetMap (Node 2126110975, version 1, osm:changeset=14766688, 2013-01-24T10:56:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "river"
+      ],
+      "description": "Location based on OpenStreetMap node is a representative point for the river",
+      "created": "2018-02-08T10:05:28Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1592036,
+          36.3586329
+        ]
+      },
+      "locationType": [
+        "representative",
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/897975989/osm-representative-point-for-alkhosr",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-18T15:34:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:02:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:08:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:07:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:07:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:05:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:05:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T09:04:02Z",
+      "associationCertainty": "certain",
+      "title": "Nineveh/Ninos",
+      "start": -3000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/897975989/nineveh-ninos",
+      "connectionType": "intersects",
+      "id": "nineveh-ninos",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "caliphate-umayyad-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/caliphate-umayyad-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "abassid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/abassid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fatimid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fatimid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "seljuq-khwarezmian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seljuq-khwarezmian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:02:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:08:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:53:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:04:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:04:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/874621",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/intersects"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T09:05:44Z",
+      "associationCertainty": "certain",
+      "title": "Badnigerimhuluha",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/897975989/badnigerimhuluha",
+      "connectionType": "intersects",
+      "id": "badnigerimhuluha",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:02:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:08:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:05:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:05:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/882947620",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/intersects"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T09:06:37Z",
+      "associationCertainty": "certain",
+      "title": "Badnigalbilukura\u0161u\u0161u",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/897975989/badnigalbilukurasusu",
+      "connectionType": "intersects",
+      "id": "badnigalbilukurasusu",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:02:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:08:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:06:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:06:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/945930916",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/intersects"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T09:07:34Z",
+      "associationCertainty": "certain",
+      "title": "Royal Road of Nineveh",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/897975989/royal-road-of-nineveh",
+      "connectionType": "intersects",
+      "id": "royal-road-of-nineveh",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:02:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:08:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:08:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:07:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T09:07:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/897975988",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/intersects"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Khosr_River",
+      "citationDetail": "Khosr River",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q12261451",
+      "citationDetail": "Q12261451",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1012402906",
+      "citationDetail": "677-678",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bagg, RGTC 7/2-2",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FREHICDX",
+      "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, and Wolfgang R\u00f6llig. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes VII/2, Teil 2, VII/2, Teil 2,</i>. Vol. 2. 2 vols. Beihefte zum T\u00fcbinger Atlas des Vorderen Orients. Reihe B, Geisteswissenschaften 7, 2017. http://www.worldcat.org/oclc/1012402906.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "524",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss 4",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Khosr River",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Khosr_River",
+          "citationDetail": "Khosr River",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-08.6380442588",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-02-08T09:25:03Z",
+      "uri": "https://pleiades.stoa.org/places/897975989/name.2018-02-08.6380442588",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:02:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:08:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:25:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:25:03Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Nahr al-Khosr",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Khosr_River",
+          "citationDetail": "Khosr River",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "nahr-al-khosr",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2018-02-08T09:27:31Z",
+      "uri": "https://pleiades.stoa.org/places/897975989/nahr-al-khosr",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "\u0646\u0647\u0631 \u0627\u0644\u062e\u0648\u0635",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:02:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:08:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:29:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:27:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:27:31Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Husur, Husir",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1012402906",
+          "citationDetail": "677-678",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/2-2",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FREHICDX",
+          "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, and Wolfgang R\u00f6llig. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes VII/2, Teil 2, VII/2, Teil 2,</i>. Vol. 2. 2 vols. Beihefte zum T\u00fcbinger Atlas des Vorderen Orients. Reihe B, Geisteswissenschaften 7, 2017. http://www.worldcat.org/oclc/1012402906.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-08.2134647109",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-02-08T09:48:28Z",
+      "uri": "https://pleiades.stoa.org/places/897975989/name.2018-02-08.2134647109",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:02:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T10:08:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:48:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:48:28Z"
+        }
+      ]
+    }
+  ],
+  "id": "897975989",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Khosr River",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/river"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Khosr River was a tributary of the Tigris River that ran directly through the center of the Assyrian city Nineveh. The Neo-Assyrian king Sennacherib reinforced its banks with large stone blocks to prevent it from flooding or damaging the citadel wall.",
+  "reprPoint": [
+    43.1592036,
+    36.3586329
+  ],
+  "placeTypes": [
+    "river"
+  ],
+  "bbox": [
+    43.1592036,
+    36.3586329,
+    43.1592036,
+    36.3586329
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/874621",
+    "https://pleiades.stoa.org/places/882947620",
+    "https://pleiades.stoa.org/places/945930916",
+    "https://pleiades.stoa.org/places/897975988",
+    "https://pleiades.stoa.org/places/886029329"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-02-03T08:57:34Z",
+  "uri": "https://pleiades.stoa.org/places/897975989",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-08T11:02:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-08T10:08:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-08T09:49:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-08T09:46:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-08T09:46:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-08T09:20:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-03T08:57:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-03T08:57:34Z"
+    }
+  ]
+}

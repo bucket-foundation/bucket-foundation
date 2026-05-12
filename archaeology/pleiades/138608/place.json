@@ -1,0 +1,761 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.2947099,
+            47.3301331
+          ],
+          [
+            1.2942705,
+            47.3293942
+          ],
+          [
+            1.2952325,
+            47.3290607
+          ],
+          [
+            1.2953292,
+            47.3292773
+          ],
+          [
+            1.2953626,
+            47.3295373
+          ],
+          [
+            1.2954432,
+            47.3296879
+          ],
+          [
+            1.295464,
+            47.3297269
+          ],
+          [
+            1.2956006,
+            47.3299165
+          ],
+          [
+            1.2947099,
+            47.3301331
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tasciaca",
+      "properties": {
+        "snippet": "Archaeological-site; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/138608/osm-location-of-tasciaca",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tasciaca"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/234350546",
+          "citationDetail": "Way 234350546",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=234350546",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tasciaca",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 640,
+      "title": "OSM location of Tasciaca",
+      "provenance": "OpenStreetMap (Way 234350546, version 8, osm:changeset=148133589, 2024-03-02T14:16:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-09-28T03:18:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.2947099,
+            47.3301331
+          ],
+          [
+            1.2942705,
+            47.3293942
+          ],
+          [
+            1.2952325,
+            47.3290607
+          ],
+          [
+            1.2953292,
+            47.3292773
+          ],
+          [
+            1.2953626,
+            47.3295373
+          ],
+          [
+            1.2954432,
+            47.3296879
+          ],
+          [
+            1.295464,
+            47.3297269
+          ],
+          [
+            1.2956006,
+            47.3299165
+          ],
+          [
+            1.2947099,
+            47.3301331
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/138608/osm-location-of-tasciaca",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-02T13:32:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-28T03:18:39Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-28T03:18:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-28T03:18:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-28T03:18:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-24T18:13:56Z",
+      "associationCertainty": "certain",
+      "title": "Cares (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/138608/cares-river",
+      "connectionType": "on",
+      "id": "cares-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-08T18:11:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T18:14:01Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T18:13:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T18:13:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/138270",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=tasciaca",
+          "citationDetail": "TASCIACA (Th\u00e9s\u00e9e) and POUILL\u00c9 Loir-et-Cher, France",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "PECS (Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+          "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "14 G1 Tasciaca?",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/311651606",
+      "citationDetail": "42",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CAG 41",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UT77DSN4",
+      "formattedCitation": "<div class=\"csl-entry\">Provost, Michel. <i>Carte arch\u00e9ologique de la Gaule 41 Le Loir-et-Cher</i>. Paris: Ed. Acad. des Inscriptions et Belles-Lettres, 1988. http://www.worldcat.org/oclc/311651606.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://francia.ahlfeldt.se/places/7890",
+      "citationDetail": "7890",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "RFO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2CEKGRY9",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Regnum Francorum Online</i>, 2009. http://francia.ahlfeldt.se/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=tasciaca",
+      "citationDetail": "TASCIACA (Th\u00e9s\u00e9e) and POUILL\u00c9 Loir-et-Cher, France",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace675.html",
+      "citationDetail": "1B3 (Talbert 675)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "TP (Talbert: CUP)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/24265",
+      "citationDetail": "GEO ID 24265: Tasciaca (Th\u00e9s\u00e9e)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/2972931/thesee.html",
+      "citationDetail": "2972931: Thesee",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.tasciaca.com/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Tasciaca - Le site gallo-romain de Th\u00e9s\u00e9e-la-Romaine",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/racf_0035-0753_1965_num_4_2_1214",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gaume 1965",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X2PBVD38",
+      "formattedCitation": "<div class=\"csl-entry\">Gaume, Georges. \u201cUn habitat gallo-romain \u00e0 Th\u00e9s\u00e9e-Pouill\u00e9 (Loir-et-Cher).\u201d <i>Revue arch\u00e9ologique du Centre de la France</i> 4, no. 2 (1965): 101\u201323. https://doi.org/10.3406/racf.1965.1214.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/racf_0220-6617_1986_num_25_2_2494",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Laubenheimer 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/59ZE3HBF",
+      "formattedCitation": "<div class=\"csl-entry\">Laubenheimer, Fanette. \u201cLa production d\u2019amphores de deux ateliers de potiers du bassin de la Loire moyenne / The production of amphorae in two potters workshops from the middle Loire basin.\u201d <i>Revue arch\u00e9ologique du Centre de la France</i> 25, no. 2 (1986): 175\u201387. https://doi.org/10.3406/racf.1986.2494.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "7191",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tasciaca",
+      "citationDetail": "Tasciaca",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q21099822",
+      "citationDetail": "Tasciaca (Q21099822)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Tasciaca",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace675.html",
+          "citationDetail": "1B3 (Talbert 675)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "TP (Talbert: CUP)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "tasciaca",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 14 G1 Tasciaca?",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2010-06-21T12:24:16Z",
+      "uri": "https://pleiades.stoa.org/places/138608/tasciaca",
+      "creators": [
+        {
+          "username": null,
+          "name": "H.S. Sivan"
+        },
+        {
+          "username": null,
+          "name": "R.W. Mathisen"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-09T15:06:22Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-03T15:45:40Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:25:48Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T00:02:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-06-22T21:04:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-06-21T12:43:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-06-21T12:24:16Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Th\u00e9s\u00e9e",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "thesee",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Regnum Francorum Online",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Name",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2012-05-25T22:15:59Z",
+      "uri": "https://pleiades.stoa.org/places/138608/thesee",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "F",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-30T16:11:12Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:16:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:16:00Z"
+        },
+        {
+          "comment": "RFO and PECS references from Johan Ahlfeldt (jahlfeldt) and reviewd by Tom Elliott (thomase) in May 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:16:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:16:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "138608",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=station"
+  ],
+  "title": "Tasciaca?",
+  "provenance": "Barrington Atlas: BAtlas 14 G1 Tasciaca?",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/station",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Th\u00e9s\u00e9e</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 14 G1 Tasciaca?",
+  "reprPoint": [
+    1.294952327475138,
+    47.32961515591104
+  ],
+  "placeTypes": [
+    "station",
+    "archaeological-site",
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    1.2942705,
+    47.3290607,
+    1.2956006,
+    47.3301331
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/138270",
+    "https://pleiades.stoa.org/places/138520",
+    "https://pleiades.stoa.org/places/770872725"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-06-21T12:24:16Z",
+  "uri": "https://pleiades.stoa.org/places/138608",
+  "creators": [
+    {
+      "username": null,
+      "name": "H.S. Sivan"
+    },
+    {
+      "username": null,
+      "name": "R.W. Mathisen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-29T03:03:30Z"
+    },
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2024-10-02T13:33:28Z"
+    },
+    {
+      "comment": "references ",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T18:11:12Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-01T20:16:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-03T15:44:20Z"
+    },
+    {
+      "comment": "edited references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-13T11:48:11Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-23T17:52:42Z"
+    },
+    {
+      "comment": "RFO and PECS references from Johan Ahlfeldt (jahlfeldt) and reviewd by Tom Elliott (thomase) in May 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-05-25T22:16:01Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:25:48Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:02:55Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T19:42:08Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:57:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-06-22T21:04:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-21T12:43:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-21T12:24:16Z"
+    }
+  ]
+}

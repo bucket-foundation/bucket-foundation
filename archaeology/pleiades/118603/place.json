@@ -1,0 +1,579 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.360431,
+          48.946151
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Fort; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/118603/dare-location",
+        "description": "Representative point location, site precision",
+        "location_precision": "precise",
+        "title": "DARE Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.3596149,
+            48.9462129
+          ],
+          [
+            11.3605536,
+            48.9455628
+          ],
+          [
+            11.361214,
+            48.945938
+          ],
+          [
+            11.3612968,
+            48.9459897
+          ],
+          [
+            11.3613291,
+            48.9460509
+          ],
+          [
+            11.3612775,
+            48.9460887
+          ],
+          [
+            11.3612068,
+            48.9461397
+          ],
+          [
+            11.3604291,
+            48.9466291
+          ],
+          [
+            11.3603767,
+            48.9466496
+          ],
+          [
+            11.3603256,
+            48.9466276
+          ],
+          [
+            11.3596495,
+            48.9462985
+          ],
+          [
+            11.3596018,
+            48.9462593
+          ],
+          [
+            11.3596149,
+            48.9462129
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kastell-baphming",
+      "properties": {
+        "snippet": "Fort-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/118603/osm-location-of-kastell-baphming",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kastell B\u00f6hming"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "G. Moosbauer"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "M. Puhane"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://francia.ahlfeldt.se/imperium.php",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Johan \u00c5hlfeldt, Digital Atlas of the Roman Empire, 2012.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": 300,
+      "title": "DARE Location",
+      "provenance": "Digital Atlas of the Roman Empire (2012-10-15)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-3",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative point location, site precision",
+      "created": "2012-10-21T00:17:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.360431,
+          48.946151
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/118603/dare-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-21T00:17:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-21T00:17:28Z"
+        },
+        {
+          "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-21T00:17:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-21T00:17:27Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/218388548",
+          "citationDetail": "Way 218388548",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=218388548",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kastell-baphming",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Kastell B\u00f6hming",
+      "provenance": "OpenStreetMap (Way 218388548, version 5, osm:changeset=84108945, 2020-04-25T14:52:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-07-29T12:47:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.3596149,
+            48.9462129
+          ],
+          [
+            11.3605536,
+            48.9455628
+          ],
+          [
+            11.361214,
+            48.945938
+          ],
+          [
+            11.3612968,
+            48.9459897
+          ],
+          [
+            11.3613291,
+            48.9460509
+          ],
+          [
+            11.3612775,
+            48.9460887
+          ],
+          [
+            11.3612068,
+            48.9461397
+          ],
+          [
+            11.3604291,
+            48.9466291
+          ],
+          [
+            11.3603767,
+            48.9466496
+          ],
+          [
+            11.3603256,
+            48.9466276
+          ],
+          [
+            11.3596495,
+            48.9462985
+          ],
+          [
+            11.3596018,
+            48.9462593
+          ],
+          [
+            11.3596149,
+            48.9462129
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/118603/osm-location-of-kastell-baphming",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-08-03T20:49:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-29T12:48:30Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-29T12:48:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-29T12:48:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-29T12:47:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "12 E4 B\u00f6hming",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "49-50",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Braun 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6NTSQA9Z",
+      "formattedCitation": "<div class=\"csl-entry\">Garbsch, Jochen, Rainer Braun, and Eveline Gr\u00f6nke. <i>Der R\u00f6mische Limes in Bayern: 100 Jahre Limesforschung</i>. M\u00fcnchen: Pr\u00e4historische Staatssammlung; Historischer Verein f\u00fcr Mittelfranken; Burgmuseum Gr\u00fcnwald, 1992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/430/",
+      "citationDetail": "430ter-409: Frontiers of the Roman Empire s.v. \"Fort site and civil settlement of Boehming\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q64812671",
+      "citationDetail": "Q64812671: Fort site and civil settlement of Boehming",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1735341",
+      "citationDetail": "Q1735341: Castra of B\u00f6hming",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/8504479/kastell-boehming.html",
+      "citationDetail": "8504479: Kastell B\u00f6hming",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "7454",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/3232",
+      "citationDetail": "8004627: Kastell B\u00f6hming Eichst\u00e4tt (Landkreis)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Kastell_B%C3%B6hming",
+      "citationDetail": "Kastell B\u00f6hming",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "118603",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=fort",
+    "UWHS"
+  ],
+  "title": "B\u00f6hming",
+  "provenance": "Barrington Atlas: BAtlas 12 E4 B\u00f6hming",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: B\u00f6hming</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman fort of the Upper Germanic-Raetian Limes, B\u00f6hming is located in the Eichst\u00e4tt district of Bavaria. The fort was destroyed in the late third century CE.",
+  "reprPoint": [
+    11.360448351885374,
+    48.946135831344904
+  ],
+  "placeTypes": [
+    "fort-2",
+    "fort"
+  ],
+  "bbox": [
+    11.3596018,
+    48.9455628,
+    11.3613291,
+    48.9466496
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-06-11T21:05:29Z",
+  "uri": "https://pleiades.stoa.org/places/118603",
+  "creators": [
+    {
+      "username": null,
+      "name": "H. Bender"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikipedia reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-01T14:31:09Z"
+    },
+    {
+      "comment": "Arachne 8004627: Kastell B\u00f6hming Eichst\u00e4tt (Landkreis)",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-23T19:07:19Z"
+    },
+    {
+      "comment": "added DARMC reference to maintain linkage after retracting less precise location",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-03T20:50:27Z"
+    },
+    {
+      "comment": "geonames 8504479: Kastell B\u00f6hming",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-29T12:46:58Z"
+    },
+    {
+      "comment": "summary, references, UWHS, place type = fort",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-29T12:44:54Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:17:30Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:15:41Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-14T23:49:51Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T19:46:40Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:54:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-06-11T21:25:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-11T21:14:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-11T21:05:29Z"
+    }
+  ]
+}

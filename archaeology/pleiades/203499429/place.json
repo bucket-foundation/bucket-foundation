@@ -1,0 +1,403 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2249041,
+            29.5751857
+          ],
+          [
+            31.2257252,
+            29.5751499
+          ],
+          [
+            31.2256876,
+            29.5744968
+          ],
+          [
+            31.2248665,
+            29.5745325
+          ],
+          [
+            31.2249041,
+            29.5751857
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pyramid-of-amenemhet-i",
+      "properties": {
+        "snippet": "Pyramid; 2010 BC - 1640 BC",
+        "link": "https://pleiades.stoa.org/places/203499429/osm-location-of-pyramid-of-amenemhet-i",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pyramid of Amenemhet I"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/711889183",
+          "citationDetail": "Way 711889183",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=711889183",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pyramid-of-amenemhet-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "end": -1640,
+      "title": "OSM location of Pyramid of Amenemhet I",
+      "provenance": "OpenStreetMap (Way 711889183, version 2, osm:changeset=149772712, 2024-04-09T11:19:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "pyramid"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-22T21:29:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2249041,
+            29.5751857
+          ],
+          [
+            31.2257252,
+            29.5751499
+          ],
+          [
+            31.2256876,
+            29.5744968
+          ],
+          [
+            31.2248665,
+            29.5745325
+          ],
+          [
+            31.2249041,
+            29.5751857
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/203499429/osm-location-of-pyramid-of-amenemhet-i",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-21T20:02:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-25T14:14:08Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-22T21:30:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-22T21:29:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-22T21:29:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-05-22T21:31:27Z",
+      "associationCertainty": "certain",
+      "title": "Lisht",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/203499429/lisht",
+      "connectionType": "at",
+      "id": "lisht",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-21T20:02:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-25T14:14:08Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-22T21:31:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-22T21:31:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/797229144",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pyramid_of_Amenemhat_I",
+      "citationDetail": "Pyramid of Amenemhat I",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q462160",
+      "citationDetail": "Pyramid of Amenemhet I (Q462160)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "17",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lehner 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LHZWRVDQ",
+      "formattedCitation": "<div class=\"csl-entry\">Lehner, Mark. <i>The Complete Pyramids</i>. London: Thames Hudson, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.metmuseum.org/met-publications/re-used-blocks-from-the-pyramid-of-amenemhet-i-at-lisht",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goedicke 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JBKW85AH",
+      "formattedCitation": "<div class=\"csl-entry\">Goedicke. <i>Re-Used Blocks from the Pyramid of Amenemhet I at Lisht - The Metropolitan Museum of Art</i>. Publications of the Metropolitan Museum of Art Egyptian Expedition 20. New York: Metropolitan Museum of Art Egyptian Expedition, 1971. https://www.metmuseum.org/met-publications/re-used-blocks-from-the-pyramid-of-amenemhet-i-at-lisht.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sut-khau Amenemhat",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "65",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Beckerath 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QBBRQGDX",
+          "formattedCitation": "<div class=\"csl-entry\">Beckerath, J\u00fcrgen von. <i>Handbuch der \u00e4gyptischen K\u00f6nigsnamen</i>. 2., Verbesserte und erweiterte Aufl. M\u00fcnchner \u00e4gyptologische Studien, Bd. 49. Mainz: von Zabern, 1999.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sut-khau-amenemhat",
+      "end": -1640,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "egy",
+      "created": "2024-06-26T06:32:32Z",
+      "uri": "https://pleiades.stoa.org/places/203499429/sut-khau-amenemhat",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Swt-\u1e2b\ua725w \u1ec8-mn-m-\u1e25\ua723t",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-15T20:11:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T06:32:40Z"
+        },
+        {
+          "comment": "name added",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T06:32:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T06:32:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "203499429",
+  "subject": [],
+  "title": "Pyramid of Amenemhat I",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Pyramid of Amenemhat I is an ancient Egyptian pyramid located at Lisht. It was built for Pharaoh Amenemhat I, the founder of the Twelfth Dynasty of Egypt.",
+  "reprPoint": [
+    31.2252958361442,
+    29.57484122608565
+  ],
+  "placeTypes": [
+    "pyramid"
+  ],
+  "bbox": [
+    31.2248665,
+    29.5744968,
+    31.2257252,
+    29.5751857
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/797229144"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-05-22T21:29:44Z",
+  "uri": "https://pleiades.stoa.org/places/203499429",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T06:36:10Z"
+    },
+    {
+      "comment": "add wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T06:28:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-21T20:02:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-25T14:14:08Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-25T14:14:03Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-22T21:29:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-22T21:29:44Z"
+    }
+  ]
+}

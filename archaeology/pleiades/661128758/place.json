@@ -1,0 +1,203 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.9545997,
+          43.1655513
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-camp",
+      "properties": {
+        "snippet": "Military-installation-or-camp-temporary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/661128758/location-of-roman-camp",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Campamento romano de Monte Cild\u00e1"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/458111399",
+          "citationDetail": "Node 458111399",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=458111399",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-camp",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "end": 300,
+      "title": "OSM location of Campamento romano de Monte Cild\u00e1",
+      "provenance": "OpenStreetMap (Node 458111399, version 2, osm:changeset=14358378, 2012-12-21T19:15:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "military-installation-or-camp-temporary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-03-23T19:08:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.9545997,
+          43.1655513
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/661128758/location-of-roman-camp",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T15:22:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-07T15:54:45Z"
+        },
+        {
+          "comment": "update title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-07T15:54:31Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T19:08:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T19:08:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T19:08:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Yacimientos_de_La_Espina_del_Gallego,_Cild%C3%A1,_El_Cant%C3%B3n_y_Campo_de_Las_Cercas",
+      "citationDetail": "Yacimientos de La Espina del Gallego, Cild\u00e1, El Cant\u00f3n y Campo de Las Cercas",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Yacimientos de La Espina del Gallego, Cild\u00e1, El Cant\u00f3n y Campo de Las Cercas.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "661128758",
+  "subject": [],
+  "title": "Cild\u00e1",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman encampment of the Cantabrian wars, dating ca. 29-19 BC.",
+  "reprPoint": [
+    -3.9545997,
+    43.1655513
+  ],
+  "placeTypes": [
+    "military-installation-or-camp-temporary"
+  ],
+  "bbox": [
+    -3.9545997,
+    43.1655513,
+    -3.9545997,
+    43.1655513
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-03-23T19:04:40Z",
+  "uri": "https://pleiades.stoa.org/places/661128758",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-09T15:22:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-07T15:54:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-23T19:09:48Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-23T19:04:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-23T19:04:41Z"
+    }
+  ]
+}

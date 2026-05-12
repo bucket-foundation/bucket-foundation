@@ -1,0 +1,14 @@
+# Hippalum
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/40159
+- **ID**: 40159
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Hippalum
+
+## Description
+
+An ancient place, cited: BAtlas 4 unlocated Hippalum

@@ -1,0 +1,508 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.3556733,
+          42.2778805
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-bridge",
+      "properties": {
+        "snippet": "Bridge; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/414506/location-of-roman-bridge",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Ponte Tre Ponti"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2673738955",
+          "citationDetail": "Node 2673738955",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2673738955",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-bridge",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 640,
+      "title": "OSM location of Ponte Tre Ponti",
+      "provenance": "OpenStreetMap (Node 2673738955, version 1, osm:changeset=20586266, 2014-02-15T22:26:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-15T22:27:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.3556733,
+          42.2778805
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/414506/location-of-roman-bridge",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-23T15:26:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:51:42Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:51:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-02T17:16:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-16T05:29:29Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T22:27:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T22:27:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T22:27:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-01-23T14:00:16Z",
+      "associationCertainty": "certain",
+      "title": "Via Amerina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/414506/690508612",
+      "connectionType": "on",
+      "id": "690508612",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-23T15:26:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:51:42Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:51:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:45:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:05:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:00:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/690508612",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-01-23T14:00:16Z",
+      "associationCertainty": "certain",
+      "title": "Nepet",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/414506/nepet",
+      "connectionType": "near",
+      "id": "nepet",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-23T15:26:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:51:42Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:51:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:45:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:06:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:00:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413224",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-01-23T14:06:51Z",
+      "associationCertainty": "certain",
+      "title": "Falerii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/414506/falerii",
+      "connectionType": "near",
+      "id": "falerii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-23T15:26:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:51:42Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:51:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:45:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:06:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-23T14:06:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413125",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "42 C4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/pdf/40310568",
+      "citationDetail": "97-102",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Frederiksen 1957",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TT3JBNEZ",
+      "formattedCitation": "<div class=\"csl-entry\">Frederiksen, M.W., and J.B. Ward-Perkins. \u201cThe Ancient Road Systems of the Central and Northern Ager Faliscus. (Notes on Southern Etruria, 2).\u201d <i>Papers of the British School at Rome</i> 25 (1957): 67\u2013208. https://www.jstor.org/stable/pdf/40310568.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "page 614 see \"Bridges: C4: on Via Amerina, near Nepet (3)\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlDir",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/11742/",
+      "citationDetail": "11742: Ponte sul Fosso Tre Ponti",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Antonelli 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9GYRKND",
+      "formattedCitation": "<div class=\"csl-entry\">Antonelli, V. \u201cNuovi elementi nello studio del ponte romano sul Fosso dei Tre Ponti.\u201d In <i>Settlement and economy in Italy, 1500 B.C. - A.D. 1500. Papers of the Fifth Conference of Italian Archaeology, [Oxford 11 - 13 December, 1992]</i>, 377\u201386, Abb, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "414506",
+  "subject": [],
+  "title": "Ponte sul Fosso Tre Ponti",
+  "provenance": "Barrington Atlas: BAtlas 42 C4",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "<p>The Barrington Atlas Directory groups this bridge with two others \"near Nepet\". This bridge is not to be confused by virtue of its modern name with \"Ponte tre Ponti\" cited in the Barrington Atlas Directory for Map 43 D3 (page 633), which lies on the Via Appia northwest of Forum Appii (BAtlas 43 D3 no. 58).</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman bridge on the Via Amerina between ancient Nepet and Falerii.",
+  "reprPoint": [
+    12.3556733,
+    42.2778805
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    12.3556733,
+    42.2778805,
+    12.3556733,
+    42.2778805
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/690508612",
+    "https://pleiades.stoa.org/places/413224",
+    "https://pleiades.stoa.org/places/413125"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-01-23T14:00:16Z",
+  "uri": "https://pleiades.stoa.org/places/414506",
+  "creators": [
+    {
+      "username": null,
+      "name": "W.V. Harris"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "typo in summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-23T15:32:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-23T15:26:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-23T14:51:42Z"
+    },
+    {
+      "comment": "added Antonelli 1995",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-23T14:51:27Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-23T14:51:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-23T14:45:34Z"
+    },
+    {
+      "comment": "adjusted page numbers from Frederiksen",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-23T14:44:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-23T14:39:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-23T14:04:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-23T14:00:16Z"
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.515362,
+          40.3789801
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Tomb, ; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/459348706/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tomba dei Giganti di S'Ena 'e Thomes"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2273072843",
+          "citationDetail": "Node 2273072843",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2273072843",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM location of Tomba dei Giganti di S'Ena 'e Thomes",
+      "provenance": "OpenStreetMap (Node 2273072843, version 1, osm:changeset=15790078, 2013-04-19T20:59:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-06-11T12:48:05Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.515362,
+          40.3789801
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/459348706/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-19T00:14:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T23:53:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-14T21:18:55Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-11T15:01:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-11T12:48:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-11T12:48:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:47:09Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/459348706/472014",
+      "connectionType": "connection",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/S%E2%80%99Ena_%E2%80%99e_Thomes",
+      "citationDetail": "S\u2019Ena \u2019e Thomes",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/QVRBJVTM",
+      "formattedCitation": "Wikipedia: Die freie Enzyklop\u00e4die (2001-), S\u2019Ena \u2019e Thomes.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.ilportalesardo.it/archeo/nudorgali2.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Portale Sardo: TOMBA DEI GIGANTI S'ENA E THOMES - DORGALI",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "459348706",
+  "subject": [],
+  "title": "S\u2019Ena \u2019e Thomes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A well-preserved 'giant's tomb' dating ca. 2000-1600 BC.",
+  "reprPoint": [
+    9.515362,
+    40.3789801
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    9.515362,
+    40.3789801,
+    9.515362,
+    40.3789801
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-06-11T12:47:22Z",
+  "uri": "https://pleiades.stoa.org/places/459348706",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-19T00:14:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:52:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-14T21:18:21Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-14T21:17:54Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-11T12:47:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-11T12:47:22Z"
+    }
+  ]
+}

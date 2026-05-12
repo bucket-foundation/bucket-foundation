@@ -1,0 +1,792 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              36.19054877258516,
+              34.09170754219599
+            ],
+            [
+              36.23266523238836,
+              34.128113295585194
+            ],
+            [
+              36.2783508837003,
+              34.17165743199189
+            ],
+            [
+              36.32974724142623,
+              34.220912274812584
+            ],
+            [
+              36.38471279066092,
+              34.28444388366825
+            ],
+            [
+              36.43468147178336,
+              34.34226478610993
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/668288/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "211964",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "68 B5 Koile",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": 300,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:18:32Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              36.19054877258516,
+              34.09170754219599
+            ],
+            [
+              36.23266523238836,
+              34.128113295585194
+            ],
+            [
+              36.2783508837003,
+              34.17165743199189
+            ],
+            [
+              36.32974724142623,
+              34.220912274812584
+            ],
+            [
+              36.38471279066092,
+              34.28444388366825
+            ],
+            [
+              36.43468147178336,
+              34.34226478610993
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668288/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        },
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "bdturner",
+          "modified": "2022-09-20T14:08:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-31T10:24:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:18:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "68 B5 Koile Syria/Massyas",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://papyri.info/ddbdp/p.cair.zen;1;59093",
+      "citationDetail": "59093",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "P.Cair.Zen.",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BPN3R39U",
+      "formattedCitation": "<div class=\"csl-entry\">Edgar, Campbell Cowan, ed. <i>Zenon Papyri, Catalogue G\u00e9n\u00e9ral Des Antiquit\u00e9s \u00c9gyptiennes Du Mus\u00e9e Du Caire</i>. 5 vols. Cairo: Impr. de l\u2019Institut francais d\u2019archeologie orientale, 1925.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Koile Syria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "53-62",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Balty 1982a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RKE2RHTG",
+      "formattedCitation": "<div class=\"csl-entry\">Balty, Janine, and J. C. Balty. \u201cL\u2019Apam\u00e8ne antique et les limites de la Syria Secunda.\u201d In <i>La g\u00e9ographie administrative et politique d\u2019Alexandre \u00e0 Mahomet. Actes du Colloque de Strasbourg 14-16 juin 1979</i>, 41\u201375, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "contra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sartre 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HYR3Z6C5",
+      "formattedCitation": "<div class=\"csl-entry\">Sartre, M. \u201cLa Syrie Creuse n\u2019existe Pas.\u201d In <i>G\u00e9ographie Historique Au Proche-Orient. Syrie, Ph\u00e9nicie, Arabie, Grecques, Romaines, Byzantines. Actes de La Table Ronde, Valbonne 16 - 18 Septembre 1985</i>, 15\u201340, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Massyas 3",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Marsyas 5",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Coele-Syria",
+      "citationDetail": "Coele-Syria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Coele-Syria.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:16.2.19",
+      "citationDetail": "16.2.19",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/11326368",
+      "citationDetail": "11326368: Coile Syria (Assyria)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q138586327",
+      "citationDetail": "Massyas (Q138586327)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Koile Syria",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/p.html#P.Cair.Zen.-59093",
+          "formattedCitation": "P.Cair.Zen. 59093",
+          "otherIdentifier": "",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/r.html#RE-Koile-Syria",
+          "formattedCitation": "RE Koile Syria",
+          "otherIdentifier": "",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/b.html#Balty-1982a-53-62",
+          "formattedCitation": "Balty 1982a 53-62",
+          "otherIdentifier": "",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/c.html#contra-Sartre-1988",
+          "formattedCitation": "contra Sartre 1988",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "id": "koile-syria",
+      "end": -30,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 68 B5 Koile Syria/Massyas",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-19T12:22:53Z",
+      "uri": "https://pleiades.stoa.org/places/668288/koile-syria",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:45:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T14:03:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:28:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:22:53Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Massyas",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/r.html#RE-Massyas-3",
+          "formattedCitation": "RE Massyas 3",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "id": "massyas",
+      "end": null,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 68 B5 Koile Syria/Massyas",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2009-10-19T12:22:53Z",
+      "uri": "https://pleiades.stoa.org/places/668288/massyas",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-09T01:32:29Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:45:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T14:03:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:28:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:22:54Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Marsyas",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/r.html#RE-Marsyas-5",
+          "formattedCitation": "RE Marsyas 5",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "id": "marsyas",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 68 B5 Koile Syria/Massyas",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-19T12:22:54Z",
+      "uri": "https://pleiades.stoa.org/places/668288/marsyas",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:45:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T14:03:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:28:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:22:54Z"
+        }
+      ]
+    }
+  ],
+  "id": "668288",
+  "subject": [],
+  "title": "Koile Syria/Massyas",
+  "provenance": "Barrington Atlas: BAtlas 68 B5 Koile Syria/Massyas",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/region",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Biqa' LEB/SYR</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Koile Syria/Massyas is a Hellenistic name for a region of Syria.",
+  "reprPoint": [
+    36.316410705075064,
+    34.21325732601452
+  ],
+  "placeTypes": [
+    "region",
+    "label"
+  ],
+  "bbox": [
+    36.19054877258516,
+    34.09170754219599,
+    36.43468147178336,
+    34.34226478610993
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678203"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-19T12:22:53Z",
+  "uri": "https://pleiades.stoa.org/places/668288",
+  "creators": [
+    {
+      "username": null,
+      "name": "J.P. Brown"
+    },
+    {
+      "username": null,
+      "name": "P.-L. Gatier"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add manto, add wikidata Massyas (Q138586327)",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-30T15:42:56Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-10T01:06:13Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-10T15:40:29Z"
+    },
+    {
+      "comment": "reference cleanup",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-23T14:46:06Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-09T01:41:35Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-22T18:45:03Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:45:42Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:56:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-19T14:03:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T12:28:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T12:22:53Z"
+    }
+  ]
+}

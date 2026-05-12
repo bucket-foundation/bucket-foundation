@@ -1,0 +1,386 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.8833264,
+            40.2751793
+          ],
+          [
+            8.8832956,
+            40.2751708
+          ],
+          [
+            8.8832746,
+            40.2751517
+          ],
+          [
+            8.8832689,
+            40.2751271
+          ],
+          [
+            8.88328,
+            40.2751036
+          ],
+          [
+            8.8833051,
+            40.2750876
+          ],
+          [
+            8.8833373,
+            40.2750832
+          ],
+          [
+            8.883368,
+            40.2750917
+          ],
+          [
+            8.8833891,
+            40.2751108
+          ],
+          [
+            8.8833948,
+            40.2751354
+          ],
+          [
+            8.8833836,
+            40.2751589
+          ],
+          [
+            8.8833586,
+            40.2751749
+          ],
+          [
+            8.8833264,
+            40.2751793
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-nuraghe-santa-sabina",
+      "properties": {
+        "snippet": "Nuraghe; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/425272783/osm-location-of-nuraghe-santa-sabina",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Nuraghe Santa Sabina"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/146225486",
+          "citationDetail": "Way 146225486",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=146225486",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-nuraghe-santa-sabina",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+      ],
+      "end": -1000,
+      "title": "OSM location of Nuraghe Santa Sabina",
+      "provenance": "OpenStreetMap (Way 146225486, version 7, osm:changeset=138539870, 2023-07-15T10:52:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-12-16T00:20:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.8833264,
+            40.2751793
+          ],
+          [
+            8.8832956,
+            40.2751708
+          ],
+          [
+            8.8832746,
+            40.2751517
+          ],
+          [
+            8.8832689,
+            40.2751271
+          ],
+          [
+            8.88328,
+            40.2751036
+          ],
+          [
+            8.8833051,
+            40.2750876
+          ],
+          [
+            8.8833373,
+            40.2750832
+          ],
+          [
+            8.883368,
+            40.2750917
+          ],
+          [
+            8.8833891,
+            40.2751108
+          ],
+          [
+            8.8833948,
+            40.2751354
+          ],
+          [
+            8.8833836,
+            40.2751589
+          ],
+          [
+            8.8833586,
+            40.2751749
+          ],
+          [
+            8.8833264,
+            40.2751793
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/425272783/osm-location-of-nuraghe-santa-sabina",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-18T20:16:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-16T00:21:20Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-16T00:21:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-16T00:20:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-16T00:20:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:37:36Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/425272783/472014",
+      "connectionType": "connection",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Santa_Sarbana",
+      "citationDetail": "Santa Sarbana",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Santa Sarbana.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Complesso_nuragico_di_Santa_Sarbana",
+      "citationDetail": "Complesso nuragico di Santa Sarbana",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Complesso nuragico di Santa Sarbana.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3685246",
+      "citationDetail": "Nuraghe Santa Sabina (Q3685246)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "425272783",
+  "subject": [
+    "nuraghe",
+    "extant remains"
+  ],
+  "title": "Nuraghe Santa Sarbana",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A nuragic complex in Silanus, Sardinia, dating to the period ca. 1500-1000 BC.",
+  "reprPoint": [
+    8.883331835040075,
+    40.275131249071094
+  ],
+  "placeTypes": [
+    "nuraghe"
+  ],
+  "bbox": [
+    8.8832689,
+    40.2750832,
+    8.8833948,
+    40.2751793
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-01-21T16:43:32Z",
+  "uri": "https://pleiades.stoa.org/places/425272783",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q3685246",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-15T12:08:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-26T01:21:09Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-30T00:48:36Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-07-25T16:27:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-05-26T17:25:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2013-05-26T17:25:24Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-01-21T16:43:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-01-21T16:43:32Z"
+    }
+  ]
+}

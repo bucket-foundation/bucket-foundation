@@ -1,0 +1,397 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              12.25,
+              41.75
+            ],
+            [
+              12.5,
+              41.75
+            ],
+            [
+              12.5,
+              42.0
+            ],
+            [
+              12.25,
+              42.0
+            ],
+            [
+              12.25,
+              41.75
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-location",
+      "properties": {
+        "snippet": "Unknown; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/426588/batlas-location",
+        "description": "",
+        "location_precision": "rough",
+        "title": "Barrington Atlas location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "batlas-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": -550,
+      "title": "Barrington Atlas location",
+      "provenance": "Barrington Atlas: BAtlas 43 B2 12",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2010-11-10T22:28:58Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              12.25,
+              41.75
+            ],
+            [
+              12.5,
+              41.75
+            ],
+            [
+              12.5,
+              42.0
+            ],
+            [
+              12.25,
+              42.0
+            ],
+            [
+              12.25,
+              41.75
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/426588/batlas-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "L. Quilici"
+        },
+        {
+          "username": null,
+          "name": "S. Quilici Gigli"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:58:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-11T05:12:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:38:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:28:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:41:48Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/426588/423025",
+      "connectionType": "at",
+      "id": "423025",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "ctype time period",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-06T20:41:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T20:24:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 B2 12",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "142-43",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cristofani 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7HAZTEXG",
+      "formattedCitation": "<div class=\"csl-entry\">Cristofani, Mauro, ed. <i>La Grande Roma Dei Tarquini: Roma, Palazzo Delle Esposizioni, 12 Giugno-30 Settembre 1990</i>. Roma: L\u2019Erma di Bretschneider; Palazzo delle esposizioni (Rome, Italy), 1990.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 632 s.v. \"Numbered Features\" 12",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlDir",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "426588",
+  "subject": [],
+  "title": "Unnamed temple (Tre Fontane)",
+  "provenance": "Barrington Atlas: BAtlas 43 B2 12",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p><em>The Barrington Atlas Directory</em> notes: temple at EUR.\u00a0This temple was included on <em>Barrington Atlas</em> map 43 as a numbered feature (no. 12).</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "M. Cristofani describes terracotta antefixes discovered at Tre Fontane, in the general location of the abbey of the same name. These antefixes form part of a set of evidence relevant to a discussion of the functioning of regional coroplastic workshops in central Italy in the late archaic period. They are dated from the later sixth to the early fifth centuries BCE.",
+  "reprPoint": [
+    12.375,
+    41.875
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    12.25,
+    41.75,
+    12.5,
+    42.0
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-05-29T20:06:29Z",
+  "uri": "https://pleiades.stoa.org/places/426588",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "edit typo in summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-30T18:14:39Z"
+    },
+    {
+      "comment": "Edited; edit summary, edit title, update reference by @jbecker",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-30T14:43:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-29T20:06:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-06T20:41:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-17T20:24:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-08T18:47:31Z"
+    },
+    {
+      "comment": "added cnxn",
+      "modifiedBy": "jbecker",
+      "modified": "2015-12-05T04:59:19Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-26T17:10:28Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:58:17Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:45:19Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:12:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:38:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:28:58Z"
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            52.5393944,
+            28.8985733
+          ],
+          [
+            52.5385879,
+            28.8978336
+          ],
+          [
+            52.5389846,
+            28.8975022
+          ],
+          [
+            52.539791,
+            28.898242
+          ],
+          [
+            52.5393944,
+            28.8985733
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-palace-of-ardeshir-babakan",
+      "properties": {
+        "snippet": "Architecturalcomplex; 30 BC - AD 550",
+        "link": "https://pleiades.stoa.org/places/453674631/osm-location-of-palace-of-ardeshir-babakan",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Palace of Ardeshir Babakan"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antiquity-in-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antiquity-in-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/440729081",
+          "citationDetail": "Way 440729081",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=440729081",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-palace-of-ardeshir-babakan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 550,
+      "title": "OSM location of Palace of Ardeshir Babakan",
+      "provenance": "OpenStreetMap (Way 440729081, version 6, osm:changeset=59240093, 2018-05-24T12:23:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-12-27T15:13:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            52.5393944,
+            28.8985733
+          ],
+          [
+            52.5385879,
+            28.8978336
+          ],
+          [
+            52.5389846,
+            28.8975022
+          ],
+          [
+            52.539791,
+            28.898242
+          ],
+          [
+            52.5393944,
+            28.8985733
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/453674631/osm-location-of-palace-of-ardeshir-babakan",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-06T10:49:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T19:10:21Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T19:07:10Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:15:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:13:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:13:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2018-12-27T15:19:09Z",
+      "associationCertainty": "certain",
+      "title": "Sassanid Archaeological Landscape of Fars Region",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/453674631/sassanid-archaeological-landscape-of-fars-region",
+      "connectionType": "part_of_analytical",
+      "id": "sassanid-archaeological-landscape-of-fars-region",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "ctype -> part of (analytical); time period: modern",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T20:11:12Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-06T10:49:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-06T10:49:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T19:10:21Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:19:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:19:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/410216617",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Palace_of_Ardashir",
+      "citationDetail": "Palace of Ardashir",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q32434",
+      "citationDetail": "Palace of Ardashir (Q32434)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/",
+      "citationDetail": "1568-005",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "453674631",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Palace of Ardashir",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A castle built in A.D. 224 by King Ardashir I of the Sassanian Empire, the Palace of Ardashir is located 2 km north of Gor.",
+  "reprPoint": [
+    52.53918945699916,
+    28.898037759145446
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    52.5385879,
+    28.8975022,
+    52.539791,
+    28.8985733
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/410216617"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-12-27T15:12:43Z",
+  "uri": "https://pleiades.stoa.org/places/453674631",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-12T15:43:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-02-06T10:49:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-27T19:10:21Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-27T19:05:41Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-27T15:12:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-27T15:12:43Z"
+    }
+  ]
+}

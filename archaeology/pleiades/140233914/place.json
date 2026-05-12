@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.6458284,
+            35.3772686
+          ],
+          [
+            45.6461018,
+            35.3770789
+          ],
+          [
+            45.6461833,
+            35.3769128
+          ],
+          [
+            45.64616,
+            35.3766993
+          ],
+          [
+            45.6459971,
+            35.3764574
+          ],
+          [
+            45.6457236,
+            35.376391
+          ],
+          [
+            45.6455432,
+            35.3763862
+          ],
+          [
+            45.6453512,
+            35.3765143
+          ],
+          [
+            45.6453047,
+            35.3769271
+          ],
+          [
+            45.6453745,
+            35.37715
+          ],
+          [
+            45.6455782,
+            35.3772592
+          ],
+          [
+            45.6458284,
+            35.3772686
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bestansur",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/140233914/osm-location-of-bestansur",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell at Bestansur"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/345732993",
+          "citationDetail": "Way 345732993",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=345732993",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bestansur",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -540,
+      "title": "OSM location of Tell at Bestansur",
+      "provenance": "OpenStreetMap (Way 345732993, version 1, osm:changeset=31231388, 2015-05-17T15:57:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2017-04-10T13:08:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.6458284,
+            35.3772686
+          ],
+          [
+            45.6461018,
+            35.3770789
+          ],
+          [
+            45.6461833,
+            35.3769128
+          ],
+          [
+            45.64616,
+            35.3766993
+          ],
+          [
+            45.6459971,
+            35.3764574
+          ],
+          [
+            45.6457236,
+            35.376391
+          ],
+          [
+            45.6455432,
+            35.3763862
+          ],
+          [
+            45.6453512,
+            35.3765143
+          ],
+          [
+            45.6453047,
+            35.3769271
+          ],
+          [
+            45.6453745,
+            35.37715
+          ],
+          [
+            45.6455782,
+            35.3772592
+          ],
+          [
+            45.6458284,
+            35.3772686
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/140233914/osm-location-of-bestansur",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-17T10:03:22Z"
+        },
+        {
+          "comment": "title",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-17T09:59:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-04-10T13:17:13Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-04-10T13:09:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-04-10T13:08:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-04-10T13:08:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.czap.org/bestansur",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "CZAP: Bestansur",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.bisi.ac.uk/content/excavations-neolithic-bestansur-iraqi-kurdistan",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Excavations at Neolithic Bestansur, Iraqi Kurdistan",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sciencedirect.com/science/article/pii/S2352409X16301481",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goodman 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8SIJNJ5V",
+      "formattedCitation": "<div class=\"csl-entry\">Goodman, Jessica, Matthew J. Almonda, and Wendy Matthews. \u201cAn Infrared Microspectroscopic Study of Plasters and Pigments from the Neolithic Site of Bestansur, Iraq.\u201d <i>Journal of Archaeological Science: Reports</i> 7 (2016): 195\u2013204. doi:http://doi.org/10.1016/j.jasrep.2016.04.013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.persee.fr/doc/paleo_0153-9345_2012_num_38_1_5464",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nieuwenhuyse 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZE2HRJRH",
+      "formattedCitation": "<div class=\"csl-entry\">Nieuwenhuyse, Olivier P., Koen Berghuijs, and Simone M\u00fchl. \u201cA Late Neolithic \u2018fishing Net\u2019 from Kurdistan, Northern Iraq?\u201d <i>Pal\u00e9orient</i> 38, no. 1 (2012): 141\u201347. http://www.persee.fr/doc/paleo_0153-9345_2012_num_38_1_5464.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bestansur",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.bisi.ac.uk/content/excavations-neolithic-bestansur-iraqi-kurdistan",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Excavations at Neolithic Bestansur, Iraqi Kurdistan",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "bestansur",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name of village in Iraqi Kurdistan, applied by excavators to site of nearby archaeological site.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-04-17T10:02:37Z",
+      "uri": "https://pleiades.stoa.org/places/140233914/bestansur",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Bestansur",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-17T10:03:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-17T10:03:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-17T10:02:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-17T10:02:37Z"
+        }
+      ]
+    }
+  ],
+  "id": "140233914",
+  "subject": [],
+  "title": "Bestansur",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The archaeological site at Bestansur is in the Shahrizor Plain in the foothills of the Central Zagros mountains in modern Iraq. The tell, which lies just east and south of the modern village, shows evidence for extensive Early Neolithic occupation as well as later Neo-Assyrian and Sasanian activity.",
+  "reprPoint": [
+    45.64572351414545,
+    35.37682422169183
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    45.6453047,
+    35.3763862,
+    45.6461833,
+    35.3772686
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-04-10T13:08:14Z",
+  "uri": "https://pleiades.stoa.org/places/140233914",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-04-17T10:03:21Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2017-04-17T09:56:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-10T13:17:13Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-10T13:16:31Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-10T13:14:16Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-10T13:11:38Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-10T13:08:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-10T13:08:14Z"
+    }
+  ]
+}

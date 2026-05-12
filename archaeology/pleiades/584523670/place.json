@@ -1,0 +1,369 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.0650482,
+            43.7930557
+          ],
+          [
+            11.0653429,
+            43.7929764
+          ],
+          [
+            11.0655283,
+            43.7929221
+          ],
+          [
+            11.0655632,
+            43.792771
+          ],
+          [
+            11.0655336,
+            43.792682
+          ],
+          [
+            11.0651903,
+            43.7924465
+          ],
+          [
+            11.0648792,
+            43.7925103
+          ],
+          [
+            11.0646271,
+            43.7926491
+          ],
+          [
+            11.0642942,
+            43.7930151
+          ],
+          [
+            11.0644071,
+            43.7930324
+          ],
+          [
+            11.0646941,
+            43.7930518
+          ],
+          [
+            11.0650482,
+            43.7930557
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-tumulus",
+      "properties": {
+        "snippet": "Tumulus; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/584523670/location-of-tumulus",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tumulo etrusco di Montefortini"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/182973039",
+          "citationDetail": "Way 182973039",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=182973039",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-tumulus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": -550,
+      "title": "OSM location of Tumulo etrusco di Montefortini",
+      "provenance": "OpenStreetMap (Way 182973039, version 10, osm:changeset=143370611, 2023-10-30T14:53:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-12T02:11:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.0650482,
+            43.7930557
+          ],
+          [
+            11.0653429,
+            43.7929764
+          ],
+          [
+            11.0655283,
+            43.7929221
+          ],
+          [
+            11.0655632,
+            43.792771
+          ],
+          [
+            11.0655336,
+            43.792682
+          ],
+          [
+            11.0651903,
+            43.7924465
+          ],
+          [
+            11.0648792,
+            43.7925103
+          ],
+          [
+            11.0646271,
+            43.7926491
+          ],
+          [
+            11.0642942,
+            43.7930151
+          ],
+          [
+            11.0644071,
+            43.7930324
+          ],
+          [
+            11.0646941,
+            43.7930518
+          ],
+          [
+            11.0650482,
+            43.7930557
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/584523670/location-of-tumulus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T23:04:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-22T11:21:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-03T20:17:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-27T21:29:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-09T16:01:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-09T16:00:29Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T02:11:54Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T02:11:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T02:11:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Tumulo_di_Montefortini",
+      "citationDetail": "Tumulo di Montefortini",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Tumulo di Montefortini.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.parcoarcheologicocarmignano.it/en/parco-archeologico/montefortini",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Etruscan tumulus of Montefortini in Comeana",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bettini 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TSESYMTE",
+      "formattedCitation": "<div class=\"csl-entry\">Bettini, Maria Chiara. \u201cSaghe e prodotti da terre lontane nel tumulo di Montefortini a Comeana.\u201d In <i>Tezan\u202f: gli Etruschi e il commercio\u202f: [atti del convegno\u202f: Carmignano e Poggio a Caiano, 14-15 ottobre 2010]</i>, 31\u201349. S.l.: s.n., 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nicosia 1966",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LTYDH4I8",
+      "formattedCitation": "<div class=\"csl-entry\">Nicosia, Francesco. <i>Il Tumulo di Montefortini e la Tomba dei Boschetti a Comeana: guida agli scavi 1965-66</i>. Firenze: Tipografia Giuntina, 1966.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1407567",
+      "citationDetail": "Tumulus of Montefortini (Q1407567)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "584523670",
+  "subject": [],
+  "title": "Montefortini",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monumental Etruscan tumulus that covers two chamber tombs that were looted in antiquity but that likely dated to the seventh and sixth centuries B.C.",
+  "reprPoint": [
+    11.064951871856767,
+    43.79281071451988
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    11.0642942,
+    43.7924465,
+    11.0655632,
+    43.7930557
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-02-12T02:10:18Z",
+  "uri": "https://pleiades.stoa.org/places/584523670",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1407567",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T23:05:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-22T11:21:59Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-03T20:26:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-27T21:28:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-09T15:59:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-09T15:59:46Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-12T02:10:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-12T02:10:19Z"
+    }
+  ]
+}

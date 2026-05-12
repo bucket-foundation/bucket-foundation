@@ -1,0 +1,363 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.5,
+              34.5
+            ],
+            [
+              33.0,
+              34.5
+            ],
+            [
+              33.0,
+              35.0
+            ],
+            [
+              32.5,
+              35.0
+            ],
+            [
+              32.5,
+              34.5
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "undetermined",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/708194/undetermined",
+        "description": "",
+        "location_precision": "rough",
+        "title": "Undetermined location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [],
+      "id": "undetermined",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 640,
+      "title": "Undetermined location",
+      "provenance": "Barrington Atlas: BAtlas 72 B3",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2009-10-20T09:33:03Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.5,
+              34.5
+            ],
+            [
+              33.0,
+              34.5
+            ],
+            [
+              33.0,
+              35.0
+            ],
+            [
+              32.5,
+              35.0
+            ],
+            [
+              32.5,
+              34.5
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/708194/undetermined",
+      "creators": [
+        {
+          "username": null,
+          "name": "D. Rupp"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:03:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-20T18:26:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-20T10:06:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-20T09:33:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-01-26T20:08:55Z",
+      "associationCertainty": "certain",
+      "title": "Kourion",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/708194/kourion",
+      "connectionType": "flows_into",
+      "id": "kourion",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-21T22:00:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-21T22:00:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-26T20:09:03Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-26T20:08:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-26T20:08:55Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707549",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "72 B3",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Last 1975",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XDX4SC89",
+      "formattedCitation": "<div class=\"csl-entry\">J.S. Last. \u201cKourion: The Ancient Water Supply.\u201d <i>Proceedings of the American Philosophical Society</i> 119 (1975): 39\u201372.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "1317 (n. 114)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mitford 1980a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WAP8X5IP",
+      "formattedCitation": "<div class=\"csl-entry\">Mitford, T. B. \u201cCappadocia and Armenia Minor. Historical Setting of the \u2018Limes.\u2019\u201d In <i>Aufstieg Und Niedergang Der R\u00f6mischen Welt, 2, 7, 2</i>, 1169\u20131228, Abb. Taf, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "708194",
+  "subject": [],
+  "title": "Aqueducts supplying Kourion",
+  "provenance": "Barrington Atlas: BAtlas 72 B3",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: 2</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 72 B3 unnamed aqueduct group (Kourion)",
+  "reprPoint": [
+    32.88564280169973,
+    34.66539177209083
+  ],
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": [
+    32.8821432,
+    34.6624432,
+    32.8892299,
+    34.6686857
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707549"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-20T09:33:03Z",
+  "uri": "https://pleiades.stoa.org/places/708194",
+  "creators": [
+    {
+      "username": null,
+      "name": "D. Rupp"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-21T22:01:08Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-17T02:00:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-01T15:56:11Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:03:53Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:00:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-20T18:26:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-20T10:06:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-20T09:33:03Z"
+    }
+  ]
+}

@@ -1,0 +1,1019 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.4842694,
+              41.8957733
+            ],
+            [
+              12.4843209,
+              41.8958057
+            ],
+            [
+              12.4842771,
+              41.8958443
+            ]
+          ],
+          [
+            [
+              12.4842771,
+              41.8958443
+            ],
+            [
+              12.4842256,
+              41.8958119
+            ],
+            [
+              12.4842694,
+              41.8957733
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-trajans-column",
+      "properties": {
+        "snippet": "Monument; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/783489695/osm-location-of-trajans-column",
+        "description": "Represeentative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Trajan's Column"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/3376015",
+          "citationDetail": "Relation 3376015",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=3376015",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-trajans-column",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 300,
+      "title": "OSM location of Trajan's Column",
+      "provenance": "OpenStreetMap (Relation 3376015, version 9, osm:changeset=134641071, 2023-04-08T07:28:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Represeentative location based on OpenStreetMap",
+      "created": "2021-11-03T20:09:17Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.4842694,
+              41.8957733
+            ],
+            [
+              12.4843209,
+              41.8958057
+            ],
+            [
+              12.4842771,
+              41.8958443
+            ]
+          ],
+          [
+            [
+              12.4842771,
+              41.8958443
+            ],
+            [
+              12.4842256,
+              41.8958119
+            ],
+            [
+              12.4842694,
+              41.8957733
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/783489695/osm-location-of-trajans-column",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full relation geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-26T21:18:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-03T17:56:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:51Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-03T20:09:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-03T20:09:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-03T20:09:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-11-03T20:22:41Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/783489695/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-03T17:56:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:43Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-03T20:22:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-03T20:22:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.dainst.org/entity/5667",
+          "citationDetail": "2100089: S\u00e4ule des Traianus, sog. Trajanss\u00e4ule Rom",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-11-03T20:23:48Z",
+      "associationCertainty": "certain",
+      "title": "Forum Traiani",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/783489695/forum-traiani",
+      "connectionType": "part_of_analytical",
+      "id": "forum-traiani",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-03T17:56:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:51Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-03T20:23:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-03T20:23:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/250091860",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Trajan%27s_Column",
+      "citationDetail": "Trajan's Column",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/506969",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lancaster 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SPF3YRSB",
+      "formattedCitation": "<div class=\"csl-entry\">Lancaster, Lynne. \u201cBuilding Trajan\u2019s Column.\u201d <i>American Journal of Archaeology</i> 103, no. 3 (1999): 419\u201339. https://doi.org/10.2307/506969.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/20627642",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thill 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DMMH6MS7",
+      "formattedCitation": "<div class=\"csl-entry\">Thill, Elizabeth Wolfram. \u201cCivilization under Construction: Depictions of Architecture on the Column of Trajan.\u201d <i>American Journal of Archaeology</i> 114, no. 1 (2010): 27\u201343. https://www.jstor.org/stable/20627642.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40310297",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jones 1910",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K8XJB6MV",
+      "formattedCitation": "<div class=\"csl-entry\">Jones, H. Stuart. \u201cThe Historical Interpretation of the Reliefs of Trajan\u2019s Column.\u201d <i>Papers of the British School at Rome</i> 5, no. 7 (1910): 435\u201359. https://www.jstor.org/stable/40310297.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/506249",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Davies 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U6YCKT8S",
+      "formattedCitation": "<div class=\"csl-entry\">Davies, Penelope J. E. \u201cThe Politics of Perpetuation: Trajan\u2019s Column and the Art of Commemoration.\u201d <i>American Journal of Archaeology</i> 101, no. 1 (1997): 41\u201365. https://doi.org/10.2307/506249.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rockwell 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ATU3KWFE",
+      "formattedCitation": "<div class=\"csl-entry\">Rockwell, Peter, and International Centre for the Study of the Preservation and the Restoration of Cultural Property. <i>Preliminary Study of the Carving Techniques on the Column of Trajan</i>. Rome: ICCROM, 1983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "L'Esame storico-artistico della colonna traiana",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I2682S84",
+      "formattedCitation": "<div class=\"csl-entry\">Convegni lincei, and Accademia nazionale dei Lincei (Italie), eds. <i>L\u2019Esame storico-artistico della colonna traiana</i>. Roma: Accademia nazionale dei lincei, 1982.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Boni 1912",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AA62NSJY",
+      "formattedCitation": "<div class=\"csl-entry\">Boni, Giacomo. <i>Colonna Traiana.</i> Roma: Nuova Antologia, 1912.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bartoli 1751",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MLTUWHEQ",
+      "formattedCitation": "<div class=\"csl-entry\">Bartoli, Pietro Santo, Alfonso Chac\u00f3n, Giovanni Pietro Bellori, and Giovanni Giacomo de Rossi. <i>Colonna Traiana</i>. Roma, 1751.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coarelli 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G9WK72AP",
+      "formattedCitation": "<div class=\"csl-entry\">Coarelli, Filippo. <i>The Column of Trajan</i>. Roma: Editore Colombo, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/6269260/columna-traiana.html",
+      "citationDetail": "6269260: Columna Traiana",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Trajan%27s_Column_-_Cichorius_Plates",
+      "citationDetail": "Category:Trajan's Column - Cichorius Plates",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q192784",
+      "citationDetail": "Q192784: Trajan's Column",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125ACTr",
+      "citationDetail": "Trajan's Column (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1089232",
+      "citationDetail": "S\u00e4ule des Traianus, sog. Trajanss\u00e4ule, S\u00e4ulenschaft Trajanss\u00e4ule, Trajansforum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2094882",
+      "citationDetail": "Foro di Traiano",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Conti 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UZZ76TPJ",
+      "formattedCitation": "<div class=\"csl-entry\">Conti, Cinzia. <i>Saggi sulla colonna traiana = lectures on Trajan\u2019s column</i>. Roma: L\u2019Erma di Bretschneider, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journals.uchicago.edu/doi/10.1086/730184",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thill 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JVZTYWW8",
+      "formattedCitation": "<div class=\"csl-entry\">Thill, Elizabeth Wolfram, Maryl B. Gensheimer, and Elizabeth M. Greene. \u201cRepresentations of Gender: Recognizing the Role of Feminine Sacrificial Attendants in the Column of Trajan Sacrifice Scenes.\u201d <i>American Journal of Archaeology</i> 128, no. 3 (July 2024): 309\u201339. https://doi.org/10.1086/730184.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://digital.casalini.it/9788891310088",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Conti 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2QK2QIWQ",
+      "formattedCitation": "<div class=\"csl-entry\">Conti, Cinzia, ed. <i>Lectures on Trajan\u2019s Column: and its architect Apollodorus of Damascus</i>. Translated by Fred Moffa. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2022. http://digital.casalini.it/9788891310088.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1089232",
+      "citationDetail": "S\u00e4ule des Traianus, sog. Trajanss\u00e4ule, S\u00e4ulenschaft Trajanss\u00e4ule, Trajansforum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5667",
+      "citationDetail": "S\u00e4ule des Traianus, sog. Trajanss\u00e4ule Trajansforum, Rom",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Column of Trajan",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Coarelli 2000",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G9WK72AP",
+          "formattedCitation": "<div class=\"csl-entry\">Coarelli, Filippo. <i>The Column of Trajan</i>. Roma: Editore Colombo, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "column-of-trajan",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-01-02T17:13:29Z",
+      "uri": "https://pleiades.stoa.org/places/783489695/column-of-trajan",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Column of Trajan",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-03T17:56:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:51Z"
+        },
+        {
+          "comment": "time, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T00:57:23Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T17:13:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T17:13:29Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Colonna Traiana",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Boni 1912",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AA62NSJY",
+          "formattedCitation": "<div class=\"csl-entry\">Boni, Giacomo. <i>Colonna Traiana.</i> Roma: Nuova Antologia, 1912.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "colonna-traiana",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-01-02T17:13:49Z",
+      "uri": "https://pleiades.stoa.org/places/783489695/colonna-traiana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Colonna Traiana",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-03T17:56:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:51Z"
+        },
+        {
+          "comment": "time",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T00:56:46Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T00:56:31Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T17:13:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T17:13:49Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Trajanssaule",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.dainst.org/entity/5667",
+          "citationDetail": "2100089: S\u00e4ule des Traianus, sog. Trajanss\u00e4ule Rom",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "trajanssaule",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2022-01-02T17:14:42Z",
+      "uri": "https://pleiades.stoa.org/places/783489695/trajanssaule",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Trajanss\u00e4ule (Die)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-03T17:56:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:51Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:11:55Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T17:14:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T17:14:42Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Columna Traiana",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geonames.org/6269260/columna-traiana.html",
+          "citationDetail": "6269260: Columna Traiana",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "columna-traiana",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2022-01-02T17:15:38Z",
+      "uri": "https://pleiades.stoa.org/places/783489695/columna-traiana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Columna Traiana",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-03T17:56:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:51Z"
+        },
+        {
+          "comment": "name via GeoNames 6269260: Columna Traiana",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T17:15:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T17:15:38Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "S\u00e4ule des Traianus",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.dainst.org/entity/5667",
+          "citationDetail": "2100089: S\u00e4ule des Traianus, sog. Trajanss\u00e4ule Rom",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "saule-des-traianus",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2022-01-03T01:12:39Z",
+      "uri": "https://pleiades.stoa.org/places/783489695/saule-des-traianus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "S\u00e4ule des Traianus",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-03T17:56:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:14:52Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:12:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-03T01:12:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "783489695",
+  "subject": [
+    "extant remains",
+    "relief sculpture",
+    "marble"
+  ],
+  "title": "Column of Trajan",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Column of Trajan (or Trajan's Column) is a victory column that was erected in the Forum of Trajan at Rome ca. 113 in order to commemorate Trajan's victories in the Dacian Wars. The column is particularly noted for its helical historiated bas relief frieze decoration.",
+  "reprPoint": [
+    12.484273250000001,
+    41.8958088
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    12.4842256,
+    41.8957733,
+    12.4843209,
+    41.8958443
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/250091860"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-11-03T20:08:48Z",
+  "uri": "https://pleiades.stoa.org/places/783489695",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Arachne x 2",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-12T13:15:15Z"
+    },
+    {
+      "comment": "add Thill 2024 OA article and Conti 2022 to references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-12T13:12:32Z"
+    },
+    {
+      "comment": "update deprecated Arachne ref --> iDAI.gazetteer reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-16T20:59:39Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-19T16:12:12Z"
+    },
+    {
+      "comment": "Added contributor ",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-03T21:10:51Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-03T17:56:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-03T01:15:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-03T01:14:51Z"
+    },
+    {
+      "comment": "references from Arachne, idai",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-03T01:13:54Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-02T18:02:26Z"
+    },
+    {
+      "comment": "GeoNames 6269260: Columna Traiana",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-02T17:16:17Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-02T17:13:10Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-03T20:08:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-03T20:08:48Z"
+    }
+  ]
+}

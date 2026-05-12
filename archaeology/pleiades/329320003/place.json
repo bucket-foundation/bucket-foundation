@@ -1,0 +1,275 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.8223075,
+            40.6352485
+          ],
+          [
+            15.822557,
+            40.634966
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-bridge",
+      "properties": {
+        "snippet": "Bridge; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/329320003/location-of-roman-bridge",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ponte Romano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/264032830",
+          "citationDetail": "Way 264032830",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=264032830",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-bridge",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 640,
+      "title": "OSM location of Ponte Romano",
+      "provenance": "OpenStreetMap (Way 264032830, version 8, osm:changeset=129491738, 2022-11-28T20:45:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-03-02T01:06:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.8223075,
+            40.6352485
+          ],
+          [
+            15.822557,
+            40.634966
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/329320003/location-of-roman-bridge",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:40:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-08-04T19:48:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-03T23:48:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-03T23:48:18Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-02T01:07:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-02T01:06:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-02T01:06:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:57:25Z",
+      "associationCertainty": "certain",
+      "title": "Casuentus (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/329320003/442537",
+      "connectionType": "crosses",
+      "id": "442537",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype crosses",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-04T19:58:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442537",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/crosses"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.comune.potenza.it/index.php/antichita/37-ponte-san-vito",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Ponte di San Vito",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "329320003",
+  "subject": [],
+  "title": "Unnamed bridge",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman bridge across the Basento river.",
+  "reprPoint": [
+    15.822272,
+    40.63528
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    15.822272,
+    40.63528,
+    15.822272,
+    40.63528
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442537"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-03-02T01:06:35Z",
+  "uri": "https://pleiades.stoa.org/places/329320003",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-04T19:48:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-03T23:48:29Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-02T01:06:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-02T01:06:35Z"
+    }
+  ]
+}

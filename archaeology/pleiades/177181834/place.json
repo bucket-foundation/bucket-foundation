@@ -1,0 +1,464 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.667922,
+          41.850465
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Cemetery; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/177181834/imagery-location",
+        "description": "Imagery location based on coordinates derived from GeoHack",
+        "location_precision": "precise",
+        "title": "Imagery location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Catacombe_di_San_Zotico",
+          "citationDetail": "Catacombe di San Zotico",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": 640,
+      "title": "Imagery location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Imagery location based on coordinates derived from GeoHack",
+      "created": "2023-01-20T21:09:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.667922,
+          41.850465
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/177181834/imagery-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-23T20:50:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:32:10Z"
+        },
+        {
+          "comment": "update",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:29:50Z"
+        },
+        {
+          "comment": "add Imagery location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:09:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:09:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-01-20T21:30:57Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/177181834/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-23T20:50:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:32:10Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:30:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:30:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Catacombe_di_San_Zotico",
+          "citationDetail": "Catacombe di San Zotico",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-01-20T21:31:35Z",
+      "associationCertainty": "certain",
+      "title": "Via Labicana",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/177181834/via-labicana",
+      "connectionType": "on",
+      "id": "via-labicana",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-23T20:50:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:32:10Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:31:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:31:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/74935822",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Catacombe_di_San_Zotico",
+          "citationDetail": "Catacombe di San Zotico",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stevenson 1876",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QJG83JVL",
+      "formattedCitation": "<div class=\"csl-entry\">Stevenson, Henry M. <i>Il cimitero di Zotico al decimo miglio della Via Labicana</i>. Modena: Soc. tipografica, 1876.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mastrorilli 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3FCHULLH",
+      "formattedCitation": "<div class=\"csl-entry\">Mastrorilli, Daria. \u201cLe tombe dei martiri Zotico e Amanzio nella catacomba al X miglio della via Labicana.\u201d In <i>Atti della Pontificia Accademia Romana di Archeologia. Rendiconti, 84.2011-2012</i>, 155\u2013202. Roma: Tipografia vaticana, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Catacombe_di_San_Zotico",
+      "citationDetail": "Catacombe di San Zotico",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mastrorilli 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3FCHULLH",
+      "formattedCitation": "<div class=\"csl-entry\">Mastrorilli, Daria. \u201cLe tombe dei martiri Zotico e Amanzio nella catacomba al X miglio della via Labicana.\u201d In <i>Atti della Pontificia Accademia Romana di Archeologia. Rendiconti, 84.2011-2012</i>, 155\u2013202. Roma: Tipografia vaticana, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3663207",
+      "citationDetail": "Catacomb of San Zotico (Q3663207)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=7031",
+      "citationDetail": "7031: Catacombe di San Zotico",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Catacombe di San Zotico",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org",
+          "citationDetail": "Catacombe di San Zotico",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "catacombe-di-san-zotico",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-01-20T21:30:21Z",
+      "uri": "https://pleiades.stoa.org/places/177181834/catacombe-di-san-zotico",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Catacombe di San Zotico",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-23T20:50:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:32:10Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:30:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-20T21:30:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "177181834",
+  "subject": [],
+  "title": "Catacomb of San Zotico",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Christian catacomb located at the tenth mile of the ancient Via Labicana.",
+  "reprPoint": [
+    12.667922,
+    41.850465
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.667922,
+    41.850465,
+    12.667922,
+    41.850465
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/74935822"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-01-17T03:39:15Z",
+  "uri": "https://pleiades.stoa.org/places/177181834",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "info.roma 7031: Catacombe di San Zotico",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T00:47:29Z"
+    },
+    {
+      "comment": "wikidata Q3663207",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T00:45:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-23T20:50:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-20T21:32:10Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-20T21:32:04Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-17T03:39:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-17T03:39:15Z"
+    }
+  ]
+}

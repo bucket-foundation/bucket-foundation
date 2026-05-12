@@ -1,0 +1,288 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.3276277,
+          37.6814776
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-kephala",
+      "properties": {
+        "snippet": "Settlement, ; 4000 BC - 3000 BC",
+        "link": "https://pleiades.stoa.org/places/395751423/location-of-kephala",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Kephala"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2403008529",
+          "citationDetail": "Node 2403008529",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2403008529",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-kephala",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -3000,
+      "title": "OSM location of Kephala",
+      "provenance": "OpenStreetMap (Node 2403008529, version 2, osm:changeset=110026458, 2021-08-21T12:19:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-08-01T03:40:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.3276277,
+          37.6814776
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/395751423/location-of-kephala",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-13T20:48:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-31T21:27:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-09T19:51:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-01T15:53:53Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-01T03:41:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-01T03:40:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-01T03:40:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:39:16Z",
+      "associationCertainty": "certain",
+      "title": "Keos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/395751423/570348",
+      "connectionType": "connection",
+      "id": "570348",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570348",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=94w5cX7wu_wC&lpg=PP1&dq=Kephala.%20A%20Late%20Neolithic%20Settlement%20and%20Cemetery&pg=PP1#v=onepage&q=Kephala.%20A%20Late%20Neolithic%20Settlement%20and%20Cemetery&f=false",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Coleman, J.E. 1977. Keos. Volume I. Kephala. A Late Neolithic Settlement and Cemetery. Princeton NJ: ASCSA.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/377243XKef",
+      "citationDetail": "Kefala exc. (Kea) Kefala",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2361891",
+      "citationDetail": "2361891: Kefala",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>iDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "395751423",
+  "subject": [],
+  "title": "Kephala",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Neolithic site and cemetery on Keos.",
+  "reprPoint": [
+    24.3276277,
+    37.6814776
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    24.3276277,
+    37.6814776,
+    24.3276277,
+    37.6814776
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570348"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-08-01T03:40:17Z",
+  "uri": "https://pleiades.stoa.org/places/395751423",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "iDAI.gazetteer, topostext added",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-13T20:49:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-31T21:27:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-01T15:53:37Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-01T03:40:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-01T03:40:17Z"
+    }
+  ]
+}

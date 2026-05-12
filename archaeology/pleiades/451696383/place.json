@@ -1,0 +1,470 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-03-16T19:19:03Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/451696383/roma",
+      "connectionType": "part_of_physical",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-02T12:20:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-11T22:04:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-16T19:19:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-16T19:19:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "ekeogh",
+          "homepage": null,
+          "name": "Edward Keogh",
+          "uri": "https://pleiades.stoa.org/author/ekeogh"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-07-10T15:59:46Z",
+      "associationCertainty": "certain",
+      "title": "Regio IV (Templum Pacis)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/451696383/regio-iv-templum-pacis",
+      "connectionType": "part_of_analytical",
+      "id": "regio-iv-templum-pacis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-18T19:58:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-18T19:12:01Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-10T15:59:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-10T15:59:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/523965218",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/893/3/4/1890-1896",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Hor., Epod. 5.58",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/684/1/6/392-398",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Varro, Ling. 5.56.2",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://referenceworks.brillonline.com/browse/brill-s-new-pauly",
+      "citationDetail": "Subura",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/1276/1/10/2362-2368,6380-6386",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Juv. 11.51, 11.141",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/1294/2/1031/153-159",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Mart. 11.61.3",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "373",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richardson 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCISHZRH",
+      "formattedCitation": "<div class=\"csl-entry\">Richardson, Lawrence. <i>A New Topographical Dictionary of Ancient Rome</i>. Baltimore: John Hopkins University Press, 1992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125USub",
+      "citationDetail": "Suburra (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1548355",
+      "citationDetail": "Q1548355: Suburra",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0081.tlg001.perseus-grc1:4.14.1",
+      "citationDetail": "4.14.1",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Dion. Hal. Ant. Rom. (Perseus: Jacoby)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQRTYKMX",
+      "formattedCitation": "<div class=\"csl-entry\">Dionysius Halicarnassensis, and Karl Jacoby. <i>Dionysi Halicarnasensis Antiquitatum Romanorum quae supersunt</i>. Lipsiae: Teubner, 1885. http://data.perseus.org/texts/urn:cts:greekLit:tlg0081.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Suburra",
+      "citationDetail": "Suburra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fridh 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SE7N8N32",
+      "formattedCitation": "<div class=\"csl-entry\">Fridh, \u00c5. \u201cEsquiliae, Fagutal, and Subura Once Again.\u201d In <i>Eranos. Acta Philologica Suecana, 88.1990</i>, 139\u201361, Abb, 1990.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Subura",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://latin.packhum.org/loc/1294/2/960/256-262",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Mart. 10.94.5",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "subura-1",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2020-11-11T22:02:00Z",
+      "uri": "https://pleiades.stoa.org/places/451696383/subura-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Subura",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-02T12:20:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-11T22:04:01Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-11T22:02:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-11T22:02:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "451696383",
+  "subject": [],
+  "title": "Subura",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/valley",
+    "https://pleiades.stoa.org/vocabularies/place-types/district"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Subura (or Suburra) refers to an area of ancient Rome, although the precise spatial definition of this area is unclear. In the earliest instances, this toponym may refer to the valley lying between the Oppian and the Caelian. As such it corresponds to one of the four urban regions known as the \"Servian\" regions. In later times the Subura referred to a part of the Augustan regio IV which was known as a densely populated area between the Esquiline, Quirinal, Viminal, and Cispian hills and had a rough and seedy reputation.",
+  "reprPoint": [
+    12.486137,
+    41.891775
+  ],
+  "placeTypes": [
+    "valley",
+    "district"
+  ],
+  "bbox": [
+    12.486137,
+    41.891775,
+    12.486137,
+    41.891775
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/523965218",
+    "https://pleiades.stoa.org/places/948173334",
+    "https://pleiades.stoa.org/places/451243813"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-16T19:17:59Z",
+  "uri": "https://pleiades.stoa.org/places/451696383",
+  "creators": [
+    {
+      "username": "shales",
+      "homepage": null,
+      "name": "Sara Hales",
+      "uri": "https://pleiades.stoa.org/author/shales"
+    },
+    {
+      "username": "echosmith",
+      "homepage": null,
+      "name": "Echo Smith",
+      "uri": "https://pleiades.stoa.org/author/echosmith"
+    },
+    {
+      "username": "ekeogh",
+      "homepage": null,
+      "name": "Edward Keogh",
+      "uri": "https://pleiades.stoa.org/author/ekeogh"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-15T03:28:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-02T12:20:30Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-12T00:32:19Z"
+    },
+    {
+      "comment": "added wikipedia ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-11T22:05:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-11T22:04:01Z"
+    },
+    {
+      "comment": "Dion. Hal. Ant. Rom. 4.14.1",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-11T22:03:50Z"
+    },
+    {
+      "comment": "references, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-11T21:59:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-04-08T22:50:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-04-08T22:47:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-04-08T22:44:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-04-08T22:42:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-04-08T22:41:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-04-08T22:19:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-04-07T23:28:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-03-25T03:00:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-03-25T02:59:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-03-16T19:18:28Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-03-16T19:18:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-03-16T19:17:59Z"
+    }
+  ]
+}

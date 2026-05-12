@@ -1,0 +1,427 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            75.5478818,
+            29.55335
+          ],
+          [
+            75.5480911,
+            29.5533578
+          ],
+          [
+            75.5482069,
+            29.5535535
+          ],
+          [
+            75.5484497,
+            29.5536077
+          ],
+          [
+            75.5486791,
+            29.5536019
+          ],
+          [
+            75.5488239,
+            29.5535089
+          ],
+          [
+            75.5491157,
+            29.5535283
+          ],
+          [
+            75.5488462,
+            29.5543963
+          ],
+          [
+            75.5483695,
+            29.5553127
+          ],
+          [
+            75.5478038,
+            29.5564247
+          ],
+          [
+            75.5470622,
+            29.5555374
+          ],
+          [
+            75.5470933,
+            29.555303
+          ],
+          [
+            75.5470822,
+            29.5551325
+          ],
+          [
+            75.5468662,
+            29.5546966
+          ],
+          [
+            75.5470822,
+            29.5541676
+          ],
+          [
+            75.5477415,
+            29.554249
+          ],
+          [
+            75.5478729,
+            29.5541328
+          ],
+          [
+            75.5478818,
+            29.55335
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-pf-ancient-site-of-bhirrana",
+      "properties": {
+        "snippet": "Archaeological-site; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/897851371/osm-location-pf-ancient-site-of-bhirrana",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location pf Ancient Site of Bhirrana"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/361257530",
+          "citationDetail": "Way 361257530",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=361257530",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-pf-ancient-site-of-bhirrana",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -3300,
+      "title": "OSM location pf Ancient Site of Bhirrana",
+      "provenance": "OpenStreetMap (Way 361257530, version 1, osm:changeset=32730801, 2015-07-19T11:06:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-11-19T21:14:35Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            75.5478818,
+            29.55335
+          ],
+          [
+            75.5480911,
+            29.5533578
+          ],
+          [
+            75.5482069,
+            29.5535535
+          ],
+          [
+            75.5484497,
+            29.5536077
+          ],
+          [
+            75.5486791,
+            29.5536019
+          ],
+          [
+            75.5488239,
+            29.5535089
+          ],
+          [
+            75.5491157,
+            29.5535283
+          ],
+          [
+            75.5488462,
+            29.5543963
+          ],
+          [
+            75.5483695,
+            29.5553127
+          ],
+          [
+            75.5478038,
+            29.5564247
+          ],
+          [
+            75.5470622,
+            29.5555374
+          ],
+          [
+            75.5470933,
+            29.555303
+          ],
+          [
+            75.5470822,
+            29.5551325
+          ],
+          [
+            75.5468662,
+            29.5546966
+          ],
+          [
+            75.5470822,
+            29.5541676
+          ],
+          [
+            75.5477415,
+            29.554249
+          ],
+          [
+            75.5478729,
+            29.5541328
+          ],
+          [
+            75.5478818,
+            29.55335
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/897851371/osm-location-pf-ancient-site-of-bhirrana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-21T19:30:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-20T15:02:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-20T15:02:16Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-19T21:15:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-19T21:14:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-19T21:14:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Bhirrana",
+      "citationDetail": "Bhirrana",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q4901824",
+      "citationDetail": "Bhirrana (Q4901824)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bhirrana",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Bhirrana",
+          "citationDetail": "Bhirrana",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "bhirrana",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-11-20T14:58:23Z",
+      "uri": "https://pleiades.stoa.org/places/897851371/bhirrana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Bhirrana",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-21T19:30:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-20T15:02:29Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-20T14:58:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-20T14:58:23Z"
+        }
+      ]
+    }
+  ],
+  "id": "897851371",
+  "subject": [],
+  "title": "Bhirrana",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Bhirrana is an archaeological site located in the Fatehabad district of the north Indian state of Haryana. The site's initial occupation predates the so-called Indus Valley civilization with activity beginning in the 8th-7th millennium BCE.",
+  "reprPoint": [
+    75.54795999109017,
+    29.554681293656454
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    75.5468662,
+    29.55335,
+    75.5491157,
+    29.5564247
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-11-19T21:14:12Z",
+  "uri": "https://pleiades.stoa.org/places/897851371",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-11-21T19:30:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-20T15:02:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-20T15:02:07Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-19T21:14:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-19T21:14:12Z"
+    }
+  ]
+}

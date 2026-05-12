@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.78121,
+            36.1599965
+          ],
+          [
+            29.7812251,
+            36.1598742
+          ],
+          [
+            29.781561,
+            36.1599127
+          ],
+          [
+            29.7815579,
+            36.1599371
+          ],
+          [
+            29.781576,
+            36.1599489
+          ],
+          [
+            29.7815848,
+            36.1599658
+          ],
+          [
+            29.7815823,
+            36.1599838
+          ],
+          [
+            29.7815694,
+            36.1599975
+          ],
+          [
+            29.7815512,
+            36.1600062
+          ],
+          [
+            29.7815475,
+            36.1600305
+          ],
+          [
+            29.78121,
+            36.1599965
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kirche-auf-der-akropolis",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/40557241/osm-location-of-kirche-auf-der-akropolis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kirche auf der Akropolis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1090759549",
+          "citationDetail": "Way 1090759549",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1090759549",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kirche-auf-der-akropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Kirche auf der Akropolis",
+      "provenance": "OpenStreetMap (Way 1090759549, version 4, osm:changeset=143914522, 2023-11-11T20:45:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-11T20:45:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.78121,
+            36.1599965
+          ],
+          [
+            29.7812251,
+            36.1598742
+          ],
+          [
+            29.781561,
+            36.1599127
+          ],
+          [
+            29.7815579,
+            36.1599371
+          ],
+          [
+            29.781576,
+            36.1599489
+          ],
+          [
+            29.7815848,
+            36.1599658
+          ],
+          [
+            29.7815823,
+            36.1599838
+          ],
+          [
+            29.7815694,
+            36.1599975
+          ],
+          [
+            29.7815512,
+            36.1600062
+          ],
+          [
+            29.7815475,
+            36.1600305
+          ],
+          [
+            29.78121,
+            36.1599965
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/40557241/osm-location-of-kirche-auf-der-akropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-13T21:38:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-11T20:47:22Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-11T20:46:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-11T20:45:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-11T20:45:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-11T20:46:06Z",
+      "associationCertainty": "certain",
+      "title": "Aperlae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/40557241/5662316736",
+      "connectionType": "at",
+      "id": "5662316736",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-11T20:46:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-11T20:46:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-11T20:46:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638752",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/9004",
+      "citationDetail": "Kirche auf der Akropolis S\u0131\u00e7ak Iskelesi, (Aperlai / Aperlae / \u1f08\u03c0\u03ad\u03c1\u03bb\u03b1\u03b9), Antalya (Provinz)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "40557241",
+  "subject": [],
+  "title": "Kirche auf der Akropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Byzantine church located within the fortified acropolis of Aperlae.",
+  "reprPoint": [
+    29.781392058079977,
+    36.15995414545099
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    29.78121,
+    36.1598742,
+    29.7815848,
+    36.1600305
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638752"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-11T20:46:04Z",
+  "uri": "https://pleiades.stoa.org/places/40557241",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-13T21:38:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-11T20:47:22Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-11T20:47:15Z"
+    },
+    {
+      "comment": "arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-11T20:46:38Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-11T20:46:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-11T20:46:04Z"
+    }
+  ]
+}

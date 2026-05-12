@@ -1,0 +1,727 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              14.905005026905712,
+              41.22032067057347
+            ],
+            [
+              14.965086417302928,
+              41.199500386772456
+            ],
+            [
+              15.017434559431194,
+              41.18105956397727
+            ],
+            [
+              15.070972432062376,
+              41.15904954967334
+            ],
+            [
+              15.109638673407119,
+              41.1400138616267
+            ],
+            [
+              15.150684375757692,
+              41.11919357782568
+            ],
+            [
+              15.19291980861118,
+              41.09539896776738
+            ],
+            [
+              15.254785794762768,
+              41.05613786117118
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/442765/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "211208",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "45 A2 Samnites",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": -30,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:17:24Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              14.905005026905712,
+              41.22032067057347
+            ],
+            [
+              14.965086417302928,
+              41.199500386772456
+            ],
+            [
+              15.017434559431194,
+              41.18105956397727
+            ],
+            [
+              15.070972432062376,
+              41.15904954967334
+            ],
+            [
+              15.109638673407119,
+              41.1400138616267
+            ],
+            [
+              15.150684375757692,
+              41.11919357782568
+            ],
+            [
+              15.19291980861118,
+              41.09539896776738
+            ],
+            [
+              15.254785794762768,
+              41.05613786117118
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/442765/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "A.M. Small"
+        },
+        {
+          "username": null,
+          "name": "I.E.M. Edlund Berry"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T19:28:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-09T15:19:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:17:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "45 A2 Samnites",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Samnites",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Samnites",
+      "citationDetail": "Samnites",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/401857",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salmon 1967",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQZX6VZ8",
+      "formattedCitation": "<div class=\"csl-entry\">Salmon, Edward Togo. <i>Samnium and the Samnites</i>. Cambridge: Cambridge University Press, 1967. http://www.worldcat.org/oclc/401857.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/35168496",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Oakley 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DPCKAZR8",
+      "formattedCitation": "<div class=\"csl-entry\">Oakley, S. P. <i>The Hill-Forts of the Samnites</i>. Archaeological Monographs of the British School at Rome 10. London: The British School at Rome, 1995. http://www.worldcat.org/oclc/35168496.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.oapen.org/download?type=document&docid=401765",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stek 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S6NHZNYB",
+      "formattedCitation": "<div class=\"csl-entry\">Stek, Tesse. <i>Cult Places and Cultural Change in Republican Italy a Contextual Approach to Religious Aspects of Rural Society after the Roman Conquest.</i> Amsterdam: Amsterdam University Press, 2010. http://www.oapen.org/download?type=document&amp;docid=401765.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1163/1574-9347_bnp_e1100350",
+      "citationDetail": "Samnites, Samnium (G. Vanotti)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/",
+      "formattedCitation": "Philistus FGrH 556 F 41 f.",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://onlinelibrary.wiley.com/doi/abs/10.1111/ojoa.12027",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Scopacasa 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EJ7IBXBC",
+      "formattedCitation": "<div class=\"csl-entry\">Scopacasa, Rafael. \u201cBuilding Communities in Ancient Samnium: Cult, Ethnicity and Nested Identities.\u201d <i>Oxford Journal of Archaeology</i> 33, no. 1 (2014): 69\u201387. https://doi.org/10.1111/ojoa.12027.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Capini 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IEIFQF74",
+      "formattedCitation": "<div class=\"csl-entry\">Capini, Stefania, and Angela Di Niro, eds. <i>Samnium: Archeologia Del Molise</i>. Roma: Quasar; Italy: Soprintendenza archeologica e per i beni ambientali, architettonici, artistici e storici del Molise, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/914194665",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Scopacasa 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FKCGQABC",
+      "formattedCitation": "<div class=\"csl-entry\">Scopacasa, Rafael. <i>Ancient Samnium: Settlement, Culture, and Identity between History and Archaeology</i>. Oxford: Oxford University Press, 2015. http://www.worldcat.org/oclc/914194665.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/877988494",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Romanisation du Samnium",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4P9BAIHE",
+      "formattedCitation": "<div class=\"csl-entry\"><i>La Romanisation du Samnium aux IIe et Ier si\u00e8cles av. J. C: actes du colloque organis\u00e9 par le Centre Jean B\u00e9rard en collaboration avec la Soprintendenza archeologica e per i BAAAS del Molise et la Soprintendenza archeologica per le Province di ...</i> Biblioth\u00e8que de l\u2019Institut fran\u00e7ais de Naples, 2e s\u00e9r., v. 9. Naples: Centre Jean B\u00e9rard, 1991. http://www.worldcat.org/oclc/877988494.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q500272",
+      "citationDetail": "Samnites (Q500272)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "ethnic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Samnites",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://latin.packhum.org/loc/914/1/654/2235-2240",
+          "citationDetail": "22.61.12.1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Liv. (OCT: PHI)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+          "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "samnites",
+      "end": -30,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 45 A2 Samnites",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2010-11-11T20:43:29Z",
+      "uri": "https://pleiades.stoa.org/places/442765/samnites",
+      "creators": [
+        {
+          "username": null,
+          "name": "I.E.M. Edlund Berry"
+        },
+        {
+          "username": null,
+          "name": "A.M. Small"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "ctype, update reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T19:30:01Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-05T05:11:27Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T05:10:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-11-21T14:50:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2011-11-21T14:50:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2011-11-21T14:50:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-12T12:54:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-11T21:05:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-11T20:43:29Z"
+        }
+      ]
+    },
+    {
+      "nameType": "ethnic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Saunitai",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:6.1.2",
+          "citationDetail": "6.1.2",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Str. (Meineke: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+          "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "saunitai",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2015-08-05T05:07:16Z",
+      "uri": "https://pleiades.stoa.org/places/442765/saunitai",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u03a3\u03b1\u03c5\u03bd\u1fd6\u03c4\u03b1\u03b9",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "ctype ethnic",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T19:30:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-05T22:40:35Z"
+        },
+        {
+          "comment": "reference fix",
+          "modifiedBy": "jbecker",
+          "modified": "2020-01-31T22:24:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-05T05:07:43Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-05T05:07:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-05T05:07:18Z"
+        }
+      ]
+    }
+  ],
+  "id": "442765",
+  "subject": [],
+  "title": "Samnites",
+  "provenance": "Barrington Atlas: BAtlas 45 A2 Samnites",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/label",
+    "https://pleiades.stoa.org/vocabularies/place-types/people"
+  ],
+  "details": "<p>None</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient, Oscan-speaking people who lived in the central southern part of the Apennine mountains in Italy.",
+  "reprPoint": [
+    15.083942557941809,
+    41.146745591030886
+  ],
+  "placeTypes": [
+    "label",
+    "people"
+  ],
+  "bbox": [
+    14.905005026905712,
+    41.05613786117118,
+    15.254785794762768,
+    41.22032067057347
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-11T20:43:29Z",
+  "uri": "https://pleiades.stoa.org/places/442765",
+  "creators": [
+    {
+      "username": null,
+      "name": "I.E.M. Edlund Berry"
+    },
+    {
+      "username": null,
+      "name": "A.M. Small"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-14T00:56:27Z"
+    },
+    {
+      "comment": "wikidata Q500272",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-31T02:25:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-05T23:28:20Z"
+    },
+    {
+      "comment": "reference clean up",
+      "modifiedBy": "jbecker",
+      "modified": "2020-01-31T22:28:00Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-05T05:10:20Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-04-08T00:55:17Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:10:50Z"
+    },
+    {
+      "comment": "Better description and place type.",
+      "modifiedBy": "thomase",
+      "modified": "2011-11-21T14:58:16Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2011-11-21T14:50:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-12T12:54:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T21:05:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T20:43:29Z"
+    }
+  ]
+}

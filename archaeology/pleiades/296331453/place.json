@@ -1,0 +1,259 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2733529,
+          32.2335683
+        ]
+      },
+      "type": "Feature",
+      "id": "5d45e8-5e25d95d15dc",
+      "properties": {
+        "snippet": "Mountain; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/296331453/5d45e8-5e25d95d15dc",
+        "description": "Point representing the modern peak of Mt. Ebal, derived from an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location of Mt. Ebal"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3602728612",
+          "citationDetail": "Node 3602728612",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3602728612",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "5d45e8-5e25d95d15dc",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain"
+      ],
+      "end": 2099,
+      "title": "OSM location of Mt. Ebal",
+      "provenance": "OpenStreetMap (Node 3602728612, version 8, osm:changeset=149994267, 2024-04-14T14:01:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "mountain"
+      ],
+      "description": "Point representing the modern peak of Mt. Ebal, derived from an OpenStreetMap Node.",
+      "created": "2025-10-27T19:27:49Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2733529,
+          32.2335683
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/296331453/5d45e8-5e25d95d15dc",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-27T19:39:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-10-27T19:28:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-10-27T19:28:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2025-10-27T19:27:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-10-27T19:27:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Mount_Ebal",
+      "citationDetail": "Mount Ebal",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ebal, Eybal",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.blueletterbible.org/lexicon/h5858",
+          "citationDetail": "H5858",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Strong's Concordance",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6DEABYLD",
+          "formattedCitation": "<div class=\"csl-entry\">Blue Letter Bible. \u201cStrong\u2019s Definitions,\u201d 2025. https://www.blueletterbible.org/resources/lexical/strongs-definitions.cfm.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ebal",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "Hebrew name of the mountain.",
+      "transcriptionCompleteness": "complete",
+      "language": "hbo",
+      "created": "2025-10-27T19:26:48Z",
+      "uri": "https://pleiades.stoa.org/places/296331453/ebal",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u05e2\u05b5\u05d9\u05d1\u05b8\u05dc",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-27T19:39:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-10-27T19:28:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-10-27T19:26:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-10-27T19:26:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "296331453",
+  "subject": [],
+  "title": "Mount Ebal",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/mountain"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Mountain located north of the city of Neapolis.",
+  "reprPoint": [
+    35.2733529,
+    32.2335683
+  ],
+  "placeTypes": [
+    "mountain"
+  ],
+  "bbox": [
+    35.2733529,
+    32.2335683,
+    35.2733529,
+    32.2335683
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-10-27T19:09:44Z",
+  "uri": "https://pleiades.stoa.org/places/296331453",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-10-27T19:39:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2025-10-27T19:28:33Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2025-10-27T19:09:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2025-10-27T19:09:44Z"
+    }
+  ]
+}

@@ -1,0 +1,527 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.485026,
+          41.899928
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-marked-entry-to-via-della-dataria-21",
+      "properties": {
+        "snippet": "Unknown; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/323719627/imagery-location-marked-entry-to-via-della-dataria-21",
+        "description": "Determined in Google Earth with reference to Google Street View imagery showing the front door and address number.",
+        "location_precision": "precise",
+        "title": "Imagery Location: marked entry to Via della Dataria, 21"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-marked-entry-to-via-della-dataria-21",
+      "featureTypeURI": [],
+      "end": 2099,
+      "title": "Imagery Location: marked entry to Via della Dataria, 21",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "Determined in Google Earth with reference to Google Street View imagery showing the front door and address number.",
+      "created": "2025-08-01T16:19:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.485026,
+          41.899928
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/323719627/imagery-location-marked-entry-to-via-della-dataria-21",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-12T20:15:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-12T20:15:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-01T16:19:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-01T16:19:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-01T15:25:55Z",
+      "associationCertainty": "certain",
+      "title": "Quirinal Hill",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/323719627/quirinal-hill",
+      "connectionType": "on",
+      "id": "quirinal-hill",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-12T20:15:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-12T20:15:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-01T15:25:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-01T15:25:55Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/125119394",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Sepolcro_dei_Sempronii",
+          "citationDetail": "Sepolcro dei Sempronii",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-10-12T20:16:05Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/323719627/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-14T13:20:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-14T03:39:20Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-14T03:39:12Z"
+        },
+        {
+          "comment": "Connection ",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-12T20:16:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-12T20:16:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3955644",
+          "citationDetail": "Tomb of the Sempronii (Q3955644)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Sepolcro_dei_Sempronii",
+      "citationDetail": "Sepolcro dei Sempronii",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3955644",
+      "citationDetail": "Tomb of the Sempronii (Q3955644)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.flickr.com/photos/dandiffendale/54689092450/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Diffendale 2025-07-19",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C5SC3ZGV",
+      "formattedCitation": "<div class=\"csl-entry\">Diffendale, Dan. <i>Rome: Tomb of the Sempronii, 1</i>. July 19, 2025. Photo. https://www.flickr.com/photos/dandiffendale/54689092450/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.digitalaugustanrome.org/records/sepulcrum-sempronii/",
+      "citationDetail": "Sepulcrum: Sempronii (E.A. Dumser)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Digital Augustan Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VGZI96WY",
+      "formattedCitation": "<div class=\"csl-entry\">Romano, David Gilman. \u201cDigital Augustan Rome.\u201d Digital Augustan Rome. Accessed June 5, 2021. http://www.digitalaugustanrome.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://exhibits.stanford.edu/nash/catalog/jq560wn2846",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Tomb of the Sempronii, part of the travertine facade with the funerary inscription (E. Nash, 1957)",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DS%3Aentry+group%3D2%3Aentry%3Dsep-semproniorum",
+      "citationDetail": "SEP. SEMPRONIORUM",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 360 s.v. \"Sep. Semproniorum\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richardson 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCISHZRH",
+      "formattedCitation": "<div class=\"csl-entry\">Richardson, Lawrence. <i>A New Topographical Dictionary of Ancient Rome</i>. Baltimore: John Hopkins University Press, 1992. http://www.worldcat.org/oclc/260158113.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/813279761",
+      "citationDetail": "IV, s.v. \u201cSepulcrum: Sepronii\u201d (C. Lega)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "LTUR",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JC5ACZU7",
+      "formattedCitation": "<div class=\"csl-entry\">Steinby, E.M., ed. <i>Lexicon Topographicum Urbis Romae</i>. 6 vols. Rome: Quasar, 2000. http://www.worldcat.org/oclc/813279761.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/70743/",
+      "citationDetail": "70743: Sepulcrum: Sempronii",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://db.edcs.eu/epigr/edcs_id.php?s_sprache=en&p_edcs_id=EDCS-14200326",
+      "citationDetail": "14200326 = CIL 6.26152",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "EDCS",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YG2BW6GH",
+      "formattedCitation": "<div class=\"csl-entry\">Clauss, Manfred, Anne Kolb, Wolfgang A. Slaby, and Barbara Woitas, eds. <i>Epigraphik-Datenbank\u00a0 Clauss / Slaby</i>. Eichst\u00e4tt: Universit\u00e4t Eichst\u00e4tt-Ingolstadt, n.d. http://www.manfredclauss.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sepolcro dei Sempronii",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Sepolcro_dei_Sempronii",
+          "citationDetail": "Sepolcro dei Sempronii",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "sepolcro-dei-sempronii",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-08-01T15:26:35Z",
+      "uri": "https://pleiades.stoa.org/places/323719627/sepolcro-dei-sempronii",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Sepolcro dei Sempronii",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-12T20:15:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-12T20:15:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-01T15:26:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-01T15:26:35Z"
+        }
+      ]
+    }
+  ],
+  "id": "323719627",
+  "subject": [],
+  "title": "Tomb of the Sempronii (Palazzo San Felice, Rome)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A late-Republican tomb located on the slope of the Quirinal Hill at Rome, now built into Palazzo San Felice (via della Dataria 21).",
+  "reprPoint": [
+    12.485026,
+    41.899928
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.485026,
+    41.899928,
+    12.485026,
+    41.899928
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/125119394",
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-01T15:24:58Z",
+  "uri": "https://pleiades.stoa.org/places/323719627",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "diffenda",
+      "homepage": null,
+      "name": "Dan Diffendale",
+      "uri": "https://pleiades.stoa.org/author/diffenda"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-12T20:15:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-12T20:15:22Z"
+    },
+    {
+      "comment": "added inscription",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T20:48:13Z"
+    },
+    {
+      "comment": "added vici.org reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T20:16:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T20:14:41Z"
+    },
+    {
+      "comment": "@jbecker added LTUR, Nash (via Stanford), Plat. and Ash. (via Perseus), Richardson 1992 references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-01T20:12:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T15:37:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T15:31:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T15:30:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T15:28:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T15:24:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-01T15:24:58Z"
+    }
+  ]
+}

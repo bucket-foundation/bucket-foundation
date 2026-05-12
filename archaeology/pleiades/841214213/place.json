@@ -1,0 +1,496 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2878465,
+            41.7551061
+          ],
+          [
+            12.288284,
+            41.7545741
+          ],
+          [
+            12.2885705,
+            41.7547099
+          ],
+          [
+            12.2881411,
+            41.7552194
+          ],
+          [
+            12.2880032,
+            41.7551588
+          ],
+          [
+            12.2878465,
+            41.7551061
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "insula-dei-dipinti",
+      "properties": {
+        "snippet": "Building; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/841214213/insula-dei-dipinti",
+        "description": "Polygon representing the location of the Insula dei Dipinti, derived from an OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM location of Insula dei Dipinti"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/955071141",
+          "citationDetail": "Way 955071141",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=955071141",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "insula-dei-dipinti",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/building"
+      ],
+      "end": 300,
+      "title": "OSM location of Insula dei Dipinti",
+      "provenance": "OpenStreetMap (Way 955071141, version 2, osm:changeset=130982984, 2023-01-07T14:26:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/building"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "building"
+      ],
+      "description": "Polygon representing the location of the Insula dei Dipinti, derived from an OpenStreetMap way.",
+      "created": "2021-06-16T19:06:19Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2878465,
+            41.7551061
+          ],
+          [
+            12.288284,
+            41.7545741
+          ],
+          [
+            12.2885705,
+            41.7547099
+          ],
+          [
+            12.2881411,
+            41.7552194
+          ],
+          [
+            12.2880032,
+            41.7551588
+          ],
+          [
+            12.2878465,
+            41.7551061
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/841214213/insula-dei-dipinti",
+      "creators": [
+        {
+          "username": "jrosenheim",
+          "homepage": null,
+          "name": "Joshua Rosenheim",
+          "uri": "https://pleiades.stoa.org/author/jrosenheim"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-26T21:50:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-17T02:29:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-17T01:37:54Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-16T22:31:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T19:46:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T19:46:00Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T19:45:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T19:12:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T19:09:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T19:06:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T19:06:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-05-12T20:41:04Z",
+      "associationCertainty": "certain",
+      "title": "Ostia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/841214213/ostia",
+      "connectionType": "at",
+      "id": "ostia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-17T02:29:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-17T01:37:54Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-16T22:31:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T19:12:24Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-05-12T20:44:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-05-12T20:41:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-05-12T20:41:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422995",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jrosenheim",
+          "homepage": null,
+          "name": "Joshua Rosenheim",
+          "uri": "https://pleiades.stoa.org/author/jrosenheim"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-17T02:28:50Z",
+      "associationCertainty": "certain",
+      "title": "Regio I, Ostia Antica",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/841214213/regio-i-ostia-antica",
+      "connectionType": "part_of_analytical",
+      "id": "regio-i-ostia-antica",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-17T02:29:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-17T02:28:56Z"
+        },
+        {
+          "comment": "add cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-17T02:28:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-17T02:28:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/461688683",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.ostia-antica.org/regio1/4/4-4.htm",
+          "citationDetail": "Regio I - Insula IV - Casa dei Dipinti (I,IV,4)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ostia - Harbour City of Ancient Rome",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+          "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "http://www.ostia-antica.org/fulltext/meiggs/meiggs-1973.pdf",
+      "accessURI": "http://www.worldcat.org/oclc/868614740",
+      "citationDetail": "pages 246-251",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Meiggs 1973",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VI7FWTPW",
+      "formattedCitation": "<div class=\"csl-entry\">Meiggs, Russell. <i>Roman Ostia</i>. 2d ed. Oxford Eng: Clarendon Press, 1973.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1130900997",
+      "citationDetail": "pages 84-85",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shepherd 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZDT7CNJ",
+      "formattedCitation": "<div class=\"csl-entry\">Shepherd, E.J., and P. Olivanti. \u201cGiardini ostiensi.\u201d <i>Bullettino della Commissione archeologica comunale di Roma</i> 109 (2008): 69\u201398. http://www.worldcat.org/oclc/1130900997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://roman-gardens.github.io/province/italia/ostia/insula_dei_dipinti/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Insula dei Dipinti",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ostia-antica.org/regio1/4/4-4.htm",
+      "citationDetail": "Regio I - Insula IV - Casa dei Dipinti (I,IV,4)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ostia - Harbour City of Ancient Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+      "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "841214213",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "Insula dei Dipinti",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building",
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Hadrianic insula in Ostia Antica between the north wall of the castrum and the Tiber, comprising the houses of Jove and Ganymede, of the Infant Bacchus, and of the Paintings, arranged according to an L-shaped plan. Its fa\u00e7ade faced onto two streets, forming a corner, while its inner sides looked out onto a large garden, without porticoes.",
+  "reprPoint": [
+    12.288209205416303,
+    41.75490100334491
+  ],
+  "placeTypes": [
+    "building",
+    "garden-hortus"
+  ],
+  "bbox": [
+    12.2878465,
+    41.7545741,
+    12.2885705,
+    41.7552194
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422995",
+    "https://pleiades.stoa.org/places/461688683"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-05-12T19:36:13Z",
+  "uri": "https://pleiades.stoa.org/places/841214213",
+  "creators": [
+    {
+      "username": "jrosenheim",
+      "homepage": null,
+      "name": "Joshua Rosenheim",
+      "uri": "https://pleiades.stoa.org/author/jrosenheim"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-17T02:29:19Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-17T02:28:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-17T01:37:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-17T01:37:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-17T01:08:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-17T01:08:06Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-16T22:31:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-16T19:12:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-16T19:10:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-05-12T20:58:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-05-12T19:36:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-05-12T19:36:13Z"
+    }
+  ]
+}

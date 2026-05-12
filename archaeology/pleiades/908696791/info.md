@@ -1,0 +1,14 @@
+# Tophet de Salammbô
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/908696791
+- **ID**: 908696791
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+A hybrid sanctuary and necropolis sacred to Tanit and Baal.

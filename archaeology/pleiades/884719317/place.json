@@ -1,0 +1,327 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.496944,
+          22.181667
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-imagery-location-of-faras-cathedral",
+      "properties": {
+        "snippet": "Church-2; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/884719317/approximate-imagery-location-of-faras-cathedral",
+        "description": "Approximate imagery location of Faras Cathedral based on Google Earth after Wikidata.",
+        "location_precision": "precise",
+        "title": "Approximate imagery location of Faras Cathedral"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/w/index.php?title=Q1227931&oldid=1645042855",
+          "citationDetail": "Faras Cathedral",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://geohack.toolforge.org/geohack.php?params=22.18166667_N_31.49694444_E_globe:earth&language=en",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoHack (22.181667; 31.496944)",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "approximate-imagery-location-of-faras-cathedral",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 1453,
+      "title": "Approximate imagery location of Faras Cathedral",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Approximate imagery location of Faras Cathedral based on Google Earth after Wikidata.",
+      "created": "2022-11-01T18:53:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.496944,
+          22.181667
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/884719317/approximate-imagery-location-of-faras-cathedral",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Generic GeoHack Accuracy Assessment, added reference for data source",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-01T01:46:49Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-01T20:39:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T18:56:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T18:53:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T18:53:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 1453,
+      "description": "",
+      "contributors": [],
+      "created": "2022-11-01T18:50:16Z",
+      "associationCertainty": "certain",
+      "title": "Pachoras",
+      "start": 640,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/884719317/pachoras",
+      "connectionType": "at",
+      "id": "pachoras",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-01T20:39:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T18:56:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T18:50:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T18:50:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/795838",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "worldcat.org/oclc/1104134640",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Jakobielski 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LYE6RF5Q",
+          "formattedCitation": "<div class=\"csl-entry\">Jakobielski, Stefan. <i>Chronologia Wczesnych Malowide\u0142 \u015aciennych z Katedry w Faras (VIII-IX wiek)</i>. Paideia: Studia Archeologiczne i Orientalistyczne 1. Warsawa: Instytut Kultur \u015ar\u00f3dziemnomorskich i Orientalnych Polskiej Akademii Nauk, 2016. worldcat.org/oclc/1104134640.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "worldcat.org/oclc/1104134640",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jakobielski 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LYE6RF5Q",
+      "formattedCitation": "<div class=\"csl-entry\">Jakobielski, Stefan. <i>Chronologia Wczesnych Malowide\u0142 \u015aciennych z Katedry w Faras (VIII-IX wiek)</i>. Paideia: Studia Archeologiczne i Orientalistyczne 1. Warsawa: Instytut Kultur \u015ar\u00f3dziemnomorskich i Orientalnych Polskiej Akademii Nauk, 2016. worldcat.org/oclc/1104134640.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Faras_Cathedral&oldid=1113817429",
+      "citationDetail": "Faras Cathedral",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1227931",
+      "citationDetail": "Faras Cathedral (Q1227931)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "884719317",
+  "subject": [],
+  "title": "Faras Cathedral",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The cathedral in Faras, founded in 620 and rebuilt in the 8th and 10th centuries, respectively, was the seat of the Diocese of Faras. The site had well-preserved wall paintings from the 8th to 9th centuries. The cathedral was flooded by the creation of Lake Nasser in the 1960s.",
+  "reprPoint": [
+    31.496944,
+    22.181667
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    31.496944,
+    22.181667,
+    31.496944,
+    22.181667
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/795838"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-11-01T18:49:28Z",
+  "uri": "https://pleiades.stoa.org/places/884719317",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1227931",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-11T17:33:29Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-01T20:39:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-01T18:56:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-01T18:56:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-01T18:55:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-01T18:49:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-01T18:49:28Z"
+    }
+  ]
+}

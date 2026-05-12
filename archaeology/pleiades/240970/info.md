@@ -1,0 +1,14 @@
+# Ocelum
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/240970
+- **ID**: 240970
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ocelum
+
+## Description
+
+An ancient place, cited: BAtlas 24 unlocated *Ocelum

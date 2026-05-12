@@ -1,0 +1,310 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.4543193,
+          31.7236401
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kharaneh-iv",
+      "properties": {
+        "snippet": "Archaeological-site; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/21815368/osm-location-of-kharaneh-iv",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kharaneh IV"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/8855294244",
+          "citationDetail": "Node 8855294244",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=8855294244",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kharaneh-iv",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -3300,
+      "title": "OSM location of Kharaneh IV",
+      "provenance": "OpenStreetMap (Node 8855294244, version 1, osm:changeset=106738786, 2021-06-21T21:48:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-01-23T15:56:03Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.4543193,
+          31.7236401
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/21815368/osm-location-of-kharaneh-iv",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-28T15:20:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T16:19:41Z"
+        },
+        {
+          "comment": "added osm location - need Pleistocene time period option",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-23T15:56:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-23T15:56:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-23T15:56:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/948173039",
+      "citationDetail": "22",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Bryce 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P3ZNEWRV",
+      "formattedCitation": "<div class=\"csl-entry\">Bryce, Trevor. <i>Atlas of the Ancient Near East: From Prehistoric Times to the Roman Imperial Period</i>. London: Routledge, 2016. http://www.worldcat.org/oclc/948173039.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Kharaneh_IV",
+      "citationDetail": "Kharaneh IV",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1740572",
+      "citationDetail": "Kharaneh IV (Q1740572)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kharaneh IV",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Kharaneh_IV",
+          "citationDetail": "Kharaneh IV",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kharaneh-iv",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-01-24T16:19:30Z",
+      "uri": "https://pleiades.stoa.org/places/21815368/kharaneh-iv",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Kharaneh IV",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-28T15:20:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T16:19:41Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T16:19:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T16:19:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "21815368",
+  "subject": [],
+  "title": "Kharaneh IV",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Kharaneh IV is an archaeological site located in Jordan. This site has produced evidence of human occupation during the Late Pleistocene, ca. 18,900 to 16,600 BCE.",
+  "reprPoint": [
+    36.4543193,
+    31.7236401
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    36.4543193,
+    31.7236401,
+    36.4543193,
+    31.7236401
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-10-07T16:54:24Z",
+  "uri": "https://pleiades.stoa.org/places/21815368",
+  "creators": [
+    {
+      "username": "ctiah",
+      "homepage": null,
+      "name": "Clifflena Tiah",
+      "uri": "https://pleiades.stoa.org/author/ctiah"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-01-28T15:20:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-24T16:19:41Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-24T16:18:44Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-23T15:55:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ctiah",
+      "modified": "2016-12-05T18:36:46Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-07T16:54:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-07T16:54:24Z"
+    }
+  ]
+}

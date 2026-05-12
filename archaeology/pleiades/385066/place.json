@@ -1,0 +1,360 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.0,
+              44.5
+            ],
+            [
+              10.5,
+              44.5
+            ],
+            [
+              10.5,
+              45.0
+            ],
+            [
+              10.0,
+              45.0
+            ],
+            [
+              10.0,
+              44.5
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-location",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/385066/batlas-location",
+        "description": "",
+        "location_precision": "rough",
+        "title": "Barrington Atlas location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "batlas-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 640,
+      "title": "Barrington Atlas location",
+      "provenance": "Barrington Atlas: BAtlas 39 G4",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2010-11-15T17:53:10Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              10.0,
+              44.5
+            ],
+            [
+              10.5,
+              44.5
+            ],
+            [
+              10.5,
+              45.0
+            ],
+            [
+              10.0,
+              45.0
+            ],
+            [
+              10.0,
+              44.5
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/385066/batlas-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "M. Pearce"
+        },
+        {
+          "username": null,
+          "name": "P. Tozzi"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:37:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-15T18:28:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-15T18:07:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-15T17:53:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-05T02:07:16Z",
+      "associationCertainty": "certain",
+      "title": "[Sesterrio] fl.",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/385066/sesterrio-fl",
+      "connectionType": "crosses",
+      "id": "sesterrio-fl",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-24T22:53:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-20T22:02:05Z"
+        },
+        {
+          "comment": "add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-20T22:01:59Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-05T02:07:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-05T02:07:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/383778",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "p. 581 s.v. \"Bridges\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/crosses"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "39 G4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "73",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dall\u2019Aglio 1987a; Dall\u2019Aglio 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JEPDB8EH",
+      "formattedCitation": "<div class=\"csl-entry\">P.L. Dall\u2019Aglio. \u201cLa via Aemilia Tra Parma E Placentia. Problemi Storico-Topografici.\u201d <i>Padusa.\u00a0 Bollettino Del Centro Polesano Di Studi Storici, Archeologici Ed Etnografici, Rovigo</i> 23 (1987): 67\u201394.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "385066",
+  "subject": [],
+  "title": "Untitled",
+  "provenance": "Barrington Atlas: BAtlas 39 G4",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: over [Sesterrio] fl., at Fidentia</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 39 G4 unnamed bridge (over [Sesterrio] fl., at Fidentia)",
+  "reprPoint": [
+    10.25,
+    44.75
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    10.0,
+    44.5,
+    10.5,
+    45.0
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/383778"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-15T17:53:10Z",
+  "uri": "https://pleiades.stoa.org/places/385066",
+  "creators": [
+    {
+      "username": null,
+      "name": "M. Pearce"
+    },
+    {
+      "username": null,
+      "name": "P. Tozzi"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-20T22:00:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-05T03:04:20Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:37:16Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:37:02Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-15T18:28:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T18:07:29Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T17:53:10Z"
+    }
+  ]
+}

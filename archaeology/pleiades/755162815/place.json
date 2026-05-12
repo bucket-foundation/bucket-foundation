@@ -1,0 +1,339 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.870161,
+          37.79894
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-roman-funerary-monument",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/755162815/imagery-location-of-roman-funerary-monument",
+        "description": "Location identified in Google Earth with reference to Korka 2017 and 2019.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Roman Funerary Monument"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://actual-art.spbu.ru/en/publications/archive/vol-9/art-of-the-ancient-world/10710.html",
+          "citationDetail": "174-175 and Figure 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korka 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G22E353I",
+          "formattedCitation": "<div class=\"csl-entry\">Korka, Eleni, Michalis Lefantzis, and Antonio Corso. \u201cArchaeological Discoveries from Tenea.\u201d <i>Actual Problems of Theory and History of Art</i> 9 (2019): 172\u201379. https://doi.org/10.18688/aa199-1-16.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea",
+          "citationDetail": "35:51",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korka 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DVTXNBDM",
+          "formattedCitation": "<div class=\"csl-entry\">Eleni Korka. \u201cExcavating the Ancient City of Tenea.\u201d Streaming lecture, New York, March 1, 2017. https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-roman-funerary-monument",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "Imagery Location of Roman Funerary Monument",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Location identified in Google Earth with reference to Korka 2017 and 2019.",
+      "created": "2020-10-27T17:55:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.870161,
+          37.79894
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/755162815/imagery-location-of-roman-funerary-monument",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T18:03:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:58:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:55:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:55:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-10-27T17:58:22Z",
+      "associationCertainty": "certain",
+      "title": "Tenea",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/755162815/tenea",
+      "connectionType": "at",
+      "id": "tenea",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T18:03:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:58:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:58:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:58:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570711",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea",
+      "citationDetail": "35:48",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Korka 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DVTXNBDM",
+      "formattedCitation": "<div class=\"csl-entry\">Eleni Korka. \u201cExcavating the Ancient City of Tenea.\u201d Streaming lecture, New York, March 1, 2017. https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://actual-art.spbu.ru/en/publications/archive/vol-9/art-of-the-ancient-world/10710.html",
+      "citationDetail": "174-175 (Figure 4)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Korka 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G22E353I",
+      "formattedCitation": "<div class=\"csl-entry\">Korka, Eleni, Michalis Lefantzis, and Antonio Corso. \u201cArchaeological Discoveries from Tenea.\u201d <i>Actual Problems of Theory and History of Art</i> 9 (2019): 172\u201379. https://doi.org/10.18688/aa199-1-16.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Palio Scholeio",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea",
+          "citationDetail": "35:48",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korka 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DVTXNBDM",
+          "formattedCitation": "<div class=\"csl-entry\">Eleni Korka. \u201cExcavating the Ancient City of Tenea.\u201d Streaming lecture, New York, March 1, 2017. https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "palio-scholeio",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name of the area south of Chiliomodi where the mausoleum was excavated.",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2020-10-27T17:57:44Z",
+      "uri": "https://pleiades.stoa.org/places/755162815/palio-scholeio",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u03a0\u03b1\u03bb\u03b9\u03cc \u03a3\u03c7\u03bf\u03bb\u03b5\u03af\u03bf",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T18:03:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:58:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:57:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:57:44Z"
+        }
+      ]
+    }
+  ],
+  "id": "755162815",
+  "subject": [],
+  "title": "Roman Mausoleum at Palio Scholeio (Chiliomedio)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monumental Roman mausoleum, originally installed over a Hellenistic cemetery, was excavated in 2017 at a site known as \"Old School\" to the south of modern Chiliomedio in Greece. Its location helps indicate the extent and date of cemeteries at the ancient site of Tenea.",
+  "reprPoint": [
+    22.870161,
+    37.79894
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    22.870161,
+    37.79894,
+    22.870161,
+    37.79894
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570711"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-10-27T17:36:01Z",
+  "uri": "https://pleiades.stoa.org/places/755162815",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T18:03:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:58:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:53:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:37:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:36:02Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:36:01Z"
+    }
+  ]
+}

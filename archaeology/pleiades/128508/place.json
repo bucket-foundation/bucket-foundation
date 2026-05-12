@@ -1,0 +1,513 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              18.23407357159573,
+              51.27942184438649
+            ],
+            [
+              18.819420979029985,
+              51.282991035895236
+            ],
+            [
+              19.27984668365815,
+              51.28656022740398
+            ],
+            [
+              19.77596430337377,
+              51.28656022740398
+            ],
+            [
+              20.26137434856315,
+              51.282991035895236
+            ],
+            [
+              20.736076819226298,
+              51.28656022740398
+            ],
+            [
+              21.232194438941917,
+              51.282991035895236
+            ],
+            [
+              21.810403463358682,
+              51.275852652877745
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/128508/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": null,
+      "name": "E. Krekovi\u010d"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "P. Kaczanowski"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "R. Madyda\u2011Legutko"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "Sclaveni",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "13 D1 Sclaveni",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": 640,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 1860.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-1-million-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:18:13Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              18.23407357159573,
+              51.27942184438649
+            ],
+            [
+              18.819420979029985,
+              51.282991035895236
+            ],
+            [
+              19.27984668365815,
+              51.28656022740398
+            ],
+            [
+              19.77596430337377,
+              51.28656022740398
+            ],
+            [
+              20.26137434856315,
+              51.282991035895236
+            ],
+            [
+              20.736076819226298,
+              51.28656022740398
+            ],
+            [
+              21.232194438941917,
+              51.282991035895236
+            ],
+            [
+              21.810403463358682,
+              51.275852652877745
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/128508/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "L.F. Pitts"
+        },
+        {
+          "username": null,
+          "name": "A. Bursche"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "bdturner",
+          "modified": "2022-09-27T16:42:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T15:45:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:18:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "13 D1 Sclaveni",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/i.html#Iordanes",
+      "formattedCitation": "Iordanes, Getica 5.34-35",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/174442021",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "God\u0142owski 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A2R5CDSG",
+      "formattedCitation": "<div class=\"csl-entry\">K. God\u0142owski. \u201cDie Frage Der Slawischen Einwanderung Ins \u00d6stliche Mitteleuropa.\u201d <i>Zeitschrift F\u00fcr Ostforschung</i> 28 (1979): 416\u201347. http://www.worldcat.org/oclc/174442021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "God\u0142owski 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4M73DSPP",
+      "formattedCitation": "<div class=\"csl-entry\">God\u0142owski, K. \u201cZur Frage der Slawensitze vor der grossen Slawenwanderung im 6. Jahrhundert.\u201d In <i>Gli slavi occidentali e meridionali nell\u2019Alto Medioevo: 15-21 aprile 1982.</i>, 257\u201384. Settimane di studio del Centro italiano di studi sull\u2019Alto Medioevo. Spoleto: Presso la sede del centro, 1983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "132-44",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Parczewski 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XUZ8J638",
+      "formattedCitation": "<div class=\"csl-entry\">Parczewski, Michal, and Falko Daim. <i>Die Anf\u00e4nge Der Fr\u00fchslawischen Kultur in Polen</i>. Ver\u00f6ffentlichungen Der \u00d6sterreichischen Gesellschaft F\u00fcr Ur- Und Fr\u00fchgeschichte 17. Wien: \u00d6sterreichische Gesellschaft f\u00fcr Ur- und Fr\u00fchgeschichte, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sclaveni",
+      "citationDetail": "Sclaveni",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Sclaveni.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "ethnic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sclaveni",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "sclaveni",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "P. Kaczanowski"
+        },
+        {
+          "username": null,
+          "name": "E. Krekovi\u010d"
+        },
+        {
+          "username": null,
+          "name": "R. Madyda\u2011Legutko"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 13 D1 Sclaveni",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-06-18T12:34:37Z",
+      "uri": "https://pleiades.stoa.org/places/128508/sclaveni",
+      "creators": [
+        {
+          "username": null,
+          "name": "A. Bursche"
+        },
+        {
+          "username": null,
+          "name": "L.F. Pitts"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "programmatically changed nameType from geographic to ethnic: site-wide cleanup of peoples/tribes imported from the Barrington Atlas",
+          "modifiedBy": "admin",
+          "modified": "2021-02-25T22:57:38Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:20:59Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-14T23:56:48Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-06-22T21:00:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-06-18T12:51:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-06-18T12:34:37Z"
+        }
+      ]
+    }
+  ],
+  "id": "128508",
+  "subject": [],
+  "title": "Sclaveni",
+  "provenance": "Barrington Atlas: BAtlas 13 D1 Sclaveni",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/label",
+    "https://pleiades.stoa.org/vocabularies/place-types/people"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: POL</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient Slavonic people who settled in the area north of the Carpathian mountains from the 5th century CE onward.",
+  "reprPoint": [
+    20.022253901520006,
+    51.28357339344768
+  ],
+  "placeTypes": [
+    "label",
+    "people"
+  ],
+  "bbox": [
+    18.23407357159573,
+    51.275852652877745,
+    21.810403463358682,
+    51.28656022740398
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-20T11:49:21Z",
+  "uri": "https://pleiades.stoa.org/places/128508",
+  "creators": [
+    {
+      "username": null,
+      "name": "L.F. Pitts"
+    },
+    {
+      "username": null,
+      "name": "A. Bursche"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary; cleaned up references\r\ncheck-in of improved version.",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-20T13:34:31Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-29T14:40:54Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:20:59Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-14T23:56:48Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:55:44Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-06-22T21:00:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-18T12:51:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-18T12:34:37Z"
+    }
+  ]
+}

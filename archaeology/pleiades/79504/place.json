@@ -1,0 +1,655 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.989776,
+          50.809533
+        ]
+      },
+      "type": "Feature",
+      "id": "darmc-location-20574",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/79504/darmc-location-20574",
+        "description": "1:1 million scale representative point location digitized from the Barrington Atlas of the Greek and Roman World by the Digital Atlas of Roman and Medieval Civilizations project at Harvard University.",
+        "location_precision": "precise",
+        "title": "DARMC location 20574"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.97275,
+          50.821973
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-sanctuary-centerpoint",
+      "properties": {
+        "snippet": "Sanctuary; 100 BC - AD 399",
+        "link": "https://pleiades.stoa.org/places/79504/imagery-location-of-sanctuary-centerpoint",
+        "description": "Centerpoint of crop marks visible in Google Earth \"historical imagery\" dating to 1998, 2000, and 2011 that clearly matches plan in King 2013, page 4. Dates after King 2013 passim, but not including the later Saxon-era settlement and ritual site immediately south.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Sanctuary Centerpoint"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.9728847,
+            50.8222562
+          ],
+          [
+            -0.9723461,
+            50.8222393
+          ],
+          [
+            -0.9723743,
+            50.8218802
+          ],
+          [
+            -0.9729129,
+            50.8218971
+          ],
+          [
+            -0.9728847,
+            50.8222562
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-iron-age-shrine-and-roman-temple",
+      "properties": {
+        "snippet": "Sanctuary; 100 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/79504/osm-location-of-iron-age-shrine-and-roman-temple",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Iron Age Shrine and Roman Temple "
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "DARMC, R. Talbert, T. Elliott, S. Gillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://darmc.harvard.edu/",
+          "citationDetail": "20574",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARMC",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+          "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 20574.",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "darmc-location-20574",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 300,
+      "title": "DARMC location 20574",
+      "provenance": "DARMC OBJECTID: 20574",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "DARMC OBJECTID: 20574",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/darmc-a",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "1:1 million scale representative point location digitized from the Barrington Atlas of the Greek and Roman World by the Digital Atlas of Roman and Medieval Civilizations project at Harvard University.",
+      "created": "2011-01-21T05:47:23Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.989776,
+          50.809533
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/79504/darmc-location-20574",
+      "creators": [
+        {
+          "username": null,
+          "name": "A.S. Esmonde Cleary"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:31:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-01-21T13:41:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T05:47:24Z"
+        },
+        {
+          "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T05:47:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T05:47:24Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "King 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T4PWUU84",
+          "formattedCitation": "<div class=\"csl-entry\">King, Anthony, and Grahame Soffe. <i>A Sacred Island: Iron Age, Roman and Saxon Temples and Ritual on Hayling Island</i>. Winchester: Hayling Island Excavation Project, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-sanctuary-centerpoint",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 399,
+      "title": "Imagery Location of Sanctuary Centerpoint",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2011",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Centerpoint of crop marks visible in Google Earth \"historical imagery\" dating to 1998, 2000, and 2011 that clearly matches plan in King 2013, page 4. Dates after King 2013 passim, but not including the later Saxon-era settlement and ritual site immediately south.",
+      "created": "2022-06-26T11:14:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.97275,
+          50.821973
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/79504/imagery-location-of-sanctuary-centerpoint",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-26T15:26:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-26T11:16:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-26T11:14:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-26T11:14:29Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/837542494",
+          "citationDetail": "Way 837542494",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=837542494",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-iron-age-shrine-and-roman-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM Location of Iron Age Shrine and Roman Temple ",
+      "provenance": "OpenStreetMap (Way 837542494, version 1, osm:changeset=89467897, 2020-08-16T10:30:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-06-26T11:17:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.9728847,
+            50.8222562
+          ],
+          [
+            -0.9723461,
+            50.8222393
+          ],
+          [
+            -0.9723743,
+            50.8218802
+          ],
+          [
+            -0.9729129,
+            50.8218971
+          ],
+          [
+            -0.9728847,
+            50.8222562
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/79504/osm-location-of-iron-age-shrine-and-roman-temple",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-26T15:26:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-26T11:18:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-26T11:18:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-26T11:17:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-26T11:17:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "8 G4 Hayling Island",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "King 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/42NMAM3H",
+      "formattedCitation": "<div class=\"csl-entry\">King, A.C., and G. Soffe. \u201cHayling Island.\u201d In <i>Britian in the Roman Period: Recent Trends</i>, edited by R.F.J. Jones, 111\u201313. Sheffield, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=242295",
+      "citationDetail": "monument no. 242295",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/15126",
+      "citationDetail": "Geo 15126: Hayling Island",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.hantsfieldclub.org.uk/publications/hampshirestudies/digital/1990s/vol53/King&Soffe.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "King 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PM2GL3S9",
+      "formattedCitation": "<div class=\"csl-entry\">King, Anthony, and Grahame Soffe. \u201cInternal Organisation and Deposition at the Iron Age Temple on Hayling Island.\u201d <i>Hampshire Studies\u202f: Proceedings of the Hampshire Field Club and Archaeological Society</i> 53 (1998): 35\u201347. https://www.hantsfieldclub.org.uk/publications/hampshirestudies/digital/1990s/vol53/King&amp;Soffe.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "King 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T4PWUU84",
+      "formattedCitation": "<div class=\"csl-entry\">King, Anthony, and Grahame Soffe. <i>A Sacred Island: Iron Age, Roman and Saxon Temples and Ritual on Hayling Island</i>. Winchester: Hayling Island Excavation Project, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q103163441",
+      "citationDetail": "Hayling Island (Samian Ware Discovery Site) (Q103163441)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.roman-britain.co.uk/places/hayling_island/",
+      "citationDetail": "Hayling Island Temple",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "79504",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=temple"
+  ],
+  "title": "Hayling Island Iron-Age/Roman Sanctuary",
+  "provenance": "Barrington Atlas: BAtlas 8 G4 Hayling Island",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/island"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Hayling Island</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Modern Hayling Island (borough of Havant, Hampshire, England) is the site of a multi-phase sanctuary: the Iron Age shrine dates ca. 50 BCE and the Roman temple dates ca. 55-60CE. The sanctuary seems to have suffered decline and ceased being maintained in the early third century CE, although ritual/votive deposition seems to have continued through the fourth century.",
+  "reprPoint": [
+    -0.9783851666666666,
+    50.817858066666666
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "island"
+  ],
+  "bbox": [
+    -0.989776,
+    50.809533,
+    -0.9723461,
+    50.8222562
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/339319311"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-26T10:43:44Z",
+  "uri": "https://pleiades.stoa.org/places/79504",
+  "creators": [
+    {
+      "username": null,
+      "name": "A.S. Esmonde Cleary"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-01T14:04:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-27T02:22:18Z"
+    },
+    {
+      "comment": "added wikidata Hayling Island (Samian Ware Discovery Site) (Q103163441)",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-26T16:32:03Z"
+    },
+    {
+      "comment": "cleaned up references; added King 1998 and King 2013; title; summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-26T15:25:43Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-26T10:43:41Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-27T04:24:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-11T02:19:56Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-11-15T02:48:48Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-29T22:06:37Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:32:11Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:31:22Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T05:47:24Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:05:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-11-23T19:30:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:48:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:37:29Z"
+    }
+  ]
+}

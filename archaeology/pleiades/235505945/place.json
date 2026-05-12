@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.1435634,
+          39.1643216
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kybele-sanctuary-at-kapikaya",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/235505945/osm-location-of-kybele-sanctuary-at-kapikaya",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kybele Sanctuary at Kapikaya"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/13137303828",
+          "citationDetail": "Node 13137303828",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=13137303828",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q64705203",
+          "citationDetail": "Sanctuary of Cybele, Pergamon (Q64705203)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-kybele-sanctuary-at-kapikaya",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Kybele Sanctuary at Kapikaya",
+      "provenance": "OpenStreetMap (Node 13137303828, version 1, osm:changeset=171808764, 2025-09-12T02:06:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-09-12T02:07:40Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.1435634,
+          39.1643216
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/235505945/osm-location-of-kybele-sanctuary-at-kapikaya",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-15T09:46:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T15:35:28Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-12T02:08:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-12T02:07:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-12T02:07:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2025-09-12T02:08:27Z",
+      "associationCertainty": "certain",
+      "title": "Pergamum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/235505945/9078995685",
+      "connectionType": "near",
+      "id": "9078995685",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-15T09:46:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-12T02:08:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-12T02:08:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-12T02:08:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550812",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q64705203",
+      "citationDetail": "Sanctuary of Cybele, Pergamon (Q64705203)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/1457/",
+      "citationDetail": "1457-002\tKybele Sanctuary at Kapikaya",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/44401/",
+      "citationDetail": "44401: Kap\u0131kaya, Kybele Temple",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sanctuary of Cybele, Pergamon",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q64705203",
+          "citationDetail": "Sanctuary of Cybele, Pergamon (Q64705203)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "sanctuary-of-cybele",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-09-14T15:35:17Z",
+      "uri": "https://pleiades.stoa.org/places/235505945/sanctuary-of-cybele",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Sanctuary of Cybele, Pergamon",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-15T09:46:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T15:35:29Z"
+        },
+        {
+          "comment": "name - Sanctuary of Cybele, Pergamon",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T15:35:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T15:35:17Z"
+        }
+      ]
+    }
+  ],
+  "id": "235505945",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Kybele Sanctuary at Kapikaya",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Kybele Sanctuary at Kapikaya is a rock-cut sanctuary sacred to Kybele, approximately 6 km from Pergamon, and is included in the UNESCO World Heritage site \"Pergamon and its Multi-Layered Cultural Landscape\".",
+  "reprPoint": [
+    27.1435634,
+    39.1643216
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    27.1435634,
+    39.1643216,
+    27.1435634,
+    39.1643216
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550812"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-12T02:08:25Z",
+  "uri": "https://pleiades.stoa.org/places/235505945",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-15T09:46:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-14T15:35:28Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-14T15:34:29Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-12T02:08:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-12T02:08:25Z"
+    }
+  ]
+}

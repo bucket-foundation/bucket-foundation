@@ -1,0 +1,1229 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            44.6092229,
+            32.7610766
+          ],
+          [
+            44.6083861,
+            32.763296
+          ],
+          [
+            44.6089386,
+            32.7642253
+          ],
+          [
+            44.6092712,
+            32.7643606
+          ],
+          [
+            44.6106338,
+            32.764505
+          ],
+          [
+            44.611653,
+            32.7641712
+          ],
+          [
+            44.6128546,
+            32.7630163
+          ],
+          [
+            44.6136057,
+            32.7629532
+          ],
+          [
+            44.6143138,
+            32.7628088
+          ],
+          [
+            44.6148287,
+            32.7625833
+          ],
+          [
+            44.615215,
+            32.7592721
+          ],
+          [
+            44.6151568,
+            32.7588524
+          ],
+          [
+            44.615097,
+            32.7586225
+          ],
+          [
+            44.6131057,
+            32.7569848
+          ],
+          [
+            44.6110415,
+            32.7577022
+          ],
+          [
+            44.6103924,
+            32.758618
+          ],
+          [
+            44.6102153,
+            32.7594887
+          ],
+          [
+            44.6085846,
+            32.7600706
+          ],
+          [
+            44.6081393,
+            32.7604856
+          ],
+          [
+            44.6081661,
+            32.761027
+          ],
+          [
+            44.6083861,
+            32.7610856
+          ],
+          [
+            44.6084934,
+            32.7610991
+          ],
+          [
+            44.6093088,
+            32.7609052
+          ],
+          [
+            44.6093839,
+            32.7609593
+          ],
+          [
+            44.6092229,
+            32.7610766
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-ibrahim",
+      "properties": {
+        "snippet": "Settlement; 2000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/893977/osm-location-of-tell-ibrahim",
+        "description": "Representative location based on an OpenStreetMap way tracing the outline of the tell.",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Ibrahim"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.6112,
+          32.7605
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-tall-ibrahim",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/893977/cigs-location-of-tall-ibrahim",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Tall \u012abr\u0101h\u012bm"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/552336805",
+          "citationDetail": "Way 552336805",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=552336805",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-ibrahim",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -540,
+      "title": "OSM location of Tell Ibrahim",
+      "provenance": "OpenStreetMap (Way 552336805, version 1, osm:changeset=55346181, 2018-01-11T09:09:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on an OpenStreetMap way tracing the outline of the tell.",
+      "created": "2018-01-11T09:10:19Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            44.6092229,
+            32.7610766
+          ],
+          [
+            44.6083861,
+            32.763296
+          ],
+          [
+            44.6089386,
+            32.7642253
+          ],
+          [
+            44.6092712,
+            32.7643606
+          ],
+          [
+            44.6106338,
+            32.764505
+          ],
+          [
+            44.611653,
+            32.7641712
+          ],
+          [
+            44.6128546,
+            32.7630163
+          ],
+          [
+            44.6136057,
+            32.7629532
+          ],
+          [
+            44.6143138,
+            32.7628088
+          ],
+          [
+            44.6148287,
+            32.7625833
+          ],
+          [
+            44.615215,
+            32.7592721
+          ],
+          [
+            44.6151568,
+            32.7588524
+          ],
+          [
+            44.615097,
+            32.7586225
+          ],
+          [
+            44.6131057,
+            32.7569848
+          ],
+          [
+            44.6110415,
+            32.7577022
+          ],
+          [
+            44.6103924,
+            32.758618
+          ],
+          [
+            44.6102153,
+            32.7594887
+          ],
+          [
+            44.6085846,
+            32.7600706
+          ],
+          [
+            44.6081393,
+            32.7604856
+          ],
+          [
+            44.6081661,
+            32.761027
+          ],
+          [
+            44.6083861,
+            32.7610856
+          ],
+          [
+            44.6084934,
+            32.7610991
+          ],
+          [
+            44.6093088,
+            32.7609052
+          ],
+          [
+            44.6093839,
+            32.7609593
+          ],
+          [
+            44.6092229,
+            32.7610766
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/893977/osm-location-of-tell-ibrahim",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-04T00:08:44Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-27T23:50:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-11T15:30:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-11T15:08:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T09:16:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T09:15:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T09:10:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T09:10:19Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.4324/9780203875506",
+          "citationDetail": "page 174",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bryce 2009",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZSXV8M2K",
+          "formattedCitation": "<div class=\"csl-entry\">Bryce, Trevor. <i>The Routledge Handbook of the Peoples and Places of Ancient Western Asia: The Near East from the Early Bronze Age to the Fall of the Persian Empire</i>. London; New York: Routledge, 2012. https://doi.org/10.4324/9780203875506.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Edzard and Gallery 1980-1983",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ALIJI87Q",
+          "formattedCitation": "<div class=\"csl-entry\">Edzard, Dietz Otto, and M. Gallery. \u201cKutha.\u201d In <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>, 6:384\u201387, 1983 1980.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Kutha",
+          "citationDetail": "Kutha",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Kutha.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://ar.wikipedia.org/wiki/\u0643\u0648\u062b\u0649",
+          "citationDetail": "\u0643\u0648\u062b\u0649",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Arabic)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GIR336Y",
+          "formattedCitation": "<div class=\"csl-entry\"><i>\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062d\u0631\u0629 \u0627\u0644\u062a\u064a \u064a\u0633\u062a\u0637\u064a\u0639 \u0627\u0644\u062c\u0645\u064a\u0639 \u062a\u062d\u0631\u064a\u0631\u0647\u0627: \u0648\u064a\u0643\u064a\u0628\u064a\u062f\u064a\u0627</i>. Wikimedia Foundation, 2001. https://ar.wikipedia.org.</div>, \u0643\u0648\u062b\u0649.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1096108",
+          "citationDetail": "Q1096108: Kutha",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q1096108.",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "cigs-location-of-tall-ibrahim",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of Tall \u012abr\u0101h\u012bm",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-04-25T11:22:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.6112,
+          32.7605
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/893977/cigs-location-of-tall-ibrahim",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-25T15:08:29Z"
+        },
+        {
+          "comment": "update wikidata",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-25T15:08:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T11:23:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T11:22:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T11:22:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "91 F5 Cutha",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/914521400",
+      "citationDetail": "48",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gibson 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/66UTDJWS",
+      "formattedCitation": "<div class=\"csl-entry\">Gibson, McGuire, and Henry Field. <i>The City and Area of Kish</i>. Miami, Fla: Field Research Projects, 1972. http://www.worldcat.org/oclc/914521400.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Kutha",
+      "citationDetail": "Kutha",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "22489",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.aiamilitarypanel.org/profiles/cptraining/iraq05a.html",
+      "citationDetail": "088. Tell Ibraham (ancient: Kutha)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Iraq Significant Sites",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PZM3S7V8",
+      "formattedCitation": "<div class=\"csl-entry\">Fort Drum Cultural Resource Center, and Center for Environmental Management of Military Lands, Colorado State University. <i>Iraq\u2019s Most Significant Ancient Sites and Monuments</i>. United States Department of Defense, US Central Command. Accessed June 17, 2022. https://www.aiamilitarypanel.org/profiles/cptraining/iraq05a.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vocab.getty.edu/page/tgn/7032802",
+      "citationDetail": "7032802: Tell Ibrahim (deserted settlement)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TGN",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLJQ5AZJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Getty Thesaurus of Geographic Names\u00ae Online</i>, n.d. https://www.getty.edu/research/tools/vocabularies/tgn/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1096108",
+      "citationDetail": "Kutha (Q1096108)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Cutha",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "91 F5 Cutha",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cutha",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 91 F5 Cutha",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2010-10-05T20:34:25Z",
+      "uri": "https://pleiades.stoa.org/places/893977/cutha",
+      "creators": [
+        {
+          "username": null,
+          "name": "M. Roaf"
+        },
+        {
+          "username": null,
+          "name": "St J. Simpson"
+        }
+      ],
+      "attested": "Cutha",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-08T15:34:14Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T09:21:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-10-05T20:51:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-10-05T20:40:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-10-05T20:34:25Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "K\u016bt\u00fb",
+      "attestations": [
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "204-205",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zadok 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B49BJP53",
+          "formattedCitation": "<div class=\"csl-entry\">Zadok, Ran. <i>Geographical Names According to New- and Late-Babylonian Texts</i>. Beihefte Zum T\u00fcbinger Atlas Des Vorderen Orients, Geisteswissenschaften, Nr. 7. Wiesbaden: L. Reichert, 1985.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-09.3578152370",
+      "end": -540,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-01-09T13:11:58Z",
+      "uri": "https://pleiades.stoa.org/places/893977/name.2018-01-09.3578152370",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-09T16:50:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-09T16:49:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-09T13:12:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-09T13:12:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-09T13:11:58Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Tell Ibrahim",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "204-205",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zadok 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B49BJP53",
+          "formattedCitation": "<div class=\"csl-entry\">Zadok, Ran. <i>Geographical Names According to New- and Late-Babylonian Texts</i>. Beihefte Zum T\u00fcbinger Atlas Des Vorderen Orients, Geisteswissenschaften, Nr. 7. Wiesbaden: L. Reichert, 1985.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Kutha",
+          "citationDetail": "Kutha",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/21207/",
+          "citationDetail": "21207: Kutha - Gudua",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-11.2721736574",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Ancient Cutha is often identified with modern Tell Ibrahim.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2018-01-11T09:04:58Z",
+      "uri": "https://pleiades.stoa.org/places/893977/name.2018-01-11.2721736574",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "change type to assoc modern name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-25T15:10:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-11T15:30:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-11T15:17:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T09:05:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T09:04:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T09:04:58Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tall \u012abr\u0101h\u012bm",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.4324/9780203875506",
+          "citationDetail": "page 174",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bryce 2009",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZSXV8M2K",
+          "formattedCitation": "<div class=\"csl-entry\">Bryce, Trevor. <i>The Routledge Handbook of the Peoples and Places of Ancient Western Asia: The Near East from the Early Bronze Age to the Fall of the Persian Empire</i>. London; New York: Routledge, 2012. https://doi.org/10.4324/9780203875506.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Edzard and Gallery 1980-1983",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ALIJI87Q",
+          "formattedCitation": "<div class=\"csl-entry\">Edzard, Dietz Otto, and M. Gallery. \u201cKutha.\u201d In <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>, 6:384\u201387, 1983 1980.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Kutha",
+          "citationDetail": "Kutha",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Kutha.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://ar.wikipedia.org/wiki/\u0643\u0648\u062b\u0649",
+          "citationDetail": "\u0643\u0648\u062b\u0649",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Arabic)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GIR336Y",
+          "formattedCitation": "<div class=\"csl-entry\"><i>\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062d\u0631\u0629 \u0627\u0644\u062a\u064a \u064a\u0633\u062a\u0637\u064a\u0639 \u0627\u0644\u062c\u0645\u064a\u0639 \u062a\u062d\u0631\u064a\u0631\u0647\u0627: \u0648\u064a\u0643\u064a\u0628\u064a\u062f\u064a\u0627</i>. Wikimedia Foundation, 2001. https://ar.wikipedia.org.</div>, \u0643\u0648\u062b\u0649.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1096108",
+          "citationDetail": "Q1096108: Kutha",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q1096108.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tall-ibrahim",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for Arabic (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2023-04-25T11:22:46Z",
+      "uri": "https://pleiades.stoa.org/places/893977/tall-ibrahim",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u062a\u0644 \u0625\u0628\u0631\u0627\u0647\u064a\u0645",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-25T15:09:25Z"
+        },
+        {
+          "comment": "change type to assoc modern name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-25T15:09:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-25T15:08:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T11:23:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T11:22:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T11:22:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "893977",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=1",
+    "dare:feature=major settlement"
+  ],
+  "title": "Cutha",
+  "provenance": "Barrington Atlas: BAtlas 91 F5 Cutha",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Tell Ibrahim (al-Khalil)</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Kutha or Cutha (modern Tell Ibrahim) is located on the Upper Euphrates, north of Nippur and northeast of Babylon. The archaeological site consists of two tells. Archaeological evidence of the Neo-Babylonian period has been revealed by excavation.",
+  "reprPoint": [
+    44.611393505912865,
+    32.76070982402899
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    44.6081393,
+    32.7569848,
+    44.615215,
+    32.764505
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/213534096",
+    "https://pleiades.stoa.org/places/154202833"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-10-05T20:34:25Z",
+  "uri": "https://pleiades.stoa.org/places/893977",
+  "creators": [
+    {
+      "username": null,
+      "name": "M. Roaf"
+    },
+    {
+      "username": null,
+      "name": "St J. Simpson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1096108",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-25T02:23:26Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-25T13:37:02Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-18T17:47:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-11T15:31:52Z"
+    },
+    {
+      "comment": "darmc 22489",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-11T15:12:38Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-11T15:11:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-14T14:14:40Z"
+    },
+    {
+      "comment": "DARE feature tag fix.",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-23T19:45:03Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:01:54Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T09:21:55Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-10T01:11:42Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:27:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-05T20:51:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T20:40:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T20:34:25Z"
+    }
+  ]
+}

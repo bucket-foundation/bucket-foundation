@@ -1,0 +1,680 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.296418,
+          45.434546
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Fort; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/216943/dare-location",
+        "description": "Representative point location, village precision",
+        "location_precision": "precise",
+        "title": "DARE Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.3108576,
+            45.4015373
+          ],
+          [
+            24.3096464,
+            45.4012699
+          ],
+          [
+            24.3096087,
+            45.4012338
+          ],
+          [
+            24.3096087,
+            45.4011856
+          ],
+          [
+            24.3096362,
+            45.4011157
+          ],
+          [
+            24.3100616,
+            45.4004363
+          ],
+          [
+            24.3100993,
+            45.4004122
+          ],
+          [
+            24.3101508,
+            45.4004098
+          ],
+          [
+            24.3113826,
+            45.4006532
+          ],
+          [
+            24.3114375,
+            45.4006869
+          ],
+          [
+            24.3114546,
+            45.400723
+          ],
+          [
+            24.311458,
+            45.4007784
+          ],
+          [
+            24.3114375,
+            45.4008218
+          ],
+          [
+            24.3110498,
+            45.4014771
+          ],
+          [
+            24.3109949,
+            45.4015156
+          ],
+          [
+            24.3109297,
+            45.4015349
+          ],
+          [
+            24.3108576,
+            45.4015373
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-castrul-roman-praetorium-i",
+      "properties": {
+        "snippet": "Fort-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/216943/osm-location-of-castrul-roman-praetorium-i",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castrul roman Praetorium I"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://francia.ahlfeldt.se/imperium.php",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Johan \u00c5hlfeldt, Digital Atlas of the Roman Empire, 2012.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": 300,
+      "title": "DARE Location",
+      "provenance": "Digital Atlas of the Roman Empire (2012-10-15)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 100.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-2",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative point location, village precision",
+      "created": "2012-10-20T19:56:03Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.296418,
+          45.434546
+        ]
+      },
+      "locationType": [
+        "associated modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/216943/dare-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T19:56:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T19:56:06Z"
+        },
+        {
+          "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T19:56:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T19:56:05Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/756163256",
+          "citationDetail": "Way 756163256",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=756163256",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-castrul-roman-praetorium-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Castrul roman Praetorium I",
+      "provenance": "OpenStreetMap (Way 756163256, version 3, osm:changeset=138539687, 2023-07-15T10:47:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-11-08T20:22:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.3108576,
+            45.4015373
+          ],
+          [
+            24.3096464,
+            45.4012699
+          ],
+          [
+            24.3096087,
+            45.4012338
+          ],
+          [
+            24.3096087,
+            45.4011856
+          ],
+          [
+            24.3096362,
+            45.4011157
+          ],
+          [
+            24.3100616,
+            45.4004363
+          ],
+          [
+            24.3100993,
+            45.4004122
+          ],
+          [
+            24.3101508,
+            45.4004098
+          ],
+          [
+            24.3113826,
+            45.4006532
+          ],
+          [
+            24.3114375,
+            45.4006869
+          ],
+          [
+            24.3114546,
+            45.400723
+          ],
+          [
+            24.311458,
+            45.4007784
+          ],
+          [
+            24.3114375,
+            45.4008218
+          ],
+          [
+            24.3110498,
+            45.4014771
+          ],
+          [
+            24.3109949,
+            45.4015156
+          ],
+          [
+            24.3109297,
+            45.4015349
+          ],
+          [
+            24.3108576,
+            45.4015373
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/216943/osm-location-of-castrul-roman-praetorium-i",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-09T13:16:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-08T20:22:38Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-08T20:22:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-08T20:22:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-08T20:22:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "22 B3 Praetorium",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883357716",
+      "citationDetail": "28",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "C\u0103t\u0103niciu 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5B2FM4MQ",
+      "formattedCitation": "<div class=\"csl-entry\">C\u0103t\u0103niciu, Ioana Bogdan. <i>Evolution of the System of Defence Works in Roman Dacia</i>. BAR International Series 116. Oxford: B.A.R, 1981. http://www.worldcat.org/oclc/883357716.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace1760.html",
+      "citationDetail": "7A1 (Talbert 1760)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "TP (Talbert: CUP)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Praetorium_%28castra_of_Cop%C4%83ceni%29",
+      "citationDetail": "Praetorium (castra of Cop\u0103ceni)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Praetorium (castra of Cop\u0103ceni).",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7237566",
+      "citationDetail": "Castrum Praetorium (of Cop\u0103ceni) (Q7237566)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Praetorium",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "praetorium",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 22 B3 Praetorium",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-20T14:25:39Z",
+      "uri": "https://pleiades.stoa.org/places/216943/praetorium",
+      "creators": [
+        {
+          "username": null,
+          "name": "A.G. Poulter"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T03:11:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-20T18:16:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-20T14:37:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-20T14:25:39Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Pretorio",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/us/talbert/talbertdatabase/TPPlace1760.html",
+          "citationDetail": "7A1 (Talbert 1760)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "TP (Talbert: CUP)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "pretorio",
+      "end": 640,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-05-21T02:50:52Z",
+      "uri": "https://pleiades.stoa.org/places/216943/pretorio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Pretorio",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-21T14:22:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-21T02:50:58Z"
+        },
+        {
+          "comment": "TP name TP reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-21T02:50:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-21T02:50:52Z"
+        }
+      ]
+    }
+  ],
+  "id": "216943",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=fort"
+  ],
+  "title": "Praetorium",
+  "provenance": "Barrington Atlas: BAtlas 22 B3 Praetorium",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Cop\u0103ceni</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 22 B3 Praetorium",
+  "reprPoint": [
+    24.303476792560893,
+    45.4177599601573
+  ],
+  "placeTypes": [
+    "fort-2",
+    "fort"
+  ],
+  "bbox": [
+    24.296418,
+    45.4004098,
+    24.311458,
+    45.434546
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-20T14:25:39Z",
+  "uri": "https://pleiades.stoa.org/places/216943",
+  "creators": [
+    {
+      "username": null,
+      "name": "A.G. Poulter"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Castrum Praetorium (of Cop\u0103ceni) (Q7237566)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-08T20:21:00Z"
+    },
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-18T02:52:20Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-06T02:04:46Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:56:07Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T03:11:33Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:08:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-20T18:16:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-20T14:37:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-20T14:25:39Z"
+    }
+  ]
+}

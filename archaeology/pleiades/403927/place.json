@@ -1,0 +1,498 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.4364242,
+            43.7687367
+          ],
+          [
+            10.4363785,
+            43.7687889
+          ],
+          [
+            10.4367387,
+            43.7689781
+          ],
+          [
+            10.4367798,
+            43.768931
+          ],
+          [
+            10.4364242,
+            43.7687367
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Aqueduct, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/403927/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Acquedotto romano di Caldaccoli"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/156890807",
+          "citationDetail": "Way 156890807",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=156890807",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Acquedotto romano di Caldaccoli",
+      "provenance": "OpenStreetMap (Way 156890807, version 7, osm:changeset=93200394, 2020-10-28T20:59:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "aqueduct",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-07-09T15:18:00Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.4364242,
+            43.7687367
+          ],
+          [
+            10.4363785,
+            43.7687889
+          ],
+          [
+            10.4367387,
+            43.7689781
+          ],
+          [
+            10.4367798,
+            43.768931
+          ],
+          [
+            10.4364242,
+            43.7687367
+          ]
+        ]
+      },
+      "locationType": [
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/403927/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-19T03:54:29Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-05T21:30:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-27T00:53:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-27T00:53:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-09T15:18:37Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-09T15:18:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-09T15:18:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-09T15:18:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T14:00:09Z",
+      "associationCertainty": "certain",
+      "title": "Pisae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/403927/403253",
+      "connectionType": "connection",
+      "id": "403253",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:00:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403253",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "41 C2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/859657007",
+      "citationDetail": "49",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ASAT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NKKVGVN5",
+      "formattedCitation": "<div class=\"csl-entry\">Torelli, Mario, ed. <i>Atlante Dei Siti Archeologici Della Toscana</i>. 2 vols. Biblioteca Di Studi Materiali 1. Florence, Rome: \u201cL\u2019Erma\u201d di Bretschneider, 1992. http://www.worldcat.org/oclc/859657007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Acquedotto_romano_di_Caldaccoli",
+      "citationDetail": "Acquedotto romano di Caldaccoli",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Acquedotto romano di Caldaccoli.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Bagni_di_Nerone",
+      "citationDetail": "Bagni di Nerone",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Bagni di Nerone.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3604733",
+      "citationDetail": "Q3604733: Caldaccoli Aqueduct ",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/19292/",
+      "citationDetail": "19292: Aqueduct Caldaccoli",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Acquedotto romano di Caldaccoli",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Acquedotto_romano_di_Caldaccoli",
+          "citationDetail": "Acquedotto romano di Caldaccoli",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "acquedotto-romano-di-caldaccoli",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2021-05-23T19:50:17Z",
+      "uri": "https://pleiades.stoa.org/places/403927/acquedotto-romano-di-caldaccoli",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Acquedotto romano di Caldaccoli",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-24T11:18:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-23T19:50:25Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-23T19:50:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-23T19:50:17Z"
+        }
+      ]
+    }
+  ],
+  "id": "403927",
+  "subject": [],
+  "title": "Caldaccoli aqueduct",
+  "provenance": "Barrington Atlas: BAtlas 41 C2",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Pisae, at Caldaccoli</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A first century A.D. Roman aqueduct that carried water from the locality known as \"Caldaccoli\" to baths in Pisa.",
+  "reprPoint": [
+    10.4367702,
+    43.7689323
+  ],
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": [
+    10.4367702,
+    43.7689323,
+    10.4367702,
+    43.7689323
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/403253"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-15T18:56:25Z",
+  "uri": "https://pleiades.stoa.org/places/403927",
+  "creators": [
+    {
+      "username": null,
+      "name": "W.V. Harris"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "vici.org 19292: Aqueduct Caldaccoli",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-06T00:07:36Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-23T19:49:07Z"
+    },
+    {
+      "comment": "Wikidata Q3604733",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-30T04:51:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-12-04T17:10:31Z"
+    },
+    {
+      "comment": "added cnxn",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-18T13:15:14Z"
+    },
+    {
+      "comment": "edited description, added references",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-09T15:21:12Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:46:10Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:39:58Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-15T19:06:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T19:02:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T18:56:25Z"
+    }
+  ]
+}

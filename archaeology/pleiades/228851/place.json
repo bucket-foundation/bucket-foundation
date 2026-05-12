@@ -1,0 +1,510 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.2890059,
+            45.1648679
+          ],
+          [
+            33.2916961,
+            45.1651315
+          ],
+          [
+            33.2914333,
+            45.1636273
+          ],
+          [
+            33.2913822,
+            45.1634635
+          ],
+          [
+            33.2912805,
+            45.1633039
+          ],
+          [
+            33.2910121,
+            45.1630758
+          ],
+          [
+            33.2885151,
+            45.163667
+          ],
+          [
+            33.2890059,
+            45.1648679
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "grieko-skifskoie-ghorodishchie-chaika",
+      "properties": {
+        "snippet": "Fort, Settlement; 550 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/228851/grieko-skifskoie-ghorodishchie-chaika",
+        "description": "Polygon representing the Chaika site, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Chaika"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Diane Braund"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/134445498",
+          "citationDetail": "Way 134445498",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=134445498",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "grieko-skifskoie-ghorodishchie-chaika",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 300,
+      "title": "OSM location of Chaika",
+      "provenance": "OpenStreetMap (Way 134445498, version 3, osm:changeset=35832459, 2015-12-08T19:17:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort",
+        "settlement"
+      ],
+      "description": "Polygon representing the Chaika site, derived from an OpenStreetMap Way.",
+      "created": "2018-02-15T21:40:29Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.2890059,
+            45.1648679
+          ],
+          [
+            33.2916961,
+            45.1651315
+          ],
+          [
+            33.2914333,
+            45.1636273
+          ],
+          [
+            33.2913822,
+            45.1634635
+          ],
+          [
+            33.2912805,
+            45.1633039
+          ],
+          [
+            33.2910121,
+            45.1630758
+          ],
+          [
+            33.2885151,
+            45.163667
+          ],
+          [
+            33.2890059,
+            45.1648679
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/228851/grieko-skifskoie-ghorodishchie-chaika",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-16T05:05:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:47:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:41:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:40:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:40:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-15T21:47:17Z",
+      "associationCertainty": "certain",
+      "title": "Taurike Chersonesos",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/228851/taurike-chersonesos",
+      "connectionType": "part_of_regional",
+      "id": "taurike-chersonesos",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-16T05:05:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:47:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:47:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:47:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/226778",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "23 G3 85",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "83",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hind 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S3SX8GZS",
+      "formattedCitation": "<div class=\"csl-entry\">J.G.F. Hind. \u201cGreek and Barbarian Peoples on the Shores of the Black Sea.\u201d <i>Archaeological Reports</i> 30 (84 1983): 71\u201397.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "141 (no. 6)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Saprykin 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FU6Z4S8B",
+      "formattedCitation": "<div class=\"csl-entry\">Saprykin, S. IU, and E. S Golubtsova. <i>\u0413\u0435\u0440\u043a\u0430\u043b\u0435\u044f \u041f\u043e\u043d\u0442\u0438\u0439\u0441\u043a\u0430\u044f \u0438 \u0425\u0435\u0440\u0441\u043e\u043d\u0435\u0441 \u0422\u0430\u0432\u0440\u0438\u0447\u0435\u0441\u043a\u0438\u0439: \u0412\u0437\u0430\u0438\u043c\u043e\u043e\u0442\u043d\u043e\u0448\u0435\u043d\u0438\u044f \u041c\u0435\u0442\u0440\u043e\u043f\u043e\u043b\u0438\u0439 \u0438 \u041a\u043e\u043b\u043e\u043d\u0438\u0439 \u0432 VI-I \u0414\u043e \u043d.\u042d.</i> Moskva: Nauka, 1986.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/26130905",
+      "citationDetail": "246",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kacharava 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M7PUW7FX",
+      "formattedCitation": "<div class=\"csl-entry\">Kacharava, D. D., and G. T. Kvirkvelii\ufe20a\ufe21. <i>Goroda i Poselenii\ufe20a\ufe21 Prichernomor\u02b9i\ufe20a\ufe21 Antichno\u012d \u0116pokhi\u202f: Maly\u012d \u0116nt\ufe20s\ufe21iklopedicheski\u012d Spravochnik</i>. Tbilisi: Metsniereba, 1991. http://www.worldcat.org/oclc/26130905.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DC%3Aentry+group%3D5%3Aentry%3Dchaika",
+      "citationDetail": "CHAIKA Crimea",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Chaika, Chayka, Cha\u012dka",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/7033464/sanitoriy-chayka.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "geonames, Sanitoriy Chayka",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "chaika",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "uk",
+      "created": "2018-02-15T21:45:06Z",
+      "uri": "https://pleiades.stoa.org/places/228851/chaika",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0427\u0430\u0439\u043a\u0430",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-16T05:05:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:47:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:46:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:45:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-15T21:45:06Z"
+        }
+      ]
+    }
+  ],
+  "id": "228851",
+  "subject": [],
+  "title": "Chaika",
+  "provenance": "Barrington Atlas: BAtlas 23 G3 85",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Chaika</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement in western Crimea, probably founded by Chersonesus in the fourth century BCE. The city was destroyed in the second century BCE by the Scythians, who established a trading center on the same site that lasted until the first centuries CE.",
+  "reprPoint": [
+    33.29022945396213,
+    45.164174368259005
+  ],
+  "placeTypes": [
+    "settlement",
+    "fort"
+  ],
+  "bbox": [
+    33.2885151,
+    45.1630758,
+    33.2916961,
+    45.1651315
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/226778"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-02-15T21:36:04Z",
+  "uri": "https://pleiades.stoa.org/places/228851",
+  "creators": [
+    {
+      "username": null,
+      "name": "David Braund"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-28T17:29:16Z"
+    },
+    {
+      "comment": "check in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-16T05:05:07Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T03:19:56Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:11:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-23T19:54:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-23T19:35:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-23T19:09:21Z"
+    }
+  ]
+}

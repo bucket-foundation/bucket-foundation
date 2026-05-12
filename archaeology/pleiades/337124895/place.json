@@ -1,0 +1,433 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            52.8723397,
+            29.9884487
+          ],
+          [
+            52.8724279,
+            29.9882069
+          ],
+          [
+            52.8734728,
+            29.9879011
+          ],
+          [
+            52.874551,
+            29.9874796
+          ],
+          [
+            52.8755001,
+            29.9877479
+          ],
+          [
+            52.8754878,
+            29.9877762
+          ],
+          [
+            52.8754559,
+            29.9878495
+          ],
+          [
+            52.8753981,
+            29.9879826
+          ],
+          [
+            52.875463,
+            29.988005
+          ],
+          [
+            52.8760664,
+            29.9882137
+          ],
+          [
+            52.8766156,
+            29.9894151
+          ],
+          [
+            52.8758903,
+            29.9896313
+          ],
+          [
+            52.8731003,
+            29.9889359
+          ],
+          [
+            52.8723397,
+            29.9884487
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-naqsh-e-rustam",
+      "properties": {
+        "snippet": "Cemetery; 540 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/337124895/osm-location-of-naqsh-e-rustam",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Naqsh-e Rustam"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "achaemenid-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/235636111",
+          "citationDetail": "Way 235636111",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=235636111",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-naqsh-e-rustam",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": 300,
+      "title": "OSM location of Naqsh-e Rustam",
+      "provenance": "OpenStreetMap (Way 235636111, version 8, osm:changeset=49796591, 2017-06-24T15:40:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -540,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2019-02-06T15:48:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            52.8723397,
+            29.9884487
+          ],
+          [
+            52.8724279,
+            29.9882069
+          ],
+          [
+            52.8734728,
+            29.9879011
+          ],
+          [
+            52.874551,
+            29.9874796
+          ],
+          [
+            52.8755001,
+            29.9877479
+          ],
+          [
+            52.8754878,
+            29.9877762
+          ],
+          [
+            52.8754559,
+            29.9878495
+          ],
+          [
+            52.8753981,
+            29.9879826
+          ],
+          [
+            52.875463,
+            29.988005
+          ],
+          [
+            52.8760664,
+            29.9882137
+          ],
+          [
+            52.8766156,
+            29.9894151
+          ],
+          [
+            52.8758903,
+            29.9896313
+          ],
+          [
+            52.8731003,
+            29.9889359
+          ],
+          [
+            52.8723397,
+            29.9884487
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/337124895/osm-location-of-naqsh-e-rustam",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T12:15:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-06T15:50:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-06T15:49:48Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-06T15:49:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-06T15:48:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-06T15:48:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2018-12-27T15:46:59Z",
+      "associationCertainty": "certain",
+      "title": "Sassanid Archaeological Landscape of Fars Region",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/337124895/sassanid-archaeological-landscape-of-fars-region",
+      "connectionType": "part_of_analytical",
+      "id": "sassanid-archaeological-landscape-of-fars-region",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T12:15:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T12:15:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T11:51:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-13T11:51:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-06T15:49:59Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:47:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-27T15:46:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/410216617",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.livius.org/articles/place/naqs-e-rustam/naqs-e-rustam-photos/naqs-e-rustam-investiture-relief-of-ardasir-i/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Livius.org: Naq\u0161-e Rustam, Investiture Relief of Arda\u0161ir I",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "no. 53",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Reliefs rupestres de l'Iran ancien",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EACE6FGK",
+      "formattedCitation": "<div class=\"csl-entry\">Berghe, Louis vanden, ed. <i>Reliefs Rupestres de l\u2019Iran Ancien: [Catalogue de l\u2019exposition] Mus\u00e9es Royaux d\u2019art et d\u2019histoire, Bruxelles, 26 Octobre 1983 - 29 Janvier 1984</i>. Bruxelles: Mus. Royaux, 1983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Naqsh-e_Rustam",
+      "citationDetail": "Naqsh-e Rustam",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "337124895",
+  "subject": [],
+  "title": "Investiture relief of Ardashir I",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A rock-cut relief depicting the investiture of Ardashir I, ca. A.D. 226-242. This relief is the earliest Sasanian monument at Naq\u0161-e Rustam.",
+  "reprPoint": [
+    52.87459437999806,
+    29.988580375029656
+  ],
+  "placeTypes": [
+    "cemetery",
+    "monument"
+  ],
+  "bbox": [
+    52.8723397,
+    29.9874796,
+    52.8766156,
+    29.9896313
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/410216617"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-12-27T15:46:44Z",
+  "uri": "https://pleiades.stoa.org/places/337124895",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-02-13T12:15:47Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-06T16:12:32Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-06T16:11:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-06T15:49:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-06T15:47:14Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-27T15:46:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-27T15:46:44Z"
+    }
+  ]
+}

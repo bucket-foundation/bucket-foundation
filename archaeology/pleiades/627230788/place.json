@@ -1,0 +1,314 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.044761,
+          37.440273
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-templo-de-trajano",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/627230788/osm-location-of-templo-de-trajano",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Templo de Trajano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/11933881288",
+          "citationDetail": "Node 11933881288",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=11933881288",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-templo-de-trajano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Templo de Trajano",
+      "provenance": "OpenStreetMap (Node 11933881288, version 1, osm:changeset=151829275, 2024-05-25T21:36:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-05-02T02:26:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.044761,
+          37.440273
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/627230788/osm-location-of-templo-de-trajano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T12:51:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:27:08Z"
+        },
+        {
+          "comment": "supersedes previously published location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:27:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:26:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:26:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-02-24T16:54:28Z",
+      "associationCertainty": "certain",
+      "title": "Italica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/627230788/2688085221",
+      "connectionType": "at",
+      "id": "2688085221",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T16:54:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T16:54:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T16:54:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256231",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Templo_de_Trajano_de_It%C3%A1lica",
+      "citationDetail": "Templo de Trajano de It\u00e1lica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Templo de Trajano de It\u00e1lica.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/42622175",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Boatwright 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FDFCQC94",
+      "formattedCitation": "<div class=\"csl-entry\">Boatwright, Mary T. \u201cThe Traianeum in Italica (Spain) and the Library of Hadrian in Athens.\u201d <i>Studies in the History of Art</i>, Symposium Papers XXIX: The Interpretation of Architectural Sculpture in Greece and Rome, 49 (1997): 192\u2013217. http://www.jstor.org/stable/42622175.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://arachne.uni-koeln.de/item/bauwerk/2106411",
+      "citationDetail": "2106411: Traianeum Italica, Santiponce",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q6141053",
+      "citationDetail": "Q6141053: Temple of Trajan at Italica",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://romeresearchgroup.org/items/1000965",
+      "citationDetail": "1000965: Temple of Trajan",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TCW",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZV7SNRDS",
+      "formattedCitation": "<div class=\"csl-entry\">John D. Muccigrosso, and Louis I. Hamilton. <i>Temples of the Classical World</i>. Rome Research Group. Accessed October 15, 2024. https://romeresearchgroup.org/database-of-temples/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "627230788",
+  "subject": [
+    "extant remains",
+    "temple"
+  ],
+  "title": "Temple of Trajan at Italica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sanctuary dedicated to Trajan in the 'urbs nova' of Italica that flourished under the patronage of Hadrian.",
+  "reprPoint": [
+    -6.044761,
+    37.440273
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    -6.044761,
+    37.440273,
+    -6.044761,
+    37.440273
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256231"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-02-24T16:54:27Z",
+  "uri": "https://pleiades.stoa.org/places/627230788",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added TCW reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-02T12:52:37Z"
+    },
+    {
+      "comment": "added Arachne, Wikidata references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-24T21:17:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-11-24T21:02:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:35:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-01T16:24:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-01T13:54:40Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-24T16:54:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-24T16:54:27Z"
+    }
+  ]
+}

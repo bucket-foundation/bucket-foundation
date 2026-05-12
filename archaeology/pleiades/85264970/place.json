@@ -1,0 +1,379 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            67.4571418,
+            39.5093645
+          ],
+          [
+            67.4574252,
+            39.5089479
+          ],
+          [
+            67.4578811,
+            39.5086869
+          ],
+          [
+            67.4578739,
+            39.5080324
+          ],
+          [
+            67.4568823,
+            39.508072
+          ],
+          [
+            67.4561844,
+            39.5081751
+          ],
+          [
+            67.4561086,
+            39.5078471
+          ],
+          [
+            67.4561632,
+            39.5077791
+          ],
+          [
+            67.459294,
+            39.5067941
+          ],
+          [
+            67.4600844,
+            39.5067058
+          ],
+          [
+            67.4605752,
+            39.506639
+          ],
+          [
+            67.4633544,
+            39.5061981
+          ],
+          [
+            67.4633163,
+            39.50711
+          ],
+          [
+            67.4632612,
+            39.5077377
+          ],
+          [
+            67.4608369,
+            39.5084393
+          ],
+          [
+            67.4607357,
+            39.509588
+          ],
+          [
+            67.4571418,
+            39.5093645
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sarazm",
+      "properties": {
+        "snippet": "Archaeological-site; 4000 BC - 3000 BC",
+        "link": "https://pleiades.stoa.org/places/85264970/osm-location-of-sarazm",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Sarazm"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1167775132",
+          "citationDetail": "Way 1167775132",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1167775132",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-sarazm",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -3000,
+      "title": "OSM location of Sarazm",
+      "provenance": "OpenStreetMap (Way 1167775132, version 2, osm:changeset=144017240, 2023-11-14T16:17:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-07-18T14:15:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            67.4571418,
+            39.5093645
+          ],
+          [
+            67.4574252,
+            39.5089479
+          ],
+          [
+            67.4578811,
+            39.5086869
+          ],
+          [
+            67.4578739,
+            39.5080324
+          ],
+          [
+            67.4568823,
+            39.508072
+          ],
+          [
+            67.4561844,
+            39.5081751
+          ],
+          [
+            67.4561086,
+            39.5078471
+          ],
+          [
+            67.4561632,
+            39.5077791
+          ],
+          [
+            67.459294,
+            39.5067941
+          ],
+          [
+            67.4600844,
+            39.5067058
+          ],
+          [
+            67.4605752,
+            39.506639
+          ],
+          [
+            67.4633544,
+            39.5061981
+          ],
+          [
+            67.4633163,
+            39.50711
+          ],
+          [
+            67.4632612,
+            39.5077377
+          ],
+          [
+            67.4608369,
+            39.5084393
+          ],
+          [
+            67.4607357,
+            39.509588
+          ],
+          [
+            67.4571418,
+            39.5093645
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/85264970/osm-location-of-sarazm",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-18T19:35:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-18T14:15:48Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-18T14:15:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-18T14:15:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-18T14:15:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sarazm",
+      "citationDetail": "Sarazm",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Sarazm.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/1141",
+      "citationDetail": "1141: Proto-urban Site of Sarazm",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q422929",
+      "citationDetail": "Sarazm (Q422929)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=31149569",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mutin 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/37U46SDB",
+      "formattedCitation": "<div class=\"csl-entry\">Mutin, Benjamin. <i>Sarazm: A Site along the Proto-Silk Road at the Intersection of the Steppe and Oasis Cultures\u202f: Results from Excavation VII</i>. Oxus. Turnhout: Brepols Publishers, 2023. https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=31149569.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "85264970",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Sarazm",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient, proto-urban site located in north-western Tajikistan.",
+  "reprPoint": [
+    67.45973469615726,
+    39.50790240789349
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    67.4561086,
+    39.5061981,
+    67.4633544,
+    39.509588
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2012-12-29T03:33:08Z",
+  "uri": "https://pleiades.stoa.org/places/85264970",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update WHL",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-06T18:47:48Z"
+    },
+    {
+      "comment": "added Wikidata reference",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-18T19:37:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-04-17T22:20:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-29T14:23:48Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-29T03:33:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-29T03:33:08Z"
+    }
+  ]
+}

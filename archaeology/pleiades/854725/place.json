@@ -1,0 +1,634 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              36.98402659155897,
+              45.39997441906178
+            ],
+            [
+              37.024715374758784,
+              45.40282977226883
+            ],
+            [
+              37.050413553621695,
+              45.40282977226883
+            ],
+            [
+              37.07611173248466,
+              45.40282977226883
+            ],
+            [
+              37.10395142625288,
+              45.40282977226883
+            ],
+            [
+              37.1260804136071,
+              45.40282977226883
+            ],
+            [
+              37.15463394567706,
+              45.40354361057052
+            ],
+            [
+              37.17961828623828,
+              45.404971287174135
+            ],
+            [
+              37.2046026267995,
+              45.404971287174135
+            ],
+            [
+              37.226731614153664,
+              45.404971287174135
+            ],
+            [
+              37.248860601507886,
+              45.405685125475884
+            ],
+            [
+              37.273131103767355,
+              45.40711280207927
+            ],
+            [
+              37.30025695923388,
+              45.40711280207927
+            ],
+            [
+              37.32881049130384,
+              45.406398963777576
+            ],
+            [
+              37.36093321488255,
+              45.40854047868288
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; 550 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/854725/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": null,
+      "name": "Diane Braund"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "Phanagor(e)ia Ins.",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "87 inset L2 Phanagor(e)ia",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": 640,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:15:08Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              36.98402659155897,
+              45.39997441906178
+            ],
+            [
+              37.024715374758784,
+              45.40282977226883
+            ],
+            [
+              37.050413553621695,
+              45.40282977226883
+            ],
+            [
+              37.07611173248466,
+              45.40282977226883
+            ],
+            [
+              37.10395142625288,
+              45.40282977226883
+            ],
+            [
+              37.1260804136071,
+              45.40282977226883
+            ],
+            [
+              37.15463394567706,
+              45.40354361057052
+            ],
+            [
+              37.17961828623828,
+              45.404971287174135
+            ],
+            [
+              37.2046026267995,
+              45.404971287174135
+            ],
+            [
+              37.226731614153664,
+              45.404971287174135
+            ],
+            [
+              37.248860601507886,
+              45.405685125475884
+            ],
+            [
+              37.273131103767355,
+              45.40711280207927
+            ],
+            [
+              37.30025695923388,
+              45.40711280207927
+            ],
+            [
+              37.32881049130384,
+              45.406398963777576
+            ],
+            [
+              37.36093321488255,
+              45.40854047868288
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/854725/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "David Braund"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-05T01:44:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-01T16:35:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:15:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "87 L2 Phanagor(e)ia Ins.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archive.org/details/bub_gb_sZs-AAAAcAAJ/page/607/mode/2up?q=%CE%A4%CE%B1%CF%85%CF%81%CE%B9%CE%BA%CE%AE",
+      "citationDetail": "\u03a4\u03b1\u03c5\u03c1\u03b9\u03ba\u1f75 (page 607)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "StByz (Meineke; archive.org)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/25I8PUYK",
+      "formattedCitation": "<div class=\"csl-entry\">Stephanos Byzantinioi, and August Meineke. <i>Ethnik\u014dn: a geographical lexicon on ancient cities, peoples, tribes and toponyms (Stephani Byzantinii Ethnicorum quae supersunt ex recensione Augusti Meinekii)</i>. Chicago, Ill.: Ares Publishers, 1992. https://archive.org/details/bub_gb_sZs-AAAAcAAJ.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "206-207",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gajdukevi\u010d 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A5VTDW5G",
+      "formattedCitation": "<div class=\"csl-entry\">VF Gajdukevi\u010d. <i>Das Bosporanische Reich</i>. Translated and Revised ed. Berlin, 1971.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "page 1243",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlDir",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Phanagoreia",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "phanagoreia",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "Diane Braund"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 87 L2 Phanagor(e)ia Ins.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-28T11:19:08Z",
+      "uri": "https://pleiades.stoa.org/places/854725/phanagoreia",
+      "creators": [
+        {
+          "username": null,
+          "name": "David Braund"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:47:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-28T13:51:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-28T11:26:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-28T11:19:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Phanagoria",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "phanagoria",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "Diane Braund"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 87 L2 Phanagor(e)ia Ins.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-28T11:19:08Z",
+      "uri": "https://pleiades.stoa.org/places/854725/phanagoria",
+      "creators": [
+        {
+          "username": null,
+          "name": "David Braund"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:47:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-28T13:51:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-28T11:26:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-28T11:19:08Z"
+        }
+      ]
+    }
+  ],
+  "id": "854725",
+  "subject": [],
+  "title": "Phanagor(e)ia (island)",
+  "provenance": "Barrington Atlas: BAtlas 87 L2 Phanagor(e)ia Ins.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/island",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: island, RUS</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The northwest portion of the Taman' peninsula, which is the modern landmass on the Straits of Kerch' opposite modern Kerch' and the eastern Crimea. Modern geophysical study and ancient testimony indicate that this peninsula was an island in antiquity.",
+  "reprPoint": [
+    37.17248175524697,
+    45.40444268349754
+  ],
+  "placeTypes": [
+    "island",
+    "label"
+  ],
+  "bbox": [
+    36.98402659155897,
+    45.39997441906178,
+    37.36093321488255,
+    45.40854047868288
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-01T16:24:20Z",
+  "uri": "https://pleiades.stoa.org/places/854725",
+  "creators": [
+    {
+      "username": null,
+      "name": "David Braund"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added BAtlDir page 1243; cleaned up references; summary; title",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-04T16:07:59Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-01T16:24:20Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:47:45Z"
+    },
+    {
+      "comment": "Finding islands by their titles and setting feature types",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-19T19:04:51Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:14:16Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-28T13:51:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-28T11:26:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-28T11:19:08Z"
+    }
+  ]
+}

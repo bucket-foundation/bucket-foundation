@@ -1,0 +1,715 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jmuccigr",
+      "homepage": null,
+      "name": "John Muccigrosso",
+      "uri": "https://pleiades.stoa.org/author/jmuccigr"
+    },
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-09-13T14:21:45Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/524616090/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-13T19:50:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:58:31Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:21:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:21:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-09-13T14:22:03Z",
+      "associationCertainty": "certain",
+      "title": "Quirinal Hill",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/524616090/quirinal-hill",
+      "connectionType": "on",
+      "id": "quirinal-hill",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-13T19:50:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:58:31Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:22:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:22:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/125119394",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-09-13T14:42:39Z",
+      "associationCertainty": "certain",
+      "title": "Regio VI (Alta Semita)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/524616090/regio-vi-alta-semita",
+      "connectionType": "part_of_analytical",
+      "id": "regio-vi-alta-semita",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-13T19:50:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:58:31Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:42:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:42:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/75632296",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q20008730",
+          "citationDetail": "Q20008730: Regio VI Alta Semita",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3983278",
+      "citationDetail": "Temple of Quirinus (Q3983278)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Carandini 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/USXD9HAL",
+      "formattedCitation": "<div class=\"csl-entry\">Carandini, Andrea. <i>Cercando Quirino: traversata sulle onde elettromagnetiche nel suolo del Quirinale</i>. Saggi 886. Torino: G. Einaudi, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "326-7",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richardson 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCISHZRH",
+      "formattedCitation": "<div class=\"csl-entry\">Richardson, Lawrence. <i>A New Topographical Dictionary of Ancient Rome</i>. Baltimore: John Hopkins University Press, 1992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/978/1/1112/835-875",
+      "citationDetail": "15.120.7",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Plin., NH (Mayhoff: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AK7HSRG",
+      "formattedCitation": "<div class=\"csl-entry\">Plinius Secundus Maior, C. <i>Naturalis Historiae</i>. Edited by Karl Friedrich Theodor Mayhoff. Bibliotheca Scriptorum Graecorum et Romanorum Teubneriana. Lipsiae: Teubner, 1906. http://latin.packhum.org/loc/978/1/0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/914/1/227/164-172#529",
+      "citationDetail": "10.46.7",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Liv. (OCT: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+      "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/914/1/227/164-172#218",
+      "citationDetail": "4.21.9",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Liv. (OCT: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+      "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/474/44/0#1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Cic. Leg. 1.3",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/813279761",
+      "citationDetail": "s.v. \"Quirinus, sacellum\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "LTUR",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JC5ACZU7",
+      "formattedCitation": "<div class=\"csl-entry\">Steinby, E.M., ed. <i>Lexicon Topographicum Urbis Romae</i>. 6 vols. Rome: Quasar, 2000. http://www.worldcat.org/oclc/813279761.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/813279761",
+      "citationDetail": "s.v. \"Quirinus, aedes\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "LTUR",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JC5ACZU7",
+      "formattedCitation": "<div class=\"csl-entry\">Steinby, E.M., ed. <i>Lexicon Topographicum Urbis Romae</i>. 6 vols. Rome: Quasar, 2000. http://www.worldcat.org/oclc/813279761.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "XVIII Papirius 52",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/914/1/1543/1536-1543#906",
+      "citationDetail": "28.11.4",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Liv. (OCT: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+      "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.digitalaugustanrome.org/records/quirinus-aedes/",
+      "citationDetail": "Quirinus, Aedes",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Digital Augustan Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VGZI96WY",
+      "formattedCitation": "<div class=\"csl-entry\">Romano, David Gilman. \u201cDigital Augustan Rome.\u201d Digital Augustan Rome. Accessed June 5, 2021. http://www.digitalaugustanrome.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "H\u00fclsen 1894",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XJ2FBKCJ",
+      "formattedCitation": "<div class=\"csl-entry\">H\u00fclsen, Christian. \u201cZur Topographie des Quirinals\u202f: (hierzu eine Karte).\u201d In <i>Zur Topographie des Quirinals: hierzu eine Karte</i>, 379\u2013423. [S.l: s.n, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://romeresearchgroup.org/items/1000107",
+      "citationDetail": "1000107",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TCW",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZV7SNRDS",
+      "formattedCitation": "<div class=\"csl-entry\">John D. Muccigrosso, and Louis I. Hamilton. <i>Temples of the Classical World</i>. Rome Research Group. Accessed October 15, 2024. https://romeresearchgroup.org/database-of-temples/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/11324380",
+      "citationDetail": "11324380: the Temple of Quirinus on the Quirinal Hill (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "aedes Quirini",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://latin.packhum.org/loc/914/1/906/636-665",
+          "citationDetail": "28.11.4.3",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Liv. (OCT: PHI)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+          "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "aedes-quirini",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2021-09-13T14:56:14Z",
+      "uri": "https://pleiades.stoa.org/places/524616090/aedes-quirini",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "aedes Quirini",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-13T19:50:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:58:31Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:56:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:56:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Quirinus",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Quirinus",
+          "citationDetail": "Temple of Quirinus",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-of-quirinus",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2021-09-13T14:57:35Z",
+      "uri": "https://pleiades.stoa.org/places/524616090/temple-of-quirinus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Quirinus",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-13T19:50:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:58:31Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:57:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:57:35Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tempio di Quirino",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Tempio_di_Quirino",
+          "citationDetail": "Tempio di Quirino",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tempio-di-quirino",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2021-09-13T14:58:13Z",
+      "uri": "https://pleiades.stoa.org/places/524616090/tempio-di-quirino",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Tempio di Quirino",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-13T19:50:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:58:31Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:58:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-13T14:58:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "524616090",
+  "subject": [],
+  "title": "Temple of Quirinus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>Writing in\u00a0<em>LTUR</em>, Filippo Coarelli assesses the likely position of the sanctuary. Based on archaeological remains and epigraphic evidence documented by Rodolfo Lanciani, Coarelli suggests that the temple was most likely located to the east of the current Via delle Quattro Fontane.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Temple of Quirinus was located near the Capitolium Vetus. The temple was built ex manubiis by Lucius Papirius Cursor in 293 B.C., fulfilling the vow made by his father in 325 B.C. Tradition holds that the republican-period temple was sited on an even earlier altar dedicated by the Sabines. The topography and location of the temple are both matters of significant debate.",
+  "reprPoint": [
+    12.48333,
+    41.9
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    12.48333,
+    41.9,
+    12.48333,
+    41.9
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/125119394",
+    "https://pleiades.stoa.org/places/75632296"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-09-12T17:32:27Z",
+  "uri": "https://pleiades.stoa.org/places/524616090",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-08T03:47:58Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-10T00:50:30Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-09-13T19:50:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T15:08:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T14:58:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T14:49:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T14:40:43Z"
+    },
+    {
+      "comment": "Liv. 28.11.4",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T14:20:58Z"
+    },
+    {
+      "comment": "RE ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T14:18:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T14:16:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T14:16:07Z"
+    },
+    {
+      "comment": "LTUR refs.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T14:15:51Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-13T13:50:38Z"
+    },
+    {
+      "comment": "Pliny ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-12T21:05:30Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-12T17:32:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-12T17:32:27Z"
+    }
+  ]
+}

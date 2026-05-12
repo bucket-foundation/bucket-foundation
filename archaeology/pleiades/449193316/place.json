@@ -1,0 +1,373 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.740496,
+          54.92106
+        ]
+      },
+      "type": "Feature",
+      "id": "quarry-site",
+      "properties": {
+        "snippet": "Quarry; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/449193316/quarry-site",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Quarry site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "quarry-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "end": 410,
+      "title": "Quarry site",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2011",
+      "featureType": [
+        "quarry"
+      ],
+      "description": "",
+      "created": "2012-01-28T21:35:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.740496,
+          54.92106
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/449193316/quarry-site",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-17T01:31:27Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T05:13:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-01-30T19:11:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-01-28T21:36:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-01-28T21:35:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-01-28T21:35:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:47:14Z",
+      "associationCertainty": "certain",
+      "title": "Hadrian's Wall",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/449193316/91358",
+      "connectionType": "near",
+      "id": "91358",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-27T15:10:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/91358",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.visitcumbria.com/car/gelt-woods.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Visit Cumbria, Gelt Woods",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/River_Gelt",
+      "citationDetail": "River Gelt",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), River Gelt.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1014582",
+      "citationDetail": "1014582: Written Rock of Gelt: Roman quarry inscriptions",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "HEListing",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KG4R9RD2",
+      "formattedCitation": "Written Rock of Gelt: Roman quarry inscriptions",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17659304",
+      "citationDetail": "Q17659304: Written Rock of Gelt: Roman quarry inscriptions ",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/430/",
+      "citationDetail": "430ter-117: Written Rock of Gelt: Roman quarry inscriptions",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "449193316",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=mine",
+    "UWHS"
+  ],
+  "title": "River Gelt Roman Quarry",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+  ],
+  "details": "<p>This is one of several quarries from which stone was sourced in the building and maintenance of Hadrian's Wall. Also the site of several Roman inscriptions cut on the rock-face.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman quarry on the River Gelt near Brampton, Cumbria.",
+  "reprPoint": [
+    -2.740496,
+    54.92106
+  ],
+  "placeTypes": [
+    "quarry"
+  ],
+  "bbox": [
+    -2.740496,
+    54.92106,
+    -2.740496,
+    54.92106
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/91358"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2012-01-28T21:28:18Z",
+  "uri": "https://pleiades.stoa.org/places/449193316",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add UWHS, update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-17T02:18:19Z"
+    },
+    {
+      "comment": "ctype",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-17T01:31:02Z"
+    },
+    {
+      "comment": "changed ref type",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-29T21:12:06Z"
+    },
+    {
+      "comment": "wikidata Q17659304",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-27T14:59:04Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-01T19:26:36Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:20:21Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:13:02Z"
+    },
+    {
+      "comment": "Move some description to details, change dbpedia link to wikipedia link",
+      "modifiedBy": "sgillies",
+      "modified": "2012-01-30T19:25:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2012-01-30T19:11:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2012-01-28T21:43:25Z"
+    },
+    {
+      "comment": "Added references, improved description.",
+      "modifiedBy": "sarcanon",
+      "modified": "2012-01-28T21:43:04Z"
+    },
+    {
+      "comment": "Added.",
+      "modifiedBy": "sarcanon",
+      "modified": "2012-01-28T21:28:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2012-01-28T21:28:19Z"
+    }
+  ]
+}

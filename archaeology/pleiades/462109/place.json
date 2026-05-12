@@ -1,0 +1,729 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.916735,
+          37.598603
+        ]
+      },
+      "type": "Feature",
+      "id": "darmc-location-18232",
+      "properties": {
+        "snippet": "Unknown; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/462109/darmc-location-18232",
+        "description": "500K scale point location",
+        "location_precision": "precise",
+        "title": "DARMC location 18232"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.9176974,
+          37.5927774
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-montagna-di-balate",
+      "properties": {
+        "snippet": "Settlement, Mountain, ; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/462109/osm-location-of-montagna-di-balate",
+        "description": "Location of the mountain area near Marianopoli called Montagna di Balate or Balate di Marianopoli, based on a representative point derived from an OpenStreetMap node.",
+        "location_precision": "precise",
+        "title": "OSM location of Montagna di Balate"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "vvitale",
+      "homepage": null,
+      "name": "Valeria Vitale",
+      "uri": "https://pleiades.stoa.org/author/vvitale"
+    },
+    {
+      "username": "jprag",
+      "homepage": null,
+      "name": "Jonathan Prag",
+      "uri": "https://pleiades.stoa.org/author/jprag"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "DARMC, R. Talbert, T. Elliott, S. Gillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://darmc.harvard.edu/",
+          "citationDetail": "18232",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARMC",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+          "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 18232.",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "darmc-location-18232",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": -30,
+      "title": "DARMC location 18232",
+      "provenance": "DARMC OBJECTID: 18232",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "DARMC OBJECTID: 18232",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/darmc-a",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "500K scale point location",
+      "created": "2011-03-09T23:14:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.916735,
+          37.598603
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/462109/darmc-location-18232",
+      "creators": [
+        {
+          "username": null,
+          "name": "R.J.A. Wilson"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T05:19:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-03-10T05:12:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2011-03-09T23:14:20Z"
+        },
+        {
+          "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+          "modifiedBy": "sgillies",
+          "modified": "2011-03-09T23:14:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2011-03-09T23:14:19Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3953881394",
+          "citationDetail": "Node 3953881394",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3953881394",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-montagna-di-balate",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of Montagna di Balate",
+      "provenance": "OpenStreetMap (Node 3953881394, version 2, osm:changeset=138961827, 2023-07-24T23:13:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        "mountain",
+        ""
+      ],
+      "description": "Location of the mountain area near Marianopoli called Montagna di Balate or Balate di Marianopoli, based on a representative point derived from an OpenStreetMap node.",
+      "created": "2016-01-19T11:59:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.9176974,
+          37.5927774
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/462109/osm-location-of-montagna-di-balate",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-24T15:17:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-19T15:35:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-19T12:12:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-19T12:04:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-19T11:59:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-19T11:59:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:47:47Z",
+      "associationCertainty": "certain",
+      "title": "Sicilia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/462109/462492",
+      "connectionType": "on",
+      "id": "462492",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-24T15:17:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462492",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "47 D3 Balate di Marianopoli",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "47 D3 Balate di Marianopoli",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/btcgi_0000-0009_1991_num_9_1_1857",
+      "citationDetail": "IX, 360-64 (Graziella Fiorentini)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BTCGI",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3X8QE9ZE",
+      "formattedCitation": "<div class=\"csl-entry\">Nenci, Giuseppe, Georges Vallet, Ugo Fantasia, and Carmine Ampolo, eds. <i>Bibliografia topografica della colonizzazione greca in Italia e nelle isole tirreniche</i>. 21 vols. Pisa; Roma: Scuola normale superiore\u202f; Ecole fran\u00e7aise de Rome, 1977. https://www.persee.fr/collection/btcgi.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://brillonline.nl/entries/supplementum-epigraphicum-graecum/balate-di-marianopoli-documents-recording-citizens-5th-cent-b-c-47-1416-a47_1416",
+      "citationDetail": "47 1416",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "SEG Online",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AKNZR5RR",
+      "formattedCitation": "<div class=\"csl-entry\">Chaniotis, A., T. Corsten, E. Stavrianopolou, N. Papazarkadas, J.-M. Carbon, G. Kantor, M. Zellmann-Rohrer, M.B. Richardson, V. Scheibelreiter-Gail, and E. Sverkos, eds. <i>Supplementum Epigraphicum Graecum Online</i>. Brill Scholarly Editions. Brill, 1923. https://scholarlyeditions.brill.com/sego/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.regione.sicilia.it/beniculturali/dirbenicult/database/page_musei/pagina_musei.asp?ID=20&IdSito=26",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Museo Archeologico Regionale di Marianopoli",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://rete.comuni-italiani.it/wiki/Marianopoli",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Comuni Italiani, Marianopoli",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/38461",
+      "citationDetail": "GEO ID 38461: Balate di Marianopoli",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Montagna di Balate",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.regione.sicilia.it/beniculturali/dirbenicult/database/page_musei/pagina_musei.asp?ID=20&IdSito=26",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Museo Archeologico Regionale di Marianopoli",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "montagna-di-balate",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-01-18T18:35:31Z",
+      "uri": "https://pleiades.stoa.org/places/462109/montagna-di-balate",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Montagna di Balate",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-19T15:32:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-19T12:12:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-18T18:35:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-18T18:35:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Balate di Marianopoli",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "47 D3 Balate di Marianopoli",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://brillonline.nl/entries/supplementum-epigraphicum-graecum/seg-47-1416-balate-di-marianopoli-documents-recording-citizens-5th-cent-bc-a47_1416",
+          "citationDetail": "47 1416",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "SEG Online",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AKNZR5RR",
+          "formattedCitation": "<div class=\"csl-entry\">Chaniotis, A., T. Corsten, E. Stavrianopolou, N. Papazarkadas, J.-M. Carbon, G. Kantor, M. Zellmann-Rohrer, M.B. Richardson, V. Scheibelreiter-Gail, and E. Sverkos, eds. <i>Supplementum Epigraphicum Graecum Online</i>. Brill Scholarly Editions. Brill, 1923. https://scholarlyeditions.brill.com/sego/.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "balate-di-marianopoli",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-01-19T12:08:11Z",
+      "uri": "https://pleiades.stoa.org/places/462109/balate-di-marianopoli",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Balate di Marianopoli",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-24T15:16:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-19T15:32:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-19T12:12:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-19T12:08:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-19T12:08:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "462109",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "Balate di Marianopoli",
+  "provenance": "Barrington Atlas: BAtlas 47 D3 Balate di Marianopoli",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/mountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Balate di Marianopoli</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A mountainous area southwest of modern Marianopoli, inhabited since the sixth century B.C.",
+  "reprPoint": [
+    13.917216199999999,
+    37.5956902
+  ],
+  "placeTypes": [
+    "mountain",
+    "settlement"
+  ],
+  "bbox": [
+    13.916735,
+    37.5927774,
+    13.9176974,
+    37.598603
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462492"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-11T15:07:13Z",
+  "uri": "https://pleiades.stoa.org/places/462109",
+  "creators": [
+    {
+      "username": null,
+      "name": "R.J.A. Wilson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-24T15:16:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-27T02:55:55Z"
+    },
+    {
+      "comment": "check in of working copy with additions.",
+      "modifiedBy": "jbecker",
+      "modified": "2016-01-19T15:33:46Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-19T14:07:10Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:24:53Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:19:26Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T23:14:21Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:54:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T20:00:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T15:23:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T15:07:13Z"
+    }
+  ]
+}

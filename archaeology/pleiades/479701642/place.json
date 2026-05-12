@@ -1,0 +1,413 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.5081004,
+            40.7070864
+          ],
+          [
+            14.5082372,
+            40.7067285
+          ],
+          [
+            14.507961,
+            40.7066106
+          ],
+          [
+            14.5079234,
+            40.7066858
+          ],
+          [
+            14.5078537,
+            40.7068383
+          ],
+          [
+            14.5078,
+            40.706942
+          ],
+          [
+            14.5078,
+            40.7069684
+          ],
+          [
+            14.5078349,
+            40.7069928
+          ],
+          [
+            14.5081004,
+            40.7070864
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana-carmiano",
+      "properties": {
+        "snippet": "Villa; 330 BC - AD 99",
+        "link": "https://pleiades.stoa.org/places/479701642/osm-location-of-villa-romana-carmiano",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Romana Carmiano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/724638221",
+          "citationDetail": "Way 724638221",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=724638221",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana-carmiano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 99,
+      "title": "OSM location of Villa Romana Carmiano",
+      "provenance": "OpenStreetMap (Way 724638221, version 3, osm:changeset=132103630, 2023-02-05T10:30:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-09-14T23:21:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.5081004,
+            40.7070864
+          ],
+          [
+            14.5082372,
+            40.7067285
+          ],
+          [
+            14.507961,
+            40.7066106
+          ],
+          [
+            14.5079234,
+            40.7066858
+          ],
+          [
+            14.5078537,
+            40.7068383
+          ],
+          [
+            14.5078,
+            40.706942
+          ],
+          [
+            14.5078,
+            40.7069684
+          ],
+          [
+            14.5078349,
+            40.7069928
+          ],
+          [
+            14.5081004,
+            40.7070864
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/479701642/osm-location-of-villa-romana-carmiano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T22:17:25Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-18T14:13:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-15T17:25:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-14T23:22:50Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-14T23:22:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-14T23:21:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-14T23:21:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 99,
+      "description": "",
+      "contributors": [],
+      "created": "2019-09-14T22:55:47Z",
+      "associationCertainty": "certain",
+      "title": "Stabiae",
+      "start": 1,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/479701642/stabiae",
+      "connectionType": "at",
+      "id": "stabiae",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-18T14:13:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-14T23:23:00Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-14T22:55:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-14T22:55:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433128",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/57739/",
+          "citationDetail": "57739",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/stabiae/villa-carmiano",
+      "citationDetail": "Villa Carmiano",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AD79",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+      "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/57739/",
+      "citationDetail": "57739: Villa Carmiano",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bonifacio and Sodo 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/48DL7D62",
+      "formattedCitation": "<div class=\"csl-entry\">Bonifacio, Giovanna, and Anna Maria Sodo. \u201cVille e fattorie: da Carmiano a Santa Maria la Carit\u00e0.\u201d In <i>Citt\u00e0 vesuviane\u202f: antichit\u00e0 e fortuna\u202f: il suburbio e l\u2019agro di Pompei, Ercolano, Oplontis e Stabiae</i>, 177\u201386. Roma: Treccani editrice, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/VF/Villa_097%20Gragnano%20Localita%20Carmiano%20A.htm",
+      "citationDetail": "Gragnano, Villa rustica in Localit\u00e0 Carmiano, Villa A, in propriet\u00e0 de Luca.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q133576088",
+      "citationDetail": "Carmiano Roman villa (Q133576088)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "479701642",
+  "subject": [],
+  "title": "Villa Carmiano",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A villa rustica of about 400 square meters that was discovered at Stabiae in 1963. The site was reinterred in 1998.",
+  "reprPoint": [
+    14.50802032763354,
+    40.70685178994159
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    14.5078,
+    40.7066106,
+    14.5082372,
+    40.7070864
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433128"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-09-14T22:54:54Z",
+  "uri": "https://pleiades.stoa.org/places/479701642",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q133576088",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-28T13:46:31Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-28T23:54:57Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-18T14:13:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-14T23:23:00Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-14T23:08:32Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-14T23:00:30Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-14T22:54:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-14T22:54:54Z"
+    }
+  ]
+}

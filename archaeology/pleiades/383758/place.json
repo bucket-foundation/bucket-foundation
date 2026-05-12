@@ -1,0 +1,659 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.143844,
+          44.361906
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-centerpoint-modern-town",
+      "properties": {
+        "snippet": "Settlement-modern; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/383758/imagery-location-centerpoint-modern-town",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location: Center point of the modern town"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "scosta",
+      "homepage": null,
+      "name": "Stefano Costa",
+      "uri": "https://pleiades.stoa.org/author/scosta"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 166-167",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Gambaro 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VCPZ54V8",
+          "formattedCitation": "<div class=\"csl-entry\">Gambaro, L., and L. Gervasini. \u201cConsiderazioni su viabilit\u00e0 ed insediamenti in et\u00e0 romana da Luni a Genova.\u201d In <i>Insediamenti e territorio: viabilit\u00e0 in Liguria tra I e VII secolo d.C.\u202f: atti del Convegno, Bordighera, 30 novembre-1 dicembre 2000</i>, edited by Monica Pozzar, 113\u201318; 155\u201371. Atti dei convegni / Istituto internazionale di studi liguri 7. Bordighera (IM): Istituto internazionale di studi liguri, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "imagery-location-centerpoint-modern-town",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2100,
+      "title": "Imagery Location: Center point of the modern town",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "<p>Archaeological evidence for a Roman settlement is scarce, but almost all scholars accept the identification of Ricina, mentioned in the Tabula Peutingeriana, with modern Recco. Among the strongest arguments is the correspondence of distances.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "",
+      "created": "2012-07-13T09:42:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.143844,
+          44.361906
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/383758/imagery-location-centerpoint-modern-town",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "less certain per BAtlas label ?",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-02T18:18:42Z"
+        },
+        {
+          "comment": "associated modern; settlement modern",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-02T18:17:48Z"
+        },
+        {
+          "comment": "connected reference to Zotero",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-02T18:17:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-13T19:40:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T10:04:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T10:04:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T09:49:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T09:43:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T09:42:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T09:42:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:33:37Z",
+      "associationCertainty": "certain",
+      "title": "Via Aemilia Scauri",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/383758/502042016",
+      "connectionType": "on",
+      "id": "502042016",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype = located on; BAtlas reference",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-02T18:26:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:33:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/502042016",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://search.worldcat.org/title/45084869",
+          "citationDetail": "39 E5 Ricina",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000. https://search.worldcat.org/title/45084869.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "39 E5 Ricina",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "114",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Mediolanum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9A9Q5KRD",
+      "formattedCitation": "<div class=\"csl-entry\">Carettoni, Gianfilippo. <i>Milano: Mediolanum - Aventicum - Brigantium</i>. Tabula Imperii Romani L32. Firenze: Litografia artistica cartografica; Unione accademica nazionale, 1965.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace1073.html",
+      "citationDetail": "2B5 (Talbert 1073)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "TP (Talbert: CUP)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/31777",
+      "citationDetail": "GEO ID 31777: Ricina (Recco)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/1609/",
+      "citationDetail": "1609: Ricina",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "239",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ItMiller",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q8X83VMV",
+      "formattedCitation": "<div class=\"csl-entry\">Miller, Konrad. <i>Itineraria romana: R\u00f6mische Reisewege an der Hand der Tabula Peutingeriana</i>. Stuttgart: Strecker und Schr\u00f6der, 1916. http://www.worldcat.org/oclc/6684340.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://tp-online.ku.de/trefferanzeige_en.php?id=80",
+      "citationDetail": "80: Ricina",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "KU TP Database (Rathmann)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KDZ6Q72N",
+      "formattedCitation": "<div class=\"csl-entry\">Ingolstadt, Katholische Universit\u00e4t Eichst\u00e4tt-. \u201cTabula Peutingeriana.\u201d Datenbank tp-online, 2019. https://www.ku.de/ggf/geschichte/alte-geschichte/forschung/datenbank-tp-online.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://elexikon.ch/RE/IA,1_801.png",
+      "citationDetail": "Ricina 1 (Hans Philipp)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894. https://de.wikisource.org/wiki/Paulys_Realencyclop%C3%A4die_der_classischen_Altertumswissenschaft.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ricina",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/us/talbert/talbertdatabase/TPPlace1073.html",
+          "citationDetail": "2B5 (Talbert 1073)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "TP (Talbert: CUP)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ricina",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 39 E5 Ricina",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2026-02-28T21:16:47Z",
+      "uri": "https://pleiades.stoa.org/places/383758/ricina",
+      "creators": [
+        {
+          "username": null,
+          "name": "M. Pearce"
+        },
+        {
+          "username": null,
+          "name": "P. Tozzi"
+        }
+      ],
+      "attested": "Ricina",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "add Latin name and TP reference by @jbecker",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-02T18:06:54Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-28T21:16:47Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:34:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-15T18:29:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-15T18:08:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-15T17:58:33Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Recco",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://search.worldcat.org/title/45084869",
+          "citationDetail": "page 579 (see Ricina)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000. https://search.worldcat.org/title/45084869.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2012-07-13.6185997008",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2012-07-13T09:44:03Z",
+      "uri": "https://pleiades.stoa.org/places/383758/name.2012-07-13.6185997008",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "attested": "Recco",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "associated modern; less certain (per BAtlDir); attested; completed BAtlDir reference with page number and lemma",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-02T18:25:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-28T21:23:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-13T19:40:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T10:06:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T09:44:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2012-07-13T09:44:04Z"
+        }
+      ]
+    }
+  ],
+  "id": "383758",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=station"
+  ],
+  "title": "Ricina",
+  "provenance": "Barrington Atlas: BAtlas 39 E5 Ricina",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/station",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Recco?\u00a0</p>\r\n<div>\u00a0</div>\r\n<div>Not to be confused with the city of <a class=\"internal-link\" href=\"../413166\" title=\"Helvia Ricina\">Helvia Ricina in Picenum</a>.</div>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman road station along the Via Aemilia Scauri on the Mediterranean coast of Italy, thought to have been located in the vicinty of modern Recco.",
+  "reprPoint": [
+    9.143844,
+    44.361906
+  ],
+  "placeTypes": [
+    "station",
+    "settlement-modern"
+  ],
+  "bbox": [
+    9.143844,
+    44.361906,
+    9.143844,
+    44.361906
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/502042016"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-15T17:58:33Z",
+  "uri": "https://pleiades.stoa.org/places/383758",
+  "creators": [
+    {
+      "username": null,
+      "name": "M. Pearce"
+    },
+    {
+      "username": null,
+      "name": "P. Tozzi"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-28T21:16:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-25T17:14:05Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-05T16:55:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-11-26T22:51:07Z"
+    },
+    {
+      "comment": "added connection",
+      "modifiedBy": "jbecker",
+      "modified": "2013-06-30T17:23:48Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:30:21Z"
+    },
+    {
+      "comment": "description, details`",
+      "modifiedBy": "thomase",
+      "modified": "2012-07-17T13:39:56Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2012-07-17T13:25:06Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:34:42Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:36:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-15T18:29:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T18:08:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T17:58:33Z"
+    }
+  ]
+}

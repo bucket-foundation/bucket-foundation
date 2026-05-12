@@ -1,0 +1,553 @@
+{
+  "features": [
+    {
+      "geometry": null,
+      "type": "Feature",
+      "id": "undetermined",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/83835/undetermined",
+        "description": "",
+        "location_precision": "unlocated",
+        "title": "Undetermined location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "undetermined",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 300,
+      "title": "Undetermined location",
+      "provenance": "Barrington Atlas: BAtlas 8 Dounion",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2009-10-30T22:32:53Z",
+      "geometry": null,
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/83835/undetermined",
+      "creators": [
+        {
+          "username": null,
+          "name": "A.S. Esmonde Cleary"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:43:35Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-11-23T19:29:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-30T22:47:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-30T22:32:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2026-05-02T15:58:00Z",
+      "associationCertainty": "uncertain",
+      "title": "Hod Hill",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/83835/hod-hill",
+      "connectionType": "same_as",
+      "id": "hod-hill",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-05-02T20:42:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-02T17:50:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-02T15:58:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-02T15:58:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/42178780",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/256915514",
+          "citationDetail": "p. 344 (no. 1)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Rivet 1979",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9M2QMHXI",
+          "formattedCitation": "<div class=\"csl-entry\">Rivet, A. L. F., and Colin Smith. <i>The Place-Names of Roman Britain</i>. London: B. T. Batsford, 1979. http://www.worldcat.org/oclc/256915514.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/same_as"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "8 Dounion",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "59",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Condate",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S4WAKUIF",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Condate - Glevum - Londinium - Lutetia</i>. Tabula Imperii Romani M30. London: British Academy by Oxford University Press, 1983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://babel.hathitrust.org/cgi/pt?id=uiug.30112023831271&seq=117&q1=%CE%94%CE%BF%CF%85%CE%BD%CE%B9%CE%BF%CE%BD",
+      "citationDetail": "2.3.13 (page 103)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Ptol (M\u00fcller: Hathi Trust)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2AUSPQIZ",
+      "formattedCitation": "<div class=\"csl-entry\">Ptolemy. <i>Klaudiou Ptolemaiou Geographike hyphegesis = Claudii Ptolem\u00e6i Geographia</i>. Edited by Karl M\u00fcller. 2 vols. Parisiis: Alfredo Firmin Didot, 1883. https://catalog.hathitrust.org/Record/003477580.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://romaneranames.uk/d/dunion.htm",
+      "citationDetail": "\u0394\u03bf\u03c5\u03bd\u03b9\u03bf\u03bd",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RENames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JS3Y9VGD",
+      "formattedCitation": "<div class=\"csl-entry\">Durham, Anthony, Michael Goormachtigh, Gavin Smith, Suzanne Miller, and Hugo Davenport. <i>Roman Era Names: A Database of Britain\u2019s Earliest Geographical Names</i>, 2016. http://romaneranames.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/256915514",
+      "citationDetail": "p. 344 (no. 1)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rivet 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9M2QMHXI",
+      "formattedCitation": "<div class=\"csl-entry\">Rivet, A. L. F., and Colin Smith. <i>The Place-Names of Roman Britain</i>. London: B. T. Batsford, 1979. http://www.worldcat.org/oclc/256915514.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.romaneranames.uk/i/ibernio.htm",
+      "citationDetail": "Ibernio",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "RENames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JS3Y9VGD",
+      "formattedCitation": "<div class=\"csl-entry\">Durham, Anthony, Michael Goormachtigh, Gavin Smith, Suzanne Miller, and Hugo Davenport. <i>Roman Era Names: A Database of Britain\u2019s Earliest Geographical Names</i>, 2016. http://romaneranames.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dunum",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/256915514",
+          "citationDetail": "p. 344 (no. 1)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Rivet 1979",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9M2QMHXI",
+          "formattedCitation": "<div class=\"csl-entry\">Rivet, A. L. F., and Colin Smith. <i>The Place-Names of Roman Britain</i>. London: B. T. Batsford, 1979. http://www.worldcat.org/oclc/256915514.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2014-07-01.3390352168",
+      "end": 640,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2014-07-01T15:10:10Z",
+      "uri": "https://pleiades.stoa.org/places/83835/name.2014-07-01.3390352168",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-02T15:52:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-02T15:27:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-02T15:27:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-26T11:14:42Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-26T11:14:38Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2017-04-09T04:13:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-04-09T03:58:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-09-27T21:33:39Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-01T15:10:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-01T15:10:13Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dounion",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://catalog.hathitrust.org/Record/003477580",
+          "citationDetail": "2.3.13 (page 103)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Ptol (M\u00fcller: Hathi Trust)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2AUSPQIZ",
+          "formattedCitation": "<div class=\"csl-entry\">Ptolemy. <i>Klaudiou Ptolemaiou Geographike hyphegesis = Claudii Ptolem\u00e6i Geographia</i>. Edited by Karl M\u00fcller. 2 vols. Parisiis: Alfredo Firmin Didot, 1883. https://catalog.hathitrust.org/Record/003477580.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "dounion",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 8 Dounion",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2026-05-02T17:51:12Z",
+      "uri": "https://pleiades.stoa.org/places/83835/dounion",
+      "creators": [
+        {
+          "username": null,
+          "name": "A.S. Esmonde Cleary"
+        }
+      ],
+      "attested": "\u0394\u03bf\u1f50\u03bd\u03b9\u03bf\u03bd",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Greek, attested form, Ptolemy reference @thomase",
+          "modifiedBy": "jbecker",
+          "modified": "2026-05-02T20:42:38Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:43:35Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-11-23T19:29:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-30T22:47:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-30T22:32:53Z"
+        }
+      ]
+    }
+  ],
+  "id": "83835",
+  "subject": [],
+  "title": "Dounion",
+  "provenance": "Barrington Atlas: BAtlas 8 Dounion",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Dorset</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient city (polis) listed by Ptolemy as belonging to the Dourotriges. BAtlas, citing TIR Condate, declined to place it on a map and indicated in the directory only that it must have lain somewhere in Dorset, thus ignoring the suggestion of Rivet 1979 that it be identified with Hod Hill fort. RENames prefers to place Ptolemy's Dounion at Bradbury Rings. Rivet 1979 reconstructs the Latin name \"Dunum\" for Ptolemy's Dounion, but it is not attested in ancient sources.",
+  "reprPoint": null,
+  "placeTypes": [
+    "unlocated",
+    "settlement"
+  ],
+  "bbox": null,
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/42178780"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-05-02T15:31:31Z",
+  "uri": "https://pleiades.stoa.org/places/83835",
+  "creators": [
+    {
+      "username": null,
+      "name": "A.S. Esmonde Cleary"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Ptol. reference; added RENames reference; summary; place type += settlement; added Rivet 1979 by @jbecker; added \"see also\" RENames reference for Ibernio; updated Connections, Names; Edited @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2026-05-02T20:42:18Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-02T01:00:30Z"
+    },
+    {
+      "comment": "Changing 'unlocated toponym' type to 'unlocated'",
+      "modifiedBy": "sgillies",
+      "modified": "2012-07-23T19:05:20Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:43:35Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:11:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-11-23T19:29:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:47:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:32:52Z"
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.943669,
+          40.636826
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Church, ; AD 850 - AD 1450",
+        "link": "https://pleiades.stoa.org/places/834862589/imagery-location",
+        "description": "An eleventh century AD Byzantine church in Thessaloniki ",
+        "location_precision": "precise",
+        "title": "Imagery Location of the Church of Panagia Chalkeon"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Church_of_Panagia_Chalkeon",
+          "citationDetail": "Church of Panagia Chalkeon",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Church of Panagia Chalkeon.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://whc.unesco.org/en/list/456",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "UNESCO World Heritage List, Paleochristian and Byzantine Monuments of Thessalonika",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 1450,
+      "title": "Imagery Location of the Church of Panagia Chalkeon",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 850,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "church",
+        ""
+      ],
+      "description": "An eleventh century AD Byzantine church in Thessaloniki ",
+      "created": "2012-11-28T15:20:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.943669,
+          40.636826
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/834862589/imagery-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-04-12T21:12:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2012-11-29T20:59:21Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2012-11-28T15:20:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2012-11-28T15:20:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-13T18:14:03Z",
+      "associationCertainty": "certain",
+      "title": "Thessalonica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/834862589/6434869674",
+      "connectionType": "at",
+      "id": "6434869674",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:14:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:14:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T18:14:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/491741",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Church_of_Panagia_Chalkeon",
+      "citationDetail": "Church of Panagia Chalkeon",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Church of Panagia Chalkeon.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1650229",
+      "citationDetail": "Church of Panagia Chalkeon (Q1650229)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "834862589",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Church of Panagia Chalkeon",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An eleventh-century A.D. Byzantine church in Thessaloniki.",
+  "reprPoint": [
+    22.943669,
+    40.636826
+  ],
+  "placeTypes": [
+    "church-2",
+    "church"
+  ],
+  "bbox": [
+    22.943669,
+    40.636826,
+    22.943669,
+    40.636826
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/491741"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-13T18:14:02Z",
+  "uri": "https://pleiades.stoa.org/places/834862589",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1650229",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-29T21:47:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-11T01:05:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:15:10Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:14:59Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T18:14:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T18:14:02Z"
+    }
+  ]
+}

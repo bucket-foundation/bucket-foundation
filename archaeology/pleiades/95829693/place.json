@@ -1,0 +1,393 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4929329,
+            40.7488298
+          ],
+          [
+            14.492891,
+            40.7488169
+          ],
+          [
+            14.4929096,
+            40.7487922
+          ],
+          [
+            14.49295,
+            40.748804
+          ],
+          [
+            14.4929329,
+            40.7488298
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomb-of-annedia-lucius-caesius",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/95829693/osm-location-of-tomb-of-annedia-lucius-caesius",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Annedia & Lucius Caesius"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/503557417",
+          "citationDetail": "Way 503557417",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=503557417",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tomb-of-annedia-lucius-caesius",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Tomb of Annedia & Lucius Caesius",
+      "provenance": "OpenStreetMap (Way 503557417, version 1, osm:changeset=49861129, 2017-06-27T12:44:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-06-11T15:08:40Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4929329,
+            40.7488298
+          ],
+          [
+            14.492891,
+            40.7488169
+          ],
+          [
+            14.4929096,
+            40.7487922
+          ],
+          [
+            14.49295,
+            40.748804
+          ],
+          [
+            14.4929329,
+            40.7488298
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/95829693/osm-location-of-tomb-of-annedia-lucius-caesius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-29T07:37:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-19T00:44:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-20T17:04:58Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:09:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:08:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:08:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-21T18:18:41Z",
+      "associationCertainty": "certain",
+      "title": "Porta Nocera",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/95829693/porta-nocera",
+      "connectionType": "at",
+      "id": "porta-nocera",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-19T00:44:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-20T17:04:58Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-21T18:18:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-21T18:18:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/11924821",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-21T18:28:46Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/95829693/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-19T00:44:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-20T17:04:58Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-21T18:28:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-21T18:28:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "274",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Campbell 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X53HU328",
+      "formattedCitation": "<div class=\"csl-entry\">Campbell, Virginia L. <i>The Tombs of Pompeii: Organization, Space, and Society</i>, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "328-9",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Laidlaw 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UB4URK2A",
+      "formattedCitation": "<div class=\"csl-entry\">Laidlaw, Anne. <i>The First Style in Pompeii: Painting and Architecture</i>. Rome: Giorgio Bretschneider, 1986.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q127510370",
+      "citationDetail": "Tomb of Annedia and Lucius Caesius (Q127510370)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pompeiiinpictures.com/pompeiiinpictures/Tombs/tombs%20nocos%20p9.htm",
+      "citationDetail": "Tomb 29OS. Tomb of Lucius Caesius and Annedia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "95829693",
+  "subject": [
+    "tomb",
+    "extant remains",
+    "tuff"
+  ],
+  "title": "Tomb of Annedia and Lucius Caesius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Tomb of Annedia and Lucius Caesius is an aedicula tomb in the Porta Nocera necropolis.",
+  "reprPoint": [
+    14.492920773654014,
+    40.74881087607634
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    14.492891,
+    40.7487922,
+    14.49295,
+    40.7488298
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/11924821",
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/694992195"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-21T18:17:31Z",
+  "uri": "https://pleiades.stoa.org/places/95829693",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-16T20:20:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-19T00:44:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-20T17:04:57Z"
+    },
+    {
+      "comment": "references, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-21T18:40:59Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-21T18:17:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-21T18:17:31Z"
+    }
+  ]
+}

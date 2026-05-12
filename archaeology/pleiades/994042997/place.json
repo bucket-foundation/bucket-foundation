@@ -1,0 +1,264 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.668,
+          40.43
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-ercavica-amphitheatre",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/994042997/imagery-location-of-ercavica-amphitheatre",
+        "description": "Coordinates following GeoHack",
+        "location_precision": "precise",
+        "title": "Imagery location of Ercavica amphitheatre"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q29001122",
+          "citationDetail": "Ercavica amphitheatre (Q29001122)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-ercavica-amphitheatre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "Imagery location of Ercavica amphitheatre",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Coordinates following GeoHack",
+      "created": "2023-12-15T14:07:10Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.668,
+          40.43
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/994042997/imagery-location-of-ercavica-amphitheatre",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-17T22:02:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-20T19:30:51Z"
+        },
+        {
+          "comment": "added imagery location following wikidata",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-15T14:07:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-15T14:07:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-15T14:05:17Z",
+      "associationCertainty": "certain",
+      "title": "Ercavica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/994042997/ercavica",
+      "connectionType": "at",
+      "id": "ercavica",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-17T22:02:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-20T19:30:51Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-15T14:05:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-15T14:05:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/246384",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/31395/",
+      "citationDetail": "31395: Ercavica Amphitheatre - Ercavica",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29001122",
+      "citationDetail": "Ercavica amphitheatre (Q29001122)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "994042997",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Amphitheater of Ercavica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman amphitheater located in Ca\u00f1averuelas, Spain.",
+  "reprPoint": [
+    -2.668,
+    40.43
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    -2.668,
+    40.43,
+    -2.668,
+    40.43
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/246384"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-12-15T14:04:49Z",
+  "uri": "https://pleiades.stoa.org/places/994042997",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-17T22:02:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-20T19:30:51Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-20T19:30:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-15T14:07:24Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-15T14:04:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-15T14:04:49Z"
+    }
+  ]
+}

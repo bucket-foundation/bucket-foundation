@@ -1,0 +1,901 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4900669,
+            40.7508246
+          ],
+          [
+            14.4900929,
+            40.7507928
+          ],
+          [
+            14.4900447,
+            40.7507715
+          ],
+          [
+            14.4902159,
+            40.7505654
+          ],
+          [
+            14.4902745,
+            40.7505932
+          ],
+          [
+            14.4903327,
+            40.7506208
+          ],
+          [
+            14.490168,
+            40.7508219
+          ],
+          [
+            14.4901483,
+            40.7508142
+          ],
+          [
+            14.4901252,
+            40.7508034
+          ],
+          [
+            14.4900968,
+            40.7508388
+          ],
+          [
+            14.4900669,
+            40.7508246
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "house-of-the-indian-statuette",
+      "properties": {
+        "snippet": "Townhouse; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/264408878/house-of-the-indian-statuette",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of so-called \"House of the Indian Statuette\""
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmoss",
+      "homepage": null,
+      "name": "Gabriel Moss",
+      "uri": "https://pleiades.stoa.org/author/gmoss"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/501867668",
+          "citationDetail": "Way 501867668",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=501867668",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "house-of-the-indian-statuette",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of so-called \"House of the Indian Statuette\"",
+      "provenance": "OpenStreetMap (Way 501867668, version 3, osm:changeset=124554755, 2022-08-06T09:56:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-06-26T15:29:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4900669,
+            40.7508246
+          ],
+          [
+            14.4900929,
+            40.7507928
+          ],
+          [
+            14.4900447,
+            40.7507715
+          ],
+          [
+            14.4902159,
+            40.7505654
+          ],
+          [
+            14.4902745,
+            40.7505932
+          ],
+          [
+            14.4903327,
+            40.7506208
+          ],
+          [
+            14.490168,
+            40.7508219
+          ],
+          [
+            14.4901483,
+            40.7508142
+          ],
+          [
+            14.4901252,
+            40.7508034
+          ],
+          [
+            14.4900968,
+            40.7508388
+          ],
+          [
+            14.4900669,
+            40.7508246
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/264408878/house-of-the-indian-statuette",
+      "creators": [
+        {
+          "username": "hsypniewski",
+          "homepage": null,
+          "name": "Holly Sypniewski",
+          "uri": "https://pleiades.stoa.org/author/hsypniewski"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-31T00:12:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T15:35:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:34:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:31:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:30:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:29:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:29:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2017-06-26T14:31:50Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/264408878/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "change cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-02T19:28:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:47:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:21:42Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T14:31:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T14:31:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "hsypniewski",
+          "homepage": null,
+          "name": "Holly Sypniewski",
+          "uri": "https://pleiades.stoa.org/author/hsypniewski"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-26T18:37:29Z",
+      "associationCertainty": "certain",
+      "title": "Regio I, Pompeii",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/264408878/regio-i-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-i-pompeii",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-05T22:33:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T18:37:35Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T18:37:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T18:37:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/222138654",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/610535333",
+      "citationDetail": "vol. 1 (1990) pp. 797-801",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pompei: pitture e mosaici.",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KJBIP7FC",
+      "formattedCitation": "<div class=\"csl-entry\">Istituto della Enciclopedia italiana. <i>Pompei: pitture e mosaici.</i> Vol. 6. Roma: Istituto della Enciclopedia italiana, 1990. http://www.worldcat.org/oclc/610535333.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/R1/1%2008%2005.htm",
+      "citationDetail": "I.8.5 Pompeii. Casa della Statuetta Indiana or House of the Indian Statuette",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://ancientgraffiti.org/Graffiti/property/Pompeii/I.8.5",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ancient Graffiti Project (I.8.5)",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pompeii_Lakshmi",
+      "citationDetail": "Pompeii Lakshmi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Pompeii Lakshmi.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27070449",
+      "citationDetail": "Q27070449: House of the Indian Statuette",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://arachne.uni-koeln.de/item/bauwerk/2110956",
+      "citationDetail": "2110956: Casa I 8, 4.5.6. Sog. Casa della Statuetta indiana Pompeii, Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "I.8.5",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/8667821",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "VanderPoel et al. 1977-1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQBMM724",
+          "formattedCitation": "<div class=\"csl-entry\">VanderPoel, Halsted B. <i>Corpus Topographicum Pompeianum</i>. 5 vols. Rome: The University of Texas at Austin, 1977\u20131986. http://www.worldcat.org/oclc/8667821.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-06-26.0362925507",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-06-26T14:24:37Z",
+      "uri": "https://pleiades.stoa.org/places/264408878/name.2017-06-26.0362925507",
+      "creators": [
+        {
+          "username": "hsypniewski",
+          "homepage": null,
+          "name": "Holly Sypniewski",
+          "uri": "https://pleiades.stoa.org/author/hsypniewski"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:45:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:45:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:42:26Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:32:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:21:42Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T14:29:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T14:24:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T14:24:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "House of the Indian Statuette",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/R1/1%2008%2005.htm",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pompeiiinpictures: I.8.5 Pompeii. Casa della Statuetta Indiana or House of the Indian Statuette",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-06-26.0355291922",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-06-26T14:57:46Z",
+      "uri": "https://pleiades.stoa.org/places/264408878/name.2017-06-26.0355291922",
+      "creators": [
+        {
+          "username": "hsypniewski",
+          "homepage": null,
+          "name": "Holly Sypniewski",
+          "uri": "https://pleiades.stoa.org/author/hsypniewski"
+        }
+      ],
+      "attested": "House of the Indian Statuette",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "attested form",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-18T05:18:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:10:24Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:46:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:45:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:44:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:44:05Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:33:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T15:21:42Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T14:58:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T14:57:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T14:57:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Casa della Statuetta Indiana",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/R1/1%2008%2005.htm",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "www.pompeiiinpictures.com: I.8.5 Pompeii. Casa della Statuetta Indiana or House of the Indian Statuette.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/610535333",
+          "citationDetail": "vol. 1. pp. 797-801",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pompei: pitture e mosaici.",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KJBIP7FC",
+          "formattedCitation": "<div class=\"csl-entry\">Istituto della Enciclopedia italiana. <i>Pompei: pitture e mosaici.</i> Vol. 6. Roma: Istituto della Enciclopedia italiana, 1990. http://www.worldcat.org/oclc/610535333.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "casa-della-statuetta-indiana",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2017-06-26T15:52:32Z",
+      "uri": "https://pleiades.stoa.org/places/264408878/casa-della-statuetta-indiana",
+      "creators": [
+        {
+          "username": "gmoss",
+          "homepage": null,
+          "name": "Gabriel Moss",
+          "uri": "https://pleiades.stoa.org/author/gmoss"
+        }
+      ],
+      "attested": "Casa della Statuetta Indiana",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:09:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:09:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:09:04Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "hsypniewski",
+          "modified": "2017-06-26T16:01:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:53:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:52:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:52:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmoss",
+          "modified": "2017-06-26T15:52:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "264408878",
+  "subject": [
+    "graffito",
+    "domus",
+    "extant remains"
+  ],
+  "title": "Casa della statuetta indiana",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Casa della statuetta indiana\" (I.8.5) lies on the Via dell'Abbondanza. Excavated between 1930 and 1935, it was named for the fine ivory statuette (thought by some to depict Lakshmi) found inside. The house has a slightly irregular floor plan with some rooms added to the structure from adjacent properties.",
+  "reprPoint": [
+    14.490177077171985,
+    40.750709227474395
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    14.4900409,
+    40.7505654,
+    14.4903327,
+    40.7508388
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/222138654"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-06-26T16:02:25Z",
+  "uri": "https://pleiades.stoa.org/places/264408878",
+  "creators": [
+    {
+      "username": "hsypniewski",
+      "homepage": null,
+      "name": "Holly Sypniewski",
+      "uri": "https://pleiades.stoa.org/author/hsypniewski"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Arachne ref. ",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-06T18:42:54Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-11T19:11:23Z"
+    },
+    {
+      "comment": "added some equivocation to the statue's identification in summary",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-18T05:18:23Z"
+    },
+    {
+      "comment": "check in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-26T16:09:39Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T16:02:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-26T15:49:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "gmoss",
+      "modified": "2017-06-26T15:47:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T15:21:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T15:21:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T15:16:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T15:14:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T14:59:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T14:54:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T14:47:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T14:45:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T14:41:54Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T14:23:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "hsypniewski",
+      "modified": "2017-06-26T14:23:27Z"
+    }
+  ]
+}

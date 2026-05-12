@@ -1,0 +1,397 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.5909022,
+            37.2980862
+          ],
+          [
+            13.5909283,
+            37.2980963
+          ],
+          [
+            13.5909495,
+            37.2981086
+          ],
+          [
+            13.5909583,
+            37.2981352
+          ],
+          [
+            13.5910206,
+            37.2981517
+          ],
+          [
+            13.5911695,
+            37.2981777
+          ],
+          [
+            13.5923178,
+            37.2983782
+          ],
+          [
+            13.5926813,
+            37.2969513
+          ],
+          [
+            13.5920192,
+            37.2968436
+          ],
+          [
+            13.5919345,
+            37.2967434
+          ],
+          [
+            13.5917547,
+            37.2966927
+          ],
+          [
+            13.5916683,
+            37.296675
+          ],
+          [
+            13.5916279,
+            37.2967996
+          ],
+          [
+            13.5912322,
+            37.296748
+          ],
+          [
+            13.5909022,
+            37.2980862
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-hellenistic-and-roman-quarter",
+      "properties": {
+        "snippet": "Settlement, ; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/939167121/osm-location-of-hellenistic-and-roman-quarter",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Hellenistic and Roman quarter archaeological area"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/217850896",
+          "citationDetail": "Way 217850896",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=217850896",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-hellenistic-and-roman-quarter",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM Location of Hellenistic and Roman quarter archaeological area",
+      "provenance": "OpenStreetMap (Way 217850896, version 5, osm:changeset=141994152, 2023-10-01T15:38:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-09-02T18:02:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.5909022,
+            37.2980862
+          ],
+          [
+            13.5909283,
+            37.2980963
+          ],
+          [
+            13.5909495,
+            37.2981086
+          ],
+          [
+            13.5909583,
+            37.2981352
+          ],
+          [
+            13.5910206,
+            37.2981517
+          ],
+          [
+            13.5911695,
+            37.2981777
+          ],
+          [
+            13.5923178,
+            37.2983782
+          ],
+          [
+            13.5926813,
+            37.2969513
+          ],
+          [
+            13.5920192,
+            37.2968436
+          ],
+          [
+            13.5919345,
+            37.2967434
+          ],
+          [
+            13.5917547,
+            37.2966927
+          ],
+          [
+            13.5916683,
+            37.296675
+          ],
+          [
+            13.5916279,
+            37.2967996
+          ],
+          [
+            13.5912322,
+            37.296748
+          ],
+          [
+            13.5909022,
+            37.2980862
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/939167121/osm-location-of-hellenistic-and-roman-quarter",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-11T14:34:00Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T02:03:21Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-04T21:09:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-03T04:06:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-03T04:05:44Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-02T18:04:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-02T18:02:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-02T18:02:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-05T17:33:57Z",
+      "associationCertainty": "certain",
+      "title": "Akragas/Agrigentum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/939167121/0375485659",
+      "connectionType": "at",
+      "id": "0375485659",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:33:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:33:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:33:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462086",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.valleyofthetemples.com/Roman_Hellenistic_area",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Hellenistic and Roman area",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "939167121",
+  "subject": [],
+  "title": "Hellenistic and Roman quarter archaeological area",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Hellenistic and Roman area is orthogonally planned and covers more than 15,000 square meters. It is located near Poggio San Nicola.",
+  "reprPoint": [
+    13.5909112,
+    37.298114
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    13.5909112,
+    37.298114,
+    13.5909112,
+    37.298114
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462086"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-07-05T17:33:56Z",
+  "uri": "https://pleiades.stoa.org/places/939167121",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-11T00:15:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:39:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:39:07Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:34:10Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:33:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:33:56Z"
+    }
+  ]
+}

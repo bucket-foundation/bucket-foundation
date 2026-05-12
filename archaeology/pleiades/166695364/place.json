@@ -1,0 +1,400 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.1931468,
+            43.6241167
+          ],
+          [
+            11.1932083,
+            43.6241203
+          ],
+          [
+            11.1932605,
+            43.6241107
+          ],
+          [
+            11.1933123,
+            43.6240865
+          ],
+          [
+            11.1933495,
+            43.6240509
+          ],
+          [
+            11.1933634,
+            43.6240244
+          ],
+          [
+            11.1933682,
+            43.6239799
+          ],
+          [
+            11.1933424,
+            43.6239246
+          ],
+          [
+            11.1932764,
+            43.6238795
+          ],
+          [
+            11.193218,
+            43.6238653
+          ],
+          [
+            11.1931651,
+            43.6238653
+          ],
+          [
+            11.1931067,
+            43.6238795
+          ],
+          [
+            11.1930621,
+            43.6239044
+          ],
+          [
+            11.1930284,
+            43.6239417
+          ],
+          [
+            11.1930142,
+            43.6239986
+          ],
+          [
+            11.1930279,
+            43.6240421
+          ],
+          [
+            11.1930567,
+            43.6240759
+          ],
+          [
+            11.1931042,
+            43.6241042
+          ],
+          [
+            11.1931468,
+            43.6241167
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-tumulus",
+      "properties": {
+        "snippet": "Tumulus, ; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/166695364/location-of-tumulus",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of tumulus"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/181147867",
+          "citationDetail": "Way 181147867",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=181147867",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-tumulus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -550,
+      "title": "OSM location of tumulus",
+      "provenance": "OpenStreetMap (Way 181147867, version 7, osm:changeset=143621510, 2023-11-04T16:30:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-12T01:16:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.1931468,
+            43.6241167
+          ],
+          [
+            11.1932083,
+            43.6241203
+          ],
+          [
+            11.1932605,
+            43.6241107
+          ],
+          [
+            11.1933123,
+            43.6240865
+          ],
+          [
+            11.1933495,
+            43.6240509
+          ],
+          [
+            11.1933634,
+            43.6240244
+          ],
+          [
+            11.1933682,
+            43.6239799
+          ],
+          [
+            11.1933424,
+            43.6239246
+          ],
+          [
+            11.1932764,
+            43.6238795
+          ],
+          [
+            11.193218,
+            43.6238653
+          ],
+          [
+            11.1931651,
+            43.6238653
+          ],
+          [
+            11.1931067,
+            43.6238795
+          ],
+          [
+            11.1930621,
+            43.6239044
+          ],
+          [
+            11.1930284,
+            43.6239417
+          ],
+          [
+            11.1930142,
+            43.6239986
+          ],
+          [
+            11.1930279,
+            43.6240421
+          ],
+          [
+            11.1930567,
+            43.6240759
+          ],
+          [
+            11.1931042,
+            43.6241042
+          ],
+          [
+            11.1931468,
+            43.6241167
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/166695364/location-of-tumulus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-13T20:45:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-19T00:12:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-27T21:29:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-18T14:13:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-18T14:13:33Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T01:17:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T01:16:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T01:16:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Tomba_dell'Arciere",
+      "citationDetail": "Tomba dell'Arciere",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Tomba dell'Arciere.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/39730676",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cacciatori and De Marinis 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AKA7CH8B",
+      "formattedCitation": "<div class=\"csl-entry\">Cacciatori, Roberto, and Giuliano De Marinis. <i>La tomba etrusca dell\u2019Arciere di Sant'Angelo a Bibbione: nel territorio di San Casciano Val di Pesa</i>. San Casciano in Val di Pesa (Firenze): Comune di San Casciano in Val di Pesa, 1996. http://www.worldcat.org/oclc/39730676.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3531075",
+      "citationDetail": "Tomb of the Archer (Q3531075)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "166695364",
+  "subject": [
+    "tomb",
+    "extant remains",
+    "tumulus"
+  ],
+  "title": "Tomba dell'Arciere",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan tumulus dating to the seventh century B.C. at the locality known as La Collina in the comune of San Casciano in Val di Pesa.",
+  "reprPoint": [
+    11.193191410596333,
+    43.62399263180558
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    11.1930142,
+    43.6238653,
+    11.1933682,
+    43.6241203
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-02-12T01:16:12Z",
+  "uri": "https://pleiades.stoa.org/places/166695364",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Tomb of the Archer (Q3531075)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-13T20:46:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-19T00:12:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-22T18:45:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-11T03:12:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-18T14:13:15Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-12T01:16:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-12T01:16:12Z"
+    }
+  ]
+}

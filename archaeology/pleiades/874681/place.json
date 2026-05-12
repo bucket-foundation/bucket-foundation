@@ -1,0 +1,824 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.4996274,
+            37.608872
+          ],
+          [
+            40.4998788,
+            37.6071744
+          ],
+          [
+            40.4993289,
+            37.6070874
+          ],
+          [
+            40.4987841,
+            37.6079184
+          ],
+          [
+            40.4981792,
+            37.6083638
+          ],
+          [
+            40.498112,
+            37.6091528
+          ],
+          [
+            40.4982525,
+            37.6098063
+          ],
+          [
+            40.498497,
+            37.6101257
+          ],
+          [
+            40.4988269,
+            37.6101354
+          ],
+          [
+            40.499108,
+            37.6098111
+          ],
+          [
+            40.4993157,
+            37.6092302
+          ],
+          [
+            40.4996274,
+            37.608872
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-zerzevan-kalesi",
+      "properties": {
+        "snippet": "Fortified-settlement; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/874681/osm-location-of-zerzevan-kalesi",
+        "description": "Location based on OpenStreetMap. Dates after BAtlas",
+        "location_precision": "precise",
+        "title": "OSM Location of Zerzevan Kalesi"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/312453832",
+          "citationDetail": "Way 312453832",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=312453832",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-zerzevan-kalesi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "end": 640,
+      "title": "OSM Location of Zerzevan Kalesi",
+      "provenance": "OpenStreetMap (Way 312453832, version 16, osm:changeset=140207753, 2023-08-22T03:54:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fortified-settlement"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after BAtlas",
+      "created": "2023-09-01T17:17:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.4996274,
+            37.608872
+          ],
+          [
+            40.4998788,
+            37.6071744
+          ],
+          [
+            40.4993289,
+            37.6070874
+          ],
+          [
+            40.4987841,
+            37.6079184
+          ],
+          [
+            40.4981792,
+            37.6083638
+          ],
+          [
+            40.498112,
+            37.6091528
+          ],
+          [
+            40.4982525,
+            37.6098063
+          ],
+          [
+            40.498497,
+            37.6101257
+          ],
+          [
+            40.4988269,
+            37.6101354
+          ],
+          [
+            40.499108,
+            37.6098111
+          ],
+          [
+            40.4993157,
+            37.6092302
+          ],
+          [
+            40.4996274,
+            37.608872
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/874681/osm-location-of-zerzevan-kalesi",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:18:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:18:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:17:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:17:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:17:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "89 C3 Sardeoua/\u2018Sardebar\u2019",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "VII.2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sinclair 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WZH2I4CM",
+      "formattedCitation": "<div class=\"csl-entry\">T.A. Sinclair. \u201cThe Site of Tigranocerta. II.\u201d <i>Revue Des \u00c9tudes Arm\u00e9niennes</i> 26 (97 1996): 51\u2013118.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace2608.html",
+      "citationDetail": "10B4 (Talbert 2608)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "TP (Talbert: CUP)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "22613",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.npr.org/2023/09/01/1191263572/turkey-archaeology-zerzevan-castle-discoveries",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kenyon 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7Y8L5TMW",
+      "formattedCitation": "<div class=\"csl-entry\">Kenyon, Peter, and Gokce Saracoglu. \u201cArchaeologists in Turkey Have Identified Massive Structures below a Roman-Era Castle.\u201d <i>NPR</i>, September 1, 2023, sec. World. https://www.npr.org/2023/09/01/1191263572/turkey-archaeology-zerzevan-castle-discoveries.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/34174/",
+      "citationDetail": "34174: Zarzavan Kalesi -Zerzevan Castle",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dergipark.org.tr/en/pub/anatolia/issue/47613/601564",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u00c7o\u015fkun 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SGF7LG6M",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c7o\u015fkun, Ayta\u00e7. \u201cZerzevan Castle in the Light of Recent Archeological Researches.\u201d <i>Anadolu</i>, no. 43 (May 1, 2017): 91\u2013110. https://doi.org/10.1501/Andl_0000000442.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dergipark.org.tr/en/pub/iuanadolu/issue/79219/1256264",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Co\u015fkun 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MAWRGX54",
+      "formattedCitation": "<div class=\"csl-entry\">Co\u015fkun, Ayta\u00e7, and E. deniz O\u011eUZ Kirca. \u201cAn Evaluation of the Original Identity Problem and Structural Design of Zerzevan Castle.\u201d <i>Anadolu Ara\u015ft\u0131rmalar\u0131</i>, no. 28 (July 31, 2023): 119\u201342. https://doi.org/10.26650/anar.2023.28.1256264.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dx.doi.org/10.1088/1757-899X/949/1/012038",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dursun 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5A2KL7C8",
+      "formattedCitation": "<div class=\"csl-entry\">Dursun, F., and A. Co\u015fkun. \u201cA Preliminary Study on Material Properties of the Zerzevan Castle, Turkey.\u201d <i>IOP Conference Series: Materials Science and Engineering</i> 949, no. 1 (November 2020): 012038. https://doi.org/10.1088/1757-899X/949/1/012038.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q28806346",
+      "citationDetail": "Zerzevan Castle (Q28806346)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015022717584&seq=97&q1=%CE%A3%CE%B1%CF%81%CE%B4%CE%B7%CE%BF%CF%85%CE%B1",
+      "citationDetail": "5.13.22 (volume 2, page 55)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Ptol. (Nobbe: Hathi)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56UMLU8H",
+      "formattedCitation": "<div class=\"csl-entry\">Ptolemy. <i>Claudii Ptolemaei geographia</i>. Edited by Karl Friedrich August Nobbe. 3 in 2 vols. Lipsiae: Sumptibus et typis Caroli Tauchnitii, 1843. https://catalog.hathitrust.org/Record/002504277.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/6684340",
+      "citationDetail": "748",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ItMiller",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q8X83VMV",
+      "formattedCitation": "<div class=\"csl-entry\">Miller, Konrad. <i>Itineraria romana: R\u00f6mische Reisewege an der Hand der Tabula Peutingeriana</i>. Stuttgart: Strecker und Schr\u00f6der, 1916. http://www.worldcat.org/oclc/6684340.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sardeoua",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://babel.hathitrust.org/cgi/pt?id=mdp.39015022717584&seq=97&q1=%CE%A3%CE%B1%CF%81%CE%B4%CE%B7%CE%BF%CF%85%CE%B1",
+          "citationDetail": "5.13.22 (volume 2, page 55) ",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Ptol. (Nobbe: Hathi)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56UMLU8H",
+          "formattedCitation": "<div class=\"csl-entry\">Ptolemy. <i>Claudii Ptolemaei geographia</i>. Edited by Karl Friedrich August Nobbe. 3 in 2 vols. Lipsiae: Sumptibus et typis Caroli Tauchnitii, 1843. https://catalog.hathitrust.org/Record/002504277.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "sardeoua",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 89 C3 Sardeoua/\u2018Sardebar\u2019",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2023-09-01T17:49:07Z",
+      "uri": "https://pleiades.stoa.org/places/874681/sardeoua",
+      "creators": [
+        {
+          "username": null,
+          "name": "M. Roaf"
+        },
+        {
+          "username": null,
+          "name": "T. Sinclair"
+        },
+        {
+          "username": null,
+          "name": "S.E. Kroll"
+        },
+        {
+          "username": null,
+          "name": "St J. Simpson"
+        }
+      ],
+      "attested": "\u03a3\u03b1\u03c1\u03b4\u03b7\u03bf\u1fe6\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Initial revision; Greek; Ptolemy",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:52:27Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:49:07Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T09:03:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-10-05T18:28:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-10-05T18:12:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-10-05T17:54:56Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "inaccurate",
+      "associationCertainty": "certain",
+      "romanized": "Sardebar",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/prm.html",
+          "citationDetail": "10B4 (Talbert 2608)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "TP (Talbert: CUP)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "sardebar",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 89 C3 Sardeoua/\u2018Sardebar\u2019",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2023-05-30T15:05:51Z",
+      "uri": "https://pleiades.stoa.org/places/874681/sardebar",
+      "creators": [
+        {
+          "username": null,
+          "name": "M. Roaf"
+        },
+        {
+          "username": null,
+          "name": "T. Sinclair"
+        },
+        {
+          "username": null,
+          "name": "S.E. Kroll"
+        },
+        {
+          "username": null,
+          "name": "St J. Simpson"
+        }
+      ],
+      "attested": "Sardebar",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Latin name, TP ref.",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-30T18:54:21Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T09:03:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-10-05T18:28:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-10-05T18:12:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-10-05T17:54:56Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Zerzevan Kalesi",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 1278 see \"Sardeoua/ \u2018Sardebar\u2019\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://dx.doi.org/10.1088/1757-899X/949/1/012038",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Co\u015fkun 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MAWRGX54",
+          "formattedCitation": "<div class=\"csl-entry\">Co\u015fkun, Ayta\u00e7, and E. deniz O\u011eUZ Kirca. \u201cAn Evaluation of the Original Identity Problem and Structural Design of Zerzevan Castle.\u201d <i>Anadolu Ara\u015ft\u0131rmalar\u0131</i>, no. 28 (July 31, 2023): 119\u201342. https://doi.org/10.26650/anar.2023.28.1256264.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "zerzevan-kalesi",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2023-09-01T17:30:51Z",
+      "uri": "https://pleiades.stoa.org/places/874681/zerzevan-kalesi",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Zerzevan Kalesi",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:34:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:34:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:34:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:30:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-01T17:30:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "874681",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Sardeoua/\u2018Sardebar\u2019",
+  "provenance": "Barrington Atlas: BAtlas 89 C3 Sardeoua/\u2018Sardebar\u2019",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Kale-i Zerzevan</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Now known as Zerzevan Kalesi, this Roman-era fortified settlement is located in Turkey's Diyarbakir province.",
+  "reprPoint": [
+    40.499006433910964,
+    37.60858664688598
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "settlement"
+  ],
+  "bbox": [
+    40.498112,
+    37.6070874,
+    40.4998788,
+    37.6101354
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-10-05T17:54:56Z",
+  "uri": "https://pleiades.stoa.org/places/874681",
+  "creators": [
+    {
+      "username": null,
+      "name": "M. Roaf"
+    },
+    {
+      "username": null,
+      "name": "T. Sinclair"
+    },
+    {
+      "username": null,
+      "name": "S.E. Kroll"
+    },
+    {
+      "username": null,
+      "name": "St J. Simpson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "ItMiller",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-19T23:24:43Z"
+    },
+    {
+      "comment": "added Ptolemy reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-01T17:59:55Z"
+    },
+    {
+      "comment": "added Wikidata reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-01T17:31:52Z"
+    },
+    {
+      "comment": "added vici.org, Dursun 2020, and \u00c7o\u015fkun 2017 references",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-01T17:28:33Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-01T17:20:01Z"
+    },
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-01T17:18:39Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-30T15:05:30Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-01T03:50:40Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T22:59:22Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T09:03:42Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-10T01:16:23Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:21:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-05T18:28:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T18:12:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T17:54:56Z"
+    }
+  ]
+}

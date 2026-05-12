@@ -1,0 +1,411 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.233799,
+            52.0099151
+          ],
+          [
+            -1.2339062,
+            52.0101661
+          ],
+          [
+            -1.2341208,
+            52.0104566
+          ],
+          [
+            -1.2347216,
+            52.0106019
+          ],
+          [
+            -1.2352795,
+            52.0105094
+          ],
+          [
+            -1.2356312,
+            52.010281
+          ],
+          [
+            -1.2358759,
+            52.0100463
+          ],
+          [
+            -1.2360322,
+            52.0098058
+          ],
+          [
+            -1.2360583,
+            52.0094851
+          ],
+          [
+            -1.2360322,
+            52.0092445
+          ],
+          [
+            -1.235928,
+            52.0090521
+          ],
+          [
+            -1.2358759,
+            52.0088997
+          ],
+          [
+            -1.2356049,
+            52.0086705
+          ],
+          [
+            -1.2351183,
+            52.008552
+          ],
+          [
+            -1.2345953,
+            52.0085405
+          ],
+          [
+            -1.2340962,
+            52.0086374
+          ],
+          [
+            -1.2337916,
+            52.0088596
+          ],
+          [
+            -1.2337395,
+            52.0090681
+          ],
+          [
+            -1.2337131,
+            52.009334
+          ],
+          [
+            -1.2337131,
+            52.0095849
+          ],
+          [
+            -1.233799,
+            52.0099151
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Hillfort; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/419293087/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Rainsborough Camp"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/39951440",
+          "citationDetail": "Way 39951440",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=39951440",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "end": 100,
+      "title": "OSM location of Rainsborough Camp",
+      "provenance": "OpenStreetMap (Way 39951440, version 5, osm:changeset=138540530, 2023-07-15T11:12:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hillfort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-07-07T16:23:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.233799,
+            52.0099151
+          ],
+          [
+            -1.2339062,
+            52.0101661
+          ],
+          [
+            -1.2341208,
+            52.0104566
+          ],
+          [
+            -1.2347216,
+            52.0106019
+          ],
+          [
+            -1.2352795,
+            52.0105094
+          ],
+          [
+            -1.2356312,
+            52.010281
+          ],
+          [
+            -1.2358759,
+            52.0100463
+          ],
+          [
+            -1.2360322,
+            52.0098058
+          ],
+          [
+            -1.2360583,
+            52.0094851
+          ],
+          [
+            -1.2360322,
+            52.0092445
+          ],
+          [
+            -1.235928,
+            52.0090521
+          ],
+          [
+            -1.2358759,
+            52.0088997
+          ],
+          [
+            -1.2356049,
+            52.0086705
+          ],
+          [
+            -1.2351183,
+            52.008552
+          ],
+          [
+            -1.2345953,
+            52.0085405
+          ],
+          [
+            -1.2340962,
+            52.0086374
+          ],
+          [
+            -1.2337916,
+            52.0088596
+          ],
+          [
+            -1.2337395,
+            52.0090681
+          ],
+          [
+            -1.2337131,
+            52.009334
+          ],
+          [
+            -1.2337131,
+            52.0095849
+          ],
+          [
+            -1.233799,
+            52.0099151
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/419293087/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-15T21:13:51Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-15T21:13:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-08-01T17:49:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-30T15:43:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-09-16T23:42:57Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-07T16:23:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-07T16:23:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-07T16:23:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=339180",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Pastscape monument no. 339180",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Rainsborough_Camp",
+      "citationDetail": "Rainsborough Camp",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Rainsborough Camp.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7284944",
+      "citationDetail": "Q7284944: Rainsborough Camp",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "419293087",
+  "subject": [],
+  "title": "Rainsborough Camp",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A bivallate Iron Age hillfort.",
+  "reprPoint": [
+    -1.2348498837514899,
+    52.00952586658074
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    -1.2360583,
+    52.0085405,
+    -1.2337131,
+    52.0106019
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-15T20:06:55Z",
+  "uri": "https://pleiades.stoa.org/places/419293087",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for hillfort @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-15T21:14:04Z"
+    },
+    {
+      "comment": "added wikidata Q7284944: Rainsborough Camp",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-21T14:38:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-20T18:50:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-09-16T23:42:40Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-07T16:23:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-07T16:23:11Z"
+    }
+  ]
+}

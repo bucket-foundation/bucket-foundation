@@ -1,0 +1,505 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5494716,
+          49.7091434
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-igeler-sa-ule",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/109063/osm-location-of-igeler-sa-ule",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Igeler S\u00e4ule"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/321349168",
+          "citationDetail": "Node 321349168",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=321349168",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-igeler-sa-ule",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Igeler S\u00e4ule",
+      "provenance": "OpenStreetMap (Node 321349168, version 8, osm:changeset=49204114, 2017-06-02T18:41:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-11-20T02:20:32Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.5494716,
+          49.7091434
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/109063/osm-location-of-igeler-sa-ule",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-12-19T12:27:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-11-27T01:28:12Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-11-20T02:21:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-11-20T02:20:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-11-20T02:20:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T14:03:54Z",
+      "associationCertainty": "certain",
+      "title": "Mosella fl.",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/109063/109182",
+      "connectionType": "connection",
+      "id": "109182",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/109182",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "11 G3 Igel",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "398-401",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "R\u00f6mer Rheinland-Pfalz",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HA3B8GSW",
+      "formattedCitation": "<div class=\"csl-entry\">H C\u00fcppers, ed. <i>Die R\u00f6mer in Rheinland-Pfalz</i>. Stuttgart, Aalen, 1990.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://francia.ahlfeldt.se/places/1194",
+      "citationDetail": "1194",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "RFO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2CEKGRY9",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Regnum Francorum Online</i>, 2009. http://francia.ahlfeldt.se/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=igel",
+      "citationDetail": "IGEL Germany",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=rHd1MDlV-eUC&lpg=PA164&ots=--9DxI0nKd&dq=Secundinii%20tomb&pg=PA164#v=onepage&q=Secundinii%20tomb&f=false",
+      "citationDetail": "164",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Toynbee 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BERZV2HS",
+      "formattedCitation": "<div class=\"csl-entry\">Toynbee, J. M. C. <i>Death and Burial in the Roman World</i>. Baltimore (Md.): Johns Hopkins University Press, 1996. https://www.google.com/books/edition/Death_and_Burial_in_the_Roman_World/rHd1MDlV-eUC?hl=en&amp;gbpv=1&amp;dq=Via+Statilia+tombs&amp;pg=PA117&amp;printsec=frontcover#v=onepage&amp;q=Via%20Statilia%20tombs&amp;f=false.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "16012",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+      "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 16012.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/24494",
+      "citationDetail": "GEO ID 24494",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/2896721/igel.html",
+      "citationDetail": "2896721: Igel",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Igel_Column",
+      "citationDetail": "Igel Column",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/496954",
+      "citationDetail": "p. 224",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fowler 1905",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QF93KD49",
+      "formattedCitation": "<div class=\"csl-entry\">Fowler, Harold N. \u201cArchaeological Discussions.\u201d <i>American Journal of Archaeology</i> 9, no. 2 (1905): 197\u2013241. https://doi.org/10.2307/496954.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q338834",
+      "citationDetail": "Igel Column (Q338834)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Igel",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "igel",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Regnum Francorum Online",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Name",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2012-05-25T22:07:08Z",
+      "uri": "https://pleiades.stoa.org/places/109063/igel",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:07:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:07:09Z"
+        },
+        {
+          "comment": "RFO and PECS references from Johan Ahlfeldt (jahlfeldt) and reviewd by Tom Elliott (thomase) in May 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:07:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:07:08Z"
+        }
+      ]
+    }
+  ],
+  "id": "109063",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "tomb",
+    "dare:feature=temple"
+  ],
+  "title": "Igel",
+  "provenance": "Barrington Atlas: BAtlas 11 G3 Igel",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Igel, GER</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The village of Igel is known for its funerary monument of the Secundinii dating ca. A.D. 250.",
+  "reprPoint": [
+    6.5494716,
+    49.7091434
+  ],
+  "placeTypes": [
+    "tomb",
+    "monument"
+  ],
+  "bbox": [
+    6.5494716,
+    49.7091434,
+    6.5494716,
+    49.7091434
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/109182",
+    "https://pleiades.stoa.org/places/176458610"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-11-02T15:52:17Z",
+  "uri": "https://pleiades.stoa.org/places/109063",
+  "creators": [
+    {
+      "username": null,
+      "name": "C. Haselgrove"
+    },
+    {
+      "username": null,
+      "name": "J. Kunow"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q338834",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-19T23:27:36Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:49:50Z"
+    },
+    {
+      "comment": "TM GEO ID 24494",
+      "modifiedBy": "jbecker",
+      "modified": "2017-08-26T15:58:55Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-28T23:42:15Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-02T22:52:13Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:10:28Z"
+    },
+    {
+      "comment": "RFO and PECS references from Johan Ahlfeldt (jahlfeldt) and reviewd by Tom Elliott (thomase) in May 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-05-25T22:07:09Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:10:55Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-14T23:43:20Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T22:49:30Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:52:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-05-19T21:31:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T16:56:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T15:52:17Z"
+    }
+  ]
+}

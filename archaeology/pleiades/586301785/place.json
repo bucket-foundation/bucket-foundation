@@ -1,0 +1,331 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.7980128,
+            35.1738492
+          ],
+          [
+            8.7979558,
+            35.173796
+          ],
+          [
+            8.7980111,
+            35.1737563
+          ],
+          [
+            8.7980682,
+            35.1738095
+          ],
+          [
+            8.7980128,
+            35.1738492
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-grand-mausola-c-e-des-flavii",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/586301785/osm-location-of-grand-mausola-c-e-des-flavii",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Grand mausol\u00e9e des Flavii"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1150010119",
+          "citationDetail": "Way 1150010119",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1150010119",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-grand-mausola-c-e-des-flavii",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Grand mausol\u00e9e des Flavii",
+      "provenance": "OpenStreetMap (Way 1150010119, version 1, osm:changeset=133105780, 2023-02-27T22:11:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-02-27T22:11:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.7980128,
+            35.1738492
+          ],
+          [
+            8.7979558,
+            35.173796
+          ],
+          [
+            8.7980111,
+            35.1737563
+          ],
+          [
+            8.7980682,
+            35.1738095
+          ],
+          [
+            8.7980128,
+            35.1738492
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/586301785/osm-location-of-grand-mausola-c-e-des-flavii",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-27T22:44:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-27T22:38:01Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-27T22:12:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-27T22:11:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-27T22:11:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-27T22:13:57Z",
+      "associationCertainty": "certain",
+      "title": "Cillium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/586301785/0375528020",
+      "connectionType": "at",
+      "id": "0375528020",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-27T22:13:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-27T22:13:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-27T22:13:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/324694",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/51959/",
+      "citationDetail": "51959: Grand mausol\u00e9e des Flavii",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/efr_0000-0000_1993_arc_169_1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Les Flavii du Cillium 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7DXSJU89",
+      "formattedCitation": "<div class=\"csl-entry\">Antique, Groupe de recherches sur l\u2019Afrique. \u201cLes Flavii du Cillium. \u00c9tude architecturale, \u00e9pigraphique, historique et litt\u00e9raire du mausol\u00e9e de Kasserine (CIL VIII, 211-216).\u201d <i>Publications de l\u2019\u00c9cole Fran\u00e7aise de Rome</i> 169, no. 1 (1993). https://www.persee.fr/doc/efr_0000-0000_1993_arc_169_1.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q42760700",
+      "citationDetail": "Q42760700: Flavii Mausoleum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Flavii_Mausoleum",
+      "citationDetail": "Category:Flavii Mausoleum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "VIII, 211-216",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "CIL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JCY8WN8B",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Corpus inscriptionum latinarum</i>. Berolini: Apud G. Reimerum, 1862.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [],
+  "id": "586301785",
+  "subject": [],
+  "title": "Grand mausol\u00e9e des Flavii",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A mausoleum near Cillium dates to the second century CE. Tiberius Flavius Secundus built the family tomb, dedicating it to his father, and inscribing two poetic texts totaling some 110 lines on its facade. Located in what is now Kasserine, Tunisia.",
+  "reprPoint": [
+    8.798011989857285,
+    35.17380275242865
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    8.7979558,
+    35.1737563,
+    8.7980682,
+    35.1738492
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/324694"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-27T22:13:56Z",
+  "uri": "https://pleiades.stoa.org/places/586301785",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-27T22:44:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-27T22:38:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-27T22:37:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-27T22:37:17Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-27T22:13:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-27T22:13:56Z"
+    }
+  ]
+}

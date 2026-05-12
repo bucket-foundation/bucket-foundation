@@ -1,0 +1,215 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.9347359,
+          43.2744903
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-rocca-sillana",
+      "properties": {
+        "snippet": "Castle; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/254059626/osm-location-of-rocca-sillana",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Rocca Sillana"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/918441555",
+          "citationDetail": "Node 918441555",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=918441555",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-rocca-sillana",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/castle"
+      ],
+      "end": 1453,
+      "title": "OSM location of Rocca Sillana",
+      "provenance": "OpenStreetMap (Node 918441555, version 5, osm:changeset=46761779, 2017-03-11T12:53:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/castle"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "castle"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2019-05-20T00:06:27Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.9347359,
+          43.2744903
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/254059626/osm-location-of-rocca-sillana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T10:25:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-26T00:30:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-26T00:30:09Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-20T00:06:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-20T00:06:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-20T00:06:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Rocca_Sillana",
+      "citationDetail": "Rocca Sillana",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "254059626",
+  "subject": [],
+  "title": "Rocca Sillana",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/castle"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Medieval fortress in the modern territory of Pisa, Italy.",
+  "reprPoint": [
+    10.9347359,
+    43.2744903
+  ],
+  "placeTypes": [
+    "castle"
+  ],
+  "bbox": [
+    10.9347359,
+    43.2744903,
+    10.9347359,
+    43.2744903
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-05-19T22:20:25Z",
+  "uri": "https://pleiades.stoa.org/places/254059626",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-26T10:25:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-26T10:25:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-26T00:30:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-26T00:29:40Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T22:20:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T22:20:25Z"
+    }
+  ]
+}

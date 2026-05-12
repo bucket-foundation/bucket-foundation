@@ -1,0 +1,367 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.814312,
+              39.144673
+            ],
+            [
+              22.814666,
+              39.14434
+            ],
+            [
+              22.814838,
+              39.143716
+            ],
+            [
+              22.815771,
+              39.143833
+            ],
+            [
+              22.818475,
+              39.143783
+            ],
+            [
+              22.821264,
+              39.143516
+            ],
+            [
+              22.819269,
+              39.147677
+            ],
+            [
+              22.816726,
+              39.146171
+            ],
+            [
+              22.815481,
+              39.145414
+            ],
+            [
+              22.814312,
+              39.144673
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-public-building-area",
+      "properties": {
+        "snippet": "Architecturalcomplex; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/372660434/imagery-location-public-building-area",
+        "description": "According to Reinders, the slope above the lower town was probably used for public buildings.",
+        "location_precision": "precise",
+        "title": "Imagery Location: Public building (?) area"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://openlibrary.org/works/OL4818768W",
+          "formattedCitation": "Reinders (1988, 134)",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "imagery-location-public-building-area",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": -30,
+      "title": "Imagery Location: Public building (?) area",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2011",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "According to Reinders, the slope above the lower town was probably used for public buildings.",
+      "created": "2012-05-24T16:29:41Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.814312,
+              39.144673
+            ],
+            [
+              22.814666,
+              39.14434
+            ],
+            [
+              22.814838,
+              39.143716
+            ],
+            [
+              22.815771,
+              39.143833
+            ],
+            [
+              22.818475,
+              39.143783
+            ],
+            [
+              22.821264,
+              39.143516
+            ],
+            [
+              22.819269,
+              39.147677
+            ],
+            [
+              22.816726,
+              39.146171
+            ],
+            [
+              22.815481,
+              39.145414
+            ],
+            [
+              22.814312,
+              39.144673
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/372660434/imagery-location-public-building-area",
+      "creators": [
+        {
+          "username": "komponisto",
+          "homepage": null,
+          "name": "Robin Iversen R\u00f6nnlund",
+          "uri": "https://pleiades.stoa.org/author/komponisto"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "completed polygon geometry",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-12T18:59:22Z"
+        },
+        {
+          "comment": "place type",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-06T14:00:01Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-06-11T19:05:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2012-06-11T19:04:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "komponisto",
+          "modified": "2012-05-24T16:30:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "komponisto",
+          "modified": "2012-05-24T16:29:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "komponisto",
+          "modified": "2012-05-24T16:29:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-06T13:47:21Z",
+      "associationCertainty": "certain",
+      "title": "Halos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/372660434/2412254369",
+      "connectionType": "at",
+      "id": "2412254369",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-06T13:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-06T13:47:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-06T13:47:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540804",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "134",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "Reinders 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BJ7WIMSN",
+      "formattedCitation": "<div class=\"csl-entry\">Reinders, H. Reinder, and Wietske Prummel. <i>Housing in New Halos: A Hellenistic Town in Thessaly, Greece</i>. Exton, Pa: A.A. Balkema Publishers, 2003.</div>",
+      "otherIdentifier": " ",
+      "type": "cites"
+    }
+  ],
+  "names": [],
+  "id": "372660434",
+  "subject": [],
+  "title": "Public building (?) area at Halos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "According to Reinders, the slope above the lower town of Halos was probably used for public buildings.",
+  "reprPoint": [
+    22.81802860552411,
+    39.14512099500969
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    22.814312,
+    39.143516,
+    22.821264,
+    39.147677
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540804"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-06T13:47:20Z",
+  "uri": "https://pleiades.stoa.org/places/372660434",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "komponisto",
+      "homepage": null,
+      "name": "Robin Iversen R\u00f6nnlund",
+      "uri": "https://pleiades.stoa.org/author/komponisto"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-06T15:43:49Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-06T15:43:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-06T14:00:06Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-06T13:58:22Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-06T13:47:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-06T13:47:20Z"
+    }
+  ]
+}

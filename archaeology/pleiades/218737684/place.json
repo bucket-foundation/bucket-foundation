@@ -1,0 +1,257 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5574929,
+          40.2443267
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-santuario-di-santa-maria-regina-di",
+      "properties": {
+        "snippet": "Church, ; AD 640 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/218737684/osm-location-of-santuario-di-santa-maria-regina-di",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Santuario di Santa Maria Regina di Anglona"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3109435920",
+          "citationDetail": "Node 3109435920",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3109435920",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-santuario-di-santa-maria-regina-di",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "OSM location of Santuario di Santa Maria Regina di Anglona",
+      "provenance": "OpenStreetMap (Node 3109435920, version 2, osm:changeset=29302016, 2015-03-07T04:40:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-03-07T05:08:51Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.5574929,
+          40.2443267
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/218737684/osm-location-of-santuario-di-santa-maria-regina-di",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-22T18:02:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-22T17:22:18Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-07T05:13:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-07T05:08:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-07T05:08:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-08-03T15:43:37Z",
+      "associationCertainty": "certain",
+      "title": "Pandosia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/218737684/0174075055",
+      "connectionType": "at",
+      "id": "0174075055",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-03T15:43:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-03T15:43:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-03T15:43:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442709",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Santuario_di_Santa_Maria_Regina_di_Anglona",
+      "citationDetail": "Santuario di Santa Maria Regina di Anglona",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "218737684",
+  "subject": [],
+  "title": "Santuario di Santa Maria Regina di Anglona",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Marian sanctuary located on the hill of Anglona in the province of Matera, Italy, that originates in the eleventh century.",
+  "reprPoint": [
+    16.5574929,
+    40.2443267
+  ],
+  "placeTypes": [
+    "church-2",
+    "church"
+  ],
+  "bbox": [
+    16.5574929,
+    40.2443267,
+    16.5574929,
+    40.2443267
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442709"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-08-03T15:43:36Z",
+  "uri": "https://pleiades.stoa.org/places/218737684",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-22T18:02:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-22T17:22:18Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-22T17:22:14Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-03T15:43:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-03T15:43:36Z"
+    }
+  ]
+}

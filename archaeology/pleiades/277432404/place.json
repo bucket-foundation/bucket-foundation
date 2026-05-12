@@ -1,0 +1,450 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.9848442,
+          44.0459741
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana-di-bocca-di-magra",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/277432404/osm-location-of-villa-romana-di-bocca-di-magra",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Romana di Bocca di Magra"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1744836593",
+          "citationDetail": "Node 1744836593",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1744836593",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana-di-bocca-di-magra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa Romana di Bocca di Magra",
+      "provenance": "OpenStreetMap (Node 1744836593, version 3, osm:changeset=68809219, 2019-04-02T19:13:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-05-19T19:53:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.9848442,
+          44.0459741
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/277432404/osm-location-of-villa-romana-di-bocca-di-magra",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-03T13:31:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:44:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T19:55:09Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T19:53:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T19:53:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T19:53:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-05-20T01:25:47Z",
+      "associationCertainty": "certain",
+      "title": "Macra (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/277432404/macra-river",
+      "connectionType": "abuts",
+      "id": "macra-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:44:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-20T01:25:57Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-20T01:25:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-20T01:25:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403237",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gervasini 2005",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WATMYANQ",
+          "formattedCitation": "<div class=\"csl-entry\">Gervasini, Lucia, Emma Cantisani, and Rodorico Giorgi. \u201cUn Pigmento Di Colore Azzurro Nel Caldarium Della Villa Maritima Di Bocca Di Magra (Ameglia - SP).\u201d In <i>Atti Del X Colloquio Dell\u2019Associazione Italiana per Lo Studio e La Conservazione Del Mosaico, Con Il Patrocinio Del Ministero per i Beni e Le Attivit\u00e0 Culturali (Lecce, 18-21 Febbraio 2004)</i>, 879\u201388. Tivoli: Scripta Manent edizioni, 2005.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-09T15:19:30Z",
+      "associationCertainty": "certain",
+      "title": "Ager Lunensis Survey area",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/277432404/ager-lunensis-survey-area",
+      "connectionType": "part_of_analytical",
+      "id": "ager-lunensis-survey-area",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-17T11:51:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T18:07:45Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T18:07:36Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-09T15:19:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-09T15:19:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/677723893",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.jstor.org/stable/40310830",
+          "citationDetail": "fig. 9",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ward Perkins 1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9QPR8X3B",
+          "formattedCitation": "<div class=\"csl-entry\">Smith, Catherine Delano, Derek Gadd, Nigel Mills, and Bryan Ward Perkins. \u201cLuni and the Ager Lunensis: The Rise and Fall of a Roman Town and Its Territory.\u201d <i>Papers of the British School at Rome</i> 41 (1986): 81\u2013146. http://www.jstor.org/stable/40310830.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Villa_romana_di_Bocca_di_Magra",
+      "citationDetail": "Villa romana di Bocca di Magra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gervasini 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WATMYANQ",
+      "formattedCitation": "<div class=\"csl-entry\">Gervasini, Lucia, Emma Cantisani, and Rodorico Giorgi. \u201cUn Pigmento Di Colore Azzurro Nel Caldarium Della Villa Maritima Di Bocca Di Magra (Ameglia - SP).\u201d In <i>Atti Del X Colloquio Dell\u2019Associazione Italiana per Lo Studio e La Conservazione Del Mosaico, Con Il Patrocinio Del Ministero per i Beni e Le Attivit\u00e0 Culturali (Lecce, 18-21 Febbraio 2004)</i>, 879\u201388. Tivoli: Scripta Manent edizioni, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q25403654",
+      "citationDetail": "Bocca di Magra Roman villa (Q25403654)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa Romana di Bocca di Magra",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q25403654",
+          "citationDetail": "Q25403654",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2019-05-19.6334687479",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-05-19T19:54:42Z",
+      "uri": "https://pleiades.stoa.org/places/277432404/name.2019-05-19.6334687479",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-03T13:32:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:44:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T19:55:09Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T19:54:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T19:54:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "277432404",
+  "subject": [
+    "villa maritima",
+    "extant remains",
+    "villa"
+  ],
+  "title": "Bocca di Magra Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A villa maritima of the first century B.C.",
+  "reprPoint": [
+    9.9848442,
+    44.0459741
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    9.9848442,
+    44.0459741,
+    9.9848442,
+    44.0459741
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/403237",
+    "https://pleiades.stoa.org/places/677723893"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-05-19T19:52:42Z",
+  "uri": "https://pleiades.stoa.org/places/277432404",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-03T13:32:11Z"
+    },
+    {
+      "comment": "added wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-12T14:19:10Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-12T10:44:56Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-20T01:22:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T19:55:09Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T19:52:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T19:52:42Z"
+    }
+  ]
+}

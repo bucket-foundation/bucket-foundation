@@ -1,0 +1,353 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7270202,
+          37.9722492
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-iiuii-iiiii-ioi-i1-iiii-ii-ii-i",
+      "properties": {
+        "snippet": "Shrine; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/925585578/osm-location-iiuii-iiiii-ioi-i1-iiii-ii-ii-i",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: \u0399\u03b5\u03c1\u03cc \u0388\u03c1\u03c9\u03c4\u03b1 \u03ba\u03b1\u03b9 \u0391\u03c6\u03c1\u03bf\u03b4\u03af\u03c4\u03b7\u03c2"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4686010702",
+          "citationDetail": "Node 4686010702",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4686010702",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-iiuii-iiiii-ioi-i1-iiii-ii-ii-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 2099,
+      "title": "OSM Location: \u0399\u03b5\u03c1\u03cc \u0388\u03c1\u03c9\u03c4\u03b1 \u03ba\u03b1\u03b9 \u0391\u03c6\u03c1\u03bf\u03b4\u03af\u03c4\u03b7\u03c2",
+      "provenance": "OpenStreetMap (Node 4686010702, version 12, osm:changeset=140041426, 2023-08-18T06:33:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-04-22T22:03:18Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7270202,
+          37.9722492
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/925585578/osm-location-iiuii-iiiii-ioi-i1-iiii-ii-ii-i",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-23T19:10:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-22T22:04:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-22T22:03:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-22T22:03:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-22T22:03:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2024-04-22T22:02:22Z",
+      "associationCertainty": "certain",
+      "title": "Acropolis of Athens",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/925585578/acropolis-of-athens",
+      "connectionType": "on",
+      "id": "acropolis-of-athens",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-23T19:10:37Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-23T00:48:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-22T22:04:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-22T22:02:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-22T22:02:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638356144",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/146474",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Broneer 1932a",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RFMVJQ4Z",
+          "formattedCitation": "<div class=\"csl-entry\">Broneer, Oscar. \u201cEros and Aphrodite on the North Slope of the Acropolis in Athens.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 1 (1932): 31\u201355. https://doi.org/10.2307/146474.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "41-42",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hurwit 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+      "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Glowacki 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YTR2B22Y",
+      "formattedCitation": "<div class=\"csl-entry\">Glowacki, Kevin T. \u201cTopics Concerning the North Slope of the Akropolis at Athens.\u201d Thesis Ph.D.--Bryn Mawr College., 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dipylon-judithbindersourcebook.org/sourcebook/NPP/NP1671",
+      "citationDetail": "Eros and Aphrodite",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Judith Binder's Opus Magnum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITY365C",
+      "formattedCitation": "<div class=\"csl-entry\">www.dipylon.org. \u201cJudith Binder\u2019s Opus Magnum | Dipylon,\u201d May 7, 2018. https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/162915",
+      "citationDetail": "72, 228",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Travlos 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5Q2AW7H",
+      "formattedCitation": "<div class=\"csl-entry\">Travlos, Ioannes N. <i>Pictorial Dictionary of Ancient Athens</i>. New York: Praeger, 1971. http://www.worldcat.org/oclc/162915.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/146474",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broneer 1932a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RFMVJQ4Z",
+      "formattedCitation": "<div class=\"csl-entry\">Broneer, Oscar. \u201cEros and Aphrodite on the North Slope of the Acropolis in Athens.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 1 (1932): 31\u201355. https://doi.org/10.2307/146474.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/146636",
+      "citationDetail": "140-148, figs. 30-31, 33, 35",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broneer 1935",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUH4QW2Q",
+      "formattedCitation": "<div class=\"csl-entry\">Broneer, Oscar. \u201cExcavations on the North Slope of the Acropolis in Athens, 1933-1934.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 4, no. 2 (1935): 109\u201388. https://doi.org/10.2307/146636.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "925585578",
+  "subject": [],
+  "title": "Sanctuary of Eros and Aphrodite",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sanctuary of Eros and Aphrodite, located in a fold of the rock on the north slope of the Acropolis of Athens, active from at least the mid-fifth century BC.",
+  "reprPoint": [
+    23.7270202,
+    37.9722492
+  ],
+  "placeTypes": [
+    "shrine"
+  ],
+  "bbox": [
+    23.7270202,
+    37.9722492,
+    23.7270202,
+    37.9722492
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638356144"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-22T22:01:41Z",
+  "uri": "https://pleiades.stoa.org/places/925585578",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-23T19:10:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-23T19:10:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-23T00:48:33Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-23T00:46:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-22T22:04:28Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-22T22:01:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-22T22:01:41Z"
+    }
+  ]
+}

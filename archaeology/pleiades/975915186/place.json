@@ -1,0 +1,332 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.0196544,
+            35.5173714
+          ],
+          [
+            24.0193751,
+            35.5172637
+          ],
+          [
+            24.0194959,
+            35.517056
+          ],
+          [
+            24.0197753,
+            35.5171637
+          ],
+          [
+            24.0196544,
+            35.5173714
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-agia-aikaterini-square-excavations",
+      "properties": {
+        "snippet": "Archaeological-site; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/975915186/osm-location-of-agia-aikaterini-square-excavations",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Agia Aikaterini square excavations"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/438491873",
+          "citationDetail": "Way 438491873",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-agia-aikaterini-square-excavations",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -1000,
+      "title": "OSM location of Agia Aikaterini square excavations",
+      "provenance": "OpenStreetMap (Way 438491873, version 4, osm:changeset=111192497, 2021-09-14T11:48:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-12-09T13:35:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.0196544,
+            35.5173714
+          ],
+          [
+            24.0193751,
+            35.5172637
+          ],
+          [
+            24.0194959,
+            35.517056
+          ],
+          [
+            24.0197753,
+            35.5171637
+          ],
+          [
+            24.0196544,
+            35.5173714
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/975915186/osm-location-of-agia-aikaterini-square-excavations",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-09T13:35:18Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-09T13:35:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-04T02:28:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T02:42:09Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-13T00:35:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-13T00:35:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-13T00:35:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-09-02T02:44:18Z",
+      "associationCertainty": "certain",
+      "title": "Kastellion",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/975915186/0586801388",
+      "connectionType": "at",
+      "id": "0586801388",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T02:44:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T02:44:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T02:44:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/553704982",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108422126",
+      "citationDetail": "Agia Aikaterini square excavations (Q108422126)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/classical-review/article/abs/late-minoan-settlements-in-crete-e-hallager-bp-hallager-edd-the-greekswedish-excavations-at-agia-aikaterini-square-kastelli-khania-19701987-2001-2005-and-2008-volume-v-the-late-minoan-iiia1-and-ii-settlements-vol-v1-text-vol-v2-plates-skrifter-utgivna-av-svenska-institutet-i-athen-4-47512-pp-496-218-figs-bw-colour-ills-pls-stockholm-svenska-institutet-i-athen-2016-cased-sek200-isbn-9789179160647/F8D3DFF0A49BD4B123AA06AEDFC5BBF9",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "D'Agata 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y4Y7FKZN",
+      "formattedCitation": "<div class=\"csl-entry\">D\u2019Agata, Anna Lucia. \u201cLATE MINOAN SETTLEMENTS IN CRETE - (E.) Hallager, (B.P.) Hallager (Edd.) The Greek\u2013Swedish Excavations at Agia Aikaterini Square Kastelli, Khania 1970\u20131987, 2001, 2005 and 2008. Volume V: The Late Minoan IIIA:1 and II Settlements. Vol. V:1: Text, Vol. V:2: Plates. (Skrifter Utgivna Av Svenska Institutet i Athen 4\u00b0, 47:5:1\u20132.) Pp. 496 + 218, Figs, b/w &amp; Colour Ills, Pls. Stockholm: Svenska Institutet i Athen, 2016. Cased, SEK200. ISBN: 978-91-7916-064-7.\u201d <i>The Classical Review</i> 68, no. 2 (October 2018): 535\u201337. https://doi.org/10.1017/S0009840X18000665.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "975915186",
+  "subject": [],
+  "title": "Agia Aikaterini square excavations",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A multi-period archaeological site on Kastelli Hill, Khania, Crete, that has occupation stretching more than five millennia. Archaeological fieldwork was undertaken by the Greek\u2013Swedish Excavations and the Danish Institute at Athens beginning in 2005.",
+  "reprPoint": [
+    24.019575186731174,
+    35.51721369353186
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    24.0193751,
+    35.517056,
+    24.0197753,
+    35.5173714
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/553704982"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-09T13:36:01Z",
+  "uri": "https://pleiades.stoa.org/places/975915186",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-09T13:36:02Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-12-09T13:36:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-04T02:28:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T13:45:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T13:45:48Z"
+    },
+    {
+      "comment": "wikidata Agia Aikaterini square excavations (Q108422126)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T13:07:00Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T02:44:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T02:44:16Z"
+    }
+  ]
+}

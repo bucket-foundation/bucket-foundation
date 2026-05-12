@@ -1,0 +1,584 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.986299,
+          41.5657992
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement, ; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/423114/osm-location",
+        "description": "Representative point derived from an OpenStreetMap node.",
+        "location_precision": "precise",
+        "title": "OSM location of Valvisiciolo"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "erobinson",
+      "homepage": null,
+      "name": "Elizabeth Robinson",
+      "uri": "https://pleiades.stoa.org/author/erobinson"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "erobinson",
+          "homepage": null,
+          "name": "Elizabeth Robinson",
+          "uri": "https://pleiades.stoa.org/author/erobinson"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3190868281",
+          "citationDetail": "Node 3190868281",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3190868281",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -550,
+      "title": "OSM location of Valvisiciolo",
+      "provenance": "OpenStreetMap (Node 3190868281, version 1, osm:changeset=26832930, 2014-11-16T22:38:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative point derived from an OpenStreetMap node.",
+      "created": "2014-11-16T22:38:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.986299,
+          41.5657992
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/423114/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "erobinson",
+          "modified": "2016-08-26T15:03:36Z"
+        },
+        {
+          "comment": "Edited summary to conform with editorial guidelines; edited location type.",
+          "modifiedBy": "erobinson",
+          "modified": "2016-08-26T15:03:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-30T14:36:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-16T22:39:21Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-16T22:39:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-16T22:38:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-16T22:38:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -550,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T14:02:00Z",
+      "associationCertainty": "certain",
+      "title": "Norba",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423114/442691",
+      "connectionType": "near",
+      "id": "442691",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-02T03:38:19Z"
+        },
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-02T03:22:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:02:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:02:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:02:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422987",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 D3 Valvisciolo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PME (Casson)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q4N2Z8P5",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://zenon.dainst.org/Record/000253260/HierarchyTree?hierarchy=001346184&recordID=000253260",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P6WGZ28V",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo, and S. Quilici Gigli. \u201cL\u2019abitato di Monte Carbolino.\u201d <i>QuadAEI</i> 14 (1987): 259\u201377.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/268785581",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Becker 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F7X42AT3",
+      "formattedCitation": "<div class=\"csl-entry\">Becker, Jeffrey Alan. \u201cThe Building Blocks of Empire: Civic Architecture, Central Italy, and the Roman Middle Republic.\u201d Doctoral, University of North Carolina at Chapel Hill, 2007. https://cdr.lib.unc.edu/concern/dissertations/rn301242g?locale=en.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/808294590",
+      "citationDetail": "51",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Attema et al. 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/45WAYQWU",
+      "formattedCitation": "<div class=\"csl-entry\">Attema, Peter, G.-J Burgers, and Martijn van Leusen. <i>Regional Pathways to Complexity: Settlement and Land-Use Dynamics in Early Italy from the Bronze Age to the Republican Period</i>. Amsterdam: Amsterdam University Press, 2010. http://www.worldcat.org/oclc/808294590.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.treccani.it/enciclopedia/valvisciolo_(Enciclopedia_dell'_Arte_Antica)/",
+      "citationDetail": "VALVISCIOLO",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TrecEnc",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HHA9M2F7",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Treccani Enciclopedia</i>. Roma: Istituto della Enciclopedia Italiana fondata da Giovanni Treccani. Accessed June 6, 2022. https://www.treccani.it/enciclopedia/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "18988",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+      "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 18988.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Venanzi 1966",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVQXQBTG",
+      "formattedCitation": "<div class=\"csl-entry\">Venanzi, C. \u201cMurature di terrazzamento e Monte Carbolino.\u201d In <i>Bollettino dell\u2019Istituto di storia e di arte del Lazio meridionale, 4.1966</i>, 277\u201382, Abb, 1966.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Angle 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QBMAXGFH",
+      "formattedCitation": "<div class=\"csl-entry\">Angle, M., and A. Gianni. \u201cLa necropoli dell\u2019et\u00e0 del ferro di Caracupa.\u201d In <i>La Valle Pontina nell\u2019antichit\u00e0. Atti del Convegno, Cori 13-14 aprile 1985</i>, 23\u201330, Taf, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici Gigli 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8CZMVQLZ",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici Gigli, Stefania. \u201cFortificazioni e recinti in opera poligonale nella zona di Norba.\u201d In <i>Mura poligonali\u202f: 1\u00b0 Seminario nazionale di studi, Alatri 2 ottobre 1988</i>, 55\u201360. Alatri: s.n., 1988.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Angle 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QBMAXGFH",
+      "formattedCitation": "<div class=\"csl-entry\">Angle, M., and A. Gianni. \u201cLa necropoli dell\u2019et\u00e0 del ferro di Caracupa.\u201d In <i>La Valle Pontina nell\u2019antichit\u00e0. Atti del Convegno, Cori 13-14 aprile 1985</i>, 23\u201330, Taf, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7912848",
+      "citationDetail": "Valvisciolo (Q7912848)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Valvisciolo",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "43 D3 Valvisciolo",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "valvisciolo",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-08-15T11:51:09Z",
+      "uri": "https://pleiades.stoa.org/places/423114/valvisciolo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Valvisciolo",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-15T15:28:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T11:52:44Z"
+        },
+        {
+          "comment": "add batlas name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T11:51:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T11:51:09Z"
+        }
+      ]
+    }
+  ],
+  "id": "423114",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "polygonal masonry",
+    "dare:feature=settlement"
+  ],
+  "title": "Valvisciolo",
+  "provenance": "Barrington Atlas: BAtlas 43 D3 Valvisciolo",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Valvisciolo</p>\r\n<p>\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Iron Age settlement and necropolis located in the Monti Lepini near the abbey of Valvisciolo, characterized by polygonal masonry terrace walls. While the ancient name of the site is unknown, various proposals have been raised, including Sulmo (Savignoni, Mengarelli) and Pometia (Ogilvie). The settlement corresponds to the Latial II B phase and occupation ends ca. the late sixth century B.C.",
+  "reprPoint": [
+    12.986299,
+    41.5657992
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    12.986299,
+    41.5657992,
+    12.986299,
+    41.5657992
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422987"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:35:11Z",
+  "uri": "https://pleiades.stoa.org/places/423114",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references, add wikidata Q7912848",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-15T11:54:06Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-31T22:47:12Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-15T15:25:32Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-02T03:29:44Z"
+    },
+    {
+      "comment": "added DARMC reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-22T18:35:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-20T21:38:50Z"
+    },
+    {
+      "comment": "edited description",
+      "modifiedBy": "jbecker",
+      "modified": "2014-11-16T22:37:06Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:47:20Z"
+    },
+    {
+      "comment": "added connection",
+      "modifiedBy": "jbecker",
+      "modified": "2012-09-28T02:41:18Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:57:41Z"
+    },
+    {
+      "comment": "fixed reference typo",
+      "modifiedBy": "jbecker",
+      "modified": "2012-02-06T17:21:50Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2011-11-22T22:24:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2011-11-22T22:22:03Z"
+    },
+    {
+      "comment": "added contributor",
+      "modifiedBy": "jbecker",
+      "modified": "2011-11-22T22:21:33Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:12:48Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:44:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:13:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:39:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:35:11Z"
+    }
+  ]
+}

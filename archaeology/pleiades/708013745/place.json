@@ -1,0 +1,385 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.906767,
+          37.050761
+        ]
+      },
+      "type": "Feature",
+      "id": "plan-location-of-huzirina-archive-1",
+      "properties": {
+        "snippet": "Archive-repository; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/708013745/plan-location-of-huzirina-archive-1",
+        "description": "Representative locations of the Neo-Assyrian archive at Guzana on the basis of Peders\u00e9n 1987 Plan(s) 87\u201388.",
+        "location_precision": "precise",
+        "title": "Plan location of Huzirina Archive 1"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "ptushingham",
+      "homepage": null,
+      "name": "Poppy Tushingham",
+      "uri": "https://pleiades.stoa.org/author/ptushingham"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "87\u201388",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "plan-location-of-huzirina-archive-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "end": -540,
+      "title": "Plan location of Huzirina Archive 1",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/huzirina-archives-pedersen",
+      "featureType": [
+        "archive-repository"
+      ],
+      "description": "Representative locations of the Neo-Assyrian archive at Guzana on the basis of Peders\u00e9n 1987 Plan(s) 87\u201388.",
+      "created": "2023-02-20T01:14:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.906767,
+          37.050761
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/708013745/plan-location-of-huzirina-archive-1",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:17:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-21T16:04:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T01:14:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T01:14:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T01:14:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-20T01:05:04Z",
+      "associationCertainty": "certain",
+      "title": "Huzirina",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/708013745/huzirina",
+      "connectionType": "at",
+      "id": "huzirina",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:17:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-21T16:04:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T01:05:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T01:05:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/249509021",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "178\u2013179",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+      "citationDetail": "178\u2013179",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peders\u00e9n 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+      "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/atae/huzirina_001",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ATAE Huzirina 1",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Huzirina Archive 1",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "178\u2013179",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "huzirina-archive-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern scholarly designation for the archive.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-02-20T01:07:27Z",
+      "uri": "https://pleiades.stoa.org/places/708013745/huzirina-archive-1",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:17:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-21T16:04:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T01:07:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T01:07:27Z"
+        }
+      ]
+    }
+  ],
+  "id": "708013745",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Huzirina Archive 1",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+  ],
+  "details": "<p>The library was located in a secondary position outside a private house.</p>\r\n<p><img class=\"image-inline external-image\" height=\"228\" src=\"http://oracc.ub.uni-muenchen.de/atae/images/Plan87_general_plan_Huzirina1_p179.png\" width=\"363\" /></p>\r\n<p><img class=\"image-inline external-image\" height=\"352\" src=\"http://oracc.ub.uni-muenchen.de/atae/images/Plan88_section_tell_Huzirina1_p180.png\" width=\"322\" /></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "In Huzirina, about 400 clay tablets were discovered in a secondary position outside a private house with a central courtyard in area F. Likely, this library was previously located in the private house since a similar type of clay tablet was also found in the central courtyard. The library dates from 718 BC to the end of the Assyrian Empire and belonged to a family of \u0161ang\u00fb-priests: Qurdi-Nergal, his son Mu\u0161allim-Baba and others. The library consists of incantations, incantation rituals, medical texts, prayers, hymns and lexical lists, including god-lists.",
+  "reprPoint": [
+    38.906767,
+    37.050761
+  ],
+  "placeTypes": [
+    "archive-repository"
+  ],
+  "bbox": [
+    38.906767,
+    37.050761,
+    38.906767,
+    37.050761
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/249509021"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-08T18:06:43Z",
+  "uri": "https://pleiades.stoa.org/places/708013745",
+  "creators": [
+    {
+      "username": "tseidler",
+      "homepage": null,
+      "name": "Thomas Seidler",
+      "uri": "https://pleiades.stoa.org/author/tseidler"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added ORACC reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-11T16:54:07Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "tseidler",
+      "modified": "2023-04-08T18:06:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-24T18:17:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tseidler",
+      "modified": "2023-03-21T16:04:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-03-21T12:56:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-20T01:02:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-20T01:02:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-20T01:02:36Z"
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.3833549,
+          40.6532536
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Nuraghe, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/992965242/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Sa Femina Nuraghe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3742192269",
+          "citationDetail": "Node 3742192269",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM location of Sa Femina Nuraghe",
+      "provenance": "OpenStreetMap (Node 3742192269, version 8, osm:changeset=143271621, 2023-10-28T16:38:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2025-11-25T16:46:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.3833549,
+          40.6532536
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/992965242/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:46:19Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:46:18Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-13T00:30:17Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-20T03:23:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T23:09:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T22:11:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T22:11:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-05T01:44:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-14T05:15:11Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-14T05:14:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-14T05:13:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-14T05:13:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T14:03:29Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/992965242/472014",
+      "connectionType": "connection",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://web.archive.org/web/20171031081922/http://www.comune.olmedo.ss.it/pg/28/nuraghe-sa-femina",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nuraghe Sa Femina",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NJIP5BYK",
+      "formattedCitation": "<div class=\"csl-entry\">Sito Istituzionale Comune di Olmedo. \u201cNuraghe Sa Femina,\u201d October 31, 2017. https://web.archive.org/web/20171031081922/http://www.comune.olmedo.ss.it/pg/28/nuraghe-sa-femina.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q122206328",
+      "citationDetail": "Sa Femina Nuraghe (Q122206328)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "992965242",
+  "subject": [
+    "nuraghe",
+    "extant remains"
+  ],
+  "title": "Sa Femina Nuraghe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A poorly preserved, single-tower nuraghe located near Olmedo, Sardinia.",
+  "reprPoint": [
+    8.3833549,
+    40.6532536
+  ],
+  "placeTypes": [
+    "nuraghe"
+  ],
+  "bbox": [
+    8.3833549,
+    40.6532536,
+    8.3833549,
+    40.6532536
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-25T16:50:10Z",
+  "uri": "https://pleiades.stoa.org/places/992965242",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:50:11Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:50:10Z"
+    },
+    {
+      "comment": "updated Nuraghe Sa Femina reference to use wayback copy",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-21T21:29:30Z"
+    },
+    {
+      "comment": "wikidata Q122206328",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-13T00:30:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:09:19Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:09:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-05T01:43:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-14T05:15:43Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-14T05:13:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-14T05:13:00Z"
+    }
+  ]
+}

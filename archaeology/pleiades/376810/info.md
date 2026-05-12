@@ -1,0 +1,14 @@
+# Rhinia
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/376810
+- **ID**: 376810
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Rhinia
+
+## Description
+
+An ancient place, cited: BAtlas 38 unlocated Rhinia

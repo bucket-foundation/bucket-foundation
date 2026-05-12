@@ -1,0 +1,342 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3604464,
+            51.3811089
+          ],
+          [
+            -2.3601541,
+            51.3811574
+          ],
+          [
+            -2.3602131,
+            51.3812847
+          ],
+          [
+            -2.3605001,
+            51.3812311
+          ],
+          [
+            -2.3604464,
+            51.3811089
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "temple-of-sulis-minerva",
+      "properties": {
+        "snippet": "Temple-2; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/360820443/temple-of-sulis-minerva",
+        "description": "Polygon based on OpenStreetMap representing the Temple of Sulis Minerva after Cunliffe 1978.",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Sulis Minerva"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1066141368",
+          "citationDetail": "Way 1066141368",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1066141368",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1019959510",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cunliffe 1978",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CC63RCKM",
+          "formattedCitation": "<div class=\"csl-entry\">Cunliffe, Barry, and Roman Baths Museum. <i>The Roman Baths: A Guide to the Baths and Roman Museum</i>. Bath: Bath Archaeological Trust, 1978. http://www.worldcat.org/oclc/1019959510.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-of-sulis-minerva",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 410,
+      "title": "OSM location of Temple of Sulis Minerva",
+      "provenance": "OpenStreetMap (Way 1066141368, version 1, osm:changeset=121852955, 2022-06-02T13:46:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon based on OpenStreetMap representing the Temple of Sulis Minerva after Cunliffe 1978.",
+      "created": "2022-06-02T13:53:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3604464,
+            51.3811089
+          ],
+          [
+            -2.3601541,
+            51.3811574
+          ],
+          [
+            -2.3602131,
+            51.3812847
+          ],
+          [
+            -2.3605001,
+            51.3812311
+          ],
+          [
+            -2.3604464,
+            51.3811089
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/360820443/temple-of-sulis-minerva",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:41:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T22:36:49Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T14:09:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T13:56:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T13:54:49Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T13:53:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T13:53:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-02T13:55:25Z",
+      "associationCertainty": "certain",
+      "title": "Aquae Sulis",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/360820443/aquae-sulis",
+      "connectionType": "at",
+      "id": "aquae-sulis",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:41:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T22:36:49Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T14:09:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T13:56:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T13:55:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T13:55:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79299",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1019959510",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cunliffe 1978",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CC63RCKM",
+          "formattedCitation": "<div class=\"csl-entry\">Cunliffe, Barry, and Roman Baths Museum. <i>The Roman Baths: A Guide to the Baths and Roman Museum</i>. Bath: Bath Archaeological Trust, 1978. http://www.worldcat.org/oclc/1019959510.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1019959510",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cunliffe 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CC63RCKM",
+      "formattedCitation": "<div class=\"csl-entry\">Cunliffe, Barry, and Roman Baths Museum. <i>The Roman Baths: A Guide to the Baths and Roman Museum</i>. Bath: Bath Archaeological Trust, 1978. http://www.worldcat.org/oclc/1019959510.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "360820443",
+  "subject": [],
+  "title": "Temple of Sulis Minerva",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "1st century CE temple to Minerva at the Aquae Sulis in Bath, England in use roughly until 410 AD.",
+  "reprPoint": [
+    -2.3603271360163403,
+    51.38119541360981
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    -2.3605001,
+    51.3811089,
+    -2.3601541,
+    51.3812847
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79299"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-02T13:52:57Z",
+  "uri": "https://pleiades.stoa.org/places/360820443",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-04T13:41:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T22:36:49Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-02T14:09:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T13:56:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T13:52:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T13:52:57Z"
+    }
+  ]
+}

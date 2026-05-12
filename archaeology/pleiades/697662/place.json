@@ -1,0 +1,635 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8087993,
+            31.8012878
+          ],
+          [
+            35.8085808,
+            31.8017187
+          ],
+          [
+            35.8082594,
+            31.8013813
+          ],
+          [
+            35.8079953,
+            31.8009929
+          ],
+          [
+            35.8077441,
+            31.8004438
+          ],
+          [
+            35.8076258,
+            31.8001158
+          ],
+          [
+            35.8075046,
+            31.7998999
+          ],
+          [
+            35.8074547,
+            31.799777
+          ],
+          [
+            35.8075057,
+            31.7993621
+          ],
+          [
+            35.8079429,
+            31.7997724
+          ],
+          [
+            35.8081521,
+            31.7996767
+          ],
+          [
+            35.8086402,
+            31.7995171
+          ],
+          [
+            35.8090262,
+            31.7995665
+          ],
+          [
+            35.8093608,
+            31.7996419
+          ],
+          [
+            35.8096648,
+            31.7997497
+          ],
+          [
+            35.8098737,
+            31.7998806
+          ],
+          [
+            35.8100419,
+            31.8000353
+          ],
+          [
+            35.810181,
+            31.8002567
+          ],
+          [
+            35.8103086,
+            31.8006843
+          ],
+          [
+            35.8104656,
+            31.8013069
+          ],
+          [
+            35.8106412,
+            31.8017283
+          ],
+          [
+            35.8103461,
+            31.8017146
+          ],
+          [
+            35.8100994,
+            31.8018241
+          ],
+          [
+            35.8098419,
+            31.801856
+          ],
+          [
+            35.8096336,
+            31.8021081
+          ],
+          [
+            35.8093859,
+            31.8021478
+          ],
+          [
+            35.8091319,
+            31.8020537
+          ],
+          [
+            35.8092177,
+            31.8013607
+          ],
+          [
+            35.8087993,
+            31.8012878
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-hesban",
+      "properties": {
+        "snippet": "Tell; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/697662/osm-location-of-tell-hesban",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Hesban"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/695615687",
+          "citationDetail": "Way 695615687",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=695615687",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-hesban",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": 640,
+      "title": "OSM location of Tell Hesban",
+      "provenance": "OpenStreetMap (Way 695615687, version 3, osm:changeset=145486432, 2023-12-25T06:00:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-12-25T06:02:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8087993,
+            31.8012878
+          ],
+          [
+            35.8085808,
+            31.8017187
+          ],
+          [
+            35.8082594,
+            31.8013813
+          ],
+          [
+            35.8079953,
+            31.8009929
+          ],
+          [
+            35.8077441,
+            31.8004438
+          ],
+          [
+            35.8076258,
+            31.8001158
+          ],
+          [
+            35.8075046,
+            31.7998999
+          ],
+          [
+            35.8074547,
+            31.799777
+          ],
+          [
+            35.8075057,
+            31.7993621
+          ],
+          [
+            35.8079429,
+            31.7997724
+          ],
+          [
+            35.8081521,
+            31.7996767
+          ],
+          [
+            35.8086402,
+            31.7995171
+          ],
+          [
+            35.8090262,
+            31.7995665
+          ],
+          [
+            35.8093608,
+            31.7996419
+          ],
+          [
+            35.8096648,
+            31.7997497
+          ],
+          [
+            35.8098737,
+            31.7998806
+          ],
+          [
+            35.8100419,
+            31.8000353
+          ],
+          [
+            35.810181,
+            31.8002567
+          ],
+          [
+            35.8103086,
+            31.8006843
+          ],
+          [
+            35.8104656,
+            31.8013069
+          ],
+          [
+            35.8106412,
+            31.8017283
+          ],
+          [
+            35.8103461,
+            31.8017146
+          ],
+          [
+            35.8100994,
+            31.8018241
+          ],
+          [
+            35.8098419,
+            31.801856
+          ],
+          [
+            35.8096336,
+            31.8021081
+          ],
+          [
+            35.8093859,
+            31.8021478
+          ],
+          [
+            35.8091319,
+            31.8020537
+          ],
+          [
+            35.8092177,
+            31.8013607
+          ],
+          [
+            35.8087993,
+            31.8012878
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/697662/osm-location-of-tell-hesban",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-08T18:08:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-25T06:03:34Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-25T06:03:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-25T06:02:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-25T06:02:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "71 B2 Esbous",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/695616438",
+      "citationDetail": "2 626-30",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NEAEHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4Q6WNJMK",
+      "formattedCitation": "<div class=\"csl-entry\">S\u030ct\u0323ern, Efrayim, ed. <i>New Encyclopedia of Archaeological Excavations in the Holy Land</i>. 5 vols. Jerusalem: Simon &amp; Schuster, 1993. http://www.worldcat.org/oclc/695616438.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/318358UEsb",
+      "citationDetail": "Esbous/Heshbon (Syria)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "Kiesling, Brady. ToposText \u2013 a Reference Tool for Greek Civilization. Version 2.0. Aikaterini Laskaridis Foundation, 2016-.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1615584",
+      "citationDetail": "Heshbon (Q1615584)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "12384",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Esbous",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "esbous",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 71 B2 Esbous",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-09-17T13:19:03Z",
+      "uri": "https://pleiades.stoa.org/places/697662/esbous",
+      "creators": [
+        {
+          "username": null,
+          "name": "S.T. Parker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:00:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-09-17T13:50:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-17T13:33:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-17T13:19:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "697662",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=1",
+    "dare:feature=major settlement"
+  ],
+  "title": "Esbous",
+  "provenance": "Barrington Atlas: BAtlas 71 B2 Esbous",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Tell Hesban</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 71 B2 Esbous",
+  "reprPoint": [
+    35.80901429162764,
+    31.800741182087545
+  ],
+  "placeTypes": [
+    "settlement",
+    "tell"
+  ],
+  "bbox": [
+    35.8074547,
+    31.7993621,
+    35.8106412,
+    31.8021478
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-07T20:47:48Z",
+  "uri": "https://pleiades.stoa.org/places/697662",
+  "creators": [
+    {
+      "username": null,
+      "name": "S.T. Parker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2024-08-08T18:09:11Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-25T06:02:17Z"
+    },
+    {
+      "comment": "add ToposText reference provided by bkiesling",
+      "modifiedBy": "admin",
+      "modified": "2018-06-07T20:47:50Z"
+    },
+    {
+      "comment": "DARE feature tag fix.",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-23T19:33:32Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:16:52Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:00:22Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T22:06:12Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T21:09:41Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-09-17T13:50:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-17T13:33:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-17T13:19:03Z"
+    }
+  ]
+}

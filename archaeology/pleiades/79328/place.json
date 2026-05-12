@@ -1,0 +1,532 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.5961797,
+            50.9238274
+          ],
+          [
+            -0.5948727,
+            50.9236731
+          ],
+          [
+            -0.5949658,
+            50.9233896
+          ],
+          [
+            -0.5950918,
+            50.923006
+          ],
+          [
+            -0.5951913,
+            50.9227033
+          ],
+          [
+            -0.5952394,
+            50.9227009
+          ],
+          [
+            -0.5952972,
+            50.9226985
+          ],
+          [
+            -0.5964328,
+            50.9226471
+          ],
+          [
+            -0.5964071,
+            50.9230924
+          ],
+          [
+            -0.5961797,
+            50.9238274
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bignor-roman-villa",
+      "properties": {
+        "snippet": "Villa; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/79328/osm-location-of-bignor-roman-villa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bignor Roman Villa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/234465727",
+          "citationDetail": "Way 234465727",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=234465727",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bignor-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 410,
+      "title": "OSM location of Bignor Roman Villa",
+      "provenance": "OpenStreetMap (Way 234465727, version 8, osm:changeset=138540530, 2023-07-15T11:12:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-10-18T15:19:38Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.5961797,
+            50.9238274
+          ],
+          [
+            -0.5948727,
+            50.9236731
+          ],
+          [
+            -0.5949658,
+            50.9233896
+          ],
+          [
+            -0.5950918,
+            50.923006
+          ],
+          [
+            -0.5951913,
+            50.9227033
+          ],
+          [
+            -0.5952394,
+            50.9227009
+          ],
+          [
+            -0.5952972,
+            50.9226985
+          ],
+          [
+            -0.5964328,
+            50.9226471
+          ],
+          [
+            -0.5964071,
+            50.9230924
+          ],
+          [
+            -0.5961797,
+            50.9238274
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/79328/osm-location-of-bignor-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-13T15:55:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-20T10:56:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-18T15:20:44Z"
+        },
+        {
+          "comment": "imported new OSM-derived location as underlying OSM data for previously published OSM-derived location is deprecated.",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-18T15:20:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-18T15:19:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-18T15:19:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "8 G4 Bignor",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/624430910",
+      "citationDetail": "182",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Scott 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EGWGRRDJ",
+      "formattedCitation": "<div class=\"csl-entry\">Scott, Eleanor. <i>A Gazetteer of Roman Villas in Britain</i>. Leicester: Leicester University Archaeological Research Centre, 1993. http://www.worldcat.org/oclc/624430910.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Bignor_Roman_Villa",
+      "citationDetail": "Bignor Roman Villa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Bignor Roman Villa.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=249475",
+      "citationDetail": "monument no. 249475",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=bignor",
+      "citationDetail": "BIGNOR Sussex, England",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.bignorromanvilla.co.uk/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Bignor Roman Villa",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/15460",
+      "citationDetail": "GEO ID 15460: BIgnor",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "20786",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/2655682/bignor.html",
+      "citationDetail": "2655682: Bignor",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1339031",
+      "citationDetail": "Q1339031: Bignor Roman villa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bignor Roman Villa",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1339031",
+          "citationDetail": "Q1339031: Bignor Roman Villa",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bignor-roman-villa",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-10-18T15:21:42Z",
+      "uri": "https://pleiades.stoa.org/places/79328/bignor-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Bignor Roman Villa",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-20T10:57:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-18T15:21:51Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-18T15:21:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-18T15:21:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "79328",
+  "subject": [
+    "dare:major=0",
+    "villa",
+    "dare:feature=villa",
+    "extant remains",
+    "dare:ancient=0",
+    "Mosaic"
+  ],
+  "title": "Bignor",
+  "provenance": "Barrington Atlas: BAtlas 8 G4 Bignor",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Bignor.</p>\r\n<div>\u00a0</div>\r\n<div>The villa was discovered in 1811 and had over 60 rooms. The site lies near to the course of the Stanegate.</div>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman-style courtyard villa located 9 miles northeast of Noviomagus Regentium (modern Chichester).",
+  "reprPoint": [
+    -0.5957013078938322,
+    50.92322347184721
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -0.5964328,
+    50.9226471,
+    -0.5948727,
+    50.9238274
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-30T22:34:44Z",
+  "uri": "https://pleiades.stoa.org/places/79328",
+  "creators": [
+    {
+      "username": null,
+      "name": "A.S. Esmonde Cleary"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-20T13:31:27Z"
+    },
+    {
+      "comment": "DARMC 20786",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-23T19:57:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-23T19:56:23Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-19T18:09:30Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-29T23:03:49Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-29T23:02:44Z"
+    },
+    {
+      "comment": "edited description, added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-03-16T18:14:18Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:29:38Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:29:44Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T05:48:05Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:04:05Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-11-23T19:29:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:48:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:34:44Z"
+    }
+  ]
+}

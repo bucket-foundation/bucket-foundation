@@ -1,0 +1,694 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7150104,
+            37.9612127
+          ],
+          [
+            23.7150135,
+            37.9611894
+          ],
+          [
+            23.7150114,
+            37.9611726
+          ],
+          [
+            23.715044,
+            37.961159
+          ],
+          [
+            23.7150958,
+            37.961155
+          ],
+          [
+            23.7151751,
+            37.9611598
+          ],
+          [
+            23.7152452,
+            37.9611782
+          ],
+          [
+            23.7152747,
+            37.9611966
+          ],
+          [
+            23.7153285,
+            37.9612095
+          ],
+          [
+            23.7153468,
+            37.9612255
+          ],
+          [
+            23.7153814,
+            37.9612415
+          ],
+          [
+            23.7154119,
+            37.9612439
+          ],
+          [
+            23.7154434,
+            37.9612487
+          ],
+          [
+            23.7154881,
+            37.9612567
+          ],
+          [
+            23.7155054,
+            37.9612712
+          ],
+          [
+            23.7155369,
+            37.9612872
+          ],
+          [
+            23.7155715,
+            37.9612984
+          ],
+          [
+            23.7155847,
+            37.9613112
+          ],
+          [
+            23.7156233,
+            37.9613272
+          ],
+          [
+            23.7156497,
+            37.9613361
+          ],
+          [
+            23.7157016,
+            37.9613401
+          ],
+          [
+            23.7157188,
+            37.9613305
+          ],
+          [
+            23.7157503,
+            37.9613401
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Hill",
+        "link": "https://pleiades.stoa.org/places/585959/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/808141006",
+          "citationDetail": "Way 808141006",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=808141006",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "end": null,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 808141006, version 1, osm:changeset=85729947, 2020-05-25T19:09:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hill"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-03-31T02:15:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7150104,
+            37.9612127
+          ],
+          [
+            23.7150135,
+            37.9611894
+          ],
+          [
+            23.7150114,
+            37.9611726
+          ],
+          [
+            23.715044,
+            37.961159
+          ],
+          [
+            23.7150958,
+            37.961155
+          ],
+          [
+            23.7151751,
+            37.9611598
+          ],
+          [
+            23.7152452,
+            37.9611782
+          ],
+          [
+            23.7152747,
+            37.9611966
+          ],
+          [
+            23.7153285,
+            37.9612095
+          ],
+          [
+            23.7153468,
+            37.9612255
+          ],
+          [
+            23.7153814,
+            37.9612415
+          ],
+          [
+            23.7154119,
+            37.9612439
+          ],
+          [
+            23.7154434,
+            37.9612487
+          ],
+          [
+            23.7154881,
+            37.9612567
+          ],
+          [
+            23.7155054,
+            37.9612712
+          ],
+          [
+            23.7155369,
+            37.9612872
+          ],
+          [
+            23.7155715,
+            37.9612984
+          ],
+          [
+            23.7155847,
+            37.9613112
+          ],
+          [
+            23.7156233,
+            37.9613272
+          ],
+          [
+            23.7156497,
+            37.9613361
+          ],
+          [
+            23.7157016,
+            37.9613401
+          ],
+          [
+            23.7157188,
+            37.9613305
+          ],
+          [
+            23.7157503,
+            37.9613401
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/585959/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-09T12:28:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-31T02:15:43Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-31T02:15:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-31T02:15:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-31T02:15:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-07-25T17:56:01Z",
+      "associationCertainty": "certain",
+      "title": "Athenae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/585959/athenae",
+      "connectionType": "part_of_physical",
+      "id": "athenae",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-08-04T20:12:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-25T17:56:07Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-25T17:56:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-25T17:56:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579885",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "59 Sikelia hill",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "45, 458",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Judeich 1931",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7BDW7C76",
+      "formattedCitation": "<div class=\"csl-entry\">Judeich, Walther. <i>Topographie von Athen</i>. 2., vollst\u00e4ndig neubearb. Handbuch Der Altertumswissenschaft, 3. Abt., 2. T., 2. Bd. M\u00fcnchen: Beck, 1931.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237LSik",
+      "citationDetail": "Sikelia hill? (Athens)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q25163830",
+      "citationDetail": "Q25163830: Sikelias hill",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/",
+      "citationDetail": "Sikelia Hil",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Judith Binder's Opus Magnum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITY365C",
+      "formattedCitation": "<div class=\"csl-entry\">www.dipylon.org. \u201cJudith Binder\u2019s Opus Magnum | Dipylon,\u201d May 7, 2018. https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:8.11.12",
+      "citationDetail": "8.11.12",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sikelia hill",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "p. 915",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sikelia-hill",
+      "end": -330,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 59 Sikelia hill",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-08-09T02:43:42Z",
+      "uri": "https://pleiades.stoa.org/places/585959/sikelia-hill",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.S. Traill"
+        }
+      ],
+      "attested": "Sikelia hill",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "add BAtl Dir reference, change name type",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-09T12:28:10Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:46:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-10T22:07:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:04:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T21:29:45Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sikelia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:8.11.12",
+          "citationDetail": "8.11.12",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "sikelia",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-08-09T02:45:50Z",
+      "uri": "https://pleiades.stoa.org/places/585959/sikelia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u03a3\u03b9\u03ba\u03b5\u03bb\u03af\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-09T12:27:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-09T02:45:57Z"
+        },
+        {
+          "comment": "add Greek name, Pausanias reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-09T02:45:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-09T02:45:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "585959",
+  "subject": [],
+  "title": "Sikelia hill",
+  "provenance": "Barrington Atlas: BAtlas 59 Sikelia hill",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: SW Mouseion?</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 59 unlocated Sikelia hill",
+  "reprPoint": [
+    23.71536583134758,
+    37.961235959786904
+  ],
+  "placeTypes": [
+    "unlocated",
+    "hill"
+  ],
+  "bbox": [
+    23.7150104,
+    37.961155,
+    23.7157503,
+    37.9613401
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579885"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T21:29:45Z",
+  "uri": "https://pleiades.stoa.org/places/585959",
+  "creators": [
+    {
+      "username": null,
+      "name": "J.S. Traill"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-31T02:13:12Z"
+    },
+    {
+      "comment": "update place type, add references incl. Topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-25T17:54:54Z"
+    },
+    {
+      "comment": "Changing 'unlocated toponym' type to 'unlocated'",
+      "modifiedBy": "sgillies",
+      "modified": "2012-07-23T19:24:44Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:46:51Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:32:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T22:07:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:04:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T21:29:45Z"
+    }
+  ]
+}

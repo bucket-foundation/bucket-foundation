@@ -1,0 +1,14 @@
+# Kamiros
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/589836
+- **ID**: 589836
+- **Coords (lng, lat)**: [27.921195, 36.336185]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Kamiros, Kamiris, Κάμειρος Σκάλα, Camiro
+
+## Description
+
+An ancient city of Rhodes, with evidence for Mycenaean occupation. From the eighth century BC, a Greek settlement flourished, with a temple dedicated to the goddess Athena on its acropolis. The Hellenistic phase of the site followed the tenets of Hippodamian planning. The city was twice destroyed by earthquakes (226 and 142 BC).

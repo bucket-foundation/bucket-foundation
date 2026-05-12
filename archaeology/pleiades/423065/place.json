@@ -1,0 +1,617 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5029274,
+            41.8678149
+          ],
+          [
+            12.5029827,
+            41.8678281
+          ],
+          [
+            12.5030293,
+            41.8677228
+          ],
+          [
+            12.5029883,
+            41.8677103
+          ],
+          [
+            12.502981,
+            41.8677261
+          ],
+          [
+            12.5028917,
+            41.8677196
+          ],
+          [
+            12.5028588,
+            41.8677959
+          ],
+          [
+            12.5029327,
+            41.8677986
+          ],
+          [
+            12.5029274,
+            41.8678149
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sepolcro-di-geta",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/423065/osm-location-of-sepolcro-di-geta",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Sepolcro di Geta"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/117747180",
+          "citationDetail": "Way 117747180",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=117747180",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-sepolcro-di-geta",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Sepolcro di Geta",
+      "provenance": "OpenStreetMap (Way 117747180, version 7, osm:changeset=141542716, 2023-09-21T06:45:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-02-16T02:18:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5029274,
+            41.8678149
+          ],
+          [
+            12.5029827,
+            41.8678281
+          ],
+          [
+            12.5030293,
+            41.8677228
+          ],
+          [
+            12.5029883,
+            41.8677103
+          ],
+          [
+            12.502981,
+            41.8677261
+          ],
+          [
+            12.5028917,
+            41.8677196
+          ],
+          [
+            12.5028588,
+            41.8677959
+          ],
+          [
+            12.5029327,
+            41.8677986
+          ],
+          [
+            12.5029274,
+            41.8678149
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423065/osm-location-of-sepolcro-di-geta",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-29T15:55:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-16T13:18:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T02:18:33Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T02:18:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T02:18:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T02:18:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T14:01:56Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": 200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423065/423025",
+      "connectionType": "at",
+      "id": "423025",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "wikidata Tomb of Geta (Q19545588)",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-29T15:55:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:01:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:01:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:01:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q19545588",
+          "citationDetail": "Tomb of Geta (Q19545588)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-04-24T18:02:33Z",
+      "associationCertainty": "certain",
+      "title": "Via Appia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423065/via-appia",
+      "connectionType": "on",
+      "id": "via-appia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-03T20:00:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-01T15:27:52Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-24T18:02:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-24T18:02:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/356966898",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 C2 Sep. Geta",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "32-33",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici 1989a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WRM3FG4X",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo. <i>Via Appia, da Porta Capena ai Colli Albani</i>. Itinerari d\u2019arte e di cultura. Roma: Flli. Palombi, 1989.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Appian_Way",
+      "citationDetail": "Appian Way",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Appian Way.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q19545588",
+      "citationDetail": "Tomb of Geta (Q19545588)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "20655",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=9410",
+      "citationDetail": "9410: Sepolcro di Geta all'Appia Antica",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sep. Geta",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "sep-geta",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 43 C2 Sep. Geta",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-10T22:34:26Z",
+      "uri": "https://pleiades.stoa.org/places/423065/sep-geta",
+      "creators": [
+        {
+          "username": null,
+          "name": "L. Quilici"
+        },
+        {
+          "username": null,
+          "name": "S. Quilici Gigli"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:57:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-11T05:13:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:39:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:34:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "423065",
+  "subject": [
+    "dare:major=0",
+    "extant remains",
+    "dare:feature=temple",
+    "dare:ancient=1",
+    "tomb"
+  ],
+  "title": "Sep. Geta",
+  "provenance": "Barrington Atlas: BAtlas 43 C2 Sep. Geta",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "<p>None</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman tomb along the Via Appia that is traditionally believed to be that of Publius Septimius Geta, the younger son of Septimius Severus.",
+  "reprPoint": [
+    12.502946112946505,
+    41.86776550077949
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.5028588,
+    41.8677103,
+    12.5030293,
+    41.8678281
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/356966898",
+    "https://pleiades.stoa.org/places/426587"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:34:25Z",
+  "uri": "https://pleiades.stoa.org/places/423065",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "info.roma 9410: Sepolcro di Geta all'Appia Antica",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-29T15:54:10Z"
+    },
+    {
+      "comment": "created darmc citation to preserve project linkage after DARMC location was withdrawn",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-16T13:20:02Z"
+    },
+    {
+      "comment": "update wikidata Q19545588",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-16T02:19:43Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-15T03:23:54Z"
+    },
+    {
+      "comment": "added categories",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-08T19:19:52Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-16T14:58:52Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:46:41Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:57:12Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:14:18Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:13:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:39:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:34:26Z"
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.885079,
+          42.0398816
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-stele-ponte-di-apollo",
+      "properties": {
+        "snippet": "Monument; AD 200 - AD 299",
+        "link": "https://pleiades.stoa.org/places/32793053/osm-location-of-stele-ponte-di-apollo",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Stele Ponte di Apollo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2760377830",
+          "citationDetail": "Node 2760377830",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2760377830",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-stele-ponte-di-apollo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 299,
+      "title": "OSM location of Stele Ponte di Apollo",
+      "provenance": "OpenStreetMap (Node 2760377830, version 2, osm:changeset=123243522, 2022-07-05T16:52:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-07-14T20:11:00Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.885079,
+          42.0398816
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/32793053/osm-location-of-stele-ponte-di-apollo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:53:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T21:06:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T21:06:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T20:11:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T20:11:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T20:11:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-14T20:11:26Z",
+      "associationCertainty": "certain",
+      "title": "Pons Apollinis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/32793053/4866194707",
+      "connectionType": "at",
+      "id": "4866194707",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T20:11:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T20:11:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T20:11:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433035",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.santamarinella.com/arte_cultura/ponti_romani.php",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "I PONTI ROMANI",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.manfredclauss.de/",
+      "citationDetail": "09401407",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "EDCS",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YG2BW6GH",
+      "formattedCitation": "<div class=\"csl-entry\">Clauss, Manfred, Anne Kolb, Wolfgang A. Slaby, and Barbara Woitas, eds. <i>Epigraphik-Datenbank\u00a0 Clauss / Slaby</i>. Eichst\u00e4tt: Universit\u00e4t Eichst\u00e4tt-Ingolstadt, n.d. http://www.manfredclauss.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/journal/anneepig",
+      "citationDetail": "1973, 00226",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4EG4F7MC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>L\u2019Ann\u00e9e Epigraphique: Revue Des Publications \u00c9pigrafiques Relatives a l\u2019antiquit\u00e9 Romaine</i>. Paris: Presses Universitaires de France, 1889. https://www.jstor.org/journal/anneepig.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "32793053",
+  "subject": [],
+  "title": "Stele Ponte di Apollo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A stele carrying a Latin inscription that dates to the Severan period (ca. 206 CE) recording the restoration of the bridge that had been destroyed by the \"fury of the sea\".",
+  "reprPoint": [
+    11.885079,
+    42.0398816
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    11.885079,
+    42.0398816,
+    11.885079,
+    42.0398816
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433035"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-14T20:11:25Z",
+  "uri": "https://pleiades.stoa.org/places/32793053",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-14T23:53:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-14T21:06:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-14T21:06:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-14T21:02:42Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-14T20:12:29Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-14T20:11:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-14T20:11:25Z"
+    }
+  ]
+}

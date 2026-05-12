@@ -1,0 +1,344 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.5536645,
+            16.0143761
+          ],
+          [
+            32.5543821,
+            16.0143663
+          ],
+          [
+            32.5543476,
+            16.0134558
+          ],
+          [
+            32.5536341,
+            16.0134909
+          ],
+          [
+            32.5536645,
+            16.0143761
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "abu-nafisa",
+      "properties": {
+        "snippet": "Fort-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/491299691/abu-nafisa",
+        "description": "Polygon representing the visible remains at Abu Nafisa, derived from an OpenStreetMap Way after Drzewiecki 2022.",
+        "location_precision": "precise",
+        "title": "OSM location of Abu Nafisa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1158752626",
+          "citationDetail": "Way 1158752626",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1158752626",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://worldcat.org/oclc/1355983636",
+          "citationDetail": "pages 28-29, 34-35, 95",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Drzewiecki 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M3ZHFI2Q",
+          "formattedCitation": "<div class=\"csl-entry\">Drzewiecki, Mariusz, and Aneta Cedro. <i>Forts of North Omdurman</i>. British Museum Publications on Egypt and Sudan 14. Leuven: Peeters, 2022. https://worldcat.org/oclc/1355983636.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "abu-nafisa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Abu Nafisa",
+      "provenance": "OpenStreetMap (Way 1158752626, version 2, osm:changeset=151292004, 2024-05-14T03:27:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Polygon representing the visible remains at Abu Nafisa, derived from an OpenStreetMap Way after Drzewiecki 2022.",
+      "created": "2023-03-31T16:02:24Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.5536645,
+            16.0143761
+          ],
+          [
+            32.5543821,
+            16.0143663
+          ],
+          [
+            32.5543476,
+            16.0134558
+          ],
+          [
+            32.5536341,
+            16.0134909
+          ],
+          [
+            32.5536645,
+            16.0143761
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/491299691/abu-nafisa",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-14T03:28:12Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-03T18:00:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-03-31T16:03:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-03-31T16:03:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2023-03-31T16:02:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-03-31T16:02:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-31T16:02:04Z",
+      "associationCertainty": "certain",
+      "title": "Nilus (river)",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/491299691/nilus-river",
+      "connectionType": "on",
+      "id": "nilus-river",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-03T18:00:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-03-31T16:03:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-03-31T16:02:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-03-31T16:02:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/727172",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/oclc/1355983636",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Drzewiecki 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M3ZHFI2Q",
+      "formattedCitation": "<div class=\"csl-entry\">Drzewiecki, Mariusz, and Aneta Cedro. <i>Forts of North Omdurman</i>. British Museum Publications on Egypt and Sudan 14. Leuven: Peeters, 2022. https://worldcat.org/oclc/1355983636.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Abu_Nafisa_fort",
+      "citationDetail": "Abu Nafisa fort",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q84573232",
+      "citationDetail": "Abu Nafisa fort (Q84573232)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "491299691",
+  "subject": [],
+  "title": "Abu Nafisa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Fortified site in Upper Nubia dated to the late Meroitic and post-Merotic periods.",
+  "reprPoint": [
+    32.55400990951418,
+    16.013922645966268
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    32.5536341,
+    16.0134558,
+    32.5543821,
+    16.0143761
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/727172"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-31T16:01:41Z",
+  "uri": "https://pleiades.stoa.org/places/491299691",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q84573232",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-11T15:48:00Z"
+    },
+    {
+      "comment": "add wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-14T03:28:46Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-03T18:00:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2023-03-31T16:03:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2023-03-31T16:01:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2023-03-31T16:01:41Z"
+    }
+  ]
+}

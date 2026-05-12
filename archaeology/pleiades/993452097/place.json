@@ -1,0 +1,360 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.1734035,
+            36.4977638
+          ],
+          [
+            9.1730383,
+            36.4977755
+          ],
+          [
+            9.1729985,
+            36.4977755
+          ],
+          [
+            9.172971,
+            36.4976474
+          ],
+          [
+            9.172965,
+            36.497319
+          ],
+          [
+            9.1733687,
+            36.4973003
+          ],
+          [
+            9.1733989,
+            36.4973905
+          ],
+          [
+            9.173419,
+            36.4975779
+          ],
+          [
+            9.173433,
+            36.4976288
+          ],
+          [
+            9.1734035,
+            36.4977638
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-aa-n-mellit",
+      "properties": {
+        "snippet": "Archaeological-site; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/993452097/osm-location-of-aa-n-mellit",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of A\u00efn Mellit"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1190942771",
+          "citationDetail": "Way 1190942771",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-aa-n-mellit",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 1453,
+      "title": "OSM location of A\u00efn Mellit",
+      "provenance": "OpenStreetMap (Way 1190942771, version 1, osm:changeset=138789824, 2023-07-21T01:49:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-11-25T16:48:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.1734035,
+            36.4977638
+          ],
+          [
+            9.1730383,
+            36.4977755
+          ],
+          [
+            9.1729985,
+            36.4977755
+          ],
+          [
+            9.172971,
+            36.4976474
+          ],
+          [
+            9.172965,
+            36.497319
+          ],
+          [
+            9.1733687,
+            36.4973003
+          ],
+          [
+            9.1733989,
+            36.4973905
+          ],
+          [
+            9.173419,
+            36.4975779
+          ],
+          [
+            9.173433,
+            36.4976288
+          ],
+          [
+            9.1734035,
+            36.4977638
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/993452097/osm-location-of-aa-n-mellit",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:49:00Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:48:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-27T19:34:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:59:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:58:59Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T01:50:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T01:50:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T01:50:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/29394/",
+      "citationDetail": "29394: A\u00efn Mellit",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://rusafricum.org/en/thuggasurvey/DU565/",
+      "citationDetail": "DU565: A\u00efn Melliti , Sidi Abadallah Melliti/Sidi Abadallah Meliti",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "rusafricum.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JXTZA27N",
+      "formattedCitation": "<div class=\"csl-entry\">Mariette de Vos Raaijmakers, Redha Attoui, and Alessandro Battisti. <i>Rus Africum - Thugga Survey</i>. Universit\u00e0 degli Studi di Trento, Laboratorio di Archeologia, 2017. https://rusafricum.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/889873775",
+      "citationDetail": "30",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "de Vos 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BL2URZZB",
+      "formattedCitation": "<div class=\"csl-entry\">Vos, Mariette de, and Redha Attoui. <i>Rus Africum. Tome I. Le Paysage Rural Antique Autour de Dougga et T\u00e9boursouk: Cartographie, Rel\u00e9v\u00e9s et Chronologie Des \u00c9tablissements</i>. Bibliotheca Archaeologica 30. Bari: Edipuglia, 2013. http://www.worldcat.org/oclc/889873775.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "993452097",
+  "subject": [],
+  "title": "A\u00efn Melliti",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A\u00efn Melliti is the site of a Byzantine fort and church.",
+  "reprPoint": [
+    9.173189424697785,
+    36.49753995075283
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    9.172965,
+    36.4973003,
+    9.173433,
+    36.4977755
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-25T16:49:10Z",
+  "uri": "https://pleiades.stoa.org/places/993452097",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:49:11Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:49:09Z"
+    },
+    {
+      "comment": "cleaned up rusafricum.org reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-21T21:18:12Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-21T21:16:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-02-27T19:34:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T17:58:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T17:58:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-21T02:07:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-21T01:53:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-21T01:52:39Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-21T01:50:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-21T01:50:02Z"
+    }
+  ]
+}

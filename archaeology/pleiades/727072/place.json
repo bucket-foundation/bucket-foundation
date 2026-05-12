@@ -1,0 +1,441 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              30.471744208438167,
+              30.734501617052217
+            ],
+            [
+              30.499821848306908,
+              30.735453401454436
+            ],
+            [
+              30.51409861434189,
+              30.734501617052217
+            ],
+            [
+              30.52694770377343,
+              30.734501617052217
+            ],
+            [
+              30.54931463722818,
+              30.734501617052217
+            ],
+            [
+              30.56835032527482,
+              30.734501617052217
+            ],
+            [
+              30.58310298351097,
+              30.734501617052217
+            ],
+            [
+              30.606897593569272,
+              30.734501617052217
+            ],
+            [
+              30.621650251805477,
+              30.734501617052217
+            ],
+            [
+              30.64211361645556,
+              30.73497750925327
+            ],
+            [
+              30.66067341230115,
+              30.73592929365566
+            ],
+            [
+              30.687799267767502,
+              30.73592929365566
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/727072/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "pscalfano",
+      "homepage": null,
+      "name": "Perry Scalfano",
+      "uri": "https://pleiades.stoa.org/author/pscalfano"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "Andropolites Nomos",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "74 C3 Andropolites",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": 640,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:14:52Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              30.471744208438167,
+              30.734501617052217
+            ],
+            [
+              30.499821848306908,
+              30.735453401454436
+            ],
+            [
+              30.51409861434189,
+              30.734501617052217
+            ],
+            [
+              30.52694770377343,
+              30.734501617052217
+            ],
+            [
+              30.54931463722818,
+              30.734501617052217
+            ],
+            [
+              30.56835032527482,
+              30.734501617052217
+            ],
+            [
+              30.58310298351097,
+              30.734501617052217
+            ],
+            [
+              30.606897593569272,
+              30.734501617052217
+            ],
+            [
+              30.621650251805477,
+              30.734501617052217
+            ],
+            [
+              30.64211361645556,
+              30.73497750925327
+            ],
+            [
+              30.66067341230115,
+              30.73592929365566
+            ],
+            [
+              30.687799267767502,
+              30.73592929365566
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/727072/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "A. Bernand"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-02T15:18:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-01T21:45:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:14:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Nome_(Egypt)",
+      "citationDetail": "Nome_(Egypt)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Nome_(Egypt).",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Andropolites Nomos",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "andropolites-nomos",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 74 C3 Andropolites Nomos",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-09-09T06:40:29Z",
+      "uri": "https://pleiades.stoa.org/places/727072/andropolites-nomos",
+      "creators": [
+        {
+          "username": null,
+          "name": "A. Bernand"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:06:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-09-09T17:26:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2009-09-09T17:06:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-09T06:40:29Z"
+        }
+      ]
+    }
+  ],
+  "id": "727072",
+  "subject": [],
+  "title": "Andropolites Nomos",
+  "provenance": "Barrington Atlas: BAtlas 74 C3 Andropolites Nomos",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/province",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "None",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 74 C3 Andropolites Nomos",
+  "reprPoint": [
+    30.57976346462252,
+    30.734878535634838
+  ],
+  "placeTypes": [
+    "province",
+    "label"
+  ],
+  "bbox": [
+    30.471744208438167,
+    30.734501617052217,
+    30.687799267767502,
+    30.73592929365566
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-09-09T06:40:29Z",
+  "uri": "https://pleiades.stoa.org/places/727072",
+  "creators": [
+    {
+      "username": null,
+      "name": "A. Bernand"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Finding Nomes by their titles and setting feature types",
+      "modifiedBy": "sgillies",
+      "modified": "2012-03-20T21:47:51Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:06:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-09-09T17:26:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "admin",
+      "modified": "2009-09-09T17:06:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-09T06:40:29Z"
+    }
+  ]
+}

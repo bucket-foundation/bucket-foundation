@@ -1,0 +1,466 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.1326632,
+            42.4889468
+          ],
+          [
+            12.1327678,
+            42.4886461
+          ],
+          [
+            12.1329046,
+            42.4886719
+          ],
+          [
+            12.1329315,
+            42.4886145
+          ],
+          [
+            12.1330066,
+            42.4886303
+          ],
+          [
+            12.1330387,
+            42.4885591
+          ],
+          [
+            12.1332399,
+            42.4886046
+          ],
+          [
+            12.1332211,
+            42.4886817
+          ],
+          [
+            12.1331997,
+            42.4886798
+          ],
+          [
+            12.1331675,
+            42.4887787
+          ],
+          [
+            12.1331568,
+            42.4888242
+          ],
+          [
+            12.1330951,
+            42.4888123
+          ],
+          [
+            12.13302,
+            42.48902
+          ],
+          [
+            12.1326632,
+            42.4889468
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-terme-romane",
+      "properties": {
+        "snippet": "Bath; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/674520031/osm-location-of-terme-romane",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Terme Romane"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/334840804",
+          "citationDetail": "Way 334840804",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=334840804",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-terme-romane",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 300,
+      "title": "OSM location of Terme Romane",
+      "provenance": "OpenStreetMap (Way 334840804, version 2, osm:changeset=122318546, 2022-06-13T10:33:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-07-31T15:18:00Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.1326632,
+            42.4889468
+          ],
+          [
+            12.1327678,
+            42.4886461
+          ],
+          [
+            12.1329046,
+            42.4886719
+          ],
+          [
+            12.1329315,
+            42.4886145
+          ],
+          [
+            12.1330066,
+            42.4886303
+          ],
+          [
+            12.1330387,
+            42.4885591
+          ],
+          [
+            12.1332399,
+            42.4886046
+          ],
+          [
+            12.1332211,
+            42.4886817
+          ],
+          [
+            12.1331997,
+            42.4886798
+          ],
+          [
+            12.1331675,
+            42.4887787
+          ],
+          [
+            12.1331568,
+            42.4888242
+          ],
+          [
+            12.1330951,
+            42.4888123
+          ],
+          [
+            12.13302,
+            42.48902
+          ],
+          [
+            12.1326632,
+            42.4889468
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/674520031/osm-location-of-terme-romane",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-12T20:00:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T17:42:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:21:19Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:18:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:18:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:18:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-31T15:18:48Z",
+      "associationCertainty": "certain",
+      "title": "Ferentium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/674520031/7289413590",
+      "connectionType": "at",
+      "id": "7289413590",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:18:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:18:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:18:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413132",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/26379413",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Botticelli 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HIWLBTA7",
+      "formattedCitation": "<div class=\"csl-entry\">Botticelli, Fabrizio. \u201cLE TERME ROMANE DI FERENTO: DALL\u2019ARCHEOLOGIA ALLA DOCUMENTAZIONE SUI RESTAURI MODERNI.\u201d <i>Archeologia Classica</i> 67 (2016): 751\u201386. https://www.jstor.org/stable/26379413.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Ancient_Roman_thermae_(Ferentium)",
+      "citationDetail": "Category:Ancient Roman thermae (Ferentium)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q113367332",
+      "citationDetail": "Roman baths of Ferentium (Q113367332)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Terme Romane di Ferento",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/26379413",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Botticelli 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HIWLBTA7",
+          "formattedCitation": "<div class=\"csl-entry\">Botticelli, Fabrizio. \u201cLE TERME ROMANE DI FERENTO: DALL\u2019ARCHEOLOGIA ALLA DOCUMENTAZIONE SUI RESTAURI MODERNI.\u201d <i>Archeologia Classica</i> 67 (2016): 751\u201386. https://www.jstor.org/stable/26379413.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "terme-romane-di-ferento",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-07-31T15:22:13Z",
+      "uri": "https://pleiades.stoa.org/places/674520031/terme-romane-di-ferento",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Terme Romane di Ferento",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T17:42:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:22:35Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:22:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-31T15:22:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "674520031",
+  "subject": [
+    "baths"
+  ],
+  "title": "Terme Romane, Ferento",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman baths of ancient Ferentium are located adjacent to the Roman theater.",
+  "reprPoint": [
+    12.13295620408314,
+    42.48878088068393
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    12.1326632,
+    42.4885591,
+    12.1332399,
+    42.48902
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413132"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-31T15:18:47Z",
+  "uri": "https://pleiades.stoa.org/places/674520031",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q113367332",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-12T20:03:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-01T17:42:05Z"
+    },
+    {
+      "comment": "commons ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-31T15:23:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-31T15:21:19Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-31T15:21:11Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-31T15:18:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-31T15:18:47Z"
+    }
+  ]
+}

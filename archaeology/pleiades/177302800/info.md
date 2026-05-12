@@ -1,0 +1,14 @@
+# Attalid kingdom
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/177302800
+- **ID**: 177302800
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+Founded by Philetaerus, who took command of Pergamum in 282 BCE, and declared independent by Attalus I in the 230's BCE, the Attalid kingdom was allied closely to Rome; the kingdom expanded after the Peace of Apamea in 188 BCE. The last king, Attalus III, willed the kingdom to Rome, and after his death in 133, the former kingdom formed the core of the Roman province of Asia.

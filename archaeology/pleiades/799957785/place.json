@@ -1,0 +1,498 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.888666,
+          36.1965614
+        ]
+      },
+      "type": "Feature",
+      "id": "6af6486b56d56a9",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/799957785/6af6486b56d56a9",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u06af\u0648\u06b5\u06d5\u06a9"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.8888,
+          36.1937
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-gird-i-gulak",
+      "properties": {
+        "snippet": "Archaeological-site; 1000 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/799957785/cigs-location-of-gird-i-gulak",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Gird-i Gulak"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2488281198",
+          "citationDetail": "Node 2488281198",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2488281198",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "6af6486b56d56a9",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of \u06af\u0648\u06b5\u06d5\u06a9",
+      "provenance": "OpenStreetMap (Node 2488281198, version 3, osm:changeset=82291824, 2020-03-17T08:20:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-04-19T11:39:52Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.888666,
+          36.1965614
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/799957785/6af6486b56d56a9",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-07T03:01:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T11:47:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T11:40:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T11:39:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T11:39:52Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Skuldb\u00f8l et al. 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6NBFHITX",
+          "formattedCitation": "<div class=\"csl-entry\">Skuldb\u00f8l, Tim, Carlo Colantoni, Martin Makinson, Mohammad Masoumian, HENRIK BRAHE, Sanne Lindequist, and Mette Marie Hald. \u201cGird-i Gulak. A Neo-Assyrian Fort on the Eastern Frontier of Assyria. A Salvage Project by the Danish Archaeological Expedition to Iraq,\u201d 2022.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-gird-i-gulak",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -1,
+      "title": "CIGS location of Gird-i Gulak",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-04-19T11:46:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.8888,
+          36.1937
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/799957785/cigs-location-of-gird-i-gulak",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-19T18:42:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T11:47:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T11:46:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T11:46:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Skuldb\u00f8l et al. 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6NBFHITX",
+      "formattedCitation": "<div class=\"csl-entry\">Skuldb\u00f8l, Tim, Carlo Colantoni, Martin Makinson, Mohammad Masoumian, HENRIK BRAHE, Sanne Lindequist, and Mette Marie Hald. \u201cGird-i Gulak. A Neo-Assyrian Fort on the Eastern Frontier of Assyria. A Salvage Project by the Danish Archaeological Expedition to Iraq,\u201d 2022.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "K\u016bl\u0101k",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kulak",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for Arabic (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2023-04-20T09:44:56Z",
+      "uri": "https://pleiades.stoa.org/places/799957785/kulak",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u0643\u0648\u0644\u0627\u0643",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T11:15:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:46:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:46:44Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:46:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:46:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:44:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:44:56Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gird-i Gulak",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Skuldb\u00f8l et al. 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6NBFHITX",
+          "formattedCitation": "<div class=\"csl-entry\">Skuldb\u00f8l, Tim, Carlo Colantoni, Martin Makinson, Mohammad Masoumian, HENRIK BRAHE, Sanne Lindequist, and Mette Marie Hald. \u201cGird-i Gulak. A Neo-Assyrian Fort on the Eastern Frontier of Assyria. A Salvage Project by the Danish Archaeological Expedition to Iraq,\u201d 2022.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "gird-i-gulak",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ku",
+      "created": "2023-04-20T09:45:35Z",
+      "uri": "https://pleiades.stoa.org/places/799957785/gird-i-gulak",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "Gird-i Gulak",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T11:15:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:46:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:45:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-20T09:45:35Z"
+        }
+      ]
+    }
+  ],
+  "id": "799957785",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Gird-i Gulak",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A high mound located on the edge of Lake Dukan and now threatened by innundation.",
+  "reprPoint": [
+    44.888733,
+    36.1951307
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    44.888666,
+    36.1937,
+    44.8888,
+    36.1965614
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-19T11:31:51Z",
+  "uri": "https://pleiades.stoa.org/places/799957785",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-07T03:02:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-20T11:15:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-04-19T11:47:15Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-04-19T11:31:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-04-19T11:31:51Z"
+    }
+  ]
+}

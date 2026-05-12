@@ -1,0 +1,283 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2368,
+          31.7733
+        ]
+      },
+      "type": "Feature",
+      "id": "geohack-location-of-silwan-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 1200 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/122408432/geohack-location-of-silwan-necropolis",
+        "description": "Point representing the location of the Silwan necropolis. Coordinates following GeoHack.",
+        "location_precision": "precise",
+        "title": "Imagery location of Silwan necropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://tools.wmflabs.org/geohack/geohack.php?pagename=Silwan_necropolis&params=31.7733_N_35.2368_E_source:wikidata",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Geohack, Silwan necropolis",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "geohack-location-of-silwan-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -550,
+      "title": "Imagery location of Silwan necropolis",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point representing the location of the Silwan necropolis. Coordinates following GeoHack.",
+      "created": "2019-02-14T15:09:48Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2368,
+          31.7733
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/122408432/geohack-location-of-silwan-necropolis",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added PAA, adjusted title",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-15T15:09:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-15T15:08:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-02-14T15:10:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-02-14T15:09:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-02-14T15:09:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -550,
+      "description": "",
+      "contributors": [],
+      "created": "2019-02-15T15:08:11Z",
+      "associationCertainty": "certain",
+      "title": "Ierusalem/Hierosolyma/Col. Aelia Capitolina",
+      "start": -1200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/122408432/ierusalem-hierosolyma-col-aelia-capitolina",
+      "connectionType": "at",
+      "id": "ierusalem-hierosolyma-col-aelia-capitolina",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-15T15:08:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-15T15:08:27Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-15T15:08:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-15T15:08:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/687928",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ussishkin 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z47LW6AX",
+      "formattedCitation": "<div class=\"csl-entry\">Ussishkin, David. <i>The Village of Silwan: The Necropolis from the Period of the Judean Kingdom</i>. Jerusalem: Israel Exploration Society\u202f: Yad Izhak Ben-Zvi, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Silwan_necropolis",
+      "citationDetail": "Silwan necropolis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "122408432",
+  "subject": [],
+  "title": "Silwan necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Iron Age cemetery located on the eastern slope of the Kidron Valley, containing burials dated from the 9th-7th centuries BCE. ",
+  "reprPoint": [
+    35.2368,
+    31.7733
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    35.2368,
+    31.7733,
+    35.2368,
+    31.7733
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/687928"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-02-14T15:06:09Z",
+  "uri": "https://pleiades.stoa.org/places/122408432",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-15T15:08:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-15T04:03:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-02-14T15:10:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-02-14T15:06:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-02-14T15:06:09Z"
+    }
+  ]
+}

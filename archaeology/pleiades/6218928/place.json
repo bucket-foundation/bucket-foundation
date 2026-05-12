@@ -1,0 +1,649 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.2880432,
+            42.4132113
+          ],
+          [
+            11.2889958,
+            42.4127272
+          ],
+          [
+            11.2885317,
+            42.4122294
+          ],
+          [
+            11.2875791,
+            42.4127136
+          ],
+          [
+            11.2880432,
+            42.4132113
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-forum-of-cosa",
+      "properties": {
+        "snippet": "Forum; 300 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/6218928/osm-location-of-forum-of-cosa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Forum of Cosa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/211356502",
+          "citationDetail": "Way 211356502",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=211356502",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-forum-of-cosa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "end": 640,
+      "title": "OSM location of Forum of Cosa",
+      "provenance": "OpenStreetMap (Way 211356502, version 4, osm:changeset=139650003, 2023-08-09T09:32:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "forum"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-04-17T02:21:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.2880432,
+            42.4132113
+          ],
+          [
+            11.2889958,
+            42.4127272
+          ],
+          [
+            11.2885317,
+            42.4122294
+          ],
+          [
+            11.2875791,
+            42.4127136
+          ],
+          [
+            11.2880432,
+            42.4132113
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/6218928/osm-location-of-forum-of-cosa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-17T14:44:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-17T02:22:49Z"
+        },
+        {
+          "comment": "supersedes previously published location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-17T02:22:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-17T02:21:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-17T02:21:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:53:37Z",
+      "associationCertainty": "certain",
+      "title": "Cosa",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/6218928/413107",
+      "connectionType": "at",
+      "id": "413107",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "changed type, added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-28T19:02:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413107",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Sewell 2005",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VA254MGA",
+          "formattedCitation": "<div class=\"csl-entry\">Sewell, Jamie. \u201cTrading Places? A Reappraisal of the Fora at Cosa.\u201d <i>Ostraka: Rivista Di Antichit\u00e0</i> 14 (2005): 91\u2013114.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://onlinelibrary.wiley.com/doi/10.1002/9781444338386.wbeah16049/abstract",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Sena 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YVXTW356",
+      "formattedCitation": "<div class=\"csl-entry\">De Sena, Eric C. \u201cCosa.\u201d In <i>The Encyclopedia of Ancient History</i>. American Cancer Society, 2012. https://doi.org/10.1002/9781444338386.wbeah16049.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sewell 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V7YHPPWT",
+      "formattedCitation": "<div class=\"csl-entry\">Sewell, Jamie. <i>The Formation of Roman Urbanism, 338-200 B.C: Between Contemporary Foreign Influence and Roman Tradition</i>. Journal of Roman Archaeology, no. 79. Portsmouth, RI: Journal of Roman Archaeology, 2010.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://intarch.ac.uk/journal/issue40/2/index.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sewell and Witcher 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RNUDLGCR",
+      "formattedCitation": "<div class=\"csl-entry\">Sewell, Jamie, and Robert Witcher. \u201cUrbanism in Ancient Peninsular Italy: Developing a Methodology for a Database Analysis of Higher Order Settlements (350 BCE to 300 CE).\u201d <i>Internet Archaeology</i>, no. 40 (June 3, 2015). https://doi.org/10.11141/ia.40.2.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sewell 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VA254MGA",
+      "formattedCitation": "<div class=\"csl-entry\">Sewell, Jamie. \u201cTrading Places? A Reappraisal of the Fora at Cosa.\u201d <i>Ostraka: Rivista Di Antichit\u00e0</i> 14 (2005): 91\u2013114.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sewell 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KGKK8NPP",
+      "formattedCitation": "<div class=\"csl-entry\">Sewell, Jamie. \u201cNew Observations on the Planning of Fora in the Latin Colonies during the Mid-Republic.\u201d In <i>Public Space in the Post-Classical City</i>, 76\u2013112. Leuven: Peeters, 2013.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=BBVpAAAAMAAJ",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brown 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YSCDZGL9",
+      "formattedCitation": "<div class=\"csl-entry\">Brown, Frank Edward. <i>Cosa, the Making of a Roman Town</i>. Ann Arbor: University of Michigan Press, 1980. http://books.google.com/books?id=BBVpAAAAMAAJ.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/807576704",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fentress and Alcock 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MVR52B6A",
+      "formattedCitation": "<div class=\"csl-entry\">Fentress, Elizabeth, and Susan E Alcock. <i>Romanization and the City: Creation, Transformations and Failures\u202f: Proceedings of a Conference.... Edited by Elizabeth Fentress</i>. Journal of Roman Archaeology., Supplementary Series (Journal of Roman Archaeology) 38. Portsmouth, Rhode Island: Journal of Roman archaeology, 2000. http://www.worldcat.org/oclc/807576704.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/268785581",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Becker 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F7X42AT3",
+      "formattedCitation": "<div class=\"csl-entry\">Becker, Jeffrey Alan. \u201cThe Building Blocks of Empire: Civic Architecture, Central Italy, and the Roman Middle Republic.\u201d Doctoral, University of North Carolina at Chapel Hill, 2007. https://cdr.lib.unc.edu/concern/dissertations/rn301242g?locale=en.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "www.jstor.org/stable/40311075",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mouritsen 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SZXE44ZW",
+      "formattedCitation": "<div class=\"csl-entry\">Mouritsen, Henrik. \u201cPits and Politics: Interpreting Colonial Fora in Republican Italy.\u201d <i>Papers of the British School at Rome</i> 72 (2004): 37\u201367. https://www.jstor.org/stable/40311075.</div>",
+      "otherIdentifier": "http://dx.doi.org/10.1017/S006824620000266X",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/4238459",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cosa V: An Intermittent Town, Excavations 1991-1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZGUNTCUB",
+      "formattedCitation": "<div class=\"csl-entry\">Fentress, Elizabeth, John Bodel, T. V. Buttrey, Stefano Camaiani, Fernanda Cavari, Laura Cerri, Enrico Cirelli, et al. \u201cCosa V: An Intermittent Town, Excavations 1991-1997.\u201d <i>Memoirs of the American Academy in Rome. Supplementary Volumes</i> 2 (2003): i\u2013400. https://doi.org/10.2307/4238459.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/2295824",
+      "citationDetail": "Forum von Cosa Grosseto (Provinz), Italien",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q88301133",
+      "citationDetail": "Forum of Cosa (Q88301133)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "80, 348",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lackner 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UD9ZQRUB",
+      "formattedCitation": "<div class=\"csl-entry\">Lackner, Eva-Maria. <i>Republikanische Fora</i>. M\u00fcnchen: Biering &amp; Brinkmann, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/3293104",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cosa: Republican Colony in Etruria",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8TQZ64D3",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cCosa: Republican Colony in Etruria.\u201d <i>The Classical Journal</i> 45, no. 3 (1949): 141\u201349. http://www.jstor.org/stable/3293104.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781003271895-12/foundation-cosa-andrea-de-giorgi",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Giorgi 2024a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4YP2S8MD",
+      "formattedCitation": "<div class=\"csl-entry\">DeGiorgi, Andrea U. \u201cThe Foundation of Cosa: Context, Plans, and Resources.\u201d In <i>The Routledge Handbook of the Archaeology of Urbanism in Italy in the Age of Roman Expansion</i>. Routledge, 2024. https://www.taylorfrancis.com/chapters/edit/10.4324/9781003271895-12/foundation-cosa-andrea-de-giorgi.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/pdf/4238626.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brown 1951",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H7RT3DNZ",
+      "formattedCitation": "<div class=\"csl-entry\">Brown, Frank Edward. \u201cCosa I. History and Topography.\u201d <i>Memoirs of the American Academy in Rome</i> 20 (1951): 1\u2013113. https://www.jstor.org/stable/pdf/4238626.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Forum of Cosa",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q88301133",
+          "citationDetail": "Q88301133: Forum of Cosa",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "forum-of-cosa-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-05-26T23:59:12Z",
+      "uri": "https://pleiades.stoa.org/places/6218928/forum-of-cosa-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Forum of Cosa",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-06-05T11:19:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-26T23:59:21Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-26T23:59:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-26T23:59:12Z"
+        }
+      ]
+    }
+  ],
+  "id": "6218928",
+  "subject": [
+    "extant remains"
+  ],
+  "title": "Forum of Cosa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+    "https://pleiades.stoa.org/vocabularies/place-types/forum"
+  ],
+  "details": "<p>The nature, phasing, and development of Cosa's forum has been a matter of continued scholarly debate.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The forum of Cosa functioned as the administrative center of the town and was the site of key administrative and ritual structures.",
+  "reprPoint": [
+    11.288287456952844,
+    42.41272036671545
+  ],
+  "placeTypes": [
+    "plaza",
+    "forum"
+  ],
+  "bbox": [
+    11.2875791,
+    42.4122294,
+    11.2889958,
+    42.4132113
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413107"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-06-24T20:30:29Z",
+  "uri": "https://pleiades.stoa.org/places/6218928",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-17T02:28:03Z"
+    },
+    {
+      "comment": "update references and place type (Forum)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-17T02:24:43Z"
+    },
+    {
+      "comment": "wikidata Q88301133",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-26T23:58:26Z"
+    },
+    {
+      "comment": "Arachne 8007320: Forum von Cosa Grosseto (Provinz)",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-26T23:55:49Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-26T23:55:13Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-28T19:09:59Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-28T19:06:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-27T10:04:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-27T07:37:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-27T07:37:05Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-27T07:34:51Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-25T15:37:33Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-24T20:30:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-24T20:30:29Z"
+    }
+  ]
+}

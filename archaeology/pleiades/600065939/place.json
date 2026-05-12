@@ -1,0 +1,546 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0007409,
+          50.7927564
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-lake-farm-roman-fort",
+      "properties": {
+        "snippet": "Fort-2; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/600065939/osm-location-of-lake-farm-roman-fort",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Lake Farm Roman fort"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.0028034,
+            50.7900353
+          ],
+          [
+            -2.002519,
+            50.7899618
+          ],
+          [
+            -2.0024251,
+            50.7899325
+          ],
+          [
+            -2.0019446,
+            50.789805
+          ],
+          [
+            -2.0018168,
+            50.7897676
+          ],
+          [
+            -2.0016056,
+            50.7897148
+          ],
+          [
+            -2.0014641,
+            50.7897055
+          ],
+          [
+            -2.0011441,
+            50.7897402
+          ],
+          [
+            -2.0009171,
+            50.7897943
+          ],
+          [
+            -2.0008954,
+            50.7898299
+          ],
+          [
+            -2.0008304,
+            50.7903957
+          ],
+          [
+            -2.0015186,
+            50.7904666
+          ],
+          [
+            -2.0014654,
+            50.7905675
+          ],
+          [
+            -2.0024106,
+            50.790672
+          ],
+          [
+            -2.0028034,
+            50.7900353
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-lake-farm",
+      "properties": {
+        "snippet": "Settlement-modern, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/600065939/osm-location-of-lake-farm",
+        "description": "Representative point location marking the modern location of Lake Farm, based on OpenStreetMap. According to published reports, the remains of the fort were excavated 240 meters north of Lake Farm.",
+        "location_precision": "precise",
+        "title": "OSM location of modern Lake Farm"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/6935339099",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Node 6935339099",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-lake-farm-roman-fort",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 410,
+      "title": "OSM location of Lake Farm Roman fort",
+      "provenance": "OpenStreetMap (Node 6935339099, version 5, osm:changeset=138540530, 2023-07-15T11:12:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2019-10-31T16:22:48Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.0007409,
+          50.7927564
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/600065939/osm-location-of-lake-farm-roman-fort",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-27T15:12:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T14:57:01Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T14:53:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-11-03T20:52:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-31T16:26:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-31T16:22:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-31T16:22:48Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/390293181",
+          "citationDetail": "Way 390293181",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=390293181",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-lake-farm",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "OSM location of modern Lake Farm",
+      "provenance": "OpenStreetMap (Way 390293181, version 1, osm:changeset=36452889, 2016-01-08T20:33:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern",
+        ""
+      ],
+      "description": "Representative point location marking the modern location of Lake Farm, based on OpenStreetMap. According to published reports, the remains of the fort were excavated 240 meters north of Lake Farm.",
+      "created": "2016-05-19T23:16:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.0028034,
+            50.7900353
+          ],
+          [
+            -2.002519,
+            50.7899618
+          ],
+          [
+            -2.0024251,
+            50.7899325
+          ],
+          [
+            -2.0019446,
+            50.789805
+          ],
+          [
+            -2.0018168,
+            50.7897676
+          ],
+          [
+            -2.0016056,
+            50.7897148
+          ],
+          [
+            -2.0014641,
+            50.7897055
+          ],
+          [
+            -2.0011441,
+            50.7897402
+          ],
+          [
+            -2.0009171,
+            50.7897943
+          ],
+          [
+            -2.0008954,
+            50.7898299
+          ],
+          [
+            -2.0008304,
+            50.7903957
+          ],
+          [
+            -2.0015186,
+            50.7904666
+          ],
+          [
+            -2.0014654,
+            50.7905675
+          ],
+          [
+            -2.0024106,
+            50.790672
+          ],
+          [
+            -2.0028034,
+            50.7900353
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/600065939/osm-location-of-lake-farm",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-27T15:13:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-05-23T14:37:28Z"
+        },
+        {
+          "comment": "updated title and ddescripition",
+          "modifiedBy": "thomase",
+          "modified": "2016-05-23T14:37:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-19T23:17:48Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-19T23:17:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-19T23:16:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-19T23:16:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1002418",
+      "citationDetail": "1002418: Roman camp, forts and a vexillation fortress 240m north of Lake Farm",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=457187",
+      "citationDetail": "monument no. 457187",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/",
+      "citationDetail": "12387",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17647206",
+      "citationDetail": "Roman camp, forts and a vexillation fortress 240m north of Lake Farm (Q17647206)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "600065939",
+  "subject": [
+    "vexillation",
+    "dare:feature=fort",
+    "fort"
+  ],
+  "title": "Lake Farm Roman fort",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Large Roman military installation near present-day Wimborne Minster in Dorset. It was established very shortly after Claudian invasion (ca. 44 CE), and later served as a vexillation fortress.",
+  "reprPoint": [
+    -2.001252755864943,
+    50.791469952121744
+  ],
+  "placeTypes": [
+    "fort-2",
+    "settlement-modern"
+  ],
+  "bbox": [
+    -2.0028034,
+    50.7897055,
+    -2.0007409,
+    50.7927564
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-12T13:27:04Z",
+  "uri": "https://pleiades.stoa.org/places/600065939",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for fort; update references @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-12T14:56:44Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-12T13:27:02Z"
+    },
+    {
+      "comment": "Edited; updated Locations; Edited\r\ncheck in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2019-11-03T20:43:05Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-09T01:53:30Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2016-05-23T14:37:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-19T23:18:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-19T23:18:26Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-19T23:12:23Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-01T15:02:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-01T15:02:53Z"
+    }
+  ]
+}

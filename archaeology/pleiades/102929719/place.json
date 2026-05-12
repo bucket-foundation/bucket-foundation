@@ -1,0 +1,338 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.5208134,
+            48.8109899
+          ],
+          [
+            30.5196118,
+            48.8090398
+          ],
+          [
+            30.5207276,
+            48.8060155
+          ],
+          [
+            30.5331731,
+            48.8118377
+          ],
+          [
+            30.5302763,
+            48.8141692
+          ],
+          [
+            30.5208134,
+            48.8109899
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-dd3-4ndud-dud1-2d1-2n-nnd-d-nd",
+      "properties": {
+        "snippet": "Archaeological-site; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/102929719/osm-location-of-dd3-4ndud-dud1-2d1-2n-nnd-d-nd",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u041f\u043e\u0441\u0435\u043b\u0435\u043d\u043d\u044f \u0442\u0440\u0438\u043f\u0456\u043b\u044c\u0446\u0456\u0432"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1317104903",
+          "citationDetail": "Way 1317104903",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1317104903",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-dd3-4ndud-dud1-2d1-2n-nnd-d-nd",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -2000,
+      "title": "OSM location of \u041f\u043e\u0441\u0435\u043b\u0435\u043d\u043d\u044f \u0442\u0440\u0438\u043f\u0456\u043b\u044c\u0446\u0456\u0432",
+      "provenance": "OpenStreetMap (Way 1317104903, version 1, osm:changeset=156907629, 2024-09-21T11:26:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-01-13T21:04:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.5208134,
+            48.8109899
+          ],
+          [
+            30.5196118,
+            48.8090398
+          ],
+          [
+            30.5207276,
+            48.8060155
+          ],
+          [
+            30.5331731,
+            48.8118377
+          ],
+          [
+            30.5302763,
+            48.8141692
+          ],
+          [
+            30.5208134,
+            48.8109899
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/102929719/osm-location-of-dd3-4ndud-dud1-2d1-2n-nnd-d-nd",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-17T22:32:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-13T21:06:31Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-13T21:04:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-13T21:04:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-13T21:04:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.nature.com/articles/d41586-024-04216-1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marris 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XIFSV3T8",
+      "formattedCitation": "<div class=\"csl-entry\">Marris, Emma. \u201cWho Built Europe\u2019s First Cities? Clues about the Urban Revolution Emerge.\u201d <i>Nature</i> 637, no. 8045 (January 7, 2025): 262\u201365. https://doi.org/10.1038/d41586-024-04216-1.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7679481",
+      "citationDetail": "Talianki (Q7679481)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Talianki_(archaeological_site)",
+      "citationDetail": "Talianki (archaeological site)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Talianki (archaeological site)",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q7679481",
+          "citationDetail": "Talianki (Q7679481)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "talianki-archaeological-site",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "uk",
+      "created": "2025-01-13T21:06:11Z",
+      "uri": "https://pleiades.stoa.org/places/102929719/talianki-archaeological-site",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u0422\u0430\u043b\u044c\u044f\u043d\u043a\u0438 (\u043f\u0430\u043c'\u044f\u0442\u043a\u0430 \u0430\u0440\u0445\u0435\u043e\u043b\u043e\u0433\u0456\u0457)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-17T22:32:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-13T21:06:31Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-13T21:06:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-13T21:06:11Z"
+        }
+      ]
+    }
+  ],
+  "id": "102929719",
+  "subject": [],
+  "title": "Talianki",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Talianki or Talianky is an archaeological site of the Cucuteni-Trypillian culture located near the village of the same name in Cherkasy Oblast, Ukraine. The large settlement dates ca. 3850\u20133700 BCE.",
+  "reprPoint": [
+    30.525931748222476,
+    48.81043194540396
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    30.5196118,
+    48.8060155,
+    30.5331731,
+    48.8141692
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-01-13T21:03:37Z",
+  "uri": "https://pleiades.stoa.org/places/102929719",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-01-17T22:32:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-13T21:06:30Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-13T21:03:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-13T21:03:37Z"
+    }
+  ]
+}

@@ -1,0 +1,484 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4932745,
+            40.7516442
+          ],
+          [
+            14.4931244,
+            40.7515745
+          ],
+          [
+            14.4931504,
+            40.7515433
+          ],
+          [
+            14.4929757,
+            40.7514591
+          ],
+          [
+            14.4931134,
+            40.7512833
+          ],
+          [
+            14.4934429,
+            40.7514403
+          ],
+          [
+            14.4932745,
+            40.7516442
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ii-3-8",
+      "properties": {
+        "snippet": "Architecturalcomplex, Archaeological-site; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/243620947/osm-location-of-ii-3-8",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of II, 3, 8"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1155618516",
+          "citationDetail": "Way 1155618516",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1155618516",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ii-3-8",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "OSM location of II, 3, 8",
+      "provenance": "OpenStreetMap (Way 1155618516, version 1, osm:changeset=133871995, 2023-03-19T19:57:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex",
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-19T20:00:31Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4932745,
+            40.7516442
+          ],
+          [
+            14.4931244,
+            40.7515745
+          ],
+          [
+            14.4931504,
+            40.7515433
+          ],
+          [
+            14.4929757,
+            40.7514591
+          ],
+          [
+            14.4931134,
+            40.7512833
+          ],
+          [
+            14.4934429,
+            40.7514403
+          ],
+          [
+            14.4932745,
+            40.7516442
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/243620947/osm-location-of-ii-3-8",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-20T20:56:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:38:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:37:51Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:00:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:00:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:00:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-19T20:05:03Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/243620947/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-20T20:56:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:38:16Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:05:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:05:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-19T20:05:23Z",
+      "associationCertainty": "certain",
+      "title": "Regio II, Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/243620947/regio-ii-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-ii-pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-20T20:56:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:38:16Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:05:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:05:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/456321707",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-19T20:34:21Z",
+      "associationCertainty": "certain",
+      "title": "House of Venus in the shell",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/243620947/house-of-venus-in-the-shell",
+      "connectionType": "abuts",
+      "id": "house-of-venus-in-the-shell",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-20T20:56:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:38:16Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:34:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T20:34:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/981889086",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/918049920",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jashemski 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KPP7BQW7",
+      "formattedCitation": "<div class=\"csl-entry\">Jashemski, Wilhelmina Mary Feemster. <i>The Gardens of Pompeii [1]. [1</i>. New Rochelle, NY: Caratzas Brothers, 1979. http://www.worldcat.org/oclc/312003872.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1113367431",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gardens of Pompeii 2",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8VX684VF",
+      "formattedCitation": "<div class=\"csl-entry\">Jashemski, Wilhelmina Mary Feemster. <i>The Gardens of Pompeii. Herculaneum and the Villas Destroyed by Vesuvius 2 2</i>, 1993. http://www.worldcat.org/oclc/921816405.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/R2/2%2003%2007.htm",
+      "citationDetail": "II.3.7 Pompeii. Garden entrance.",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. <i>PompeiiinPictures</i>, 2018. https://pompeiiinpictures.com.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27685719",
+      "citationDetail": "Secondary entrance (II.3.7) (Q27685719)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "243620947",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "Pompeii II.3.7 garden entrance",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/arch",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Pompeii II, 3, 7 is a garden entrance linked to II, 3, 8 and II, 3,9. II, 3, 8 is identified as a workshop, either the Officina vasaria or caupona of Nicanor. This complex was positioned across the street from the Palaestra.",
+  "reprPoint": [
+    14.493205257471367,
+    40.751462236653666
+  ],
+  "placeTypes": [
+    "arch",
+    "architecturalcomplex",
+    "archaeological-site"
+  ],
+  "bbox": [
+    14.4929757,
+    40.7512833,
+    14.4934429,
+    40.7516442
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/456321707",
+    "https://pleiades.stoa.org/places/981889086"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-04T05:33:28Z",
+  "uri": "https://pleiades.stoa.org/places/243620947",
+  "creators": [
+    {
+      "username": "yuyaoliu",
+      "homepage": null,
+      "name": "Yuyao Liu",
+      "uri": "https://pleiades.stoa.org/author/yuyaoliu"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-04T22:29:04Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-30T13:29:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-20T20:56:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-19T20:38:16Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-19T20:04:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "yuyaoliu",
+      "modified": "2020-12-04T05:46:11Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "yuyaoliu",
+      "modified": "2020-12-04T05:44:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "yuyaoliu",
+      "modified": "2020-12-04T05:40:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "yuyaoliu",
+      "modified": "2020-12-04T05:33:29Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "yuyaoliu",
+      "modified": "2020-12-04T05:33:28Z"
+    }
+  ]
+}

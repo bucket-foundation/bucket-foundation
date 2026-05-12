@@ -1,0 +1,285 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9938142,
+            43.7482076
+          ],
+          [
+            10.9940047,
+            43.7477077
+          ],
+          [
+            10.9940878,
+            43.7475778
+          ],
+          [
+            10.9943507,
+            43.7476302
+          ],
+          [
+            10.9945009,
+            43.7476902
+          ],
+          [
+            10.9945089,
+            43.747975
+          ],
+          [
+            10.9942809,
+            43.7483529
+          ],
+          [
+            10.9938142,
+            43.7482076
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-area-archeologica-montereggi",
+      "properties": {
+        "snippet": "Settlement; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/180279390/osm-location-of-area-archeologica-montereggi",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Area archeologica Montereggi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/435975087",
+          "citationDetail": "Way 435975087",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=435975087",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-area-archeologica-montereggi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -30,
+      "title": "OSM location of Area archeologica Montereggi",
+      "provenance": "OpenStreetMap (Way 435975087, version 1, osm:changeset=41289646, 2016-08-06T16:06:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2017-09-29T19:23:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9938142,
+            43.7482076
+          ],
+          [
+            10.9940047,
+            43.7477077
+          ],
+          [
+            10.9940878,
+            43.7475778
+          ],
+          [
+            10.9943507,
+            43.7476302
+          ],
+          [
+            10.9945009,
+            43.7476902
+          ],
+          [
+            10.9945089,
+            43.747975
+          ],
+          [
+            10.9942809,
+            43.7483529
+          ],
+          [
+            10.9938142,
+            43.7482076
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/180279390/osm-location-of-area-archeologica-montereggi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-22T23:03:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-19T00:07:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T14:39:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T14:39:34Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T19:23:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T19:23:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T19:23:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.montalbano.toscana.it/parco-archeologico-di-montereggi",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Parco archeologico di Montereggi",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Berti 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6XN98R9N",
+      "formattedCitation": "<div class=\"csl-entry\">Berti, Fausto. \u201cUn documento coroplastico etrusco da Montereggi.\u201d In <i>Notiziario della Soprintendenza per i Beni Archeologici della Toscana, 8.2012, Suppl.1</i>, 227\u201331. Borgo S. Lorenzo: All\u2019Insegna del Giglio, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "180279390",
+  "subject": [],
+  "title": "Montereggi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan settlement in proximity to the course of the Arno river that was active from the fifth to the first centuries B.C.",
+  "reprPoint": [
+    10.994183252240818,
+    43.74796691951926
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    10.9938142,
+    43.7475778,
+    10.9945089,
+    43.7483529
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-09-29T19:22:57Z",
+  "uri": "https://pleiades.stoa.org/places/180279390",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-19T00:07:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T14:39:43Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T14:39:09Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-29T19:23:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-29T19:22:57Z"
+    }
+  ]
+}

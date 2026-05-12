@@ -1,0 +1,589 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7238957,
+          37.9754905
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-monopteros",
+      "properties": {
+        "snippet": "Shrine; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/87615187/osm-location-monopteros",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Monopteros"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.72386,
+          37.975468
+        ]
+      },
+      "type": "Feature",
+      "id": "topostext-location-monopteros-athenian-agora",
+      "properties": {
+        "snippet": "Shrine; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/87615187/topostext-location-monopteros-athenian-agora",
+        "description": "",
+        "location_precision": "precise",
+        "title": "ToposText Location: Monopteros (Athenian Agora)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5561054421",
+          "citationDetail": "Node 5561054421",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5561054421",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-monopteros",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 2099,
+      "title": "OSM Location: Monopteros",
+      "provenance": "OpenStreetMap (Node 5561054421, version 1, osm:changeset=58189342, 2018-04-18T05:44:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-03-13T21:13:06Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7238957,
+          37.9754905
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/87615187/osm-location-monopteros",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-13T23:53:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:18:05Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:17:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:16:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:15:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:13:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:13:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:13:06Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://topostext.org/place/380237BMon",
+          "citationDetail": "Monopteros (Athenian Agora)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "ToposText",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+          "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "topostext-location-monopteros-athenian-agora",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 2099,
+      "title": "ToposText Location: Monopteros (Athenian Agora)",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/topostext-high-confidence",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "",
+      "created": "2024-03-13T21:15:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.72386,
+          37.975468
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/87615187/topostext-location-monopteros-athenian-agora",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-13T23:53:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:18:05Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:17:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:16:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:15:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:15:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-13T21:11:19Z",
+      "associationCertainty": "certain",
+      "title": "Agora of Athens",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/87615187/agora-of-athens",
+      "connectionType": "in",
+      "id": "agora-of-athens",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-13T23:53:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:18:05Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:17:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:16:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:11:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:11:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/807514119",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "118-119",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+      "citationDetail": "118-119",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camp 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+      "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237BMon",
+      "citationDetail": "Monopteros (Athens Agora)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/147487",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dinsmoor 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BGV6BEXX",
+      "formattedCitation": "<div class=\"csl-entry\">Dinsmoor, W. B. \u201cThe Monopteros in the Athenian Agora.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 43, no. 4 (1974): 412\u201327. https://doi.org/10.2307/147487.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/162915",
+      "citationDetail": "104, fig. 34 no. 64",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Travlos 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5Q2AW7H",
+      "formattedCitation": "<div class=\"csl-entry\">Travlos, Ioannes N. <i>Pictorial Dictionary of Ancient Athens</i>. New York: Praeger, 1971. http://www.worldcat.org/oclc/162915.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q24204669",
+      "citationDetail": "Monopteros (Q24204669)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://agora.ascsa.net/id/agora/monument/monopteros",
+      "citationDetail": "Monument: Monopteros",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Agora Excavations (ASCSA)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P6MWAMKU",
+      "formattedCitation": "<div class=\"csl-entry\">American School of Classical Studies in Athens. <i>Agora Excavations (ASCSA)</i>. Athens: American School of Classical Studies at Athens, 2007. https://agora.ascsa.net/research.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monopteros",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "118-119",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "monopteros",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-13T21:12:21Z",
+      "uri": "https://pleiades.stoa.org/places/87615187/monopteros",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Monopteros",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-13T23:53:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:18:05Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:17:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:16:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:12:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-13T21:12:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "87615187",
+  "subject": [],
+  "title": "Monopteros",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A small round shrine built in the Athenian Agora in the mid-2nd century AD",
+  "reprPoint": [
+    23.72387785,
+    37.97547925
+  ],
+  "placeTypes": [
+    "shrine"
+  ],
+  "bbox": [
+    23.72386,
+    37.975468,
+    23.7238957,
+    37.9754905
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/807514119"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-13T21:10:15Z",
+  "uri": "https://pleiades.stoa.org/places/87615187",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add bkiesling as contributor",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-14T01:58:51Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-13T23:53:45Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-13T23:28:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-13T21:18:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-13T21:17:46Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-13T21:17:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-13T21:16:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-13T21:10:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-13T21:10:15Z"
+    }
+  ]
+}

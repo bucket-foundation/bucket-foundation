@@ -1,0 +1,358 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5597788,
+            42.6391754
+          ],
+          [
+            12.5599085,
+            42.6396158
+          ],
+          [
+            12.560168,
+            42.6395754
+          ],
+          [
+            12.5603476,
+            42.63948
+          ],
+          [
+            12.5604024,
+            42.6393589
+          ],
+          [
+            12.5603625,
+            42.6392194
+          ],
+          [
+            12.5602328,
+            42.6391423
+          ],
+          [
+            12.5600333,
+            42.6391203
+          ],
+          [
+            12.5597788,
+            42.6391754
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/983118964/osm-location-of-roman-theater",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/77013782",
+          "citationDetail": "Way 77013782",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=77013782",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman theater",
+      "provenance": "OpenStreetMap (Way 77013782, version 8, osm:changeset=131877731, 2023-01-30T12:03:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-27T20:15:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5597788,
+            42.6391754
+          ],
+          [
+            12.5599085,
+            42.6396158
+          ],
+          [
+            12.560168,
+            42.6395754
+          ],
+          [
+            12.5603476,
+            42.63948
+          ],
+          [
+            12.5604024,
+            42.6393589
+          ],
+          [
+            12.5603625,
+            42.6392194
+          ],
+          [
+            12.5602328,
+            42.6391423
+          ],
+          [
+            12.5600333,
+            42.6391203
+          ],
+          [
+            12.5597788,
+            42.6391754
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/983118964/osm-location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-04T20:05:58Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-28T14:23:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-28T17:00:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-28T16:58:53Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:17:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:15:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:15:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-11-11T14:51:59Z",
+      "associationCertainty": "certain",
+      "title": "Carsulae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/983118964/9192813096",
+      "connectionType": "at",
+      "id": "9192813096",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:51:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:51:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:51:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413065",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Carsulae",
+      "citationDetail": "Carsulae",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q118149257",
+      "citationDetail": "Roman Theatre of Carsulae (Q118149257)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.theatrum.de",
+      "citationDetail": "540",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "983118964",
+  "subject": [
+    "opus reticulatum",
+    "Theater",
+    "extant remains"
+  ],
+  "title": "Roman theater at Carsulae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater at Carsulae dates to the Augustan period, pre-dating the amphitheater.",
+  "reprPoint": [
+    12.560078883047801,
+    42.63934995582385
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    12.5597788,
+    42.6391203,
+    12.5604024,
+    42.6396158
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413065"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-11T14:51:58Z",
+  "uri": "https://pleiades.stoa.org/places/983118964",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-04T20:07:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-29T22:07:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:53:35Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:53:29Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:52:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:51:58Z"
+    }
+  ]
+}

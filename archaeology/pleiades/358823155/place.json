@@ -1,0 +1,277 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.934957,
+          37.8015954
+        ]
+      },
+      "type": "Feature",
+      "id": "goltepe",
+      "properties": {
+        "snippet": "Hill, Settlement; 3000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/358823155/goltepe",
+        "description": "Point representing the peak of G\u00f6ltepe, derived from an OpenStreetMap node after Yener 2021.",
+        "location_precision": "precise",
+        "title": "OSM location of G\u00f6ltepe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/8661576271",
+          "citationDetail": "Node 8661576271",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=8661576271",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1221016400",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Yener 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VLSZGEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Yener, K. Aslihan. <i>G\u00f6ltepe Excavations: Tin Production at an Early Bronze Age Mining Town in the Central Taurus Mountains, Turkey</i>, 2021. http://www.worldcat.org/oclc/1221016400.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "goltepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of G\u00f6ltepe",
+      "provenance": "OpenStreetMap (Node 8661576271, version 3, osm:changeset=114451507, 2021-12-01T17:13:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hill",
+        "settlement"
+      ],
+      "description": "Point representing the peak of G\u00f6ltepe, derived from an OpenStreetMap node after Yener 2021.",
+      "created": "2021-12-01T17:14:57Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.934957,
+          37.8015954
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/358823155/goltepe",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-01T20:05:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-12-01T17:25:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-12-01T17:20:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2021-12-01T17:14:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-12-01T17:14:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1221016400",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Yener 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VLSZGEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Yener, K. Aslihan. <i>G\u00f6ltepe Excavations: Tin Production at an Early Bronze Age Mining Town in the Central Taurus Mountains, Turkey</i>. Philadelphia: INSTAP Academic Press, 2021. http://www.worldcat.org/oclc/1221016400.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/505657",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Yener 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QPIHHXQP",
+      "formattedCitation": "<div class=\"csl-entry\">Yener, K. Aslihan, and Pamela B. Vandiver. \u201cTin Processing at G\u00f6ltepe, an Early Bronze Age Site in Anatolia.\u201d <i>American Journal of Archaeology</i> 97, no. 2 (1993): 207\u201338. https://doi.org/10.2307/505657.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://oi.uchicago.edu/research/projects/g%C3%B6ltepe-kestel-project",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "The G\u00f6ltepe / Kestel Project",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Kestel_(archaeological_site)",
+      "citationDetail": "Kestel (archaeological site)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q33268537",
+      "citationDetail": "Kestel (Q33268537)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "358823155",
+  "subject": [],
+  "title": "G\u00f6ltepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/hill",
+    "https://pleiades.stoa.org/vocabularies/place-types/mine-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological site in the Central Taurus Mountains dated to the early Bronze Age. The G\u00f6ltepe hill contains traces of a village associated with the nearby mine site of Kestel.",
+  "reprPoint": [
+    34.934957,
+    37.8015954
+  ],
+  "placeTypes": [
+    "settlement",
+    "hill",
+    "mine-2"
+  ],
+  "bbox": [
+    34.934957,
+    37.8015954,
+    34.934957,
+    37.8015954
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-05-05T15:44:51Z",
+  "uri": "https://pleiades.stoa.org/places/358823155",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-28T19:12:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-01T20:05:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2021-12-01T17:25:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2021-12-01T17:24:55Z"
+    },
+    {
+      "comment": "added wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-05T15:46:13Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-05T15:44:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-05T15:44:51Z"
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.49773919,
+          41.88949168
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Townhouse; AD 100 - AD 299",
+        "link": "https://pleiades.stoa.org/places/47784682/imagery-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://exhibits.stanford.edu/nash/catalog/pv859ty5536",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Domus Clementis, vestibule of a private house beneath the lower church of S. Clemente",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 299,
+      "title": "Imagery location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "",
+      "created": "2023-02-25T21:32:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.49773919,
+          41.88949168
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/47784682/imagery-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-18T12:02:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-14T16:35:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-14T16:34:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-25T22:29:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-25T21:32:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-25T21:32:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-25T21:33:05Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/47784682/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-18T12:02:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-14T16:35:03Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-14T16:26:27Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-25T21:33:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-25T21:33:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054",
+          "citationDetail": "CLEMENS, DOMUS",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Platner 1929 (Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+          "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://exhibits.stanford.edu/nash/catalog/pv859ty5536",
+      "citationDetail": " vol. 1, p. 354, fig. 428 (Portrait): 'Domus Clementis,' Fot Num 3020.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nash 1968",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JMB6FZSP",
+      "formattedCitation": "<div class=\"csl-entry\">Nash, Ernest, and Deutsches Arch\u00e4ologisches Institut. <i>Pictorial Dictionary of Ancient Rome</i>. 2 vols. London: Thames &amp; Hudson, 1968.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DD%3Aentry+group%3D2%3Aentry%3Dclemens-domus",
+      "citationDetail": "CLEMENS, DOMUS",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "47784682",
+  "subject": [],
+  "title": "Domus Clementis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The remains of a private domus that date to the second and third centuries CE and include a Mithraeum. This complex eventually became incorporated into the fourth-century basilica on the site of the later basilica of San Clemente al Laterano.",
+  "reprPoint": [
+    12.49773919,
+    41.88949168
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    12.49773919,
+    41.88949168,
+    12.49773919,
+    41.88949168
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/865664297"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-25T21:31:24Z",
+  "uri": "https://pleiades.stoa.org/places/47784682",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-18T12:02:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-18T12:02:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-14T16:35:02Z"
+    },
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-14T16:25:52Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-25T21:31:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-25T21:31:24Z"
+    }
+  ]
+}

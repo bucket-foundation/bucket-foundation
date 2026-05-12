@@ -1,0 +1,448 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.2035956,
+            34.0061616
+          ],
+          [
+            36.2042372,
+            34.0063017
+          ],
+          [
+            36.2043263,
+            34.0060212
+          ],
+          [
+            36.2036847,
+            34.0058811
+          ],
+          [
+            36.2035956,
+            34.0061616
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-bacchus",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/524305133/osm-location-of-temple-of-bacchus",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Bacchus"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/244881407",
+          "citationDetail": "Way 244881407",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=244881407",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-bacchus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Temple of Bacchus",
+      "provenance": "OpenStreetMap (Way 244881407, version 6, osm:changeset=65132691, 2018-12-03T17:27:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-06-12T18:32:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.2035956,
+            34.0061616
+          ],
+          [
+            36.2042372,
+            34.0063017
+          ],
+          [
+            36.2043263,
+            34.0060212
+          ],
+          [
+            36.2036847,
+            34.0058811
+          ],
+          [
+            36.2035956,
+            34.0061616
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/524305133/osm-location-of-temple-of-bacchus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-18T23:56:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-13T00:10:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:49:25Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:36:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:32:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:32:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "One of the finest and best preserved Roman temple ruins, the Temple of Bacchus is in Baalek (modern Lebanon).",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2020-06-12T15:32:03Z",
+      "associationCertainty": "certain",
+      "title": "Heliopolis/Col. Iulia Augusta Felix",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/524305133/heliopolis-col-iulia-augusta-felix",
+      "connectionType": "at",
+      "id": "heliopolis-col-iulia-augusta-felix",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-13T00:10:05Z"
+        },
+        {
+          "comment": "changed type, time period",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:55:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:32:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:32:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:32:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678179",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Bacchus",
+          "citationDetail": "Temple of Bacchus",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Bacchus",
+      "citationDetail": "Temple of Bacchus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/909404040",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Butcher 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DCJJIIRT",
+      "formattedCitation": "<div class=\"csl-entry\">Butcher, Kevin. <i>Roman Syria and the Near East</i>. Los Angeles: J. Paul Getty Museum\u202f: Getty Publications, 2003. http://www.worldcat.org/oclc/909404040.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1179/lev.1999.31.1.241",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lewis 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GNFBRMMG",
+      "formattedCitation": "<div class=\"csl-entry\">Lewis, Norman N. \u201cBaalbek Before and After the Earthquake of 1759: The Drawings of James Bruce.\u201d <i>Levant</i> 31, no. 1 (January 1, 1999): 241\u201353. https://doi.org/10.1179/lev.1999.31.1.241.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1991217",
+      "citationDetail": "Q1991217: Temple of Bacchus",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/7852/",
+      "citationDetail": "7852: Temple of Bacchus, Baalbek",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Bacchus",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "40ff.",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Ragette 1980",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNXXRCM9",
+          "formattedCitation": "<div class=\"csl-entry\">Ragette, Friedrich. <i>Baalbek</i>. Chatto and Windus, 1980.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "temple-of-bacchus-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-06-12T20:11:09Z",
+      "uri": "https://pleiades.stoa.org/places/524305133/temple-of-bacchus-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Bacchus",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-13T00:10:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T23:51:41Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T20:11:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T20:11:09Z"
+        }
+      ]
+    }
+  ],
+  "id": "524305133",
+  "subject": [],
+  "title": "Temple of Bacchus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Part of the complex of Roman temples at Baalbek, the Temple of Bacchus is one of the best-preserved temples of the Roman world. It is conventionally dated to the second century CE.",
+  "reprPoint": [
+    36.20396095,
+    34.00609140000001
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    36.2035956,
+    34.0058811,
+    36.2043263,
+    34.0063017
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678179"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-12T15:28:36Z",
+  "uri": "https://pleiades.stoa.org/places/524305133",
+  "creators": [
+    {
+      "username": null,
+      "name": "jfu"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-13T00:10:05Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T23:51:16Z"
+    },
+    {
+      "comment": "edited summary and references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T18:54:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T15:32:19Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T15:28:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T15:28:36Z"
+    }
+  ]
+}

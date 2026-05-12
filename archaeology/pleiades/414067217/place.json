@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.0883491,
+            36.0909516
+          ],
+          [
+            28.08846,
+            36.0911099
+          ],
+          [
+            28.0885474,
+            36.0910699
+          ],
+          [
+            28.0884366,
+            36.0909116
+          ],
+          [
+            28.0883491,
+            36.0909516
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-temple-of-athena-lindia",
+      "properties": {
+        "snippet": "Temple-2; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/414067217/osm-location-temple-of-athena-lindia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Temple of Athena Lindia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    },
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/359637650",
+          "citationDetail": "Way 359637650",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=359637650",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-temple-of-athena-lindia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location: Temple of Athena Lindia",
+      "provenance": "OpenStreetMap (Way 359637650, version 6, osm:changeset=150764133, 2024-05-01T18:43:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-01T18:44:00Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.0883491,
+            36.0909516
+          ],
+          [
+            28.08846,
+            36.0911099
+          ],
+          [
+            28.0885474,
+            36.0910699
+          ],
+          [
+            28.0884366,
+            36.0909116
+          ],
+          [
+            28.0883491,
+            36.0909516
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/414067217/osm-location-temple-of-athena-lindia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-05-22T19:21:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-01T18:44:21Z"
+        },
+        {
+          "comment": "supersedes previously published location.",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-01T18:44:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-01T18:44:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-01T18:44:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-01T19:35:03Z",
+      "associationCertainty": "certain",
+      "title": "Lindos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/414067217/1030436813",
+      "connectionType": "at",
+      "id": "1030436813",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-01T19:35:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-01T19:35:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-01T19:35:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589913",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5600",
+      "citationDetail": "Tempel der Athena Lindia Lindos, Rhodos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute, 2025. https://arachne.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Athena_Lindia",
+      "citationDetail": "Temple of Athena Lindia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29963051",
+      "citationDetail": "Temple of Athena Lindia (Q29963051)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/8240713",
+      "citationDetail": "8240713: the Sanctuary of Athena Lindia at Lindos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Athena Lindia",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org",
+          "citationDetail": "Temple of Athena Lindia",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-of-athena-lindia",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-05-01T18:46:04Z",
+      "uri": "https://pleiades.stoa.org/places/414067217/temple-of-athena-lindia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Athena Lindia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-05-22T19:22:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-01T18:46:09Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-01T18:46:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-01T18:46:04Z"
+        }
+      ]
+    }
+  ],
+  "id": "414067217",
+  "subject": [
+    "extant remains",
+    "Doric"
+  ],
+  "title": "Temple of Athena Lindia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Doric temple dating ca. 300 BC located on the acropolis of Lindos. The sanctuary stands above a grotto that likely housed the earlier phases of the cult. The amphiprostyle temple has an elongated floor plan and measures 7.75 x 21.65 m.",
+  "reprPoint": [
+    28.0884482619594,
+    36.09101073954695
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    28.0883491,
+    36.0909116,
+    28.0885474,
+    36.0911099
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589913"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-03-09T08:30:18Z",
+  "uri": "https://pleiades.stoa.org/places/414067217",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Added MANTO entity under 'see further'; update references @acampbell",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-09T20:03:45Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "acampbell",
+      "modified": "2026-03-09T08:30:17Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-01T18:45:28Z"
+    },
+    {
+      "comment": "update arachne reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-20T01:10:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-03T17:26:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-01T19:38:47Z"
+    },
+    {
+      "comment": "summary, ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-01T19:38:41Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-01T19:35:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-01T19:35:01Z"
+    }
+  ]
+}

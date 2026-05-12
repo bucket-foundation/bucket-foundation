@@ -1,0 +1,645 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4814292,
+            41.8980066
+          ],
+          [
+            12.4814207,
+            41.8980292
+          ],
+          [
+            12.4812264,
+            41.8979868
+          ],
+          [
+            12.4812149,
+            41.8980159
+          ],
+          [
+            12.4811781,
+            41.8980078
+          ],
+          [
+            12.4811735,
+            41.8980195
+          ],
+          [
+            12.48113,
+            41.8980099
+          ],
+          [
+            12.4810668,
+            41.8981731
+          ],
+          [
+            12.4814577,
+            41.898259
+          ],
+          [
+            12.4815482,
+            41.8980321
+          ],
+          [
+            12.4814292,
+            41.8980066
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-santa-maria-in-via-lata",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/721487827/osm-location-of-santa-maria-in-via-lata",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of  Santa Maria in Via Lata"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/130807533",
+          "citationDetail": "Way 130807533",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=130807533",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-santa-maria-in-via-lata",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of  Santa Maria in Via Lata",
+      "provenance": "OpenStreetMap (Way 130807533, version 5, osm:changeset=85642696, 2020-05-23T08:03:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2021-10-29T14:08:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4814292,
+            41.8980066
+          ],
+          [
+            12.4814207,
+            41.8980292
+          ],
+          [
+            12.4812264,
+            41.8979868
+          ],
+          [
+            12.4812149,
+            41.8980159
+          ],
+          [
+            12.4811781,
+            41.8980078
+          ],
+          [
+            12.4811735,
+            41.8980195
+          ],
+          [
+            12.48113,
+            41.8980099
+          ],
+          [
+            12.4810668,
+            41.8981731
+          ],
+          [
+            12.4814577,
+            41.898259
+          ],
+          [
+            12.4815482,
+            41.8980321
+          ],
+          [
+            12.4814292,
+            41.8980066
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/721487827/osm-location-of-santa-maria-in-via-lata",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T16:23:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T16:02:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T15:58:05Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:08:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:08:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:08:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-29T14:08:54Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/721487827/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T16:02:38Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T15:58:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T15:58:05Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:08:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:08:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "27",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Richardson 1992",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCISHZRH",
+          "formattedCitation": "<div class=\"csl-entry\">Richardson, Lawrence. <i>A New Topographical Dictionary of Ancient Rome</i>. Baltimore: John Hopkins University Press, 1992.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-29T14:09:11Z",
+      "associationCertainty": "certain",
+      "title": "Regio VII (Via Lata)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/721487827/regio-vii-via-lata",
+      "connectionType": "part_of_analytical",
+      "id": "regio-vii-via-lata",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T16:02:38Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T15:58:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T15:58:05Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:09:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:09:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/596666070",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "27",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Richardson 1992",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCISHZRH",
+          "formattedCitation": "<div class=\"csl-entry\">Richardson, Lawrence. <i>A New Topographical Dictionary of Ancient Rome</i>. Baltimore: John Hopkins University Press, 1992.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-23T08:18:23Z",
+      "associationCertainty": "certain",
+      "title": "Via Lata",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/721487827/via-lata",
+      "connectionType": "on",
+      "id": "via-lata",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-17T10:37:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-09T00:27:54Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-09T00:27:51Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-23T08:18:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-23T08:18:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/753239987",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Arcus_Novus",
+          "citationDetail": "Arcus Novus",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2859847",
+      "citationDetail": "Q2859847: Arcus Novus",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "27",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richardson 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCISHZRH",
+      "formattedCitation": "<div class=\"csl-entry\">Richardson, Lawrence. <i>A New Topographical Dictionary of Ancient Rome</i>. Baltimore: John Hopkins University Press, 1992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Arcus_Novus",
+      "citationDetail": "Arcus Novus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Laubscher 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WNL6CC7H",
+      "formattedCitation": "<div class=\"csl-entry\">Laubscher, Hans P. \u201cArcus Novus und Arcus Claudii, zwei Triumphb\u00f6gen an der Via Lata in Rom.\u201d In <i>Nachrichten der Akademie der Wissenschaften in G\u00f6ttingen. Philologisch-Historische Klasse, 1976.1976</i>, 65\u2013108, 22 p. of pl, 1976.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/c.html#CIL-6.31383",
+      "formattedCitation": "CIL 6.31383",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "K\u00e4hler 1936",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U6CK5D5D",
+      "formattedCitation": "<div class=\"csl-entry\">K\u00e4hler, Heinz. <i>Zwei Sockel eines Triumphbogens im Boboligarten zu Florenz</i>. W. de Gruyter, 1936.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://exhibits.stanford.edu/nash/catalog/yq500wk3304",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Arcus Novus, relief with the inscription \"VOTIS X et XX\" and the personification of a conquered province. On a fa\u00e7ade in the garden of Villa Medici",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Arcus Novus",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/c.html#Chron.-148",
+          "formattedCitation": "Chron. 148",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "arcus-novus",
+      "end": 640,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2021-10-29T14:25:26Z",
+      "uri": "https://pleiades.stoa.org/places/721487827/arcus-novus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Arcus Novus",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T16:02:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T15:58:05Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-30T15:57:33Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:25:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-29T14:25:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "721487827",
+  "subject": [],
+  "title": "Arcus Novus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/arch"
+  ],
+  "details": "<p>The Arcus Novus relied on reused sculptural reliefs (<em>spolia</em>) that likely were taken from the\u00a0<em>Ara Pietatis. </em>Elements of the nearby Temple of the Sun were also perhaps coopted. By order of Innocent VIII, the arch was demolished in 1491. Fragments of relief sculpture were discovered in 1523 and eventually passed into the ownership of the Medici family, with some fragments making their way to the Boboli Gardens in Florence, Italy. The Diocletianic arch also reused relief sculpture from the Antonine period. These fragments also came to be owned by the Medici and were incorporated into the facade of the Villa Medici in Rome.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A now-lost arch on the ancient Via Lata. It was dedicated to Diocletian either in 293 CE (marking the occasion of his decennalia) or in 303-304 (joint triumph with Maximian). The present church of Santa Maria in Via Lata occupies the site of the arch.",
+  "reprPoint": [
+    12.4813118603471,
+    41.898111391086516
+  ],
+  "placeTypes": [
+    "arch"
+  ],
+  "bbox": [
+    12.4810668,
+    41.8979868,
+    12.4815482,
+    41.898259
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/596666070",
+    "https://pleiades.stoa.org/places/753239987"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-10-29T14:07:35Z",
+  "uri": "https://pleiades.stoa.org/places/721487827",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-30T16:02:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-30T16:02:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-30T15:58:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-29T14:25:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-29T14:23:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-29T14:22:40Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-29T14:07:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-29T14:07:35Z"
+    }
+  ]
+}

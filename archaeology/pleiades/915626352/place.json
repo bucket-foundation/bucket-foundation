@@ -1,0 +1,393 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.8811186,
+          52.8375208
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-brownshill-dolmen",
+      "properties": {
+        "snippet": "Tomb; 4000 BC - 3000 BC",
+        "link": "https://pleiades.stoa.org/places/915626352/location-of-brownshill-dolmen",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Brownshill Dolmen"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1211210182",
+          "citationDetail": "Node 1211210182",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.archaeology.ie/media/archeologyie/PDFS/FileDownload,293,en.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "National Monuments (Carlow)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UDPPU52X",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cCarlow.\u201d National Monuments in State Care: Ownership &amp; Guardianship. Ireland: Environment, Heritage and Local Government; National Monuments Service, March 4, 2009. https://www.archaeology.ie/app/uploads/2025/03/monuments-in-state-care-carlow.pdf.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 101",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Weir 1980",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XXVP2RYU",
+          "formattedCitation": "<div class=\"csl-entry\">Weir, Anthony. <i>Early Ireland: A Field Guide</i>. Belfast: Blackstaff Press, 1980.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-brownshill-dolmen",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -3000,
+      "title": "OSM location of Brownshill Dolmen",
+      "provenance": "OpenStreetMap (Node 1211210182, version 9, osm:changeset=132644746, 2023-02-16T19:30:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2026-01-09T23:16:59Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.8811186,
+          52.8375208
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/915626352/location-of-brownshill-dolmen",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-09T23:17:00Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-09T23:16:59Z"
+        },
+        {
+          "comment": "cleaned up references and connected them to Zotero",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-09T12:45:53Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-24T01:53:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-31T02:05:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-18T03:41:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-17T20:37:55Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-17T17:06:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-17T17:04:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-17T17:04:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2026-01-09T23:17:39Z",
+      "associationCertainty": "certain",
+      "title": "Hibernia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/915626352/20487",
+      "connectionType": "connection",
+      "id": "20487",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-09T23:17:40Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-09T23:17:39Z"
+        },
+        {
+          "comment": "cnxn, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-24T01:54:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/20487",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q33313",
+          "citationDetail": "Brownshill Dolmen (Q33313)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Brownshill_Dolmen",
+      "citationDetail": "Brownshill Dolmen",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Brownshill Dolmen.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://carlowtourism.com/brownshill-dolmen-2/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Carlow Tourism 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZQ5BMLQW",
+      "formattedCitation": "<div class=\"csl-entry\">Carlow Tourism. \u201cBrownshill Dolmen.\u201d Accessed January 8, 2026. https://carlowtourism.com/attraction/brownshill-dolmen-2/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q33313",
+      "citationDetail": "Brownshill Dolmen (Q33313)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "915626352",
+  "subject": [],
+  "title": "Brownshill Dolmen",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Brownshill Dolmen is a megalithic portal tomb built between 4000 and 3000 BC near Carlow, Ireland.",
+  "reprPoint": [
+    -6.8811186,
+    52.8375208
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    -6.8811186,
+    52.8375208,
+    -6.8811186,
+    52.8375208
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-09T23:16:58Z",
+  "uri": "https://pleiades.stoa.org/places/915626352",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2026-01-09T23:16:59Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2026-01-09T23:16:58Z"
+    },
+    {
+      "comment": "wikidata Q33313",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-24T01:53:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-31T02:04:46Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-20T17:14:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-18T03:41:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-17T20:36:51Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-17T17:03:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-17T17:03:45Z"
+    }
+  ]
+}

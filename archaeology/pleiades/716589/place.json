@@ -1,0 +1,627 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              24.391402407378678,
+              31.348989490271038
+            ],
+            [
+              24.7542702107678,
+              31.20622182992122
+            ],
+            [
+              25.03385687895286,
+              31.116992042202583
+            ],
+            [
+              25.33128950468165,
+              31.05155686454225
+            ],
+            [
+              25.676311350527044,
+              30.98017303436734
+            ],
+            [
+              25.985641281284984,
+              30.926635161736158
+            ],
+            [
+              26.265227949470045,
+              30.87904594161955
+            ],
+            [
+              26.544814617655277,
+              30.83740537401752
+            ],
+            [
+              26.871990505956944,
+              30.78386750138634
+            ],
+            [
+              27.193217741744036,
+              30.75412423881346
+            ],
+            [
+              27.53823958758943,
+              30.71248367121143
+            ],
+            [
+              27.799980298230764,
+              30.68274040863855
+            ],
+            [
+              28.133104839047007,
+              30.65894579858025
+            ],
+            [
+              28.597099735183917,
+              30.652997146065672
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/716589/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "Libya Inferior",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "73 B2 Libya",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": 640,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 1860.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-1-million-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:17:43Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              24.391402407378678,
+              31.348989490271038
+            ],
+            [
+              24.7542702107678,
+              31.20622182992122
+            ],
+            [
+              25.03385687895286,
+              31.116992042202583
+            ],
+            [
+              25.33128950468165,
+              31.05155686454225
+            ],
+            [
+              25.676311350527044,
+              30.98017303436734
+            ],
+            [
+              25.985641281284984,
+              30.926635161736158
+            ],
+            [
+              26.265227949470045,
+              30.87904594161955
+            ],
+            [
+              26.544814617655277,
+              30.83740537401752
+            ],
+            [
+              26.871990505956944,
+              30.78386750138634
+            ],
+            [
+              27.193217741744036,
+              30.75412423881346
+            ],
+            [
+              27.53823958758943,
+              30.71248367121143
+            ],
+            [
+              27.799980298230764,
+              30.68274040863855
+            ],
+            [
+              28.133104839047007,
+              30.65894579858025
+            ],
+            [
+              28.597099735183917,
+              30.652997146065672
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/716589/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "D.J. Mattingly"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-13T15:21:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-06T15:30:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:17:43Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2024-05-05T14:08:07Z",
+      "associationCertainty": "certain",
+      "title": "Creta et Cyrene (Roman province)",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/716589/creta-et-cyrene-roman-province",
+      "connectionType": "succeeds",
+      "id": "creta-et-cyrene-roman-province",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-09T14:32:25Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-09T14:32:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-05-05T14:08:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-05-05T14:08:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-05-05T14:08:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/981517",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kenrick 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F7T27BND",
+          "formattedCitation": "<div class=\"csl-entry\">Kenrick, Philip M, and Ahmed Buzaian. <i>Cyrenaica</i>. London: Silphium Press, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "73 B2 Libya Inferior",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "page 163",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ball 1942",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9NUERM7D",
+      "formattedCitation": "<div class=\"csl-entry\">Ball, John, and G. W Murray. <i>Egypt in the Classical Geographers</i>. Cairo: Government press, Bul\u00e2q, 1942.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Libya Inferior",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "libya-inferior",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 73 B2 Libya Inferior",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-09-09T05:51:12Z",
+      "uri": "https://pleiades.stoa.org/places/716589/libya-inferior",
+      "creators": [
+        {
+          "username": null,
+          "name": "D.J. Mattingly"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:05:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-09-09T17:23:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2009-09-09T16:27:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-09T05:51:12Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Libya Sicca",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "libya-sicca",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 73 B2 Libya Inferior",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-09-09T05:51:12Z",
+      "uri": "https://pleiades.stoa.org/places/716589/libya-sicca",
+      "creators": [
+        {
+          "username": null,
+          "name": "D.J. Mattingly"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:05:32Z"
+        },
+        {
+          "comment": "Time periods copied from sibling. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-20T03:30:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-09-09T17:23:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2009-09-09T16:27:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-09T05:51:12Z"
+        }
+      ]
+    }
+  ],
+  "id": "716589",
+  "subject": [],
+  "title": "Libya Inferior (region)",
+  "provenance": "Barrington Atlas: BAtlas 73 B2 Libya Inferior",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/region",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: coastal region between Alexandria and Darnis</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient coastal region of North Africa between Alexandria in Egypt and Darnis (modern Derna in Libya).",
+  "reprPoint": [
+    26.473596095001977,
+    30.889219948918697
+  ],
+  "placeTypes": [
+    "region",
+    "label"
+  ],
+  "bbox": [
+    24.391402407378678,
+    30.652997146065672,
+    28.597099735183917,
+    31.348989490271038
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/981517",
+    "https://pleiades.stoa.org/places/373780",
+    "https://pleiades.stoa.org/places/373780",
+    "https://pleiades.stoa.org/places/716615",
+    "https://pleiades.stoa.org/places/727070"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-07-30T21:53:07Z",
+  "uri": "https://pleiades.stoa.org/places/716589",
+  "creators": [
+    {
+      "username": null,
+      "name": "D.J. Mattingly"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "publish",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-30T23:08:14Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:05:31Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T23:57:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-09-09T17:23:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "admin",
+      "modified": "2009-09-09T16:27:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-09T05:51:12Z"
+    }
+  ]
+}

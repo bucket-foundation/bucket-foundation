@@ -1,0 +1,413 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5134707,
+          41.8585402
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-vigna-randanini",
+      "properties": {
+        "snippet": "Cemetery, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/874652177/osm-location-of-vigna-randanini",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Vigna Randanini"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2362645785",
+          "citationDetail": "Node 2362645785",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2362645785",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-vigna-randanini",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Vigna Randanini",
+      "provenance": "OpenStreetMap (Node 2362645785, version 1, osm:changeset=16721406, 2013-06-27T04:52:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-02T05:48:49Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5134707,
+          41.8585402
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/874652177/osm-location-of-vigna-randanini",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-07-26T23:02:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-02T05:49:59Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-02T05:49:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-02T05:48:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-02T05:48:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:59:45Z",
+      "associationCertainty": "certain",
+      "title": "Via Appia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/874652177/356966898",
+      "connectionType": "near",
+      "id": "356966898",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T17:01:09Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/356966898",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Vigna_Randanini",
+      "citationDetail": "Vigna Randanini",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.academia.edu/711684/The_Discovery_and_Exploration_of_the_Jewish_Catacomb_of_the_Vigna_Randanini_in_Rome",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dello Russo 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E68RZHCV",
+      "formattedCitation": "<div class=\"csl-entry\">Russo, Jessica Dello. \u201cThe Discovery and Exploration of the Jewish Catacomb of the Vigna Randanini in Rome Records, Research, and Excavations through 1895.\u201d <i>Roma Subterranea Judaica, Publications of the International Catacomb Society</i> 2011, no. 5 (January 1, 2011): 1\u201324. https://doi.org/10.5281/zenodo.5670864.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Catacombe_di_Vigna_Randanini",
+      "citationDetail": "Catacombe di Vigna Randanini",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3663214",
+      "citationDetail": "Q3663214: Vigna Randanini ",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://repositum.tuwien.at/handle/20.500.12708/16791",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kod\u017eoman 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YA2Z4ZEI",
+      "formattedCitation": "<div class=\"csl-entry\">Kod\u017eoman, Eva. \u201cEternal Passages: Investigation of Structural and Chronological Development on the Jewish Catacomb of Vigna Randanini.\u201d Thesis, Wien, 2021. https://repositum.tuwien.at/handle/20.500.12708/16791.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://publications.dainst.org/journals/rm/article/view/4032",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zimmermann 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YHB92FD3",
+      "formattedCitation": "<div class=\"csl-entry\">Zimmermann, Norbert, Leonard V. Rutgers, Eva Kodzoman, Antonello Vilella, and Michael W. Dee. \u201cThe Jewish Catacomb at Vigna Randanini in Rome.: A New Architectural and Archaeological Study. With an Appendix on Tomb Statistics.\u201d <i>R\u00f6mische Mitteilungen</i> 128 (April 20, 2023): 360\u2013431. https://doi.org/10.34780/6cr2-27c3.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Catacombe di Vigna Randanini",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Catacombe_di_Vigna_Randanini",
+          "citationDetail": "Catacombe di Vigna Randanini",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "catacombe-di-vigna-randanini",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1800,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2020-03-05T04:07:57Z",
+      "uri": "https://pleiades.stoa.org/places/874652177/catacombe-di-vigna-randanini",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Catacombe di Vigna Randanini",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-11T19:35:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-05T04:09:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-05T04:07:57Z"
+        }
+      ]
+    }
+  ],
+  "id": "874652177",
+  "subject": [],
+  "title": "Vigna Randanini",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Jewish catacomb along the Via Appia discovered in 1859.",
+  "reprPoint": [
+    12.5134707,
+    41.8585402
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.5134707,
+    41.8585402,
+    12.5134707,
+    41.8585402
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/356966898"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-18T16:50:21Z",
+  "uri": "https://pleiades.stoa.org/places/874652177",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references; added Kod\u017eoman 2021 and Zimmermann 2023",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-18T17:00:26Z"
+    },
+    {
+      "comment": "updated ref. Wikidata Q3663214: Vigna Randanini ",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-11T20:16:37Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-05T04:08:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-07-26T23:02:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-02T05:50:17Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-23T01:26:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-23T01:26:11Z"
+    }
+  ]
+}

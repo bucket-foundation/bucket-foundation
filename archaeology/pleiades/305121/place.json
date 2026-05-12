@@ -1,0 +1,458 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.865021312512546,
+              36.85759982680965
+            ],
+            [
+              5.904066467224808,
+              36.8626394308373
+            ],
+            [
+              5.930408719018027,
+              36.86608915839724
+            ],
+            [
+              5.947920869462658,
+              36.870546461071875
+            ],
+            [
+              5.965755880906113,
+              36.87389896483799
+            ],
+            [
+              5.982220323745294,
+              36.87699125142823
+            ],
+            [
+              5.999737860122601,
+              36.88144105067552
+            ],
+            [
+              6.024119311762469,
+              36.887174116221374
+            ],
+            [
+              6.043664322620892,
+              36.89362372398839
+            ],
+            [
+              6.070242194773323,
+              36.90277903037628
+            ],
+            [
+              6.09064103218586,
+              36.90879806082446
+            ],
+            [
+              6.107492182727912,
+              36.91508096879192
+            ],
+            [
+              6.123416589985173,
+              36.921072060646836
+            ],
+            [
+              6.145808847206321,
+              36.928729857850755
+            ],
+            [
+              6.180629008627359,
+              36.94299239463114
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label",
+        "link": "https://pleiades.stoa.org/places/305121/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "pscalfano",
+      "homepage": null,
+      "name": "Perry Scalfano",
+      "uri": "https://pleiades.stoa.org/author/pscalfano"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "Numidicus Sinus",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "31 D3 Numidicus",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": null,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:18:24Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              5.865021312512546,
+              36.85759982680965
+            ],
+            [
+              5.904066467224808,
+              36.8626394308373
+            ],
+            [
+              5.930408719018027,
+              36.86608915839724
+            ],
+            [
+              5.947920869462658,
+              36.870546461071875
+            ],
+            [
+              5.965755880906113,
+              36.87389896483799
+            ],
+            [
+              5.982220323745294,
+              36.87699125142823
+            ],
+            [
+              5.999737860122601,
+              36.88144105067552
+            ],
+            [
+              6.024119311762469,
+              36.887174116221374
+            ],
+            [
+              6.043664322620892,
+              36.89362372398839
+            ],
+            [
+              6.070242194773323,
+              36.90277903037628
+            ],
+            [
+              6.09064103218586,
+              36.90879806082446
+            ],
+            [
+              6.107492182727912,
+              36.91508096879192
+            ],
+            [
+              6.123416589985173,
+              36.921072060646836
+            ],
+            [
+              6.145808847206321,
+              36.928729857850755
+            ],
+            [
+              6.180629008627359,
+              36.94299239463114
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/305121/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "E.W.B. Fentress"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "bdturner",
+          "modified": "2022-09-20T15:24:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T15:36:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:18:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "31 D3 Numidicus Sinus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/a.html#AAA-8.24",
+      "formattedCitation": "AAA 8.24",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Numidicus Sinus",
+      "attestations": [],
+      "references": [],
+      "id": "numidicus-sinus",
+      "end": null,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 31 D3 Numidicus Sinus",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-10T18:41:21Z",
+      "uri": "https://pleiades.stoa.org/places/305121/numidicus-sinus",
+      "creators": [
+        {
+          "username": null,
+          "name": "E.W.B. Fentress"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:05:09Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-10T20:21:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T18:47:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T18:41:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "305121",
+  "subject": [],
+  "title": "Numidicus Sinus",
+  "provenance": "Barrington Atlas: BAtlas 31 D3 Numidicus Sinus",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/water-open",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "None",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 31 D3 Numidicus Sinus",
+  "reprPoint": [
+    6.024844345026424,
+    36.892574842453655
+  ],
+  "placeTypes": [
+    "water-open",
+    "label"
+  ],
+  "bbox": [
+    5.865021312512546,
+    36.85759982680965,
+    6.180629008627359,
+    36.94299239463114
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T18:41:21Z",
+  "uri": "https://pleiades.stoa.org/places/305121",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.W.B. Fentress"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Finding bays (sinus) by their titles and setting feature types",
+      "modifiedBy": "sgillies",
+      "modified": "2012-03-20T22:14:08Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:05:09Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T20:21:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T18:47:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T18:41:21Z"
+    }
+  ]
+}

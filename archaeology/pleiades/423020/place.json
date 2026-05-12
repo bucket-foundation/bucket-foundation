@@ -1,0 +1,454 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7928766,
+          41.9715776
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-di-quintilio-varo",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/423020/osm-location-of-villa-di-quintilio-varo",
+        "description": "Representative point derived from an an OpenStreetMap node",
+        "location_precision": "precise",
+        "title": "OSM location of Villa di Quintilio Varo"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "erobinson",
+      "homepage": null,
+      "name": "Elizabeth Robinson",
+      "uri": "https://pleiades.stoa.org/author/erobinson"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "erobinson",
+          "homepage": null,
+          "name": "Elizabeth Robinson",
+          "uri": "https://pleiades.stoa.org/author/erobinson"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/4741474522",
+          "citationDetail": "Node 4741474522",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4741474522",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-di-quintilio-varo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa di Quintilio Varo",
+      "provenance": "OpenStreetMap (Node 4741474522, version 1, osm:changeset=46956334, 2017-03-18T13:26:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative point derived from an an OpenStreetMap node",
+      "created": "2017-03-18T13:26:43Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7928766,
+          41.9715776
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423020/osm-location-of-villa-di-quintilio-varo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Changed the wording of the summary to reflect the editorial guidelines",
+          "modifiedBy": "erobinson",
+          "modified": "2017-03-24T16:28:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "erobinson",
+          "modified": "2017-03-24T16:24:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "erobinson",
+          "modified": "2017-03-24T16:24:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-18T13:33:34Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-18T13:27:12Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-18T13:26:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-18T13:26:43Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-05-28T00:42:51Z",
+      "associationCertainty": "certain",
+      "title": "Tibur",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423020/tibur",
+      "connectionType": "at",
+      "id": "tibur",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-06-18T10:08:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-28T00:43:01Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-28T00:42:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-28T00:42:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423081",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://arachne.uni-koeln.de/item/topographie/8006674",
+          "citationDetail": "8006674: Sog. Villa des Quinctilius Varus Tibur, Rom (Metropolitanstadt)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 D2 Quintilio Varo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mari 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IGHWWS3M",
+      "formattedCitation": "<div class=\"csl-entry\">Z. Mari, and F. Boanelli. \u201cLa Villa Di Quintilio Varo.\u201d <i>Bollettino Di Archeologia</i> 10 (1991): 37\u201355.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Quintilio_Varo",
+      "citationDetail": "Quintilio Varo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Quintilio Varo.",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "21056",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/949205965",
+      "citationDetail": "581",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marzano 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZN7DAZR",
+      "formattedCitation": "<div class=\"csl-entry\">Marzano, Annalisa. <i>Roman Villas in Central Italy: A Social and Economic History.</i> Leiden: E.J. Brill, 2007. http://www.worldcat.org/oclc/949205965.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5265",
+      "citationDetail": "Sog. Villa des Quinctilius Varus Rom (Metropolitanstadt) (Tibur), Italien",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/12076",
+      "citationDetail": "Villa di Quintilio Varo (Nr. 17) im Bereich des Colle Piano/Colle S. Antonio Tivoli, (Tibur), Rom (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131538679",
+      "citationDetail": "So-called Villa of Quintilius Varus (Q131538679)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "423020",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=villa"
+  ],
+  "title": "Quintilio Varo",
+  "provenance": "Barrington Atlas: BAtlas 43 D2 Quintilio Varo",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Quintilio Varo, so-called Villa of Quintilius Varus</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A villa located near the sanctuary of Madonna di Quintiliolo (Tivoli) that is traditionally associated with Quintilius Varus. The remains of the basis villae may date as early as the third century B.C.",
+  "reprPoint": [
+    12.7928766,
+    41.9715776
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    12.7928766,
+    41.9715776,
+    12.7928766,
+    41.9715776
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423081"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:33:31Z",
+  "uri": "https://pleiades.stoa.org/places/423020",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q131538679",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T14:08:44Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-24T20:14:17Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-25T22:02:08Z"
+    },
+    {
+      "comment": "Arachne 8006674: Sog. Villa des Quinctilius Varus Tibur, Rom (Metropolitanstadt)",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-28T00:42:15Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-24T21:51:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-24T15:15:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-18T13:22:13Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:45:58Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:56:40Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:15:34Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:44:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:13:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:39:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:33:31Z"
+    }
+  ]
+}

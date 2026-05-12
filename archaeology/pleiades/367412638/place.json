@@ -1,0 +1,564 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7237015,
+            37.9733521
+          ],
+          [
+            23.7245518,
+            37.9734631
+          ],
+          [
+            23.7245468,
+            37.9734419
+          ],
+          [
+            23.7246849,
+            37.9731328
+          ],
+          [
+            23.7242579,
+            37.9730088
+          ],
+          [
+            23.7237207,
+            37.9731402
+          ],
+          [
+            23.7237015,
+            37.9733521
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-ruins",
+      "properties": {
+        "snippet": "Townhouse; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/367412638/osm-location-ruins",
+        "description": "Location of the block which includes Omega House",
+        "location_precision": "precise",
+        "title": "OSM Location: ruins"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/145662926",
+          "citationDetail": "Way 145662926",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=145662926",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-ruins",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 2099,
+      "title": "OSM Location: ruins",
+      "provenance": "OpenStreetMap (Way 145662926, version 4, osm:changeset=35653121, 2015-11-29T19:15:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Location of the block which includes Omega House",
+      "created": "2024-03-15T21:25:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7237015,
+            37.9733521
+          ],
+          [
+            23.7245518,
+            37.9734631
+          ],
+          [
+            23.7245468,
+            37.9734419
+          ],
+          [
+            23.7246849,
+            37.9731328
+          ],
+          [
+            23.7242579,
+            37.9730088
+          ],
+          [
+            23.7237207,
+            37.9731402
+          ],
+          [
+            23.7237015,
+            37.9733521
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/367412638/osm-location-ruins",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:37:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:31:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:31:04Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:30:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:26:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:26:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:25:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:25:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 599,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-15T21:16:50Z",
+      "associationCertainty": "certain",
+      "title": "Areopagus",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/367412638/areopagus",
+      "connectionType": "on",
+      "id": "areopagus",
+      "attestations": [
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "sixth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:37:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:26:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:16:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:16:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/969121823",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "148-151",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-16T02:34:31Z",
+      "associationCertainty": "certain",
+      "title": "Athenae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/367412638/athenae",
+      "connectionType": "at",
+      "id": "athenae",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:37:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T02:34:35Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T02:34:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T02:34:31Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579885",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/43768502",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 1989",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FKFNELKW",
+          "formattedCitation": "<div class=\"csl-entry\">Camp II, John McK. \u201cThe Philosophical Schools of Roman Athens.\u201d <i>Bulletin Supplement (University of London. Institute of Classical Studies)</i>, no. 55 (1989): 50\u201355. https://www.jstor.org/stable/43768502.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+      "citationDetail": "148-151",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camp 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+      "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://agora.ascsa.net/id/agora/publication/agora%2024",
+      "citationDetail": "37-48",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Frantz 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WSN2UXPF",
+      "formattedCitation": "<div class=\"csl-entry\">Frantz, Alison, and American school of classical studies at Athens. <i>The Athenian Agora. XXIV, XXIV,</i>. The Athenian Agora: Results of Excavations 24. Princeton (N.J.): American School of Classical Studies at Athens, 1988. https://agora.ascsa.net/id/agora/publication/agora%2024.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://agora.ascsa.net/id/agora/monument/omega%20house",
+      "citationDetail": "Monument: Omega House",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Agora Excavations (ASCSA)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P6MWAMKU",
+      "formattedCitation": "<div class=\"csl-entry\">American School of Classical Studies in Athens. <i>Agora Excavations (ASCSA)</i>. Athens: American School of Classical Studies at Athens, 2007. https://agora.ascsa.net/research.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/43768502",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camp 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FKFNELKW",
+      "formattedCitation": "<div class=\"csl-entry\">Camp II, JOHN McK. \u201cThe Philosophical Schools of Roman Athens.\u201d <i>Bulletin Supplement (University of London. Institute of Classical Studies)</i>, no. 55 (1989): 50\u201355. https://www.jstor.org/stable/43768502.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131730107",
+      "citationDetail": "Omega House (Q131730107)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Omega House",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "148-151",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "omega-house",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-15T21:17:50Z",
+      "uri": "https://pleiades.stoa.org/places/367412638/omega-house",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Omega House",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:37:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T02:33:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:26:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:17:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-15T21:17:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "367412638",
+  "subject": [],
+  "title": "Omega House",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Omega House is the modern name for a large house on the north slope of the Areopagos hill in Athens. Early traces go back to the 4th century BC, but the surviving structure was built in the 4th and 5th centuries AD. It appears to have been a philosophical school until the 6th century. It was destroyed in the Slavic Sack of 582 AD.",
+  "reprPoint": [
+    23.72419407929734,
+    37.973239557725904
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    23.7237015,
+    37.9730088,
+    23.7246849,
+    37.9734631
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/969121823",
+    "https://pleiades.stoa.org/places/579885"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-15T21:15:05Z",
+  "uri": "https://pleiades.stoa.org/places/367412638",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q131730107",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-11T03:23:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T14:37:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T02:33:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-15T21:26:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-15T21:24:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-15T21:15:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-15T21:15:05Z"
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.843599,
+          41.689938
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/822068560/imagery-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery location "
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "Imagery location ",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2022-05-11T21:09:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.843599,
+          41.689938
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/822068560/imagery-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:32:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T21:18:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T21:09:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T21:09:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-11T21:09:57Z",
+      "associationCertainty": "certain",
+      "title": "Lago di Giulianello",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/822068560/lago-di-giulianello",
+      "connectionType": "abuts",
+      "id": "lago-di-giulianello",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:32:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T21:18:08Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T21:09:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T21:09:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/824974027",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/63867/",
+      "citationDetail": "63867: Colle della Coedra",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 96",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Attema 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PSHXDXTC",
+      "formattedCitation": "<div class=\"csl-entry\">Attema, Peter A. J, Jorn F Seubers, Sarah Lea Willemsen, and Groningen institute of archaeology (Pays-Bas), eds. <i>Early States, Territories and Settlements in Protohistoric Central Italy: Proceedings of a Specialist Conference at the Groningen Institute of Archaeology of the University of Groningen, 2013</i>. Groningen; [Eelde: University of Groningen, Groningen Institute of Archaeology\u202f; Barkhuis, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130489489",
+      "citationDetail": "Q130489489",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Colle della Coedra",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "p. 96",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Attema 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PSHXDXTC",
+          "formattedCitation": "<div class=\"csl-entry\">Attema, Peter A. J, Jorn F Seubers, Sarah Lea Willemsen, and Groningen institute of archaeology (Pays-Bas), eds. <i>Early States, Territories and Settlements in Protohistoric Central Italy: Proceedings of a Specialist Conference at the Groningen Institute of Archaeology of the University of Groningen, 2013</i>. Groningen; [Eelde: University of Groningen, Groningen Institute of Archaeology\u202f; Barkhuis, 2016.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "colle-della-coedra",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-05-21T21:16:36Z",
+      "uri": "https://pleiades.stoa.org/places/822068560/colle-della-coedra",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Colle della Coedra",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:32:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T21:18:08Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T21:16:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T21:16:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "822068560",
+  "subject": [],
+  "title": "Colle della Coedra",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A small hill in the Alban Hills that was the site of a protourban settlement of Latium covering some 265 square meters.",
+  "reprPoint": [
+    12.843599,
+    41.689938
+  ],
+  "placeTypes": [
+    "fortified-settlement"
+  ],
+  "bbox": [
+    12.843599,
+    41.689938,
+    12.843599,
+    41.689938
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/824974027"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-11T21:08:01Z",
+  "uri": "https://pleiades.stoa.org/places/822068560",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q130489489",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-12T00:49:09Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-23T19:32:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-21T21:18:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-21T21:16:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-11T21:08:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-11T21:08:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-11T21:08:01Z"
+    }
+  ]
+}

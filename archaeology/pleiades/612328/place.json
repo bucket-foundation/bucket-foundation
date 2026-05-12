@@ -1,0 +1,349 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              29.0,
+              38.0
+            ],
+            [
+              29.5,
+              38.0
+            ],
+            [
+              29.5,
+              38.5
+            ],
+            [
+              29.0,
+              38.5
+            ],
+            [
+              29.0,
+              38.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "undetermined",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/612328/undetermined",
+        "description": "",
+        "location_precision": "rough",
+        "title": "Undetermined location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "undetermined",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 300,
+      "title": "Undetermined location",
+      "provenance": "Barrington Atlas: BAtlas 62 B5 22",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2009-10-15T09:41:09Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              29.0,
+              38.0
+            ],
+            [
+              29.5,
+              38.0
+            ],
+            [
+              29.5,
+              38.5
+            ],
+            [
+              29.0,
+              38.5
+            ],
+            [
+              29.0,
+              38.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/612328/undetermined",
+      "creators": [
+        {
+          "username": null,
+          "name": "T. Drew Bear"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:15:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-15T18:23:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-15T10:03:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-15T09:41:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-02-26T15:44:24Z",
+      "associationCertainty": "certain",
+      "title": "*Thiounta",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/612328/thiounta",
+      "connectionType": "near",
+      "id": "thiounta",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-03T23:17:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-26T15:44:30Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-26T15:44:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-26T15:44:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/609556",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "117",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Waelkens 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YVF63XRN",
+          "formattedCitation": "<div class=\"csl-entry\">Waelkens, M., P. de Paepe, and L. Moens. \u201cSurvey in the White Quarries of Anatolia.\u201d In <i>IV. Ara\u015ft\u0131rma Sonu\u00e7lar\u0131 Toplant\u0131s\u0131, 1986,</i> 113\u201326. Ankara, 1987.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "62 B5 22",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "117",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Waelkens 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YVF63XRN",
+      "formattedCitation": "<div class=\"csl-entry\">Waelkens, M., P. de Paepe, and L. Moens. \u201cSurvey in the White Quarries of Anatolia.\u201d In <i>IV. Ara\u015ft\u0131rma Sonu\u00e7lar\u0131 Toplant\u0131s\u0131, 1986,</i> 113\u201326. Ankara, 1987.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "612328",
+  "subject": [
+    "Marble",
+    "mine, quarry"
+  ],
+  "title": "Unnamed quarries to the west of Thiounta",
+  "provenance": "Barrington Atlas: BAtlas 62 B5 22",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: W *Thiounta</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Waelkens 1987 describes the discovery of a quarry district referred to as Ta\u015fl\u0131 G\u00f6l. It is to be located between the villages of Do\u011fanl\u0131, G\u00f6zler, and \u00c7indere. This site is approximately 25 km northwest of Pamukkale. The marble from these quarries is identified as Thiounta marble on the basis of comparison with the coarser marble of Hierapolis.",
+  "reprPoint": [
+    29.25,
+    38.25
+  ],
+  "placeTypes": [
+    "quarry"
+  ],
+  "bbox": [
+    29.0,
+    38.0,
+    29.5,
+    38.5
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/609556"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-02-26T15:35:24Z",
+  "uri": "https://pleiades.stoa.org/places/612328",
+  "creators": [
+    {
+      "username": null,
+      "name": "T. Drew Bear"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added tags",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-26T23:44:55Z"
+    },
+    {
+      "comment": "consulted Waelkens 1987 which is vague on locations. Updated title and summary on that basis. Place type = quarry",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-26T21:58:56Z"
+    },
+    {
+      "comment": "update Waelkens 1987",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-22T21:54:14Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:15:31Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T23:42:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-15T18:23:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-15T10:03:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-15T09:41:09Z"
+    }
+  ]
+}

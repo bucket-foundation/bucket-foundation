@@ -1,0 +1,496 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.0,
+              40.0
+            ],
+            [
+              40.0,
+              40.0
+            ],
+            [
+              40.0,
+              45.0
+            ],
+            [
+              35.0,
+              45.0
+            ],
+            [
+              35.0,
+              40.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-location",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/1001924/batlas-location",
+        "description": "",
+        "location_precision": "rough",
+        "title": "Barrington Atlas location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "Brian Z. Lund"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": null,
+      "name": "M. Joann McDaniel"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Mary E. Downs"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "Mary E. Downs"
+        },
+        {
+          "username": null,
+          "name": "M. Joann McDaniel"
+        },
+        {
+          "username": null,
+          "name": "Brian Z. Lund"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "batlas-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "Barrington Atlas location",
+      "provenance": "Barrington Atlas: BAtlas 102 G3 38",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2010-07-05T13:08:33Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.0,
+              40.0
+            ],
+            [
+              40.0,
+              40.0
+            ],
+            [
+              40.0,
+              45.0
+            ],
+            [
+              35.0,
+              45.0
+            ],
+            [
+              35.0,
+              40.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/1001924/batlas-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "R.S. Bagnall"
+        },
+        {
+          "username": null,
+          "name": "S. Mitchell"
+        },
+        {
+          "username": null,
+          "name": "S.T. Parker"
+        },
+        {
+          "username": null,
+          "name": "J.J. Wilkes"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:07:46Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-14T23:39:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-07-06T14:17:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-07-05T13:26:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-07-05T13:08:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-10T02:14:29Z",
+      "associationCertainty": "certain",
+      "title": "Pontike",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/1001924/pontike",
+      "connectionType": "part_of_analytical",
+      "id": "pontike",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-17T15:45:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-10T02:14:35Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-10T02:14:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-10T02:14:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/1001135",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Diocese_of_Pontus",
+          "citationDetail": "Diocese of Pontus",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "102 G3 38",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.oxfordreference.com/display/10.1093/acref/9780198662778.001.0001/acref-9780198662778-e-2190",
+      "citationDetail": "Helenopontus (S. Mitchell)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ODLA",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JZWNLAQ5",
+      "formattedCitation": "<div class=\"csl-entry\">Nicholson, Oliver, ed. <i>The Oxford Dictionary of Late Antiquity</i>. Oxford: Oxford University Press, 2018. https://doi.org/10.1093/acref/9780198662778.001.0001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Helenopontos",
+      "attestations": [],
+      "references": [],
+      "id": "helenopontos",
+      "end": null,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "Mary E. Downs"
+        },
+        {
+          "username": null,
+          "name": "M. Joann McDaniel"
+        },
+        {
+          "username": null,
+          "name": "Brian Z. Lund"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 102 G3 38",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-07-05T13:08:33Z",
+      "uri": "https://pleiades.stoa.org/places/1001924/helenopontos",
+      "creators": [
+        {
+          "username": null,
+          "name": "R.S. Bagnall"
+        },
+        {
+          "username": null,
+          "name": "S. Mitchell"
+        },
+        {
+          "username": null,
+          "name": "S.T. Parker"
+        },
+        {
+          "username": null,
+          "name": "J.J. Wilkes"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:07:46Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-14T23:39:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-07-06T14:17:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-07-05T13:26:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-07-05T13:08:33Z"
+        }
+      ]
+    }
+  ],
+  "id": "1001924",
+  "subject": [],
+  "title": "Helenopontos",
+  "provenance": "Barrington Atlas: BAtlas 102 G3 38",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/province"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Pontike</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The province of Pontus became Diospontus in the Diocese of Pontus by 314. Following the death of Helena, mother of Constantine I, in 328 it was renamed Helenopontos. In 535/6 it was joined with Pontus Polemoniacus but retained the name Helenopontos.",
+  "reprPoint": [
+    35.143037,
+    42.025776
+  ],
+  "placeTypes": [
+    "province"
+  ],
+  "bbox": [
+    35.143037,
+    42.025776,
+    35.143037,
+    42.025776
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/1001135",
+    "https://pleiades.stoa.org/places/857321"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-06-10T02:17:22Z",
+  "uri": "https://pleiades.stoa.org/places/1001924",
+  "creators": [
+    {
+      "username": null,
+      "name": "J.J. Wilkes"
+    },
+    {
+      "username": null,
+      "name": "S. Mitchell"
+    },
+    {
+      "username": null,
+      "name": "R.S. Bagnall"
+    },
+    {
+      "username": null,
+      "name": "S.T. Parker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "thomase",
+      "modified": "2024-05-14T19:46:28Z"
+    },
+    {
+      "comment": "Edited; Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-17T15:45:50Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:07:46Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-14T23:39:05Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:51:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-07-06T14:17:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-07-05T13:26:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-07-05T13:08:33Z"
+    }
+  ]
+}

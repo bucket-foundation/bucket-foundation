@@ -1,0 +1,490 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.2881467,
+            37.8539833
+          ],
+          [
+            15.2880575,
+            37.8538891
+          ],
+          [
+            15.2882675,
+            37.8537658
+          ],
+          [
+            15.2882552,
+            37.8537494
+          ],
+          [
+            15.2882484,
+            37.853753
+          ],
+          [
+            15.2881799,
+            37.8537895
+          ],
+          [
+            15.2881737,
+            37.8537712
+          ],
+          [
+            15.2880383,
+            37.8538211
+          ],
+          [
+            15.2878706,
+            37.8538551
+          ],
+          [
+            15.2879476,
+            37.8539972
+          ],
+          [
+            15.2879753,
+            37.8540227
+          ],
+          [
+            15.288026,
+            37.8540239
+          ],
+          [
+            15.2881467,
+            37.8539833
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-roman-odeon-of-tauromenium",
+      "properties": {
+        "snippet": "Odeon; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/83060897/osm-location-roman-odeon-of-tauromenium",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Roman Odeon of Tauromenium"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/345139895",
+          "citationDetail": "Way 345139895",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=345139895",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-roman-odeon-of-tauromenium",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+      ],
+      "end": 300,
+      "title": "OSM Location: Roman Odeon of Tauromenium",
+      "provenance": "OpenStreetMap (Way 345139895, version 8, osm:changeset=167121490, 2025-06-03T07:48:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "odeon"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-06-11T19:54:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.2881467,
+            37.8539833
+          ],
+          [
+            15.2880575,
+            37.8538891
+          ],
+          [
+            15.2882675,
+            37.8537658
+          ],
+          [
+            15.2882552,
+            37.8537494
+          ],
+          [
+            15.2882484,
+            37.853753
+          ],
+          [
+            15.2881799,
+            37.8537895
+          ],
+          [
+            15.2881737,
+            37.8537712
+          ],
+          [
+            15.2880383,
+            37.8538211
+          ],
+          [
+            15.2878706,
+            37.8538551
+          ],
+          [
+            15.2879476,
+            37.8539972
+          ],
+          [
+            15.2879753,
+            37.8540227
+          ],
+          [
+            15.288026,
+            37.8540239
+          ],
+          [
+            15.2881467,
+            37.8539833
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/83060897/osm-location-roman-odeon-of-tauromenium",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-11T23:01:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-11T20:07:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-11T19:55:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-11T19:54:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-11T19:54:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-06-11T19:55:33Z",
+      "associationCertainty": "certain",
+      "title": "Tauromenium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/83060897/7331477192",
+      "connectionType": "at",
+      "id": "7331477192",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-11T19:55:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-11T19:55:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-11T19:55:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462506",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://ancienttheatrearchive.com/theatre/tauromenium-odeum-modern-tauromina/",
+      "citationDetail": "Tauromenium Odeum (modern Tauromina, Sicily, Italy)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hines 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DMZEHVSD",
+      "formattedCitation": "<div class=\"csl-entry\">Hines, Thomas G. <i>The Ancient Theatre Archive: Greek and Roman Theatres</i>. Whitman College, 2003. https://www.whitman.edu/theatre/theatretour/home.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://theatrum.de/1211.html",
+      "citationDetail": "1211: TAUROMENIUM, Taormina, Odeum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/btcgi_0000-0009_2011_num_20_1_4640",
+      "citationDetail": "pages 63, 70, and 78",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Battistoni 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DLJV9D39",
+      "formattedCitation": "<div class=\"csl-entry\">Battistoni, Filippo. \u201cTAORMINA.\u201d <i>Bibliografia topografica della colonizzazione greca in Italia e nelle Isole Tirreniche</i> 20, no. 1 (2011): 42\u2013113. https://www.persee.fr/doc/btcgi_0000-0009_2011_num_20_1_4640.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/8516/",
+      "citationDetail": "8516: Theatre Odeon",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q4331373",
+      "citationDetail": "Roman Odeum of Taormina (Q4331373)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Roman Odeum of Taormina",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q4331373",
+          "citationDetail": "Roman Odeum of Taormina (Q4331373)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "roman-odeum-of-taormina",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-06-11T23:00:54Z",
+      "uri": "https://pleiades.stoa.org/places/83060897/roman-odeum-of-taormina",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Roman Odeum of Taormina",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-11T23:01:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-11T23:01:01Z"
+        },
+        {
+          "comment": "add name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-11T23:00:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-11T23:00:54Z"
+        }
+      ]
+    }
+  ],
+  "id": "83060897",
+  "subject": [],
+  "title": "Roman Odeum of Tauromenium",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman Odeum of Tauromenium dates to the reign of the Roman emperor Hadrian.",
+  "reprPoint": [
+    15.288069294755779,
+    37.85387724351475
+  ],
+  "placeTypes": [
+    "odeon"
+  ],
+  "bbox": [
+    15.2878706,
+    37.8537494,
+    15.2882675,
+    37.8540239
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462506"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-06-11T19:55:30Z",
+  "uri": "https://pleiades.stoa.org/places/83060897",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-11T23:01:11Z"
+    },
+    {
+      "comment": "add wikidata Roman Odeum of Taormina (Q4331373)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-11T22:59:32Z"
+    },
+    {
+      "comment": "add summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-11T22:58:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-11T20:07:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-11T20:06:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-11T20:05:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-11T19:56:33Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-11T19:55:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-11T19:55:30Z"
+    }
+  ]
+}

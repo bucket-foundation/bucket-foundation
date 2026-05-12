@@ -1,0 +1,14 @@
+# Dionysoupolis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/50633
+- **ID**: 50633
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Dionysoupolis
+
+## Description
+
+An ancient place, cited: BAtlas 5 unlocated Dionysoupolis

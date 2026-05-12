@@ -1,0 +1,308 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.5375215,
+          38.1137084
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-plakoto-fort-attica",
+      "properties": {
+        "snippet": "Fort; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/580081/osm-location-of-plakoto-fort-attica",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Plakoto fort (Attica)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7722515941",
+          "citationDetail": "Node 7722515941",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7722515941",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-plakoto-fort-attica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": -30,
+      "title": "OSM location of Plakoto fort (Attica)",
+      "provenance": "OpenStreetMap (Node 7722515941, version 1, osm:changeset=88110606, 2020-07-17T01:06:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-07-17T01:07:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.5375215,
+          38.1137084
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/580081/osm-location-of-plakoto-fort-attica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-07-22T10:37:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-17T01:07:55Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-17T01:07:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-17T01:07:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-17T01:07:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "59 B2 Plakoto",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/398109",
+      "citationDetail": "72-74",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McCredie 1966",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MQ8KUX4A",
+      "formattedCitation": "<div class=\"csl-entry\">McCredie, James R. <i>Fortified Military Camps in Attica</i>. Hesperia (Princeton, N.J.), Supplement 11. Princeton, NJ: American School of Classical Studies at Athens, 1966. http://www.worldcat.org/oclc/398109.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.2307/25010733",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vanderpool 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TUCPRJXJ",
+      "formattedCitation": "<div class=\"csl-entry\">Vanderpool, Eugene. \u201cRoads and Forts in Northwestern Attica.\u201d <i>California Studies in Classical Antiquity</i> 11 (1979): 227\u201345. https://doi.org/10.2307/25010733.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/469115112",
+      "citationDetail": "158",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ober 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NTZ5CKVW",
+      "formattedCitation": "<div class=\"csl-entry\">Ober, Josiah. <i>Fortress Attica: Defense of the Athenian Land Frontier, 404-322 B.C</i>. Mnemosyne, Bibliotheca Classica Batava, Supplementum 84. Leiden: E.J. Brill, 1985. http://www.worldcat.org/oclc/469115112.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/381235FPla",
+      "citationDetail": "Plakoto fort (Attica)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/148170",
+      "citationDetail": "212",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ober 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2M6A8E4P",
+      "formattedCitation": "<div class=\"csl-entry\">Ober, Josiah. \u201cPottery and Miscellaneous Artifacts from Fortified Sites in Northern and Western Attica.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 56, no. 2 (1987): 197\u2013227. https://doi.org/10.2307/148170.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "580081",
+  "subject": [],
+  "title": "Plakoto fort",
+  "provenance": "Barrington Atlas: BAtlas 59 B2 Plakoto",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Plakoto, fort N Eleusis</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Described by Ober as a \"signal tower and small fortification\", Plakoto fort is situated at the northern edge of the Thriasian plain.",
+  "reprPoint": [
+    23.5375215,
+    38.1137084
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    23.5375215,
+    38.1137084,
+    23.5375215,
+    38.1137084
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/580080"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T21:35:15Z",
+  "uri": "https://pleiades.stoa.org/places/580081",
+  "creators": [
+    {
+      "username": null,
+      "name": "J.S. Traill"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary, referene to Ober 1987",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-17T19:10:31Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-17T17:58:30Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-17T01:04:29Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-17T01:01:36Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:45:13Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:31:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T22:07:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:05:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T21:35:15Z"
+    }
+  ]
+}

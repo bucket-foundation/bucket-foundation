@@ -1,0 +1,332 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.1767649,
+            42.1333793
+          ],
+          [
+            12.1768725,
+            42.1333451
+          ],
+          [
+            12.1769352,
+            42.1333343
+          ],
+          [
+            12.1770309,
+            42.1332796
+          ],
+          [
+            12.1777097,
+            42.1330176
+          ],
+          [
+            12.1780411,
+            42.132902
+          ],
+          [
+            12.1785611,
+            42.1326947
+          ],
+          [
+            12.179052,
+            42.132477
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-fosso-della-fiora",
+      "properties": {
+        "snippet": "River; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/347963614/osm-location-of-fosso-della-fiora",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Fosso della Fiora"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/417851814",
+          "citationDetail": "Way 417851814",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=417851814",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-fosso-della-fiora",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "end": 2099,
+      "title": "OSM location of Fosso della Fiora",
+      "provenance": "OpenStreetMap (Way 417851814, version 1, osm:changeset=39289288, 2016-05-13T11:15:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "river"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-04-22T21:46:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.1767649,
+            42.1333793
+          ],
+          [
+            12.1768725,
+            42.1333451
+          ],
+          [
+            12.1769352,
+            42.1333343
+          ],
+          [
+            12.1770309,
+            42.1332796
+          ],
+          [
+            12.1777097,
+            42.1330176
+          ],
+          [
+            12.1780411,
+            42.132902
+          ],
+          [
+            12.1785611,
+            42.1326947
+          ],
+          [
+            12.179052,
+            42.132477
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/347963614/osm-location-of-fosso-della-fiora",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-08-11T17:02:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-10T13:33:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-10T13:32:55Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T21:46:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T21:46:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T21:46:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-04-22T21:48:22Z",
+      "associationCertainty": "certain",
+      "title": "Aqua Traiana",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/347963614/aqua-traiana",
+      "connectionType": "flows_into",
+      "id": "aqua-traiana",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-08-11T17:02:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-10T13:33:14Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T21:48:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T21:48:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423567",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.3764/aja.124.4.0659",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Taylor 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C3EB4464",
+      "formattedCitation": "<div class=\"csl-entry\">Taylor, Rabun, Edward O\u2019Neill, Katherine W. Rinne, Giovanni Isidori, Michael O\u2019Neill, and R. Benjamin Gorham. \u201cA Recently Discovered Spring Source of the Aqua Traiana at Vicarello, Lazio.\u201d <i>American Journal of Archaeology</i> 124, no. 4 (2020): 659\u201393. https://doi.org/10.3764/aja.124.4.0659.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www3.iath.virginia.edu/waters/JRA_Taylor_Rinne_O%27Neill_2010.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Taylor 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RKSLE2LL",
+      "formattedCitation": "<div class=\"csl-entry\">Taylor, Rabun, Katherine Rinne, Edward O\u2019Neill, and Michael O\u2019Neill. \u201cA Grotto-Shrine at the Headwaters of the Aqua Traiana.\u201d <i>Journal of Roman Archaeology</i> 23 (ed 2010): 358\u201375. https://doi.org/10.1017/S1047759400002452.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "347963614",
+  "subject": [],
+  "title": "Fosso della Fiora",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/river"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the sources of the Aqua Traiana.",
+  "reprPoint": [
+    12.177912498400921,
+    42.132941137033626
+  ],
+  "placeTypes": [
+    "river"
+  ],
+  "bbox": [
+    12.1767649,
+    42.132477,
+    12.179052,
+    42.1333793
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423567"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-04-22T21:45:55Z",
+  "uri": "https://pleiades.stoa.org/places/347963614",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-11T17:02:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-10T13:33:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-10T13:33:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-10T13:32:38Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T21:45:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T21:45:55Z"
+    }
+  ]
+}

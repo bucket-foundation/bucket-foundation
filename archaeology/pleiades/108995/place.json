@@ -1,0 +1,450 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            7.8537472,
+            48.3702562
+          ],
+          [
+            7.8535794,
+            48.3700459
+          ],
+          [
+            7.8533034,
+            48.3697231
+          ],
+          [
+            7.8544732,
+            48.3691661
+          ],
+          [
+            7.8545826,
+            48.3691131
+          ],
+          [
+            7.8550244,
+            48.3697611
+          ],
+          [
+            7.8537472,
+            48.3702562
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bodendenkmal-rapmische",
+      "properties": {
+        "snippet": "Station; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/108995/osm-location-of-bodendenkmal-rapmische",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bodendenkmal R\u00f6mische Stra\u00dfenstation Friesenheim"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.8543016,
+          48.3696303
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/108995/imagery-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery location of archaeological site of Roman road station"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/32928641",
+          "citationDetail": "Way 32928641",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=32928641",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bodendenkmal-rapmische",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/station"
+      ],
+      "end": 300,
+      "title": "OSM location of Bodendenkmal R\u00f6mische Stra\u00dfenstation Friesenheim",
+      "provenance": "OpenStreetMap (Way 32928641, version 13, osm:changeset=75987232, 2019-10-21T10:06:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/station"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "station"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-03-04T20:14:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            7.8537472,
+            48.3702562
+          ],
+          [
+            7.8535794,
+            48.3700459
+          ],
+          [
+            7.8533034,
+            48.3697231
+          ],
+          [
+            7.8544732,
+            48.3691661
+          ],
+          [
+            7.8545826,
+            48.3691131
+          ],
+          [
+            7.8550244,
+            48.3697611
+          ],
+          [
+            7.8537472,
+            48.3702562
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/108995/osm-location-of-bodendenkmal-rapmische",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-04T20:50:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-04T20:15:25Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-04T20:15:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-04T20:14:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-04T20:14:36Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://de.wikipedia.org/wiki/R\u00f6mische_Stra\u00dfenstation_(Friesenheim)",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "Wikipedia (German)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/QVRBJVTM",
+          "formattedCitation": "Wikipedia: Die freie Enzyklop\u00e4die (2001-), .",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 300,
+      "title": "Imagery location of archaeological site of Roman road station",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2011",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2012-01-11T17:47:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.8543016,
+          48.3696303
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/108995/imagery-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:10:25Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-14T23:42:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-01-12T14:04:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-11T17:48:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-11T17:48:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-11T17:47:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-11T17:47:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "11 H4 Friesenheim",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "292-93",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "R\u00f6mer Baden-W\u00fcrttemberg",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K6S4HPPI",
+      "formattedCitation": "<div class=\"csl-entry\">P Filtzinger, D Planck, and B C\u00e4mmerer, eds. <i>Die R\u00f6mer in Baden-W\u00fcrttemberg</i>. 3rd ed. Stuttgart: K. Theiss, 1986.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "108995",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=station"
+  ],
+  "title": "Friesenheim",
+  "provenance": "Barrington Atlas: BAtlas 11 H4 Friesenheim",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/station"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Friesenheim, GER</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 11 H4 Friesenheim",
+  "reprPoint": [
+    7.8542387548209,
+    48.36966717613692
+  ],
+  "placeTypes": [
+    "station"
+  ],
+  "bbox": [
+    7.8533034,
+    48.3691131,
+    7.8550244,
+    48.3702562
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-11-02T15:51:11Z",
+  "uri": "https://pleiades.stoa.org/places/108995",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Kunow"
+    },
+    {
+      "username": null,
+      "name": "C. Haselgrove"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-04T20:14:04Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:09:15Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:10:24Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-14T23:42:42Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2012-01-12T14:03:54Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T20:25:15Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:52:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-05-19T21:31:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T16:56:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T15:51:11Z"
+    }
+  ]
+}

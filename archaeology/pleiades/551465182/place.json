@@ -1,0 +1,307 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.4088471,
+            48.5617637
+          ],
+          [
+            10.4091256,
+            48.561836
+          ],
+          [
+            10.4092117,
+            48.5616951
+          ],
+          [
+            10.4092281,
+            48.5615099
+          ],
+          [
+            10.4088504,
+            48.561504
+          ],
+          [
+            10.4088471,
+            48.5617637
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-apollo-grannus-tempel",
+      "properties": {
+        "snippet": "Temple-2",
+        "link": "https://pleiades.stoa.org/places/551465182/osm-location-of-apollo-grannus-tempel",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Apollo-Grannus-Tempel"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/22993585",
+          "citationDetail": "Way 22993585",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=22993585",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-apollo-grannus-tempel",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": null,
+      "title": "OSM location of Apollo-Grannus-Tempel",
+      "provenance": "OpenStreetMap (Way 22993585, version 5, osm:changeset=82815343, 2020-03-30T09:37:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-02-12T17:58:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.4088471,
+            48.5617637
+          ],
+          [
+            10.4091256,
+            48.561836
+          ],
+          [
+            10.4092117,
+            48.5616951
+          ],
+          [
+            10.4092281,
+            48.5615099
+          ],
+          [
+            10.4088504,
+            48.561504
+          ],
+          [
+            10.4088471,
+            48.5617637
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/551465182/osm-location-of-apollo-grannus-tempel",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-25T02:42:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T12:24:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-06T19:49:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-02-12T17:58:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-02-12T17:58:21Z",
+      "associationCertainty": "certain",
+      "title": "Phoebiana",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/551465182/7014790755",
+      "connectionType": "at",
+      "id": "7014790755",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-02-12T17:58:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-02-12T17:58:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-02-12T17:58:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/118904",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Eingartner 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DHHE3RQW",
+      "formattedCitation": "<div class=\"csl-entry\">Eingartner, Johannes, Pia Eschbaumer, Gerhard Weber, and Isa Engelien-Schmidt. <i>Faimingen-Phoebiana</i>. Limesforschungen 24. Mainz am Rhein: Zabern, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/527068",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Oldenstein 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C9MNX4RS",
+      "formattedCitation": "<div class=\"csl-entry\">Oldenstein, J\u00fcrgen. \u201cReview of Faimingen-Phoebiana I. Der R\u00f6mische Tempelbezirk in Faimingen-Phoebiana.\u201d <i>Britannia</i> 27 (1996): 477\u2013477. https://doi.org/10.2307/527068.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Eingartner 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LKFP4YNQ",
+      "formattedCitation": "<div class=\"csl-entry\">Eingartner, Johannes. <i>Phoebiana - R\u00f6merstadt und Apollo Grannus-Heiligtum in Faimingen</i>. M\u00fcnchen: Lipp, 1985.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "551465182",
+  "subject": [
+    "Apollo"
+  ],
+  "title": "Apollo-Grannus-Tempel",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman temple in Faimingen near Lauingen in Bavaria.",
+  "reprPoint": [
+    10.409031615531584,
+    48.561646187426085
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    10.4088471,
+    48.561504,
+    10.4092281,
+    48.561836
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/118904"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-02-12T17:58:20Z",
+  "uri": "https://pleiades.stoa.org/places/551465182",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-09T12:24:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-06T19:49:44Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-06T19:49:39Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-16T19:02:45Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-12T17:58:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-12T17:58:20Z"
+    }
+  ]
+}

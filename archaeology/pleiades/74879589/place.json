@@ -1,0 +1,265 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.8131549,
+          39.8854002
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-forum",
+      "properties": {
+        "snippet": "Plaza, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/74879589/location-of-forum",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "location of forum"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1893427724",
+          "citationDetail": "Node 1893427724",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1893427724",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-forum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "location of forum",
+      "provenance": "OpenStreetMap (Node 1893427724, version 2, osm:changeset=15575753, 2013-04-01T23:56:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "plaza",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-11-12T02:49:42Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.8131549,
+          39.8854002
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/74879589/location-of-forum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-20T04:11:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-20T04:11:29Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-12T02:50:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-12T02:49:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-12T02:49:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-30T02:54:41Z",
+      "associationCertainty": "certain",
+      "title": "Segobriga",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/74879589/8817279699",
+      "connectionType": "at",
+      "id": "8817279699",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T02:54:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T02:54:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T02:54:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/266036",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://hdl.handle.net/2027/spo.9772151.0008.001",
+      "citationDetail": "6",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nore\u00f1a 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PR4X5ZZ7",
+      "formattedCitation": "<div class=\"csl-entry\">Nore\u00f1a, Carlos F. \u201cRomanization in the Middle of Nowhere: The Case of Segobriga.\u201d <i>Fragments: Interdisciplinary Approaches to the Study of Ancient and Medieval Pasts</i> 8 (2019). http://hdl.handle.net/2027/spo.9772151.0008.001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "134",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Curchin 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/52BXSDI3",
+      "formattedCitation": "<div class=\"csl-entry\">Curchin, Leonard A. <i>The Romanization of Central Spain: Complexity, Diversity, and Change in a Provincial Hinterland</i>. New York: Routledge, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "74879589",
+  "subject": [],
+  "title": "Forum of Segobriga",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Forum of Segobriga is traditionally dated to the early Iulio-Claudian period when Segobriga became a municipium.",
+  "reprPoint": [
+    -2.8131549,
+    39.8854002
+  ],
+  "placeTypes": [
+    "plaza"
+  ],
+  "bbox": [
+    -2.8131549,
+    39.8854002,
+    -2.8131549,
+    39.8854002
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/266036"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-30T02:54:37Z",
+  "uri": "https://pleiades.stoa.org/places/74879589",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T22:32:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-01-14T22:05:32Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-01-14T22:05:21Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T02:55:07Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T02:54:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T02:54:37Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Korniata M.
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/573302
+- **ID**: 573302
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Korniata M.
+
+## Description
+
+An ancient place, cited: BAtlas 58 unlocated Korniata M.

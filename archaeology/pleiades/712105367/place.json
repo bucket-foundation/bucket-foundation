@@ -1,0 +1,550 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4802345,
+          41.9274661
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-fonte-di-anna-perenna",
+      "properties": {
+        "snippet": "Fountain; 100 BC - AD 599",
+        "link": "https://pleiades.stoa.org/places/712105367/osm-location-of-fonte-di-anna-perenna",
+        "description": "Location based on OpenStreetMap. Dates after CoopCulture.",
+        "location_precision": "precise",
+        "title": "OSM Location of Fonte di Anna Perenna"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "sixth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5032718322",
+          "citationDetail": "Node 5032718322",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5032718322",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.coopculture.it/it/poi/anna-perennas-fountain/",
+          "citationDetail": "Fonte di Anna Perenna",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "CoopCulture",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GHNL5UXA",
+          "formattedCitation": "<div class=\"csl-entry\">Societ\u00e0 Cooperativa Culture. \u201cCoopCulture.\u201d Accessed March 15, 2022. https://www.coopculture.it/it/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-fonte-di-anna-perenna",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+      ],
+      "end": 599,
+      "title": "OSM Location of Fonte di Anna Perenna",
+      "provenance": "OpenStreetMap (Node 5032718322, version 5, osm:changeset=156562826, 2024-09-13T09:23:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fountain"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after CoopCulture.",
+      "created": "2022-03-15T14:13:37Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4802345,
+          41.9274661
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/712105367/osm-location-of-fonte-di-anna-perenna",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-18T14:15:14Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-24T01:11:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-15T16:07:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T15:09:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T14:45:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T14:13:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T14:13:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-03-15T15:08:25Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/712105367/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-15T16:07:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T15:09:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T15:08:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T15:08:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.coopculture.it/it/poi/anna-perennas-fountain/",
+      "citationDetail": "Fonte di Anna Perenna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CoopCulture",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GHNL5UXA",
+      "formattedCitation": "<div class=\"csl-entry\">Societ\u00e0 Cooperativa Culture. \u201cCoopCulture.\u201d Accessed March 15, 2022. https://www.coopculture.it/it/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1133126357",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McIntyre 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/47EXWV3N",
+      "formattedCitation": "<div class=\"csl-entry\">McIntyre, Gwynaeth, and Sarah McCallum. <i>Uncovering Anna Perenna: A Focused Study of Roman Myth and Culture</i>. London: Bloomsbury Academic, 2020. http://www.worldcat.org/oclc/1133126357.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:latinLit:phi0959.phi007.perseus-lat1:3",
+      "citationDetail": "3.523-696",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Ovid Fasti (Frazer: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TJP78G4U",
+      "formattedCitation": "<div class=\"csl-entry\">Ovid. <i>Ovid\u2019s Fasti</i>. Edited by James George Frazer. Loeb Classical Library 253. London; New York: Heinemann\u202f; G.P. Putnam\u2019s Sons, 1931. http://data.perseus.org/texts/urn:cts:latinLit:phi0959.phi007.perseus-lat1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.soprintendenzaspecialeroma.it/schede/fonte-di-anna-perenna_2976/",
+      "citationDetail": "Fonte di Anna Perenna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Soprintendenza Speciale Archeologia Belle Arti e Paesaggio di Roma",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YFREGNYA",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cSoprintendenza Speciale Archeologia Belle Arti e Paesaggio Di Roma.\u201d Accessed March 15, 2022. https://www.soprintendenzaspecialeroma.it/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.youtube.com/watch?v=MkclR6AoJok",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Anna Perenna, Storia della divinit\u00e0 Romana  con \"sede\" Ai Parioli",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PDKDYUZ9",
+      "formattedCitation": "<div class=\"csl-entry\">Cultura Spicciola. <i>Anna Perenna, Storia Della Divinit\u00e0 Romana\u00a0 Con \u201cSede\u201d Ai Parioli</i>, 2019. https://www.youtube.com/watch?v=MkclR6AoJok.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Fonte_di_Anna_Perenna",
+      "citationDetail": "Fonte di Anna Perenna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q55678763",
+      "citationDetail": "Fonte di Anna Perenna (Q55678763)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Fonte_di_Anna_Perenna",
+      "citationDetail": "Category:Fonte di Anna Perenna",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Piranomonte 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TCSTW5EQ",
+      "formattedCitation": "<div class=\"csl-entry\">Piranomonte, Marina. \u201cAnna Perenna\u202f: Un contesto magico straordinario.\u201d In <i>Contesti magici = Contextos m\u00e0gicos</i>, 161\u201374. Rome: De Luca, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Piranomonte 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FALT4997",
+      "formattedCitation": "<div class=\"csl-entry\">Piranomonte, Marina, and Giovanni Ricci. \u201cL\u2019edificio rustico di viale Tiziano e la fonte di Anna Perenna: nuovi dati per la topografia dell\u2019area Flaminia in epoca repubblicana.\u201d In <i>Suburbium II</i>, 413\u201335. Rome: \u00c9cole Fran\u00e7aise de Rome, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Piranomonte 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TJ3LIVTX",
+      "formattedCitation": "<div class=\"csl-entry\">Piranomonte, Marina, Antonella Altieri, and Italien, eds. <i>Il santuario della musica e il bosco sacro di Anna Perenna</i>. Milano: Electa, 2002.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=4042",
+      "citationDetail": "4042: Fonte di Anna Perenna",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Fonte di Anna Perenna",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.coopculture.it/it/poi/anna-perennas-fountain/",
+          "citationDetail": "Fonte di Anna Perenna",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "CoopCulture",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GHNL5UXA",
+          "formattedCitation": "<div class=\"csl-entry\">Societ\u00e0 Cooperativa Culture. \u201cCoopCulture.\u201d Accessed March 15, 2022. https://www.coopculture.it/it/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "fonte-di-anna-perenna",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-03-15T14:46:20Z",
+      "uri": "https://pleiades.stoa.org/places/712105367/fonte-di-anna-perenna",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Fonte di Anna Perenna",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-15T16:07:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T15:09:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T14:46:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-15T14:46:20Z"
+        }
+      ]
+    }
+  ],
+  "id": "712105367",
+  "subject": [],
+  "title": "Fountain of Anna Perenna",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Sacred to the goddess Anna Perenna and the nymphs, this rectangular fountain surrounded by rupestral inscriptions was excavated on the modern Via Guidubaldo del Monte in Rome's Pinciano neighborhood during the late 20th century. Rich votive deposits complement the picture of the goddess' worship painted by Ovid in the Fasti entry for the Ides of March.",
+  "reprPoint": [
+    12.4802345,
+    41.9274661
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "fountain"
+  ],
+  "bbox": [
+    12.4802345,
+    41.9274661,
+    12.4802345,
+    41.9274661
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-15T14:12:58Z",
+  "uri": "https://pleiades.stoa.org/places/712105367",
+  "creators": [
+    {
+      "username": null,
+      "name": "Abigail Graham"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add info.roma reference",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-18T22:51:02Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-18T14:12:01Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-24T01:13:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-15T16:07:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-15T15:09:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-15T15:09:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-15T15:07:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-15T15:06:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-15T14:59:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-15T14:51:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-15T14:13:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-15T14:12:58Z"
+    }
+  ]
+}

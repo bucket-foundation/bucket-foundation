@@ -1,0 +1,594 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.0974999,
+          36.8112916
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/599495/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "cbouras",
+      "homepage": null,
+      "name": "Catherine Bouras",
+      "uri": "https://pleiades.stoa.org/author/cbouras"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/77831792",
+          "citationDetail": "Node 77831792",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=77831792",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 2099,
+      "title": "OSM Location",
+      "provenance": "OpenStreetMap (Node 77831792, version 17, osm:changeset=157102714, 2024-09-25T21:35:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-09-16T11:55:03Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.0974999,
+          36.8112916
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/599495/osm-location",
+      "creators": [
+        {
+          "username": "cbouras",
+          "homepage": null,
+          "name": "Catherine Bouras",
+          "uri": "https://pleiades.stoa.org/author/cbouras"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-16T13:32:22Z"
+        },
+        {
+          "comment": "associated modern",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-16T13:32:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cbouras",
+          "modified": "2025-09-16T11:56:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cbouras",
+          "modified": "2025-09-16T11:55:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cbouras",
+          "modified": "2025-09-16T11:55:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cbouras",
+          "modified": "2025-09-16T11:55:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:40:44Z",
+      "associationCertainty": "certain",
+      "title": "Kos/Cos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/599495/599581",
+      "connectionType": "on",
+      "id": "599581",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-19T13:46:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599581",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "61 E4 Antimachia",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "61 E4 Antimachia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": "ISBN: 0-691-03169-X; OCLC: 43970336",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "165-66",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Herzog 1899",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NQ2ANZXU",
+      "formattedCitation": "<div class=\"csl-entry\">Herzog, Rudolf. <i>Koische Forschungen Und Funde</i>. Leipzig: Dieterich\u2019sche Verlags-Buchhandlung, T. Weicher, 1899.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?r=topo_public&id=38918",
+      "citationDetail": "Toponyme - 38918: Antimacheia, Andemaki-\u0394.\u0394.\u0391\u03bd\u03c4\u03b9\u03bc\u03b1\u03c7\u03b5\u03af\u03b1\u03c2",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "11411",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/",
+      "citationDetail": "Geo 34107: Antimachidai",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://imperium.ahlfeldt.se/places/28932.html",
+      "citationDetail": "28932: Antimachia, Antimakhia, Kos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q61995831",
+      "citationDetail": "Antimachia (Q61995831)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.arxaiologikoktimatologio.gov.gr/el/monuments_info?id=167019&type=Space",
+      "citationDetail": "167019: \u0391\u03bd\u03c4\u03b9\u03bc\u03ac\u03c7\u03b5\u03b9\u03b1 \u039a\u03c9",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "ArchKt",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ES3E4RFF",
+      "formattedCitation": "<div class=\"csl-entry\">\u0394\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 \u0394\u03b9\u03b1\u03c7\u03b5\u03af\u03c1\u03b9\u03c3\u03b7\u03c2 \u0395\u03b8\u03bd\u03b9\u03ba\u03bf\u03cd \u0391\u03c1\u03c7\u03b5\u03af\u03bf\u03c5 \u039c\u03bd\u03b7\u03bc\u03b5\u03af\u03c9\u03bd. <i>\u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03cc \u039a\u03c4\u03b7\u03bc\u03b1\u03c4\u03bf\u03bb\u03cc\u03b3\u03b9\u03bf</i>, 2014. https://www.arxaiologikoktimatologio.gov.gr/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/4642763",
+      "citationDetail": "Antimachia Kos, Griechenland, Europa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2361370",
+      "citationDetail": "2361370: Antimachia",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>iDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Antimachia",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "antimachia",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 61 E4 Antimachia",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-15T09:03:20Z",
+      "uri": "https://pleiades.stoa.org/places/599495/antimachia",
+      "creators": [
+        {
+          "username": null,
+          "name": "C. Foss"
+        },
+        {
+          "username": null,
+          "name": "G. Reger"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:56:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-15T18:04:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-15T09:19:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-15T09:03:20Z"
+        }
+      ]
+    }
+  ],
+  "id": "599495",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Antimachia",
+  "provenance": "Barrington Atlas: BAtlas 61 E4 Antimachia",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Antimakhia, on Kos GRE</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient settlement on the island of Kos.",
+  "reprPoint": [
+    27.0974999,
+    36.8112916
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    27.0974999,
+    36.8112916,
+    27.0974999,
+    36.8112916
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599581",
+    "https://pleiades.stoa.org/places/376830532"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-16T13:33:07Z",
+  "uri": "https://pleiades.stoa.org/places/599495",
+  "creators": [
+    {
+      "username": null,
+      "name": "C. Foss"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "iDAI.gazetteer, Arachne - added",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-16T14:19:22Z"
+    },
+    {
+      "comment": "added ArchKT reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-16T13:54:47Z"
+    },
+    {
+      "comment": "removed ToposText reference, which is concerned with the Byzantine castle to the southeast, not the ancient site at modern Antimachia; added Trismegistos and DARE references; added Wikidata reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-16T13:41:35Z"
+    },
+    {
+      "comment": "created darmc citation to preserve project linkage after DARMC location was withdrawn",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-16T13:32:52Z"
+    },
+    {
+      "comment": "added CFL/AGO toponym reference; updated Locations: added OSM location by @cbouras",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-16T13:25:01Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "cbouras",
+      "modified": "2025-09-16T11:48:26Z"
+    },
+    {
+      "comment": "thomase: Regularized and updated references using PleiadesRefFixerBot",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-20T04:27:54Z"
+    },
+    {
+      "comment": "add ToposText reference provided by bkiesling",
+      "modifiedBy": "admin",
+      "modified": "2018-06-08T10:55:06Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2018-06-08T10:55:01Z"
+    },
+    {
+      "comment": "description, connection",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-11T21:31:48Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-11T21:24:46Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:35:19Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:56:20Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T23:33:41Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-02-25T20:31:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-15T18:04:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-15T09:19:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-15T09:03:20Z"
+    }
+  ]
+}

@@ -1,0 +1,642 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.9294631,
+            34.9293593
+          ],
+          [
+            24.9294859,
+            34.9293615
+          ],
+          [
+            24.9295127,
+            34.9293747
+          ],
+          [
+            24.9295195,
+            34.9293648
+          ],
+          [
+            24.9295262,
+            34.9293549
+          ],
+          [
+            24.9295302,
+            34.9293417
+          ],
+          [
+            24.9295195,
+            34.929334
+          ],
+          [
+            24.9295288,
+            34.929312
+          ],
+          [
+            24.9295785,
+            34.9292405
+          ],
+          [
+            24.9295771,
+            34.929224
+          ],
+          [
+            24.9295677,
+            34.9291922
+          ],
+          [
+            24.9295557,
+            34.9291559
+          ],
+          [
+            24.9295798,
+            34.9291328
+          ],
+          [
+            24.9296482,
+            34.9291966
+          ],
+          [
+            24.9296723,
+            34.9292185
+          ],
+          [
+            24.9296871,
+            34.9291955
+          ],
+          [
+            24.9297126,
+            34.9291779
+          ],
+          [
+            24.9297421,
+            34.9292097
+          ],
+          [
+            24.9297153,
+            34.9292229
+          ],
+          [
+            24.9297139,
+            34.9292482
+          ],
+          [
+            24.9297595,
+            34.9293131
+          ],
+          [
+            24.9297448,
+            34.9293571
+          ],
+          [
+            24.9297045,
+            34.9293978
+          ],
+          [
+            24.9296267,
+            34.9294264
+          ],
+          [
+            24.929553,
+            34.929422
+          ],
+          [
+            24.929506,
+            34.9294417
+          ],
+          [
+            24.9294698,
+            34.9294176
+          ],
+          [
+            24.9294687,
+            34.9294052
+          ],
+          [
+            24.9294687,
+            34.9293967
+          ],
+          [
+            24.9294697,
+            34.9293901
+          ],
+          [
+            24.9294744,
+            34.9293876
+          ],
+          [
+            24.9294767,
+            34.9293807
+          ],
+          [
+            24.9294693,
+            34.9293714
+          ],
+          [
+            24.9294606,
+            34.9293667
+          ],
+          [
+            24.9294593,
+            34.9293634
+          ],
+          [
+            24.9294631,
+            34.9293593
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-Oxeia-Ins",
+      "properties": {
+        "snippet": "Island, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/589964/location-of-Oxeia-Ins",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Oxeia Ins."
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/221532303",
+          "citationDetail": "Way 221532303",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=221532303",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-Oxeia-Ins",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/island",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "OSM location of Oxeia Ins.",
+      "provenance": "OpenStreetMap (Way 221532303, version 2, osm:changeset=16181975, 2013-05-18T15:36:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/island",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "island",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-05-15T21:02:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.9294631,
+            34.9293593
+          ],
+          [
+            24.9294859,
+            34.9293615
+          ],
+          [
+            24.9295127,
+            34.9293747
+          ],
+          [
+            24.9295195,
+            34.9293648
+          ],
+          [
+            24.9295262,
+            34.9293549
+          ],
+          [
+            24.9295302,
+            34.9293417
+          ],
+          [
+            24.9295195,
+            34.929334
+          ],
+          [
+            24.9295288,
+            34.929312
+          ],
+          [
+            24.9295785,
+            34.9292405
+          ],
+          [
+            24.9295771,
+            34.929224
+          ],
+          [
+            24.9295677,
+            34.9291922
+          ],
+          [
+            24.9295557,
+            34.9291559
+          ],
+          [
+            24.9295798,
+            34.9291328
+          ],
+          [
+            24.9296482,
+            34.9291966
+          ],
+          [
+            24.9296723,
+            34.9292185
+          ],
+          [
+            24.9296871,
+            34.9291955
+          ],
+          [
+            24.9297126,
+            34.9291779
+          ],
+          [
+            24.9297421,
+            34.9292097
+          ],
+          [
+            24.9297153,
+            34.9292229
+          ],
+          [
+            24.9297139,
+            34.9292482
+          ],
+          [
+            24.9297595,
+            34.9293131
+          ],
+          [
+            24.9297448,
+            34.9293571
+          ],
+          [
+            24.9297045,
+            34.9293978
+          ],
+          [
+            24.9296267,
+            34.9294264
+          ],
+          [
+            24.929553,
+            34.929422
+          ],
+          [
+            24.929506,
+            34.9294417
+          ],
+          [
+            24.9294698,
+            34.9294176
+          ],
+          [
+            24.9294687,
+            34.9294052
+          ],
+          [
+            24.9294687,
+            34.9293967
+          ],
+          [
+            24.9294697,
+            34.9293901
+          ],
+          [
+            24.9294744,
+            34.9293876
+          ],
+          [
+            24.9294767,
+            34.9293807
+          ],
+          [
+            24.9294693,
+            34.9293714
+          ],
+          [
+            24.9294606,
+            34.9293667
+          ],
+          [
+            24.9294593,
+            34.9293634
+          ],
+          [
+            24.9294631,
+            34.9293593
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/589964/location-of-Oxeia-Ins",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-04T18:16:25Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-07T04:50:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-01T16:26:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-15T21:03:47Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-15T21:03:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-15T21:02:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-15T21:02:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "60 C3 Oxeia Ins.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/i.html#IC-I",
+      "formattedCitation": "IC I, 150",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/349249IOxe",
+      "citationDetail": "Oxeia (Irakleio)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "Kiesling, Brady. ToposText \u2013 a Reference Tool for Greek Civilization. Version 2.0. Aikaterini Laskaridis Foundation, 2016-.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Oxeia",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "oxeia",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 60 C3 Oxeia Ins.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-09-22T19:23:42Z",
+      "uri": "https://pleiades.stoa.org/places/589964/oxeia",
+      "creators": [
+        {
+          "username": null,
+          "name": "J. Bennet"
+        },
+        {
+          "username": null,
+          "name": "G. Reger"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:50:09Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-22T20:04:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-22T19:58:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-22T19:23:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "589964",
+  "subject": [],
+  "title": "Oxeia (island)",
+  "provenance": "Barrington Atlas: BAtlas 60 C3 Oxeia Ins.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/island"
+  ],
+  "details": "The Barrington Atlas Directory notes: small island off Lentas",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 60 C3 Oxeia Ins.",
+  "reprPoint": [
+    24.929611822786548,
+    34.92930128020998
+  ],
+  "placeTypes": [
+    "island"
+  ],
+  "bbox": [
+    24.9294593,
+    34.9291328,
+    24.9297595,
+    34.9294417
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-07T23:12:08Z",
+  "uri": "https://pleiades.stoa.org/places/589964",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Bennet"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add ToposText reference provided by bkiesling",
+      "modifiedBy": "admin",
+      "modified": "2018-06-07T23:12:10Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2018-06-07T23:12:07Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:50:09Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:35:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-22T20:04:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:58:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:23:42Z"
+    }
+  ]
+}

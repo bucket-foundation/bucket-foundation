@@ -1,0 +1,795 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.2288402,
+            49.0004804
+          ],
+          [
+            1.2298648,
+            49.0004751
+          ],
+          [
+            1.2301652,
+            49.0005613
+          ],
+          [
+            1.2302725,
+            49.0006159
+          ],
+          [
+            1.2309189,
+            49.0011649
+          ],
+          [
+            1.2314661,
+            49.0016734
+          ],
+          [
+            1.2316512,
+            49.0018177
+          ],
+          [
+            1.2318658,
+            49.0019127
+          ],
+          [
+            1.2321769,
+            49.0020201
+          ],
+          [
+            1.2324739,
+            49.0020726
+          ],
+          [
+            1.2324759,
+            49.002122
+          ],
+          [
+            1.232193,
+            49.0020711
+          ],
+          [
+            1.2313213,
+            49.0020781
+          ],
+          [
+            1.2289314,
+            49.0019497
+          ],
+          [
+            1.2289287,
+            49.00142
+          ],
+          [
+            1.2288751,
+            49.0012159
+          ],
+          [
+            1.2288295,
+            49.0009907
+          ],
+          [
+            1.2288402,
+            49.0004804
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-gisacum",
+      "properties": {
+        "snippet": "Sanctuary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/109007/osm-location-of-gisacum",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Gisacum"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/351429967",
+          "citationDetail": "Way 351429967",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=351429967",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-gisacum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location of Gisacum",
+      "provenance": "OpenStreetMap (Way 351429967, version 3, osm:changeset=119331955, 2022-04-05T08:12:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-05-23T00:56:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.2288402,
+            49.0004804
+          ],
+          [
+            1.2298648,
+            49.0004751
+          ],
+          [
+            1.2301652,
+            49.0005613
+          ],
+          [
+            1.2302725,
+            49.0006159
+          ],
+          [
+            1.2309189,
+            49.0011649
+          ],
+          [
+            1.2314661,
+            49.0016734
+          ],
+          [
+            1.2316512,
+            49.0018177
+          ],
+          [
+            1.2318658,
+            49.0019127
+          ],
+          [
+            1.2321769,
+            49.0020201
+          ],
+          [
+            1.2324739,
+            49.0020726
+          ],
+          [
+            1.2324759,
+            49.002122
+          ],
+          [
+            1.232193,
+            49.0020711
+          ],
+          [
+            1.2313213,
+            49.0020781
+          ],
+          [
+            1.2289314,
+            49.0019497
+          ],
+          [
+            1.2289287,
+            49.00142
+          ],
+          [
+            1.2288751,
+            49.0012159
+          ],
+          [
+            1.2288295,
+            49.0009907
+          ],
+          [
+            1.2288402,
+            49.0004804
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/109007/osm-location-of-gisacum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-31T19:52:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-29T23:53:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-29T23:53:22Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-23T00:56:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-23T00:56:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-23T00:56:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "11 B3 Gesacum?, T.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/758914364",
+      "citationDetail": "187",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Lutetia",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WJXDVUB3",
+      "formattedCitation": "<div class=\"csl-entry\">Chevallier, Raymond. <i>Lutetia\u2013Atuatuca\u2013Ulpia Noviomagus</i>. Tabula Imperii Romani, M 31. Paris: Picard, 1975. http://www.worldcat.org/oclc/758914364.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "488-89",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Horne 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C9UK4DQP",
+      "formattedCitation": "<div class=\"csl-entry\">Horne, P.D., and A.C. King. \u201cRomano-Celtic Temples in Continental Europe: A Gazetteer of Those with Known Plans.\u201d In <i>Temples, Churches, and Religion: Recent Research in Roman Britain\u202f: With a Gazetteer of Romano-Celtic Temples in Continental Europe</i>, by Warwick Rodwell, 369\u2013555. BAR British Series 77. Oxford: BAR, 1980.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "329",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CAG 27",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JEFCNWSN",
+      "formattedCitation": "<div class=\"csl-entry\">Cliquet, Dominique. <i>Carte arch\u00e9ologique de la Gaule 27 L\u2019Eure</i>. Paris: Ed. Acad. des Inscriptions et Belles-Lettres, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Gisacum",
+      "citationDetail": "Gisacum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+      "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), .",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.adlfi.fr/SiteAdfi/document?base=base_notices&id=N2004-NH-0075",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "AdlFI: N2004-NH-0075 (Vieil-\u00c9vreux (Le): Les Terres noires)",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://francia.ahlfeldt.se/places/18144",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "RFO 18144",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=gisacum",
+      "citationDetail": "GISACUM (Le Vieil-Evreux) Eure, France",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Gisacum",
+      "citationDetail": "Gisacum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Gisacum.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "15976",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Gesacum",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/b.html#BAtlas-11-C2-Gesacum?",
+          "formattedCitation": "BAtlas 11 C2 Gesacum?, T.",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "id": "Gesacum-T",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 11 B3 Gesacum?, T.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2009-11-02T15:51:22Z",
+      "uri": "https://pleiades.stoa.org/places/109007/Gesacum-T",
+      "creators": [
+        {
+          "username": null,
+          "name": "J. Kunow"
+        },
+        {
+          "username": null,
+          "name": "C. Haselgrove"
+        }
+      ],
+      "attested": "Gesacum",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:41:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:41:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:41:06Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:37:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:36:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:36:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:36:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-05-19T21:31:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-11-02T16:56:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-11-02T15:51:22Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gisacum",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://fr.wikipedia.org/wiki/Gisacum",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (French)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+          "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), .",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "gisacum",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern apellation for a large, Gallo-Roman religious complex in France.",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2012-03-19T22:39:29Z",
+      "uri": "https://pleiades.stoa.org/places/109007/gisacum",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Gisacum",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:40:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:39:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:39:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-19T22:39:29Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gisacum, Le Vieil-\u00c9vreux",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "gisacum-le-vieil-evreux",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Regnum Francorum Online",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Name",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2012-05-25T22:06:37Z",
+      "uri": "https://pleiades.stoa.org/places/109007/gisacum-le-vieil-evreux",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:06:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:06:37Z"
+        },
+        {
+          "comment": "RFO and PECS references from Johan Ahlfeldt (jahlfeldt) and reviewd by Tom Elliott (thomase) in May 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:06:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-05-25T22:06:37Z"
+        }
+      ]
+    }
+  ],
+  "id": "109007",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=temple"
+  ],
+  "title": "Unnamed religious complex",
+  "provenance": "Barrington Atlas: BAtlas 11 B3 Gesacum?, T.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Le Vieil Evreux</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Referred to today as \"Gisacum\", this vast Gallo-Roman religious complex (with major spa), is located largely in the French commune of Le Vieil Evreux.",
+  "reprPoint": [
+    1.2304200446256575,
+    49.00149245005743
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "bath"
+  ],
+  "bbox": [
+    1.2288295,
+    49.0004751,
+    1.2324759,
+    49.002122
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/620625797",
+    "https://pleiades.stoa.org/places/423346007"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-11-02T15:51:22Z",
+  "uri": "https://pleiades.stoa.org/places/109007",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Kunow"
+    },
+    {
+      "username": null,
+      "name": "C. Haselgrove"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-25T20:54:50Z"
+    },
+    {
+      "comment": "Horne 1980",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-23T00:54:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-28T22:59:31Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-06-19T17:04:13Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:09:25Z"
+    },
+    {
+      "comment": "RFO and PECS references from Johan Ahlfeldt (jahlfeldt) and reviewd by Tom Elliott (thomase) in May 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-05-25T22:06:38Z"
+    },
+    {
+      "comment": "worked on names and descriptions and references",
+      "modifiedBy": "thomase",
+      "modified": "2012-03-19T22:42:08Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2012-03-19T22:36:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2012-03-19T22:34:14Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:10:29Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-14T23:42:49Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T22:48:33Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:52:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-05-19T21:31:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T16:56:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T15:51:22Z"
+    }
+  ]
+}

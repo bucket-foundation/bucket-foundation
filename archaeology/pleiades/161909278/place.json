@@ -1,0 +1,594 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4856255,
+            41.8908534
+          ],
+          [
+            12.4856374,
+            41.8908627
+          ],
+          [
+            12.4857523,
+            41.8910246
+          ],
+          [
+            12.4858713,
+            41.8912198
+          ],
+          [
+            12.4859187,
+            41.8912007
+          ],
+          [
+            12.4859133,
+            41.8911927
+          ],
+          [
+            12.4859309,
+            41.8911879
+          ],
+          [
+            12.4859352,
+            41.8911868
+          ],
+          [
+            12.4859476,
+            41.8912105
+          ],
+          [
+            12.485951,
+            41.8912546
+          ],
+          [
+            12.4859518,
+            41.891265
+          ],
+          [
+            12.4859093,
+            41.8912711
+          ],
+          [
+            12.4859009,
+            41.8912737
+          ],
+          [
+            12.4858951,
+            41.8912635
+          ],
+          [
+            12.4858699,
+            41.8912257
+          ],
+          [
+            12.4857436,
+            41.891269
+          ],
+          [
+            12.4857198,
+            41.8912772
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-santa-maria-antiqua",
+      "properties": {
+        "snippet": "Church-2, ; AD 300 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/161909278/osm-location-of-santa-maria-antiqua",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Santa Maria Antiqua"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/131557434",
+          "citationDetail": "Way 131557434",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=131557434",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-santa-maria-antiqua",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 1453,
+      "title": "OSM location of Santa Maria Antiqua",
+      "provenance": "OpenStreetMap (Way 131557434, version 8, osm:changeset=114098488, 2021-11-22T13:22:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-06-27T20:31:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4856255,
+            41.8908534
+          ],
+          [
+            12.4856374,
+            41.8908627
+          ],
+          [
+            12.4857523,
+            41.8910246
+          ],
+          [
+            12.4858713,
+            41.8912198
+          ],
+          [
+            12.4859187,
+            41.8912007
+          ],
+          [
+            12.4859133,
+            41.8911927
+          ],
+          [
+            12.4859309,
+            41.8911879
+          ],
+          [
+            12.4859352,
+            41.8911868
+          ],
+          [
+            12.4859476,
+            41.8912105
+          ],
+          [
+            12.485951,
+            41.8912546
+          ],
+          [
+            12.4859518,
+            41.891265
+          ],
+          [
+            12.4859093,
+            41.8912711
+          ],
+          [
+            12.4859009,
+            41.8912737
+          ],
+          [
+            12.4858951,
+            41.8912635
+          ],
+          [
+            12.4858699,
+            41.8912257
+          ],
+          [
+            12.4857436,
+            41.891269
+          ],
+          [
+            12.4857198,
+            41.8912772
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/161909278/osm-location-of-santa-maria-antiqua",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T02:04:16Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T06:53:37Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T22:03:13Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-15T02:17:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-07-09T23:15:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-08T21:03:58Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T20:32:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T20:31:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T20:31:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:54:59Z",
+      "associationCertainty": "certain",
+      "title": "Forum Romanum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/161909278/502866838",
+      "connectionType": "connection",
+      "id": "502866838",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/502866838",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:54:59Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/161909278/423025",
+      "connectionType": "connection",
+      "id": "423025",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/it:Chiesa%20di%20Santa%20Maria%20Antiqua?uselang=en-US",
+      "citationDetail": "Chiesa di Santa Maria Antiqua",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Chiesa di Santa Maria Antiqua.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://archeoroma.beniculturali.it/santa-maria-antiqua/?q=en",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "SSBAR: Welcome to the Santa Maria Antiqua Website",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Santa_Maria_Antiqua",
+      "citationDetail": "Santa Maria Antiqua",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Santa Maria Antiqua.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/945767573",
+      "formattedCitation": "Morganti, Giuseppe, Giulia Bordi, and Maria Andaloro. 2016. Santa Maria Antiqua tra Roma e Bisanzio. Milan: Electa.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q195660",
+      "citationDetail": "Santa Maria Antiqua (Q195660)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1207456",
+      "citationDetail": "Chiesa di Santa Maria Antiqua Rom, Italien, Europa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Santa Maria Antiqua",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Santa_Maria_Antiqua",
+          "citationDetail": "Santa Maria Antiqua",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Santa Maria Antiqua.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "santa-maria-antiqua",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2016-07-08T21:02:41Z",
+      "uri": "https://pleiades.stoa.org/places/161909278/santa-maria-antiqua",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Santa Maria Antiqua",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-07-09T23:15:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-08T21:02:56Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-08T21:02:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-08T21:02:41Z"
+        }
+      ]
+    }
+  ],
+  "id": "161909278",
+  "subject": [
+    "extant remains",
+    "paleochristian"
+  ],
+  "title": "Santa Maria Antiqua",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fifth-century A.D. Christian church built in the Forum Romanum at the foot of the Palatine Hill.",
+  "reprPoint": [
+    12.485812168449984,
+    41.89113482643801
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    12.4856255,
+    41.8908534,
+    12.4859518,
+    41.8912772
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/502866838",
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-06-27T20:31:25Z",
+  "uri": "https://pleiades.stoa.org/places/161909278",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-15T02:18:41Z"
+    },
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-15T02:17:13Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2016-07-09T23:15:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-08T21:03:50Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-27T20:34:59Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-27T20:31:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-27T20:31:25Z"
+    }
+  ]
+}

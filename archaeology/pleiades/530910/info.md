@@ -1,0 +1,14 @@
+# Kalarritai
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/530910
+- **ID**: 530910
+- **Coords (lng, lat)**: [21.133794, 39.578293]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 54 D2 Kalarritai

@@ -1,0 +1,677 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.132096,
+          34.387529
+        ]
+      },
+      "type": "Feature",
+      "id": "darmc-location-31544",
+      "properties": {
+        "snippet": "Unknown; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/903126/darmc-location-31544",
+        "description": "representative point location digitized from the Barrington Atlas of the Greek and Roman World by the Digital Atlas of Roman and Medieval Civilizations project at Harvard University.",
+        "location_precision": "precise",
+        "title": "DARMC location 31544"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            47.1329169,
+            34.3883132
+          ],
+          [
+            47.1318967,
+            34.3884176
+          ],
+          [
+            47.1316041,
+            34.3880717
+          ],
+          [
+            47.1311435,
+            34.3871292
+          ],
+          [
+            47.1322271,
+            34.3860224
+          ],
+          [
+            47.1327271,
+            34.3862508
+          ],
+          [
+            47.132909,
+            34.3873538
+          ],
+          [
+            47.1330197,
+            34.3879216
+          ],
+          [
+            47.1329169,
+            34.3883132
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-taq-bostan",
+      "properties": {
+        "snippet": "Monument; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/903126/osm-location-of-taq-bostan",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Taq Bostan"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": null,
+          "name": "DARMC, R. Talbert, T. Elliott, S. Gillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://darmc.harvard.edu/",
+          "citationDetail": "31544",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARMC",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+          "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "darmc-location-31544",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 640,
+      "title": "DARMC location 31544",
+      "provenance": "DARMC OBJECTID: 31544",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "DARMC OBJECTID: 31544",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/darmc-a",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "representative point location digitized from the Barrington Atlas of the Greek and Roman World by the Digital Atlas of Roman and Medieval Civilizations project at Harvard University.",
+      "created": "2025-12-03T19:00:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.132096,
+          34.387529
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/903126/darmc-location-31544",
+      "creators": [
+        {
+          "username": null,
+          "name": "A. Hausleiter"
+        },
+        {
+          "username": null,
+          "name": "E.J. Keall"
+        },
+        {
+          "username": null,
+          "name": "M. Roaf"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:00:16Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:00:15Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T09:30:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2011-08-02T22:00:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2011-08-02T21:13:22Z"
+        },
+        {
+          "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+          "modifiedBy": "sgillies",
+          "modified": "2011-08-02T21:13:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2011-08-02T21:13:21Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/296783422",
+          "citationDetail": "Way 296783422",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-taq-bostan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 640,
+      "title": "OSM location of Taq Bostan",
+      "provenance": "OpenStreetMap (Way 296783422, version 7, osm:changeset=28735608, 2015-02-09T19:33:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2025-12-03T18:58:31Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            47.1329169,
+            34.3883132
+          ],
+          [
+            47.1318967,
+            34.3884176
+          ],
+          [
+            47.1316041,
+            34.3880717
+          ],
+          [
+            47.1311435,
+            34.3871292
+          ],
+          [
+            47.1322271,
+            34.3860224
+          ],
+          [
+            47.1327271,
+            34.3862508
+          ],
+          [
+            47.132909,
+            34.3873538
+          ],
+          [
+            47.1330197,
+            34.3879216
+          ],
+          [
+            47.1329169,
+            34.3883132
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/903126/osm-location-of-taq-bostan",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T18:58:32Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T18:58:31Z"
+        },
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-28T01:11:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-12-19T12:06:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-18T02:56:51Z"
+        },
+        {
+          "comment": "added time period",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-12T17:24:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-12T17:24:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "92 C2 Taq-i Bustan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/21303121",
+      "citationDetail": "volume 2, page 305",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EncIran",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FC53YDEP",
+      "formattedCitation": "<div class=\"csl-entry\">Yarshater, Ehsan. <i>Encyclop\u00e6dia Iranica</i>. London: Routledge &amp; Kegan Paul, 1989.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "von Gall 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/52EC2ZJ2",
+      "formattedCitation": "<div class=\"csl-entry\">H. von Gall. \u201cThe Figural Capitals at Taq-i Bustan and the Questions of the so-Called Investiture in Parthian and Sasanian Art.\u201d <i>Silk Road Art and Archaeology</i> 1 (1990): 99\u2013122.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Taq-e_Bostan",
+      "citationDetail": "Taq-e Bostan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/6720819/taq-e-bostan.html",
+      "citationDetail": "6720819: \u0162\u0101q-e Bost\u0101n",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q940045",
+      "citationDetail": "Q940045: Taq-e Bostan",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/tentativelists/5182/",
+      "citationDetail": "5182: Taq-e Bostan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHTL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QM4PHLAJ",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage Tentative Lists</i>. Accessed October 25, 2023. https://whc.unesco.org/en/tentativelists/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1115011",
+      "citationDetail": "Sassanidisches Felsrelief Taq-e Bostan, Provinz Kermanschah",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Taq-e Bostan, Taq Bustan, Taq-e Bustan, Taq-i Bustan, Taq-i Bostan, Taq Bostan",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q940045",
+          "citationDetail": "Taq-e Bostan (Q940045)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "taq-e-bostan",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Persian name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "fa",
+      "created": "2025-12-03T19:00:56Z",
+      "uri": "https://pleiades.stoa.org/places/903126/taq-e-bostan",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0637\u0627\u0642 \u0628\u0633\u062a\u0627\u0646",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:00:56Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:00:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-18T02:57:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-12T15:39:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-12T15:38:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-12T15:38:56Z"
+        }
+      ]
+    }
+  ],
+  "id": "903126",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=temple"
+  ],
+  "title": "Taq-i Bustan",
+  "provenance": "Barrington Atlas: BAtlas 92 C2 Taq-i Bustan",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Taq-i Bustan</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Site in western Iran with a series of Sassanid rock reliefs carved in the fourth century A.D.",
+  "reprPoint": [
+    47.13214360827551,
+    34.38741780150069
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    47.1311435,
+    34.3860224,
+    47.1330197,
+    34.3884176
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-03-02T21:46:47Z",
+  "uri": "https://pleiades.stoa.org/places/903126",
+  "creators": [
+    {
+      "username": null,
+      "name": "A. Hausleiter"
+    },
+    {
+      "username": null,
+      "name": "M. Roaf"
+    },
+    {
+      "username": null,
+      "name": "E.J. Keall"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up EncIran reference",
+      "modifiedBy": "thomase",
+      "modified": "2026-03-02T21:48:00Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2026-03-02T21:46:45Z"
+    },
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-03T18:58:11Z"
+    },
+    {
+      "comment": "add arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-20T20:06:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-12T17:27:05Z"
+    },
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-12T17:21:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-12T15:41:28Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:04:26Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T09:30:29Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-02T21:13:22Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:31:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-05T21:17:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T21:14:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T21:10:47Z"
+    }
+  ]
+}

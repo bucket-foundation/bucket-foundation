@@ -1,0 +1,202 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-10-20T17:16:32Z",
+      "associationCertainty": "certain",
+      "title": "Boscoreale",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/904891411/boscoreale",
+      "connectionType": "near",
+      "id": "boscoreale",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-03T23:16:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-20T17:16:49Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-20T17:16:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-20T17:16:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432723",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/43845",
+      "citationDetail": "GEO ID 43845: Pagus Augustus Felix Suburbanus",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Scavi_archeologici_di_Boscoreale",
+      "citationDetail": "Scavi archeologici di Boscoreale",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Caro 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4JLWI4QX",
+      "formattedCitation": "<div class=\"csl-entry\">De Caro, S. \u201cPagus Augustus Felix Suburbanus.\u201d <i>Cronache Pompeiane</i> 3 (1977): 217\u201318.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "904891411",
+  "subject": [],
+  "title": "Pagus Augustus Felix Suburbanus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/estate"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ancient Pagus Augustus Felix Suburbanus corresponds to the territory of today's city of Boscoreale and Boscotrecase. Originating around 80 B.C. with the name of Pagus Felix Suburbanus, it included many farms.",
+  "reprPoint": [
+    14.4732795,
+    40.76841
+  ],
+  "placeTypes": [
+    "estate"
+  ],
+  "bbox": [
+    14.471389,
+    40.761389,
+    14.47517,
+    40.775431
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432723"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-27T12:51:32Z",
+  "uri": "https://pleiades.stoa.org/places/904891411",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-27T12:51:33Z"
+    },
+    {
+      "comment": "cleaned up De Caro reference and connected to Zotero",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-26T16:09:06Z"
+    },
+    {
+      "comment": "Reverted to revision 3",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-26T13:14:01Z"
+    },
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-26T13:08:39Z"
+    },
+    {
+      "comment": "removed reference with dead URL and no alternative option",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-25T22:17:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-03T23:16:43Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-27T18:36:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-20T17:16:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-20T17:16:08Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-25T04:02:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-25T04:02:19Z"
+    }
+  ]
+}

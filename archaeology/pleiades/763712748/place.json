@@ -1,0 +1,459 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2209969,
+            36.4250848
+          ],
+          [
+            9.2210367,
+            36.4251742
+          ],
+          [
+            9.2210848,
+            36.4251603
+          ],
+          [
+            9.2211081,
+            36.4252125
+          ],
+          [
+            9.2211534,
+            36.4251994
+          ],
+          [
+            9.2211273,
+            36.4251408
+          ],
+          [
+            9.2211897,
+            36.4251227
+          ],
+          [
+            9.2211494,
+            36.4250324
+          ],
+          [
+            9.2210778,
+            36.425053
+          ],
+          [
+            9.2210612,
+            36.4250159
+          ],
+          [
+            9.2209924,
+            36.4250358
+          ],
+          [
+            9.2210122,
+            36.4250804
+          ],
+          [
+            9.2209969,
+            36.4250848
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-victoria-church",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/763712748/osm-location-of-victoria-church",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Victoria Church"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/96369470",
+          "citationDetail": "Way 96369470",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=96369470",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://imperium.ahlfeldt.se/places/21132.html",
+          "citationDetail": "21132: Victoria Church, Dougga",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "DARE",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+          "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-victoria-church",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Victoria Church",
+      "provenance": "OpenStreetMap (Way 96369470, version 5, osm:changeset=143134733, 2023-10-25T21:12:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-02T16:00:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2209969,
+            36.4250848
+          ],
+          [
+            9.2210367,
+            36.4251742
+          ],
+          [
+            9.2210848,
+            36.4251603
+          ],
+          [
+            9.2211081,
+            36.4252125
+          ],
+          [
+            9.2211534,
+            36.4251994
+          ],
+          [
+            9.2211273,
+            36.4251408
+          ],
+          [
+            9.2211897,
+            36.4251227
+          ],
+          [
+            9.2211494,
+            36.4250324
+          ],
+          [
+            9.2210778,
+            36.425053
+          ],
+          [
+            9.2210612,
+            36.4250159
+          ],
+          [
+            9.2209924,
+            36.4250358
+          ],
+          [
+            9.2210122,
+            36.4250804
+          ],
+          [
+            9.2209969,
+            36.4250848
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/763712748/osm-location-of-victoria-church",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-03T09:22:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:17:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:04:14Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:01:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:00:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:00:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-02T16:01:48Z",
+      "associationCertainty": "certain",
+      "title": "Thugga/Tokai?",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/763712748/3087693791",
+      "connectionType": "at",
+      "id": "3087693791",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:01:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:01:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:01:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/315223",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://imperium.ahlfeldt.se/places/21132.html",
+      "citationDetail": "21132: Victoria Church, Dougga",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q33996528",
+      "citationDetail": "Victoria Church (Q33996528)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Victoria_Church",
+      "citationDetail": "Victoria Church",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Eglise de Victoria",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://fr.wikipedia.org/wiki/%C3%89glise_de_Victoria",
+          "citationDetail": "\u00c9glise de Victoria",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (French)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "eglise-de-victoria",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-03-02T16:05:26Z",
+      "uri": "https://pleiades.stoa.org/places/763712748/eglise-de-victoria",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u00c9glise de Victoria",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-03T09:22:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:17:18Z"
+        },
+        {
+          "comment": "add French name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:05:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-02T16:05:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "763712748",
+  "subject": [
+    "paleochristian"
+  ],
+  "title": "Victoria Church",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A paleochristian church located at Thugga.",
+  "reprPoint": [
+    9.221089956431173,
+    36.42510814942912
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    9.2209924,
+    36.4250159,
+    9.2211897,
+    36.4252125
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/315223"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-02T16:01:47Z",
+  "uri": "https://pleiades.stoa.org/places/763712748",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-03T09:22:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-02T16:17:17Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-02T16:03:39Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-02T16:01:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-02T16:01:47Z"
+    }
+  ]
+}

@@ -1,0 +1,399 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.8837734,
+          40.5291068
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-castro-de-ulaca",
+      "properties": {
+        "snippet": "Fortified-settlement; 750 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/989451242/osm-location-of-castro-de-ulaca",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Ulaca"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5268587051",
+          "citationDetail": "Node 5268587051",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-castro-de-ulaca",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "end": 300,
+      "title": "OSM location of Castro de Ulaca",
+      "provenance": "OpenStreetMap (Node 5268587051, version 3, osm:changeset=59406813, 2018-05-30T18:33:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fortified-settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2026-01-14T18:53:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.8837734,
+          40.5291068
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/989451242/osm-location-of-castro-de-ulaca",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:53:20Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:53:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-23T10:32:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-21T22:36:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-21T22:35:21Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-21T22:35:00Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-29T21:08:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-29T21:06:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-29T21:06:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2026-01-14T18:53:19Z",
+      "associationCertainty": "certain",
+      "title": "Vettonia",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/989451242/vettonia",
+      "connectionType": "part_of_regional",
+      "id": "vettonia",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:53:19Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:53:19Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-14T07:55:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "fcabrera",
+          "modified": "2020-04-29T18:16:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "fcabrera",
+          "modified": "2020-04-29T18:10:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "fcabrera",
+          "modified": "2020-04-29T18:09:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "fcabrera",
+          "modified": "2020-04-29T18:08:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "fcabrera",
+          "modified": "2020-04-29T18:08:55Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/236712",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://es.wikipedia.org/wiki/Castro_de_Ulaca",
+          "citationDetail": "Castro de Ulaca",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Spanish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "fcabrera",
+          "homepage": null,
+          "name": "Francisco Javier Cabrera Valdes",
+          "uri": "https://pleiades.stoa.org/author/fcabrera"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Castro_de_Ulaca",
+      "citationDetail": "Castro de Ulaca",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2941519",
+      "citationDetail": "Castro de Ulaca (Q2941519)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "989451242",
+  "subject": [],
+  "title": "Castro de Ulaca",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Fortified vettonian settlement.",
+  "reprPoint": [
+    -4.8837734,
+    40.5291068
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "settlement"
+  ],
+  "bbox": [
+    -4.8837734,
+    40.5291068,
+    -4.8837734,
+    40.5291068
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/236712"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-14T18:53:02Z",
+  "uri": "https://pleiades.stoa.org/places/989451242",
+  "creators": [
+    {
+      "username": "fcabrera",
+      "homepage": null,
+      "name": "Francisco Javier Cabrera Valdes",
+      "uri": "https://pleiades.stoa.org/author/fcabrera"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2026-01-14T18:53:03Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2026-01-14T18:53:01Z"
+    },
+    {
+      "comment": "wikidata Q2941519",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-21T22:34:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-14T07:55:33Z"
+    },
+    {
+      "comment": "title, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-30T12:58:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "fcabrera",
+      "modified": "2020-04-29T18:16:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "fcabrera",
+      "modified": "2020-04-29T18:13:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "fcabrera",
+      "modified": "2020-04-29T18:12:00Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "fcabrera",
+      "modified": "2020-04-29T17:57:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "fcabrera",
+      "modified": "2020-04-29T17:57:38Z"
+    }
+  ]
+}

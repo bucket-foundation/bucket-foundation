@@ -1,0 +1,474 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.7269042,
+          34.7478425
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-synagogue",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/335307374/osm-location-of-synagogue",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Synagogue"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3715362985",
+          "citationDetail": "Node 3715362985",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3715362985",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-synagogue",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Synagogue",
+      "provenance": "OpenStreetMap (Node 3715362985, version 4, osm:changeset=81277780, 2020-02-20T14:40:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-04-17T18:28:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.7269042,
+          34.7478425
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/335307374/osm-location-of-synagogue",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-24T19:55:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-04-18T10:35:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:39:10Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:28:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:28:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:28:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-04-17T18:28:11Z",
+      "associationCertainty": "certain",
+      "title": "D(o)ura/Europos",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/335307374/d-o-ura-europos",
+      "connectionType": "at",
+      "id": "d-o-ura-europos",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-04-18T10:35:09Z"
+        },
+        {
+          "comment": "ctype: at",
+          "modifiedBy": "thomase",
+          "modified": "2019-04-18T10:14:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:39:10Z"
+        },
+        {
+          "comment": "added cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:28:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:28:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893990",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1577089",
+          "citationDetail": "Q1577089",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Dura-Europos_synagogue",
+      "citationDetail": "Dura-Europos synagogue",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1577089",
+      "citationDetail": "Dura-Europos synagogue (Q1577089)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/491461650",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kraeiling 1956",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RW89HS3Z",
+      "formattedCitation": "<div class=\"csl-entry\">Kraeling, Carl Hermann. <i>The Synagogue</i>. The Excavations at Dura-Europos Final Report, 8 part 1. New Haven: Yale University Press, 1956. http://www.worldcat.org/oclc/491461650.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "http://onlinelibrary.wiley.com/book/10.1002/9781444338386",
+      "accessURI": "http://onlinelibrary.wiley.com/book/10.1002/9781444338386",
+      "citationDetail": "Dura\u2010Europos, synagogue in",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EncAncHist",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J5X5SRY3",
+      "formattedCitation": "<div class=\"csl-entry\">Bagnall, Roger S., Kai Brodersen, Craige B. Champion, and Andrew Erskine, eds. <i>The Encyclopedia of Ancient History</i>. Accessed February 1, 2018. http://onlinelibrary.wiley.com/book/10.1002/9781444338386.</div>",
+      "otherIdentifier": "10.1002/9781444338386.wbeah11073",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/3209918",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gates 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WYPXRG3A",
+      "formattedCitation": "<div class=\"csl-entry\">Gates, Marie-Henriette. \u201cDura-Europos: A Fortress of Syro-Mesopotamian Art.\u201d <i>The Biblical Archaeologist</i> 47, no. 3 (1984): 166\u201381. https://doi.org/10.2307/3209918.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1364005",
+      "citationDetail": "Synagoge Dura Europos, Nahiyat \u02bfAshara",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dura-Europos synagogue",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1577089",
+          "citationDetail": "Q1577089",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2019-04-17.7434524261",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2019-04-17T18:29:32Z",
+      "uri": "https://pleiades.stoa.org/places/335307374/name.2019-04-17.7434524261",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Dura-Europos synagogue",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-04-18T10:35:10Z"
+        },
+        {
+          "comment": "attested",
+          "modifiedBy": "thomase",
+          "modified": "2019-04-18T10:35:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:39:11Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:29:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T18:29:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "335307374",
+  "subject": [],
+  "title": "Synagogue at Dura-Europos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/synagogue",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Dura-Europos synagogue is one of the oldest known synagogues in the world. According to an Aramaic inscription, its final phase of construction took place in A.D. 244. It was uncovered during excavations in 1932.",
+  "reprPoint": [
+    40.7269042,
+    34.7478425
+  ],
+  "placeTypes": [
+    "synagogue",
+    "temple-2"
+  ],
+  "bbox": [
+    40.7269042,
+    34.7478425,
+    40.7269042,
+    34.7478425
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893990",
+    "https://pleiades.stoa.org/places/769637722",
+    "https://pleiades.stoa.org/places/769637723"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-03-30T22:26:05Z",
+  "uri": "https://pleiades.stoa.org/places/335307374",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-07T04:28:09Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-30T22:27:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "achen",
+      "modified": "2021-02-04T05:37:49Z"
+    },
+    {
+      "comment": "added Arachne 2110314: Synagoge Nahiyat \u02bfAshara",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-30T16:49:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-04-18T10:35:09Z"
+    },
+    {
+      "comment": "EncAncHist",
+      "modifiedBy": "thomase",
+      "modified": "2019-04-18T10:34:12Z"
+    },
+    {
+      "comment": "added Kraeiling; Wikidata -> related",
+      "modifiedBy": "thomase",
+      "modified": "2019-04-18T10:31:52Z"
+    },
+    {
+      "comment": "ptype: synagogue",
+      "modifiedBy": "thomase",
+      "modified": "2019-04-18T10:13:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-17T18:39:10Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-17T18:27:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-17T18:27:02Z"
+    }
+  ]
+}

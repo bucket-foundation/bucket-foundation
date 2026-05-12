@@ -1,0 +1,493 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            37.2246598,
+            34.2362177
+          ],
+          [
+            37.2247929,
+            34.2361971
+          ],
+          [
+            37.224895,
+            34.236523
+          ],
+          [
+            37.225086,
+            34.236489
+          ],
+          [
+            37.2251002,
+            34.2365436
+          ],
+          [
+            37.2252618,
+            34.2365149
+          ],
+          [
+            37.2252515,
+            34.2364753
+          ],
+          [
+            37.2254375,
+            34.2364422
+          ],
+          [
+            37.2253357,
+            34.2360505
+          ],
+          [
+            37.2252554,
+            34.2360647
+          ],
+          [
+            37.2253392,
+            34.2363873
+          ],
+          [
+            37.2249332,
+            34.2364595
+          ],
+          [
+            37.2248619,
+            34.2361853
+          ],
+          [
+            37.2248418,
+            34.2361078
+          ],
+          [
+            37.2247605,
+            34.2361231
+          ],
+          [
+            37.2246362,
+            34.236147
+          ],
+          [
+            37.2246598,
+            34.2362177
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mar-elian",
+      "properties": {
+        "snippet": "Monastery",
+        "link": "https://pleiades.stoa.org/places/587809526/osm-location-of-mar-elian",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mar Elian"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1212371266",
+          "citationDetail": "Way 1212371266",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1212371266",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mar-elian",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monastery"
+      ],
+      "end": null,
+      "title": "OSM location of Mar Elian",
+      "provenance": "OpenStreetMap (Way 1212371266, version 3, osm:changeset=145041280, 2023-12-12T14:53:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monastery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monastery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-12-12T14:56:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            37.2246598,
+            34.2362177
+          ],
+          [
+            37.2247929,
+            34.2361971
+          ],
+          [
+            37.224895,
+            34.236523
+          ],
+          [
+            37.225086,
+            34.236489
+          ],
+          [
+            37.2251002,
+            34.2365436
+          ],
+          [
+            37.2252618,
+            34.2365149
+          ],
+          [
+            37.2252515,
+            34.2364753
+          ],
+          [
+            37.2254375,
+            34.2364422
+          ],
+          [
+            37.2253357,
+            34.2360505
+          ],
+          [
+            37.2252554,
+            34.2360647
+          ],
+          [
+            37.2253392,
+            34.2363873
+          ],
+          [
+            37.2249332,
+            34.2364595
+          ],
+          [
+            37.2248619,
+            34.2361853
+          ],
+          [
+            37.2248418,
+            34.2361078
+          ],
+          [
+            37.2247605,
+            34.2361231
+          ],
+          [
+            37.2246362,
+            34.236147
+          ],
+          [
+            37.2246598,
+            34.2362177
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/587809526/osm-location-of-mar-elian",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-13T23:18:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T15:10:12Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T14:56:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T14:56:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T14:56:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-12T15:03:04Z",
+      "associationCertainty": "certain",
+      "title": "Nazala",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/587809526/3843958507",
+      "connectionType": "at",
+      "id": "3843958507",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T15:03:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T15:03:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T15:03:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/668315",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Monastery_of_Saint_Elian",
+      "citationDetail": "Monastery of Saint Elian",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/23631/",
+      "citationDetail": "23631: Al-Qaryatayn, Syria - Mar Elian Monastery",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q20858492",
+      "citationDetail": "Monastery of St. Elian (Q20858492)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1179/lev.2005.37.1.43",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Loosley 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V2UTMSCH",
+      "formattedCitation": "<div class=\"csl-entry\">Loosley, Emma, and Niall Finneran. \u201cMonastic Archaeology in Syria. Excavations at Dayr Mar Elian al-Sharqi, Qaryatayn: A Preliminary Report on the 2001, 2002 and 2003 Field Seasons.\u201d <i>Levant</i> 37, no. 1 (June 1, 2005): 43\u201356. https://doi.org/10.1179/lev.2005.37.1.43.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Julian_of_Emesa",
+      "citationDetail": "Julian of Emesa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monastery of St. Elian",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/https://www.wikidata.org/wiki/Q20858492",
+          "citationDetail": "Monastery of St. Elian (Q20858492)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "monastery-of-st-elian",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-12-12T15:09:59Z",
+      "uri": "https://pleiades.stoa.org/places/587809526/monastery-of-st-elian",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Monastery of St. Elian",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-13T23:18:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T15:10:12Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T15:10:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T15:09:59Z"
+        }
+      ]
+    }
+  ],
+  "id": "587809526",
+  "subject": [],
+  "title": "Mar Elian",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monastery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The beginnings of the early Christian monastery of Saint Elian at Al-Qaryatayn, Syria, are linked with the saint Julian of Emesa. The Medieval iteration of the monastery was badly damaged - or perhaps nearly destroyed - by Islamic State terrorists in 2015.",
+  "reprPoint": [
+    37.225077544825936,
+    34.23632323271488
+  ],
+  "placeTypes": [
+    "monastery"
+  ],
+  "bbox": [
+    37.2246362,
+    34.2360505,
+    37.2254375,
+    34.2365436
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/668315"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-12-12T15:03:02Z",
+  "uri": "https://pleiades.stoa.org/places/587809526",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-12-13T23:18:49Z"
+    },
+    {
+      "comment": "edit typo in summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-12T18:28:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-12T15:10:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-12T15:07:42Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-12T15:03:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-12T15:03:02Z"
+    }
+  ]
+}

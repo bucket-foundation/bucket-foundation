@@ -1,0 +1,376 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6338027,
+          50.1027059
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement, ; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/59320269/osm-location",
+        "description": "Representative point based on OpenStreetMap node.",
+        "location_precision": "precise",
+        "title": "OSM Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6340914,
+          50.1028474
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-fogou-at-carn-euny",
+      "properties": {
+        "snippet": "Tunnel, Wall, ; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/59320269/osm-location-of-fogou-at-carn-euny",
+        "description": "Point based on OpenStreetMap node.",
+        "location_precision": "precise",
+        "title": "OSM Location of Fogou at Carn Euny"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1678621967",
+          "citationDetail": "Node 1678621967",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1678621967",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 100,
+      "title": "OSM Location",
+      "provenance": "OpenStreetMap (Node 1678621967, version 3, osm:changeset=12819075, 2012-08-22T10:56:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative point based on OpenStreetMap node.",
+      "created": "2013-09-01T01:14:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6338027,
+          50.1027059
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/59320269/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T11:58:02Z"
+        },
+        {
+          "comment": "description",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T11:57:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:17:31Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:14:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:14:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:14:28Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1685247013",
+          "citationDetail": "Node 1685247013",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1685247013",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Fogou",
+          "citationDetail": "Fogou",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Fogou.",
+          "otherIdentifier": " ",
+          "type": "seeAlso"
+        }
+      ],
+      "id": "osm-location-of-fogou-at-carn-euny",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tunnel",
+        "https://pleiades.stoa.org/vocabularies/place-types/wall",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 100,
+      "title": "OSM Location of Fogou at Carn Euny",
+      "provenance": "OpenStreetMap (Node 1685247013, version 1, osm:changeset=11058190, 2012-03-21T23:08:42Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tunnel",
+        "https://pleiades.stoa.org/vocabularies/place-types/wall",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tunnel",
+        "wall",
+        ""
+      ],
+      "description": "Point based on OpenStreetMap node.",
+      "created": "2013-09-01T01:15:57Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6340914,
+          50.1028474
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/59320269/osm-location-of-fogou-at-carn-euny",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T12:43:13Z"
+        },
+        {
+          "comment": "description, title",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T12:41:11Z"
+        },
+        {
+          "comment": "description",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T11:59:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:17:30Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:16:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:15:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:15:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Carn_Euny",
+      "citationDetail": "Carn Euny",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Carn Euny.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.historic-cornwall.org.uk/a2m/rom_british/courtyard_house/carn_euny/carn_euny.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Historic Cornwall, Carn Euny",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "59320269",
+  "subject": [],
+  "title": "Carn Euny",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tunnel",
+    "https://pleiades.stoa.org/vocabularies/place-types/wall",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Carn Euny is an Iron Age site near near Sancreed in Cornwall.",
+  "reprPoint": [
+    -5.63394705,
+    50.102776649999996
+  ],
+  "placeTypes": [
+    "tunnel",
+    "wall",
+    "settlement"
+  ],
+  "bbox": [
+    -5.6340914,
+    50.1027059,
+    -5.6338027,
+    50.1028474
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-09-01T01:13:46Z",
+  "uri": "https://pleiades.stoa.org/places/59320269",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2014-03-24T11:58:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T01:17:09Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T01:13:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T01:13:46Z"
+    }
+  ]
+}

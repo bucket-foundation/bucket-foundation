@@ -1,0 +1,14 @@
+# Dribykes
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/944514
+- **ID**: 944514
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Dribykes, Dribyces
+
+## Description
+
+An ancient place, cited: BAtlas 96 unlocated Dribykes

@@ -1,0 +1,554 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.323472,
+            16.4141603
+          ],
+          [
+            33.3231807,
+            16.4142401
+          ],
+          [
+            33.3225484,
+            16.4127874
+          ],
+          [
+            33.3229641,
+            16.4126245
+          ],
+          [
+            33.3231043,
+            16.4125615
+          ],
+          [
+            33.3236085,
+            16.4124094
+          ],
+          [
+            33.3236716,
+            16.4123904
+          ],
+          [
+            33.3236027,
+            16.4121273
+          ],
+          [
+            33.3241876,
+            16.4118695
+          ],
+          [
+            33.3245121,
+            16.4122926
+          ],
+          [
+            33.3248116,
+            16.4132663
+          ],
+          [
+            33.3244954,
+            16.4133541
+          ],
+          [
+            33.3246452,
+            16.4138251
+          ],
+          [
+            33.3238963,
+            16.4140326
+          ],
+          [
+            33.323472,
+            16.4141603
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-great-enclosure",
+      "properties": {
+        "snippet": "Temple-2; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/805632/osm-location-of-great-enclosure",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Great Enclosure"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/804413228",
+          "citationDetail": "Way 804413228",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=804413228",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-great-enclosure",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Great Enclosure",
+      "provenance": "OpenStreetMap (Way 804413228, version 3, osm:changeset=87046687, 2020-06-23T18:21:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-06-26T14:42:57Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.323472,
+            16.4141603
+          ],
+          [
+            33.3231807,
+            16.4142401
+          ],
+          [
+            33.3225484,
+            16.4127874
+          ],
+          [
+            33.3229641,
+            16.4126245
+          ],
+          [
+            33.3231043,
+            16.4125615
+          ],
+          [
+            33.3236085,
+            16.4124094
+          ],
+          [
+            33.3236716,
+            16.4123904
+          ],
+          [
+            33.3236027,
+            16.4121273
+          ],
+          [
+            33.3241876,
+            16.4118695
+          ],
+          [
+            33.3245121,
+            16.4122926
+          ],
+          [
+            33.3248116,
+            16.4132663
+          ],
+          [
+            33.3244954,
+            16.4133541
+          ],
+          [
+            33.3246452,
+            16.4138251
+          ],
+          [
+            33.3238963,
+            16.4140326
+          ],
+          [
+            33.323472,
+            16.4141603
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/805632/osm-location-of-great-enclosure",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-01T22:29:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-07-06T20:51:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-27T00:30:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-26T14:42:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "82 inset Musawwarat",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lex\u00c4gypt",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PE2M242I",
+      "formattedCitation": "<div class=\"csl-entry\">Helck, Wolfgang, Eberhard Otto, Wolfhart Westendorf, Rosemarie Drenkhahn, and Christine Meyer. <i>Lexikon der Agyptologie</i>. Wiesbaden: Otto Harrassowitz, 1975.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/1336/",
+      "citationDetail": "1336: Archaeological Sites of the Island of Meroe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Musawwarat_es-Sufra",
+      "citationDetail": "Musawwarat es-Sufra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q286426",
+      "citationDetail": "Q286426: Musawarat",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/55628/",
+      "citationDetail": "55628: Aborepi (Musawarat)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/379078/athar-el-musawwrat-es-safra.html",
+      "citationDetail": "379078: Athar el Musawwrat es Safra",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wenig 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8FXZK3TF",
+      "formattedCitation": "<div class=\"csl-entry\">Wenig, Steffen, ed. <i>Die Tempel von Musawwarat es Sufra: Ausgrabungen der Humboldt-Universit\u00e4t zu Berlin im Sudan\u202f; Ausstellung der Urania Berlin und des Institutes f\u00fcr Sudanarch\u00e4ologie und \u00c4gyptologie der Humboldt-Universit\u00e4t zu Berlin...16.9.-12.10.1996</i>. Berlin: Inst. f\u00fcr Sudanarch\u00e4ologie u. \u00c4gyptologie der Humboldt-Univ, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hintze 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R6YRTNKE",
+      "formattedCitation": "<div class=\"csl-entry\">Hintze, Fritz, Ursula Hintze, and Karl Anton Priess. <i>Musawwarat es Sufra</i>. 2 vols. Arch\u00e4ologische Forschungen im Sudan. Berlin: Akademie-Verlag, 1971.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "31416",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Musawwarat es-Sufra",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Musawwarat_es-Sufra",
+          "citationDetail": "Musawwarat es-Sufra",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "musawwarat-es-sufra",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-06-26T14:47:11Z",
+      "uri": "https://pleiades.stoa.org/places/805632/musawwarat-es-sufra",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Musawwarat es-Sufra",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-07-06T20:53:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-27T00:30:22Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-26T14:47:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-26T14:47:11Z"
+        }
+      ]
+    }
+  ],
+  "id": "805632",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=temple",
+    "UWHS"
+  ],
+  "title": "Musawwarat",
+  "provenance": "Barrington Atlas: BAtlas 82 inset Musawwarat",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Musawwarat</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Meroitic temple complex in modern Sudan, located 180 km northeast of Khartoum, 20 km north of Naqa and approximately 25 km south-east of the Nile. The complex dates to the early Meroitic period (third century B.C.). In 2011 the site was enrolled as a UNESCO World Heritage Site.",
+  "reprPoint": [
+    33.32376176458745,
+    16.41309446297002
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    33.3225484,
+    16.4118695,
+    33.3248116,
+    16.4142401
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-26T14:42:46Z",
+  "uri": "https://pleiades.stoa.org/places/805632",
+  "creators": [
+    {
+      "username": null,
+      "name": "N.B. Millet"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-07T15:47:35Z"
+    },
+    {
+      "comment": "DARMC 31416",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-07T15:47:08Z"
+    },
+    {
+      "comment": "added DARMC reference to maintain linkage after retracting less precise location",
+      "modifiedBy": "thomase",
+      "modified": "2020-07-06T20:53:23Z"
+    },
+    {
+      "comment": "added summary. copied references from unintended duplicate; Edited; updated Locations, Names",
+      "modifiedBy": "thomase",
+      "modified": "2020-06-27T10:59:44Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-26T14:42:45Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:37:40Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:36:07Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T23:09:35Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-02T20:22:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-13T15:50:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-12T11:27:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-12T11:22:33Z"
+    }
+  ]
+}

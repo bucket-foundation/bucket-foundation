@@ -1,0 +1,345 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            81.0052349,
+            7.9641182
+          ],
+          [
+            81.0050345,
+            7.9620765
+          ],
+          [
+            81.0046434,
+            7.9593764
+          ],
+          [
+            81.0028402,
+            7.9593478
+          ],
+          [
+            81.0019433,
+            7.9608553
+          ],
+          [
+            81.0023828,
+            7.964544
+          ],
+          [
+            81.0052349,
+            7.9641182
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "alahana-pirivena",
+      "properties": {
+        "snippet": "Monastery; AD 1000 - AD 1099",
+        "link": "https://pleiades.stoa.org/places/847284570/alahana-pirivena",
+        "description": "Polygon based on OpenStreetMap representing Alahana Parivena",
+        "location_precision": "precise",
+        "title": "OSM location of Alahana Parivena"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "eleventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eleventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/337482571",
+          "citationDetail": "Way 337482571",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=337482571",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "alahana-pirivena",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monastery"
+      ],
+      "end": 1099,
+      "title": "OSM location of Alahana Parivena",
+      "provenance": "OpenStreetMap (Way 337482571, version 1, osm:changeset=30076112, 2015-04-08T22:21:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monastery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monastery"
+      ],
+      "description": "Polygon based on OpenStreetMap representing Alahana Parivena",
+      "created": "2022-06-06T21:14:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            81.0052349,
+            7.9641182
+          ],
+          [
+            81.0050345,
+            7.9620765
+          ],
+          [
+            81.0046434,
+            7.9593764
+          ],
+          [
+            81.0028402,
+            7.9593478
+          ],
+          [
+            81.0019433,
+            7.9608553
+          ],
+          [
+            81.0023828,
+            7.964544
+          ],
+          [
+            81.0052349,
+            7.9641182
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/847284570/alahana-pirivena",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T10:10:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-06T21:17:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-06T21:15:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-06T21:15:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-06T21:14:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-06T21:14:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 1099,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-06T21:17:10Z",
+      "associationCertainty": "certain",
+      "title": "Polonnaruwa",
+      "start": 1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/847284570/polonnaruwa",
+      "connectionType": "near",
+      "id": "polonnaruwa",
+      "attestations": [
+        {
+          "timePeriod": "eleventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eleventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T10:10:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-06T21:17:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-06T21:17:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-06T21:17:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/348371058",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=KxkuAAAAMAAJ",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Prematilleke 1982",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4I7VD58N",
+          "formattedCitation": "<div class=\"csl-entry\">Prematilleke, P. L, and UNESCO-Sri Lanka Cultural Triangle. <i>Alahana Parivena, Polonnaruva, Archaeological Excavation Report</i>. Colombo: Central Cultural Fund, Ministry of Cultural Affairs, Sri Lanka, 1982. http://books.google.com/books?id=KxkuAAAAMAAJ.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "https://www.tlc.lk/sl_attraction/alahana-pirivena/",
+          "accessURI": "https://www.tlc.lk/",
+          "citationDetail": "Alahana Pirivena",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Travel Lanka",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XRVN65U2",
+          "formattedCitation": "<div class=\"csl-entry\">Travel Lanka Compass. \u201cTravel Lanka Compass | Tailor Made Sri Lanka Holidays.\u201d Accessed June 6, 2022. https://www.tlc.lk/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=KxkuAAAAMAAJ",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Prematilleke 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4I7VD58N",
+      "formattedCitation": "<div class=\"csl-entry\">Prematilleke, P. L, and UNESCO-Sri Lanka Cultural Triangle. <i>Alahana Parivena, Polonnaruva, Archaeological Excavation Report</i>. Colombo: Central Cultural Fund, Ministry of Cultural Affairs, Sri Lanka, 1982. http://books.google.com/books?id=KxkuAAAAMAAJ.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "847284570",
+  "subject": [],
+  "title": "Alahana Parivena",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monastery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A middle to late eleventh century CE monastic college located outside of Polonnaruwa in Sri Lanka that belonged to King Parakramabahu I.",
+  "reprPoint": [
+    81.00359526256695,
+    7.962000703075716
+  ],
+  "placeTypes": [
+    "monastery"
+  ],
+  "bbox": [
+    81.0019433,
+    7.9593478,
+    81.0052349,
+    7.964544
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/348371058"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-06T21:13:54Z",
+  "uri": "https://pleiades.stoa.org/places/847284570",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-07T10:10:47Z"
+    },
+    {
+      "comment": "update summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-06T23:49:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-06T21:17:23Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-06T21:13:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-06T21:13:54Z"
+    }
+  ]
+}

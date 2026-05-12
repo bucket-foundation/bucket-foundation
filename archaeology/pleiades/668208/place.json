@@ -1,0 +1,756 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.111313,
+          35.987015
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Settlement; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/668208/dare-location",
+        "description": "Representative point location, site precision",
+        "location_precision": "precise",
+        "title": "DARE Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.1079405,
+            35.9873347
+          ],
+          [
+            38.1079887,
+            35.9870786
+          ],
+          [
+            38.1082033,
+            35.9868702
+          ],
+          [
+            38.109185,
+            35.9865056
+          ],
+          [
+            38.1098985,
+            35.9864101
+          ],
+          [
+            38.1107675,
+            35.9863711
+          ],
+          [
+            38.1118136,
+            35.9861106
+          ],
+          [
+            38.1121572,
+            35.9858914
+          ],
+          [
+            38.1127738,
+            35.9858762
+          ],
+          [
+            38.1135519,
+            35.9858393
+          ],
+          [
+            38.1133642,
+            35.9862995
+          ],
+          [
+            38.1133736,
+            35.9873959
+          ],
+          [
+            38.1125948,
+            35.9875512
+          ],
+          [
+            38.1117313,
+            35.9875984
+          ],
+          [
+            38.110038,
+            35.9884763
+          ],
+          [
+            38.1087612,
+            35.987912
+          ],
+          [
+            38.1081068,
+            35.9875213
+          ],
+          [
+            38.1079405,
+            35.9873347
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-meskene",
+      "properties": {
+        "snippet": "Archaeological-site; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/668208/osm-location-of-tell-meskene",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Meskene"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "enesy",
+      "homepage": null,
+      "name": "Enes Y\u0131landilo\u011flu",
+      "uri": "https://pleiades.stoa.org/author/enesy"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://francia.ahlfeldt.se/imperium.php",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Johan \u00c5hlfeldt, Digital Atlas of the Roman Empire, 2012.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 640,
+      "title": "DARE Location",
+      "provenance": "Digital Atlas of the Roman Empire (2012-10-15)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-3",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative point location, site precision",
+      "created": "2012-10-20T23:08:16Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.111313,
+          35.987015
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668208/dare-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:08:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:08:17Z"
+        },
+        {
+          "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:08:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:08:16Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/226877980",
+          "citationDetail": "Way 226877980",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=226877980",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-meskene",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 640,
+      "title": "OSM location of Tell Meskene",
+      "provenance": "OpenStreetMap (Way 226877980, version 5, osm:changeset=49967172, 2017-07-01T15:14:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-30T12:51:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.1079405,
+            35.9873347
+          ],
+          [
+            38.1079887,
+            35.9870786
+          ],
+          [
+            38.1082033,
+            35.9868702
+          ],
+          [
+            38.109185,
+            35.9865056
+          ],
+          [
+            38.1098985,
+            35.9864101
+          ],
+          [
+            38.1107675,
+            35.9863711
+          ],
+          [
+            38.1118136,
+            35.9861106
+          ],
+          [
+            38.1121572,
+            35.9858914
+          ],
+          [
+            38.1127738,
+            35.9858762
+          ],
+          [
+            38.1135519,
+            35.9858393
+          ],
+          [
+            38.1133642,
+            35.9862995
+          ],
+          [
+            38.1133736,
+            35.9873959
+          ],
+          [
+            38.1125948,
+            35.9875512
+          ],
+          [
+            38.1117313,
+            35.9875984
+          ],
+          [
+            38.110038,
+            35.9884763
+          ],
+          [
+            38.1087612,
+            35.987912
+          ],
+          [
+            38.1081068,
+            35.9875213
+          ],
+          [
+            38.1079405,
+            35.9873347
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668208/osm-location-of-tell-meskene",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-30T14:10:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T12:52:31Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T12:52:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T12:51:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T12:51:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "68 F2 Barbalissus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "283-86",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ulbert 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQ8DN9I7",
+      "formattedCitation": "<div class=\"csl-entry\">Ulbert, T. \u201cVilles et Fortifications de l\u2019Euphrate \u00e0 l\u2019\u00e9poque Pal\u00e9o-Chr\u00e9tienne, IVe - VIIe Si\u00e8cles.\u201d In <i>Arch\u00e9ologie et Histoire de La Syrie, 2. La Syrie de l\u2019\u00e9poque Ach\u00e9m\u00e9nide \u00e0 l\u2019av\u00e8nement de l\u2019Islam</i>, 282\u2013296, Abb, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace2595.html",
+      "citationDetail": "10C2 (Talbert 2595)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "TP (Talbert: CUP)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Barbalissos",
+      "citationDetail": "Barbalissos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Barbalissos.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/3759",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "TM GEO ID 3759",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "11655",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Barbalissus",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "barbalissus",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 68 F2 Barbalissus",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-19T12:21:37Z",
+      "uri": "https://pleiades.stoa.org/places/668208/barbalissus",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:44:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T14:02:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:28:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:21:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "B\u0101l\u012bs",
+      "attestations": [
+        {
+          "timePeriod": "sixteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx",
+          "citationDetail": "1st Volume, 343, s.v. \"B\u0101l\u012bs\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "K\u00fcnh\u00fc'l-ahb\u00e2r",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WKDD5W8W",
+          "formattedCitation": "<div class=\"csl-entry\">\u00c2li, Mustafa bin Ahmet. <i>K\u00fcnh\u00fc\u2019l-ahb\u00e2r: (tenkitli metin)</i>. Edited by Suat Donuk and Derya \u00d6rs. 1. bask\u0131. 5 vols. T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131 yay\u0131nlar\u0131. Fatih, \u0130stanbul: T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131, 2020. https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "balis",
+      "end": 1599,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1500,
+      "details": "<p class=\"p1\"><em>B\u0101l\u012bs</em>:\u00a0It is a small town on the <em>Fur\u0101t</em> (Euphrates) belonging to <em>C\u00fcnd \u1e32\u0131nnesr\u012bn</em> (the district of Qinnasr\u012bn), and serves as a river port. Merchants coming from <em>M\u0131\u1e63r</em> (Egypt) and <em>diy\u0101r-\u0131 \u015e\u0101m</em> (Bil\u0101d al-Sh\u0101m / Greater Syria) would embark on their boats at that place. They would send their goods to <em>Ba\u0121d\u0101d</em> (Baghdad) from that station.\u00a0When the Melik\u00fc\u2019n-n\u0101\u1e63\u0131r \u1e62al\u0101\u1e25a\u2019d-d\u012bn (Salah al-Din) came to power, the waters of the Euphrates receded from <em>B\u0101l\u012bs</em>. Because of this,\u00a0<em>Eb\u016b Bekr bin \u1e32\u0131v\u0101m-\u0131 B\u0101l\u012bs\u012b</em> (Ab\u016b Bekr b. \u1e32iv\u0101m al-B\u0101l\u012bs\u012b), one of the ascetics, diverted a canal from the Euphrates to <em>B\u0101l\u012bs</em>. For a long time, the people of the region benefitted from it. Afterwards, that too fell into ruin, and the town of <em>B\u0101l\u012bs</em> became deserted.\u00a0The people of <em>B\u0101l\u012bs</em> are known for lack of sense and stupidity. [translation]</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ota",
+      "created": "2025-11-18T01:19:55Z",
+      "uri": "https://pleiades.stoa.org/places/668208/balis",
+      "creators": [
+        {
+          "username": "enesy",
+          "homepage": null,
+          "name": "Enes Y\u0131landilo\u011flu",
+          "uri": "https://pleiades.stoa.org/author/enesy"
+        }
+      ],
+      "attested": "\u0628\u0627\u0644\u064a\u0633",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-18T01:41:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-18T01:20:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-18T01:19:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-18T01:19:55Z"
+        }
+      ]
+    }
+  ],
+  "id": "668208",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Barbalissus",
+  "provenance": "Barrington Atlas: BAtlas 68 F2 Barbalissus",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Balis, Meskene</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 68 F2 Barbalissus",
+  "reprPoint": [
+    38.11111421526064,
+    35.98702719661914
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    38.1079405,
+    35.9858393,
+    38.1135519,
+    35.9884763
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/279984092"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-19T12:21:37Z",
+  "uri": "https://pleiades.stoa.org/places/668208",
+  "creators": [
+    {
+      "username": null,
+      "name": "J.P. Brown"
+    },
+    {
+      "username": null,
+      "name": "P.-L. Gatier"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-17T15:34:15Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-12-19T17:52:09Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-01T18:51:25Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:08:18Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:44:57Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T20:49:44Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:55:46Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-19T14:02:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T12:28:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T12:21:37Z"
+    }
+  ]
+}

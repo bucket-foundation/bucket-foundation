@@ -1,0 +1,14 @@
+# Eburodunum
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/167750
+- **ID**: 167750
+- **Coords (lng, lat)**: [6.496364, 44.565627]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Eburodunum, Ebrudunum, Ἐβρόδουνον
+
+## Description
+
+An ancient place, cited: BAtlas 17 G4 Eburodunum

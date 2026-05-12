@@ -1,0 +1,251 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.9039521,
+          42.150336
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-capanna-dellaelceto",
+      "properties": {
+        "snippet": "Archaeological-site; 1000 BC - 900 BC",
+        "link": "https://pleiades.stoa.org/places/631759569/osm-location-of-capanna-dellaelceto",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Capanna dell\u2019Elceto"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-italy-latial-culture-i-1000-900-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-italy-latial-culture-i-1000-900-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9868592098",
+          "citationDetail": "Node 9868592098",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9868592098",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-capanna-dellaelceto",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -900,
+      "title": "OSM location of Capanna dell\u2019Elceto",
+      "provenance": "OpenStreetMap (Node 9868592098, version 4, osm:changeset=138539870, 2023-07-15T10:52:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-12-26T21:27:03Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.9039521,
+          42.150336
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/631759569/osm-location-of-capanna-dellaelceto",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-07T17:22:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-26T21:38:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-26T21:37:53Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-26T21:27:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-26T21:27:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-26T21:27:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-12-26T21:33:28Z",
+      "associationCertainty": "certain",
+      "title": "Monte Rovello",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/631759569/8082375312",
+      "connectionType": "at",
+      "id": "8082375312",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-26T21:33:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-26T21:33:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-26T21:33:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/989027460",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.google.com/books/edition/Insediamenti_aree_funerarie_ed_entit%C3%A0_t/_JiKCwAAQBAJ?hl=en&gbpv=1&dq=Capanna+dell%E2%80%99Elceto&pg=PA134&printsec=frontcover",
+      "citationDetail": "p. 132 s.v. \"16: Elceto - Pian di Pero - Monte Urbano (Allumiere, Roma)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Barbaro 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H5RWIKHL",
+      "formattedCitation": "<div class=\"csl-entry\">Barbaro, Barbara. <i>Insediamenti, aree funerarie ed entit\u00e0 territoriali in Etruria meridionale nel bronzo finale</i>. Borgo San Lorenzo (Firenze: All\u2019Insegna del Giglio, 2010. http://www.worldcat.org/oclc/758139743.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "631759569",
+  "subject": [],
+  "title": "Capanna dell\u2019Elceto",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Capanna dell\u2019Elceto was part of a fortified Protovillanovan settlement located near Monte Rovello, Italy.",
+  "reprPoint": [
+    11.9039521,
+    42.150336
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    11.9039521,
+    42.150336,
+    11.9039521,
+    42.150336
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/989027460"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-26T21:33:27Z",
+  "uri": "https://pleiades.stoa.org/places/631759569",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-01-07T17:22:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-26T21:38:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-26T21:37:23Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-26T21:33:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-26T21:33:27Z"
+    }
+  ]
+}

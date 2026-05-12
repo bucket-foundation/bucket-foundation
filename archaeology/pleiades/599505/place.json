@@ -1,0 +1,907 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.7660884,
+            37.2927169
+          ],
+          [
+            26.766089,
+            37.29275
+          ],
+          [
+            26.7661801,
+            37.2927489
+          ],
+          [
+            26.7661795,
+            37.2927159
+          ],
+          [
+            26.7660884,
+            37.2927169
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-agios-nikolaos",
+      "properties": {
+        "snippet": "Church-2; AD 1900 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/599505/osm-location-agios-nikolaos",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: \u0386\u03b3\u03b9\u03bf\u03c2 \u039d\u03b9\u03ba\u03cc\u03bb\u03b1\u03bf\u03c2"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.772758,
+          37.306356
+        ]
+      },
+      "type": "Feature",
+      "id": "darmc-location-15875",
+      "properties": {
+        "snippet": "Unknown; 750 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/599505/darmc-location-15875",
+        "description": "1:500,000 scale representative point location digitized from the Barrington Atlas of the Greek and Roman World by the Digital Atlas of Roman and Medieval Civilizations project at Harvard University.",
+        "location_precision": "precise",
+        "title": "DARMC location 15875"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1352713504",
+          "citationDetail": "Way 1352713504",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1352713504",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 166-167 and note 19",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Dreliossi-Herakleidou 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R6WR3TBG",
+          "formattedCitation": "<div class=\"csl-entry\">Dreliossi-Herakleidou, Anastasia, and Klaus Hallof. \u201cEine Neue Grenzziehungsurkunde Aus Lepsia.\u201d <i>Chiron: Mitteilungen Der Kommission F\u00fcr Alte Geschichte Und Epigraphik Des Deutschen Arch\u00e4ologischen Instituts</i> 48 (2018): 159\u201370.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-agios-nikolaos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 2099,
+      "title": "OSM Location: \u0386\u03b3\u03b9\u03bf\u03c2 \u039d\u03b9\u03ba\u03cc\u03bb\u03b1\u03bf\u03c2",
+      "provenance": "OpenStreetMap (Way 1352713504, version 4, osm:changeset=161805812, 2025-01-27T07:07:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-05-08T16:48:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.7660884,
+            37.2927169
+          ],
+          [
+            26.766089,
+            37.29275
+          ],
+          [
+            26.7661801,
+            37.2927489
+          ],
+          [
+            26.7661795,
+            37.2927159
+          ],
+          [
+            26.7660884,
+            37.2927169
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/599505/osm-location-agios-nikolaos",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-08T21:14:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:55:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:49:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:48:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:48:14Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "DARMC, R. Talbert, T. Elliott, S. Gillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://darmc.harvard.edu/",
+          "citationDetail": "15875",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARMC",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+          "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 15875.",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "darmc-location-15875",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 300,
+      "title": "DARMC location 15875",
+      "provenance": "DARMC OBJECTID: 15875",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "DARMC OBJECTID: 15875",
+      "review_state": "published",
+      "accuracy_value": 10000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/darmc-c",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "1:500,000 scale representative point location digitized from the Barrington Atlas of the Greek and Roman World by the Digital Atlas of Roman and Medieval Civilizations project at Harvard University.",
+      "created": "2011-02-25T20:34:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.772758,
+          37.306356
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/599505/darmc-location-15875",
+      "creators": [
+        {
+          "username": null,
+          "name": "C. Foss"
+        },
+        {
+          "username": null,
+          "name": "G. Reger"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:56:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-02-25T20:50:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2011-02-25T20:34:16Z"
+        },
+        {
+          "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+          "modifiedBy": "sgillies",
+          "modified": "2011-02-25T20:34:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2011-02-25T20:34:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:40:45Z",
+      "associationCertainty": "certain",
+      "title": "Lepsia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/599505/599761",
+      "connectionType": "on",
+      "id": "599761",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "located on",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T17:04:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599761",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "61 D3 Apollo Lepsios, T.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/30104405",
+      "citationDetail": "136",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bean 1957",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W4FFFKSN",
+      "formattedCitation": "<div class=\"csl-entry\">Bean, G. E., and J. M. Cook. \u201cThe Carian Coast III.\u201d <i>The Annual of the British School at Athens</i> 52 (1957): 58\u2013146. http://www.jstor.org/stable/30104405.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dreliossi-Herakleidou 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R6WR3TBG",
+      "formattedCitation": "<div class=\"csl-entry\">Dreliossi-Herakleidou, Anastasia, and Klaus Hallof. \u201cEine Neue Grenzziehungsurkunde Aus Lepsia.\u201d <i>Chiron: Mitteilungen Der Kommission F\u00fcr Alte Geschichte Und Epigraphik Des Deutschen Arch\u00e4ologischen Instituts</i> 48 (2018): 159\u201370.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q134396723",
+      "citationDetail": "Temple of Apollo Lepsios (Q134396723)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/373268SApo",
+      "citationDetail": "Apollo Lepsios sanct. (Leipsoi)  Lipsoi",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016-. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "ton hieron tou Apollonos tou Lepsieos",
+      "attestations": [
+        {
+          "timePeriod": "second-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 160, lines 9-10",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Dreliossi-Herakleidou 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R6WR3TBG",
+          "formattedCitation": "<div class=\"csl-entry\">Dreliossi-Herakleidou, Anastasia, and Klaus Hallof. \u201cEine Neue Grenzziehungsurkunde Aus Lepsia.\u201d <i>Chiron: Mitteilungen Der Kommission F\u00fcr Alte Geschichte Und Epigraphik Des Deutschen Arch\u00e4ologischen Instituts</i> 48 (2018): 159\u201370.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ton-hieron-tou-apollonos-tou-lepsieos",
+      "end": -101,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -200,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "grc",
+      "created": "2025-05-08T16:37:41Z",
+      "uri": "https://pleiades.stoa.org/places/599505/ton-hieron-tou-apollonos-tou-lepsieos",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u03c4\u1f78\u03bd \u1f31\u03b5\u03c1\u1f78\u03bd \u03c4\u03bf\u1fe6 \u1f08\u03c0\u03cc\u03bb\u03bb\u03c9[\u03bd\u03bf\u03c2] \u03c4[\u03bf]\u1fe6 \u039b\u03b5\u03c8\u03b9\u03ad\u03c9\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-08T21:15:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:55:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:55:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:37:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:37:41Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Heiligtum des Apollon Lepsieus",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 166",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Dreliossi-Herakleidou 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R6WR3TBG",
+          "formattedCitation": "<div class=\"csl-entry\">Dreliossi-Herakleidou, Anastasia, and Klaus Hallof. \u201cEine Neue Grenzziehungsurkunde Aus Lepsia.\u201d <i>Chiron: Mitteilungen Der Kommission F\u00fcr Alte Geschichte Und Epigraphik Des Deutschen Arch\u00e4ologischen Instituts</i> 48 (2018): 159\u201370.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "heiligtum-des-apollon-lepsieus",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2025-05-08T16:40:08Z",
+      "uri": "https://pleiades.stoa.org/places/599505/heiligtum-des-apollon-lepsieus",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Heiligtum des Apollon Lepsieus",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-08T21:15:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:55:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:54:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:40:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:40:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hagios Nikolaos",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 166",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Dreliossi-Herakleidou 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R6WR3TBG",
+          "formattedCitation": "<div class=\"csl-entry\">Dreliossi-Herakleidou, Anastasia, and Klaus Hallof. \u201cEine Neue Grenzziehungsurkunde Aus Lepsia.\u201d <i>Chiron: Mitteilungen Der Kommission F\u00fcr Alte Geschichte Und Epigraphik Des Deutschen Arch\u00e4ologischen Instituts</i> 48 (2018): 159\u201370.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "hagios-nikolaos",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2025-05-08T16:57:02Z",
+      "uri": "https://pleiades.stoa.org/places/599505/hagios-nikolaos",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u0386\u03b3\u03b9\u03bf\u03c2 \u039d\u03b9\u03ba\u03cc\u03bb\u03b1\u03bf\u03c2 ",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-08T23:17:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:57:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:57:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-08T16:57:02Z"
+        }
+      ]
+    },
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Apollo Lepsios, T.",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 939 see \"Apollo Lepsios, T.\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "Apollo-Lepsios-T",
+      "end": 1999,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 61 D3 Apollo Lepsios, T.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-05-08T16:30:33Z",
+      "uri": "https://pleiades.stoa.org/places/599505/Apollo-Lepsios-T",
+      "creators": [
+        {
+          "username": null,
+          "name": "C. Foss"
+        },
+        {
+          "username": null,
+          "name": "G. Reger"
+        }
+      ],
+      "attested": "Apollo Lepsios, T.",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "converted to label, 20th century, BAtlas reference @thomase",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-08T23:17:19Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:56:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-15T18:04:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-15T09:19:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-15T09:03:28Z"
+        }
+      ]
+    }
+  ],
+  "id": "599505",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=temple"
+  ],
+  "title": "Temple of Apollo Lepsios",
+  "provenance": "Barrington Atlas: BAtlas 61 D3 Apollo Lepsios, T.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: on Lepsia GRE</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A temple of Apollo on the Aegean island of Lepsia, generally thought to have been located in the vicinity of the modern church of Hagios Nikolaos. It is attested in various ancient sources, including a recently published epigraphic document demarcating the temple lands.",
+  "reprPoint": [
+    26.769446115830686,
+    37.299544462644036
+  ],
+  "placeTypes": [
+    "church-2",
+    "temple-2"
+  ],
+  "bbox": [
+    26.7660884,
+    37.2927159,
+    26.772758,
+    37.306356
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599761"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-04T19:58:56Z",
+  "uri": "https://pleiades.stoa.org/places/599505",
+  "creators": [
+    {
+      "username": null,
+      "name": "C. Foss"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added references provided by bkiesling",
+      "modifiedBy": "admin",
+      "modified": "2025-11-04T19:58:57Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-04T19:58:55Z"
+    },
+    {
+      "comment": "title; added Dreliossi-Herakleidou 2018; summary; added ancient name, associated modern name, and associated modern location; Edited @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-08T21:02:43Z"
+    },
+    {
+      "comment": "reconnected Bean 1957 reference to corresponding Zotero library entry",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-08T16:14:13Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-10T00:34:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-01T12:19:34Z"
+    },
+    {
+      "comment": "added connection",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-11T23:35:48Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:35:22Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:56:25Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T23:33:44Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-02-25T20:34:16Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-15T18:04:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-15T09:19:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-15T09:03:28Z"
+    }
+  ]
+}

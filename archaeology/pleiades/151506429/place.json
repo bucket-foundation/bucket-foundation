@@ -1,0 +1,339 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4439029,
+            36.5950172
+          ],
+          [
+            2.4441386,
+            36.5946883
+          ],
+          [
+            2.4438978,
+            36.5945771
+          ],
+          [
+            2.4436622,
+            36.594906
+          ],
+          [
+            2.4439029,
+            36.5950172
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "way-villa-of-frescoes",
+      "properties": {
+        "snippet": "Garden-hortus, Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/151506429/way-villa-of-frescoes",
+        "description": "Polygon representing the perimeter of the archaeological site, derived from an OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa of Frescoes"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/266533407",
+          "citationDetail": "Way 266533407",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=266533407",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "way-villa-of-frescoes",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa of Frescoes",
+      "provenance": "OpenStreetMap (Way 266533407, version 2, osm:changeset=131210793, 2023-01-13T02:23:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "garden-hortus",
+        "villa"
+      ],
+      "description": "Polygon representing the perimeter of the archaeological site, derived from an OpenStreetMap way.",
+      "created": "2020-11-16T14:53:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.4439029,
+            36.5950172
+          ],
+          [
+            2.4441386,
+            36.5946883
+          ],
+          [
+            2.4438978,
+            36.5945771
+          ],
+          [
+            2.4436622,
+            36.594906
+          ],
+          [
+            2.4439029,
+            36.5950172
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/151506429/way-villa-of-frescoes",
+      "creators": [
+        {
+          "username": "bwilson",
+          "homepage": null,
+          "name": "Brandon Wilson",
+          "uri": "https://pleiades.stoa.org/author/bwilson"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-10T05:34:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-18T15:11:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-18T15:11:49Z"
+        },
+        {
+          "comment": "update title",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-18T15:09:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T14:56:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T14:53:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T14:53:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-16T15:01:25Z",
+      "associationCertainty": "certain",
+      "title": "Tipasa",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/151506429/tipasa",
+      "connectionType": "at",
+      "id": "tipasa",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-18T15:11:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-18T15:11:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T15:01:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T15:01:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/295363",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bwilson",
+          "homepage": null,
+          "name": "Brandon Wilson",
+          "uri": "https://pleiades.stoa.org/author/bwilson"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://catalog.hathitrust.org/Record/008568139",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baradez 1961",
+      "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/S5TZ89EG",
+      "formattedCitation": "<div class=\"csl-entry\">Baradez, Jean. \u201cRapport.\u201d <i>Libyca</i> IX (1961 1960): 102\u20134. https://catalog.hathitrust.org/Record/008568139.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://catalog.hathitrust.org/Record/008568139",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lassus 1960",
+      "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/2BK5DBW5",
+      "formattedCitation": "<div class=\"csl-entry\">Lassus, Jean. \u201cL\u2019arch\u00e9ologie Alg\u00e9rienne En 1960.\u201d <i>Libyca</i> VIII (1962 1960): 66\u201367. https://catalog.hathitrust.org/Record/008568139.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "151506429",
+  "subject": [],
+  "title": "Villa of the Frescoes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Referred to both as the House and the Villa of the frescoes, this seaside Roman domestic complex with a peristyle garden covered more than 1,000 square feet and dates to the second century A.D.",
+  "reprPoint": [
+    2.4439003882185344,
+    36.594797141272615
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "villa"
+  ],
+  "bbox": [
+    2.4436622,
+    36.5945771,
+    2.4441386,
+    36.5950172
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/295363"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-16T14:49:57Z",
+  "uri": "https://pleiades.stoa.org/places/151506429",
+  "creators": [
+    {
+      "username": "bwilson",
+      "homepage": null,
+      "name": "Brandon Wilson",
+      "uri": "https://pleiades.stoa.org/author/bwilson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-18T15:11:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-18T15:11:49Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-18T15:11:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T14:51:45Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T14:50:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T14:49:57Z"
+    }
+  ]
+}

@@ -1,0 +1,389 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.774704,
+          39.135296
+        ]
+      },
+      "type": "Feature",
+      "id": "vici-org-location",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/803371623/vici-org-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Vici.org location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/98087/",
+          "citationDetail": "98087: Uzunkir",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "vici-org-location",
+      "featureTypeURI": [],
+      "end": null,
+      "title": "Vici.org location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/vici-org-5m",
+      "featureType": [],
+      "description": "",
+      "created": "2025-11-12T12:09:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.774704,
+          39.135296
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/803371623/vici-org-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-12T15:27:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:36:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:09:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:09:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-11-12T12:26:37Z",
+      "associationCertainty": "certain",
+      "title": "Padaytak tepe",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/803371623/padaytak-tepe",
+      "connectionType": "in",
+      "id": "padaytak-tepe",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-12T15:27:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:36:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:26:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:26:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:26:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/752130724",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://shs.hal.science/halshs-01111848",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Lhuillier 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9XQBK4A8",
+          "formattedCitation": "<div class=\"csl-entry\">Lhuillier, Johanna, and Mutallib Khasanov. \u201cNouvelles Recherches \u00e0 Padayatak-Tepe Au Kashka-Daria.\u201d <i>Cahiers d\u2019Asie Centrale</i>, L\u2019arch\u00e9ologie fran\u00e7aise en Asie centrale. Nouvelles recherches et enjeux socioculturels, 21\u201322 (2013): 389\u201398. https://shs.hal.science/halshs-01111848.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://inlibrary.uz/index.php/jsshrf/article/view/108114",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ikhtiyorovich 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6KSMR59K",
+      "formattedCitation": "<div class=\"csl-entry\">Ikhtiyorovich, Ibrokhimov Nozimjon, and Abdurayimov Sobirjonshuhratovich. \u201cUrban Planning And Its Development In Central Asia During The Early Iron Age.\u201d <i>Journal of Social Sciences and Humanities Research Fundamentals</i> 5, no. 05 (May 30, 2025): 144\u201347. https://doi.org/10.55640/jsshrf-05-05-37.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.iranicaonline.org/articles/kes-ancient-city/",
+      "citationDetail": "KE\u0160",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "EncIran (online)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MGQ4IGT7",
+      "formattedCitation": "<div class=\"csl-entry\">Yar-Shater, Ehsan. <i>Encyclop\u00e6dia Iranica (Online)</i>. New York: Columbia University, 2010. http://www.iranicaonline.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q20536507",
+      "citationDetail": "Uzunq\u00efr (Q20536507)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/98087/",
+      "citationDetail": "98087: Uzunkir",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://shs.hal.science/halshs-01111848",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lhuillier 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9XQBK4A8",
+      "formattedCitation": "<div class=\"csl-entry\">Lhuillier, Johanna, and Mutallib Khasanov. \u201cNouvelles Recherches \u00e0 Padayatak-Tepe Au Kashka-Daria.\u201d <i>Cahiers d\u2019Asie Centrale</i>, L\u2019arch\u00e9ologie fran\u00e7aise en Asie centrale. Nouvelles recherches et enjeux socioculturels, 21\u201322 (2013): 389\u201398. https://shs.hal.science/halshs-01111848.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Uzunkir",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/98087/",
+          "citationDetail": "98087: Uzunkir",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "uzunkir",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-11-12T12:07:43Z",
+      "uri": "https://pleiades.stoa.org/places/803371623/uzunkir",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Uzunkir",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-12T15:27:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:36:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:07:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-12T12:07:43Z"
+        }
+      ]
+    }
+  ],
+  "id": "803371623",
+  "subject": [],
+  "title": "Uzunq\u00efr",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/oasis"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fortified oasis settlement near Kitab in Uzbekistan, founded in the 8th/7th centuries BCE.",
+  "reprPoint": [
+    66.774704,
+    39.135296
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "oasis"
+  ],
+  "bbox": [
+    66.774704,
+    39.135296,
+    66.774704,
+    39.135296
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/752130724"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-12T11:58:55Z",
+  "uri": "https://pleiades.stoa.org/places/803371623",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-12T15:27:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-12T12:36:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-12T12:14:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-12T12:14:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-12T12:07:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-12T12:02:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-12T11:59:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-12T11:58:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-12T11:58:55Z"
+    }
+  ]
+}

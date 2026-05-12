@@ -1,0 +1,856 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            62.0404798,
+            38.2122079
+          ],
+          [
+            62.0404798,
+            38.2137
+          ],
+          [
+            62.0404369,
+            38.2140709
+          ],
+          [
+            62.0402652,
+            38.2144249
+          ],
+          [
+            62.0400936,
+            38.2146947
+          ],
+          [
+            62.0398254,
+            38.2149054
+          ],
+          [
+            62.0393855,
+            38.2151667
+          ],
+          [
+            62.0388276,
+            38.2153438
+          ],
+          [
+            62.0378083,
+            38.2156472
+          ],
+          [
+            62.0372933,
+            38.2157231
+          ],
+          [
+            62.0366925,
+            38.2157399
+          ],
+          [
+            62.0362097,
+            38.2156894
+          ],
+          [
+            62.0358128,
+            38.2155292
+          ],
+          [
+            62.0350832,
+            38.2150656
+          ],
+          [
+            62.0343,
+            38.2145429
+          ],
+          [
+            62.0340103,
+            38.2142058
+          ],
+          [
+            62.0338279,
+            38.2138517
+          ],
+          [
+            62.0336134,
+            38.2134892
+          ],
+          [
+            62.0334739,
+            38.2130846
+          ],
+          [
+            62.0332915,
+            38.2123765
+          ],
+          [
+            62.0331735,
+            38.2113902
+          ],
+          [
+            62.033152,
+            38.2111541
+          ],
+          [
+            62.0331627,
+            38.2108675
+          ],
+          [
+            62.0333451,
+            38.2106821
+          ],
+          [
+            62.0371861,
+            38.2102353
+          ],
+          [
+            62.0380658,
+            38.2102858
+          ],
+          [
+            62.0388598,
+            38.2104376
+          ],
+          [
+            62.0397073,
+            38.2107411
+          ],
+          [
+            62.0400507,
+            38.2109855
+          ],
+          [
+            62.0402545,
+            38.2112384
+          ],
+          [
+            62.0404047,
+            38.2115082
+          ],
+          [
+            62.0404691,
+            38.2117442
+          ],
+          [
+            62.0404798,
+            38.2122079
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "gonur-tepe",
+      "properties": {
+        "snippet": "Settlement; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/391537222/gonur-tepe",
+        "description": "Polygon representing the boundaries of the northern complex of Gonur Tepe, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Gonur Tepe"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.0377,
+          38.2129
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-gonur-depe",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/391537222/cigs-location-of-gonur-depe",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Go\u0148ur depe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/301330523",
+          "citationDetail": "Way 301330523",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=301330523",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "gonur-tepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1000,
+      "title": "OSM location of Gonur Tepe",
+      "provenance": "OpenStreetMap (Way 301330523, version 2, osm:changeset=36449615, 2016-01-08T17:35:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the boundaries of the northern complex of Gonur Tepe, derived from an OpenStreetMap Way.",
+      "created": "2017-11-06T19:56:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            62.0404798,
+            38.2122079
+          ],
+          [
+            62.0404798,
+            38.2137
+          ],
+          [
+            62.0404369,
+            38.2140709
+          ],
+          [
+            62.0402652,
+            38.2144249
+          ],
+          [
+            62.0400936,
+            38.2146947
+          ],
+          [
+            62.0398254,
+            38.2149054
+          ],
+          [
+            62.0393855,
+            38.2151667
+          ],
+          [
+            62.0388276,
+            38.2153438
+          ],
+          [
+            62.0378083,
+            38.2156472
+          ],
+          [
+            62.0372933,
+            38.2157231
+          ],
+          [
+            62.0366925,
+            38.2157399
+          ],
+          [
+            62.0362097,
+            38.2156894
+          ],
+          [
+            62.0358128,
+            38.2155292
+          ],
+          [
+            62.0350832,
+            38.2150656
+          ],
+          [
+            62.0343,
+            38.2145429
+          ],
+          [
+            62.0340103,
+            38.2142058
+          ],
+          [
+            62.0338279,
+            38.2138517
+          ],
+          [
+            62.0336134,
+            38.2134892
+          ],
+          [
+            62.0334739,
+            38.2130846
+          ],
+          [
+            62.0332915,
+            38.2123765
+          ],
+          [
+            62.0331735,
+            38.2113902
+          ],
+          [
+            62.033152,
+            38.2111541
+          ],
+          [
+            62.0331627,
+            38.2108675
+          ],
+          [
+            62.0333451,
+            38.2106821
+          ],
+          [
+            62.0371861,
+            38.2102353
+          ],
+          [
+            62.0380658,
+            38.2102858
+          ],
+          [
+            62.0388598,
+            38.2104376
+          ],
+          [
+            62.0397073,
+            38.2107411
+          ],
+          [
+            62.0400507,
+            38.2109855
+          ],
+          [
+            62.0402545,
+            38.2112384
+          ],
+          [
+            62.0404047,
+            38.2115082
+          ],
+          [
+            62.0404691,
+            38.2117442
+          ],
+          [
+            62.0404798,
+            38.2122079
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/391537222/gonur-tepe",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-08T02:34:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-11-06T20:09:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-11-06T19:57:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2017-11-06T19:56:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-11-06T19:56:32Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.1163/157005799X00179",
+          "citationDetail": "page 165",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Klochkov 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HG3HHLBG",
+          "formattedCitation": "<div class=\"csl-entry\">Klochkov, I.S. \u201cSigns on a Potsherd from Gonur (On the Question of the Script Used in Margiana).\u201d <i>Ancient Civilizations from Scythia to Siberia</i> 5, no. 3 (1999): 165\u201377. https://doi.org/10.1163/157005799X00179.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Gonur_Depe",
+          "citationDetail": "Gonur_Depe",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Gonur_Depe.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3110595",
+          "citationDetail": "Q3110595",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q3110595.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-gonur-depe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of Go\u0148ur depe",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-04-19T12:08:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.0377,
+          38.2129
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/391537222/cigs-location-of-gonur-depe",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-19T21:03:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T12:13:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T12:10:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T12:08:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T12:08:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u0421\u0430\u0440\u0438\u0430\u043d\u0438\u0434\u0438 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DML69IFW",
+      "formattedCitation": "<div class=\"csl-entry\">\u0421\u0430\u0440\u0438\u0430\u043d\u0438\u0434\u0438, \u0412. \u0418, Margianskai\ufe20a\ufe21 arkheologicheskai\ufe20a\ufe21 \u0117kspedit\ufe20s\ufe21ii\ufe20a\ufe21, and \u0418\u043d\u0441\u0442\u0438\u0442\u0443\u0442 \u044d\u0442\u043d\u043e\u043b\u043e\u0433\u0438\u0438 \u0438 \u0430\u043d\u0442\u0440\u043e\u043f\u043e\u043b\u043e\u0433\u0438\u0438 \u0438\u043c. \u041d.\u041d. \u041c\u0438\u043a\u043b\u0443\u0445\u043e-\u041c\u0430\u043a\u043b\u0430\u044f. <i>\u0422\u0440\u0443\u0434\u044b \u041c\u0430\u0440\u0433\u0438\u0430\u043d\u0441\u043a\u043e\u0439 \u0430\u0440\u0445\u0435\u043e\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u044d\u043a\u0441\u043f\u0435\u0434\u0438\u0446\u0438\u0438</i>. \u041c\u043e\u0441\u043a\u0432\u0430: \u0421\u0442\u0430\u0440\u044b\u0439 \u0441\u0430\u0434, 2008\u20132016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.heritageinstitute.com/zoroastrianism/merv/gonur.htm#tepe",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Eduljee 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9G3D54BP",
+      "formattedCitation": "<div class=\"csl-entry\">Eduljee, K.E. \u201cGonur Mouru.\u201d Zoroastrian Heritage, 2005\u20132017. http://www.heritageinstitute.com/zoroastrianism/merv/gonur.htm#tepe.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Gonur_Tepe",
+      "citationDetail": "Gonur Tepe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Gonur Tepe.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3110595",
+      "citationDetail": "Gunar Tepe (Q3110595)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/mixing-metaphors-sedentarymobile-interactions-and-localglobal-connections-in-prehistoric-turkmenistan/97FF0D78A1FF2F7D7C9F390B69A65936",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rouse 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WU8VWAKD",
+      "formattedCitation": "<div class=\"csl-entry\">Rouse, Lynne M., and Barbara Cerasetti. \u201cMixing Metaphors: Sedentary-Mobile Interactions and Local-Global Connections in Prehistoric Turkmenistan.\u201d <i>Antiquity</i> 92, no. 363 (June 2018): 674\u201389. https://doi.org/10.15184/aqy.2018.88.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gonur Depe, Gonur Tepe, Gonor Tepe, Gonor Depe, Gunar Tepe, Gunar Depe",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "\u0421\u0430\u0440\u0438\u0430\u043d\u0438\u0434\u0438 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DML69IFW",
+          "formattedCitation": "<div class=\"csl-entry\">\u0421\u0430\u0440\u0438\u0430\u043d\u0438\u0434\u0438, \u0412. \u0418, Margianskai\ufe20a\ufe21 arkheologicheskai\ufe20a\ufe21 \u0117kspedit\ufe20s\ufe21ii\ufe20a\ufe21, and \u0418\u043d\u0441\u0442\u0438\u0442\u0443\u0442 \u044d\u0442\u043d\u043e\u043b\u043e\u0433\u0438\u0438 \u0438 \u0430\u043d\u0442\u0440\u043e\u043f\u043e\u043b\u043e\u0433\u0438\u0438 \u0438\u043c. \u041d.\u041d. \u041c\u0438\u043a\u043b\u0443\u0445\u043e-\u041c\u0430\u043a\u043b\u0430\u044f. <i>\u0422\u0440\u0443\u0434\u044b \u041c\u0430\u0440\u0433\u0438\u0430\u043d\u0441\u043a\u043e\u0439 \u0430\u0440\u0445\u0435\u043e\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u044d\u043a\u0441\u043f\u0435\u0434\u0438\u0446\u0438\u0438</i>. \u041c\u043e\u0441\u043a\u0432\u0430: \u0421\u0442\u0430\u0440\u044b\u0439 \u0441\u0430\u0434, 2008\u20132016.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.heritageinstitute.com/zoroastrianism/merv/gonur.htm#tepe",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Eduljee 2005",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9G3D54BP",
+          "formattedCitation": "<div class=\"csl-entry\">Eduljee, K.E. \u201cGonur Mouru.\u201d Zoroastrian Heritage, 2005\u20132017. http://www.heritageinstitute.com/zoroastrianism/merv/gonur.htm#tepe.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "gonur-depe",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2017-11-06T20:07:59Z",
+      "uri": "https://pleiades.stoa.org/places/391537222/gonur-depe",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0413\u043e\u043d\u0443\u0440 \u0414\u0435\u043f\u0435",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-08T02:34:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-11-06T20:09:42Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-11-06T20:08:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-11-06T20:07:59Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Go\u0148ur depe",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.1163/157005799X00179",
+          "citationDetail": "page 165",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Klochkov 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HG3HHLBG",
+          "formattedCitation": "<div class=\"csl-entry\">Klochkov, I.S. \u201cSigns on a Potsherd from Gonur (On the Question of the Script Used in Margiana).\u201d <i>Ancient Civilizations from Scythia to Siberia</i> 5, no. 3 (1999): 165\u201377. https://doi.org/10.1163/157005799X00179.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Gonur_Depe",
+          "citationDetail": "Gonur_Depe",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Gonur_Depe.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3110595",
+          "citationDetail": "Q3110595",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q3110595.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "gonur-depe-1",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tk-Latn",
+      "created": "2023-04-19T12:13:01Z",
+      "uri": "https://pleiades.stoa.org/places/391537222/gonur-depe-1",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "Go\u0148ur depe",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-19T21:06:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T12:13:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T12:13:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-19T12:13:01Z"
+        }
+      ]
+    }
+  ],
+  "id": "391537222",
+  "subject": [],
+  "title": "Gonur Tepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A city in the Murghab River delta inhabited in the third-second millennia BCE. Gonur Tepe is located ca. 60 km north of Mary, Turkmenistan.",
+  "reprPoint": [
+    62.0373019360621,
+    38.21283825301132
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    62.033152,
+    38.2102353,
+    62.0404798,
+    38.2157399
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-11-06T19:56:18Z",
+  "uri": "https://pleiades.stoa.org/places/391537222",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-18T16:49:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-08T02:34:09Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-08T02:33:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2017-11-06T20:09:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2017-11-06T20:09:20Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2017-11-06T19:56:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2017-11-06T19:56:18Z"
+    }
+  ]
+}

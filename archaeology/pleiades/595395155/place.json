@@ -1,0 +1,293 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.0861126,
+            38.5541827
+          ],
+          [
+            21.0861169,
+            38.5540418
+          ],
+          [
+            21.0864387,
+            38.5540451
+          ],
+          [
+            21.0864344,
+            38.5541844
+          ],
+          [
+            21.0861126,
+            38.5541827
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ii-ii-ii-ii-i-i-ii1ii",
+      "properties": {
+        "snippet": "Temple-2; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/595395155/osm-location-of-ii-ii-ii-ii-i-i-ii1ii",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u039d\u03b1\u03cc\u03c2 \u039a\u03b1\u03c1\u03b1\u03bf\u03cd \u0394\u03b9\u03cc\u03c2"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/941571979",
+          "citationDetail": "Way 941571979",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=941571979",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ii-ii-ii-ii-i-i-ii1ii",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -30,
+      "title": "OSM location of \u039d\u03b1\u03cc\u03c2 \u039a\u03b1\u03c1\u03b1\u03bf\u03cd \u0394\u03b9\u03cc\u03c2",
+      "provenance": "OpenStreetMap (Way 941571979, version 1, osm:changeset=104470893, 2021-05-10T19:12:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-01-16T04:18:35Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.0861126,
+            38.5541827
+          ],
+          [
+            21.0861169,
+            38.5540418
+          ],
+          [
+            21.0864387,
+            38.5540451
+          ],
+          [
+            21.0864344,
+            38.5541844
+          ],
+          [
+            21.0861126,
+            38.5541827
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/595395155/osm-location-of-ii-ii-ii-ii-i-i-ii1ii",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-21T19:49:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-22T18:55:21Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-16T04:19:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-16T04:18:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-16T04:18:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/385211SZKa",
+      "citationDetail": "Zeus Karaos? Temple (Akarnania) Dragamestre - \u0396\u03b5\u03cd\u03c2 \u039a\u03b1\u03c1\u03b1\u03cc\u03c2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/10351",
+      "citationDetail": "Tempel Dragameston, \u00c4tolien-Akarnanien (Regionalbezirk)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://epigraphy.packhum.org/text/43294?hs=74-80",
+      "citationDetail": "IX,1\u00b2 2:434 = PHI 43294",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "IG",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/49WFK9SJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Inscriptiones Graecae</i>. Berlin: Berlin-Brandenburgische Akademie der Wissenschaften, n.d. https://ig.bbaw.de/de/publikationen.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/73354/",
+      "citationDetail": "73354: temple of Karaos Zeus",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "595395155",
+  "subject": [
+    "Zeus",
+    "temple"
+  ],
+  "title": "Temple of Zeus Karaos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The foundations of an ancient temple located to the west of ancient Astakos/Dragomestre in Aitoloakarnania.",
+  "reprPoint": [
+    21.086275371531286,
+    38.55411349689404
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    21.0861126,
+    38.5540418,
+    21.0864387,
+    38.5541844
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-01-16T04:17:50Z",
+  "uri": "https://pleiades.stoa.org/places/595395155",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-21T19:49:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-21T19:49:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-22T18:55:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-22T18:55:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-16T04:33:45Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-16T04:17:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-16T04:17:50Z"
+    }
+  ]
+}

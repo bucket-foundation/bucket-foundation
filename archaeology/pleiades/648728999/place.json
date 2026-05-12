@@ -1,0 +1,420 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9934234,
+            45.4418899
+          ],
+          [
+            10.9933806,
+            45.4419327
+          ],
+          [
+            10.9933326,
+            45.4419807
+          ],
+          [
+            10.9933469,
+            45.4419894
+          ],
+          [
+            10.9933976,
+            45.4419405
+          ],
+          [
+            10.993441,
+            45.4418985
+          ],
+          [
+            10.9934234,
+            45.4418899
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-porta-borsari",
+      "properties": {
+        "snippet": "City-gate; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/648728999/osm-location-of-porta-borsari",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Porta Borsari"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/138812787",
+          "citationDetail": "Way 138812787",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=138812787",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-porta-borsari",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "end": 300,
+      "title": "OSM location of Porta Borsari",
+      "provenance": "OpenStreetMap (Way 138812787, version 24, osm:changeset=140198197, 2023-08-21T19:40:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-gate"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-04-29T22:17:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9934234,
+            45.4418899
+          ],
+          [
+            10.9933806,
+            45.4419327
+          ],
+          [
+            10.9933326,
+            45.4419807
+          ],
+          [
+            10.9933469,
+            45.4419894
+          ],
+          [
+            10.9933976,
+            45.4419405
+          ],
+          [
+            10.993441,
+            45.4418985
+          ],
+          [
+            10.9934234,
+            45.4418899
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/648728999/osm-location-of-porta-borsari",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-07T15:03:28Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T16:23:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-05T12:51:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:19:37Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:18:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:17:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:17:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-04-29T22:15:46Z",
+      "associationCertainty": "certain",
+      "title": "Verona",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/648728999/1459819490",
+      "connectionType": "at",
+      "id": "1459819490",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:15:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:15:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:15:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/383816",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Porta_Borsari",
+      "citationDetail": "Porta Borsari",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Porta Borsari.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1063320",
+      "citationDetail": "Q1063320: Porta Borsari",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/11838994/porta-borsari.html",
+      "citationDetail": "11838994: Porta Borsari",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Porta Borsari",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1063320",
+          "citationDetail": "Q1063320",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-04-29.3163891262",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2018-04-29T22:19:03Z",
+      "uri": "https://pleiades.stoa.org/places/648728999/name.2018-04-29.3163891262",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-05T12:51:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:19:38Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:19:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-29T22:19:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "648728999",
+  "subject": [],
+  "title": "Porta Borsari",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+    "https://pleiades.stoa.org/vocabularies/place-types/arch"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A first century A.D. gate at Verona, the point at which the Via Postumia entered the city.",
+  "reprPoint": [
+    10.993386494535628,
+    45.441939231120955
+  ],
+  "placeTypes": [
+    "city-gate",
+    "arch"
+  ],
+  "bbox": [
+    10.9933326,
+    45.4418899,
+    10.993441,
+    45.4419894
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/383816"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-04-29T22:15:41Z",
+  "uri": "https://pleiades.stoa.org/places/648728999",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-05T15:23:51Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-05T12:51:43Z"
+    },
+    {
+      "comment": "changed Wikidata to related",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-18T14:19:43Z"
+    },
+    {
+      "comment": "GeoNames 11838994",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-29T22:26:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-29T22:19:36Z"
+    },
+    {
+      "comment": "title, summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-29T22:16:45Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-29T22:15:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-29T22:15:41Z"
+    }
+  ]
+}

@@ -1,0 +1,403 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.9904687,
+            33.9135493
+          ],
+          [
+            35.9903641,
+            33.9135164
+          ],
+          [
+            35.9900557,
+            33.913322
+          ],
+          [
+            35.9902196,
+            33.9130768
+          ],
+          [
+            35.9904011,
+            33.9131483
+          ],
+          [
+            35.9906937,
+            33.9131876
+          ],
+          [
+            35.9908306,
+            33.9132876
+          ],
+          [
+            35.990897,
+            33.9133831
+          ],
+          [
+            35.9909227,
+            33.9135008
+          ],
+          [
+            35.9908372,
+            33.9136309
+          ],
+          [
+            35.9907219,
+            33.9137096
+          ],
+          [
+            35.9904687,
+            33.9135493
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/678348/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Qasr Neba"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/313836823",
+          "citationDetail": "Way 313836823",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=313836823",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Qasr Neba",
+      "provenance": "OpenStreetMap (Way 313836823, version 5, osm:changeset=132089050, 2023-02-04T20:10:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "<p>The ruins of a Roman temple are located at the site.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-11-21T15:28:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.9904687,
+            33.9135493
+          ],
+          [
+            35.9903641,
+            33.9135164
+          ],
+          [
+            35.9900557,
+            33.913322
+          ],
+          [
+            35.9902196,
+            33.9130768
+          ],
+          [
+            35.9904011,
+            33.9131483
+          ],
+          [
+            35.9906937,
+            33.9131876
+          ],
+          [
+            35.9908306,
+            33.9132876
+          ],
+          [
+            35.990897,
+            33.9133831
+          ],
+          [
+            35.9909227,
+            33.9135008
+          ],
+          [
+            35.9908372,
+            33.9136309
+          ],
+          [
+            35.9907219,
+            33.9137096
+          ],
+          [
+            35.9904687,
+            33.9135493
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/678348/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-20T03:40:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2018-02-20T14:18:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-10T02:55:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-21T15:35:05Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-21T15:30:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-21T15:28:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-21T15:28:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "69 C2 Qasr Neba",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "148",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Krencker 1938",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HPGZNWMX",
+      "formattedCitation": "<div class=\"csl-entry\">Krencker, Daniel, and Willy Zschietzschmann. <i>R\u00f6mische Tempel in Syrien</i>. 2 vols. Denkm\u00e4ler Antiker Architektur 5. Berlin: W. de Gruyter, 1978.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tell_Qasr_Labwe",
+      "citationDetail": "Tell Qasr Labwe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Tell Qasr Labwe.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.livius.org/articles/place/qsarnaba/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Livius.org: Qsarnaba",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "16159",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "678348",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "extant remains",
+    "dare:feature=temple"
+  ],
+  "title": "Qasr Neba",
+  "provenance": "Barrington Atlas: BAtlas 69 C2 Qasr Neba",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Qasr Neba, LEB</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Qasr Neba is the site of a Roman temple in the Bekaa valley of Lebanon.",
+  "reprPoint": [
+    35.99050799412374,
+    33.913373517209315
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    35.9900557,
+    33.9130768,
+    35.9909227,
+    33.9137096
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-09-16T20:04:54Z",
+  "uri": "https://pleiades.stoa.org/places/678348",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.M. Meyers"
+    },
+    {
+      "username": null,
+      "name": "J.P. Brown"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "DARMC 16159",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-20T03:42:33Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-10T02:58:56Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-11-21T15:27:54Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:10:12Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:51:21Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T22:12:08Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T22:53:25Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-09-16T20:43:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-16T20:20:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-16T20:04:54Z"
+    }
+  ]
+}

@@ -1,0 +1,621 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.8001323,
+            40.3767453
+          ],
+          [
+            15.7998963,
+            40.3765103
+          ],
+          [
+            15.7997743,
+            40.3764854
+          ],
+          [
+            15.7996763,
+            40.3764654
+          ],
+          [
+            15.7995395,
+            40.3764694
+          ],
+          [
+            15.7994161,
+            40.3765532
+          ],
+          [
+            15.799223,
+            40.3766063
+          ],
+          [
+            15.7988663,
+            40.3766942
+          ],
+          [
+            15.799223,
+            40.3773092
+          ],
+          [
+            15.7994913,
+            40.3772663
+          ],
+          [
+            15.7995368,
+            40.3770252
+          ],
+          [
+            15.7999472,
+            40.3768454
+          ],
+          [
+            15.7999848,
+            40.3768556
+          ],
+          [
+            15.8001323,
+            40.3767453
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana-di-marsicovetere",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/155158534/osm-location-of-villa-romana-di-marsicovetere",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa romana di Marsicovetere"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/480241910",
+          "citationDetail": "Way 480241910",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=480241910",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana-di-marsicovetere",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa romana di Marsicovetere",
+      "provenance": "OpenStreetMap (Way 480241910, version 3, osm:changeset=143318574, 2023-10-29T15:55:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2017-03-13T19:36:53Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.8001323,
+            40.3767453
+          ],
+          [
+            15.7998963,
+            40.3765103
+          ],
+          [
+            15.7997743,
+            40.3764854
+          ],
+          [
+            15.7996763,
+            40.3764654
+          ],
+          [
+            15.7995395,
+            40.3764694
+          ],
+          [
+            15.7994161,
+            40.3765532
+          ],
+          [
+            15.799223,
+            40.3766063
+          ],
+          [
+            15.7988663,
+            40.3766942
+          ],
+          [
+            15.799223,
+            40.3773092
+          ],
+          [
+            15.7994913,
+            40.3772663
+          ],
+          [
+            15.7995368,
+            40.3770252
+          ],
+          [
+            15.7999472,
+            40.3768454
+          ],
+          [
+            15.7999848,
+            40.3768556
+          ],
+          [
+            15.8001323,
+            40.3767453
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/155158534/osm-location-of-villa-romana-di-marsicovetere",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-25T02:57:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-03-14T15:01:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-13T20:47:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-13T19:55:25Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-13T19:39:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-13T19:36:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-13T19:36:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Villa_romana_di_Marsicovetere",
+      "citationDetail": "Villa romana di Marsicovetere",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Villa romana di Marsicovetere.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.beniculturali.it/mibac/export/MiBAC/sito-MiBAC/Contenuti/MibacUnif/Comunicati/visualizza_asset.html_1859646745.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Villa romana di Marsicovetere",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/708394124",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tarlano 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TI6XBCEQ",
+      "formattedCitation": "<div class=\"csl-entry\">Tarlano, Francesco, ed. <i>Il territorio grumentino e la valle dell\u2019Agri nell'antichit\u00e0: atti della giornata di studi, Grumento Nova (Potenza), 25 aprile 2009</i>. Cardini di Groma 1. Bologna: BraDypUS,], 2010. http://www.worldcat.org/oclc/708394124.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Russo, Gargano, and Di Giuseppe 2007, 81-119",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VXJ4SJM7",
+      "formattedCitation": "<div class=\"csl-entry\">Russo, Alfonsina, Maria Pina Gargano, and Helga Di Giuseppe. \u201cDalla villa dei Bruttii Praesentes alla propriet\u00e0 imperiale\u202f: il complesso archeologico di Marsicovetere - Barricelle (PZ).\u201d <i>Siris</i> 8 (2007): 81\u2013119.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.raco.cat/index.php/SEBarc/article/view/263983/351511",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Di Giuseppe and Russo 2012, 405-23",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PCV6H66B",
+      "formattedCitation": "<div class=\"csl-entry\">Di Giuseppe, Helga, and Alfonsina Russo. \u201cInstrumenta Inscripta Dalla Villa Romana Di Barricelle in Lucania.\u201d <i>Sylloge Epigraphica Barcinonensis</i> 10 (2012): 405\u201323. http://www.raco.cat/index.php/SEBarc/article/view/263983/351511.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.beniculturali.it/mibac/multimedia/MiBAC/documents/1227199334157_OpuscoloPaestum2008.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Russo and Gargano 2008, 20-3",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WX5KSMWC",
+      "formattedCitation": "<div class=\"csl-entry\">Russo, Alfonsina, and Maria Pina Gargano. \u201cLa villa dell\u2019imperatrice Bruttia Crispina. Il progetto di valorizzazione della villa romana di Barricelle di Marsicovetere.\u201d In <i>La valorizzazione dei siti archeologici: obiettivi, strategie e soluzioni, Paestum, 13-16 novembre 2008</i>, 20\u201323. Edizioni MP MIRABILIA srl, n.d. http://www.beniculturali.it/mibac/multimedia/MiBAC/documents/1227199334157_OpuscoloPaestum2008.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dare.ht.lu.se/places/44101.html",
+      "citationDetail": "44101 (Marsicovetere)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Lund, Sweden: Department of Archaeology and Ancient History, Lund University, Sweden, 2015. http://dare.ht.lu.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/17598/",
+      "citationDetail": "17598 (Villa Romana di Marsicovetere)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Bruttia_Crispina",
+      "citationDetail": "Bruttia Crispina",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Bruttia Crispina.",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q4012808",
+      "citationDetail": "Q4012808: Roman villa of Marsicovetere",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa romana di Marsicovetere",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q4012808",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Wikidata Q4012808",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "villa-romana-di-marsicovetere",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2017-03-14T10:30:42Z",
+      "uri": "https://pleiades.stoa.org/places/155158534/villa-romana-di-marsicovetere",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa romana di Marsicovetere",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-03-14T18:19:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-14T16:22:38Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-14T16:22:26Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-14T10:30:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-14T10:30:42Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "villa romana di Barricelle di Marsicovetere",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.beniculturali.it/mibac/multimedia/MiBAC/documents/1227199334157_OpuscoloPaestum2008.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Russo and Gargano 2008, 20-3",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WX5KSMWC",
+          "formattedCitation": "<div class=\"csl-entry\">Russo, Alfonsina, and Maria Pina Gargano. \u201cLa villa dell\u2019imperatrice Bruttia Crispina. Il progetto di valorizzazione della villa romana di Barricelle di Marsicovetere.\u201d In <i>La valorizzazione dei siti archeologici: obiettivi, strategie e soluzioni, Paestum, 13-16 novembre 2008</i>, 20\u201323. Edizioni MP MIRABILIA srl, n.d. http://www.beniculturali.it/mibac/multimedia/MiBAC/documents/1227199334157_OpuscoloPaestum2008.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "villa-romana-di-barricelle-di-marsicovetere",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2017-03-14T18:23:33Z",
+      "uri": "https://pleiades.stoa.org/places/155158534/villa-romana-di-barricelle-di-marsicovetere",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "villa romana di Barricelle di Marsicovetere",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "erobinson",
+          "modified": "2017-03-24T15:48:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-14T18:23:44Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-14T18:23:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-14T18:23:33Z"
+        }
+      ]
+    }
+  ],
+  "id": "155158534",
+  "subject": [
+    "extant remains",
+    "villa"
+  ],
+  "title": "Marsicovetere Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa rustica belonging to the senatorial family of the Bruttii Praesentes that has been connected with Bruttia Crispina, the wife of Commodus. The villa was inhabited from the second century B.C. to the seventh century A.D. The villa's archaeological remains are found in the locality of Barricelle in the territory of the community of Marsicovetere in the province of Potenza.",
+  "reprPoint": [
+    15.79947401096244,
+    40.376832709857155
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    15.7988663,
+    40.3764654,
+    15.8001323,
+    40.3773092
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-12-23T05:18:12Z",
+  "uri": "https://pleiades.stoa.org/places/155158534",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q4012808: Roman villa of Marsicovetere",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-04T13:42:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-14T19:00:36Z"
+    },
+    {
+      "comment": "edited summary, added reference, modified place name",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-14T18:49:11Z"
+    },
+    {
+      "comment": "added DARE and vici.org related references",
+      "modifiedBy": "thomase",
+      "modified": "2017-03-14T15:12:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-03-14T15:01:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-13T20:47:16Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-13T19:16:22Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-13T19:11:44Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-13T19:08:41Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-13T19:06:23Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-13T18:32:25Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-12-23T05:18:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-12-23T05:18:12Z"
+    }
+  ]
+}

@@ -1,0 +1,321 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.671803,
+            56.3503718
+          ],
+          [
+            -3.6722,
+            56.3503391
+          ],
+          [
+            -3.6722161,
+            56.3504015
+          ],
+          [
+            -3.6723126,
+            56.3504788
+          ],
+          [
+            -3.6724521,
+            56.3505412
+          ],
+          [
+            -3.672377,
+            56.3506393
+          ],
+          [
+            -3.6722483,
+            56.3507374
+          ],
+          [
+            -3.6720283,
+            56.3507701
+          ],
+          [
+            -3.6718835,
+            56.3507701
+          ],
+          [
+            -3.6717816,
+            56.3506928
+          ],
+          [
+            -3.6717601,
+            56.3505382
+          ],
+          [
+            -3.671803,
+            56.3503718
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Tower-single; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/121620025/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Kirkhill Roman signal station"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/277482086",
+          "citationDetail": "Way 277482086",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=277482086",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-single"
+      ],
+      "end": 410,
+      "title": "OSM location of Kirkhill Roman signal station",
+      "provenance": "OpenStreetMap (Way 277482086, version 1, osm:changeset=21967661, 2014-04-27T03:24:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-single"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tower-single"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-04-27T03:25:29Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.671803,
+            56.3503718
+          ],
+          [
+            -3.6722,
+            56.3503391
+          ],
+          [
+            -3.6722161,
+            56.3504015
+          ],
+          [
+            -3.6723126,
+            56.3504788
+          ],
+          [
+            -3.6724521,
+            56.3505412
+          ],
+          [
+            -3.672377,
+            56.3506393
+          ],
+          [
+            -3.6722483,
+            56.3507374
+          ],
+          [
+            -3.6720283,
+            56.3507701
+          ],
+          [
+            -3.6718835,
+            56.3507701
+          ],
+          [
+            -3.6717816,
+            56.3506928
+          ],
+          [
+            -3.6717601,
+            56.3505382
+          ],
+          [
+            -3.671803,
+            56.3503718
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/121620025/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-10T20:07:37Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-10T20:05:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T12:57:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-08T16:12:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-08T16:11:30Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-27T03:25:54Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-27T03:25:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-27T03:25:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://canmore.rcahms.gov.uk/en/site/25988",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Canmore, KIRKHILL",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q56665606",
+      "citationDetail": "Kirkhill,Roman signal station 400m NNE of (Q56665606)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "121620025",
+  "subject": [],
+  "title": "Kirkhill Roman signal station",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-single"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman signal station dating to the Flavian period.",
+  "reprPoint": [
+    -3.6720739215003437,
+    56.35055697224118
+  ],
+  "placeTypes": [
+    "tower-single"
+  ],
+  "bbox": [
+    -3.6724521,
+    56.3503391,
+    -3.6717601,
+    56.3507701
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-04-27T03:18:19Z",
+  "uri": "https://pleiades.stoa.org/places/121620025",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Kirkhill,Roman signal station 400m NNE of (Q56665606)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-10T20:06:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T12:57:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-08T16:12:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-08T16:12:01Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-04-27T03:18:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-04-27T03:18:19Z"
+    }
+  ]
+}

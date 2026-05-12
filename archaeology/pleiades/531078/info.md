@@ -1,0 +1,14 @@
+# Ptychia (island)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/531078
+- **ID**: 531078
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ptychia, Πτυχία, Vido
+
+## Description
+
+An ancient place, cited: BAtlas 54 A2 Ptychia Ins.

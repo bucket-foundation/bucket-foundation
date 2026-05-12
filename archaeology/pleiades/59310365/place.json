@@ -1,0 +1,373 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.4900448,
+              41.9223904
+            ],
+            [
+              12.4900162,
+              41.9221193
+            ]
+          ],
+          [
+            [
+              12.4904336,
+              41.9221579
+            ],
+            [
+              12.4902438,
+              41.9222714
+            ],
+            [
+              12.4900821,
+              41.9223681
+            ],
+            [
+              12.4900448,
+              41.9223904
+            ]
+          ],
+          [
+            [
+              12.4905621,
+              41.922081
+            ],
+            [
+              12.4904336,
+              41.9221579
+            ]
+          ],
+          [
+            [
+              12.4899887,
+              41.9218111
+            ],
+            [
+              12.4905621,
+              41.922081
+            ]
+          ],
+          [
+            [
+              12.4900162,
+              41.9221193
+            ],
+            [
+              12.4899887,
+              41.9218111
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-piazza-pitagora",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/59310365/osm-location-of-piazza-pitagora",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Piazza Pitagora"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/2710187",
+          "citationDetail": "Relation 2710187",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=2710187",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-piazza-pitagora",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Piazza Pitagora",
+      "provenance": "OpenStreetMap (Relation 2710187, version 1, osm:changeset=14697245, 2013-01-18T14:58:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-10-08T03:09:35Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.4900448,
+              41.9223904
+            ],
+            [
+              12.4900162,
+              41.9221193
+            ]
+          ],
+          [
+            [
+              12.4904336,
+              41.9221579
+            ],
+            [
+              12.4902438,
+              41.9222714
+            ],
+            [
+              12.4900821,
+              41.9223681
+            ],
+            [
+              12.4900448,
+              41.9223904
+            ]
+          ],
+          [
+            [
+              12.4905621,
+              41.922081
+            ],
+            [
+              12.4904336,
+              41.9221579
+            ]
+          ],
+          [
+            [
+              12.4899887,
+              41.9218111
+            ],
+            [
+              12.4905621,
+              41.922081
+            ]
+          ],
+          [
+            [
+              12.4900162,
+              41.9221193
+            ],
+            [
+              12.4899887,
+              41.9218111
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/59310365/osm-location-of-piazza-pitagora",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-17T13:57:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T00:02:12Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-08T03:09:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-08T03:09:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-08T03:09:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-10-08T03:10:09Z",
+      "associationCertainty": "certain",
+      "title": "Via Salaria",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/59310365/via-salaria",
+      "connectionType": "on",
+      "id": "via-salaria",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-17T13:57:13Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T00:02:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T00:02:12Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-08T03:10:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-08T03:10:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/18271457",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.diarioromano.it/splendido-ritrovamento-archeologico-ai-parioli-un-tratto-della-salaria-vetus/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Guardascione 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8BL9BKJN",
+          "formattedCitation": "<div class=\"csl-entry\">Guardascione, Filipppo. \u201cSplendido ritrovamento archeologico ai Parioli: un tratto della Salaria Vetus.\u201d <i>Diarioromano</i> (blog), October 9, 2022. http://www.diarioromano.it/splendido-ritrovamento-archeologico-ai-parioli-un-tratto-della-salaria-vetus/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.diarioromano.it/splendido-ritrovamento-archeologico-ai-parioli-un-tratto-della-salaria-vetus/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Guardascione 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8BL9BKJN",
+      "formattedCitation": "<div class=\"csl-entry\">Guardascione, Filipppo. \u201cSplendido ritrovamento archeologico ai Parioli: un tratto della Salaria Vetus.\u201d <i>Diarioromano</i> (blog), October 9, 2022. http://www.diarioromano.it/splendido-ritrovamento-archeologico-ai-parioli-un-tratto-della-salaria-vetus/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "59310365",
+  "subject": [],
+  "title": "Piazza Pitagora",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An in situ segment of the Roman-period paving stones of the Via Salaria was discovered in Piazza Pitagora in 2022 during utility works.",
+  "reprPoint": [
+    12.49020154711216,
+    41.92209161023671
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    12.4899887,
+    41.9218111,
+    12.4905621,
+    41.9223904
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/18271457"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-10-08T03:09:15Z",
+  "uri": "https://pleiades.stoa.org/places/59310365",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-17T13:57:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-17T00:02:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-17T00:02:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-08T03:09:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-08T03:09:15Z"
+    }
+  ]
+}

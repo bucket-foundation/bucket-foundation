@@ -1,0 +1,359 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7655643,
+          51.2819582
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-goughs-cave",
+      "properties": {
+        "snippet": "Cave, ; 13000 BC - 8000 BC",
+        "link": "https://pleiades.stoa.org/places/850427781/osm-location-of-goughs-cave",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Gough's Cave"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mesolithic-europe-13-000-8-000-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mesolithic-europe-13-000-8-000-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/31414693",
+          "citationDetail": "Node 31414693",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=31414693",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-goughs-cave",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -8000,
+      "title": "OSM location of Gough's Cave",
+      "provenance": "OpenStreetMap (Node 31414693, version 8, osm:changeset=155061079, 2024-08-10T12:44:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -13000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "\r\n<p>A large cave with evidence for prehistoric human activity, including the ritual processing of human bones. The so-called Cheddar Man was discovered in the cave in 1903.</p>\r\n",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-04-17T20:25:39Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.7655643,
+          51.2819582
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/850427781/osm-location-of-goughs-cave",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-16T13:19:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-15T16:00:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-04-17T20:32:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-04-17T20:29:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-04-17T20:27:43Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-04-17T20:27:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-04-17T20:25:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-04-17T20:25:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-11-15T14:39:08Z",
+      "associationCertainty": "certain",
+      "title": "Cheddar Gorge",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/850427781/1485208529",
+      "connectionType": "at",
+      "id": "1485208529",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-15T14:39:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-15T14:39:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-15T14:39:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/535275913",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Cheddar_Man",
+      "citationDetail": "Cheddar Man",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Gough%27s_Cave",
+      "citationDetail": "Gough's Cave",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q4274798",
+      "citationDetail": "Q4274798: Gough's Cave",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gough's Cave",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q4274798",
+          "citationDetail": "Q4274798: Gough's Cave",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "goughs-cave",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2021-11-15T14:55:56Z",
+      "uri": "https://pleiades.stoa.org/places/850427781/goughs-cave",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Gough's Cave",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-15T16:00:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-15T14:56:16Z"
+        },
+        {
+          "comment": "name wikidata Q4274798: Gough's Cave",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-15T14:55:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-15T14:55:56Z"
+        }
+      ]
+    }
+  ],
+  "id": "850427781",
+  "subject": [],
+  "title": "Gough's Cave",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave"
+  ],
+  "details": "<p>A large cave with evidence for prehistoric human activity, including the ritual processing of human bones. The so-called Cheddar Man was discovered in the cave in 1903.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Gough's Cave is located in Cheddar Gorge. A hominin fossil commonly referred to as \"Cheddar Man\" was discovered in the cave in 1903.",
+  "reprPoint": [
+    -2.765395,
+    51.2819621
+  ],
+  "placeTypes": [
+    "cave"
+  ],
+  "bbox": [
+    -2.765395,
+    51.2819621,
+    -2.765395,
+    51.2819621
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/535275913"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-11-15T14:39:07Z",
+  "uri": "https://pleiades.stoa.org/places/850427781",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-11-15T16:00:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-15T14:56:16Z"
+    },
+    {
+      "comment": "wikidata Q4274798: Gough's Cave",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-15T14:55:14Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-15T14:39:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-15T14:39:07Z"
+    }
+  ]
+}

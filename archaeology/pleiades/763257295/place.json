@@ -1,0 +1,950 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1527334,
+          36.3594193
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-ishtar-temple",
+      "properties": {
+        "snippet": "Temple-2; 3000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/763257295/osm-location-of-the-ishtar-temple",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM Location of the Ishtar Temple"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/5392237009",
+          "citationDetail": "Node 5392237009",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5392237009",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-ishtar-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -540,
+      "title": "OSM Location of the Ishtar Temple",
+      "provenance": "OpenStreetMap (Node 5392237009, version 1, osm:changeset=56109252, 2018-02-06T08:30:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-02-06T08:33:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1527334,
+          36.3594193
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/763257295/osm-location-of-the-ishtar-temple",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T19:44:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T19:29:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:17:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T08:34:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T08:33:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T08:33:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T13:31:30Z",
+      "associationCertainty": "certain",
+      "title": "Nineveh/Ninos",
+      "start": -3000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/763257295/nineveh-ninos",
+      "connectionType": "at",
+      "id": "nineveh-ninos",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T19:44:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:17:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T13:31:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T13:31:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/874621",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T13:33:02Z",
+      "associationCertainty": "certain",
+      "title": "Citadel Wall of Nineveh",
+      "start": -2335,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/763257295/citadel-wall-of-nineveh",
+      "connectionType": "near",
+      "id": "citadel-wall-of-nineveh",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T19:44:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:17:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T13:33:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T13:33:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/767860328",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T13:34:55Z",
+      "associationCertainty": "certain",
+      "title": "Citadel Gate",
+      "start": -2335,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/763257295/citadel-gate",
+      "connectionType": "near",
+      "id": "citadel-gate",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T19:44:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:17:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T13:34:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T13:34:55Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/828352080",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883572295",
+      "citationDetail": "121-122 number 121",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+      "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "407-409",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss 9",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Nineveh",
+      "citationDetail": "Nineveh",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/iraq/article/the-ishtar-temple-at-nineveh/E47F34D815C5EC97D7046E3B22667766",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Reade 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KE43L6NV",
+      "formattedCitation": "<div class=\"csl-entry\">Reade, Julian. \u201cThe Ishtar Temple at Nineveh.\u201d <i>IRAQ</i> 67, no. 1 (ed 2005): 347\u201390. https://doi.org/10.1017/S002108890000142X.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap5/Q003720",
+      "citationDetail": "Ashurbanipal 021 (Q003720)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 5",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005646",
+      "citationDetail": "\u0160am\u0161i-Adad I 02 (Q005646)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005899",
+      "citationDetail": "A\u0161\u0161ur-re\u0161a-i\u0161i I 01 (Q005899)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005817",
+      "citationDetail": "Shalmaneser I 29 (Q005817)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q004494",
+      "citationDetail": "Ashurnasirpal II 040 (Q004494)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ema\u0161ma\u0161",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/883572295",
+          "citationDetail": "121-122 number 742",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+          "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-03.5297511563",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2018-02-03T14:35:59Z",
+      "uri": "https://pleiades.stoa.org/places/763257295/name.2018-02-03.5297511563",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T19:44:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:17:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T08:27:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T08:19:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T13:21:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T14:35:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T14:35:59Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Emesmes, Eme\u0161me\u0161",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/883572295",
+          "citationDetail": "121-122 number 742",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+          "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/Q003971",
+          "citationDetail": "Sennacherib 166 (Q003971)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 3",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-03.6402796872",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "details": "<p>This spelling of the name of the temple is known from the Code of Hammu-rapi,\u00a0an inscription of the Neo-Assyrian king Sennacherib from Ashur, and the the so-called \"Canonical Temple List\" (no. 393). The name is written <em>\u00e9</em>-MES-MES, which could be read as either \u00a0<em>\u00e9-mes-mes</em>\u00a0or <em>\u00e9-m\u00e8\u0161-m\u00e8\u0161</em>.</p>\r\n<p>\u00a0</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2018-02-03T14:37:39Z",
+      "uri": "https://pleiades.stoa.org/places/763257295/name.2018-02-03.6402796872",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T19:44:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:17:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T08:18:15Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T08:11:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T07:53:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T13:24:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T13:23:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T14:37:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T14:37:39Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "b\u012bt I\u0161tar",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/883572295",
+          "citationDetail": "121-122 number 742",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+          "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-03.6675839900",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-02-03T14:38:13Z",
+      "uri": "https://pleiades.stoa.org/places/763257295/name.2018-02-03.6675839900",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T19:44:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:17:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T08:19:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T13:25:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T14:38:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T14:38:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "763257295",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Ema\u0161ma\u0161",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The temple dates back to at least the third millennium B.C. and from the archaeological and textual records it had a long and detailed building history. Akkadian sources provide evidence for the following Akkadian and Assyrian kings rebuilding or repairing Ema\u0161ma\u0161: Man-i\u0161tu\u0161u, \u0160am\u0161\u012b-Adad I, A\u0161\u0161ur-uballi\u1e6d I, Shalmaneser I, Tukult\u012b-Ninurta I, A\u0161\u0161ur-r\u0113\u0161a-i\u0161i I, Tiglath-pileser I, Ashurnasirpal I, \u0160am\u0161\u012b-Adad IV, Ashurnasirpal II, Sargon II, Sennacherib, Esarhaddon, and Ashurbanipal. The Old Babylonian king Hammu-rapi also refers to this temple of I\u0161tar in his now-famous law code.</p>\r\n<p>The temple was excavated 1851-54, 1873-74, 1878-82, and 1929-32.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The most important temple in the citadel of Nineveh was dedicated to the city's tutelary deity, the goddess I\u0161tar. The temple was located in the center of the citadel and went by the Sumerian ceremonial name Ema\u0161ma\u0161 (meaning uncertain).",
+  "reprPoint": [
+    43.1527334,
+    36.3594193
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    43.1527334,
+    36.3594193,
+    43.1527334,
+    36.3594193
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/874621",
+    "https://pleiades.stoa.org/places/767860328",
+    "https://pleiades.stoa.org/places/828352080",
+    "https://pleiades.stoa.org/places/185814199",
+    "https://pleiades.stoa.org/places/301732141",
+    "https://pleiades.stoa.org/places/588149003",
+    "https://pleiades.stoa.org/places/516671863",
+    "https://pleiades.stoa.org/places/179295730",
+    "https://pleiades.stoa.org/places/287060405",
+    "https://pleiades.stoa.org/places/331679526"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-02-03T08:14:56Z",
+  "uri": "https://pleiades.stoa.org/places/763257295",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-07T19:44:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-07T19:29:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T12:17:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T12:16:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T12:15:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T09:01:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T08:51:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T08:39:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T08:27:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T08:26:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T08:19:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T08:15:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-04T13:28:18Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-03T08:14:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-03T08:14:56Z"
+    }
+  ]
+}

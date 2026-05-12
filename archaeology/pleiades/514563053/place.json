@@ -1,0 +1,600 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.60752872405516,
+              25.72583196447763
+            ],
+            [
+              32.60784560855584,
+              25.72626294888293
+            ],
+            [
+              32.60722648729938,
+              25.72664656002223
+            ],
+            [
+              32.60687550299001,
+              25.72620666923111
+            ],
+            [
+              32.60752872405516,
+              25.72583196447763
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-funerary-temple-of-siptah-and-twosret-1",
+      "properties": {
+        "snippet": "Temple-2; 1548 BC - 1086 BC",
+        "link": "https://pleiades.stoa.org/places/514563053/imagery-location-funerary-temple-of-siptah-and-twosret-1",
+        "description": "Imagery Location: visible remains of the funerary temple of Siptah and Twosret",
+        "location_precision": "precise",
+        "title": "Imagery Location: Funerary temple of Siptah and Twosret"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-funerary-temple-of-siptah-and-twosret-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -1086,
+      "title": "Imagery Location: Funerary temple of Siptah and Twosret",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Imagery Location: visible remains of the funerary temple of Siptah and Twosret",
+      "created": "2025-03-14T18:57:14Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.60752872405516,
+              25.72583196447763
+            ],
+            [
+              32.60784560855584,
+              25.72626294888293
+            ],
+            [
+              32.60722648729938,
+              25.72664656002223
+            ],
+            [
+              32.60687550299001,
+              25.72620666923111
+            ],
+            [
+              32.60752872405516,
+              25.72583196447763
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/514563053/imagery-location-funerary-temple-of-siptah-and-twosret-1",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T15:19:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:23:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:57:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:57:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1086,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-14T18:55:57Z",
+      "associationCertainty": "certain",
+      "title": "Theban necropolis",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/514563053/theban-necropolis",
+      "connectionType": "at",
+      "id": "theban-necropolis",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T15:19:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:23:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:55:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:55:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/836839127",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.griffith.ox.ac.uk/topbib/pdf/pm2.pdf",
+      "citationDetail": "p. 447",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Porter 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WSVSMMAU",
+      "formattedCitation": "<div class=\"csl-entry\">Porter, Bertha, Rosalind Louisa Beaufort Moss, and Ethel W. Burney. <i>Topographical Bibliography of Ancient Egyptian Hieroglyphic Texts, Reliefs, and Paintings. II. Theban Temples</i>. 2nd ed. 1929. Reprint, Oxford: Clarendon Press, 1972. http://www.griffith.ox.ac.uk/topbib/pdf/pm2.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "www.worldcat.org/oclc/785836974",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wilkinson 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6VPEAQL8",
+      "formattedCitation": "<div class=\"csl-entry\">Wilkinson, Richard H. <i>The Temple of Tausret: The University of Arizona Egyptian Expedition Tausret Temple Project, 2004-2011</i>. Tucson, Arizona? University of Arizona Egyptian Expedition, 2011. www.worldcat.org/oclc/785836974.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "www.worldcat.org/oclc/1533464467",
+      "accessURI": "https://egyptianexpedition.org/volumes/vol-42-the-temple-of-tausret-2/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Creasman 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2W6PSALT",
+      "formattedCitation": "<div class=\"csl-entry\">Creasman, Pearce Paul, Tori L. Finlayson, and Richard H. Wilkinson, eds. <i>The Temple of Tausret. 2: The University of Arizona Egyptian Expedition Tausret Temple Project, 2011-2016</i>. Journal of Ancient Egyptian Interconnections. Tucson, Ariz.: The Egyptian Expedition, 2024. https://egyptianexpedition.org/volumes/vol-42-the-temple-of-tausret-2/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Funerary temple of Siptah and Twosret",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "funerary-temple-of-siptah-and-twosret",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-14T18:53:47Z",
+      "uri": "https://pleiades.stoa.org/places/514563053/funerary-temple-of-siptah-and-twosret",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Funerary temple of Siptah and Twosret",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T15:19:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:23:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:53:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:53:47Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of a million years of Siptah and Twosret, Temple of Tausret",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "temple-of-a-million-years-of-siptah-and-twosret",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-14T18:54:17Z",
+      "uri": "https://pleiades.stoa.org/places/514563053/temple-of-a-million-years-of-siptah-and-twosret",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Temple of a million years of Siptah and Twosret",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2025-08-18T15:21:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T15:19:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:23:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:54:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:54:17Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple fun\u00e9raire de Siptah et Taousert",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "temple-funeraire-de-siptah-et-taousert",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-03-14T18:54:46Z",
+      "uri": "https://pleiades.stoa.org/places/514563053/temple-funeraire-de-siptah-et-taousert",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Temple fun\u00e9raire de Siptah et Taousert",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T15:19:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:23:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:54:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:54:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple des millions d'ann\u00e9es de Siptah et Taousert",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "temple-des-millions-dannees-de-siptah-et-taousert",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-03-14T18:55:13Z",
+      "uri": "https://pleiades.stoa.org/places/514563053/temple-des-millions-dannees-de-siptah-et-taousert",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Temple des millions d'ann\u00e9es de Siptah et Taousert",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T15:19:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:23:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:55:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:55:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "514563053",
+  "subject": [
+    "temple"
+  ],
+  "title": "Funerary temple of Siptah and Twosret",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Temple dedicated to the cult of King Siptah and the Queen Twosret located on the west bank of Thebes.",
+  "reprPoint": [
+    32.60736581968193,
+    25.72623742381094
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    32.60687550299001,
+    25.72583196447763,
+    32.60784560855584,
+    25.72664656002223
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/836839127"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-14T18:53:20Z",
+  "uri": "https://pleiades.stoa.org/places/514563053",
+  "creators": [
+    {
+      "username": "nsouchon",
+      "homepage": null,
+      "name": "Nicolas Souchon",
+      "uri": "https://pleiades.stoa.org/author/nsouchon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2025-08-18T15:21:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-17T15:19:50Z"
+    },
+    {
+      "comment": "refreshed full citation and access URI for Porter 1972",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-17T15:19:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T19:23:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T18:53:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T18:53:20Z"
+    }
+  ]
+}

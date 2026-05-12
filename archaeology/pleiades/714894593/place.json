@@ -1,0 +1,361 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.3940215,
+            43.4266606
+          ],
+          [
+            -7.3941904,
+            43.4266606
+          ],
+          [
+            -7.3944157,
+            43.4265885
+          ],
+          [
+            -7.3946866,
+            43.4264755
+          ],
+          [
+            -7.3948878,
+            43.4263937
+          ],
+          [
+            -7.3949334,
+            43.4262534
+          ],
+          [
+            -7.3949012,
+            43.4261502
+          ],
+          [
+            -7.3947993,
+            43.4261366
+          ],
+          [
+            -7.3946705,
+            43.4261346
+          ],
+          [
+            -7.394582,
+            43.4261463
+          ],
+          [
+            -7.3943809,
+            43.426195
+          ],
+          [
+            -7.394236,
+            43.4262651
+          ],
+          [
+            -7.3940563,
+            43.4263508
+          ],
+          [
+            -7.3939329,
+            43.4264989
+          ],
+          [
+            -7.3939249,
+            43.4266275
+          ],
+          [
+            -7.3940215,
+            43.4266606
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/714894593/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Zo\u00f1\u00e1n"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/268496962",
+          "citationDetail": "Way 268496962",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=268496962",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 300,
+      "title": "OSM location of Castro de Zo\u00f1\u00e1n",
+      "provenance": "OpenStreetMap (Way 268496962, version 4, osm:changeset=132756226, 2023-02-19T16:43:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-05-11T16:34:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.3940215,
+            43.4266606
+          ],
+          [
+            -7.3941904,
+            43.4266606
+          ],
+          [
+            -7.3944157,
+            43.4265885
+          ],
+          [
+            -7.3946866,
+            43.4264755
+          ],
+          [
+            -7.3948878,
+            43.4263937
+          ],
+          [
+            -7.3949334,
+            43.4262534
+          ],
+          [
+            -7.3949012,
+            43.4261502
+          ],
+          [
+            -7.3947993,
+            43.4261366
+          ],
+          [
+            -7.3946705,
+            43.4261346
+          ],
+          [
+            -7.394582,
+            43.4261463
+          ],
+          [
+            -7.3943809,
+            43.426195
+          ],
+          [
+            -7.394236,
+            43.4262651
+          ],
+          [
+            -7.3940563,
+            43.4263508
+          ],
+          [
+            -7.3939329,
+            43.4264989
+          ],
+          [
+            -7.3939249,
+            43.4266275
+          ],
+          [
+            -7.3940215,
+            43.4266606
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/714894593/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T18:56:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-19T00:06:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-13T00:30:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-13T00:19:15Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-11T16:35:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-11T16:34:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-11T16:34:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/es:Castro%20de%20Zo%C3%B1%C3%A1n?uselang=en-US",
+      "citationDetail": "Castro de Zo\u00f1\u00e1n",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Castro de Zo\u00f1\u00e1n.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vigo Garc\u00eda 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L5DDSBMI",
+      "formattedCitation": "<div class=\"csl-entry\">Vigo Garc\u00eda, Abel. \u201cCastro de Zo\u00f1\u00e1n (Mondo\u00f1edo, Lugo): campa\u00f1a 2005\u202f; avance de resultados.\u201d In <i>Gallaecia [Revista], 25.2006</i>, 65\u201381. A Coru\u00f1a: Ed. do Castro, 2006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q8342733",
+      "citationDetail": "Castro de Zo\u00f1\u00e1n (Q8342733)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "714894593",
+  "subject": [],
+  "title": "Castro de Zo\u00f1\u00e1n",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A settlement dating to the second through fourth centuries.",
+  "reprPoint": [
+    -7.394426529728271,
+    43.426393831843825
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "settlement"
+  ],
+  "bbox": [
+    -7.3949334,
+    43.4261346,
+    -7.3939249,
+    43.4266606
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-05-11T16:29:33Z",
+  "uri": "https://pleiades.stoa.org/places/714894593",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q8342733",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T18:56:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-19T00:06:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-13T00:30:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-13T00:30:19Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-11T16:29:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-11T16:29:34Z"
+    }
+  ]
+}

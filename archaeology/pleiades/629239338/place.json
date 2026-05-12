@@ -1,0 +1,285 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.5512197,
+          37.9469323
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ii1-2i-i1-4iui-i-ipsi-i-i-i1-4i1i1",
+      "properties": {
+        "snippet": "Tumulus; 550 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/629239338/osm-location-of-ii1-2i-i1-4iui-i-ipsi-i-i-i1-4i1i1",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u039c\u03bd\u03b7\u03bc\u03b5\u03af\u03bf \u03a3\u03b1\u03bb\u03b1\u03bc\u03b9\u03bd\u03bf\u03bc\u03ac\u03c7\u03c9\u03bd"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5174547662",
+          "citationDetail": "Node 5174547662",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5174547662",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ii1-2i-i1-4iui-i-ipsi-i-i-i1-4i1i1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": -330,
+      "title": "OSM location of \u039c\u03bd\u03b7\u03bc\u03b5\u03af\u03bf \u03a3\u03b1\u03bb\u03b1\u03bc\u03b9\u03bd\u03bf\u03bc\u03ac\u03c7\u03c9\u03bd",
+      "provenance": "OpenStreetMap (Node 5174547662, version 5, osm:changeset=152900117, 2024-06-19T14:23:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-04-15T18:47:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.5512197,
+          37.9469323
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/629239338/osm-location-of-ii1-2i-i1-4iui-i-ipsi-i-i-i1-4i1i1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-21T16:28:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-21T00:09:01Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-21T00:06:45Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-15T18:47:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-15T18:47:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-15T18:47:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-15T18:48:15Z",
+      "associationCertainty": "certain",
+      "title": "Kynosoura (promontory)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/629239338/kynosoura-pr",
+      "connectionType": "at",
+      "id": "kynosoura-pr",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-21T16:28:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-21T00:09:01Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-15T18:48:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-15T18:48:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/580002",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/379236GSal",
+      "citationDetail": "Salamis sea-fight tumulus (Salamis)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2362406",
+      "citationDetail": "Tumulus von Salamis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q111709040",
+      "citationDetail": "Salamis sea-battle tumulus (Q111709040)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "629239338",
+  "subject": [],
+  "title": "Salamis sea-fight tumulus (Salamis) ",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Salamis sea-fight tumulus includes the remains of an ancient tumulus and burials of the Classical period.",
+  "reprPoint": [
+    23.5512197,
+    37.9469323
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    23.5512197,
+    37.9469323,
+    23.5512197,
+    37.9469323
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/580002"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-15T18:46:59Z",
+  "uri": "https://pleiades.stoa.org/places/629239338",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-10-21T16:28:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-21T00:09:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-21T00:08:56Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-15T18:47:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-15T18:46:59Z"
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.8316498,
+          35.0836504
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-chalasmenos",
+      "properties": {
+        "snippet": "Archaeological-site; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/34278985/osm-location-of-chalasmenos",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Chalasmenos"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5189354579",
+          "citationDetail": "Node 5189354579",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5189354579",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-chalasmenos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -1000,
+      "title": "OSM location of Chalasmenos",
+      "provenance": "OpenStreetMap (Node 5189354579, version 2, osm:changeset=82798752, 2020-03-30T02:58:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-07-18T20:56:47Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.8316498,
+          35.0836504
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/34278985/osm-location-of-chalasmenos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-12T16:10:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-08T01:51:06Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T20:57:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T20:56:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T20:56:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-07-18T21:04:37Z",
+      "associationCertainty": "certain",
+      "title": "Creta (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/34278985/creta-island",
+      "connectionType": "on",
+      "id": "creta-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-12T16:10:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-08T01:51:06Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T21:04:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T21:04:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589748",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/148197",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Haggis and Nowicki 1993",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A7AQJQER",
+          "formattedCitation": "<div class=\"csl-entry\">Haggis, Donald C., and Krzysztof Nowicki. \u201cKhalasmeno and Katalimata: Two Early Iron Age Settlements in Monastiraki, East Crete.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 62, no. 3 (1993): 303\u201337. https://doi.org/10.2307/148197.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/148197",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Haggis and Nowicki 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A7AQJQER",
+      "formattedCitation": "<div class=\"csl-entry\">Haggis, Donald C., and Krzysztof Nowicki. \u201cKhalasmeno and Katalimata: Two Early Iron Age Settlements in Monastiraki, East Crete.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 62, no. 3 (1993): 303\u201337. https://doi.org/10.2307/148197.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/j.ctv9zcgxt",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Eaby et al. 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3GE6E8EI",
+      "formattedCitation": "<div class=\"csl-entry\">Eaby, Melissa, W. Flint Dibble, Heidi M.C. Dierckx, Rodney D. Fitzsimons, and Katharine Hall. <i>Chalasmenos I: The Late Minoan IIIC Settlement House A.2</i>. INSTAP Academic Press, 2018. https://doi.org/10.2307/j.ctv9zcgxt.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/26049/",
+      "citationDetail": "26049: Halasmenos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Chalasmenos",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/j.ctv9zcgxt",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Eaby et al. 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3GE6E8EI",
+          "formattedCitation": "<div class=\"csl-entry\">Eaby, Melissa, W. Flint Dibble, Heidi M.C. Dierckx, Rodney D. Fitzsimons, and Katharine Hall. <i>Chalasmenos I: The Late Minoan IIIC Settlement House A.2</i>. INSTAP Academic Press, 2018. https://doi.org/10.2307/j.ctv9zcgxt.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "chalasmenos",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2023-07-18T21:03:03Z",
+      "uri": "https://pleiades.stoa.org/places/34278985/chalasmenos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Chalasmenos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-12T16:10:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-08T01:51:06Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T21:03:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T21:03:03Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Khalasmeno",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/148197",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Haggis and Nowicki 1993",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A7AQJQER",
+          "formattedCitation": "<div class=\"csl-entry\">Haggis, Donald C., and Krzysztof Nowicki. \u201cKhalasmeno and Katalimata: Two Early Iron Age Settlements in Monastiraki, East Crete.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 62, no. 3 (1993): 303\u201337. https://doi.org/10.2307/148197.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "khalasmeno",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2023-07-18T21:04:06Z",
+      "uri": "https://pleiades.stoa.org/places/34278985/khalasmeno",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Khalasmeno",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-12T16:10:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-08T01:51:06Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T21:04:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T21:04:06Z"
+        }
+      ]
+    }
+  ],
+  "id": "34278985",
+  "subject": [],
+  "title": "Chalasmenos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Chalasmenos is an archaeological site that preserves remains of a Late Minoan (LM) IIIC settlement. This site is located on a low hill (240 m asl) immediately to the south of the Cha Gorge near Monastiraki in eastern Crete.",
+  "reprPoint": [
+    25.8316498,
+    35.0836504
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    25.8316498,
+    35.0836504,
+    25.8316498,
+    35.0836504
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589748"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-07-18T20:56:25Z",
+  "uri": "https://pleiades.stoa.org/places/34278985",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-12T16:10:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-08T01:51:06Z"
+    },
+    {
+      "comment": "add vici.org",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-18T21:59:15Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-18T21:02:24Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-18T20:59:29Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-18T20:56:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-18T20:56:25Z"
+    }
+  ]
+}

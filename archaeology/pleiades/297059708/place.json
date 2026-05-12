@@ -1,0 +1,298 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5552713,
+          34.0746166
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-house-of-the-columns",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/297059708/osm-location-of-house-of-the-columns",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of House of the Columns"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2312523139",
+          "citationDetail": "Node 2312523139",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2312523139",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-house-of-the-columns",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of House of the Columns",
+      "provenance": "OpenStreetMap (Node 2312523139, version 2, osm:changeset=27845262, 2015-01-01T17:53:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-04-16T19:29:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5552713,
+          34.0746166
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/297059708/osm-location-of-house-of-the-columns",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:38:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:38:25Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-16T19:29:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-16T19:29:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-16T19:29:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-16T21:08:45Z",
+      "associationCertainty": "certain",
+      "title": "Volubilis",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/297059708/volubilis",
+      "connectionType": "at",
+      "id": "volubilis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:38:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:38:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T21:08:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T21:08:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275740",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bwilson",
+          "homepage": null,
+          "name": "Brandon Wilson",
+          "uri": "https://pleiades.stoa.org/author/bwilson"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/765468558",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thouvenot 1945",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SXELJ6TK",
+      "formattedCitation": "<div class=\"csl-entry\">Thouvenot, Raymond. \u201cAntiquit\u00e9s romaines ... La Maison au chien de Volubilis. La Maison \u00e0 l\u2019\u00e9ph\u00e8be. La Maison aux colonnes. La Maison au cavalier. Les Thermes du nord. Rome et les Barbares africains. Lampe romaine trouv\u00e9e \u00e0 F\u00e8s.\u201d <i>Publications du Service des antiquit\u00e9s du Maroc, fascicule 7</i>, 1945.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883553652",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "L\u012bm\u0101n et al. 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/67FYBK3R",
+      "formattedCitation": "<div class=\"csl-entry\">L\u012bm\u0101n, \u1e24ass\u0101n, Wily Dubos, \u02bbAbd al-Q\u0101dir \u0160ark\u012b, \u02bbAbd al-Fatt\u0101\u1e25 I\u0161\u1e2b\u0101\u1e2b, and G\u00e9rard Rondeau. <i>Volubilis de mosa\u00efque \u00e0 mosa\u00efque</i>. Casablanca: EDDIF-EDISUD, 1998. http://www.worldcat.org/oclc/883553652.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/19902/",
+      "citationDetail": "19902: House of the Columns",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "297059708",
+  "subject": [],
+  "title": "House of the Columns",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+    "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/piscina-roman"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Roman Peristyle House with interior garden and fountain.",
+  "reprPoint": [
+    -5.5552713,
+    34.0746166
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "townhouse",
+    "fountain",
+    "piscina-roman"
+  ],
+  "bbox": [
+    -5.5552713,
+    34.0746166,
+    -5.5552713,
+    34.0746166
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/275740"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-16T21:06:46Z",
+  "uri": "https://pleiades.stoa.org/places/297059708",
+  "creators": [
+    {
+      "username": "bwilson",
+      "homepage": null,
+      "name": "Brandon Wilson",
+      "uri": "https://pleiades.stoa.org/author/bwilson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:38:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:38:24Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:38:10Z"
+    },
+    {
+      "comment": "added vici.org 19902: House of the Columns reference",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-16T19:30:33Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T21:06:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T21:06:46Z"
+    }
+  ]
+}

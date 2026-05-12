@@ -1,0 +1,331 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.61866,
+          55.11979
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-roman-fortlet",
+      "properties": {
+        "snippet": "Fort, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/109408874/imagery-location-of-roman-fortlet",
+        "description": "Representative location and chronology based on Canmore.",
+        "location_precision": "precise",
+        "title": "Canmore location of Roman fortlet"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://canmore.org.uk/site/65890/carzield",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Canmore ID 65890",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-roman-fortlet",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "Canmore location of Roman fortlet",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2015",
+      "featureType": [
+        "fort",
+        ""
+      ],
+      "description": "Representative location and chronology based on Canmore.",
+      "created": "2015-07-04T20:41:30Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.61866,
+          55.11979
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/109408874/imagery-location-of-roman-fortlet",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-08-04T14:39:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-08-04T14:39:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-22T15:35:31Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-22T15:35:21Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-04T20:41:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-04T20:41:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://canmore.org.uk/site/65890/carzield",
+      "citationDetail": "ID 65890",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Canmore",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9QC8C2K",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Canmore: National Record of the Historic Environment, Part of Historic Environment Scotland</i>, n.d. https://canmore.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://roman-britain.co.uk/places/carzield.htm",
+      "citationDetail": "Carzield Roman Cavalry Fort and Camps Carzield, Dumfries & Galloway",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/526021",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hartley 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F6WWFT4K",
+      "formattedCitation": "<div class=\"csl-entry\">Hartley, B. R. \u201cThe Roman Occupations of Scotland: The Evidence of Samian Ware.\u201d <i>Britannia</i> 3 (1972): 1\u201355. https://doi.org/10.2307/526021.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/",
+      "formattedCitation": "Birley E. and Richmond I. A. 1942. \"The Roman fort at Carzield.\" Trans Dumfriesshire Galloway Natur Hist Antiq Soc, 3.22:156-63.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/15343",
+      "citationDetail": "GEO ID 15343: Carzield",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bailie 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UQXZAEHX",
+      "formattedCitation": "<div class=\"csl-entry\">Bailie, Warren R. \u201cRecent Investigations at Carzield Roman Fort, Kirkton, Dumfries and Galloway.\u201d In <i>Transactions of the Dumfriesshire and Galloway Natural History and Antiquarian Society, 3rd Series, 87 (2013)</i>, 51\u201380, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edh.ub.uni-heidelberg.de/edh/geographie/G025884",
+      "citationDetail": "G025884: Kirkton (Carzield, Lager, bei)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "EDH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PY3AZV8F",
+      "formattedCitation": "<div class=\"csl-entry\">Alf\u00f6ldy, G\u00e9za, and Christian Witschel, eds. <i>Epigraphic Database Heidelberg</i>. Heidelberg: Heidelberg Academy of Sciences and Humanities, 1997. http://edh-www.adw.uni-heidelberg.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q56666836",
+      "citationDetail": " Carzield, Roman fort (Q56666836)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "109408874",
+  "subject": [],
+  "title": "Carzield",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Antonine cavalry fort covering ca. 2.6 ha that was excavated by E. Birley and I. A. Richmond in 1939.",
+  "reprPoint": [
+    -3.61866,
+    55.11979
+  ],
+  "placeTypes": [
+    "fort-2",
+    "fort"
+  ],
+  "bbox": [
+    -3.61866,
+    55.11979,
+    -3.61866,
+    55.11979
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-26T18:49:16Z",
+  "uri": "https://pleiades.stoa.org/places/109408874",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Added Wikidata reference by @maximeg",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-27T15:38:34Z"
+    },
+    {
+      "comment": "Edited type for fort; update references @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-11T19:06:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-07T21:48:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-31T22:45:29Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-09T03:26:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-22T15:33:45Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-04T20:37:12Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-04T20:35:12Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-04T20:33:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-04T20:33:47Z"
+    }
+  ]
+}

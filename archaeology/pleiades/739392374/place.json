@@ -1,0 +1,619 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.256172,
+          35.458125
+        ]
+      },
+      "type": "Feature",
+      "id": "plan-location-of-assur-archive-34",
+      "properties": {
+        "snippet": "Archive-repository; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/739392374/plan-location-of-assur-archive-34",
+        "description": "Representative locations of the Neo-Assyrian archive at Assur on the basis of Peders\u00e9n 1987 Plan(s) 62.",
+        "location_precision": "precise",
+        "title": "Plan location of Assur Archive 34"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "ptushingham",
+      "homepage": null,
+      "name": "Poppy Tushingham",
+      "uri": "https://pleiades.stoa.org/author/ptushingham"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "plan 62",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "plan-location-of-assur-archive-34",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "end": -540,
+      "title": "Plan location of Assur Archive 34",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/ashur-archives-pedersen",
+      "featureType": [
+        "archive-repository"
+      ],
+      "description": "Representative locations of the Neo-Assyrian archive at Assur on the basis of Peders\u00e9n 1987 Plan(s) 62.",
+      "created": "2023-02-10T14:30:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.256172,
+          35.458125
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/739392374/plan-location-of-assur-archive-34",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-11T16:18:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-05-11T10:55:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-21T23:16:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-21T23:13:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T14:30:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T14:30:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-10T13:46:37Z",
+      "associationCertainty": "certain",
+      "title": "Ashur/\u2018Lamban\u2019?/\u2018Liba(nai)\u2019?",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/739392374/ashur-2018lamban2019-2018liba-nai-2019",
+      "connectionType": "at",
+      "id": "ashur-2018lamban2019-2018liba-nai-2019",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-11T16:18:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-05-11T10:55:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T13:46:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T13:46:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893945",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "108",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2FXZ7SLX",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the City of Assur: A Study of the Material from the German Excavations</i>. Vol. 8. Acta Universitatis Upsaliensis., Studia Semitica Upsaliensia, 1986.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-10T13:48:40Z",
+      "associationCertainty": "certain",
+      "title": "Assur Archive 33",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/739392374/assur-archive-33",
+      "connectionType": "near",
+      "id": "assur-archive-33",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-11T16:18:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-05-11T10:55:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T13:48:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T13:48:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/772486315",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "108",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2FXZ7SLX",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the City of Assur: A Study of the Material from the German Excavations</i>. Vol. 8. Acta Universitatis Upsaliensis., Studia Semitica Upsaliensia, 1986.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-10T13:50:04Z",
+      "associationCertainty": "certain",
+      "title": "Assur Archive 32",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/739392374/assur-archive-32",
+      "connectionType": "near",
+      "id": "assur-archive-32",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-11T16:18:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-05-11T10:55:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T13:50:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T13:50:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/772486314",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "108",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2FXZ7SLX",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the City of Assur: A Study of the Material from the German Excavations</i>. Vol. 8. Acta Universitatis Upsaliensis., Studia Semitica Upsaliensia, 1986.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "108",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peders\u00e9n 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2FXZ7SLX",
+      "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the City of Assur: A Study of the Material from the German Excavations</i>. Vol. 8. Acta Universitatis Upsaliensis., Studia Semitica Upsaliensia, 1986.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+      "citationDetail": "139",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peders\u00e9n 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+      "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ATAE Assur Archive 34 (N 19)",
+      "bibliographicURI": "http://oracc.museum.upenn.edu/atae/assur_034",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Assur Archive 34",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "108",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2FXZ7SLX",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the City of Assur: A Study of the Material from the German Excavations</i>. Vol. 8. Acta Universitatis Upsaliensis., Studia Semitica Upsaliensia, 1986.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "assur-archive-34",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern scholarly designation for the archive.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-02-10T13:52:44Z",
+      "uri": "https://pleiades.stoa.org/places/739392374/assur-archive-34",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-11T16:18:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-05-11T10:55:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T13:52:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-10T13:52:44Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "N 19 Archive",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "139",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "n-19-archive",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern scholarly designation for the archive.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-02-17T15:25:39Z",
+      "uri": "https://pleiades.stoa.org/places/739392374/n-19-archive",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-11T16:18:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-05-11T10:55:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-17T15:25:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-17T15:25:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "739392374",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Assur Archive 34",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+  ],
+  "details": "<p>The archive is located in a private house.</p>\r\n<p><img class=\"image-inline external-image\" height=\"537\" src=\"http://oracc.ub.uni-muenchen.de/atae/images/Plan62_AssurPlan.png\" width=\"392\" /></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "4 clay tablets were found in dA6IV in a private house. These tablets were found near House 12 (Assur Archive 33) and House 9 (Assur Archive 32). The archive dates to the 7th century BC. The group consists of 2 loan documents concerning silver, a list of oxen and textiles, and a purchase document concerning a slave.",
+  "reprPoint": [
+    43.256172,
+    35.458125
+  ],
+  "placeTypes": [
+    "archive-repository"
+  ],
+  "bbox": [
+    43.256172,
+    35.458125,
+    43.256172,
+    35.458125
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893945",
+    "https://pleiades.stoa.org/places/772486315",
+    "https://pleiades.stoa.org/places/772486314"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-10T13:43:30Z",
+  "uri": "https://pleiades.stoa.org/places/739392374",
+  "creators": [
+    {
+      "username": "tseidler",
+      "homepage": null,
+      "name": "Thomas Seidler",
+      "uri": "https://pleiades.stoa.org/author/tseidler"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-11T16:18:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tseidler",
+      "modified": "2023-05-11T10:55:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-05-11T10:55:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-04-05T15:07:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-03-20T15:24:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-17T15:26:40Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-10T13:43:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-10T13:43:30Z"
+    }
+  ]
+}

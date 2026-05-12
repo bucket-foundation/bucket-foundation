@@ -1,0 +1,14 @@
+# Valseni
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/241015
+- **ID**: 241015
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Valseni
+
+## Description
+
+An ancient place, cited: BAtlas 24 unlocated Valseni

@@ -1,0 +1,306 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.6798959,
+            40.8877806
+          ],
+          [
+            15.6801266,
+            40.8873223
+          ],
+          [
+            15.6803412,
+            40.8873832
+          ],
+          [
+            15.6805075,
+            40.8871398
+          ],
+          [
+            15.6820814,
+            40.8878228
+          ],
+          [
+            15.6816118,
+            40.8885579
+          ],
+          [
+            15.6798959,
+            40.8877806
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/35287426/location-of-roman-villa",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Patrizia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/260047876",
+          "citationDetail": "Way 260047876",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=260047876",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa Patrizia",
+      "provenance": "OpenStreetMap (Way 260047876, version 3, osm:changeset=77390160, 2019-11-21T16:54:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-02-05T01:50:53Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.6798959,
+            40.8877806
+          ],
+          [
+            15.6801266,
+            40.8873223
+          ],
+          [
+            15.6803412,
+            40.8873832
+          ],
+          [
+            15.6805075,
+            40.8871398
+          ],
+          [
+            15.6820814,
+            40.8878228
+          ],
+          [
+            15.6816118,
+            40.8885579
+          ],
+          [
+            15.6798959,
+            40.8877806
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/35287426/location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-09T20:15:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-23T22:27:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-02T02:34:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-02T01:11:27Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-05T01:51:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-05T01:50:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-05T01:50:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Rionero_in_Vulture",
+      "citationDetail": "Rionero in Vulture",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Rionero in Vulture.",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q21190081",
+      "citationDetail": "Torre degli Embrici (Q21190081)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Complesso_archeologico_di_Torre_degli_Embrici",
+      "citationDetail": "Complesso archeologico di Torre degli Embrici",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "35287426",
+  "subject": [],
+  "title": "Torre degli Embrici",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An imperial Roman villa with a bath complex that emerged in the first and second centuries AD, transitioning to a fortified site after the sixth century AD.",
+  "reprPoint": [
+    15.68098765702317,
+    40.88781876117429
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "villa",
+    "bath"
+  ],
+  "bbox": [
+    15.6798959,
+    40.8871398,
+    15.6820814,
+    40.8885579
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-02-05T01:50:33Z",
+  "uri": "https://pleiades.stoa.org/places/35287426",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-09T20:17:27Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-09T20:17:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-09-23T22:27:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-02T01:11:18Z"
+    },
+    {
+      "comment": "edited description",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-02T01:11:10Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-05T01:50:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-05T01:50:33Z"
+    }
+  ]
+}

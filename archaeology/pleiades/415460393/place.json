@@ -1,0 +1,611 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7225123,
+          37.9751425
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-altar-of-zeus-agoraios",
+      "properties": {
+        "snippet": "Shrine; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/415460393/osm-location-altar-of-zeus-agoraios",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Altar of Zeus Agoraios"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.71918,
+          37.971359
+        ]
+      },
+      "type": "Feature",
+      "id": "google-maps-location-bedding-for-altar-on-the-pnyx",
+      "properties": {
+        "snippet": "Shrine; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/415460393/google-maps-location-bedding-for-altar-on-the-pnyx",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Google Maps Location: Bedding for altar on the Pnyx"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5561180621",
+          "citationDetail": "Node 5561180621",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5561180621",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-altar-of-zeus-agoraios",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 2099,
+      "title": "OSM Location: Altar of Zeus Agoraios",
+      "provenance": "OpenStreetMap (Node 5561180621, version 4, osm:changeset=110025541, 2021-08-21T11:54:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-03-20T02:05:52Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7225123,
+          37.9751425
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/415460393/osm-location-altar-of-zeus-agoraios",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-20T14:45:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:21:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:06:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:05:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:05:52Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://search.worldcat.org/de/title/pnyx-in-the-history-of-athens-proceedings-of-an-international-colloquium-organized-by-the-finnish-institute-at-athens-7-9-october-1994/oclc/35690877",
+          "citationDetail": "fig. 33",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Forse\u0301n and Stanton 1996",
+          "bibliographicURI": "",
+          "formattedCitation": "Bjo\u0308rn Forse\u0301n, G. R. Stanton, <I>The Pnyx in the history of Athens : proceedings of an international colloquium organized by the Finnish Institute at Athens, 7-9 October, 1994</I> (1996)",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "google-maps-location-bedding-for-altar-on-the-pnyx",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 2099,
+      "title": "Google Maps Location: Bedding for altar on the Pnyx",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "",
+      "created": "2024-03-20T02:20:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.71918,
+          37.971359
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/415460393/google-maps-location-bedding-for-altar-on-the-pnyx",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added PAA",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-13T21:31:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-20T14:45:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:21:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:20:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:20:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-20T02:03:27Z",
+      "associationCertainty": "certain",
+      "title": "Pnyx",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/415460393/pnyx",
+      "connectionType": "on",
+      "id": "pnyx",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-20T14:45:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:21:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:03:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:03:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/205264674",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "65-66",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-20T02:04:19Z",
+      "associationCertainty": "certain",
+      "title": "Agora of Athens",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/415460393/agora-of-athens",
+      "connectionType": "in",
+      "id": "agora-of-athens",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-20T14:45:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:21:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:04:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:04:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/807514119",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "65-66",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+      "citationDetail": "65-66",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camp 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+      "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://ascsa.net/id/Agora/Monument/Altar%20of%20Zeus%20Agoraios",
+      "citationDetail": "Monument: Altar of Zeus Agoraios",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Agora Excavations (ASCSA)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P6MWAMKU",
+      "formattedCitation": "<div class=\"csl-entry\">American School of Classical Studies in Athens. <i>Agora Excavations (ASCSA)</i>. Athens: American School of Classical Studies at Athens, 2007. https://agora.ascsa.net/research.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/i285188",
+      "citationDetail": "161-162",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thompson and Wycherley 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CEEREY48",
+      "formattedCitation": "<div class=\"csl-entry\">Thompson, Homer A, and R. E Wycherley. <i>The Agora of Athens: The History, Shape and Uses of an Ancient City Center</i>. The Athenian Agora 14. Princeton, N.J.: The American School of Classical Studies at Athens, 1972. https://www.jstor.org/stable/i285188.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2891038",
+      "citationDetail": "Altar of Zeus Agoraios (Q2891038)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Agora\u00edou Di\u00f2s B\u014dm\u00f3s",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/i285176",
+          "citationDetail": "383 (Hesychius)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wycherley 1973",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WR5YQRIK",
+          "formattedCitation": "<div class=\"csl-entry\">Wycherley, R. E. <i>The Athenian Agora Vol. 3, 1957, Literary and Epigraphical Testimonia</i>. Athenian Agora 3. Princeton: The American school of studies at Athens, 1973. https://www.jstor.org/stable/i285176.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "agoraiou-dios-bomos",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-03-20T02:02:11Z",
+      "uri": "https://pleiades.stoa.org/places/415460393/agoraiou-dios-bomos",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u1f08\u03b3\u03bf\u03c1\u03b1\u03af\u03bf\u03c5 \u0394\u03b9\u1f78\u03c2 \u03b2\u03c9\u03bc\u03cc\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-20T14:45:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:21:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:02:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:02:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-20T02:02:12Z"
+        }
+      ]
+    }
+  ],
+  "id": "415460393",
+  "subject": [],
+  "title": "Altar of Zeus Agoraios",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An altar dedicated to Zeus Agoraios, originally erected on the Pnyx in the late fourth century BC, but relocated to the Athenian Agora in the Augustan period.",
+  "reprPoint": [
+    23.72084615,
+    37.97325075
+  ],
+  "placeTypes": [
+    "shrine"
+  ],
+  "bbox": [
+    23.71918,
+    37.971359,
+    23.7225123,
+    37.9751425
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/205264674",
+    "https://pleiades.stoa.org/places/807514119"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-20T01:58:32Z",
+  "uri": "https://pleiades.stoa.org/places/415460393",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q2891038",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-09T00:25:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-20T14:45:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-20T14:45:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-20T02:21:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-20T02:21:33Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-20T01:58:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-20T01:58:32Z"
+    }
+  ]
+}

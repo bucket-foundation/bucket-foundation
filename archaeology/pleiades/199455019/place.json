@@ -1,0 +1,340 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.3867077,
+            36.7638746
+          ],
+          [
+            31.3870774,
+            36.7639073
+          ],
+          [
+            31.3872448,
+            36.7640418
+          ],
+          [
+            31.3872603,
+            36.7641362
+          ],
+          [
+            31.3872547,
+            36.7642698
+          ],
+          [
+            31.3872432,
+            36.7645036
+          ],
+          [
+            31.3866842,
+            36.7644604
+          ],
+          [
+            31.3866705,
+            36.764532
+          ],
+          [
+            31.386129,
+            36.7645163
+          ],
+          [
+            31.3861341,
+            36.7642827
+          ],
+          [
+            31.3861952,
+            36.7640563
+          ],
+          [
+            31.3867077,
+            36.7638746
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-apollo-side",
+      "properties": {
+        "snippet": "Sanctuary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/199455019/osm-location-of-temple-of-apollo-side",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Apollo (Side)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/129747059",
+          "citationDetail": "Way 129747059",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=129747059",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-apollo-side",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location of Temple of Apollo (Side)",
+      "provenance": "OpenStreetMap (Way 129747059, version 20, osm:changeset=140207753, 2023-08-22T03:54:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-13T02:29:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.3867077,
+            36.7638746
+          ],
+          [
+            31.3870774,
+            36.7639073
+          ],
+          [
+            31.3872448,
+            36.7640418
+          ],
+          [
+            31.3872603,
+            36.7641362
+          ],
+          [
+            31.3872547,
+            36.7642698
+          ],
+          [
+            31.3872432,
+            36.7645036
+          ],
+          [
+            31.3866842,
+            36.7644604
+          ],
+          [
+            31.3866705,
+            36.764532
+          ],
+          [
+            31.386129,
+            36.7645163
+          ],
+          [
+            31.3861341,
+            36.7642827
+          ],
+          [
+            31.3861952,
+            36.7640563
+          ],
+          [
+            31.3867077,
+            36.7638746
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/199455019/osm-location-of-temple-of-apollo-side",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-13T21:54:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T02:30:51Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T02:29:54Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T02:29:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T02:29:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-13T02:29:57Z",
+      "associationCertainty": "certain",
+      "title": "Side",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/199455019/5972737922",
+      "connectionType": "at",
+      "id": "5972737922",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T02:29:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T02:29:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T02:29:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/639105",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Apollo_(Side)",
+      "citationDetail": "Temple of Apollo (Side)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "199455019",
+  "subject": [
+    "Apollo"
+  ],
+  "title": "Temple of Apollo (Side)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman temple at Side dating to the reign of Antoninus Pius.",
+  "reprPoint": [
+    31.386705072521632,
+    36.76424251328941
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    31.386129,
+    36.7638746,
+    31.3872603,
+    36.764532
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/639105"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-13T02:29:56Z",
+  "uri": "https://pleiades.stoa.org/places/199455019",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-13T21:54:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-13T02:30:51Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-13T02:30:45Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-13T02:29:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-13T02:29:56Z"
+    }
+  ]
+}

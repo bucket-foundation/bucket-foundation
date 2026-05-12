@@ -1,0 +1,334 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.035953,
+          36.097461
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-imagery-location-of-tell-selenkahiye",
+      "properties": {
+        "snippet": "Tell; 3300 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/598359946/approximate-imagery-location-of-tell-selenkahiye",
+        "description": "Approximate imagery location based on Google Earth representing Tell Selenkahiye after van Loon 1968.",
+        "location_precision": "precise",
+        "title": "Approximate imagery location of Tell Selenkahiye"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/ar/61-70/67-68b/67-68b_Euphrates.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "van Loon 1968",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WVHKVND3",
+          "formattedCitation": "<div class=\"csl-entry\">Loon, Maurits van. \u201cThe Euphrates Valley Expedition.\u201d Annual Report. Chicago: University of Chicago Oriental Institute, 1968. https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/ar/61-70/67-68b/67-68b_Euphrates.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "approximate-imagery-location-of-tell-selenkahiye",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -2000,
+      "title": "Approximate imagery location of Tell Selenkahiye",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Approximate imagery location based on Google Earth representing Tell Selenkahiye after van Loon 1968.",
+      "created": "2022-06-30T14:50:00Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.035953,
+          36.097461
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/598359946/approximate-imagery-location-of-tell-selenkahiye",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:12:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-20T15:58:00Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-30T23:59:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T14:51:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T14:50:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T14:50:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -2000,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-30T14:47:54Z",
+      "associationCertainty": "certain",
+      "title": "Euphrates (river)",
+      "start": -3300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/598359946/euphrates-river",
+      "connectionType": "on",
+      "id": "euphrates-river",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:12:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-20T15:58:00Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-30T23:59:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T14:51:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T14:47:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T14:47:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912849",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/ar/61-70/67-68b/67-68b_Euphrates.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "van Loon 1968",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WVHKVND3",
+          "formattedCitation": "<div class=\"csl-entry\">Loon, Maurits van. \u201cThe Euphrates Valley Expedition.\u201d Annual Report. Chicago: University of Chicago Oriental Institute, 1968. https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/ar/61-70/67-68b/67-68b_Euphrates.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1013264381",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Liebowitz 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F2GVD42X",
+      "formattedCitation": "<div class=\"csl-entry\">Liebowitz, Harold. <i>Terra-Cotta Figurines and Model Vehicles</i>. Bibliotheca Mesopotamica, Vol.22. Malibu: Undena Publcations, 1988. http://www.worldcat.org/oclc/1013264381.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/ar/61-70/67-68b/67-68b_Euphrates.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "van Loon 1968",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WVHKVND3",
+      "formattedCitation": "<div class=\"csl-entry\">Loon, Maurits van. \u201cThe Euphrates Valley Expedition.\u201d Annual Report. Chicago: University of Chicago Oriental Institute, 1968. https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/ar/61-70/67-68b/67-68b_Euphrates.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Tabqa_Dam&oldid=1087155842",
+      "citationDetail": "Tabqa Dam",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [],
+  "id": "598359946",
+  "subject": [],
+  "title": "Tell Selenkahiye",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Mound east of Aleppo, Syria which was inhabited from 2400 BCE until its destruction in 2000 BCE. The site was deluged by the creation of the Tabqa Dam in 1973.",
+  "reprPoint": [
+    38.035953,
+    36.097461
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    38.035953,
+    36.097461,
+    38.035953,
+    36.097461
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912849"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-30T14:46:37Z",
+  "uri": "https://pleiades.stoa.org/places/598359946",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-21T19:12:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-20T15:58:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-20T15:57:38Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-30T23:59:59Z"
+    },
+    {
+      "comment": "this reference - Early Bronze Age Copper Alloy Artefacts from Selenkahiye, Syria - needs revision",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-30T23:59:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T14:51:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T14:51:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T14:46:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T14:46:37Z"
+    }
+  ]
+}

@@ -1,0 +1,605 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.81099,
+          35.081929
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-for-west-house",
+      "properties": {
+        "snippet": "Architecturalcomplex, ; 3100 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/593460161/imagery-location-for-west-house",
+        "description": "Location of the center of the northwest room of the West House at the Vasiliki archaeological site, determined by matching Google satellite imagery with published plans.",
+        "location_precision": "precise",
+        "title": "Imagery location for West House"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/23940288",
+          "formattedCitation": "Wilson Myers, J., Emlen Myers, E., and Cadogan, G. 1992. The aerial atlas of ancient Crete. Berkeley: University of California Press. pp. 276-81.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/804604623",
+          "formattedCitation": "Pedley, J. 2012. Greek Art and Archaeology. 5th ed. Boston: Prentice Hall. p. 35.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "imagery-location-for-west-house",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -2000,
+      "title": "Imagery location for West House",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "\r\n<p>The center room of the West House at the Vasiliki archaeological site, determined by matching satellite imagery with the plan of the building in Figure 41.1, page 276 in Meyers, <em>Aerial Atlas of Ancient Crete</em>. Meyers dates the creation of the West House to EM IIB (2500-2200 BC). Vasiliki suffered a series of destructive fires at the end of EMIIB, at which time the West House was destroyed, and during MMI, but settlement at the site continued through the Late Minoan period.</p>\r\n",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2015",
+      "featureType": [
+        "architecturalcomplex",
+        ""
+      ],
+      "description": "Location of the center of the northwest room of the West House at the Vasiliki archaeological site, determined by matching Google satellite imagery with published plans.",
+      "created": "2015-05-01T21:52:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.81099,
+          35.081929
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/593460161/imagery-location-for-west-house",
+      "creators": [
+        {
+          "username": null,
+          "name": "David Letourneau"
+        },
+        {
+          "username": "dchau",
+          "homepage": null,
+          "name": "Diane Chau",
+          "uri": "https://pleiades.stoa.org/author/dchau"
+        },
+        {
+          "username": null,
+          "name": "Hunter Carline"
+        },
+        {
+          "username": null,
+          "name": "Courtney Pham"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-17T05:27:01Z"
+        },
+        {
+          "comment": "Minor changes to style and citations",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-17T05:21:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-16T18:43:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-16T05:39:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-16T05:32:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-16T05:31:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T19:36:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T17:44:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T00:54:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T00:53:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T00:36:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T00:35:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-03T18:53:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-01T22:11:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-01T21:52:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-01T21:52:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:32:00Z",
+      "associationCertainty": "certain",
+      "title": "Vasiliki",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/593460161/590086",
+      "connectionType": "at",
+      "id": "590086",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype to located at",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-10T13:49:15Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/590086",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "23",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McEnroe 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/93972GSK",
+      "formattedCitation": "<div class=\"csl-entry\">McEnroe, John C. <i>Architecture of Minoan Crete: Constructing Identity in the Aegean Bronze Age</i>. Austin: University of Texas Press, 2010.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "276-281",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Myers 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S8N66ZQW",
+      "formattedCitation": "<div class=\"csl-entry\">Myers, Eleanor Emlen, Gerald Cadogan, John A Gifford, and Stylianos Alexiou, eds. <i>The Aerial Atlas of Ancient Crete</i>. Berkeley: University of California Press, 1992.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.dartmouth.edu/~prehistory/aegean/?page_id=563",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Rutter, J. 2015. \"The Early Minoan Period: The Settlements.\" Aegean Prehistoric Archaeology.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/40960575",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Whitelaw 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CY22QLKM",
+      "formattedCitation": "<div class=\"csl-entry\">Whitelaw, Todd. \u201cHouse, Households and Community at Early Minoan Fournou Korifi: Methods and Models for Interpretation.\u201d <i>British School at Athens Studies</i> 15 (2007): 65\u201376. https://www.jstor.org/stable/40960575.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/3642556",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Evans 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TWZ8ZZRX",
+      "formattedCitation": "<div class=\"csl-entry\">Evans, John. \u201cThe Early Minoan Occupation of Knossos: A Note on Some New Evidence.\u201d <i>Anatolian Studies</i> 22 (1972): 115\u201328. https://doi.org/10.2307/3642556.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "West House",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/467361357",
+          "formattedCitation": "J.C. McEnroe. 2010. Architecture of Minoan Crete: Constructing identity in the Aegean Bronze Age. Austin: University of Texas Press, 23. ",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "west-house",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": null,
+          "name": "David Letourneau"
+        },
+        {
+          "username": null,
+          "name": "Courtney Pham"
+        },
+        {
+          "username": null,
+          "name": "Hunter Carline"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "\r\n<p>During early excavations that started in 1903, the West House and the Red House were both thought to be parts of one large complex, known collectively as \"The House on the Hilltop.\" Subsequent excavations showed that the wings of the complex were actually constructed during different phases, which prompted the separation of the entity into separate houses with different names. &nbsp;</p>\r\n",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-05-01T21:29:26Z",
+      "uri": "https://pleiades.stoa.org/places/593460161/west-house",
+      "creators": [
+        {
+          "username": "dchau",
+          "homepage": null,
+          "name": "Diane Chau",
+          "uri": "https://pleiades.stoa.org/author/dchau"
+        }
+      ],
+      "attested": "West House",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-17T05:26:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-17T05:25:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-16T05:07:12Z"
+        },
+        {
+          "comment": "Minor changes to citation, added keywords",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-07-16T05:06:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T19:37:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T17:45:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-04T17:39:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-01T22:10:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-01T22:04:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-01T21:29:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dchau",
+          "modified": "2015-05-01T21:29:28Z"
+        }
+      ]
+    }
+  ],
+  "id": "593460161",
+  "subject": [
+    "Crete",
+    "House"
+  ],
+  "title": "West House at Vasiliki",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "<p>The West House is one component of an architectural complex previously known as the \u201cHouse on the Hilltop\u201d built at Vasiliki in Early Minoan IIB. The other component is the Red House, which served as a residential area. The West House was built as an annex to the Red House, with poorer construction. The West House is believed to have been an area for storage as well as weaving, which is indicated by the presence of loom weights. These buildings are examples of early complex architecture on Crete, showing the development of planning and architectural sophistication at a stage before the appearance of Minoan palaces. The techniques used at Vasiliki were particular to this Minoan settlement alone. The thick walls of the West House were made of mud with wooden beams laid horizontally and transversely to strengthen the walls. The building was destroyed by fire around the end of the EMIIB period.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called West House is an architectural complex built as an annex to a larger building, the so-called Red House, in an Early Minoan settlement at Vasiliki on Crete. ",
+  "reprPoint": [
+    25.81099,
+    35.081929
+  ],
+  "placeTypes": [
+    "settlement",
+    "architecturalcomplex",
+    "hill"
+  ],
+  "bbox": [
+    25.81099,
+    35.081929,
+    25.81099,
+    35.081929
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/590086"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-05-01T21:20:16Z",
+  "uri": "https://pleiades.stoa.org/places/593460161",
+  "creators": [
+    {
+      "username": null,
+      "name": "David Letourneau"
+    },
+    {
+      "username": "dchau",
+      "homepage": null,
+      "name": "Diane Chau",
+      "uri": "https://pleiades.stoa.org/author/dchau"
+    },
+    {
+      "username": null,
+      "name": "Hunter Carline"
+    },
+    {
+      "username": null,
+      "name": "Courtney Pham"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references, align to zotero",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-10T13:55:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-07-17T05:26:55Z"
+    },
+    {
+      "comment": "Changed title to include toponym",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-07-17T05:26:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-07-17T05:24:07Z"
+    },
+    {
+      "comment": "Minor changes to style and citations",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-07-17T05:16:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-04T19:36:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-04T19:34:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-04T19:32:01Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-04T19:28:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-04T17:47:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-03T18:49:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-01T22:14:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-01T22:01:52Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-01T21:20:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "dchau",
+      "modified": "2015-05-01T21:20:17Z"
+    }
+  ]
+}

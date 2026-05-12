@@ -1,0 +1,486 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.6970121,
+          35.8747856
+        ]
+      },
+      "type": "Feature",
+      "id": "63362762a6486486426d56b5627",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/692346284/63362762a6486486426d56b5627",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u0633\u0627\u062a\u0648\u0648\u0642\u06d5\u06b5\u0627"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.6965,
+          35.8739
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-idu",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/692346284/cigs-location-of-idu",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Idu"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2488271717",
+          "citationDetail": "Node 2488271717",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2488271717",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "63362762a6486486426d56b5627",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of \u0633\u0627\u062a\u0648\u0648\u0642\u06d5\u06b5\u0627",
+      "provenance": "OpenStreetMap (Node 2488271717, version 6, osm:changeset=126725881, 2022-09-28T07:18:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-05-05T11:22:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.6970121,
+          35.8747856
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/692346284/63362762a6486486426d56b5627",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-05T21:08:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:37:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:22:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:22:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:22:15Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "van Soldt et al. 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GDHXGK8K",
+          "formattedCitation": "<div class=\"csl-entry\">Soldt, W. H. van, C. Pappi, Arne Wossink, C. W. Hess, and K. M. Ahmed. \u201cSatu Qala: A Preliminary Report on the Seasons 2010-2011.\u201d <i>Anatolica</i> XXXIX (2013): 197\u2013227.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-idu",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of Idu",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-05-05T11:26:57Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.6965,
+          35.8739
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/692346284/cigs-location-of-idu",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-05T21:08:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:37:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:26:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:26:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "van Soldt et al. 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GDHXGK8K",
+      "formattedCitation": "<div class=\"csl-entry\">Soldt, W. H. van, C. Pappi, Arne Wossink, C. W. Hess, and K. M. Ahmed. \u201cSatu Qala: A Preliminary Report on the Seasons 2010-2011.\u201d <i>Anatolica</i> XXXIX (2013): 197\u2013227.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Idu_(city)",
+      "citationDetail": "Idu (city)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Idu_(city).",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q15876602",
+      "citationDetail": "Satu Qala (Q15876602)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q15876602.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://ar.wikipedia.org/wiki/\u0625\u064a\u062f\u0648_(\u0645\u062f\u064a\u0646\u0629)",
+      "citationDetail": "\u0625\u064a\u062f\u0648_(\u0645\u062f\u064a\u0646\u0629)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Arabic)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GIR336Y",
+      "formattedCitation": "<div class=\"csl-entry\"><i>\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062d\u0631\u0629 \u0627\u0644\u062a\u064a \u064a\u0633\u062a\u0637\u064a\u0639 \u0627\u0644\u062c\u0645\u064a\u0639 \u062a\u062d\u0631\u064a\u0631\u0647\u0627: \u0648\u064a\u0643\u064a\u0628\u064a\u062f\u064a\u0627</i>. Wikimedia Foundation, 2001. https://ar.wikipedia.org.</div>, \u0625\u064a\u062f\u0648_(\u0645\u062f\u064a\u0646\u0629).",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "S\u0101t\u016b Qal\u0101",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "van Soldt et al. 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GDHXGK8K",
+          "formattedCitation": "<div class=\"csl-entry\">Soldt, W. H. van, C. Pappi, Arne Wossink, C. W. Hess, and K. M. Ahmed. \u201cSatu Qala: A Preliminary Report on the Seasons 2010-2011.\u201d <i>Anatolica</i> XXXIX (2013): 197\u2013227.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Idu_(city)",
+          "citationDetail": "Idu_(city)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Idu_(city).",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q15876602",
+          "citationDetail": "Q15876602",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q15876602.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://ar.wikipedia.org/wiki/\u0625\u064a\u062f\u0648_(\u0645\u062f\u064a\u0646\u0629)",
+          "citationDetail": "\u0625\u064a\u062f\u0648_(\u0645\u062f\u064a\u0646\u0629)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Arabic)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GIR336Y",
+          "formattedCitation": "<div class=\"csl-entry\"><i>\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062d\u0631\u0629 \u0627\u0644\u062a\u064a \u064a\u0633\u062a\u0637\u064a\u0639 \u0627\u0644\u062c\u0645\u064a\u0639 \u062a\u062d\u0631\u064a\u0631\u0647\u0627: \u0648\u064a\u0643\u064a\u0628\u064a\u062f\u064a\u0627</i>. Wikimedia Foundation, 2001. https://ar.wikipedia.org.</div>, \u0625\u064a\u062f\u0648_(\u0645\u062f\u064a\u0646\u0629).",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "satu-qala",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for Arabic (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2023-05-05T11:37:02Z",
+      "uri": "https://pleiades.stoa.org/places/692346284/satu-qala",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u0633\u0627\u062a\u0648 \u0642\u0644\u0627",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-05T21:08:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:37:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:37:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:37:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-05T11:37:02Z"
+        }
+      ]
+    }
+  ],
+  "id": "692346284",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Idu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Idu or Idum, Iron age town by Lower Zab.",
+  "reprPoint": [
+    44.696756050000005,
+    35.8743428
+  ],
+  "placeTypes": [
+    "findspot",
+    "archaeological-site"
+  ],
+  "bbox": [
+    44.6965,
+    35.8739,
+    44.6970121,
+    35.8747856
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-05T11:03:21Z",
+  "uri": "https://pleiades.stoa.org/places/692346284",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-02T23:11:09Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-05T21:08:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-05T11:37:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-05T11:37:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-05T11:33:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-05T11:21:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-05T11:03:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-05T11:03:21Z"
+    }
+  ]
+}

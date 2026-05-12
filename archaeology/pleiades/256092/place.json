@@ -1,0 +1,535 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.119854,
+            37.0810236
+          ],
+          [
+            -8.1189608,
+            37.0806379
+          ],
+          [
+            -8.1197816,
+            37.0802528
+          ],
+          [
+            -8.1198061,
+            37.0799685
+          ],
+          [
+            -8.1201034,
+            37.079698
+          ],
+          [
+            -8.1208947,
+            37.0795953
+          ],
+          [
+            -8.1210154,
+            37.0797815
+          ],
+          [
+            -8.1212729,
+            37.0797002
+          ],
+          [
+            -8.121268,
+            37.0797813
+          ],
+          [
+            -8.1212658,
+            37.0802127
+          ],
+          [
+            -8.1214933,
+            37.0802521
+          ],
+          [
+            -8.1214289,
+            37.0806801
+          ],
+          [
+            -8.1212122,
+            37.0809146
+          ],
+          [
+            -8.1209654,
+            37.0810601
+          ],
+          [
+            -8.119854,
+            37.0810236
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-cerro-da-vila",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/256092/osm-location-of-cerro-da-vila",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Cerro da Vila"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/275320922",
+          "citationDetail": "Way 275320922",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=275320922",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-cerro-da-vila",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Cerro da Vila",
+      "provenance": "OpenStreetMap (Way 275320922, version 5, osm:changeset=82410563, 2020-03-20T01:48:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-03-20T01:48:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.119854,
+            37.0810236
+          ],
+          [
+            -8.1189608,
+            37.0806379
+          ],
+          [
+            -8.1197816,
+            37.0802528
+          ],
+          [
+            -8.1198061,
+            37.0799685
+          ],
+          [
+            -8.1201034,
+            37.079698
+          ],
+          [
+            -8.1208947,
+            37.0795953
+          ],
+          [
+            -8.1210154,
+            37.0797815
+          ],
+          [
+            -8.1212729,
+            37.0797002
+          ],
+          [
+            -8.121268,
+            37.0797813
+          ],
+          [
+            -8.1212658,
+            37.0802127
+          ],
+          [
+            -8.1214933,
+            37.0802521
+          ],
+          [
+            -8.1214289,
+            37.0806801
+          ],
+          [
+            -8.1212122,
+            37.0809146
+          ],
+          [
+            -8.1209654,
+            37.0810601
+          ],
+          [
+            -8.119854,
+            37.0810236
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/256092/osm-location-of-cerro-da-vila",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-03-26T18:21:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-20T01:50:02Z"
+        },
+        {
+          "comment": "added OSM location since earlier OSM's underlying data was deleted",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-20T01:49:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-20T01:48:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-20T01:48:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "26 B4 Cerro da Vila",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "482-83",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gorges 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MI5GPRSU",
+      "formattedCitation": "<div class=\"csl-entry\">Gorges, Jean G\u00e9rard. <i>Les Villas Hispano-Romaines: Inventaire et Probl\u00e9matique Arch\u00e9ologiques</i>. Publications Du Centre Pierre Paris 4. Paris: diffusion E. de Boccard, 1979.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/37821577",
+      "citationDetail": "II.3, 206-207",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Alarc\u00e3o 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9FFZTKE2",
+      "formattedCitation": "<div class=\"csl-entry\">Alarc\u00e3o, Jorge de. <i>Roman Portugal</i>. 2 in 4 vols. Warminster: Aris &amp; Phillips, 1988. http://www.worldcat.org/oclc/37821577.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/36156421",
+      "citationDetail": "164",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Emerita",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PCC822HP",
+      "formattedCitation": "<div class=\"csl-entry\">Alarca\u0303o, Jorge de, Adela Cepas, Jose\u0301 Ignacio Reguera Cardiel, Angela Alonso Sa\u0301nchez, and Union acade\u0301mique internationale, eds. <i>Tabula Imperii Romani. Hoja J-29\u202f: Lisboa\u202f: Emerita, Scallabis, Pax Iulia, Gades: sobre la base cartogr\u00e1fica del mapa a escala 1:1000000 del IGN</i>. Tabula Imperii Romani, J-29. Madrid: Consejo Superior de Investigaciones Cientificas\u202f: Ministerio de Obras P\u00fablicas, Transportes y Medio Ambiente, Instituto Geogr\u00e1fico Nacional\u202f: Ministerio de Cultura, 1995. http://www.worldcat.org/oclc/36156421.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Roman_ruins_of_Cerro_da_Vila",
+      "citationDetail": "Roman ruins of Cerro da Vila",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Roman ruins of Cerro da Vila.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "3817",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2526003",
+      "citationDetail": "Ru\u00ednas romanas do Cerro da Vila (Q2526003)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Cerro da Vila",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "26 B4 Cerro da Vila",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "cerro-da-vila",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-08-26T00:56:24Z",
+      "uri": "https://pleiades.stoa.org/places/256092/cerro-da-vila",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Cerro da Vila",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-26T13:10:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-26T00:56:44Z"
+        },
+        {
+          "comment": "batlas, 20th c, name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-26T00:56:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-26T00:56:24Z"
+        }
+      ]
+    }
+  ],
+  "id": "256092",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=villa"
+  ],
+  "title": "Cerro da Vila",
+  "provenance": "Barrington Atlas: BAtlas 26 B4 Cerro da Vila",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Cerro da Vila, 2 miles NW Quarteira POR</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cerro da Vila, the ruins of a Roman villa in the Algarve region of southern Portugal.",
+  "reprPoint": [
+    -8.120368140168331,
+    37.08039765821682
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -8.1214933,
+    37.0795953,
+    -8.1189608,
+    37.0810601
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-09T19:33:06Z",
+  "uri": "https://pleiades.stoa.org/places/256092",
+  "creators": [
+    {
+      "username": null,
+      "name": "Jr."
+    },
+    {
+      "username": null,
+      "name": "F.H. Stanley"
+    },
+    {
+      "username": null,
+      "name": "R.C. Knapp"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q2526003",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-26T00:55:40Z"
+    },
+    {
+      "comment": "DARMC 3817",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-01T14:39:44Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-13T20:53:21Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-20T01:53:19Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-31T16:34:34Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-23T17:32:36Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T03:43:15Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T19:02:56Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:18:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T17:52:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-09T20:26:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-09T19:33:06Z"
+    }
+  ]
+}

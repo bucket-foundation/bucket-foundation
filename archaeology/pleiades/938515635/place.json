@@ -1,0 +1,337 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.2319741,
+          51.3844743
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-franks-roman-villa",
+      "properties": {
+        "snippet": "Villa; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/938515635/osm-location-of-franks-roman-villa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Franks Roman villa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/6928137159",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Node 6928137159",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=409879",
+          "citationDetail": "Franks Roman Villa",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pastscape",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1009024",
+          "citationDetail": "A Romano-British villa and a possible Iron Age farmstead at Franks",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Historic England",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/624430910",
+          "citationDetail": "KE 30, p. 104",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Scott 1993",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EGWGRRDJ",
+          "formattedCitation": "<div class=\"csl-entry\">Scott, Eleanor. <i>A Gazetteer of Roman Villas in Britain</i>. Leicester: Leicester University Archaeological Research Centre, 1993. http://www.worldcat.org/oclc/624430910.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-franks-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 410,
+      "title": "OSM location of Franks Roman villa",
+      "provenance": "OpenStreetMap (Node 6928137159, version 6, osm:changeset=138540530, 2023-07-15T11:12:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2019-10-29T19:27:31Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.2319741,
+          51.3844743
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/938515635/osm-location-of-franks-roman-villa",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-31T00:22:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:33:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-29T20:05:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-29T19:33:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-29T19:27:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-29T19:27:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-10-29T23:31:12Z",
+      "associationCertainty": "certain",
+      "title": "Farningham",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/938515635/8724774958",
+      "connectionType": "at",
+      "id": "8724774958",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:31:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:31:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:31:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79461",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=409879",
+      "citationDetail": "Franks Roman Villa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1009024",
+      "citationDetail": "1009024: A Romano-British villa and a possible Iron Age farmstead at Franks",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/624430910",
+      "citationDetail": "KE 30, p. 104",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Scott 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EGWGRRDJ",
+      "formattedCitation": "<div class=\"csl-entry\">Scott, Eleanor. <i>A Gazetteer of Roman Villas in Britain</i>. Leicester: Leicester University Archaeological Research Centre, 1993. http://www.worldcat.org/oclc/624430910.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17647299",
+      "citationDetail": "Franks Roman Villa (Q17647299)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "938515635",
+  "subject": [
+    "dare:feature=villa",
+    "villa"
+  ],
+  "title": "Franks Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The site of a Roman villa with two parallel ranges of rooms dating from the second half of the first century to the fifth century.",
+  "reprPoint": [
+    0.2319741,
+    51.3844743
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    0.2319741,
+    51.3844743,
+    0.2319741,
+    51.3844743
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79461"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-10-29T23:31:11Z",
+  "uri": "https://pleiades.stoa.org/places/938515635",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata 1009024",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-11T03:34:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:33:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:32:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:32:48Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:32:21Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:31:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:31:11Z"
+    }
+  ]
+}

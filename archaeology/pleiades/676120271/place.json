@@ -1,0 +1,475 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.723868,
+          37.975836
+        ]
+      },
+      "type": "Feature",
+      "id": "google-earth-location-roman-basilica",
+      "properties": {
+        "snippet": "Basilica, Building; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/676120271/google-earth-location-roman-basilica",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Google Earth Location: Roman Basilica"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "google-earth-location-roman-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+        "https://pleiades.stoa.org/vocabularies/place-types/building"
+      ],
+      "end": 2099,
+      "title": "Google Earth Location: Roman Basilica",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+        "https://pleiades.stoa.org/vocabularies/place-types/building"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "basilica",
+        "building"
+      ],
+      "description": "",
+      "created": "2024-03-23T23:35:07Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.723868,
+          37.975836
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/676120271/google-earth-location-roman-basilica",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-25T00:07:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:37:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:35:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:35:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:35:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-23T23:33:46Z",
+      "associationCertainty": "certain",
+      "title": "Agora of Athens",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/676120271/agora-of-athens",
+      "connectionType": "in",
+      "id": "agora-of-athens",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-25T00:07:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:37:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:33:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:33:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/807514119",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "93",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+      "citationDetail": "92-93",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camp 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+      "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/i285188",
+      "citationDetail": "72-73",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thompson and Wycherley 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CEEREY48",
+      "formattedCitation": "<div class=\"csl-entry\">Thompson, Homer A, and R. E Wycherley. <i>The Agora of Athens: The History, Shape and Uses of an Ancient City Center</i>. The Athenian Agora 14. Princeton, N.J.: The American School of Classical Studies at Athens, 1972. https://www.jstor.org/stable/i285188.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/147527",
+      "citationDetail": "261-265",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shear 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C3B8KM5Y",
+      "formattedCitation": "<div class=\"csl-entry\">Shear, T. Leslie. \u201cThe Athenian Agora: Excavations of 1970.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 40, no. 3 (1971): 241\u201379. https://doi.org/10.2307/147527.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "134-144",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shear 1973a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZTU8KZ3X",
+      "formattedCitation": "<div class=\"csl-entry\">Shear, T. Leslie. \u201cThe Athenian Agora: Excavations of 1971.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 42, no. 2 (1973): 121\u201379. https://doi.org/10.2307/147544.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/961153954",
+      "citationDetail": "316\u201317, 385-86",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dickenson 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2WNJNEJF",
+      "formattedCitation": "<div class=\"csl-entry\">Dickenson, Christopher P. <i>On the Agora: The Evolution of a Public Space in Hellenistic and Roman Greece (c. 323 BC - 267 AD)</i>. Mnemosyne, Bibliotheca Classica Batava., Supplementum 398. Leiden: Brill, 2017. http://www.worldcat.org/oclc/961153954.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://agora.ascsa.net/id/agora/monument/basilica",
+      "citationDetail": "Monument: Basilica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Agora Excavations (ASCSA)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P6MWAMKU",
+      "formattedCitation": "<div class=\"csl-entry\">American School of Classical Studies in Athens. <i>Agora Excavations (ASCSA)</i>. Athens: American School of Classical Studies at Athens, 2007. https://agora.ascsa.net/research.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dipylon-judithbindersourcebook.org/sourcebook/NNM/NNM274",
+      "citationDetail": "274. Basilica?",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Judith Binder's Opus Magnum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITY365C",
+      "formattedCitation": "<div class=\"csl-entry\">www.dipylon.org. \u201cJudith Binder\u2019s Opus Magnum | Dipylon,\u201d May 7, 2018. https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Basilica",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "93",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "basilica",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-23T23:27:33Z",
+      "uri": "https://pleiades.stoa.org/places/676120271/basilica",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Basilica",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-25T00:07:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:37:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:27:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:27:33Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "The Northeast Complex",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/147527",
+          "citationDetail": "261-265",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Shear 1971",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C3B8KM5Y",
+          "formattedCitation": "<div class=\"csl-entry\">Shear, T. Leslie. \u201cThe Athenian Agora: Excavations of 1970.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 40, no. 3 (1971): 241\u201379. https://doi.org/10.2307/147527.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "the-northeast-complex",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-23T23:32:39Z",
+      "uri": "https://pleiades.stoa.org/places/676120271/the-northeast-complex",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "The Northeast Complex",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-25T00:07:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:37:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:32:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-23T23:32:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "676120271",
+  "subject": [],
+  "title": "Basilica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building",
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large structure near the northeast corner of the Athenian Agora, built early in the second century AD, which may have been a basilica and perhaps served as a court.",
+  "reprPoint": [
+    23.723868,
+    37.975836
+  ],
+  "placeTypes": [
+    "building",
+    "basilica"
+  ],
+  "bbox": [
+    23.723868,
+    37.975836,
+    23.723868,
+    37.975836
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/807514119"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-23T23:26:21Z",
+  "uri": "https://pleiades.stoa.org/places/676120271",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-25T00:07:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-23T23:37:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-23T23:26:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-23T23:26:21Z"
+    }
+  ]
+}

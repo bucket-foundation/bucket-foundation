@@ -1,0 +1,483 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5182454,
+            41.8723245
+          ],
+          [
+            12.5182937,
+            41.8723619
+          ],
+          [
+            12.5184053,
+            41.8724445
+          ],
+          [
+            12.5186572,
+            41.8726308
+          ],
+          [
+            12.5189082,
+            41.8728164
+          ],
+          [
+            12.518957,
+            41.8728524
+          ],
+          [
+            12.5190926,
+            41.8729527
+          ],
+          [
+            12.5191655,
+            41.8730066
+          ],
+          [
+            12.519309,
+            41.8731127
+          ],
+          [
+            12.5193418,
+            41.873137
+          ],
+          [
+            12.5195556,
+            41.8732951
+          ],
+          [
+            12.5196066,
+            41.8733328
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-via-luigi-tosti",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/916776659/osm-location-of-via-luigi-tosti",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Via Luigi Tosti"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/25775051",
+          "citationDetail": "Way 25775051",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-via-luigi-tosti",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Via Luigi Tosti",
+      "provenance": "OpenStreetMap (Way 25775051, version 8, osm:changeset=112688973, 2021-10-19T09:45:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-12-19T18:44:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5182454,
+            41.8723245
+          ],
+          [
+            12.5182937,
+            41.8723619
+          ],
+          [
+            12.5184053,
+            41.8724445
+          ],
+          [
+            12.5186572,
+            41.8726308
+          ],
+          [
+            12.5189082,
+            41.8728164
+          ],
+          [
+            12.518957,
+            41.8728524
+          ],
+          [
+            12.5190926,
+            41.8729527
+          ],
+          [
+            12.5191655,
+            41.8730066
+          ],
+          [
+            12.519309,
+            41.8731127
+          ],
+          [
+            12.5193418,
+            41.873137
+          ],
+          [
+            12.5195556,
+            41.8732951
+          ],
+          [
+            12.5196066,
+            41.8733328
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/916776659/osm-location-of-via-luigi-tosti",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-19T18:44:42Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-19T18:44:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T19:35:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T18:01:14Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T17:52:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T17:51:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T17:51:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-11T17:57:14Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/916776659/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T19:35:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T18:01:14Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T17:57:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T17:57:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2025-12-19T18:48:24Z",
+      "associationCertainty": "certain",
+      "title": "Via Latina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/916776659/via-latina",
+      "connectionType": "near",
+      "id": "via-latina",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-19T18:48:25Z"
+        },
+        {
+          "comment": "cleaned up references and connected them to Zotero",
+          "modifiedBy": "thomase",
+          "modified": "2025-12-17T22:11:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T19:35:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T18:01:14Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T17:57:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-11T17:57:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/93042695",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://web.archive.org/web/20220511175529/https://roma.corriere.it/notizie/cronaca/22_maggio_03/roma-trovata-l-ara-funeraria-valeria-13enne-ii-secolo-dc-all-appio-latino-ac5659de-cac0-11ec-84d1-341c28840c78.shtml",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pavia 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B255KZGJ",
+          "formattedCitation": "<div class=\"csl-entry\">Maria Rosa Pavia. \u201cRoma: Trovata l\u2019ara Funeraria Di Valeria, Una 13enne Del II Secolo d.C. All\u2019Appio Latino- Corriere.It.\u201d <i>Corriere Della Sera</i>, May 11, 2022. https://web.archive.org/web/20220511175529/https://roma.corriere.it/notizie/cronaca/22_maggio_03/roma-trovata-l-ara-funeraria-valeria-13enne-ii-secolo-dc-all-appio-latino-ac5659de-cac0-11ec-84d1-341c28840c78.shtml.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jpost.com/archaeology/article-705848",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Second century funerary altar of teenage girl discovered in Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q3KJXD2U",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Jerusalem Post</i>. \u201cSecond Century Funerary Altar of Teenage Girl Discovered in Rome.\u201d May 4, 2022, sec. Archaeology. https://www.jpost.com/archaeology/article-705848.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://web.archive.org/web/20220511175529/https://roma.corriere.it/notizie/cronaca/22_maggio_03/roma-trovata-l-ara-funeraria-valeria-13enne-ii-secolo-dc-all-appio-latino-ac5659de-cac0-11ec-84d1-341c28840c78.shtml",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pavia 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B255KZGJ",
+      "formattedCitation": "<div class=\"csl-entry\">Maria Rosa Pavia. \u201cRoma: Trovata l\u2019ara Funeraria Di Valeria, Una 13enne Del II Secolo d.C. All\u2019Appio Latino- Corriere.It.\u201d <i>Corriere Della Sera</i>, May 11, 2022. https://web.archive.org/web/20220511175529/https://roma.corriere.it/notizie/cronaca/22_maggio_03/roma-trovata-l-ara-funeraria-valeria-13enne-ii-secolo-dc-all-appio-latino-ac5659de-cac0-11ec-84d1-341c28840c78.shtml.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "916776659",
+  "subject": [],
+  "title": "Columbarium in via Luigi Tosti",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Excavations in 2022 revealed the remains of a Roman tomb of small dimensions, likely of the columbarium type. The tomb included fragments of a sarcophagus in white marble and an inscribed funerary altar of the second century CE. The altar commemorates the life of one Valeria Laeta, daughter of Publius, who lived 13 years and 7 months. The absence of traditional pre-Christian epigraphic formulae led ministry archaeologists to speculate that the tomb is of a Christian nature.",
+  "reprPoint": [
+    12.518925589949072,
+    41.872829192359845
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.5182454,
+    41.8723245,
+    12.5196066,
+    41.8733328
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/93042695"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-19T18:49:44Z",
+  "uri": "https://pleiades.stoa.org/places/916776659",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-19T18:49:45Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-12-19T18:49:44Z"
+    },
+    {
+      "comment": "cleaned up references and connected them to Zotero",
+      "modifiedBy": "thomase",
+      "modified": "2025-12-17T22:09:33Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-12-17T22:08:29Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-11T19:35:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-11T18:01:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-11T18:00:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-11T17:56:42Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-11T17:51:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-11T17:51:05Z"
+    }
+  ]
+}

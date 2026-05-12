@@ -1,0 +1,354 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.8872695,
+            34.5513106
+          ],
+          [
+            40.8881232,
+            34.5513816
+          ],
+          [
+            40.8881632,
+            34.5511551
+          ],
+          [
+            40.8887899,
+            34.5512206
+          ],
+          [
+            40.8885402,
+            34.552081
+          ],
+          [
+            40.8884509,
+            34.5524847
+          ],
+          [
+            40.8870808,
+            34.5524368
+          ],
+          [
+            40.8869622,
+            34.5523541
+          ],
+          [
+            40.8870516,
+            34.5518929
+          ],
+          [
+            40.8872695,
+            34.5513106
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "palace-of-zimri-lim",
+      "properties": {
+        "snippet": "Palace; 2335 BC - 1600 BC",
+        "link": "https://pleiades.stoa.org/places/538862595/palace-of-zimri-lim",
+        "description": "Polygon representing the extent of the Royal Palace of Mari, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of the Palace of Zimri-Lim"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/964056563",
+          "citationDetail": "Way 964056563",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=964056563",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "palace-of-zimri-lim",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "end": -1600,
+      "title": "OSM location of the Palace of Zimri-Lim",
+      "provenance": "OpenStreetMap (Way 964056563, version 1, osm:changeset=107930430, 2021-07-13T19:15:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "palace"
+      ],
+      "description": "Polygon representing the extent of the Royal Palace of Mari, derived from an OpenStreetMap Way.",
+      "created": "2021-07-13T19:22:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.8872695,
+            34.5513106
+          ],
+          [
+            40.8881232,
+            34.5513816
+          ],
+          [
+            40.8881632,
+            34.5511551
+          ],
+          [
+            40.8887899,
+            34.5512206
+          ],
+          [
+            40.8885402,
+            34.552081
+          ],
+          [
+            40.8884509,
+            34.5524847
+          ],
+          [
+            40.8870808,
+            34.5524368
+          ],
+          [
+            40.8869622,
+            34.5523541
+          ],
+          [
+            40.8870516,
+            34.5518929
+          ],
+          [
+            40.8872695,
+            34.5513106
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/538862595/palace-of-zimri-lim",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-13T23:49:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-07-13T19:29:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-07-13T19:28:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2021-07-13T19:22:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-07-13T19:22:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1600,
+      "description": "",
+      "contributors": [],
+      "created": "2021-07-13T19:29:43Z",
+      "associationCertainty": "certain",
+      "title": "Ma\u0304ri",
+      "start": -2335,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/538862595/mari",
+      "connectionType": "at",
+      "id": "mari",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-13T23:49:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-07-13T19:29:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-07-13T19:29:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-07-13T19:29:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/286681704",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/602441045",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Al-Khalesi 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CJUUJ4XH",
+      "formattedCitation": "<div class=\"csl-entry\">Al-Khalesi, Yasin M., and Giorgio Buccellati. <i>The Court of the Palms: A Functional Interpretation of the Mari Palace</i>. Bibliotheca Mesopotamica, v. 8. Malibu: Undena Publications, 1978. http://www.worldcat.org/oclc/602441045.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Royal_Palace_of_Mari",
+      "citationDetail": "Royal Palace of Mari",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "538862595",
+  "subject": [],
+  "title": "Royal Palace of M\u0101ri",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/palace-complex",
+    "https://pleiades.stoa.org/vocabularies/place-types/palace"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Royal residence of the rulers of the kingdom of Mari. Constructed in the 24th century BCE, the site is also known as the Palace of Zimri-Lim, the ruler who completed extensive renovations of the structure around 1800 BCE.",
+  "reprPoint": [
+    40.88789754675356,
+    34.55183369134925
+  ],
+  "placeTypes": [
+    "palace-complex",
+    "palace"
+  ],
+  "bbox": [
+    40.8869622,
+    34.5511551,
+    40.8887899,
+    34.5524847
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/286681704"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-07-13T19:21:55Z",
+  "uri": "https://pleiades.stoa.org/places/538862595",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-13T23:49:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2021-07-13T19:29:54Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2021-07-13T19:21:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2021-07-13T19:21:55Z"
+    }
+  ]
+}

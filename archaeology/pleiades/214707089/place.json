@@ -1,0 +1,320 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.7706353,
+            31.5567388
+          ],
+          [
+            35.7706816,
+            31.55645
+          ],
+          [
+            35.7712177,
+            31.5560168
+          ],
+          [
+            35.7720773,
+            31.5564683
+          ],
+          [
+            35.7722714,
+            31.5570984
+          ],
+          [
+            35.7718,
+            31.5574135
+          ],
+          [
+            35.7713717,
+            31.5575001
+          ],
+          [
+            35.7711961,
+            31.5574713
+          ],
+          [
+            35.7708048,
+            31.5569567
+          ],
+          [
+            35.7706353,
+            31.5567388
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "khirbat-iskandar",
+      "properties": {
+        "snippet": "Settlement; 3300 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/214707089/khirbat-iskandar",
+        "description": "Polygon representing the location of the Khirbat Iskandar site, derived from an OpenStreetMap Way after Richard et al. 2010.",
+        "location_precision": "precise",
+        "title": "OSM location of Khirbat Iskandar"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/685510474",
+          "citationDetail": "Way 685510474",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=685510474",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 6",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Richard et al. 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3B3DQ53P",
+          "formattedCitation": "<div class=\"csl-entry\">Richard, Suzanne. <i>Khirbat Iskandar: Final Report on the Early Bronze IV Area C \u201cGateway\u201d and Cemeteries</i>. American Schools of Oriental Research Archeological Reports 14. Boston, Mass.: American Schools of Oriental Research, 2010.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "khirbat-iskandar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of Khirbat Iskandar",
+      "provenance": "OpenStreetMap (Way 685510474, version 1, osm:changeset=69503456, 2019-04-23T20:20:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the location of the Khirbat Iskandar site, derived from an OpenStreetMap Way after Richard et al. 2010.",
+      "created": "2019-04-23T20:34:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.7706353,
+            31.5567388
+          ],
+          [
+            35.7706816,
+            31.55645
+          ],
+          [
+            35.7712177,
+            31.5560168
+          ],
+          [
+            35.7720773,
+            31.5564683
+          ],
+          [
+            35.7722714,
+            31.5570984
+          ],
+          [
+            35.7718,
+            31.5574135
+          ],
+          [
+            35.7713717,
+            31.5575001
+          ],
+          [
+            35.7711961,
+            31.5574713
+          ],
+          [
+            35.7708048,
+            31.5569567
+          ],
+          [
+            35.7706353,
+            31.5567388
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/214707089/khirbat-iskandar",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-24T03:28:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-24T03:06:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-23T20:36:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-23T20:35:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-23T20:34:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-23T20:34:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richard 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3B3DQ53P",
+      "formattedCitation": "<div class=\"csl-entry\">Richard, Suzanne. <i>Khirbat Iskandar: Final Report on the Early Bronze IV Area C \u201cGateway\u201d and Cemeteries</i>. American Schools of Oriental Research Archeological Reports 14. Boston, Mass.: American Schools of Oriental Research, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://publication.doa.gov.jo/Publications/ViewChapterPublic/1020",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richard 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SNHVG8DT",
+      "formattedCitation": "<div class=\"csl-entry\">Richard, S., and J. C. Long Jr. \u201cArchaeological Expedition to Khirbat Iskandar and Its Vicinity, 1994.\u201d In <i>Annual of the Department of Antiquities of Jordan, 39.1995</i>, 81\u201392, Abb, 1995. https://publication.doa.gov.jo/Publications/ViewChapterPublic/1020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "214707089",
+  "subject": [],
+  "title": "Khirbat Iskandar",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fortified site on the banks of the Wadi al-Wala in Jordan inhabited in the Early Bronze IV period.",
+  "reprPoint": [
+    35.77144209759301,
+    31.556788437656778
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    35.7706353,
+    31.5560168,
+    35.7722714,
+    31.5575001
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-04-23T20:34:18Z",
+  "uri": "https://pleiades.stoa.org/places/214707089",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-06T18:09:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-24T03:28:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-24T03:13:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-04-23T20:36:02Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-04-23T20:34:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-04-23T20:34:18Z"
+    }
+  ]
+}

@@ -1,0 +1,604 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.9733664,
+          38.8764686
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-badajoz",
+      "properties": {
+        "snippet": "Settlement; AD 640 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/931117398/osm-location-of-badajoz",
+        "description": "Representative location of modern Badajoz, Spain, based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of modern Badajoz"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "enesy",
+      "homepage": null,
+      "name": "Enes Y\u0131landilo\u011flu",
+      "uri": "https://pleiades.stoa.org/author/enesy"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/240423001",
+          "citationDetail": "Node 240423001",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=240423001",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-badajoz",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 2100,
+      "title": "OSM location of modern Badajoz",
+      "provenance": "OpenStreetMap (Node 240423001, version 24, osm:changeset=44163238, 2016-12-04T18:19:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location of modern Badajoz, Spain, based on a node derived from OpenStreetMap.",
+      "created": "2016-12-13T15:05:32Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.9733664,
+          38.8764686
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/931117398/osm-location-of-badajoz",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-01T04:29:52Z"
+        },
+        {
+          "comment": "edited summary, added time period 'modern'",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-14T02:39:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T20:45:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T20:45:25Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T20:44:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T15:07:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T15:06:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T15:05:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T15:05:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Digital edition of: Ballesteros-Beretta, A. 1934. \"Itinerario de Alfonso X, rey de Castilla\". Bolet\u00edn de la Academia de la Historia. ",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Badajoz",
+      "citationDetail": "Badajoz",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Badajoz.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Badajoz",
+      "citationDetail": "Badajoz",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Badajoz.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/2521420/badajoz.html",
+      "citationDetail": "2521420: Badajoz",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/26268",
+      "citationDetail": "GEO ID 26268: Badajoz",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Badajoz, Badaioz, Badalloz, Badallo\u00e7, Badajioz",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "Herrera, M.\u00aa Teresa, M.\u00aa Nieves S\u00e1nchez, M.\u00aa Estela Gonz\u00e1lez de Fauve y M.\u00aa Purificaci\u00f3n Zab\u00eda. Textos y Concordancias Electr\u00f3nicos de Documentos Castellanos de Alfonso X. Madison: Hispanic Seminary of Medieval Studies, 1999, CD-ROM.",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6PJGZ3HT",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/2521420/badajoz.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "GeoNames 2521420 Badajoz",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "badajoz",
+      "end": 1453,
+      "contributors": [],
+      "provenance": "Hispanic Seminary of Medieval Studies",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "details": "",
+      "review_state": "published",
+      "description": "Medieval Spanish names of city associated with modern Badajoz.",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2016-09-08T21:29:32Z",
+      "uri": "https://pleiades.stoa.org/places/931117398/badajoz",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "attested": "Badajoz, Badaioz, Badalloz, Badallo\u00e7, Badajioz",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-01T04:29:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:00:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:00:32Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:00:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T15:13:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T15:13:35Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-13T15:09:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-22T17:06:24Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-22T17:05:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-14T17:07:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-14T17:07:42Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-14T17:06:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T20:16:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T20:15:26Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T20:15:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T19:45:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T19:45:46Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T19:45:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T16:30:42Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T16:30:06Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-13T16:27:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-08T22:09:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-08T21:29:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-08T21:29:32Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Be\u1e6dalyevs",
+      "attestations": [
+        {
+          "timePeriod": "sixteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx",
+          "citationDetail": "1st Volume, 360, s.v. \"Be\u1e6dalyevs\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "K\u00fcnh\u00fc'l-ahb\u00e2r",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WKDD5W8W",
+          "formattedCitation": "<div class=\"csl-entry\">\u00c2li, Mustafa bin Ahmet. <i>K\u00fcnh\u00fc\u2019l-ahb\u00e2r: (tenkitli metin)</i>. Edited by Suat Donuk and Derya \u00d6rs. 1. bask\u0131. 5 vols. T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131 yay\u0131nlar\u0131. Fatih, \u0130stanbul: T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131, 2020. https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "betalyevs",
+      "end": 1599,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1500,
+      "details": "<p class=\"p1\"><em>Be\u1e6dalyevs</em>: A town in western Andalusia. (translated by the first creator of the name entry)</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ota",
+      "created": "2025-11-12T15:57:59Z",
+      "uri": "https://pleiades.stoa.org/places/931117398/betalyevs",
+      "creators": [
+        {
+          "username": "enesy",
+          "homepage": null,
+          "name": "Enes Y\u0131landilo\u011flu",
+          "uri": "https://pleiades.stoa.org/author/enesy"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-31T19:40:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-12T15:58:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-12T15:58:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-12T15:58:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-12T15:57:59Z"
+        }
+      ]
+    }
+  ],
+  "id": "931117398",
+  "subject": [],
+  "title": "Badajoz",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Castillian city of Badajoz was an Islamic foundation under the Muladi nobleman Ibn Marwan who established the city ca. 875. Badajoz was eventually invaded by (and captured by) Christians under Alfonso VI of Castile. Alfonso X established a bishopric and began work on the Cathedral of San Juan Bautista.",
+  "reprPoint": [
+    -6.9733664,
+    38.8764686
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -6.9733664,
+    38.8764686,
+    -6.9733664,
+    38.8764686
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-09-08T21:28:18Z",
+  "uri": "https://pleiades.stoa.org/places/931117398",
+  "creators": [
+    {
+      "username": "mjredondo",
+      "homepage": null,
+      "name": "Mar\u00eda Jes\u00fas Redondo",
+      "uri": "https://pleiades.stoa.org/author/mjredondo"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-04T19:11:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-01T04:29:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-01T04:29:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-21T16:55:27Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-21T16:53:56Z"
+    },
+    {
+      "comment": "added GeoNames reference and TM GEO ID",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-20T19:43:57Z"
+    },
+    {
+      "comment": "added reference, edited description",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-20T18:25:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-14T17:06:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-14T17:06:11Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-14T17:01:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-13T16:44:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-13T16:44:23Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-13T16:44:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-08T22:06:14Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-08T21:28:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-08T21:28:18Z"
+    }
+  ]
+}

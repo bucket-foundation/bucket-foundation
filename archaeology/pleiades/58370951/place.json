@@ -1,0 +1,338 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7970383,
+          24.6308553
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-large-temple",
+      "properties": {
+        "snippet": "Temple-2; 200 BC - AD 499",
+        "link": "https://pleiades.stoa.org/places/58370951/osm-location-of-large-temple",
+        "description": "Location based on OpenStreetMap, verified with Guzm\u00e1n 2021 and in Google Earth. Dates after Guzm\u00e1n.",
+        "location_precision": "precise",
+        "title": "OSM Location of Large Temple"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6340803126",
+          "citationDetail": "Node 6340803126",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6340803126",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.journals.uchicago.edu/doi/full/10.1086/712784",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Guzm\u00e1n 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QJAQKQ94",
+          "formattedCitation": "<div class=\"csl-entry\">Guzm\u00e1n, Joan Oller, David Fern\u00e1ndez Abella, Vanesa Trev\u00edn Pita, Oriol Achon Casas, and Sergio Garc\u00eda-Dils de la Vega. \u201cNew Evidence Regarding Emerald Production in Roman Egypt at Wadi Sikait (Eastern Desert).\u201d <i>Journal of Near Eastern Studies</i> 80, no. 1 (April 2021): 123\u201342. https://doi.org/10.1086/712784.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-large-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 499,
+      "title": "OSM Location of Large Temple",
+      "provenance": "OpenStreetMap (Node 6340803126, version 2, osm:changeset=123018311, 2022-06-29T20:12:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap, verified with Guzm\u00e1n 2021 and in Google Earth. Dates after Guzm\u00e1n.",
+      "created": "2022-06-29T20:27:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7970383,
+          24.6308553
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/58370951/osm-location-of-large-temple",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-30T10:56:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T20:31:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T20:29:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T20:27:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T20:27:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-29T20:31:02Z",
+      "associationCertainty": "certain",
+      "title": "Sikait",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/58370951/sikait",
+      "connectionType": "at",
+      "id": "sikait",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-30T10:56:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T20:31:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T20:31:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T20:31:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/786114",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journals.uchicago.edu/doi/full/10.1086/712784",
+      "citationDetail": "pages 132-135",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Guzm\u00e1n 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QJAQKQ94",
+      "formattedCitation": "<div class=\"csl-entry\">Guzm\u00e1n, Joan Oller, David Fern\u00e1ndez Abella, Vanesa Trev\u00edn Pita, Oriol Achon Casas, and Sergio Garc\u00eda-Dils de la Vega. \u201cNew Evidence Regarding Emerald Production in Roman Egypt at Wadi Sikait (Eastern Desert).\u201d <i>Journal of Near Eastern Studies</i> 80, no. 1 (April 2021): 123\u201342. https://doi.org/10.1086/712784.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q56083253",
+      "citationDetail": "Large rock-cut temple (Q56083253)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Large_rock-cut_temple_at_Sikait",
+      "citationDetail": "Category:Large rock-cut temple at Sikait",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Wadi_El_Gemal_National_Park",
+      "citationDetail": "Wadi El Gemal National Park",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [],
+  "id": "58370951",
+  "subject": [
+    "tomb",
+    "rock-cut"
+  ],
+  "title": "Large Temple at Sikait",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large rock-cut temple at Sikait in Egypt's Eastern desert.",
+  "reprPoint": [
+    34.7970383,
+    24.6308553
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    34.7970383,
+    24.6308553,
+    34.7970383,
+    24.6308553
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/786114"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-29T22:18:51Z",
+  "uri": "https://pleiades.stoa.org/places/58370951",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-30T10:56:36Z"
+    },
+    {
+      "comment": "added summary, updated references",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-30T10:56:17Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-29T22:18:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-29T20:31:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-29T20:31:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-29T20:30:32Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-29T20:13:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-29T20:13:44Z"
+    }
+  ]
+}

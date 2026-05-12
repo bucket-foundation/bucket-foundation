@@ -1,0 +1,493 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.1859457,
+            39.1271432
+          ],
+          [
+            27.1858399,
+            39.127099
+          ],
+          [
+            27.1856317,
+            39.1270193
+          ],
+          [
+            27.1855551,
+            39.126987
+          ],
+          [
+            27.1853905,
+            39.1269109
+          ],
+          [
+            27.1852699,
+            39.1268503
+          ],
+          [
+            27.1855316,
+            39.1264339
+          ],
+          [
+            27.1856848,
+            39.1264989
+          ],
+          [
+            27.1857905,
+            39.1265415
+          ],
+          [
+            27.1860161,
+            39.1266409
+          ],
+          [
+            27.1861116,
+            39.1266771
+          ],
+          [
+            27.1871788,
+            39.1271297
+          ],
+          [
+            27.1872834,
+            39.1271688
+          ],
+          [
+            27.1869836,
+            39.1275915
+          ],
+          [
+            27.1859457,
+            39.1271432
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pergamon-gymnasium",
+      "properties": {
+        "snippet": "Gymnasium; 200 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/565845192/osm-location-of-pergamon-gymnasium",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pergamon gymnasium"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1429821719",
+          "citationDetail": "Way 1429821719",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1429821719",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pergamon-gymnasium",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+      ],
+      "end": 300,
+      "title": "OSM location of Pergamon gymnasium",
+      "provenance": "OpenStreetMap (Way 1429821719, version 1, osm:changeset=171938168, 2025-09-14T21:39:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "gymnasium"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-09-14T21:40:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.1859457,
+            39.1271432
+          ],
+          [
+            27.1858399,
+            39.127099
+          ],
+          [
+            27.1856317,
+            39.1270193
+          ],
+          [
+            27.1855551,
+            39.126987
+          ],
+          [
+            27.1853905,
+            39.1269109
+          ],
+          [
+            27.1852699,
+            39.1268503
+          ],
+          [
+            27.1855316,
+            39.1264339
+          ],
+          [
+            27.1856848,
+            39.1264989
+          ],
+          [
+            27.1857905,
+            39.1265415
+          ],
+          [
+            27.1860161,
+            39.1266409
+          ],
+          [
+            27.1861116,
+            39.1266771
+          ],
+          [
+            27.1871788,
+            39.1271297
+          ],
+          [
+            27.1872834,
+            39.1271688
+          ],
+          [
+            27.1869836,
+            39.1275915
+          ],
+          [
+            27.1859457,
+            39.1271432
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/565845192/osm-location-of-pergamon-gymnasium",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-15T18:21:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-15T14:07:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-15T14:07:11Z"
+        },
+        {
+          "comment": "add OSM location of Pergamon gymnasium",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T21:40:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T21:40:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T21:40:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-09-15T13:59:45Z",
+      "associationCertainty": "certain",
+      "title": "Pergamum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/565845192/7850851458",
+      "connectionType": "at",
+      "id": "7850851458",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-15T13:59:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-15T13:59:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-15T13:59:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550812",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://kulturenvanteri.com/en/yer/pergamon-gymnasiumu/",
+      "citationDetail": "Pergamon Gymnasium",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "K\u00fclt\u00fcr Envanteri",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y4452C6M",
+      "formattedCitation": "<div class=\"csl-entry\">Caner Cang\u00fcl, and A. Erdem \u015eent\u00fcrk, eds. <i>K\u00fclt\u00fcr Envanteri</i>, n.d. https://kulturenvanteri.com/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1363",
+      "citationDetail": "gro\u00dfes Gymnasion von Pergamon (gesamt) \u0130zmir (Provinz) (Pergamum / Pergamon / \u0628\u0631\u063a\u0627\u0645\u0648\u0646), Republik T\u00fcrkei",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q105232481",
+      "citationDetail": "Pergamon gymnasium (Q105232481)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "gro\u00dfes Gymnasion von Pergamon",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.dainst.org/entity/1363",
+          "citationDetail": "gro\u00dfes Gymnasion von Pergamon (gesamt) \u0130zmir (Provinz) (Pergamum / Pergamon / \u0628\u0631\u063a\u0627\u0645\u0648\u0646), Republik T\u00fcrkei",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "grosses-gymnasion-von-pergamon",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1800,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2025-09-15T14:06:41Z",
+      "uri": "https://pleiades.stoa.org/places/565845192/grosses-gymnasion-von-pergamon",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "gro\u00dfes Gymnasion von Pergamon",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-15T18:21:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-15T14:07:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-15T14:06:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-15T14:06:41Z"
+        }
+      ]
+    }
+  ],
+  "id": "565845192",
+  "subject": [
+    "extant remains",
+    "gymnasium"
+  ],
+  "title": "Pergamon gymnasium",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Great Gymnasium of Pergamon was built in the second quarter of the second century BCE. The complex was then restored in the first century BCE.",
+  "reprPoint": [
+    27.18627210395794,
+    39.12701336746228
+  ],
+  "placeTypes": [
+    "gymnasium"
+  ],
+  "bbox": [
+    27.1852699,
+    39.1264339,
+    27.1872834,
+    39.1275915
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550812"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-15T13:59:43Z",
+  "uri": "https://pleiades.stoa.org/places/565845192",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-15T18:21:57Z"
+    },
+    {
+      "comment": "wikidata Pergamon gymnasium (Q105232481)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-15T14:12:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-15T14:07:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-15T14:07:25Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-15T14:05:24Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-15T13:59:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-15T13:59:43Z"
+    }
+  ]
+}

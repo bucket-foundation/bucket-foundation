@@ -1,0 +1,312 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6327074,
+          40.0254251
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-yaz131l131kaya",
+      "properties": {
+        "snippet": "Sanctuary, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/478681498/osm-location-of-yaz131l131kaya",
+        "description": "A sacred rock-cut sanctuary of the Hittites. Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Yaz\u0131l\u0131kaya"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/610607807",
+          "citationDetail": "Node 610607807",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=610607807",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Yaz%C4%B1l%C4%B1kaya",
+          "citationDetail": "Yaz\u0131l\u0131kaya",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Yaz\u0131l\u0131kaya.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-yaz131l131kaya",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM location of Yaz\u0131l\u0131kaya",
+      "provenance": "OpenStreetMap (Node 610607807, version 13, osm:changeset=132109517, 2023-02-05T13:44:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary",
+        ""
+      ],
+      "description": "A sacred rock-cut sanctuary of the Hittites. Location based on OpenStreetMap",
+      "created": "2013-05-18T20:43:54Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.6327074,
+          40.0254251
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/478681498/osm-location-of-yaz131l131kaya",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T19:30:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-12T16:56:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-05-21T18:09:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:58:23Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:44:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:43:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:43:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-07T13:24:10Z",
+      "associationCertainty": "certain",
+      "title": "Hattusa",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/478681498/2500450774",
+      "connectionType": "at",
+      "id": "2500450774",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:24:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:24:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:24:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/283602441",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Yaz%C4%B1l%C4%B1kaya",
+      "citationDetail": "Yaz\u0131l\u0131kaya",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q529923",
+      "citationDetail": "Q529923: Yaz\u0131l\u0131kaya",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/377-002",
+      "citationDetail": "Hattusha: the Hittite Capital",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "478681498",
+  "subject": [
+    "rock-cut",
+    "extant remains"
+  ],
+  "title": "Yaz\u0131l\u0131kaya (Hattusa)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "<p>The rock-cut ensemble of the sanctuary is included as one of the key elements of the UNESCO World Heritage listing for Hattusa.\u00a0 The UNESCO inscription notes the importance of the sanctuary: \"The famous rock sanctuary of Yaz\u0131l\u0131kaya, which is an open-air temple with two natural chambers cut into the bedrock, lies 2 km northeast of the capital, on a slope of a mountain barrier.\"</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sacred rock-cut sanctuary of the Hittites. The sanctuary was in use from the late sixteenth century B.C. Many of the reliefs date to the reigns of Tudhaliya IV and Suppiluliuma II in the late thirteenth century B.C.",
+  "reprPoint": [
+    34.6327074,
+    40.0254251
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    34.6327074,
+    40.0254251,
+    34.6327074,
+    40.0254251
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/283602441"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-04-09T15:05:54Z",
+  "uri": "https://pleiades.stoa.org/places/478681498",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited; added Wikidata Q529923: Yaz\u0131l\u0131kaya; UWHS; edited summary; added to details field; Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-29T19:30:32Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2020-04-09T15:05:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-20T19:28:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:26:23Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:26:07Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:24:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:24:08Z"
+    }
+  ]
+}

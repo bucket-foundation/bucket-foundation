@@ -1,0 +1,906 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4844936,
+            40.7508031
+          ],
+          [
+            14.4842694,
+            40.7507004
+          ],
+          [
+            14.4843239,
+            40.7506238
+          ],
+          [
+            14.484387,
+            40.7506508
+          ],
+          [
+            14.4845545,
+            40.7507224
+          ],
+          [
+            14.4844936,
+            40.7508031
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-fortuna-augusta",
+      "properties": {
+        "snippet": "Temple-2; 100 BC - AD 99",
+        "link": "https://pleiades.stoa.org/places/100249112/osm-location-of-temple-of-fortuna-augusta",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Fortuna Augusta"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "vvitale",
+      "homepage": null,
+      "name": "Valeria Vitale",
+      "uri": "https://pleiades.stoa.org/author/vvitale"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/355834242",
+          "citationDetail": "Way 355834242",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=355834242",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-fortuna-augusta",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 99,
+      "title": "OSM location of Temple of Fortuna Augusta",
+      "provenance": "OpenStreetMap (Way 355834242, version 3, osm:changeset=133980378, 2023-03-22T14:10:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-01-01T03:27:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4844936,
+            40.7508031
+          ],
+          [
+            14.4842694,
+            40.7507004
+          ],
+          [
+            14.4843239,
+            40.7506238
+          ],
+          [
+            14.484387,
+            40.7506508
+          ],
+          [
+            14.4845545,
+            40.7507224
+          ],
+          [
+            14.4844936,
+            40.7508031
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/100249112/osm-location-of-temple-of-fortuna-augusta",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-08T17:45:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-01T03:28:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-01T03:27:41Z"
+        },
+        {
+          "comment": "supersedes previously published location.",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-01T03:27:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-01T03:27:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-01T03:27:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 99,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:36:16Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": 1,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/100249112/433032",
+      "connectionType": "at",
+      "id": "433032",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T16:01:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://sites.google.com/site/ad79eruption/",
+          "citationDetail": "Temple of Fortuna Augusta",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "AD79",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+          "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-26T23:17:58Z",
+      "associationCertainty": "certain",
+      "title": "Regio VII, Pompeii",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/100249112/regio-vii-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-vii-pompeii",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-28T14:11:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T23:18:02Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T23:17:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T23:17:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599902893",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/pompeii/public-buildings/temple-of-fortuna-augusta",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "AD 79: Temple of Fortuna Augusta",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Tempio_della_Fortuna_Augusta",
+      "citationDetail": "Tempio della Fortuna Augusta",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Tempio della Fortuna Augusta.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Regio_VII_degli_scavi_archeologici_di_Pompei",
+      "citationDetail": "Regio VII degli scavi archeologici di Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Regio VII degli scavi archeologici di Pompei.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pompeiisites.org/Sezione.jsp?titolo=Temple+of+Fortuna+Augusta+%28VII%2C4%2C1%29&idSezione=652&lookfor=Fortuna%20Augusta",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "pompeiisites.org: Temple of Fortuna Augusta (VII,4,1)",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3983204",
+      "citationDetail": "Q3983204: Temple of Fortuna Augusta",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tempio della Fortuna",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://mta.on.worldcat.org/oclc/769097968?databaseList=638",
+          "formattedCitation": "Van der Poel, H. B., Corpus Topographicum Pompeianum Pars II Toponymy. The University of Texas at Austin. Rome 1983 p278",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tempio-della-fortuna",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2015-06-03T13:44:01Z",
+      "uri": "https://pleiades.stoa.org/places/100249112/tempio-della-fortuna",
+      "creators": [
+        {
+          "username": "avarveri",
+          "homepage": null,
+          "name": "Athanasia Varveri",
+          "uri": "https://pleiades.stoa.org/author/avarveri"
+        },
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Tempio della Fortuna",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:44:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:44:03Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Victory",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/8667821",
+          "citationDetail": "p. 278",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "VanderPoel 1977",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQBMM724",
+          "formattedCitation": "<div class=\"csl-entry\">VanderPoel, Halsted B. <i>Corpus Topographicum Pompeianum</i>. 5 vols. Rome: The University of Texas at Austin, 1977. http://www.worldcat.org/oclc/8667821.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-of-victory",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-06-03T13:46:08Z",
+      "uri": "https://pleiades.stoa.org/places/100249112/temple-of-victory",
+      "creators": [
+        {
+          "username": "avarveri",
+          "homepage": null,
+          "name": "Athanasia Varveri",
+          "uri": "https://pleiades.stoa.org/author/avarveri"
+        },
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Temple of Victory",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-01T03:29:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:46:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:46:11Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Aedes of Fortuna Augusta",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://mta.on.worldcat.org/oclc/769097968?databaseList=638",
+          "formattedCitation": "Van der Poel, H. B., Corpus Topographicum Pompeianum Pars II Toponymy. The University of Texas at Austin. Rome 1983 p278",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "aedes-of-fortuna-augusta",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-06-03T13:48:40Z",
+      "uri": "https://pleiades.stoa.org/places/100249112/aedes-of-fortuna-augusta",
+      "creators": [
+        {
+          "username": "avarveri",
+          "homepage": null,
+          "name": "Athanasia Varveri",
+          "uri": "https://pleiades.stoa.org/author/avarveri"
+        },
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Aedes of Fortuna Augusta",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:48:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:48:42Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Serapis",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/8667821",
+          "citationDetail": "p. 278",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "VanderPoel 1977",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQBMM724",
+          "formattedCitation": "<div class=\"csl-entry\">VanderPoel, Halsted B. <i>Corpus Topographicum Pompeianum</i>. 5 vols. Rome: The University of Texas at Austin, 1977. http://www.worldcat.org/oclc/8667821.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-of-serapis",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-06-03T13:52:09Z",
+      "uri": "https://pleiades.stoa.org/places/100249112/temple-of-serapis",
+      "creators": [
+        {
+          "username": "avarveri",
+          "homepage": null,
+          "name": "Athanasia Varveri",
+          "uri": "https://pleiades.stoa.org/author/avarveri"
+        },
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Temple of Serapis",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-01T03:29:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:52:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:52:11Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "VII.4.1",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://mta.on.worldcat.org/oclc/769097968?databaseList=638",
+          "formattedCitation": "Van der Poel, H. B., Corpus Topographicum Pompeianum Pars II Toponymy. The University of Texas at Austin. Rome 1983 p278",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "VII-4.1",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2015-06-03T13:54:21Z",
+      "uri": "https://pleiades.stoa.org/places/100249112/VII-4.1",
+      "creators": [
+        {
+          "username": "avarveri",
+          "homepage": null,
+          "name": "Athanasia Varveri",
+          "uri": "https://pleiades.stoa.org/author/avarveri"
+        },
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "VII.4.1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-10T18:02:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:54:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "avarveri",
+          "modified": "2015-06-03T13:54:23Z"
+        }
+      ]
+    }
+  ],
+  "id": "100249112",
+  "subject": [
+    "Fortuna Redux",
+    "Marble",
+    "Corinthian order"
+  ],
+  "title": "Temple of Fortuna Augusta",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The temple was dedicated by the <em>duumvir</em>, Marcus Tullius. Sanctuaries dedicated to Fortuna Redux were built in Rome and other Italian cities following Augustus's return from his expeditions of 19-13 BC.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Corinthian order temple in Pompeii dedicated to Fortuna Redux and likely dating to the late first century BC (VII, 4, 1).",
+  "reprPoint": [
+    14.484411687586846,
+    40.7507127052256
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    14.4842694,
+    40.7506238,
+    14.4845545,
+    40.7508031
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/599902893"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-05-26T15:13:18Z",
+  "uri": "https://pleiades.stoa.org/places/100249112",
+  "creators": [
+    {
+      "username": "avarveri",
+      "homepage": null,
+      "name": "Athanasia Varveri",
+      "uri": "https://pleiades.stoa.org/author/avarveri"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-01T03:30:42Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-11T22:04:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-10T18:02:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-10T18:02:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-29T02:03:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-30T02:20:48Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-30T02:18:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-30T20:35:03Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-24T00:09:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "avarveri",
+      "modified": "2015-06-03T17:11:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "avarveri",
+      "modified": "2015-05-28T16:55:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "avarveri",
+      "modified": "2015-05-26T15:13:32Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "avarveri",
+      "modified": "2015-05-26T15:13:20Z"
+    }
+  ]
+}

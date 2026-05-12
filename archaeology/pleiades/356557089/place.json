@@ -1,0 +1,577 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4895266,
+            41.8804439
+          ],
+          [
+            12.4894808,
+            41.8804384
+          ],
+          [
+            12.4894383,
+            41.8804536
+          ],
+          [
+            12.4894248,
+            41.8804776
+          ],
+          [
+            12.4894262,
+            41.8805056
+          ],
+          [
+            12.4898401,
+            41.8806775
+          ],
+          [
+            12.4899176,
+            41.8805784
+          ],
+          [
+            12.4898126,
+            41.8805305
+          ],
+          [
+            12.4898262,
+            41.8805133
+          ],
+          [
+            12.4895628,
+            41.880398
+          ],
+          [
+            12.4895416,
+            41.8804248
+          ],
+          [
+            12.4895266,
+            41.8804439
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basilica-di-santa-balbina",
+      "properties": {
+        "snippet": "Church-2; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/356557089/osm-location-of-basilica-di-santa-balbina",
+        "description": "Representative location of the extant basilica based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Basilica di Santa Balbina"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/52134171",
+          "citationDetail": "Way 52134171",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=52134171",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basilica-di-santa-balbina",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 2100,
+      "title": "OSM location of Basilica di Santa Balbina",
+      "provenance": "OpenStreetMap (Way 52134171, version 7, osm:changeset=55188429, 2018-01-05T14:36:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location of the extant basilica based on OpenStreetMap.",
+      "created": "2018-03-26T13:00:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4895266,
+            41.8804439
+          ],
+          [
+            12.4894808,
+            41.8804384
+          ],
+          [
+            12.4894383,
+            41.8804536
+          ],
+          [
+            12.4894248,
+            41.8804776
+          ],
+          [
+            12.4894262,
+            41.8805056
+          ],
+          [
+            12.4898401,
+            41.8806775
+          ],
+          [
+            12.4899176,
+            41.8805784
+          ],
+          [
+            12.4898126,
+            41.8805305
+          ],
+          [
+            12.4898262,
+            41.8805133
+          ],
+          [
+            12.4895628,
+            41.880398
+          ],
+          [
+            12.4895416,
+            41.8804248
+          ],
+          [
+            12.4895266,
+            41.8804439
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/356557089/osm-location-of-basilica-di-santa-balbina",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "associated modern",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-08T12:46:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-01T20:47:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-26T13:01:26Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-26T13:00:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-26T13:00:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-26T13:00:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-12-22T00:36:01Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/356557089/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-01T20:47:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-26T13:01:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-26T13:01:06Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-22T00:36:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-22T00:36:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-04-30T14:38:26Z",
+      "associationCertainty": "certain",
+      "title": "Regio XII (Piscina Publica)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/356557089/regio-xii-piscina-publica",
+      "connectionType": "part_of_analytical",
+      "id": "regio-xii-piscina-publica",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-22T20:40:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-22T20:21:36Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-22T20:21:10Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-30T14:38:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-30T14:38:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/886355306",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Domus_Cilonis",
+          "citationDetail": "Domus Cilonis",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://edcs.hist.uzh.ch/de/search?edcs-id=EDCS-37900281",
+      "citationDetail": "-37900281 = CIL 15, 07447",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "EDCS",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YG2BW6GH",
+      "formattedCitation": "<div class=\"csl-entry\">Kolb, Anne, Manfred Clauss, Wolfgang A. Slaby, Barbara Woitas, and Bernward Tewes, eds. <i>Epigraphik-Datenbank\u00a0 Clauss / Slaby</i>. Eichst\u00e4tt: Katholische Universit\u00e4t Eichst\u00e4tt-Ingolstadt. Z\u00fcrich: Universit\u00e4t Z\u00fcrich, 1985. https://edcs.hist.uzh.ch.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Domus_Cilonis",
+      "citationDetail": "Domus Cilonis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Lucius_Fabius_Cilo",
+      "citationDetail": "Lucius Fabius Cilo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DD%3Aentry+group%3D2%3Aentry%3Dl-fabius-cilo-domus",
+      "citationDetail": "L. FABIUS CILO, DOMUS",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q24933452",
+      "citationDetail": "Domus Cilonis (Q24933452)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "domus Cilonis",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Domus_Cilonis",
+          "citationDetail": "Domus Cilonis",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "domus-cilonis",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-04-16T22:11:50Z",
+      "uri": "https://pleiades.stoa.org/places/356557089/domus-cilonis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "domus Cilonis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-08T12:47:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-07T19:59:44Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-07T19:59:40Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T22:11:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T22:11:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "356557089",
+  "subject": [],
+  "title": "Domus Cilonis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The house of Lucius Fabius Cilo, praefectus urbi in 203, consul in 193 and 204, and a close friend of the emperor Septimius Severus. The house was a gift of the Severans and appears on the Severan marble plan. Its site is now occupied by the basilica of Santa Balbina on the \"little Aventine\".",
+  "reprPoint": [
+    12.489673886061178,
+    41.8805333705886
+  ],
+  "placeTypes": [
+    "church-2",
+    "townhouse"
+  ],
+  "bbox": [
+    12.4894248,
+    41.880398,
+    12.4899176,
+    41.8806775
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/886355306"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-12-22T00:35:29Z",
+  "uri": "https://pleiades.stoa.org/places/356557089",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update link for EDCS ref. and update wikidata cit. detail",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-19T00:10:35Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-16T22:11:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-06T14:40:21Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-02T15:56:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-01T20:47:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-26T13:01:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-22T01:01:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-22T00:37:10Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-22T00:35:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-22T00:35:29Z"
+    }
+  ]
+}

@@ -1,0 +1,502 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.460127,
+            50.7834363
+          ],
+          [
+            5.4601369,
+            50.7834464
+          ],
+          [
+            5.4602806,
+            50.7835316
+          ],
+          [
+            5.4602738,
+            50.7835477
+          ],
+          [
+            5.4602533,
+            50.7835954
+          ],
+          [
+            5.4601685,
+            50.7836577
+          ],
+          [
+            5.4602137,
+            50.7836995
+          ],
+          [
+            5.4601814,
+            50.783766
+          ],
+          [
+            5.4603962,
+            50.7839421
+          ],
+          [
+            5.4603141,
+            50.7841995
+          ],
+          [
+            5.4593991,
+            50.7840172
+          ],
+          [
+            5.4595049,
+            50.7837829
+          ],
+          [
+            5.4596474,
+            50.7835625
+          ],
+          [
+            5.4598462,
+            50.7834082
+          ],
+          [
+            5.4602621,
+            50.7831314
+          ],
+          [
+            5.460127,
+            50.7834363
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tempelsite",
+      "properties": {
+        "snippet": "Sanctuary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/459717793/osm-location-of-tempelsite",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tempelsite"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/346290310",
+          "citationDetail": "Way 346290310",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=346290310",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tempelsite",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location of Tempelsite",
+      "provenance": "OpenStreetMap (Way 346290310, version 8, osm:changeset=160770604, 2024-12-29T22:45:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-05-21T21:43:38Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.460127,
+            50.7834363
+          ],
+          [
+            5.4601369,
+            50.7834464
+          ],
+          [
+            5.4602806,
+            50.7835316
+          ],
+          [
+            5.4602738,
+            50.7835477
+          ],
+          [
+            5.4602533,
+            50.7835954
+          ],
+          [
+            5.4601685,
+            50.7836577
+          ],
+          [
+            5.4602137,
+            50.7836995
+          ],
+          [
+            5.4601814,
+            50.783766
+          ],
+          [
+            5.4603962,
+            50.7839421
+          ],
+          [
+            5.4603141,
+            50.7841995
+          ],
+          [
+            5.4593991,
+            50.7840172
+          ],
+          [
+            5.4595049,
+            50.7837829
+          ],
+          [
+            5.4596474,
+            50.7835625
+          ],
+          [
+            5.4598462,
+            50.7834082
+          ],
+          [
+            5.4602621,
+            50.7831314
+          ],
+          [
+            5.460127,
+            50.7834363
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/459717793/osm-location-of-tempelsite",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-22T13:38:59Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-10T00:15:38Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-03T23:11:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-01T16:09:10Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-21T21:44:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-21T21:43:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-21T21:43:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-05-21T21:41:36Z",
+      "associationCertainty": "certain",
+      "title": "Atuatuca",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/459717793/8962706585",
+      "connectionType": "at",
+      "id": "8962706585",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-21T21:41:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-21T21:41:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-21T21:41:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/108765",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://nl.wikipedia.org/wiki/nl:Gallo-Romeins%20tempelcomplex%20Tongeren?uselang=en-US",
+      "citationDetail": "Gallo-Romeins tempelcomplex Tongeren",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Dutch)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X8UQRPJW",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: De vrije encyclopedie</i>. Wikimedia Foundation, 2001. https://nl.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q4910752",
+      "citationDetail": "Gallo-Roman temple complex Tongeren (Q4910752)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hartoch 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CLNK4SVF",
+      "formattedCitation": "<div class=\"csl-entry\">Hartoch, Else, ed. <i>Writing Tablets of Roman Tongeren (Belgium): And Associated Wooden Finds</i>. Turnhout, Belgium: Brepols, 2025.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gallo-Roman temple complex Tongeren",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q4910752",
+          "citationDetail": "Gallo-Roman temple complex Tongeren (Q4910752)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "gallo-roman-temple-complex-tongeren",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-07-22T13:41:19Z",
+      "uri": "https://pleiades.stoa.org/places/459717793/gallo-roman-temple-complex-tongeren",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Gallo-Roman temple complex Tongeren",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-24T13:53:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-22T13:41:28Z"
+        },
+        {
+          "comment": "add name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-22T13:41:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-22T13:41:19Z"
+        }
+      ]
+    }
+  ],
+  "id": "459717793",
+  "subject": [],
+  "title": "Tongeren Gallo-Roman temple complex",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Gallo-Roman temple complex of Tongeren is located in the northwestern part of the city of Tongeren. The site pre-dates the Roman city wall.",
+  "reprPoint": [
+    5.459978275684406,
+    50.78372949528016
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    5.4593991,
+    50.7831314,
+    5.4603962,
+    50.7841995
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/108765"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-05-21T21:41:35Z",
+  "uri": "https://pleiades.stoa.org/places/459717793",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Hartoch 2025",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-18T02:20:01Z"
+    },
+    {
+      "comment": "wikidata Gallo-Roman temple complex Tongeren (Q4910752)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-22T13:40:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-03T23:11:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-03T23:11:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-01T16:09:10Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-01T16:09:00Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-21T21:45:24Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-21T21:41:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-21T21:41:35Z"
+    }
+  ]
+}

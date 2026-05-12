@@ -1,0 +1,321 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7099997,
+            42.6568855
+          ],
+          [
+            13.710098,
+            42.6568652
+          ],
+          [
+            13.7104059,
+            42.6567936
+          ],
+          [
+            13.7103095,
+            42.6565542
+          ],
+          [
+            13.7099094,
+            42.656659
+          ],
+          [
+            13.7099997,
+            42.6568855
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/140509391/location-of-roman-villa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Domus della Madonna delle Grazie"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/256628868",
+          "citationDetail": "Way 256628868",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=256628868",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Domus della Madonna delle Grazie",
+      "provenance": "OpenStreetMap (Way 256628868, version 4, osm:changeset=155501433, 2024-08-20T10:24:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-01-14T22:29:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7099997,
+            42.6568855
+          ],
+          [
+            13.710098,
+            42.6568652
+          ],
+          [
+            13.7104059,
+            42.6567936
+          ],
+          [
+            13.7103095,
+            42.6565542
+          ],
+          [
+            13.7099094,
+            42.656659
+          ],
+          [
+            13.7099997,
+            42.6568855
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/140509391/location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-18T13:57:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-28T23:54:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-22T14:08:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-15T01:08:10Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-14T22:29:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-14T22:29:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-14T22:29:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-30T16:52:49Z",
+      "associationCertainty": "certain",
+      "title": "Interamnia Praetuttiorum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/140509391/1696101746",
+      "connectionType": "at",
+      "id": "1696101746",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T16:52:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T16:52:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T16:52:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413179",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Angeletti 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/256CB5MY",
+      "formattedCitation": "<div class=\"csl-entry\">Angeletti, Glauco. \u201cVilla romana. Grasciano (Notaresco).\u201d In <i>Teramo e la valle del Tordino</i>, 180\u201381. Teramo: Fondazione Cassa di Risparmio della Provincia di Teramo,\u00a0 Tercas, 2006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130554104",
+      "citationDetail": "Q130554104",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "140509391",
+  "subject": [],
+  "title": "Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of an early imperial period Roman villa, the so-called \"Domus della Madonna delle Grazie\".",
+  "reprPoint": [
+    13.71015844522715,
+    42.65672309095119
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    13.7099094,
+    42.6565542,
+    13.7104059,
+    42.6568855
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413179"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-30T16:52:48Z",
+  "uri": "https://pleiades.stoa.org/places/140509391",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q130554104",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-18T14:00:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-28T10:50:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-27T14:49:59Z"
+    },
+    {
+      "comment": "update summary, add reference",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-27T14:49:54Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T16:53:07Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T16:52:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T16:52:48Z"
+    }
+  ]
+}

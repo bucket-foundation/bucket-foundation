@@ -1,0 +1,938 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4807872,
+          41.8907711
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Sanctuary, ; 750 BC - AD 1453",
+        "link": "https://pleiades.stoa.org/places/103123065/osm-location",
+        "description": "Representative point location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Sacred Area of S. Omobono"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4807872,
+            41.8907711
+          ],
+          [
+            12.4809502,
+            41.8903963
+          ],
+          [
+            12.4809974,
+            41.8904064
+          ],
+          [
+            12.4810982,
+            41.8904296
+          ],
+          [
+            12.4811152,
+            41.8903856
+          ],
+          [
+            12.4812276,
+            41.8904106
+          ],
+          [
+            12.4813521,
+            41.8904327
+          ],
+          [
+            12.481493,
+            41.8904511
+          ],
+          [
+            12.4816608,
+            41.8904645
+          ],
+          [
+            12.4817673,
+            41.8904729
+          ],
+          [
+            12.4817592,
+            41.8908056
+          ],
+          [
+            12.4815633,
+            41.8908071
+          ],
+          [
+            12.4814682,
+            41.8908092
+          ],
+          [
+            12.4814605,
+            41.8906553
+          ],
+          [
+            12.4814243,
+            41.8906154
+          ],
+          [
+            12.4813425,
+            41.8906164
+          ],
+          [
+            12.4813181,
+            41.8906629
+          ],
+          [
+            12.481272,
+            41.8906622
+          ],
+          [
+            12.4812765,
+            41.8908818
+          ],
+          [
+            12.4807872,
+            41.8907711
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temples-of-the-sacred-area-of-s",
+      "properties": {
+        "snippet": "Temple-2; 750 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/103123065/osm-location-of-temples-of-the-sacred-area-of-s",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temples of the Sacred Area of S. Ombono"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1271762373",
+          "citationDetail": "Node 1271762373",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1271762373",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 1453,
+      "title": "OSM Location of Sacred Area of S. Omobono",
+      "provenance": "OpenStreetMap (Node 1271762373, version 2, osm:changeset=8892094, 2011-08-01T15:47:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary",
+        ""
+      ],
+      "description": "Representative point location based on OpenStreetMap",
+      "created": "2013-02-23T18:25:53Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4807872,
+          41.8907711
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/103123065/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-04T20:14:33Z"
+        },
+        {
+          "comment": "updated place type, added archaeology",
+          "modifiedBy": "thomase",
+          "modified": "2016-07-01T00:54:56Z"
+        },
+        {
+          "comment": "title and description",
+          "modifiedBy": "thomase",
+          "modified": "2016-07-01T00:53:39Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-12T16:33:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-14T15:39:11Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-23T18:27:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-23T18:25:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-23T18:25:55Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/111669472",
+          "citationDetail": "Way 111669472",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=111669472",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temples-of-the-sacred-area-of-s",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Temples of the Sacred Area of S. Ombono",
+      "provenance": "OpenStreetMap (Way 111669472, version 7, osm:changeset=52033730, 2017-09-14T11:13:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-05-25T20:29:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4807872,
+            41.8907711
+          ],
+          [
+            12.4809502,
+            41.8903963
+          ],
+          [
+            12.4809974,
+            41.8904064
+          ],
+          [
+            12.4810982,
+            41.8904296
+          ],
+          [
+            12.4811152,
+            41.8903856
+          ],
+          [
+            12.4812276,
+            41.8904106
+          ],
+          [
+            12.4813521,
+            41.8904327
+          ],
+          [
+            12.481493,
+            41.8904511
+          ],
+          [
+            12.4816608,
+            41.8904645
+          ],
+          [
+            12.4817673,
+            41.8904729
+          ],
+          [
+            12.4817592,
+            41.8908056
+          ],
+          [
+            12.4815633,
+            41.8908071
+          ],
+          [
+            12.4814682,
+            41.8908092
+          ],
+          [
+            12.4814605,
+            41.8906553
+          ],
+          [
+            12.4814243,
+            41.8906154
+          ],
+          [
+            12.4813425,
+            41.8906164
+          ],
+          [
+            12.4813181,
+            41.8906629
+          ],
+          [
+            12.481272,
+            41.8906622
+          ],
+          [
+            12.4812765,
+            41.8908818
+          ],
+          [
+            12.4807872,
+            41.8907711
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/103123065/osm-location-of-temples-of-the-sacred-area-of-s",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-26T10:55:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T20:30:38Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T20:30:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T20:29:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T20:29:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:47:54Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/103123065/423025",
+      "connectionType": "at",
+      "id": "423025",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "ctype, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-26T19:02:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q2552044",
+          "citationDetail": "Q2552044: Sant'Omobono Area",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-03-31T15:21:22Z",
+      "associationCertainty": "certain",
+      "title": "Forum Boarium (at Rome)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/103123065/forum-boarium",
+      "connectionType": "part_of_analytical",
+      "id": "forum-boarium",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-26T21:39:12Z"
+        },
+        {
+          "comment": "wikidata Q2552044",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-22T13:22:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-01T18:11:44Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-31T15:21:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-31T15:21:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/207271756",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q2552044",
+          "citationDetail": "Q2552044",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sant%27Omobono",
+      "citationDetail": "Sant'Omobono",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Sant'Omobono.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://intarch.ac.uk/journal/issue31/terrenato_index.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Terrenato et al. 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PSC3HKNQ",
+      "formattedCitation": "<div class=\"csl-entry\">Terrenato, Nicola. \u201cInternet Archaeol. 31. Terrenato et Al. The S. Omobono Sanctuary in Rome - Summary.\u201d Text.article, March 12, 2012. http://intarch.ac.uk/journal/issue31/terrenato_index.html.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coarelli 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T4KZ2PUM",
+      "formattedCitation": "<div class=\"csl-entry\">Coarelli, Filippo. <i>Il Foro Boario: dalle origini alla fine della Repubblica</i>. Roma: Quasar, 1988.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brocato and Terrenato 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J29VC93Z",
+      "formattedCitation": "<div class=\"csl-entry\">Brocato, Paolo, and Nicola Terrenato. <i>Nuove ricerche nell\u2019area archeologica di S. Omobono a Roma</i>. Arcavacata di Rende (CS): Universit\u00e0 della Calabria, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Diffendale et al. 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/54JSKWZV",
+      "formattedCitation": "<div class=\"csl-entry\">Diffendale, Daniel P, Paolo Brocato, Nicola Terrenato, and Andrea L Brock. \u201cSant\u2019Omobono: An Interim Status Quaestionis.\u201d <i>J. Roman Archaeol. Journal of Roman Archaeology</i> 29 (2016): 7\u201342.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/8015152/area-sacra-di-sant-omobono.html",
+      "citationDetail": "8015152: Area Sacra di Sant'Omobono",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/8015151/sant-omobono.html",
+      "citationDetail": "8015151: Sant'Omobono",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/rome-in-the-bronze-age-late-second-millennium-bc-radiocarbon-dates-from-the-forum-boarium/FC330DF9331002E9D359398E09204073",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brock and Terrenato 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GXAUSXA4",
+      "formattedCitation": "<div class=\"csl-entry\">Brock, Andrea L., and Nicola Terrenato. \u201cRome in the Bronze Age: Late Second-Millennium BC Radiocarbon Dates from the Forum Boarium.\u201d <i>Antiquity</i> 90, no. 351 (June 2016): 654\u201364. doi:10.15184/aqy.2016.65.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/17947/",
+      "citationDetail": "17947: Area sacra di San Omobono",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2552044",
+      "citationDetail": "Q2552044: Sant'Omobono Area",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125SMMa",
+      "citationDetail": "Mater Matuta temple (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Area Sacra di Sant'Omobono",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8015152/area-sacra-di-sant-omobono.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 8015152",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "area-sacra-di-santomobono",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name for the archaeological site.",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-06-29T17:24:41Z",
+      "uri": "https://pleiades.stoa.org/places/103123065/area-sacra-di-santomobono",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Area Sacra di Sant'Omobono",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-07-01T00:53:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T17:25:00Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T17:24:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T17:24:41Z"
+        }
+      ]
+    }
+  ],
+  "id": "103123065",
+  "subject": [],
+  "title": "Sacred Area of S. Omobono",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological area in the Forum Boarium comprising an ancient ritual precinct with twin temples ranging in date from the Archaic period through the time of the Roman Empire. The Medieval church dedicated to S. Omobono stands atop the remains of one of the two ancient temples.",
+  "reprPoint": [
+    12.481045501482495,
+    41.89070268988723
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    12.4807872,
+    41.8903856,
+    12.4817673,
+    41.8908818
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/207271756"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-02-23T18:23:50Z",
+  "uri": "https://pleiades.stoa.org/places/103123065",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-02T20:17:30Z"
+    },
+    {
+      "comment": "added references, cleaned up others",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-26T19:01:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-22T19:05:42Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-22T19:01:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-01T01:39:31Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2014-04-04T17:11:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-12T16:32:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-04-14T15:37:58Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-23T18:25:19Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-23T18:24:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-23T18:23:50Z"
+    }
+  ]
+}

@@ -1,0 +1,1467 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.5664463,
+          35.2663435
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement-modern, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/668292/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of modern Shaizar"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "mgrawehr",
+      "homepage": null,
+      "name": "Matthias Grawehr",
+      "uri": "https://pleiades.stoa.org/author/mgrawehr"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "enesy",
+      "homepage": null,
+      "name": "Enes Y\u0131landilo\u011flu",
+      "uri": "https://pleiades.stoa.org/author/enesy"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/572557538",
+          "citationDetail": "Node 572557538",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=572557538",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "OSM location of modern Shaizar",
+      "provenance": "OpenStreetMap (Node 572557538, version 1, osm:changeset=3232132, 2009-11-27T22:06:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-02-26T04:34:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.5664463,
+          35.2663435
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668292/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-03T12:08:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-26T04:37:42Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-26T04:36:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-26T04:34:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-26T04:34:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-07-31T20:14:26Z",
+      "associationCertainty": "certain",
+      "title": "Orontes (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/668292/orontes-river",
+      "connectionType": "on",
+      "id": "orontes-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-01T11:16:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-31T20:14:35Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-31T20:14:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-31T20:14:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/658560",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://topostext.org/place/353366ULar",
+          "citationDetail": "Larisa (Syria)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "ToposText",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+          "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "68 C3 Larissa/Sizara",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "\u03a3\u1f77\u03b6\u03b1\u03c1\u03b1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace516.html",
+      "citationDetail": "9C5 (Talbert 516)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "TP (Talbert: CUP)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/353366ULar",
+      "citationDetail": "Larisa (Syria)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "Kiesling, Brady. ToposText \u2013 a Reference Tool for Greek Civilization. Version 2.0. Aikaterini Laskaridis Foundation, 2016-.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "3807",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/936644063",
+      "citationDetail": "187,6",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ItAnt (Cuntz)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4UH8NCU",
+      "formattedCitation": "<div class=\"csl-entry\">Cuntz, Otto, ed. <i>Itineraria Antonini Augusti et Burdigalense</i>. Itineraria Romana 1. Leipzig: Teubner, 1929. http://www.worldcat.org/oclc/936644063.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "824",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ItMiller",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q8X83VMV",
+      "formattedCitation": "<div class=\"csl-entry\">Miller, Konrad. <i>Itineraria romana: R\u00f6mische Reisewege an der Hand der Tabula Peutingeriana</i>. Stuttgart: Strecker und Schr\u00f6der, 1916. http://www.worldcat.org/oclc/6684340.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://tp-online.ku.de/trefferanzeige_en.php?id=2948",
+      "citationDetail": "2948: Larissa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "KU TP Database (Rathmann)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KDZ6Q72N",
+      "formattedCitation": "<div class=\"csl-entry\">Ingolstadt, Katholische Universit\u00e4t Eichst\u00e4tt-. \u201cTabula Peutingeriana.\u201d Datenbank tp-online. Accessed June 4, 2025. https://www.ku.de/ggf/geschichte/alte-geschichte/forschung/datenbank-tp-online.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://nomisma.org/id/larissa_syria",
+      "citationDetail": "Larissa, Syria",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "nomisma.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N5BAUNTN",
+      "formattedCitation": "<div class=\"csl-entry\">Meadows, Andrew, Sebastian Heath, and Ethan Gruber. <i>Nomisma.Org</i>. New York: American Numismatic Society, 2010. http://nomisma.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q11931176",
+      "citationDetail": "Larisa in Syria (Q11931176)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Larissa",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "larissa",
+      "end": 1453,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mgrawehr",
+          "homepage": null,
+          "name": "Matthias Grawehr",
+          "uri": "https://pleiades.stoa.org/author/mgrawehr"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 68 C3 Larissa/Sizara",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2025-07-10T07:03:42Z",
+      "uri": "https://pleiades.stoa.org/places/668292/larissa",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        }
+      ],
+      "attested": "\u039b\u03ac\u03c1\u03b9\u03c3\u03c3\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Byzantine period added (name attested e.g. by Anna Komnena around 1150 CE and in Suidas) by @mgrawehr",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T17:40:50Z"
+        },
+        {
+          "comment": "greek",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-03T14:47:01Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-03T12:12:50Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:45:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T14:03:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:28:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:22:58Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sizara",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "sizara",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 68 C3 Larissa/Sizara",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2021-04-03T12:10:52Z",
+      "uri": "https://pleiades.stoa.org/places/668292/sizara",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        }
+      ],
+      "attested": "\u03a3\u1f77\u03b6\u03b1\u03c1\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "greek",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-03T14:47:15Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-03T12:10:52Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:45:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T14:03:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:28:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:22:59Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sezer",
+      "attestations": [
+        {
+          "timePeriod": "twelfth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twelfth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.google.com/books/edition/Historia/WjIkhs-jGoQC?hl=en",
+          "citationDetail": "29.63",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nicetas Choniates (van Dieten, 1835)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5FMP3DNB",
+          "formattedCitation": "<div class=\"csl-entry\">Choniates, Nicetas, and Ioannes A. van Dieten. <i>Historia</i>. Walter de Gruyter, 1975. https://www.google.com/books/edition/Historia/WjIkhs-jGoQC?hl=en.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sezer",
+      "end": 1199,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1100,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2025-07-10T07:24:08Z",
+      "uri": "https://pleiades.stoa.org/places/668292/sezer",
+      "creators": [
+        {
+          "username": "mgrawehr",
+          "homepage": null,
+          "name": "Matthias Grawehr",
+          "uri": "https://pleiades.stoa.org/author/mgrawehr"
+        }
+      ],
+      "attested": "\u03a3\u03ad\u03b6\u03b5\u03c1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:51:14Z"
+        },
+        {
+          "comment": "correct typo in reference D'OH!",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:47:28Z"
+        },
+        {
+          "comment": "add Nicetas Choniates (van Dieten, 1835)) to zotero, establish link to reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:45:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:38:24Z"
+        },
+        {
+          "comment": "Medieval Greek name form",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:24:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:24:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Shayzar, Sheizar, \u0160ayzar, Cheizar, Chaizar",
+      "attestations": [
+        {
+          "timePeriod": "crusader-seljuq-ayyubid-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/crusader-seljuq-ayyubid-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "shayzar",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1099,
+      "details": "<p>name first attested in a peace contract of 1285 and still the official spelling today</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-07-10T07:37:11Z",
+      "uri": "https://pleiades.stoa.org/places/668292/shayzar",
+      "creators": [
+        {
+          "username": "mgrawehr",
+          "homepage": null,
+          "name": "Matthias Grawehr",
+          "uri": "https://pleiades.stoa.org/author/mgrawehr"
+        }
+      ],
+      "attested": "\u0634\u064a\u0632\u0631",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:51:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:37:40Z"
+        },
+        {
+          "comment": "Arabic name added",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:37:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:37:11Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Seidjar, Sedjar, Segiar, Seijar, S\u00e9jar, Chajar",
+      "attestations": [
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "https://archive.org/details/in.ernet.dli.2015.22956/page/n175/mode/2up",
+          "accessURI": "http://archive.org/details/in.ernet.dli.2015.22956",
+          "citationDetail": "p. 143-144",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Burckhardt 1822",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MUU2MN5Y",
+          "formattedCitation": "<div class=\"csl-entry\">Burckhardt, John Lewis. <i>Travels In Syria And Holy Land</i>, 1822. http://archive.org/details/in.ernet.dli.2015.22956.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sedjar-s",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1300,
+      "details": "<p>colloquial name variant attested since the 15th century CE and today still rarely used</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-07-10T07:39:22Z",
+      "uri": "https://pleiades.stoa.org/places/668292/sedjar-s",
+      "creators": [
+        {
+          "username": "mgrawehr",
+          "homepage": null,
+          "name": "Matthias Grawehr",
+          "uri": "https://pleiades.stoa.org/author/mgrawehr"
+        }
+      ],
+      "attested": "\u0633\u064a\u062c\u0627\u0631",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:51:29Z"
+        },
+        {
+          "comment": "add Burckhardt 1822 to zotero library, establish reference link",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:50:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T08:00:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T08:00:27Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:59:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:58:45Z"
+        },
+        {
+          "comment": "colloquial arabic name variant added",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:58:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:39:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T07:39:22Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sinzar",
+      "attestations": [
+        {
+          "timePeriod": "egyptian-hittite-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/egyptian-hittite-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "53, line 42",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "EA",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8R6FX6I7",
+          "formattedCitation": "<div class=\"csl-entry\">Rainey, Anson F, and William M Schniedewind. <i>The El-Amarna Correspondence: A New Edition of the Cuneiform Letters from the Site of El-Amarna Based on Collations of All Extant Tablets</i>. Handbook of Oriental Studies. Section 1, Ancient Near East 110. Leiden, Boston: Brill, 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sinzar",
+      "end": -1212,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1344,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2025-07-10T08:11:10Z",
+      "uri": "https://pleiades.stoa.org/places/668292/sinzar",
+      "creators": [
+        {
+          "username": "mgrawehr",
+          "homepage": null,
+          "name": "Matthias Grawehr",
+          "uri": "https://pleiades.stoa.org/author/mgrawehr"
+        }
+      ],
+      "attested": "S\u00ed-in-za-ar",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:41:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T08:11:36Z"
+        },
+        {
+          "comment": "Akkadian name",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T08:11:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T08:11:10Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sheiza",
+      "attestations": [
+        {
+          "timePeriod": "twelfth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twelfth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://archive.org/details/unset0000unse_y1d1/page/32/mode/2up",
+          "citationDetail": "p. 32 (p. 50 Hebrew section)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Adler 1907",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4BHPAAYM",
+          "formattedCitation": "<div class=\"csl-entry\">Marcus nathan Adler. <i>The Itinerary Of Benjamin Of Tudela</i>. Philip Feldheim, Inc., 1907. http://archive.org/details/unset0000unse_y1d1.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sheiza",
+      "end": 1199,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1100,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "he",
+      "created": "2025-07-10T08:34:43Z",
+      "uri": "https://pleiades.stoa.org/places/668292/sheiza",
+      "creators": [
+        {
+          "username": "mgrawehr",
+          "homepage": null,
+          "name": "Matthias Grawehr",
+          "uri": "https://pleiades.stoa.org/author/mgrawehr"
+        }
+      ],
+      "attested": "\ufb2a\u05d9\u05d6\u05d0",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:43:40Z"
+        },
+        {
+          "comment": "add The Itinerary Of benjamin Of Tudela to Zotero, establish link to reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:42:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T08:35:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T08:34:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T08:34:43Z"
+        }
+      ]
+    },
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Larissa/Sizara",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "68 C3 Larissa/Sizara",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "larissa-sizara",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-07-10T13:40:03Z",
+      "uri": "https://pleiades.stoa.org/places/668292/larissa-sizara",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Larissa/Sizara",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T17:46:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:51:41Z"
+        },
+        {
+          "comment": "add batlas name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:40:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:40:03Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Larissa",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/us/talbert/talbertdatabase/TPPlace516.html",
+          "citationDetail": "9C5 (Talbert 516)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "TP (Talbert: CUP)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "larissa-1",
+      "end": 640,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-07-10T13:40:59Z",
+      "uri": "https://pleiades.stoa.org/places/668292/larissa-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Larissa",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T17:46:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:50:37Z"
+        },
+        {
+          "comment": "TP name TP reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:41:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-10T13:40:59Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Larisa",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1",
+          "citationDetail": "16.2.10",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Str. (Meineke: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+          "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877. http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://archive.org/details/bub_gb_sZs-AAAAcAAJ",
+          "citationDetail": "\u039b\u03ac\u03c1\u03b9\u03c3\u03b1\u03b9 (pages 412-413)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "StByz (Meineke; archive.org)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/25I8PUYK",
+          "formattedCitation": "<div class=\"csl-entry\">Stephanos Byzantinioi. <i>Ethnik\u014dn: a geographical lexicon on ancient cities, peoples, tribes and toponyms (Stephani Byzantinii Ethnicorum quae supersunt ex recensione Augusti Meinekii)</i>. Edited by August Meineke. Chicago, Ill.: Ares Publishers, 1992. https://archive.org/details/bub_gb_sZs-AAAAcAAJ.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "larisa",
+      "end": 640,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "<p>This orthographic variant was also used on the coins minted in Larissa in 86/85 BC.</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2025-07-10T17:41:28Z",
+      "uri": "https://pleiades.stoa.org/places/668292/larisa",
+      "creators": [
+        {
+          "username": "mgrawehr",
+          "homepage": null,
+          "name": "Matthias Grawehr",
+          "uri": "https://pleiades.stoa.org/author/mgrawehr"
+        }
+      ],
+      "attested": "\u039b\u03ac\u03c1\u03b9\u03c3\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T19:49:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T19:49:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T19:48:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T18:54:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T18:54:11Z"
+        },
+        {
+          "comment": "added Time periods and references",
+          "modifiedBy": "mgrawehr",
+          "modified": "2025-07-10T18:51:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T17:41:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T17:41:28Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "\u015e\u012brez",
+      "attestations": [
+        {
+          "timePeriod": "sixteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx",
+          "citationDetail": "1st Volume, 352, s.v. \"\u015e\u012brez\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "K\u00fcnh\u00fc'l-ahb\u00e2r",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WKDD5W8W",
+          "formattedCitation": "<div class=\"csl-entry\">\u00c2li, Mustafa bin Ahmet. <i>K\u00fcnh\u00fc\u2019l-ahb\u00e2r: (tenkitli metin)</i>. Edited by Suat Donuk and Derya \u00d6rs. 1. bask\u0131. 5 vols. T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131 yay\u0131nlar\u0131. Fatih, \u0130stanbul: T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131, 2020. https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "sirez",
+      "end": 1599,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1500,
+      "details": "<p class=\"p1\"><em>\u015e\u012brez</em>: A town with a fortress, close to\u00a0<em>\u1e24am\u0101</em> (<span>Amathe/Epiphaneia</span>). [translation]</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ota",
+      "created": "2025-11-18T21:48:50Z",
+      "uri": "https://pleiades.stoa.org/places/668292/sirez",
+      "creators": [
+        {
+          "username": "enesy",
+          "homepage": null,
+          "name": "Enes Y\u0131landilo\u011flu",
+          "uri": "https://pleiades.stoa.org/author/enesy"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-21T18:25:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-21T18:25:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-18T21:48:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-18T21:48:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "enesy",
+          "modified": "2025-11-18T21:48:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "668292",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Larissa/Sizara",
+  "provenance": "Barrington Atlas: BAtlas 68 C3 Larissa/Sizara",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Shaizar</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient settlement located on the Orontes river to the southeast of Apamea. Scholars identify it with modern Shaizar in Syria.",
+  "reprPoint": [
+    36.5664463,
+    35.2663435
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    36.5664463,
+    35.2663435,
+    36.5664463,
+    35.2663435
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/658560"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-04-03T12:05:15Z",
+  "uri": "https://pleiades.stoa.org/places/668292",
+  "creators": [
+    {
+      "username": null,
+      "name": "J.P. Brown"
+    },
+    {
+      "username": null,
+      "name": "P.-L. Gatier"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-10T13:39:20Z"
+    },
+    {
+      "comment": "summary; added DARMC reference to maintain linkage after retracting less precise location",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-03T14:46:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-31T20:13:04Z"
+    },
+    {
+      "comment": "add ToposText reference provided by bkiesling",
+      "modifiedBy": "admin",
+      "modified": "2018-06-08T00:11:07Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2018-06-08T00:11:03Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-02-26T04:32:49Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:09:05Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:45:46Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T19:02:47Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:56:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-19T14:03:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T12:28:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T12:22:58Z"
+    }
+  ]
+}

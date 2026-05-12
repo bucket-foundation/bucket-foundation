@@ -1,0 +1,398 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4707356,
+            37.8705833
+          ],
+          [
+            12.4705405,
+            37.872108
+          ],
+          [
+            12.4705008,
+            37.8737417
+          ],
+          [
+            12.4705972,
+            37.875738
+          ],
+          [
+            12.470383,
+            37.8826545
+          ],
+          [
+            12.4707086,
+            37.8845874
+          ],
+          [
+            12.4710125,
+            37.8858142
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-strada-fenicia-sommersa",
+      "properties": {
+        "snippet": "Causeway; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/464327/osm-location-of-strada-fenicia-sommersa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Strada Fenicia sommersa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/250719745",
+          "citationDetail": "Way 250719745",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=250719745",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-strada-fenicia-sommersa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/causeway"
+      ],
+      "end": -550,
+      "title": "OSM location of Strada Fenicia sommersa",
+      "provenance": "OpenStreetMap (Way 250719745, version 2, osm:changeset=19898118, 2014-01-09T11:21:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/causeway"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "causeway"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-11-24T15:21:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4707356,
+            37.8705833
+          ],
+          [
+            12.4705405,
+            37.872108
+          ],
+          [
+            12.4705008,
+            37.8737417
+          ],
+          [
+            12.4705972,
+            37.875738
+          ],
+          [
+            12.470383,
+            37.8826545
+          ],
+          [
+            12.4707086,
+            37.8845874
+          ],
+          [
+            12.4710125,
+            37.8858142
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/464327/osm-location-of-strada-fenicia-sommersa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-03T21:57:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-24T15:21:55Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-24T15:21:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-24T15:21:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-24T15:21:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:46:15Z",
+      "associationCertainty": "certain",
+      "title": "Motya",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/464327/462373",
+      "connectionType": "connection",
+      "id": "462373",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:46:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:46:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:46:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462373",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "47 A3",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "27-30",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Isserlin 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VFUNQ3WA",
+      "formattedCitation": "<div class=\"csl-entry\">Isserlin, B. S. J, and Joan du Plat Taylor. <i>Motya: A Phoenician and Carthaginian City in Sicily: A Report of the Excavations Undertaken during the Years 1961-65 on Behalf of the University of Leeds, the Institute of Archaeology of London University, and Fairleigh Dickinson University, New Jersey</i>. Leiden: Brill, 1974.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Motya",
+      "citationDetail": "Motya",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Motya.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=motya",
+      "citationDetail": "MOTYA (St. Pantateo) Trapani, Sicily",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131316010",
+      "citationDetail": "Mozia causeway (Q131316010)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "464327",
+  "subject": [],
+  "title": "Motya causeway",
+  "provenance": "Barrington Atlas: BAtlas 47 A3",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/causeway"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Motya</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of a causeway that once connected Motya to the Sicilian mainland.",
+  "reprPoint": [
+    12.470553601404351,
+    37.87821930783188
+  ],
+  "placeTypes": [
+    "causeway"
+  ],
+  "bbox": [
+    12.470383,
+    37.8705833,
+    12.4710125,
+    37.8858142
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462373"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-11T15:06:10Z",
+  "uri": "https://pleiades.stoa.org/places/464327",
+  "creators": [
+    {
+      "username": null,
+      "name": "R.J.A. Wilson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-24T15:26:45Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-03T20:47:55Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-04T16:42:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-11-25T20:39:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2013-01-21T00:39:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2013-01-21T00:37:58Z"
+    },
+    {
+      "comment": "edited title and description",
+      "modifiedBy": "jbecker",
+      "modified": "2013-01-19T22:21:18Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:24:19Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:57:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T20:00:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T15:23:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T15:06:10Z"
+    }
+  ]
+}

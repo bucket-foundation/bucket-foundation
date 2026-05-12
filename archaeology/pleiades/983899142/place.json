@@ -1,0 +1,299 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.3993011,
+          41.7809628
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-della-longarina",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/983899142/osm-location-of-villa-della-longarina",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa della Longarina"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/8866710875",
+          "citationDetail": "Node 8866710875",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=8866710875",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-della-longarina",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa della Longarina",
+      "provenance": "OpenStreetMap (Node 8866710875, version 1, osm:changeset=106982340, 2021-06-25T20:09:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-09-18T13:11:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.3993011,
+          41.7809628
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/983899142/osm-location-of-villa-della-longarina",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-14T21:22:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-14T02:24:08Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-18T13:11:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-18T13:11:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-18T13:11:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/58283/",
+      "citationDetail": "58283: Villa della Longarina",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=3938",
+      "citationDetail": "3938: villa romana della Longarina",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "villa romana della Longarina",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=3938",
+          "citationDetail": "3938: villa romana della Longarina",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Info.roma.it",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "villa-romana-della-longarina",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-12-09T02:06:30Z",
+      "uri": "https://pleiades.stoa.org/places/983899142/villa-romana-della-longarina",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "villa romana della Longarina",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-17T19:42:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-09T02:06:43Z"
+        },
+        {
+          "comment": "add name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-09T02:06:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-09T02:06:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "983899142",
+  "subject": [],
+  "title": "Villa della Longarina",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ruins of a Roman villa rustica located near modern Giardino di Roma, just north of Via Cristoforo Colombo southwest of Rome.",
+  "reprPoint": [
+    12.3993011,
+    41.7809628
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    12.3993011,
+    41.7809628,
+    12.3993011,
+    41.7809628
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-18T13:11:04Z",
+  "uri": "https://pleiades.stoa.org/places/983899142",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "info.roma 3938: villa romana della Longarina",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-09T02:05:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-14T21:22:27Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-14T21:22:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-14T02:24:08Z"
+    },
+    {
+      "comment": "summary, vici.org ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-14T02:24:04Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-18T13:11:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-18T13:11:04Z"
+    }
+  ]
+}

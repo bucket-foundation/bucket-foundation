@@ -1,0 +1,14 @@
+# Aphareus
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/543632
+- **ID**: 543632
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Aphareus
+
+## Description
+
+An ancient place, cited: BAtlas 55 unlocated Aphareus

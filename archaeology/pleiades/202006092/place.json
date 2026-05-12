@@ -1,0 +1,280 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5406195,
+          41.7065682
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tor-tignosa",
+      "properties": {
+        "snippet": "Tower-defensive",
+        "link": "https://pleiades.stoa.org/places/202006092/osm-location-of-tor-tignosa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tor Tignosa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9442788140",
+          "citationDetail": "Node 9442788140",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9442788140",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tor-tignosa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "end": null,
+      "title": "OSM location of Tor Tignosa",
+      "provenance": "OpenStreetMap (Node 9442788140, version 2, osm:changeset=116510887, 2022-01-23T18:38:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tower-defensive"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-07-25T12:25:07Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5406195,
+          41.7065682
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/202006092/osm-location-of-tor-tignosa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-08T10:28:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T20:08:48Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-25T12:25:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-25T12:25:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-25T12:25:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "3, 248",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nibby 1844",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N47ZI37I",
+      "formattedCitation": "<div class=\"csl-entry\">Nibby, A. <i>Analisi storico-topografico-antiquaria della carta de\u2019 dintorni di Roma</i>. 2. ed. Roma: Tip. delle Belle arti, 1848.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://db.edcs.eu/epigr/epi_url.php?s_sprache=en&p_edcs_id=EDCS-26200348",
+      "citationDetail": " 26200348 = MNR inv. 135847 = CIL 122843 = ILLRP 1271 = AE 1960, 138",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EDCS",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YG2BW6GH",
+      "formattedCitation": "<div class=\"csl-entry\">Clauss, Manfred, Anne Kolb, Wolfgang A. Slaby, and Barbara Woitas, eds. <i>Epigraphik-Datenbank\u00a0 Clauss / Slaby</i>. Eichst\u00e4tt: Universit\u00e4t Eichst\u00e4tt-Ingolstadt, n.d. http://www.manfredclauss.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "14",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Flower 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AME8DJMK",
+      "formattedCitation": "<div class=\"csl-entry\">Flower, Harriet I. <i>The Dancing Lares and the Serpent in the Garden: Religion at the Roman Street Corner</i>. Princeton: Princeton University, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archive.org/details/TorTignosa.Epigraphica.2014",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "La Regina 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WPRBRTED",
+      "formattedCitation": "<div class=\"csl-entry\">La Regina, Adriano. \u201cDedica Ai Lari, Non al \u2018Lare Aenia\u2019 (CIL I 2 2843).\u201d <i>Epigraphica</i> 76 (2014): 433\u201336. https://archive.org/details/TorTignosa.Epigraphica.2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.imago.archiviodistatoroma.beniculturali.it/Alessandrino/scheda.php?r=433A/5",
+      "citationDetail": "Catasto Alessandrino 433A/5: Sviluppo della strada fuori Porta S. Sebastiano e Latina fino a Nettuno",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "IMAGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5YLUDMI7",
+      "formattedCitation": "<div class=\"csl-entry\">Archivio di Stato di Roma. \u201cIMAGO.\u201d Accessed August 7, 2022. http://www.cflr.beniculturali.it/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.imago.archiviodistatoroma.beniculturali.it/Alessandrino/scheda.php?r=433A/41",
+      "citationDetail": "433A/4Catasto Alessandrino 1: Tenuta di Torre Tignosa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "IMAGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5YLUDMI7",
+      "formattedCitation": "<div class=\"csl-entry\">Archivio di Stato di Roma. \u201cIMAGO.\u201d Accessed August 7, 2022. http://www.cflr.beniculturali.it/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "202006092",
+  "subject": [],
+  "title": "Tor Tignosa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive",
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tor Tignosa, mapped and listed in the 17th century Catasto Alessandrino as a landed estate, is a ruined stone structure located some 8 km northeast of Lavinium. Multiple votive inscriptions were found in the vicinity, providing evidence for an ancient sanctuary dating to between the fifth and second centuries BCE.",
+  "reprPoint": [
+    12.5406195,
+    41.7065682
+  ],
+  "placeTypes": [
+    "tower-defensive",
+    "sanctuary"
+  ],
+  "bbox": [
+    12.5406195,
+    41.7065682,
+    12.5406195,
+    41.7065682
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-20T01:00:38Z",
+  "uri": "https://pleiades.stoa.org/places/202006092",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-08T10:28:08Z"
+    },
+    {
+      "comment": "fixed typo in summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-07T21:19:20Z"
+    },
+    {
+      "comment": "added Catasto Alessandrino references",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-07T21:18:55Z"
+    },
+    {
+      "comment": "added La Regina 2014; cleaned up EDCS reference",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-07T21:11:32Z"
+    },
+    {
+      "comment": "summary; place type = sanctuary",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-07T21:04:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-06T20:08:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-25T12:28:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-20T02:27:49Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-20T01:00:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-20T01:00:38Z"
+    }
+  ]
+}

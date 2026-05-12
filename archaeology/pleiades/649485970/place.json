@@ -1,0 +1,274 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.3814746,
+            52.5891796
+          ],
+          [
+            -0.3433424,
+            52.5875572
+          ],
+          [
+            -0.3305965,
+            52.5826499
+          ],
+          [
+            -0.3202395,
+            52.5772187
+          ],
+          [
+            -0.3177278,
+            52.5770909
+          ],
+          [
+            -0.1093741,
+            52.5664914
+          ],
+          [
+            -0.0728588,
+            52.5646174
+          ],
+          [
+            -0.07245,
+            52.5645964
+          ],
+          [
+            -0.0446001,
+            52.5703776
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-fen-causeway",
+      "properties": {
+        "snippet": "Road; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/649485970/osm-location-of-fen-causeway",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Fen Causeway"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/497933068",
+          "citationDetail": "Way 497933068",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=497933068",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-fen-causeway",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/road"
+      ],
+      "end": 410,
+      "title": "OSM location of Fen Causeway",
+      "provenance": "OpenStreetMap (Way 497933068, version 8, osm:changeset=149997817, 2024-04-14T15:22:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/road"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "road"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-26T15:31:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.3814746,
+            52.5891796
+          ],
+          [
+            -0.3433424,
+            52.5875572
+          ],
+          [
+            -0.3305965,
+            52.5826499
+          ],
+          [
+            -0.3202395,
+            52.5772187
+          ],
+          [
+            -0.3177278,
+            52.5770909
+          ],
+          [
+            -0.1093741,
+            52.5664914
+          ],
+          [
+            -0.0728588,
+            52.5646174
+          ],
+          [
+            -0.07245,
+            52.5645964
+          ],
+          [
+            -0.0446001,
+            52.5703776
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/649485970/osm-location-of-fen-causeway",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-26T16:04:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T15:32:18Z"
+        },
+        {
+          "comment": "add OSM location - could not import OSM Relation for full extent",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T15:32:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T15:31:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T15:31:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5442948",
+      "citationDetail": "Q5442948: Fen Causeway",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "Fen Causeway",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "649485970",
+  "subject": [],
+  "title": "Fen Causeway",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/road"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Fen Causeway is the modern name for an ancient Roman road located in eastern England.",
+  "reprPoint": [
+    -0.2135411392013312,
+    52.57346677749941
+  ],
+  "placeTypes": [
+    "road"
+  ],
+  "bbox": [
+    -0.3814746,
+    52.5645964,
+    -0.0446001,
+    52.5891796
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/65728677"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-01-12T10:13:03Z",
+  "uri": "https://pleiades.stoa.org/places/649485970",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-26T16:04:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-26T15:32:18Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-12T10:13:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-12T10:13:03Z"
+    }
+  ]
+}

@@ -1,0 +1,664 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2647879,
+            35.4555297
+          ],
+          [
+            43.2645921,
+            35.4562156
+          ],
+          [
+            43.2648764,
+            35.4562571
+          ],
+          [
+            43.2653163,
+            35.455676
+          ],
+          [
+            43.2647879,
+            35.4555297
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-way-of-the-crown-princes-palace-at-assur",
+      "properties": {
+        "snippet": "Palace; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/757392272/osm-way-of-the-crown-princes-palace-at-assur",
+        "description": "Polygon representing the extent of the Crown Prince's Palace at Assur, derived from an OpenStreetMap Way after Gries 2017 plate 1.",
+        "location_precision": "precise",
+        "title": "OSM Way of the Crown Prince's Palace at Assur"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1067791860",
+          "citationDetail": "Way 1067791860",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1067791860",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/992438862",
+          "citationDetail": "plate 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gries 2017",
+          "bibliographicURI": "",
+          "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-way-of-the-crown-princes-palace-at-assur",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "end": -540,
+      "title": "OSM Way of the Crown Prince's Palace at Assur",
+      "provenance": "OpenStreetMap (Way 1067791860, version 1, osm:changeset=122099814, 2022-06-08T06:06:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "palace"
+      ],
+      "description": "Polygon representing the extent of the Crown Prince's Palace at Assur, derived from an OpenStreetMap Way after Gries 2017 plate 1.",
+      "created": "2022-06-08T06:10:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2647879,
+            35.4555297
+          ],
+          [
+            43.2645921,
+            35.4562156
+          ],
+          [
+            43.2648764,
+            35.4562571
+          ],
+          [
+            43.2653163,
+            35.455676
+          ],
+          [
+            43.2647879,
+            35.4555297
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/757392272/osm-way-of-the-crown-princes-palace-at-assur",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T10:41:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:30:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:29:16Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:22:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:23:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:13:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:11:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:11:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:10:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-08T04:28:13Z",
+      "associationCertainty": "certain",
+      "title": "Ashur/\u2018Lamban\u2019?/\u2018Liba(nai)\u2019?",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/757392272/ashur-2018lamban2019-2018liba-nai-2019",
+      "connectionType": "at",
+      "id": "ashur-2018lamban2019-2018liba-nai-2019",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T10:40:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:23:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T04:28:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T04:28:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893945",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+          "citationDetail": "32, pls. 10\u201311",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Preusser 1955",
+          "bibliographicURI": "",
+          "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur ((Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-08T04:29:53Z",
+      "associationCertainty": "certain",
+      "title": "Tigris/Diglitus (river)",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/757392272/tigris-diglitus-river",
+      "connectionType": "near",
+      "id": "tigris-diglitus-river",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T10:40:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:23:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T04:29:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T04:29:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912964",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+          "citationDetail": "32, pls. 10\u201311",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Preusser 1955",
+          "bibliographicURI": "",
+          "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap3/rinap32introduction/buildingactivitiesatassur/part2/index.html#rinap32palaces",
+      "citationDetail": "19 (fig. 2), 23 ",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 3/2",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CAKUI9UC",
+      "formattedCitation": "<div class=\"csl-entry\">Grayson, Albert Kirk, and Jamie R Novotny. <i>The Royal Inscriptions of Sennacherib, King of Assyria</i>. Winona Lake, Ind.: Eisenbrauns, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+      "citationDetail": "32, pls. 10\u201311",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Preusser 1955",
+      "bibliographicURI": "",
+      "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q003986/",
+      "citationDetail": "Sennacherib 181",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Crown Prince's Palace, Prince's Palace ",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap3/rinap32introduction/buildingactivitiesatassur/part2/index.html#rinap32palaces",
+          "citationDetail": "23",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 3/2",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CAKUI9UC",
+          "formattedCitation": "<div class=\"csl-entry\">Grayson, Albert Kirk, and Jamie R Novotny. <i>The Royal Inscriptions of Sennacherib, King of Assyria</i>. Winona Lake, Ind.: Eisenbrauns, 2014.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "crown-princes-palace",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern English name of the house that the Neo-Assyrian king Sennacherib (704\u2013681 BC) had had built for his son A\u0161\u0161ur-il\u012b-muballissu.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-06-08T04:34:34Z",
+      "uri": "https://pleiades.stoa.org/places/757392272/crown-princes-palace",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T10:40:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:23:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T04:34:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T04:34:34Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Prinzenpalast",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+          "citationDetail": "32",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Preusser 1955",
+          "bibliographicURI": "",
+          "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "prinzenpalast",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern German name of the house that the Neo-Assyrian king Sennacherib (704\u2013681 BC) had had built for his son A\u0161\u0161ur-il\u012b-muballissu.",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2022-06-08T04:36:46Z",
+      "uri": "https://pleiades.stoa.org/places/757392272/prinzenpalast",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T10:40:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T08:54:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T06:23:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T04:36:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-08T04:36:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "757392272",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Crown Prince's Palace at Assur",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/palace"
+  ],
+  "details": "<p>One\u00a0inscription mentioning the construction of this royal residence (RIAo <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/riao/Q003986/\" target=\"_self\" title=\"\">Sennacherib 181</a>) reads as follows: \u201cI, Sennacherib, king of Assyria, the one who fashioned image(s) of (the god) A\u0161\u0161ur and the great gods, built this house for my <i>second</i> son A\u0161\u0161ur-il\u012b-muballissu, who (is) in the service of (the god) A\u0161\u0161ur, and I laid its foundation(s) with limestone, stone from the mountains.\u201d</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Neo-Assyrian king Sennacherib built a residence for his son A\u0161\u0161ur-il\u012b-muballissu in the city of Assur. That house was constructed near the city wall in the southeastern part of city (city plan quadrants l8/l9), near the bank of the Tigris River. This building, which is known from numerous inscribed stone blocks, is often referred to as the \u201c(Crown) Prince's Palace\u201d or \u201cPrinzenpalast.\u201d",
+  "reprPoint": [
+    43.2649127686801,
+    35.45588362889383
+  ],
+  "placeTypes": [
+    "palace"
+  ],
+  "bbox": [
+    43.2645921,
+    35.4555297,
+    43.2653163,
+    35.4562571
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893945",
+    "https://pleiades.stoa.org/places/912964"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-08T04:26:20Z",
+  "uri": "https://pleiades.stoa.org/places/757392272",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-08T10:40:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T08:54:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T08:54:14Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T08:54:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T06:23:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T06:21:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T06:21:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T04:30:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T04:26:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-08T04:26:20Z"
+    }
+  ]
+}

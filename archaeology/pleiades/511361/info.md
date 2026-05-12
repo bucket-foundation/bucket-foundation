@@ -1,0 +1,14 @@
+# Philia
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/511361
+- **ID**: 511361
+- **Coords (lng, lat)**: [28.682462, 41.345578]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Philia, Phileas
+
+## Description
+
+An ancient place, cited: BAtlas 52 D2 Philia

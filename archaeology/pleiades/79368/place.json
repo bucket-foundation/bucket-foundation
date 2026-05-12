@@ -1,0 +1,1466 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.0825,
+          51.357222
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Settlement; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/79368/dare-location",
+        "description": "Representative point location, village precision",
+        "location_precision": "precise",
+        "title": "DARE Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.0878228,
+            51.3552721
+          ],
+          [
+            -1.0879999,
+            51.3575936
+          ],
+          [
+            -1.0880743,
+            51.3576776
+          ],
+          [
+            -1.0872143,
+            51.358433
+          ],
+          [
+            -1.0870552,
+            51.3586276
+          ],
+          [
+            -1.0845362,
+            51.3606673
+          ],
+          [
+            -1.0844152,
+            51.3606669
+          ],
+          [
+            -1.0842198,
+            51.3606751
+          ],
+          [
+            -1.0840284,
+            51.3606714
+          ],
+          [
+            -1.0812208,
+            51.3601349
+          ],
+          [
+            -1.0769185,
+            51.3583709
+          ],
+          [
+            -1.0765851,
+            51.3581041
+          ],
+          [
+            -1.0766885,
+            51.3578175
+          ],
+          [
+            -1.0774125,
+            51.3579161
+          ],
+          [
+            -1.0784004,
+            51.3576768
+          ],
+          [
+            -1.0782951,
+            51.3572743
+          ],
+          [
+            -1.0779304,
+            51.356956
+          ],
+          [
+            -1.0780904,
+            51.356403
+          ],
+          [
+            -1.0774263,
+            51.3561875
+          ],
+          [
+            -1.0776653,
+            51.3557436
+          ],
+          [
+            -1.0782991,
+            51.3554503
+          ],
+          [
+            -1.0787948,
+            51.3552052
+          ],
+          [
+            -1.0812228,
+            51.3540333
+          ],
+          [
+            -1.0836329,
+            51.3539932
+          ],
+          [
+            -1.083681,
+            51.3539869
+          ],
+          [
+            -1.0838157,
+            51.3539693
+          ],
+          [
+            -1.0843518,
+            51.3539824
+          ],
+          [
+            -1.0878228,
+            51.3552721
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-calleva-atrebatum",
+      "properties": {
+        "snippet": "Settlement; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/79368/osm-location-of-calleva-atrebatum",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Calleva Atrebatum"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://francia.ahlfeldt.se/imperium.php",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Johan \u00c5hlfeldt, Digital Atlas of the Roman Empire, 2012.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 640,
+      "title": "DARE Location",
+      "provenance": "Digital Atlas of the Roman Empire (2012-10-15)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 100.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-2",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative point location, village precision",
+      "created": "2012-10-20T21:30:14Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.0825,
+          51.357222
+        ]
+      },
+      "locationType": [
+        "associated modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/79368/dare-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T21:30:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T21:30:15Z"
+        },
+        {
+          "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T21:30:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T21:30:14Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/134417293",
+          "citationDetail": "Way 134417293",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=134417293",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-calleva-atrebatum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 410,
+      "title": "OSM location of Calleva Atrebatum",
+      "provenance": "OpenStreetMap (Way 134417293, version 6, osm:changeset=65239592, 2018-12-06T13:56:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-07-03T16:34:38Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.0878228,
+            51.3552721
+          ],
+          [
+            -1.0879999,
+            51.3575936
+          ],
+          [
+            -1.0880743,
+            51.3576776
+          ],
+          [
+            -1.0872143,
+            51.358433
+          ],
+          [
+            -1.0870552,
+            51.3586276
+          ],
+          [
+            -1.0845362,
+            51.3606673
+          ],
+          [
+            -1.0844152,
+            51.3606669
+          ],
+          [
+            -1.0842198,
+            51.3606751
+          ],
+          [
+            -1.0840284,
+            51.3606714
+          ],
+          [
+            -1.0812208,
+            51.3601349
+          ],
+          [
+            -1.0769185,
+            51.3583709
+          ],
+          [
+            -1.0765851,
+            51.3581041
+          ],
+          [
+            -1.0766885,
+            51.3578175
+          ],
+          [
+            -1.0774125,
+            51.3579161
+          ],
+          [
+            -1.0784004,
+            51.3576768
+          ],
+          [
+            -1.0782951,
+            51.3572743
+          ],
+          [
+            -1.0779304,
+            51.356956
+          ],
+          [
+            -1.0780904,
+            51.356403
+          ],
+          [
+            -1.0774263,
+            51.3561875
+          ],
+          [
+            -1.0776653,
+            51.3557436
+          ],
+          [
+            -1.0782991,
+            51.3554503
+          ],
+          [
+            -1.0787948,
+            51.3552052
+          ],
+          [
+            -1.0812228,
+            51.3540333
+          ],
+          [
+            -1.0836329,
+            51.3539932
+          ],
+          [
+            -1.083681,
+            51.3539869
+          ],
+          [
+            -1.0838157,
+            51.3539693
+          ],
+          [
+            -1.0843518,
+            51.3539824
+          ],
+          [
+            -1.0878228,
+            51.3552721
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/79368/osm-location-of-calleva-atrebatum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-07-06T20:56:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-03T16:35:17Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-03T16:35:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-03T16:34:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-03T16:34:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:48:18Z",
+      "associationCertainty": "certain",
+      "title": "Atrebates",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/79368/79306",
+      "connectionType": "capital",
+      "id": "79306",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "type, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-06T13:59:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-31T03:15:15Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:48:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:48:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:48:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79306",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fulford 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ND97LW3G",
+          "formattedCitation": "<div class=\"csl-entry\">Fulford, Michael Gordon. <i>Calleva Atrebatum: A Guide to the Roman Town at Silchester</i>. Silchester: Calleva museum, 1987.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/capital"
+    },
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2019-10-26T02:07:13Z",
+      "associationCertainty": "certain",
+      "title": "Ermin Street",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/79368/ermin-street",
+      "connectionType": "connection",
+      "id": "ermin-street",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-26T03:00:42Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-26T03:00:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-26T02:07:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-26T02:07:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-26T02:07:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/26017958",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Ermin_Way",
+          "citationDetail": "Ermin Way",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "8 F3 Calleva",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "271-91",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wacher 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T2WDCC2T",
+      "formattedCitation": "<div class=\"csl-entry\">Wacher, J. S. <i>The Towns of Roman Britain</i>. 2 , fully rev. London: Batsford, 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Calleva_Atrebatum",
+      "citationDetail": "Calleva Atrebatum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Calleva Atrebatum.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.reading.ac.uk/silchester/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "University of Reading, Silchester Roman Town",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.reading.ac.uk/silchester/i3/victorians/vic_home.php",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Silchester Roman Town - The Insula IX Town Life Project The Victorian Excavations of 1893",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DC%3Aentry+group%3D2%3Aentry%3Dcalleva-atrebatum",
+      "citationDetail": "CALLEVA ATREBATUM (Silchester) Hampshire, England",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1163/1574-9347_bnp_e224880",
+      "citationDetail": "Calleva Atrebatum (M. Todd)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://roman-britain.co.uk/places/calleva.htm",
+      "citationDetail": "Calleva Atrebatvm British Tribal City Silchester, Hampshire",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/14775",
+      "citationDetail": "GEO ID 14775: Calleva (Silchester)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/6286335/silchester-amphitheatre.html",
+      "citationDetail": "6286335: Silchester amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://pastscape.org.uk/hob.aspx?hob_id=241057",
+      "citationDetail": "Monument no. 241057",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Allen 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4CATUKU",
+      "formattedCitation": "<div class=\"csl-entry\">Allen, John R. L. <i>The Masonry Defences of Roman Silchester (Calleva Atrebatum), North Hampshire: Building Materials, Building Styles and the Building Programme</i>. Oxford, England: Archaeopress, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fulford 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ND97LW3G",
+      "formattedCitation": "<div class=\"csl-entry\">Fulford, Michael Gordon. <i>Calleva Atrebatum: A Guide to the Roman Town at Silchester</i>. Silchester: Calleva museum, 1987.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Crummy and Hurst 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8T2Q78GA",
+      "formattedCitation": "<div class=\"csl-entry\">Crummy, Philip, and H. R Hurst, eds. <i>The Coloniae of Roman Britain: New Studies and a Review\u202f: Papers of the Conference Held at Gloucester on 5-6 July, 1997</i>. Portsmouth, R.I.: Journal of Roman Archaeology, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cook et al. 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KF4ZP68R",
+      "formattedCitation": "<div class=\"csl-entry\">Cook, Samantha R, Amanda S Clarke, Michael Fulford, and Jochen Voss. \u201cCharacterising the Use of Urban Space: A Geochemical Case Study from Calleva Atrebatum (Silchester, Hampshire, UK) Insula IX during the Late First/Early Second Century AD.\u201d <i>Journal of Archaeological Science.</i> 50 (2014): 108\u201316.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fulford et al. 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G5VNDZUV",
+      "formattedCitation": "<div class=\"csl-entry\">Fulford, Michael, John R. L Allen, K. M Clark, Nina Crummy, Barry W Cunliffe, Hella Eckardt, Richard Hingley, et al. <i>Silchester and the Study of Romano-British Urbanism</i>. Journal of Roman Archaeology. Supplementary Series 90. Porthsmouth, Rhode Island: Journal of Roman Archaeology, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/514000UCal",
+      "citationDetail": "Calleva Atrebatum (Britannia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "Kiesling, Brady. ToposText \u2013 a Reference Tool for Greek Civilization. Version 2.0. Aikaterini Laskaridis Foundation, 2016-.",
+      "otherIdentifier": "http://atlantides.org/bibliography/",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fulford et al. 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FNM4Z3ZJ",
+      "formattedCitation": "<div class=\"csl-entry\">Fulford, Michael, Amanda Clarke, Emma Durham, and Nicholas Pankhurst. <i>Late Iron Age Calleva: The Pre-Conquest Occupation at Silchester Insula IX</i>. Insula IX Town Life Project 3. London: Society for the Promotion of Roman Studies, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.openedition.org/cvz/1430",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cleary 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8CULKQTB",
+      "formattedCitation": "<div class=\"csl-entry\">Cleary, Simon Esmonde. \u201cPublic Buildings in the Cities of Roman Britain: Successes or Failures?\u201d In <i>Urbanisme Civique En Temps de Crise\u202f: Les Espaces Publics d\u2019Hispanie et de l\u2019Occident Romain Entre Le Iie et Le Ive Si\u00e8cle</i>, edited by Laurent Brassous and Alejandro Quevedo, 63\u201382. Collection de La Casa de Vel\u00e1zquez. Madrid: Casa de Vel\u00e1zquez, 2017. http://books.openedition.org/cvz/1430.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archaeologydataservice.ac.uk/archives/view/silchester_cf_2020/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Silchester Insula IX",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4KDPPRDY",
+      "formattedCitation": "<div class=\"csl-entry\">Allen, John R. L., Rowena Banerjea, Catherine Barnett, Edward Besly, Joanna Bird, Kate Clark, Andre Colonese, et al. \u201cSilchester Insula IX: The Claudio-Neronian Occupation of the Iron Age Oppidum [Data-Set].\u201d <i>Archaeology Data Service</i>, 2020. https://doi.org/https://doi.org/10.5284/1076947.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "20098",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.oxbowbooks.com/oxbow/silchester-revealed-67214.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fulford 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9MPVDRIQ",
+      "formattedCitation": "<div class=\"csl-entry\">Fulford, Michael. <i>Silchester Revealed: The Iron Age and Roman Town of Calleva</i>. Windgather, 2021. https://www.oxbowbooks.com/oxbow/silchester-revealed-67214.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1027253",
+      "citationDetail": "Calleva Atrebatum (Q1027253)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edh.ub.uni-heidelberg.de/edh/geographie/G004227",
+      "citationDetail": "Geographic Database G004227: Calleva Atrebatum \u2013 Silchester",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "EDH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PY3AZV8F",
+      "formattedCitation": "<div class=\"csl-entry\">Alf\u00f6ldy, G\u00e9za, and Christian Witschel, eds. <i>Epigraphic Database Heidelberg</i>. Heidelberg: Heidelberg Academy of Sciences and Humanities, 1997. http://edh-www.adw.uni-heidelberg.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://romaninscriptionsofbritain.org/place/1037",
+      "citationDetail": "1037 \u2012 Calleva Atrebatum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RIB Online",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PQ3IFF5P",
+      "formattedCitation": "<div class=\"csl-entry\">Vanderbilt, Scott, ed. <i>Roman Inscriptions of Britain (Online)</i>. LatinNow, 2017. https://romaninscriptionsofbritain.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/4324291",
+      "citationDetail": "Calleva Atrebatum Hampshire, Gro\u00dfbritannien und Nordirland, Europa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2083048",
+      "citationDetail": "2083048: Calleva Atrebatum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=32156784",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fulford 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LXZKNWN3",
+      "formattedCitation": "<div class=\"csl-entry\">Fulford, Michael, Catherine Barnett, Nicholas Pankhurst, and Daniel Wheeler. <i>Silchester: The Landscape Setting of the Iron Age Oppidum and Roman City From the Neolithic to the Middle Ages</i>. Havertown: Oxbow Books, Limited, 2025. https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=32156784.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vocab.getty.edu/page/tgn/8711966",
+      "citationDetail": "8711966: Silchester Roman Town (deserted settlement)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TGN",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLJQ5AZJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Getty Thesaurus of Geographic Names\u00ae Online</i>, n.d. https://www.getty.edu/research/tools/vocabularies/tgn/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/95025/",
+      "citationDetail": "95025: Silchester",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://imperium.ahlfeldt.se/",
+      "citationDetail": "20682",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1011957",
+      "citationDetail": "1011957: The Late Iron Age oppidum and Roman town of Calleva Atrebatum and associated features",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1093/acrefore/9780199381135.013.1264",
+      "citationDetail": "Calleva Atrebatum (Courtenay Edward Stevens and Martin Millett)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "OCD Online",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YNU2WLIH",
+      "formattedCitation": "<div class=\"csl-entry\">Whitmarsh, Tim, ed. <i>Oxford Classical Dictionary (Online)</i>. Post-4th digital. Post-4th Continuously Updated. Accessed March 12, 2023. https://oxfordre.com/classics/classics/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q103195468",
+      "citationDetail": "Silchester (Samian Ware Discovery Site) (Q103195468)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://hillforts.arch.ox.ac.uk/?query=Atlas_of_Hillforts_4166_0%2CMain_Atlas_Number%2C4032",
+      "citationDetail": "EN4032 Calleva Atrebatum, Hampshire and Isle of Wight (Silchester (The Inner Earthwork)) ",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "AtlHillforts",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DR9PECMG",
+      "formattedCitation": "<div class=\"csl-entry\">Lock, Gary, and Ian Ralston. <i>Atlas of Hillforts of Britain and Ireland</i>, 2024. https://hillforts.arch.ox.ac.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Calleva",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "8 F3 Calleva",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "calleva",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 8 F3 Calleva",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-08-06T13:56:22Z",
+      "uri": "https://pleiades.stoa.org/places/79368/calleva",
+      "creators": [
+        {
+          "username": null,
+          "name": "A.S. Esmonde Cleary"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "add batlas reference, Latin by @jbecker",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-06T15:38:53Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-06T13:56:21Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:30:05Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-11-23T19:29:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-30T22:48:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-30T22:35:20Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Silchester Roman Town",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Calleva_Atrebatum",
+          "citationDetail": "Calleva Atrebatum",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Calleva Atrebatum.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2013-09-01.2793424760",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2013-09-01T16:02:11Z",
+      "uri": "https://pleiades.stoa.org/places/79368/name.2013-09-01.2793424760",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "bdturner",
+          "modified": "2013-09-17T21:09:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T16:02:27Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T16:02:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T16:02:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Calleva Atrebatum",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fulford 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ND97LW3G",
+          "formattedCitation": "<div class=\"csl-entry\">Fulford, Michael Gordon. <i>Calleva Atrebatum: A Guide to the Roman Town at Silchester</i>. Silchester: Calleva museum, 1987.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "calleva-atrebatum",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-08-06T13:58:31Z",
+      "uri": "https://pleiades.stoa.org/places/79368/calleva-atrebatum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Calleva Atrebatum",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-06T15:39:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-06T13:58:36Z"
+        },
+        {
+          "comment": "Latin name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-06T13:58:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-06T13:58:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "79368",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=1",
+    "dare:feature=major settlement"
+  ],
+  "title": "Calleva",
+  "provenance": "Barrington Atlas: BAtlas 8 F3 Calleva",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Silchester</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Calleva Atrebatum (known as Silchester Roman Town) was an Iron Age oppidum and Roman town in Britannia. It was the civitas capital of the Atrebates tribe.",
+  "reprPoint": [
+    -1.0823913646849332,
+    51.35720486310831
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -1.0880743,
+    51.3539693,
+    -1.0765851,
+    51.3606751
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79306",
+    "https://pleiades.stoa.org/places/26017958",
+    "https://pleiades.stoa.org/places/825677263"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-08T11:28:55Z",
+  "uri": "https://pleiades.stoa.org/places/79368",
+  "creators": [
+    {
+      "username": null,
+      "name": "A.S. Esmonde Cleary"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update New Pauly reference w/ doi link",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-06T13:55:56Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-06T13:54:49Z"
+    },
+    {
+      "comment": "add vici.org 95025: Silchester",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-06T13:49:56Z"
+    },
+    {
+      "comment": "add TGN 8711966: Silchester Roman Town (deserted settlement)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-06T13:49:04Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-06T13:48:02Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-17T22:28:32Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-17T22:24:52Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-01T01:55:32Z"
+    },
+    {
+      "comment": "added Fulford 2021",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-14T22:10:49Z"
+    },
+    {
+      "comment": "added DARMC reference to maintain linkage after retracting less precise location",
+      "modifiedBy": "thomase",
+      "modified": "2020-07-06T21:15:30Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-03T16:31:53Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-03T14:43:04Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-02T16:57:34Z"
+    },
+    {
+      "comment": "add ToposText reference provided by bkiesling",
+      "modifiedBy": "admin",
+      "modified": "2018-06-08T11:28:59Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T02:58:16Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-05T21:22:57Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-21T20:14:26Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T16:00:58Z"
+    },
+    {
+      "comment": "DARE feature tag fix.",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-23T19:38:07Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:30:15Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:30:04Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T05:46:05Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:04:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-11-23T19:29:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:48:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:35:20Z"
+    }
+  ]
+}

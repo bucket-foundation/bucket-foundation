@@ -1,0 +1,456 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5167068,
+            41.888248
+          ],
+          [
+            12.516629,
+            41.8881342
+          ],
+          [
+            12.5167148,
+            41.8880843
+          ],
+          [
+            12.5167819,
+            41.8881123
+          ],
+          [
+            12.5171091,
+            41.8879865
+          ],
+          [
+            12.5176053,
+            41.8877968
+          ],
+          [
+            12.5176697,
+            41.8878427
+          ],
+          [
+            12.5167068,
+            41.888248
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tempio-di-venere-e-cupido",
+      "properties": {
+        "snippet": "Architecturalcomplex; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/576179783/osm-location-of-tempio-di-venere-e-cupido",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tempio di Venere e Cupido"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/261041472",
+          "citationDetail": "Way 261041472",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=261041472",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tempio-di-venere-e-cupido",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 640,
+      "title": "OSM location of Tempio di Venere e Cupido",
+      "provenance": "OpenStreetMap (Way 261041472, version 4, osm:changeset=108920032, 2021-07-31T07:44:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-06-05T14:21:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5167068,
+            41.888248
+          ],
+          [
+            12.516629,
+            41.8881342
+          ],
+          [
+            12.5167148,
+            41.8880843
+          ],
+          [
+            12.5167819,
+            41.8881123
+          ],
+          [
+            12.5171091,
+            41.8879865
+          ],
+          [
+            12.5176053,
+            41.8877968
+          ],
+          [
+            12.5176697,
+            41.8878427
+          ],
+          [
+            12.5167068,
+            41.888248
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/576179783/osm-location-of-tempio-di-venere-e-cupido",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-07T15:28:50Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-23T09:22:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-04T18:57:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-04T18:56:57Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-05T14:52:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-05T14:21:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-05T14:21:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-05T14:53:43Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/576179783/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-23T09:22:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-04T18:57:05Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-05T14:53:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-05T14:53:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gallocchio 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/95N9GM63",
+          "formattedCitation": "<div class=\"csl-entry\">Gallocchio, Enrico. \u201cIl cosiddetto Tempio di Venere e Cupido nel contesto architettonico d\u2019et\u00e0 costantiniana.\u201d In <i>Costantino 313 d. C</i>, 39\u201341. Milano: Mondadori Electa, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-05T14:54:24Z",
+      "associationCertainty": "certain",
+      "title": "Santa Croce in Gerusalemme",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/576179783/santa-croce-in-gerusalemme",
+      "connectionType": "near",
+      "id": "santa-croce-in-gerusalemme",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-23T09:22:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-04T18:57:05Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-05T14:54:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-05T14:54:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/18528486",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gallocchio 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/95N9GM63",
+          "formattedCitation": "<div class=\"csl-entry\">Gallocchio, Enrico. \u201cIl cosiddetto Tempio di Venere e Cupido nel contesto architettonico d\u2019et\u00e0 costantiniana.\u201d In <i>Costantino 313 d. C</i>, 39\u201341. Milano: Mondadori Electa, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gallocchio 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/95N9GM63",
+      "formattedCitation": "<div class=\"csl-entry\">Gallocchio, Enrico. \u201cIl cosiddetto Tempio di Venere e Cupido nel contesto architettonico d\u2019et\u00e0 costantiniana.\u201d In <i>Costantino 313 d. C</i>, 39\u201341. Milano: Mondadori Electa, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "51",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cipriani 1838",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KJN2STG3",
+      "formattedCitation": "<div class=\"csl-entry\">Cipriani, Giovanni Battista. <i>Descrizione itineraria di Roma</i>. Presso M. Perego Salvioni, 1838.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "190",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Calci 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/94Y6R2N2",
+      "formattedCitation": "<div class=\"csl-entry\">Calci, Carmelo. <i>Roma archeologica: le scoperte pi\u00f9 recenti della citt\u00e0 antica e della sua area suburbana</i>. Adnkronos libri, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "576179783",
+  "subject": [],
+  "title": "So-called Tempio di Venere e Cupido",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Temple of Venus and Cupid at Rome is part of the complex of buildings associated with the Sessorian palace. The structure's modern assignation is owed to the discovery of a fragmentary statue of Sallustia Orbiana in the guise of Venus Felix. Sallustia Orbiana was the wife of Alexander Severus. The statue is now held in the Museo Pio Clementino in the Vatican Museums.",
+  "reprPoint": [
+    12.517138675983198,
+    41.88801607357479
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    12.516629,
+    41.8877968,
+    12.5176697,
+    41.888248
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/18528486"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-05T14:21:03Z",
+  "uri": "https://pleiades.stoa.org/places/576179783",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-23T09:22:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T18:57:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T18:57:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T18:56:22Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T18:56:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-27T19:45:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-05T15:04:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-05T14:53:16Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-05T14:21:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-05T14:21:03Z"
+    }
+  ]
+}

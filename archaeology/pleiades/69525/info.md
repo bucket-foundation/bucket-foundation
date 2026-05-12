@@ -1,0 +1,14 @@
+# Langonnet
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/69525
+- **ID**: 69525
+- **Coords (lng, lat)**: [-3.491814, 48.102332]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=mine
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 7 C3 Langonnet

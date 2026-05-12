@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4340781,
+            41.8877325
+          ],
+          [
+            12.43413,
+            41.8877966
+          ],
+          [
+            12.4343317,
+            41.887706
+          ],
+          [
+            12.4342798,
+            41.8876419
+          ],
+          [
+            12.4340781,
+            41.8877325
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-casale-di-giovio",
+      "properties": {
+        "snippet": "Tomb, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/770702014/location-of-casale-di-giovio",
+        "description": "Representative ocation based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Casale di Giovio"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/32666818",
+          "citationDetail": "Way 32666818",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=32666818",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-casale-di-giovio",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "OSM location of Casale di Giovio",
+      "provenance": "OpenStreetMap (Way 32666818, version 5, osm:changeset=143781249, 2023-11-08T13:42:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Representative ocation based on OpenStreetMap",
+      "created": "2014-02-22T23:18:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4340781,
+            41.8877325
+          ],
+          [
+            12.43413,
+            41.8877966
+          ],
+          [
+            12.4343317,
+            41.887706
+          ],
+          [
+            12.4342798,
+            41.8876419
+          ],
+          [
+            12.4340781,
+            41.8877325
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/770702014/location-of-casale-di-giovio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T04:20:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-22T01:47:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-08T21:09:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-08T21:09:50Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-23T01:05:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-22T23:18:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-22T23:18:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:46:33Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/770702014/423025",
+      "connectionType": "at",
+      "id": "423025",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-22T00:44:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:46:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:46:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:46:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=5218",
+      "citationDetail": "5218: Casale di Giovio",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sovraintendenzaroma.it/i_luoghi/roma_antica/monumenti/casale_di_giovio",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Roma Capitale, Casale di Giovio",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/44515109",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Musco 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LEA7J5SI",
+      "formattedCitation": "<div class=\"csl-entry\">Musco, Strfano. \u201cVilla Pamphilj. Casale di Giovio.\u201d In <i>Bullettino della Commissione archeologica comunale di Roma, 90.1985</i>, 39\u201348, Abb, 1985. https://www.jstor.org/stable/44515109.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q55378795",
+      "citationDetail": "Q55378795",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "770702014",
+  "subject": [],
+  "title": "Casale di Giovio",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Casale di Giovio was originally a Roman funereal monument that was re-worked in seventeenth century to assume its current form.",
+  "reprPoint": [
+    12.434204899999997,
+    41.887719249999996
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.4340781,
+    41.8876419,
+    12.4343317,
+    41.8877966
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-02-22T23:18:19Z",
+  "uri": "https://pleiades.stoa.org/places/770702014",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T04:21:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-22T01:47:39Z"
+    },
+    {
+      "comment": "wikidata Q55378795",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-22T00:44:23Z"
+    },
+    {
+      "comment": "ref. added",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-21T22:58:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-10T19:48:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-08T21:10:05Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-29T01:15:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-29T01:15:02Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-22T23:18:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-22T23:18:20Z"
+    }
+  ]
+}

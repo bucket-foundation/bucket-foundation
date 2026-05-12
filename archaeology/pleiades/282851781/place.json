@@ -1,0 +1,499 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              44.0,
+              33.0
+            ],
+            [
+              45.0,
+              33.0
+            ],
+            [
+              45.0,
+              34.0
+            ],
+            [
+              44.0,
+              34.0
+            ],
+            [
+              44.0,
+              33.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "gane-location-15908",
+      "properties": {
+        "snippet": "Settlement; 2335 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/282851781/gane-location-15908",
+        "description": "Approximate location from the TAVO index",
+        "location_precision": "rough",
+        "title": "GANE Location 15908"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "fdeblauwe",
+      "homepage": null,
+      "name": "Francis Deblauwe",
+      "uri": "https://pleiades.stoa.org/author/fdeblauwe"
+    },
+    {
+      "username": "ekansa",
+      "homepage": null,
+      "name": "Eric Kansa",
+      "uri": "https://pleiades.stoa.org/author/ekansa"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "fdeblauwe",
+          "homepage": null,
+          "name": "Francis Deblauwe",
+          "uri": "https://pleiades.stoa.org/author/fdeblauwe"
+        },
+        {
+          "username": "ekansa",
+          "homepage": null,
+          "name": "Eric Kansa",
+          "uri": "https://pleiades.stoa.org/author/ekansa"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/32624915",
+          "formattedCitation": "TAVO Index (Vol. 1, p. 432)",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://oi.uchicago.edu/pdf/land_behind_baghdad.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "R.McC. Adams. Land Behind Baghdad - A History of Settlement on the Diyala Plains. 1965",
+          "otherIdentifier": " ",
+          "type": "seeAlso"
+        }
+      ],
+      "id": "gane-location-15908",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "GANE Location 15908",
+      "provenance": "TAVO Index",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "GANE OBJECT 15908\nMap: BII9.1\nCorner Coordinates: [44.450000000000003, 33.299999999999997]\n",
+      "review_state": "published",
+      "accuracy_value": 1524.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/tavo-2",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Approximate location from the TAVO index",
+      "created": "2013-08-22T06:33:33Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              44.0,
+              33.0
+            ],
+            [
+              45.0,
+              33.0
+            ],
+            [
+              45.0,
+              34.0
+            ],
+            [
+              44.0,
+              34.0
+            ],
+            [
+              44.0,
+              33.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/282851781/gane-location-15908",
+      "creators": [
+        {
+          "username": null,
+          "name": "B. Siewert-Mayer"
+        },
+        {
+          "username": null,
+          "name": "W. R\u00f6llig"
+        },
+        {
+          "username": null,
+          "name": "H. Kopp"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:37Z"
+        },
+        {
+          "comment": "New locations, names, and places for the Ancient Near East from the Alexandria Archive Institute's GANE project: http://alexandriaarchive.org/projects/gane/.",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/32624915",
+      "citationDetail": "Vol. 1, p. 432",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "TAVO Index",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RY7UL7U8",
+      "formattedCitation": "<div class=\"csl-entry\">Siewert-Mayer, Beate, Horst Kopp, and Wolfgang R\u00f6llig. <i>T\u00fcbinger Atlas des Vorderen Orients: Register zu den Karten = general index</i>. Wiesbaden: Reichert, 1994. http://www.worldcat.org/oclc/32624915.</div>",
+      "otherIdentifier": " ",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oi.uchicago.edu/pdf/land_behind_baghdad.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Adams 1965",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AMT5W2FV",
+      "formattedCitation": "<div class=\"csl-entry\">Adams, Robert McCormick. <i>Land behind Baghdad: A History of Settlement on the Diyala Plains</i>. Chicago: University of Chicago Press, 1965. https://oi.uchicago.edu/research/publications/misc/land-behind-baghdad-history-settlement-diyala-plains.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Diy\u0101l\u0101 Survey, Diyala Survey",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/32624915",
+          "formattedCitation": "TAVO Index (Vol. 1, p. 432)",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://oi.uchicago.edu/pdf/land_behind_baghdad.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "R.McC. Adams. Land Behind Baghdad - A History of Settlement on the Diyala Plains. 1965",
+          "otherIdentifier": " ",
+          "type": "seeAlso"
+        }
+      ],
+      "id": "diyala-survey",
+      "end": -2000,
+      "contributors": [
+        {
+          "username": "fdeblauwe",
+          "homepage": null,
+          "name": "Francis Deblauwe",
+          "uri": "https://pleiades.stoa.org/author/fdeblauwe"
+        },
+        {
+          "username": "ekansa",
+          "homepage": null,
+          "name": "Eric Kansa",
+          "uri": "https://pleiades.stoa.org/author/ekansa"
+        }
+      ],
+      "provenance": "TAVO Index",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "details": "GANE OBJECT 15908",
+      "review_state": "published",
+      "description": "A place name from the TAVO Index (Vol. 1, p. 432)",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2013-08-22T06:33:18Z",
+      "uri": "https://pleiades.stoa.org/places/282851781/diyala-survey",
+      "creators": [
+        {
+          "username": null,
+          "name": "B. Siewert-Mayer"
+        },
+        {
+          "username": null,
+          "name": "W. R\u00f6llig"
+        },
+        {
+          "username": null,
+          "name": "H. Kopp"
+        }
+      ],
+      "attested": null,
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:21Z"
+        },
+        {
+          "comment": "New locations, names, and places for the Ancient Near East from the Alexandria Archive Institute's GANE project: http://alexandriaarchive.org/projects/gane/.",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:20Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "DS",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/32624915",
+          "formattedCitation": "TAVO Index (Vol. 1, p. 441)",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "ds",
+      "end": -2000,
+      "contributors": [
+        {
+          "username": "fdeblauwe",
+          "homepage": null,
+          "name": "Francis Deblauwe",
+          "uri": "https://pleiades.stoa.org/author/fdeblauwe"
+        },
+        {
+          "username": "ekansa",
+          "homepage": null,
+          "name": "Eric Kansa",
+          "uri": "https://pleiades.stoa.org/author/ekansa"
+        }
+      ],
+      "provenance": "TAVO Index",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "details": "GANE OBJECT 16292",
+      "review_state": "published",
+      "description": "A place name from the TAVO Index (Vol. 1, p. 441)",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2013-08-22T06:33:25Z",
+      "uri": "https://pleiades.stoa.org/places/282851781/ds",
+      "creators": [
+        {
+          "username": null,
+          "name": "B. Siewert-Mayer"
+        },
+        {
+          "username": null,
+          "name": "W. R\u00f6llig"
+        },
+        {
+          "username": null,
+          "name": "H. Kopp"
+        }
+      ],
+      "attested": null,
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:29Z"
+        },
+        {
+          "comment": "New locations, names, and places for the Ancient Near East from the Alexandria Archive Institute's GANE project: http://alexandriaarchive.org/projects/gane/.",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T06:33:28Z"
+        }
+      ]
+    }
+  ],
+  "id": "282851781",
+  "subject": [],
+  "title": "Diy\u0101l\u0101 Survey",
+  "provenance": "TAVO Index",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "GANE OBJECT 15908",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A place from the TAVO Index",
+  "reprPoint": [
+    44.5,
+    33.5
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    44.0,
+    33.0,
+    45.0,
+    34.0
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-08-22T06:33:06Z",
+  "uri": "https://pleiades.stoa.org/places/282851781",
+  "creators": [
+    {
+      "username": null,
+      "name": "B. Siewert-Mayer"
+    },
+    {
+      "username": null,
+      "name": "W. R\u00f6llig"
+    },
+    {
+      "username": null,
+      "name": "H. Kopp"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-11T20:06:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "admin",
+      "modified": "2013-08-22T06:33:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "admin",
+      "modified": "2013-08-22T06:33:13Z"
+    },
+    {
+      "comment": "New locations, names, and places for the Ancient Near East from the Alexandria Archive Institute's GANE project: http://alexandriaarchive.org/projects/gane/.",
+      "modifiedBy": "admin",
+      "modified": "2013-08-22T06:33:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "admin",
+      "modified": "2013-08-22T06:33:07Z"
+    }
+  ]
+}

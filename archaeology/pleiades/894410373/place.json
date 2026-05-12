@@ -1,0 +1,418 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.6021897,
+            24.697503
+          ],
+          [
+            30.6021608,
+            24.6947125
+          ],
+          [
+            30.5991431,
+            24.694738
+          ],
+          [
+            30.5991716,
+            24.6975286
+          ],
+          [
+            30.6021897,
+            24.697503
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ain-shams-el-din",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/894410373/osm-location-of-ain-shams-el-din",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ain Shams el-Din"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bazzani",
+      "homepage": null,
+      "name": "Bruno Bazzani",
+      "uri": "https://pleiades.stoa.org/author/bazzani"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1151099454",
+          "citationDetail": "Way 1151099454",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1151099454",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ain-shams-el-din",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Ain Shams el-Din",
+      "provenance": "OpenStreetMap (Way 1151099454, version 1, osm:changeset=133275256, 2023-03-04T02:03:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-04T02:03:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.6021897,
+            24.697503
+          ],
+          [
+            30.6021608,
+            24.6947125
+          ],
+          [
+            30.5991431,
+            24.694738
+          ],
+          [
+            30.5991716,
+            24.6975286
+          ],
+          [
+            30.6021897,
+            24.697503
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/894410373/osm-location-of-ain-shams-el-din",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-31T19:55:23Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-07T19:12:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-04T14:26:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T02:04:13Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T02:04:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T02:03:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T02:03:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T14:03:22Z",
+      "associationCertainty": "certain",
+      "title": "Exotero (Oasis)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/894410373/776173",
+      "connectionType": "in",
+      "id": "776173",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "located in",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-04T14:27:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:03:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/776173",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "84",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vivian 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ATTPQUPE",
+      "formattedCitation": "<div class=\"csl-entry\">Vivian, Cassandra. <i>The Western Desert of Egypt: An Explorer\u2019s Handbook</i>. Cairo: American University in Cairo Press, 2000.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Ain_Shams_el-Din",
+      "citationDetail": "Category:Ain Shams el-Din",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q14299836",
+      "citationDetail": "Ain Shams el-Din (Q14299836)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "894410373",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Shams el-Din",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>Reference:</p>\r\n<p>Vivian, Cassandra.\u00a0<em>The Western Desert of Egypt,</em>\u00a0Cairo: The American University in Cairo Press, 2000. pp. 84.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ancient settlement of Shams el-Din in Egypt's Kharga Oasis, which contains a necropolis and 4th century AD church.",
+  "reprPoint": [
+    30.600666288041417,
+    24.696120573246212
+  ],
+  "placeTypes": [
+    "settlement",
+    "cemetery",
+    "archaeological-site"
+  ],
+  "bbox": [
+    30.5991431,
+    24.6947125,
+    30.6021897,
+    24.6975286
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/776173",
+    "https://pleiades.stoa.org/places/160004729"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-09-14T18:57:35Z",
+  "uri": "https://pleiades.stoa.org/places/894410373",
+  "creators": [
+    {
+      "username": "nnagy",
+      "homepage": null,
+      "name": "Nate Nagy",
+      "uri": "https://pleiades.stoa.org/author/nnagy"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-31T19:56:51Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-04T01:59:48Z"
+    },
+    {
+      "comment": "added connection to Oasis and Vivian as a properly formatted reference.",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-13T11:43:10Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-13T11:38:38Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:03:39Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T09:25:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-12-03T11:25:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nnagy",
+      "modified": "2010-11-23T20:21:02Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "nnagy",
+      "modified": "2010-11-19T17:51:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T21:00:41Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T21:00:30Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-06T18:58:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-21T17:18:05Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-21T17:17:48Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-21T17:17:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-17T16:13:48Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-14T19:07:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-14T18:57:35Z"
+    }
+  ]
+}

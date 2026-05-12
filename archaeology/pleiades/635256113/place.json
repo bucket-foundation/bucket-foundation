@@ -1,0 +1,217 @@
+{
+  "features": [],
+  "contributors": [],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-10-02T20:52:11Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/635256113/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-25T14:39:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-21T18:12:53Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-02T20:52:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-02T20:52:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:latinLit:stoa0023.stoa001.perseus-lat1:29.6.19",
+      "citationDetail": "29.6.19",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Amm. Marc. (Clark/Rolfe: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZK23NPA",
+      "formattedCitation": "<div class=\"csl-entry\">Ammianus Marcellinus. <i>Ammianus Marcellinus: History</i>. Edited by Charles Upson Clark and John Carew Rolfe. 3 vols. Loeb Classical Library 300, 315, 331. Cambridge, Mass.: Harvard University Press, 1935. https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:2007.01.0081.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0054:id=porticus-boni-eventus",
+      "citationDetail": "PORTICUS BONI EVENTUS",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "porticus Eventus Boni",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:latinLit:stoa0023.stoa001.perseus-lat1:29.6.19",
+          "citationDetail": "29.6.19",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Amm. Marc. (Clark/Rolfe: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZK23NPA",
+          "formattedCitation": "<div class=\"csl-entry\">Ammianus Marcellinus. <i>Ammianus Marcellinus: History</i>. Edited by Charles Upson Clark and John Carew Rolfe. 3 vols. Loeb Classical Library 300, 315, 331. Cambridge, Mass.: Harvard University Press, 1935. http://data.perseus.org/texts/urn:cts:latinLit:stoa0023.stoa001.perseus-lat1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "porticus-eventus-boni",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2026-03-25T15:13:02Z",
+      "uri": "https://pleiades.stoa.org/places/635256113/porticus-eventus-boni",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "porticus Eventus Boni",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-26T14:21:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T20:29:16Z"
+        },
+        {
+          "comment": "Latin name, Amm Marc ref.",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T15:13:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T15:13:02Z"
+        }
+      ]
+    }
+  ],
+  "id": "635256113",
+  "subject": [],
+  "title": "Porticus Boni Eventus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A portico built in 374 CE by an urban prefect named Claudius near the temple of the god Bonus Eventus.",
+  "reprPoint": [
+    12.475541420792315,
+    41.896769042285314
+  ],
+  "placeTypes": [
+    "unknown"
+  ],
+  "bbox": [
+    12.475413,
+    41.8967233,
+    12.4756642,
+    41.8968167
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/139029037"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-21T15:21:51Z",
+  "uri": "https://pleiades.stoa.org/places/635256113",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-03-25T14:39:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-21T18:12:52Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-21T15:21:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-21T15:21:51Z"
+    }
+  ]
+}

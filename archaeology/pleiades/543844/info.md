@@ -1,0 +1,14 @@
+# Phyllaioi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/543844
+- **ID**: 543844
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Phyllaioi
+
+## Description
+
+An ancient place, cited: BAtlas 55 unlocated Phyllaioi

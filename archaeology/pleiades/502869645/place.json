@@ -1,0 +1,486 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.0048892,
+            39.0952644
+          ],
+          [
+            9.0049126,
+            39.0952789
+          ],
+          [
+            9.0049283,
+            39.0952987
+          ],
+          [
+            9.0049348,
+            39.0953214
+          ],
+          [
+            9.0049311,
+            39.0953444
+          ],
+          [
+            9.0049177,
+            39.0953652
+          ],
+          [
+            9.0048962,
+            39.0953813
+          ],
+          [
+            9.004869,
+            39.095391
+          ],
+          [
+            9.0048392,
+            39.0953931
+          ],
+          [
+            9.0048121,
+            39.095388
+          ],
+          [
+            9.0047884,
+            39.0953766
+          ],
+          [
+            9.0047704,
+            39.0953601
+          ],
+          [
+            9.0047599,
+            39.0953401
+          ],
+          [
+            9.004758,
+            39.0953185
+          ],
+          [
+            9.0047648,
+            39.0952975
+          ],
+          [
+            9.0047796,
+            39.0952792
+          ],
+          [
+            9.0048029,
+            39.0952646
+          ],
+          [
+            9.0048311,
+            39.0952568
+          ],
+          [
+            9.004861,
+            39.0952567
+          ],
+          [
+            9.0048892,
+            39.0952644
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Nuraghe, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/502869645/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Nuraghe Antigori"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/322014748",
+          "citationDetail": "Way 322014748",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=322014748",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM location of Nuraghe Antigori",
+      "provenance": "OpenStreetMap (Way 322014748, version 6, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-01-14T16:51:07Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.0048892,
+            39.0952644
+          ],
+          [
+            9.0049126,
+            39.0952789
+          ],
+          [
+            9.0049283,
+            39.0952987
+          ],
+          [
+            9.0049348,
+            39.0953214
+          ],
+          [
+            9.0049311,
+            39.0953444
+          ],
+          [
+            9.0049177,
+            39.0953652
+          ],
+          [
+            9.0048962,
+            39.0953813
+          ],
+          [
+            9.004869,
+            39.095391
+          ],
+          [
+            9.0048392,
+            39.0953931
+          ],
+          [
+            9.0048121,
+            39.095388
+          ],
+          [
+            9.0047884,
+            39.0953766
+          ],
+          [
+            9.0047704,
+            39.0953601
+          ],
+          [
+            9.0047599,
+            39.0953401
+          ],
+          [
+            9.004758,
+            39.0953185
+          ],
+          [
+            9.0047648,
+            39.0952975
+          ],
+          [
+            9.0047796,
+            39.0952792
+          ],
+          [
+            9.0048029,
+            39.0952646
+          ],
+          [
+            9.0048311,
+            39.0952568
+          ],
+          [
+            9.004861,
+            39.0952567
+          ],
+          [
+            9.0048892,
+            39.0952644
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/502869645/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-21T16:40:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-04T11:06:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-03T02:10:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-30T02:40:20Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-14T16:52:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-14T16:51:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-14T16:51:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:56:25Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/502869645/472014",
+      "connectionType": "on",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "update reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-21T16:43:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q123065",
+          "citationDetail": "nuraghe Antigori (Q123065)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sardegnacultura.it/j/v/253?s=21524&v=2&c=2488&c1=2123&t=1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Sardegna Cultura: Sarroch, Complesso di Antigori",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.ilportalesardo.it/archeo/sarroch.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Portale Sardo: Sarroch",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Nuraghe_Antigori",
+      "citationDetail": "Nuraghe Antigori",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Nuraghe Antigori.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q123065",
+      "citationDetail": "nuraghe Antigori (Q123065)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "502869645",
+  "subject": [
+    "nuraghe",
+    "extant remains"
+  ],
+  "title": "Nuraghe Antigori",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A nuragic complex with artifact evidence showing trade linkages between Sardinian peoples and Mycenaean Greeks, along with Cypriots.",
+  "reprPoint": [
+    9.004846209379581,
+    39.09532455322574
+  ],
+  "placeTypes": [
+    "nuraghe"
+  ],
+  "bbox": [
+    9.004758,
+    39.0952567,
+    9.0049348,
+    39.0953931
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-01-14T16:24:15Z",
+  "uri": "https://pleiades.stoa.org/places/502869645",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata nuraghe Antigori (Q123065)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-21T16:43:09Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-04T11:06:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-03T02:08:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-30T02:40:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-30T02:37:55Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-14T16:24:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-14T16:24:16Z"
+    }
+  ]
+}

@@ -1,0 +1,458 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.487408,
+          41.893803
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-apsidal-portico",
+      "properties": {
+        "snippet": "Architecturalcomplex; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/245668206/imagery-location-of-apsidal-portico",
+        "description": "Coordinates following GeoHack",
+        "location_precision": "precise",
+        "title": "Imagery location of Apsidal Portico"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://geohack.toolforge.org/geohack.php?params=41.89380278_N_12.48740833_E_globe:earth&language=en",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoHack (41.893803; 12.487408)",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-apsidal-portico",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 99,
+      "title": "Imagery location of Apsidal Portico",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Coordinates following GeoHack",
+      "created": "2023-12-24T21:49:01Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.487408,
+          41.893803
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/245668206/imagery-location-of-apsidal-portico",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:24:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:50:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:49:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:49:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-09T01:58:33Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/245668206/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:24:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:50:45Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-09T01:58:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-09T01:58:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://muse.jhu.edu/pub/34/article/754400",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nocera 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/79UURSUR",
+          "formattedCitation": "<div class=\"csl-entry\">Nocera, Daira. \u201cDamnatio Failure: Domitian\u2019s Urban Vision of Rome through the Case Study of the Porticus Absidata.\u201d <i>Illinois Classical Studies</i> 44, no. 2 (2019): 297\u2013325. https://muse.jhu.edu/pub/34/article/754400.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-09T01:58:54Z",
+      "associationCertainty": "certain",
+      "title": "Regio IV (Templum Pacis)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/245668206/regio-iv-templum-pacis",
+      "connectionType": "part_of_analytical",
+      "id": "regio-iv-templum-pacis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:24:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:50:45Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:46:09Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-09T01:58:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-09T01:58:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/523965218",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nocera 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W8T2BRV4",
+          "formattedCitation": "<div class=\"csl-entry\">Nocera, Daira. \u201cLa Porticus Absidata e Rabirio: una nuova ricostruzione ed una ipotesi di Rabirio.\u201d In <i>Scienze dell\u2019antichit\u00e0. Storia, archeologia, antropologia, 21,3 (2015)</i>, 137\u201363. Roma: Universit\u00e0 degli studi di Roma \u201cLa Sapienza,\u201d 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-10-14T17:20:51Z",
+      "associationCertainty": "certain",
+      "title": "Forum of Nerva",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/245668206/forum-of-nerva",
+      "connectionType": "bounds",
+      "id": "forum-of-nerva",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:24:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:50:45Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:46:27Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-14T17:20:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-14T17:20:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/984830239",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nocera 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W8T2BRV4",
+          "formattedCitation": "<div class=\"csl-entry\">Nocera, Daira. \u201cLa Porticus Absidata e Rabirio: una nuova ricostruzione ed una ipotesi di Rabirio.\u201d In <i>Scienze dell\u2019antichit\u00e0. Storia, archeologia, antropologia, 21,3 (2015)</i>, 137\u201363. Roma: Universit\u00e0 degli studi di Roma \u201cLa Sapienza,\u201d 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/bounds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://muse.jhu.edu/pub/34/article/754400",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nocera 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/79UURSUR",
+      "formattedCitation": "<div class=\"csl-entry\">Nocera, Daira. \u201cDamnatio Failure: Domitian\u2019s Urban Vision of Rome through the Case Study of the Porticus Absidata.\u201d <i>Illinois Classical Studies</i> 44, no. 2 (2019): 297\u2013325. https://muse.jhu.edu/pub/34/article/754400.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bauer 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MYA2YVUJ",
+      "formattedCitation": "<div class=\"csl-entry\">Bauer, H. \u201cPorticus absidata.\u201d In <i>Mitteilungen des Deutschen Arch\u00e4ologischen Instituts. R\u00f6mische Abteilung, 90.1983</i>, 111\u201384, Abb. Taf, 1983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nocera 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W8T2BRV4",
+      "formattedCitation": "<div class=\"csl-entry\">Nocera, Daira. \u201cLa Porticus Absidata e Rabirio: una nuova ricostruzione ed una ipotesi di Rabirio.\u201d In <i>Scienze dell\u2019antichit\u00e0. Storia, archeologia, antropologia, 21,3 (2015)</i>, 137\u201363. Roma: Universit\u00e0 degli studi di Roma \u201cLa Sapienza,\u201d 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "La Valle 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI2V3NWY",
+      "formattedCitation": "<div class=\"csl-entry\">La Valle, Monica. \u201cOsservazioni sull\u2019Arcus Aureae e sulla Porticus Absidata.\u201d <i>Bullettino della Commissione Archeologica Comunale di Roma, Nuova Serie</i> 108 (2007): 195\u2013220.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3909056",
+      "citationDetail": "Apsidal Portico (Q3909056)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "245668206",
+  "subject": [],
+  "title": "Porticus Absidata",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Porticus Absidata was an exedra porticata that served as the northern apsidal entryway to the Forum of Nerva, also known as the Forum Transitorium.",
+  "reprPoint": [
+    12.487408,
+    41.893803
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    12.487408,
+    41.893803,
+    12.487408,
+    41.893803
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/523965218",
+    "https://pleiades.stoa.org/places/984830239"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-09T01:58:11Z",
+  "uri": "https://pleiades.stoa.org/places/245668206",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-20T16:24:44Z"
+    },
+    {
+      "comment": "wikidata Apsidal Portico (Q3909056)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-11T20:50:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T21:50:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T21:44:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T21:43:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T21:43:26Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-09T02:37:25Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-09T01:58:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-09T01:58:11Z"
+    }
+  ]
+}

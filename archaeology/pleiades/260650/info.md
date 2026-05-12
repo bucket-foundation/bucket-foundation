@@ -1,0 +1,14 @@
+# Translucanus Pagus
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/260650
+- **ID**: 260650
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Translucanus Pagus
+
+## Description
+
+An ancient place, cited: BAtlas 26 unlocated Translucanus Pagus

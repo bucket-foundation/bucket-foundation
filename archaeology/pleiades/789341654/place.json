@@ -1,0 +1,393 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2619213,
+          40.3277971
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-serra-del-cedro",
+      "properties": {
+        "snippet": "Hill",
+        "link": "https://pleiades.stoa.org/places/789341654/osm-location-of-serra-del-cedro",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Serra del Cedro"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1748818,
+          40.6293619
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-insediamento-iv-secolo-a-c",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/789341654/osm-location-of-insediamento-iv-secolo-a-c",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Insediamento IV secolo a.C."
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9220744092",
+          "citationDetail": "Node 9220744092",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9220744092",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-serra-del-cedro",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "end": null,
+      "title": "OSM location of Serra del Cedro",
+      "provenance": "OpenStreetMap (Node 9220744092, version 1, osm:changeset=113320185, 2021-11-03T08:31:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hill"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-08-06T04:06:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2619213,
+          40.3277971
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/789341654/osm-location-of-serra-del-cedro",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-13T19:01:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-11T14:18:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-11T14:18:00Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T04:06:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T04:06:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T04:06:20Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6088878076",
+          "citationDetail": "Node 6088878076",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6088878076",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-insediamento-iv-secolo-a-c",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Insediamento IV secolo a.C.",
+      "provenance": "OpenStreetMap (Node 6088878076, version 1, osm:changeset=64855140, 2018-11-24T22:13:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-10-05T19:45:30Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.1748818,
+          40.6293619
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/789341654/osm-location-of-insediamento-iv-secolo-a-c",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-13T19:01:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-11T14:18:06Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-05T19:45:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-05T19:45:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-05T19:45:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/baefe/6562",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cazanove 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YMP4NP5C",
+      "formattedCitation": "<div class=\"csl-entry\">Cazanove, Olivier de, and St\u00e9phane Bourdin. \u201cFouilles arch\u00e9ologiques \u00e0 Serra del Cedro et Civita di Tricarico (Programme Ignobilia Oppida Lucanorum) (2021).\u201d <i>Bulletin arch\u00e9ologique des \u00c9coles fran\u00e7aises \u00e0 l\u2019\u00e9tranger</i>, July 20, 2022. https://journals.openedition.org/baefe/6562.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vergilius.pantheonsorbonne.fr/collections/show/284",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Italie, Serra del Cedro (Basilicate)",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/baefe/9838",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bourdin 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/426Z8IW2",
+      "formattedCitation": "<div class=\"csl-entry\">Bourdin, St\u00e9phane, Lucas Aniceto, Corentin Voisin, and Euan Wall. \u201cFouilles arch\u00e9ologiques \u00e0 Serra del Cedro et Civita di Tricarico (Programme Ignobilia Oppida Lucanorum) (2022).\u201d <i>Bulletin arch\u00e9ologique des \u00c9coles fran\u00e7aises \u00e0 l\u2019\u00e9tranger</i>, September 29, 2023. https://journals.openedition.org/baefe/9838.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Serra del Cedro",
+      "attestations": [],
+      "references": [],
+      "id": "serra-del-cedro",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-08-06T18:06:39Z",
+      "uri": "https://pleiades.stoa.org/places/789341654/serra-del-cedro",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Serra del Cedro",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-13T19:01:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-11T14:18:06Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T18:06:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T18:06:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "789341654",
+  "subject": [],
+  "title": "Serra del Cedro (Basilicata)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The hill of Serra del Cedro in Basilicata (858 meters above sea level) is occupied already in the archaic period. By the fourth century BCE the settlement covers some 30 ha.",
+  "reprPoint": [
+    16.218401550000003,
+    40.478579499999995
+  ],
+  "placeTypes": [
+    "settlement",
+    "hill"
+  ],
+  "bbox": [
+    16.1748818,
+    40.3277971,
+    16.2619213,
+    40.6293619
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/642196138"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-06T04:05:44Z",
+  "uri": "https://pleiades.stoa.org/places/789341654",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Bourdin 2023",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-29T20:49:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-12-13T19:01:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-11T14:18:06Z"
+    },
+    {
+      "comment": "summary, place type",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-11T14:17:29Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-06T04:05:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-06T04:05:44Z"
+    }
+  ]
+}

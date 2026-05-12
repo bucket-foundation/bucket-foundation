@@ -1,0 +1,489 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2692337,
+          37.0758562
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-necropoli-del-fusco",
+      "properties": {
+        "snippet": "Cemetery, ; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/895916364/osm-location-of-the-necropoli-del-fusco",
+        "description": "Representative location of the ancient burial area called Necropoli del Fusco in Syracuse, near the modern War Cemetery, based on a representative point derived from an OpenStreetMap node.",
+        "location_precision": "precise",
+        "title": "OSM location of the Necropoli del Fusco"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jprag",
+      "homepage": null,
+      "name": "Jonathan Prag",
+      "uri": "https://pleiades.stoa.org/author/jprag"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3968610026",
+          "citationDetail": "Node 3968610026",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3968610026",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-necropoli-del-fusco",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of the Necropoli del Fusco",
+      "provenance": "OpenStreetMap (Node 3968610026, version 7, osm:changeset=138539870, 2023-07-15T10:52:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        ""
+      ],
+      "description": "Representative location of the ancient burial area called Necropoli del Fusco in Syracuse, near the modern War Cemetery, based on a representative point derived from an OpenStreetMap node.",
+      "created": "2016-01-26T15:47:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2692337,
+          37.0758562
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/895916364/osm-location-of-the-necropoli-del-fusco",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-12T00:52:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T01:37:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T01:31:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T16:11:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T16:10:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T15:49:12Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T15:47:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T15:47:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:52:48Z",
+      "associationCertainty": "certain",
+      "title": "Syracusae/Syrakousai",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/895916364/462503",
+      "connectionType": "connection",
+      "id": "462503",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462503",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Orsi 1895",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KRZ6YBL4",
+      "formattedCitation": "<div class=\"csl-entry\">Orsi, Paolo. \u201cSiracusa\u2013Gli Scavi Nella Necropoli Del Fusco a Siracusa Nel Giungo, Novembre e Dicembre Del 1893.\u201d <i>Notizie Degli Scavi Di Antichit\u00e0</i>, 1895, 109\u201392.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/1542060/Sulla_fibula_di_avorio_con_rappresentazione_di_divinit%C3%A0_femminile_alata_dalla_necropoli_del_Fusco_Siracusa_",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Palermo 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IYJFK6J7",
+      "formattedCitation": "<div class=\"csl-entry\">Palermo, Dario. \u201cSulla fibula di avorio con rappresentazione di divinit\u00e0 femminile alata dalla necropoli del Fusco (Siracusa).\u201d <i>Cronache di Archeologia</i> 31 (1992): 23\u201334.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.regione.sicilia.it/beniculturali/dirbenicult/database/page_musei/pagina_musei.asp?id=30&idsito=71",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Regione Sicilia, Museo archeologico nazionale Paolo Orsi",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.co.uk/books/about/Atti_dell_VIII_Congresso_internazionale.html?id=KDxoAAAAMAAJ&redir_esc=y",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Basile 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3G4G8IVW",
+      "formattedCitation": "<div class=\"csl-entry\">Basile, B. \u201cIndagini nell\u2019ambito delle necropoli siracusane.\u201d In <i>K\u03c9\u03ba\u03b1\u03bbo\u03c2. Studi pubblicati dall\u2019Istituto di storia antica dell\u2019Universit\u00e0 di Palermo, 39.1993-94</i>, 1315\u201342, Abb. Taf, 1993.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/btcgi_0000-0009_2005_num_19_1_4344",
+      "citationDetail": "XIX, 188-93",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BTCGI",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3X8QE9ZE",
+      "formattedCitation": "<div class=\"csl-entry\">Nenci, Giuseppe, Georges Vallet, Ugo Fantasia, and Carmine Ampolo, eds. <i>Bibliografia topografica della colonizzazione greca in Italia e nelle isole tirreniche</i>. 21 vols. Pisa; Roma: Scuola normale superiore\u202f; Ecole fran\u00e7aise de Rome, 1977. https://www.persee.fr/collection/btcgi.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q60323196",
+      "citationDetail": "Fusco necropolis (Q60323196)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Necropoli del Fusco",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/scavi-nella-necropoli-del-fusco-a-siracusa-nellanno-1893/oclc/797296628&referer=brief_results",
+          "formattedCitation": "Orsi, P. 1895. \"Siracusa\u2013Gli Scavi nella necropoli del Fusco a Siracusa nel giungo, novembre e dicembre del 1893.\" Notizie degli Scavi:109-192.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.academia.edu/1542060/Sulla_fibula_di_avorio_con_rappresentazione_di_divinit%C3%A0_femminile_alata_dalla_necropoli_del_Fusco_Siracusa_",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Palermo, D. 1992. \"Sulla fibula di avorio con rappresentazione di divinit\u00e0 femminile alata dalla necropoli del Fusco.\" Cronache di Archeologia 31",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.regione.sicilia.it/beniculturali/dirbenicult/database/page_musei/pagina_musei.asp?id=30&idsito=71",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Regione Sicilia, Museo archeologico nazionale Paolo Orsi",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books/about/Atti_dell_VIII_Congresso_internazionale.html?id=KDxoAAAAMAAJ&redir_esc=y",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Basile, B.1993-1994. \"Indagini nell'ambito delle necropoli siracusane.\" K\u014dkalos 39-42:1315-42.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "necropoli-del-fusco",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-01-26T16:07:38Z",
+      "uri": "https://pleiades.stoa.org/places/895916364/necropoli-del-fusco",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Necropoli del Fusco",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T01:30:22Z"
+        },
+        {
+          "comment": "edited references",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T01:24:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T16:11:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T16:07:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T16:07:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "895916364",
+  "subject": [],
+  "title": "Necropoli del Fusco",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Fusco necropolis is the largest and oldest burial area in Greek Syracuse. Located within contrada Canalicchio, the site was excavated by Paolo Orsi in 1893.",
+  "reprPoint": [
+    15.2692337,
+    37.0758562
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    15.2692337,
+    37.0758562,
+    15.2692337,
+    37.0758562
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462503"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-01-26T15:46:42Z",
+  "uri": "https://pleiades.stoa.org/places/895916364",
+  "creators": [
+    {
+      "username": "vvitale",
+      "homepage": null,
+      "name": "Valeria Vitale",
+      "uri": "https://pleiades.stoa.org/author/vvitale"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-12T01:02:09Z"
+    },
+    {
+      "comment": "edited references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-01-28T04:06:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-01-28T01:38:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-01-28T01:38:41Z"
+    },
+    {
+      "comment": "edited references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-01-28T00:28:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "vvitale",
+      "modified": "2016-01-26T16:11:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-01-26T16:07:19Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "vvitale",
+      "modified": "2016-01-26T15:46:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "vvitale",
+      "modified": "2016-01-26T15:46:42Z"
+    }
+  ]
+}

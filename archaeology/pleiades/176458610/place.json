@@ -1,0 +1,317 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.5321404,
+            49.7163215
+          ],
+          [
+            6.532221,
+            49.7162921
+          ],
+          [
+            6.5321905,
+            49.7162502
+          ],
+          [
+            6.5321626,
+            49.7162234
+          ],
+          [
+            6.5320832,
+            49.7162529
+          ],
+          [
+            6.5321404,
+            49.7163215
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-grutenha-uschen",
+      "properties": {
+        "snippet": "Monument; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/176458610/osm-location-of-grutenha-uschen",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Grutenh\u00e4uschen"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/403172392",
+          "citationDetail": "Way 403172392",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=403172392",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://de.wikipedia.org/wiki/de:Grutenh%C3%A4uschen?uselang=en-US",
+          "citationDetail": "Grutenh\u00e4uschen",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (German)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/QVRBJVTM",
+          "formattedCitation": "Wikipedia: Die freie Enzyklop\u00e4die (2001-), Grutenh\u00e4uschen.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-grutenha-uschen",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 300,
+      "title": "OSM location of Grutenh\u00e4uschen",
+      "provenance": "OpenStreetMap (Way 403172392, version 2, osm:changeset=37773244, 2016-03-11T21:24:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-08-26T15:56:13Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.5321404,
+            49.7163215
+          ],
+          [
+            6.532221,
+            49.7162921
+          ],
+          [
+            6.5321905,
+            49.7162502
+          ],
+          [
+            6.5321626,
+            49.7162234
+          ],
+          [
+            6.5320832,
+            49.7162529
+          ],
+          [
+            6.5321404,
+            49.7163215
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/176458610/osm-location-of-grutenha-uschen",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-05T21:31:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-08-26T15:57:21Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-08-26T15:57:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-08-26T15:56:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-08-26T15:56:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-04T16:34:41Z",
+      "associationCertainty": "certain",
+      "title": "Igel",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/176458610/0818614054",
+      "connectionType": "at",
+      "id": "0818614054",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T16:34:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T16:34:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T16:34:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/109063",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/de:Grutenh%C3%A4uschen?uselang=en-US",
+      "citationDetail": "Grutenh\u00e4uschen",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/QVRBJVTM",
+      "formattedCitation": "Wikipedia: Die freie Enzyklop\u00e4die (2001-), Grutenh\u00e4uschen.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1551130",
+      "citationDetail": "Grutenh\u00e4uschen Igel (Roman tomb) (Q1551130)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "176458610",
+  "subject": [],
+  "title": "Grutenh\u00e4uschen",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Grutenh\u00e4uschen is a Roman funereal temple of the third or fourth century A.D. It has been reconstructed on site.",
+  "reprPoint": [
+    6.53215240592208,
+    49.71627220060552
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    6.5320832,
+    49.7162234,
+    6.532221,
+    49.7163215
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/109063"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-04T16:34:40Z",
+  "uri": "https://pleiades.stoa.org/places/176458610",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1551130",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-19T23:28:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-05T21:31:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T16:35:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T16:35:42Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T16:34:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T16:34:40Z"
+    }
+  ]
+}

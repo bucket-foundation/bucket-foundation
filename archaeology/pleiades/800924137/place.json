@@ -1,0 +1,463 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2773649,
+            39.5860327
+          ],
+          [
+            9.2773666,
+            39.5860429
+          ],
+          [
+            9.2773642,
+            39.5860531
+          ],
+          [
+            9.2773577,
+            39.5860622
+          ],
+          [
+            9.277348,
+            39.5860693
+          ],
+          [
+            9.2773358,
+            39.5860737
+          ],
+          [
+            9.2773225,
+            39.586075
+          ],
+          [
+            9.2773082,
+            39.5860727
+          ],
+          [
+            9.2772956,
+            39.5860668
+          ],
+          [
+            9.2772865,
+            39.5860579
+          ],
+          [
+            9.2772817,
+            39.5860473
+          ],
+          [
+            9.2772819,
+            39.5860359
+          ],
+          [
+            9.277287,
+            39.5860253
+          ],
+          [
+            9.2772965,
+            39.5860167
+          ],
+          [
+            9.2773092,
+            39.5860111
+          ],
+          [
+            9.2773236,
+            39.5860091
+          ],
+          [
+            9.2773381,
+            39.5860109
+          ],
+          [
+            9.2773499,
+            39.5860158
+          ],
+          [
+            9.2773592,
+            39.5860233
+          ],
+          [
+            9.2773649,
+            39.5860327
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Nuraghe; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/800924137/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Nuraghe Goni"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/319004042",
+          "citationDetail": "Way 319004042",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=319004042",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+      ],
+      "end": -1000,
+      "title": "OSM location of Nuraghe Goni",
+      "provenance": "OpenStreetMap (Way 319004042, version 6, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-12-26T19:19:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2773649,
+            39.5860327
+          ],
+          [
+            9.2773666,
+            39.5860429
+          ],
+          [
+            9.2773642,
+            39.5860531
+          ],
+          [
+            9.2773577,
+            39.5860622
+          ],
+          [
+            9.277348,
+            39.5860693
+          ],
+          [
+            9.2773358,
+            39.5860737
+          ],
+          [
+            9.2773225,
+            39.586075
+          ],
+          [
+            9.2773082,
+            39.5860727
+          ],
+          [
+            9.2772956,
+            39.5860668
+          ],
+          [
+            9.2772865,
+            39.5860579
+          ],
+          [
+            9.2772817,
+            39.5860473
+          ],
+          [
+            9.2772819,
+            39.5860359
+          ],
+          [
+            9.277287,
+            39.5860253
+          ],
+          [
+            9.2772965,
+            39.5860167
+          ],
+          [
+            9.2773092,
+            39.5860111
+          ],
+          [
+            9.2773236,
+            39.5860091
+          ],
+          [
+            9.2773381,
+            39.5860109
+          ],
+          [
+            9.2773499,
+            39.5860158
+          ],
+          [
+            9.2773592,
+            39.5860233
+          ],
+          [
+            9.2773649,
+            39.5860327
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/800924137/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T04:02:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-04T11:03:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-12T15:27:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-12T15:25:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-24T00:45:05Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-26T19:19:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-26T19:19:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-26T19:19:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T14:04:27Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/800924137/472014",
+      "connectionType": "connection",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sardegnacultura.it/j/v/253?s=21525&v=2&c=2488&c1=2123&visb=&t=1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Sardegna Cultura: Goni, Nuraghe Goni",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/",
+      "formattedCitation": "D. Cocco, \"Goni\", in I Sardi, La Sardegna dal paleolitico all'et\u00e0 romana, a cura di E. Anati, Milano, Jaca Book, 1984, pp. 103-106; ",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sardegnaturismo.it/en/explore/goni",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Goni",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q68032889",
+      "citationDetail": "Nuraghe Goni (Q68032889)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "800924137",
+  "subject": [
+    "nuraghe",
+    "extant remains"
+  ],
+  "title": "Nuraghe Goni",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Nuraghe Goni is located atop a plateau overlooking Lake Mulargia.",
+  "reprPoint": [
+    9.277323938091499,
+    39.58604203073797
+  ],
+  "placeTypes": [
+    "nuraghe"
+  ],
+  "bbox": [
+    9.2772817,
+    39.5860091,
+    9.2773666,
+    39.586075
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-12-26T19:18:15Z",
+  "uri": "https://pleiades.stoa.org/places/800924137",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q68032889",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T04:03:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-04T11:03:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T15:27:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T15:26:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-24T00:43:09Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-12-26T19:18:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-12-26T19:18:16Z"
+    }
+  ]
+}

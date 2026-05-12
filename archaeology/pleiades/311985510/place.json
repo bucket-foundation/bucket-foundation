@@ -1,0 +1,314 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.9535072,
+          38.7021766
+        ]
+      },
+      "type": "Feature",
+      "id": "palu-kalesi",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/311985510/palu-kalesi",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Palu Kalesi"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.9535,
+          38.7023
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-palu",
+      "properties": {
+        "snippet": "Fort-2",
+        "link": "https://pleiades.stoa.org/places/311985510/cigs-location-of-palu",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Palu"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2279983498",
+          "citationDetail": "Node 2279983498",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2279983498",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "palu-kalesi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Palu Kalesi",
+      "provenance": "OpenStreetMap (Node 2279983498, version 4, osm:changeset=123422310, 2022-07-10T07:39:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-06-16T14:08:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.9535072,
+          38.7021766
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/311985510/palu-kalesi",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-16T16:02:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T14:18:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T14:09:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T14:08:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T14:08:21Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/428815782",
+          "citationDetail": "volume 1, page 192",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Salvini 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+          "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-palu",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": null,
+      "title": "CIGS location of Palu",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "",
+      "created": "2023-06-16T14:16:06Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.9535,
+          38.7023
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/311985510/cigs-location-of-palu",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-16T16:02:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T14:18:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T14:17:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T14:16:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T14:16:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/428815782",
+      "citationDetail": "volume 1, page 192",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "311985510",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Palu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Fortress with Urartian inscription.",
+  "reprPoint": [
+    39.9535036,
+    38.702238300000005
+  ],
+  "placeTypes": [
+    "fort-2",
+    "monument"
+  ],
+  "bbox": [
+    39.9535,
+    38.7021766,
+    39.9535072,
+    38.7023
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-06-16T14:04:03Z",
+  "uri": "https://pleiades.stoa.org/places/311985510",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-16T16:02:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-06-16T14:18:00Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-06-16T14:04:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-06-16T14:04:03Z"
+    }
+  ]
+}

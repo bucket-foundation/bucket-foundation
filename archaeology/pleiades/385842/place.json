@@ -1,0 +1,183 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-04-08T02:57:11Z",
+      "associationCertainty": "certain",
+      "title": "Mutina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/385842/mutina",
+      "connectionType": "near",
+      "id": "mutina",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-08T15:41:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-08T02:57:49Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-08T02:57:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-08T02:57:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/383715",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "39 H4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tozzi 1975a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QIVXHAT6",
+      "formattedCitation": "<div class=\"csl-entry\">P. Tozzi. \u201cIndicazioni Sul Primitivo Stanziamento Della Colonia Di Modena.\u201d <i>Rivista Storica Dell\u2019Antichit\u00e0</i> 5 (1975): 47\u201352.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "385842",
+  "subject": [],
+  "title": "Centuriation located near Mutina",
+  "provenance": "Barrington Atlas: BAtlas 39 H4",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/centuriation"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Mutina</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "BAtlas 39 H4 unnamed centuriation (Mutina)",
+  "reprPoint": [
+    10.925223,
+    44.647057
+  ],
+  "placeTypes": [
+    "centuriation"
+  ],
+  "bbox": [
+    10.925223,
+    44.647057,
+    10.925223,
+    44.647057
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/383715"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-15T17:54:19Z",
+  "uri": "https://pleiades.stoa.org/places/385842",
+  "creators": [
+    {
+      "username": null,
+      "name": "M. Pearce"
+    },
+    {
+      "username": null,
+      "name": "P. Tozzi"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title; summary",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-08T15:42:22Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-26T02:41:25Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:37:28Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:37:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-15T18:28:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T18:07:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-15T17:54:19Z"
+    }
+  ]
+}

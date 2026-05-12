@@ -1,0 +1,583 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              22.282488079767745,
+              39.31929654442109
+            ],
+            [
+              22.318774860106657,
+              39.32048627492401
+            ],
+            [
+              22.341379739662045,
+              39.32167600542692
+            ],
+            [
+              22.363984619217433,
+              39.32167600542692
+            ],
+            [
+              22.383020307264076,
+              39.32167600542692
+            ],
+            [
+              22.403245725813633,
+              39.32286573592984
+            ],
+            [
+              22.42644547062048,
+              39.32227087067838
+            ],
+            [
+              22.444886293415664,
+              39.32286573592984
+            ],
+            [
+              22.474034690737085,
+              39.32286573592984
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label",
+        "link": "https://pleiades.stoa.org/places/541052/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "Phthiotis",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "55 C2 Phthiotis",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": null,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:16:04Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              22.282488079767745,
+              39.31929654442109
+            ],
+            [
+              22.318774860106657,
+              39.32048627492401
+            ],
+            [
+              22.341379739662045,
+              39.32167600542692
+            ],
+            [
+              22.363984619217433,
+              39.32167600542692
+            ],
+            [
+              22.383020307264076,
+              39.32167600542692
+            ],
+            [
+              22.403245725813633,
+              39.32286573592984
+            ],
+            [
+              22.42644547062048,
+              39.32227087067838
+            ],
+            [
+              22.444886293415664,
+              39.32286573592984
+            ],
+            [
+              22.474034690737085,
+              39.32286573592984
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/541052/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "J. Morin"
+        },
+        {
+          "username": null,
+          "name": "J. Fossey"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-18T17:03:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-27T20:28:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:16:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-09T21:26:19Z",
+      "associationCertainty": "certain",
+      "title": "Thessalia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/541052/thessalia",
+      "connectionType": "part_of_regional",
+      "id": "thessalia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-10T14:06:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-09T21:26:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-09T21:26:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-09T21:26:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/1332",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Thessaly",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "OCD",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAGRNTBU",
+          "formattedCitation": "<div class=\"csl-entry\">Hornblower, Simon, Antony Spawforth, and Esther Eidinow, eds. <i>The Oxford Classical Dictionary</i>. 4th ed. Oxford: Oxford University Press, 2012. http://www.worldcat.org/oclc/800740850.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "55 C2 Phthiotis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/h.html#Helly-1995",
+      "formattedCitation": "Helly 1995, 85, 137-38",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/800740850",
+      "citationDetail": "Phthiotis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "OCD",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAGRNTBU",
+      "formattedCitation": "<div class=\"csl-entry\">Hornblower, Simon, Antony Spawforth, and Esther Eidinow, eds. <i>The Oxford Classical Dictionary</i>. 4th ed. Oxford: Oxford University Press, 2012. http://www.worldcat.org/oclc/800740850.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Phthiotis",
+      "attestations": [],
+      "references": [],
+      "id": "phthiotis",
+      "end": null,
+      "contributors": [
+        {
+          "username": null,
+          "name": "G. Reger"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 55 C2 Phthiotis",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-23T00:42:24Z",
+      "uri": "https://pleiades.stoa.org/places/541052/phthiotis",
+      "creators": [
+        {
+          "username": null,
+          "name": "J. Fossey"
+        },
+        {
+          "username": null,
+          "name": "J. Morin"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:09:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-23T14:15:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-23T00:48:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-23T00:42:24Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Phthia",
+      "attestations": [],
+      "references": [],
+      "id": "phthia",
+      "end": null,
+      "contributors": [
+        {
+          "username": null,
+          "name": "G. Reger"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 55 C2 Phthiotis",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-23T00:42:24Z",
+      "uri": "https://pleiades.stoa.org/places/541052/phthia",
+      "creators": [
+        {
+          "username": null,
+          "name": "J. Fossey"
+        },
+        {
+          "username": null,
+          "name": "J. Morin"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:09:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-23T14:15:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-23T00:48:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-23T00:42:24Z"
+        }
+      ]
+    }
+  ],
+  "id": "541052",
+  "subject": [],
+  "title": "Phthiotis",
+  "provenance": "Barrington Atlas: BAtlas 55 C2 Phthiotis",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/district",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "None",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Phthiotis was a tetras (district) of Thessaly, consisting of the Enipeus river valley, between the Revenia hills and Mount Othrys. In myth, it was the homeland of Achilles.",
+  "reprPoint": [
+    22.378252662692066,
+    39.321705458070625
+  ],
+  "placeTypes": [
+    "district",
+    "label"
+  ],
+  "bbox": [
+    22.282488079767745,
+    39.31929654442109,
+    22.474034690737085,
+    39.32286573592984
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/1332",
+    "https://pleiades.stoa.org/places/541042",
+    "https://pleiades.stoa.org/places/540929",
+    "https://pleiades.stoa.org/places/540767",
+    "https://pleiades.stoa.org/places/541056",
+    "https://pleiades.stoa.org/places/540674",
+    "https://pleiades.stoa.org/places/540781"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-09T21:29:05Z",
+  "uri": "https://pleiades.stoa.org/places/541052",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Fossey"
+    },
+    {
+      "username": null,
+      "name": "J. Morin"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary; place type",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-10T14:06:17Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-09T21:29:02Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:09:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-23T14:15:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-23T00:48:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-23T00:42:24Z"
+    }
+  ]
+}

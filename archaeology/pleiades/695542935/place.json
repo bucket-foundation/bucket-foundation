@@ -1,0 +1,520 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.0717948,
+            37.5973587
+          ],
+          [
+            23.074282,
+            37.5980113
+          ],
+          [
+            23.0744084,
+            37.5979176
+          ],
+          [
+            23.0745185,
+            37.5977755
+          ],
+          [
+            23.0745715,
+            37.597601
+          ],
+          [
+            23.0745634,
+            37.5973813
+          ],
+          [
+            23.0720802,
+            37.5967223
+          ],
+          [
+            23.0717948,
+            37.5973587
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ipsii-ii1i",
+      "properties": {
+        "snippet": "Stadion; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/695542935/osm-location-of-ipsii-ii1i",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of \u03a3\u03c4\u03ac\u03b4\u03b9\u03bf"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.073867,
+          37.597528
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-stadium-at-epidaurus",
+      "properties": {
+        "snippet": "Stadion; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/695542935/imagery-location-stadium-at-epidaurus",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location of Stadium at Epidaurus"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/150018013",
+          "citationDetail": "Way 150018013",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=150018013",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ipsii-ii1i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+      ],
+      "end": 300,
+      "title": "OSM location of \u03a3\u03c4\u03ac\u03b4\u03b9\u03bf",
+      "provenance": "OpenStreetMap (Way 150018013, version 4, osm:changeset=36116609, 2015-12-23T00:23:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "stadion"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-05-18T04:41:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.0717948,
+            37.5973587
+          ],
+          [
+            23.074282,
+            37.5980113
+          ],
+          [
+            23.0744084,
+            37.5979176
+          ],
+          [
+            23.0745185,
+            37.5977755
+          ],
+          [
+            23.0745715,
+            37.597601
+          ],
+          [
+            23.0745634,
+            37.5973813
+          ],
+          [
+            23.0720802,
+            37.5967223
+          ],
+          [
+            23.0717948,
+            37.5973587
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/695542935/osm-location-of-ipsii-ii1i",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-24T12:22:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-24T00:54:58Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-18T04:42:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-18T04:41:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-18T04:41:58Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-stadium-at-epidaurus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+      ],
+      "end": -30,
+      "title": "Imagery Location of Stadium at Epidaurus",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>The stadium was constructed in a natural depression near Epidaurus. The flat land below provided adequate running ground and the slopes allowed spectators to stand and watch. The addition of stone slabs to the slopes for spectator seating is dated to the second half of the 4th century BC, although there is evidence that the stadium had been in use before this time. There were further alterations and improvements added after the slabs. A vaulted underground passage was constructed from the ground-level track to the nearby gymnasium outside of the stadium. The art on the keystones of the passageway shows clear Macedonian influence. The entire passage was built in two stages, each with distinct building techniques. The vaulted part is dated earlier, possibly to the 3rd century BC, while the outer part is dated to the 2nd or even the 1st century BC. Also during the 3rd century, there was construction of a fair-start system on the track field. The running track was 180.13 m long by 21.51 m wide, a normal length for a track during the\u00a0Hellenistic period. The athletic competitions were held during the festival of the Asclepieia in honor of the ancient Greek god of medicine and healing, Asclepius.</p>\r\n<p>\u00a0</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2013",
+      "featureType": [
+        "stadion"
+      ],
+      "description": "",
+      "created": "2013-04-28T21:55:02Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.073867,
+          37.597528
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/695542935/imagery-location-stadium-at-epidaurus",
+      "creators": [
+        {
+          "username": "pdevarney",
+          "homepage": null,
+          "name": "Patrick DeVarney",
+          "uri": "https://pleiades.stoa.org/author/pdevarney"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "migrated details and references to new parent place resource",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-25T12:01:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-07-08T17:51:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-06-15T06:09:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-05-10T21:07:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T22:51:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T22:41:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T22:24:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T22:13:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T22:11:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T22:04:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T22:01:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T21:55:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "pdevarney",
+          "modified": "2013-04-28T21:55:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-05-18T04:39:17Z",
+      "associationCertainty": "certain",
+      "title": "Epidauros",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/695542935/epidauros",
+      "connectionType": "at",
+      "id": "epidauros",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-24T12:22:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-24T00:54:57Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-18T04:39:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-18T04:39:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570228",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "90-92",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tomlinson 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JRDIUYUZ",
+      "formattedCitation": "<div class=\"csl-entry\">Tomlinson, R. A. <i>Epidauros</i>. 1st ed. Austin: University of Texas Press, 1983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/496618?origin=crossref",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fowler 1899",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JJ5UCEWU",
+      "formattedCitation": "<div class=\"csl-entry\">Fowler, Harold N. \u201cArchaeological News.\u201d <i>American Journal of Archaeology</i> 3, no. 1 (1899): 55\u2013111. https://doi.org/10.2307/496618.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "695542935",
+  "subject": [],
+  "title": "Stadium at Epidaurus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+  ],
+  "details": "<p>The stadium was constructed in a natural depression near Epidaurus. The flat land below provided adequate running ground and the slopes allowed spectators to stand and watch. The addition of stone slabs to the slopes for spectator seating is dated to the second half of the 4th century BC, although there is evidence that the stadium had been in use before this time. There were further alterations and improvements added after the slabs. A vaulted underground passage was constructed from the ground-level track to the nearby gymnasium outside of the stadium. The art on the keystones of the passageway shows clear Macedonian influence. The entire passage was built in two stages, each with distinct building techniques. The vaulted part is dated earlier, possibly to the 3rd century BC, while the outer part is dated to the 2nd or even the 1st century BC. Also during the 3rd century, there was construction of a fair-start system on the track field. The running track was 180.13 m long by 21.51 m wide, a normal length for a track during the\u00a0Hellenistic period. The athletic competitions were held during the festival of the Asclepieia in honor of the ancient Greek god of medicine and healing, Asclepius.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "This stadium, constructed in a natural depression near Epidaurus, was part of the sanctuary of Asclepius, the god of medicine and healing, and housed athletic contests in honor of the god. It dates to the fourth century B.C.",
+  "reprPoint": [
+    23.073531224568548,
+    37.597451017531384
+  ],
+  "placeTypes": [
+    "stadion"
+  ],
+  "bbox": [
+    23.0717948,
+    37.5967223,
+    23.0745715,
+    37.5980113
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570228"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-25T11:45:03Z",
+  "uri": "https://pleiades.stoa.org/places/695542935",
+  "creators": [
+    {
+      "username": "pdevarney",
+      "homepage": null,
+      "name": "Patrick DeVarney",
+      "uri": "https://pleiades.stoa.org/author/pdevarney"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "migrated details and references from old location resource to this new place resource",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-25T12:00:27Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-25T11:45:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-24T12:22:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-24T00:54:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-18T04:40:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-18T04:38:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "pdevarney",
+      "modified": "2013-04-28T22:38:14Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "pdevarney",
+      "modified": "2013-04-28T21:49:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "pdevarney",
+      "modified": "2013-04-28T21:48:57Z"
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4950385,
+          40.097893
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-great-southern-baths",
+      "properties": {
+        "snippet": "Bath; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/684682242/osm-location-of-great-southern-baths",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Great Southern baths"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7878861330",
+          "citationDetail": "Node 7878861330",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7878861330",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-great-southern-baths",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 300,
+      "title": "OSM location of Great Southern baths",
+      "provenance": "OpenStreetMap (Node 7878861330, version 4, osm:changeset=136513935, 2023-05-24T18:57:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-12-21T19:43:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4950385,
+          40.097893
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/684682242/osm-location-of-great-southern-baths",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-09T20:17:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T19:43:42Z"
+        },
+        {
+          "comment": "supersedes previously published location whose underlying OSM data is now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T19:43:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T19:43:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T19:43:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-11-17T04:48:19Z",
+      "associationCertainty": "certain",
+      "title": "Conimbriga",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/684682242/0993605875",
+      "connectionType": "at",
+      "id": "0993605875",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-17T04:48:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-17T04:48:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-17T04:48:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/236443",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Con%C3%ADmbriga",
+      "citationDetail": "Con\u00edmbriga",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "684682242",
+  "subject": [
+    "baths"
+  ],
+  "title": "Great Southern baths at Conimbriga",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman baths at Conimbriga.",
+  "reprPoint": [
+    -8.4950385,
+    40.097893
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    -8.4950385,
+    40.097893,
+    -8.4950385,
+    40.097893
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/236443"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-17T04:48:17Z",
+  "uri": "https://pleiades.stoa.org/places/684682242",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T19:44:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-30T21:57:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-21T00:29:27Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-21T00:27:52Z"
+    },
+    {
+      "comment": "promoted to place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T04:48:46Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T04:48:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T04:48:17Z"
+    }
+  ]
+}

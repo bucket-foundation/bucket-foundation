@@ -1,0 +1,584 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.267151,
+          34.550502
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Agora",
+        "link": "https://pleiades.stoa.org/places/844139526/imagery-location",
+        "description": "Representative point location for Agora of the Ancient City of Palmyra. Coordinates determined by eye in Google Earth in November 2012, following description in UNESCO World Heritage List.",
+        "location_precision": "precise",
+        "title": "Imagery Location of the Agora of Palmyra"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.2666281,
+            34.550431
+          ],
+          [
+            38.2671133,
+            34.5500702
+          ],
+          [
+            38.2677796,
+            34.5506021
+          ],
+          [
+            38.2672889,
+            34.5509728
+          ],
+          [
+            38.2666281,
+            34.550431
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-agora",
+      "properties": {
+        "snippet": "Agora; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/844139526/osm-location-of-agora",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Agora"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://whc.unesco.org/en/list/23/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "UNESCO World Heritage List, Site of Palmyra",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/agora"
+      ],
+      "end": null,
+      "title": "Imagery Location of the Agora of Palmyra",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/agora"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 4.2,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-digitalglobe-imagery-2012",
+      "featureType": [
+        "agora"
+      ],
+      "description": "Representative point location for Agora of the Ancient City of Palmyra. Coordinates determined by eye in Google Earth in November 2012, following description in UNESCO World Heritage List.",
+      "created": "2012-11-16T19:20:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.267151,
+          34.550502
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/844139526/imagery-location",
+      "creators": [
+        {
+          "username": "adamp",
+          "homepage": null,
+          "name": "Adam Prins",
+          "uri": "https://pleiades.stoa.org/author/adamp"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-27T16:48:02Z"
+        },
+        {
+          "comment": "location and feature types; archaeo remains",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-23T12:09:09Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-12-13T15:55:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "adamp",
+          "modified": "2012-12-10T16:14:10Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2012-12-04T17:13:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "adamp",
+          "modified": "2012-11-16T19:25:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "adamp",
+          "modified": "2012-11-16T19:20:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "adamp",
+          "modified": "2012-11-16T19:20:18Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/226891795",
+          "citationDetail": "Way 226891795",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=226891795",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-agora",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/agora"
+      ],
+      "end": 300,
+      "title": "OSM location of Agora",
+      "provenance": "OpenStreetMap (Way 226891795, version 11, osm:changeset=160025770, 2024-12-07T12:42:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/agora"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "agora"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-01-27T01:39:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.2666281,
+            34.550431
+          ],
+          [
+            38.2671133,
+            34.5500702
+          ],
+          [
+            38.2677796,
+            34.5506021
+          ],
+          [
+            38.2672889,
+            34.5509728
+          ],
+          [
+            38.2666281,
+            34.550431
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/844139526/osm-location-of-agora",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-27T16:27:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-27T01:39:48Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-27T01:39:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-27T01:39:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-27T01:39:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-08-23T12:08:03Z",
+      "associationCertainty": "certain",
+      "title": "Palmyra",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/844139526/palmyra",
+      "connectionType": "at",
+      "id": "palmyra",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-23T12:09:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-23T12:09:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-23T12:08:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-23T12:08:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/668331",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Palmyra",
+      "citationDetail": "Palmyra s.v. \"Notable structures\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Delplace 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FMAUKR39",
+      "formattedCitation": "<div class=\"csl-entry\">Delplace, Christiane, J. Dentzer-Feydy, Henri Seyrig, Kh\u0101lid As\u2019ad, Jean Charles Balty, and Raymond Duru. <i>L\u2019Agora de Palmyre</i>. Biblioth\u00e8que arch\u00e9ologique et historique, t. 175. Pessac\u202f:\u00a0 Beyrouth: Ausonius\u202f;\u00a0 Institut Fran\u00e7ais du Proche-Orient, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ajaonline.org/book-review/574",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Downey 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GE97R6JZ",
+      "formattedCitation": "<div class=\"csl-entry\">Downey, Susan B. \u201cL\u2019Agora de Palmyre.\u201d <i>American Journal of Archaeology</i> 112, no. 3 (March 24, 2011). https://www.ajaonline.org/book-review/574.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108355868",
+      "citationDetail": "Palmyra Agora (Q108355868)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6033819",
+      "citationDetail": "K300 Agora von Palmyra Palmyra, Syrien",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2331878",
+      "citationDetail": "2331878: Aghura ",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bounni and Saliby 1968",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RT8H9N7D",
+      "formattedCitation": "<div class=\"csl-entry\">Bounni, A., and N. Saliby. \u201cFouilles de l\u2019annexe de l\u2019agora \u00e0 Palmyre. Rapport pr\u00e9liminaire.\u201d In <i>Les annales arch\u00e9ologiques arabes syriennes. Revue d\u2019arch\u00e9ologie et d\u2019histoire, 18.1968</i>, 93\u2013102, 1968.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Palmyra Agora",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q108355868",
+          "citationDetail": "Palmyra Agora (Q108355868)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "palmyra-agora",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-12-15T00:19:25Z",
+      "uri": "https://pleiades.stoa.org/places/844139526/palmyra-agora",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Palmyra Agora",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-06T17:51:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-15T00:19:32Z"
+        },
+        {
+          "comment": "name - Palmyra Agora",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-15T00:19:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-15T00:19:25Z"
+        }
+      ]
+    }
+  ],
+  "id": "844139526",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Agora of Palmyra",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/agora"
+  ],
+  "details": "<p>Coordinates determined by eye in Google Earth in November 2012, following description in UNESCO World Heritage List.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Agora of the Ancient City of Palmyra.",
+  "reprPoint": [
+    38.26717724217791,
+    34.55051104756082
+  ],
+  "placeTypes": [
+    "agora"
+  ],
+  "bbox": [
+    38.2666281,
+    34.5500702,
+    38.2677796,
+    34.5509728
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/668331"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-08-23T12:06:29Z",
+  "uri": "https://pleiades.stoa.org/places/844139526",
+  "creators": [
+    {
+      "username": "adamp",
+      "homepage": null,
+      "name": "Adam Prins",
+      "uri": "https://pleiades.stoa.org/author/adamp"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-27T01:42:09Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-01T00:44:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2016-08-23T12:09:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2016-08-23T12:09:23Z"
+    },
+    {
+      "comment": "type",
+      "modifiedBy": "thomase",
+      "modified": "2016-08-23T12:08:20Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-08-23T12:06:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-08-23T12:06:29Z"
+    }
+  ]
+}

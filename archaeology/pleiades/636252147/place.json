@@ -1,0 +1,376 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0089133,
+          42.6023725
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-civita-darlena",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/636252147/osm-location-of-civita-darlena",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Civita d'Arlena"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9961345431",
+          "citationDetail": "Node 9961345431",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9961345431",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-civita-darlena",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Civita d'Arlena",
+      "provenance": "OpenStreetMap (Node 9961345431, version 2, osm:changeset=129791299, 2022-12-06T17:33:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-01-23T19:19:14Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0089133,
+          42.6023725
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/636252147/osm-location-of-civita-darlena",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-27T14:12:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-31T14:14:45Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-23T19:19:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-23T19:19:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-23T19:19:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Civita_d%27Arlena",
+      "citationDetail": "Civita d'Arlena",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Granata 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U5PYLHMN",
+      "formattedCitation": "<div class=\"csl-entry\">Granata, Alessandra. \u201cLa necropoli della Capriola della Civita del Fosso d\u2019Arlena. Nuove acquisizioni da vecchi scavi.\u201d In <i>Archaeologiae\u202f: research by foreign missions in Italy, 8 (2010)</i>, 11\u201338, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "90",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Attema 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PSHXDXTC",
+      "formattedCitation": "<div class=\"csl-entry\">Attema, Peter A. J, Jorn F Seubers, Sarah Lea Willemsen, and Groningen institute of archaeology (Pays-Bas), eds. <i>Early States, Territories and Settlements in Protohistoric Central Italy: Proceedings of a Specialist Conference at the Groningen Institute of Archaeology of the University of Groningen, 2013</i>. Groningen; [Eelde: University of Groningen, Groningen Institute of Archaeology\u202f; Barkhuis, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Etruria in progress 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KI4E3YFF",
+      "formattedCitation": "<div class=\"csl-entry\">AA VV. <i>Etruria in Progress: La Ricerca Archeologica in Etruria Meridionale</i>. Gangemi Editore spa, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/mefr_0223-5102_2008_num_120_1_10430",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dewailly 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EKKKETK6",
+      "formattedCitation": "<div class=\"csl-entry\">Dewailly, Martine, Alessandra Granata, Veronica Re, Chiara Mottolese, Silvia Martini, Milena Basili, and Carmen Colomba Carraro. \u201cBolsena. Le attivit\u00e0 svolte presso il laboratorio di archeologia\u202f: studi di materiali provenienti dagli vecchi scavi dell\u2019\u00c9cole fran\u00e7aise de Rome a Bolsena.\u201d <i>M\u00e9langes de l\u2019\u00e9cole fran\u00e7aise de Rome</i> 120, no. 1 (2008): 202\u20135. https://doi.org/10.3406/mefr.2008.10430.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Civita del Fosso di Arlena",
+      "attestations": [],
+      "references": [],
+      "id": "civita-del-fosso-di-arlena",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-01-23T19:42:25Z",
+      "uri": "https://pleiades.stoa.org/places/636252147/civita-del-fosso-di-arlena",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Civita del Fosso di Arlena",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-27T14:12:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-31T14:14:45Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-23T19:42:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-23T19:42:25Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Civita d'Arlena",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://catalogo.beniculturali.it/detail/ArchaeologicalProperty/1201339481",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Civita d'Arlena (insediamento insediamento naturalmente difeso)",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "civita-darlena",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-01-23T19:42:42Z",
+      "uri": "https://pleiades.stoa.org/places/636252147/civita-darlena",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Civita d'Arlena",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-27T14:12:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-31T14:15:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-31T14:14:45Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-23T19:42:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-23T19:42:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "636252147",
+  "subject": [],
+  "title": "Civita d'Arlena",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Civita d'Arlena (also known as Civita del Fosso di Arlena) is an archaeological site that occupies a hilltop near Lake Bolsena. It was the site of Etruscan occupation until the third century BCE. Excavations carried out by the \u00c9cole fran\u00e7aise de Rome (1952 to 1958) revealed parts of a fortification wall and a sacred building, along with evidence for a city plan.",
+  "reprPoint": [
+    12.0089133,
+    42.6023725
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    12.0089133,
+    42.6023725,
+    12.0089133,
+    42.6023725
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-01-23T19:18:54Z",
+  "uri": "https://pleiades.stoa.org/places/636252147",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-27T14:12:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-31T14:14:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-31T14:14:38Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-31T14:11:03Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-23T19:45:35Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-23T19:22:41Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-23T19:18:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-23T19:18:54Z"
+    }
+  ]
+}

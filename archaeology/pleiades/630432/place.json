@@ -1,0 +1,306 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.0,
+              38.0
+            ],
+            [
+              39.5,
+              38.0
+            ],
+            [
+              39.5,
+              40.0
+            ],
+            [
+              35.0,
+              40.0
+            ],
+            [
+              35.0,
+              38.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "undetermined",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/630432/undetermined",
+        "description": "Roughly located within a bounding box",
+        "location_precision": "rough",
+        "title": "Undetermined location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "undetermined",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "Undetermined location",
+      "provenance": "Barrington Atlas: BAtlas 64",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Roughly located within a bounding box",
+      "created": "2009-10-19T10:41:59Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.0,
+              38.0
+            ],
+            [
+              39.5,
+              38.0
+            ],
+            [
+              39.5,
+              40.0
+            ],
+            [
+              35.0,
+              40.0
+            ],
+            [
+              35.0,
+              38.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/630432/undetermined",
+      "creators": [
+        {
+          "username": null,
+          "name": "T.B. Mitford"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:23:59Z"
+        },
+        {
+          "comment": "Batch geocoding, to BAtlas grids, of unlocated roads.",
+          "modifiedBy": "sgillies",
+          "modified": "2011-07-14T05:32:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T13:38:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T10:50:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T10:41:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "64",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "264-66",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ramsay 1890",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8Z37S6RK",
+      "formattedCitation": "<div class=\"csl-entry\">Ramsay, William Mitchell. <i>The Historical Geography of Asia Minor</i>. Supplementary Papers (Royal Geographical Society (Great Britain)) 4. London: John Murray, 1890.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "722-27",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Munro 1893",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8GAU32TI",
+      "formattedCitation": "<div class=\"csl-entry\">Munro, J.A.R. \u201cNotes on Roads in the Vilayet of Sivas.\u201d <i>RGS Supplementary Papers</i> 3 (1893): 719\u201339.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "318-30",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cumont 1906",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2RXVGVIV",
+      "formattedCitation": "<div class=\"csl-entry\">Cumont, Franz Valery Marie, and Eug\u00e8ne Cumont. <i>Voyage d\u2019exploration Arch\u00e9ologique Dans Le Pont et La Petite Arm\u00e9nie</i>. Bruxelles?, 1906.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "630432",
+  "subject": [],
+  "title": "Untitled",
+  "provenance": "Barrington Atlas: BAtlas 64",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/road"
+  ],
+  "details": "The Barrington Atlas Directory notes: Sibora \u2192 Sebasteia \u2192 Kamisa \u2192 Zara",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Sibora \u2192 Sebasteia \u2192 Kamisa \u2192 Zara",
+  "reprPoint": [
+    37.25,
+    39.0
+  ],
+  "placeTypes": [
+    "road"
+  ],
+  "bbox": [
+    35.0,
+    38.0,
+    39.5,
+    40.0
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-19T10:41:59Z",
+  "uri": "https://pleiades.stoa.org/places/630432",
+  "creators": [
+    {
+      "username": null,
+      "name": "T.B. Mitford"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-29T03:31:45Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:23:59Z"
+    },
+    {
+      "comment": "Description fixes 2 after batch geocoding of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T18:12:50Z"
+    },
+    {
+      "comment": "Description fixes after batch geocoding of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T17:20:43Z"
+    },
+    {
+      "comment": "Batch geocoding, to BAtlas grids, of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T05:32:13Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:45:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-19T13:38:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T10:50:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T10:41:59Z"
+    }
+  ]
+}

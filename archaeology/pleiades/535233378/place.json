@@ -1,0 +1,407 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            64.3317593,
+            39.7760864
+          ],
+          [
+            64.3341005,
+            39.7760266
+          ],
+          [
+            64.3367784,
+            39.7761413
+          ],
+          [
+            64.3368922,
+            39.7744095
+          ],
+          [
+            64.3360618,
+            39.7743288
+          ],
+          [
+            64.3354933,
+            39.7738417
+          ],
+          [
+            64.3354344,
+            39.7736556
+          ],
+          [
+            64.3350665,
+            39.7726581
+          ],
+          [
+            64.334157,
+            39.7725578
+          ],
+          [
+            64.3327721,
+            39.7723583
+          ],
+          [
+            64.331439,
+            39.7722751
+          ],
+          [
+            64.3311694,
+            39.7735321
+          ],
+          [
+            64.3312715,
+            39.7749753
+          ],
+          [
+            64.3317593,
+            39.7760864
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "char-bakr-necropolis",
+      "properties": {
+        "snippet": "Cemetery; AD 1300 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/535233378/char-bakr-necropolis",
+        "description": "Polygon representing the location of the Char-Bakr necropolis, derived from an OpenStreetMap Way after Babajanov and Szuppe 2002.",
+        "location_precision": "precise",
+        "title": "OSM location of Char-Bakr necropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/693771439",
+          "citationDetail": "Way 693771439",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=693771439",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "char-bakr-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": 2100,
+      "title": "OSM location of Char-Bakr necropolis",
+      "provenance": "OpenStreetMap (Way 693771439, version 1, osm:changeset=70814243, 2019-05-31T16:05:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Polygon representing the location of the Char-Bakr necropolis, derived from an OpenStreetMap Way after Babajanov and Szuppe 2002.",
+      "created": "2019-05-31T16:18:19Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            64.3317593,
+            39.7760864
+          ],
+          [
+            64.3341005,
+            39.7760266
+          ],
+          [
+            64.3367784,
+            39.7761413
+          ],
+          [
+            64.3368922,
+            39.7744095
+          ],
+          [
+            64.3360618,
+            39.7743288
+          ],
+          [
+            64.3354933,
+            39.7738417
+          ],
+          [
+            64.3354344,
+            39.7736556
+          ],
+          [
+            64.3350665,
+            39.7726581
+          ],
+          [
+            64.334157,
+            39.7725578
+          ],
+          [
+            64.3327721,
+            39.7723583
+          ],
+          [
+            64.331439,
+            39.7722751
+          ],
+          [
+            64.3311694,
+            39.7735321
+          ],
+          [
+            64.3312715,
+            39.7749753
+          ],
+          [
+            64.3317593,
+            39.7760864
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/535233378/char-bakr-necropolis",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-31T21:15:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-31T16:21:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-31T16:20:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-31T16:18:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-31T16:18:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2019-05-31T16:20:55Z",
+      "associationCertainty": "certain",
+      "title": "Bukhara",
+      "start": 1300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/535233378/bukhara",
+      "connectionType": "near",
+      "id": "bukhara",
+      "attestations": [
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-31T21:15:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-31T16:21:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-31T16:20:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-31T16:20:55Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/762205391",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.iranicaonline.org/articles/car-bakr-lit",
+      "citationDetail": "\u010c\u0101r Bakr",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EncIran (online)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MGQ4IGT7",
+      "formattedCitation": "<div class=\"csl-entry\">Yar-Shater, Ehsan. <i>Encyclop\u00e6dia Iranica (Online)</i>. New York: Columbia University, 2010. http://www.iranicaonline.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.iranicaonline.org/articles/juybaris-a-prominent-bukharan-family-dynasty-for-more-than-500-years",
+      "citationDetail": "J\u016byb\u0101ris",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EncIran (online)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MGQ4IGT7",
+      "formattedCitation": "<div class=\"csl-entry\">Yar-Shater, Ehsan. <i>Encyclop\u00e6dia Iranica (Online)</i>. New York: Columbia University, 2010. http://www.iranicaonline.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Babajanov & Szuppe 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/76CE2IMN",
+      "formattedCitation": "<div class=\"csl-entry\">Babajanov, Bakhtyar, and Maria Szuppe. <i>Les Inscriptions Persanes de Ch\u0101r Bakr, N\u00e9cropole Familiale Des Khw\u0101ja J\u016byb\u0101r\u012b Pr\u00e8s de Boukhara</i>. Corpus Inscriptionum Iranicarum. Part IV, Persion Inscriptions down to the Early Safavid Period 31. London: School of Oriental and African Studies, 2002.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "535233378",
+  "subject": [],
+  "title": "Char Bakr",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Necropolis of the J\u016byb\u0101ri shaikhs located approximately 5 km west of Bukhara. The complex was constructed during the 16th century around the tomb of the scholar Em\u0101m Abu Bakr Sa\u02bfd. ",
+  "reprPoint": [
+    64.33388737519762,
+    39.77441741092091
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    64.3311694,
+    39.7722751,
+    64.3368922,
+    39.7761413
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/762205391"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-05-31T16:17:47Z",
+  "uri": "https://pleiades.stoa.org/places/535233378",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-31T21:15:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-31T21:15:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-31T16:21:05Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-31T16:17:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-31T16:17:47Z"
+    }
+  ]
+}

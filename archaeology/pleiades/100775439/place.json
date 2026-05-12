@@ -1,0 +1,296 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5568724,
+            42.6418517
+          ],
+          [
+            12.5569508,
+            42.6418613
+          ],
+          [
+            12.5569338,
+            42.6419027
+          ],
+          [
+            12.556858,
+            42.6418921
+          ],
+          [
+            12.5568724,
+            42.6418517
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-arch-of-trajan",
+      "properties": {
+        "snippet": "Arch, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/100775439/osm-location-of-arch-of-trajan",
+        "description": "An arch dedicated to Trajan on the Via Flaminia, also known as the Arco di San Damiano. Location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Arch of Trajan"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/77013778",
+          "citationDetail": "Way 77013778",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=77013778",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-arch-of-trajan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/arch",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Arch of Trajan",
+      "provenance": "OpenStreetMap (Way 77013778, version 2, osm:changeset=52153768, 2017-09-18T18:41:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/arch",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "arch",
+        ""
+      ],
+      "description": "An arch dedicated to Trajan on the Via Flaminia, also known as the Arco di San Damiano. Location based on OpenStreetMap.",
+      "created": "2013-07-27T20:39:49Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5568724,
+            42.6418517
+          ],
+          [
+            12.5569508,
+            42.6418613
+          ],
+          [
+            12.5569338,
+            42.6419027
+          ],
+          [
+            12.556858,
+            42.6418921
+          ],
+          [
+            12.5568724,
+            42.6418517
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/100775439/osm-location-of-arch-of-trajan",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T16:28:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-28T17:00:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-28T16:58:57Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:40:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:39:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:39:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-11-11T14:35:36Z",
+      "associationCertainty": "certain",
+      "title": "Carsulae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/100775439/9361571053",
+      "connectionType": "at",
+      "id": "9361571053",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:35:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:35:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:35:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413065",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Carsulae",
+      "citationDetail": "Carsulae",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "100775439",
+  "subject": [],
+  "title": "Arch of Trajan",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/arch"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An arch dedicated to Trajan on the Via Flaminia at Carsulae, also known as the Arco di San Damiano.",
+  "reprPoint": [
+    12.5568724,
+    42.6418517
+  ],
+  "placeTypes": [
+    "arch"
+  ],
+  "bbox": [
+    12.5568724,
+    42.6418517,
+    12.5568724,
+    42.6418517
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413065"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-11T14:35:34Z",
+  "uri": "https://pleiades.stoa.org/places/100775439",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-29T22:19:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:36:40Z"
+    },
+    {
+      "comment": "promoted to place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:36:34Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:35:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:35:34Z"
+    }
+  ]
+}

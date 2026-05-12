@@ -1,0 +1,161 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2021-02-09T18:54:56Z",
+      "associationCertainty": "certain",
+      "title": "Block L7",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/769637720/block-l7",
+      "connectionType": "part_of_physical",
+      "id": "block-l7",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:46:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:46:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2021-02-09T18:54:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/769637719",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://hdl.handle.net/2027/mdp.39015016894068",
+      "citationDetail": "p. 309-396",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rostovtzeff 1936",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/UC843X84",
+      "formattedCitation": "Rostovtzeff, M.I., Bellinger, L., Hopkins, C., and Welles, C.B., eds. The Excavations at Dura-Europos,Conducted by Yale University and the French Academy of Inscriptions and Letters; Preliminary Report of Sixth Season of Work, October 1932 \u2013 March 1933. New Haven: Yale University Press, 1936.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "769637720",
+  "subject": [
+    "YDEA project"
+  ],
+  "title": "Building (house?) preceding Synagogue phase 1",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Traces of preceding building of uncertain type (house?) detected below the synagogue levels in Block L7.",
+  "reprPoint": [
+    40.72696928354581,
+    34.74745939446625
+  ],
+  "placeTypes": [
+    "building"
+  ],
+  "bbox": [
+    40.72667435009896,
+    34.74706346597567,
+    40.72738968133842,
+    34.74784528374879
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/769637719",
+    "https://pleiades.stoa.org/places/769637722"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-02-09T18:54:56Z",
+  "uri": "https://pleiades.stoa.org/places/769637720",
+  "creators": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "remove erroneous tag",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-26T10:55:40Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "achen",
+      "modified": "2021-05-06T19:18:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-11T11:46:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-11T11:46:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "admin",
+      "modified": "2021-02-09T18:54:56Z"
+    }
+  ]
+}

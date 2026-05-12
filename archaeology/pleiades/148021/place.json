@@ -1,0 +1,380 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.138913,
+          43.8962
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-ign-representative-point",
+      "properties": {
+        "snippet": "Forest; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/148021/imagery-location-of-ign-representative-point",
+        "description": "This representative point reflects the label anchor location used for the Bois des Lens on the IGN maps served through the French government's G\u00e9oportail website. It has been visually verified in Google Earth. Dates after Bessac.",
+        "location_precision": "precise",
+        "title": "Imagery Location of IGN Representative Point"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geoportail.gouv.fr/carte?c=4.138484,43.89579800000001&z=12&l0=GEOGRAPHICALGRIDSYSTEMS.MAPS.SCAN-EXPRESS.STANDARD:WMTS(1)&permalink=yes",
+          "citationDetail": "Bois des Lens",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "G\u00e9oportail IGN",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZEE8EE63",
+          "formattedCitation": "<div class=\"csl-entry\"><i>G\u00e9oportail: Portail National de La Connaissance Du Territoire Mis En \u0152uvre Par l\u2019IGN</i>. Institut national de l\u2019information g\u00e9ographique et foresti\u00e8re. Accessed February 27, 2019. https://www.geoportail.gouv.fr.ignipq.local.oshimae.rie.agri/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.persee.fr/doc/galia_0016-4119_2002_num_59_1_3095",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bessac 1981",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSFU438W",
+          "formattedCitation": "<div class=\"csl-entry\">J.-C. Bessac. \u201cLes Carri\u00e8res de N\u00eemes.\u201d <i>Dossiers, Histoire et Arch\u00e9ologie</i> 55 (1981): 59\u201367. https://www.persee.fr/doc/galia_0016-4119_2002_num_59_1_3095.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-ign-representative-point",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forest"
+      ],
+      "end": 640,
+      "title": "Imagery Location of IGN Representative Point",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forest"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "forest"
+      ],
+      "description": "This representative point reflects the label anchor location used for the Bois des Lens on the IGN maps served through the French government's G\u00e9oportail website. It has been visually verified in Google Earth. Dates after Bessac.",
+      "created": "2019-02-27T16:58:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.138913,
+          43.8962
+        ]
+      },
+      "locationType": [
+        "representative",
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/148021/imagery-location-of-ign-representative-point",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-27T18:47:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T17:52:20Z"
+        },
+        {
+          "comment": "references",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T17:18:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T17:10:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T16:58:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T16:58:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "15 C2 Bois des Lens",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/galia_0016-4119_2002_num_59_1_3095",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bessac 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSFU438W",
+      "formattedCitation": "<div class=\"csl-entry\">J.-C. Bessac. \u201cLes Carri\u00e8res de N\u00eemes.\u201d <i>Dossiers, Histoire et Arch\u00e9ologie</i> 55 (1981): 59\u201367. https://www.persee.fr/doc/galia_0016-4119_2002_num_59_1_3095.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/ran_0557-7705_1986_num_19_1_1287",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bessac 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BMMJ8UEJ",
+      "formattedCitation": "<div class=\"csl-entry\">J.-C. Bessac. \u201cCarri\u00e8res Antiques Du Bois de Lens (Gard)\u202f: Inventaire Pr\u00e9liminaire.\u201d <i>Revue Arch\u00e9ologique de Narbonnaise</i> 19 (1986): 159\u201382. https://www.persee.fr/doc/ran_0557-7705_1986_num_19_1_1287.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/34779453",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bessac 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZIE8WYBP",
+      "formattedCitation": "<div class=\"csl-entry\">Bessac, Jean-Claude, and Marie-Reine Aucher. <i>La pierre en Gaule narbonnaise et les carri\u00e8res du Bois des Lens (N\u00eemes): histoire, arch\u00e9ologie, ethnographie, et techniques</i>. Ann Arbor, MI: Journal of Roman archaeology, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.youtube.com/",
+      "citationDetail": "Carri\u00e8res du bois des Lens by Bruno Teste",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "YouTube",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S3WKDKTY",
+      "formattedCitation": "<div class=\"csl-entry\"><i>YouTube</i>. Google. Accessed February 27, 2019. https://www.youtube.com/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "7408",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/galia_0016-4119_2002_num_59_1_3095",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bessac 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KS3A56Y5",
+      "formattedCitation": "<div class=\"csl-entry\">Bessac, Jean-Claude. \u201cLes carri\u00e8res du Bois des Lens (Gard).\u201d <i>Gallia</i> 59, no. 1 (2002): 29\u201351. https://doi.org/10.3406/galia.2002.3095.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "148021",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=mine",
+    "limestone"
+  ],
+  "title": "Bois des Lens Quarries",
+  "provenance": "Barrington Atlas: BAtlas 15 C2 Bois des Lens",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/forest",
+    "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Bois des Lens</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A series of opencast limestone quarries located in the Bois des Lens about 25 km west of N\u00eemes (France) were identified and studied in the 20th century. They are thought to have been brought into use in the fourth century BCE, with peak exploitation occurring during the early Roman Empire.",
+  "reprPoint": [
+    4.138913,
+    43.8962
+  ],
+  "placeTypes": [
+    "forest",
+    "quarry"
+  ],
+  "bbox": [
+    4.138913,
+    43.8962,
+    4.138913,
+    43.8962
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-02-27T19:54:49Z",
+  "uri": "https://pleiades.stoa.org/places/148021",
+  "creators": [
+    {
+      "username": null,
+      "name": "S. Loseby"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "ctype",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-28T22:49:20Z"
+    },
+    {
+      "comment": "check in of working copy w/ add'l reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-27T20:30:55Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-27T18:58:55Z"
+    },
+    {
+      "comment": "check in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-27T18:46:56Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2019-02-27T16:19:47Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:19:24Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:29:30Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:07:26Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-04T22:27:54Z"
+    },
+    {
+      "comment": "Mined or quarried materials from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-01T22:28:20Z"
+    },
+    {
+      "comment": "Mined or quarried materials from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-01T22:21:56Z"
+    },
+    {
+      "comment": "Mined or quarried materials from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-01T22:16:02Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:58:10Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-05-19T02:19:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-01T21:02:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-01T16:50:42Z"
+    }
+  ]
+}

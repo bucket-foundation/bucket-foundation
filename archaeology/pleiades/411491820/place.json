@@ -1,0 +1,324 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -5.5433326,
+            42.5353362
+          ],
+          [
+            -5.5437068,
+            42.5351758
+          ],
+          [
+            -5.5440238,
+            42.5355774
+          ],
+          [
+            -5.5436497,
+            42.5357378
+          ],
+          [
+            -5.5433326,
+            42.5353362
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basalica-paleocristiana-de",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 499",
+        "link": "https://pleiades.stoa.org/places/411491820/osm-location-of-basalica-paleocristiana-de",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bas\u00edlica Paleocristiana De Marialba"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/564051610",
+          "citationDetail": "Way 564051610",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=564051610",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basalica-paleocristiana-de",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 499,
+      "title": "OSM location of Bas\u00edlica Paleocristiana De Marialba",
+      "provenance": "OpenStreetMap (Way 564051610, version 2, osm:changeset=164909995, 2025-04-13T19:33:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-04-13T19:53:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -5.5433326,
+            42.5353362
+          ],
+          [
+            -5.5437068,
+            42.5351758
+          ],
+          [
+            -5.5440238,
+            42.5355774
+          ],
+          [
+            -5.5436497,
+            42.5357378
+          ],
+          [
+            -5.5433326,
+            42.5353362
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/411491820/osm-location-of-basalica-paleocristiana-de",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-14T16:18:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-13T19:57:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-13T19:54:12Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-13T19:53:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-13T19:53:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-04-13T19:54:20Z",
+      "associationCertainty": "certain",
+      "title": "Legio VII Gemina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/411491820/0607632330",
+      "connectionType": "at",
+      "id": "0607632330",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-13T19:54:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-13T19:54:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-13T19:54:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/236512",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DL%3Aentry+group%3D3%3Aentry%3Dlegio-2",
+      "citationDetail": "LEGIO (Le\u00f3n) Le\u00f3n, Spain.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q43178520",
+      "citationDetail": "Archaeological site in Marialba de la Ribera (Q43178520)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Iglesia_martirial_de_Marialba_de_la_Ribera",
+      "citationDetail": "Iglesia martirial de Marialba de la Ribera",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/669",
+      "citationDetail": "669: Routes of Santiago de Compostela: Camino Franc\u00e9s and Routes of Northern Spain",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "411491820",
+  "subject": [
+    "paleochristian",
+    "UWHS"
+  ],
+  "title": "Marialba Paleochristian Basilica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Marialba Paleochristian Basilica dates to the fourth and fifth centuries.",
+  "reprPoint": [
+    -5.543678210762189,
+    42.53545679266067
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    -5.5440238,
+    42.5351758,
+    -5.5433326,
+    42.5357378
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/236512"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-04-13T19:54:16Z",
+  "uri": "https://pleiades.stoa.org/places/411491820",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-14T16:18:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-13T19:57:52Z"
+    },
+    {
+      "comment": "UWHS added",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-13T19:57:45Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-13T19:54:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-13T19:54:16Z"
+    }
+  ]
+}

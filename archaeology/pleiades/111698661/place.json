@@ -1,0 +1,350 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.0984883,
+            40.6309544
+          ],
+          [
+            22.0983041,
+            40.6306153
+          ],
+          [
+            22.0985054,
+            40.6304315
+          ],
+          [
+            22.0985895,
+            40.6304507
+          ],
+          [
+            22.0984774,
+            40.6306077
+          ],
+          [
+            22.0985574,
+            40.6307385
+          ],
+          [
+            22.0986655,
+            40.6308964
+          ],
+          [
+            22.0984883,
+            40.6309544
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mieza-nymphaion",
+      "properties": {
+        "snippet": "Fountain, Architecturalcomplex; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/111698661/osm-location-of-mieza-nymphaion",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mieza Nymphaion"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1315342059",
+          "citationDetail": "Way 1315342059",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1315342059",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mieza-nymphaion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": -30,
+      "title": "OSM location of Mieza Nymphaion",
+      "provenance": "OpenStreetMap (Way 1315342059, version 2, osm:changeset=156575937, 2024-09-13T14:45:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fountain",
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-09-13T14:46:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.0984883,
+            40.6309544
+          ],
+          [
+            22.0983041,
+            40.6306153
+          ],
+          [
+            22.0985054,
+            40.6304315
+          ],
+          [
+            22.0985895,
+            40.6304507
+          ],
+          [
+            22.0984774,
+            40.6306077
+          ],
+          [
+            22.0985574,
+            40.6307385
+          ],
+          [
+            22.0986655,
+            40.6308964
+          ],
+          [
+            22.0984883,
+            40.6309544
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/111698661/osm-location-of-mieza-nymphaion",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-09-14T23:43:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-14T00:01:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-14T00:01:11Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:47:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:46:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:46:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-09-13T14:47:24Z",
+      "associationCertainty": "certain",
+      "title": "Mieza",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/111698661/8440388204",
+      "connectionType": "at",
+      "id": "8440388204",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:47:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:47:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:47:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/491664",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/406221SNym",
+      "citationDetail": "Mieza Nymphaion (Emathia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2362094",
+      "citationDetail": "2362094: Mieza Nymphaion",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q24264125",
+      "citationDetail": "Mieza Nymphaion (Q24264125)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "111698661",
+  "subject": [],
+  "title": "Mieza Nymphaion",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Mieza Nymphaion is a possible site of Aristotle's school, located between Kopanos and Naousa, Imathia, Macedonia, Greece.",
+  "reprPoint": [
+    22.098488329642315,
+    40.630692986024634
+  ],
+  "placeTypes": [
+    "fountain",
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    22.0983041,
+    40.6304315,
+    22.0986655,
+    40.6309544
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/491664"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-09-13T14:47:22Z",
+  "uri": "https://pleiades.stoa.org/places/111698661",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-09-14T23:43:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-14T00:01:20Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-14T00:00:59Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-13T14:48:58Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-13T14:47:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-13T14:47:22Z"
+    }
+  ]
+}

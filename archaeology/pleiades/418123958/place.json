@@ -1,0 +1,494 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6793278,
+            42.5012816
+          ],
+          [
+            11.6791427,
+            42.5010186
+          ],
+          [
+            11.6786143,
+            42.5007932
+          ],
+          [
+            11.6785875,
+            42.5004787
+          ],
+          [
+            11.6793197,
+            42.5002711
+          ],
+          [
+            11.6793948,
+            42.5003818
+          ],
+          [
+            11.6795477,
+            42.5003324
+          ],
+          [
+            11.6795102,
+            42.5002533
+          ],
+          [
+            11.6802317,
+            42.5000279
+          ],
+          [
+            11.68017,
+            42.5004352
+          ],
+          [
+            11.6799152,
+            42.5008901
+          ],
+          [
+            11.6800305,
+            42.5012737
+          ],
+          [
+            11.6796979,
+            42.5013212
+          ],
+          [
+            11.6793278,
+            42.5012816
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana-della-selvicciola",
+      "properties": {
+        "snippet": "Villa; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/418123958/osm-location-of-villa-romana-della-selvicciola",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa romana della Selvicciola"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1079725173",
+          "citationDetail": "Way 1079725173",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1079725173",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana-della-selvicciola",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa romana della Selvicciola",
+      "provenance": "OpenStreetMap (Way 1079725173, version 4, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-08-18T03:12:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6793278,
+            42.5012816
+          ],
+          [
+            11.6791427,
+            42.5010186
+          ],
+          [
+            11.6786143,
+            42.5007932
+          ],
+          [
+            11.6785875,
+            42.5004787
+          ],
+          [
+            11.6793197,
+            42.5002711
+          ],
+          [
+            11.6793948,
+            42.5003818
+          ],
+          [
+            11.6795477,
+            42.5003324
+          ],
+          [
+            11.6795102,
+            42.5002533
+          ],
+          [
+            11.6802317,
+            42.5000279
+          ],
+          [
+            11.68017,
+            42.5004352
+          ],
+          [
+            11.6799152,
+            42.5008901
+          ],
+          [
+            11.6800305,
+            42.5012737
+          ],
+          [
+            11.6796979,
+            42.5013212
+          ],
+          [
+            11.6793278,
+            42.5012816
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/418123958/osm-location-of-villa-romana-della-selvicciola",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-09-20T22:38:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-18T03:24:18Z"
+        },
+        {
+          "comment": "modern settlement location should be retracted once this location is published.",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-18T03:24:12Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-18T03:12:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-18T03:12:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-18T03:12:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.archeologia.beniculturali.it/index.php?it/142/scavi/scaviarcheologici_4e048966cfa3a/162",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ischia di Castro (VT). Villa romana della Selvicciola: la ripresa delle ricerche",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C8K49XTR",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cScavi,\u201d January 13, 2015. http://www.archeologia.beniculturali.it/index.php?it/142/scavi/scaviarcheologici_4e048966cfa3a/162.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Conti 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IVJBHDE8",
+      "formattedCitation": "<div class=\"csl-entry\">Conti, Anna Maria, Carlo Persiani, and Patrizia Petitti. \u201cSelvicciola (Ischia Di Castro, Viterbo).\u201d In <i>La Cultura Del Morire Nelle Societ\u00e0 Preistoriche e Protostoriche Italiane</i>, 173\u201376. Firenze: Istituto italiano di preistoria e protostoria, 2006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gazzetti 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QUP2DM9X",
+      "formattedCitation": "<div class=\"csl-entry\">Gazzetti, Gianfranco. \u201cLa villa romana in localit\u00e0 Selvicciola (Ischia di Castro-Viterbo).\u201d <i>Archeologia, Uomo, Territorio</i> 16 (1997): 5\u201315.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gazzetti 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TBL2YZ85",
+      "formattedCitation": "<div class=\"csl-entry\">Gazzetti, G. \u201cLa villa romana in localit\u00e0 Selvicciola (Ischia di Castro, VT).\u201d In <i>Settlement and economy in Italy, 1500 B.C. - A.D. 1500. Papers of the Fifth Conference of Italian Archaeology, [Oxford 11 - 13 December, 1992]</i>, 297\u2013302, Abb, 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gazzetti 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3MD8AC74",
+      "formattedCitation": "<div class=\"csl-entry\">Gazzetti, Gianfranco. \u201cLa Villa romana in localit\u00e0 Selvicciola (Ischia di Castro - VT). La ripresa delle ricerche (2005-2012).\u201d In <i>Etruria in progress\u202f: la ricerca archeologica in Etruria meridionale</i>, 184\u201386. Roma: Gangemi, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/949205965",
+      "citationDetail": "387",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marzano 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZN7DAZR",
+      "formattedCitation": "<div class=\"csl-entry\">Marzano, Annalisa. <i>Roman Villas in Central Italy: A Social and Economic History.</i> Leiden: E.J. Brill, 2007. http://www.worldcat.org/oclc/949205965.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q133571425",
+      "citationDetail": "Selvicciola Roman villa (Q133571425)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa romana della Selvicciola",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gazzetti 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QUP2DM9X",
+          "formattedCitation": "<div class=\"csl-entry\">Gazzetti, Gianfranco. \u201cLa villa romana in localit\u00e0 Selvicciola (Ischia di Castro-Viterbo).\u201d <i>Archeologia, Uomo, Territorio</i> 16 (1997): 5\u201315.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-12.5093717611",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2018-02-12T15:32:12Z",
+      "uri": "https://pleiades.stoa.org/places/418123958/name.2018-02-12.5093717611",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-18T03:26:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-02T20:15:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-05T02:56:03Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-12T15:32:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-12T15:32:12Z"
+        }
+      ]
+    }
+  ],
+  "id": "418123958",
+  "subject": [],
+  "title": "Selvicciola Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>La\u00a0Selvicciola had at least six occupational phases. The earliest phase witnesses a republican villa (third century B.C.) built atop an earlier Etruscan farm. The third phase (dating to the Iulio-Claudian period) see large scale expansion of the villa. The latest phase (seventh and eighth centuries A.D.) sees a partial reuse of the site, including the <em>torcular</em>, and the beginnings of the Longobard cemetery.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Selvicciola Roman villa is the site of a vast Roman rural complex as well as a Longobard cemetery.",
+  "reprPoint": [
+    11.679501081826087,
+    42.50066059264578
+  ],
+  "placeTypes": [
+    "villa",
+    "settlement-modern"
+  ],
+  "bbox": [
+    11.6785875,
+    42.5000279,
+    11.6802317,
+    42.5013212
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-02-12T15:31:22Z",
+  "uri": "https://pleiades.stoa.org/places/418123958",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q133571425",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-27T19:29:05Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-08-02T20:15:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-05T02:56:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-05T02:56:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-05T02:55:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-15T18:44:45Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-15T18:39:39Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-12T15:36:01Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-12T15:31:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-12T15:31:22Z"
+    }
+  ]
+}

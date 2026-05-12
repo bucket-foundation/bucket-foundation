@@ -1,0 +1,333 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.1138505,
+          45.9502838
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-modern-village-of-charma-c",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/888830080/osm-location-of-modern-village-of-charma-c",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of modern village of Charm\u00e9"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1423418244",
+          "citationDetail": "Node 1423418244",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1423418244",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-modern-village-of-charma-c",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location of modern village of Charm\u00e9",
+      "provenance": "OpenStreetMap (Node 1423418244, version 4, osm:changeset=115846882, 2022-01-06T17:28:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-02-26T16:11:47Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.1138505,
+          45.9502838
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/888830080/osm-location-of-modern-village-of-charma-c",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-27T10:19:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T16:18:47Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T16:12:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T16:11:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T16:11:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-26T15:43:18Z",
+      "associationCertainty": "certain",
+      "title": "Tusson tumuli",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/888830080/tusson-tumuli",
+      "connectionType": "near",
+      "id": "tusson-tumuli",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-27T10:19:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T16:18:47Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T15:43:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T15:43:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/47784683",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/emergence-of-monumental-architecture-in-atlantic-europe-a-fortified-fifthmillennium-bc-enclosure-in-western-france/8ED741E657BCBE5522E7EC273F7D697D",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ard et al. 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PIAAHTE5",
+          "formattedCitation": "<div class=\"csl-entry\">Ard, Vincent, Marylise Onfray, David Aoustin, \u00c9ric Bouchet, Guillaume Bruniaux, Gr\u00e9gory Dandurand, Fran\u00e7ois Daniel, et al. \u201cThe Emergence of Monumental Architecture in Atlantic Europe: A Fortified Fifth-Millennium BC Enclosure in Western France.\u201d <i>Antiquity</i> 97, no. 391 (February 2023): 50\u201369. https://doi.org/10.15184/aqy.2022.169.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/emergence-of-monumental-architecture-in-atlantic-europe-a-fortified-fifthmillennium-bc-enclosure-in-western-france/8ED741E657BCBE5522E7EC273F7D697D",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ard et al. 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PIAAHTE5",
+      "formattedCitation": "<div class=\"csl-entry\">Ard, Vincent, Marylise Onfray, David Aoustin, \u00c9ric Bouchet, Guillaume Bruniaux, Gr\u00e9gory Dandurand, Fran\u00e7ois Daniel, et al. \u201cThe Emergence of Monumental Architecture in Atlantic Europe: A Fortified Fifth-Millennium BC Enclosure in Western France.\u201d <i>Antiquity</i> 97, no. 391 (February 2023): 50\u201369. https://doi.org/10.15184/aqy.2022.169.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Le Peu (Charente)",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/emergence-of-monumental-architecture-in-atlantic-europe-a-fortified-fifthmillennium-bc-enclosure-in-western-france/8ED741E657BCBE5522E7EC273F7D697D",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ard et al. 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PIAAHTE5",
+          "formattedCitation": "<div class=\"csl-entry\">Ard, Vincent, Marylise Onfray, David Aoustin, \u00c9ric Bouchet, Guillaume Bruniaux, Gr\u00e9gory Dandurand, Fran\u00e7ois Daniel, et al. \u201cThe Emergence of Monumental Architecture in Atlantic Europe: A Fortified Fifth-Millennium BC Enclosure in Western France.\u201d <i>Antiquity</i> 97, no. 391 (February 2023): 50\u201369. https://doi.org/10.15184/aqy.2022.169.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "le-peu-charente",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2023-02-26T16:18:23Z",
+      "uri": "https://pleiades.stoa.org/places/888830080/le-peu-charente",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Le Peu (Charente)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-27T10:19:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T16:18:47Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T16:18:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-26T16:18:23Z"
+        }
+      ]
+    }
+  ],
+  "id": "888830080",
+  "subject": [],
+  "title": "Le Peu (Charente)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The archaeological site at Le Peu (Charente) dates originally to the mid-fifth millennium BCE and preserves evidence of a fortified Middle Neolithic settlement with timber structures. The ditch and palisade fortifications and the timber structures represent the earliest evidence of such architecture in Atlantic Europe. The fortified site is located close to the monumental Tusson tumuli.",
+  "reprPoint": [
+    0.1138505,
+    45.9502838
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    0.1138505,
+    45.9502838,
+    0.1138505,
+    45.9502838
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/47784683"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-26T15:42:47Z",
+  "uri": "https://pleiades.stoa.org/places/888830080",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-27T10:19:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-26T16:18:47Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-26T15:42:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-26T15:42:47Z"
+    }
+  ]
+}

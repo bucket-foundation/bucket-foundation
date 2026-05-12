@@ -1,0 +1,356 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7949971,
+            38.4006018
+          ],
+          [
+            23.7941424,
+            38.4009387
+          ],
+          [
+            23.7942313,
+            38.4011254
+          ],
+          [
+            23.7941381,
+            38.4018319
+          ],
+          [
+            23.7947731,
+            38.4022066
+          ],
+          [
+            23.7962851,
+            38.4023513
+          ],
+          [
+            23.7960461,
+            38.4014797
+          ],
+          [
+            23.7960032,
+            38.4008974
+          ],
+          [
+            23.7967182,
+            38.4001752
+          ],
+          [
+            23.7957484,
+            38.4001744
+          ],
+          [
+            23.7949971,
+            38.4006018
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-acropolis-of-eretria",
+      "properties": {
+        "snippet": "Acropolis, Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/337621961/osm-location-of-acropolis-of-eretria",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Acropolis of Eretria"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/353605191",
+          "citationDetail": "Way 353605191",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=353605191",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-acropolis-of-eretria",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis",
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Acropolis of Eretria",
+      "provenance": "OpenStreetMap (Way 353605191, version 12, osm:changeset=142795105, 2023-10-19T06:18:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis",
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "acropolis",
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-09T23:50:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7949971,
+            38.4006018
+          ],
+          [
+            23.7941424,
+            38.4009387
+          ],
+          [
+            23.7942313,
+            38.4011254
+          ],
+          [
+            23.7941381,
+            38.4018319
+          ],
+          [
+            23.7947731,
+            38.4022066
+          ],
+          [
+            23.7962851,
+            38.4023513
+          ],
+          [
+            23.7960461,
+            38.4014797
+          ],
+          [
+            23.7960032,
+            38.4008974
+          ],
+          [
+            23.7967182,
+            38.4001752
+          ],
+          [
+            23.7957484,
+            38.4001744
+          ],
+          [
+            23.7949971,
+            38.4006018
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/337621961/osm-location-of-acropolis-of-eretria",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T15:38:38Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-13T15:02:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-09T23:51:11Z"
+        },
+        {
+          "comment": "supersedes previously published location.",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-09T23:51:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-09T23:50:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-09T23:50:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-09T19:38:44Z",
+      "associationCertainty": "certain",
+      "title": "Eretria",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/337621961/7242924146",
+      "connectionType": "at",
+      "id": "7242924146",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-09T19:38:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-09T19:38:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-09T19:38:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579925",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Eretria",
+      "citationDetail": "Eretria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1733",
+      "citationDetail": "Befestigungsmauer der Akropolis Eub\u00f6a, Griechenland",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "337621961",
+  "subject": [],
+  "title": "Acropolis of Eretria",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/defensive-wall",
+    "https://pleiades.stoa.org/vocabularies/place-types/acropolis",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Acropolis of Eretria became the site of the settlement during the Middle Helladic period.",
+  "reprPoint": [
+    23.7954519034523,
+    38.40123336535515
+  ],
+  "placeTypes": [
+    "defensive-wall",
+    "acropolis",
+    "archaeological-site"
+  ],
+  "bbox": [
+    23.7941381,
+    38.4001744,
+    23.7967182,
+    38.4023513
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579925"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-09T19:38:43Z",
+  "uri": "https://pleiades.stoa.org/places/337621961",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-01T15:37:54Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T22:28:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-21T18:58:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-21T18:58:52Z"
+    },
+    {
+      "comment": "title, type",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-09T19:39:04Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-09T19:38:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-09T19:38:43Z"
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4949195,
+          40.0992523
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-forum",
+      "properties": {
+        "snippet": "Forum; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/476697166/osm-location-forum",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Forum"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7878861331",
+          "citationDetail": "Node 7878861331",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7878861331",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-forum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "end": 300,
+      "title": "OSM location: Forum",
+      "provenance": "OpenStreetMap (Node 7878861331, version 2, osm:changeset=136513935, 2023-05-24T18:57:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "forum"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-08-11T22:04:01Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4949195,
+          40.0992523
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/476697166/osm-location-forum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T00:51:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-14T13:57:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-11T22:04:28Z"
+        },
+        {
+          "comment": "supersedes previously published location whose underlying OSM data is now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-11T22:04:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-11T22:04:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-11T22:04:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-11-17T04:49:13Z",
+      "associationCertainty": "certain",
+      "title": "Conimbriga",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/476697166/1529964542",
+      "connectionType": "at",
+      "id": "1529964542",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-17T04:49:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-17T04:49:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-17T04:49:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/236443",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Con%C3%ADmbriga",
+      "citationDetail": "Con\u00edmbriga",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Alarc\u00e3o 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7D26WMGD",
+      "formattedCitation": "<div class=\"csl-entry\">Alarc\u00e3o, Ad\u00edlia Moutinho, Robert Etienne, and Jean-Claude Golvin. \u201cLe Centre Monumental Du Forum de Conimbriga: R\u00e9ponse \u00e0 Quelques Contestations.\u201d In <i>Itineraria Hispanica\u202f: Recueil d\u2019articles de Robert \u00c9tienne (Pessac 2006)</i>, 49\u201368, Abb. Paris: De Boccard, 2006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arruda 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6LPCBVC9",
+      "formattedCitation": "<div class=\"csl-entry\">Arruda, Ana Margarida. \u201cConimbriga. Fouilles de 1988 - 1989, 2. Les Travaux Sur Le Forum.\u201d In <i>Itin\u00e9raires Lusitaniens. Trente Ann\u00e9es de Collaboration Arch\u00e9ologique Luso-Fran\u00e7aise. Actes de La R\u00e9union Tenue \u00e0 Bordeaux Les 7 et 8 Avril 1995</i>, 13\u201333, Abb, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q88123829",
+      "citationDetail": "Q88123829",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/2616",
+      "citationDetail": "Forum Coimbra (Conimbriga), Portugal",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Roman_forum_in_Conimbriga",
+      "citationDetail": "Category:Roman forum in Conimbriga",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "476697166",
+  "subject": [],
+  "title": "Forum of Conimbriga",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+    "https://pleiades.stoa.org/vocabularies/place-types/forum"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman forum of Con\u00edmbriga.",
+  "reprPoint": [
+    -8.4949195,
+    40.0992523
+  ],
+  "placeTypes": [
+    "plaza",
+    "forum"
+  ],
+  "bbox": [
+    -8.4949195,
+    40.0992523,
+    -8.4949195,
+    40.0992523
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/236443"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-17T04:49:11Z",
+  "uri": "https://pleiades.stoa.org/places/476697166",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-14T17:24:07Z"
+    },
+    {
+      "comment": "add Arachne reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-03T04:01:31Z"
+    },
+    {
+      "comment": "wikidata Q88123829",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-21T00:34:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-29T22:22:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T05:06:57Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T05:06:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T05:06:05Z"
+    },
+    {
+      "comment": "promoted to place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T04:49:41Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T04:49:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-17T04:49:11Z"
+    }
+  ]
+}

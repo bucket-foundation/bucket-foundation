@@ -1,0 +1,285 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.748232,
+          63.200772
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Archaeological-site; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/505085395/imagery-location",
+        "description": "Coordinates following GeoHack",
+        "location_precision": "precise",
+        "title": "Imagery location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://geohack.toolforge.org/geohack.php?params=63.200772_N_67.748232_E_globe:earth&language=en",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoHack (63.200772; 67.748232)",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -3300,
+      "title": "Imagery location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Coordinates following GeoHack",
+      "created": "2023-12-17T13:57:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.748232,
+          63.200772
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/505085395/imagery-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-18T21:15:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T13:58:30Z"
+        },
+        {
+          "comment": "add imagery location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T13:57:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T13:57:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-17T14:04:45Z",
+      "associationCertainty": "certain",
+      "title": "Amnya River",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/505085395/amnya-river",
+      "connectionType": "near",
+      "id": "amnya-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-18T21:15:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T14:04:53Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T14:04:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T14:04:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/933523997",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/worlds-oldestknown-promontory-fort-amnya-and-the-acceleration-of-huntergatherer-diversity-in-siberia-8000-years-ago/90559E4105F93528A6552B36C7236259",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Piezonka et al. 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6WXBUQ73",
+          "formattedCitation": "<div class=\"csl-entry\">Piezonka, Henny, Natalya Chairkina, Ekaterina Dubovtseva, Lyubov Kosinskaya, John Meadows, and Tanja Schreiber. \u201cThe World\u2019s Oldest-Known Promontory Fort: Amnya and the Acceleration of Hunter-Gatherer Diversity in Siberia 8000 Years Ago.\u201d <i>Antiquity</i> 97, no. 396 (December 2023): 1381\u20131401. https://doi.org/10.15184/aqy.2023.164.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.science.org/doi/10.1126/science.adn2112",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Curry 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E2DMYTJT",
+      "formattedCitation": "<div class=\"csl-entry\">Curry, Andrew. \u201cOldest Forts Challenge Views of Hunter-Gatherers.\u201d <i>Science</i> 382, no. 6674 (December 1, 2023): 983\u201383. https://doi.org/10.1126/science.adn2112.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q123734856",
+      "citationDetail": "Amnya I and II (Q123734856)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/worlds-oldestknown-promontory-fort-amnya-and-the-acceleration-of-huntergatherer-diversity-in-siberia-8000-years-ago/90559E4105F93528A6552B36C7236259",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Piezonka et al. 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6WXBUQ73",
+      "formattedCitation": "<div class=\"csl-entry\">Piezonka, Henny, Natalya Chairkina, Ekaterina Dubovtseva, Lyubov Kosinskaya, John Meadows, and Tanja Schreiber. \u201cThe World\u2019s Oldest-Known Promontory Fort: Amnya and the Acceleration of Hunter-Gatherer Diversity in Siberia 8000 Years Ago.\u201d <i>Antiquity</i> 97, no. 396 (December 2023): 1381\u20131401. https://doi.org/10.15184/aqy.2023.164.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "505085395",
+  "subject": [],
+  "title": "Amnya",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The archaeological sites at Amnya, located in a bend of the homonymous river in Western Siberia, have been demonstrated to be perhaps among the earliest instances of fortified human settlement ca. 6000 BCE.",
+  "reprPoint": [
+    67.748232,
+    63.200772
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    67.748232,
+    63.200772,
+    67.748232,
+    63.200772
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/933523997"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-12-17T13:53:01Z",
+  "uri": "https://pleiades.stoa.org/places/505085395",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-12-18T21:15:07Z"
+    },
+    {
+      "comment": "Piezonka et al. 2023",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-17T14:04:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-17T13:58:30Z"
+    },
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-17T13:58:08Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-17T13:53:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-17T13:53:01Z"
+    }
+  ]
+}

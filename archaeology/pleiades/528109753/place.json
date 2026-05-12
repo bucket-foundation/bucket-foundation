@@ -1,0 +1,318 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:59:06Z",
+      "associationCertainty": "certain",
+      "title": "Thracia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/528109753/501638",
+      "connectionType": "connection",
+      "id": "501638",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/501638",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.stoa.org/sol-bin/search.pl?db=REAL&search_method=QUERY&login=guest&enlogin=guest&user_list=LIST&page_num=1&searchstr=mu,1463&field=adlerhw_gr&num_per_page=1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Suda s.v. \u039c\u03c5\u03c1\u03c4\u1f7d\u03bd\u03b9\u03bf\u03bd ",
+      "otherIdentifier": " ",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/29844603",
+      "formattedCitation": "Harris, E. Monroe. 1995. Aeschines and Athenian Politics. New York: Oxford University Press. p. 165.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0014.tlg018.perseus-grc1:27",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Dem. 18.27",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Myrtonion",
+      "attestations": [
+        {
+          "timePeriod": "late-antique-late-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique-late-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.stoa.org/sol-bin/search.pl?db=REAL&search_method=QUERY&login=guest&enlogin=guest&user_list=LIST&page_num=1&searchstr=mu,1463&field=adlerhw_gr&num_per_page=1",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Suda s.v. \u039c\u03c5\u03c1\u03c4\u1f7d\u03bd\u03b9\u03bf\u03bd",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "myrtonion",
+      "end": 1450,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "Greek name as given in the Suda",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2015-08-01T00:25:58Z",
+      "uri": "https://pleiades.stoa.org/places/528109753/myrtonion",
+      "creators": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "attested": "\u039c\u03c5\u03c1\u03c4\u1f7d\u03bd\u03b9\u03bf\u03bd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-15T03:00:08Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-15T02:59:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rmhorne",
+          "modified": "2015-08-01T00:26:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rmhorne",
+          "modified": "2015-08-01T00:26:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rmhorne",
+          "modified": "2015-08-01T00:26:00Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Myrtenum",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0014.tlg018.perseus-eng1:27",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Dem 18.27",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "myrtenum",
+      "end": -30,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "Name as provided by Demosthenes",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2015-08-01T00:30:35Z",
+      "uri": "https://pleiades.stoa.org/places/528109753/myrtenum",
+      "creators": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "attested": "\u039c\u03c5\u03c1\u03c4\u03b7\u03bd\u1f78\u03bd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-15T02:57:24Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-15T02:01:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rmhorne",
+          "modified": "2015-08-01T00:30:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rmhorne",
+          "modified": "2015-08-01T00:30:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rmhorne",
+          "modified": "2015-08-01T00:30:37Z"
+        }
+      ]
+    }
+  ],
+  "id": "528109753",
+  "subject": [],
+  "title": "Myrtonion",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fortress in Thrace, whose precise location is now unknown.",
+  "reprPoint": [
+    25.75,
+    41.75
+  ],
+  "placeTypes": [
+    "unlocated",
+    "fort"
+  ],
+  "bbox": [
+    25.5,
+    41.5,
+    26.0,
+    42.0
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/501638"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-08-01T00:24:17Z",
+  "uri": "https://pleiades.stoa.org/places/528109753",
+  "creators": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-15T03:01:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-15T01:57:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rmhorne",
+      "modified": "2015-08-01T00:31:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "rmhorne",
+      "modified": "2015-08-01T00:24:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "rmhorne",
+      "modified": "2015-08-01T00:24:17Z"
+    }
+  ]
+}

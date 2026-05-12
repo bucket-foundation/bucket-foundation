@@ -1,0 +1,410 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4937666,
+            40.7490593
+          ],
+          [
+            14.4938064,
+            40.7490752
+          ],
+          [
+            14.4938315,
+            40.7490435
+          ],
+          [
+            14.4937897,
+            40.7490276
+          ],
+          [
+            14.4937666,
+            40.7490593
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomb-of-lucius-ceius-serapio",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/135433596/osm-location-of-tomb-of-lucius-ceius-serapio",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Lucius Ceius Serapio"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/503576070",
+          "citationDetail": "Way 503576070",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=503576070",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tomb-of-lucius-ceius-serapio",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Tomb of Lucius Ceius Serapio",
+      "provenance": "OpenStreetMap (Way 503576070, version 1, osm:changeset=49863820, 2017-06-27T14:24:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-06-11T04:49:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4937666,
+            40.7490593
+          ],
+          [
+            14.4938064,
+            40.7490752
+          ],
+          [
+            14.4938315,
+            40.7490435
+          ],
+          [
+            14.4937897,
+            40.7490276
+          ],
+          [
+            14.4937666,
+            40.7490593
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/135433596/osm-location-of-tomb-of-lucius-ceius-serapio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-22T11:27:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-20T16:53:32Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T04:50:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T04:49:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T04:49:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-20T23:08:56Z",
+      "associationCertainty": "certain",
+      "title": "Porta Nocera",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/135433596/porta-nocera",
+      "connectionType": "at",
+      "id": "porta-nocera",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-22T11:27:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-20T16:53:31Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-20T23:09:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-20T23:08:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/11924821",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "252-3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Campbell 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X53HU328",
+          "formattedCitation": "<div class=\"csl-entry\">Campbell, Virginia L. <i>The Tombs of Pompeii: Organization, Space, and Society</i>, 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-20T23:09:28Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/135433596/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-22T11:27:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-20T16:53:31Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-20T23:09:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-20T23:09:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "252-3",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Campbell 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X53HU328",
+      "formattedCitation": "<div class=\"csl-entry\">Campbell, Virginia L. <i>The Tombs of Pompeii: Organization, Space, and Society</i>, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "174",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Franklin 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4VFYFBZ",
+      "formattedCitation": "<div class=\"csl-entry\">Franklin, James L. <i>Pompeis Difficile Est: Studies in the Political Life of Imperial Pompeii</i>. Ann Arbor (Mich.): University of Michigan Press, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/Tombs/tombs%20nocos%20p1.htm",
+      "citationDetail": "Pompeii Porta Nocera Tombs. South west side of Via delle Tombe. Tombs 1OS, 3OS and 5OS.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q104539797",
+      "citationDetail": "Q104539797: Tomb of Lucius Ceius Serapio",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "135433596",
+  "subject": [
+    "tuff",
+    "tomb",
+    "extant remains",
+    "opus incertum"
+  ],
+  "title": "Tomb of Lucius Ceius Serapio",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The tholos-type Tomb of Lucius Ceius Serapio and his wife, Helvia, stands near the Porta Nocera at Pompeii.",
+  "reprPoint": [
+    14.49379883188564,
+    40.749051280921535
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    14.4937666,
+    40.7490276,
+    14.4938315,
+    40.7490752
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/11924821",
+    "https://pleiades.stoa.org/places/433032"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-20T22:53:41Z",
+  "uri": "https://pleiades.stoa.org/places/135433596",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata Q104539797: Tomb of Lucius Ceius Serapio",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-22T18:48:02Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-22T11:27:21Z"
+    },
+    {
+      "comment": "added ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-18T04:47:54Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-01T00:36:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-20T16:53:30Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-20T23:05:26Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-20T22:53:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-20T22:53:41Z"
+    }
+  ]
+}

@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.220174,
+          37.7751808
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-valenzuela",
+      "properties": {
+        "snippet": "Settlement-modern; AD 640 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/67953593/osm-location-of-valenzuela",
+        "description": "Location of modern Valenzuela based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of modern Valenzuela"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1432103346",
+          "citationDetail": "Node 1432103346",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1432103346",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-valenzuela",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2100,
+      "title": "OSM location of modern Valenzuela",
+      "provenance": "OpenStreetMap (Node 1432103346, version 5, osm:changeset=25009752, 2014-08-25T21:07:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location of modern Valenzuela based on OpenStreetMap.",
+      "created": "2016-11-21T20:54:02Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.220174,
+          37.7751808
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/67953593/osm-location-of-valenzuela",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-30T16:40:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-30T16:39:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T20:54:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T20:52:29Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T20:51:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:54:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:54:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:54:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:54:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Valenzuela_(C%C3%B3rdoba)",
+      "citationDetail": "Valenzuela",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Valenzuela.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Valencihuela",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "[DCAX] Herrera, M.\u00aa Teresa, M.\u00aa Nieves S\u00e1nchez, M.\u00aa Estela Gonz\u00e1lez de Fauve y M.\u00aa Purificaci\u00f3n Zab\u00eda. Textos y Concordancias Electr\u00f3nicos de Documentos Castellanos de Alfonso X. Madison: Hispanic Seminary of Medieval Studies, 1999.",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DCAX AAN",
+          "bibliographicURI": "http://atlantides.org/bibliography/d.html#DCAX-AAN",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.andalucia.org/es/destinos/provincias/cordoba/municipios/valenzuela/historia/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "andalucia.org",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2016-11-21.7014435605",
+      "end": 1453,
+      "contributors": [],
+      "provenance": "Hispanic Seminary of Medieval Studies",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2016-11-21T20:56:48Z",
+      "uri": "https://pleiades.stoa.org/places/67953593/name.2016-11-21.7014435605",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-30T16:40:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T20:54:13Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T20:51:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:56:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:56:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:56:48Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Valenzuela",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/6357258/valenzuela.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "GeoNames 6357258 Valenzuela",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2016-11-21.8271408842",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Hispanic Seminary of Medieval Studies",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Spanish name.",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2016-11-21T20:58:02Z",
+      "uri": "https://pleiades.stoa.org/places/67953593/name.2016-11-21.8271408842",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "attested": "Valenzuela",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-30T16:40:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T20:54:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T20:54:04Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T20:51:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:58:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:58:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-11-21T20:58:02Z"
+        }
+      ]
+    }
+  ],
+  "id": "67953593",
+  "subject": [],
+  "title": "Valencihuela",
+  "provenance": "Hispanic Seminary of Medieval Studies",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Spanish village located in the east of the province of C\u00f3rdoba, near Ja\u00e9n, that belonged to the kingdom of Alfonso X. Today it is known as Valenzuela.",
+  "reprPoint": [
+    -4.220174,
+    37.7751808
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    -4.220174,
+    37.7751808,
+    -4.220174,
+    37.7751808
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-11-21T20:53:19Z",
+  "uri": "https://pleiades.stoa.org/places/67953593",
+  "creators": [
+    {
+      "username": "mjredondo",
+      "homepage": null,
+      "name": "Mar\u00eda Jes\u00fas Redondo",
+      "uri": "https://pleiades.stoa.org/author/mjredondo"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-30T16:40:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-30T16:38:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T20:54:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T20:52:07Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T20:51:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-11-21T20:53:34Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-11-21T20:53:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-11-21T20:53:19Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Dolno Ozirovo
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/207086
+- **ID**: 207086
+- **Coords (lng, lat)**: [23.349287, 43.239163]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=fort
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 21 F6 Dolno Ozirovo

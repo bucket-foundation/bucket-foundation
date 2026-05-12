@@ -1,0 +1,482 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.568123,
+            42.8539547
+          ],
+          [
+            13.5681148,
+            42.8537348
+          ],
+          [
+            13.5681806,
+            42.8535752
+          ],
+          [
+            13.5683161,
+            42.8534578
+          ],
+          [
+            13.5684328,
+            42.8533979
+          ],
+          [
+            13.5684804,
+            42.8533735
+          ],
+          [
+            13.5687269,
+            42.8533434
+          ],
+          [
+            13.5689528,
+            42.8533855
+          ],
+          [
+            13.5691541,
+            42.8534939
+          ],
+          [
+            13.5692219,
+            42.853659
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/220487222/location-of-roman-theater",
+        "description": "Representative location based on a way derived from OpenStreetMap that traces the visible convex outline of the cavea of the theater.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/145218954",
+          "citationDetail": "Way 145218954",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=145218954",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Teatro_romano_di_Ascoli_Piceno",
+          "citationDetail": "Teatro romano di Ascoli Piceno",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Teatro romano di Ascoli Piceno.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman theater",
+      "provenance": "OpenStreetMap (Way 145218954, version 3, osm:changeset=89486277, 2020-08-17T00:18:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on a way derived from OpenStreetMap that traces the visible convex outline of the cavea of the theater.",
+      "created": "2014-01-15T19:15:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.568123,
+            42.8539547
+          ],
+          [
+            13.5681148,
+            42.8537348
+          ],
+          [
+            13.5681806,
+            42.8535752
+          ],
+          [
+            13.5683161,
+            42.8534578
+          ],
+          [
+            13.5684328,
+            42.8533979
+          ],
+          [
+            13.5684804,
+            42.8533735
+          ],
+          [
+            13.5687269,
+            42.8533434
+          ],
+          [
+            13.5689528,
+            42.8533855
+          ],
+          [
+            13.5691541,
+            42.8534939
+          ],
+          [
+            13.5692219,
+            42.853659
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/220487222/location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-05-03T20:24:39Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-04T20:22:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-28T14:43:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-10T05:11:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T18:22:13Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-15T19:16:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-15T19:15:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-15T19:15:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-28T01:50:11Z",
+      "associationCertainty": "certain",
+      "title": "Asculum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/220487222/2111416344",
+      "connectionType": "at",
+      "id": "2111416344",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-28T01:50:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-28T01:50:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-28T01:50:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413036",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Teatro_romano_di_Ascoli_Piceno",
+      "citationDetail": "Teatro romano di Ascoli Piceno",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3982366",
+      "citationDetail": "Roman Theatre of Ascoli Piceno (Q3982366)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.theatrum.de/557.html",
+      "citationDetail": "557",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40310816",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rawson 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVG9LHDS",
+      "formattedCitation": "<div class=\"csl-entry\">Rawson, Elizabeth. \u201cTheatrical Life in Republican Rome and Italy.\u201d <i>Papers of the British School at Rome</i> 53 (1985): 97\u2013113. https://www.jstor.org/stable/40310816.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Roman Theater of Ascoli Piceno",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3982366",
+          "citationDetail": "Roman Theatre of Ascoli Piceno (Q3982366)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "roman-theater-of-ascoli-piceno",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-07-01T13:23:32Z",
+      "uri": "https://pleiades.stoa.org/places/220487222/roman-theater-of-ascoli-piceno",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Roman Theater of Ascoli Piceno",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-04T20:22:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-07-06T20:53:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-01T13:23:42Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-01T13:23:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-01T13:23:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "220487222",
+  "subject": [
+    "Theater",
+    "extant remains"
+  ],
+  "title": "Roman theater at Asculum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater at Asculum was discovered during excavations in 1932. The structure dates to the first century A.D.",
+  "reprPoint": [
+    13.568588055545861,
+    42.85351434972178
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    13.5681148,
+    42.8533434,
+    13.5692219,
+    42.8539547
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413036"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-28T01:50:09Z",
+  "uri": "https://pleiades.stoa.org/places/220487222",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-05-03T20:27:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-01T13:24:32Z"
+    },
+    {
+      "comment": "wikidata Q3982366",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-01T13:22:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-05T21:38:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-28T14:43:59Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-28T14:42:33Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-28T01:50:27Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-28T01:50:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-28T01:50:09Z"
+    }
+  ]
+}

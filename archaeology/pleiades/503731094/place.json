@@ -1,0 +1,391 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.9299937,
+            36.3759818
+          ],
+          [
+            33.9299264,
+            36.3757884
+          ],
+          [
+            33.9303832,
+            36.3756853
+          ],
+          [
+            33.9304505,
+            36.3758787
+          ],
+          [
+            33.9299937,
+            36.3759818
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-jupiter-silifke",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/503731094/osm-location-of-temple-of-jupiter-silifke",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Jupiter (Silifke)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1005619973",
+          "citationDetail": "Way 1005619973",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1005619973",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-jupiter-silifke",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Temple of Jupiter (Silifke)",
+      "provenance": "OpenStreetMap (Way 1005619973, version 2, osm:changeset=121428032, 2022-05-24T14:34:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-05-24T14:34:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.9299937,
+            36.3759818
+          ],
+          [
+            33.9299264,
+            36.3757884
+          ],
+          [
+            33.9303832,
+            36.3756853
+          ],
+          [
+            33.9304505,
+            36.3758787
+          ],
+          [
+            33.9299937,
+            36.3759818
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/503731094/osm-location-of-temple-of-jupiter-silifke",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-24T15:09:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:42:29Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:34:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:34:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:34:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-24T14:35:14Z",
+      "associationCertainty": "certain",
+      "title": "Seleucia ad Calycadnum/Tracheia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/503731094/seleucia-ad-calycadnum-tracheia",
+      "connectionType": "at",
+      "id": "seleucia-ad-calycadnum-tracheia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-24T15:09:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:42:29Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:42:10Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:35:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:35:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/648771",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Jupiter_(Silifke)",
+          "citationDetail": "Temple of Jupiter (Silifke)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Jupiter_(Silifke)",
+      "citationDetail": "Temple of Jupiter (Silifke)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Jupiter (Silifke)",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Jupiter_(Silifke)",
+          "citationDetail": "Temple of Jupiter (Silifke)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-of-jupiter-silifke",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-05-24T14:41:32Z",
+      "uri": "https://pleiades.stoa.org/places/503731094/temple-of-jupiter-silifke",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Jupiter (Silifke)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-24T15:09:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:42:29Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:41:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T14:41:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "503731094",
+  "subject": [
+    "Iuppiter"
+  ],
+  "title": "Temple of Jupiter (Silifke)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A second-century CE temple sacred to Jupiter.",
+  "reprPoint": [
+    33.930188449999996,
+    36.375833549999996
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    33.9299264,
+    36.3756853,
+    33.9304505,
+    36.3759818
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/648771"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-09-26T17:59:12Z",
+  "uri": "https://pleiades.stoa.org/places/503731094",
+  "creators": [
+    {
+      "username": "ctiah",
+      "homepage": null,
+      "name": "Clifflena Tiah",
+      "uri": "https://pleiades.stoa.org/author/ctiah"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-24T15:09:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-24T14:42:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-24T14:36:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-31T18:38:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ctiah",
+      "modified": "2016-09-26T17:59:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ctiah",
+      "modified": "2016-09-26T17:59:12Z"
+    }
+  ]
+}

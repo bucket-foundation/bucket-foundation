@@ -1,0 +1,337 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.194256,
+          31.158652
+        ]
+      },
+      "type": "Feature",
+      "id": "5de5e25e85ea-5e05d75dc-5d75de5e8",
+      "properties": {
+        "snippet": "Cave; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/108542250/5de5e25e85ea-5e05d75dc-5d75de5e8",
+        "description": "Point representing the entrance to the Nahal Hemar cave, derived from an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location of \u05de\u05e2\u05e8\u05ea \u05e0\u05d7\u05dc \u05d7\u05de\u05e8"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5475407221",
+          "citationDetail": "Node 5475407221",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5475407221",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bar-Yosef and Alon 1988",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SVJ8B9GR",
+          "formattedCitation": "<div class=\"csl-entry\">Bar-Yosef, Ofer, and David Alon. <i>Na\u1e25al \u1e24emar Cave</i>. \u02bbAtiqot. English Series 18. Jerusalem: Deptof Antiquities and Museums, Ministry of Education and Culture, 1988.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "5de5e25e85ea-5e05d75dc-5d75de5e8",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "end": -3300,
+      "title": "OSM location of \u05de\u05e2\u05e8\u05ea \u05e0\u05d7\u05dc \u05d7\u05de\u05e8",
+      "provenance": "OpenStreetMap (Node 5475407221, version 1, osm:changeset=57141594, 2018-03-13T11:06:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave"
+      ],
+      "description": "Point representing the entrance to the Nahal Hemar cave, derived from an OpenStreetMap Node.",
+      "created": "2018-12-11T15:03:42Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.194256,
+          31.158652
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/108542250/5de5e25e85ea-5e05d75dc-5d75de5e8",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-17T19:34:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:11:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:11:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:10:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:05:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:03:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:03:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bar-Yosef 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L7QA52KW",
+      "formattedCitation": "<div class=\"csl-entry\">Bar-Yosef, Ofer.<i>Me\u02bbarah ba-midbar Na\u1e25al \u1e24emar: mimtsa\u02bcim bene 9000 shanah.</i> \u1e32a\u1e6dalog (Muze\u02bcon Yi\u015bra\u02bcel (Jerusalem))\u202f; mis. 258. Yerushalayim: Muze\u02bcon Yi\u015bra\u02bcel, 745 [1985].</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Na\u1e25al \u1e24emar Cave",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SVJ8B9GR",
+      "formattedCitation": "<div class=\"csl-entry\">Bar-Yosef, Ofer, and David Alon. <i>Na\u1e25al \u1e24emar Cave</i>. \u02bbAtiqot. English Series 18. Jerusalem: Deptof Antiquities and Museums, Ministry of Education and Culture, 1988.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Nahal_Hemar",
+      "citationDetail": "Nahal Hemar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Nahal Hemar, Na\u1e25al \u1e24emar, Na\u1e96al H\u0332emar",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bar-Yosef 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L7QA52KW",
+          "formattedCitation": "<div class=\"csl-entry\">Bar-Yosef, Ofer. <i>Me\u02bbarah ba-midbar Na\u1e25al \u1e24emar: mimtsa\u02bcim bene 9000 shanah.</i> \u1e32a\u1e6dalog (Muze\u02bcon Yi\u015bra\u02bcel (Jerusalem))\u202f; mis. 258. Yerushalayim: Muze\u02bcon Yi\u015bra\u02bcel, 745.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/294788/nahal-hemar.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "Geonames, Na\u1e96al H\u0331emar",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeAlso"
+        }
+      ],
+      "id": "nahal-hemar",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Hebrew name of the watercourse from which the Nahal Hemar Cave's name is derived. ",
+      "transcriptionCompleteness": "complete",
+      "language": "he",
+      "created": "2018-12-11T15:09:48Z",
+      "uri": "https://pleiades.stoa.org/places/108542250/nahal-hemar",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u05e0\u05d7\u05dc \u05d7\u05de\u05e8",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-17T19:34:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:11:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:09:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-12-11T15:09:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "108542250",
+  "subject": [],
+  "title": "Nahal Hemar Cave",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cave site located on the banks of Nahal Hemar in the southern Judean Desert. The site contains traces of habitation dated to the pre-pottery Neolithic (ca. 6900-6300 BCE).",
+  "reprPoint": [
+    35.194256,
+    31.158652
+  ],
+  "placeTypes": [
+    "cave"
+  ],
+  "bbox": [
+    35.194256,
+    31.158652,
+    35.194256,
+    31.158652
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-12-11T14:50:17Z",
+  "uri": "https://pleiades.stoa.org/places/108542250",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-17T19:34:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-12T00:47:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-12-11T15:11:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-12-11T15:10:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-12-11T14:50:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-12-11T14:50:17Z"
+    }
+  ]
+}

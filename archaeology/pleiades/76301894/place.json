@@ -1,0 +1,450 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.9630454,
+            41.5898268
+          ],
+          [
+            12.962965,
+            41.5897305
+          ],
+          [
+            12.963201,
+            41.5896121
+          ],
+          [
+            12.9632841,
+            41.5897205
+          ],
+          [
+            12.9630454,
+            41.5898268
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-minor-acropolis",
+      "properties": {
+        "snippet": "Temple-2, ; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/76301894/location-of-minor-acropolis",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Minor Acropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/211565588",
+          "citationDetail": "Way 211565588",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=211565588",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.uniurb.it/giornalismo/finecorso_2008/cifra_roberta/sitocifra/apertura.htm",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Norba: La Citt\u00e0 dimenticata",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-minor-acropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of Minor Acropolis",
+      "provenance": "OpenStreetMap (Way 211565588, version 4, osm:changeset=125457717, 2022-08-27T21:29:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-04-07T23:28:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.9630454,
+            41.5898268
+          ],
+          [
+            12.962965,
+            41.5897305
+          ],
+          [
+            12.963201,
+            41.5896121
+          ],
+          [
+            12.9632841,
+            41.5897205
+          ],
+          [
+            12.9630454,
+            41.5898268
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/76301894/location-of-minor-acropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-10T03:48:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-29T13:40:15Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-04-09T16:08:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-08T01:09:31Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-07T23:30:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-07T23:28:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-07T23:28:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-03-17T14:41:04Z",
+      "associationCertainty": "certain",
+      "title": "Norba",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/76301894/6641972531",
+      "connectionType": "at",
+      "id": "6641972531",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:41:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:41:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:41:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422987",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Norba",
+      "citationDetail": "Norba",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici Gigli 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K5BV9CQS",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici Gigli, Stefania. \u201cNorba: l\u2019Acropoli Minore e i suoi templi.\u201d In <i>Santuari e luoghi di culto nell\u2019Italia antica</i>, 289\u2013322. Roma: L\u2019Erma di Bretschneider, 2003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://arachne.uni-koeln.de/item/bauwerk/2111736",
+      "citationDetail": "2111736: S\u00fcdostmauer der Acropoli Minore Norba, Latina (Provinz)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Acropoli minore",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Quilici Gigli 2003",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K5BV9CQS",
+          "formattedCitation": "<div class=\"csl-entry\">Quilici Gigli, Stefania. \u201cNorba: l\u2019Acropoli Minore e i suoi templi.\u201d In <i>Santuari e luoghi di culto nell\u2019Italia antica</i>, 289\u2013322. Roma: L\u2019Erma di Bretschneider, 2003.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2019-03-17.9980699564",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-03-17T19:18:02Z",
+      "uri": "https://pleiades.stoa.org/places/76301894/name.2019-03-17.9980699564",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Acropoli minore",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "attested",
+          "modifiedBy": "thomase",
+          "modified": "2019-03-18T19:52:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-03-18T19:51:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T19:18:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T19:18:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T19:18:02Z"
+        }
+      ]
+    }
+  ],
+  "id": "76301894",
+  "subject": [],
+  "title": "Minor Acropolis, Norba",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/acropolis",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The \"Tempio Maggiore\" is only preserved at the platform level. This platform, executed in polygonal masonry, measures 22.8 by 12.9 meters. The plan was likely distyle. The \"Tempio Minore\" is also a rectangular platform temple and measures 16.5 by 8.16 meters.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Minor Acropolis is located on the hill to the south of the Porta Maggiore. This area is surrounded by the urban enclosure wall and is terraced in polygonal masonry. Two platform temples of unknown assignation are to be found here.",
+  "reprPoint": [
+    12.9630436,
+    41.5898051
+  ],
+  "placeTypes": [
+    "acropolis",
+    "temple-2"
+  ],
+  "bbox": [
+    12.9630436,
+    41.5898051,
+    12.9630436,
+    41.5898051
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422987"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-03-17T14:41:03Z",
+  "uri": "https://pleiades.stoa.org/places/76301894",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Arachne 2111736: S\u00fcdostmauer der Acropoli Minore Norba, Latina (Provinz)",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-27T18:43:02Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-18T19:51:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T19:18:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:45:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:44:54Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:44:40Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:41:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:41:03Z"
+    }
+  ]
+}

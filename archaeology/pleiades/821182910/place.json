@@ -1,0 +1,468 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.823597,
+            41.4825511
+          ],
+          [
+            13.8238101,
+            41.4826431
+          ],
+          [
+            13.8239128,
+            41.4827126
+          ],
+          [
+            13.8239755,
+            41.4828271
+          ],
+          [
+            13.8240081,
+            41.4829604
+          ],
+          [
+            13.8239805,
+            41.4830712
+          ],
+          [
+            13.8239003,
+            41.4831876
+          ],
+          [
+            13.8237925,
+            41.4832252
+          ],
+          [
+            13.8236747,
+            41.4832327
+          ],
+          [
+            13.823577,
+            41.4832045
+          ],
+          [
+            13.8234266,
+            41.4831538
+          ],
+          [
+            13.8232737,
+            41.4830431
+          ],
+          [
+            13.823196,
+            41.4829154
+          ],
+          [
+            13.8231835,
+            41.482737
+          ],
+          [
+            13.8232286,
+            41.4826356
+          ],
+          [
+            13.8233063,
+            41.4825736
+          ],
+          [
+            13.8234266,
+            41.4825436
+          ],
+          [
+            13.823597,
+            41.4825511
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "loation-of-roman-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/821182910/loation-of-roman-amphitheater",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman amphitheater"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/169322412",
+          "citationDetail": "Way 169322412",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=169322412",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "loation-of-roman-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman amphitheater",
+      "provenance": "OpenStreetMap (Way 169322412, version 3, osm:changeset=112802702, 2021-10-21T17:18:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-07-14T03:09:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.823597,
+            41.4825511
+          ],
+          [
+            13.8238101,
+            41.4826431
+          ],
+          [
+            13.8239128,
+            41.4827126
+          ],
+          [
+            13.8239755,
+            41.4828271
+          ],
+          [
+            13.8240081,
+            41.4829604
+          ],
+          [
+            13.8239805,
+            41.4830712
+          ],
+          [
+            13.8239003,
+            41.4831876
+          ],
+          [
+            13.8237925,
+            41.4832252
+          ],
+          [
+            13.8236747,
+            41.4832327
+          ],
+          [
+            13.823577,
+            41.4832045
+          ],
+          [
+            13.8234266,
+            41.4831538
+          ],
+          [
+            13.8232737,
+            41.4830431
+          ],
+          [
+            13.823196,
+            41.4829154
+          ],
+          [
+            13.8231835,
+            41.482737
+          ],
+          [
+            13.8232286,
+            41.4826356
+          ],
+          [
+            13.8233063,
+            41.4825736
+          ],
+          [
+            13.8234266,
+            41.4825436
+          ],
+          [
+            13.823597,
+            41.4825511
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/821182910/loation-of-roman-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-05T02:30:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-01T19:07:34Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:21:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:20:46Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T03:09:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T03:09:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T03:09:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-04-27T19:41:38Z",
+      "associationCertainty": "certain",
+      "title": "Casinum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/821182910/0980079070",
+      "connectionType": "at",
+      "id": "0980079070",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-27T19:41:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-27T19:41:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-27T19:41:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432764",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Cassino",
+      "citationDetail": "Cassino",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Cassino",
+      "citationDetail": "Cassino",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q28978014",
+      "citationDetail": "Casinum amphitheatre (Q28978014)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Amphitheatre_(Casinum)",
+      "citationDetail": "Category:Amphitheatre (Casinum)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/4216/",
+      "citationDetail": "4216: Amphitheatre Casinum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "821182910",
+  "subject": [
+    "extant remains",
+    "amphitheater"
+  ],
+  "title": "Roman amphitheater at Casinum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman amphitheater at Casinum was built thanks to the patronage of Ummidia Quadratilla in the first century.",
+  "reprPoint": [
+    13.82359304202769,
+    41.48288371450759
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    13.8231835,
+    41.4825436,
+    13.8240081,
+    41.4832327
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432764"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-04-27T19:41:36Z",
+  "uri": "https://pleiades.stoa.org/places/821182910",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-24T15:14:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-05-17T15:07:34Z"
+    },
+    {
+      "comment": "adjusted citation types",
+      "modifiedBy": "thomase",
+      "modified": "2018-05-17T15:07:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-27T19:46:22Z"
+    },
+    {
+      "comment": "title, summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-27T19:46:12Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-27T19:43:12Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-27T19:41:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-27T19:41:36Z"
+    }
+  ]
+}

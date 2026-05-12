@@ -1,0 +1,233 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5295335,
+            41.8676437
+          ],
+          [
+            12.5295226,
+            41.8677858
+          ],
+          [
+            12.5292748,
+            41.8677689
+          ],
+          [
+            12.5292923,
+            41.8676256
+          ],
+          [
+            12.5295335,
+            41.8676437
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Findspot",
+        "link": "https://pleiades.stoa.org/places/218832894/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/123415289",
+          "citationDetail": "Way 123415289",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=123415289",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "end": null,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 123415289, version 1, osm:changeset=8850262, 2011-07-28T00:15:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "findspot"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-06-06T14:37:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5295335,
+            41.8676437
+          ],
+          [
+            12.5295226,
+            41.8677858
+          ],
+          [
+            12.5292748,
+            41.8677689
+          ],
+          [
+            12.5292923,
+            41.8676256
+          ],
+          [
+            12.5295335,
+            41.8676437
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/218832894/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-06T19:10:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T14:38:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T14:38:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T14:37:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T14:37:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=11164",
+      "citationDetail": "11164: Osteria Cessati Spiriti",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Via_dei_Cessati_Spiriti",
+      "citationDetail": "Via dei Cessati Spiriti",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "218832894",
+  "subject": [],
+  "title": "Osteria Cessati Spiriti",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "In the Notizie degli Scavi di Antichit\u00e0 for 1884, R. Lanciani reports the find of a monolithic, anepigraphic Roman sarcophagus at the Osteria Cessati Spiriti. The sarcophagus had been discovered in a pozzolana quarry and relocated to the grounds of the osteria. Brickstamps dating to 123 CE were reportedly observed at its reputed findspot.",
+  "reprPoint": [
+    12.529405450063145,
+    41.86770657574284
+  ],
+  "placeTypes": [
+    "findspot"
+  ],
+  "bbox": [
+    12.5292748,
+    41.8676256,
+    12.5295335,
+    41.8677858
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-06-06T14:37:35Z",
+  "uri": "https://pleiades.stoa.org/places/218832894",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-06T19:10:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-06T14:38:25Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-06T14:37:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-06T14:37:35Z"
+    }
+  ]
+}

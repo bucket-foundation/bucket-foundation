@@ -1,0 +1,449 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.6142106,
+            25.733825
+          ],
+          [
+            32.6140899,
+            25.73361
+          ],
+          [
+            32.6146393,
+            25.7334019
+          ],
+          [
+            32.6147083,
+            25.7335884
+          ],
+          [
+            32.6142106,
+            25.733825
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "tt-414",
+      "properties": {
+        "snippet": "Tomb; 664 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/884719316/tt-414",
+        "description": "Polygon based on OpenStreetMap representing Theban Tomb 414 after Budka 2022.",
+        "location_precision": "precise",
+        "title": "OSM location of Theban Tomb 414"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "macedonian-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/macedonian-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1109040868",
+          "citationDetail": "Way 1109040868",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1109040868",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "worldcat.org/oclc/1338679358",
+          "citationDetail": "figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Budka 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5EJV87Z3",
+          "formattedCitation": "<div class=\"csl-entry\">Budka, Julia, and Mekis, Tam\u00e1s. <i>The Family of Pa-Di-Amun-Neb-Nesut-Tawy from Thebes (TT 414) Revisited</i>. Archaeopress Egyptology 42. Oxford: Archaeopress Publishing Ltd, 2022. worldcat.org/oclc/1338679358.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tt-414",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -30,
+      "title": "OSM location of Theban Tomb 414",
+      "provenance": "OpenStreetMap (Way 1109040868, version 1, osm:changeset=128350641, 2022-11-01T14:58:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -664,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Polygon based on OpenStreetMap representing Theban Tomb 414 after Budka 2022.",
+      "created": "2022-11-01T14:59:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.6142106,
+            25.733825
+          ],
+          [
+            32.6140899,
+            25.73361
+          ],
+          [
+            32.6146393,
+            25.7334019
+          ],
+          [
+            32.6147083,
+            25.7335884
+          ],
+          [
+            32.6142106,
+            25.733825
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/884719316/tt-414",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-01T16:43:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T15:01:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T15:01:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T14:59:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T14:59:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2022-11-01T14:35:06Z",
+      "associationCertainty": "certain",
+      "title": "Theban necropolis",
+      "start": -664,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/884719316/theban-necropolis",
+      "connectionType": "at",
+      "id": "theban-necropolis",
+      "attestations": [
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "macedonian-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/macedonian-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-01T16:43:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T15:01:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T14:35:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-01T14:35:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/836839127",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "worldcat.org/oclc/1338679358",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Budka 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5EJV87Z3",
+          "formattedCitation": "<div class=\"csl-entry\">Budka, Julia, and Mekis, Tam\u00e1s. <i>The Family of Pa-Di-Amun-Neb-Nesut-Tawy from Thebes (TT 414) Revisited</i>. Archaeopress Egyptology 42. Oxford: Archaeopress Publishing Ltd, 2022. worldcat.org/oclc/1338679358.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "worldcat.org/oclc/1338679358",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Budka 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5EJV87Z3",
+      "formattedCitation": "<div class=\"csl-entry\">Budka, Julia, and Mekis, Tam\u00e1s. <i>The Family of Pa-Di-Amun-Neb-Nesut-Tawy from Thebes (TT 414) Revisited</i>. Archaeopress Egyptology 42. Oxford: Archaeopress Publishing Ltd, 2022. worldcat.org/oclc/1338679358.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/TT414",
+      "citationDetail": "TT414",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q60841959",
+      "citationDetail": "Q60841959: TT414",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "TT414",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q60841959",
+          "citationDetail": "Q60841959: TT414",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "tt414",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-11-02T13:56:22Z",
+      "uri": "https://pleiades.stoa.org/places/884719316/tt414",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "TT414",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-02T21:55:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-02T13:56:30Z"
+        },
+        {
+          "comment": "added name via wikidata",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-02T13:56:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-02T13:56:22Z"
+        }
+      ]
+    }
+  ],
+  "id": "884719316",
+  "subject": [],
+  "title": "Theban Tomb 414 (TT 414)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Originally the Saite tomb of Ankh-Hor, this site was reused from the 4th century BCE by the Late Dynastic/Ptolemaic period family of Pa-di-Amun-neb-nesut-tawy, a high-ranking priest of Khonsu.",
+  "reprPoint": [
+    32.614403050243105,
+    25.733607365932134
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    32.6140899,
+    25.7334019,
+    32.6147083,
+    25.733825
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/836839127"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-11-01T14:32:48Z",
+  "uri": "https://pleiades.stoa.org/places/884719316",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikipedia, wikidata references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-02T13:54:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-01T16:43:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-01T15:01:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-01T14:32:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-01T14:32:48Z"
+    }
+  ]
+}

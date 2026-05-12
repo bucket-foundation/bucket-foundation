@@ -1,0 +1,14 @@
+# Stadium at Aizanoi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/439057572
+- **ID**: 439057572
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+The Stadium at Aizanoi is adjacent to the theater.

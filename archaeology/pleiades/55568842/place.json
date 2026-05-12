@@ -1,0 +1,306 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.760049,
+          36.5618917
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/55568842/osm-location-of-roman-amphitheater",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman amphitheater"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3194292639",
+          "citationDetail": "Node 3194292639",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3194292639",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Roman amphitheater",
+      "provenance": "OpenStreetMap (Node 3194292639, version 1, osm:changeset=26870857, 2014-11-18T18:51:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-11-18T18:52:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.760049,
+          36.5618917
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/55568842/osm-location-of-roman-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-30T20:23:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T04:46:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-07T23:08:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-18T18:53:06Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-18T18:52:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-18T18:52:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-18T18:52:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-04-30T00:12:43Z",
+      "associationCertainty": "certain",
+      "title": "Bulla Regia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/55568842/1635109370",
+      "connectionType": "at",
+      "id": "1635109370",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-30T00:12:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-30T00:12:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-30T00:12:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/314912",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.amphi-theatrum.de/1314.html",
+      "citationDetail": "BULLA REGIA, Hammam Darradji, \u0628\u0648\u0644\u0627 \u0631\u064a\u062c\u064a\u0627 (Africa Proconsularis)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Amphi-theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NTQZEIIX",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, Marin Buovac, and Maria Engracia Mu\u00f1oz-Santos. <i>Amphi-theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://amphi-theatrum.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29002315",
+      "citationDetail": "Q29002315: Bulla Regia amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/61553/",
+      "citationDetail": "61553: Bulla Regia Amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "55568842",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Roman amphitheater at Bulla Regia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman amphitheater at Bulla Regia",
+  "reprPoint": [
+    8.760049,
+    36.5618917
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    8.760049,
+    36.5618917,
+    8.760049,
+    36.5618917
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/314912"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-04-30T00:12:40Z",
+  "uri": "https://pleiades.stoa.org/places/55568842",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added vici.org reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-22T19:22:50Z"
+    },
+    {
+      "comment": "added wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-16T00:50:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-11-30T20:23:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2021-11-30T20:23:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-11-30T20:22:22Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-30T00:13:04Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-30T00:12:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-30T00:12:40Z"
+    }
+  ]
+}

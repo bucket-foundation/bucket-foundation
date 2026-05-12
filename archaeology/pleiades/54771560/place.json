@@ -1,0 +1,293 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.494114,
+          42.053798
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-cave-di-fosso-del-drago",
+      "properties": {
+        "snippet": "Quarry; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/54771560/osm-location-of-cave-di-fosso-del-drago",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Cave di Fosso del Drago"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7995218465",
+          "citationDetail": "Node 7995218465",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7995218465",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-cave-di-fosso-del-drago",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "end": 300,
+      "title": "OSM location of Cave di Fosso del Drago",
+      "provenance": "OpenStreetMap (Node 7995218465, version 1, osm:changeset=92278700, 2020-10-10T15:13:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "quarry"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-10-10T15:14:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.494114,
+          42.053798
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/54771560/osm-location-of-cave-di-fosso-del-drago",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-12T16:20:29Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-14T19:12:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-10T15:16:06Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-10T15:15:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-10T15:14:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-10T15:14:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-10-10T15:15:54Z",
+      "associationCertainty": "certain",
+      "title": "Via Tiberina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/54771560/via-tiberina",
+      "connectionType": "connection",
+      "id": "via-tiberina",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-14T19:12:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-10T15:16:07Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-10T15:15:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-10T15:15:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/759079303",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Carbonara and Messineo 1996",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2RKXXJDM",
+          "formattedCitation": "<div class=\"csl-entry\">Carbonara, A., and Gaetano Messineo. \u201cVia Tiberina. Nuove acquisizioni lungo il tracciato della via antica. Villa romana al km 1. Cave antiche presso il Fosso di Grotta Oscura e il Fosso del Drago.\u201d <i>Bullettino della Commissione archeologica comunale di Roma, 97.1996</i>, 1996, 285\u201399.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Carbonara and Messineo 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2RKXXJDM",
+      "formattedCitation": "<div class=\"csl-entry\">Carbonara, A., and Gaetano Messineo. \u201cVia Tiberina. Nuove acquisizioni lungo il tracciato della via antica. Villa romana al km 1. Cave antiche presso il Fosso di Grotta Oscura e il Fosso del Drago.\u201d <i>Bullettino della Commissione archeologica comunale di Roma, 97.1996</i>, 1996, 285\u201399.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=9519",
+      "citationDetail": "9519: cave di tufo del Fosso del Drago",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "54771560",
+  "subject": [
+    "tufo",
+    "tuff"
+  ],
+  "title": "Cave di Fosso del Drago",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A tuff quarry along the line of the via Tiberina.",
+  "reprPoint": [
+    12.494114,
+    42.053798
+  ],
+  "placeTypes": [
+    "quarry"
+  ],
+  "bbox": [
+    12.494114,
+    42.053798,
+    12.494114,
+    42.053798
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/759079303"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-10-10T15:13:58Z",
+  "uri": "https://pleiades.stoa.org/places/54771560",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-04T17:23:44Z"
+    },
+    {
+      "comment": "ctype",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-12T16:20:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-14T19:12:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-10T15:16:06Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-10T15:14:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-10T15:13:58Z"
+    }
+  ]
+}

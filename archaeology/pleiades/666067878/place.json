@@ -1,0 +1,543 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5598272,
+          41.2283725
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-di-faragola",
+      "properties": {
+        "snippet": "Villa; AD 300 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/666067878/osm-location-of-villa-di-faragola",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa di Faragola"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3776920494",
+          "citationDetail": "Node 3776920494",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3776920494",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-di-faragola",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 1453,
+      "title": "OSM location of Villa di Faragola",
+      "provenance": "OpenStreetMap (Node 3776920494, version 3, osm:changeset=46615121, 2017-03-06T07:26:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-09-07T14:42:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5598272,
+          41.2283725
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/666067878/osm-location-of-villa-di-faragola",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-25T19:56:34Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-05T14:49:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-09-12T21:02:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-07T15:15:59Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-07T14:42:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-07T14:42:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-07T14:42:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-18T14:51:22Z",
+      "associationCertainty": "certain",
+      "title": "Ausculum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/666067878/ausculum",
+      "connectionType": "near",
+      "id": "ausculum",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-17T11:54:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T19:52:46Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T19:52:37Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-18T14:51:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-18T14:51:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442487",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Laurenti 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/64HJKD5H",
+          "formattedCitation": "<div class=\"csl-entry\">Laurenti, Maria Concetta, Elisabethli \u2019Huber, and Paolo Pastorello. \u201cIl distacco e il restauro dei tre emblemata in vetro e marmo della villa romana di Faragola ad Ascoli Satriano (sec. IV d.C.).\u201d In <i>Atti del XIX Colloquio dell\u2019Associazione italiana per lo studio e la conservazione del mosaico\u202f: Isernia, 13-16 marzo 2013</i>, 607\u201316. Tivoli (Roma): Edizioni Scripta, 2014.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Villa_di_Faragola",
+      "citationDetail": "Villa di Faragola",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Villa di Faragola.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Volpe et al. 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XN5BLPEX",
+      "formattedCitation": "<div class=\"csl-entry\">Volpe, Giuliano, Maria Turchiano, and Giovanna Baldasarre. <i>Faragola di Ascoli Satriano: guida agli scavi archeologici</i>. Foggia: Claudio Grenzi Editore, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Volpe 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PTLGDX82",
+      "formattedCitation": "<div class=\"csl-entry\">Volpe, Giuliano. \u201cL\u2019 abitato altomedievale di Faragola (Ascoli Satriano).\u201d <i>V Congresso Nazionale di Archeologia Medievale / Societ\u00e0 degli Archeologi Medievisti Italiani. A cura di Giuliano Volpe, Pasquale Favia.</i>, 2009, 284\u201390.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Felice 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H4LPABEU",
+      "formattedCitation": "<div class=\"csl-entry\">De Felice, Giuliano. \u201cI mosaici e i rivestimenti marmorei della villa di Faragola, Ascoli Satriano (FG).\u201d <i>Atti del XIII colloquio dell\u2019Associazione Italiana per lo Studio e la Conservazione del Mosaico\u202f; (Canosa di Puglia, 21 - 24 febbraio 2007) / AISCOM. A cura di Claudia Angelelli e Federica Rinaldi.</i>, 2008, 41\u201357.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Buglione 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FK9984UA",
+      "formattedCitation": "<div class=\"csl-entry\">Buglione, Antonietta. \u201cRicerche archeozoologiche presso l\u2019abitato altomedievale di Faragola (Ascoli Satriano, FG).\u201d <i>V Congresso Nazionale di Archeologia Medievale / Societ\u00e0 degli Archeologi Medievisti Italiani. A cura di Giuliano Volpe, Pasquale Favia.</i>, 2009, 708\u201311.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gliozzo et al. 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K7Y22C3K",
+      "formattedCitation": "<div class=\"csl-entry\">GLIOZZO, E, A SANTAGOSTINO BARBONE, M TURCHIANO, I MEMMI, and G VOLPE. \u201cTHE COLOURED TESSERAE DECORATING THE VAULTS OF THE FARAGOLA BALNEUM (ASCOLI SATRIANO, FOGGIA, SOUTHERN ITALY).\u201d <i>ARCM Archaeometry</i> 54, no. 2 (2012): 311\u201331.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gliozzo et al. 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X69X9ID3",
+      "formattedCitation": "<div class=\"csl-entry\">GLIOZZO, E, A SANTAGOSTINO BARBONE, F D\u2019ACAPITO, M TURCHIANO, I TURBANTI MEMMI, and G VOLPE. \u201cTHE SECTILIA PANELS OF FARAGOLA (ASCOLI SATRIANO, SOUTHERN ITALY): A MULTI-ANALYTICAL STUDY OF THE GREEN, MARBLED (GREEN AND YELLOW), BLUE AND BLACKISH GLASS SLABS.\u201d <i>ARCM Archaeometry</i> 52, no. 3 (2010): 389\u2013415.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dare.ht.lu.se/",
+      "citationDetail": "42163",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Lund, Sweden: Department of Archaeology and Ancient History, Lund University, Sweden, 2015. http://dare.ht.lu.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q4012731",
+      "citationDetail": "Q4012731: Faragola Roman villa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vocab.getty.edu/page/tgn/7902218",
+      "citationDetail": "7902218: Faragola (deserted settlement)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TGN",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLJQ5AZJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Getty Thesaurus of Geographic Names\u00ae Online</i>, n.d. https://www.getty.edu/research/tools/vocabularies/tgn/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/17506/",
+      "citationDetail": "17506: Villa di Faragola",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Volpe 2009a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VBZFEC9Y",
+      "formattedCitation": "<div class=\"csl-entry\">Volpe, Giuliano, and Maria Turchiano, eds. <i>Faragola 1: un insediamento rurale nella Valle del Carapelle: ricerche e studi</i>. Insulae Diomedeae 12. S. Spirito (Bari): Edipuglia, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa di Faragola",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q4012731",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Wikidata Q4012731",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-09-07.4624429586",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2017-09-07T18:21:29Z",
+      "uri": "https://pleiades.stoa.org/places/666067878/name.2017-09-07.4624429586",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-09-12T21:02:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-07T19:10:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-07T18:23:01Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-07T18:21:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-07T18:21:29Z"
+        }
+      ]
+    }
+  ],
+  "id": "666067878",
+  "subject": [
+    "mosaics",
+    "extant remains",
+    "opus sectile",
+    "villa"
+  ],
+  "title": "Villa di Faragola",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The villa complex at Faragola lies in the territory of Ascoli Satriano. The extant site was used chiefly during the fourth through sixth centuries CE, with the complex covering an area of \u200b\u200b1550 m\u00b2. It lies along the route from Herdonia to Ausculum, the so-called \u201cAurelia Aeclanensis\u201d.\u00a0The villa belonged to a senatorial family, perhaps that of the <em>Scipioni Orfiti</em>. The later villa was built atop Republican horizons as well as an early imperial farm. By the seventh century, that site was transitioning to a medieval village.\u00a0Systematic fieldwork has been carried out at the site under the direction of Giuliano Volpe since 2003. The rich archaeological remains include important floor mosaics, a thermal sector, and a <i>coenatio</i>.</p>\r\n<p>In September 2017 the archaeological site was targeted by unknown attackers who severely damaged its remains.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Late Roman villa site near Ausculum.",
+  "reprPoint": [
+    15.5598272,
+    41.2283725
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    15.5598272,
+    41.2283725,
+    15.5598272,
+    41.2283725
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442487"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-09-07T14:41:28Z",
+  "uri": "https://pleiades.stoa.org/places/666067878",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-31T14:13:19Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-31T14:12:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-31T14:10:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-31T14:09:30Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-15T20:50:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-18T14:51:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-09-12T21:02:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T19:17:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T18:12:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T17:50:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T17:48:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T17:41:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T17:40:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T15:15:59Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T14:41:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-07T14:41:28Z"
+    }
+  ]
+}

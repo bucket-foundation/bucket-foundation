@@ -1,0 +1,598 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.8563295,
+            32.8189619
+          ],
+          [
+            21.8566911,
+            32.818837
+          ],
+          [
+            21.8565738,
+            32.8185973
+          ],
+          [
+            21.8562122,
+            32.8187224
+          ],
+          [
+            21.8563295,
+            32.8189619
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "house-of-hesychios",
+      "properties": {
+        "snippet": "Townhouse, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/529754544/house-of-hesychios",
+        "description": "Representative OpenStreetMap location of the House of Hesychios on the acropolis' ridge of Cyrene.",
+        "location_precision": "precise",
+        "title": "OSM location of the so-called House of Hesychios"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/423655937",
+          "citationDetail": "Way 423655937",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=423655937",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "house-of-hesychios",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of the so-called House of Hesychios",
+      "provenance": "OpenStreetMap (Way 423655937, version 1, osm:changeset=39887916, 2016-06-08T16:02:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse",
+        ""
+      ],
+      "description": "Representative OpenStreetMap location of the House of Hesychios on the acropolis' ridge of Cyrene.",
+      "created": "2016-06-29T16:12:53Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.8563295,
+            32.8189619
+          ],
+          [
+            21.8566911,
+            32.818837
+          ],
+          [
+            21.8565738,
+            32.8185973
+          ],
+          [
+            21.8562122,
+            32.8187224
+          ],
+          [
+            21.8563295,
+            32.8189619
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/529754544/house-of-hesychios",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-03T18:42:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-04T14:25:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-04T14:23:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-07-01T13:07:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-06-29T16:16:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "vvitale",
+          "modified": "2016-06-29T16:12:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-06-29T16:12:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:52:49Z",
+      "associationCertainty": "certain",
+      "title": "Cyrene",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/529754544/373778",
+      "connectionType": "connection",
+      "id": "373778",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/373778",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "https://www.worldcat.org/title/cyrenaica/oclc/863572165",
+      "formattedCitation": "Kenrick 2013, 167-8",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "https://www.worldcat.org/title/architettura-cirenaica/oclc/2099264",
+      "formattedCitation": "Stucchi 1975, 220, 314, 483, 490",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://hdl.handle.net/10447/26023",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Carra, R., 2005. I mosaici della casa di Esichio Libiarca a Cirene",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "House of Hesychios, House of Hesychius",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/cyrenaica/oclc/863572165",
+          "formattedCitation": "Kenrick 2013, 167-8",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aentry%3Dcyrene",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "PECS (Perseus), CYRENE (Shahat) Libya",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=7bsUAAAAIAAJ&lpg=PA281&ots=IitxW9zNjl&dq=house%20of%20hesychios%20cyrene&pg=PA281#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Applebaum 1979 (Google Books), 281",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Peristyle",
+          "citationDetail": "Peristyle",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Peristyle.",
+          "otherIdentifier": " ",
+          "type": "seeAlso"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=lPaNiy3YisIC&lpg=PA144&ots=JUavoKh7N9&dq=house%20of%20hesychios%20cyrene&pg=PA144#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Lonely Planet Libya 2007 (Google Books), Libya",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2016-06-29.1160113830",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Sometimes the full lenght variant \"House of Hesychios the Libyarch\" can be found in documents, but the shorter \"House of Hesychios\" appears to be way more common.</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-06-29T16:28:46Z",
+      "uri": "https://pleiades.stoa.org/places/529754544/name.2016-06-29.1160113830",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "House of Hesychios",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-04T14:25:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-04T14:24:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-07-01T13:07:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-07-01T13:04:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-06-29T16:28:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-06-29T16:28:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Casa di Esichio",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/architettura-cirenaica/oclc/2099264",
+          "formattedCitation": "Stucchi 1975, 220, 314, 483, 490",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=-1pgP9vtHeYC&lpg=PA13&ots=CpaLxB-TB8&dq=casa%20di%20esichio%20cirene&pg=PA13#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Ermeti 1981 (Google Books), 13",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=SrGNKzqCIrMC&lpg=PA2018&ots=q9RVmunM94&dq=casa%20di%20esichio%20cirene&pg=PA2017#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Luni 2006 (GoogleBooks), 121-2",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://hdl.handle.net/10447/46067",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Carra, R., 2005. I mosaici della casa di Esichio Libiarca a Cirene",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "casa-di-esichio",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Sometimes the full lenght variant \"Casa di Esichio Libiarca\" can be found in documents, but the shorter \"Casa di Esichio\" appears to be way more common.</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-06-29T16:36:42Z",
+      "uri": "https://pleiades.stoa.org/places/529754544/casa-di-esichio",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Casa di Esichio",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-04T14:25:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-07-01T13:07:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-07-01T13:03:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-06-29T16:36:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-06-29T16:36:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "529754544",
+  "subject": [
+    "extant remains",
+    "Mosaic"
+  ],
+  "title": "So-called House of Hesychios",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "<p>Possibly built in the first century AD as a typical house with rooms opening off an Ionic peristyle, it was later renewed and the layout rearranged. The name \"Hesychios\" (or \"Hesychios the Libyarch\") appears in a few of the house's mosaics. Some Christian iconography can also be found in the floor decorations.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman peristyle house located in Cyrene.",
+  "reprPoint": [
+    21.8565130841593,
+    32.81876531676921
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    21.8562436,
+    32.818583,
+    21.8567025,
+    32.8189662
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/373778"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-06-29T16:06:08Z",
+  "uri": "https://pleiades.stoa.org/places/529754544",
+  "creators": [
+    {
+      "username": "vvitale",
+      "homepage": null,
+      "name": "Valeria Vitale",
+      "uri": "https://pleiades.stoa.org/author/vvitale"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-04T14:25:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-04T14:21:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "vvitale",
+      "modified": "2016-07-01T13:07:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-07-01T12:59:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-06-29T16:39:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-06-29T16:17:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-06-29T16:07:28Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "vvitale",
+      "modified": "2016-06-29T16:06:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "vvitale",
+      "modified": "2016-06-29T16:06:08Z"
+    }
+  ]
+}

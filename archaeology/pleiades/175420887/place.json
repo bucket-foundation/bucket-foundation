@@ -1,0 +1,336 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.0542026,
+            43.7743941
+          ],
+          [
+            11.0550716,
+            43.7733986
+          ],
+          [
+            11.0558494,
+            43.7729725
+          ],
+          [
+            11.056123,
+            43.7729531
+          ],
+          [
+            11.0565415,
+            43.7733327
+          ],
+          [
+            11.0568311,
+            43.7737317
+          ],
+          [
+            11.056756,
+            43.7740648
+          ],
+          [
+            11.0564556,
+            43.7743398
+          ],
+          [
+            11.0556939,
+            43.7745916
+          ],
+          [
+            11.0550266,
+            43.7748099
+          ],
+          [
+            11.0548546,
+            43.7747773
+          ],
+          [
+            11.05478,
+            43.7747291
+          ],
+          [
+            11.0545191,
+            43.7745563
+          ],
+          [
+            11.0544863,
+            43.7745387
+          ],
+          [
+            11.0542026,
+            43.7743941
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-necropoli-etrusca-di-prato-rosello",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/175420887/osm-location-of-necropoli-etrusca-di-prato-rosello",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Necropoli etrusca di Prato Rosello"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/436906467",
+          "citationDetail": "Way 436906467",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=436906467",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-necropoli-etrusca-di-prato-rosello",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -550,
+      "title": "OSM location of Necropoli etrusca di Prato Rosello",
+      "provenance": "OpenStreetMap (Way 436906467, version 8, osm:changeset=105202071, 2021-05-24T07:04:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-10-15T03:10:24Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.0542026,
+            43.7743941
+          ],
+          [
+            11.0550716,
+            43.7733986
+          ],
+          [
+            11.0558494,
+            43.7729725
+          ],
+          [
+            11.056123,
+            43.7729531
+          ],
+          [
+            11.0565415,
+            43.7733327
+          ],
+          [
+            11.0568311,
+            43.7737317
+          ],
+          [
+            11.056756,
+            43.7740648
+          ],
+          [
+            11.0564556,
+            43.7743398
+          ],
+          [
+            11.0556939,
+            43.7745916
+          ],
+          [
+            11.0550266,
+            43.7748099
+          ],
+          [
+            11.0548546,
+            43.7747773
+          ],
+          [
+            11.05478,
+            43.7747291
+          ],
+          [
+            11.0545191,
+            43.7745563
+          ],
+          [
+            11.0544863,
+            43.7745387
+          ],
+          [
+            11.0542026,
+            43.7743941
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/175420887/osm-location-of-necropoli-etrusca-di-prato-rosello",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-15T17:59:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-15T03:10:49Z"
+        },
+        {
+          "comment": "supersedes previously published location whose underlying OSM data is now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-15T03:10:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-15T03:10:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-15T03:10:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Necropoli_di_Prato_Rosello",
+      "citationDetail": "Necropoli di Prato Rosello",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Necropoli di Prato Rosello.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.parcoarcheologicocarmignano.it/en/parco-archeologico/prato-rosello",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Etruscan necropolis of Prato Rosello in Artimino",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3346872",
+      "citationDetail": "Necropolis of Prato Rosello (Q3346872)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "175420887",
+  "subject": [],
+  "title": "Prato Rosello necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan necropolis with a number of tumulus-type tombs dating between the eighth and sixth centuries BC.",
+  "reprPoint": [
+    11.055565179159094,
+    43.77394505277093
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    11.0542026,
+    43.7729531,
+    11.0568311,
+    43.7748099
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-02-13T18:56:11Z",
+  "uri": "https://pleiades.stoa.org/places/175420887",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-15T03:11:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-16T14:21:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-08T20:22:47Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-13T18:56:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-13T18:56:11Z"
+    }
+  ]
+}

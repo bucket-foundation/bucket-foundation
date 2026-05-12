@@ -1,0 +1,345 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3583118,
+          51.7540793
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/113035707/osm-location-of-roman-theater",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/25150239",
+          "citationDetail": "Node 25150239",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=25150239",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman theater",
+      "provenance": "OpenStreetMap (Node 25150239, version 9, osm:changeset=134793790, 2023-04-11T23:37:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-01-18T20:27:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3583118,
+          51.7540793
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/113035707/osm-location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-05T00:13:39Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-15T22:07:38Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-14T05:20:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-16T21:24:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-14T00:24:05Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-18T20:27:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-18T20:27:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-18T20:27:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-09T23:55:05Z",
+      "associationCertainty": "certain",
+      "title": "Verulamium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/113035707/9053187173",
+      "connectionType": "at",
+      "id": "9053187173",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-09T23:55:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-09T23:55:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-09T23:55:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79739",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/archaeologia/article/viiithe-roman-theatre-at-verulamium-st-albans/7FBB212DF80B4C92A56E892E8E16F728",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kenyon 1935",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PI3LJJUM",
+      "formattedCitation": "<div class=\"csl-entry\">Kenyon, Kathleen M. \u201cVIII.\u2014The Roman Theatre at Verulamium, St. Albans.\u201d <i>Archaeologia</i> 84 (ed 1935): 213\u201361. https://doi.org/10.1017/S0261340900013679.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://theatrum.de/397.html",
+      "citationDetail": "397",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.openedition.org/cvz/1430",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cleary 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8CULKQTB",
+      "formattedCitation": "<div class=\"csl-entry\">Cleary, Simon Esmonde. \u201cPublic Buildings in the Cities of Roman Britain: Successes or Failures?\u201d In <i>Urbanisme Civique En Temps de Crise\u202f: Les Espaces Publics d\u2019Hispanie et de l\u2019Occident Romain Entre Le Iie et Le Ive Si\u00e8cle</i>, edited by Laurent Brassous and Alejandro Quevedo, 63\u201382. Collection de La Casa de Vel\u00e1zquez. Madrid: Casa de Vel\u00e1zquez, 2017. http://books.openedition.org/cvz/1430.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2148270",
+      "citationDetail": "Q2148270: Roman Theatre of Verulamium",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Roman_Theatre%2C_St_Albans?uselang=en",
+      "citationDetail": "Roman Theatre, St Albans",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "113035707",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Verulamium Roman theater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman Theatre at Verulamium, St. Albans was begun around the middle of the second century and continues in use until the fourth century.",
+  "reprPoint": [
+    -0.3583118,
+    51.7540793
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    -0.3583118,
+    51.7540793,
+    -0.3583118,
+    51.7540793
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79739"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-09T23:55:04Z",
+  "uri": "https://pleiades.stoa.org/places/113035707",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-15T22:09:35Z"
+    },
+    {
+      "comment": "Update reference ",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-14T05:22:22Z"
+    },
+    {
+      "comment": "updated wikidata reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-25T15:12:42Z"
+    },
+    {
+      "comment": "wikidata Q2148270",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-03T15:03:50Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-03T15:02:58Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-17T01:10:32Z"
+    },
+    {
+      "comment": "theatrum.de: 397",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-17T01:09:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-16T21:24:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-14T00:24:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-14T00:23:48Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-09T23:55:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-09T23:55:04Z"
+    }
+  ]
+}

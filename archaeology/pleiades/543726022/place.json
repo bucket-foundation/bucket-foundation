@@ -1,0 +1,286 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.1335874,
+          38.9696782
+        ]
+      },
+      "type": "Feature",
+      "id": "kululu-kalesi",
+      "properties": {
+        "snippet": "Settlement; 1000 BC - 720 BC",
+        "link": "https://pleiades.stoa.org/places/543726022/kululu-kalesi",
+        "description": "Location of Kululu Kalesi based on a node derived from OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kululu Kalesi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "uncertain",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4948690209",
+          "citationDetail": "Node 4948690209",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4948690209",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/230137758",
+          "citationDetail": "26, Karte (unnumbered)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/1",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+          "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. T\u00fcbinger Atlas des Vorderen Orients / Beihefte / B, 7,7,1. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kululu-kalesi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -720,
+      "title": "OSM location of Kululu Kalesi",
+      "provenance": "OpenStreetMap (Node 4948690209, version 1, osm:changeset=50006157, 2017-07-03T11:23:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/uncertain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>Modern Kululu has been suggested as a possible location of ancient Artulu.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location of Kululu Kalesi based on a node derived from OpenStreetMap",
+      "created": "2020-08-26T06:51:49Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.1335874,
+          38.9696782
+        ]
+      },
+      "locationType": [
+        "representative",
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/543726022/kululu-kalesi",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-24T15:45:27Z"
+        },
+        {
+          "comment": "edited title",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-24T15:44:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-29T05:20:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-26T06:55:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-26T06:55:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-26T06:51:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-26T06:51:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-10-23T17:50:16Z",
+      "associationCertainty": "uncertain",
+      "title": "Artulu",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/543726022/4168984688",
+      "connectionType": "same_as",
+      "id": "4168984688",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "changed type to same as, set certainty to uncertain",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-23T17:51:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-23T17:50:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-23T17:50:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-23T17:50:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/17658595",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/same_as"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/230137758",
+      "citationDetail": "26, Karte (unnumbered)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bagg, RGTC 7/1",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+      "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. T\u00fcbinger Atlas des Vorderen Orients / Beihefte / B, 7,7,1. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "543726022",
+  "subject": [],
+  "title": "Kululu Kalesi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>Modern Kululu has been suggested as a possible location of ancient Artulu.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Kululu Kalesi is a proposed location of ancient Artulu.",
+  "reprPoint": [
+    36.1335874,
+    38.9696782
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    36.1335874,
+    38.9696782,
+    36.1335874,
+    38.9696782
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/17658595"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-10-23T17:50:16Z",
+  "uri": "https://pleiades.stoa.org/places/543726022",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-24T15:45:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-24T15:44:18Z"
+    },
+    {
+      "comment": "edited title, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-23T17:50:51Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-23T17:50:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-23T17:50:16Z"
+    }
+  ]
+}

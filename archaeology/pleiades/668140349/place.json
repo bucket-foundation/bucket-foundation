@@ -1,0 +1,623 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.2538,
+          36.2735
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-tall-suwaiyhat",
+      "properties": {
+        "snippet": "Findspot",
+        "link": "https://pleiades.stoa.org/places/668140349/cigs-location-of-tall-suwaiyhat",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Tall Suwaiyhat"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.2545488,
+            36.2755293
+          ],
+          [
+            38.2540017,
+            36.2754947
+          ],
+          [
+            38.2526927,
+            36.275166
+          ],
+          [
+            38.2522958,
+            36.2742492
+          ],
+          [
+            38.2523387,
+            36.2736351
+          ],
+          [
+            38.2526713,
+            36.273168
+          ],
+          [
+            38.2531326,
+            36.2730036
+          ],
+          [
+            38.2542484,
+            36.2727787
+          ],
+          [
+            38.2549029,
+            36.2729431
+          ],
+          [
+            38.2553857,
+            36.2737821
+          ],
+          [
+            38.2552462,
+            36.2744568
+          ],
+          [
+            38.2548385,
+            36.2754601
+          ],
+          [
+            38.2545488,
+            36.2755293
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "tell-es-sweyhat",
+      "properties": {
+        "snippet": "Tell; 3300 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/668140349/tell-es-sweyhat",
+        "description": "Polygon based on OpenStreetMap representing Tell es-Sweyhat after Zettler 1997.",
+        "location_precision": "precise",
+        "title": "OSM location of Tell es-Sweyhat"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Holland 2006",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TGQVX7KT",
+          "formattedCitation": "<div class=\"csl-entry\">Holland, Thomas A. <i>Excavations at Tell Es-Sweyhat, Syria. Volume 2, Part 1:Text. Archaeology of the Bronze Age, Hellenistic, and Roman Remains at an Ancient Town on the Euphrates River</i>. Oriental Institute Publications (OIP) 125. Chicago, Ill: Oriental Institute of the University of Chicago, 2006.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Sweyhat",
+          "citationDetail": "Sweyhat",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Sweyhat.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1986456",
+          "citationDetail": "Q1986456",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q1986456.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-tall-suwaiyhat",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "end": null,
+      "title": "CIGS location of Tall Suwaiyhat",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "findspot"
+      ],
+      "description": "",
+      "created": "2025-07-29T13:12:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.2538,
+          36.2735
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668140349/cigs-location-of-tall-suwaiyhat",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added PAA \"Google Earth and Partners Imagery 2016 and following\"",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-01T12:51:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T17:58:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-29T13:22:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-29T13:12:48Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "transition-early-middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/transition-early-middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1068261296",
+          "citationDetail": "Way 1068261296",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1068261296",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/492991263",
+          "citationDetail": "pages 1-10",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zettler 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YGFJYGST",
+          "formattedCitation": "<div class=\"csl-entry\">Zettler, Richard L. <i>Subsistence and Settlement in a Marginal Environment: Tell Es-Sweyhat, 1989-1995 Preliminary Report</i>. MASCA Research Papers in Science and Archaeology, Volume 14. Philadelphia: Museum applied Science center for archaeology\u202f: University of Pennsylvania Museum of archaeology and anthropology, 1997. http://www.worldcat.org/oclc/492991263.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tell-es-sweyhat",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": 640,
+      "title": "OSM location of Tell es-Sweyhat",
+      "provenance": "OpenStreetMap (Way 1068261296, version 2, osm:changeset=122182641, 2022-06-09T20:33:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Polygon based on OpenStreetMap representing Tell es-Sweyhat after Zettler 1997.",
+      "created": "2022-06-09T15:33:13Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.2545488,
+            36.2755293
+          ],
+          [
+            38.2540017,
+            36.2754947
+          ],
+          [
+            38.2526927,
+            36.275166
+          ],
+          [
+            38.2522958,
+            36.2742492
+          ],
+          [
+            38.2523387,
+            36.2736351
+          ],
+          [
+            38.2526713,
+            36.273168
+          ],
+          [
+            38.2531326,
+            36.2730036
+          ],
+          [
+            38.2542484,
+            36.2727787
+          ],
+          [
+            38.2549029,
+            36.2729431
+          ],
+          [
+            38.2553857,
+            36.2737821
+          ],
+          [
+            38.2552462,
+            36.2744568
+          ],
+          [
+            38.2548385,
+            36.2754601
+          ],
+          [
+            38.2545488,
+            36.2755293
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668140349/tell-es-sweyhat",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-26T15:37:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-10T10:51:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T15:35:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T15:35:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T15:33:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T15:33:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/492991263",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zettler 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YGFJYGST",
+      "formattedCitation": "<div class=\"csl-entry\">Zettler, Richard L. <i>Subsistence and Settlement in a Marginal Environment: Tell Es-Sweyhat, 1989-1995 Preliminary Report</i>. MASCA Research Papers in Science and Archaeology, Volume 14. Philadelphia: Museum applied Science center for archaeology\u202f: University of Pennsylvania Museum of archaeology and anthropology, 1997. http://www.worldcat.org/oclc/492991263.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sweyhat",
+      "citationDetail": "Sweyhat",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1986456",
+      "citationDetail": "Sweyhat (Q1986456)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Holland 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TGQVX7KT",
+      "formattedCitation": "<div class=\"csl-entry\">Holland, Thomas A. <i>Excavations at Tell Es-Sweyhat, Syria. Volume 2, Part 1:Text. Archaeology of the Bronze Age, Hellenistic, and Roman Remains at an Ancient Town on the Euphrates River</i>. Oriental Institute Publications (OIP) 125. Chicago, Ill: Oriental Institute of the University of Chicago, 2006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sweyhat",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1986456",
+          "citationDetail": "Q1986456: Sweyhat",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "sweyhat",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-06-09T20:37:48Z",
+      "uri": "https://pleiades.stoa.org/places/668140349/sweyhat",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Sweyhat",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-10T10:51:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-09T21:56:27Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-09T20:37:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-09T20:37:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "668140349",
+  "subject": [],
+  "title": "Tell es-Sweyhat",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/tell",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tell es-Sweyhat or Sweyhat refers to an ancient settlement mound or tell located along the Euphrates river in what is now the Raqqa Governorate of northern Syria. This human settlement was occupied from the beginning of the third millennium BCE until its collapse in the early second millennium BCE. The site remained occupied during the Early Bronze-Middle Bronze age transition. There is later reoccupation of the site during the Hellenistic and late Roman periods.",
+  "reprPoint": [
+    38.25383213918252,
+    36.273825448710696
+  ],
+  "placeTypes": [
+    "findspot",
+    "tell",
+    "archaeological-site"
+  ],
+  "bbox": [
+    38.2522958,
+    36.2727787,
+    38.2553857,
+    36.2755293
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-07-29T13:11:37Z",
+  "uri": "https://pleiades.stoa.org/places/668140349",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "merge references from unintentional duplicate place; add @cjohansson @rrattenborg as creators; updated Locations by @jbecker",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-30T17:58:24Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-29T13:11:36Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-10T10:51:14Z"
+    },
+    {
+      "comment": "edit summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-09T21:59:00Z"
+    },
+    {
+      "comment": "added wikipedia, wikidata references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-09T20:36:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T15:35:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T15:32:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T15:32:15Z"
+    }
+  ]
+}

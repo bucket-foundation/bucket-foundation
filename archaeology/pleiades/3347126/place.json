@@ -1,0 +1,611 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7251085,
+            37.9706574
+          ],
+          [
+            23.7269315,
+            37.9705157
+          ],
+          [
+            23.7269181,
+            37.9704005
+          ],
+          [
+            23.7250942,
+            37.9705474
+          ],
+          [
+            23.7251085,
+            37.9706574
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-stoa-of-eumenes",
+      "properties": {
+        "snippet": "Stoa; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/3347126/osm-location-of-stoa-of-eumenes",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Stoa of Eumenes"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/144928419",
+          "citationDetail": "Way 144928419",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=144928419",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-stoa-of-eumenes",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+      ],
+      "end": -30,
+      "title": "OSM location of Stoa of Eumenes",
+      "provenance": "OpenStreetMap (Way 144928419, version 15, osm:changeset=140162727, 2023-08-21T06:03:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "stoa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-03-16T01:49:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7251085,
+            37.9706574
+          ],
+          [
+            23.7269315,
+            37.9705157
+          ],
+          [
+            23.7269181,
+            37.9704005
+          ],
+          [
+            23.7250942,
+            37.9705474
+          ],
+          [
+            23.7251085,
+            37.9706574
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/3347126/osm-location-of-stoa-of-eumenes",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:50:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:05:56Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T01:49:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T01:49:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T01:49:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-16T01:49:50Z",
+      "associationCertainty": "certain",
+      "title": "Athenae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/3347126/athenae",
+      "connectionType": "at",
+      "id": "athenae",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:50:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:05:56Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:05:07Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T01:49:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T01:49:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579885",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korres 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y5ZENM75",
+          "formattedCitation": "<div class=\"csl-entry\">Korres, Manolis. \u201cThe Stoa of Eumenes in Athens: Theoretical Restoration.\u201d In <i>Acta Archaeologica, 92 (2021)</i>, Fascicle 1, pages 63-81. Leiden: Brill, 2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-16T01:50:20Z",
+      "associationCertainty": "certain",
+      "title": "Acropolis of Athens",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/3347126/acropolis-of-athens",
+      "connectionType": "south_of",
+      "id": "acropolis-of-athens",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:50:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:05:56Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:05:32Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T01:50:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T01:50:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638356144",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korres 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y5ZENM75",
+          "formattedCitation": "<div class=\"csl-entry\">Korres, Manolis. \u201cThe Stoa of Eumenes in Athens: Theoretical Restoration.\u201d In <i>Acta Archaeologica, 92 (2021)</i>, Fascicle 1, pages 63-81. Leiden: Brill, 2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/south_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Stoa_of_Eumenes",
+      "citationDetail": "Stoa of Eumenes",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237BEum",
+      "citationDetail": "Eumenes Stoa (Athens) ",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5587",
+      "citationDetail": "Stoa Eumenes' II. Stoa des Eumenes, Athen",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/1056/1/72/281-286",
+      "citationDetail": "5.9.1.5",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Vitruvius, Arch. (Krohn: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AD4MK7K",
+      "formattedCitation": "<div class=\"csl-entry\">Vitruvius Pollio, Marcus. <i>Vitruvii De architectura libri decem</i>. Edited by F Krohn. Leipzig: Teubner, 1912.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1905296",
+      "citationDetail": "Stoa of Eumenes (Q1905296)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "523",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Travlos 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5Q2AW7H",
+      "formattedCitation": "<div class=\"csl-entry\">Travlos, Ioannes N. <i>Pictorial Dictionary of Ancient Athens</i>. New York: Praeger, 1971. http://www.worldcat.org/oclc/162915.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/59267507",
+      "citationDetail": "172",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camp 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z53ZGZC2",
+      "formattedCitation": "<div class=\"csl-entry\">Camp II, John McK. <i>The Archaeology of Athens</i>. New Haven: Yale University Press, 2001. http://www.worldcat.org/oclc/59267507.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/42617928",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thompson 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3GBPWX5J",
+      "formattedCitation": "<div class=\"csl-entry\">Thompson, Homer A. \u201cArchitecture as a Medium of Public Relations among the Successors of Alexander.\u201d <i>Studies in the History of Art</i> 10 (1982): 172\u201389. https://www.jstor.org/stable/42617928.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "porticus Eumenicae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://latin.packhum.org/loc/1056/1/72/281-286",
+          "citationDetail": "5.9.1.5",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Vitruvius, Arch. (Krohn: PHI)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AD4MK7K",
+          "formattedCitation": "<div class=\"csl-entry\">Vitruvius Pollio, Marcus. <i>Vitruvii De architectura libri decem</i>. Edited by F Krohn. Leipzig: Teubner, 1912.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "porticus-eumenicae",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2024-03-16T02:41:41Z",
+      "uri": "https://pleiades.stoa.org/places/3347126/porticus-eumenicae",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "porticus Eumenicae",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:50:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:05:56Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T02:41:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T02:41:41Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Stoa of Eumenes",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org",
+          "citationDetail": "Stoa of Eumenes",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "stoa-of-eumenes",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-16T14:03:34Z",
+      "uri": "https://pleiades.stoa.org/places/3347126/stoa-of-eumenes",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Stoa of Eumenes",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T16:50:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:05:56Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:03:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:03:34Z"
+        }
+      ]
+    }
+  ],
+  "id": "3347126",
+  "subject": [],
+  "title": "Stoa of Eumenes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Eumenes II, king of Pergamon, built this eponymous stoa on the South slope of the Athenian Acropolis ca. 160 BCE. Its position lies between the Theater of Dionysus and the later Odeon of Herodes Atticus.",
+  "reprPoint": [
+    23.726014257993473,
+    37.970530137252965
+  ],
+  "placeTypes": [
+    "stoa"
+  ],
+  "bbox": [
+    23.7250942,
+    37.9704005,
+    23.7269315,
+    37.9706574
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579885",
+    "https://pleiades.stoa.org/places/638356144"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-16T01:48:38Z",
+  "uri": "https://pleiades.stoa.org/places/3347126",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-20T16:50:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T14:05:56Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T14:02:57Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T01:59:05Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T01:52:58Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T01:48:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T01:48:38Z"
+    }
+  ]
+}

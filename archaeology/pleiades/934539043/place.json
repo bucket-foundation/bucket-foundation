@@ -1,0 +1,216 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.346265,
+          41.0780634
+        ]
+      },
+      "type": "Feature",
+      "id": "paradimi-tomb",
+      "properties": {
+        "snippet": "Tomb; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/934539043/paradimi-tomb",
+        "description": "Point based on an OpenStreetMap node representing Paradimi tomb after Bakalakis 1981.",
+        "location_precision": "precise",
+        "title": "OSM location of Paradimi tomb"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9858485291",
+          "citationDetail": "Node 9858485291",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9858485291",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/925199100",
+          "citationDetail": "Beilage 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bakalakis 1981",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YUEUPBZS",
+          "formattedCitation": "<div class=\"csl-entry\">Bakalakis, Georgios, Agni Sakellariou, and Vladimir Milojcic. <i>Paradimi</i>. Heidelberger Akademie der Wissenschaften Internationale Interakademische Kommision f\u00fcr die Erforschung der Vorgeschichte des Balkans, Bd.II. Mainz am Rhein: Zabern, 1981. http://www.worldcat.org/oclc/925199100.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "paradimi-tomb",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -3300,
+      "title": "OSM location of Paradimi tomb",
+      "provenance": "OpenStreetMap (Node 9858485291, version 1, osm:changeset=123052147, 2022-06-30T16:12:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Paradimi tomb after Bakalakis 1981.",
+      "created": "2022-06-30T16:19:58Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.346265,
+          41.0780634
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/934539043/paradimi-tomb",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-01T17:11:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T16:21:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T16:21:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T16:19:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T16:19:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/925199100",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bakalakis 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YUEUPBZS",
+      "formattedCitation": "<div class=\"csl-entry\">Bakalakis, Georgios, Agni Sakellariou, and Vladimir Milojcic. <i>Paradimi</i>. Heidelberger Akademie der Wissenschaften Internationale Interakademische Kommision f\u00fcr die Erforschung der Vorgeschichte des Balkans, Bd.II. Mainz am Rhein: Zabern, 1981. http://www.worldcat.org/oclc/925199100.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "934539043",
+  "subject": [],
+  "title": "Paradimi Neolithic Tomb",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Neolithic tomb located 1km east of the modern village of Paradiimi in Northeastern Greece.",
+  "reprPoint": [
+    25.346265,
+    41.0780634
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    25.346265,
+    41.0780634,
+    25.346265,
+    41.0780634
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-30T16:19:13Z",
+  "uri": "https://pleiades.stoa.org/places/934539043",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-01T17:11:41Z"
+    },
+    {
+      "comment": "title; summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-01T17:00:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T16:21:25Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T16:19:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T16:19:13Z"
+    }
+  ]
+}

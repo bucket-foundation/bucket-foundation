@@ -1,0 +1,400 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-28T16:44:40Z",
+      "associationCertainty": "certain",
+      "title": "Acropolis of Athens",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/418714189/acropolis-of-athens",
+      "connectionType": "on",
+      "id": "acropolis-of-athens",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:23:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:47:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:44:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:44:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638356144",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-28T16:45:30Z",
+      "associationCertainty": "uncertain",
+      "title": "Parthenon",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/418714189/parthenon",
+      "connectionType": "part_of_physical",
+      "id": "parthenon",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:23:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:47:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:45:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:45:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/168254096",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "143-144",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-28T16:46:18Z",
+      "associationCertainty": "uncertain",
+      "title": "D\u00f6rpfeld foundations",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/418714189/dorpfeld-foundations",
+      "connectionType": "part_of_physical",
+      "id": "dorpfeld-foundations",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:23:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:47:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:46:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:46:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:46:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/929024657",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "143-144",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "143-144, 162-163, 261-262",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hurwit 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+      "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237BOpi",
+      "citationDetail": "Opisthodomos (Athens Acropolis) 6 Parthenon - \u039f\u03c0\u03b9\u03c3\u03b8\u03cc\u03b4\u03bf\u03bc\u03bf\u03c2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/148373",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Hollinshead 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4D8WT93F",
+      "formattedCitation": "<div class=\"csl-entry\">Hollinshead, Mary B. \u201c\u2018Adyton,\u2019 \u2018Opisthodomos,\u2019 and the Inner Room of the Greek Temple.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 68, no. 2 (1999): 189\u2013218. https://doi.org/10.2307/148373.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.3764/aja.124.1.0003",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "van Rookhuijzen 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VQDJJZTT",
+      "formattedCitation": "<div class=\"csl-entry\">Rookhuijzen, Jan Z. van. \u201cThe Parthenon Treasury on the Acropolis of Athens.\u201d <i>American Journal of Archaeology</i> 124, no. 1 (2020): 3\u201335. https://doi.org/10.3764/aja.124.1.0003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "opisth\u00f3domos",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://telota.bbaw.de/ig/digitale-edition/inschrift/IG%20I%C2%B3%2052(A)",
+          "citationDetail": "I\u00b3 52(A)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "IG",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/49WFK9SJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Inscriptiones Graecae</i>. Berlin: Berlin-Brandenburgische Akademie der Wissenschaften, n.d. https://ig.bbaw.de/de/publikationen.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "opisthodomos",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-04-28T16:44:10Z",
+      "uri": "https://pleiades.stoa.org/places/418714189/opisthodomos",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u1f40\u03c0\u03b9\u03c3\u03b8\u03cc\u03b4\u03bf\u03bc\u03bf\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:23:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:47:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:44:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-28T16:44:10Z"
+        }
+      ]
+    }
+  ],
+  "id": "418714189",
+  "subject": [],
+  "title": "Opisthodomos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/treasury"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A treasury located on the Acropolis of Athens, which is attested from 434/3 BC. It may have been the repaired west porch of the old temple of Athena Polias or the west part of the Parthenon. Under this name, the latter was certainly the residence of King Demetrios Poliorketes from 307-304 BC.",
+  "reprPoint": null,
+  "placeTypes": [
+    "treasury"
+  ],
+  "bbox": null,
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638356144",
+    "https://pleiades.stoa.org/places/168254096",
+    "https://pleiades.stoa.org/places/929024657"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-28T16:41:40Z",
+  "uri": "https://pleiades.stoa.org/places/418714189",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-30T20:23:26Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-29T02:50:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-28T16:47:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-28T16:41:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-28T16:41:40Z"
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9356421,
+          32.5437381
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-hurvat-akav",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/693347883/osm-location-of-hurvat-akav",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Hurvat Akav"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/768436091",
+          "citationDetail": "Node 768436091",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=768436091",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-hurvat-akav",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Hurvat Akav",
+      "provenance": "OpenStreetMap (Node 768436091, version 11, osm:changeset=142872680, 2023-10-20T14:12:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-09-04T03:06:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9356421,
+          32.5437381
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/693347883/osm-location-of-hurvat-akav",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-28T19:13:51Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-28T19:13:01Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-09-05T14:20:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T19:20:22Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T03:07:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T03:06:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T03:06:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/44755201",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hirschfeld 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WZEI67LP",
+      "formattedCitation": "<div class=\"csl-entry\">Hirschfeld, Yizhar, and Adrian J Boas. <i>Ramat Hanadiv Excavations: Final Report of the 1984-1998 Seasons</i>. Jerusalem: Israel Exploration Society, 2000. http://www.worldcat.org/oclc/44755201.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "693347883",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "Roman villa at Ramat Hanadiv",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>Yitzar Hirschfeld excavated the site.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa of the first century CE also known as \"Horvat Akav\" (\u05d7\u05d5\u05e8\u05d1\u05ea \u05e2\u05e7\u05d1) in Hebrew.",
+  "reprPoint": [
+    34.9356421,
+    32.5437381
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "villa",
+    "archaeological-site"
+  ],
+  "bbox": [
+    34.9356421,
+    32.5437381,
+    34.9356421,
+    32.5437381
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-10-15T16:26:23Z",
+  "uri": "https://pleiades.stoa.org/places/693347883",
+  "creators": [
+    {
+      "username": "ykorman",
+      "homepage": null,
+      "name": "Yaniv Korman",
+      "uri": "https://pleiades.stoa.org/author/ykorman"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-28T19:13:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-09-05T14:20:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-04T19:20:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-04T19:20:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ykorman",
+      "modified": "2020-11-19T16:16:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ykorman",
+      "modified": "2020-11-19T16:11:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ykorman",
+      "modified": "2020-11-19T16:10:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-10-28T14:58:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-10-28T14:47:24Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-19T21:40:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "ykorman",
+      "modified": "2020-10-15T16:55:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ykorman",
+      "modified": "2020-10-15T16:46:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ykorman",
+      "modified": "2020-10-15T16:39:20Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ykorman",
+      "modified": "2020-10-15T16:26:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ykorman",
+      "modified": "2020-10-15T16:26:23Z"
+    }
+  ]
+}

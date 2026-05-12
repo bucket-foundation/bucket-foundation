@@ -1,0 +1,582 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.6029567,
+            37.288239
+          ],
+          [
+            13.6030653,
+            37.2882048
+          ],
+          [
+            13.6031015,
+            37.2882806
+          ],
+          [
+            13.6029848,
+            37.2883019
+          ],
+          [
+            13.6029567,
+            37.288239
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "basilica-paleocristiana",
+      "properties": {
+        "snippet": "Basilica, ; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/217728890/basilica-paleocristiana",
+        "description": "Representative location of the ruins of the so-called Early Christian Basilica, at the foot of the Temple of Juno, on the eastern slope of Agrigentum's Hill of Temples. Based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Basilica Paleocristiana"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jprag",
+      "homepage": null,
+      "name": "Jonathan Prag",
+      "uri": "https://pleiades.stoa.org/author/jprag"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/401002496",
+          "citationDetail": "Way 401002496",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=401002496",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "basilica-paleocristiana",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Basilica Paleocristiana",
+      "provenance": "OpenStreetMap (Way 401002496, version 2, osm:changeset=37544144, 2016-03-01T14:51:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "basilica",
+        ""
+      ],
+      "description": "Representative location of the ruins of the so-called Early Christian Basilica, at the foot of the Temple of Juno, on the eastern slope of Agrigentum's Hill of Temples. Based on OpenStreetMap.",
+      "created": "2016-03-01T14:47:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.6029567,
+            37.288239
+          ],
+          [
+            13.6030653,
+            37.2882048
+          ],
+          [
+            13.6031015,
+            37.2882806
+          ],
+          [
+            13.6029848,
+            37.2883019
+          ],
+          [
+            13.6029567,
+            37.288239
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/217728890/basilica-paleocristiana",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T16:49:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-09T01:01:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-09T00:55:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T15:12:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T14:11:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T13:49:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-01T14:48:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-01T14:47:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-01T14:47:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:54:41Z",
+      "associationCertainty": "certain",
+      "title": "Akragas/Agrigentum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/217728890/462086",
+      "connectionType": "connection",
+      "id": "462086",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462086",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.parcovalledeitempli.it/?p=23",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Parco Valle dei Templi, Basilica Paleocristiana",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Arcidiocesi_di_Agrigento",
+      "citationDetail": "Arcidiocesi di Agrigento",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Arcidiocesi di Agrigento.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.regione.sicilia.it/bbccaa/Dirbenicult/musei/cartedelleareearcheologiche/valledeitempliagrigento.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Regione Sicilia, la Valle dei Templi di Agrigento",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.treccani.it/enciclopedia/l-europa-tardoantica-e-medievale-i-territori-entro-i-confini-dell-impero-l-italia-agrigento_%28Il-Mondo-dell'Archeologia%29/",
+      "citationDetail": "Europa tardoantica e medievale: Agrigento",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TrecEnc",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HHA9M2F7",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Treccani Enciclopedia</i>. Roma: Istituto della Enciclopedia Italiana fondata da Giovanni Treccani. Accessed June 6, 2022. https://www.treccani.it/enciclopedia/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Early Christian Basilica",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.parcovalledeitempli.it/?cat=8&lang=en",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Parco Valle dei Templi, Early Christian Basilica",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/",
+          "formattedCitation": "italia.it, Agrigento: The Valley of the Temples",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "early-christian-basilica",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-03-08T14:04:00Z",
+      "uri": "https://pleiades.stoa.org/places/217728890/early-christian-basilica",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Early Christian Basilica",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-09T01:01:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T15:12:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T14:04:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T14:04:02Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Basilica Paleocristiana",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.parcovalledeitempli.it/?p=23",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Parco Valle dei Templi, Basilica Paleocristiana",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Arcidiocesi_di_Agrigento",
+          "citationDetail": "Arcidiocesi di Agrigento",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Arcidiocesi di Agrigento.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.regione.sicilia.it/bbccaa/Dirbenicult/musei/cartedelleareearcheologiche/valledeitempliagrigento.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Regione Sicilia, la Valle dei Templi di Agrigento",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.treccani.it/enciclopedia/l-europa-tardoantica-e-medievale-i-territori-entro-i-confini-dell-impero-l-italia-agrigento_%28Il-Mondo-dell'Archeologia%29/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Enciclopedia Treccani, Europa tardoantica e medievale: Agrigento",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2016-03-08.8609856399",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-03-08T14:10:02Z",
+      "uri": "https://pleiades.stoa.org/places/217728890/name.2016-03-08.8609856399",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Basilica Paleocristiana",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-09T01:01:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T15:12:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T14:10:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-03-08T14:10:04Z"
+        }
+      ]
+    }
+  ],
+  "id": "217728890",
+  "subject": [
+    "extant remains",
+    "paleochristian"
+  ],
+  "title": "So-called Early Christian Basilica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+  ],
+  "details": "<p>The basilica was most likely built in the fourth century A.D. It has an entrance to the east, a single nave, and a semicircular apse. On the floor of the nave, two tombs are visible, possibly belonging to the martyrs Libertino and Peregrino.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A small basilica located outside the walls of the ancient Greek city of Akragas, at the foot of the so-called Temple of Juno, on the eastern slopes of the Hill of the Temples, in an area previously occupied by the necropolis of the late Roman period.",
+  "reprPoint": [
+    13.603029482249996,
+    37.28825646021456
+  ],
+  "placeTypes": [
+    "basilica"
+  ],
+  "bbox": [
+    13.6029567,
+    37.2882048,
+    13.6031015,
+    37.2883019
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462086"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-03-01T14:45:42Z",
+  "uri": "https://pleiades.stoa.org/places/217728890",
+  "creators": [
+    {
+      "username": "vvitale",
+      "homepage": null,
+      "name": "Valeria Vitale",
+      "uri": "https://pleiades.stoa.org/author/vvitale"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T16:50:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-09T01:02:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-09T00:53:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-09T00:53:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "vvitale",
+      "modified": "2016-03-08T15:12:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-03-08T14:10:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-03-08T13:54:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-03-08T13:42:10Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "vvitale",
+      "modified": "2016-03-01T14:45:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "vvitale",
+      "modified": "2016-03-01T14:45:43Z"
+    }
+  ]
+}

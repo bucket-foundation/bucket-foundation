@@ -1,0 +1,639 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.972308138026033,
+              36.75733800030206,
+              0.0
+            ],
+            [
+              4.973265198419929,
+              36.7566940221359,
+              0.0
+            ],
+            [
+              4.973426203728096,
+              36.7566346722304,
+              0.0
+            ],
+            [
+              4.973760387883843,
+              36.75608111887596,
+              0.0
+            ],
+            [
+              4.974347283855545,
+              36.75611421215502,
+              0.0
+            ],
+            [
+              4.97436124276885,
+              36.75599076917716,
+              0.0
+            ],
+            [
+              4.974557733349556,
+              36.75572563431169,
+              0.0
+            ],
+            [
+              4.974513630160895,
+              36.75570816955619,
+              0.0
+            ],
+            [
+              4.974425693923823,
+              36.75572024534512,
+              0.0
+            ],
+            [
+              4.974388755856278,
+              36.75567337521134,
+              0.0
+            ],
+            [
+              4.974402782211595,
+              36.75556168346563,
+              0.0
+            ],
+            [
+              4.974402107592855,
+              36.75544417009029,
+              0.0
+            ],
+            [
+              4.974335599090489,
+              36.75535627833256,
+              0.0
+            ],
+            [
+              4.974298593841723,
+              36.75529765679094,
+              0.0
+            ],
+            [
+              4.974401061998543,
+              36.75526202424169,
+              0.0
+            ],
+            [
+              4.974628977484228,
+              36.75536107231629,
+              0.0
+            ],
+            [
+              4.97486419366666,
+              36.75545421713247,
+              0.0
+            ],
+            [
+              4.975025871642806,
+              36.75551237830465,
+              0.0
+            ],
+            [
+              4.97519424157878,
+              36.75545887430098,
+              0.0
+            ],
+            [
+              4.975325470156504,
+              36.75532324594495,
+              0.0
+            ],
+            [
+              4.975464336538897,
+              36.75524047128629,
+              0.0
+            ],
+            [
+              4.976487329526098,
+              36.75459034108457,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-reconstructed-route-of-tunnel",
+      "properties": {
+        "snippet": "Tunnel; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/309552/imagery-location-reconstructed-route-of-tunnel",
+        "description": "Coordinates determined in Google Earth using 2022 imagery matching Laoues 2024 figure 24.",
+        "location_precision": "precise",
+        "title": "Imagery Location: reconstructed route of tunnel"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sbond",
+      "homepage": null,
+      "name": "Sarah Bond",
+      "uri": "https://pleiades.stoa.org/author/sbond"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.sciencedirect.com/science/article/pii/S2212054824000377",
+          "citationDetail": "Fig. 24. Tunnel alignment, 3D laser survey",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Laoues 2024",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TAYAWLS5",
+          "formattedCitation": "<div class=\"csl-entry\">Laoues, Souad, Nassereddine Attari, and St\u00e9phane Maun\u00e9. \u201cReconstruction of the Route and Characterization of the <i>El Habel</i> Tunnel of the Toudja Roman Aqueduct (Algeria) Using 3D Laser Scanning Technology.\u201d <i>Digital Applications in Archaeology and Cultural Heritage</i> 34 (September 1, 2024): e00352. https://doi.org/10.1016/j.daach.2024.e00352.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-reconstructed-route-of-tunnel",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tunnel"
+      ],
+      "end": 300,
+      "title": "Imagery Location: reconstructed route of tunnel",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tunnel"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "tunnel"
+      ],
+      "description": "Coordinates determined in Google Earth using 2022 imagery matching Laoues 2024 figure 24.",
+      "created": "2025-05-20T20:32:10Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              4.972308138026033,
+              36.75733800030206,
+              0.0
+            ],
+            [
+              4.973265198419929,
+              36.7566940221359,
+              0.0
+            ],
+            [
+              4.973426203728096,
+              36.7566346722304,
+              0.0
+            ],
+            [
+              4.973760387883843,
+              36.75608111887596,
+              0.0
+            ],
+            [
+              4.974347283855545,
+              36.75611421215502,
+              0.0
+            ],
+            [
+              4.97436124276885,
+              36.75599076917716,
+              0.0
+            ],
+            [
+              4.974557733349556,
+              36.75572563431169,
+              0.0
+            ],
+            [
+              4.974513630160895,
+              36.75570816955619,
+              0.0
+            ],
+            [
+              4.974425693923823,
+              36.75572024534512,
+              0.0
+            ],
+            [
+              4.974388755856278,
+              36.75567337521134,
+              0.0
+            ],
+            [
+              4.974402782211595,
+              36.75556168346563,
+              0.0
+            ],
+            [
+              4.974402107592855,
+              36.75544417009029,
+              0.0
+            ],
+            [
+              4.974335599090489,
+              36.75535627833256,
+              0.0
+            ],
+            [
+              4.974298593841723,
+              36.75529765679094,
+              0.0
+            ],
+            [
+              4.974401061998543,
+              36.75526202424169,
+              0.0
+            ],
+            [
+              4.974628977484228,
+              36.75536107231629,
+              0.0
+            ],
+            [
+              4.97486419366666,
+              36.75545421713247,
+              0.0
+            ],
+            [
+              4.975025871642806,
+              36.75551237830465,
+              0.0
+            ],
+            [
+              4.97519424157878,
+              36.75545887430098,
+              0.0
+            ],
+            [
+              4.975325470156504,
+              36.75532324594495,
+              0.0
+            ],
+            [
+              4.975464336538897,
+              36.75524047128629,
+              0.0
+            ],
+            [
+              4.976487329526098,
+              36.75459034108457,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/309552/imagery-location-reconstructed-route-of-tunnel",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-21T19:24:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-20T20:39:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-20T20:32:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-20T20:32:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-05-20T20:41:06Z",
+      "associationCertainty": "certain",
+      "title": "Unnamed aqueduct supplying Saldae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/309552/unnamed-aqueduct-supplying-saldae",
+      "connectionType": "part_of_physical",
+      "id": "unnamed-aqueduct-supplying-saldae",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-21T19:25:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-20T20:41:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-20T20:41:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-20T20:41:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-20T20:41:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/305778",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.sciencedirect.com/science/article/pii/S2212054824000377",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Laoues 2024",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TAYAWLS5",
+          "formattedCitation": "<div class=\"csl-entry\">Laoues, Souad, Nassereddine Attari, and St\u00e9phane Maun\u00e9. \u201cReconstruction of the Route and Characterization of the <i>El Habel</i> Tunnel of the Toudja Roman Aqueduct (Algeria) Using 3D Laser Scanning Technology.\u201d <i>Digital Applications in Archaeology and Cultural Heritage</i> 34 (September 1, 2024): e00352. https://doi.org/10.1016/j.daach.2024.e00352.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "31 C3 (west of Saldae)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://bibliotheque-numerique.inha.fr/viewer/21113/?#page=1&viewer=picture",
+      "citationDetail": "7.8",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AAA",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4TV4GA6X",
+      "formattedCitation": "<div class=\"csl-entry\">Gsell, S. <i>Atlas Arch\u00e9ologique de l\u2019Alg\u00e9rie</i>. Algiers, Paris: Gouverment G\u00e9n\u00e9ral de l\u2019Alg\u00e9rie; Adolphe Jourdan; Fontemoing et Co., 1911. http://bibliotheque-numerique.inha.fr/viewer/21113/?#page=1&amp;viewer=picture.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Toudja",
+      "citationDetail": "Toudja",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Toudja.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.romanaqueducts.info/picturedictionary/pd_onderwerpen/surveying.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Aqua Clopedia, a picture dictionary of Roman aqueducts: Survey",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "VIII, 2728",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CIL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JCY8WN8B",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Corpus inscriptionum latinarum</i>. Berolini: Apud G. Reimerum, 1862.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/31261/",
+      "citationDetail": "31261: Nonius Datus Tunnel",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://daily.jstor.org/fixing-the-aqueduct-from-hell/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wazer 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G9ZXU5VY",
+      "formattedCitation": "<div class=\"csl-entry\">Wazer, Caroline. \u201cFixing the Aqueduct from Hell.\u201d <i>JSTOR Daily</i> (blog), July 2, 2021. https://daily.jstor.org/fixing-the-aqueduct-from-hell/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2212054824000377",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Laoues 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TAYAWLS5",
+      "formattedCitation": "<div class=\"csl-entry\">Laoues, Souad, Nassereddine Attari, and St\u00e9phane Maun\u00e9. \u201cReconstruction of the Route and Characterization of the <i>El Habel</i> Tunnel of the Toudja Roman Aqueduct (Algeria) Using 3D Laser Scanning Technology.\u201d <i>Digital Applications in Archaeology and Cultural Heritage</i> 34 (September 1, 2024): e00352. https://doi.org/10.1016/j.daach.2024.e00352.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "309552",
+  "subject": [],
+  "title": "El Habel tunnel (Saldae aqueduct)",
+  "provenance": "Barrington Atlas: BAtlas 31 C3 (west of Saldae)",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tunnel",
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: near Saldae</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An aqueduct tunnel, near Saldae, sometimes referred to as the Nonius Datus tunnel. It was a component of a Roman aqueduct that delivered water from the area of modern Toudja to Saldae (modern Bejaia in Algeria's Kabylia province). The tunnel's modern name derives from the nearby village of El Habel, which is located just north of Meccuc in the municipal district of Bejaia.",
+  "reprPoint": [
+    4.974369651297334,
+    36.75585978976537
+  ],
+  "placeTypes": [
+    "tunnel",
+    "aqueduct"
+  ],
+  "bbox": [
+    4.972308138026033,
+    36.75459034108457,
+    4.976487329526098,
+    36.75733800030206
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/305778",
+    "https://pleiades.stoa.org/places/305778"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-05-20T19:21:01Z",
+  "uri": "https://pleiades.stoa.org/places/309552",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.W.B. Fentress"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title; summary; added Laoues 2024; added location derived from Laoues 2024, which supersedes all currently published locations. @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-21T19:24:39Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-20T19:21:00Z"
+    },
+    {
+      "comment": "Wazer 2021",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-31T18:21:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-31T18:21:23Z"
+    },
+    {
+      "comment": "changed plaintext to username for sbond as contributor",
+      "modifiedBy": "thomase",
+      "modified": "2013-09-19T13:57:21Z"
+    },
+    {
+      "comment": "contributor credit for Sarah",
+      "modifiedBy": "thomase",
+      "modified": "2013-09-12T04:02:48Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T17:16:12Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:06:04Z"
+    },
+    {
+      "comment": "refined title and reference",
+      "modifiedBy": "thomase",
+      "modified": "2011-08-17T14:31:25Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2011-08-17T14:15:25Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:27:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T20:21:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T18:46:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T18:38:49Z"
+    }
+  ]
+}

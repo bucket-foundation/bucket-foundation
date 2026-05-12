@@ -1,0 +1,657 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.2531665,
+            37.4655146
+          ],
+          [
+            14.2531619,
+            37.4651588
+          ],
+          [
+            14.2536429,
+            37.4651551
+          ],
+          [
+            14.2536335,
+            37.4655146
+          ],
+          [
+            14.2531665,
+            37.4655146
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-gerace-roman-villa",
+      "properties": {
+        "snippet": "Archaeological-site; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/462217/osm-location-of-gerace-roman-villa",
+        "description": "Location based on OpenStreetMap. Dates after BAtlas and Wilson 2021.",
+        "location_precision": "precise",
+        "title": "OSM Location of Gerace Roman Villa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "jprag",
+      "homepage": null,
+      "name": "Jonathan Prag",
+      "uri": "https://pleiades.stoa.org/author/jprag"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1100810298",
+          "citationDetail": "Way 1100810298",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1100810298",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-gerace-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 640,
+      "title": "OSM Location of Gerace Roman Villa",
+      "provenance": "OpenStreetMap (Way 1100810298, version 1, osm:changeset=126984625, 2022-10-04T09:46:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after BAtlas and Wilson 2021.",
+      "created": "2022-10-04T13:00:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.2531665,
+            37.4655146
+          ],
+          [
+            14.2531619,
+            37.4651588
+          ],
+          [
+            14.2536429,
+            37.4651551
+          ],
+          [
+            14.2536335,
+            37.4655146
+          ],
+          [
+            14.2531665,
+            37.4655146
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/462217/osm-location-of-gerace-roman-villa",
+      "creators": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:14:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:14:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:07:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:00:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:00:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:51:09Z",
+      "associationCertainty": "certain",
+      "title": "Sicilia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/462217/462492",
+      "connectionType": "on",
+      "id": "462492",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "located on",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:16:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462492",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "47 E4 Geraci",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cilia Platamone 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RU3A5PFE",
+      "formattedCitation": "<div class=\"csl-entry\">Cilia Platamone, E. \u201cRecente scoperta nel territorio di Enna: l\u2019insediamento tardo-romano di contrada Geraci.\u201d In <i>L\u2019Africa romana: atti dell\u2019XI convegno di studio, Cartagine, 15-18 dicembre 1994</i>, edited by M. Khanoussi, P. Ruggeri, and C. Vismara, 1683\u201389. Ozieri, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cilia Platamone 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RWTM9RXI",
+      "formattedCitation": "<div class=\"csl-entry\">Cilia Platamone, E. \u201cRinvenimenti musivi nel territorio di Enna: tra passato e presente.\u201d In <i>Atti del IV Colloquio dell\u2019Associazione Italiana per lo Studio e la Conservazione del Mosaico</i>, edited by R.M. Carra Bonacasa and F. Guidobaldi, 273\u201380. Ravenna, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.villaromanadelcasale.it/i-mosaici-rinvenuti-presso-la-villa-di-geraci/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "I Mosaici rinvenuti presso la Villa di Geraci",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/tilestamps-of-philippianus-in-late-roman-sicily-a-talking-signum-or-evidence-for-horseraising/10F51EA0F4FA6CBFFF6A3967A591C7CB",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wilson 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ECXWFRPB",
+      "formattedCitation": "<div class=\"csl-entry\">Wilson, R. J. A. \u201cTile-Stamps of Philippianus in Late Roman Sicily: A Talking Signum or Evidence for Horse-Raising?\u201d <i>Journal of Roman Archaeology</i> 27 (January 2014): 472\u201386. doi:10.1017/S1047759414001366.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Villa_Romana_di_contrada_Geraci",
+      "citationDetail": "Villa Romana di contrada Geraci",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://utpjournals.press/doi/10.3138/mous.18.3.04",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wilson 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EN2DPF7L",
+      "formattedCitation": "<div class=\"csl-entry\">Wilson, R.J.A. \u201cUBC Excavations of the Roman Villa at Gerace, Sicily: Results of the 2019 Season.\u201d <i>Mouseion</i> 18, no. 3 (September 2022): 379\u2013534. https://doi.org/10.3138/mous.18.3.04.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "7733",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q38250970",
+      "citationDetail": "Villa Romana di contrada Geraci (Q38250970)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wilson 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9NXTZUER",
+      "formattedCitation": "<div class=\"csl-entry\">Wilson, Roger John Anthony. \u201cThe Praedia Philippianorum: A Late Roman Estate at Gerace near Enna.\u201d In <i>Trinacria, \u201can Island Outside Time,\u201d</i> pages 19-32. Philadelphia: Oxbow Books, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journals.uchicago.edu/doi/10.3764/aja.124.3.0477",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wilson 2020a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z9YTN7FJ",
+      "formattedCitation": "<div class=\"csl-entry\">Wilson, R.j.a., and Marlangela Liuzzo. \u201cThe Baths on the Estate of the Philippiani at Gerace,\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0  Sicily.\u201d <i>American Journal of Archaeology</i> 124, no. 3 (July 2020): 477\u2013510. https://doi.org/10.3764/aja.124.3.0477.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gerace",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "https://en.wikipedia.org/wiki/Gerace",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia, s.v. 'Gerace'",
+          "bibliographicURI": "http://atlantides.org/bibliography/w.html#Wikipedia",
+          "formattedCitation": "https://en.wikipedia.org/wiki/Gerace (last revision 24.03.22)",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "gerace",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-10-04T10:06:04Z",
+      "uri": "https://pleiades.stoa.org/places/462217/gerace",
+      "creators": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        }
+      ],
+      "attested": "Gerace",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:08:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jprag",
+          "modified": "2022-10-04T10:06:21Z"
+        },
+        {
+          "comment": "The placename is 'Gerace', not 'Geraci'",
+          "modifiedBy": "jprag",
+          "modified": "2022-10-04T10:06:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jprag",
+          "modified": "2022-10-04T10:06:04Z"
+        }
+      ]
+    },
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "false",
+      "associationCertainty": "certain",
+      "romanized": "Geraci",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "47 E4 Geraci",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "geraci",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Incorrectly spelled modern placename used for label in Barrington Atlas.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-10-04T13:10:25Z",
+      "uri": "https://pleiades.stoa.org/places/462217/geraci",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Geraci",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:10:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:10:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:10:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T13:10:25Z"
+        }
+      ]
+    }
+  ],
+  "id": "462217",
+  "subject": [
+    "dare:major=0",
+    "villa",
+    "dare:feature=villa",
+    "extant remains",
+    "dare:ancient=0",
+    "Mosaic"
+  ],
+  "title": "Gerace Roman Villa",
+  "provenance": "Barrington Atlas: BAtlas 47 E4 Geraci",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Geraci, villa with mosaics</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fourth century A.D. Roman villa with mosaic pavements. The villa may have extended to some 10,000 square meters in area.",
+  "reprPoint": [
+    14.253401750531339,
+    37.465334266341465
+  ],
+  "placeTypes": [
+    "villa",
+    "archaeological-site"
+  ],
+  "bbox": [
+    14.2531619,
+    37.4651551,
+    14.2536429,
+    37.4655146
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462492"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-11T15:09:27Z",
+  "uri": "https://pleiades.stoa.org/places/462217",
+  "creators": [
+    {
+      "username": null,
+      "name": "R.J.A. Wilson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T20:58:30Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T20:56:15Z"
+    },
+    {
+      "comment": "wikidata Q38250970",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T15:31:28Z"
+    },
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-04T13:16:00Z"
+    },
+    {
+      "comment": "added Wilson 2021 per jprag",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-04T13:12:52Z"
+    },
+    {
+      "comment": "title (correcting modern name)",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-04T13:08:38Z"
+    },
+    {
+      "comment": "reference, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-17T06:03:31Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-21T11:36:01Z"
+    },
+    {
+      "comment": "added connection",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-08T03:56:17Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:57:02Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:20:34Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T19:52:56Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:54:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T20:00:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T15:24:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T15:09:27Z"
+    }
+  ]
+}

@@ -1,0 +1,339 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.6750201,
+            37.3741
+          ],
+          [
+            27.6750665,
+            37.3740125
+          ],
+          [
+            27.6752987,
+            37.3740901
+          ],
+          [
+            27.6752523,
+            37.3741777
+          ],
+          [
+            27.6750201,
+            37.3741
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-zeus-lepsinos-at-euromus",
+      "properties": {
+        "snippet": "Temple-2",
+        "link": "https://pleiades.stoa.org/places/642990135/osm-location-of-temple-of-zeus-lepsinos-at-euromus",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Zeus Lepsinos at Euromus"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/819212991",
+          "citationDetail": "Way 819212991",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=819212991",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-zeus-lepsinos-at-euromus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": null,
+      "title": "OSM location of Temple of Zeus Lepsinos at Euromus",
+      "provenance": "OpenStreetMap (Way 819212991, version 1, osm:changeset=87102634, 2020-06-24T20:12:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-06-24T20:21:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.6750201,
+            37.3741
+          ],
+          [
+            27.6750665,
+            37.3740125
+          ],
+          [
+            27.6752987,
+            37.3740901
+          ],
+          [
+            27.6752523,
+            37.3741777
+          ],
+          [
+            27.6750201,
+            37.3741
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/642990135/osm-location-of-temple-of-zeus-lepsinos-at-euromus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-11T19:16:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-07T16:01:02Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-24T20:22:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-24T20:21:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-24T20:21:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-07T15:54:08Z",
+      "associationCertainty": "certain",
+      "title": "Europos/Euromos/Philippoi",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/642990135/europos-euromos-philippoi",
+      "connectionType": "at",
+      "id": "europos-euromos-philippoi",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-07T19:48:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-07T15:54:21Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-07T15:54:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-07T15:54:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599616",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "45-8",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bean 1971a",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HWMFDAE2",
+          "formattedCitation": "<div class=\"csl-entry\">Bean, George Ewart. <i>Turkey beyond the Maeander</i>. London: Murray, 1989.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.livius.org/pictures/turkey/kizilcakuyu-euromos/euromos-temple-zeus-inscr/",
+      "citationDetail": "Euromos, Temple of Zeus, Inscription",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+      "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.livius.org/articles/place/euromos/",
+      "citationDetail": "Euromos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+      "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/11029/",
+      "citationDetail": "11029: Zeus Lepsinos at Euromus",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "45-8",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bean 1971a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HWMFDAE2",
+      "formattedCitation": "<div class=\"csl-entry\">Bean, George Ewart. <i>Turkey beyond the Maeander</i>. London: Murray, 1989.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "642990135",
+  "subject": [
+    "Corinthian",
+    "Temple",
+    "Hadrian",
+    "extant remains"
+  ],
+  "title": "Temple of Zeus Lepsinos at Euromus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Temple of Zeus Lepsinos at Euromus is located southeast of the ancient settlement. The well-preserved Corinthian temple dates to the reign of Hadrian.",
+  "reprPoint": [
+    27.67515941384396,
+    37.3740950820056
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    27.6750201,
+    37.3740125,
+    27.6752987,
+    37.3741777
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599616"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-24T20:20:50Z",
+  "uri": "https://pleiades.stoa.org/places/642990135",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-11T19:16:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-07T16:01:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-07T15:53:22Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-24T20:20:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-24T20:20:50Z"
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.726812429699,
+            34.747445024344394
+          ],
+          [
+            40.7268138594427,
+            34.747445004066236
+          ],
+          [
+            40.7268168623072,
+            34.74744560537165
+          ],
+          [
+            40.72682000854887,
+            34.74744684853878
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "total-station-coordinates",
+      "properties": {
+        "snippet": "Wall-2; AD 200 - AD 299",
+        "link": "https://pleiades.stoa.org/places/936028072/total-station-coordinates",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Total Station Coordinates"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "kcl",
+      "homepage": null,
+      "name": "Kyle Conrau-Lewis",
+      "uri": "https://pleiades.stoa.org/author/kcl"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "total-station-coordinates",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+      ],
+      "end": 299,
+      "title": "Total Station Coordinates",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dura-europos-synagogue-baird-chen-2012-3-15-2008-total-station",
+      "featureType": [
+        "wall-2"
+      ],
+      "description": "",
+      "created": "2022-03-31T16:30:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.726812429699,
+            34.747445024344394
+          ],
+          [
+            40.7268138594427,
+            34.747445004066236
+          ],
+          [
+            40.7268168623072,
+            34.74744560537165
+          ],
+          [
+            40.72682000854887,
+            34.74744684853878
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/936028072/total-station-coordinates",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-20T13:59:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-20T13:59:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T16:32:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T16:30:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 299,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-03-31T16:30:14Z",
+      "associationCertainty": "certain",
+      "title": "Assembly Hall from Synagogue at Dura-Europos",
+      "start": 200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/936028072/assembly-hall-from-synagogue-at-dura-europos",
+      "connectionType": "part_of_physical",
+      "id": "assembly-hall-from-synagogue-at-dura-europos",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-20T13:59:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-20T13:59:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T16:32:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T16:32:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T16:30:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/435331933",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1034731631",
+      "citationDetail": "pages 32-33,108",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baird 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QL32DCUE",
+      "formattedCitation": "<div class=\"csl-entry\">Baird, Jennifer A. <i>Dura-Europos</i>. London: Bloomsbury, 2018. http://www.worldcat.org/oclc/1034731631.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/491461650",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kraeiling 1956",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RW89HS3Z",
+      "formattedCitation": "<div class=\"csl-entry\">Kraeling, Carl Hermann. <i>The Synagogue</i>. The Excavations at Dura-Europos Final Report, 8 part 1. New Haven: Yale University Press, 1956. http://www.worldcat.org/oclc/491461650.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q118469356",
+      "citationDetail": "Wall0002, Synagogue, Dura-Europos (Q118469356)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "936028072",
+  "subject": [
+    "YDEA project"
+  ],
+  "title": "Wall0002, Synagogue (Dura-Europos)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Portion of the west wall of the Assembly Hall from Synagogue Phase 2 in Dura-Europos.",
+  "reprPoint": [
+    40.72681627918473,
+    34.74744564813041
+  ],
+  "placeTypes": [
+    "wall-2"
+  ],
+  "bbox": [
+    40.726812429699,
+    34.747445004066236,
+    40.72682000854887,
+    34.74744684853878
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/435331933"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-31T16:30:14Z",
+  "uri": "https://pleiades.stoa.org/places/936028072",
+  "creators": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q118469356",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-11T03:55:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-20T13:59:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-20T13:59:50Z"
+    },
+    {
+      "comment": "citation correction",
+      "modifiedBy": "achen",
+      "modified": "2022-04-28T19:13:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-31T16:36:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-31T16:30:14Z"
+    }
+  ]
+}

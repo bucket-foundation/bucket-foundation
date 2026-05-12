@@ -1,0 +1,469 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.346975,
+          36.09455
+        ]
+      },
+      "type": "Feature",
+      "id": "plan-location-of-kalhu-archive-3",
+      "properties": {
+        "snippet": "Archive-repository; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/985331732/plan-location-of-kalhu-archive-3",
+        "description": "Representative locations of the Neo-Assyrian archive at Kalhu on the basis of Peders\u00e9n 1987 Plan(s) 66\u201367.",
+        "location_precision": "precise",
+        "title": "Plan location of Kalhu Archive 3"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "plans 66\u201367",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "plan-location-of-kalhu-archive-3",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "end": -540,
+      "title": "Plan location of Kalhu Archive 3",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/kalhu-archives-pedersen",
+      "featureType": [
+        "archive-repository"
+      ],
+      "description": "Representative locations of the Neo-Assyrian archive at Kalhu on the basis of Peders\u00e9n 1987 Plan(s) 66\u201367.",
+      "created": "2022-09-24T19:08:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.346975,
+          36.09455
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/985331732/plan-location-of-kalhu-archive-3",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-10T13:25:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2022-10-08T13:16:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T19:08:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T19:08:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2022-09-24T18:54:20Z",
+      "associationCertainty": "certain",
+      "title": "Fort Shalmaneser",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/985331732/fort-shalmaneser",
+      "connectionType": "in",
+      "id": "fort-shalmaneser",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-10T13:25:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2022-10-08T13:16:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T18:54:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T18:54:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/586635000",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "145\u2013147",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2022-09-24T19:18:51Z",
+      "associationCertainty": "certain",
+      "title": "Nimrud",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/985331732/nimrud",
+      "connectionType": "at",
+      "id": "nimrud",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-10T13:25:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2022-10-08T13:16:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T19:18:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T19:18:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/894019",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "145\u2013147",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+      "citationDetail": "145\u2013147",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peders\u00e9n 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+      "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/atae/kalhu_003",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ATAE Kalhu 3",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kalhu Archive 3",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "145\u2013147",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kalhu-archive-3",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern scholarly designation for the archive.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-09-24T17:00:14Z",
+      "uri": "https://pleiades.stoa.org/places/985331732/kalhu-archive-3",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-10T13:25:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2022-10-08T13:16:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T17:00:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T17:00:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2022-09-24T17:00:14Z"
+        }
+      ]
+    }
+  ],
+  "id": "985331732",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Kalhu Archive 3",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+  ],
+  "details": "<p><span>This archive is located in\u00a0</span><span>Fort Shalmaneser.</span></p>\r\n<p><span><img class=\"image-inline external-image\" height=\"523\" src=\"http://oracc.ub.uni-muenchen.de/atae/images/Plan66_general_plan_Kalhu1-17_p144.png\" width=\"566\" /></span></p>\r\n<p>\u00a0</p>\r\n<p><img class=\"image-inline external-image\" height=\"697\" src=\"http://oracc.ub.uni-muenchen.de/atae/images/Plan67_fort_shalmaneser_Kalhu1-5_p146.png\" width=\"509\" /></p>\r\n<p><em>Plan 67</em>.\u00a0<span class=\"highlightedSearchTerm\">Kalhu</span>.\u00a0Plan of Fort Shalmaneser with archives\u00a0<strong><span class=\"highlightedSearchTerm\">Kalhu</span>\u00a01\u20135.\u00a0</strong>From M. E. L. Mallowan,\u00a0NR\u00a0(1966), folding VIII.</p>\r\n<p>\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Three seventh-century-B.C. archives were excavated in Fort Shalmaneser, a building complex in the southeastern corner of the city Kalhu. In the northern corner of the south courtyard, mostly in Rooms SE 1 and SE 10, British excavators discovered the archive of the rab \u0113kalli (\u201cpalace manager\u201d). The archive consists of twenty-seven tablets, most of which are sealed. These documents are concerned with the rab \u0113kalli\u2019s work as manager. The sealed clay bulla were attached to wooden objects such as boxes or writing boards and secured with a string.",
+  "reprPoint": [
+    43.346975,
+    36.09455
+  ],
+  "placeTypes": [
+    "archive-repository"
+  ],
+  "bbox": [
+    43.346975,
+    36.09455,
+    43.346975,
+    36.09455
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/586635000",
+    "https://pleiades.stoa.org/places/894019",
+    "https://pleiades.stoa.org/places/562815439"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-08T15:42:23Z",
+  "uri": "https://pleiades.stoa.org/places/985331732",
+  "creators": [
+    {
+      "username": "tseidler",
+      "homepage": null,
+      "name": "Thomas Seidler",
+      "uri": "https://pleiades.stoa.org/author/tseidler"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added ORACC reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-11T16:45:34Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "tseidler",
+      "modified": "2023-04-08T15:42:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-10T13:25:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tseidler",
+      "modified": "2022-10-08T13:16:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-10-05T07:45:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-09-24T16:57:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-09-24T16:56:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-09-24T16:51:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-09-24T16:51:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-09-24T16:49:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tseidler",
+      "modified": "2022-09-24T16:42:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tseidler",
+      "modified": "2022-09-24T16:42:22Z"
+    }
+  ]
+}

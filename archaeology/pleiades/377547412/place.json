@@ -1,0 +1,976 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4096767,
+          51.7781275
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Church, ; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/377547412/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Carolingian Westwork"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.4058817,
+            51.7784577
+          ],
+          [
+            9.405787,
+            51.7782085
+          ],
+          [
+            9.4061834,
+            51.7779599
+          ],
+          [
+            9.4063076,
+            51.7779392
+          ],
+          [
+            9.405958,
+            51.7771251
+          ],
+          [
+            9.4060333,
+            51.7769618
+          ],
+          [
+            9.4064369,
+            51.7769111
+          ],
+          [
+            9.4074774,
+            51.7769384
+          ],
+          [
+            9.4075618,
+            51.7767818
+          ],
+          [
+            9.4075904,
+            51.7767287
+          ],
+          [
+            9.4077863,
+            51.7766311
+          ],
+          [
+            9.4078474,
+            51.7766246
+          ],
+          [
+            9.4080439,
+            51.7766036
+          ],
+          [
+            9.4088526,
+            51.7766946
+          ],
+          [
+            9.4092091,
+            51.7767347
+          ],
+          [
+            9.4105019,
+            51.7768801
+          ],
+          [
+            9.4114243,
+            51.7769838
+          ],
+          [
+            9.411654,
+            51.7771987
+          ],
+          [
+            9.4120262,
+            51.7776626
+          ],
+          [
+            9.4123432,
+            51.7785742
+          ],
+          [
+            9.4130745,
+            51.781093
+          ],
+          [
+            9.4065011,
+            51.7802707
+          ],
+          [
+            9.4068859,
+            51.7790466
+          ],
+          [
+            9.4069379,
+            51.778881
+          ],
+          [
+            9.4069718,
+            51.7787732
+          ],
+          [
+            9.407034,
+            51.7785754
+          ],
+          [
+            9.4058817,
+            51.7784577
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-corvey",
+      "properties": {
+        "snippet": "Abbey; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/377547412/osm-location-of-corvey",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Corvey"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/734478104",
+          "citationDetail": "Node 734478104",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=734478104",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 1453,
+      "title": "OSM location of Carolingian Westwork",
+      "provenance": "OpenStreetMap (Node 734478104, version 1, osm:changeset=4699119, 2010-05-14T19:16:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-01-22T19:28:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.4096767,
+          51.7781275
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/377547412/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-10-02T00:50:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-28T22:30:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:36:06Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-22T19:29:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-22T19:28:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-22T19:28:20Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/289112672",
+          "citationDetail": "Way 289112672",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=289112672",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-corvey",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": 1453,
+      "title": "OSM location of Corvey",
+      "provenance": "OpenStreetMap (Way 289112672, version 4, osm:changeset=118897623, 2022-03-25T08:29:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-07-27T15:24:47Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.4058817,
+            51.7784577
+          ],
+          [
+            9.405787,
+            51.7782085
+          ],
+          [
+            9.4061834,
+            51.7779599
+          ],
+          [
+            9.4063076,
+            51.7779392
+          ],
+          [
+            9.405958,
+            51.7771251
+          ],
+          [
+            9.4060333,
+            51.7769618
+          ],
+          [
+            9.4064369,
+            51.7769111
+          ],
+          [
+            9.4074774,
+            51.7769384
+          ],
+          [
+            9.4075618,
+            51.7767818
+          ],
+          [
+            9.4075904,
+            51.7767287
+          ],
+          [
+            9.4077863,
+            51.7766311
+          ],
+          [
+            9.4078474,
+            51.7766246
+          ],
+          [
+            9.4080439,
+            51.7766036
+          ],
+          [
+            9.4088526,
+            51.7766946
+          ],
+          [
+            9.4092091,
+            51.7767347
+          ],
+          [
+            9.4105019,
+            51.7768801
+          ],
+          [
+            9.4114243,
+            51.7769838
+          ],
+          [
+            9.411654,
+            51.7771987
+          ],
+          [
+            9.4120262,
+            51.7776626
+          ],
+          [
+            9.4123432,
+            51.7785742
+          ],
+          [
+            9.4130745,
+            51.781093
+          ],
+          [
+            9.4065011,
+            51.7802707
+          ],
+          [
+            9.4068859,
+            51.7790466
+          ],
+          [
+            9.4069379,
+            51.778881
+          ],
+          [
+            9.4069718,
+            51.7787732
+          ],
+          [
+            9.407034,
+            51.7785754
+          ],
+          [
+            9.4058817,
+            51.7784577
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/377547412/osm-location-of-corvey",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T21:16:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-27T15:25:36Z"
+        },
+        {
+          "comment": "supersedes previously published location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-27T15:25:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-27T15:24:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-27T15:24:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:59:10Z",
+      "associationCertainty": "certain",
+      "title": "Visurgis (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/377547412/99060",
+      "connectionType": "near",
+      "id": "99060",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "located near",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-31T14:11:39Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/99060",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Princely_Abbey_of_Corvey",
+      "citationDetail": "Princely Abbey of Corvey",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Imperial Abbey of Corvey.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/1447",
+      "citationDetail": "1447: Carolingian Westwork and Civitas Corvey",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q56004",
+      "citationDetail": "Princely Abbey of Corvey (Q56004)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Corbeia nova",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.com/books?id=o5UKefCwbZYC&lpg=PP3&dq=corbeia%20nova&pg=PP3#v=onepage&q=corbeia%20nova&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Krause 2006",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QNWMTT7A",
+          "formattedCitation": "<div class=\"csl-entry\">Krause, Katharina. <i>Corbeia Nova - Die Bedeutung des Klosters Corvey f\u00fcr das Karolingerreich</i>. GRIN Verlag, 2006.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "corbeia-nova",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2015-02-19T20:42:45Z",
+      "uri": "https://pleiades.stoa.org/places/377547412/corbeia-nova",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T21:16:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-27T15:23:27Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-27T15:23:20Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:52:19Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:42:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:42:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Corvey",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Duden Aussprachew\u00f6rterbuch",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QH3GUXCL",
+          "formattedCitation": "<div class=\"csl-entry\">Mangold, Max, and Dudenredaktion (Bibliographisches Institut). <i>Duden Aussprachew\u00f6rterbuch</i>. 6th ed. Duden in 12 B\u00e4nden 6. Mannheim: Dudenverlag, 2005.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "corvey",
+      "end": 1453,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "details": "",
+      "review_state": "published",
+      "description": "Old German toponym",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2015-02-19T20:42:04Z",
+      "uri": "https://pleiades.stoa.org/places/377547412/corvey",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Corvey",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-10-02T00:50:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-10-02T00:49:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-28T22:30:51Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:42:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:42:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "F\u00fcrstabtei Corvey",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Imperial_Abbey_of_Corvey",
+          "citationDetail": "Imperial Abbey of Corvey",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Imperial Abbey of Corvey.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "furstabtei-corvey",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2015-02-19T20:39:07Z",
+      "uri": "https://pleiades.stoa.org/places/377547412/furstabtei-corvey",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "F\u00fcrstabtei Corvey",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-10-02T00:50:28Z"
+        },
+        {
+          "comment": "attested form",
+          "modifiedBy": "thomase",
+          "modified": "2019-10-02T00:24:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-28T22:30:49Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:39:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:39:09Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Hethis",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/224451047",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kr\u00fcger 1932",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3WH5NC4B",
+          "formattedCitation": "<div class=\"csl-entry\">Kr\u00fcger, H. \u201cWo Lag Hethis, Der Ort Der Ersten Corveyer Klostergr\u00fcndung?\u201d <i>Mannus: Deutsche Zeitschrift F\u00fcr Vorgeschichte</i> 24 (1932): 320\u201332. http://www.worldcat.org/oclc/224451047.</div>",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "hethis",
+      "end": 1453,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 640,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2015-02-19T20:44:28Z",
+      "uri": "https://pleiades.stoa.org/places/377547412/hethis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Hethis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-10-02T00:50:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-10-02T00:43:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-10-02T00:43:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-02T22:04:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-28T22:30:53Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:44:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-02-19T20:44:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "377547412",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Corvey",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The abbey was first founded in 815 by Charlemagne's cousins, Wala and Adelard.",
+  "reprPoint": [
+    9.409483208883117,
+    51.77848482851141
+  ],
+  "placeTypes": [
+    "abbey",
+    "church"
+  ],
+  "bbox": [
+    9.405787,
+    51.7766036,
+    9.4130745,
+    51.781093
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/99060"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-01-22T19:27:25Z",
+  "uri": "https://pleiades.stoa.org/places/377547412",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-31T18:56:24Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-14T14:48:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-10-02T00:50:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-02T22:03:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-28T22:30:19Z"
+    },
+    {
+      "comment": "added cnxn",
+      "modifiedBy": "jbecker",
+      "modified": "2015-02-19T20:37:54Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-22T19:27:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-22T19:27:26Z"
+    }
+  ]
+}

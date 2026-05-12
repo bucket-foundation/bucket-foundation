@@ -1,0 +1,574 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.6278294,
+            50.6763137
+          ],
+          [
+            -2.6276117,
+            50.6758046
+          ],
+          [
+            -2.6276341,
+            50.6753379
+          ],
+          [
+            -2.6277314,
+            50.6751409
+          ],
+          [
+            -2.6289346,
+            50.6756936
+          ],
+          [
+            -2.6293891,
+            50.6759012
+          ],
+          [
+            -2.6298189,
+            50.6761163
+          ],
+          [
+            -2.6309388,
+            50.6762907
+          ],
+          [
+            -2.6322111,
+            50.6763898
+          ],
+          [
+            -2.6327292,
+            50.6763621
+          ],
+          [
+            -2.633494,
+            50.6763942
+          ],
+          [
+            -2.6341554,
+            50.6764728
+          ],
+          [
+            -2.6345059,
+            50.6766229
+          ],
+          [
+            -2.6344929,
+            50.6769539
+          ],
+          [
+            -2.6343584,
+            50.6770758
+          ],
+          [
+            -2.6334545,
+            50.6769645
+          ],
+          [
+            -2.6321429,
+            50.677177
+          ],
+          [
+            -2.6305658,
+            50.6776682
+          ],
+          [
+            -2.6298818,
+            50.6780132
+          ],
+          [
+            -2.6295009,
+            50.6780438
+          ],
+          [
+            -2.6291066,
+            50.6777803
+          ],
+          [
+            -2.6278294,
+            50.6763137
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Hillfort; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/708926627/osm-location",
+        "description": "Representative polygon for the modern access land area associated with the hill fort; derived from an OpenStreetMap way. Dates after Wikipedia.",
+        "location_precision": "precise",
+        "title": "OSM Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/40781145",
+          "citationDetail": "Way 40781145",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=40781145",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "end": 100,
+      "title": "OSM Location",
+      "provenance": "OpenStreetMap (Way 40781145, version 7, osm:changeset=126135267, 2022-09-13T13:47:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hillfort"
+      ],
+      "description": "Representative polygon for the modern access land area associated with the hill fort; derived from an OpenStreetMap way. Dates after Wikipedia.",
+      "created": "2013-09-01T21:08:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.6278294,
+            50.6763137
+          ],
+          [
+            -2.6276117,
+            50.6758046
+          ],
+          [
+            -2.6276341,
+            50.6753379
+          ],
+          [
+            -2.6277314,
+            50.6751409
+          ],
+          [
+            -2.6289346,
+            50.6756936
+          ],
+          [
+            -2.6293891,
+            50.6759012
+          ],
+          [
+            -2.6298189,
+            50.6761163
+          ],
+          [
+            -2.6309388,
+            50.6762907
+          ],
+          [
+            -2.6322111,
+            50.6763898
+          ],
+          [
+            -2.6327292,
+            50.6763621
+          ],
+          [
+            -2.633494,
+            50.6763942
+          ],
+          [
+            -2.6341554,
+            50.6764728
+          ],
+          [
+            -2.6345059,
+            50.6766229
+          ],
+          [
+            -2.6344929,
+            50.6769539
+          ],
+          [
+            -2.6343584,
+            50.6770758
+          ],
+          [
+            -2.6334545,
+            50.6769645
+          ],
+          [
+            -2.6321429,
+            50.677177
+          ],
+          [
+            -2.6305658,
+            50.6776682
+          ],
+          [
+            -2.6298818,
+            50.6780132
+          ],
+          [
+            -2.6295009,
+            50.6780438
+          ],
+          [
+            -2.6291066,
+            50.6777803
+          ],
+          [
+            -2.6278294,
+            50.6763137
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/708926627/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-14T15:41:35Z"
+        },
+        {
+          "comment": "edit Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-14T15:41:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-27T09:11:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-27T09:10:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-05T12:32:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T21:29:14Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T21:08:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T21:08:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T21:08:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:47:09Z",
+      "associationCertainty": "certain",
+      "title": "Durotriges",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/708926627/79438",
+      "connectionType": "connection",
+      "id": "79438",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79438",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Abbotsbury_Castle",
+      "citationDetail": "Abbotsbury Castle",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Abbotsbury Castle.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=450349",
+      "citationDetail": "monument no. 450349",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3662453",
+      "citationDetail": "Abbotsbury Castle (Q3662453)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1002710",
+      "citationDetail": "1002710: Abbotsbury Castle (camp)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Abbotsbury Castle",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Abbotsbury_Castle",
+          "citationDetail": "Abbotsbury Castle",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Abbotsbury Castle.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "abbotsbury-castle",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2014-03-27T09:07:33Z",
+      "uri": "https://pleiades.stoa.org/places/708926627/abbotsbury-castle",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Abbotsbury Castle",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-27T09:11:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-27T09:07:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-27T09:07:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-27T09:07:35Z"
+        }
+      ]
+    }
+  ],
+  "id": "708926627",
+  "subject": [],
+  "title": "Abbotsbury Castle",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Abbotsbury Castle is an Iron Age hill fort located on Wears Hill in Dorset, England.",
+  "reprPoint": [
+    -2.6308091256023287,
+    50.67665932456783
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    -2.6345059,
+    50.6751409,
+    -2.6276117,
+    50.6780438
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79438"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-13T21:39:04Z",
+  "uri": "https://pleiades.stoa.org/places/708926627",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add NHLE 1002710: Abbotsbury Castle (camp)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-14T15:43:33Z"
+    },
+    {
+      "comment": "Edited type for hillfort; wikidata Q3662453 @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-14T15:42:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-23T15:45:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2014-03-27T09:11:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-05T12:32:35Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T21:07:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T21:07:21Z"
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1501037,
+          41.7131232
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-yacimiento-villa-romana-de-los",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/250035/osm-location-of-yacimiento-villa-romana-de-los",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Yacimiento villa romana de Los Villares"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "yiyunliu",
+      "homepage": null,
+      "name": "Yiyun Liu",
+      "uri": "https://pleiades.stoa.org/author/yiyunliu"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        },
+        {
+          "username": "yiyunliu",
+          "homepage": null,
+          "name": "Yiyun Liu",
+          "uri": "https://pleiades.stoa.org/author/yiyunliu"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3299386503",
+          "citationDetail": "Node 3299386503",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3299386503",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-yacimiento-villa-romana-de-los",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Yacimiento villa romana de Los Villares",
+      "provenance": "OpenStreetMap (Node 3299386503, version 3, osm:changeset=89132577, 2020-08-08T16:09:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-07-10T16:01:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1501037,
+          41.7131232
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/250035/osm-location-of-yacimiento-villa-romana-de-los",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-21T23:58:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-20T14:47:56Z"
+        },
+        {
+          "comment": "added contributors from duplicate entry",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-20T13:39:54Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-10T16:01:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-10T16:01:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-10T16:01:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "25 B4 129",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/31397775",
+      "citationDetail": "244",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Caesaraugusta",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6EE4IV4",
+      "formattedCitation": "<div class=\"csl-entry\">Fat\u00e1s Cabeza, Guillermo, Adela Cepas, Jos\u00e9 Ignacio Reguera Cardiel, and Jos\u00e9 Manuel Abascal Palaz\u00f3n. <i>Tabula Imperii Romani\u202f: K30 Madrid\u202f: Caesaraugusta - Clunia\u202f: escala 1:1.000.000\u202f: base geogr\u00e1fica, Instituto Geogr\u00e1fico Nacional</i>. Tabula Imperii Romani, K30. Madrid. Madrid: Ministerio de Cultura; Union acad\u00e9mique internationale; Instituto Geogr\u00e1fico Nacional (Spain), 1993. http://www.worldcat.org/oclc/31397775.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/15433/",
+      "citationDetail": "15433: Los Villares, Santerv\u00e1s del Burgo, Fuentearmegil",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1029064672",
+      "citationDetail": "37",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Almon 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SKMTYU2Y",
+      "formattedCitation": "<div class=\"csl-entry\">Almon, Clopper, and Wilhelmina F. Jashemski. <i>Exploring Roman Gardens in Spain and Portugal</i>. [Place of publication not identified]: [CreateSpace Independent Publishing Platform], 2016. http://www.worldcat.org/oclc/1029064672.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q69424698",
+      "citationDetail": "Los Villares (Fuentearmegil) (Q69424698)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "250035",
+  "subject": [],
+  "title": "Los Villares (Fuentearmegil)",
+  "provenance": "Barrington Atlas: BAtlas 25 B4 129",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Los Villares (Fuentearmegil)</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa about 200 meters south of the center of the modern village of Santervas del Burgo and about 100 meters south of the left bank of the river Cejos. Included in the Barrington Atlas (25 B4 no. 129) under the toponym \"Los Villares (Fuentearmegil)\".",
+  "reprPoint": [
+    -3.1501037,
+    41.7131232
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -3.1501037,
+    41.7131232,
+    -3.1501037,
+    41.7131232
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-10T16:44:37Z",
+  "uri": "https://pleiades.stoa.org/places/250035",
+  "creators": [
+    {
+      "username": null,
+      "name": "H.S. Sivan"
+    },
+    {
+      "username": null,
+      "name": "S.J. Keay"
+    },
+    {
+      "username": null,
+      "name": "R.W. Mathisen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Los Villares (Fuentearmegil) (Q69424698)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-11T02:32:36Z"
+    },
+    {
+      "comment": "edit title; summary; Edited; Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-21T23:58:53Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-10T16:44:36Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T03:37:21Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:17:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T17:47:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-09T19:10:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-09T18:53:44Z"
+    }
+  ]
+}

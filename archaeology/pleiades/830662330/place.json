@@ -1,0 +1,263 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0017767,
+          42.2253947
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-casale-vignale-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/830662330/location-of-casale-vignale-necropolis",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Casale Vignale necropolis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1459871638",
+          "citationDetail": "Node 1459871638",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1459871638",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-casale-vignale-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -330,
+      "title": "OSM location of Casale Vignale necropolis",
+      "provenance": "OpenStreetMap (Node 1459871638, version 1, osm:changeset=9511412, 2011-10-09T12:15:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-06-18T15:16:33Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0017767,
+          42.2253947
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/830662330/location-of-casale-vignale-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T04:31:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-07-16T23:30:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-18T15:21:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-18T15:16:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-18T15:18:30Z",
+      "associationCertainty": "certain",
+      "title": "S. Giovenale",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/830662330/1108976127",
+      "connectionType": "at",
+      "id": "1108976127",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-18T15:18:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-18T15:18:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-18T15:18:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413298",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tobin 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4QTMTPRF",
+      "formattedCitation": "<div class=\"csl-entry\">Tobin, Fredrik. \u201cThe Changing Burial Landscape of San Giovenale.\u201d In <i>L\u2019Etruria Meridionale Rupestre\u202f: Atti Del Convegno Internazionale \u201cL\u2019Etruria Rupestre Dalla Protostoria Al Medioevo\u202f: Insediamenti, Necropoli, Monumenti, Confronti\u201d\u202f: Barbarano Romano - Blera, 8-10 Ottobre 2010</i>, 223\u201329. Roma: Palombi, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q133604822",
+      "citationDetail": "Casale Vignale necropolis (Q133604822)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "830662330",
+  "subject": [],
+  "title": "Casale Vignale necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan rock-cut necropolis of San Giovenale.",
+  "reprPoint": [
+    12.0017767,
+    42.2253947
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.0017767,
+    42.2253947,
+    12.0017767,
+    42.2253947
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413298"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-06-18T15:18:30Z",
+  "uri": "https://pleiades.stoa.org/places/830662330",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Casale Vignale necropolis (Q133604822)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-28T21:39:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-07-16T23:30:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-18T15:21:37Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-18T15:21:27Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-18T15:18:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-18T15:18:30Z"
+    }
+  ]
+}

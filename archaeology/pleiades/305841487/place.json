@@ -1,0 +1,332 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.511348,
+          41.905259
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-tomba-della-medusa",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/305841487/imagery-location-of-tomba-della-medusa",
+        "description": "Location determined in Google Earth with reference to Info.roma.it and Arachne imagery and location data.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Tomba della Medusa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=13199",
+          "citationDetail": "Tomba della Medusa",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Info.roma.it",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-tomba-della-medusa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "Imagery Location of Tomba della Medusa",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Location determined in Google Earth with reference to Info.roma.it and Arachne imagery and location data.",
+      "created": "2020-02-05T12:38:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.511348,
+          41.905259
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/305841487/imagery-location-of-tomba-della-medusa",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-05T15:40:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-05T13:15:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-05T12:38:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-05T12:38:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-01-23T16:18:57Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/305841487/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-05T15:40:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-04T18:45:52Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-23T16:19:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-23T16:18:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6109",
+      "citationDetail": "Tomba della Medusa Policlinico Umberto I., Rom",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=13199",
+      "citationDetail": "13199: Tomba della Medusa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.openedition.org/pupvd/7078",
+      "citationDetail": "paragraph 19 and note 51",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Meinecke 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56SWAYMQ",
+      "formattedCitation": "Meinecke, Katharina. \u201cFunerary Cult [and] Sarcophagi, Rome and Vicinity.\u201d In Iconographie Fun\u00e9raire Romaine et Soci\u00e9t\u00e9\u202f: Corpus Antique, Approches Nouvelles, edited by Fran\u00e7ois Baratte and Martin Galinier, 31\u201349. Histoire de l\u2019art. Perpignan: Presses univ",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.lastampa.it/roma/2019/01/22/news/l-antico-sepolcro-della-medusa-del-policlinico-umberto-i-dimenticato-nel-degrado-1.33671929",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mosello 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RA4FTLX9",
+      "formattedCitation": "<div class=\"csl-entry\">Luisa Mosello. \u201cL\u2019Antico Sepolcro della Medusa del Policlinico Umberto I dimenticato nel degrado.\u201d <i>La Stampa</i>, June 22, 2019. https://www.lastampa.it/roma/2019/01/22/news/l-antico-sepolcro-della-medusa-del-policlinico-umberto-i-dimenticato-nel-degrado-1.33671929.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q127686972",
+      "citationDetail": "Tomb of Medusa (Q127686972)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "305841487",
+  "subject": [],
+  "title": "Tomba della Medusa (Roma)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman chamber tomb now located on the grounds of the Policlinico Umberto I hospital in Rome.",
+  "reprPoint": [
+    12.511348,
+    41.905259
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.511348,
+    41.905259,
+    12.511348,
+    41.905259
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-01-23T16:13:23Z",
+  "uri": "https://pleiades.stoa.org/places/305841487",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-21T14:43:08Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-21T14:38:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-05T15:40:18Z"
+    },
+    {
+      "comment": "added Mosello 2019",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-05T13:14:52Z"
+    },
+    {
+      "comment": "added Meinecke 2019",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-05T13:11:23Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-05T12:55:30Z"
+    },
+    {
+      "comment": "added info.roma.it link",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-05T12:39:33Z"
+    },
+    {
+      "comment": "cleaned up Arachne reference",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-05T12:19:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-04T18:45:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-23T16:24:04Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-23T16:13:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-23T16:13:23Z"
+    }
+  ]
+}

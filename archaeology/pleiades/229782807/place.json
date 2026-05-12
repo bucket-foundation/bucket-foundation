@@ -1,0 +1,370 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.750376,
+            42.1438623
+          ],
+          [
+            24.7501219,
+            42.1438431
+          ],
+          [
+            24.7501273,
+            42.143669
+          ],
+          [
+            24.7499784,
+            42.143666
+          ],
+          [
+            24.7500044,
+            42.1433667
+          ],
+          [
+            24.7498046,
+            42.1433498
+          ],
+          [
+            24.7498179,
+            42.1432683
+          ],
+          [
+            24.7500173,
+            42.1432821
+          ],
+          [
+            24.7500251,
+            42.1432163
+          ],
+          [
+            24.7506363,
+            42.1433139
+          ],
+          [
+            24.7508853,
+            42.1434524
+          ],
+          [
+            24.7505382,
+            42.1437864
+          ],
+          [
+            24.7504779,
+            42.1437549
+          ],
+          [
+            24.750376,
+            42.1438623
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-forum-odeon",
+      "properties": {
+        "snippet": "Odeon; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/229782807/osm-location-of-forum-odeon",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Forum Odeon"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/103432948",
+          "citationDetail": "Way 103432948",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=103432948",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-forum-odeon",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+      ],
+      "end": 300,
+      "title": "OSM location of Forum Odeon",
+      "provenance": "OpenStreetMap (Way 103432948, version 10, osm:changeset=133968317, 2023-03-22T08:44:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "odeon"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-02-15T03:22:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.750376,
+            42.1438623
+          ],
+          [
+            24.7501219,
+            42.1438431
+          ],
+          [
+            24.7501273,
+            42.143669
+          ],
+          [
+            24.7499784,
+            42.143666
+          ],
+          [
+            24.7500044,
+            42.1433667
+          ],
+          [
+            24.7498046,
+            42.1433498
+          ],
+          [
+            24.7498179,
+            42.1432683
+          ],
+          [
+            24.7500173,
+            42.1432821
+          ],
+          [
+            24.7500251,
+            42.1432163
+          ],
+          [
+            24.7506363,
+            42.1433139
+          ],
+          [
+            24.7508853,
+            42.1434524
+          ],
+          [
+            24.7505382,
+            42.1437864
+          ],
+          [
+            24.7504779,
+            42.1437549
+          ],
+          [
+            24.750376,
+            42.1438623
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/229782807/osm-location-of-forum-odeon",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T21:13:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-11T01:54:05Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-10T19:05:51Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-15T03:22:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-15T03:22:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-15T03:22:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-02-15T03:22:48Z",
+      "associationCertainty": "certain",
+      "title": "Philippopolis/Trimontium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/229782807/3681182963",
+      "connectionType": "at",
+      "id": "3681182963",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-15T03:22:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-15T03:22:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-15T03:22:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/216927",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q26046109",
+      "citationDetail": "Odeon of Philippopolis (Q26046109)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Odeon_of_Philippopolis",
+      "citationDetail": "Odeon of Philippopolis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "229782807",
+  "subject": [],
+  "title": "Odeon of Philippopolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ancient Roman odeon in Plovdiv, Bulgaria.",
+  "reprPoint": [
+    24.750297997618556,
+    42.14350050325529
+  ],
+  "placeTypes": [
+    "odeon"
+  ],
+  "bbox": [
+    24.7498046,
+    42.1432163,
+    24.7508853,
+    42.1438623
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/216927"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-02-15T03:22:46Z",
+  "uri": "https://pleiades.stoa.org/places/229782807",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T21:13:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-11T01:54:05Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-11T01:53:57Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-15T03:22:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-15T03:22:46Z"
+    }
+  ]
+}

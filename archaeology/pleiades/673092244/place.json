@@ -1,0 +1,210 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.3043462,
+          39.7606305
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-recinto-megalitico-monte-santa",
+      "properties": {
+        "snippet": "Wall-2; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/673092244/osm-location-of-recinto-megalitico-monte-santa",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Recinto Megalitico Monte Santa Vittoria"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2737475164",
+          "citationDetail": "Node 2737475164",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2737475164",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-recinto-megalitico-monte-santa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+      ],
+      "end": -1000,
+      "title": "OSM location of Recinto Megalitico Monte Santa Vittoria",
+      "provenance": "OpenStreetMap (Node 2737475164, version 4, osm:changeset=71002518, 2019-06-06T20:08:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "wall-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-06-06T20:12:48Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.3043462,
+          39.7606305
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/673092244/osm-location-of-recinto-megalitico-monte-santa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-20T12:26:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-14T19:47:18Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-06T20:13:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-06T20:12:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-06T20:12:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.donnanuragica.com/siti-archeologici-sardi/aree-archeologiche/istersili-esterzili-recinto-megalitico-di-monte-santa-vittoria/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "recinto megalitico di Monte Santa Vittoria, Esterzili",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "673092244",
+  "subject": [],
+  "title": "Monte Santa Vittoria Megalithic Enclosure",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A megalithic enclosure that includes a circular Nuragic building.",
+  "reprPoint": [
+    9.3043462,
+    39.7606305
+  ],
+  "placeTypes": [
+    "wall-2"
+  ],
+  "bbox": [
+    9.3043462,
+    39.7606305,
+    9.3043462,
+    39.7606305
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-06-06T20:09:49Z",
+  "uri": "https://pleiades.stoa.org/places/673092244",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-20T12:26:25Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-20T12:26:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-14T19:47:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-14T19:47:08Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-06T20:09:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-06T20:09:49Z"
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.4246301,
+            35.0376887
+          ],
+          [
+            32.4241558,
+            35.0369597
+          ],
+          [
+            32.4244665,
+            35.0368639
+          ],
+          [
+            32.4246724,
+            35.0370894
+          ],
+          [
+            32.4253098,
+            35.0371896
+          ],
+          [
+            32.4246301,
+            35.0376887
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ancient-sanctuary-at-marion",
+      "properties": {
+        "snippet": "Sanctuary",
+        "link": "https://pleiades.stoa.org/places/201100502/osm-location-of-ancient-sanctuary-at-marion",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of ancient sanctuary at Marion"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1124712234",
+          "citationDetail": "Way 1124712234",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1124712234",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ancient-sanctuary-at-marion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": null,
+      "title": "OSM location of ancient sanctuary at Marion",
+      "provenance": "OpenStreetMap (Way 1124712234, version 1, osm:changeset=130467295, 2022-12-24T21:19:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-12-24T21:20:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.4246301,
+            35.0376887
+          ],
+          [
+            32.4241558,
+            35.0369597
+          ],
+          [
+            32.4244665,
+            35.0368639
+          ],
+          [
+            32.4246724,
+            35.0370894
+          ],
+          [
+            32.4253098,
+            35.0371896
+          ],
+          [
+            32.4246301,
+            35.0376887
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/201100502/osm-location-of-ancient-sanctuary-at-marion",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-22T16:30:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-20T04:00:24Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-24T21:20:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-24T21:20:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-24T21:20:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-12-24T21:21:56Z",
+      "associationCertainty": "certain",
+      "title": "Marion",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/201100502/9167940214",
+      "connectionType": "at",
+      "id": "9167940214",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "update",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-18T16:56:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-24T21:21:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-24T21:21:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-24T21:21:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707574",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://whitelevy.fas.harvard.edu/polis-peristeries-iron-age-sanctuary-cyprus-volume-1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Polis-Peristeries: an Iron Age Sanctuary in Cyprus, volume 1",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "201100502",
+  "subject": [],
+  "title": "Ancient sanctuary at Marion",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Iron Age sanctuary located at Peristeries in Polis Chrysochous, Cyprus, dedicated to the female goddess of Cyprus that was in use for half a millennium, from ca. 950 to ca. 450 BCE.",
+  "reprPoint": [
+    32.42469401947209,
+    35.0372363846073
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    32.4241558,
+    35.0368639,
+    32.4253098,
+    35.0376887
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707574"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-12-24T21:21:56Z",
+  "uri": "https://pleiades.stoa.org/places/201100502",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-22T16:30:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-20T04:00:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-20T04:00:17Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-18T16:28:37Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-24T21:21:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-24T21:21:56Z"
+    }
+  ]
+}

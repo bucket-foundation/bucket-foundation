@@ -1,0 +1,281 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.228056,
+          45.539722
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-san-salvatore",
+      "properties": {
+        "snippet": "Church; AD 650 - AD 850",
+        "link": "https://pleiades.stoa.org/places/740044370/imagery-location-san-salvatore",
+        "description": "Representative point location based on Google Earth imagery with reference to descriptions from Wikipedia and the UNESCO WHL, as well as locations of individual buildings as mapped in OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "Imagery Location of San Salvatore monastery"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://http//whc.unesco.org/en/list/1318/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "UNESCO World Heritage List, Longobards in Italy. Places of the Power (568-774 A.D.)",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/San_Salvatore,_Brescia",
+          "citationDetail": "San Salvatore, Brescia",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), San Salvatore, Brescia.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-san-salvatore",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church"
+      ],
+      "end": 850,
+      "title": "Imagery Location of San Salvatore monastery",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 650,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "church"
+      ],
+      "description": "Representative point location based on Google Earth imagery with reference to descriptions from Wikipedia and the UNESCO WHL, as well as locations of individual buildings as mapped in OpenStreetMap.",
+      "created": "2012-11-30T16:48:01Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.228056,
+          45.539722
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/740044370/imagery-location-san-salvatore",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-11T00:07:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-18T11:53:51Z"
+        },
+        {
+          "comment": "edited location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-24T03:51:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-24T03:49:41Z"
+        },
+        {
+          "comment": "edited location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-24T02:57:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-24T02:55:21Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-12-05T01:45:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2012-11-30T18:46:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2012-11-30T16:48:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-05T17:20:07Z",
+      "associationCertainty": "certain",
+      "title": "Brixia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/740044370/2076007741",
+      "connectionType": "at",
+      "id": "2076007741",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:20:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:20:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:20:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/383603",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [],
+  "names": [],
+  "id": "740044370",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "San Salvatore monastery",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monastery founded in A.D. 753 by Desiderius, future king of the Lombards. Located in modern Brescia, Italy.",
+  "reprPoint": [
+    10.228056,
+    45.539722
+  ],
+  "placeTypes": [
+    "church"
+  ],
+  "bbox": [
+    10.228056,
+    45.539722,
+    10.228056,
+    45.539722
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/383603"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-07-05T17:20:06Z",
+  "uri": "https://pleiades.stoa.org/places/740044370",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-11T00:07:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:20:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:20:25Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:20:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:20:06Z"
+    }
+  ]
+}

@@ -1,0 +1,464 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.0128334,
+            34.983418
+          ],
+          [
+            25.0128495,
+            34.9832554
+          ],
+          [
+            25.0130319,
+            34.9831104
+          ],
+          [
+            25.0131473,
+            34.9831807
+          ],
+          [
+            25.013158,
+            34.9832378
+          ],
+          [
+            25.0131821,
+            34.9833081
+          ],
+          [
+            25.0132116,
+            34.9833697
+          ],
+          [
+            25.0132143,
+            34.9834136
+          ],
+          [
+            25.0132009,
+            34.9834576
+          ],
+          [
+            25.0131687,
+            34.9834839
+          ],
+          [
+            25.0130909,
+            34.9834861
+          ],
+          [
+            25.012981,
+            34.983473
+          ],
+          [
+            25.0128334,
+            34.983418
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-koumasa-necropolis",
+      "properties": {
+        "snippet": "Cemetery, ; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/170529772/osm-location-of-koumasa-necropolis",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Koumasa necropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/428196793",
+          "citationDetail": "Way 428196793",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=428196793",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-koumasa-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM location of Koumasa necropolis",
+      "provenance": "OpenStreetMap (Way 428196793, version 2, osm:changeset=115807224, 2022-01-05T17:54:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-06-30T12:25:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.0128334,
+            34.983418
+          ],
+          [
+            25.0128495,
+            34.9832554
+          ],
+          [
+            25.0130319,
+            34.9831104
+          ],
+          [
+            25.0131473,
+            34.9831807
+          ],
+          [
+            25.013158,
+            34.9832378
+          ],
+          [
+            25.0131821,
+            34.9833081
+          ],
+          [
+            25.0132116,
+            34.9833697
+          ],
+          [
+            25.0132143,
+            34.9834136
+          ],
+          [
+            25.0132009,
+            34.9834576
+          ],
+          [
+            25.0131687,
+            34.9834839
+          ],
+          [
+            25.0130909,
+            34.9834861
+          ],
+          [
+            25.012981,
+            34.983473
+          ],
+          [
+            25.0128334,
+            34.983418
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/170529772/osm-location-of-koumasa-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-09T00:52:21Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-07-01T11:52:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-30T12:26:53Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-30T12:26:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-30T12:25:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-30T12:25:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:53:31Z",
+      "associationCertainty": "certain",
+      "title": "Creta (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/170529772/589748",
+      "connectionType": "on",
+      "id": "589748",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype, add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-22T18:11:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:31Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589748",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3199288",
+          "citationDetail": "Koumasa (Q3199288)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Koumasa",
+      "citationDetail": "Koumasa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Koumasa.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/1461970/Legarra_Herrero_B._2011_._The_Secret_Lives_of_the_Early_and_Middle_Minoan_Tholos_Cemeteries_Koumasa_and_Platanos_in_Prehistoric_Crete_Regional_and_Diachronic_Studies_on_Mortuary_Systems_ed._J._M._A._Murphy_Philadelphia_INS",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Legarra Herrero, B. 2011. \"The Secret Lives of the Early and Middle Minoan Tholos Cemeteries: Koumasa and Platanos.\" In Prehistoric Crete: Regional and Diachronic Studies on Mortuary Systems.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.minoancrete.com/koumasa.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Minoan Crete: Koumasa",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/350250XKou",
+      "citationDetail": "Koumasa exc. (Crete)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2299629",
+      "citationDetail": "Koumassa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3199288",
+      "citationDetail": "Koumasa (Q3199288)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "170529772",
+  "subject": [
+    "tomb",
+    "extant remains"
+  ],
+  "title": "Koumasa prepalatial cemetery ",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A prepalatial cemetery on the island of Crete that includes three tholos tombs and one rectangular tomb.",
+  "reprPoint": [
+    25.013027603788032,
+    34.983322954997114
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    25.0128334,
+    34.9831104,
+    25.0132143,
+    34.9834861
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589748"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-05-01T23:12:10Z",
+  "uri": "https://pleiades.stoa.org/places/170529772",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Koumasa (Q3199288)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-09T00:56:00Z"
+    },
+    {
+      "comment": "add topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-09T00:54:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2016-07-01T11:52:57Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-30T12:22:58Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-30T12:21:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-05-01T23:19:26Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-05-01T23:12:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-05-01T23:12:11Z"
+    }
+  ]
+}

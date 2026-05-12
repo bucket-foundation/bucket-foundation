@@ -1,0 +1,14 @@
+# Pagus Baginensis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/172150
+- **ID**: 172150
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Pagus Baginensis
+
+## Description
+
+An ancient place, cited: BAtlas 17 unlocated *Pagus Baginensis

@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5577996,
+            42.6394761
+          ],
+          [
+            12.5577998,
+            42.6397063
+          ],
+          [
+            12.5582046,
+            42.6397061
+          ],
+          [
+            12.5582046,
+            42.6396846
+          ],
+          [
+            12.5582787,
+            42.6396845
+          ],
+          [
+            12.5582786,
+            42.639632
+          ],
+          [
+            12.5582994,
+            42.6396278
+          ],
+          [
+            12.558317,
+            42.6396149
+          ],
+          [
+            12.5583267,
+            42.6395982
+          ],
+          [
+            12.5583194,
+            42.6395767
+          ],
+          [
+            12.5582945,
+            42.639561
+          ],
+          [
+            12.5582736,
+            42.6395568
+          ],
+          [
+            12.5582735,
+            42.6395004
+          ],
+          [
+            12.5582034,
+            42.6395005
+          ],
+          [
+            12.5582033,
+            42.6394759
+          ],
+          [
+            12.5577996,
+            42.6394761
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basilica",
+      "properties": {
+        "snippet": "Basilica, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/600795755/osm-location-of-basilica",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of basilica"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/77013790",
+          "citationDetail": "Way 77013790",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=77013790",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of basilica",
+      "provenance": "OpenStreetMap (Way 77013790, version 5, osm:changeset=131877731, 2023-01-30T12:03:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "basilica",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-27T20:32:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5577996,
+            42.6394761
+          ],
+          [
+            12.5577998,
+            42.6397063
+          ],
+          [
+            12.5582046,
+            42.6397061
+          ],
+          [
+            12.5582046,
+            42.6396846
+          ],
+          [
+            12.5582787,
+            42.6396845
+          ],
+          [
+            12.5582786,
+            42.639632
+          ],
+          [
+            12.5582994,
+            42.6396278
+          ],
+          [
+            12.558317,
+            42.6396149
+          ],
+          [
+            12.5583267,
+            42.6395982
+          ],
+          [
+            12.5583194,
+            42.6395767
+          ],
+          [
+            12.5582945,
+            42.639561
+          ],
+          [
+            12.5582736,
+            42.6395568
+          ],
+          [
+            12.5582735,
+            42.6395004
+          ],
+          [
+            12.5582034,
+            42.6395005
+          ],
+          [
+            12.5582033,
+            42.6394759
+          ],
+          [
+            12.5577996,
+            42.6394761
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/600795755/osm-location-of-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-28T00:44:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-28T17:00:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-28T16:59:01Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:33:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:32:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:32:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-11-11T14:56:10Z",
+      "associationCertainty": "certain",
+      "title": "Carsulae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/600795755/1701303632",
+      "connectionType": "at",
+      "id": "1701303632",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:56:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:56:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:56:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413065",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-11-11T14:56:41Z",
+      "associationCertainty": "certain",
+      "title": "Forum of Carsulae",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/600795755/forum-of-carsulae",
+      "connectionType": "at",
+      "id": "forum-of-carsulae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-29T22:06:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:58:16Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:56:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:56:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/209814686",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Carsulae",
+      "citationDetail": "Carsulae",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "600795755",
+  "subject": [],
+  "title": "Basilica of Carsulae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The civic Basilica of Carsulae is located on the forum.",
+  "reprPoint": [
+    12.5577996,
+    42.6394761
+  ],
+  "placeTypes": [
+    "basilica"
+  ],
+  "bbox": [
+    12.5577996,
+    42.6394761,
+    12.5577996,
+    42.6394761
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413065",
+    "https://pleiades.stoa.org/places/209814686"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-11T14:56:08Z",
+  "uri": "https://pleiades.stoa.org/places/600795755",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-29T22:06:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:58:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:58:09Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:56:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:56:08Z"
+    }
+  ]
+}

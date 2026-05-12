@@ -1,0 +1,449 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3286156,
+            55.0147068
+          ],
+          [
+            -2.3285328,
+            55.0146849
+          ],
+          [
+            -2.3286003,
+            55.0146008
+          ],
+          [
+            -2.3286831,
+            55.0146227
+          ],
+          [
+            -2.3286566,
+            55.0146556
+          ],
+          [
+            -2.3286156,
+            55.0147068
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-knag-burn-gateway",
+      "properties": {
+        "snippet": "Gateway",
+        "link": "https://pleiades.stoa.org/places/7162997/osm-location-knag-burn-gateway",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Knag Burn Gateway"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/337441110",
+          "citationDetail": "Way 337441110",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=337441110",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-knag-burn-gateway",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+      ],
+      "end": null,
+      "title": "OSM Location: Knag Burn Gateway",
+      "provenance": "OpenStreetMap (Way 337441110, version 3, osm:changeset=145413750, 2023-12-22T17:01:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "gateway"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-02-25T14:31:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3286156,
+            55.0147068
+          ],
+          [
+            -2.3285328,
+            55.0146849
+          ],
+          [
+            -2.3286003,
+            55.0146008
+          ],
+          [
+            -2.3286831,
+            55.0146227
+          ],
+          [
+            -2.3286566,
+            55.0146556
+          ],
+          [
+            -2.3286156,
+            55.0147068
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/7162997/osm-location-knag-burn-gateway",
+      "creators": [
+        {
+          "username": "Clark",
+          "homepage": null,
+          "name": "Matthew Clark",
+          "uri": "https://pleiades.stoa.org/author/Clark"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-25T21:39:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:30:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:21:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:20:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T15:58:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T14:32:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T14:31:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T14:31:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 410,
+      "description": "Verovicium",
+      "contributors": [],
+      "created": "2025-02-25T16:10:48Z",
+      "associationCertainty": "certain",
+      "title": "*Vercovicium",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/7162997/housesteads-roman-fort",
+      "connectionType": "near",
+      "id": "housesteads-roman-fort",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-25T21:39:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:30:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:22:23Z"
+        },
+        {
+          "comment": "Add connection between Knag Burn Gateway and Housesteads",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:10:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:10:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/89311",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "Clark",
+          "homepage": null,
+          "name": "Matthew Clark",
+          "uri": "https://pleiades.stoa.org/author/Clark"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": 410,
+      "description": "Hadrian's Wall",
+      "contributors": [],
+      "created": "2025-02-25T16:13:22Z",
+      "associationCertainty": "certain",
+      "title": "Hadrian's Wall",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/7162997/hadrians-wall",
+      "connectionType": "part_of_physical",
+      "id": "hadrians-wall",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-25T21:39:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:30:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:13:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:13:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/91358",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "Clark",
+          "homepage": null,
+          "name": "Matthew Clark",
+          "uri": "https://pleiades.stoa.org/author/Clark"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Knag_Burn_Gateway",
+      "citationDetail": "Knag Burn Gateway",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Knag Burn Gateway",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "knag-burn-gateway",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-02-25T14:58:21Z",
+      "uri": "https://pleiades.stoa.org/places/7162997/knag-burn-gateway",
+      "creators": [
+        {
+          "username": "Clark",
+          "homepage": null,
+          "name": "Matthew Clark",
+          "uri": "https://pleiades.stoa.org/author/Clark"
+        }
+      ],
+      "attested": "Knag Burn Gateway",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-25T21:39:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T16:30:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T15:58:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T15:55:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T14:58:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "Clark",
+          "modified": "2025-02-25T14:58:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "7162997",
+  "subject": [],
+  "title": "Knag Burn Gateway",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Roman Gateway through Hadrian's Wall",
+  "reprPoint": [
+    -2.328607942052596,
+    55.01465379361123
+  ],
+  "placeTypes": [
+    "gateway"
+  ],
+  "bbox": [
+    -2.3286831,
+    55.0146008,
+    -2.3285328,
+    55.0147068
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/89311",
+    "https://pleiades.stoa.org/places/91358"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-25T14:30:50Z",
+  "uri": "https://pleiades.stoa.org/places/7162997",
+  "creators": [
+    {
+      "username": "Clark",
+      "homepage": null,
+      "name": "Matthew Clark",
+      "uri": "https://pleiades.stoa.org/author/Clark"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-25T21:39:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "Clark",
+      "modified": "2025-02-25T16:30:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "Clark",
+      "modified": "2025-02-25T15:55:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "Clark",
+      "modified": "2025-02-25T14:59:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "Clark",
+      "modified": "2025-02-25T14:30:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "Clark",
+      "modified": "2025-02-25T14:30:50Z"
+    }
+  ]
+}

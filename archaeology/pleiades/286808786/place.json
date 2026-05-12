@@ -1,0 +1,591 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-03-17T21:31:10Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/286808786/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-09T14:25:05Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-09-28T21:10:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-23T15:43:37Z"
+        },
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-23T14:54:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-17T21:31:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-17T21:31:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-17T21:31:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1466700",
+          "citationDetail": "Pons Sublicius (Q1466700)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "ekeogh",
+          "homepage": null,
+          "name": "Edward Keogh",
+          "uri": "https://pleiades.stoa.org/author/ekeogh"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "bkiesling",
+          "homepage": null,
+          "name": "Brady Kiesling",
+          "uri": "https://pleiades.stoa.org/author/bkiesling"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2018-03-17T21:32:16Z",
+      "associationCertainty": "certain",
+      "title": "Tiberis (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/286808786/tiberis-river",
+      "connectionType": "crosses",
+      "id": "tiberis-river",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-09T14:24:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-09-28T21:10:04Z"
+        },
+        {
+          "comment": "ctype: crosses",
+          "modifiedBy": "thomase",
+          "modified": "2020-09-28T21:05:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-23T15:43:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-17T21:32:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-17T21:32:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423080",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://topostext.org/place/419125BPSu",
+          "citationDetail": "Sublician Bridge (Rome)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "ToposText",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+          "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "ekeogh",
+          "homepage": null,
+          "name": "Edward Keogh",
+          "uri": "https://pleiades.stoa.org/author/ekeogh"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/crosses"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/24616441",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tucci 2011/2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T75UHIFM",
+      "formattedCitation": "<div class=\"csl-entry\">Tucci, Pier Luigi. \u201cTHE PONS SUBLICIUS: A REINVESTIGATION.\u201d <i>Memoirs of the American Academy in Rome</i> 56/57 (2011): 177\u2013212. http://www.jstor.org/stable/24616441.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pons_Sublicius",
+      "citationDetail": "Pons Sublicius",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/46796",
+      "citationDetail": "GEO ID 46796: Pons Sublicius",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40311080",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tucci 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DZF8PNJ2",
+      "formattedCitation": "<div class=\"csl-entry\">Tucci, Pier Luigi. \u201cEight Fragments of the Marble Plan of Rome Shedding New Light on the Transtiberim.\u201d <i>Papers of the British School at Rome</i> 72 (2004): 185\u2013202. https://www.jstor.org/stable/40311080.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/12406",
+      "citationDetail": "Pons Sublicius Rom, (Roma), Rom (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125BPSu",
+      "citationDetail": "Sublician Bridge (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1466700",
+      "citationDetail": "Pons Sublicius (Q1466700)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "pp. 570-575 no. 342",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "van Heck 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6T6E9QB4",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Pons Theodosii",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.jstor.org/stable/24616441",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tucci 2011",
+          "bibliographicURI": "",
+          "formattedCitation": "Tucci, Pier Luigi. \"THE PONS SUBLICIUS: A REINVESTIGATION.\" Memoirs of the American Academy in Rome 56/57 (2011): 177-212. http://www.jstor.org/stable/24616441.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-03-17.7926042277",
+      "end": 640,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "Pons Sublicius may have been rebuilt and renamed as Pons Theodosii.",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2018-03-17T21:42:43Z",
+      "uri": "https://pleiades.stoa.org/places/286808786/name.2018-03-17.7926042277",
+      "creators": [
+        {
+          "username": "ekeogh",
+          "homepage": null,
+          "name": "Edward Keogh",
+          "uri": "https://pleiades.stoa.org/author/ekeogh"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-22T03:08:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-09-28T21:10:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-23T15:46:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-04-17T01:41:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-17T21:42:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-03-17T21:42:43Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "pons Sublicius",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://latin.packhum.org/loc/914/1/70/196-205",
+          "citationDetail": "2.10.2.1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Liv. (OCT: PHI)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+          "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "pons-sublicius-1",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2020-09-23T15:43:03Z",
+      "uri": "https://pleiades.stoa.org/places/286808786/pons-sublicius-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "pons sublicius",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-04T23:32:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-09-28T21:10:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-23T15:43:37Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-23T15:43:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-23T15:43:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "286808786",
+  "subject": [
+    "bridge"
+  ],
+  "title": "Pons Sublicius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Pons Sublicius is traditionally held to be the earliest Roman bridge across the river Tiber. The textual tradition assigns its construction to the king Ancus Marcius in 642 B.C. It crossed the Tiber River near the Forum Boarium just downstream from Tiber Island.",
+  "reprPoint": [
+    12.327542552487452,
+    42.678308540569176
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    12.0248296,
+    41.7451532,
+    12.6387405,
+    43.7892424
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/423080"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-17T21:26:45Z",
+  "uri": "https://pleiades.stoa.org/places/286808786",
+  "creators": [
+    {
+      "username": "shales",
+      "homepage": null,
+      "name": "Sara Hales",
+      "uri": "https://pleiades.stoa.org/author/shales"
+    },
+    {
+      "username": "echosmith",
+      "homepage": null,
+      "name": "Echo Smith",
+      "uri": "https://pleiades.stoa.org/author/echosmith"
+    },
+    {
+      "username": "ekeogh",
+      "homepage": null,
+      "name": "Edward Keogh",
+      "uri": "https://pleiades.stoa.org/author/ekeogh"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "van Heck 1977 pp. 570-575 no. 342",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-22T03:08:07Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-09T14:23:49Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-04T23:31:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-09-28T21:10:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-23T15:46:25Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-23T14:54:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-03-25T02:56:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-03-17T21:26:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-03-17T21:26:45Z"
+    }
+  ]
+}

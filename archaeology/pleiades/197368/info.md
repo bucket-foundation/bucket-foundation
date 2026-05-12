@@ -1,0 +1,14 @@
+# Manioi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/197368
+- **ID**: 197368
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Manioi
+
+## Description
+
+An ancient place, cited: BAtlas 20 D6 Manioi

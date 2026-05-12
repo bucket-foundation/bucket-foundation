@@ -1,0 +1,487 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.5069908,
+            35.869654
+          ],
+          [
+            14.5069748,
+            35.8695747
+          ],
+          [
+            14.5070218,
+            35.8695685
+          ],
+          [
+            14.5069918,
+            35.8694195
+          ],
+          [
+            14.5069357,
+            35.8694269
+          ],
+          [
+            14.5069515,
+            35.8695052
+          ],
+          [
+            14.5067611,
+            35.8695304
+          ],
+          [
+            14.5067914,
+            35.8696804
+          ],
+          [
+            14.5069908,
+            35.869654
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-a-al-saflieni-hypogeum",
+      "properties": {
+        "snippet": "Tomb; 2500 BC - 700 BC",
+        "link": "https://pleiades.stoa.org/places/477527423/osm-location-of-a-al-saflieni-hypogeum",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u0126al Saflieni Hypogeum"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "bronze-age-malta",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/bronze-age-malta",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/386844095",
+          "citationDetail": "Way 386844095",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=386844095",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-a-al-saflieni-hypogeum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -700,
+      "title": "OSM location of \u0126al Saflieni Hypogeum",
+      "provenance": "OpenStreetMap (Way 386844095, version 12, osm:changeset=154966043, 2024-08-08T08:07:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-11-07T02:58:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.5069908,
+            35.869654
+          ],
+          [
+            14.5069748,
+            35.8695747
+          ],
+          [
+            14.5070218,
+            35.8695685
+          ],
+          [
+            14.5069918,
+            35.8694195
+          ],
+          [
+            14.5069357,
+            35.8694269
+          ],
+          [
+            14.5069515,
+            35.8695052
+          ],
+          [
+            14.5067611,
+            35.8695304
+          ],
+          [
+            14.5067914,
+            35.8696804
+          ],
+          [
+            14.5069908,
+            35.869654
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/477527423/osm-location-of-a-al-saflieni-hypogeum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-07T15:22:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T03:04:40Z"
+        },
+        {
+          "comment": "improves upon already-published location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T03:04:35Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T02:58:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T02:58:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T02:58:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:36:53Z",
+      "associationCertainty": "certain",
+      "title": "Melita/Malta (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/477527423/462311",
+      "connectionType": "on",
+      "id": "462311",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T16:28:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462311",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q755514",
+          "citationDetail": "Hypogeum of \u0126al Saflieni (Q755514)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/130",
+      "citationDetail": "130: Hal Saflieni Hypogeum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Hypogeum_of_%C4%A6al_Saflieni",
+      "citationDetail": "Hypogeum of \u0126al-Saflieni",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Hypogeum of \u0126al-Saflieni.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pace and Cilia 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LAEQE2UM",
+      "formattedCitation": "<div class=\"csl-entry\">Pace, Anthony, and Daniel Cilia. <i>The Hal Saflieni Hypogeum: Paola</i>. Sta Venera, Malta: Heritage Books in association with Heritage Malta, 2004.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q755514",
+      "citationDetail": "Hypogeum of \u0126al Saflieni (Q755514)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/2562975/hal-saflieni-hypogeum.html",
+      "citationDetail": "2562975: Hal Saflieni Hypogeum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hypogeum of \u0126al-Saflieni",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/%C4%A6al_Saflieni_Hypogeum",
+          "citationDetail": "Hypogeum of \u0126al-Saflieni",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "hypogeum-of-hal-saflieni",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-11-07T03:05:36Z",
+      "uri": "https://pleiades.stoa.org/places/477527423/hypogeum-of-hal-saflieni",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Hypogeum of \u0126al-Saflieni",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-07T15:22:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T03:05:43Z"
+        },
+        {
+          "comment": "name added",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T03:05:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-07T03:05:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "477527423",
+  "subject": [
+    "extant remains",
+    "UWHS"
+  ],
+  "title": "Hypogeum of \u0126al-Saflieni (Malta)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A prehistoric, subterranean temple; named as a UNESCO World Heritage Site in 1980.",
+  "reprPoint": [
+    14.50690577416394,
+    35.86956007754785
+  ],
+  "placeTypes": [
+    "tomb",
+    "sanctuary"
+  ],
+  "bbox": [
+    14.5067611,
+    35.8694195,
+    14.5070218,
+    35.8696804
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462311"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2012-11-14T09:52:16Z",
+  "uri": "https://pleiades.stoa.org/places/477527423",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-07T03:00:45Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-03T18:37:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:46:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-14T10:30:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-14T10:18:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-14T10:18:02Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-14T09:52:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-14T09:52:16Z"
+    }
+  ]
+}

@@ -1,0 +1,379 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.6078098,
+            45.3069222
+          ],
+          [
+            13.6078523,
+            45.3068278
+          ],
+          [
+            13.6080189,
+            45.3068649
+          ],
+          [
+            13.6079887,
+            45.306932
+          ],
+          [
+            13.6078623,
+            45.3069038
+          ],
+          [
+            13.6078499,
+            45.3069312
+          ],
+          [
+            13.6078098,
+            45.3069222
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-stari-tar",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/508370540/osm-location-of-stari-tar",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Stari Tar"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/256328745",
+          "citationDetail": "Way 256328745",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=256328745",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-stari-tar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Stari Tar",
+      "provenance": "OpenStreetMap (Way 256328745, version 1, osm:changeset=19955850, 2014-01-12T16:50:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-19T15:24:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.6078098,
+            45.3069222
+          ],
+          [
+            13.6078523,
+            45.3068278
+          ],
+          [
+            13.6080189,
+            45.3068649
+          ],
+          [
+            13.6079887,
+            45.306932
+          ],
+          [
+            13.6078623,
+            45.3069038
+          ],
+          [
+            13.6078499,
+            45.3069312
+          ],
+          [
+            13.6078098,
+            45.3069222
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/508370540/osm-location-of-stari-tar",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-20T16:08:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T16:22:32Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T15:24:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T15:24:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T15:24:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-09-25T13:58:08Z",
+      "associationCertainty": "certain",
+      "title": "Parentium",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/508370540/connection.2022-09-25.5013234025",
+      "connectionType": "dependent",
+      "id": "connection.2022-09-25.5013234025",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-20T16:08:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-25T14:19:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-25T14:02:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-25T13:59:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-25T13:58:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-25T13:58:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-25T13:58:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/197427",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "ftassaux",
+          "homepage": null,
+          "name": "Francis Tassaux",
+          "uri": "https://pleiades.stoa.org/author/ftassaux"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/dependent"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://adriaticummare.org/adriatlas?idSites=83",
+      "citationDetail": "83",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+      "shortTitle": "AdriAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7FNMU8F9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Adriaticum Mare</i>, 2012. http://adriaticummare.org.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsDataSource"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://disci.unibo.it/en/research/archaeological-missions/achaeological-missions-abroad/stancija-blek-tar-vabrega-istria-croatia",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Stancija Blek (Tar-Vabrega, Istria-Croatia) Archaeological excavations and survey in Stancija Blek",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u0160iljeg 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3WYE9DSY",
+      "formattedCitation": "<div class=\"csl-entry\">\u0160iljeg, Bartul, Vladimir Kova\u010di\u0107, and Andreja Kudeli\u0107. \u201cArheolo\u0161ko-konzervatorska istra\u017eivanja lokaliteta Stancija Blek kod Tara u 2010. g.\u201d In <i>Annales Instituti Archaeologici = Godisnjak Instituta za Arheologiju, 7 (2011)</i>, 93\u201397. 2011, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "508370540",
+  "subject": [],
+  "title": "Stancija Blek",
+  "provenance": "Adriatlas 83",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-single",
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The archaeological site of Stancija Blek (Tar-Vabrega, Istria-Croatia) is located on the west coast of Istria. In antiquity, the site would have been located in the territory of Parentium. Archaeological investigation has documented more than 1,500 years of occupation, beginning perhaps with a Roman-period agricultural establishment (villa) that was subsequently followed by Late Antique and Medieval phases that include a so-called tower. Nearby are the remains of the church of Santa Croce.",
+  "reprPoint": [
+    13.60791034730011,
+    45.30688556452743
+  ],
+  "placeTypes": [
+    "tower-single",
+    "church-2",
+    "archaeological-site",
+    "villa"
+  ],
+  "bbox": [
+    13.6078098,
+    45.3068278,
+    13.6080189,
+    45.306932
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/197427"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-19T16:17:11Z",
+  "uri": "https://pleiades.stoa.org/places/508370540",
+  "creators": [
+    {
+      "username": "ftassaux",
+      "homepage": null,
+      "name": "Francis Tassaux",
+      "uri": "https://pleiades.stoa.org/author/ftassaux"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-20T16:08:24Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-20T16:07:07Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-19T15:25:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-25T14:19:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-25T14:14:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-25T14:12:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-25T14:08:37Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-25T13:20:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-25T13:20:49Z"
+    }
+  ]
+}

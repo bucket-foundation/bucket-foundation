@@ -1,0 +1,409 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1038017,
+          42.0025833
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-santuario-del-manganello",
+      "properties": {
+        "snippet": "Sanctuary; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/248622162/osm-location-of-santuario-del-manganello",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Santuario del Manganello"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/5204325733",
+          "citationDetail": "Node 5204325733",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5204325733",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-santuario-del-manganello",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": -30,
+      "title": "OSM location of Santuario del Manganello",
+      "provenance": "OpenStreetMap (Node 5204325733, version 1, osm:changeset=53426203, 2017-11-01T14:46:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-11-01T14:47:07Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1038017,
+          42.0025833
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/248622162/osm-location-of-santuario-del-manganello",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-19T21:29:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-08T09:31:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T00:32:20Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-01T14:50:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-01T14:47:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-01T14:47:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-11-01T14:25:41Z",
+      "associationCertainty": "certain",
+      "title": "Caere",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/248622162/caere",
+      "connectionType": "at",
+      "id": "caere",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "update",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-28T20:34:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-08T09:31:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T00:32:19Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-01T14:25:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-01T14:25:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422859",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/891143820",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bellelli 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QQH44CPQ",
+          "formattedCitation": "<div class=\"csl-entry\">Bellelli, V. \u201cIl santuario sulla rupe del Manganello a Cerveteri: il contesto topografico e le evidenze archeologiche alla luce delle recenti indagini del CNR - ISMA.\u201d In <i>Etruria in progress. La ricerca archeologica in Etruria meridionale</i>, edited by Luca Mercuri and Rossella Zaccagnini. Rome: Gangemi, 2014. http://www.worldcat.org/oclc/891143820.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-05-28T20:33:03Z",
+      "associationCertainty": "certain",
+      "title": "Fosso del Manganello",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/248622162/fosso-del-manganello",
+      "connectionType": "on",
+      "id": "fosso-del-manganello",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-29T14:28:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-28T20:33:26Z"
+        },
+        {
+          "comment": "update cnxn reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-28T20:33:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-28T20:33:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/206207290",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/891143820",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bellelli 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QQH44CPQ",
+          "formattedCitation": "<div class=\"csl-entry\">Bellelli, V. \u201cIl santuario sulla rupe del Manganello a Cerveteri: il contesto topografico e le evidenze archeologiche alla luce delle recenti indagini del CNR - ISMA.\u201d In <i>Etruria in progress. La ricerca archeologica in Etruria meridionale</i>, edited by Luca Mercuri and Rossella Zaccagnini. Rome: Gangemi, 2014. http://www.worldcat.org/oclc/891143820.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://archeologialazio.beniculturali.it/it/318/concessioni-di-scavo/473/santuario-del-manganello",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Santuario del Manganello",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/record_view.php?fst_cd=AIAC_3521",
+      "citationDetail": "Santuario del Manganello",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FastiOnline (Excavation)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5MUH5XWP",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC), and Center for the Study of Ancient Italy of the University of Texas at Austin (CSAI). <i>FastiOnline (Excavation)</i>, 2004. http://www.fastionline.org/excavation/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/891143820",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bellelli 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QQH44CPQ",
+      "formattedCitation": "<div class=\"csl-entry\">Bellelli, V. \u201cIl santuario sulla rupe del Manganello a Cerveteri: il contesto topografico e le evidenze archeologiche alla luce delle recenti indagini del CNR - ISMA.\u201d In <i>Etruria in progress. La ricerca archeologica in Etruria meridionale</i>, edited by Luca Mercuri and Rossella Zaccagnini. Rome: Gangemi, 2014. http://www.worldcat.org/oclc/891143820.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://muse.jhu.edu/article/627240",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Colivicchi et al. 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VVQ9QABF",
+      "formattedCitation": "<div class=\"csl-entry\">Colivicchi, Fabio, Gian Luca Gregori, Mariafrancesca Lanza, Antonella Lepone, Michele Scalici, Angela Trentacoste, and Cristiana Zaccagnino. \u201cNew Excavations in the Urban Area of Caere.\u201d <i>Mouseion: Journal of the Classical Association of Canada</i> 1013, no. 2 (July 31, 2016): 359\u2013450. https://muse.jhu.edu/article/627240.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q57080522",
+      "citationDetail": "Manganello sanctuary (Q57080522)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "248622162",
+  "subject": [],
+  "title": "Manganello Sanctuary",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Manganello Sanctuary is located at the northern edge Caere's urban plateau.",
+  "reprPoint": [
+    12.1038017,
+    42.0025833
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    12.1038017,
+    42.0025833,
+    12.1038017,
+    42.0025833
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422859",
+    "https://pleiades.stoa.org/places/206207290"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-11T21:21:48Z",
+  "uri": "https://pleiades.stoa.org/places/248622162",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references; added Wikidata reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T21:23:50Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T21:21:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-08T09:31:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-17T00:32:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-17T00:31:59Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-01T14:24:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-01T14:24:04Z"
+    }
+  ]
+}

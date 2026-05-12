@@ -1,0 +1,411 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.7760623,
+            37.8849557
+          ],
+          [
+            -4.7766463,
+            37.8848842
+          ],
+          [
+            -4.7767093,
+            37.8848756
+          ],
+          [
+            -4.7767414,
+            37.8846952
+          ],
+          [
+            -4.77611,
+            37.8846464
+          ],
+          [
+            -4.776111,
+            37.88468
+          ],
+          [
+            -4.7760361,
+            37.8846744
+          ],
+          [
+            -4.7760452,
+            37.8848605
+          ],
+          [
+            -4.7760623,
+            37.8849557
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-temple",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/415113284/location-of-roman-temple",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman temple"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/96268494",
+          "citationDetail": "Way 96268494",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=96268494",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Roman_temple_of_C%C3%B3rdoba",
+          "citationDetail": "Roman temple of C\u00f3rdoba",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Roman temple of C\u00f3rdoba.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-roman-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman temple",
+      "provenance": "OpenStreetMap (Way 96268494, version 13, osm:changeset=127645430, 2022-10-17T03:06:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-11-12T01:27:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.7760623,
+            37.8849557
+          ],
+          [
+            -4.7766463,
+            37.8848842
+          ],
+          [
+            -4.7767093,
+            37.8848756
+          ],
+          [
+            -4.7767414,
+            37.8846952
+          ],
+          [
+            -4.77611,
+            37.8846464
+          ],
+          [
+            -4.776111,
+            37.88468
+          ],
+          [
+            -4.7760361,
+            37.8846744
+          ],
+          [
+            -4.7760452,
+            37.8848605
+          ],
+          [
+            -4.7760623,
+            37.8849557
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/415113284/location-of-roman-temple",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-30T03:31:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-01T19:59:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-22T17:04:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-25T02:18:51Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-12T01:32:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-12T01:31:02Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-12T01:28:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-12T01:27:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-12T01:27:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:52:49Z",
+      "associationCertainty": "certain",
+      "title": "Corduba/Col. Patricia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/415113284/256128",
+      "connectionType": "at",
+      "id": "256128",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-01T00:17:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256128",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Roman_temple_of_C%C3%B3rdoba",
+      "citationDetail": "Roman temple of C\u00f3rdoba",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Roman temple of C\u00f3rdoba.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Garc\u00eda y Bellido 1964",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A4UNX3KX",
+      "formattedCitation": "<div class=\"csl-entry\">Garc\u00eda y Bellido, A. \u201cEl Templo Romano de C\u00f3rdoba.\u201d In <i>Oretania. Revista de Historia, Arte, Arqueolog\u00eda. Museo Arqueol\u00f3gico de Linares, 6.1964</i>, 156\u2013165, Abb. Taf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fishwick 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZFMWW5LQ",
+      "formattedCitation": "<div class=\"csl-entry\">Fishwick, Duncan. \u201cThe Temple on the New Forum of Corduba and the Provincial Centre of Hispania Ulterior.\u201d In <i>Latomus. Revue d\u2019\u00e9tudes Latines, 73 (2014)</i>, Fasc.3, 661-666. Bruxelles: Editions Latomus, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q97625649",
+      "citationDetail": "Q97625649: Templo romano calle Claudio Marcelo",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "415113284",
+  "subject": [
+    "extant remains",
+    "imperial cult",
+    "Temple",
+    "Corinthian order"
+  ],
+  "title": "Roman temple of C\u00f3rdoba",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A pseudodipteral, hexastyle, Corinthian order temple begun under Claudius and completed under Domitian. The temple is likely sacred to the imperial cult.",
+  "reprPoint": [
+    -4.7766452,
+    37.8848788
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    -4.7766452,
+    37.8848788,
+    -4.7766452,
+    37.8848788
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256128"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-06-30T20:55:52Z",
+  "uri": "https://pleiades.stoa.org/places/415113284",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q97625649: Templo romano calle Claudio Marcelo",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-07T20:48:59Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-01T03:26:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-01T00:17:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-09T13:00:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-09T13:00:39Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-30T20:55:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-30T20:55:52Z"
+    }
+  ]
+}

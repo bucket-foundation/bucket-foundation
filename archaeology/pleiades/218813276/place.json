@@ -1,0 +1,203 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1870721,
+          42.880094
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tobillas",
+      "properties": {
+        "snippet": "Settlement; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/218813276/osm-location-of-tobillas",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tobillas"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/522017783",
+          "citationDetail": "Node 522017783",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=522017783",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tobillas",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 2099,
+      "title": "OSM location of Tobillas",
+      "provenance": "OpenStreetMap (Node 522017783, version 13, osm:changeset=135030554, 2023-04-17T19:55:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-06T14:39:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.1870721,
+          42.880094
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/218813276/osm-location-of-tobillas",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-26T16:01:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T15:00:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T14:59:59Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-06T14:40:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-06T14:39:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-06T14:39:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/what-is-a-village-agroscapes-collective-action-and-medieval-villages-in-northern-iberia/2DCDF19A52A70AC39397CCCD7C203572",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Castillo et al. 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/34DXAA3G",
+      "formattedCitation": "<div class=\"csl-entry\">Castillo, Juan Antonio Quir\u00f3s, Josu Narbarte, and Eneko Iriarte. \u201cWhat Is a Village? Agroscapes, Collective Action and Medieval Villages in Northern Iberia.\u201d <i>Antiquity</i> 97, no. 395 (October 2023): 1279\u201395. https://doi.org/10.15184/aqy.2023.125.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "218813276",
+  "subject": [],
+  "title": "Tobillas",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A village located in the valley of the Omecillo River, a tributary of the Ebro. Tobillas has been the focus of a case study interested in the processes of village formation from both archaeological and historical perspectives.",
+  "reprPoint": [
+    -3.1870721,
+    42.880094
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -3.1870721,
+    42.880094,
+    -3.1870721,
+    42.880094
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-06T14:38:27Z",
+  "uri": "https://pleiades.stoa.org/places/218813276",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-26T16:01:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-26T14:59:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-26T14:59:55Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-06T14:38:29Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-06T14:38:27Z"
+    }
+  ]
+}

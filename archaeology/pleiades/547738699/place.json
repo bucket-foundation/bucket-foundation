@@ -1,0 +1,325 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.7971976,
+            41.9413973
+          ],
+          [
+            12.7972931,
+            41.9414278
+          ],
+          [
+            12.7973844,
+            41.941457
+          ],
+          [
+            12.797847,
+            41.9406559
+          ],
+          [
+            12.7977557,
+            41.9406267
+          ],
+          [
+            12.7976602,
+            41.9405962
+          ],
+          [
+            12.7971976,
+            41.9413973
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ponte-degli-arcinelli",
+      "properties": {
+        "snippet": "Aqueduct; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/547738699/osm-location-of-ponte-degli-arcinelli",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ponte degli Arcinelli"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1299973458",
+          "citationDetail": "Way 1299973458",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1299973458",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ponte-degli-arcinelli",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+      ],
+      "end": 300,
+      "title": "OSM location of Ponte degli Arcinelli",
+      "provenance": "OpenStreetMap (Way 1299973458, version 2, osm:changeset=161754282, 2025-01-25T17:09:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "aqueduct"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-01-25T17:10:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.7971976,
+            41.9413973
+          ],
+          [
+            12.7972931,
+            41.9414278
+          ],
+          [
+            12.7973844,
+            41.941457
+          ],
+          [
+            12.797847,
+            41.9406559
+          ],
+          [
+            12.7977557,
+            41.9406267
+          ],
+          [
+            12.7976602,
+            41.9405962
+          ],
+          [
+            12.7971976,
+            41.9413973
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/547738699/osm-location-of-ponte-degli-arcinelli",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-29T21:47:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T21:10:51Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T17:10:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T17:10:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T17:10:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-01-25T17:11:50Z",
+      "associationCertainty": "certain",
+      "title": "Aqua Anio Novus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/547738699/1102164920",
+      "connectionType": "part_of_analytical",
+      "id": "1102164920",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T17:14:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T17:11:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T17:11:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T17:11:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423559",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131905648",
+      "citationDetail": "Ponte degli Arcinelli (Q131905648)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/82311/",
+      "citationDetail": "82311: Ponte Arcinelli (Aqua Anio Novus)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=13718",
+      "citationDetail": "13718: Ponte degli Arcinelli",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "547738699",
+  "subject": [],
+  "title": "Ponte degli Arcinelli",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Ponte degli Arcinelli\" is a Roman aqueduct bridge that was part of the Aqua Anio Novus.",
+  "reprPoint": [
+    12.797522300536261,
+    41.941026598322075
+  ],
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": [
+    12.7971976,
+    41.9405962,
+    12.797847,
+    41.941457
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423559"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-01-25T17:11:49Z",
+  "uri": "https://pleiades.stoa.org/places/547738699",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-29T21:47:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-29T21:10:51Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-25T17:14:33Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-25T17:11:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-25T17:11:49Z"
+    }
+  ]
+}

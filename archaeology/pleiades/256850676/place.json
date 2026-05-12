@@ -1,0 +1,269 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.368458,
+          35.20807
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-sebasteion-at-lyttos",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/256850676/imagery-location-sebasteion-at-lyttos",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location: Sebasteion at Lyttos"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "imagery-location-sebasteion-at-lyttos",
+      "featureTypeURI": [],
+      "end": null,
+      "title": "Imagery Location: Sebasteion at Lyttos",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "",
+      "created": "2025-11-10T14:38:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.368458,
+          35.20807
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/256850676/imagery-location-sebasteion-at-lyttos",
+      "creators": [
+        {
+          "username": "gtsolakis",
+          "homepage": null,
+          "name": "Georgios Tsolakis",
+          "uri": "https://pleiades.stoa.org/author/gtsolakis"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-11T11:45:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-11T11:41:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gtsolakis",
+          "modified": "2025-11-10T14:39:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gtsolakis",
+          "modified": "2025-11-10T14:38:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gtsolakis",
+          "modified": "2025-11-10T14:38:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2025-11-10T14:25:40Z",
+      "associationCertainty": "certain",
+      "title": "Lyktos",
+      "start": 100,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/256850676/lyktos",
+      "connectionType": "at",
+      "id": "lyktos",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-11T11:45:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gtsolakis",
+          "modified": "2025-11-10T16:08:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gtsolakis",
+          "modified": "2025-11-10T14:31:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gtsolakis",
+          "modified": "2025-11-10T14:25:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gtsolakis",
+          "modified": "2025-11-10T14:25:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589918",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gtsolakis",
+          "homepage": null,
+          "name": "Georgios Tsolakis",
+          "uri": "https://pleiades.stoa.org/author/gtsolakis"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kotsonas 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FZU8HWWZ",
+      "formattedCitation": "<div class=\"csl-entry\">\u039a\u03bf\u03c4\u03c3\u03ce\u03bd\u03b1\u03c2, \u0391., \u0392. \u03a3\u03c5\u03b8\u03b9\u03b1\u03ba\u03ac\u03ba\u03b7, and \u0386. \u03a7\u03b1\u03bd\u03b9\u03ce\u03c4\u03b7\u03c2,. \u201c\u0391\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03ae \u03a3\u03c4\u03b7 \u039b\u03cd\u03ba\u03c4\u03bf.\u201d <i>\u03a0\u03c1\u03b1\u03ba\u03c4\u03b9\u03ba\u03ac \u03a4\u03b7\u03c2 \u0395\u03bd \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03c2 \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ae\u03c2</i> 176 (2021): 213\u201364.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "256850676",
+  "subject": [],
+  "title": "Sebasteion at Lyttos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "",
+  "reprPoint": [
+    25.368458,
+    35.20807
+  ],
+  "placeTypes": [
+    "unknown"
+  ],
+  "bbox": [
+    25.368458,
+    35.20807,
+    25.368458,
+    35.20807
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589918"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-10T14:37:54Z",
+  "uri": "https://pleiades.stoa.org/places/256850676",
+  "creators": [
+    {
+      "username": "gtsolakis",
+      "homepage": null,
+      "name": "Georgios Tsolakis",
+      "uri": "https://pleiades.stoa.org/author/gtsolakis"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-11T11:45:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-11T11:45:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-11T11:45:14Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-11T11:40:49Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gtsolakis",
+      "modified": "2025-11-10T14:24:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gtsolakis",
+      "modified": "2025-11-10T14:24:42Z"
+    }
+  ]
+}

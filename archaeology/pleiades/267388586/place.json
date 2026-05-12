@@ -1,0 +1,432 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.2627822,
+            51.1467042
+          ],
+          [
+            -3.2627122,
+            51.1468212
+          ],
+          [
+            -3.262448,
+            51.1469772
+          ],
+          [
+            -3.2620594,
+            51.147104
+          ],
+          [
+            -3.2616786,
+            51.1471868
+          ],
+          [
+            -3.2614765,
+            51.1471283
+          ],
+          [
+            -3.2613056,
+            51.1469869
+          ],
+          [
+            -3.2612589,
+            51.1468456
+          ],
+          [
+            -3.2612512,
+            51.1465872
+          ],
+          [
+            -3.2613289,
+            51.1464312
+          ],
+          [
+            -3.2615698,
+            51.1462654
+          ],
+          [
+            -3.2618029,
+            51.1461825
+          ],
+          [
+            -3.2621527,
+            51.1461971
+          ],
+          [
+            -3.2623547,
+            51.1462605
+          ],
+          [
+            -3.262549,
+            51.1463824
+          ],
+          [
+            -3.2626889,
+            51.146514
+          ],
+          [
+            -3.2627433,
+            51.1466018
+          ],
+          [
+            -3.2627822,
+            51.1467042
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Hillfort; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/267388586/osm-location",
+        "description": "Polygonal geometry representing the perimeter and extent of the site, derived from an OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM Location of Trendle Ring"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/189955271",
+          "citationDetail": "Way 189955271",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=189955271",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "end": 100,
+      "title": "OSM Location of Trendle Ring",
+      "provenance": "OpenStreetMap (Way 189955271, version 3, osm:changeset=123849843, 2022-07-20T12:36:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hillfort"
+      ],
+      "description": "Polygonal geometry representing the perimeter and extent of the site, derived from an OpenStreetMap way.",
+      "created": "2013-09-01T01:51:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.2627822,
+            51.1467042
+          ],
+          [
+            -3.2627122,
+            51.1468212
+          ],
+          [
+            -3.262448,
+            51.1469772
+          ],
+          [
+            -3.2620594,
+            51.147104
+          ],
+          [
+            -3.2616786,
+            51.1471868
+          ],
+          [
+            -3.2614765,
+            51.1471283
+          ],
+          [
+            -3.2613056,
+            51.1469869
+          ],
+          [
+            -3.2612589,
+            51.1468456
+          ],
+          [
+            -3.2612512,
+            51.1465872
+          ],
+          [
+            -3.2613289,
+            51.1464312
+          ],
+          [
+            -3.2615698,
+            51.1462654
+          ],
+          [
+            -3.2618029,
+            51.1461825
+          ],
+          [
+            -3.2621527,
+            51.1461971
+          ],
+          [
+            -3.2623547,
+            51.1462605
+          ],
+          [
+            -3.262549,
+            51.1463824
+          ],
+          [
+            -3.2626889,
+            51.146514
+          ],
+          [
+            -3.2627433,
+            51.1466018
+          ],
+          [
+            -3.2627822,
+            51.1467042
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/267388586/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-16T21:51:15Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-16T21:43:48Z"
+        },
+        {
+          "comment": "description",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T12:14:49Z"
+        },
+        {
+          "comment": "description",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T12:07:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T11:56:02Z"
+        },
+        {
+          "comment": "description",
+          "modifiedBy": "thomase",
+          "modified": "2014-03-24T11:55:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:52:21Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:51:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:51:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T01:51:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Trendle_Ring",
+      "citationDetail": "Trendle Ring",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Trendle Ring.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://webapp1.somerset.gov.uk/her/details.asp?prn=33201",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Somerset Historic Environment Record 33201",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=189562",
+      "citationDetail": "no. 189562: TRENDLE RING",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7838292",
+      "citationDetail": "Trendle Ring (Q7838292)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1008249",
+      "citationDetail": "1008249: Trendle Ring hillfort and associated outwork",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "267388586",
+  "subject": [],
+  "title": "Trendle Ring",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Trendle Ring is a prehistoric hill fort in Britain.",
+  "reprPoint": [
+    -3.2619681268207685,
+    51.1466767473449
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    -3.2627822,
+    51.1461825,
+    -3.2612512,
+    51.1471868
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-16T18:23:51Z",
+  "uri": "https://pleiades.stoa.org/places/267388586",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for hillfort; update references @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-16T21:45:47Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-16T18:23:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2014-03-24T11:56:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T01:52:50Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T01:50:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T01:50:48Z"
+    }
+  ]
+}

@@ -1,0 +1,343 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9621159,
+            42.3057515
+          ],
+          [
+            -1.9620614,
+            42.3057801
+          ],
+          [
+            -1.96181,
+            42.305603
+          ],
+          [
+            -1.9617994,
+            42.3055811
+          ],
+          [
+            -1.9618082,
+            42.3055543
+          ],
+          [
+            -1.9642643,
+            42.3036672
+          ],
+          [
+            -1.9644378,
+            42.3035412
+          ],
+          [
+            -1.9646114,
+            42.303705
+          ],
+          [
+            -1.9621159,
+            42.3057515
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-circus",
+      "properties": {
+        "snippet": "Circus, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/128652153/osm-location-of-circus",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of circus"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/24369900",
+          "citationDetail": "Way 24369900",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=24369900",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-circus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/circus",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM Location of circus",
+      "provenance": "OpenStreetMap (Way 24369900, version 4, osm:changeset=160140586, 2024-12-10T18:46:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/circus",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "circus",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-03-23T16:56:31Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9621159,
+            42.3057515
+          ],
+          [
+            -1.9620614,
+            42.3057801
+          ],
+          [
+            -1.96181,
+            42.305603
+          ],
+          [
+            -1.9617994,
+            42.3055811
+          ],
+          [
+            -1.9618082,
+            42.3055543
+          ],
+          [
+            -1.9642643,
+            42.3036672
+          ],
+          [
+            -1.9644378,
+            42.3035412
+          ],
+          [
+            -1.9646114,
+            42.303705
+          ],
+          [
+            -1.9621159,
+            42.3057515
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/128652153/osm-location-of-circus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-11T17:44:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-14T18:17:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-13T13:42:44Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T16:57:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T16:56:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T16:56:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-10T22:07:56Z",
+      "associationCertainty": "certain",
+      "title": "Calagurris (Nassica) Iulia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/128652153/8766543405",
+      "connectionType": "at",
+      "id": "8766543405",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T22:07:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T22:07:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T22:07:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/246279",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=calagurris",
+      "citationDetail": "CALAGURRIS (Calahorra) Logro\u00f1o, Spain",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q127514944",
+      "citationDetail": "Ancient Roman circus of Calagurris (Q127514944)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "128652153",
+  "subject": [],
+  "title": "Circus at Calagurris",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/circus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Circus at Calagurris is located to the northeast of the city and could have accommodated 20,000 spectators.",
+  "reprPoint": [
+    -1.9632074177263024,
+    42.304663806615615
+  ],
+  "placeTypes": [
+    "circus"
+  ],
+  "bbox": [
+    -1.9646114,
+    42.3035412,
+    -1.9617994,
+    42.3057801
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/246279"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-10T22:07:55Z",
+  "uri": "https://pleiades.stoa.org/places/128652153",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "typo in wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-11T18:42:29Z"
+    },
+    {
+      "comment": "update references; add wikidata ncient Roman circus of Calagurris (Q127514944)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-11T18:21:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-14T18:17:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-13T13:42:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-13T13:41:58Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T22:07:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T22:07:55Z"
+    }
+  ]
+}

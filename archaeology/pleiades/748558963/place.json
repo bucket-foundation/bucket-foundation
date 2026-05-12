@@ -1,0 +1,327 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.20789,
+            35.8531822
+          ],
+          [
+            9.2079102,
+            35.8528941
+          ],
+          [
+            9.2079303,
+            35.8528322
+          ],
+          [
+            9.2082773,
+            35.8528567
+          ],
+          [
+            9.208253,
+            35.8530671
+          ],
+          [
+            9.2081689,
+            35.8530671
+          ],
+          [
+            9.208158,
+            35.8532115
+          ],
+          [
+            9.20789,
+            35.8531822
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basilique-of-hildeguns",
+      "properties": {
+        "snippet": "Basilica; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/748558963/osm-location-of-basilique-of-hildeguns",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Basilique of Hildeguns"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/204686845",
+          "citationDetail": "Way 204686845",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=204686845",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basilique-of-hildeguns",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "end": 640,
+      "title": "OSM location of Basilique of Hildeguns",
+      "provenance": "OpenStreetMap (Way 204686845, version 1, osm:changeset=14957838, 2013-02-08T16:35:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "basilica"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-10-07T14:13:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.20789,
+            35.8531822
+          ],
+          [
+            9.2079102,
+            35.8528941
+          ],
+          [
+            9.2079303,
+            35.8528322
+          ],
+          [
+            9.2082773,
+            35.8528567
+          ],
+          [
+            9.208253,
+            35.8530671
+          ],
+          [
+            9.2081689,
+            35.8530671
+          ],
+          [
+            9.208158,
+            35.8532115
+          ],
+          [
+            9.20789,
+            35.8531822
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/748558963/osm-location-of-basilique-of-hildeguns",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-12T16:05:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-07T14:14:00Z"
+        },
+        {
+          "comment": "supersedes previously published location.",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-07T14:13:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-07T14:13:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-07T14:13:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-07T01:09:29Z",
+      "associationCertainty": "certain",
+      "title": "Mactaris",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/748558963/3694548268",
+      "connectionType": "at",
+      "id": "3694548268",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-07T01:09:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-07T01:09:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-07T01:09:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/324774",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://brepols.metapress.com/content/f01025q1110nvm63/resource-secured/?target=fulltext.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Berndt 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HY6U5LG3",
+      "formattedCitation": "<div class=\"csl-entry\">Berndt, Guido M. \u201cArchitecture and the Vandal Elite in Africa.\u201d <i>Hortus Artium Medievalium</i> 13, no. 2 (2007): 291\u2013300.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aentry%3Dmactaris",
+      "citationDetail": "MACTARIS (Mactar) Tunisia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "748558963",
+  "subject": [],
+  "title": "Basilica of Hildeguns",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A basilica dating to the time of the Vandals.",
+  "reprPoint": [
+    9.20807514211434,
+    35.85301332609558
+  ],
+  "placeTypes": [
+    "basilica"
+  ],
+  "bbox": [
+    9.20789,
+    35.8528322,
+    9.2082773,
+    35.8532115
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/324774"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-07T01:09:11Z",
+  "uri": "https://pleiades.stoa.org/places/748558963",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-06T01:32:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-05T21:36:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-07T13:49:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-07T13:49:33Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-07T01:09:58Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-07T01:09:32Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-07T01:09:11Z"
+    }
+  ]
+}

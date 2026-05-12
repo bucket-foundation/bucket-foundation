@@ -1,0 +1,644 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4321449,
+          41.8346522
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-temple",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/422916/location-of-temple",
+        "description": "Representative point location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of resti di Tempio di Dia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2596766502",
+          "citationDetail": "Node 2596766502",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2596766502",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of resti di Tempio di Dia",
+      "provenance": "OpenStreetMap (Node 2596766502, version 1, osm:changeset=19660823, 2013-12-27T13:09:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative point location based on OpenStreetMap.",
+      "created": "2013-12-27T13:10:23Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4321449,
+          41.8346522
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/422916/location-of-temple",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T04:53:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-08-05T17:51:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-29T15:01:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T00:39:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-27T21:06:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-27T16:28:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-27T13:10:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-06-07T19:49:21Z",
+      "associationCertainty": "certain",
+      "title": "Magliana Vecchia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/422916/magliana-vecchia",
+      "connectionType": "near",
+      "id": "magliana-vecchia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-12-07T17:10:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-07T15:15:44Z"
+        },
+        {
+          "comment": "Broise 1989",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-07T15:15:39Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T19:49:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T19:49:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422968",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/41737295",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Broise 1989",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G4FB5XF3",
+          "formattedCitation": "<div class=\"csl-entry\">Broise, Henri, and John Scheid. \u201cRecherches Au Bois Sacr\u00e9 De Dea Dia (La Magliana, Rome).\u201d <i>Revue Arch\u00e9ologique</i> n.s., no. 1 (1989): 199\u2013203. https://www.jstor.org/stable/41737295.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 B2 Dea Dia, T.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broise 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E9N3I3EV",
+      "formattedCitation": "<div class=\"csl-entry\">Broise, Henri, and John Scheid. <i>Recherches Arch\u00e9ologiques \u00e0 La Magliana: Le Balneum Des Fr\u00e8res Arvales</i>. Roma Antica 1. Roma: Ecole fran\u00e7aise de Rome, 1987.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Arval_Brethren",
+      "citationDetail": "Arval Brethren",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Arval Brethren.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.arvaliastoria.it/dblog/scheda.asp?idscheda=127",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Arvalia Storia, Tempio di Dia",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Dea_Dia",
+      "citationDetail": "Dea Dia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Dea Dia.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Friggeri 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S8SFEMRN",
+      "formattedCitation": "<div class=\"csl-entry\">Friggeri, Rosanna, and Marina Magnani Cianetti, eds. <i>Terme di Diocleziano: il chiostro piccolo della Certosa di Santa Maria degli Angeli</i>. Milano: Electa, 2014.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.encquran.brill.nl/entries/religion-past-and-present/fratres-arvales-SIM_07800?s.num=0&s.q=arvales",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Scheid 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RD67AHSF",
+      "formattedCitation": "<div class=\"csl-entry\">Scheid, John. \u201cFratres Arvales.\u201d In <i>Religion Past and Present</i>. Brill, April 1, 2011. https://referenceworks.brillonline.com/entries/religion-past-and-present/fratres-arvales-SIM_07800?s.num=0&amp;s.q=arvales.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.encquran.brill.nl/entries/brill-s-new-pauly/dea-dia-e311860?s.num=0&s.q=dea+dia",
+      "citationDetail": "Dea Dia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "I2 2, 1546",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "CIL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JCY8WN8B",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Corpus inscriptionum latinarum</i>. Berolini: Apud G. Reimerum, 1862.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.encquran.brill.nl/entries/brill-s-new-pauly/arvales-fratres-e202720#",
+      "citationDetail": "Fratres Arvales",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Scheid 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8TE9XGFL",
+      "formattedCitation": "<div class=\"csl-entry\">Scheid, John. <i>Romulus et ses fr\u00e8res: le coll\u00e8ge des Fr\u00e8res Arvales, mod\u00e8le du culte public dans la Rome des empereurs</i>. Biblioth\u00e8que des \u00e9coles fran\u00e7aises d\u2019Ath\u00e8nes et de Rome 275. Rome: Ecole fran\u00e7aise de Rome, 1990.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "20551",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/crai_0065-0536_2013_num_157_1_95301",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Scheid 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6XGYMMGB",
+      "formattedCitation": "<div class=\"csl-entry\">Scheid, John. \u201cLe bois sacr\u00e9 de Dea Dia et la limite du territoire de la cit\u00e9 de Rome.\u201d <i>Comptes rendus des s\u00e9ances de l\u2019Acad\u00e9mie des Inscriptions et Belles-Lettres</i> 157, no. 1 (2013): 151\u201366. https://doi.org/10.3406/crai.2013.95301.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://romeresearchgroup.org/items/1000015",
+      "citationDetail": "1000015",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TCW",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZV7SNRDS",
+      "formattedCitation": "<div class=\"csl-entry\">John D. Muccigrosso, and Louis I. Hamilton. <i>Temples of the Classical World</i>. Rome Research Group. Accessed October 15, 2024. https://romeresearchgroup.org/database-of-temples/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/41737295",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broise 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G4FB5XF3",
+      "formattedCitation": "<div class=\"csl-entry\">Broise, Henri, and John Scheid. \u201cRecherches Au Bois Sacr\u00e9 De Dea Dia (La Magliana, Rome).\u201d <i>Revue Arch\u00e9ologique</i> n.s., no. 1 (1989): 199\u2013203. https://www.jstor.org/stable/41737295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dea Dia T(emplum)",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "43 B2 Dea Dia, T.",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "Dea-Dia-T",
+      "end": 1999,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 43 B2 Dea Dia, T.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2021-08-05T17:52:10Z",
+      "uri": "https://pleiades.stoa.org/places/422916/Dea-Dia-T",
+      "creators": [
+        {
+          "username": null,
+          "name": "L. Quilici"
+        },
+        {
+          "username": null,
+          "name": "S. Quilici Gigli"
+        }
+      ],
+      "attested": "Dea Dia, T.",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "converted to map label for batlas",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-05T18:22:38Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "thomase",
+          "modified": "2021-08-05T17:52:10Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:55:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-11T05:12:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:38:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:31:55Z"
+        }
+      ]
+    }
+  ],
+  "id": "422916",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=temple"
+  ],
+  "title": "Dea Dia (temple)",
+  "provenance": "Barrington Atlas: BAtlas 43 B2 Dea Dia, T.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Magliana</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Arval Brethren cultivated the cult of the Dea Dia. The remains of this Augustan era temple, located at La Tavernaccia restaurant in the Magliana Vecchia neighborhood of Rome, are subterranean and not open to the public.",
+  "reprPoint": [
+    12.4321449,
+    41.8346522
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    12.4321449,
+    41.8346522,
+    12.4321449,
+    41.8346522
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422968"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:31:55Z",
+  "uri": "https://pleiades.stoa.org/places/422916",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Broise 1989",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T19:54:37Z"
+    },
+    {
+      "comment": "TCW 1000015",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T19:50:18Z"
+    },
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T19:48:41Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-28T21:54:18Z"
+    },
+    {
+      "comment": "Scheid 2013",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-29T02:35:02Z"
+    },
+    {
+      "comment": "typo in summary",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-05T17:55:10Z"
+    },
+    {
+      "comment": "added DARMC reference to maintain linkage after retracting less precise location",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-05T17:52:01Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-05T17:51:12Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-05T17:50:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-26T03:15:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-29T15:00:54Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-29T00:38:10Z"
+    },
+    {
+      "comment": "edited description, added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-27T16:29:56Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:44:28Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:55:32Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:13:41Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:44:02Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:12:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:38:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:31:55Z"
+    }
+  ]
+}

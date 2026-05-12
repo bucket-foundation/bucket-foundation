@@ -1,0 +1,484 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4894207,
+            41.8997754
+          ],
+          [
+            12.4898859,
+            41.9000909
+          ],
+          [
+            12.4900202,
+            41.900182
+          ],
+          [
+            12.4900628,
+            41.9001473
+          ],
+          [
+            12.4901175,
+            41.9001026
+          ],
+          [
+            12.4899596,
+            41.8999955
+          ],
+          [
+            12.490263,
+            41.8997476
+          ],
+          [
+            12.4903316,
+            41.8997941
+          ],
+          [
+            12.4906091,
+            41.8995674
+          ],
+          [
+            12.4907102,
+            41.8994848
+          ],
+          [
+            12.4907654,
+            41.8994398
+          ],
+          [
+            12.4901976,
+            41.8990547
+          ],
+          [
+            12.4897534,
+            41.8994176
+          ],
+          [
+            12.489811,
+            41.8994566
+          ],
+          [
+            12.4894207,
+            41.8997754
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-palazzo-delle-esposizioni",
+      "properties": {
+        "snippet": "Unknown; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/245668205/osm-location-of-palazzo-delle-esposizioni",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Palazzo delle Esposizioni"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/51930840",
+          "citationDetail": "Way 51930840",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=51930840",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-palazzo-delle-esposizioni",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 2099,
+      "title": "OSM location of Palazzo delle Esposizioni",
+      "provenance": "OpenStreetMap (Way 51930840, version 13, osm:changeset=74255785, 2019-09-09T10:58:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-04-05T14:26:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4894207,
+            41.8997754
+          ],
+          [
+            12.4898859,
+            41.9000909
+          ],
+          [
+            12.4900202,
+            41.900182
+          ],
+          [
+            12.4900628,
+            41.9001473
+          ],
+          [
+            12.4901175,
+            41.9001026
+          ],
+          [
+            12.4899596,
+            41.8999955
+          ],
+          [
+            12.490263,
+            41.8997476
+          ],
+          [
+            12.4903316,
+            41.8997941
+          ],
+          [
+            12.4906091,
+            41.8995674
+          ],
+          [
+            12.4907102,
+            41.8994848
+          ],
+          [
+            12.4907654,
+            41.8994398
+          ],
+          [
+            12.4901976,
+            41.8990547
+          ],
+          [
+            12.4897534,
+            41.8994176
+          ],
+          [
+            12.489811,
+            41.8994566
+          ],
+          [
+            12.4894207,
+            41.8997754
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/245668205/osm-location-of-palazzo-delle-esposizioni",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-05T18:37:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T14:26:39Z"
+        },
+        {
+          "comment": "osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T14:26:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T14:26:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T14:26:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-09T00:53:28Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/245668205/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-05T18:37:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T14:23:56Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T14:23:41Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-09T00:53:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-09T00:53:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DD%3Aentry+group%3D2%3Aentry%3Dbetitius-perpetuus-arzygius-domus",
+          "citationDetail": "BETITIUS PERPETUUS ARZYGIUS, DOMUS",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Platner 1929 (Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+          "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-09T00:53:49Z",
+      "associationCertainty": "certain",
+      "title": "Regio III (Isis et Serapis)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/245668205/regio-iii-isis-et-serapis",
+      "connectionType": "part_of_analytical",
+      "id": "regio-iii-isis-et-serapis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-05T18:37:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T14:23:56Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T14:23:17Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-09T00:53:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-09T00:53:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/378562728",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DD%3Aentry+group%3D2%3Aentry%3Dbetitius-perpetuus-arzygius-domus",
+          "citationDetail": "BETITIUS PERPETUUS ARZYGIUS, DOMUS",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Platner 1929 (Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+          "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DD%3Aentry+group%3D2%3Aentry%3Dbetitius-perpetuus-arzygius-domus",
+      "citationDetail": "BETITIUS PERPETUUS ARZYGIUS, DOMUS",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Betitius_Perpetuus_Arzygius",
+      "citationDetail": "Betitius Perpetuus Arzygius",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q129084994",
+      "citationDetail": "House of Betitius Perpetuus Arzygius (Q129084994)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "245668205",
+  "subject": [],
+  "title": "Betitius Perpetuus Arzygius, Domus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A domus included in Regio III, the house of Betitius Perpetuus Arzygius was located on the Quirinal Hill close to the ara incendii Neroniani. Some of its remains have been documented beneath the present Palazzo delle Esposizioni.",
+  "reprPoint": [
+    12.490075857138239,
+    41.89962664600039
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    12.4894207,
+    41.8990547,
+    12.4907654,
+    41.900182
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/378562728"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-09T00:53:08Z",
+  "uri": "https://pleiades.stoa.org/places/245668205",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q129084994",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-09T03:14:41Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-05T18:37:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-05T14:25:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-05T14:23:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-05T14:22:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-09T00:53:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-09T00:53:08Z"
+    }
+  ]
+}

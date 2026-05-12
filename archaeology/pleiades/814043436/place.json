@@ -1,0 +1,255 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.6491235,
+            56.3522295
+          ],
+          [
+            -3.6489411,
+            56.3517837
+          ],
+          [
+            -3.6481364,
+            56.3518847
+          ],
+          [
+            -3.648351,
+            56.3523247
+          ],
+          [
+            -3.6491235,
+            56.3522295
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Tower-single; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/814043436/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Muir O'Fauld Roman Signal Station"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/277481883",
+          "citationDetail": "Way 277481883",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=277481883",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-single"
+      ],
+      "end": 410,
+      "title": "OSM location of Muir O'Fauld Roman Signal Station",
+      "provenance": "OpenStreetMap (Way 277481883, version 1, osm:changeset=21967621, 2014-04-27T03:21:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-single"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tower-single"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-04-27T03:22:06Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.6491235,
+            56.3522295
+          ],
+          [
+            -3.6489411,
+            56.3517837
+          ],
+          [
+            -3.6481364,
+            56.3518847
+          ],
+          [
+            -3.648351,
+            56.3523247
+          ],
+          [
+            -3.6491235,
+            56.3522295
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/814043436/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T13:05:19Z"
+        },
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T13:05:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T00:18:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T00:16:50Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-27T03:22:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-27T03:22:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-27T03:22:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.historic-scotland.gov.uk/propertyresults/propertydetail.htm?PropID=PL_237",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "MUIR O' FAULD ROMAN SIGNAL STATION",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "814043436",
+  "subject": [],
+  "title": "Muir O' Fauld",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-single",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A first-century Roman watch tower on the Gask Ridge.",
+  "reprPoint": [
+    -3.648635521438006,
+    56.35205297537944
+  ],
+  "placeTypes": [
+    "tower-single",
+    "fort"
+  ],
+  "bbox": [
+    -3.6491235,
+    56.3517837,
+    -3.6481364,
+    56.3523247
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-04-27T03:19:49Z",
+  "uri": "https://pleiades.stoa.org/places/814043436",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-14T13:05:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-14T00:18:02Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-04-27T03:19:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-04-27T03:19:50Z"
+    }
+  ]
+}

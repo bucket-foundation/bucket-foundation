@@ -1,0 +1,200 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.289298,
+          38.690602
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-quarry-centerpoint",
+      "properties": {
+        "snippet": "Quarry; 400 BC - 301 BC",
+        "link": "https://pleiades.stoa.org/places/215815905/imagery-location-of-quarry-centerpoint",
+        "description": "Location after Funke 2001, page 196, figure 6. Dates from Zeus temple, see Funke page 192.",
+        "location_precision": "precise",
+        "title": "Imagery location of quarry centerpoint"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fourth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Funke 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QMWTJSP8",
+          "formattedCitation": "<div class=\"csl-entry\">Funke, Peter. \u201cNew Historical-Archaeological Research on the Ancient Polis Stratos.\u201d In <i>Foundation and destruction: Nikopolis and northwestern Greece\u202f: the archaeological evidence for the city destructions, the foundation of Nikopolis and the synoecism</i>, by Jacob Isager, 189\u2013203. Monographs of the Danish Institute at Athens. Athens: Danish Institute at Athens, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-quarry-centerpoint",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "end": -301,
+      "title": "Imagery location of quarry centerpoint",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -400,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "quarry"
+      ],
+      "description": "Location after Funke 2001, page 196, figure 6. Dates from Zeus temple, see Funke page 192.",
+      "created": "2022-08-16T20:02:54Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.289298,
+          38.690602
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/215815905/imagery-location-of-quarry-centerpoint",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-16T23:24:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-16T20:04:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-16T20:02:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-16T20:02:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/bch_0007-4217_2001_num_125_2_13114",
+      "citationDetail": "page 196",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Funke 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QMWTJSP8",
+      "formattedCitation": "<div class=\"csl-entry\">Funke, Peter. \u201cNew Historical-Archaeological Research on the Ancient Polis Stratos.\u201d In <i>Foundation and destruction: Nikopolis and northwestern Greece\u202f: the archaeological evidence for the city destructions, the foundation of Nikopolis and the synoecism</i>, by Jacob Isager, 189\u2013203. Monographs of the Danish Institute at Athens. Athens: Danish Institute at Athens, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "215815905",
+  "subject": [],
+  "title": "Spathari (quarry)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A limestone quarry located just south of the modern Acarnanian village of Lepenou with clear evidence of having been used as a source for the construction of the temple of Zeus and other monuments at nearby ancient Stratos.",
+  "reprPoint": [
+    21.289298,
+    38.690602
+  ],
+  "placeTypes": [
+    "quarry"
+  ],
+  "bbox": [
+    21.289298,
+    38.690602,
+    21.289298,
+    38.690602
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-16T19:57:05Z",
+  "uri": "https://pleiades.stoa.org/places/215815905",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-16T23:24:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-16T20:04:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-16T20:03:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-16T19:57:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-16T19:57:05Z"
+    }
+  ]
+}

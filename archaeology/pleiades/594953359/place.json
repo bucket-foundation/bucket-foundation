@@ -1,0 +1,223 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.027901,
+          51.350988
+        ]
+      },
+      "type": "Feature",
+      "id": "representative-point-derived-from-pastscape",
+      "properties": {
+        "snippet": "Villa; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/594953359/representative-point-derived-from-pastscape",
+        "description": "Coordinates derived from Pastscape record and converted to WGS84 latitude, longitude values from the Ordnance Survey grid reference (TQ 4131 6327), resolved to its center point.",
+        "location_precision": "precise",
+        "title": "Representative point derived from Pastscape"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=407834",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Pastscape Monument 407834",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "representative-point-derived-from-pastscape",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 410,
+      "title": "Representative point derived from Pastscape",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Coordinates derived from Pastscape record and converted to WGS84 latitude, longitude values from the Ordnance Survey grid reference (TQ 4131 6327), resolved to its center point.",
+      "created": "2017-09-23T02:21:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.027901,
+          51.350988
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/594953359/representative-point-derived-from-pastscape",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T22:53:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T22:53:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-23T02:21:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-23T02:21:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-23T02:21:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=407834",
+      "citationDetail": "407834",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Philp et al. 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M2AZN2DI",
+      "formattedCitation": "<div class=\"csl-entry\">Philp, Brian, Keith Parfitt, John Willson, and Wendy Williams. <i>The Roman Villa Site at Keston, Kent: Second Report (Excavations 1967 &amp; 1979-99)</i>. Kent Monograph Series 8. Kent: Kent Archaeological Rescue Unit, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "594953359",
+  "subject": [],
+  "title": "Lower Warbank Roman Villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Romano-British villa near Keston, built over an earlier Iron Age site. Findspot of RIB 3025.",
+  "reprPoint": [
+    0.027901,
+    51.350988
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    0.027901,
+    51.350988,
+    0.027901,
+    51.350988
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-09-23T02:06:54Z",
+  "uri": "https://pleiades.stoa.org/places/594953359",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-31T12:40:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-06T22:53:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2017-09-23T02:21:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sarcanon",
+      "modified": "2017-09-23T02:07:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2017-09-23T02:06:54Z"
+    }
+  ]
+}

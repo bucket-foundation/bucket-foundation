@@ -1,0 +1,334 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.8833845,
+            36.2546481
+          ],
+          [
+            36.8833871,
+            36.2545184
+          ],
+          [
+            36.8836808,
+            36.254527
+          ],
+          [
+            36.8836755,
+            36.2546557
+          ],
+          [
+            36.8833845,
+            36.2546481
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mushabbak-basilica",
+      "properties": {
+        "snippet": "Church; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/791239360/osm-location-of-mushabbak-basilica",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Mushabbak Basilica"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/506137556",
+          "citationDetail": "Way 506137556",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=506137556",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mushabbak-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church"
+      ],
+      "end": 640,
+      "title": "OSM location of Mushabbak Basilica",
+      "provenance": "OpenStreetMap (Way 506137556, version 3, osm:changeset=142565372, 2023-10-14T07:50:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-07-09T00:18:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.8833845,
+            36.2546481
+          ],
+          [
+            36.8833871,
+            36.2545184
+          ],
+          [
+            36.8836808,
+            36.254527
+          ],
+          [
+            36.8836755,
+            36.2546557
+          ],
+          [
+            36.8833845,
+            36.2546481
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/791239360/osm-location-of-mushabbak-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-07T19:18:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-04T21:20:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-09T00:25:09Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-09T00:19:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-09T00:18:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-09T00:18:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/498459970",
+      "citationDetail": "204",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Burns 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6EE9SZRE",
+      "formattedCitation": "<div class=\"csl-entry\">Burns, Ross. <i>Monuments of Syria.</i> London: I.B. Tauris, 1999. http://www.worldcat.org/oclc/498459970.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.livius.org/articles/place/mushabbak/",
+      "citationDetail": "Mushabbak",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+      "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Dead_Cities",
+      "citationDetail": "Dead Cities",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Dead Cities.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/1348",
+      "citationDetail": "1348: Ancient Villages of Northern Syria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/930067952",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ball 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TK5TAQSV",
+      "formattedCitation": "<div class=\"csl-entry\">Ball, Warwick. <i>Rome in the East: The Transformation of an Empire</i>. 2nd ed. 1 vols. London\u202f; New York: Routledge, Taylor &amp; Francis Group, 2016. http://www.worldcat.org/oclc/930067952.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1294802",
+      "citationDetail": "Mushabbak (Q1294802)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "791239360",
+  "subject": [
+    "church",
+    "extant remains",
+    "UWHS"
+  ],
+  "title": "Mushabbak Basilica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "<p><span>The remains of a well-preserved Byzantine church (ca. 470) located five km west of the Monastery of St Simeon.\u00a0</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The remains of a well-preserved Byzantine church (ca. 470) located five km west of the Monastery of St Simeon. The ruins lie near the town of Daret A'zzeh.",
+  "reprPoint": [
+    36.88353182246937,
+    36.25458708676438
+  ],
+  "placeTypes": [
+    "church-2",
+    "basilica",
+    "church"
+  ],
+  "bbox": [
+    36.8833845,
+    36.2545184,
+    36.8836808,
+    36.2546557
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-07-09T00:17:06Z",
+  "uri": "https://pleiades.stoa.org/places/791239360",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references, add wikidata Mushabbak (Q1294802)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-07T19:24:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-08T19:45:51Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-04T21:20:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-04T21:20:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-09T00:25:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-09T00:23:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-09T00:22:28Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-09T00:22:05Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-09T00:17:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-09T00:17:06Z"
+    }
+  ]
+}

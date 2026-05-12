@@ -1,0 +1,373 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5386535,
+            41.8359395
+          ],
+          [
+            12.538647,
+            41.8359357
+          ],
+          [
+            12.538661,
+            41.8359225
+          ],
+          [
+            12.5386675,
+            41.8359263
+          ],
+          [
+            12.5386535,
+            41.8359395
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-monumento-funerario-rabirii",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/372624618/osm-location-of-monumento-funerario-rabirii",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Monumento Funerario Rabirii"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/158028766",
+          "citationDetail": "Way 158028766",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=158028766",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-monumento-funerario-rabirii",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Monumento Funerario Rabirii",
+      "provenance": "OpenStreetMap (Way 158028766, version 3, osm:changeset=117122953, 2022-02-07T14:46:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-10-06T21:09:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5386535,
+            41.8359395
+          ],
+          [
+            12.538647,
+            41.8359357
+          ],
+          [
+            12.538661,
+            41.8359225
+          ],
+          [
+            12.5386675,
+            41.8359263
+          ],
+          [
+            12.5386535,
+            41.8359395
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/372624618/osm-location-of-monumento-funerario-rabirii",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-07T19:18:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-06T21:09:42Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-06T21:09:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-06T21:09:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-06T21:09:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:56:20Z",
+      "associationCertainty": "certain",
+      "title": "Via Appia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/372624618/356966898",
+      "connectionType": "on",
+      "id": "356966898",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "change type, add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-06T21:10:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/356966898",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q110838877",
+          "citationDetail": "Tomb of Rabirii (Q110838877)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Joshel 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QED4VCQG",
+      "formattedCitation": "<div class=\"csl-entry\">Joshel, Sandra R. (Sandra Rae). <i>Slavery in the Roman World</i>. Cambridge Introduction to Roman Civilization. New York\u202f: Cambridge University Press, 2010.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3T2F78RM",
+      "formattedCitation": "<div class=\"csl-entry\">George, Michele. <i>Roman Slavery and Roman Material Culture</i>. Phoenix., University of Toronto Press., Supplementary 52. Toronto: University of Toronto Press, 2013.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/24308615",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cupello and Hughes 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CN8JVYAE",
+      "formattedCitation": "<div class=\"csl-entry\">Cupello, Katherine E., and Lisa A. Hughes. \u201cReuse, the Roman Funerary Monument and the Rabirii: Violation of Memory or Commemoration of Past and Present?\u201d <i>Annali Della Scuola Normale Superiore Di Pisa. Classe Di Lettere e Filosofia</i> 2, no. 1 (2010): 3\u201323, 365. https://www.jstor.org/stable/24308615.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q110838877",
+      "citationDetail": "Tomb of Rabirii (Q110838877)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=5513",
+      "citationDetail": "5513: Tomba dei Rabirii",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "372624618",
+  "subject": [
+    "tomb",
+    "extant remains"
+  ],
+  "title": "Tomb of Gaius Rabirius Postumus Libertus and family",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A tomb of the Republican period belonging to the freedman family of the Rabirii.",
+  "reprPoint": [
+    12.538657249999998,
+    41.835931
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.538647,
+    41.8359225,
+    12.5386675,
+    41.8359395
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/356966898"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-02-20T17:02:23Z",
+  "uri": "https://pleiades.stoa.org/places/372624618",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-08T15:31:49Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-06T21:08:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-25T19:21:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-03T02:07:44Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-15T20:45:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-03-14T19:31:12Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-03-14T19:30:30Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-20T17:02:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-20T17:02:23Z"
+    }
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.4825906,
+            43.5421187
+          ],
+          [
+            16.4830417,
+            43.5421075
+          ],
+          [
+            16.4830448,
+            43.5420515
+          ],
+          [
+            16.4830819,
+            43.5420493
+          ],
+          [
+            16.4831066,
+            43.5420246
+          ],
+          [
+            16.4831066,
+            43.541991
+          ],
+          [
+            16.4830788,
+            43.5419776
+          ],
+          [
+            16.4830412,
+            43.5419747
+          ],
+          [
+            16.4830432,
+            43.5419331
+          ],
+          [
+            16.4825884,
+            43.5419346
+          ],
+          [
+            16.4825906,
+            43.5421187
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-manastirine-basilica",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/135962387/location-of-manastirine-basilica",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Basilica Manastirine"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/93062847",
+          "citationDetail": "Way 93062847",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=93062847",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-manastirine-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Basilica Manastirine",
+      "provenance": "OpenStreetMap (Way 93062847, version 5, osm:changeset=54081735, 2017-11-25T20:46:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-07-13T01:07:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.4825906,
+            43.5421187
+          ],
+          [
+            16.4830417,
+            43.5421075
+          ],
+          [
+            16.4830448,
+            43.5420515
+          ],
+          [
+            16.4830819,
+            43.5420493
+          ],
+          [
+            16.4831066,
+            43.5420246
+          ],
+          [
+            16.4831066,
+            43.541991
+          ],
+          [
+            16.4830788,
+            43.5419776
+          ],
+          [
+            16.4830412,
+            43.5419747
+          ],
+          [
+            16.4830432,
+            43.5419331
+          ],
+          [
+            16.4825884,
+            43.5419346
+          ],
+          [
+            16.4825906,
+            43.5421187
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/135962387/location-of-manastirine-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-17T22:33:10Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-17T18:48:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-26T21:47:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-29T04:16:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-29T04:15:41Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T01:07:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T01:07:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T01:07:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-04-07T02:14:43Z",
+      "associationCertainty": "certain",
+      "title": "Salona",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/135962387/2837950986",
+      "connectionType": "at",
+      "id": "2837950986",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-07T02:14:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-07T02:14:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-07T02:14:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/197488",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "Salona",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rendi\u0107-Mio\u010devi\u0107 1954",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/229Y4FVQ",
+      "formattedCitation": "<div class=\"csl-entry\">Rendi\u0107-Mio\u010devi\u0107, Duje. <i>Neue Funde in Der Altchristlichen Nekropole Manastirine in Salona: -Arch. Iugoslavica 1</i>. Beograd, 1954.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131261208",
+      "citationDetail": "Basilica Manastirine (Q131261208)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "135962387",
+  "subject": [],
+  "title": "Basilica Manastirine",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An important extra-mural Christian site at Solina. The site includes the basilica and the cemetery of Manastirine, associated with a Christian martyr.",
+  "reprPoint": [
+    16.48283571783099,
+    43.542022344976154
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    16.4825884,
+    43.5419331,
+    16.4831066,
+    43.5421187
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/197488"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-04-07T02:14:39Z",
+  "uri": "https://pleiades.stoa.org/places/135962387",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-17T22:32:55Z"
+    },
+    {
+      "comment": "wikidata Q131261208",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-17T18:51:28Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T10:46:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-26T21:51:44Z"
+    },
+    {
+      "comment": "references, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-26T21:51:32Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-07T02:15:22Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-07T02:14:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-07T02:14:39Z"
+    }
+  ]
+}

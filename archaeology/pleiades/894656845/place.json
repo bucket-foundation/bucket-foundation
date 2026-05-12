@@ -1,0 +1,441 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.4233085,
+            37.0827019
+          ],
+          [
+            22.4234812,
+            37.0827209
+          ],
+          [
+            22.4234894,
+            37.0826734
+          ],
+          [
+            22.4233167,
+            37.0826545
+          ],
+          [
+            22.4233085,
+            37.0827019
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "sanctuary-of-athena-chalkioikos",
+      "properties": {
+        "snippet": "Temple-2, Sanctuary; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/894656845/sanctuary-of-athena-chalkioikos",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Sanctuary of Athena Chalkioikos"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1448624898",
+          "citationDetail": "Way 1448624898",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1448624898",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "sanctuary-of-athena-chalkioikos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": -550,
+      "title": "OSM location of Sanctuary of Athena Chalkioikos",
+      "provenance": "OpenStreetMap (Way 1448624898, version 1, osm:changeset=174421525, 2025-11-09T15:04:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2",
+        "sanctuary"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-11-11T16:34:35Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.4233085,
+            37.0827019
+          ],
+          [
+            22.4234812,
+            37.0827209
+          ],
+          [
+            22.4234894,
+            37.0826734
+          ],
+          [
+            22.4233167,
+            37.0826545
+          ],
+          [
+            22.4233085,
+            37.0827019
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/894656845/sanctuary-of-athena-chalkioikos",
+      "creators": [
+        {
+          "username": "icristofaro",
+          "homepage": null,
+          "name": "Ilaria Cristofaro",
+          "uri": "https://pleiades.stoa.org/author/icristofaro"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-20T20:35:54Z"
+        },
+        {
+          "comment": "Archaic",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-20T20:34:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "icristofaro",
+          "modified": "2026-03-16T09:26:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "icristofaro",
+          "modified": "2025-11-11T16:35:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "icristofaro",
+          "modified": "2025-11-11T16:34:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "icristofaro",
+          "modified": "2025-11-11T16:34:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-03-16T09:25:29Z",
+      "associationCertainty": "certain",
+      "title": "Sparta",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/894656845/sparta",
+      "connectionType": "at",
+      "id": "sparta",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-20T20:35:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "icristofaro",
+          "modified": "2026-03-16T09:26:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "icristofaro",
+          "modified": "2026-03-16T09:25:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "icristofaro",
+          "modified": "2026-03-16T09:25:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570685",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "icristofaro",
+          "homepage": null,
+          "name": "Ilaria Cristofaro",
+          "uri": "https://pleiades.stoa.org/author/icristofaro"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/371224SACh",
+      "citationDetail": "Athena Chalkioikos temple (Sparta)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q57302774",
+      "citationDetail": "Temple of Athena Chalkioikos (Q57302774)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Templo_de_Atenea_Calcieco",
+      "citationDetail": "Templo de Atenea Calcieco",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=sparta",
+      "citationDetail": "SPARTA Lakonia, Greece",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "ier\u00f3n t\u00eds chalkio\u00edkou",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "ieron-tis-chalkioikou",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2026-03-20T20:32:31Z",
+      "uri": "https://pleiades.stoa.org/places/894656845/ieron-tis-chalkioikou",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u1f31\u03b5\u03c1\u1f78\u03bd \u03c4\u1fc6\u03c2 \u03a7\u03b1\u03bb\u03ba\u03b9\u03bf\u03af\u03ba\u03bf\u03c5",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-20T20:35:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-20T20:35:07Z"
+        },
+        {
+          "comment": "add Greek name, Thucydides reference",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-20T20:32:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-20T20:32:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "894656845",
+  "subject": [
+    "Acropolis",
+    "terrace",
+    "Temple",
+    "Athena"
+  ],
+  "title": "Sanctuary of Athena Chalkioikos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Temple of Athena Chalkioikos (meaning \"of the Brazen House\") is the most important sanctuary of the Acropolis of Sparta. The remains of the Sanctuary of Athena Chalkioikos, the longest and most important sanctuary in the area of the Acropolis, are located above the Roman theatre. The excavation was conducted during the early 20th century by the British School at Athens. The earliest archaeological finds date from the Mycenaean period.\u00a0The cult of Athena on the Acropolis began in the 8th century BC. The sanctuary was renovated in the middle of the 6th century BC and flourished during the 5th century BC. In the Roman period, the worship of Athena Chalkioikos gradually declined. The sanctuary was abandoned in the 4th century AD, and houses were built in its place.\u00a0A few remains of the Sanctuary of Athena Chalkioikos are still preserved. The south wall consists of roughly dressed conglomerate stones and forms an angle at its eastern part with another wall of the same construction. The east wall of the sanctuary is revealed further north.\u00a0</p>\r\n<p>The temple of Athena originally belonged to the kome Pitane. Eventually, the Athena of the Acropolis became a patron goddess (Poliouchos). The name Chalkioikos (of the Bronze or Brazen House) most probably results from the bronze plaques bearing mythological scenes that adorned the interior walls of the temple. Both the decoration and the bronze cult statue of the goddess Athena were works of the Lacedaemonian artist Gitiadas.\u00a0The worship at the temple of Athena Chalkioikos was closely related to the public and military life of the city. The shrine of the patron goddess was the gathering place of adult soldiers and the final destination of the procession of young Spartans. It was also the place for showing the athletic successes of the Spartans. There they erected monuments, not only in commemoration of military successes, but also to highlight the accomplishments of the winners in sports and equestrian events (inscribed dumbbells, Panathenaic prize amphorae, dedications of victors in local races, etc.). Another common type of offering was the numerous votive terracotta and bronze bells of the Classical period, some of which were dedicated by women.</p>\r\n<p class=\"p1\">The marble torso of a hoplite known as \"Leonidas\" was also found in the area of the sanctuary. The statue is exhibited in the Archaeological Museum of Sparta. The sculpture is of the Severe Style and is a work of a Laconian workshop, possibly part of a statue group that was assigned to the sanctuary.</p>\r\n<p class=\"p1\"><strong>Orientation:</strong></p>\r\n<p class=\"p1\">The orientation of the structure, although in a poor state of preservation to be measured with accuracy, faces southeast at an azimuth value of 100.86\u00b0 (skyline altitude of 3\u00b0).</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Sanctuary of Athena Chalkioikos at the Acropolis of Sparta",
+  "reprPoint": [
+    22.42339896907288,
+    37.08268767768701
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    22.4233085,
+    37.0826545,
+    22.4234894,
+    37.0827209
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570685"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-06T17:31:26Z",
+  "uri": "https://pleiades.stoa.org/places/894656845",
+  "creators": [
+    {
+      "username": "icristofaro",
+      "homepage": null,
+      "name": "Ilaria Cristofaro",
+      "uri": "https://pleiades.stoa.org/author/icristofaro"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-20T20:35:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-20T20:34:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-20T20:34:05Z"
+    },
+    {
+      "comment": "add references - wikipedia, topostext @bkiesling, wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-20T20:29:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "icristofaro",
+      "modified": "2026-03-16T09:26:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "icristofaro",
+      "modified": "2025-11-11T16:48:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "icristofaro",
+      "modified": "2025-11-06T17:34:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "icristofaro",
+      "modified": "2025-11-06T17:32:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "icristofaro",
+      "modified": "2025-11-06T17:31:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "icristofaro",
+      "modified": "2025-11-06T17:31:26Z"
+    }
+  ]
+}

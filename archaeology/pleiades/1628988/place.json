@@ -1,0 +1,417 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.5625633,
+            40.9656003
+          ],
+          [
+            15.5630064,
+            40.9652647
+          ],
+          [
+            15.5632806,
+            40.9650833
+          ],
+          [
+            15.5635662,
+            40.9649121
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bridge",
+      "properties": {
+        "snippet": "Bridge; 330 BC - AD 2100",
+        "link": "https://pleiades.stoa.org/places/1628988/osm-location-of-bridge",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of bridge"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "fourteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourteenth-ce",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "fifteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifteenth-ce",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "seventeenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventeenth-ce",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/159681918",
+          "citationDetail": "Way 159681918",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=159681918",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bridge",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 2100,
+      "title": "OSM Location of bridge",
+      "provenance": "OpenStreetMap (Way 159681918, version 3, osm:changeset=36429753, 2016-01-07T17:42:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-07-13T20:14:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.5625633,
+            40.9656003
+          ],
+          [
+            15.5630064,
+            40.9652647
+          ],
+          [
+            15.5632806,
+            40.9650833
+          ],
+          [
+            15.5635662,
+            40.9649121
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/1628988/osm-location-of-bridge",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-10T15:33:57Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-03T21:49:21Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T21:19:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:19:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:17:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:14:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:14:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-13T20:11:54Z",
+      "associationCertainty": "less-certain",
+      "title": "Pons Aufidi",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/1628988/pons-aufidi",
+      "connectionType": "same_as",
+      "id": "pons-aufidi",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T21:19:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:19:05Z"
+        },
+        {
+          "comment": "Chiocchini 2021",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:11:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:11:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442727",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.scirp.org/Journal/Paperabs.aspx?paperid=112184",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Chiocchini 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X6Z6F3SH",
+          "formattedCitation": "<div class=\"csl-entry\">Chiocchini, Ugo, Mariella De Piano, Mario Gaeta, Erminio Pagliuca, Nicola Polzone, and Fiammetta Sarmento. \u201cGeoarchaelogical Study of the Roman Pietra Dell\u2019Oglio Bridge at the Service of the Old Appian Way, Campania, Southern Italy.\u201d <i>Archaeological Discovery</i> 9, no. 4 (September 26, 2021): 223\u201358. https://doi.org/10.4236/ad.2021.94012.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/same_as"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-13T20:18:36Z",
+      "associationCertainty": "certain",
+      "title": "Aufidus (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/1628988/aufidus-river",
+      "connectionType": "crosses",
+      "id": "aufidus-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T21:19:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:19:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:18:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-13T20:18:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442485",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/crosses"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.scirp.org/Journal/Paperabs.aspx?paperid=112184",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Chiocchini 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X6Z6F3SH",
+      "formattedCitation": "<div class=\"csl-entry\">Chiocchini, Ugo, Mariella De Piano, Mario Gaeta, Erminio Pagliuca, Nicola Polzone, and Fiammetta Sarmento. \u201cGeoarchaelogical Study of the Roman Pietra Dell\u2019Oglio Bridge at the Service of the Old Appian Way, Campania, Southern Italy.\u201d <i>Archaeological Discovery</i> 9, no. 4 (September 26, 2021): 223\u201358. https://doi.org/10.4236/ad.2021.94012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/40811/",
+      "citationDetail": "40811: Ponte romano Pietra dell'Oglio",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "1628988",
+  "subject": [],
+  "title": "Pietra Dell\u2019Oglio (bridge)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman bridge crossing the Aufidus (modern Ofanto) river at the border between the modern Italian provinces of Campania and Basilicata. The bridge is one of two candidate identifications for the \"Pons Aufidi\" shown on the Peutinger map (the Ponte S. Venere), a possibility bolstered by recent comparative archaeological studies of the two bridges. The Pietra Dell'Oglio remains in use today for the Strada Comunale Fs di Monteverde, which connects to the Strada Statale 401 dir dell'Alto Ofanto e del Vulture at the southeast end of the bridge.",
+  "reprPoint": [
+    15.563056318171212,
+    40.965243794279836
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    15.5625633,
+    40.9649121,
+    15.5635662,
+    40.9656003
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442727",
+    "https://pleiades.stoa.org/places/442485"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-13T20:09:31Z",
+  "uri": "https://pleiades.stoa.org/places/1628988",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-10T15:34:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-13T21:19:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-13T20:19:05Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-13T20:13:22Z"
+    },
+    {
+      "comment": "title; summary; place type",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-13T20:09:32Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-13T20:09:31Z"
+    }
+  ]
+}

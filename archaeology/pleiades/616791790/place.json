@@ -1,0 +1,463 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1077577,
+          42.0012188
+        ]
+      },
+      "type": "Feature",
+      "id": "localita-del-teatro-romano",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/616791790/localita-del-teatro-romano",
+        "description": "Point based on OpenStreetMap representing the Roman Theatre at Caere.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman Theatre at Caere"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2381773410",
+          "citationDetail": "Node 2381773410",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2381773410",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "localita-del-teatro-romano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman Theatre at Caere",
+      "provenance": "OpenStreetMap (Node 2381773410, version 6, osm:changeset=132103630, 2023-02-05T10:30:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Point based on OpenStreetMap representing the Roman Theatre at Caere.",
+      "created": "2022-05-31T20:35:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1077577,
+          42.0012188
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/616791790/localita-del-teatro-romano",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-19T21:28:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-01T15:54:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:39:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:37:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:36:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:35:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:35:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2022-05-31T20:37:44Z",
+      "associationCertainty": "certain",
+      "title": "Caere",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/616791790/caere",
+      "connectionType": "at",
+      "id": "caere",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-01T15:54:35Z"
+        },
+        {
+          "comment": "added Sear 2006",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-31T22:22:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:39:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:38:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:37:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T20:37:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422859",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/teatro-e-il-ciclo-statuario-giulio-claudio/oclc/802571886&referer=brief_results",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fuchs 1989",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PYKJ8LM7",
+          "formattedCitation": "<div class=\"csl-entry\">Fuchs, Michaela, Paolo Liverani, and Paola Santoro. <i>Il Teatro e il ciclo statuario Giulio-Claudio</i>. Caere 2. Roma: Consiglio Nazionale delle Richerche, 1989. https://www.worldcat.org/title/teatro-e-il-ciclo-statuario-giulio-claudio/oclc/802571886&amp;referer=brief_results.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/959161774",
+          "citationDetail": "164",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Sear 2006",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7BIRCPUI",
+          "formattedCitation": "<div class=\"csl-entry\">Sear, Frank. <i>Roman Theatres: An Architectural Study</i>. Oxford; New York: Oxford University Press, 2006. http://www.worldcat.org/oclc/959161774.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/teatro-e-il-ciclo-statuario-giulio-claudio/oclc/802571886&referer=brief_results",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fuchs 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PYKJ8LM7",
+      "formattedCitation": "<div class=\"csl-entry\">Fuchs, Michaela, Paolo Liverani, and Paola Santoro. <i>Il Teatro e il ciclo statuario Giulio-Claudio</i>. Caere 2. Roma: Consiglio Nazionale delle Richerche, 1989. https://www.worldcat.org/title/teatro-e-il-ciclo-statuario-giulio-claudio/oclc/802571886&amp;referer=brief_results.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q112188918",
+      "citationDetail": "Q112188918: Roman theater of Caere",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/959161774",
+      "citationDetail": "p. 164",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sear 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7BIRCPUI",
+      "formattedCitation": "<div class=\"csl-entry\">Sear, Frank. <i>Roman Theatres: An Architectural Study</i>. Oxford; New York: Oxford University Press, 2006. http://www.worldcat.org/oclc/959161774.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.theatrum.de/1217.html",
+      "citationDetail": "1217: CAERE, Cerveteri - Theater",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/23755/",
+      "citationDetail": "23755: Theatre, Cerveteri",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Roman theater of Caere",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q112188918",
+          "citationDetail": "Q112188918: Roman theater of Caere",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "roman-theater-of-caere",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-06-01T17:11:13Z",
+      "uri": "https://pleiades.stoa.org/places/616791790/roman-theater-of-caere",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Roman theater of Caere",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:58:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-01T18:21:25Z"
+        },
+        {
+          "comment": "reference added",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-01T18:21:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-01T17:11:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-01T17:11:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "616791790",
+  "subject": [],
+  "title": "Roman Theatre at Caere",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater at Caere (modern Cerveteri, Italy) is known especially for the sculptural program honoring Julio-Claudian emperors, including Tiberius and Claudius.",
+  "reprPoint": [
+    12.1077577,
+    42.0012188
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    12.1077577,
+    42.0012188,
+    12.1077577,
+    42.0012188
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422859"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-07T20:16:48Z",
+  "uri": "https://pleiades.stoa.org/places/616791790",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "removed CIL citation as it is not toponymic nor spatial evidence; added Theatrum reference, which has the inscriptions; added vici.org reference",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-07T20:20:43Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-07T20:16:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-01T15:54:35Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-31T22:21:30Z"
+    },
+    {
+      "comment": "add wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-31T22:19:01Z"
+    },
+    {
+      "comment": "update title, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-31T22:11:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T20:39:00Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T20:35:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T20:35:02Z"
+    }
+  ]
+}

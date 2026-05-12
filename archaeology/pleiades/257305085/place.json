@@ -1,0 +1,500 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            41.9270213,
+            43.8712949
+          ],
+          [
+            41.927314,
+            43.8719279
+          ],
+          [
+            41.9276718,
+            43.8725258
+          ],
+          [
+            41.9280458,
+            43.8725961
+          ],
+          [
+            41.9284361,
+            43.8724554
+          ],
+          [
+            41.928924,
+            43.8719748
+          ],
+          [
+            41.927997,
+            43.8700522
+          ],
+          [
+            41.9273466,
+            43.8692433
+          ],
+          [
+            41.9265009,
+            43.8674261
+          ],
+          [
+            41.9252325,
+            43.8669923
+          ],
+          [
+            41.9253464,
+            43.8665233
+          ],
+          [
+            41.9237202,
+            43.8661716
+          ],
+          [
+            41.9225493,
+            43.866113
+          ],
+          [
+            41.9212646,
+            43.8665351
+          ],
+          [
+            41.921167,
+            43.8668399
+          ],
+          [
+            41.9215411,
+            43.8670392
+          ],
+          [
+            41.9215248,
+            43.8675082
+          ],
+          [
+            41.920728,
+            43.8691847
+          ],
+          [
+            41.9208906,
+            43.8693488
+          ],
+          [
+            41.9219476,
+            43.8692315
+          ],
+          [
+            41.9223704,
+            43.8692198
+          ],
+          [
+            41.923151,
+            43.8695246
+          ],
+          [
+            41.9237852,
+            43.8698763
+          ],
+          [
+            41.9239804,
+            43.8702046
+          ],
+          [
+            41.9249235,
+            43.8707204
+          ],
+          [
+            41.9250374,
+            43.8706501
+          ],
+          [
+            41.9270213,
+            43.8712949
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "khumara-hillfort",
+      "properties": {
+        "snippet": "Hillfort; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/257305085/khumara-hillfort",
+        "description": "Polygon representing the enclosing walls of the Khumara Hillfort site, derived from an OpenStreetMap Way after Kochkarov 2020.",
+        "location_precision": "precise",
+        "title": "OSM location of Khumara Hillfort"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1078034223",
+          "citationDetail": "Way 1078034223",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1078034223",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1286686371",
+          "citationDetail": "plan, page 197",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kochkarov 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YUZAHHRC",
+          "formattedCitation": "<div class=\"csl-entry\">Kochkarov, U. IU, ed. <i>\u0425\u0443\u043c\u0430\u0440\u0438\u043d\u0441\u043a\u043e\u0435 \u0433\u043e\u0440\u043e\u0434\u0438\u0449\u0435: \u0438\u0442\u043e\u0433\u0438 \u043c\u0435\u0436\u0434\u0438\u0441\u0446\u0438\u043f\u043b\u0438\u043d\u0430\u0440\u043d\u044b\u0445 \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0439 = Humara Hillfort: Results of Interdisciplinary Research</i>. Moskva, 2020. http://www.worldcat.org/oclc/1286686371.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "khumara-hillfort",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "end": 1453,
+      "title": "OSM location of Khumara Hillfort",
+      "provenance": "OpenStreetMap (Way 1078034223, version 1, osm:changeset=123533948, 2022-07-12T19:21:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hillfort"
+      ],
+      "description": "Polygon representing the enclosing walls of the Khumara Hillfort site, derived from an OpenStreetMap Way after Kochkarov 2020.",
+      "created": "2022-07-12T19:26:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            41.9270213,
+            43.8712949
+          ],
+          [
+            41.927314,
+            43.8719279
+          ],
+          [
+            41.9276718,
+            43.8725258
+          ],
+          [
+            41.9280458,
+            43.8725961
+          ],
+          [
+            41.9284361,
+            43.8724554
+          ],
+          [
+            41.928924,
+            43.8719748
+          ],
+          [
+            41.927997,
+            43.8700522
+          ],
+          [
+            41.9273466,
+            43.8692433
+          ],
+          [
+            41.9265009,
+            43.8674261
+          ],
+          [
+            41.9252325,
+            43.8669923
+          ],
+          [
+            41.9253464,
+            43.8665233
+          ],
+          [
+            41.9237202,
+            43.8661716
+          ],
+          [
+            41.9225493,
+            43.866113
+          ],
+          [
+            41.9212646,
+            43.8665351
+          ],
+          [
+            41.921167,
+            43.8668399
+          ],
+          [
+            41.9215411,
+            43.8670392
+          ],
+          [
+            41.9215248,
+            43.8675082
+          ],
+          [
+            41.920728,
+            43.8691847
+          ],
+          [
+            41.9208906,
+            43.8693488
+          ],
+          [
+            41.9219476,
+            43.8692315
+          ],
+          [
+            41.9223704,
+            43.8692198
+          ],
+          [
+            41.923151,
+            43.8695246
+          ],
+          [
+            41.9237852,
+            43.8698763
+          ],
+          [
+            41.9239804,
+            43.8702046
+          ],
+          [
+            41.9249235,
+            43.8707204
+          ],
+          [
+            41.9250374,
+            43.8706501
+          ],
+          [
+            41.9270213,
+            43.8712949
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/257305085/khumara-hillfort",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-12T20:17:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-07-12T19:29:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-07-12T19:28:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-07-12T19:26:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-07-12T19:26:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1286686371",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kochkarov 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YUZAHHRC",
+      "formattedCitation": "<div class=\"csl-entry\">Kochkarov, U. IU, ed. <i>\u0425\u0443\u043c\u0430\u0440\u0438\u043d\u0441\u043a\u043e\u0435 \u0433\u043e\u0440\u043e\u0434\u0438\u0449\u0435: \u0438\u0442\u043e\u0433\u0438 \u043c\u0435\u0436\u0434\u0438\u0441\u0446\u0438\u043f\u043b\u0438\u043d\u0430\u0440\u043d\u044b\u0445 \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0439 = Humara Hillfort: Results of Interdisciplinary Research</i>. Moskva, 2020. http://www.worldcat.org/oclc/1286686371.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Khumar",
+      "citationDetail": "Khumar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Khumara Gorodishche, Humara Gorodishche",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1286686371",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kochkarov 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YUZAHHRC",
+          "formattedCitation": "<div class=\"csl-entry\">Kochkarov, U. IU, ed. <i>\u0425\u0443\u043c\u0430\u0440\u0438\u043d\u0441\u043a\u043e\u0435 \u0433\u043e\u0440\u043e\u0434\u0438\u0449\u0435: \u0438\u0442\u043e\u0433\u0438 \u043c\u0435\u0436\u0434\u0438\u0441\u0446\u0438\u043f\u043b\u0438\u043d\u0430\u0440\u043d\u044b\u0445 \u0438\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0439 = Humara Hillfort: Results of Interdisciplinary Research</i>. Moskva, 2020. http://www.worldcat.org/oclc/1286686371.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "khumara-gorodishche",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2022-07-12T19:29:25Z",
+      "uri": "https://pleiades.stoa.org/places/257305085/khumara-gorodishche",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0425\u0443\u043c\u0430\u0440\u0438\u043d\u0441\u043a\u043e\u0435 \u0433\u043e\u0440\u043e\u0434\u0438\u0449\u0435",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-12T20:17:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-07-12T19:29:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-07-12T19:29:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-07-12T19:29:25Z"
+        }
+      ]
+    }
+  ],
+  "id": "257305085",
+  "subject": [],
+  "title": "Khumara Hillfort",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Fortified site in the North Caucasus constructed in the Early Medieval Period.",
+  "reprPoint": [
+    41.92487388725474,
+    43.86907552882288
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    41.920728,
+    43.866113,
+    41.928924,
+    43.8725961
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-12T19:25:36Z",
+  "uri": "https://pleiades.stoa.org/places/257305085",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-12T20:17:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-07-12T19:29:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-07-12T19:25:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-07-12T19:25:36Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Nuraghe Santa Giusta
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/772844681
+- **ID**: 772844681
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+A nuragic site located near Tortoli, Sardinia.

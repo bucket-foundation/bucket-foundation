@@ -1,0 +1,407 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.0229091,
+            39.7465375
+          ],
+          [
+            20.0228872,
+            39.7464023
+          ],
+          [
+            20.0231371,
+            39.7463784
+          ],
+          [
+            20.0231312,
+            39.746342
+          ],
+          [
+            20.0232074,
+            39.7463347
+          ],
+          [
+            20.0232165,
+            39.7463994
+          ],
+          [
+            20.0232322,
+            39.7463999
+          ],
+          [
+            20.0232508,
+            39.7464077
+          ],
+          [
+            20.0232612,
+            39.7464218
+          ],
+          [
+            20.0232651,
+            39.7464332
+          ],
+          [
+            20.0232631,
+            39.7464478
+          ],
+          [
+            20.0232507,
+            39.7464591
+          ],
+          [
+            20.0232329,
+            39.7464672
+          ],
+          [
+            20.0232444,
+            39.7465318
+          ],
+          [
+            20.0231663,
+            39.74654
+          ],
+          [
+            20.023162,
+            39.7465133
+          ],
+          [
+            20.0229091,
+            39.7465375
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-great-basilica",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/73856966/osm-location-of-great-basilica",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Great Basilica"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/86822231",
+          "citationDetail": "Way 86822231",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=86822231",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-great-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Great Basilica",
+      "provenance": "OpenStreetMap (Way 86822231, version 7, osm:changeset=138315708, 2023-07-10T00:56:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-07-10T00:44:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.0229091,
+            39.7465375
+          ],
+          [
+            20.0228872,
+            39.7464023
+          ],
+          [
+            20.0231371,
+            39.7463784
+          ],
+          [
+            20.0231312,
+            39.746342
+          ],
+          [
+            20.0232074,
+            39.7463347
+          ],
+          [
+            20.0232165,
+            39.7463994
+          ],
+          [
+            20.0232322,
+            39.7463999
+          ],
+          [
+            20.0232508,
+            39.7464077
+          ],
+          [
+            20.0232612,
+            39.7464218
+          ],
+          [
+            20.0232651,
+            39.7464332
+          ],
+          [
+            20.0232631,
+            39.7464478
+          ],
+          [
+            20.0232507,
+            39.7464591
+          ],
+          [
+            20.0232329,
+            39.7464672
+          ],
+          [
+            20.0232444,
+            39.7465318
+          ],
+          [
+            20.0231663,
+            39.74654
+          ],
+          [
+            20.023162,
+            39.7465133
+          ],
+          [
+            20.0229091,
+            39.7465375
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/73856966/osm-location-of-great-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-03T09:23:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-03T00:11:26Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-03T00:11:22Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-10T00:44:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-10T00:44:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-10T00:44:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-05T13:22:38Z",
+      "associationCertainty": "certain",
+      "title": "Bouthroton",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/73856966/5582487115",
+      "connectionType": "at",
+      "id": "5582487115",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-05T13:22:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-05T13:22:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-05T13:22:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/530824",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Buthrotum",
+      "citationDetail": "Buthrotum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q82073762",
+      "citationDetail": "Basilica of Butrint (Q82073762)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "73856966",
+  "subject": [
+    "paleochristian"
+  ],
+  "title": "\"The Great Basilica\" at Butrint ",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>Coordinates obtained by eye in Google Earth in September 2012 at an eye altitude of 94m. Dates follow www.butrint.org</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Great Basilica\" is an early Christian basilica dating to the sixth century.",
+  "reprPoint": [
+    20.02308578313922,
+    39.74644933173315
+  ],
+  "placeTypes": [
+    "basilica",
+    "archaeological-site"
+  ],
+  "bbox": [
+    20.0228872,
+    39.7463347,
+    20.0232651,
+    39.74654
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/530824"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-05T13:22:36Z",
+  "uri": "https://pleiades.stoa.org/places/73856966",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q82073762",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-03T00:11:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-30T21:02:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T15:36:21Z"
+    },
+    {
+      "comment": "reference, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T15:35:31Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-05T13:23:11Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-05T13:22:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-05T13:22:36Z"
+    }
+  ]
+}

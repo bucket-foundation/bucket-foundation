@@ -1,0 +1,311 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.8318697,
+            42.0382969
+          ],
+          [
+            11.8318321,
+            42.038016
+          ],
+          [
+            11.8317374,
+            42.0379277
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-fosso-delle-guardiole",
+      "properties": {
+        "snippet": "River; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/994223444/osm-location-of-fosso-delle-guardiole",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Fosso delle Guardiole"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/455290945",
+          "citationDetail": "Way 455290945",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-fosso-delle-guardiole",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "end": 2099,
+      "title": "OSM location of Fosso delle Guardiole",
+      "provenance": "OpenStreetMap (Way 455290945, version 1, osm:changeset=43895631, 2016-11-23T13:03:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "river"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-11-25T16:48:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.8318697,
+            42.0382969
+          ],
+          [
+            11.8318321,
+            42.038016
+          ],
+          [
+            11.8317374,
+            42.0379277
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/994223444/osm-location-of-fosso-delle-guardiole",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:48:34Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:48:34Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-11T21:25:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:21:09Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T15:13:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T15:13:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T15:13:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-11T15:14:00Z",
+      "associationCertainty": "certain",
+      "title": "Tyrrhenum/Inferum Mare",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/994223444/tyrrhenum-inferum-mare",
+      "connectionType": "flows_into",
+      "id": "tyrrhenum-inferum-mare",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-11T21:25:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:21:09Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T15:14:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T15:14:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/1356",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://dx.doi.org/10.1093/acprof:oso/9780199675623.001.0001",
+      "citationDetail": "Appendix II",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marzano 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PB4TZPRH",
+      "formattedCitation": "<div class=\"csl-entry\">Marzano, Annalisa, and Oxford University Press. <i>Harvesting the Sea: The Exploitation of Marine Resources in the Roman Mediterranean</i>, 2013. http://dx.doi.org/10.1093/acprof:oso/9780199675623.001.0001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "994223444",
+  "subject": [],
+  "title": "Fosso delle Guardiole",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/river"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A stream that drains into the Tyrrhenian Sea at Santa Marinella, Italy.",
+  "reprPoint": [
+    11.831830155531906,
+    42.03809855991972
+  ],
+  "placeTypes": [
+    "river"
+  ],
+  "bbox": [
+    11.8317374,
+    42.0379277,
+    11.8318697,
+    42.0382969
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/1356"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-25T16:47:16Z",
+  "uri": "https://pleiades.stoa.org/places/994223444",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:47:17Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:47:16Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-11T21:25:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T22:21:09Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T22:20:48Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-11T15:09:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-11T15:09:48Z"
+    }
+  ]
+}

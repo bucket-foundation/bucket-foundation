@@ -1,0 +1,722 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.4919753,
+            53.701458
+          ],
+          [
+            -6.492029,
+            53.7014008
+          ],
+          [
+            -6.4920505,
+            53.7013309
+          ],
+          [
+            -6.4920434,
+            53.7012547
+          ],
+          [
+            -6.4920148,
+            53.701188
+          ],
+          [
+            -6.4919646,
+            53.7011848
+          ],
+          [
+            -6.4919595,
+            53.7011603
+          ],
+          [
+            -6.4920185,
+            53.7011516
+          ],
+          [
+            -6.4920022,
+            53.7010388
+          ],
+          [
+            -6.4919378,
+            53.7009435
+          ],
+          [
+            -6.491852,
+            53.7008768
+          ],
+          [
+            -6.4917071,
+            53.7008292
+          ],
+          [
+            -6.4914818,
+            53.7007942
+          ],
+          [
+            -6.4912672,
+            53.7007942
+          ],
+          [
+            -6.4911331,
+            53.7008133
+          ],
+          [
+            -6.4909561,
+            53.7008705
+          ],
+          [
+            -6.4908703,
+            53.7009086
+          ],
+          [
+            -6.4908177,
+            53.700948
+          ],
+          [
+            -6.4907898,
+            53.7009689
+          ],
+          [
+            -6.490763,
+            53.7010007
+          ],
+          [
+            -6.4907415,
+            53.7010769
+          ],
+          [
+            -6.4907598,
+            53.701164
+          ],
+          [
+            -6.4907898,
+            53.7012198
+          ],
+          [
+            -6.490833,
+            53.7012192
+          ],
+          [
+            -6.4908374,
+            53.7012533
+          ],
+          [
+            -6.4907974,
+            53.7012555
+          ],
+          [
+            -6.4907966,
+            53.7013083
+          ],
+          [
+            -6.4908402,
+            53.7013757
+          ],
+          [
+            -6.490864,
+            53.7014119
+          ],
+          [
+            -6.4909107,
+            53.7014424
+          ],
+          [
+            -6.490881,
+            53.7014707
+          ],
+          [
+            -6.4908917,
+            53.7015047
+          ],
+          [
+            -6.4909189,
+            53.7015169
+          ],
+          [
+            -6.4909526,
+            53.7015218
+          ],
+          [
+            -6.4910151,
+            53.7015183
+          ],
+          [
+            -6.491117,
+            53.7015755
+          ],
+          [
+            -6.4911973,
+            53.7015981
+          ],
+          [
+            -6.4912825,
+            53.7016114
+          ],
+          [
+            -6.4914036,
+            53.7016149
+          ],
+          [
+            -6.4915032,
+            53.7016131
+          ],
+          [
+            -6.4915914,
+            53.701625
+          ],
+          [
+            -6.4916857,
+            53.7016104
+          ],
+          [
+            -6.4918681,
+            53.7015437
+          ],
+          [
+            -6.4919753,
+            53.701458
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-knowth",
+      "properties": {
+        "snippet": "Tomb, ; 3000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/148277399/osm-location-of-knowth",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Knowth"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/264536965",
+          "citationDetail": "Way 264536965",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=264536965",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-knowth",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -2000,
+      "title": "OSM location of Knowth",
+      "provenance": "OpenStreetMap (Way 264536965, version 8, osm:changeset=138354245, 2023-07-10T21:19:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2016-08-13T04:01:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.4919753,
+            53.701458
+          ],
+          [
+            -6.492029,
+            53.7014008
+          ],
+          [
+            -6.4920505,
+            53.7013309
+          ],
+          [
+            -6.4920434,
+            53.7012547
+          ],
+          [
+            -6.4920148,
+            53.701188
+          ],
+          [
+            -6.4919646,
+            53.7011848
+          ],
+          [
+            -6.4919595,
+            53.7011603
+          ],
+          [
+            -6.4920185,
+            53.7011516
+          ],
+          [
+            -6.4920022,
+            53.7010388
+          ],
+          [
+            -6.4919378,
+            53.7009435
+          ],
+          [
+            -6.491852,
+            53.7008768
+          ],
+          [
+            -6.4917071,
+            53.7008292
+          ],
+          [
+            -6.4914818,
+            53.7007942
+          ],
+          [
+            -6.4912672,
+            53.7007942
+          ],
+          [
+            -6.4911331,
+            53.7008133
+          ],
+          [
+            -6.4909561,
+            53.7008705
+          ],
+          [
+            -6.4908703,
+            53.7009086
+          ],
+          [
+            -6.4908177,
+            53.700948
+          ],
+          [
+            -6.4907898,
+            53.7009689
+          ],
+          [
+            -6.490763,
+            53.7010007
+          ],
+          [
+            -6.4907415,
+            53.7010769
+          ],
+          [
+            -6.4907598,
+            53.701164
+          ],
+          [
+            -6.4907898,
+            53.7012198
+          ],
+          [
+            -6.490833,
+            53.7012192
+          ],
+          [
+            -6.4908374,
+            53.7012533
+          ],
+          [
+            -6.4907974,
+            53.7012555
+          ],
+          [
+            -6.4907966,
+            53.7013083
+          ],
+          [
+            -6.4908402,
+            53.7013757
+          ],
+          [
+            -6.490864,
+            53.7014119
+          ],
+          [
+            -6.4909107,
+            53.7014424
+          ],
+          [
+            -6.490881,
+            53.7014707
+          ],
+          [
+            -6.4908917,
+            53.7015047
+          ],
+          [
+            -6.4909189,
+            53.7015169
+          ],
+          [
+            -6.4909526,
+            53.7015218
+          ],
+          [
+            -6.4910151,
+            53.7015183
+          ],
+          [
+            -6.491117,
+            53.7015755
+          ],
+          [
+            -6.4911973,
+            53.7015981
+          ],
+          [
+            -6.4912825,
+            53.7016114
+          ],
+          [
+            -6.4914036,
+            53.7016149
+          ],
+          [
+            -6.4915032,
+            53.7016131
+          ],
+          [
+            -6.4915914,
+            53.701625
+          ],
+          [
+            -6.4916857,
+            53.7016104
+          ],
+          [
+            -6.4918681,
+            53.7015437
+          ],
+          [
+            -6.4919753,
+            53.701458
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/148277399/osm-location-of-knowth",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-24T01:48:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-11T11:46:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T04:02:19Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T04:02:13Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T04:01:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T04:01:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:51:59Z",
+      "associationCertainty": "certain",
+      "title": "Hibernia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/148277399/20487",
+      "connectionType": "connection",
+      "id": "20487",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/20487",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2019-08-04T13:10:33Z",
+      "associationCertainty": "certain",
+      "title": "Br\u00fa na B\u00f3inne - Archaeological Ensemble of the Bend of the Boyne",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/148277399/bru-na-boinne-archaeological-ensemble-of-the-bend-of-the-boyne",
+      "connectionType": "part_of_analytical",
+      "id": "bru-na-boinne-archaeological-ensemble-of-the-bend-of-the-boyne",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-11T11:46:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-04T13:10:38Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-04T13:10:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-04T13:10:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/3911647",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://whc.unesco.org/en/list/",
+          "citationDetail": "Br\u00fa na B\u00f3inne - Archaeological Ensemble of the Bend of the Boyne",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "WHL",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+          "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/659",
+      "citationDetail": "659: Br\u00fa na B\u00f3inne - Archaeological Ensemble of the Bend of the Boyne",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Knowth",
+      "citationDetail": "Knowth",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Knowth.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1482124",
+      "citationDetail": "Knowth (Q1482124)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "148277399",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Knowth",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Knowth is a Neolithic passage grave of Br\u00fa na B\u00f3inne in the valley of the River Boyne in Ireland. The site, covering almost a hectare, is comprised of a central, large mound (Site 1) and 17 smaller satellite tombs.",
+  "reprPoint": [
+    -6.491398457576568,
+    53.70120708319914
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    -6.4920505,
+    53.7007942,
+    -6.4907415,
+    53.701625
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/20487",
+    "https://pleiades.stoa.org/places/3911647"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-09-19T03:43:13Z",
+  "uri": "https://pleiades.stoa.org/places/148277399",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Knowth (Q1482124)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-24T01:48:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-08-11T11:46:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-04T13:11:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-13T04:03:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-13T04:03:27Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-13T04:01:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-13T03:59:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-19T04:14:12Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-19T03:43:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-19T03:43:14Z"
+    }
+  ]
+}

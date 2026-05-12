@@ -1,0 +1,403 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.6154456,
+            40.0196256
+          ],
+          [
+            34.6159376,
+            40.0200511
+          ],
+          [
+            34.6158456,
+            40.0200891
+          ],
+          [
+            34.6158597,
+            40.020146
+          ],
+          [
+            34.6156155,
+            40.020287
+          ],
+          [
+            34.615566,
+            40.0202761
+          ],
+          [
+            34.6150705,
+            40.0198506
+          ],
+          [
+            34.6154456,
+            40.0196256
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "temple-i",
+      "properties": {
+        "snippet": "Temple-2; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/48167301/temple-i",
+        "description": "Polygon representing the extent of the structure known in modern times as \"Temple I,\" derived from an OpenStreetMap Way after Strupler 2022.",
+        "location_precision": "precise",
+        "title": "OSM location of so-called Temple I"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1210999807",
+          "citationDetail": "Way 1210999807",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1210999807",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 14",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Strupler 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YR9H5NN2",
+          "formattedCitation": "<div class=\"csl-entry\">Strupler, Nehemie. <i>Fouilles Archeologiques de la Ville Basse I (1935-1978): Analyse de l\u2019occupation de l\u2019\u00e2ge du Bronze de la Westterrasse Analyse de l\u2019occupation de l\u2019\u00e2ge du Bronze de la Westterrasse</i>. Bo\u011fazk\u00f6y-\u1e2aattus\u0306a 28. Wiesbaden: Harrassowitz Verlag, 2022.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -1000,
+      "title": "OSM location of so-called Temple I",
+      "provenance": "OpenStreetMap (Way 1210999807, version 1, osm:changeset=141775947, 2023-09-26T13:53:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon representing the extent of the structure known in modern times as \"Temple I,\" derived from an OpenStreetMap Way after Strupler 2022.",
+      "created": "2023-09-26T13:53:43Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.6154456,
+            40.0196256
+          ],
+          [
+            34.6159376,
+            40.0200511
+          ],
+          [
+            34.6158456,
+            40.0200891
+          ],
+          [
+            34.6158597,
+            40.020146
+          ],
+          [
+            34.6156155,
+            40.020287
+          ],
+          [
+            34.615566,
+            40.0202761
+          ],
+          [
+            34.6150705,
+            40.0198506
+          ],
+          [
+            34.6154456,
+            40.0196256
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/48167301/temple-i",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-26T15:30:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-09-26T14:09:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-09-26T14:07:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2023-09-26T13:53:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-09-26T13:53:43Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-07T13:29:00Z",
+      "associationCertainty": "certain",
+      "title": "Hattusa",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/48167301/5403904320",
+      "connectionType": "at",
+      "id": "5403904320",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:29:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:29:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:29:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/283602441",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -1200,
+      "description": "",
+      "contributors": [],
+      "created": "2023-09-26T14:16:13Z",
+      "associationCertainty": "certain",
+      "title": "Lower city at Hattusa",
+      "start": -1750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/48167301/lower-city-at-hattusa",
+      "connectionType": "part_of_analytical",
+      "id": "lower-city-at-hattusa",
+      "attestations": [
+        {
+          "timePeriod": "middle-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-hittite-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-hittite-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-hittite-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-hittite-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-26T15:31:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-09-26T14:16:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-09-26T14:16:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-09-26T14:16:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/272904994",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/377",
+      "citationDetail": "Hattusha: the Hittite Capital",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "48167301",
+  "subject": [
+    "temple",
+    "extant remains",
+    "UWHS"
+  ],
+  "title": "So-called Temple 1 at Hattusa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>Also known as the 'Great Temple'</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Temple 1, also referred to as the \"Great Temple\", is located in the lower city of Hattusa. It dates to the thirteenth century B.C.",
+  "reprPoint": [
+    34.61551404485277,
+    40.01996005891618
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    34.6150705,
+    40.0196256,
+    34.6159376,
+    40.020287
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/283602441",
+    "https://pleiades.stoa.org/places/272904994"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-07T13:28:59Z",
+  "uri": "https://pleiades.stoa.org/places/48167301",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-22T21:26:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-18T12:23:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-18T12:23:36Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:29:23Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:29:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:28:59Z"
+    }
+  ]
+}

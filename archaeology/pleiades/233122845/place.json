@@ -1,0 +1,225 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6463046,
+          41.9705361
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-chiesa-mitreo-san-nicola",
+      "properties": {
+        "snippet": "Church-2, Shrine",
+        "link": "https://pleiades.stoa.org/places/233122845/osm-location-of-chiesa-mitreo-san-nicola",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Chiesa/Mitreo San Nicola"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/10895409801",
+          "citationDetail": "Node 10895409801",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=10895409801",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-chiesa-mitreo-san-nicola",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": null,
+      "title": "OSM location of Chiesa/Mitreo San Nicola",
+      "provenance": "OpenStreetMap (Node 10895409801, version 1, osm:changeset=136072434, 2023-05-14T05:16:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2",
+        "shrine"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-06-26T11:02:53Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6463046,
+          41.9705361
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/233122845/osm-location-of-chiesa-mitreo-san-nicola",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-10T14:17:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T11:03:24Z"
+        },
+        {
+          "comment": "supersedes previously published location whose underlying OSM data is now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T11:03:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T11:02:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T11:02:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Maestri 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9VJHMANA",
+      "formattedCitation": "<div class=\"csl-entry\">Maestri, D. \u201cLa chiesa di S. Nicola presso il Casale di Marco Simone.\u201d In <i>Bollettino della Unione storia ed arte, 34.1991</i>, 51\u201356, Abb, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=9538",
+      "citationDetail": "9538: Mitreo dell'Inviolata",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "233122845",
+  "subject": [
+    "Mithras",
+    "paleochristian"
+  ],
+  "title": "Chiesa Ipogea di San Nicola",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A poorly understood paleochristian site located on the grounds of the Inviolata park in the comune of Guidonia-Montecelio in the greater metropolitan area of Rome. The cave site may originally have functioned as a mithraeum.",
+  "reprPoint": [
+    12.6463046,
+    41.9705361
+  ],
+  "placeTypes": [
+    "church-2",
+    "shrine"
+  ],
+  "bbox": [
+    12.6463046,
+    41.9705361,
+    12.6463046,
+    41.9705361
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-19T14:59:09Z",
+  "uri": "https://pleiades.stoa.org/places/233122845",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "info.roma 9538: Mitreo dell'Inviolata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-26T20:23:55Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T11:02:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-10T08:24:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-10T02:32:55Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-10T02:32:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-19T15:05:01Z"
+    },
+    {
+      "comment": "place create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-19T14:59:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-19T14:59:09Z"
+    }
+  ]
+}

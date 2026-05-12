@@ -1,0 +1,361 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.5963923,
+            42.5857978
+          ],
+          [
+            11.5965935,
+            42.5861829
+          ],
+          [
+            11.5976583,
+            42.5862007
+          ],
+          [
+            11.5988707,
+            42.5856083
+          ],
+          [
+            11.5991174,
+            42.5850355
+          ],
+          [
+            11.5986776,
+            42.5848973
+          ],
+          [
+            11.5983235,
+            42.585079
+          ],
+          [
+            11.5979158,
+            42.5854187
+          ],
+          [
+            11.5975403,
+            42.5855846
+          ],
+          [
+            11.5967571,
+            42.585703
+          ],
+          [
+            11.5963923,
+            42.5857978
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-necropolis-of-selva-miccia",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/675780058/location-of-necropolis-of-selva-miccia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Necropoli di Selva Miccia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/248699362",
+          "citationDetail": "Way 248699362",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=248699362",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.parcodeglietruschi.it/cda/pte/view/scheda.jsp?OTYPE_ID=1383&CAT_ID=10813&CAT_PARENT=10810&ID=11511&Lang=LANGIT",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Pitigliano, Necropoli di Selva Miccia",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-necropolis-of-selva-miccia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -550,
+      "title": "OSM location of Necropoli di Selva Miccia",
+      "provenance": "OpenStreetMap (Way 248699362, version 4, osm:changeset=138539870, 2023-07-15T10:52:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2013-11-27T20:31:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.5963923,
+            42.5857978
+          ],
+          [
+            11.5965935,
+            42.5861829
+          ],
+          [
+            11.5976583,
+            42.5862007
+          ],
+          [
+            11.5988707,
+            42.5856083
+          ],
+          [
+            11.5991174,
+            42.5850355
+          ],
+          [
+            11.5986776,
+            42.5848973
+          ],
+          [
+            11.5983235,
+            42.585079
+          ],
+          [
+            11.5979158,
+            42.5854187
+          ],
+          [
+            11.5975403,
+            42.5855846
+          ],
+          [
+            11.5967571,
+            42.585703
+          ],
+          [
+            11.5963923,
+            42.5857978
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/675780058/location-of-necropolis-of-selva-miccia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-30T01:57:42Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-30T00:25:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-15T20:51:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-13T16:06:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T17:03:29Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-27T20:32:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-27T20:31:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-27T20:31:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-12-15T04:56:08Z",
+      "associationCertainty": "certain",
+      "title": "Poggio Buco",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/675780058/7684986842",
+      "connectionType": "at",
+      "id": "7684986842",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-15T04:56:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-15T04:56:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-15T04:56:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413266",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.treccani.it/enciclopedia/l-italia-preromana-i-siti-etruschi-poggio-buco_%28Il-Mondo-dell%27Archeologia%29/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "L'Italia preromana. I siti etruschi: Poggio Buco",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "675780058",
+  "subject": [],
+  "title": "Necropolis of Selva Miccia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Necropolis of Selva Miccia, located along the road leading to Vulci, contains tombs of the seventh and sixth centuries B.C., corresponding in phase to the elite structure excavated at localit\u00e0 Le Sparne.",
+  "reprPoint": [
+    11.5963923,
+    42.5857978
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    11.5963923,
+    42.5857978,
+    11.5963923,
+    42.5857978
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413266"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-12-15T04:56:07Z",
+  "uri": "https://pleiades.stoa.org/places/675780058",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-01T10:33:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-15T20:52:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-15T20:52:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-15T04:57:07Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-15T04:56:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-15T04:56:07Z"
+    }
+  ]
+}

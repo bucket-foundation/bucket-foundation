@@ -1,0 +1,734 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5727282,
+            43.3518804
+          ],
+          [
+            12.5728028,
+            43.351816
+          ],
+          [
+            12.5728413,
+            43.3518433
+          ],
+          [
+            12.5729962,
+            43.3517672
+          ],
+          [
+            12.5729318,
+            43.3517109
+          ],
+          [
+            12.5728536,
+            43.3516635
+          ],
+          [
+            12.5727805,
+            43.351643
+          ],
+          [
+            12.5727027,
+            43.3516213
+          ],
+          [
+            12.5725383,
+            43.3516278
+          ],
+          [
+            12.5724008,
+            43.3516634
+          ],
+          [
+            12.572292,
+            43.3517294
+          ],
+          [
+            12.5722187,
+            43.3518027
+          ],
+          [
+            12.5721984,
+            43.3518521
+          ],
+          [
+            12.5721829,
+            43.3519083
+          ],
+          [
+            12.5721962,
+            43.3519846
+          ],
+          [
+            12.5722082,
+            43.3520314
+          ],
+          [
+            12.5722348,
+            43.3520781
+          ],
+          [
+            12.5722982,
+            43.3521441
+          ],
+          [
+            12.5725351,
+            43.3520002
+          ],
+          [
+            12.5725236,
+            43.3519682
+          ],
+          [
+            12.5725281,
+            43.351924
+          ],
+          [
+            12.5725567,
+            43.3518866
+          ],
+          [
+            12.5725944,
+            43.3518683
+          ],
+          [
+            12.5726563,
+            43.3518585
+          ],
+          [
+            12.5726951,
+            43.3518665
+          ],
+          [
+            12.5727282,
+            43.3518804
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/418202453/location-of-roman-theater",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/176589635",
+          "citationDetail": "Way 176589635",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=176589635",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman theater",
+      "provenance": "OpenStreetMap (Way 176589635, version 7, osm:changeset=126374191, 2022-09-19T13:31:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-01-15T06:21:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5727282,
+            43.3518804
+          ],
+          [
+            12.5728028,
+            43.351816
+          ],
+          [
+            12.5728413,
+            43.3518433
+          ],
+          [
+            12.5729962,
+            43.3517672
+          ],
+          [
+            12.5729318,
+            43.3517109
+          ],
+          [
+            12.5728536,
+            43.3516635
+          ],
+          [
+            12.5727805,
+            43.351643
+          ],
+          [
+            12.5727027,
+            43.3516213
+          ],
+          [
+            12.5725383,
+            43.3516278
+          ],
+          [
+            12.5724008,
+            43.3516634
+          ],
+          [
+            12.572292,
+            43.3517294
+          ],
+          [
+            12.5722187,
+            43.3518027
+          ],
+          [
+            12.5721984,
+            43.3518521
+          ],
+          [
+            12.5721829,
+            43.3519083
+          ],
+          [
+            12.5721962,
+            43.3519846
+          ],
+          [
+            12.5722082,
+            43.3520314
+          ],
+          [
+            12.5722348,
+            43.3520781
+          ],
+          [
+            12.5722982,
+            43.3521441
+          ],
+          [
+            12.5725351,
+            43.3520002
+          ],
+          [
+            12.5725236,
+            43.3519682
+          ],
+          [
+            12.5725281,
+            43.351924
+          ],
+          [
+            12.5725567,
+            43.3518866
+          ],
+          [
+            12.5725944,
+            43.3518683
+          ],
+          [
+            12.5726563,
+            43.3518585
+          ],
+          [
+            12.5726951,
+            43.3518665
+          ],
+          [
+            12.5727282,
+            43.3518804
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/418202453/location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-12T21:57:01Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-18T21:27:38Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-11T21:50:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-22T02:14:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-20T16:21:27Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-15T06:22:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-15T06:21:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-15T06:21:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-07T13:57:44Z",
+      "associationCertainty": "certain",
+      "title": "Iguvium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/418202453/8647502411",
+      "connectionType": "at",
+      "id": "8647502411",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T13:57:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T13:57:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T13:57:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413174",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-07T14:00:02Z",
+      "associationCertainty": "certain",
+      "title": "Area della Guastuglia",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/418202453/area-della-guastuglia",
+      "connectionType": "part_of_physical",
+      "id": "area-della-guastuglia",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-11T21:50:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T14:00:49Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T14:00:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T14:00:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/881000319",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.beniculturali.it/mibac/opencms/MiBAC/sito-MiBAC/Luogo/MibacUnif/Luoghi-della-Cultura/visualizza_asset.html?id=150083&pagename=157031",
+      "citationDetail": "Teatro romano e Antiquarium di Gubbio",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q55164614",
+      "citationDetail": "Roman Theatre of Gubbio (Q55164614)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/10376460/teatro-romano-gubbio.html",
+      "citationDetail": "10376460: Teatro Romano Gubbio",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/11707",
+      "citationDetail": "Theater von Gubbio Theater, Gubbio",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Manconi 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JSX36RUX",
+      "formattedCitation": "<div class=\"csl-entry\">Manconi, Dorica, Francesco Marcattili, Perugia (Italy\u202f: Province), and Universita di Perugia, eds. <i>Gubbio: scavi e nuove ricerche</i>. Auleste 2. Citt\u00e0 di Castello (Perugia): Edimond, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cenni 1973",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8ZWZFTTP",
+      "formattedCitation": "<div class=\"csl-entry\">Cenni, Bruno. <i>Tecniche costruttive romane: teatro romano di Gubbio</i>. Citt\u00e0 di Castello: s.n., 1973.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "213-222",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sear 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/633SFP7K",
+      "formattedCitation": "<div class=\"csl-entry\">Sear, F. B. \u201cThe Roman Theatre at Gubbio.\u201d In <i>Mediterranean Archaeology, 17.2004</i>, 213\u201322. Sydney: University of Sydney, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://theatrum.de/512.html",
+      "citationDetail": "512",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/11063/",
+      "citationDetail": "11063: Theatre Iguvium",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Teatro romano Gubbio",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/10376460/teatro-romano-gubbio.html",
+          "citationDetail": "10376460: Teatro Romano Gubbio",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-06-07.7299441370",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2018-06-07T17:32:39Z",
+      "uri": "https://pleiades.stoa.org/places/418202453/name.2018-06-07.7299441370",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Teatro romano Gubbio",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-13T16:06:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-11T21:50:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-11T21:50:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T17:33:09Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T17:32:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T17:32:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "418202453",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Roman theater at Iguvium",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater at Iguvium is located within the Guastuglia archaeological area and dates to the late republican period. Sear (2004) notes several important architectural innovations evident in the theater's construction.",
+  "reprPoint": [
+    12.57254717568824,
+    43.35183457138353
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    12.5721829,
+    43.3516213,
+    12.5729962,
+    43.3521441
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413174",
+    "https://pleiades.stoa.org/places/881000319"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-07T13:57:43Z",
+  "uri": "https://pleiades.stoa.org/places/418202453",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update summary, update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-11T09:08:15Z"
+    },
+    {
+      "comment": "added references, including Arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-13T19:19:19Z"
+    },
+    {
+      "comment": "added wikidata, geonames",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-13T19:17:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-11T21:50:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T14:00:49Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T13:59:27Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T13:57:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T13:57:43Z"
+    }
+  ]
+}

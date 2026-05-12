@@ -1,0 +1,679 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.7979952,
+            38.3017978
+          ],
+          [
+            21.7976536,
+            38.3023983
+          ],
+          [
+            21.7973086,
+            38.3031308
+          ],
+          [
+            21.7966048,
+            38.3043853
+          ],
+          [
+            21.7962635,
+            38.3048185
+          ],
+          [
+            21.7959701,
+            38.3050765
+          ],
+          [
+            21.7959173,
+            38.3051145
+          ],
+          [
+            21.7958584,
+            38.305148
+          ],
+          [
+            21.7954713,
+            38.3053444
+          ],
+          [
+            21.7950672,
+            38.3055915
+          ],
+          [
+            21.7947047,
+            38.3058885
+          ],
+          [
+            21.7946407,
+            38.3060419
+          ],
+          [
+            21.7946568,
+            38.3061661
+          ],
+          [
+            21.7945985,
+            38.3063166
+          ],
+          [
+            21.794561,
+            38.3065671
+          ],
+          [
+            21.7944279,
+            38.3069076
+          ],
+          [
+            21.794113,
+            38.3074435
+          ],
+          [
+            21.7940605,
+            38.307731
+          ],
+          [
+            21.7940417,
+            38.307915
+          ],
+          [
+            21.7939821,
+            38.3079969
+          ],
+          [
+            21.7938003,
+            38.3082251
+          ],
+          [
+            21.7934521,
+            38.3085182
+          ],
+          [
+            21.7929114,
+            38.3095082
+          ],
+          [
+            21.7927903,
+            38.3097252
+          ],
+          [
+            21.7927361,
+            38.3098423
+          ],
+          [
+            21.7926794,
+            38.309979
+          ],
+          [
+            21.7926439,
+            38.3100907
+          ],
+          [
+            21.7926358,
+            38.3101979
+          ],
+          [
+            21.7923058,
+            38.3113128
+          ],
+          [
+            21.7922826,
+            38.3116499
+          ],
+          [
+            21.7922547,
+            38.3117607
+          ],
+          [
+            21.7921917,
+            38.3118653
+          ],
+          [
+            21.7921166,
+            38.3119282
+          ],
+          [
+            21.7919817,
+            38.3119912
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-3a33bb3b53bc3bd3bf3c2",
+      "properties": {
+        "snippet": "River; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/570657/osm-location-of-3a33bb3b53bc3bd3bf3c2",
+        "description": "Associated modern location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of \u03a3\u03ad\u03bb\u03b5\u03bc\u03bd\u03bf\u03c2"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/297745262",
+          "citationDetail": "Way 297745262",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=297745262",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-3a33bb3b53bc3bd3bf3c2",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "end": 2100,
+      "title": "OSM location of \u03a3\u03ad\u03bb\u03b5\u03bc\u03bd\u03bf\u03c2",
+      "provenance": "OpenStreetMap (Way 297745262, version 5, osm:changeset=98933429, 2021-02-08T22:09:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "river"
+      ],
+      "description": "Associated modern location based on OpenStreetMap.",
+      "created": "2016-03-02T23:50:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.7979952,
+            38.3017978
+          ],
+          [
+            21.7976536,
+            38.3023983
+          ],
+          [
+            21.7973086,
+            38.3031308
+          ],
+          [
+            21.7966048,
+            38.3043853
+          ],
+          [
+            21.7962635,
+            38.3048185
+          ],
+          [
+            21.7959701,
+            38.3050765
+          ],
+          [
+            21.7959173,
+            38.3051145
+          ],
+          [
+            21.7958584,
+            38.305148
+          ],
+          [
+            21.7954713,
+            38.3053444
+          ],
+          [
+            21.7950672,
+            38.3055915
+          ],
+          [
+            21.7947047,
+            38.3058885
+          ],
+          [
+            21.7946407,
+            38.3060419
+          ],
+          [
+            21.7946568,
+            38.3061661
+          ],
+          [
+            21.7945985,
+            38.3063166
+          ],
+          [
+            21.794561,
+            38.3065671
+          ],
+          [
+            21.7944279,
+            38.3069076
+          ],
+          [
+            21.794113,
+            38.3074435
+          ],
+          [
+            21.7940605,
+            38.307731
+          ],
+          [
+            21.7940417,
+            38.307915
+          ],
+          [
+            21.7939821,
+            38.3079969
+          ],
+          [
+            21.7938003,
+            38.3082251
+          ],
+          [
+            21.7934521,
+            38.3085182
+          ],
+          [
+            21.7929114,
+            38.3095082
+          ],
+          [
+            21.7927903,
+            38.3097252
+          ],
+          [
+            21.7927361,
+            38.3098423
+          ],
+          [
+            21.7926794,
+            38.309979
+          ],
+          [
+            21.7926439,
+            38.3100907
+          ],
+          [
+            21.7926358,
+            38.3101979
+          ],
+          [
+            21.7923058,
+            38.3113128
+          ],
+          [
+            21.7922826,
+            38.3116499
+          ],
+          [
+            21.7922547,
+            38.3117607
+          ],
+          [
+            21.7921917,
+            38.3118653
+          ],
+          [
+            21.7921166,
+            38.3119282
+          ],
+          [
+            21.7919817,
+            38.3119912
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/570657/osm-location-of-3a33bb3b53bc3bd3bf3c2",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-22T15:54:53Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T21:52:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T21:52:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-02T23:51:49Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-02T23:51:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-02T23:50:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-02T23:50:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "58 B1 Selemnos? fl.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:7.23.1",
+      "citationDetail": "7.23.1-3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.1.1.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Selemnos",
+      "citationDetail": "Selemnos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Selemnos.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/383218WSel",
+      "citationDetail": "Selemnos R. (Achaia) 7 Xylokera - \u03a3\u03ad\u03bb\u03b5\u03bc\u03bd\u03bf\u03c2",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016-. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3566505",
+      "citationDetail": "Selemnos (Q3566505)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014-. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Selemnos",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:7.23.1",
+          "citationDetail": "7.23.1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.1.1.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "selemnos",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 58 B1 Selemnos? fl.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2010-09-20T20:54:39Z",
+      "uri": "https://pleiades.stoa.org/places/570657/selemnos",
+      "creators": [
+        {
+          "username": null,
+          "name": "G. Reger"
+        },
+        {
+          "username": null,
+          "name": "J. McK. Camp II"
+        }
+      ],
+      "attested": "\u03a3\u03ad\u03bb\u03b5\u03bc\u03bd\u03bf\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-02T02:07:29Z"
+        },
+        {
+          "comment": "added reference to primary source",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-02T23:55:58Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:33:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-22T18:39:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-20T22:19:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-20T20:54:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "570657",
+  "subject": [],
+  "title": "Selemnos? (river)",
+  "provenance": "Barrington Atlas: BAtlas 58 B1 Selemnos? fl.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/river"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Kastritsiou</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 58 B1 Selemnos? fl.",
+  "reprPoint": [
+    21.794765849057153,
+    38.30679883548053
+  ],
+  "placeTypes": [
+    "river"
+  ],
+  "bbox": [
+    21.7919817,
+    38.3017978,
+    21.7979952,
+    38.3119912
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-10-29T00:15:52Z",
+  "uri": "https://pleiades.stoa.org/places/570657",
+  "creators": [
+    {
+      "username": null,
+      "name": "G. Reger"
+    },
+    {
+      "username": null,
+      "name": "J. McK. Camp II"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "@thomase checked and added references provided by @bkiesling",
+      "modifiedBy": "thomase",
+      "modified": "2025-10-29T00:30:42Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-10-29T00:15:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-02T02:07:05Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-02T23:48:59Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:33:12Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:25:10Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-22T18:39:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-20T22:19:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-20T20:54:38Z"
+    }
+  ]
+}

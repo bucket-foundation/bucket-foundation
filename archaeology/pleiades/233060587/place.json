@@ -1,0 +1,403 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2931285,
+            41.7557906
+          ],
+          [
+            12.2929968,
+            41.7557273
+          ],
+          [
+            12.293027,
+            41.7556876
+          ],
+          [
+            12.2930373,
+            41.7556741
+          ],
+          [
+            12.2930659,
+            41.7556886
+          ],
+          [
+            12.2931814,
+            41.7557472
+          ],
+          [
+            12.2931285,
+            41.7557906
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-shrine-of-sabazius-v-xii-3",
+      "properties": {
+        "snippet": "Shrine",
+        "link": "https://pleiades.stoa.org/places/233060587/osm-location-of-shrine-of-sabazius-v-xii-3",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Shrine of Sabazius (V,XII,3)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1132340577",
+          "citationDetail": "Way 1132340577",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1132340577",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-shrine-of-sabazius-v-xii-3",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": null,
+      "title": "OSM location of Shrine of Sabazius (V,XII,3)",
+      "provenance": "OpenStreetMap (Way 1132340577, version 4, osm:changeset=137920089, 2023-06-29T13:56:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-08-09T01:39:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2931285,
+            41.7557906
+          ],
+          [
+            12.2929968,
+            41.7557273
+          ],
+          [
+            12.293027,
+            41.7556876
+          ],
+          [
+            12.2930373,
+            41.7556741
+          ],
+          [
+            12.2930659,
+            41.7556886
+          ],
+          [
+            12.2931814,
+            41.7557472
+          ],
+          [
+            12.2931285,
+            41.7557906
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/233060587/osm-location-of-shrine-of-sabazius-v-xii-3",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-11T15:02:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:40:59Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T01:39:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T01:39:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T01:39:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-09T13:07:34Z",
+      "associationCertainty": "certain",
+      "title": "Regio V, Ostia Antica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/233060587/8543635881",
+      "connectionType": "part_of_analytical",
+      "id": "8543635881",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:40:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:07:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:07:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:07:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/535208378",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q135678823",
+          "citationDetail": "Shrine of Sabazius (V,XII,3) (Q135678823)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ostia-antica.org/regio5/12/12-3.htm",
+      "citationDetail": "Regio V - Insula XII - Sabazeo (V,XII,3) (Shrine of Sabazius)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ostia - Harbour City of Ancient Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+      "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q135678823",
+      "citationDetail": "Shrine of Sabazius (V,XII,3) (Q135678823)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Shrine of Sabazius",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q135678823",
+          "citationDetail": "Shrine of Sabazius (V,XII,3) (Q135678823)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "shrine-of-sabazius",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-08-09T13:39:31Z",
+      "uri": "https://pleiades.stoa.org/places/233060587/shrine-of-sabazius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Shrine of Sabazius",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-11T15:02:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:40:59Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:39:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:39:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "233060587",
+  "subject": [],
+  "title": "Shrine of Sabazius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Shrine of Sabazius was installed in part of a horreum (V, XII, 2) that was initially built ca. 120-125 CE. The Sabazius shrine likely dates to the early third century. Dante Vaglieri excavated the shrine in 1909.",
+  "reprPoint": [
+    12.293087057654555,
+    41.75573407554868
+  ],
+  "placeTypes": [
+    "shrine"
+  ],
+  "bbox": [
+    12.2929968,
+    41.7556741,
+    12.2931814,
+    41.7557906
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/535208378"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-09T13:07:33Z",
+  "uri": "https://pleiades.stoa.org/places/233060587",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-11T15:02:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:40:59Z"
+    },
+    {
+      "comment": "wikidata Q135678823",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:38:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:35:27Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:07:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:07:33Z"
+    }
+  ]
+}

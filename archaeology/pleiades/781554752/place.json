@@ -1,0 +1,393 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.8211707,
+            34.0071167
+          ],
+          [
+            -6.8211773,
+            34.0071349
+          ],
+          [
+            -6.8211748,
+            34.0071538
+          ],
+          [
+            -6.8211638,
+            34.0071705
+          ],
+          [
+            -6.8211459,
+            34.0071823
+          ],
+          [
+            -6.8207972,
+            34.0073719
+          ],
+          [
+            -6.8206295,
+            34.0071745
+          ],
+          [
+            -6.8209616,
+            34.0069935
+          ],
+          [
+            -6.8209926,
+            34.0069825
+          ],
+          [
+            -6.8210263,
+            34.0069816
+          ],
+          [
+            -6.8210581,
+            34.006991
+          ],
+          [
+            -6.8210836,
+            34.0070094
+          ],
+          [
+            -6.8211707,
+            34.0071167
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "capitolium-of-sala",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/781554752/capitolium-of-sala",
+        "description": "Polygon based on OpenStreetMap representing Capitolium of Sala after Camporeale 2021.",
+        "location_precision": "precise",
+        "title": "Capitolium of Sala"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1104952581",
+          "citationDetail": "Way 1104952581",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1104952581",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1310262096",
+          "citationDetail": "figs.1.1, 1.2, 1.3, 1.4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camporeale 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/45H8RQBC",
+          "formattedCitation": "<div class=\"csl-entry\">Camporeale, Stefano. <i>Il Foro di Sala 1. Il Capitolium</i>. Mediterranean Archaeology Studies 3. Rome: EDIZIONI QUASAR, 2021. https://www.worldcat.org/oclc/1310262096.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "capitolium-of-sala",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 640,
+      "title": "Capitolium of Sala",
+      "provenance": "OpenStreetMap (Way 1104952581, version 3, osm:changeset=150432853, 2024-04-24T08:52:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon based on OpenStreetMap representing Capitolium of Sala after Camporeale 2021.",
+      "created": "2022-10-18T13:44:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.8211707,
+            34.0071167
+          ],
+          [
+            -6.8211773,
+            34.0071349
+          ],
+          [
+            -6.8211748,
+            34.0071538
+          ],
+          [
+            -6.8211638,
+            34.0071705
+          ],
+          [
+            -6.8211459,
+            34.0071823
+          ],
+          [
+            -6.8207972,
+            34.0073719
+          ],
+          [
+            -6.8206295,
+            34.0071745
+          ],
+          [
+            -6.8209616,
+            34.0069935
+          ],
+          [
+            -6.8209926,
+            34.0069825
+          ],
+          [
+            -6.8210263,
+            34.0069816
+          ],
+          [
+            -6.8210581,
+            34.006991
+          ],
+          [
+            -6.8210836,
+            34.0070094
+          ],
+          [
+            -6.8211707,
+            34.0071167
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/781554752/capitolium-of-sala",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-23T01:55:15Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-18T17:59:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-10-18T13:50:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-10-18T13:46:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-10-18T13:44:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-10-18T13:44:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-10-18T13:50:36Z",
+      "associationCertainty": "certain",
+      "title": "Sala",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/781554752/sala",
+      "connectionType": "at",
+      "id": "sala",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-18T17:59:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-10-18T13:50:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-10-18T13:50:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-10-18T13:50:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275696",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1310262096",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camporeale 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/45H8RQBC",
+          "formattedCitation": "<div class=\"csl-entry\">Camporeale, Stefano. <i>Il Foro di Sala 1. Il Capitolium</i>. Mediterranean Archaeology Studies 3. Rome: EDIZIONI QUASAR, 2021. https://www.worldcat.org/oclc/1310262096.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1310262096",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camporeale 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/45H8RQBC",
+      "formattedCitation": "<div class=\"csl-entry\">Camporeale, Stefano. <i>Il Foro di Sala 1. Il Capitolium</i>. Mediterranean Archaeology Studies 3. Rome: EDIZIONI QUASAR, 2021. https://www.worldcat.org/oclc/1310262096.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "781554752",
+  "subject": [],
+  "title": "Capitolium of Sala",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tetrastyle Corinthian temple located in the Roman forum at Sala (modern Chellah) dating from the early Hadrianic period (c.120 CE).",
+  "reprPoint": [
+    -6.8209380331640155,
+    34.007175862585484
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    -6.821221,
+    34.0069747,
+    -6.8206497,
+    34.0073892
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/275696"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-10-18T13:43:47Z",
+  "uri": "https://pleiades.stoa.org/places/781554752",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-18T17:59:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-10-18T13:50:53Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-10-18T13:43:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-10-18T13:43:47Z"
+    }
+  ]
+}

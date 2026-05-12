@@ -1,0 +1,752 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.808412,
+            33.9988441
+          ],
+          [
+            35.8078398,
+            33.9987433
+          ],
+          [
+            35.8078725,
+            33.9986157
+          ],
+          [
+            35.8074244,
+            33.9985368
+          ],
+          [
+            35.8072275,
+            33.9985022
+          ],
+          [
+            35.8071667,
+            33.9976014
+          ],
+          [
+            35.807274,
+            33.997318
+          ],
+          [
+            35.8075364,
+            33.9972598
+          ],
+          [
+            35.8082081,
+            33.9973208
+          ],
+          [
+            35.808472,
+            33.9974034
+          ],
+          [
+            35.8088547,
+            33.9974318
+          ],
+          [
+            35.8091536,
+            33.9976296
+          ],
+          [
+            35.8091165,
+            33.9976681
+          ],
+          [
+            35.8086084,
+            33.9981959
+          ],
+          [
+            35.8085479,
+            33.99877
+          ],
+          [
+            35.8084992,
+            33.9988208
+          ],
+          [
+            35.808412,
+            33.9988441
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/678039/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Qal'at Faqra"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/313838085",
+          "citationDetail": "Way 313838085",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=313838085",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Qal'at Faqra",
+      "provenance": "OpenStreetMap (Way 313838085, version 6, osm:changeset=116889893, 2022-02-01T23:48:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-11-21T15:35:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.808412,
+            33.9988441
+          ],
+          [
+            35.8078398,
+            33.9987433
+          ],
+          [
+            35.8078725,
+            33.9986157
+          ],
+          [
+            35.8074244,
+            33.9985368
+          ],
+          [
+            35.8072275,
+            33.9985022
+          ],
+          [
+            35.8071667,
+            33.9976014
+          ],
+          [
+            35.807274,
+            33.997318
+          ],
+          [
+            35.8075364,
+            33.9972598
+          ],
+          [
+            35.8082081,
+            33.9973208
+          ],
+          [
+            35.808472,
+            33.9974034
+          ],
+          [
+            35.8088547,
+            33.9974318
+          ],
+          [
+            35.8091536,
+            33.9976296
+          ],
+          [
+            35.8091165,
+            33.9976681
+          ],
+          [
+            35.8086084,
+            33.9981959
+          ],
+          [
+            35.8085479,
+            33.99877
+          ],
+          [
+            35.8084992,
+            33.9988208
+          ],
+          [
+            35.808412,
+            33.9988441
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/678039/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T10:24:18Z"
+        },
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T10:24:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-09T18:04:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-21T15:44:16Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-21T15:39:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-21T15:35:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-21T15:35:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "69 C2 Atargatis, T.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "40",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Krencker 1938",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HPGZNWMX",
+      "formattedCitation": "<div class=\"csl-entry\">Krencker, Daniel, and Willy Zschietzschmann. <i>R\u00f6mische Tempel in Syrien</i>. 2 vols. Denkm\u00e4ler Antiker Architektur 5. Berlin, 1938.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.livius.org/articles/place/faqra/",
+      "citationDetail": "Faqra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+      "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/topoi_1161-9473_1999_num_9_2_1855",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rey-Coquais 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TPDLDVV6",
+      "formattedCitation": "<div class=\"csl-entry\">Rey-Coquais, Jean-Paul. \u201cQalaat Faqra\u202f: un monument du culte imp\u00e9rial dans la montagne libanaise.\u201d <i>Topoi. Orient-Occident</i> 9, no. 2 (1999): 629\u201364. https://doi.org/10.3406/topoi.1999.1855.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Qalaat_Faqra",
+      "citationDetail": "Qalaat Faqra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://followinghadrianphotography.com/2020/02/06/faqra/",
+      "citationDetail": "Faqra (2020)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Raddato 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K7Z79DB3",
+      "formattedCitation": "<div class=\"csl-entry\">Raddato, Carole. <i>Following Hadrian Photography</i>, 2017. https://followinghadrianphotography.com/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/16627",
+      "citationDetail": "Geo 16627: Qalaat Faqra",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Qalaat Faqra, Qal'at Faqra",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.persee.fr/doc/topoi_1161-9473_1999_num_9_2_1855",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Rey-Coquais 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TPDLDVV6",
+          "formattedCitation": "<div class=\"csl-entry\">Rey-Coquais, Jean-Paul. \u201cQalaat Faqra\u202f: un monument du culte imp\u00e9rial dans la montagne libanaise.\u201d <i>Topoi. Orient-Occident</i> 9, no. 2 (1999): 629\u201364. https://doi.org/10.3406/topoi.1999.1855.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://ar.wikipedia.org/wiki/%D9%82%D9%84%D8%B9%D8%A9_%D9%81%D9%82%D8%B1%D8%A7",
+          "citationDetail": "\u0642\u0644\u0639\u0629 \u0641\u0642\u0631\u0627",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Arabic)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GIR336Y",
+          "formattedCitation": "<div class=\"csl-entry\"><i>\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062d\u0631\u0629 \u0627\u0644\u062a\u064a \u064a\u0633\u062a\u0637\u064a\u0639 \u0627\u0644\u062c\u0645\u064a\u0639 \u062a\u062d\u0631\u064a\u0631\u0647\u0627: \u0648\u064a\u0643\u064a\u0628\u064a\u062f\u064a\u0627</i>. Wikimedia Foundation, 2001. https://ar.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 1059 see \"Atargatis, T.\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "qalaat-faqra",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2022-12-07T11:30:43Z",
+      "uri": "https://pleiades.stoa.org/places/678039/qalaat-faqra",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u0642\u0644\u0639\u0629 \u0641\u0642\u0631\u0627",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-07T15:18:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T11:38:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T11:30:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T11:30:43Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Faqra",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.livius.org/articles/place/faqra/",
+          "citationDetail": "Faqra",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Livius.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+          "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "faqra",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-12-07T11:32:06Z",
+      "uri": "https://pleiades.stoa.org/places/678039/faqra",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Faqra",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-07T15:18:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T11:38:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T11:32:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T11:32:06Z"
+        }
+      ]
+    },
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Atargatis T.",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "69 C2 Atargatis, T.",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "Atargatis-T",
+      "end": 1999,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 69 C2 Atargatis, T.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-12-07T11:40:14Z",
+      "uri": "https://pleiades.stoa.org/places/678039/Atargatis-T",
+      "creators": [
+        {
+          "username": null,
+          "name": "E.M. Meyers"
+        },
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        }
+      ],
+      "attested": "Atargatis T.",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cahnged type to map label; attested; english; reference BAtlas; 20th century",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-07T15:18:00Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-07T11:40:14Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:47:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-09-16T20:42:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-16T20:19:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-16T20:00:23Z"
+        }
+      ]
+    }
+  ],
+  "id": "678039",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=temple"
+  ],
+  "title": "Qalaat Faqra",
+  "provenance": "Barrington Atlas: BAtlas 69 C2 Atargatis, T.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Qal'at Faqra LEB</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman-era sanctuary complex in Lebanon with multiple altars and two temples. On the basis of epigraphic evidence, one of these temples seems to have been dedicated to Atargatis and the other possibly to Zeus Beelgalassos. There is some evidence for worship also of Zeus Heliopolis and for the Roman imperial cult. A Byzantine basilica was later built on the site.",
+  "reprPoint": [
+    35.80806024742862,
+    33.997984018439496
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    35.8071667,
+    33.9972598,
+    35.8091536,
+    33.9988441
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-12-07T10:18:32Z",
+  "uri": "https://pleiades.stoa.org/places/678039",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.M. Meyers"
+    },
+    {
+      "username": null,
+      "name": "J.P. Brown"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title; summary; place type; updated URI for Livius article; Rey-Coquais 1999; Raddato 2017 (2020); Trismegistos; added modern Names",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-07T15:16:06Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-07T01:06:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-09T18:03:56Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-11-21T15:34:52Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:10:57Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:47:53Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T22:09:52Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T22:57:06Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-09-16T20:42:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-16T20:19:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-16T20:00:23Z"
+    }
+  ]
+}

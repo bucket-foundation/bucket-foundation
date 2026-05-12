@@ -1,0 +1,493 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.0257599,
+            36.9733285
+          ],
+          [
+            27.0259174,
+            36.973281
+          ],
+          [
+            27.0260988,
+            36.9732881
+          ],
+          [
+            27.0263366,
+            36.9732098
+          ],
+          [
+            27.0265532,
+            36.9732097
+          ],
+          [
+            27.0265595,
+            36.9734532
+          ],
+          [
+            27.0264781,
+            36.9736653
+          ],
+          [
+            27.0263773,
+            36.9737854
+          ],
+          [
+            27.0263525,
+            36.9738702
+          ],
+          [
+            27.0263087,
+            36.9739089
+          ],
+          [
+            27.0262319,
+            36.9739985
+          ],
+          [
+            27.026136,
+            36.9739265
+          ],
+          [
+            27.0260199,
+            36.9738834
+          ],
+          [
+            27.025941,
+            36.9738765
+          ],
+          [
+            27.0259489,
+            36.9737043
+          ],
+          [
+            27.0258831,
+            36.9735123
+          ],
+          [
+            27.0257599,
+            36.9733285
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bathos-excavations-kalymnos",
+      "properties": {
+        "snippet": "Archaeological-site; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/599553/osm-location-of-bathos-excavations-kalymnos",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bathos excavations (Kalymnos)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1232635025",
+          "citationDetail": "Way 1232635025",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1232635025",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bathos-excavations-kalymnos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -30,
+      "title": "OSM location of Bathos excavations (Kalymnos)",
+      "provenance": "OpenStreetMap (Way 1232635025, version 4, osm:changeset=149545412, 2024-04-03T22:05:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-04-03T22:05:47Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.0257599,
+            36.9733285
+          ],
+          [
+            27.0259174,
+            36.973281
+          ],
+          [
+            27.0260988,
+            36.9732881
+          ],
+          [
+            27.0263366,
+            36.9732098
+          ],
+          [
+            27.0265532,
+            36.9732097
+          ],
+          [
+            27.0265595,
+            36.9734532
+          ],
+          [
+            27.0264781,
+            36.9736653
+          ],
+          [
+            27.0263773,
+            36.9737854
+          ],
+          [
+            27.0263525,
+            36.9738702
+          ],
+          [
+            27.0263087,
+            36.9739089
+          ],
+          [
+            27.0262319,
+            36.9739985
+          ],
+          [
+            27.026136,
+            36.9739265
+          ],
+          [
+            27.0260199,
+            36.9738834
+          ],
+          [
+            27.025941,
+            36.9738765
+          ],
+          [
+            27.0259489,
+            36.9737043
+          ],
+          [
+            27.0258831,
+            36.9735123
+          ],
+          [
+            27.0257599,
+            36.9733285
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/599553/osm-location-of-bathos-excavations-kalymnos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-04T22:18:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-03T22:06:11Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-03T22:06:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-03T22:05:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-03T22:05:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-01-21T15:18:26Z",
+      "associationCertainty": "certain",
+      "title": "Kalymna (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/599553/kalymna-island",
+      "connectionType": "on",
+      "id": "kalymna-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-04T22:16:44Z"
+        },
+        {
+          "comment": "add BAtlDir",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-03T22:01:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T15:18:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T15:18:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T15:18:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599684",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "p. 939",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "61 E4 Bathos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "56-57",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Koukoule 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/52FJ3NRE",
+      "formattedCitation": "<div class=\"csl-entry\">GN Koukoule. <i>\u201b\u0397 \u039a\u03ac\u03bb\u03c5\u03bc\u03bd\u03b1 \u03a4\u1fc6\u03c2 \u1f39\u03c3\u03c4\u03bf\u03c1\u03af\u03b1\u03c2\u00b7 \u201b\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03c3\u03c4\u03b9\u03ba\u03bf\u1f76-\u1fec\u03c9\u03bc\u03b1\u03b9\u03ba\u03bf\u1f76 \u03a7\u03c1\u03cc\u03bd\u03bf\u03b9</i>. 2 ed. Athens, 1982.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/370270XBat",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "ToposText Bathos exc. (Kalymnos) Rina",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "2951",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "599553",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "Bathos",
+  "provenance": "Barrington Atlas: BAtlas 61 E4 Bathos",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Bathos, on Kalymna GRE</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 61 E4 Bathos",
+  "reprPoint": [
+    27.026188127722975,
+    36.973540453716
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    27.0257599,
+    36.9732097,
+    27.0265595,
+    36.9739985
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599684"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-15T09:04:19Z",
+  "uri": "https://pleiades.stoa.org/places/599553",
+  "creators": [
+    {
+      "username": null,
+      "name": "C. Foss"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-04T22:19:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-22T00:53:52Z"
+    },
+    {
+      "comment": "topostext ref",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T15:19:10Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:35:51Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:57:03Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T23:34:02Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-02-25T20:29:18Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-15T18:04:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-15T09:19:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-15T09:04:19Z"
+    }
+  ]
+}

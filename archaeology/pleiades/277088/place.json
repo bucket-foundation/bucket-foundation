@@ -1,0 +1,424 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.0,
+              33.0
+            ],
+            [
+              -4.0,
+              33.0
+            ],
+            [
+              -4.0,
+              36.5
+            ],
+            [
+              -7.0,
+              36.5
+            ],
+            [
+              -7.0,
+              33.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-location",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/277088/batlas-location",
+        "description": "Roughly located within a bounding box",
+        "location_precision": "rough",
+        "title": "Barrington Atlas location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "batlas-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 640,
+      "title": "Barrington Atlas location",
+      "provenance": "Barrington Atlas: BAtlas 28",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Roughly located within a bounding box",
+      "created": "2010-09-24T20:04:49Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -7.0,
+              33.0
+            ],
+            [
+              -4.0,
+              33.0
+            ],
+            [
+              -4.0,
+              36.5
+            ],
+            [
+              -7.0,
+              36.5
+            ],
+            [
+              -7.0,
+              33.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/277088/batlas-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "M. Euzennat"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T03:58:32Z"
+        },
+        {
+          "comment": "Batch geocoding, to BAtlas grids, of unlocated roads.",
+          "modifiedBy": "sgillies",
+          "modified": "2011-07-14T05:28:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-24T20:35:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-24T20:06:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-24T20:04:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-14T23:13:38Z",
+      "associationCertainty": "certain",
+      "title": "Ad Mercuri?",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/277088/ad-mercurios",
+      "connectionType": "near",
+      "id": "ad-mercurios",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-15T00:03:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:15:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:15:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:14:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:13:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:13:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275579",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-14T23:14:35Z",
+      "associationCertainty": "certain",
+      "title": "Oppidum Novum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/277088/oppidum-novum",
+      "connectionType": "near",
+      "id": "oppidum-novum",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-15T00:03:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:15:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:14:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-14T23:14:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275685",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "28 C2-3",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gallica.bnf.fr/ark:/12148/bpt6k62529298/f229.item",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Euzennat 1990a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UG83N9E5",
+      "formattedCitation": "<div class=\"csl-entry\">Euzennat, M. \u201cAd Mercuri Ad Mercurios.\u201d <i>Bulletin Du Comit\u00e9 Des Travaux Historiques et Scientifiques</i> 23B (1992 1990): 227\u201328. https://gallica.bnf.fr/ark:/12148/bpt6k62529298/f229.item.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "277088",
+  "subject": [],
+  "title": "Road Segment: Ad Mercuri \u2192 Oppidum Novum",
+  "provenance": "Barrington Atlas: BAtlas 28",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/road"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Ad Mercuri \u2192 Oppidum Novum</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A segment of Roman road in modern Morrocco, corresponding to a route listed in the Antonine Itinerary.",
+  "reprPoint": [
+    -5.5,
+    34.75
+  ],
+  "placeTypes": [
+    "road"
+  ],
+  "bbox": [
+    -7.0,
+    33.0,
+    -4.0,
+    36.5
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/275579",
+    "https://pleiades.stoa.org/places/275685"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-14T22:50:43Z",
+  "uri": "https://pleiades.stoa.org/places/277088",
+  "creators": [
+    {
+      "username": null,
+      "name": "M. Euzennat"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-15T00:02:49Z"
+    },
+    {
+      "comment": "title; summary; cleaned up references; updated Connections",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-15T00:02:33Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T03:58:32Z"
+    },
+    {
+      "comment": "Description fixes 2 after batch geocoding of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T18:13:30Z"
+    },
+    {
+      "comment": "Description fixes after batch geocoding of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T17:20:51Z"
+    },
+    {
+      "comment": "Batch geocoding, to BAtlas grids, of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T05:28:35Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:24:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-24T20:35:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-24T20:06:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-24T20:04:49Z"
+    }
+  ]
+}

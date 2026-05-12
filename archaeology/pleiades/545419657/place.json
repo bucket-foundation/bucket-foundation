@@ -1,0 +1,284 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.8218771,
+            41.0190529
+          ],
+          [
+            -0.8216921,
+            41.0189193
+          ],
+          [
+            -0.8216196,
+            41.0188809
+          ],
+          [
+            -0.8214909,
+            41.0188182
+          ],
+          [
+            -0.8214292,
+            41.018808
+          ],
+          [
+            -0.8213675,
+            41.0188182
+          ],
+          [
+            -0.8213246,
+            41.0188384
+          ],
+          [
+            -0.8212522,
+            41.0188303
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-dam",
+      "properties": {
+        "snippet": "Dam; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/545419657/location-of-roman-dam",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of La Pared de los Moros"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/268365939",
+          "citationDetail": "Way 268365939",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=268365939",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-dam",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/dam"
+      ],
+      "end": 640,
+      "title": "OSM location of La Pared de los Moros",
+      "provenance": "OpenStreetMap (Way 268365939, version 2, osm:changeset=59346887, 2018-05-28T17:50:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/dam"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "dam"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-03-23T16:16:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.8218771,
+            41.0190529
+          ],
+          [
+            -0.8216921,
+            41.0189193
+          ],
+          [
+            -0.8216196,
+            41.0188809
+          ],
+          [
+            -0.8214909,
+            41.0188182
+          ],
+          [
+            -0.8214292,
+            41.018808
+          ],
+          [
+            -0.8213675,
+            41.0188182
+          ],
+          [
+            -0.8213246,
+            41.0188384
+          ],
+          [
+            -0.8212522,
+            41.0188303
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/545419657/location-of-roman-dam",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T00:47:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T12:42:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-04T18:03:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-28T18:59:19Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T16:16:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T16:16:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T16:16:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/La_Pared_de_los_Moros",
+      "citationDetail": "La Pared de los Moros",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), La Pared de los Moros.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27794422",
+      "citationDetail": "Pared de los Moros (Q27794422)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "545419657",
+  "subject": [],
+  "title": "La Pared de los Moros",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/dam"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman gravity dam dating to the third century.",
+  "reprPoint": [
+    -0.8215773817648507,
+    41.01889052864444
+  ],
+  "placeTypes": [
+    "dam"
+  ],
+  "bbox": [
+    -0.8218771,
+    41.018808,
+    -0.8212522,
+    41.0190529
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-03-23T16:15:44Z",
+  "uri": "https://pleiades.stoa.org/places/545419657",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q27794422",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T00:48:30Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T12:42:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T18:03:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-28T18:59:37Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-23T16:15:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-23T16:15:45Z"
+    }
+  ]
+}

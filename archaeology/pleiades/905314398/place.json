@@ -1,0 +1,744 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.8350476,
+          30.7998239
+        ]
+      },
+      "type": "Feature",
+      "id": "pi-ramesses",
+      "properties": {
+        "snippet": "Settlement; 1548 BC - 1086 BC",
+        "link": "https://pleiades.stoa.org/places/905314398/pi-ramesses",
+        "description": "Point based on an OpenStreetMap node representing Pi-Ramesses after Uphill 1984 and Wikidata.",
+        "location_precision": "precise",
+        "title": "OSM location of Pi-Ramesses"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.8345,
+          30.8017
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-qantir",
+      "properties": {
+        "snippet": "Settlement-modern",
+        "link": "https://pleiades.stoa.org/places/905314398/cigs-location-of-qantir",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Qant\u012br"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9856434565",
+          "citationDetail": "Node 9856434565",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/470366096",
+          "citationDetail": "plates 1 and 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Uphill 1984",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q87XZ9QK",
+          "formattedCitation": "<div class=\"csl-entry\">Uphill, E. P. <i>The Temples of Per Ramesses</i>. Warminster: Aris &amp; Phillips, 1984. http://www.worldcat.org/oclc/470366096.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.wikidata.org/entity/Q937930",
+          "citationDetail": "Pi-Ramesses",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "pi-ramesses",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1086,
+      "title": "OSM location of Pi-Ramesses",
+      "provenance": "OpenStreetMap (Node 9856434565, version 1, osm:changeset=123016738, 2022-06-29T19:30:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Pi-Ramesses after Uphill 1984 and Wikidata.",
+      "created": "2025-12-03T19:03:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.8350476,
+          30.7998239
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/905314398/pi-ramesses",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:03:22Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:03:22Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T15:59:47Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-20T13:33:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-01T16:13:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T19:33:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T19:32:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T19:30:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T19:30:38Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pusch and Jakob 2003",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4AHI8USV",
+          "formattedCitation": "<div class=\"csl-entry\">Pusch, Edgar B., and Stefan Jakob. \u201cDer Zipfel Des Diplomatischen Archivs Ramses\u2019 II.\u201d <i>\u00c4gypten Und Levante / Egypt and the Levant</i> 13 (2003): 143\u201353.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://qantir-piramesse.de/home/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Qantir-Piramesse",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8BVCULPG",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cQantir-Piramesse,\u201d October 6, 2020. https://qantir-piramesse.de/home/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Pi-Ramesses",
+          "citationDetail": "Pi-Ramesses",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Pi-Ramesses.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://ar.wikipedia.org/wiki/\u0628\u0631-\u0631\u0645\u0633\u064a\u0633",
+          "citationDetail": "\u0628\u0631-\u0631\u0645\u0633\u064a\u0633",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Arabic)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GIR336Y",
+          "formattedCitation": "<div class=\"csl-entry\"><i>\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062d\u0631\u0629 \u0627\u0644\u062a\u064a \u064a\u0633\u062a\u0637\u064a\u0639 \u0627\u0644\u062c\u0645\u064a\u0639 \u062a\u062d\u0631\u064a\u0631\u0647\u0627: \u0648\u064a\u0643\u064a\u0628\u064a\u062f\u064a\u0627</i>. Wikimedia Foundation, 2001. https://ar.wikipedia.org.</div>, \u0628\u0631-\u0631\u0645\u0633\u064a\u0633.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/",
+          "citationDetail": "Q937930",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q937930.",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "cigs-location-of-qantir",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": null,
+      "title": "CIGS location of Qant\u012br",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "",
+      "created": "2025-12-03T19:02:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.8345,
+          30.8017
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/905314398/cigs-location-of-qantir",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:02:47Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:02:46Z"
+        },
+        {
+          "comment": "added PAA",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-13T21:58:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-20T19:39:06Z"
+        },
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-20T13:35:03Z"
+        },
+        {
+          "comment": "changed location type to associated modern",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-20T13:34:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-20T12:14:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-20T12:13:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-20T12:13:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1086,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2025-12-03T19:02:30Z",
+      "associationCertainty": "certain",
+      "title": "Avaris/Ramesses",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/905314398/avaris-ramesses",
+      "connectionType": "near",
+      "id": "avaris-ramesses",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:02:31Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:02:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-01T16:13:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T19:33:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T19:28:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T19:28:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/727080",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/w/index.php?title=Pi-Ramesses&oldid=1086958604",
+          "citationDetail": "Pi-Ramesses",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/470366096",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Uphill 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q87XZ9QK",
+      "formattedCitation": "<div class=\"csl-entry\">Uphill, E. P. <i>The Temples of Per Ramesses</i>. Warminster: Aris &amp; Phillips, 1984. http://www.worldcat.org/oclc/470366096.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Pi-Ramesses&oldid=1086958604",
+      "citationDetail": "Pi-Ramesses",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.wikidata.org/entity/Q937930",
+      "citationDetail": "Pi-Ramesses (Q937930)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Qant\u012br",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pusch and Jakob 2003",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4AHI8USV",
+          "formattedCitation": "<div class=\"csl-entry\">Pusch, Edgar B., and Stefan Jakob. \u201cDer Zipfel Des Diplomatischen Archivs Ramses\u2019 II.\u201d <i>\u00c4gypten Und Levante / Egypt and the Levant</i> 13 (2003): 143\u201353.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://qantir-piramesse.de/home/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Qantir-Piramesse",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8BVCULPG",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cQantir-Piramesse,\u201d October 6, 2020. https://qantir-piramesse.de/home/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/Pi-Ramesses",
+          "citationDetail": "Pi-Ramesses",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Pi-Ramesses.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://ar.wikipedia.org/wiki/\u0628\u0631-\u0631\u0645\u0633\u064a\u0633",
+          "citationDetail": "\u0628\u0631-\u0631\u0645\u0633\u064a\u0633",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Arabic)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GIR336Y",
+          "formattedCitation": "<div class=\"csl-entry\"><i>\u0627\u0644\u0645\u0648\u0633\u0648\u0639\u0629 \u0627\u0644\u062d\u0631\u0629 \u0627\u0644\u062a\u064a \u064a\u0633\u062a\u0637\u064a\u0639 \u0627\u0644\u062c\u0645\u064a\u0639 \u062a\u062d\u0631\u064a\u0631\u0647\u0627: \u0648\u064a\u0643\u064a\u0628\u064a\u062f\u064a\u0627</i>. Wikimedia Foundation, 2001. https://ar.wikipedia.org.</div>, \u0628\u0631-\u0631\u0645\u0633\u064a\u0633.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q937930",
+          "citationDetail": "Q937930",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q937930.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "qantir",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for Arabic (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-12-03T18:59:52Z",
+      "uri": "https://pleiades.stoa.org/places/905314398/qantir",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u0642\u0646\u062a\u064a\u0631",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T18:59:52Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T18:59:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-20T19:39:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-20T12:14:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-20T12:13:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-20T12:13:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "905314398",
+  "subject": [],
+  "title": "Pi-Ramesses",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Capital city built by New Kingdom pharaoh Ramesses II at the modern Egyptian village of Qantir. The site is near the old capital, Avaris.",
+  "reprPoint": [
+    31.8347738,
+    30.800761950000002
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    31.8345,
+    30.7998239,
+    31.8350476,
+    30.8017
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/727080"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-03T18:57:51Z",
+  "uri": "https://pleiades.stoa.org/places/905314398",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-03T18:57:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-16T15:20:27Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-19T16:00:08Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-22T19:28:34Z"
+    },
+    {
+      "comment": "update wikidata Pi-Ramesses (Q937930)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T01:23:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-01T16:13:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-01T16:12:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-29T19:33:09Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-29T19:27:32Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-29T19:27:31Z"
+    }
+  ]
+}

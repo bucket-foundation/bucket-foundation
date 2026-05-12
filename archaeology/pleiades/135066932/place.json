@@ -1,0 +1,800 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2602042,
+            35.4596779
+          ],
+          [
+            43.2607465,
+            35.4587644
+          ],
+          [
+            43.2597605,
+            35.458408
+          ],
+          [
+            43.2594647,
+            35.4587945
+          ],
+          [
+            43.259132,
+            35.4593065
+          ],
+          [
+            43.2602042,
+            35.4596779
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "old-palace",
+      "properties": {
+        "snippet": "Architecturalcomplex; 2000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/135066932/old-palace",
+        "description": "",
+        "location_precision": "unlocated",
+        "title": "Old Palace"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/620413631",
+          "citationDetail": "Way 620413631",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=620413631",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "old-palace",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": -540,
+      "title": "Old Palace",
+      "provenance": "OpenStreetMap (Way 620413631, version 1, osm:changeset=62048500, 2018-08-27T18:30:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "",
+      "created": "2022-06-06T12:39:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2602042,
+            35.4596779
+          ],
+          [
+            43.2607465,
+            35.4587644
+          ],
+          [
+            43.2597605,
+            35.458408
+          ],
+          [
+            43.2594647,
+            35.4587945
+          ],
+          [
+            43.259132,
+            35.4593065
+          ],
+          [
+            43.2602042,
+            35.4596779
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/135066932/old-palace",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-30T21:20:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T18:42:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T18:40:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T18:37:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T18:37:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-06T12:29:52Z",
+      "associationCertainty": "certain",
+      "title": "Great Ziggurat of A\u0161\u0161ur at Assur",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/135066932/great-ziggurat-of-assur-at-assur",
+      "connectionType": "near",
+      "id": "great-ziggurat-of-assur-at-assur",
+      "attestations": [
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-06T21:10:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T16:41:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T12:29:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T12:29:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/881209103",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/992438862",
+          "citationDetail": "plate 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gries 2017",
+          "bibliographicURI": "",
+          "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-06T12:47:14Z",
+      "associationCertainty": "certain",
+      "title": "Temple of Anu and Adad at Assur",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/135066932/temple-of-anu-and-adad-at-assur",
+      "connectionType": "near",
+      "id": "temple-of-anu-and-adad-at-assur",
+      "attestations": [
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-06T21:10:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T16:41:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T12:47:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T12:47:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/536694247",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/992438862",
+          "citationDetail": "plate 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gries 2017",
+          "bibliographicURI": "",
+          "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-27T18:42:03Z",
+      "associationCertainty": "certain",
+      "title": "Ashur/\u2018Lamban\u2019?/\u2018Liba(nai)\u2019?",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/135066932/ashur-2018lamban2019-2018liba-nai-2019",
+      "connectionType": "part_of_admin",
+      "id": "ashur-2018lamban2019-2018liba-nai-2019",
+      "attestations": [
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-30T21:20:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T18:42:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T18:42:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T18:42:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893945",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_admin"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lundstrom 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MYFZ565U",
+      "formattedCitation": "<div class=\"csl-entry\">Lundstrom, Steven. <i>Die K\u00f6nigsgr\u00fcfte im Alten Palast von Assur</i>. Ausgrabungen der Deutschen Orient-Gesellschaft in Assur. A, Die Baudenkm\u00e4ler aus assyrischer Zeit, 13; Wissenschaftliche Veroffentlichungen der Deutschen Orient-Gesellschaft. Wiesbaden: Harrassowitz, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/638827873",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Preusser 1955",
+      "bibliographicURI": "",
+      "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "* https://www.worldcat.org/oclc/836852025",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Pedde and Lundstr\u00f6m 2008",
+      "bibliographicURI": "",
+      "formattedCitation": "* Pedde, F. and Lundstr\u00f6m, S. 2008. Der Alte Palast in Assur. Architektur und Baugeschichte (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 120). Wiesbaden.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/779265816",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Lundstr\u00f6m and Orlam\u00fcnde 2011",
+      "bibliographicURI": "",
+      "formattedCitation": "* Lundstr\u00f6m, S. and Orlam\u00fcnde, J. 2011. Die Orthostaten Tiglat-Pilesers I. und Assurnasirpals II. aus dem Alten Palast in Assur )Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 136). Wiesbaden.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/3372718/Der_Alte_Palast._Ausgrabung_und_Neubearbeitung_in_J._Renger_ed._Assur_-_Gott_Stadt_und_Land_in_CDOG_5_2011_33-62",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pedde 2011",
+      "bibliographicURI": "",
+      "formattedCitation": "* Pedde, F. 2011. \u201cDer Alte Palast. Ausgrabung und Neubearbeitung,\u201d pp. 33\u201362 in J. Renger (ed.), Assur \u2013 Gott, Stadt und Land, 5. Internationales Colloquium der Deutschen Orient-Gesellschaft 18.\u201321. Februar 2004 in Berlin. Berlin",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Alter_Palast_(A\u0161\u0161ur)",
+      "citationDetail": "Alter Palast (A\u0161\u0161ur)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/2280311/Die_Baugeschichte_des_Alten_Palastes_von_Assur_in_Proceedings_of_the_52e_Rencontre_Assyriologie_Internationale_in_M\u00fcnster_July_2006_in_press_proofs_",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lundstr\u00f6m 2014",
+      "bibliographicURI": "",
+      "formattedCitation": "Lundstr\u00f6m, S. 2014. \u201cDie Baugeschichte des Alten Palastes von Assur,\u201d pp. 495\u2013515 in H. Neumann et. al., Krieg und Frieden im Alten Vorderasien. (Alter Orient und Altes Testament 401). M\u00fcnster.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Old Palace",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.academia.edu/4060694/Revising_the_Building_History_of_the_Old_Palace_in_the_City_of_Ashur_in_D_Kertai_P_A_Miglus_New_Research_on_Late_Assyrian_Palaces_Conference_at_Heidelberg_January_22nd_2011_Heidelberger_Studien_zum_Alten_Orient_15_Heidelbe",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Lundstr\u00f6m 2013",
+          "bibliographicURI": "",
+          "formattedCitation": "Lundstr\u00f6m S. 2013. \u201cRevising the Building History of the Old Palace in the City of Ashur,\u201d pp. 23\u201326 in D. Kertai and P.A. Miglus (eds.), New Research on Late Assyrian Palaces. Conference at Heidelberg January 22nd, 2011 (Heidelberger Studien zum Alten Or",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "old-palace",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-06-06T12:39:48Z",
+      "uri": "https://pleiades.stoa.org/places/135066932/old-palace",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "Old Palace",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T17:14:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T17:14:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T16:41:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T12:39:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T12:39:48Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Alter Palast",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://de.wikipedia.org/wiki/Alter_Palast_(A\u0161\u0161ur)",
+          "citationDetail": "Alter Palast (A\u0161\u0161ur)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (German)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "alter-palast",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2022-06-06T12:41:42Z",
+      "uri": "https://pleiades.stoa.org/places/135066932/alter-palast",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "Alter Palast",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "attested form",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T17:15:00Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-06T21:10:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T16:41:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T12:41:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-06T12:41:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "135066932",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Old Palace at Assur",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/palace-complex",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/palace"
+  ],
+  "details": "<p>The following Assyrian kings are known to have sponsored construction on the Old Palace at Assur: Adad-n\u0101r\u0101r\u012b I, Shalmaneser I, Tukult\u012b-Ninurta I, A\u0161\u0161ur-n\u0101din-apli, A\u0161\u0161ur-dan I, A\u0161\u0161ur-r\u0113\u0161a-i\u0161i I, Tiglath-pileser I, A\u0161\u0161ur-b\u0113l-kala, Ashurnasirpal I, A\u0161\u0161ur-dan II, Tukult\u012b-Ninurta II, Ashurnasirpal II, Shalmaneser III, \u0160am\u0161\u012b-Adad V, Tiglath-pileser III, Sargon II, Sennacherib, and Esarhaddon.</p>\r\n<p>The Assyrian kings A\u0161\u0161ur-b\u0113l-kala,\u00a0Ashurnasirpal II, \u0160am\u0161<b>\u012b</b>-Adad V, Esarhaddon, and Sennacherib were buried in the Old Palace.\u00a0As is clear from numerous bricks discovered throughout the city of Assur, the Neo-Assyrian ruler Sennacherib (704\u2013681 BC) appears to have had his own tomb built during his lifetime; that structure may have included both above-ground and underground components. Like other royal tombs at Assur, this king\u2019s tomb, which Sennacherib calls the \"Palace of Rest\" (<i><a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap3/Q004008\" target=\"_self\" title=\"\">ekal tap\u0161u\u1e2bti</a></i>) on one occasion and the \"Palace of Sleep\" (<i><a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap3/Q004009/\" target=\"_self\" title=\"\">ekal \u1e63al\u0101li</a></i>) on another, might have been situated under the Old Palace. Its location is not known and this likely in part be due to the fact that the tomb was intentionally destroyed at a later date. It is uncertain whether or not Sennacherib was buried in this tomb after he was murdered in late 681 BC.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Old Palace was the most important palace complex in the city of Assur. Although the oldest, securely-datable archaeological existence for the palace dates to the early Middle Assyrian period, this royal residence was probably founded in the Old Assyrian period, possibly during the reign of \u0160am\u0161\u012b-Adad I (ca. 1836\u20131776 BC). This important building was continuously until the sack and destruction of Assur in 614 BC. The Old Palace not only served as a residence for the Assyrian king and his family and an administrative center, but it was also a place of worship where the gods gathered on special occasions and the burial place of Assyrian kings.",
+  "reprPoint": [
+    43.25994869148935,
+    35.45904521470144
+  ],
+  "placeTypes": [
+    "palace-complex",
+    "architecturalcomplex",
+    "palace"
+  ],
+  "bbox": [
+    43.259132,
+    35.458408,
+    43.2607465,
+    35.4596779
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/881209103",
+    "https://pleiades.stoa.org/places/536694247",
+    "https://pleiades.stoa.org/places/893945",
+    "https://pleiades.stoa.org/places/921404713",
+    "https://pleiades.stoa.org/places/530793920"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-06T12:08:11Z",
+  "uri": "https://pleiades.stoa.org/places/135066932",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited; Edited; Edited; Edited; Edited; Edited; updated Connections, Names",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-06T21:10:31Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-06T12:08:10Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-30T21:20:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-27T18:42:15Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-27T18:36:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-27T18:36:34Z"
+    }
+  ]
+}

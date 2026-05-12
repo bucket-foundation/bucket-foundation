@@ -1,0 +1,211 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3346519,
+          32.9667958
+        ]
+      },
+      "type": "Feature",
+      "id": "5ea5dc-5d75e85e95d95dd",
+      "properties": {
+        "snippet": "Tell; 1400 BC - AD 1453",
+        "link": "https://pleiades.stoa.org/places/506029338/5ea5dc-5d75e85e95d95dd",
+        "description": "Point based on an OpenStreetMap node representing Tel \u1e24arasim.",
+        "location_precision": "precise",
+        "title": "OSM location of Tel \u1e24arasim"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "iron-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-babylonian-achaemenid-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-babylonian-achaemenid-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/278476249",
+          "citationDetail": "Node 278476249",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=278476249",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "5ea5dc-5d75e85e95d95dd",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": 1453,
+      "title": "OSM location of Tel \u1e24arasim",
+      "provenance": "OpenStreetMap (Node 278476249, version 6, osm:changeset=84335772, 2020-04-29T11:42:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1400,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Tel \u1e24arasim.",
+      "created": "2022-06-28T13:52:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3346519,
+          32.9667958
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/506029338/5ea5dc-5d75e85e95d95dd",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-11T17:40:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T13:54:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T13:54:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T13:52:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T13:52:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/233056803",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Givon 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F2YRVC4H",
+      "formattedCitation": "<div class=\"csl-entry\">Givon, Shmuel. <i>The First Season of Excavation at \u201cTel Harasim\u201d 1990: Preliminary Report* 1</i>. Tel Aviv: \u05d7\u05de\u05d5\"\u05dc, 1991. http://www.worldcat.org/oclc/233056803.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "506029338",
+  "subject": [],
+  "title": "Tel \u1e24arasim",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tell in northern Israel with remains from the Late Bronze Age, Iron Age, Persian period, and Byzantine period. The tell was not fortified but did have a fortress in the Iron Age.",
+  "reprPoint": [
+    35.3346519,
+    32.9667958
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    35.3346519,
+    32.9667958,
+    35.3346519,
+    32.9667958
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-28T13:52:28Z",
+  "uri": "https://pleiades.stoa.org/places/506029338",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-11T17:40:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T13:54:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T13:52:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T13:52:28Z"
+    }
+  ]
+}

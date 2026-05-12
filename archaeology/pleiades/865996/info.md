@@ -1,0 +1,14 @@
+# Askoura
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/865996
+- **ID**: 865996
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Askoura
+
+## Description
+
+An ancient place, cited: BAtlas 88 unlocated Askoura

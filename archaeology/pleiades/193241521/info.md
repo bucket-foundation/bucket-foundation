@@ -1,0 +1,14 @@
+# Ma’allanate Archive 1
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/193241521
+- **ID**: 193241521
+- **Coords**: (no precise location)
+- **Subjects**: ANE, Assyrian
+- **Time periods**: 
+- **Names**: Ma’allanate Archive 1
+
+## Description
+
+An archive, sold on the antiquities market, can be located at Ma’allanate. The site has not been precisely identified, but two suggestions have been made regarding its location. The first situates it in the upper Balikh valley, northern Syria, while the other places it further east, on the Habur River between Tell Halaf/Guzana and Al-Hasakah. Recent opinion favours the first location. 49 cuneiform tablets have been attributed to Ma’allanate. These are mostly written in Assyrian, but three use Babylonian script and dialect. In addition to these texts, 24 documents are written in Aramaic. The archive belonged to Ḫandi, who had the title “steward of the palace“and was active from 700 to 665 BC, his son Ḫarranayu, who was active from 661 to 644 BC, and Ser-nuri, active from 652 to 622 BC. The relationship between Ser-nuri and the father and son is unclear. The archive contains loan documents of silver and barley, payments of loans, purchase documents of slaves and land, and other documents.

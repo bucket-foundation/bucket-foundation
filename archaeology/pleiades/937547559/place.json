@@ -1,0 +1,386 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.2891196,
+            37.8539237
+          ],
+          [
+            15.2889373,
+            37.8540151
+          ],
+          [
+            15.2889667,
+            37.8540529
+          ],
+          [
+            15.2888711,
+            37.8540844
+          ],
+          [
+            15.2889701,
+            37.8542479
+          ],
+          [
+            15.2890767,
+            37.8542283
+          ],
+          [
+            15.2892858,
+            37.8541528
+          ],
+          [
+            15.2891196,
+            37.8539237
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-terme-romane",
+      "properties": {
+        "snippet": "Bath; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/937547559/osm-location-of-terme-romane",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Terme Romane"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/345607299",
+          "citationDetail": "Way 345607299",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=345607299",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-terme-romane",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 300,
+      "title": "OSM location of Terme Romane",
+      "provenance": "OpenStreetMap (Way 345607299, version 3, osm:changeset=56311413, 2018-02-13T03:34:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-02-13T03:35:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.2891196,
+            37.8539237
+          ],
+          [
+            15.2889373,
+            37.8540151
+          ],
+          [
+            15.2889667,
+            37.8540529
+          ],
+          [
+            15.2888711,
+            37.8540844
+          ],
+          [
+            15.2889701,
+            37.8542479
+          ],
+          [
+            15.2890767,
+            37.8542283
+          ],
+          [
+            15.2892858,
+            37.8541528
+          ],
+          [
+            15.2891196,
+            37.8539237
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/937547559/osm-location-of-terme-romane",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-19T23:25:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-14T17:25:51Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-14T14:51:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T04:09:20Z"
+        },
+        {
+          "comment": "added new OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T03:35:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T03:35:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T03:35:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-30T20:17:18Z",
+      "associationCertainty": "certain",
+      "title": "Tauromenium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/937547559/4387747064",
+      "connectionType": "at",
+      "id": "4387747064",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-19T23:25:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-14T17:25:51Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-14T14:51:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T04:09:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T03:31:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-30T20:17:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-30T20:17:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-30T20:17:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462506",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bacci 1984-1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B33V388M",
+      "formattedCitation": "<div class=\"csl-entry\">Bacci, G.M. \u201cTaormina (1984) - Scavi e restauri presso le Terme Romane.\u201d <i>Kokalos</i> 30\u201331 (1985 1984): 722\u201325.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pelagatti 1964",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LJBBAB5J",
+      "formattedCitation": "<div class=\"csl-entry\">Pelagatti, P. \u201cScoperta di un edificio termale a Taormina.\u201d <i>Cronache di archeologia, 3.1964</i> 3 (1964): 25\u201337, Taf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "937547559",
+  "subject": [
+    "extant remains",
+    "baths"
+  ],
+  "title": "Roman baths of Taormina",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman baths of Taormina are built atop a public building of the Hellenistic period. The Roman baths originally fronted on the forum and were expanded in the second century.",
+  "reprPoint": [
+    15.289069439598107,
+    37.854097680538395
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    15.2888711,
+    37.8539237,
+    15.2892858,
+    37.8542479
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462506"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-30T20:17:17Z",
+  "uri": "https://pleiades.stoa.org/places/937547559",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-19T23:25:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-14T17:25:51Z"
+    },
+    {
+      "comment": "added two references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-14T14:59:06Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-14T14:51:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-14T12:59:17Z"
+    },
+    {
+      "comment": "edited title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-14T12:58:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-13T04:09:19Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-13T03:38:15Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-30T20:17:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-30T20:17:17Z"
+    }
+  ]
+}

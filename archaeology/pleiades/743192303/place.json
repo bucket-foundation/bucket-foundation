@@ -1,0 +1,712 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.1764,
+          35.5579
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-kani-shayah",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/743192303/cigs-location-of-kani-shayah",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of K\u0101n\u012b Sh\u0101yah"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.1760205,
+            35.5583389
+          ],
+          [
+            45.1760215,
+            35.558183
+          ],
+          [
+            45.1760454,
+            35.5580285
+          ],
+          [
+            45.1760538,
+            35.5578891
+          ],
+          [
+            45.1760178,
+            35.5577976
+          ],
+          [
+            45.1761095,
+            35.5577482
+          ],
+          [
+            45.1763122,
+            35.5576994
+          ],
+          [
+            45.176431,
+            35.5576862
+          ],
+          [
+            45.1765705,
+            35.5576887
+          ],
+          [
+            45.1767081,
+            35.5577538
+          ],
+          [
+            45.1767952,
+            35.557828
+          ],
+          [
+            45.1768191,
+            35.5579339
+          ],
+          [
+            45.1768141,
+            35.5580464
+          ],
+          [
+            45.176769,
+            35.5581523
+          ],
+          [
+            45.1767249,
+            35.5582076
+          ],
+          [
+            45.1765696,
+            35.5582689
+          ],
+          [
+            45.1764134,
+            35.5583062
+          ],
+          [
+            45.1761947,
+            35.5583304
+          ],
+          [
+            45.1761704,
+            35.5583144
+          ],
+          [
+            45.1760205,
+            35.5583389
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kani-shaie",
+      "properties": {
+        "snippet": "Archaeological-site; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/743192303/osm-location-of-kani-shaie",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kani Shaie"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "David Meadows"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 24",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kopanias 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RFI6L8Y4",
+          "formattedCitation": "<div class=\"csl-entry\">Kopanias, Konstantinos, John MacGinnis, and Jason Alik Ur. \u201cArchaeological Projects in the Kurdistan Region in Iraq.\u201d The Directorate of Antiquities of Kurdistan, 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-kani-shayah",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of K\u0101n\u012b Sh\u0101yah",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-05-31T15:52:33Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.1764,
+          35.5579
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/743192303/cigs-location-of-kani-shayah",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-31T19:58:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-31T15:56:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-31T15:52:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-31T15:52:33Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1419528337",
+          "citationDetail": "Way 1419528337",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1419528337",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kani-shaie",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -2000,
+      "title": "OSM location of Kani Shaie",
+      "provenance": "OpenStreetMap (Way 1419528337, version 1, osm:changeset=169885971, 2025-08-03T02:31:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-08-03T02:32:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.1760205,
+            35.5583389
+          ],
+          [
+            45.1760215,
+            35.558183
+          ],
+          [
+            45.1760454,
+            35.5580285
+          ],
+          [
+            45.1760538,
+            35.5578891
+          ],
+          [
+            45.1760178,
+            35.5577976
+          ],
+          [
+            45.1761095,
+            35.5577482
+          ],
+          [
+            45.1763122,
+            35.5576994
+          ],
+          [
+            45.176431,
+            35.5576862
+          ],
+          [
+            45.1765705,
+            35.5576887
+          ],
+          [
+            45.1767081,
+            35.5577538
+          ],
+          [
+            45.1767952,
+            35.557828
+          ],
+          [
+            45.1768191,
+            35.5579339
+          ],
+          [
+            45.1768141,
+            35.5580464
+          ],
+          [
+            45.176769,
+            35.5581523
+          ],
+          [
+            45.1767249,
+            35.5582076
+          ],
+          [
+            45.1765696,
+            35.5582689
+          ],
+          [
+            45.1764134,
+            35.5583062
+          ],
+          [
+            45.1761947,
+            35.5583304
+          ],
+          [
+            45.1761704,
+            35.5583144
+          ],
+          [
+            45.1760205,
+            35.5583389
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/743192303/osm-location-of-kani-shaie",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-04T19:14:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T12:57:11Z"
+        },
+        {
+          "comment": "time period",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T12:55:20Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T02:32:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T02:32:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T02:32:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "page 24",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kopanias 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RFI6L8Y4",
+      "formattedCitation": "<div class=\"csl-entry\">Kopanias, Konstantinos, John MacGinnis, and Jason Alik Ur. \u201cArchaeological Projects in the Kurdistan Region in Iraq.\u201d The Directorate of Antiquities of Kurdistan, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Kani_Shaie",
+      "citationDetail": "Kani Shaie",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q113044671",
+      "citationDetail": "Kani Shaie (Q113044671)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://noticias.uc.pt/artigos/equipa-da-universidade-de-coimbra-descobre-edificio-monumental-que-traz-novos-dados-sobre-os-primordios-da-civilizacao/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ribeiro 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UID8ANCA",
+      "formattedCitation": "<div class=\"csl-entry\">Ribeiro, Catarina. \u201cEquipa da UC descobre edif\u00edcio monumental que traz novos dados sobre os prim\u00f3rdios da civiliza\u00e7\u00e3o.\u201d <i>Not\u00edcias UC (Universidade de Coimbra)</i> (blog), October 15, 2025. https://noticias.uc.pt/artigos/equipa-da-universidade-de-coimbra-descobre-edificio-monumental-que-traz-novos-dados-sobre-os-primordios-da-civilizacao/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.megalithic.co.uk/article.php?sid=62960",
+      "citationDetail": "62960: Kani Shaie Temple",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TMP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9YPQCWW2",
+      "formattedCitation": "<div class=\"csl-entry\">Burnham, Andy, ed. <i>The Megalithic Portal</i>, 2001. https://www.megalithic.co.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "K\u0101n\u012b Sh\u0101yah, Kani Shaie",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 24",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kopanias 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RFI6L8Y4",
+          "formattedCitation": "<div class=\"csl-entry\">Kopanias, Konstantinos, John MacGinnis, and Jason Alik Ur. \u201cArchaeological Projects in the Kurdistan Region in Iraq.\u201d The Directorate of Antiquities of Kurdistan, 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kani-shayah",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for Arabic (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2023-05-31T15:55:37Z",
+      "uri": "https://pleiades.stoa.org/places/743192303/kani-shayah",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u0643\u0627\u0646\u064a \u0634\u0627\u064a\u0629",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-31T19:58:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-31T15:56:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-31T15:55:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-31T15:55:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kani Shaie",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q113044671",
+          "citationDetail": "Kani Shaie (Q113044671)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kani-shaie",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-08-03T12:58:11Z",
+      "uri": "https://pleiades.stoa.org/places/743192303/kani-shaie",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Kani Shaie",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-04T19:14:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T12:58:18Z"
+        },
+        {
+          "comment": "English name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T12:58:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T12:58:11Z"
+        }
+      ]
+    }
+  ],
+  "id": "743192303",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "K\u0101n\u012b Sh\u0101yah",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A small site in Kurdistan, Iraq, consisting of a high and low mound with remains from the fourth and early third millennium BCE.",
+  "reprPoint": [
+    45.176391030532784,
+    35.55795658676375
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    45.1760178,
+    35.5576862,
+    45.1768191,
+    35.5583389
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-31T15:49:27Z",
+  "uri": "https://pleiades.stoa.org/places/743192303",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add TMP reference",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-20T21:00:15Z"
+    },
+    {
+      "comment": "credit David Meadows as contributor for providing notice of news coverage that led to the new Ribeiro 2025 reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-06T14:42:54Z"
+    },
+    {
+      "comment": "added Ribeiro 2025",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-06T14:37:33Z"
+    },
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-03T12:54:57Z"
+    },
+    {
+      "comment": "wikidata Q113044671",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-03T02:33:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-31T19:58:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-31T15:56:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-31T15:49:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-31T15:49:27Z"
+    }
+  ]
+}

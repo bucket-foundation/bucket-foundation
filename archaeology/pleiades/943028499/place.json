@@ -1,0 +1,321 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.5809652,
+          39.752907
+        ]
+      },
+      "type": "Feature",
+      "id": "pirabat",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/943028499/pirabat",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pirabat"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.5843,
+          39.753
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-pirabat",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/943028499/cigs-location-of-pirabat",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Pirabat"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2292400154",
+          "citationDetail": "Node 2292400154",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2292400154",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "pirabat",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Pirabat",
+      "provenance": "OpenStreetMap (Node 2292400154, version 3, osm:changeset=120853031, 2022-05-11T18:22:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-06-16T12:50:14Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.5809652,
+          39.752907
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/943028499/pirabat",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-16T16:02:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T13:07:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T12:50:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T12:50:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T12:50:14Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/428815782",
+          "citationDetail": "volume 1, pages 136, 140, 228, 229, 363-365",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Salvini 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+          "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-pirabat",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of Pirabat",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-06-16T13:03:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.5843,
+          39.753
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/943028499/cigs-location-of-pirabat",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-16T16:02:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T13:07:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T13:03:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-16T13:03:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/428815782",
+      "citationDetail": "volume 1, pages 136, 140, 228, 229, 363-365",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "943028499",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Pirabat",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The findspot for Urartian inscribed stone blocks.",
+  "reprPoint": [
+    42.5826326,
+    39.752953500000004
+  ],
+  "placeTypes": [
+    "findspot",
+    "archaeological-site"
+  ],
+  "bbox": [
+    42.5809652,
+    39.752907,
+    42.5843,
+    39.753
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-06-16T12:49:46Z",
+  "uri": "https://pleiades.stoa.org/places/943028499",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-17T23:49:58Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-16T16:02:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-06-16T13:07:30Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-06-16T12:49:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-06-16T12:49:46Z"
+    }
+  ]
+}

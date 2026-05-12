@@ -1,0 +1,196 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.3854,
+          43.3205219
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pieve-a-bozzone",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/281962971/osm-location-of-pieve-a-bozzone",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pieve a Bozzone"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1535188817",
+          "citationDetail": "Node 1535188817",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1535188817",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pieve-a-bozzone",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Pieve a Bozzone",
+      "provenance": "OpenStreetMap (Node 1535188817, version 3, osm:changeset=149183639, 2024-03-26T15:34:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-10-24T14:31:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.3854,
+          43.3205219
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/281962971/osm-location-of-pieve-a-bozzone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-15T12:58:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-15T01:00:07Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-15T00:55:59Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-24T14:31:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-24T14:31:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-24T14:31:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.unisi.it/unisilife/notizie/riemerge-la-villa-romana-di-pieve-al-bozzone-negli-scavi-archeologici-unisi",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Riemerge la villa romana di Pieve al Bozzone negli scavi archeologici Unisi | Universit\u00e0 degli Studi di Siena (October 2023)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S5TTEYP8",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cRiemerge La Villa Romana Di Pieve al Bozzone Negli Scavi Archeologici Unisi | Universit\u00e0 Degli Studi Di Siena.\u201d Accessed February 15, 2026. https://www.unisi.it/unisilife/notizie/riemerge-la-villa-romana-di-pieve-al-bozzone-negli-scavi-archeologici-unisi.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "281962971",
+  "subject": [],
+  "title": "Pieve a Bozzone",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ruins of an ancient Roman villa were discovered in the Italian comune of Pieve a Bozzone (Siena) in 2023.",
+  "reprPoint": [
+    11.3854,
+    43.3205219
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    11.3854,
+    43.3205219,
+    11.3854,
+    43.3205219
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-10-24T14:30:35Z",
+  "uri": "https://pleiades.stoa.org/places/281962971",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-02-15T12:58:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-15T01:00:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-15T00:59:55Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-24T14:30:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-24T14:30:35Z"
+    }
+  ]
+}

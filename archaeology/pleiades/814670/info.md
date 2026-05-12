@@ -1,0 +1,14 @@
+# Darae
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/814670
+- **ID**: 814670
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Darae
+
+## Description
+
+An ancient place, cited: BAtlas 83 B5 Darae

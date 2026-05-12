@@ -1,0 +1,409 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4826603,
+          31.2819649
+        ]
+      },
+      "type": "Feature",
+      "id": "5ea5dc-5e95e85d55d75df",
+      "properties": {
+        "snippet": "Tell; 2000 BC - 1400 BC",
+        "link": "https://pleiades.stoa.org/places/774119658/5ea5dc-5e95e85d55d75df",
+        "description": "Point based on an OpenStreetMap node representing Tell El-Farah (South).",
+        "location_precision": "precise",
+        "title": "OSM locationi of Tell El-Farah (South)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4401707000",
+          "citationDetail": "Node 4401707000",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4401707000",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "5ea5dc-5e95e85d55d75df",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -1400,
+      "title": "OSM locationi of Tell El-Farah (South)",
+      "provenance": "OpenStreetMap (Node 4401707000, version 1, osm:changeset=42158703, 2016-09-14T20:41:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Tell El-Farah (South).",
+      "created": "2022-06-16T20:02:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4826603,
+          31.2819649
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/774119658/5ea5dc-5e95e85d55d75df",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-04T19:13:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-26T03:37:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:08:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:04:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:02:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:02:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1400,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-16T20:08:30Z",
+      "associationCertainty": "certain",
+      "title": "Negev",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/774119658/negev",
+      "connectionType": "at",
+      "id": "negev",
+      "attestations": [
+        {
+          "timePeriod": "middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-26T03:37:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:08:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:08:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:08:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/687985",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/474005312",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Williams 1977",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PJWZ3UYF",
+          "formattedCitation": "<div class=\"csl-entry\">Williams, D. Price. <i>The Tombs of the Middle Bronze Age II Period from the \u201c500\u201d Cemetery at Tell Fara (South)</i>. Occasional Publication (University of London. Institute of Archaeology) 1. Institute of Archaeology University of London, 1977. http://www.worldcat.org/oclc/474005312.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/w/index.php?title=Tell_el-Far%27ah_(South)&oldid=1049587364",
+          "citationDetail": "Tell el-Far'ah (South)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/474005312",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Williams 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PJWZ3UYF",
+      "formattedCitation": "<div class=\"csl-entry\">Williams, D. Price. <i>The Tombs of the Middle Bronze Age II Period from the \u201c500\u201d Cemetery at Tell Fara (South)</i>. Occasional Publication (University of London. Institute of Archaeology) 1. Institute of Archaeology University of London, 1977. http://www.worldcat.org/oclc/474005312.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tell_el-Far%27ah_(South)",
+      "citationDetail": "Tell el-Far'ah (South)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q86755613",
+      "citationDetail": "Tell el-Far'ah (Q86755613)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Sharuhen",
+      "attestations": [
+        {
+          "timePeriod": "middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/474005312",
+          "citationDetail": "page ix",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Williams 1977",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PJWZ3UYF",
+          "formattedCitation": "<div class=\"csl-entry\">Williams, D. Price. <i>The Tombs of the Middle Bronze Age II Period from the \u201c500\u201d Cemetery at Tell Fara (South)</i>. Occasional Publication (University of London. Institute of Archaeology) 1. Institute of Archaeology University of London, 1977. http://www.worldcat.org/oclc/474005312.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/w/index.php?title=Tell_el-Far%27ah_(South)&oldid=1049587364",
+          "citationDetail": "Tell el-Far'ah (South)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sharuhen",
+      "end": -1400,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -2000,
+      "details": "",
+      "review_state": "published",
+      "description": "Possible Hebrew name for the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "hbo",
+      "created": "2022-06-16T20:06:38Z",
+      "uri": "https://pleiades.stoa.org/places/774119658/sharuhen",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "attested": "\u05e9\u05b8\u05c1\u05e8\u05d5\u05bc\u05d7\u05b6\u05df",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-26T03:37:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:08:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:06:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T20:06:38Z"
+        }
+      ]
+    }
+  ],
+  "id": "774119658",
+  "subject": [],
+  "title": "Tell El-Farah (South)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological site located in the Northwestern Negev Desert in modern Israel with identified with the Biblical city of Sharuhen. Two Middle Bronze Age cemeteries are located next to the site.",
+  "reprPoint": [
+    34.4826603,
+    31.2819649
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    34.4826603,
+    31.2819649,
+    34.4826603,
+    31.2819649
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/687985"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-16T20:01:15Z",
+  "uri": "https://pleiades.stoa.org/places/774119658",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata added",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-14T00:20:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-26T03:37:41Z"
+    },
+    {
+      "comment": "add wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-26T03:37:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T20:08:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T20:02:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T20:01:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T20:01:15Z"
+    }
+  ]
+}

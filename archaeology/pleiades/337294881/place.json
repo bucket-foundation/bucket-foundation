@@ -1,0 +1,569 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.72216,
+            37.9746407
+          ],
+          [
+            23.7221677,
+            37.9744719
+          ],
+          [
+            23.7231518,
+            37.9744996
+          ],
+          [
+            23.7236872,
+            37.9745146
+          ],
+          [
+            23.7238302,
+            37.9745187
+          ],
+          [
+            23.7238226,
+            37.9746874
+          ],
+          [
+            23.7231487,
+            37.9746699
+          ],
+          [
+            23.72216,
+            37.9746407
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-iiii-ipsii-i",
+      "properties": {
+        "snippet": "Stoa; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/337294881/osm-location-iiii-ipsii-i",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: \u039c\u03ad\u03c3\u03b7 \u03a3\u03c4\u03bf\u03ac"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/145662893",
+          "citationDetail": "Way 145662893",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=145662893",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-iiii-ipsii-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+      ],
+      "end": 2099,
+      "title": "OSM Location: \u039c\u03ad\u03c3\u03b7 \u03a3\u03c4\u03bf\u03ac",
+      "provenance": "OpenStreetMap (Way 145662893, version 10, osm:changeset=110414846, 2021-08-29T14:24:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "stoa"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-03-16T15:35:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.72216,
+            37.9746407
+          ],
+          [
+            23.7221677,
+            37.9744719
+          ],
+          [
+            23.7231518,
+            37.9744996
+          ],
+          [
+            23.7236872,
+            37.9745146
+          ],
+          [
+            23.7238302,
+            37.9745187
+          ],
+          [
+            23.7238226,
+            37.9746874
+          ],
+          [
+            23.7231487,
+            37.9746699
+          ],
+          [
+            23.72216,
+            37.9746407
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/337294881/osm-location-iiii-ipsii-i",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-19T14:50:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:36:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:35:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:35:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:35:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-16T15:32:05Z",
+      "associationCertainty": "certain",
+      "title": "South Square",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/337294881/south-square",
+      "connectionType": "part_of_physical",
+      "id": "south-square",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-19T14:50:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:36:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:32:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:32:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/710563473",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "168-170",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-16T15:34:14Z",
+      "associationCertainty": "certain",
+      "title": "Agora of Athens",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/337294881/agora-of-athens",
+      "connectionType": "in",
+      "id": "agora-of-athens",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-19T14:50:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:36:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:34:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:34:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/807514119",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "168-170",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+      "citationDetail": "168-170",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camp 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+      "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/162915",
+      "citationDetail": "234-239",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Travlos 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5Q2AW7H",
+      "formattedCitation": "<div class=\"csl-entry\">Travlos, Ioannes N. <i>Pictorial Dictionary of Ancient Athens</i>. New York: Praeger, 1971. http://www.worldcat.org/oclc/162915.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/i285188",
+      "citationDetail": "66-69",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thompson and Wycherley 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CEEREY48",
+      "formattedCitation": "<div class=\"csl-entry\">Thompson, Homer A, and R. E Wycherley. <i>The Agora of Athens: The History, Shape and Uses of an Ancient City Center</i>. The Athenian Agora 14. Princeton, N.J.: The American School of Classical Studies at Athens, 1972. https://www.jstor.org/stable/i285188.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/147764",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Grace 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G6QMHGNP",
+      "formattedCitation": "<div class=\"csl-entry\">Grace, Virginia. \u201cThe Middle Stoa Dated by Amphora Stamps.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 54, no. 1 (1985): 1\u201354. https://doi.org/10.2307/147764.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237BMSt",
+      "citationDetail": "Middle Stoa (Athens Agora)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://agora.ascsa.net/id/agora/monument/middle%20stoa",
+      "citationDetail": "Monument: Middle Stoa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Agora Excavations (ASCSA)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P6MWAMKU",
+      "formattedCitation": "<div class=\"csl-entry\">American School of Classical Studies in Athens. <i>Agora Excavations (ASCSA)</i>. Athens: American School of Classical Studies at Athens, 2007. https://agora.ascsa.net/research.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17630694",
+      "citationDetail": "Middle Stoa (Q17630694)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Middle Stoa",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctv13nb7c4",
+          "citationDetail": "168-170",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Camp 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2DI2QEE",
+          "formattedCitation": "<div class=\"csl-entry\">McK. Camp, John, and Craig A. Mauzy. <i>The Athenian Agora: Site Guide (5th Ed.)</i>. The American School of Classical Studies at Athens, 2010. https://doi.org/10.2972/j.ctv13nb7c4.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "middle-stoa",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-16T15:31:11Z",
+      "uri": "https://pleiades.stoa.org/places/337294881/middle-stoa",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Middle Stoa",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-19T14:50:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:36:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:31:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T15:31:11Z"
+        }
+      ]
+    }
+  ],
+  "id": "337294881",
+  "subject": [],
+  "title": "Middle Stoa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Middle Stoa, the largest structure in the Agora of Athens, was built after 183 BC, as the north side of the South Square. In the Augustan Period, the Odeon of Agrippa was built on its north side. It was destroyed during the Herulian Sack of 267 AD and used as building material for the Post-Herulian Wall.",
+  "reprPoint": [
+    23.72299509242837,
+    37.97457999319621
+  ],
+  "placeTypes": [
+    "stoa"
+  ],
+  "bbox": [
+    23.72216,
+    37.9744719,
+    23.7238302,
+    37.9746874
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/710563473",
+    "https://pleiades.stoa.org/places/807514119"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-16T15:30:09Z",
+  "uri": "https://pleiades.stoa.org/places/337294881",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-19T14:50:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T19:04:55Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T19:04:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-16T15:36:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-16T15:30:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-16T15:30:09Z"
+    }
+  ]
+}

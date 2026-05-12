@@ -1,0 +1,385 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.9643921,
+          41.5899781
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-porta-maggiore",
+      "properties": {
+        "snippet": "City-gate, ; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/674237647/location-of-porta-maggiore",
+        "description": "The main gate, defended by a bastion, of the Middle Republican fortifications of the city. ",
+        "location_precision": "precise",
+        "title": "OSM location of Porta Maggiore"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2371195971",
+          "citationDetail": "Node 2371195971",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2371195971",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-porta-maggiore",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of Porta Maggiore",
+      "provenance": "OpenStreetMap (Node 2371195971, version 1, osm:changeset=16797183, 2013-07-02T20:15:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Location based on OpenStreetMap.</p>\r\n<p>\u00a0</p>\r\n<p>This gate, like the rest of the city-wall of Norba in this period, was constructed in irregular polygonal masonry using large blocks of stone.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-gate",
+        ""
+      ],
+      "description": "The main gate, defended by a bastion, of the Middle Republican fortifications of the city. ",
+      "created": "2013-07-02T21:06:55Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.9643921,
+          41.5899781
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/674237647/location-of-porta-maggiore",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-21T03:12:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-07-08T16:23:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-07-08T16:19:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-03T20:47:48Z"
+        },
+        {
+          "comment": "edited description",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-03T20:47:38Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-02T21:07:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-02T21:06:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-02T21:06:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-03-17T14:24:01Z",
+      "associationCertainty": "certain",
+      "title": "Norba",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/674237647/6411701697",
+      "connectionType": "at",
+      "id": "6411701697",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:24:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:24:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:24:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422987",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Norba",
+      "citationDetail": "Norba",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "312",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Leusen 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TTCN6XSK",
+      "formattedCitation": "<div class=\"csl-entry\">Leusen, P. M. van, T. C. A. de Haas, S. Pomicino, and u. a. \u201cProtohistoric to Roman Settlement on the Lepine Margins near Ninfa (South Lazio, Italy).\u201d In <i>Palaeohistoria, 45-46.2003-2004</i>, 301\u201345. Rotterdam: Balkema, 2003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "185",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F4MUS67C",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo, and Stefania Quilici Gigli, eds. <i>Fortificazioni antiche in Italia: et\u00e0 repubblicana</i>. Atlante tematico di topografia antica 9. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "29",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Frederiksen 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CMDPQX8T",
+      "formattedCitation": "<div class=\"csl-entry\">Frederiksen, Rune, Silke M\u00fcth, Peter I Schneider, and Mike Schnelle. <i>Focus on Fortifications: New Research on Fortifications in the Ancient Mediterranean and the Near East</i>. Oxford; Philadelphia: Oxbow Books, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q62096795",
+      "citationDetail": "Q62096795",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "244",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Le mura megalitiche",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZK52CV2D",
+      "formattedCitation": "<div class=\"csl-entry\">Bettini, Maria Cristina, and Alessandro Nicosia. <i>Le mura megalitiche: il Lazio meridionale tra storia e mito</i>. Roma: Gangemi, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Conticello de' Spagnolis 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7XK7PJMZ",
+      "formattedCitation": "<div class=\"csl-entry\">Conticello de\u2019 Spagnolis, Marisa. \u201cSulla cronologia della Porta cd. Maggiore di Norba.\u201d In <i>Quarto Seminario internazionale di studi sulle mura poligonali</i>, 287\u201393. Roma: Aracna, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/61733/",
+      "citationDetail": "61733: Porta Maggiore di Norba",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "674237647",
+  "subject": [
+    "limestone",
+    "extant remains",
+    "polygonal masonry"
+  ],
+  "title": "Porta Maggiore, Norba",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "<p>Location based on OpenStreetMap.</p>\r\n<p>\u00a0</p>\r\n<p>This gate, like the rest of the city-wall of Norba in this period, was constructed in irregular polygonal masonry using large blocks of stone.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The main gate, defended by a bastion, of the Middle Republican fortifications of the city. The gate still stands to a height of ca. 13 m.",
+  "reprPoint": [
+    12.9643921,
+    41.5899781
+  ],
+  "placeTypes": [
+    "city-gate"
+  ],
+  "bbox": [
+    12.9643921,
+    41.5899781,
+    12.9643921,
+    41.5899781
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422987"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-03-17T14:23:59Z",
+  "uri": "https://pleiades.stoa.org/places/674237647",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added vici.org 61733: Porta Maggiore di Norba",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-05T12:36:53Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-27T19:01:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-19T18:34:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-19T18:30:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-19T18:29:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-18T19:54:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:25:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:25:10Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:24:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:23:59Z"
+    }
+  ]
+}

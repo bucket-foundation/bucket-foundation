@@ -1,0 +1,445 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1287557,
+          29.972953
+        ]
+      },
+      "type": "Feature",
+      "id": "pyramid-of-menkaure",
+      "properties": {
+        "snippet": "Pyramid; 2670 BC - 2168 BC",
+        "link": "https://pleiades.stoa.org/places/599695861/pyramid-of-menkaure",
+        "description": "Pyramid on the Giza plateau marking the tomb of the fourth dynasty Egyptian Pharaoh Menkaure. Location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of the Pyramid of Menkaure"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/27085100",
+          "citationDetail": "Node 27085100",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=27085100",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Pyramid_of_Menkaure",
+          "citationDetail": "Pyramid of Menkaure",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Pyramid of Menkaure.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "pyramid-of-menkaure",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "end": -2168,
+      "title": "OSM location of the Pyramid of Menkaure",
+      "provenance": "OpenStreetMap (Node 27085100, version 11, osm:changeset=153009127, 2024-06-21T21:11:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2670,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "pyramid"
+      ],
+      "description": "Pyramid on the Giza plateau marking the tomb of the fourth dynasty Egyptian Pharaoh Menkaure. Location based on OpenStreetMap.",
+      "created": "2013-02-19T21:56:01Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1287557,
+          29.972953
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/599695861/pyramid-of-menkaure",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-19T03:17:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-03T04:28:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-03T04:25:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-22T20:03:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-20T23:01:39Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-19T21:57:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-19T21:56:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-19T21:56:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-11T23:39:40Z",
+      "associationCertainty": "certain",
+      "title": "Giza",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/599695861/9805617122",
+      "connectionType": "at",
+      "id": "9805617122",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-11T23:39:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-11T23:39:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-11T23:39:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442962448",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/6301906/pyramid-of-menkaure.html",
+      "citationDetail": "6301906: Pyramid of Menkaure",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pyramid_of_Menkaure",
+      "citationDetail": "Pyramid of Menkaure",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q238623",
+      "citationDetail": "Q238623: Pyramid of Menkaure",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Der Manuelian 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DCD7EL64",
+      "formattedCitation": "<div class=\"csl-entry\">Der Manuelian, Peter. <i>Digital Giza: Visualizing the Pyramids</i>, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.gizapyramids.org/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Giza Archives",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VTYCENI4",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cThe Giza Archives.\u201d Accessed November 3, 2017. http://www.gizapyramids.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "221",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lehner 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LHZWRVDQ",
+      "formattedCitation": "<div class=\"csl-entry\">Lehner, Mark. <i>The Complete Pyramids</i>. London: Thames Hudson, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:17.1.33",
+      "citationDetail": "17.1.33",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Pyramid of Menkaure",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/6301906/pyramid-of-menkaure.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 6301906",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-28.8816274529",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-01-28T17:52:03Z",
+      "uri": "https://pleiades.stoa.org/places/599695861/name.2018-01-28.8816274529",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Pyramid of Menkaure",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-29T16:43:59Z"
+        },
+        {
+          "comment": "attested form",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-29T16:43:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-28T17:52:30Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-28T17:52:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-28T17:52:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "599695861",
+  "subject": [],
+  "title": "Pyramid of Menkaure",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+  ],
+  "details": "<p>Originally the pyramid reached a height of\u00a0<span>65.5 meters (215\u00a0feet). It now stands to 61 m (204 feet) and measures 108.5 meters at the base.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Pyramid of Menkaure is the smallest of the three main pyramids located on the Giza plateau. It marks the tomb of the fourth dynasty Egyptian Pharaoh Menkaure.",
+  "reprPoint": [
+    31.128802,
+    29.9728781
+  ],
+  "placeTypes": [
+    "pyramid"
+  ],
+  "bbox": [
+    31.128802,
+    29.9728781,
+    31.128802,
+    29.9728781
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442962448",
+    "https://pleiades.stoa.org/places/674361719"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-11T23:39:39Z",
+  "uri": "https://pleiades.stoa.org/places/599695861",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Strabo",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-21T02:16:35Z"
+    },
+    {
+      "comment": "updated references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-17T01:40:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-29T16:43:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-28T17:52:29Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-28T17:51:10Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-11T23:40:03Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-11T23:39:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-11T23:39:39Z"
+    }
+  ]
+}

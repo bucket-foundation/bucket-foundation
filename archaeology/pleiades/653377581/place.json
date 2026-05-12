@@ -1,0 +1,485 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4111353467,
+          36.9303120368
+        ]
+      },
+      "type": "Feature",
+      "id": "representative-location-of-hume-cilicia-pedias",
+      "properties": {
+        "snippet": "Region; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/653377581/representative-location-of-hume-cilicia-pedias",
+        "description": "Representative point for Cilicia Pedias based on the Helsinki Atlas.",
+        "location_precision": "precise",
+        "title": "Representative location of Hum\u0113 (Cilicia Pedias)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/884661172",
+          "citationDetail": "Map 2",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Helsinki Atlas 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+          "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "representative-location-of-hume-cilicia-pedias",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/region"
+      ],
+      "end": -540,
+      "title": "Representative location of Hum\u0113 (Cilicia Pedias)",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/region"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 4270.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/helsinki-atlas",
+      "featureType": [
+        "region"
+      ],
+      "description": "Representative point for Cilicia Pedias based on the Helsinki Atlas.",
+      "created": "2020-08-22T13:58:28Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4111353467,
+          36.9303120368
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/653377581/representative-location-of-hume-cilicia-pedias",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-22T15:02:46Z"
+        },
+        {
+          "comment": "adjusted reference type , edited summary",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-22T15:02:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T14:22:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T14:22:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T13:58:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T13:58:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "In Neo-Babylonian sources, Que appears as Hum\u0113.",
+      "contributors": [],
+      "created": "2020-08-22T14:06:09Z",
+      "associationCertainty": "certain",
+      "title": "Que (kingdom)",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/653377581/que-kingdom",
+      "connectionType": "same_as",
+      "id": "que-kingdom",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-08T17:43:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-29T05:12:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T14:07:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T14:06:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T14:06:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/944349915",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "11, 194",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/same_as"
+    },
+    {
+      "end": -540,
+      "description": "Hum\u0113 is the name used for the region of Cilicia Pedias in Neo-Babylonian sources.",
+      "contributors": [],
+      "created": "2020-08-22T14:11:26Z",
+      "associationCertainty": "certain",
+      "title": "Cilicia Pedias",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/653377581/cilicia-pedias",
+      "connectionType": "same_as",
+      "id": "cilicia-pedias",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-22T15:03:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T14:23:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T14:11:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-08-22T14:11:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/648600",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "11, 194",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Quw\u00ea",
+          "citationDetail": "Quw\u00ea",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeAlso"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/same_as"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zadok 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B49BJP53",
+      "formattedCitation": "<div class=\"csl-entry\">Zadok, Ran. <i>Geographical Names According to New- and Late-Babylonian Texts</i>. Beihefte Zum T\u00fcbinger Atlas Des Vorderen Orients, Geisteswissenschaften, Nr. 7. Wiesbaden: L. Reichert, 1985.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Quw\u00ea",
+      "citationDetail": "Quw\u00ea",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "11, 194",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hum\u0113",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zadok 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B49BJP53",
+          "formattedCitation": "<div class=\"csl-entry\">Zadok, Ran. <i>Geographical Names According to New- and Late-Babylonian Texts</i>. Beihefte Zum T\u00fcbinger Atlas Des Vorderen Orients, Geisteswissenschaften, Nr. 7. Wiesbaden: L. Reichert, 1985.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-13.3330254584",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-01-13T11:36:37Z",
+      "uri": "https://pleiades.stoa.org/places/653377581/name.2018-01-13.3330254584",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-29T17:45:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T10:23:42Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T10:23:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-13T11:36:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-13T11:36:37Z"
+        }
+      ]
+    }
+  ],
+  "id": "653377581",
+  "subject": [
+    "ANE",
+    "Assyrian",
+    "Babylonian"
+  ],
+  "title": "Hum\u0113",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/region"
+  ],
+  "details": "<p>The Neo-Babylonia king Nabonidus states that 2,850 men from the land Hum\u0113 were taken back to Babylon, where they performed corv\u00e9e by carrying bricks.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A country mentioned in Neo- and Late-Babylonian texts that roughly corresponds to Que (kingdom and province) and Cilicia Pedias (\"Flat Cilicia\").",
+  "reprPoint": [
+    35.4111353467,
+    36.9303120368
+  ],
+  "placeTypes": [
+    "region"
+  ],
+  "bbox": [
+    35.4111353467,
+    36.9303120368,
+    35.4111353467,
+    36.9303120368
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/944349915",
+    "https://pleiades.stoa.org/places/648600",
+    "https://pleiades.stoa.org/places/648548"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-08-22T14:12:40Z",
+  "uri": "https://pleiades.stoa.org/places/653377581",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Adjusted summary, as well as added two references and one tag. jbecker: checked-in working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-22T15:01:38Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-08-22T14:12:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-29T17:45:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-29T10:23:42Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-13T11:34:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-13T11:33:58Z"
+    }
+  ]
+}

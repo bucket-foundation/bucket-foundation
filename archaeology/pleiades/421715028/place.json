@@ -1,0 +1,394 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1041769,
+          36.422439
+        ]
+      },
+      "type": "Feature",
+      "id": "baysan",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/421715028/baysan",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location for Baysan"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1037,
+          36.4222
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-baysan",
+      "properties": {
+        "snippet": "Archaeological-site, Findspot",
+        "link": "https://pleiades.stoa.org/places/421715028/cigs-location-of-baysan",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Bays\u0101n"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5370595232",
+          "citationDetail": "Node 5370595232",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5370595232",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "baysan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location for Baysan",
+      "provenance": "OpenStreetMap (Node 5370595232, version 2, osm:changeset=55869889, 2018-01-29T19:14:58Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-01-30T09:31:57Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1041769,
+          36.422439
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/421715028/baysan",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-30T21:49:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:46:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:36:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:31:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:31:57Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 126",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Thompson 1929",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TLKIW5HT",
+          "formattedCitation": "<div class=\"csl-entry\">Thompson, R. Campbell, and R. W. Hutchinson. \u201cVII.\u2014The Excavations on the Temple of Nab\u00fb at Nineveh.\u201d <i>Archaeologia</i> 79 (1929): 103\u201348.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-baysan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "end": null,
+      "title": "CIGS location of Bays\u0101n",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site",
+        "findspot"
+      ],
+      "description": "",
+      "created": "2023-01-30T09:46:03Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1037,
+          36.4222
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/421715028/cigs-location-of-baysan",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-30T21:49:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:46:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:46:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:46:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "page 126",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thompson 1929",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TLKIW5HT",
+      "formattedCitation": "<div class=\"csl-entry\">Thompson, R. Campbell, and R. W. Hutchinson. \u201cVII.\u2014The Excavations on the Temple of Nab\u00fb at Nineveh.\u201d <i>Archaeologia</i> 79 (1929): 103\u201348.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bays\u0101n, Baysan, Beisan",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 126",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Thompson 1929",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TLKIW5HT",
+          "formattedCitation": "<div class=\"csl-entry\">Thompson, R. Campbell, and R. W. Hutchinson. \u201cVII.\u2014The Excavations on the Temple of Nab\u00fb at Nineveh.\u201d <i>Archaeologia</i> 79 (1929): 103\u201348.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "baysan-1",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "<p>Romanization according to the ALA-LC specifications for Arabic (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2023-01-30T09:46:00Z",
+      "uri": "https://pleiades.stoa.org/places/421715028/baysan-1",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u0628\u064a\u0633\u0627\u0646",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-30T21:49:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:46:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:46:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-01-30T09:46:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "421715028",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Bays\u0101n",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Find place for cuneiform inscription.",
+  "reprPoint": [
+    43.10393845,
+    36.4223195
+  ],
+  "placeTypes": [
+    "findspot",
+    "archaeological-site"
+  ],
+  "bbox": [
+    43.1037,
+    36.4222,
+    43.1041769,
+    36.422439
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-01-30T09:20:17Z",
+  "uri": "https://pleiades.stoa.org/places/421715028",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-30T21:49:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-01-30T09:46:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-01-30T09:37:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-01-30T09:36:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-01-30T09:20:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-01-30T09:20:17Z"
+    }
+  ]
+}

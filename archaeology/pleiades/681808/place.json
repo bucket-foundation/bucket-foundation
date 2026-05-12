@@ -1,0 +1,456 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.5,
+              32.0
+            ],
+            [
+              38.5,
+              32.0
+            ],
+            [
+              38.5,
+              34.5
+            ],
+            [
+              34.5,
+              34.5
+            ],
+            [
+              34.5,
+              32.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "undetermined",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/681808/undetermined",
+        "description": "Roughly located within a bounding box",
+        "location_precision": "rough",
+        "title": "Undetermined location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "undetermined",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "Undetermined location",
+      "provenance": "Barrington Atlas: BAtlas 69",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Roughly located within a bounding box",
+      "created": "2009-09-16T20:07:01Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.5,
+              32.0
+            ],
+            [
+              38.5,
+              32.0
+            ],
+            [
+              38.5,
+              34.5
+            ],
+            [
+              34.5,
+              34.5
+            ],
+            [
+              34.5,
+              32.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/681808/undetermined",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "E.M. Meyers"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:53:05Z"
+        },
+        {
+          "comment": "Batch geocoding, to BAtlas grids, of unlocated roads.",
+          "modifiedBy": "sgillies",
+          "modified": "2011-07-14T05:35:12Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-09-16T20:44:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-16T20:20:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-16T20:07:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2026-04-29T22:15:58Z",
+      "associationCertainty": "certain",
+      "title": "Adra(h)a",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/681808/adra-h-a",
+      "connectionType": "near",
+      "id": "adra-h-a",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-30T15:12:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T22:20:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T22:16:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T22:15:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678002",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://search.worldcat.org/title/45084869",
+          "citationDetail": "page 1069 see \"Adra(h)a \u2192 Gerasa \u2192 S\" sub \"Roads\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000. https://search.worldcat.org/title/45084869.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2026-04-29T22:16:50Z",
+      "associationCertainty": "certain",
+      "title": "Gerasa/Antiochia ad Chrysorhoam",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/681808/gerasa-antiochia-ad-chrysorhoam",
+      "connectionType": "near",
+      "id": "gerasa-antiochia-ad-chrysorhoam",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-30T15:12:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T22:20:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T22:16:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T22:16:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678158",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "69 D4, D5 and C5",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mittmann 1966",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NA8GXTIE",
+      "formattedCitation": "<div class=\"csl-entry\">Mittmann, S. \u201cThe Roman Road from Gerasa to Adraa.\u201d <i>Annual of the Department of Antiquities of Jordan</i> 11 (1966): 65\u201387.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://itiner-e.org/route-segment/22096",
+      "citationDetail": "Road Segment 22096: Gerasa-Adraha",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Itiner-e",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4JGPPVX6",
+      "formattedCitation": "<div class=\"csl-entry\">Brughmans, Tom, Pau de Soto, A. Pa\u017eout, and P. Bjerregaard Vahlstrup. <i>Itiner-e: The Digital Atlas of Ancient Roads</i>, 2024. https://itiner-e.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://itiner-e.org/route-segment/22122",
+      "citationDetail": "Road Segment 22122: Gerasa-Adraha",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Itiner-e",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4JGPPVX6",
+      "formattedCitation": "<div class=\"csl-entry\">Brughmans, Tom, Pau de Soto, A. Pa\u017eout, and P. Bjerregaard Vahlstrup. <i>Itiner-e: The Digital Atlas of Ancient Roads</i>, 2024. https://itiner-e.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://itiner-e.org/route-segment/22123",
+      "citationDetail": "Road Segment 22123: Gerasa-Adraha",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Itiner-e",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4JGPPVX6",
+      "formattedCitation": "<div class=\"csl-entry\">Brughmans, Tom, Pau de Soto, A. Pa\u017eout, and P. Bjerregaard Vahlstrup. <i>Itiner-e: The Digital Atlas of Ancient Roads</i>, 2024. https://itiner-e.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "681808",
+  "subject": [],
+  "title": "Road: Adra(h)a \u2192 Gerasa \u2192 S",
+  "provenance": "Barrington Atlas: BAtlas 69",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/road"
+  ],
+  "details": "<p>None</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Unnamed route or road segments running from Adra(h)a to Gerasa and points south.",
+  "reprPoint": [
+    36.5,
+    33.25
+  ],
+  "placeTypes": [
+    "road"
+  ],
+  "bbox": [
+    34.5,
+    32.0,
+    38.5,
+    34.5
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678002",
+    "https://pleiades.stoa.org/places/678158"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-04-29T22:09:53Z",
+  "uri": "https://pleiades.stoa.org/places/681808",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.M. Meyers"
+    },
+    {
+      "username": null,
+      "name": "J.P. Brown"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Itiner-e references; repaired failed BAtlDir original data import: added title; added summary; added gridsquares to BAtlas reference; removed erroneous reference; added Mittmann 1966 reference; added Connections @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-30T15:12:38Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:53:05Z"
+    },
+    {
+      "comment": "Description fixes 2 after batch geocoding of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T18:12:17Z"
+    },
+    {
+      "comment": "Description fixes after batch geocoding of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T17:16:01Z"
+    },
+    {
+      "comment": "Batch geocoding, to BAtlas grids, of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T05:35:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-09-16T20:44:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-16T20:20:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-16T20:07:01Z"
+    }
+  ]
+}

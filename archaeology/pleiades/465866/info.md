@@ -1,0 +1,14 @@
+# Basanon
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/465866
+- **ID**: 465866
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Basanon
+
+## Description
+
+An ancient place, cited: BAtlas 47 unlocated Basanon

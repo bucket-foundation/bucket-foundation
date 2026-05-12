@@ -1,0 +1,14 @@
+# Axona (river)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/108779
+- **ID**: 108779
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Axona
+
+## Description
+
+An ancient place, cited: BAtlas 11 D3 Axona fl.

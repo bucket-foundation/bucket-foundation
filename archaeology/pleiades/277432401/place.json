@@ -1,0 +1,362 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.213876,
+            43.8288692
+          ],
+          [
+            11.2138224,
+            43.8288112
+          ],
+          [
+            11.2137097,
+            43.8287028
+          ],
+          [
+            11.2137312,
+            43.8285906
+          ],
+          [
+            11.2138384,
+            43.828517
+          ],
+          [
+            11.2139779,
+            43.8285364
+          ],
+          [
+            11.2140584,
+            43.8286486
+          ],
+          [
+            11.2141281,
+            43.8287918
+          ],
+          [
+            11.2140584,
+            43.8288924
+          ],
+          [
+            11.213876,
+            43.8288692
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-tomba-della-mula",
+      "properties": {
+        "snippet": "Tumulus, ; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/277432401/location-of-tomba-della-mula",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tomba della Mula"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/113469096",
+          "citationDetail": "Way 113469096",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=113469096",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Tomba_della_Mula",
+          "citationDetail": "Tomba della Mula",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Tomba della Mula.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-tomba-della-mula",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -550,
+      "title": "OSM location of Tomba della Mula",
+      "provenance": "OpenStreetMap (Way 113469096, version 5, osm:changeset=103925653, 2021-04-30T16:44:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-02-12T01:19:38Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.213876,
+            43.8288692
+          ],
+          [
+            11.2138224,
+            43.8288112
+          ],
+          [
+            11.2137097,
+            43.8287028
+          ],
+          [
+            11.2137312,
+            43.8285906
+          ],
+          [
+            11.2138384,
+            43.828517
+          ],
+          [
+            11.2139779,
+            43.8285364
+          ],
+          [
+            11.2140584,
+            43.8286486
+          ],
+          [
+            11.2141281,
+            43.8287918
+          ],
+          [
+            11.2140584,
+            43.8288924
+          ],
+          [
+            11.213876,
+            43.8288692
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/277432401/location-of-tomba-della-mula",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T20:57:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:43:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-18T14:11:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-05T22:18:50Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T01:20:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T01:19:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-12T01:19:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-05-19T17:36:25Z",
+      "associationCertainty": "certain",
+      "title": "Quinto Fiorentino",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/277432401/3852060005",
+      "connectionType": "at",
+      "id": "3852060005",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T17:36:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T17:36:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T17:36:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413279",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tomba_della_Mula",
+      "citationDetail": "Tomba della Mula",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3531083",
+      "citationDetail": "Q3531083: Tomba della Mula",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "277432401",
+  "subject": [],
+  "title": "Tomba della Mula",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A tomb near Sesto Fiorentino, that dates to the seventh century B.C.",
+  "reprPoint": [
+    11.2140584,
+    43.8288924
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    11.2140584,
+    43.8288924,
+    11.2140584,
+    43.8288924
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413279"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-05-19T17:36:22Z",
+  "uri": "https://pleiades.stoa.org/places/277432401",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata Q3531083: Tomba della Mula",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-12T14:26:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-12T10:43:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T17:38:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T17:37:53Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T17:36:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T17:36:22Z"
+    }
+  ]
+}

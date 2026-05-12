@@ -1,0 +1,536 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2024-03-28T23:48:36Z",
+      "associationCertainty": "certain",
+      "title": "Athenae",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/830927276/athenae",
+      "connectionType": "at",
+      "id": "athenae",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T15:05:04Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T14:52:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-28T23:54:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-28T23:48:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-28T23:48:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579885",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.dainst.org/entity/1079",
+          "citationDetail": "Themistokleische Stadtmauer / Themistoclean walls Athen (Regionalbezirk) (Athenae / Ath\u0113nai), Griechenland",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://dipylon-judithbindersourcebook.org/sourcebook/NPP/NP3520",
+      "citationDetail": "Themistoklean City Wall",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Judith Binder's Opus Magnum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITY365C",
+      "formattedCitation": "<div class=\"csl-entry\">www.dipylon.org. \u201cJudith Binder\u2019s Opus Magnum | Dipylon,\u201d May 7, 2018. https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Themistoclean_Wall",
+      "citationDetail": "Themistoclean Wall",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2972/hesp.80.1.0071",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Theocharaki 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RMUAT8CX",
+      "formattedCitation": "<div class=\"csl-entry\">Theocharaki, Anna Maria. \u201cTHE ANCIENT CIRCUIT WALL OF ATHENS: Its Changing Course and the Phases of Construction.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 80, no. 1 (2011): 71\u2013156. https://doi.org/10.2972/hesp.80.1.0071.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1079",
+      "citationDetail": "Themistokleische Stadtmauer / Themistoclean walls Athen (Regionalbezirk) (Athenae / Ath\u0113nai), Griechenland",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "124-144",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Judeich 1931",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7BDW7C76",
+      "formattedCitation": "<div class=\"csl-entry\">Judeich, Walther. <i>Topographie von Athen</i>. 2., Vollst\u00e4ndig neubearb. Handbuch Der Altertumswissenschaft, 3. Abt., 2. T., 2. Bd. M\u00fcnchen: Beck, 1931.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/162915",
+      "citationDetail": "223-4, 226",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Travlos 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5Q2AW7H",
+      "formattedCitation": "<div class=\"csl-entry\">Travlos, Ioannes N. <i>Pictorial Dictionary of Ancient Athens</i>. New York: Praeger, 1971. http://www.worldcat.org/oclc/162915.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Noack 1907",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MI5Z8Y7M",
+      "formattedCitation": "<div class=\"csl-entry\">Noack, Ferdinand. <i>Die Mauern Athens: Ausgrabungen und Untersuchungen</i>. Athen: Beck und Barth, 1907.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q12877842",
+      "citationDetail": "walls of Themistocles (Q12877842)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Themistoklean Wall",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://dipylon-judithbindersourcebook.org/sourcebook/NPP/NP3520",
+          "citationDetail": "Themistoklean Wall",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Judith Binder's Opus Magnum",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITY365C",
+          "formattedCitation": "<div class=\"csl-entry\">www.dipylon.org. \u201cJudith Binder\u2019s Opus Magnum | Dipylon,\u201d May 7, 2018. https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "themistoklean-wall",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-28T23:47:54Z",
+      "uri": "https://pleiades.stoa.org/places/830927276/themistoklean-wall",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Themistoklean Wall",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "geographic name",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-01T10:40:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T15:05:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-28T23:54:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-28T23:47:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-28T23:47:54Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Themistokleische Stadtmauer",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.dainst.org/entity/1079",
+          "citationDetail": "Themistokleische Stadtmauer / Themistoclean walls Athen (Regionalbezirk) (Athenae / Ath\u0113nai), Griechenland",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "themistokleische-stadtmauer",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2024-03-29T15:05:51Z",
+      "uri": "https://pleiades.stoa.org/places/830927276/themistokleische-stadtmauer",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Themistokleische Stadtmauer",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-01T10:40:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T15:05:56Z"
+        },
+        {
+          "comment": "German name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T15:05:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T15:05:51Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "ho k\u00faklos to\u00fb \u00e1ste\u014ds, ho kyklos tou asteos",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/texts/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1:2.13.7",
+          "citationDetail": "2.13.7",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Thuc. Hist. (Jones; Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EFG24VXW",
+          "formattedCitation": "<div class=\"csl-entry\">Thucydides. <i>Thucydidis Historiae; recognovit brevique adnotatione critica instruxit Henricus Stuart Jones ..</i> Edited by Henry Stuart Jones and J. Enoch Powell. 2 vols. Oxonii: e typographeo Clarendoniano, 1942. http://data.perseus.org/texts/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ho-kuklos-tou-asteos",
+      "end": -330,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "The name means \"the circuit of the city\".",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-04-01T22:36:22Z",
+      "uri": "https://pleiades.stoa.org/places/830927276/ho-kuklos-tou-asteos",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u1f41 \u03ba\u03cd\u03ba\u03bb\u03bf\u03c2 \u03c4\u03bf\u1fe6 \u1f04\u03c3\u03c4\u03b5\u03c9\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-04T18:19:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-04T18:18:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-01T22:36:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-01T22:36:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-01T22:36:22Z"
+        }
+      ]
+    }
+  ],
+  "id": "830927276",
+  "subject": [],
+  "title": "Themistoklean Wall",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The circuit wall of Athens, built by Themistokles in 479 BC. It was abandoned as indefensible in the aftermath of the Herulian Sack of 267 AD.",
+  "reprPoint": [
+    23.725640112987822,
+    37.97473461375696
+  ],
+  "placeTypes": [
+    "city-wall"
+  ],
+  "bbox": [
+    23.7160442,
+    37.96663,
+    23.7334932,
+    37.9810418
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579885",
+    "https://pleiades.stoa.org/places/144293713",
+    "https://pleiades.stoa.org/places/717754998",
+    "https://pleiades.stoa.org/places/92232874",
+    "https://pleiades.stoa.org/places/939242064",
+    "https://pleiades.stoa.org/places/690970100",
+    "https://pleiades.stoa.org/places/249767015",
+    "https://pleiades.stoa.org/places/137478922",
+    "https://pleiades.stoa.org/places/230559831",
+    "https://pleiades.stoa.org/places/496542328",
+    "https://pleiades.stoa.org/places/945419342",
+    "https://pleiades.stoa.org/places/310115518",
+    "https://pleiades.stoa.org/places/367368802",
+    "https://pleiades.stoa.org/places/401250361",
+    "https://pleiades.stoa.org/places/551863597"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-28T23:27:11Z",
+  "uri": "https://pleiades.stoa.org/places/830927276",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata walls of Themistocles (Q12877842)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-23T15:32:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-29T15:05:04Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-29T01:54:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-28T23:54:45Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-28T23:27:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-28T23:27:11Z"
+    }
+  ]
+}

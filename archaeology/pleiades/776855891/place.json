@@ -1,0 +1,665 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.4403515,
+            43.508123
+          ],
+          [
+            16.4403252,
+            43.5080785
+          ],
+          [
+            16.4402964,
+            43.5080284
+          ],
+          [
+            16.4403504,
+            43.5079414
+          ],
+          [
+            16.4404614,
+            43.5079064
+          ],
+          [
+            16.4405913,
+            43.5079464
+          ],
+          [
+            16.4406309,
+            43.5080226
+          ],
+          [
+            16.4405904,
+            43.5081144
+          ],
+          [
+            16.4404754,
+            43.5081534
+          ],
+          [
+            16.4403515,
+            43.508123
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-for-diocletians-mausoleum",
+      "properties": {
+        "snippet": "Tomb, Church-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/776855891/osm-location-for-diocletians-mausoleum",
+        "description": "",
+        "location_precision": "precise",
+        "title": "OSM Location for Diocletian's Mausoleum "
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "www.openstreetmap.org/way/124199055",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Way 124199055",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-for-diocletians-mausoleum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 640,
+      "title": "OSM Location for Diocletian's Mausoleum ",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        "church-2"
+      ],
+      "description": "",
+      "created": "2022-09-06T17:14:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.4403515,
+            43.508123
+          ],
+          [
+            16.4403252,
+            43.5080785
+          ],
+          [
+            16.4402964,
+            43.5080284
+          ],
+          [
+            16.4403504,
+            43.5079414
+          ],
+          [
+            16.4404614,
+            43.5079064
+          ],
+          [
+            16.4405913,
+            43.5079464
+          ],
+          [
+            16.4406309,
+            43.5080226
+          ],
+          [
+            16.4405904,
+            43.5081144
+          ],
+          [
+            16.4404754,
+            43.5081534
+          ],
+          [
+            16.4403515,
+            43.508123
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/776855891/osm-location-for-diocletians-mausoleum",
+      "creators": [
+        {
+          "username": null,
+          "name": "Kiel Papa"
+        },
+        {
+          "username": null,
+          "name": "Luka Bayon-Fraise"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-01T03:12:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-06T17:52:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:37:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:14:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:14:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "created": "2022-09-06T17:15:19Z",
+      "associationCertainty": "certain",
+      "title": "Palace of Diocletian",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/776855891/palace-of-diocletian",
+      "connectionType": "at",
+      "id": "palace-of-diocletian",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-06T17:52:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:37:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:16:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:15:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:15:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/834862588",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "Kiel Papa"
+        },
+        {
+          "username": null,
+          "name": "Luka Bayon-Fraise"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Basi\u0107 2017",
+      "bibliographicURI": "http://atlantides.org/bibliography/b.html#Basi\u0107-2017",
+      "formattedCitation": "Basi\u0107, Ivan. \u201cPagan Tomb to Christian Church: The Case of Diocletian\u2019s Mausoleum in Spalatum.\u201d In M S\u00e1ghy, E.M. Schoolman (eds.) Pagans and Christians in the Late Roman Empire. New Evidence, New Approaches (4th-8th Centuries), 2017. CEU Press,  241\u201371.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Cathedral_of_Saint_Domnius",
+      "citationDetail": "Cathedral of St. Domnius",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Diocletian%27s_Palace",
+      "citationDetail": "Diocletian's Palace",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": " https://doi.org/10.1002/9781118325117.ch6",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Mayer 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H7XWDPDW",
+      "formattedCitation": "<div class=\"csl-entry\">Mayer, Emanuel. \u201cThe Architecture of Tetrarchy.\u201d In <i>A Companion to Roman Architecture</i>, 106\u201326. John Wiley &amp; Sons, Ltd, 2013. https://doi.org/10.1002/9781118325117.ch6.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mausoleum of Diocletian",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Cathedral_of_Saint_Domnius",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English): Cathedral of Saint Domnius",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "diocletians-mausoleum",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-09-06T17:18:58Z",
+      "uri": "https://pleiades.stoa.org/places/776855891/diocletians-mausoleum",
+      "creators": [
+        {
+          "username": null,
+          "name": "Kiel Papa"
+        },
+        {
+          "username": null,
+          "name": "Luka Bayon-Fraise"
+        }
+      ],
+      "attested": "Mausoleum of Diocletian",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-06T17:52:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:37:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:19:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:19:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:18:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:18:58Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Cathedral of Saint Domnius",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Cathedral_of_Saint_Domnius",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English): Cathedral of Saint Domnius",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cathedral-of-saint-domnius",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-09-06T17:21:16Z",
+      "uri": "https://pleiades.stoa.org/places/776855891/cathedral-of-saint-domnius",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "Cathedral of Saint Domnius",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-06T17:52:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:37:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:23:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:21:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:21:16Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Katedrala Svetog Duje",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Cathedral_of_Saint_Domnius",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English): Cathedral of Saint Domnius",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "katedrala-svetog-duje",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "hr",
+      "created": "2022-09-06T17:22:32Z",
+      "uri": "https://pleiades.stoa.org/places/776855891/katedrala-svetog-duje",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "Katedrala Svetog Duje",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-06T17:52:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:37:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:22:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-06T17:22:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "776855891",
+  "subject": [],
+  "title": "Mausoleum of Diocletian",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "<p><span id=\"docs-internal-guid-16750441-7fff-405f-4dd8-6533ba90f707\"><span>The Mausoleum in Diocletian\u2019s Palace is located at the intersection of two major roads (cardo and decumanus) within Diocletian\u2019s palace itself and borders the palace\u2019s peristyle. The mausoleum is made out of limestone and marble that are sourced from the quarries at </span><span>Bra\u010d and other locally sourced materials. The entire palace complex is reported to have begun construction in 295 CE in preparation for Diocletian\u2019s retirement but it still was not complete when Diocletian abdicated in 305 CE. The mausoleum is octagonal in shape complete with a dome and is13.35 meters in diameter and 21.5 meters in height. It was decorated with glass mosaics, friezes depicting hunting scenes, and portraits of Diocletian and his wife, Prisca. Diocletian\u2019s body was laid to rest in the center of the mausoleum in a porphyry sarcophagus. The mausoleum was converted into a church in the 7th c. CE, and is now known as the Cathedral of St. Domnius. A bell tower was later added in the 12th century and a choir was added in the 17th century.</span></span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A mausoleum built to entomb Diocletian at his retirement palace that was constructed around 295 CE and is located in modern day Split, Croatia.",
+  "reprPoint": [
+    16.440465369783375,
+    43.50803037848835
+  ],
+  "placeTypes": [
+    "church-2",
+    "tomb"
+  ],
+  "bbox": [
+    16.4402964,
+    43.5079064,
+    16.4406309,
+    43.5081534
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/834862588"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-06T17:11:05Z",
+  "uri": "https://pleiades.stoa.org/places/776855891",
+  "creators": [
+    {
+      "username": null,
+      "name": "Kiel Papa"
+    },
+    {
+      "username": null,
+      "name": "Luka Bayon-Fraise"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-07T14:36:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-06T17:52:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-06T17:37:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-06T17:37:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-06T17:36:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-06T17:17:23Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-06T17:11:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-06T17:11:05Z"
+    }
+  ]
+}

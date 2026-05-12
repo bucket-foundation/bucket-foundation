@@ -1,0 +1,572 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.6674379,
+            44.6254279
+          ],
+          [
+            22.6673588,
+            44.625411
+          ],
+          [
+            22.6672986,
+            44.6253817
+          ],
+          [
+            22.6672464,
+            44.6253491
+          ],
+          [
+            22.6672195,
+            44.6253119
+          ],
+          [
+            22.6672274,
+            44.6252657
+          ],
+          [
+            22.6674237,
+            44.6243114
+          ],
+          [
+            22.6674613,
+            44.6242422
+          ],
+          [
+            22.667504,
+            44.6242175
+          ],
+          [
+            22.6676113,
+            44.6242037
+          ],
+          [
+            22.6688942,
+            44.624342
+          ],
+          [
+            22.6689822,
+            44.6243795
+          ],
+          [
+            22.6689952,
+            44.6244304
+          ],
+          [
+            22.6689864,
+            44.6244554
+          ],
+          [
+            22.6687542,
+            44.6251139
+          ],
+          [
+            22.6686754,
+            44.6255187
+          ],
+          [
+            22.6686247,
+            44.62553
+          ],
+          [
+            22.6684886,
+            44.62553
+          ],
+          [
+            22.6674379,
+            44.6254279
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-castra-of-drobeta",
+      "properties": {
+        "snippet": "Fort; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/573484325/osm-location-of-castra-of-drobeta",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Castra of Drobeta"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/242110934",
+          "citationDetail": "Way 242110934",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=242110934",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-castra-of-drobeta",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": 640,
+      "title": "OSM location of Castra of Drobeta",
+      "provenance": "OpenStreetMap (Way 242110934, version 10, osm:changeset=138539687, 2023-07-15T10:47:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-03-27T23:26:19Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.6674379,
+            44.6254279
+          ],
+          [
+            22.6673588,
+            44.625411
+          ],
+          [
+            22.6672986,
+            44.6253817
+          ],
+          [
+            22.6672464,
+            44.6253491
+          ],
+          [
+            22.6672195,
+            44.6253119
+          ],
+          [
+            22.6672274,
+            44.6252657
+          ],
+          [
+            22.6674237,
+            44.6243114
+          ],
+          [
+            22.6674613,
+            44.6242422
+          ],
+          [
+            22.667504,
+            44.6242175
+          ],
+          [
+            22.6676113,
+            44.6242037
+          ],
+          [
+            22.6688942,
+            44.624342
+          ],
+          [
+            22.6689822,
+            44.6243795
+          ],
+          [
+            22.6689952,
+            44.6244304
+          ],
+          [
+            22.6689864,
+            44.6244554
+          ],
+          [
+            22.6687542,
+            44.6251139
+          ],
+          [
+            22.6686754,
+            44.6255187
+          ],
+          [
+            22.6686247,
+            44.62553
+          ],
+          [
+            22.6684886,
+            44.62553
+          ],
+          [
+            22.6674379,
+            44.6254279
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/573484325/osm-location-of-castra-of-drobeta",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-13T14:24:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-20T15:44:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-27T23:26:51Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-27T23:26:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-27T23:26:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-27T23:26:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-04-19T14:47:56Z",
+      "associationCertainty": "certain",
+      "title": "Drobeta",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/573484325/6761626881",
+      "connectionType": "at",
+      "id": "6761626881",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-19T14:47:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-19T14:47:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-19T14:47:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/207100",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Drobeta-Turnu_Severin",
+      "citationDetail": "Drobeta-Turnu Severin",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Drobeta_(castra)",
+      "citationDetail": "Drobeta (castra)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "129",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arbore Popescu 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LM5N84LT",
+      "formattedCitation": "<div class=\"csl-entry\">Arbore Popescu, Grigore, ed. <i>Traiano: Ai Confini Dell\u2019Impero\u202f; [Ancona, Mole Vanvitelliana, 19 Ottobre 1998- 17 Gennaio 1999]</i>. Milano: Electa, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/903288274",
+      "citationDetail": "293",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Campbell 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4IH7CW5Q",
+      "formattedCitation": "<div class=\"csl-entry\">Campbell, J. B. <i>Rivers and the Power of Ancient Rome</i>. Studies in the History of Greece and Rome. Chapel Hill NC: University of North Carolina Press, 2012. http://www.worldcat.org/oclc/903288274.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edh-www.adw.uni-heidelberg.de/edh/inschrift/HD012704",
+      "citationDetail": "HD012704",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "EDH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PY3AZV8F",
+      "formattedCitation": "<div class=\"csl-entry\">Alf\u00f6ldy, G\u00e9za, and Christian Witschel, eds. <i>Epigraphic Database Heidelberg</i>. Heidelberg: Heidelberg Academy of Sciences and Humanities, 1997. http://edh-www.adw.uni-heidelberg.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/446227UDro",
+      "citationDetail": "Drobeta (Dacia) 2 Turnu Severin - \u0394\u03c1\u03bf\u03c5\u03b2\u03b7\u03c4\u03af\u03c2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5308156",
+      "citationDetail": "Castra Drobeta (Q5308156)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dare.ht.lu.se/",
+      "citationDetail": "43658",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Lund, Sweden: Department of Archaeology and Ancient History, Lund University, Sweden, 2015. http://dare.ht.lu.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Castra Drobeta",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q5308156",
+          "citationDetail": "Q5308156",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "castra-drobeta",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-04-19T15:18:49Z",
+      "uri": "https://pleiades.stoa.org/places/573484325/castra-drobeta",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Castra Drobeta",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-20T15:44:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-19T15:18:55Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-19T15:18:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-19T15:18:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "573484325",
+  "subject": [],
+  "title": "Castra of Drobeta",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman castrum dating to the reign of Trajan located on the Danube, at Turnu-Severin, Romania.",
+  "reprPoint": [
+    22.66809056365645,
+    44.624862137896365
+  ],
+  "placeTypes": [
+    "fort-2",
+    "fort"
+  ],
+  "bbox": [
+    22.6672195,
+    44.6242037,
+    22.6689952,
+    44.62553
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/207100"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-04-19T14:47:54Z",
+  "uri": "https://pleiades.stoa.org/places/573484325",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-13T14:25:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-04-20T15:44:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-19T15:19:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-19T15:18:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-19T15:15:01Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-19T15:02:54Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-19T14:47:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-19T14:47:54Z"
+    }
+  ]
+}

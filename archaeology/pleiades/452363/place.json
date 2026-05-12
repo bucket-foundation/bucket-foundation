@@ -1,0 +1,413 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.1508838,
+            39.6554572
+          ],
+          [
+            16.1509884,
+            39.6549946
+          ],
+          [
+            16.1511601,
+            39.6549141
+          ],
+          [
+            16.1515544,
+            39.6550359
+          ],
+          [
+            16.1519781,
+            39.655358
+          ],
+          [
+            16.1521337,
+            39.6555067
+          ],
+          [
+            16.1518655,
+            39.6557132
+          ],
+          [
+            16.1516214,
+            39.655674
+          ],
+          [
+            16.1513639,
+            39.6556224
+          ],
+          [
+            16.1511198,
+            39.6556017
+          ],
+          [
+            16.1510286,
+            39.6555914
+          ],
+          [
+            16.1508838,
+            39.6554572
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/452363/location-of-roman-villa",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Larderia, Roggiano Gravina villa romana"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/260398051",
+          "citationDetail": "Way 260398051",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=260398051",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Larderia, Roggiano Gravina villa romana",
+      "provenance": "OpenStreetMap (Way 260398051, version 4, osm:changeset=155698970, 2024-08-24T14:15:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-07T03:56:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.1508838,
+            39.6554572
+          ],
+          [
+            16.1509884,
+            39.6549946
+          ],
+          [
+            16.1511601,
+            39.6549141
+          ],
+          [
+            16.1515544,
+            39.6550359
+          ],
+          [
+            16.1519781,
+            39.655358
+          ],
+          [
+            16.1521337,
+            39.6555067
+          ],
+          [
+            16.1518655,
+            39.6557132
+          ],
+          [
+            16.1516214,
+            39.655674
+          ],
+          [
+            16.1513639,
+            39.6556224
+          ],
+          [
+            16.1511198,
+            39.6556017
+          ],
+          [
+            16.1510286,
+            39.6555914
+          ],
+          [
+            16.1508838,
+            39.6554572
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/452363/location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-16T14:50:15Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-10T21:45:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2017-09-14T15:10:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-18T13:20:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-18T13:20:19Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-07T03:57:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-07T03:56:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-07T03:56:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "46 D2 Larderia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Chiarlo 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZCXCZZ23",
+      "formattedCitation": "<div class=\"csl-entry\">C.R. Chiarlo. \u201cVilla Rustica Di Et\u00e0 Romana a Roggiano Gravina.\u201d <i>Klearchos</i> 16 (1974): 67\u201375.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "7773",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+      "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 7773.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Malacrino 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8XL7JC24",
+      "formattedCitation": "<div class=\"csl-entry\">Malacrino, Carmelo G. \u201cArchitettura e mosaici della villa romana di loc. Larderia a Roggiano Gravina (CS).\u201d In <i>Atti del XVIII Colloquio dell\u2019Associazione italiana per lo studio e la conservazione del mosaico</i>, 473\u201390. Tivoli (Roma): Edizioni Scripta, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q113250246",
+      "citationDetail": "Roman villa, Larderia (Q113250246)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "452363",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=villa",
+    "Mosaic"
+  ],
+  "title": "Larderia",
+  "provenance": "Barrington Atlas: BAtlas 46 D2 Larderia",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Larderia</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 46 D2 Larderia",
+  "reprPoint": [
+    16.151460064520677,
+    39.65535627105606
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    16.1508838,
+    39.6549141,
+    16.1521337,
+    39.6557132
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-10-04T18:04:52Z",
+  "uri": "https://pleiades.stoa.org/places/452363",
+  "creators": [
+    {
+      "username": null,
+      "name": "I.E.M. Edlund Berry"
+    },
+    {
+      "username": null,
+      "name": "A.M. Small"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Roman villa, Larderia (Q113250246)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-16T14:49:56Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-23T17:03:24Z"
+    },
+    {
+      "comment": "darmc 7773",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-15T00:19:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-18T13:19:18Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:22:36Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:14:33Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T19:53:45Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:52:25Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-04T18:21:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-04T18:12:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-04T18:04:52Z"
+    }
+  ]
+}

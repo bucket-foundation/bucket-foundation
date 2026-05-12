@@ -1,0 +1,681 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.280414,
+            37.0673297
+          ],
+          [
+            15.2803717,
+            37.0673757
+          ],
+          [
+            15.2803733,
+            37.0674327
+          ],
+          [
+            15.280418,
+            37.0674772
+          ],
+          [
+            15.2804874,
+            37.0674908
+          ],
+          [
+            15.2805528,
+            37.0674679
+          ],
+          [
+            15.2805735,
+            37.0674929
+          ],
+          [
+            15.2806191,
+            37.0674608
+          ],
+          [
+            15.2805762,
+            37.0674244
+          ],
+          [
+            15.2807244,
+            37.0673286
+          ],
+          [
+            15.2806783,
+            37.0672794
+          ],
+          [
+            15.28065,
+            37.0672937
+          ],
+          [
+            15.280595,
+            37.0672297
+          ],
+          [
+            15.280414,
+            37.0673297
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-so-called-roman-gymnasium-at",
+      "properties": {
+        "snippet": "Architecturalcomplex, Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/649857187/osm-location-of-the-so-called-roman-gymnasium-at",
+        "description": "Representative location of the so-called Roman Gymnasium at Syracuse, based on an OpenStreetMap way tracing the limits of the archaeological area.",
+        "location_precision": "precise",
+        "title": "OSM location of the so-called Roman Gymnasium at Syracuse"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jprag",
+      "homepage": null,
+      "name": "Jonathan Prag",
+      "uri": "https://pleiades.stoa.org/author/jprag"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/301793936",
+          "citationDetail": "Way 301793936",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=301793936",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-so-called-roman-gymnasium-at",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of the so-called Roman Gymnasium at Syracuse",
+      "provenance": "OpenStreetMap (Way 301793936, version 5, osm:changeset=68989627, 2019-04-07T23:55:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex",
+        "theatre",
+        ""
+      ],
+      "description": "Representative location of the so-called Roman Gymnasium at Syracuse, based on an OpenStreetMap way tracing the limits of the archaeological area.",
+      "created": "2016-01-25T17:42:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.280414,
+            37.0673297
+          ],
+          [
+            15.2803717,
+            37.0673757
+          ],
+          [
+            15.2803733,
+            37.0674327
+          ],
+          [
+            15.280418,
+            37.0674772
+          ],
+          [
+            15.2804874,
+            37.0674908
+          ],
+          [
+            15.2805528,
+            37.0674679
+          ],
+          [
+            15.2805735,
+            37.0674929
+          ],
+          [
+            15.2806191,
+            37.0674608
+          ],
+          [
+            15.2805762,
+            37.0674244
+          ],
+          [
+            15.2807244,
+            37.0673286
+          ],
+          [
+            15.2806783,
+            37.0672794
+          ],
+          [
+            15.28065,
+            37.0672937
+          ],
+          [
+            15.280595,
+            37.0672297
+          ],
+          [
+            15.280414,
+            37.0673297
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/649857187/osm-location-of-the-so-called-roman-gymnasium-at",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:27:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T17:14:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T17:01:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T14:44:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-25T17:50:54Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-25T17:42:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-25T17:42:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T14:04:25Z",
+      "associationCertainty": "certain",
+      "title": "Syracusae/Syrakousai",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/649857187/462503",
+      "connectionType": "connection",
+      "id": "462503",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462503",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Ginnasio_romano",
+      "citationDetail": "Ginnasio romano",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Ginnasio romano.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/3322893/Una_statua_togata_dal_ginnasio_romano_di_Siracusa_un_caso_di_reimpiego_nella_Sicilia_Tardoantica",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Ambrogi, A. 2009-2010. \"Una statua togata dal \"ginnasio romano\" di Siracusa.\" Rend. Pont. 82:293-371.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.siracusaturismo.net/scheda.asp?ID=3",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Siracusaturismo, Ginnasio romano",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.gettyimages.co.uk/detail/photo/architectural-element-from-gymnasium-high-res-stock-photography/592243181",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Getty Images: Syracuse's Gymnasium",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17631557",
+      "citationDetail": "Gymnasium (Q17631557)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ginnasio romano",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Ginnasio_romano",
+          "citationDetail": "Ginnasio romano",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Ginnasio romano.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.touringclub.it/destinazione/209115/ginnasio-romano",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Touring Club Italiano, Siracusa: Ginnasio romano",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.academia.edu/3322893/Una_statua_togata_dal_ginnasio_romano_di_Siracusa_un_caso_di_reimpiego_nella_Sicilia_Tardoantica",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Ambrogi, A. 2009-2010. \"Una statua togata dal \"ginnasio romano\" di Siracusa.\" Rend. Pont. 82:293-371.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.siracusaturismo.net/scheda.asp?ID=3",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Siracusaturismo, Ginnasio romano",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ginnasio-romano",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-01-25T17:58:06Z",
+      "uri": "https://pleiades.stoa.org/places/649857187/ginnasio-romano",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Ginnasio romano",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T17:15:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T17:14:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T14:43:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T14:22:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-25T17:58:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-25T17:58:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Roman Gymnasium",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DS%3Aentry+group%3D10%3Aentry%3Dsyracuse",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "PECS (Perseus), SYRACUSE (Siracusa) Sicily",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.viamichelin.co.uk/web/Tourist-Attraction/Siracusa-96100-Syracuse_s_Roman_Gymnasium-a5kwm23f",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "ViaMichelin: Syracuse's Roman Gymnasium",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=dBt21IX0QEAC&lpg=PA395&ots=IV2GP26N-c&dq=roman%20gymnasium%20syracuse&pg=PA395#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Trimble, J. 2011. Women and Visual Replication in Roman Imperial Art and Culture. Cambridge: Cambridge University Press. p. 395.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "roman-gymnasium",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jprag",
+          "homepage": null,
+          "name": "Jonathan Prag",
+          "uri": "https://pleiades.stoa.org/author/jprag"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-01-26T14:28:52Z",
+      "uri": "https://pleiades.stoa.org/places/649857187/roman-gymnasium",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Roman Gymnasium",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T17:14:01Z"
+        },
+        {
+          "comment": "edited references",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-28T17:13:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T14:43:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T14:28:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-01-26T14:28:54Z"
+        }
+      ]
+    }
+  ],
+  "id": "649857187",
+  "subject": [
+    "extant remains"
+  ],
+  "title": "So-called Roman Gymnasium at Syracuse",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "<p>The complex is located in the contrada called \"Bufardeci\".</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monumental complex in the ancient city of Syracuse, probably built around the first century AD. It was initially identified as a gymnasium or a thermal bath; it includes the ruins of a theatre, a quadriporticus, and a temple. ",
+  "reprPoint": [
+    15.280545446018374,
+    37.06737167542024
+  ],
+  "placeTypes": [
+    "architecturalcomplex",
+    "theatre"
+  ],
+  "bbox": [
+    15.2803717,
+    37.0672297,
+    15.2807244,
+    37.0674929
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462503"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-01-25T17:40:51Z",
+  "uri": "https://pleiades.stoa.org/places/649857187",
+  "creators": [
+    {
+      "username": "vvitale",
+      "homepage": null,
+      "name": "Valeria Vitale",
+      "uri": "https://pleiades.stoa.org/author/vvitale"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q17631557",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T20:28:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-01-28T17:15:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-01-26T17:12:21Z"
+    },
+    {
+      "comment": "edited references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-01-26T16:43:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "vvitale",
+      "modified": "2016-01-26T14:43:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-01-26T14:31:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "vvitale",
+      "modified": "2016-01-25T17:41:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "vvitale",
+      "modified": "2016-01-25T17:40:51Z"
+    }
+  ]
+}

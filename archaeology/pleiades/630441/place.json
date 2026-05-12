@@ -1,0 +1,551 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.0,
+              38.0
+            ],
+            [
+              39.5,
+              38.0
+            ],
+            [
+              39.5,
+              40.0
+            ],
+            [
+              35.0,
+              40.0
+            ],
+            [
+              35.0,
+              38.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "undetermined",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/630441/undetermined",
+        "description": "Roughly located within a bounding box",
+        "location_precision": "rough",
+        "title": "Undetermined location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "undetermined",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "Undetermined location",
+      "provenance": "Barrington Atlas: BAtlas 64",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Roughly located within a bounding box",
+      "created": "2009-10-19T10:42:09Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              35.0,
+              38.0
+            ],
+            [
+              39.5,
+              38.0
+            ],
+            [
+              39.5,
+              40.0
+            ],
+            [
+              35.0,
+              40.0
+            ],
+            [
+              35.0,
+              38.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/630441/undetermined",
+      "creators": [
+        {
+          "username": null,
+          "name": "T.B. Mitford"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:24:03Z"
+        },
+        {
+          "comment": "Batch geocoding, to BAtlas grids, of unlocated roads.",
+          "modifiedBy": "sgillies",
+          "modified": "2011-07-14T05:32:25Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T13:38:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T10:50:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T10:42:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-05-04T21:58:12Z",
+      "associationCertainty": "certain",
+      "title": "Melitene",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/630441/melitene",
+      "connectionType": "near",
+      "id": "melitene",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-05-05T00:21:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T22:18:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T21:58:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T21:58:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/629040",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://search.worldcat.org/title/45084869",
+          "citationDetail": "page 992 see \"Melitene \u2192 Kerar Kale \u2192 Map 89\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000. https://search.worldcat.org/title/45084869.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-05-04T21:58:57Z",
+      "associationCertainty": "certain",
+      "title": "Kerar Kale",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/630441/kerar-kale",
+      "connectionType": "near",
+      "id": "kerar-kale",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-05-05T00:21:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T22:18:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T21:58:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T21:58:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/629006",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://search.worldcat.org/title/45084869",
+          "citationDetail": "page 992 see \"Melitene \u2192 Kerar Kale \u2192 Map 89\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000. https://search.worldcat.org/title/45084869.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-05-04T22:02:52Z",
+      "associationCertainty": "certain",
+      "title": "Charmodara",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/630441/charmodara",
+      "connectionType": "near",
+      "id": "charmodara",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-05-05T00:21:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T22:18:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T22:02:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-04T22:02:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/658436",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "67 H1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "64",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mitford 1980c",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VEN2WR8V",
+      "formattedCitation": "<div class=\"csl-entry\">Mitford, T. B. \u201cThe Limes in the Kurdish Taurus.\u201d In <i>Roman Frontier Studies 1979. Papers Presented to the 12. International Congress of Roman Frontier Studies</i>, 913\u201324, Abb. Taf, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "257-60",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mitford 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LUAAQ6JL",
+      "formattedCitation": "<div class=\"csl-entry\">Mitford, T. \u201cThe Roman Frontier on the Upper Euphrates.\u201d In <i>Ancient Anatolia. Fifty Years\u2019 Work by the British Institute of Archaeology at Ankara</i>, 255\u201372, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://itiner-e.org/route-segment/24952",
+      "citationDetail": "Road Segment 24952: Perre-Melitene",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Itiner-e",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4JGPPVX6",
+      "formattedCitation": "<div class=\"csl-entry\">Brughmans, Tom, Pau de Soto, A. Pa\u017eout, and P. Bjerregaard Vahlstrup. <i>Itiner-e: The Digital Atlas of Ancient Roads</i>, 2024. https://itiner-e.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://itiner-e.org/route-segment/24954",
+      "citationDetail": "Road Segment 24954: Arsameia pros Nymphaio-Melitene",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Itiner-e",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4JGPPVX6",
+      "formattedCitation": "<div class=\"csl-entry\">Brughmans, Tom, Pau de Soto, A. Pa\u017eout, and P. Bjerregaard Vahlstrup. <i>Itiner-e: The Digital Atlas of Ancient Roads</i>, 2024. https://itiner-e.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://itiner-e.org/route-segment/25055",
+      "citationDetail": "Road Segment 25055: Metita-Melitene",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Itiner-e",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4JGPPVX6",
+      "formattedCitation": "<div class=\"csl-entry\">Brughmans, Tom, Pau de Soto, A. Pa\u017eout, and P. Bjerregaard Vahlstrup. <i>Itiner-e: The Digital Atlas of Ancient Roads</i>, 2024. https://itiner-e.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://itiner-e.org/route-segment/25055",
+      "citationDetail": "Road Segment 24969: Samosata-Melitene",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Itiner-e",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4JGPPVX6",
+      "formattedCitation": "<div class=\"csl-entry\">Brughmans, Tom, Pau de Soto, A. Pa\u017eout, and P. Bjerregaard Vahlstrup. <i>Itiner-e: The Digital Atlas of Ancient Roads</i>, 2024. https://itiner-e.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Maps 8-9 (volume 2, following page 594)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mitford 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8ZD3DJGR",
+      "formattedCitation": "<div class=\"csl-entry\">Mitford, Timothy Bruce. <i>East of Asia Minor: Rome\u2019s Hidden Frontier</i>. 2 vols. Oxford: Oxford University Press, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "630441",
+  "subject": [],
+  "title": "Roads: Melitene \u2192 Kerar Kale \u2192",
+  "provenance": "Barrington Atlas: BAtlas 64",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/road"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Melitene \u2192 Kerar Kale \u2192 Map 89.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A route, via conjectured road segments, from Melitene southeast to Kerar Kale and thence to points east and then south along the right bank of the Euphrates.",
+  "reprPoint": [
+    37.25,
+    39.0
+  ],
+  "placeTypes": [
+    "road"
+  ],
+  "bbox": [
+    35.0,
+    38.0,
+    39.5,
+    40.0
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/629040",
+    "https://pleiades.stoa.org/places/629006",
+    "https://pleiades.stoa.org/places/658436"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-05-04T21:42:22Z",
+  "uri": "https://pleiades.stoa.org/places/630441",
+  "creators": [
+    {
+      "username": null,
+      "name": "T.B. Mitford"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary; details; title; added Itiner-e references; Edited; Edited; Edited; added Mitford 2018; updated Connections @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2026-05-05T00:21:14Z"
+    },
+    {
+      "comment": "cleaned up Mitford 1979 -> actually 1980",
+      "modifiedBy": "thomase",
+      "modified": "2026-05-04T21:42:10Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-24T15:34:09Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:24:03Z"
+    },
+    {
+      "comment": "Description fixes 2 after batch geocoding of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T18:12:48Z"
+    },
+    {
+      "comment": "Description fixes after batch geocoding of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T17:21:21Z"
+    },
+    {
+      "comment": "Batch geocoding, to BAtlas grids, of unlocated roads.",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-14T05:32:24Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:45:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-19T13:38:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T10:50:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T10:42:08Z"
+    }
+  ]
+}

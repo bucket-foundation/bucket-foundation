@@ -1,0 +1,644 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.5958032,
+            43.2323438
+          ],
+          [
+            -6.5969137,
+            43.2323086
+          ],
+          [
+            -6.5969888,
+            43.2322617
+          ],
+          [
+            -6.5968761,
+            43.2321249
+          ],
+          [
+            -6.596801,
+            43.2319021
+          ],
+          [
+            -6.5968493,
+            43.2316364
+          ],
+          [
+            -6.5967152,
+            43.2314097
+          ],
+          [
+            -6.5965462,
+            43.2312989
+          ],
+          [
+            -6.5961787,
+            43.2315621
+          ],
+          [
+            -6.5958082,
+            43.231875
+          ],
+          [
+            -6.5957871,
+            43.2321523
+          ],
+          [
+            -6.5958032,
+            43.2323438
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-way-281074821",
+      "properties": {
+        "snippet": "Archaeological-site, Fort-2; 900 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/236643/osm-way-281074821",
+        "description": "Polygon representing the location of the San Chuis hillfort, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of San Chuis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "castro-culture-iron-age-ca.-900-bc-100-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/castro-culture-iron-age-ca.-900-bc-100-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/281074821",
+          "citationDetail": "Way 281074821",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=281074821",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 3, 83",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Molina Salido 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8RYFWCJB",
+          "formattedCitation": "<div class=\"csl-entry\">Salido, Juana Molina. <i>From the Archaeological Record to Virtual Reconstruction: The Application of Information Technologies at an Iron Age Fortified Settlement (San Chuis Hillfort, Allande, Asturias, Spain)</i>. Archaeopress Archaeology. Oxford: Archaeopress, 2018.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-way-281074821",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 300,
+      "title": "OSM location of San Chuis",
+      "provenance": "OpenStreetMap (Way 281074821, version 1, osm:changeset=22274459, 2014-05-11T16:12:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "fort-2"
+      ],
+      "description": "Polygon representing the location of the San Chuis hillfort, derived from an OpenStreetMap Way.",
+      "created": "2018-09-22T14:36:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.5958032,
+            43.2323438
+          ],
+          [
+            -6.5969137,
+            43.2323086
+          ],
+          [
+            -6.5969888,
+            43.2322617
+          ],
+          [
+            -6.5968761,
+            43.2321249
+          ],
+          [
+            -6.596801,
+            43.2319021
+          ],
+          [
+            -6.5968493,
+            43.2316364
+          ],
+          [
+            -6.5967152,
+            43.2314097
+          ],
+          [
+            -6.5965462,
+            43.2312989
+          ],
+          [
+            -6.5961787,
+            43.2315621
+          ],
+          [
+            -6.5958082,
+            43.231875
+          ],
+          [
+            -6.5957871,
+            43.2321523
+          ],
+          [
+            -6.5958032,
+            43.2323438
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/236643/osm-way-281074821",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-02T02:31:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:41:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:41:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:36:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-09-22T14:36:33Z",
+      "associationCertainty": "certain",
+      "title": "Asturia",
+      "start": -900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/236643/asturia",
+      "connectionType": "part_of_regional",
+      "id": "asturia",
+      "attestations": [
+        {
+          "timePeriod": "castro-culture-iron-age-ca.-900-bc-100-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/castro-culture-iron-age-ca.-900-bc-100-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:47:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:47:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:47:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:36:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/236351",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Molina Salido 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8RYFWCJB",
+          "formattedCitation": "<div class=\"csl-entry\">Salido, Juana Molina. <i>From the Archaeological Record to Virtual Reconstruction: The Application of Information Technologies at an Iron Age Fortified Settlement (San Chuis Hillfort, Allande, Asturias, Spain)</i>. Archaeopress Archaeology. Oxford: Archaeopress, 2018.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "24 E1 S. Chu\u00eds",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/29332628",
+      "citationDetail": "92",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Conimbriga",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MUWQD6UC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Porto: Conimbriga - Bracara - Lucus - Asturica</i>. Tabula Imperii Romani K29. Madrid: Ministerio de Cultura; Consejo Superior de Investigaciones Cient\u00edficas (Spain); Comit\u00e9 Espa\u00f1ol de la Tabula Imperii Romani, 1993. http://www.worldcat.org/oclc/29332628.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Molina Salido 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8RYFWCJB",
+      "formattedCitation": "<div class=\"csl-entry\">Molina Salido, Juana. <i>From the Archaeological Record to Virtual Reconstruction: The Application of Information Technologies at an Iron Age Fortified Settlement (San Chuis Hillfort, Allande, Asturias, Spain)</i>. Archaeopress Archaeology. Oxford: Archaeopress, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "3503",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Pola_de_Allande",
+      "citationDetail": "Pola de Allande",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jord\u00e1 Pardo 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EV5UGSJH",
+      "formattedCitation": "<div class=\"csl-entry\">Jord\u00e1 Pardo, J. F. (Jes\u00fas F. ), Carlos Mar\u00edn Su\u00e1rez, and Javier Garc\u00eda Guinea. \u201cDiscovering San Chuis Hillfort (Northern Spain): Archaeometry, Craft Technologies, and Social Interpretation.\u201d In <i>Atlantic Europe in the First Millennium BC\u202f: Crossing the Divide</i>, 488\u2013505. Oxford: Oxford University Press, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mar\u00edn Su\u00e1rez 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/794MK2GT",
+      "formattedCitation": "<div class=\"csl-entry\">Mar\u00edn Su\u00e1rez, Carlos, J. F. (Jes\u00fas F. ) Jord\u00e1 Pardo, and Javier Garc\u00eda Guinea. \u201cArqueometr\u00eda En El Castro de San Chuis (Allande, Asturias, Espa\u00f1a).\u201d In <i>F\u00e9rvedes, 5.2008: I Congreso Internacional de Arqueolox\u00eda de Vilalba (11-14 de Xu\u00f1o de 2008)</i>, 53\u201362. Vilalba: Museo de Prehistoria e Arqueolox\u00eda de Villalba, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jord\u00e1 Pardo 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NNIVXTC5",
+      "formattedCitation": "<div class=\"csl-entry\">Jord\u00e1 Pardo, J. F. (Jes\u00fas F. ), Carlos Mar\u00edn Su\u00e1rez, and Juana Molina Salido. \u201cEl Castro de San Chuis (San Mart\u00edn de Beduledo, Allande, Asturias): Cincuenta y Dos A\u00f1os de Investigaci\u00f3n Arqueol\u00f3gica.\u201d In <i>Francisco Jord\u00e1 Cerd\u00e1 (1914 - 2004)\u202f: Maestro de Prehistoriadores\u202f; (Anejos de Nailos\u202f; 2)</i>, 135\u201375. Oviedo: Asociaci\u00f3n de Profesionales Independientes de la Arqueolog\u00eda de Asturias (APIAA), 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Badal Garc\u00eda 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/62PG8BCS",
+      "formattedCitation": "<div class=\"csl-entry\">Badal Garc\u00eda, Ernestina, Yolanda Carri\u00f3n Marco, and Jes\u00fas Jord\u00e0. \u201cCharcoal Analysis at the San Chuis Hill Fort (Allande, Asturias, Spain).\u201d In <i>Wood and Charcoal</i>, 125\u201334. Val\u00e8ncia: Universitat de Val\u00e8ncia, Departament de prehist\u00f2ria i arqueologia, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "San Chuis hill fort",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.google.com/search?q=San+Chuis+hill+fort+asturia&oq=San+Chuis+hill+fort+asturia&aqs=chrome..69i57.3187j0j1&sourceid=chrome&ie=UTF-8",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "San Chuis Hill Fort",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-09-22.7161332315",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-09-22T14:49:29Z",
+      "uri": "https://pleiades.stoa.org/places/236643/name.2018-09-22.7161332315",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:50:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:49:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:49:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-22T14:49:29Z"
+        }
+      ]
+    }
+  ],
+  "id": "236643",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "S. Chu\u00eds",
+  "provenance": "Barrington Atlas: BAtlas 24 E1 S. Chu\u00eds",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: S. Chu\u00eds, hilltop settlement; Allande</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Pre-Roman hillfort in the Asturias region, near the northern coast of the Iberian peninsula. The fort was constructed around 1000 BCE and remained in use throughout the Iron Age and shows signs of occupation during the Roman period through the third century CE.",
+  "reprPoint": [
+    -6.596390508612135,
+    43.23193720750777
+  ],
+  "placeTypes": [
+    "fort-2",
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    -6.5969888,
+    43.2312989,
+    -6.5957871,
+    43.2323438
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/236351"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-09-24T16:47:27Z",
+  "uri": "https://pleiades.stoa.org/places/236643",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.W. Haley"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add'l references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-22T14:55:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-22T14:52:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-22T14:46:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-22T14:41:28Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-22T14:39:38Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:50:00Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T03:24:31Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T18:59:35Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:13:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-24T18:47:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-24T16:53:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-24T16:47:27Z"
+    }
+  ]
+}

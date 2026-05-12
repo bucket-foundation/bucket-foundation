@@ -1,0 +1,431 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.9668449,
+          30.2170479
+        ]
+      },
+      "type": "Feature",
+      "id": "qattah",
+      "properties": {
+        "snippet": "Cemetery; 2010 BC - 1640 BC",
+        "link": "https://pleiades.stoa.org/places/166663104/qattah",
+        "description": "Point based on an OpenStreetMap node representing Qattah after Chassinat 1906 and Wikidata.",
+        "location_precision": "precise",
+        "title": "OSM location of Qattah"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9807188447",
+          "citationDetail": "Node 9807188447",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9807188447",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://babel.hathitrust.org/cgi/pt?id=coo.31924028715781&view=1up&seq=29&skin=2021",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Chassinat 1906",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G7B52YD6",
+          "formattedCitation": "<div class=\"csl-entry\">Chassinat, E, H Gauthier, and H Pieron. <i>Fouilles de Qattah</i>. M\u00e9moires publi\u00e9s par les membres de l\u2019Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale du Caire, t. 14. Le Caire: Institut Fran\u00e7ais d\u2019Arch\u00e9ologie Orientale, 1906. https://babel.hathitrust.org/cgi/pt?id=coo.31924028715781&amp;view=1up&amp;seq=29&amp;skin=2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.wikidata.org/entity/Q5351952",
+          "citationDetail": "El Qattah",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "qattah",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1640,
+      "title": "OSM location of Qattah",
+      "provenance": "OpenStreetMap (Node 9807188447, version 1, osm:changeset=122179834, 2022-06-09T19:01:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Qattah after Chassinat 1906 and Wikidata.",
+      "created": "2022-06-09T19:02:23Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.9668449,
+          30.2170479
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/166663104/qattah",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-10T10:54:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:06:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:04:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:04:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:02:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:02:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-09T19:05:35Z",
+      "associationCertainty": "certain",
+      "title": "Nilus (river)",
+      "start": -2010,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/166663104/nilus-river",
+      "connectionType": "at",
+      "id": "nilus-river",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-10T10:54:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:06:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:06:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:05:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T19:05:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/727172",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://babel.hathitrust.org/cgi/pt?id=coo.31924028715781&view=1up&seq=29&skin=2021",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Chassinat 1906",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G7B52YD6",
+          "formattedCitation": "<div class=\"csl-entry\">Chassinat, E, H Gauthier, and H Pieron. <i>Fouilles de Qattah</i>. M\u00e9moires publi\u00e9s par les membres de l\u2019Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale du Caire, t. 14. Le Caire: Institut Fran\u00e7ais d\u2019Arch\u00e9ologie Orientale, 1906. https://babel.hathitrust.org/cgi/pt?id=coo.31924028715781&amp;view=1up&amp;seq=29&amp;skin=2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.wikidata.org/entity/Q5351952",
+          "citationDetail": "El Qattah",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://babel.hathitrust.org/cgi/pt?id=coo.31924028715781&view=1up&seq=29&skin=2021",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Chassinat 1906",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G7B52YD6",
+      "formattedCitation": "<div class=\"csl-entry\">Chassinat, E, H Gauthier, and H Pieron. <i>Fouilles de Qattah</i>. M\u00e9moires publi\u00e9s par les membres de l\u2019Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale du Caire, t. 14. Le Caire: Institut Fran\u00e7ais d\u2019Arch\u00e9ologie Orientale, 1906. https://babel.hathitrust.org/cgi/pt?id=coo.31924028715781&amp;view=1up&amp;seq=29&amp;skin=2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5351952",
+      "citationDetail": "Q5351952: El Qattah",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/5093",
+      "citationDetail": "GEO ID 5093: El-Qatta",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "El Qattah",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q5351952",
+          "citationDetail": "El Qattah (Q5351952)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "el-qattah",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-06-09T21:55:28Z",
+      "uri": "https://pleiades.stoa.org/places/166663104/el-qattah",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "El Qattah",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-10T10:54:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-09T21:55:33Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-09T21:55:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-09T21:55:28Z"
+        }
+      ]
+    }
+  ],
+  "id": "166663104",
+  "subject": [],
+  "title": "El Qattah",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "<p>The site is located in the second\u00a0Lower Egyptian nome, Letopolites (Ausim).</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "At this site located northwest of modern Cairo in Egypt's Giza governate, early twentieth-century excavations identified, among other finds, a Middle Kingdom necropolis with evidence of at least 14 tombs, including the tomb of one Neha, a Middle Kingdom prince.",
+  "reprPoint": [
+    30.9668449,
+    30.2170479
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    30.9668449,
+    30.2170479,
+    30.9668449,
+    30.2170479
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/727172"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-09T21:50:06Z",
+  "uri": "https://pleiades.stoa.org/places/166663104",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-10T10:54:15Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-10T10:53:27Z"
+    },
+    {
+      "comment": "update summary, references; updated Names",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-10T10:51:41Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-09T21:50:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T19:06:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T19:01:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T19:01:05Z"
+    }
+  ]
+}

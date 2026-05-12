@@ -1,0 +1,550 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.4731598,
+            43.1282317
+          ],
+          [
+            27.4731303,
+            43.12849
+          ],
+          [
+            27.4729211,
+            43.1287015
+          ],
+          [
+            27.4725966,
+            43.1287719
+          ],
+          [
+            27.472323,
+            43.1287817
+          ],
+          [
+            27.4720896,
+            43.1286701
+          ],
+          [
+            27.4719609,
+            43.1285253
+          ],
+          [
+            27.4719019,
+            43.1282865
+          ],
+          [
+            27.4720682,
+            43.128122
+          ],
+          [
+            27.472331,
+            43.1279184
+          ],
+          [
+            27.4726019,
+            43.1279282
+          ],
+          [
+            27.4726931,
+            43.1280613
+          ],
+          [
+            27.4729131,
+            43.1280868
+          ],
+          [
+            27.4729265,
+            43.1280085
+          ],
+          [
+            27.4731598,
+            43.1282317
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-solnitsata",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/802858342/osm-location-of-solnitsata",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Solnitsata"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/460635249",
+          "citationDetail": "Way 460635249",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=460635249",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-solnitsata",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "OSM location of Solnitsata",
+      "provenance": "OpenStreetMap (Way 460635249, version 1, osm:changeset=44528452, 2016-12-19T23:22:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-12-19T23:23:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.4731598,
+            43.1282317
+          ],
+          [
+            27.4731303,
+            43.12849
+          ],
+          [
+            27.4729211,
+            43.1287015
+          ],
+          [
+            27.4725966,
+            43.1287719
+          ],
+          [
+            27.472323,
+            43.1287817
+          ],
+          [
+            27.4720896,
+            43.1286701
+          ],
+          [
+            27.4719609,
+            43.1285253
+          ],
+          [
+            27.4719019,
+            43.1282865
+          ],
+          [
+            27.4720682,
+            43.128122
+          ],
+          [
+            27.472331,
+            43.1279184
+          ],
+          [
+            27.4726019,
+            43.1279282
+          ],
+          [
+            27.4726931,
+            43.1280613
+          ],
+          [
+            27.4729131,
+            43.1280868
+          ],
+          [
+            27.4729265,
+            43.1280085
+          ],
+          [
+            27.4731598,
+            43.1282317
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/802858342/osm-location-of-solnitsata",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-09T17:10:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-19T23:27:03Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-19T23:24:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-19T23:23:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-19T23:23:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/846556623",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nikolov and Bacvarov 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/45ARI8BR",
+      "formattedCitation": "<div class=\"csl-entry\">Nikolov, Vassil, and Krum Bu\u0306chvarov, eds. <i>Salt and Gold\u202f: The Role of Salt in Prehistoric Europe: Proceedings of the International Symposium (Humboldt-Kolleg) in Provadia, Bulgaria, 30 September - 4 October 2010</i>. Veliko Tarnovo: Verlag Faber, 2012. http://www.worldcat.org/oclc/846556623.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Solnitsata",
+      "citationDetail": "Solnitsata",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Solnitsata.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/727921/provadia.html",
+      "citationDetail": "727921",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nikolov 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JNLXVSQS",
+      "formattedCitation": "<div class=\"csl-entry\">Nikolov, Vasil. \u201cSalt and Gold: Provadia-Solnitsata and the Varna Chalcolithic Cemetery.\u201d <i>Arch\u00e4ologisches Korrespondenzblatt</i> 40, no. 4 (2010): 487\u2013501.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3489535",
+      "citationDetail": "Solnitsata (Q3489535)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Solnitsata",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Solnitsata",
+          "citationDetail": "Solnitsata",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Solnitsata.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "solnitsata",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "bg",
+      "created": "2016-12-13T17:39:01Z",
+      "uri": "https://pleiades.stoa.org/places/802858342/solnitsata",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0421\u043e\u043b\u043d\u0438\u0446\u0430\u0442\u0430",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-09T17:10:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-19T23:26:38Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-19T23:25:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2016-12-13T18:09:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2016-12-13T17:39:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2016-12-13T17:39:01Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Povradia-Solnitsata",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "povradia-solnitsata",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "bg",
+      "created": "2016-12-13T17:39:51Z",
+      "uri": "https://pleiades.stoa.org/places/802858342/povradia-solnitsata",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u041f\u0440\u043e\u0432\u0430\u0434\u0438\u044f-\u0421\u043e\u043b\u043d\u0438\u0446\u0430\u0442\u0430",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-29T18:39:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-19T23:24:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2016-12-13T18:09:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2016-12-13T17:40:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2016-12-13T17:39:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2016-12-13T17:39:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "802858342",
+  "subject": [
+    "salt"
+  ],
+  "title": "Provadii\u0361a-Solnit\u0361sata",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Neolithic and Chalcolithic tell that was a site of salt-processing in eastern Bulgaria.",
+  "reprPoint": [
+    27.472546334590252,
+    43.12835117156716
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    27.4719019,
+    43.1279184,
+    27.4731598,
+    43.1287817
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-12-19T23:19:24Z",
+  "uri": "https://pleiades.stoa.org/places/802858342",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-21T01:41:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-09T17:10:59Z"
+    },
+    {
+      "comment": "description; osm location",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-09T16:56:20Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2016-12-19T23:19:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2016-12-13T18:09:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2016-12-13T17:33:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2016-12-13T17:33:44Z"
+    }
+  ]
+}

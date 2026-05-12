@@ -1,0 +1,724 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.4422252,
+            36.7379541
+          ],
+          [
+            -6.4422425,
+            36.7378585
+          ],
+          [
+            -6.4421911,
+            36.7378527
+          ],
+          [
+            -6.4421993,
+            36.7378058
+          ],
+          [
+            -6.4419573,
+            36.7377787
+          ],
+          [
+            -6.4419245,
+            36.7379668
+          ],
+          [
+            -6.4421615,
+            36.7379933
+          ],
+          [
+            -6.4421699,
+            36.7379486
+          ],
+          [
+            -6.4422252,
+            36.7379541
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-faro-de-chipiona",
+      "properties": {
+        "snippet": "Lighthouse; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/256038/osm-location-of-faro-de-chipiona",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Faro de Chipiona"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/153047246",
+          "citationDetail": "Way 153047246",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=153047246",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-faro-de-chipiona",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/lighthouse"
+      ],
+      "end": 2099,
+      "title": "OSM location of Faro de Chipiona",
+      "provenance": "OpenStreetMap (Way 153047246, version 8, osm:changeset=157678784, 2024-10-09T15:53:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/lighthouse"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "lighthouse"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-12-12T21:34:06Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.4422252,
+            36.7379541
+          ],
+          [
+            -6.4422425,
+            36.7378585
+          ],
+          [
+            -6.4421911,
+            36.7378527
+          ],
+          [
+            -6.4421993,
+            36.7378058
+          ],
+          [
+            -6.4419573,
+            36.7377787
+          ],
+          [
+            -6.4419245,
+            36.7379668
+          ],
+          [
+            -6.4421615,
+            36.7379933
+          ],
+          [
+            -6.4421699,
+            36.7379486
+          ],
+          [
+            -6.4422252,
+            36.7379541
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/256038/osm-location-of-faro-de-chipiona",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-19T15:14:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T21:34:54Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T21:34:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T21:34:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T21:34:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "26 D5 Caepionis Monu.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/36156421",
+      "citationDetail": "48",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Emerita",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PCC822HP",
+      "formattedCitation": "<div class=\"csl-entry\">Alarca\u0303o, Jorge de, Adela Cepas, Jose\u0301 Ignacio Reguera Cardiel, Angela Alonso Sa\u0301nchez, and Union acade\u0301mique internationale, eds. <i>Tabula Imperii Romani. Hoja J-29\u202f: Lisboa\u202f: Emerita, Scallabis, Pax Iulia, Gades: sobre la base cartogr\u00e1fica del mapa a escala 1:1000000 del IGN</i>. Tabula Imperii Romani, J-29. Madrid: Consejo Superior de Investigaciones Cientificas\u202f: Ministerio de Obras P\u00fablicas, Transportes y Medio Ambiente, Instituto Geogr\u00e1fico Nacional\u202f: Ministerio de Cultura, 1995. http://www.worldcat.org/oclc/36156421.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "53-54",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tovar 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HS8Z5648",
+      "formattedCitation": "<div class=\"csl-entry\">Tovar, Antonio. <i>Baetica</i>. Baden-Baden: Koerner, 1974.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Chipiona_Light",
+      "citationDetail": "Chipiona Light",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Chipiona Light.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:3.1.9",
+      "citationDetail": "3.1.9",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikisource.org/wiki/RE:Caepionis_monumentum",
+      "citationDetail": "Caepionis monumentum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131824651",
+      "citationDetail": "Tower of Caepio (Q131824651)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/929/1/2/1630-1650",
+      "citationDetail": "3.4.4",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Mela (Ranstrand: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QWWQR674",
+      "formattedCitation": "<div class=\"csl-entry\">Mela, Pomponius. <i>De chorographia libri tres</i>. Edited by Gunnar Ranstrand. Studia Graeca et Latina Gothoburgensia 28. G\u00f6teborg; Stockholm: Published by the Institute of Classical Studies of the University of G\u00f6teborg]\u202f; Almqvist &amp; Wiksell [distributor], 1971. http://latin.packhum.org/loc/929/1/0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Caepionis Monu.",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/36156421",
+          "citationDetail": "48",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "TIR Emerita",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PCC822HP",
+          "formattedCitation": "<div class=\"csl-entry\">Alarca\u0303o, Jorge de, Adela Cepas, Jose\u0301 Ignacio Reguera Cardiel, Angela Alonso Sa\u0301nchez, and Union acade\u0301mique internationale, eds. <i>Tabula Imperii Romani. Hoja J-29\u202f: Lisboa\u202f: Emerita, Scallabis, Pax Iulia, Gades: sobre la base cartogr\u00e1fica del mapa a escala 1:1000000 del IGN</i>. Tabula Imperii Romani, J-29. Madrid: Consejo Superior de Investigaciones Cientificas\u202f: Ministerio de Obras P\u00fablicas, Transportes y Medio Ambiente, Instituto Geogr\u00e1fico Nacional\u202f: Ministerio de Cultura, 1995. http://www.worldcat.org/oclc/36156421.</div>",
+          "otherIdentifier": "",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://latin.packhum.org/loc/929/1/2/1630-1650",
+          "citationDetail": "3.4.4",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Mela (Ranstrand: PHI)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QWWQR674",
+          "formattedCitation": "<div class=\"csl-entry\">Mela, Pomponius. <i>De chorographia libri tres</i>. Edited by Gunnar Ranstrand. Studia Graeca et Latina Gothoburgensia 28. G\u00f6teborg; Stockholm: Published by the Institute of Classical Studies of the University of G\u00f6teborg]\u202f; Almqvist &amp; Wiksell [distributor], 1971. http://latin.packhum.org/loc/929/1/0.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "Caepionis-Monu",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 26 D5 Caepionis Monu.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-01-19T15:26:23Z",
+      "uri": "https://pleiades.stoa.org/places/256038/Caepionis-Monu",
+      "creators": [
+        {
+          "username": null,
+          "name": "Jr."
+        },
+        {
+          "username": null,
+          "name": "F.H. Stanley"
+        },
+        {
+          "username": null,
+          "name": "R.C. Knapp"
+        }
+      ],
+      "attested": "monumentum Caepionis",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "add Latin name, Mela reference by @jbecker",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-20T12:11:44Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T03:40:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-10T17:52:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-09T20:26:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-09T19:32:12Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Scipionis Monu.",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/t.html#Tovar-1974",
+          "formattedCitation": "Tovar 1974, 53-54",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "id": "Scipionis-Monu",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 26 D5 Caepionis Monu.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-09T19:32:12Z",
+      "uri": "https://pleiades.stoa.org/places/256038/Scipionis-Monu",
+      "creators": [
+        {
+          "username": null,
+          "name": "R.C. Knapp"
+        },
+        {
+          "username": null,
+          "name": "F.H. Stanley, Jr."
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T03:40:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-10T17:52:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-09T20:26:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-09T19:32:12Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kaip\u00edonos pyrgos",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:3.1.9",
+          "citationDetail": "3.1.9",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Str. (Meineke: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+          "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877. http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "kaipionos-pyrgos",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2025-01-19T15:28:47Z",
+      "uri": "https://pleiades.stoa.org/places/256038/kaipionos-pyrgos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u039a\u03b1\u03b9\u03c0\u03af\u03c9\u03bd\u03bf\u03c2 \u03c0\u03cd\u03c1\u03b3\u03bf\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-20T12:11:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T15:29:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T15:29:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T15:29:11Z"
+        },
+        {
+          "comment": "add Greek name, Strabo reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T15:28:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T15:28:47Z"
+        }
+      ]
+    }
+  ],
+  "id": "256038",
+  "subject": [],
+  "title": "Caepionis Monu.",
+  "provenance": "Barrington Atlas: BAtlas 26 D5 Caepionis Monu.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/lighthouse",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Piedra Salmedina? near Chipiona</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Caepionis Monumentum (Tower of Caepio) was a tower-cum-lighthouse built by the Roman proconsul Quintus Servilius Caepio in 140 BC. The aim was to make the Salmedina reef at the mouth of the river Baitis (Guadalquivir) navigable. The modern toponym is Chipiona.",
+  "reprPoint": [
+    -6.442082206362797,
+    36.73788833154419
+  ],
+  "placeTypes": [
+    "lighthouse",
+    "monument"
+  ],
+  "bbox": [
+    -6.4422425,
+    36.7377787,
+    -6.4419245,
+    36.7379933
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256010",
+    "https://pleiades.stoa.org/places/256363"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-09T19:32:12Z",
+  "uri": "https://pleiades.stoa.org/places/256038",
+  "creators": [
+    {
+      "username": null,
+      "name": "Jr."
+    },
+    {
+      "username": null,
+      "name": "F.H. Stanley"
+    },
+    {
+      "username": null,
+      "name": "R.C. Knapp"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T15:26:10Z"
+    },
+    {
+      "comment": "RE Caepionis monumentum",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-19T15:23:54Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-13T16:45:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-25T14:33:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-30T03:52:07Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-04-17T16:35:36Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T03:40:16Z"
+    },
+    {
+      "comment": "Finding monuments by their titles and ids and setting feature types to 'temple'",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-19T21:27:26Z"
+    },
+    {
+      "comment": "Finding monuments by their titles and setting feature types",
+      "modifiedBy": "sgillies",
+      "modified": "2011-07-19T21:15:28Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:18:25Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T17:52:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-09T20:26:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-09T19:32:12Z"
+    }
+  ]
+}

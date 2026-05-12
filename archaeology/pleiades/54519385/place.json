@@ -1,0 +1,340 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.716056,
+            32.7611572
+          ],
+          [
+            21.7161945,
+            32.7606689
+          ],
+          [
+            21.7157273,
+            32.7604963
+          ],
+          [
+            21.7152509,
+            32.760549
+          ],
+          [
+            21.7149878,
+            32.760648
+          ],
+          [
+            21.7150448,
+            32.7611012
+          ],
+          [
+            21.7151331,
+            32.761187
+          ],
+          [
+            21.716056,
+            32.7611572
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sanctuary-of-asklepios-balagrae",
+      "properties": {
+        "snippet": "Sanctuary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/54519385/osm-location-of-sanctuary-of-asklepios-balagrae",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Sanctuary of Asklepios, Balagrae"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1063747573",
+          "citationDetail": "Way 1063747573",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1063747573",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-sanctuary-of-asklepios-balagrae",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location of Sanctuary of Asklepios, Balagrae",
+      "provenance": "OpenStreetMap (Way 1063747573, version 2, osm:changeset=121494393, 2022-05-25T22:07:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-05-25T22:08:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.716056,
+            32.7611572
+          ],
+          [
+            21.7161945,
+            32.7606689
+          ],
+          [
+            21.7157273,
+            32.7604963
+          ],
+          [
+            21.7152509,
+            32.760549
+          ],
+          [
+            21.7149878,
+            32.760648
+          ],
+          [
+            21.7150448,
+            32.7611012
+          ],
+          [
+            21.7151331,
+            32.761187
+          ],
+          [
+            21.716056,
+            32.7611572
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/54519385/osm-location-of-sanctuary-of-asklepios-balagrae",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-27T10:27:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-26T23:54:25Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T22:09:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T22:08:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T22:08:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-25T22:09:13Z",
+      "associationCertainty": "certain",
+      "title": "Balagrae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/54519385/5535070737",
+      "connectionType": "at",
+      "id": "5535070737",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T22:09:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T22:09:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T22:09:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/373749",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q104776135",
+      "citationDetail": "Sanctuary of Asklepios, Balagrae (Q104776135)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://slsgazetteer.org/1289/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "SLS Gazetteer 1289: Sanctuary of Asklepios, Balagrae",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/libyan-studies/article/abs/architectural-details-from-the-asklepeion-at-balagrae-beida/8D3833DAF93A0A29984E52C7B9AEDC78",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wright 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4Q8GHHV",
+      "formattedCitation": "<div class=\"csl-entry\">Wright, G. R. H. \u201cArchitectural Details from the Asklepeion at Balagrae (Beida).\u201d <i>Libyan Studies</i> 23 (ed 1992): 45\u201372. https://doi.org/10.1017/S0263718900001746.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "54519385",
+  "subject": [
+    "Asclepius"
+  ],
+  "title": "Sanctuary of Asklepios, Balagrae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Sanctuary of Asklepios at Balagrae in Cyrenaica is dated to the Hadrianic period on the basis of epigraphic evidence.",
+  "reprPoint": [
+    21.715576602913774,
+    32.760854920621
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    21.7149878,
+    32.7604963,
+    21.7161945,
+    32.761187
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/373749"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-25T22:09:13Z",
+  "uri": "https://pleiades.stoa.org/places/54519385",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-27T10:27:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-26T23:54:25Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-26T23:54:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-26T22:37:24Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-25T22:10:59Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-25T22:09:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-25T22:09:13Z"
+    }
+  ]
+}

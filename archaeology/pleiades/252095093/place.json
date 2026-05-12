@@ -1,0 +1,486 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.130571,
+          37.3659163
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-modern-mahmudabad",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/252095093/osm-location-modern-mahmudabad",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: modern \u0645\u062d\u0645\u0648\u062f\u0622\u0628\u0627\u062f"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3386051274",
+          "citationDetail": "Node 3386051274",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3386051274",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-modern-mahmudabad",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM Location: modern \u0645\u062d\u0645\u0648\u062f\u0622\u0628\u0627\u062f",
+      "provenance": "OpenStreetMap (Node 3386051274, version 8, osm:changeset=140856178, 2023-09-05T15:25:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-05-21T09:17:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.130571,
+          37.3659163
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/252095093/osm-location-modern-mahmudabad",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T12:59:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T12:56:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:44:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:43:01Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:42:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:17:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:17:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:17:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -600,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2020-05-21T09:18:13Z",
+      "associationCertainty": "certain",
+      "title": "Urartu",
+      "start": -900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/252095093/urartu",
+      "connectionType": "part_of_analytical",
+      "id": "urartu",
+      "attestations": [
+        {
+          "timePeriod": "urartian-eastern-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/urartian-eastern-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "analytical",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T12:59:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T12:59:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:44:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-07-11T13:38:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:18:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:18:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/214160492",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "H 6 No. 76 (p. 33)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kleiss 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WZTF2D3Q",
+      "formattedCitation": "<div class=\"csl-entry\">Kleiss, Wolfram, and Harald Hauptmann. <i>Topographische Karte von Urar\u1e6du: Verzeichnis der Fundorte und Bibliographie</i>. Berlin: Reimer, 1976.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/Q007090",
+      "citationDetail": "Rusa, son of Sarduri: A 10-06 (Q007090)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 494 (map)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus e testi urartei; le iscrizioni su pietra e roccia Volume I, Volume I,</i>. Roma: CNR Istituto di studi sulle civilt\u00e0 dell\u2019egeo e del vicino oriente, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 508-509",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus e testi urartei; le iscrizioni su pietra e roccia Volume I, Volume I,</i>. Roma: CNR Istituto di studi sulle civilt\u00e0 dell\u2019egeo e del vicino oriente, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/urartianrulersandtheirinscriptions/rusasonofsarduriiia10andb10/index.html",
+      "citationDetail": "Rusa, son of Sarduri II",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ORACC",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5715835",
+      "citationDetail": "Mahmudabad, Urmia (Q5715835)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mahmudabad, Mahmud Abad",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/3386051274",
+          "citationDetail": "Node: Mahmudabad (3386051274)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "mahmud-abad",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fa",
+      "created": "2020-05-21T09:17:50Z",
+      "uri": "https://pleiades.stoa.org/places/252095093/mahmud-abad",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "attested": "\u0645\u062d\u0645\u0648\u062f\u0622\u0628\u0627\u062f",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T12:59:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T12:57:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:44:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:17:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:17:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "252095093",
+  "subject": [
+    "Urartian",
+    "Urartu"
+  ],
+  "title": "Mahmudabad",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Mahmudabad is a modern settlement in the West Azerbaijan Region in the Northeast of Iran. Here a stone slab with an inscription of the Urartian king Rusa I. (8th century BCE) was found which lists offerings for undertaking a royal campaign.",
+  "reprPoint": [
+    45.130571,
+    37.3659163
+  ],
+  "placeTypes": [
+    "findspot",
+    "settlement-modern"
+  ],
+  "bbox": [
+    45.130571,
+    37.3659163,
+    45.130571,
+    37.3659163
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/214160492"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-21T09:17:21Z",
+  "uri": "https://pleiades.stoa.org/places/252095093",
+  "creators": [
+    {
+      "username": "bchristiansen2",
+      "homepage": null,
+      "name": "Birgit Christiansen ",
+      "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-02T12:59:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-02T12:58:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-02T02:44:40Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-02T02:44:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-07-17T20:29:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-07-11T13:38:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-07-11T13:28:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-07-02T17:52:25Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-05-21T09:17:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-05-21T09:17:21Z"
+    }
+  ]
+}

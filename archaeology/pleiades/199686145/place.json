@@ -1,0 +1,352 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.1853725,
+            41.4894425
+          ],
+          [
+            13.1859197,
+            41.488667
+          ],
+          [
+            13.1864829,
+            41.4887835
+          ],
+          [
+            13.1863006,
+            41.4895269
+          ],
+          [
+            13.1853725,
+            41.4894425
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theater-of-privernum",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/199686145/osm-location-of-roman-theater-of-privernum",
+        "description": "Representastive location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater of Privernum"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/292134849",
+          "citationDetail": "Way 292134849",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=292134849",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theater-of-privernum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman theater of Privernum",
+      "provenance": "OpenStreetMap (Way 292134849, version 6, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representastive location based on OpenStreetMap",
+      "created": "2021-04-05T13:04:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.1853725,
+            41.4894425
+          ],
+          [
+            13.1859197,
+            41.488667
+          ],
+          [
+            13.1864829,
+            41.4887835
+          ],
+          [
+            13.1863006,
+            41.4895269
+          ],
+          [
+            13.1853725,
+            41.4894425
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/199686145/osm-location-of-roman-theater-of-privernum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T00:41:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-24T11:18:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-23T14:01:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-23T14:01:54Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-05T13:04:49Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-05T13:04:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-05T13:04:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-04-05T13:05:18Z",
+      "associationCertainty": "certain",
+      "title": "Privernum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/199686145/9186138458",
+      "connectionType": "at",
+      "id": "9186138458",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-05T13:05:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-05T13:05:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-05T13:05:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433052",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://theatrum.de/472.html",
+      "citationDetail": "472",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "575",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pisani Sartorio and Ciancio Rossetto 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F6KK8XTY",
+      "formattedCitation": "<div class=\"csl-entry\">Pisani Sartorio, Giuseppina, and Paola Ciancio Rossetto, eds. <i>Teatri antichi greci e romani: un affascinante percorso nei teatri dell mondo antico, 2350 pagine interattive, piu di 1000 teatri greci e romani catalogati con foto, piante e ricostruzioni virtuali</i>. SPR. Roma: Quasar, 2006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "92",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tosi et al. 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RZ3ST8TV",
+      "formattedCitation": "<div class=\"csl-entry\">Tosi, Giovanna. <i>Gli edifici per spettacoli nell\u2019Italia romana</i>. 2 vols. Roma: Quasar, 2003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "133",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sear 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HXSX8YS3",
+      "formattedCitation": "<div class=\"csl-entry\">Sear, Frank. <i>Roman Theatres: An Architectural Study</i>. Lighning Source, UK; New York: Oxford University Press, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/journal/anneepig",
+      "citationDetail": "1974, 228",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4EG4F7MC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>L\u2019Ann\u00e9e Epigraphique: Revue Des Publications \u00c9pigrafiques Relatives a l\u2019antiquit\u00e9 Romaine</i>. Paris: Presses Universitaires de France, 1889. https://www.jstor.org/journal/anneepig.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q135220218",
+      "citationDetail": "Roman theater of Privernum (Q135220218)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "199686145",
+  "subject": [],
+  "title": "Roman theater of Privernum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater of Privernum is attested mainly by means of epigraphic evidence.",
+  "reprPoint": [
+    13.185977467867662,
+    41.48914416747179
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    13.1853725,
+    41.488667,
+    13.1864829,
+    41.4895269
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433052"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-04-05T13:05:17Z",
+  "uri": "https://pleiades.stoa.org/places/199686145",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-06T00:47:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-24T11:18:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-23T14:01:59Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-23T14:01:44Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-05T13:05:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-05T13:05:17Z"
+    }
+  ]
+}

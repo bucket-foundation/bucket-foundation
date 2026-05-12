@@ -1,0 +1,505 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.4733601,
+              41.8801029
+            ],
+            [
+              12.4735534,
+              41.8802375
+            ],
+            [
+              12.4739178,
+              41.8799472
+            ],
+            [
+              12.4739297,
+              41.8799378
+            ],
+            [
+              12.4737364,
+              41.8798032
+            ],
+            [
+              12.4735644,
+              41.8799402
+            ],
+            [
+              12.4733601,
+              41.8801029
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-porticus-aemilia",
+      "properties": {
+        "snippet": "Architecturalcomplex; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/51787060/osm-location-of-porticus-aemilia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Porticus Aemilia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/3598381",
+          "citationDetail": "Relation 3598381",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=3598381",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-porticus-aemilia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 300,
+      "title": "OSM location of Porticus Aemilia",
+      "provenance": "OpenStreetMap (Relation 3598381, version 3, osm:changeset=47005848, 2017-03-20T08:59:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-11-27T21:28:31Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.4733601,
+              41.8801029
+            ],
+            [
+              12.4735534,
+              41.8802375
+            ],
+            [
+              12.4739178,
+              41.8799472
+            ],
+            [
+              12.4739297,
+              41.8799378
+            ],
+            [
+              12.4737364,
+              41.8798032
+            ],
+            [
+              12.4735644,
+              41.8799402
+            ],
+            [
+              12.4733601,
+              41.8801029
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/51787060/osm-location-of-porticus-aemilia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-02T22:34:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T16:47:47Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-27T21:28:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-27T21:28:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-27T21:28:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-11-27T21:58:31Z",
+      "associationCertainty": "certain",
+      "title": "Regio XIII (Aventinus)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/51787060/regio-xiii-aventinus",
+      "connectionType": "part_of_analytical",
+      "id": "regio-xiii-aventinus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-02T22:34:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T16:47:47Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-27T21:58:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-27T21:58:31Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/372769291",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-11-27T21:59:22Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/51787060/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-02T22:34:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-01-02T16:47:47Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-27T21:59:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-27T21:59:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2366205",
+      "citationDetail": "Q2366205: Porticus Aemilia",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Porticus_Aemilia",
+      "citationDetail": "Porticus Aemilia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "311 s.v. \"Porticus Aemilia (1)\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richardson 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCISHZRH",
+      "formattedCitation": "<div class=\"csl-entry\">Richardson, Lawrence. <i>A New Topographical Dictionary of Ancient Rome</i>. Baltimore: John Hopkins University Press, 1992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/914/1/1235/2058-2086",
+      "citationDetail": "35.10.12.3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Liv. (OCT: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+      "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.digitalaugustanrome.org/records/porticus-aemilia-emporium",
+      "citationDetail": "Porticus Aemilia (Emporium)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Digital Augustan Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VGZI96WY",
+      "formattedCitation": "<div class=\"csl-entry\">Romano, David Gilman. \u201cDigital Augustan Rome.\u201d Digital Augustan Rome. Accessed June 5, 2021. http://www.digitalaugustanrome.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/813279761",
+      "citationDetail": "IV, 116-17, s.v. \u201cPorticus Aemilia\u201d (F. Coarelli)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "LTUR",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JC5ACZU7",
+      "formattedCitation": "<div class=\"csl-entry\">Steinby, E.M., ed. <i>Lexicon Topographicum Urbis Romae</i>. 6 vols. Rome: Quasar, 2000. http://www.worldcat.org/oclc/813279761.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/abs/new-identification-for-the-porticus-aemilia/99FCE4F7BB3A5FD231E4125B92B0291D",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tuck 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RUA9HCB5",
+      "formattedCitation": "<div class=\"csl-entry\">Tuck, Steven L. \u201cA New Identification for the \u2018Porticus Aemilia.\u2019\u201d <i>Journal of Roman Archaeology</i> 13 (January 2000): 176\u201382. https://doi.org/10.1017/S1047759400018845.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/502937",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richardson jr. 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J3N524MF",
+      "formattedCitation": "<div class=\"csl-entry\">Richardson jr., L. \u201cThe Evolution of the Porticus Octaviae.\u201d <i>American Journal of Archaeology</i> 80, no. 1 (1976): 57\u201364. https://doi.org/10.2307/502937.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/papers-of-the-british-school-at-rome/article/public-building-in-rome-between-the-second-punic-war-and-sulla/3518164B6CBC734E7356CEACBE8A2F0A",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coarelli 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G6VRKLQ3",
+      "formattedCitation": "<div class=\"csl-entry\">Coarelli, Filippo. \u201cPublic Building in Rome between the Second Punic War and Sulla*.\u201d <i>Papers of the British School at Rome</i> 45 (November 1977): 1\u201323. https://doi.org/10.1017/S0068246200009168.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/efr_0000-0000_1987_act_98_1_2971",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u00c9tienne 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DAASU3YI",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c9tienne, Robert. \u201cExtra Portant Trigeminam\u202f: espace politique et espace \u00e9conomique \u00e0 l\u2019Emporium de Rome,\u201d 1987. https://www.persee.fr/doc/efr_0000-0000_1987_act_98_1_2971.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gatti 1934",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZE3B8GS6",
+      "formattedCitation": "<div class=\"csl-entry\">Gatti, Guglielmo. <i>\u201cSaepta Iulia\u201d e \u201cPorticus Aemilia\u201d nella \u201cForma\u201d Severiana</i>. Stabilimento Tipografico ditta Carlo Colombo, 1935.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "26",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "N\u00fcnnerich-Asmus 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C6TYMMII",
+      "formattedCitation": "<div class=\"csl-entry\">N\u00fcnnerich-Asmus, Annette. <i>Basilika und Portikus: Die Architektur der S\u00e4ulenhallen als Ausdruck gewandelter Urbanit\u00e4t in sp\u00e4ter Republik und fr\u00fcher Kaiserzeit</i>. Arbeiten zur Arch\u00e4ologie. K\u00f6ln\u202f;\u00a0 Weimar\u202f;\u00a0 Wien: B\u00f6hlau, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "51787060",
+  "subject": [
+    "extant remains",
+    "opus caementicium",
+    "porticus"
+  ],
+  "title": "Porticus Aemilia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A utilitarian porticus and storage building located outside the Porta Trigemina, the Porticus Aemilia was erected in 193 BCE by Marcus Aemilius Lepidus and and Lucius Aemilius Paullus.",
+  "reprPoint": [
+    12.473644894696847,
+    41.880020343305006
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    12.4733601,
+    41.8798032,
+    12.4739297,
+    41.8802375
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/372769291",
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/937921711"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-11-27T21:27:52Z",
+  "uri": "https://pleiades.stoa.org/places/51787060",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-16T18:48:03Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-16T18:45:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-02T22:34:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-02T16:47:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-27T22:00:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-27T21:58:08Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-27T21:27:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-27T21:27:52Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Bimatra
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/897742
+- **ID**: 897742
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Bimatra
+
+## Description
+
+An ancient place, cited: BAtlas 91 unlocated Bimatra

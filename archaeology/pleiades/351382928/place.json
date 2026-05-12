@@ -1,0 +1,367 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.1429748,
+            52.6934203
+          ],
+          [
+            -2.1429202,
+            52.69344
+          ],
+          [
+            -2.1411666,
+            52.6934501
+          ],
+          [
+            -2.1410986,
+            52.6934286
+          ],
+          [
+            -2.1410778,
+            52.6934012
+          ],
+          [
+            -2.1410199,
+            52.6923244
+          ],
+          [
+            -2.1410486,
+            52.6922804
+          ],
+          [
+            -2.1411213,
+            52.6922661
+          ],
+          [
+            -2.1428883,
+            52.6922562
+          ],
+          [
+            -2.1429612,
+            52.6922777
+          ],
+          [
+            -2.1429805,
+            52.6923327
+          ],
+          [
+            -2.1429967,
+            52.6933873
+          ],
+          [
+            -2.1429748,
+            52.6934203
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-eaton-house-fort",
+      "properties": {
+        "snippet": "Fort-2; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/351382928/osm-location-of-eaton-house-fort",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Eaton House Fort"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/606856421",
+          "citationDetail": "Way 606856421",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=606856421",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-eaton-house-fort",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 410,
+      "title": "OSM location of Eaton House Fort",
+      "provenance": "OpenStreetMap (Way 606856421, version 2, osm:changeset=140469471, 2023-08-27T21:54:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-08-27T21:55:11Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.1429748,
+            52.6934203
+          ],
+          [
+            -2.1429202,
+            52.69344
+          ],
+          [
+            -2.1411666,
+            52.6934501
+          ],
+          [
+            -2.1410986,
+            52.6934286
+          ],
+          [
+            -2.1410778,
+            52.6934012
+          ],
+          [
+            -2.1410199,
+            52.6923244
+          ],
+          [
+            -2.1410486,
+            52.6922804
+          ],
+          [
+            -2.1411213,
+            52.6922661
+          ],
+          [
+            -2.1428883,
+            52.6922562
+          ],
+          [
+            -2.1429612,
+            52.6922777
+          ],
+          [
+            -2.1429805,
+            52.6923327
+          ],
+          [
+            -2.1429967,
+            52.6933873
+          ],
+          [
+            -2.1429748,
+            52.6934203
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/351382928/osm-location-of-eaton-house-fort",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-11T20:00:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T19:08:32Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-27T21:55:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-27T21:55:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-27T21:55:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-24T19:01:48Z",
+      "associationCertainty": "certain",
+      "title": "Pennocrucium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/351382928/pennocrucium",
+      "connectionType": "east_of",
+      "id": "pennocrucium",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-11T20:00:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T19:08:32Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T19:01:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T19:01:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79638",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/east_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/12532/",
+      "citationDetail": "12532: Eaton House Fort",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.roman-britain.co.uk/places/eaton_house/",
+      "citationDetail": "Eaton House (Pennocrucium) Roman Fort Auxiliary Fort",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "351382928",
+  "subject": [],
+  "title": "Eaton House Fort",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Eaton House Roman Fort was a Roman auxiliary fort located just outside Pennocrucium.",
+  "reprPoint": [
+    -2.1420181047042797,
+    52.69284948281771
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    -2.1429967,
+    52.6922562,
+    -2.1410199,
+    52.6934501
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79638"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-27T21:54:49Z",
+  "uri": "https://pleiades.stoa.org/places/351382928",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-11T20:00:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T19:08:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T19:08:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T19:00:28Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-27T21:54:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-27T21:54:49Z"
+    }
+  ]
+}

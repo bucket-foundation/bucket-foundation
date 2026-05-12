@@ -1,0 +1,507 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.7908645,
+          32.0954515
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-khirbet-galad",
+      "properties": {
+        "snippet": "Settlement; 1000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/889522883/osm-location-of-khirbet-galad",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Khirbet Gal'ad"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "chorst",
+          "homepage": null,
+          "name": "Claudia Horst",
+          "uri": "https://pleiades.stoa.org/author/chorst"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/5285540626",
+          "citationDetail": "Node 5285540626",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5285540626",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/230137758",
+          "citationDetail": "68-69",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/1",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+          "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/884661172",
+          "citationDetail": "9, map 7 grid D4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Helsinki Atlas 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+          "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-khirbet-galad",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -540,
+      "title": "OSM location of Khirbet Gal'ad",
+      "provenance": "OpenStreetMap (Node 5285540626, version 1, osm:changeset=54647057, 2017-12-15T09:16:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2017-12-15T09:17:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.7908645,
+          32.0954515
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/889522883/osm-location-of-khirbet-galad",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-31T15:50:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:05:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T06:58:40Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T06:55:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T09:22:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T09:21:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T09:17:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T09:17:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/884661172",
+      "citationDetail": "9, map 7 grid D4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Helsinki Atlas 2001,",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+      "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/230137758",
+      "citationDetail": "68-69",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bagg, RGTC 7/1",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+      "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Khirbet Gal'ad",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/230137758",
+          "citationDetail": "68-69",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/1",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+          "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-12-15.1185142864",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "chorst",
+          "homepage": null,
+          "name": "Claudia Horst",
+          "uri": "https://pleiades.stoa.org/author/chorst"
+        }
+      ],
+      "provenance": "",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name of Neo-Assyrian Gal'adi/Gal'ad(d)a.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2017-12-15T09:02:14Z",
+      "uri": "https://pleiades.stoa.org/places/889522883/name.2017-12-15.1185142864",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-31T15:50:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:05:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T06:59:51Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T06:55:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T09:22:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T09:22:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T09:02:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T09:02:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "*Gal\u02beadi",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/230137758",
+          "citationDetail": "68-69",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/1",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+          "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. T\u00fcbinger Atlas des Vorderen Orients / Beihefte / B, 7,7,1. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-31.0440765082",
+      "end": -720,
+      "contributors": [
+        {
+          "username": "chorst",
+          "homepage": null,
+          "name": "Claudia Horst",
+          "uri": "https://pleiades.stoa.org/author/chorst"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "details": "<p>The name appears in an inscription of the Assyrian king Tiglath-pileser. The city's name is damaged and generally read/restored as URU.<em>ga-al-\u02bea-a-</em>[<em>di</em>].</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "akk",
+      "created": "2018-01-31T07:01:40Z",
+      "uri": "https://pleiades.stoa.org/places/889522883/name.2018-01-31.0440765082",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-31T15:50:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:05:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:04:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:04:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:01:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:01:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "889522883",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Gal'adi",
+  "provenance": "",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>Alternate ancient names are Gil\u02bead and Gilead.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A town mentioned in Neo-Assyrian sources; the modern site is Khirbet \u01e6al\u02bfad.",
+  "reprPoint": [
+    35.7908645,
+    32.0954515
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    35.7908645,
+    32.0954515,
+    35.7908645,
+    32.0954515
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-07-04T09:13:46Z",
+  "uri": "https://pleiades.stoa.org/places/889522883",
+  "creators": [
+    {
+      "username": "chorst",
+      "homepage": null,
+      "name": "Claudia Horst",
+      "uri": "https://pleiades.stoa.org/author/chorst"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-31T15:50:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:05:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:00:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T06:56:30Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T06:55:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-15T09:22:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-15T09:02:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-15T08:55:05Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-07T05:18:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-05T11:14:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-05T11:13:00Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-05T11:12:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2016-07-04T09:20:25Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "chorst",
+      "modified": "2016-07-04T09:13:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "chorst",
+      "modified": "2016-07-04T09:13:46Z"
+    }
+  ]
+}

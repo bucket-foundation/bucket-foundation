@@ -1,0 +1,543 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.3240709,
+            20.7393579
+          ],
+          [
+            30.324325,
+            20.7378579
+          ],
+          [
+            30.3282158,
+            20.7375163
+          ],
+          [
+            30.328,
+            20.7344049
+          ],
+          [
+            30.3265011,
+            20.734109
+          ],
+          [
+            30.3270025,
+            20.7334705
+          ],
+          [
+            30.3281711,
+            20.732672
+          ],
+          [
+            30.3290093,
+            20.7308242
+          ],
+          [
+            30.3304255,
+            20.7305601
+          ],
+          [
+            30.3310359,
+            20.7317883
+          ],
+          [
+            30.3309688,
+            20.7333405
+          ],
+          [
+            30.3313183,
+            20.7342432
+          ],
+          [
+            30.3310921,
+            20.7351562
+          ],
+          [
+            30.3302721,
+            20.7354672
+          ],
+          [
+            30.3295249,
+            20.7358298
+          ],
+          [
+            30.3296556,
+            20.7381138
+          ],
+          [
+            30.3289622,
+            20.7457737
+          ],
+          [
+            30.3244521,
+            20.740353
+          ],
+          [
+            30.3240709,
+            20.7393579
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kerma-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/651950411/osm-location-of-kerma-necropolis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kerma Necropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/724286246",
+          "citationDetail": "Way 724286246",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=724286246",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kerma-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1000,
+      "title": "OSM location of Kerma Necropolis",
+      "provenance": "OpenStreetMap (Way 724286246, version 2, osm:changeset=74430441, 2019-09-13T10:41:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-10T23:59:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.3240709,
+            20.7393579
+          ],
+          [
+            30.324325,
+            20.7378579
+          ],
+          [
+            30.3282158,
+            20.7375163
+          ],
+          [
+            30.328,
+            20.7344049
+          ],
+          [
+            30.3265011,
+            20.734109
+          ],
+          [
+            30.3270025,
+            20.7334705
+          ],
+          [
+            30.3281711,
+            20.732672
+          ],
+          [
+            30.3290093,
+            20.7308242
+          ],
+          [
+            30.3304255,
+            20.7305601
+          ],
+          [
+            30.3310359,
+            20.7317883
+          ],
+          [
+            30.3309688,
+            20.7333405
+          ],
+          [
+            30.3313183,
+            20.7342432
+          ],
+          [
+            30.3310921,
+            20.7351562
+          ],
+          [
+            30.3302721,
+            20.7354672
+          ],
+          [
+            30.3295249,
+            20.7358298
+          ],
+          [
+            30.3296556,
+            20.7381138
+          ],
+          [
+            30.3289622,
+            20.7457737
+          ],
+          [
+            30.3244521,
+            20.740353
+          ],
+          [
+            30.3240709,
+            20.7393579
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/651950411/osm-location-of-kerma-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-11T14:21:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T14:25:34Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T23:59:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T23:59:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T23:59:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-05-11T00:00:03Z",
+      "associationCertainty": "certain",
+      "title": "Jazirat Say",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/651950411/6031268842",
+      "connectionType": "on",
+      "id": "6031268842",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-31T01:36:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T00:00:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T00:00:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T00:00:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/565495644",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/N%C3%A9cropole_de_Kerma",
+      "citationDetail": "N\u00e9cropole de Kerma",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/55734/",
+      "citationDetail": "55734: Sai Island, Kerma-culture cemetery",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gratien 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G3KXIKGS",
+      "formattedCitation": "<div class=\"csl-entry\">Gratien, Brigitte. <i>Sa\u00ef I: La N\u00e9cropole Kerma</i>. Paris: Mission arch\u00e9ologique fran\u00e7aise au Soudan; Institut de papyrologie et d\u2019\u00e9gyptologie de Lille; Presses du CNRS, 1986.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q67439146",
+      "citationDetail": "Kerma Necropolis (Q67439146)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kerma Necropolis",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q67439146",
+          "citationDetail": "Kerma Necropolis (Q67439146)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kerma-necropolis",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-04-29T19:08:00Z",
+      "uri": "https://pleiades.stoa.org/places/651950411/kerma-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Kerma Necropolis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T20:51:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T19:08:07Z"
+        },
+        {
+          "comment": "name - Kerma Necropolis",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T19:08:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T19:08:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "651950411",
+  "subject": [],
+  "title": "Kerma Necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An extensive necropolis of the Kerma culture located on Sai Island.",
+  "reprPoint": [
+    30.328191209517538,
+    20.73776200589702
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    30.3240709,
+    20.7305601,
+    30.3313183,
+    20.7457737
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/565495644"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-04-28T22:51:48Z",
+  "uri": "https://pleiades.stoa.org/places/651950411",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Q67439146",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-29T19:07:07Z"
+    },
+    {
+      "comment": "added Gratien 1986 from BAtlDir for map 81 @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-29T19:06:23Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-28T22:51:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-11T14:21:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T14:25:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T14:25:26Z"
+    },
+    {
+      "comment": "vici.org 55734: Sai Island, Kerma-culture cemetery",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T00:06:34Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T00:00:41Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T00:00:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T00:00:01Z"
+    }
+  ]
+}

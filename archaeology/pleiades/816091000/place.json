@@ -1,0 +1,710 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4790948,
+          41.9028424
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-original-position-of-the-ara-pacis",
+      "properties": {
+        "snippet": "Altar",
+        "link": "https://pleiades.stoa.org/places/816091000/imagery-location-original-position-of-the-ara-pacis",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location: Original position of the Ara Pacis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "56",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "La Rocca 1983",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T2ZPHAWP",
+          "formattedCitation": "<div class=\"csl-entry\">La Rocca, Eugenio, Vivian Ruesch, and Bruno Zanardi. <i>Ara Pacis Augustae: in occasione del restauro della fronte orientale</i>. Rome: \u201cL\u2019Erma\u201d di Bretschneider, 1983.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-original-position-of-the-ara-pacis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/altar"
+      ],
+      "end": null,
+      "title": "Imagery Location: Original position of the Ara Pacis",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/altar"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>The Augustan altar's original position near the Via Lata places it at the intersection of the modern streets Via in Lucina and Via del Giardino Theodoli.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "altar"
+      ],
+      "description": "",
+      "created": "2020-12-08T14:38:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4790948,
+          41.9028424
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/816091000/imagery-location-original-position-of-the-ara-pacis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "feature type = altar",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-07T15:02:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-29T13:27:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-20T14:25:51Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-08T14:39:49Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-08T14:38:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-08T14:38:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-04-17T02:33:13Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/816091000/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-29T13:27:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-20T14:25:51Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-07T18:50:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-04-17T02:33:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-04-17T02:33:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://arachne.uni-koeln.de/item/bauwerk/2100183",
+          "citationDetail": "2100183: Ara Pacis Latium",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "ekeogh",
+          "homepage": null,
+          "name": "Edward Keogh",
+          "uri": "https://pleiades.stoa.org/author/ekeogh"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-10-16T21:45:34Z",
+      "associationCertainty": "certain",
+      "title": "Campus Martius",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/816091000/campus-martius",
+      "connectionType": "part_of_physical",
+      "id": "campus-martius",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-29T13:27:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-20T14:25:51Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-07T18:51:40Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-16T21:45:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-16T21:45:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422863",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/3045761",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Holliday 1990",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CN3UVVCM",
+          "formattedCitation": "<div class=\"csl-entry\">Holliday, Peter J. \u201cTime, History, and Ritual on the Ara Pacis Augustae.\u201d <i>The Art Bulletin</i> 72, no. 4 (1990): 542\u201357. https://doi.org/10.2307/3045761.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-23T08:11:11Z",
+      "associationCertainty": "certain",
+      "title": "Via Lata",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/816091000/via-lata",
+      "connectionType": "west_of",
+      "id": "via-lata",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-18T19:48:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-09T00:40:12Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-23T08:11:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-23T08:11:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/753239987",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/west_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/1221/7/0#0",
+      "citationDetail": "Anc. 2.38",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Aug. (Malcovati; PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIDD2QBJ",
+      "formattedCitation": "<div class=\"csl-entry\">Augustus. <i>Imperatoris Caesaris Augusti operum fragmenta quartum</i>. Edited by Enrica Malcovati. 4th ed. Corpus scriptorum Latinorum Paravianum. Augusta Taurinorum]: I.B. Paravia, 1962. https://latin.packhum.org/author/1221.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Ara_Pacis",
+      "citationDetail": "Ara Pacis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/505125",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "de Grummond 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZSAYMEID",
+      "formattedCitation": "<div class=\"csl-entry\">Grummond, Nancy Thomson de. \u201cPax Augusta and the Horae on the Ara Pacis Augustae.\u201d <i>American Journal of Archaeology</i> 94, no. 4 (1990): 663\u201377. https://doi.org/10.2307/505125.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/3045761",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Holliday 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CN3UVVCM",
+      "formattedCitation": "<div class=\"csl-entry\">Holliday, Peter J. \u201cTime, History, and Ritual on the Ara Pacis Augustae.\u201d <i>The Art Bulletin</i> 72, no. 4 (1990): 542\u201357. https://doi.org/10.2307/3045761.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.rom.geographie.uni-muenchen.de/FORTVNA",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "H\u00e4uber 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/52P6QITD",
+      "formattedCitation": "<div class=\"csl-entry\">H\u00e4uber, Christina, Eugenio La Rocca, Nicola Barbagli, and Rafed El\u2010Sayed. <i>Augustus and the Campus Martius in Rome: The Emperor \u02b9s R\u00f4le as Pharaoh of Egypt and Julius Caesar\u02b9s Calendar Reform: The Montecitorio Obelisk, the Meridian Line, the Ara Pacis, and the Mausoleum Augusti in Honour of Eugenio La Rocca on the Occasion of His 70 Th Birthday</i>. Fortuna Papers 2. M\u00fcnchen: Universit\u00e4ts\u2010Buchbinderei Georg Konrad, 2017. http://www.rom.geographie.uni-muenchen.de/FORTVNA.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5754",
+      "citationDetail": "Ara Pacis Rom, Ara Pacis, Rom, Metropolstadt Rom, Latium",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dbpedia.org/page/Ara_Pacis",
+      "citationDetail": "Ara Pacis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/993EHC8Q",
+      "formattedCitation": "<div class=\"csl-entry\">The DBPedia Association. \u201cDBPedia.\u201d DBpedia, May 30, 2024. https://www.dbpedia.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Ara_Pacis",
+      "citationDetail": "Ara Pacis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q623612",
+      "citationDetail": "Ara Pacis (Q623612)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125SAPa",
+      "citationDetail": "Ara Pacis (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/43995",
+      "citationDetail": "GEO ID 43995: Ara Pacis Augustae",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DA%3Aentry+group%3D2%3Aentry%3Dara-pacis-augustae",
+      "citationDetail": "ARA PACIS AUGUSTAE",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.digitalaugustanrome.org/records/pax-augusta-ara",
+      "citationDetail": "Pax Augusta, Ara (A. Gallia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Digital Augustan Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VGZI96WY",
+      "formattedCitation": "<div class=\"csl-entry\">Romano, David Gilman. \u201cDigital Augustan Rome.\u201d Digital Augustan Rome. Accessed June 5, 2021. http://www.digitalaugustanrome.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/260158113",
+      "citationDetail": "287-89",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richardson 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCISHZRH",
+      "formattedCitation": "<div class=\"csl-entry\">Richardson, Lawrence. <i>A New Topographical Dictionary of Ancient Rome</i>. Baltimore: John Hopkins University Press, 1992. http://www.worldcat.org/oclc/260158113.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "IV, 70-74 s.v. \"Pax Augusta, ara\" (M. Torelli)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "LTUR",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JC5ACZU7",
+      "formattedCitation": "<div class=\"csl-entry\">Steinby, E.M., ed. <i>Lexicon Topographicum Urbis Romae</i>. 6 vols. Rome: Quasar, 2000. http://www.worldcat.org/oclc/813279761.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ara Pacis Augustae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://latin.packhum.org/loc/1221/7/0/6707-6722",
+          "citationDetail": "Anc. 2.38",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Aug. (Malcovati; PHI)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIDD2QBJ",
+          "formattedCitation": "<div class=\"csl-entry\">Augustus. <i>Imperatoris Caesaris Augusti operum fragmenta quartum</i>. Edited by Enrica Malcovati. 4th ed. Corpus scriptorum Latinorum Paravianum. Augusta Taurinorum]: I.B. Paravia, 1962. https://latin.packhum.org/author/1221.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ara-pacis-augustae",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2024-06-18T04:36:41Z",
+      "uri": "https://pleiades.stoa.org/places/816091000/ara-pacis-augustae",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "ara Pacis Augustae",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-24T14:45:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-24T03:56:05Z"
+        },
+        {
+          "comment": "update reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-18T04:39:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-18T04:37:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-18T04:36:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-18T04:36:41Z"
+        }
+      ]
+    }
+  ],
+  "id": "816091000",
+  "subject": [
+    "temple"
+  ],
+  "title": "Ara Pacis Augustae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/altar",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The \"Altar of Augustan Peace\" was located in the Campus Martius of Rome. It was originally situated to the west of the Via Lata, near the eastern end of Augustus' Horologium. The reconstructed fragments of the altar are now housed in a museum located on the Tiber's banks in the Piazza Augusto Imperatore, a square created during the Fascist era in order to spotlight the ruins of the Mausoleum of Augustus.",
+  "reprPoint": [
+    12.4790948,
+    41.9028424
+  ],
+  "placeTypes": [
+    "altar",
+    "temple-2"
+  ],
+  "bbox": [
+    12.4790948,
+    41.9028424,
+    12.4790948,
+    41.9028424
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/422863",
+    "https://pleiades.stoa.org/places/753239987",
+    "https://pleiades.stoa.org/places/986274170"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-04-17T02:31:03Z",
+  "uri": "https://pleiades.stoa.org/places/816091000",
+  "creators": [
+    {
+      "username": "shales",
+      "homepage": null,
+      "name": "Sara Hales",
+      "uri": "https://pleiades.stoa.org/author/shales"
+    },
+    {
+      "username": "echosmith",
+      "homepage": null,
+      "name": "Echo Smith",
+      "uri": "https://pleiades.stoa.org/author/echosmith"
+    },
+    {
+      "username": "ekeogh",
+      "homepage": null,
+      "name": "Edward Keogh",
+      "uri": "https://pleiades.stoa.org/author/ekeogh"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-07T15:02:26Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-07T15:02:00Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-14T15:06:39Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-18T04:39:48Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-27T20:05:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-29T13:27:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-20T14:25:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-08T14:34:06Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-07T18:56:23Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-07T18:50:16Z"
+    },
+    {
+      "comment": "edited summary",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-07T18:41:55Z"
+    },
+    {
+      "comment": "added Wikipedia reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-27T02:40:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-04-17T02:51:33Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-04-17T02:31:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-04-17T02:31:03Z"
+    }
+  ]
+}

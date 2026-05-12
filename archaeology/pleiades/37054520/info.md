@@ -1,0 +1,14 @@
+# Acropolis palace
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/37054520
+- **ID**: 37054520
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+A Mycenaean palace located on the Acropolis of Athens was probably built in the Late Helladic IIIB period (13th century BC). Its existence is inferred from various earthworks and a limestone column base, which suggest that it was located in the area of the Erechtheion. It probably ceased to function in the Late Helladic IIIC period (12th-11th centuries BC).

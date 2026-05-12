@@ -1,0 +1,420 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.746919,
+          41.512733
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Cemetery, ; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/297163721/imagery-location",
+        "description": "A necropolis located along a road that once led to the Mater Matuta sanctuary composed of approximately 50 tombs.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Post-Archaic necropolis"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.746713,
+            41.5128281
+          ],
+          [
+            12.7470365,
+            41.51288
+          ],
+          [
+            12.7471926,
+            41.512494
+          ],
+          [
+            12.7468207,
+            41.5124555
+          ],
+          [
+            12.746713,
+            41.5128281
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Cemetery; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/297163721/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.fastionline.org/micro_view.php?fst_cd=AIAC_39&curcol=sea_cd-AIAC_4270",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Fasti Online, Poggio dei Cavallari",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "Imagery Location of Post-Archaic necropolis",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "cemetery",
+        ""
+      ],
+      "description": "A necropolis located along a road that once led to the Mater Matuta sanctuary composed of approximately 50 tombs.",
+      "created": "2012-12-07T15:42:45Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.746919,
+          41.512733
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/297163721/imagery-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-12-13T11:43:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2012-12-07T15:43:49Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2012-12-07T15:42:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2012-12-07T15:42:46Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1266179318",
+          "citationDetail": "Way 1266179318",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1266179318",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -30,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 1266179318, version 1, osm:changeset=149136709, 2024-03-25T15:26:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-03-25T19:02:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.746713,
+            41.5128281
+          ],
+          [
+            12.7470365,
+            41.51288
+          ],
+          [
+            12.7471926,
+            41.512494
+          ],
+          [
+            12.7468207,
+            41.5124555
+          ],
+          [
+            12.746713,
+            41.5128281
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/297163721/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-27T17:47:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-25T19:02:50Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-25T19:02:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-25T19:02:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-25T19:02:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-12-30T21:36:14Z",
+      "associationCertainty": "certain",
+      "title": "Satricum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/297163721/7747030106",
+      "connectionType": "at",
+      "id": "7747030106",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-30T21:36:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-30T21:36:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-30T21:36:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423060",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/micro_view.php?fst_cd=AIAC_39&curcol=sea_cd-AIAC_4270",
+      "citationDetail": "Poggio dei Cavallari",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FastiOnline (Excavation)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5MUH5XWP",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC), and Center for the Study of Ancient Italy of the University of Texas at Austin (CSAI). <i>FastiOnline (Excavation)</i>, 2004. http://www.fastionline.org/excavation/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sengel\u00f8v 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VN67QER7",
+      "formattedCitation": "<div class=\"csl-entry\">Sengel\u00f8v, Amanda, Nathalie de Haan, M. Gnade, and Andrea Waters-Rist. \u201cBuried in Satricum: A Bioarchaeological Examination of Isotopes ( 87 Sr/ 86 Sr and \u03b4 18 O) and Dental Nonmetric Traits to Assess Human Mobility in a Post-Archaic Context.\u201d In <i>Tracing Technology</i>, pages 249-254. Leuven: Peeters, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "297163721",
+  "subject": [],
+  "title": "Post-Archaic necropolis at Poggio dei Cavallari",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A necropolis located along a road that once led to the Mater Matuta sanctuary composed of approximately 50 tombs.",
+  "reprPoint": [
+    12.746932509057363,
+    41.51269600134259
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.746713,
+    41.5124555,
+    12.7471926,
+    41.51288
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423060"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-12-30T21:36:13Z",
+  "uri": "https://pleiades.stoa.org/places/297163721",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-25T18:59:09Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-02-21T11:33:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-30T21:36:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-30T21:36:35Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-30T21:36:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-30T21:36:13Z"
+    }
+  ]
+}

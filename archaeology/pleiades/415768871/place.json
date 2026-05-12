@@ -1,0 +1,406 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5058583,
+            41.8614399
+          ],
+          [
+            12.5057094,
+            41.8611056
+          ],
+          [
+            12.5059718,
+            41.8610426
+          ],
+          [
+            12.5061127,
+            41.8613849
+          ],
+          [
+            12.5058583,
+            41.8614399
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-saint-marks-basilica",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/415768871/osm-location-of-saint-marks-basilica",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Saint Mark's Basilica"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/566843165",
+          "citationDetail": "Way 566843165",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=566843165",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-saint-marks-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Saint Mark's Basilica",
+      "provenance": "OpenStreetMap (Way 566843165, version 3, osm:changeset=56920296, 2018-03-06T01:47:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-04-16T21:53:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5058583,
+            41.8614399
+          ],
+          [
+            12.5057094,
+            41.8611056
+          ],
+          [
+            12.5059718,
+            41.8610426
+          ],
+          [
+            12.5061127,
+            41.8613849
+          ],
+          [
+            12.5058583,
+            41.8614399
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/415768871/osm-location-of-saint-marks-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-20T21:45:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T21:52:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T21:52:05Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T21:54:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T21:53:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T21:53:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-04-16T22:17:56Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/415768871/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-20T21:45:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T21:52:15Z"
+        },
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T21:50:56Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T22:17:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T22:17:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fiocchi Nicolai 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZGFWAW3Y",
+          "formattedCitation": "<div class=\"csl-entry\">Fiocchi Nicolai, Vincenzo, and Lucrezia Spera, eds. <i>La Basilica \u201ccirciforme\u201d della via Ardeatina (Basilica Marci) a Roma: campagne di scavo 1993-1996</i>. Bibliotheca archaeologica (Rome, Italy). Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-04-16T22:18:16Z",
+      "associationCertainty": "certain",
+      "title": "Catacomb of Balbina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/415768871/catacomb-of-balbina",
+      "connectionType": "near",
+      "id": "catacomb-of-balbina",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-20T21:45:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T21:52:15Z"
+        },
+        {
+          "comment": "Fiocchi Nicolai 2021",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T21:51:13Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T22:18:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T22:18:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/340262037",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fiocchi Nicolai 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZGFWAW3Y",
+          "formattedCitation": "<div class=\"csl-entry\">Fiocchi Nicolai, Vincenzo, and Lucrezia Spera, eds. <i>La Basilica \u201ccirciforme\u201d della via Ardeatina (Basilica Marci) a Roma: campagne di scavo 1993-1996</i>. Bibliotheca archaeologica (Rome, Italy). Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sotterraneidiroma.it/sites/basilica-circiforme-di-san-marco-o-anonima-della-via-ardeatina",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Basilica Circiforme di San Marco o anonima della Via Ardeatina",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fiocchi Nicolai 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZGFWAW3Y",
+      "formattedCitation": "<div class=\"csl-entry\">Fiocchi Nicolai, Vincenzo, and Lucrezia Spera, eds. <i>La Basilica \u201ccirciforme\u201d della via Ardeatina (Basilica Marci) a Roma: campagne di scavo 1993-1996</i>. Bibliotheca archaeologica (Rome, Italy). Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nicolai 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GIT4UXY9",
+      "formattedCitation": "<div class=\"csl-entry\">Nicolai, Vincenzo Fiocchi, and Lucrezia Spera. <i>La basilica \u2018a deambulatorio\u2019 della via Ardeatina (Basilica Marci) a Roma Campagne di scavo 1993-1996</i>. Bibliotheca Archaeologica 67. Rome: \u201cL\u2019Erma\u201d di Bretschneider, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "415768871",
+  "subject": [
+    "paleochristian"
+  ],
+  "title": "Basilica di San Marco",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ruins of a Christian basilica located near the Via Ardeatina on the grounds of the Calixtian complex have been connected with the Basilica of Saint Mark. The site was discovered accidentally in 1991 and is associated with the Catacomb of Balbina.",
+  "reprPoint": [
+    12.505912930811927,
+    41.86124187242248
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    12.5057094,
+    41.8610426,
+    12.5061127,
+    41.8614399
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/340262037"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-04-16T21:52:42Z",
+  "uri": "https://pleiades.stoa.org/places/415768871",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-20T21:45:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-19T21:52:14Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-17T00:16:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-16T22:16:39Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-16T21:52:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-16T21:52:42Z"
+    }
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.6725952,
+            38.4133312
+          ],
+          [
+            23.6725507,
+            38.4131672
+          ],
+          [
+            23.6730784,
+            38.4130793
+          ],
+          [
+            23.6731229,
+            38.4132433
+          ],
+          [
+            23.6725952,
+            38.4133312
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-heroon",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/176836030/osm-location-of-heroon",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Heroon"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/761005142",
+          "citationDetail": "Way 761005142",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=761005142",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-heroon",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Heroon",
+      "provenance": "OpenStreetMap (Way 761005142, version 2, osm:changeset=79239103, 2020-01-06T08:57:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-02-23T05:17:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.6725952,
+            38.4133312
+          ],
+          [
+            23.6725507,
+            38.4131672
+          ],
+          [
+            23.6730784,
+            38.4130793
+          ],
+          [
+            23.6731229,
+            38.4132433
+          ],
+          [
+            23.6725952,
+            38.4133312
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/176836030/osm-location-of-heroon",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-14T15:03:11Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-11T00:00:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-19T11:40:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-18T00:24:15Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-23T05:17:13Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-23T05:17:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-23T05:17:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-02-23T05:21:07Z",
+      "associationCertainty": "certain",
+      "title": "Lefkandi",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/176836030/6672173199",
+      "connectionType": "at",
+      "id": "6672173199",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-18T00:24:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-23T05:21:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-23T05:21:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-23T05:21:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540909",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/30103434",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pakkanen and Pakkanen 2000",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JNZVG832",
+          "formattedCitation": "<div class=\"csl-entry\">Pakkanen, Jari, and Petra Pakkanen. \u201cThe Toumba Building at Lefkandi: Some Methodological Reflections on Its Plan and Function.\u201d <i>The Annual of the British School at Athens</i> 95 (2000): 239\u201352. https://doi.org/10.1017/S0068245400004664.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/30103434",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pakkanen and Pakkanen 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JNZVG832",
+      "formattedCitation": "<div class=\"csl-entry\">Pakkanen, Jari, and Petra Pakkanen. \u201cThe Toumba Building at Lefkandi: Some Methodological Reflections on Its Plan and Function.\u201d <i>The Annual of the British School at Athens</i> 95 (2000): 239\u201352. https://www.jstor.org/stable/30103434.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/44082110",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Herdt 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3JRMYJYX",
+      "formattedCitation": "<div class=\"csl-entry\">Herdt, Georg. \u201cON THE ARCHITECTURE OF THE TOUMBA BUILDING AT LEFKANDI.\u201d <i>The Annual of the British School at Athens</i> 110 (2015): 203\u201312. https://www.jstor.org/stable/44082110.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Lefkandi#Potential_Heroon",
+      "citationDetail": "Lefkandi s.v. \"Potential Heroon\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Toumba Building",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/30103434",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pakkanen and Pakkanen 2000",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JNZVG832",
+          "formattedCitation": "<div class=\"csl-entry\">Pakkanen, Jari, and Petra Pakkanen. \u201cThe Toumba Building at Lefkandi: Some Methodological Reflections on Its Plan and Function.\u201d <i>The Annual of the British School at Athens</i> 95 (2000): 239\u201352. https://doi.org/10.1017/S0068245400004664.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "toumba-building",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-09-18T00:23:45Z",
+      "uri": "https://pleiades.stoa.org/places/176836030/toumba-building",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Toumba Building",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-19T11:40:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-18T00:24:15Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-18T00:23:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-18T00:23:45Z"
+        }
+      ]
+    }
+  ],
+  "id": "176836030",
+  "subject": [],
+  "title": "Lefkandi Heroon(?)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Rescue excavations in 1980 documented the remains of an unusual funerary structure dated ca. 1000 to 950 BCE that contained a double human burial alongside a horse burial. The structure's scale (50 by 13.8 m) and nature have led some scholars to identify it as a heroon.",
+  "reprPoint": [
+    23.6728368,
+    38.413205250000004
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    23.6725507,
+    38.4130793,
+    23.6731229,
+    38.4133312
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540909"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-02-23T05:21:05Z",
+  "uri": "https://pleiades.stoa.org/places/176836030",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-19T11:40:59Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-19T11:40:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-18T00:24:15Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-08T14:49:40Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-23T05:21:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-23T05:21:05Z"
+    }
+  ]
+}

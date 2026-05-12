@@ -1,0 +1,357 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.3293498,
+            42.5697134
+          ],
+          [
+            11.3295107,
+            42.5686941
+          ],
+          [
+            11.3293069,
+            42.5689272
+          ],
+          [
+            11.328926,
+            42.5693262
+          ],
+          [
+            11.3293498,
+            42.5697134
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/127042385/location-of-necropolis",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Necropoli del Cancellone I - Magliano in Toscana"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/249034605",
+          "citationDetail": "Way 249034605",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=249034605",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -330,
+      "title": "OSM location of Necropoli del Cancellone I - Magliano in Toscana",
+      "provenance": "OpenStreetMap (Way 249034605, version 1, osm:changeset=19181096, 2013-11-29T16:26:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-11-29T16:28:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.3293498,
+            42.5697134
+          ],
+          [
+            11.3295107,
+            42.5686941
+          ],
+          [
+            11.3293069,
+            42.5689272
+          ],
+          [
+            11.328926,
+            42.5693262
+          ],
+          [
+            11.3293498,
+            42.5697134
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/127042385/location-of-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-14T16:54:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-16T22:18:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-11T01:13:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-09T23:07:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-08T17:43:39Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-29T16:29:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-29T16:29:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-29T16:28:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:59:50Z",
+      "associationCertainty": "certain",
+      "title": "Heba",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/127042385/413164",
+      "connectionType": "near",
+      "id": "413164",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-16T22:18:19Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413164",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rendini 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD7J5MFA",
+      "formattedCitation": "<div class=\"csl-entry\">Rendini, P. \u201cLa Tomba Dipinta in Localit\u00e0 Cancellone Di Magliano in Toscana.\u201d In <i>Pittura Etrusca. Problemi e Prospettive. Atti Del Convegno. Sarteano, 26 Ottobre 2001. Chusi, 27 Ottobre 2001</i>, 36\u201362, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/43595/",
+      "citationDetail": "43595: Necropolis Cancellone I, Tomb of San Andrea",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Celuzza and Cianferoni 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NXA5QPTK",
+      "formattedCitation": "<div class=\"csl-entry\">Celuzza, Mariagrazia, and Giuseppina Carlotta Cianferoni. <i>Signori di Maremma: elites etrusche fra Populonia e Vulci</i>. Firenze: Polistampa, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "127042385",
+  "subject": [],
+  "title": "Cancellone necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Rock-cut tombs located along the remains of a road dating as early as the sixth century B.C.",
+  "reprPoint": [
+    11.329289377609786,
+    42.56921072551626
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    11.328926,
+    42.5686941,
+    11.3295107,
+    42.5697134
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413164"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-29T16:28:15Z",
+  "uri": "https://pleiades.stoa.org/places/127042385",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-14T16:54:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-16T22:18:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-07T02:41:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-15T20:55:36Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-11T02:41:50Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-12-09T23:10:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T17:43:09Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-29T16:28:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-29T16:28:15Z"
+    }
+  ]
+}

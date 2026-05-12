@@ -1,0 +1,404 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8884876,
+            32.2820782
+          ],
+          [
+            35.8883883,
+            32.2819618
+          ],
+          [
+            35.8887148,
+            32.2817628
+          ],
+          [
+            35.888814,
+            32.2818792
+          ],
+          [
+            35.8884876,
+            32.2820782
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bishop-genesius-church",
+      "properties": {
+        "snippet": "Church-2; AD 600 - AD 699",
+        "link": "https://pleiades.stoa.org/places/138349926/osm-location-of-bishop-genesius-church",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bishop Genesius Church"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/115555884",
+          "citationDetail": "Way 115555884",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=115555884",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bishop-genesius-church",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 699,
+      "title": "OSM location of Bishop Genesius Church",
+      "provenance": "OpenStreetMap (Way 115555884, version 3, osm:changeset=78928947, 2019-12-27T14:06:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-08-30T15:25:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8884876,
+            32.2820782
+          ],
+          [
+            35.8883883,
+            32.2819618
+          ],
+          [
+            35.8887148,
+            32.2817628
+          ],
+          [
+            35.888814,
+            32.2818792
+          ],
+          [
+            35.8884876,
+            32.2820782
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/138349926/osm-location-of-bishop-genesius-church",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-04T02:29:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T15:03:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T14:59:31Z"
+        },
+        {
+          "comment": "add OSM location of Bishop Genesius Church",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T15:26:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T15:25:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T15:25:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-30T15:35:27Z",
+      "associationCertainty": "certain",
+      "title": "Gerasa/Antiochia ad Chrysorhoam",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/138349926/1279737450",
+      "connectionType": "at",
+      "id": "1279737450",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T15:03:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T15:35:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T15:35:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T15:35:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678158",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hamarneh 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WHHAUVBD",
+          "formattedCitation": "<div class=\"csl-entry\">Hamarneh, Catreena. <i>A Study of the Conservation and Restoration of the Mosaic Floors of the Churches Sts. Cosmas and Damianus and Bishop Genesius in Jarash</i>. Amman\u202f: Jordan Univ. Press, 2010.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/11619916/bishop-genesius-church.html",
+      "citationDetail": "11619916: Bishop Genesius Church",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hamarneh 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WHHAUVBD",
+      "formattedCitation": "<div class=\"csl-entry\">Hamarneh, Catreena. <i>A Study of the Conservation and Restoration of the Mosaic Floors of the Churches Sts. Cosmas and Damianus and Bishop Genesius in Jarash</i>. Amman\u202f: Jordan Univ. Press, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352226717300028",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hamarneh 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/588S2YAD",
+      "formattedCitation": "<div class=\"csl-entry\">Hamarneh, Catreena, and Nizar Abu-Jaber. \u201cMosaic Pavement Mortar Production in <i>Gerasa</i> in the Byzantine Period.\u201d <i>Archaeological Research in Asia</i> 9 (March 1, 2017): 22\u201333. https://doi.org/10.1016/j.ara.2017.01.001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bishop Genesius Church",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geonames.org/11619916/bishop-genesius-church.html",
+          "citationDetail": "11619916: Bishop Genesius Church",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bishop-genesius-church",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-09-02T15:04:14Z",
+      "uri": "https://pleiades.stoa.org/places/138349926/bishop-genesius-church",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Bishop Genesius Church",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-04T02:29:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T15:04:18Z"
+        },
+        {
+          "comment": "geonames 11619916: Bishop Genesius Church",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T15:04:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-02T15:04:14Z"
+        }
+      ]
+    }
+  ],
+  "id": "138349926",
+  "subject": [],
+  "title": "Bishop Genesius Church",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Bishop Genesius Church at Jerash (Jordan) may be the earliest Christian church on the site. The church was built in the early seventh century, reusing a preexisting Roman temple.",
+  "reprPoint": [
+    35.88860116114988,
+    32.28192050138834
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    35.8883883,
+    32.2817628,
+    35.888814,
+    32.2820782
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678158"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-30T15:35:26Z",
+  "uri": "https://pleiades.stoa.org/places/138349926",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-04T02:29:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T15:03:20Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-31T14:33:00Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-31T14:06:47Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T15:35:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T15:35:26Z"
+    }
+  ]
+}

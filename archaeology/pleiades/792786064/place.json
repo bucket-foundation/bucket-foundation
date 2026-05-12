@@ -1,0 +1,343 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.9399601,
+            39.3327749
+          ],
+          [
+            -8.9402956,
+            39.333108
+          ],
+          [
+            -8.9404832,
+            39.3332902
+          ],
+          [
+            -8.9394892,
+            39.3335817
+          ],
+          [
+            -8.939218,
+            39.3335169
+          ],
+          [
+            -8.9388919,
+            39.3334389
+          ],
+          [
+            -8.9386658,
+            39.3333855
+          ],
+          [
+            -8.9386606,
+            39.3333612
+          ],
+          [
+            -8.9386461,
+            39.3332983
+          ],
+          [
+            -8.9386257,
+            39.3332094
+          ],
+          [
+            -8.9389685,
+            39.3329936
+          ],
+          [
+            -8.9389798,
+            39.3329865
+          ],
+          [
+            -8.9391434,
+            39.3328632
+          ],
+          [
+            -8.9396224,
+            39.3324402
+          ],
+          [
+            -8.9399601,
+            39.3327749
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana-de-rio-maior",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/792786064/osm-location-of-villa-romana-de-rio-maior",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of  Villa Romana de Rio Maior"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/488118485",
+          "citationDetail": "Way 488118485",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=488118485",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana-de-rio-maior",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of  Villa Romana de Rio Maior",
+      "provenance": "OpenStreetMap (Way 488118485, version 9, osm:changeset=69200616, 2019-04-14T12:08:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-03-15T15:37:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.9399601,
+            39.3327749
+          ],
+          [
+            -8.9402956,
+            39.333108
+          ],
+          [
+            -8.9404832,
+            39.3332902
+          ],
+          [
+            -8.9394892,
+            39.3335817
+          ],
+          [
+            -8.939218,
+            39.3335169
+          ],
+          [
+            -8.9388919,
+            39.3334389
+          ],
+          [
+            -8.9386658,
+            39.3333855
+          ],
+          [
+            -8.9386606,
+            39.3333612
+          ],
+          [
+            -8.9386461,
+            39.3332983
+          ],
+          [
+            -8.9386257,
+            39.3332094
+          ],
+          [
+            -8.9389685,
+            39.3329936
+          ],
+          [
+            -8.9389798,
+            39.3329865
+          ],
+          [
+            -8.9391434,
+            39.3328632
+          ],
+          [
+            -8.9396224,
+            39.3324402
+          ],
+          [
+            -8.9399601,
+            39.3327749
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/792786064/osm-location-of-villa-romana-de-rio-maior",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-11T19:33:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-15T15:39:02Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-15T15:38:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-15T15:37:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-15T15:37:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://pt.wikipedia.org/wiki/Villa_Romana_de_Rio_Maior",
+      "citationDetail": "Villa Romana de Rio Maior",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Portuguese)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/DT7TR55T",
+      "formattedCitation": "Wikip\u00e9dia: A enciclop\u00e9dia livre que todos podem editar (2001-), Villa Romana de Rio Maior.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q10391474",
+      "citationDetail": "Villa Romana de Rio Maior (Q10391474)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "792786064",
+  "subject": [],
+  "title": "Rio Maior",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa in Rio Maior, Santar\u00e9m, Portugal.",
+  "reprPoint": [
+    -8.939544831442916,
+    39.33312244045644
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -8.9404832,
+    39.3324402,
+    -8.9386257,
+    39.3335817
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-18T16:30:02Z",
+  "uri": "https://pleiades.stoa.org/places/792786064",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited description; added Wikidata reference; update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-18T16:55:36Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2025-02-18T16:30:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-11T19:33:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-15T15:39:02Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-03T18:21:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-03T18:21:33Z"
+    }
+  ]
+}

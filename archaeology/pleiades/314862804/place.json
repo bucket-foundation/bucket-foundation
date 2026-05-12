@@ -1,0 +1,384 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.3120975,
+            42.9517141
+          ],
+          [
+            11.3116411,
+            42.9515536
+          ],
+          [
+            11.3116605,
+            42.9514729
+          ],
+          [
+            11.3118001,
+            42.9513506
+          ],
+          [
+            11.3119732,
+            42.9514026
+          ],
+          [
+            11.3120713,
+            42.9514538
+          ],
+          [
+            11.3121301,
+            42.9515055
+          ],
+          [
+            11.3121571,
+            42.951564
+          ],
+          [
+            11.3121611,
+            42.9516198
+          ],
+          [
+            11.3120975,
+            42.9517141
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-podere-cannicci",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/314862804/osm-location-of-podere-cannicci",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Podere Cannicci"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1330414746",
+          "citationDetail": "Way 1330414746",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1330414746",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-podere-cannicci",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Podere Cannicci",
+      "provenance": "OpenStreetMap (Way 1330414746, version 1, osm:changeset=158702477, 2024-11-03T14:43:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-11-03T14:44:07Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.3120975,
+            42.9517141
+          ],
+          [
+            11.3116411,
+            42.9515536
+          ],
+          [
+            11.3116605,
+            42.9514729
+          ],
+          [
+            11.3118001,
+            42.9513506
+          ],
+          [
+            11.3119732,
+            42.9514026
+          ],
+          [
+            11.3120713,
+            42.9514538
+          ],
+          [
+            11.3121301,
+            42.9515055
+          ],
+          [
+            11.3121571,
+            42.951564
+          ],
+          [
+            11.3121611,
+            42.9516198
+          ],
+          [
+            11.3120975,
+            42.9517141
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/314862804/osm-location-of-podere-cannicci",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-04T15:19:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-03T14:44:26Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-03T14:44:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-03T14:44:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-03T14:44:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-02-05T02:38:31Z",
+      "associationCertainty": "certain",
+      "title": "Umbro (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/314862804/umbro-river",
+      "connectionType": "connection",
+      "id": "umbro-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T11:03:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T03:02:54Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-05T02:38:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-05T02:38:31Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403285",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/micro_view.php?item_key=fst_cd&fst_cd=AIAC_4465&fbclid=IwAR0wUyNh_HF_leaVrJGSSvuTinrQVkxcz2-CX5r4UIu9z47NgbjJx7BlSuU",
+      "citationDetail": "Italy 451: Sebastiani, Alessandro, Edoardo Vanni, Gianfranco Morelli, Elisabeth Woldeyohannes, Michelle Hobart. 2019. \"The Second Archaeological Season at Podere Cannicci (Civitella Paganico - GR).\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FOLD&R",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4672X3J",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC). \u201cFastiOnlineDocuments &amp; Research.\u201d Accessed December 1, 2023. https://www.fastionline.org/folder.php?view=home.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/record_view.php?fst_cd=AIAC_4465",
+      "citationDetail": "Podere Cannicci",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FastiOnline (Excavation)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5MUH5XWP",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC), and Center for the Study of Ancient Italy of the University of Texas at Austin (CSAI). <i>FastiOnline (Excavation)</i>, 2004. http://www.fastionline.org/excavation/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.fastionline.org/folder.php?view=home",
+      "citationDetail": "Italy 491: Sebastiani, Alessandro - Edoardo Vanni - Massimo Brando - Elisabeth Woldeyohannes and Michael D. McCabe III . 2020. The third archaeological season at Podere Cannicci (Civitella Paganico \u2013 Grosseto).\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FOLD&R",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4672X3J",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC). \u201cFastiOnlineDocuments &amp; Research.\u201d Accessed December 1, 2023. https://www.fastionline.org/folder.php?view=home.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130870903",
+      "citationDetail": "Q130870903",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.degruyter.com/document/doi/10.1515/etst-2024-0010/html?lang=en&srsltid=AfmBOor9dYp3zKGEeIFWoKwj-qlpvQpbYgUp2dWY6d9vBlGdtmlM4EC4",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sebastiani 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J3LL3DFP",
+      "formattedCitation": "<div class=\"csl-entry\">Sebastiani, Alessandro, Marta De Pari, and Edoardo Vanni. \u201cThe Tomb of the Rings and the Tomb of the Linen. New Data for a Late Etruscan Community in the Middle Valley of the Ombrone River (Civitella Paganico \u2013 Italy).\u201d <i>Etruscan and Italic Studies</i> 27, no. 1\u20132 (November 1, 2024): 197\u2013219. https://doi.org/10.1515/etst-2024-0010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "314862804",
+  "subject": [],
+  "title": "Podere Cannicci (Civitella Paganico - GR)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The site of Podere Cannici has been investigated by means of both non-invasive geophysics and by excavation. Data reveal multiple phases of activity and occupation.",
+  "reprPoint": [
+    11.311911848457425,
+    42.951532447086024
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    11.3116411,
+    42.9513506,
+    11.3121611,
+    42.9517141
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/403285"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-02-05T02:33:12Z",
+  "uri": "https://pleiades.stoa.org/places/314862804",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T01:36:28Z"
+    },
+    {
+      "comment": "add wikidata Q130870903",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-04T16:05:16Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-03T14:46:30Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-31T11:03:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-31T03:02:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-13T20:21:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-13T15:22:07Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-05T02:33:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-05T02:33:12Z"
+    }
+  ]
+}

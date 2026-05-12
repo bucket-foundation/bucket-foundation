@@ -1,0 +1,399 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.5003627,
+            43.102381
+          ],
+          [
+            13.4998099,
+            43.1021701
+          ],
+          [
+            13.4997664,
+            43.1022353
+          ],
+          [
+            13.4997464,
+            43.102319
+          ],
+          [
+            13.4997619,
+            43.1023859
+          ],
+          [
+            13.4998118,
+            43.1024567
+          ],
+          [
+            13.4999045,
+            43.1025098
+          ],
+          [
+            13.4999956,
+            43.1025421
+          ],
+          [
+            13.5001138,
+            43.1025415
+          ],
+          [
+            13.5002044,
+            43.1025108
+          ],
+          [
+            13.5002536,
+            43.1024933
+          ],
+          [
+            13.50031,
+            43.1024563
+          ],
+          [
+            13.5003627,
+            43.102381
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/672180338/osm-location-of-roman-theater",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/260836390",
+          "citationDetail": "Way 260836390",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=260836390",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM Location of Roman theater",
+      "provenance": "OpenStreetMap (Way 260836390, version 9, osm:changeset=145870070, 2024-01-04T08:50:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-02-09T21:30:06Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.5003627,
+            43.102381
+          ],
+          [
+            13.4998099,
+            43.1021701
+          ],
+          [
+            13.4997664,
+            43.1022353
+          ],
+          [
+            13.4997464,
+            43.102319
+          ],
+          [
+            13.4997619,
+            43.1023859
+          ],
+          [
+            13.4998118,
+            43.1024567
+          ],
+          [
+            13.4999045,
+            43.1025098
+          ],
+          [
+            13.4999956,
+            43.1025421
+          ],
+          [
+            13.5001138,
+            43.1025415
+          ],
+          [
+            13.5002044,
+            43.1025108
+          ],
+          [
+            13.5002536,
+            43.1024933
+          ],
+          [
+            13.50031,
+            43.1024563
+          ],
+          [
+            13.5003627,
+            43.102381
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/672180338/osm-location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-19T04:13:41Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:12:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-11T22:03:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T21:33:34Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T21:30:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T21:30:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T21:30:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-07T13:44:30Z",
+      "associationCertainty": "certain",
+      "title": "Falerio",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/672180338/0700312073",
+      "connectionType": "at",
+      "id": "0700312073",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T13:44:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T13:44:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-07T13:44:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413127",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Parco_archeologico_Falerio_Picenus",
+      "citationDetail": "Parco archeologico Falerio Picenus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "156",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sear 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HXSX8YS3",
+      "formattedCitation": "<div class=\"csl-entry\">Sear, Frank. <i>Roman Theatres: An Architectural Study</i>. Lighning Source, UK; New York: Oxford University Press, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q53673000",
+      "citationDetail": "Q53673000: Roman Theatre of Falerio Picenus",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "672180338",
+  "subject": [
+    "Theater",
+    "extant remains"
+  ],
+  "title": "Roman theater at Falerio Picenus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater at Falerio Picenus was completed during the reign of Tiberius.",
+  "reprPoint": [
+    13.5004421,
+    43.1023718
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    13.5004421,
+    43.1023718,
+    13.5004421,
+    43.1023718
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413127"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-07T13:44:29Z",
+  "uri": "https://pleiades.stoa.org/places/672180338",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q53673000: Roman Theatre of Falerio Picenus",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-02T22:44:56Z"
+    },
+    {
+      "comment": "Sear reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-14T02:25:57Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-11T22:03:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T13:48:54Z"
+    },
+    {
+      "comment": "reference, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T13:48:44Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T13:45:02Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T13:44:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-07T13:44:29Z"
+    }
+  ]
+}

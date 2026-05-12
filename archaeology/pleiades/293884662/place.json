@@ -1,0 +1,454 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            39.3043292,
+            37.0934448
+          ],
+          [
+            39.3044525,
+            37.0930982
+          ],
+          [
+            39.3044579,
+            37.0928843
+          ],
+          [
+            39.3043184,
+            37.0925762
+          ],
+          [
+            39.3043184,
+            37.0922253
+          ],
+          [
+            39.3041146,
+            37.0919728
+          ],
+          [
+            39.3040609,
+            37.0913438
+          ],
+          [
+            39.3033528,
+            37.0904752
+          ],
+          [
+            39.3026769,
+            37.0896964
+          ],
+          [
+            39.302001,
+            37.0895252
+          ],
+          [
+            39.3015128,
+            37.0896835
+          ],
+          [
+            39.3010783,
+            37.0902227
+          ],
+          [
+            39.3009227,
+            37.0906891
+          ],
+          [
+            39.3009281,
+            37.0910785
+          ],
+          [
+            39.301765,
+            37.0925334
+          ],
+          [
+            39.3022531,
+            37.0929955
+          ],
+          [
+            39.3028164,
+            37.0932437
+          ],
+          [
+            39.3037713,
+            37.093509
+          ],
+          [
+            39.3040985,
+            37.0935004
+          ],
+          [
+            39.3043292,
+            37.0934448
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-karahan-tepe",
+      "properties": {
+        "snippet": "Tell; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/293884662/osm-location-of-karahan-tepe",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Karahan Tepe"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/989126381",
+          "citationDetail": "Way 989126381",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=989126381",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-karahan-tepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -3300,
+      "title": "OSM location of Karahan Tepe",
+      "provenance": "OpenStreetMap (Way 989126381, version 4, osm:changeset=167660876, 2025-06-15T17:19:42Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-08-22T02:16:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            39.3043292,
+            37.0934448
+          ],
+          [
+            39.3044525,
+            37.0930982
+          ],
+          [
+            39.3044579,
+            37.0928843
+          ],
+          [
+            39.3043184,
+            37.0925762
+          ],
+          [
+            39.3043184,
+            37.0922253
+          ],
+          [
+            39.3041146,
+            37.0919728
+          ],
+          [
+            39.3040609,
+            37.0913438
+          ],
+          [
+            39.3033528,
+            37.0904752
+          ],
+          [
+            39.3026769,
+            37.0896964
+          ],
+          [
+            39.302001,
+            37.0895252
+          ],
+          [
+            39.3015128,
+            37.0896835
+          ],
+          [
+            39.3010783,
+            37.0902227
+          ],
+          [
+            39.3009227,
+            37.0906891
+          ],
+          [
+            39.3009281,
+            37.0910785
+          ],
+          [
+            39.301765,
+            37.0925334
+          ],
+          [
+            39.3022531,
+            37.0929955
+          ],
+          [
+            39.3028164,
+            37.0932437
+          ],
+          [
+            39.3037713,
+            37.093509
+          ],
+          [
+            39.3040985,
+            37.0935004
+          ],
+          [
+            39.3043292,
+            37.0934448
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/293884662/osm-location-of-karahan-tepe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-13T04:04:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-03T15:28:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-29T15:16:19Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-22T02:17:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-22T02:16:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-22T02:16:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Karahan_Tepe",
+      "citationDetail": "Karahan Tepe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5996986",
+      "citationDetail": "Karahan Tepe (Q5996986)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archaeology.org/issues/march-april-2024/features/discovering-a-new-neolithic-world/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u0130ldun 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CXRYH482",
+      "formattedCitation": "<div class=\"csl-entry\">\u0130ldun, Tolga. \u201cDiscovering a New Neolithic World.\u201d <i>Archaeology Magazine</i>, 2024. https://archaeology.org/issues/march-april-2024/features/discovering-a-new-neolithic-world/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Karahan Tepe",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q5996986",
+          "citationDetail": "Karahan Tepe (Q5996986)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "karahan-tepe",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-11-29T15:15:51Z",
+      "uri": "https://pleiades.stoa.org/places/293884662/karahan-tepe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Karahan Tepe",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-03T15:28:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-29T15:16:19Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-29T15:15:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-29T15:15:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "293884662",
+  "subject": [],
+  "title": "Karahan Tepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Karahan Tepe is an archaeological site covering some 10 hectares located in Turkey's \u015eanl\u0131urfa Province. More than 250 t-shaped monuments have been discovered at the site which is associated with the so-called Tepeler cultures. Karahan Tepe lies within the environs of G\u00f4bekli Tepe and may pre-date that site.",
+  "reprPoint": [
+    39.30272026287009,
+    37.091594720935575
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    39.3009227,
+    37.0895252,
+    39.3044579,
+    37.093509
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-08-22T02:16:11Z",
+  "uri": "https://pleiades.stoa.org/places/293884662",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-12-03T15:28:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-29T15:16:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-29T15:14:21Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-22T02:16:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-22T02:16:11Z"
+    }
+  ]
+}

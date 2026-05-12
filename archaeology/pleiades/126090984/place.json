@@ -1,0 +1,464 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.1605532,
+            57.0555207
+          ],
+          [
+            -2.1606777,
+            57.0555276
+          ],
+          [
+            -2.1607914,
+            57.0555561
+          ],
+          [
+            -2.1608819,
+            57.0556031
+          ],
+          [
+            -2.1609394,
+            57.0556636
+          ],
+          [
+            -2.1609577,
+            57.0557309
+          ],
+          [
+            -2.1609348,
+            57.0557978
+          ],
+          [
+            -2.1608732,
+            57.0558571
+          ],
+          [
+            -2.1607796,
+            57.0559022
+          ],
+          [
+            -2.160664,
+            57.0559284
+          ],
+          [
+            -2.1605391,
+            57.0559328
+          ],
+          [
+            -2.1604184,
+            57.0559148
+          ],
+          [
+            -2.1603149,
+            57.0558766
+          ],
+          [
+            -2.1602398,
+            57.0558221
+          ],
+          [
+            -2.1602014,
+            57.0557573
+          ],
+          [
+            -2.1602037,
+            57.0556892
+          ],
+          [
+            -2.1602466,
+            57.0556253
+          ],
+          [
+            -2.1603253,
+            57.0555724
+          ],
+          [
+            -2.1604313,
+            57.0555362
+          ],
+          [
+            -2.1605532,
+            57.0555207
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Monument, ",
+        "link": "https://pleiades.stoa.org/places/126090984/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Auld Bourtreebush"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/252952932",
+          "citationDetail": "Way 252952932",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=252952932",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": null,
+      "title": "OSM location of Auld Bourtreebush",
+      "provenance": "OpenStreetMap (Way 252952932, version 4, osm:changeset=139584848, 2023-08-07T21:52:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-10-26T15:51:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.1605532,
+            57.0555207
+          ],
+          [
+            -2.1606777,
+            57.0555276
+          ],
+          [
+            -2.1607914,
+            57.0555561
+          ],
+          [
+            -2.1608819,
+            57.0556031
+          ],
+          [
+            -2.1609394,
+            57.0556636
+          ],
+          [
+            -2.1609577,
+            57.0557309
+          ],
+          [
+            -2.1609348,
+            57.0557978
+          ],
+          [
+            -2.1608732,
+            57.0558571
+          ],
+          [
+            -2.1607796,
+            57.0559022
+          ],
+          [
+            -2.160664,
+            57.0559284
+          ],
+          [
+            -2.1605391,
+            57.0559328
+          ],
+          [
+            -2.1604184,
+            57.0559148
+          ],
+          [
+            -2.1603149,
+            57.0558766
+          ],
+          [
+            -2.1602398,
+            57.0558221
+          ],
+          [
+            -2.1602014,
+            57.0557573
+          ],
+          [
+            -2.1602037,
+            57.0556892
+          ],
+          [
+            -2.1602466,
+            57.0556253
+          ],
+          [
+            -2.1603253,
+            57.0555724
+          ],
+          [
+            -2.1604313,
+            57.0555362
+          ],
+          [
+            -2.1605532,
+            57.0555207
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/126090984/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-10T20:08:12Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-11-24T02:48:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-09T14:25:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-09T14:25:09Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-26T15:53:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-26T15:51:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-26T15:51:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Auld_Bourtreebush",
+      "citationDetail": "Auld Bourtreebush",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Auld Bourtreebush.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://canmore.org.uk/site/37197/old-bourtreebush",
+      "citationDetail": "37197: Old Bourtreebush",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Canmore",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9QC8C2K",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Canmore: National Record of the Historic Environment, Part of Historic Environment Scotland</i>, n.d. https://canmore.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7083509",
+      "citationDetail": "Q7083509: Old Bourtreebush",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Old Bourtreebush",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q7083509",
+          "citationDetail": "Q7083509: Old Bourtreebush",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "old-bourtreebush",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-11-22T15:27:54Z",
+      "uri": "https://pleiades.stoa.org/places/126090984/old-bourtreebush",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Old Bourtreebush",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-11-24T02:48:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-22T15:28:05Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-22T15:27:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-22T15:27:54Z"
+        }
+      ]
+    }
+  ],
+  "id": "126090984",
+  "subject": [
+    "megalithic",
+    "extant remains"
+  ],
+  "title": "Auld Bourtreebush",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Auld Bourtreebush is a prehistoric stone circle in Aberdeenshire, Scotland.",
+  "reprPoint": [
+    -2.1605558,
+    57.0555206
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    -2.1605558,
+    57.0555206,
+    -2.1605558,
+    57.0555206
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-10-26T15:49:00Z",
+  "uri": "https://pleiades.stoa.org/places/126090984",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-11-24T02:47:59Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-22T15:27:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-09T14:24:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-09T14:24:27Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-10-26T15:49:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-10-26T15:49:01Z"
+    }
+  ]
+}

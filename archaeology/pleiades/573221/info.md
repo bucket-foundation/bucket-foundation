@@ -1,0 +1,14 @@
+# Eunaia/Eunai
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/573221
+- **ID**: 573221
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Eunaia, Eunai
+
+## Description
+
+An ancient settlement, attested by literary or documentary sources, whose precise location cannot be determined today

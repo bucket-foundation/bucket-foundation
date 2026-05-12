@@ -1,0 +1,268 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.7873832,
+          52.571118
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-woodcock-hall",
+      "properties": {
+        "snippet": "Unknown; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/4091848/osm-location-of-woodcock-hall",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Woodcock Hall"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/3414672224",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Node 3414672224",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-woodcock-hall",
+      "featureTypeURI": [],
+      "end": 410,
+      "title": "OSM location of Woodcock Hall",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2019-11-02T18:53:09Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.7873832,
+          52.571118
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/4091848/osm-location-of-woodcock-hall",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "removed deprecated place type",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-16T22:36:05Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-11-03T21:11:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-11-02T18:53:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-11-02T18:53:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-11-02T18:53:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.heritage.norfolk.gov.uk/record-details?MNF4697-Woodcock-Hall-Iron-Age-to-Roman-settlement-and-Roman-forts",
+      "citationDetail": "NHER Number 4697",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Norfolk Heritage Explorer",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=357793",
+      "citationDetail": "Woodcock Hall Roman settlement",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1003170",
+      "citationDetail": "Roman settlement at Woodcock Hall",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Historic England",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.2307/526539",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brown 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VZEGX7W8",
+      "formattedCitation": "<div class=\"csl-entry\">Brown, Robin A. \u201cThe Iron Age and Romano-British Settlement at Woodcock Hall, Saham Toney, Norfolk.\u201d <i>Britannia</i> 17 (1986): 1\u201358. https://doi.org/10.2307/526539.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "4091848",
+  "subject": [
+    "dare:feature=settlement",
+    "settlement",
+    "dare:feature=fort",
+    "fort"
+  ],
+  "title": "Woodcock Hall",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Site of late Iron-Age and Romano-British settlement near present-day Saham Toney in Norfolk. An Neronian-era fort is directly adjacent.",
+  "reprPoint": [
+    0.7873832,
+    52.571118
+  ],
+  "placeTypes": [
+    "fort-2",
+    "settlement"
+  ],
+  "bbox": [
+    0.7873832,
+    52.571118,
+    0.7873832,
+    52.571118
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-16T21:53:42Z",
+  "uri": "https://pleiades.stoa.org/places/4091848",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for fort @maximeg",
+      "modifiedBy": "thomase",
+      "modified": "2024-12-16T22:35:41Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-16T21:53:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-11-03T21:11:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-11-03T21:11:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-11-02T18:53:35Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-11-02T18:51:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-11-02T18:51:30Z"
+    }
+  ]
+}

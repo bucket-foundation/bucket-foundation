@@ -1,0 +1,14 @@
+# Andosinoi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/246164
+- **ID**: 246164
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Andosinoi
+
+## Description
+
+An ancient place, cited: BAtlas 25 G3 Andosinoi

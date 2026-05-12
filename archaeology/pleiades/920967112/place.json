@@ -1,0 +1,525 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.72697,
+          37.97184
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Monument; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/920967112/imagery-location",
+        "description": "An approximate location of the cutting which probably held the base of the Monument of Kallimachos, determined in Google Earth with reference to Hurwit.",
+        "location_precision": "precise",
+        "title": "Imagery Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "130",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 2099,
+      "title": "Imagery Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "monument"
+      ],
+      "description": "An approximate location of the cutting which probably held the base of the Monument of Kallimachos, determined in Google Earth with reference to Hurwit.",
+      "created": "2024-04-26T23:36:34Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.72697,
+          37.97184
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/920967112/imagery-location",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:37:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:36:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:43:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:36:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:36:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-26T23:42:39Z",
+      "associationCertainty": "certain",
+      "title": "Acropolis of Athens",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/920967112/acropolis-of-athens",
+      "connectionType": "on",
+      "id": "acropolis-of-athens",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:37:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:43:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:42:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:42:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638356144",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "130-131",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hurwit 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+      "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/en/title/31732073",
+      "citationDetail": "178",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Korres 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HWLQC8J3",
+      "formattedCitation": "<div class=\"csl-entry\">Korres, M. \u201cRecent Discoveries on the Acropolis.\u201d In <i>Acropolis Restoration: The CCAM Interventions</i>, by Richard Economakis, 175\u201379. London, New York, NY: Academy Editions\u202f; Distributed to the trade in the USA by St. Martin\u2019s Press, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Nike_of_Callimachus",
+      "citationDetail": "Nike of Callimachus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "https://www.academia.edu/10514130/_The_Kallimachos_Monument_on_the_Athenian_Acropolis_CEG_256_and_Athenian_Commemoration_of_the_Persian_Wars_",
+      "accessURI": "https://search.worldcat.org/title/archaic-and-classical-greek-epigram/oclc/489007504",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Keesling 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6JK2I9UQ",
+      "formattedCitation": "<div class=\"csl-entry\">Keesling, C. \u201cThe Kallimachos Monument on the Athenian Acropolis (CEG 256) and Athenian Commemoration of the Persian Wars.\u201d In <i>Archaic and Classical Greek Epigram</i>, edited by Manuel Baumbach, Andrej Petrovic, and Ivana Petrovic. Cambridge: Cambridge University Press, 2010. https://search.worldcat.org/en/title/489007504.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.theacropolismuseum.gr/en/nike-kallimachos",
+      "citationDetail": "The \"Nike of Kallimachos\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "The Acropolis Museum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZTANLUU",
+      "formattedCitation": "<div class=\"csl-entry\">\u201c\u039c\u03bf\u03c5\u03c3\u03b5\u03af\u03bf \u0391\u03ba\u03c1\u03cc\u03c0\u03bf\u03bb\u03b7\u03c2.\u201d Accessed April 30, 2024. https://www.theacropolismuseum.gr/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1101633",
+      "citationDetail": "Statue der Nike vom Weihgeschenk des Kallimachos Akropolis-Museum, Athen",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1309410",
+      "citationDetail": "Rekonstruktionsversuch der Nike vom Weihegeschenk des Kallimachos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1365951",
+      "citationDetail": "Nike of Callimachus (Q1365951)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monument of Kallimachos",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "130",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "monument-of-kallimachos",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-04-26T23:33:13Z",
+      "uri": "https://pleiades.stoa.org/places/920967112/monument-of-kallimachos",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Monument of Kallimachos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:37:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:43:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:33:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:33:13Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Nike of Kallimachos",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "130",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "nike-of-kallimachos",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-04-26T23:34:00Z",
+      "uri": "https://pleiades.stoa.org/places/920967112/nike-of-kallimachos",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Nike of Kallimachos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:37:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:43:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:34:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:34:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "920967112",
+  "subject": [],
+  "title": "Monument of Kallimachos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A column topped by a winged female figure on the Acropolis of Athens, dedicated in 490 BC by the polemarch Kallimachos to commemorate his victory at the Battle of Marathon. It was destroyed in the Persian Sack of 480 BC.",
+  "reprPoint": [
+    23.72697,
+    37.97184
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    23.72697,
+    37.97184,
+    23.72697,
+    37.97184
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638356144"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-26T23:32:08Z",
+  "uri": "https://pleiades.stoa.org/places/920967112",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1365951",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-14T21:53:33Z"
+    },
+    {
+      "comment": "add arachne x 2",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-30T21:46:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-30T20:37:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-30T20:35:55Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-27T02:48:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-26T23:43:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-26T23:42:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-26T23:41:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-26T23:32:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-26T23:32:08Z"
+    }
+  ]
+}

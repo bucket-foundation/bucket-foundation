@@ -1,0 +1,341 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.11941,
+            52.8934988
+          ],
+          [
+            -1.1193412,
+            52.893507
+          ],
+          [
+            -1.1192313,
+            52.893523
+          ],
+          [
+            -1.1192132,
+            52.8934742
+          ],
+          [
+            -1.1193264,
+            52.893462
+          ],
+          [
+            -1.1194043,
+            52.8934527
+          ],
+          [
+            -1.1193786,
+            52.8933947
+          ],
+          [
+            -1.1195675,
+            52.8933691
+          ],
+          [
+            -1.1195881,
+            52.8934246
+          ],
+          [
+            -1.1197702,
+            52.8934
+          ],
+          [
+            -1.1197905,
+            52.8934549
+          ],
+          [
+            -1.1197189,
+            52.8934646
+          ],
+          [
+            -1.1197301,
+            52.8934949
+          ],
+          [
+            -1.119424,
+            52.8935363
+          ],
+          [
+            -1.11941,
+            52.8934988
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-site-of-media-val-st-peter-church",
+      "properties": {
+        "snippet": "Church-2; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/985158684/osm-location-of-site-of-media-val-st-peter-church",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Site of medi\u00e6val St. Peter Church"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/109694351",
+          "citationDetail": "Way 109694351",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=109694351",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-site-of-media-val-st-peter-church",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 1453,
+      "title": "OSM location of Site of medi\u00e6val St. Peter Church",
+      "provenance": "OpenStreetMap (Way 109694351, version 3, osm:changeset=76268807, 2019-10-27T15:25:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-10-27T15:27:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.11941,
+            52.8934988
+          ],
+          [
+            -1.1193412,
+            52.893507
+          ],
+          [
+            -1.1192313,
+            52.893523
+          ],
+          [
+            -1.1192132,
+            52.8934742
+          ],
+          [
+            -1.1193264,
+            52.893462
+          ],
+          [
+            -1.1194043,
+            52.8934527
+          ],
+          [
+            -1.1193786,
+            52.8933947
+          ],
+          [
+            -1.1195675,
+            52.8933691
+          ],
+          [
+            -1.1195881,
+            52.8934246
+          ],
+          [
+            -1.1197702,
+            52.8934
+          ],
+          [
+            -1.1197905,
+            52.8934549
+          ],
+          [
+            -1.1197189,
+            52.8934646
+          ],
+          [
+            -1.1197301,
+            52.8934949
+          ],
+          [
+            -1.119424,
+            52.8935363
+          ],
+          [
+            -1.11941,
+            52.8934988
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/985158684/osm-location-of-site-of-media-val-st-peter-church",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:45:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-27T15:27:38Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-27T15:27:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-27T15:27:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-27T15:27:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=317740",
+      "citationDetail": "monument no. 317740",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dare.ht.lu.se/places/26086",
+      "citationDetail": "26086",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Lund, Sweden: Department of Archaeology and Ancient History, Lund University, Sweden, 2015. http://dare.ht.lu.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7591326",
+      "citationDetail": "St. Peter's Church, Flawford (Q7591326)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "985158684",
+  "subject": [],
+  "title": "St Peters Church, Flawford",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A ruined Medieval church located on the site of a Roman villa.",
+  "reprPoint": [
+    -1.1195031081192781,
+    52.89346021073773
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    -1.1197905,
+    52.8933691,
+    -1.1192132,
+    52.8935363
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-10-27T15:26:22Z",
+  "uri": "https://pleiades.stoa.org/places/985158684",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q7591326",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-15T01:42:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-12T10:45:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-27T15:28:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-27T15:27:38Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-27T15:26:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-27T15:26:22Z"
+    }
+  ]
+}

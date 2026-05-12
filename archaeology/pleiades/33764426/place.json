@@ -1,0 +1,291 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4856277,
+          50.9476471
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-lickfold-roman-bath-house",
+      "properties": {
+        "snippet": "Bath; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/33764426/osm-location-of-lickfold-roman-bath-house",
+        "description": "",
+        "location_precision": "precise",
+        "title": "OSM location of Lickfold Roman bath house"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/6899110427",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Node 6899110427",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-lickfold-roman-bath-house",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 410,
+      "title": "OSM location of Lickfold Roman bath house",
+      "provenance": "OpenStreetMap (Node 6899110427, version 6, osm:changeset=132103086, 2023-02-05T10:11:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "",
+      "created": "2019-10-19T22:39:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4856277,
+          50.9476471
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/33764426/osm-location-of-lickfold-roman-bath-house",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-08T14:52:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-23T03:18:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-19T22:40:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-19T22:39:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-10-19T22:39:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=392908",
+      "citationDetail": "monument no. 392908",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1005847",
+      "citationDetail": "monument 1005847",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "HEListing",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KG4R9RD2",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. \u201cListing.\u201d HIstoric England. Accessed April 22, 2021. http://historicengland.org.uk/listing/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/624430910",
+      "citationDetail": "WS 97, p. 192",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Scott 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EGWGRRDJ",
+      "formattedCitation": "<div class=\"csl-entry\">Scott, Eleanor. <i>A Gazetteer of Roman Villas in Britain</i>. Leicester: Leicester University Archaeological Research Centre, 1993. http://www.worldcat.org/oclc/624430910.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Evans 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2T5GGFCT",
+      "formattedCitation": "<div class=\"csl-entry\">Evans, K.J. \u201cExcavations on a Romano-British Site, Wiggonholt, 1964.\u201d <i>Sussex Archaeological Collections</i> 112 (1974): 97\u2013151.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Winbolt 1937",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/33F3KIM9",
+      "formattedCitation": "<div class=\"csl-entry\">Winbolt, S.E., and R.G. Goodchild. \u201cA Roman Villa at Lickfold, Wiggonholt.\u201d <i>Sussex Archaeological Collections</i> 78 (1937): 13\u201336.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archaeologydataservice.ac.uk/library/browse/details.xhtml?recordId=3241801",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Winbolt 1940",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NFN5BPSV",
+      "formattedCitation": "<div class=\"csl-entry\">Winbolt, S.E., and R.G. Goodchild. \u201cThe Roman Villa at Lickfold, Wiggonholt, Second Report.\u201d <i>Sussex Archaeological Collections</i> 81 (n.d.): 54\u201367. https://archaeologydataservice.ac.uk/library/browse/details.xhtml?recordId=3241801.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17644165",
+      "citationDetail": "Q17644165: Lickfold Roman Bath House, Wiggonholt",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "33764426",
+  "subject": [
+    "settlement",
+    "villa",
+    "baths"
+  ],
+  "title": "Lickfold",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/station",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Site of Roman bathhouse accompanying possible villa, mansio, or larger settlement, at Lickfold near Wiggonholt in West Sussex",
+  "reprPoint": [
+    -0.4856277,
+    50.9476471
+  ],
+  "placeTypes": [
+    "station",
+    "settlement",
+    "villa",
+    "bath"
+  ],
+  "bbox": [
+    -0.4856277,
+    50.9476471,
+    -0.4856277,
+    50.9476471
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-10-19T22:38:38Z",
+  "uri": "https://pleiades.stoa.org/places/33764426",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-08T14:52:14Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-31T00:00:29Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-23T03:18:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-23T03:18:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-10-19T22:40:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-10-19T22:38:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-10-19T22:38:38Z"
+    }
+  ]
+}

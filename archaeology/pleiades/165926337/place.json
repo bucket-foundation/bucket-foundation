@@ -1,0 +1,354 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.0251797,
+          30.9129617
+        ]
+      },
+      "type": "Feature",
+      "id": "minshat-abu-omar",
+      "properties": {
+        "snippet": "Cemetery; 4500 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/165926337/minshat-abu-omar",
+        "description": "Point based on an OpenStreetMap node representing Minshat Abu Omar after Kroeper 1985.",
+        "location_precision": "precise",
+        "title": "OSM location of Minshat Abu Omar"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "predynastic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/predynastic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9820547185",
+          "citationDetail": "Node 9820547185",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9820547185",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/611983240",
+          "citationDetail": "pages 4-8",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kroeper 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PP5LUSF3",
+          "formattedCitation": "<div class=\"csl-entry\">Kroeper, Karla, Dieter Wildung, and Waldemar Jerke. <i>Minshat Abu Omar: M\u00fcnchner Ostdelta-Expedition\u202f: Vorbericht 1978-1984</i>. Schriften aus der \u00c4gyptischen Sammlung (SAS), Heft 3. M\u00fcnchen: Staatliche Sammlung \u00c4gyptischer Kunst, 1985. http://www.worldcat.org/oclc/611983240.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "minshat-abu-omar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": 640,
+      "title": "OSM location of Minshat Abu Omar",
+      "provenance": "OpenStreetMap (Node 9820547185, version 1, osm:changeset=122428323, 2022-06-15T17:17:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Minshat Abu Omar after Kroeper 1985.",
+      "created": "2022-06-15T17:23:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.0251797,
+          30.9129617
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/165926337/minshat-abu-omar",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-13T23:18:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T18:28:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T17:25:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T17:24:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T17:23:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T17:23:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-15T17:23:06Z",
+      "associationCertainty": "certain",
+      "title": "Nilus (river)",
+      "start": -4500,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/165926337/nilus-river",
+      "connectionType": "on",
+      "id": "nilus-river",
+      "attestations": [
+        {
+          "timePeriod": "predynastic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/predynastic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T18:28:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T17:25:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T17:23:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T17:23:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/727172",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/611983240",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kroeper 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PP5LUSF3",
+          "formattedCitation": "<div class=\"csl-entry\">Kroeper, Karla, Dieter Wildung, and Waldemar Jerke. <i>Minshat Abu Omar: M\u00fcnchner Ostdelta-Expedition\u202f: Vorbericht 1978-1984</i>. Schriften aus der \u00c4gyptischen Sammlung (SAS), Heft 3. M\u00fcnchen: Staatliche Sammlung \u00c4gyptischer Kunst, 1985. http://www.worldcat.org/oclc/611983240.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/611983240",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kroeper 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PP5LUSF3",
+      "formattedCitation": "<div class=\"csl-entry\">Kroeper, Karla, Dieter Wildung, and Waldemar Jerke. <i>Minshat Abu Omar: M\u00fcnchner Ostdelta-Expedition\u202f: Vorbericht 1978-1984</i>. Schriften aus der \u00c4gyptischen Sammlung (SAS), Heft 3. M\u00fcnchen: Staatliche Sammlung \u00c4gyptischer Kunst, 1985. http://www.worldcat.org/oclc/611983240.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Minshat_Abu_Omar",
+      "citationDetail": "Minshat Abu Omar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "529-31",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EAAE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7H5A3NS6",
+      "formattedCitation": "<div class=\"csl-entry\">Bard, Kathryn A., and Steven Blake Shubert, eds. <i>Encyclopedia of the Archaeology of Ancient Egypt</i>. London: Routledge, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ees.ac.uk/minshat206",
+      "citationDetail": "206: MINSHAT ABU OMAR [206] (TELL MAHGAR)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EES DSP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D64YTSIN",
+      "formattedCitation": "<div class=\"csl-entry\">Wilson, Penny. <i>Delta Survey Project</i>. Egypt Exploration Society. Accessed May 20, 2022. https://www.ees.ac.uk/delta-survey-project.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "165926337",
+  "subject": [],
+  "title": "Minshat Abu Omar",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cemetery site in Northern Egypt with burials from the predynastic period as well as the late Roman period.",
+  "reprPoint": [
+    32.0251797,
+    30.9129617
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    32.0251797,
+    30.9129617,
+    32.0251797,
+    30.9129617
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/727172"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-15T18:41:52Z",
+  "uri": "https://pleiades.stoa.org/places/165926337",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added EES DSP reference, which confirms the OSM coordinates as more accurate than the GeoHack coordinates",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-15T20:02:33Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-15T18:41:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-15T18:28:57Z"
+    },
+    {
+      "comment": "add Bard, Wikipedia; GeoHack offers different coordinates for location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-15T17:37:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T17:25:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T17:21:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T17:21:58Z"
+    }
+  ]
+}

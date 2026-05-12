@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.6112812,
+            41.5534853
+          ],
+          [
+            15.6110827,
+            41.5532043
+          ],
+          [
+            15.6110022,
+            41.5532525
+          ],
+          [
+            15.6108681,
+            41.5530598
+          ],
+          [
+            15.6107716,
+            41.5529474
+          ],
+          [
+            15.611528,
+            41.552558
+          ],
+          [
+            15.6120161,
+            41.5530919
+          ],
+          [
+            15.6112812,
+            41.5534853
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-passo-di-corvo",
+      "properties": {
+        "snippet": "Settlement, ; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/143520698/osm-location-of-passo-di-corvo",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Passo di Corvo"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/308048535",
+          "citationDetail": "Way 308048535",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=308048535",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-passo-di-corvo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of Passo di Corvo",
+      "provenance": "OpenStreetMap (Way 308048535, version 2, osm:changeset=127498480, 2022-10-14T02:30:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-10-16T12:57:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            15.6112812,
+            41.5534853
+          ],
+          [
+            15.6110827,
+            41.5532043
+          ],
+          [
+            15.6110022,
+            41.5532525
+          ],
+          [
+            15.6108681,
+            41.5530598
+          ],
+          [
+            15.6107716,
+            41.5529474
+          ],
+          [
+            15.611528,
+            41.552558
+          ],
+          [
+            15.6120161,
+            41.5530919
+          ],
+          [
+            15.6112812,
+            41.5534853
+          ]
+        ]
+      },
+      "locationType": [
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/143520698/osm-location-of-passo-di-corvo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-10T20:53:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T23:05:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T23:05:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-16T13:14:43Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-16T12:58:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-16T12:57:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-16T12:57:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tin\u00e8 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T4QIMIDY",
+      "formattedCitation": "<div class=\"csl-entry\">Tin\u00e8, Santo. <i>Passo di Corvo e la civilt\u00e0 neolitica del Tavoliere</i>. Genova: Sagep, 1983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X2030434X",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mariotti 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SSQ896A9",
+      "formattedCitation": "<div class=\"csl-entry\">Mariotti, Valentina, Italo M. Muntoni, and Maria Giovanna Belcastro. \u201cNew Insights into the Funerary Rituals of the Neolithic Site of Passo Di Corvo (Apulia, Italy): The Study of the Human Remains.\u201d <i>Journal of Archaeological Science: Reports</i> 34 (December 1, 2020): 102643. https://doi.org/10.1016/j.jasrep.2020.102643.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archive.org/details/PassodiCorvo682_L13A_3046",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bradford 1945 Passo di Corvo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9LZRXXGH",
+      "formattedCitation": "<div class=\"csl-entry\">Bradford, John. \u201cPasso Di Corvo. 682-L13A 3046.\u201d In <i>The John Bradford Archive of Aerial Photographs</i>. Artefact Services Lewes, 1945. https://archive.org/details/PassodiCorvo682_L13A_3046.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "143520698",
+  "subject": [],
+  "title": "Passo di Corvo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large, neolithic enclosure",
+  "reprPoint": [
+    15.61138758079464,
+    41.55302502620964
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    15.6107716,
+    41.552558,
+    15.6120161,
+    41.5534853
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-22T20:43:25Z",
+  "uri": "https://pleiades.stoa.org/places/143520698",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-01T17:46:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-01T17:45:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-01T17:36:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-29T20:47:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-22T22:07:30Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-22T20:43:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-22T20:43:25Z"
+    }
+  ]
+}

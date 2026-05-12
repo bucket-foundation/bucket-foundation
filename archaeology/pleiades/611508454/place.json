@@ -1,0 +1,214 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.45531,
+          42.3427048
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-borghetto",
+      "properties": {
+        "snippet": "Settlement-modern",
+        "link": "https://pleiades.stoa.org/places/611508454/osm-location-of-borghetto",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Borghetto"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/843777968",
+          "citationDetail": "Node 843777968",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=843777968",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-borghetto",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": null,
+      "title": "OSM location of Borghetto",
+      "provenance": "OpenStreetMap (Node 843777968, version 2, osm:changeset=5383153, 2010-08-02T18:13:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-03-11T14:37:51Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.45531,
+          42.3427048
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/611508454/osm-location-of-borghetto",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-10T15:24:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-14T19:26:32Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-11T14:38:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-11T14:37:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-11T14:37:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ilmessaggero.it/viterbo/tesori_falisci_civita_castellana_la_tomba_degli_arati_le_sue_iscrizioni_di_nuovo_visitabili-4056444.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baldi 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YQ4KIFH3",
+      "formattedCitation": "<div class=\"csl-entry\">Baldi, Ugo. \u201cTesori falisci a Civita Castellana, la tomba degli Arati e le sue iscrizioni tornano visitabili.\u201d <i>Il Messaggero</i>. October 22, 2018. https://www.ilmessaggero.it/viterbo/tesori_falisci_civita_castellana_la_tomba_degli_arati_le_sue_iscrizioni_di_nuovo_visitabili-4056444.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "550 nos. 347-353",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bakkum 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VACLRYD6",
+      "formattedCitation": "<div class=\"csl-entry\">Bakkum, Gabri\u00ebl C. L. M. <i>The Latin Dialect of the Ager Faliscus: 150 Years of Scholarship</i>. Amsterdam University Press, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "611508454",
+  "subject": [],
+  "title": "Tomb of the Arati",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>This tomb was originally excavated in 1890 and its inscriptions documented. The tomb was re-discovered in 1974 during work near the Grotta Porciosa site.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Faliscan tomb located near Borghetto, Civita Castellana (Viterbo).",
+  "reprPoint": [
+    12.45531,
+    42.3427048
+  ],
+  "placeTypes": [
+    "tomb",
+    "settlement-modern"
+  ],
+  "bbox": [
+    12.45531,
+    42.3427048,
+    12.45531,
+    42.3427048
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-03-11T14:16:39Z",
+  "uri": "https://pleiades.stoa.org/places/611508454",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-04-10T15:24:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-14T19:26:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-11T14:35:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-11T14:30:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-11T14:22:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-11T14:16:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-11T14:16:39Z"
+    }
+  ]
+}

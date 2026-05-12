@@ -1,0 +1,260 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5892,
+          45.2022018
+        ]
+      },
+      "type": "Feature",
+      "id": "adriatlas-location",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/617582458/adriatlas-location",
+        "description": "Representative center point of visible archaeological remains according to AdriAtlas (based on, and verified with, imagery analysis in Google Earth).",
+        "location_precision": "precise",
+        "title": "AdriAtlas Location Center of Visible Remains"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://adriaticummare.org/en/adriatlas?idSite=22",
+          "citationDetail": "22: Sorna",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AdriAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FJVRSTA7",
+          "formattedCitation": "<div class=\"csl-entry\">The International Association of the Adriaticum Mare. \u201cAtlas of the Ancient Adriatic,\u201d 2010. http://adriaticummare.org/en/bdd.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "adriatlas-location",
+      "featureTypeURI": [],
+      "end": 300,
+      "title": "AdriAtlas Location Center of Visible Remains",
+      "provenance": "AdriAtlas",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "Representative center point of visible archaeological remains according to AdriAtlas (based on, and verified with, imagery analysis in Google Earth).",
+      "created": "2019-07-24T09:38:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5892,
+          45.2022018
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/617582458/adriatlas-location",
+      "creators": [
+        {
+          "username": "ftassaux",
+          "homepage": null,
+          "name": "Francis Tassaux",
+          "uri": "https://pleiades.stoa.org/author/ftassaux"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-14T11:36:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-14T11:28:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-14T11:12:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-14T11:11:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-14T11:03:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-14T10:58:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-14T10:55:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ftassaux",
+          "modified": "2019-07-24T09:38:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ftassaux",
+          "modified": "2019-07-24T09:38:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": " http://adriaticummare.org/adriatlas?idSite=22",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AdriAtlas 22 Sorna",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "DOI:10.21412/adriatlas_22",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "617582458",
+  "subject": [],
+  "title": "Sorna Roman Villa and Church",
+  "provenance": "AdriAtlas",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/peninsula",
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/port"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Near Parentium (today Porec/Parenzo in Croatia), Cape Sorna (Zorna) first hosted a large villa maritima, and then a small early Christian church.",
+  "reprPoint": [
+    13.5892,
+    45.2022018
+  ],
+  "placeTypes": [
+    "church-2",
+    "peninsula",
+    "cemetery",
+    "villa",
+    "port"
+  ],
+  "bbox": [
+    13.5892,
+    45.2022018,
+    13.5892,
+    45.2022018
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-07-24T09:39:41Z",
+  "uri": "https://pleiades.stoa.org/places/617582458",
+  "creators": [
+    {
+      "username": "ftassaux",
+      "homepage": null,
+      "name": "Francis Tassaux",
+      "uri": "https://pleiades.stoa.org/author/ftassaux"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T11:36:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T11:35:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T11:27:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T11:00:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T10:52:21Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "ftassaux",
+      "modified": "2019-07-24T09:39:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ftassaux",
+      "modified": "2019-07-24T09:32:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ftassaux",
+      "modified": "2019-07-24T09:30:01Z"
+    },
+    {
+      "comment": "New entry",
+      "modifiedBy": "ftassaux",
+      "modified": "2019-07-24T09:17:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ftassaux",
+      "modified": "2019-07-24T09:17:18Z"
+    }
+  ]
+}

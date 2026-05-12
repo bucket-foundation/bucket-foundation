@@ -1,0 +1,405 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.5402672,
+          34.9694485
+        ]
+      },
+      "type": "Feature",
+      "id": "tell-qraya",
+      "properties": {
+        "snippet": "Tell; 6500 BC - 1600 BC",
+        "link": "https://pleiades.stoa.org/places/114195450/tell-qraya",
+        "description": "Point based on an OpenStreetMap node representing Tell Qraya after Simpson 1988.",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Qraya"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "ubaid",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ubaid",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "uruk-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/uruk-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9823013385",
+          "citationDetail": "Node 9823013385",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9823013385",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/165625343",
+          "citationDetail": "page 8-9, 27-28",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Simpson 1988",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9MM5Y5KU",
+          "formattedCitation": "<div class=\"csl-entry\">Simpson, Kay. <i>Qraya Modular Reports 1: Early Soundings</i>. Syro-Mesopotamian Studies, Vol.4 Issue 4. Malibu: Undena Publ., 1988. http://www.worldcat.org/oclc/165625343.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tell-qraya",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -1600,
+      "title": "OSM location of Tell Qraya",
+      "provenance": "OpenStreetMap (Node 9823013385, version 1, osm:changeset=122470437, 2022-06-16T15:46:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -6500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Tell Qraya after Simpson 1988.",
+      "created": "2022-06-16T15:54:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.5402672,
+          34.9694485
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/114195450/tell-qraya",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T16:51:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T16:01:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:57:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:54:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:54:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1600,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-16T15:58:50Z",
+      "associationCertainty": "certain",
+      "title": "Euphrates (river)",
+      "start": -6500,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/114195450/euphrates-river",
+      "connectionType": "on",
+      "id": "euphrates-river",
+      "attestations": [
+        {
+          "timePeriod": "ubaid",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ubaid",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "uruk-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/uruk-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T16:51:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T16:01:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:58:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:58:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912849",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/165625343",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Simpson 1988",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9MM5Y5KU",
+          "formattedCitation": "<div class=\"csl-entry\">Simpson, Kay. <i>Qraya Modular Reports 1: Early Soundings</i>. Syro-Mesopotamian Studies, Vol.4 Issue 4. Malibu: Undena Publ., 1988. http://www.worldcat.org/oclc/165625343.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": -1600,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-16T16:00:44Z",
+      "associationCertainty": "certain",
+      "title": "[Terqa]/Asicha?",
+      "start": -6500,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/114195450/terqa-asicha",
+      "connectionType": "near",
+      "id": "terqa-asicha",
+      "attestations": [
+        {
+          "timePeriod": "ubaid",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ubaid",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "uruk-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/uruk-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T16:51:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T16:01:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T16:00:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T16:00:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/894158",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/165625343",
+          "citationDetail": "page 8, page 27",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Simpson 1988",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9MM5Y5KU",
+          "formattedCitation": "<div class=\"csl-entry\">Simpson, Kay. <i>Qraya Modular Reports 1: Early Soundings</i>. Syro-Mesopotamian Studies, Vol.4 Issue 4. Malibu: Undena Publ., 1988. http://www.worldcat.org/oclc/165625343.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/165625343",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Simpson 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9MM5Y5KU",
+      "formattedCitation": "<div class=\"csl-entry\">Simpson, Kay. <i>Qraya Modular Reports 1: Early Soundings</i>. Syro-Mesopotamian Studies, Vol.4 Issue 4. Malibu: Undena Publ., 1988. http://www.worldcat.org/oclc/165625343.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.terqa.org/EL-TQ/Shimabuku_2020_Qraya_TFR4.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shimabuku 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EKSP8QA4",
+      "formattedCitation": "<div class=\"csl-entry\">Shimabuku, Daniel. <i>Terqa Final Reports 4: Tell Qraya on the Middle Euphrates: Final Report of the 1981 Season</i>. Bibliotheca Mesopotamica 32. Malibu: Undena Publcations, 2020. https://www.terqa.org/EL-TQ/Shimabuku_2020_Qraya_TFR4.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "114195450",
+  "subject": [],
+  "title": "Tell Qraya",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Hilltop settlement on the Euphrates settled sometime in the 6th-5th millennium BCE, reached a peak towards the end of the 4th millenium, was abandoned at the beginning of the 3rd millennium, and was reoccupied in the Old Babylonian period.",
+  "reprPoint": [
+    40.5402672,
+    34.9694485
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    40.5402672,
+    34.9694485,
+    40.5402672,
+    34.9694485
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912849",
+    "https://pleiades.stoa.org/places/894158"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-16T15:54:11Z",
+  "uri": "https://pleiades.stoa.org/places/114195450",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-17T16:51:54Z"
+    },
+    {
+      "comment": "added Shimabuku 2020",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-17T16:47:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T16:01:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T15:54:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T15:54:11Z"
+    }
+  ]
+}

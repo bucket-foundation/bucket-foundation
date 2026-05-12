@@ -1,0 +1,371 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7726699,
+            45.6475573
+          ],
+          [
+            13.7726566,
+            45.647557
+          ],
+          [
+            13.7725724,
+            45.647555
+          ],
+          [
+            13.7725584,
+            45.6475742
+          ],
+          [
+            13.7725351,
+            45.6475827
+          ],
+          [
+            13.7724969,
+            45.6475788
+          ],
+          [
+            13.7724735,
+            45.6475577
+          ],
+          [
+            13.7723749,
+            45.6475596
+          ],
+          [
+            13.7723816,
+            45.6474149
+          ],
+          [
+            13.7723815,
+            45.6473999
+          ],
+          [
+            13.7723797,
+            45.6468645
+          ],
+          [
+            13.7726839,
+            45.646863
+          ],
+          [
+            13.7726699,
+            45.6475573
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-forum",
+      "properties": {
+        "snippet": "Forum; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/438390658/location-of-roman-forum",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Foro romano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/39800124",
+          "citationDetail": "Way 39800124",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=39800124",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-forum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "end": 300,
+      "title": "OSM location of Foro romano",
+      "provenance": "OpenStreetMap (Way 39800124, version 14, osm:changeset=139300399, 2023-08-01T13:19:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "forum"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-01T18:41:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7726699,
+            45.6475573
+          ],
+          [
+            13.7726566,
+            45.647557
+          ],
+          [
+            13.7725724,
+            45.647555
+          ],
+          [
+            13.7725584,
+            45.6475742
+          ],
+          [
+            13.7725351,
+            45.6475827
+          ],
+          [
+            13.7724969,
+            45.6475788
+          ],
+          [
+            13.7724735,
+            45.6475577
+          ],
+          [
+            13.7723749,
+            45.6475596
+          ],
+          [
+            13.7723816,
+            45.6474149
+          ],
+          [
+            13.7723815,
+            45.6473999
+          ],
+          [
+            13.7723797,
+            45.6468645
+          ],
+          [
+            13.7726839,
+            45.646863
+          ],
+          [
+            13.7726699,
+            45.6475573
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/438390658/location-of-roman-forum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T02:52:57Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T02:52:09Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-05T22:04:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-16T02:12:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-04-22T16:28:42Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-01T18:42:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-01T18:42:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-01T18:42:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-10T02:25:16Z",
+      "associationCertainty": "certain",
+      "title": "Tergeste",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/438390658/1160449356",
+      "connectionType": "at",
+      "id": "1160449356",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-10T02:25:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-10T02:25:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-10T02:25:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/187578",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=tergestum",
+      "citationDetail": "TERGESTUM (Trieste) Italy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "438390658",
+  "subject": [],
+  "title": "Roman forum at Tergeste",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/forum"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman forum of Tergeste.",
+  "reprPoint": [
+    13.772528071433998,
+    45.64721372056381
+  ],
+  "placeTypes": [
+    "forum"
+  ],
+  "bbox": [
+    13.7723749,
+    45.646863,
+    13.7726839,
+    45.6475827
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/187578"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-10T02:25:14Z",
+  "uri": "https://pleiades.stoa.org/places/438390658",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T02:52:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-05T22:04:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-16T02:12:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-16T02:11:48Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-10T02:25:31Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-10T02:25:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-10T02:25:14Z"
+    }
+  ]
+}

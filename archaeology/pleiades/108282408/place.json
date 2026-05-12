@@ -1,0 +1,327 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2205117,
+            29.8512971
+          ],
+          [
+            31.2213406,
+            29.851334
+          ],
+          [
+            31.2213822,
+            29.8506309
+          ],
+          [
+            31.2205533,
+            29.850594
+          ],
+          [
+            31.2205117,
+            29.8512971
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pyramid-of-djedkare-isesi",
+      "properties": {
+        "snippet": "Pyramid; 2670 BC - 2168 BC",
+        "link": "https://pleiades.stoa.org/places/108282408/osm-location-of-pyramid-of-djedkare-isesi",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pyramid of Djedkare-Isesi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/58169337",
+          "citationDetail": "Way 58169337",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=58169337",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pyramid-of-djedkare-isesi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "end": -2168,
+      "title": "OSM location of Pyramid of Djedkare-Isesi",
+      "provenance": "OpenStreetMap (Way 58169337, version 11, osm:changeset=140307414, 2023-08-24T07:35:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2670,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "pyramid"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-19T04:55:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2205117,
+            29.8512971
+          ],
+          [
+            31.2213406,
+            29.851334
+          ],
+          [
+            31.2213822,
+            29.8506309
+          ],
+          [
+            31.2205533,
+            29.850594
+          ],
+          [
+            31.2205117,
+            29.8512971
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/108282408/osm-location-of-pyramid-of-djedkare-isesi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-20T12:14:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-20T03:53:59Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T04:56:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T04:55:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T04:55:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-19T04:56:36Z",
+      "associationCertainty": "certain",
+      "title": "Saqqarah",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/108282408/7961102619",
+      "connectionType": "at",
+      "id": "7961102619",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T04:56:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T04:56:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T04:56:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/796289136",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pyramid_of_Djedkare_Isesi",
+      "citationDetail": "Pyramid of Djedkare Isesi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "J\u00e1nosi 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8EC3W4QG",
+      "formattedCitation": "<div class=\"csl-entry\">J\u00e1nosi, Peter. \u201cDie Pyramidenanlage Der \u2018Anonymen K\u00f6nigin\u2019 Des Djedkare-Isesi.\u201d In <i>Mitteilungen Des Deutschen Arch\u00e4ologischen Instituts. Abteilung Kairo, 45.1989</i>, 187\u2013202, [2] p. of plates. Mainz: Philipp von Zabern, 1990.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Klemm 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLFTLBWZ",
+      "formattedCitation": "<div class=\"csl-entry\">Klemm, Dietrich D., and Rosemarie Klemm. <i>The Stones of the Pyramids: Provenance of the Building Stones of the Old Kingdom Pyramids of Egypt</i>. Berlin\u202f;\u00a0 New York: De Gruyter, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1232134",
+      "citationDetail": "Pyramid of Djedkare-Isesi (Q1232134)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "108282408",
+  "subject": [
+    "pyramid"
+  ],
+  "title": "Pyramid of Djedkare-Isesi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Pyramid of Djedkare Isesi in South Saqqara was built for the Fifth Dynasty pharaoh Djedkare Isesi.",
+  "reprPoint": [
+    31.220946950000005,
+    29.850964
+  ],
+  "placeTypes": [
+    "pyramid"
+  ],
+  "bbox": [
+    31.2205117,
+    29.850594,
+    31.2213822,
+    29.851334
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/796289136"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-19T04:56:34Z",
+  "uri": "https://pleiades.stoa.org/places/108282408",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Pyramid of Djedkare-Isesi (Q1232134)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-19T03:02:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-20T12:14:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-20T03:53:59Z"
+    },
+    {
+      "comment": "reference x 2",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-20T03:53:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-19T04:57:33Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-19T04:56:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-19T04:56:34Z"
+    }
+  ]
+}

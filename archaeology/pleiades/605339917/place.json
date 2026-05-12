@@ -1,0 +1,331 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6276877,
+            42.4192456
+          ],
+          [
+            11.6278528,
+            42.4195071
+          ],
+          [
+            11.62797,
+            42.4194818
+          ],
+          [
+            11.6285463,
+            42.4193742
+          ],
+          [
+            11.6284282,
+            42.4190267
+          ],
+          [
+            11.6276877,
+            42.4192456
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-forum",
+      "properties": {
+        "snippet": "Forum; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/605339917/location-of-forum",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of forum"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/98123213",
+          "citationDetail": "Way 98123213",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=98123213",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-forum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "end": 300,
+      "title": "OSM location of forum",
+      "provenance": "OpenStreetMap (Way 98123213, version 1, osm:changeset=7182734, 2011-02-04T12:38:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "forum"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-11T15:44:43Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6276877,
+            42.4192456
+          ],
+          [
+            11.6278528,
+            42.4195071
+          ],
+          [
+            11.62797,
+            42.4194818
+          ],
+          [
+            11.6285463,
+            42.4193742
+          ],
+          [
+            11.6284282,
+            42.4190267
+          ],
+          [
+            11.6276877,
+            42.4192456
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/605339917/location-of-forum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Feature type = forum",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-30T02:05:53Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-30T02:05:38Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T05:37:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-01T20:21:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:30:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:30:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T17:45:37Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:45:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:44:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:44:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-11-04T16:40:08Z",
+      "associationCertainty": "certain",
+      "title": "Vulci",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/605339917/6081481114",
+      "connectionType": "at",
+      "id": "6081481114",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:40:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:40:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:40:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413393",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Buranelli 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R936ZMLK",
+      "formattedCitation": "<div class=\"csl-entry\">Buranelli, Francesco. <i>Gli scavi a Vulci della Societ\u00e0 Vincenzo Campanari-Governo Pontificio (1835-1837)</i>. Rome: \u201cL\u2019Erma\u201d di Bretschneider, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "605339917",
+  "subject": [],
+  "title": "Forum of Vulci",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/forum"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The forum of the ancient town, dating to the Roman period.",
+  "reprPoint": [
+    11.6281361014234,
+    42.41928092899673
+  ],
+  "placeTypes": [
+    "forum"
+  ],
+  "bbox": [
+    11.6276877,
+    42.4190267,
+    11.6285463,
+    42.4195071
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413393"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-11-04T16:40:07Z",
+  "uri": "https://pleiades.stoa.org/places/605339917",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-30T02:06:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-11T18:36:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-11T18:36:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-01T20:24:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-01T20:24:09Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-11-04T16:40:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-11-04T16:40:07Z"
+    }
+  ]
+}

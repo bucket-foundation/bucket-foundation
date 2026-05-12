@@ -1,0 +1,14 @@
+# Statio Timaviensis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/187558
+- **ID**: 187558
+- **Coords (lng, lat)**: [13.001737, 46.584765]
+- **Subjects**: dare:ancient=1, dare:major=0, dare:feature=station
+- **Time periods**: 
+- **Names**: Statio Timaviensis
+
+## Description
+
+An ancient place, cited: BAtlas 19 F3 Statio Timaviensis

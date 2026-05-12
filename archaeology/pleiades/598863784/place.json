@@ -1,0 +1,523 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.151517,
+          36.357019
+        ]
+      },
+      "type": "Feature",
+      "id": "plan-location-nineveh-archive-1",
+      "properties": {
+        "snippet": "Archive-repository; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/598863784/plan-location-nineveh-archive-1",
+        "description": "Representative locations of the Neo-Assyrian archive at Nineveh on the basis of Peders\u00e9n 1987 Plan(s) 75\u201376.",
+        "location_precision": "precise",
+        "title": "Plan location of Nineveh Archive 1"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "plans 75\u201376",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "plan-location-nineveh-archive-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "end": -540,
+      "title": "Plan location of Nineveh Archive 1",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/nineveh-archives-pedersen",
+      "featureType": [
+        "archive-repository"
+      ],
+      "description": "Representative locations of the Neo-Assyrian archive at Nineveh on the basis of Peders\u00e9n 1987 Plan(s) 75\u201376.",
+      "created": "2022-11-10T00:11:30Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.151517,
+          36.357019
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/598863784/plan-location-nineveh-archive-1",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-18T21:20:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2022-12-17T05:58:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-10T00:12:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-10T00:11:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-10T00:11:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2022-11-09T23:57:53Z",
+      "associationCertainty": "certain",
+      "title": "Nineveh/Ninos",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/598863784/nineveh-ninos",
+      "connectionType": "at",
+      "id": "nineveh-ninos",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-18T21:20:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2022-12-17T05:58:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-09T23:57:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-09T23:57:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/874621",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "161, 164",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2022-11-10T00:16:49Z",
+      "associationCertainty": "certain",
+      "title": "Palace of Sennacherib",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/598863784/palace-of-sennacherib",
+      "connectionType": "in",
+      "id": "palace-of-sennacherib",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-18T21:20:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2022-12-17T05:58:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-10T00:16:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-10T00:16:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/179295730",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "161, 164",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+      "citationDetail": "161, 164",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peders\u00e9n 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+      "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "9 page 421 \u00a717",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://oracc.museum.upenn.edu/asbp/rlasb/index.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ASBp/RLAsb",
+      "bibliographicURI": "",
+      "formattedCitation": "Jonathan Taylor and Enrique Jim\u00e9nez, <i>Reading the Library of Ashurbanipal: A Multi-sectional Analysis of Assyriology's Foundational Corpus</i>.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/atae/nineveh_099",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ATAE Nineveh",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Nineveh Archive 1",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "161, 164",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "nineveh-archive-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern scholarly designation for the archive.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-11-09T23:53:54Z",
+      "uri": "https://pleiades.stoa.org/places/598863784/nineveh-archive-1",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-18T21:20:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2022-12-17T05:58:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-09T23:53:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2022-11-09T23:53:54Z"
+        }
+      ]
+    }
+  ],
+  "id": "598863784",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Nineveh Archive 1",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+  ],
+  "details": "<p><span>This archive is located in the <span>South-West Palace</span><span></span></span><span id=\"docs-internal-guid-0c1c18ae-7fff-5320-6d88-0d39b5a48d5d\">.\u00a0<span>Exact findspots do not exist for tablets from nineteenth-century excavations.\u00a0</span></span>J.E. Reade (RLA 9 p. 421 \u00a717) states the following about this archive repository: \u201cThe major find of tablets was inside Rooms 40-41 of the South-West Palace, where a layer of them 30 cm or deeper 'entirely filled' the floor (Layard 1853, 67 f.). This would amount to 28 cubic meters, clearly too high a figure since it is more than double the space now allocated to storing the K tablets individually in boxes on museum shelves, but it confirms that the bulk of the collection came from this area.\u201d</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Palace of Sennacherib (South-West Palace) at Nineveh remained in use until the Assyrian capital was captured, looted, and destroyed in 612 BC. Numerous tablets discovered in Rooms XL and XLI, as well as in some of the adjoining rooms, nineteenth-century British excavators unearthed the remains of a library, including many clay tablets inscribed with literary texts. During the reign of Ashurbanipal (r. 668\u2013ca. 631 BC), the last great king of Assyria, the tablets found in this archive repository were probably part of his tablet collection.",
+  "reprPoint": [
+    43.151517,
+    36.357019
+  ],
+  "placeTypes": [
+    "archive-repository"
+  ],
+  "bbox": [
+    43.151517,
+    36.357019,
+    43.151517,
+    36.357019
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/874621",
+    "https://pleiades.stoa.org/places/179295730"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-05-05T11:03:54Z",
+  "uri": "https://pleiades.stoa.org/places/598863784",
+  "creators": [
+    {
+      "username": "tseidler",
+      "homepage": null,
+      "name": "Thomas Seidler",
+      "uri": "https://pleiades.stoa.org/author/tseidler"
+    },
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited, corrected minor error",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-09T14:33:43Z"
+    },
+    {
+      "comment": "added ORACC reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-11T16:49:43Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "tseidler",
+      "modified": "2023-04-08T17:38:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-18T21:20:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-18T21:20:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tseidler",
+      "modified": "2022-12-17T05:58:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-12-17T05:58:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-12-17T05:57:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-12-17T05:55:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-12-17T05:53:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-11-10T00:19:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-11-09T23:54:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-11-09T23:51:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2022-11-09T23:50:37Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tseidler",
+      "modified": "2022-11-09T23:48:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tseidler",
+      "modified": "2022-11-09T23:48:46Z"
+    }
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1131841,
+          47.8755668
+        ]
+      },
+      "type": "Feature",
+      "id": "westerndorf-roman-pottery",
+      "properties": {
+        "snippet": "Ceramicproduction; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/187628/westerndorf-roman-pottery",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Westerndorf Roman pottery"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "G. Moosbauer"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": null,
+      "name": "M. Puhane"
+    },
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9006803384",
+          "citationDetail": "Node 9006803384",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9006803384",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://geoportal.bayern.de/denkmalatlas/searchResult.html?objtyp=boden&koid=210311",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BLfD Denkmaldatenbank D-1-8138-0174",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "westerndorf-roman-pottery",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ceramicproduction"
+      ],
+      "end": 300,
+      "title": "OSM location of Westerndorf Roman pottery",
+      "provenance": "OpenStreetMap (Node 9006803384, version 1, osm:changeset=109674812, 2021-08-14T15:43:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ceramicproduction"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "ceramicproduction"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-08-14T15:45:05Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1131841,
+          47.8755668
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/187628/westerndorf-roman-pottery",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-14T16:04:01Z"
+        },
+        {
+          "comment": "update title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-14T16:03:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2021-08-14T15:51:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2021-08-14T15:47:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2021-08-14T15:45:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "sarcanon",
+          "modified": "2021-08-14T15:45:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2021-08-14T15:45:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "19 E2 Westerndorf",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/33874103",
+      "citationDetail": "537-38",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "R\u00f6mer Bayern",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IQQ828Z8",
+      "formattedCitation": "<div class=\"csl-entry\">Czysz, Wolfgang, and Lothar Bakker, eds. <i>Die R\u00f6mer in Bayern</i>. Stuttgart, Aalen: Theiss, 1995. http://www.worldcat.org/oclc/33874103.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "15469",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "187628",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "Westerndorf",
+  "provenance": "Barrington Atlas: BAtlas 19 E2 Westerndorf",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/ceramicproduction"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Westerndorf, GER</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman pottery production center located at Westerndorf St Peter in south Bavaria.",
+  "reprPoint": [
+    12.1131841,
+    47.8755668
+  ],
+  "placeTypes": [
+    "ceramicproduction"
+  ],
+  "bbox": [
+    12.1131841,
+    47.8755668,
+    12.1131841,
+    47.8755668
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-08-14T15:35:33Z",
+  "uri": "https://pleiades.stoa.org/places/187628",
+  "creators": [
+    {
+      "username": null,
+      "name": "H. Bender"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "DARMC 15469 as related",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-14T16:06:30Z"
+    },
+    {
+      "comment": "Modified summary and added place type.; Edited; Edited; updated Locations; Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-14T16:05:40Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "sarcanon",
+      "modified": "2021-08-14T15:35:33Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-23T17:44:30Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:42:57Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:22:57Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T22:40:01Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:02:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-06-23T14:11:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-23T12:56:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-23T12:53:32Z"
+    }
+  ]
+}

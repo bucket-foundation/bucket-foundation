@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.7739937,
+            41.6854645
+          ],
+          [
+            12.7742159,
+            41.6854944
+          ],
+          [
+            12.7742347,
+            41.6854723
+          ],
+          [
+            12.7743312,
+            41.6854944
+          ],
+          [
+            12.7743692,
+            41.6854044
+          ],
+          [
+            12.7740473,
+            41.6853383
+          ],
+          [
+            12.773991,
+            41.6853804
+          ],
+          [
+            12.7739937,
+            41.6854645
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-area-archeologica-tempio-delle",
+      "properties": {
+        "snippet": "Sanctuary; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/745915669/osm-location-of-area-archeologica-tempio-delle",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Area Archeologica Tempio delle Stimmate"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/558283241",
+          "citationDetail": "Way 558283241",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=558283241",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-area-archeologica-tempio-delle",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": -550,
+      "title": "OSM location of Area Archeologica Tempio delle Stimmate",
+      "provenance": "OpenStreetMap (Way 558283241, version 3, osm:changeset=163384169, 2025-03-09T00:54:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-09T00:56:44Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.7739937,
+            41.6854645
+          ],
+          [
+            12.7742159,
+            41.6854944
+          ],
+          [
+            12.7742347,
+            41.6854723
+          ],
+          [
+            12.7743312,
+            41.6854944
+          ],
+          [
+            12.7743692,
+            41.6854044
+          ],
+          [
+            12.7740473,
+            41.6853383
+          ],
+          [
+            12.773991,
+            41.6853804
+          ],
+          [
+            12.7739937,
+            41.6854645
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/745915669/osm-location-of-area-archeologica-tempio-delle",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T21:03:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-09T02:41:23Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-09T00:57:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-09T00:56:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-09T00:56:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-09T01:07:54Z",
+      "associationCertainty": "certain",
+      "title": "Velitrae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/745915669/4747678319",
+      "connectionType": "at",
+      "id": "4747678319",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-09T01:07:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-09T01:07:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-09T01:07:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423117",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130967082",
+      "citationDetail": "Q130967082",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ghini 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/49YZH8QK",
+      "formattedCitation": "<div class=\"csl-entry\">Ghini, Giuseppina. \u201cIl tempio delle stimmate a Velletri\u202f: primi risultati dalle indagini 2005-2006.\u201d <i>Lazio e Sabina. 5, Atti del Convegno \u201cQuinto incontro di studi sul Lazio e la Sabina\u201d, Roma, 3-5 dicembre 2007</i>, 2009, 311\u201324.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.researchgate.net/publication/359772952_The_Phenomenon_of_Terracotta_Architectural_Terracottas",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Winter 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9SU28QMK",
+      "formattedCitation": "<div class=\"csl-entry\">Winter, Nancy. \u201cThe Phenomenon of Terracotta: Architectural Terracottas.\u201d In <i>The Etruscan World</i>, 903\u201312. Accessed March 9, 2025. https://www.researchgate.net/publication/359772952_The_Phenomenon_of_Terracotta_Architectural_Terracottas.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Drago 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FGTEYINQ",
+      "formattedCitation": "<div class=\"csl-entry\">Drago, Luciana, and Sarracino. \u201cL\u2019area sacra delle SS. Stimmate a Velletri e l\u2019area del Tempio di Iuno Sospita a Lanuvio\u202f: analogie, differenze e prospettive di ricerca.\u201d In <i>L\u2019archeologia del sacro e l\u2019archeologia del culto\u202f: Sabratha, Ebla, Ardea, Lanuvio; (Roma, 8-11 ottobre 2013)</i>, 197\u2013216. Atti dei convegni lincei 302. Rome: Bardi edizioni editore commerciale, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.m.wikimedia.org/wiki/Category:Area_Archeologica_delle_Sacre_Stimmate_(Velletri)",
+      "citationDetail": "Category:Area Archeologica delle Sacre Stimmate (Velletri)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "745915669",
+  "subject": [],
+  "title": "Velletri-Stimmate",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "At Velletri the remains of a Late Archaic sanctuary (ca. 530 BCE) were discovered beneath the church of the SS. Stimmate di S. Francesco. The site is often referred to as \"Tempio delle Stimmate\"; Cardinal Stefano Borgia discovered it in 1784. The architectural terracottas from the sanctuary are part of the so-called \"Veio-Roma-Velletri\" decorative system.",
+  "reprPoint": [
+    12.774172989868367,
+    41.68542457240686
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    12.773991,
+    41.6853383,
+    12.7743692,
+    41.6854944
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423117"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-09T01:07:53Z",
+  "uri": "https://pleiades.stoa.org/places/745915669",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T21:03:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T02:41:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T02:41:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T01:29:41Z"
+    },
+    {
+      "comment": "commons",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T01:26:23Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T01:19:01Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T01:07:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T01:07:53Z"
+    }
+  ]
+}

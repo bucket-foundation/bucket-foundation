@@ -1,0 +1,272 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.3796296,
+          54.0881157
+        ]
+      },
+      "type": "Feature",
+      "id": "possible-location-of-roman-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/735520831/possible-location-of-roman-amphitheater",
+        "description": "Archaeological remains at 'Aldborough Studforth Hill' site. Location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of possible Roman amphitheater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/740623471",
+          "citationDetail": "Node 740623471",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=740623471",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.gatehouse-gazetteer.info/English%20sites/2029.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Aldborough Studforth Hill",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "possible-location-of-roman-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of possible Roman amphitheater",
+      "provenance": "OpenStreetMap (Node 740623471, version 2, osm:changeset=11677083, 2012-05-23T00:34:58Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>Remains of an earthwork at Isurium that have been described as perhaps those of a Roman amphitheater or stadium.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre",
+        ""
+      ],
+      "description": "Archaeological remains at 'Aldborough Studforth Hill' site. Location based on OpenStreetMap.",
+      "created": "2013-06-17T17:08:32Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.3796296,
+          54.0881157
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/735520831/possible-location-of-roman-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-07T23:56:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-18T00:17:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-15T04:04:05Z"
+        },
+        {
+          "comment": "edited description",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-17T17:11:48Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-17T17:09:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-17T17:08:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-17T17:08:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-10T13:37:00Z",
+      "associationCertainty": "certain",
+      "title": "Isurium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/735520831/2204194905",
+      "connectionType": "at",
+      "id": "2204194905",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T13:37:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T13:37:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T13:37:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/89209",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.gatehouse-gazetteer.info/English%20sites/2029.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Aldborough Studforth Hill",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "735520831",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Aldborough Studforth Hill",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "<p>Remains of an earthwork at Isurium that have been described as perhaps those of a Roman amphitheater or stadium.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Archaeological remains at 'Aldborough Studforth Hill' site may be the location of possible Roman amphitheater.",
+  "reprPoint": [
+    -1.3796296,
+    54.0881157
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    -1.3796296,
+    54.0881157,
+    -1.3796296,
+    54.0881157
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/89209"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-10T13:36:58Z",
+  "uri": "https://pleiades.stoa.org/places/735520831",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-16T21:31:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T13:38:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T13:37:54Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T13:37:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T13:36:58Z"
+    }
+  ]
+}

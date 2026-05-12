@@ -1,0 +1,236 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.9547712,
+            38.1214009
+          ],
+          [
+            23.9548,
+            38.1213222
+          ],
+          [
+            23.9544867,
+            38.1212712
+          ],
+          [
+            23.9544589,
+            38.1213423
+          ],
+          [
+            23.9547712,
+            38.1214009
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mycenaean-tholos-tomb-of-arnos-at",
+      "properties": {
+        "snippet": "Tomb; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/32732054/osm-location-of-mycenaean-tholos-tomb-of-arnos-at",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mycenaean Tholos Tomb of Arnos at Marathon"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1178783076",
+          "citationDetail": "Way 1178783076",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1178783076",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mycenaean-tholos-tomb-of-arnos-at",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -1000,
+      "title": "OSM location of Mycenaean Tholos Tomb of Arnos at Marathon",
+      "provenance": "OpenStreetMap (Way 1178783076, version 1, osm:changeset=136937447, 2023-06-04T15:25:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-06-04T15:28:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.9547712,
+            38.1214009
+          ],
+          [
+            23.9548,
+            38.1213222
+          ],
+          [
+            23.9544867,
+            38.1212712
+          ],
+          [
+            23.9544589,
+            38.1213423
+          ],
+          [
+            23.9547712,
+            38.1214009
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/32732054/osm-location-of-mycenaean-tholos-tomb-of-arnos-at",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-05T15:42:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-04T15:29:23Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-04T15:28:49Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-04T15:28:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-04T15:28:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/381240GMth",
+      "citationDetail": "Marathon (Avlo) Myc. tholos (Attica) Vranas",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "32732054",
+  "subject": [],
+  "title": "Tholos tomb at Marathon",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large Mycenaean tholos tomb at Marathon.",
+  "reprPoint": [
+    23.95463066168583,
+    38.121334422465374
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    23.9544589,
+    38.1212712,
+    23.9548,
+    38.1214009
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-06-04T15:27:36Z",
+  "uri": "https://pleiades.stoa.org/places/32732054",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-05T15:42:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-04T15:29:23Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-04T15:27:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-04T15:27:36Z"
+    }
+  ]
+}

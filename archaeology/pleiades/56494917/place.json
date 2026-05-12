@@ -1,0 +1,390 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.6309061,
+          35.8780207
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-mastumah",
+      "properties": {
+        "snippet": "Settlement; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/56494917/osm-location-of-tell-mastumah",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Mastumah"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    },
+    {
+      "username": "asquitieri",
+      "homepage": null,
+      "name": "Andrea Squitieri",
+      "uri": "https://pleiades.stoa.org/author/asquitieri"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "chorst",
+          "homepage": null,
+          "name": "Claudia Horst",
+          "uri": "https://pleiades.stoa.org/author/chorst"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/5286254524",
+          "citationDetail": "Node 5286254524",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5286254524",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-mastumah",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -540,
+      "title": "OSM location of Tell Mastumah",
+      "provenance": "OpenStreetMap (Node 5286254524, version 1, osm:changeset=54659273, 2017-12-15T17:04:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2017-12-15T17:05:42Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.6309061,
+          35.8780207
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/56494917/osm-location-of-tell-mastumah",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-30T04:01:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-02T10:38:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T17:06:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T17:05:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T17:05:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/884661172",
+      "citationDetail": "page 12, map 2 grid C5",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Helsinki Atlas 2001,",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+      "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "Al-Mastumah",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/230137758",
+      "citationDetail": "pages 33-34",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bagg, RGTC 7/1",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+      "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. T\u00fcbinger Atlas des Vorderen Orients / Beihefte / B, 7,7,1. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/Q15982255",
+      "citationDetail": "Q15982255",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tell Mastumah",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/884661172",
+          "citationDetail": "page 12, map 2 grid C5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Helsinki Atlas 2001,",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+          "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/230137758",
+          "citationDetail": "pages 33-34",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/1",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+          "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. T\u00fcbinger Atlas des Vorderen Orients / Beihefte / B, 7,7,1. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-12-15.0712332076",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "chorst",
+          "homepage": null,
+          "name": "Claudia Horst",
+          "uri": "https://pleiades.stoa.org/author/chorst"
+        }
+      ],
+      "provenance": "",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Ancient A\u0161tamaku is 5 km south of the town of Idlib, near the modern village of al-Mastumah (or al-Mastoume) , which is 60 km southwest of Aleppo.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2017-12-15T17:01:35Z",
+      "uri": "https://pleiades.stoa.org/places/56494917/name.2017-12-15.0712332076",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-30T04:01:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-02T10:38:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-02T10:35:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T17:01:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T17:01:35Z"
+        }
+      ]
+    }
+  ],
+  "id": "56494917",
+  "subject": [
+    "ANE"
+  ],
+  "title": "A\u0161tamaku",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A town mentioned in Neo-Assyrian sources that is identified with modern Tell Mastumah.",
+  "reprPoint": [
+    36.6309061,
+    35.8780207
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    36.6309061,
+    35.8780207,
+    36.6309061,
+    35.8780207
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-04-07T14:01:00Z",
+  "uri": "https://pleiades.stoa.org/places/56494917",
+  "creators": [
+    {
+      "username": "chorst",
+      "homepage": null,
+      "name": "Claudia Horst",
+      "uri": "https://pleiades.stoa.org/author/chorst"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-30T04:01:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-30T03:59:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-02T10:38:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-02T10:33:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-15T17:08:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-15T17:03:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-15T17:02:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-15T16:56:26Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-07T05:18:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2016-04-07T14:09:06Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "chorst",
+      "modified": "2016-04-07T14:01:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "chorst",
+      "modified": "2016-04-07T14:01:01Z"
+    }
+  ]
+}

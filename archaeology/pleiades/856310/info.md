@@ -1,0 +1,14 @@
+# 139
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/856310
+- **ID**: 856310
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 87 L2 no. 139 (Veselovka 1 RUS)

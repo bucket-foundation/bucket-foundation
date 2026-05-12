@@ -1,0 +1,755 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4973042,
+            41.856679
+          ],
+          [
+            12.4973908,
+            41.8566747
+          ],
+          [
+            12.4973854,
+            41.8566142
+          ],
+          [
+            12.4972988,
+            41.8566185
+          ],
+          [
+            12.4973014,
+            41.8566478
+          ],
+          [
+            12.4973042,
+            41.856679
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-torre-delle-vigne",
+      "properties": {
+        "snippet": "Fort; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/423089/osm-location-of-torre-delle-vigne",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Torre delle Vigne"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/30693040",
+          "citationDetail": "Way 30693040",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=30693040",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-torre-delle-vigne",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": 1453,
+      "title": "OSM location of Torre delle Vigne",
+      "provenance": "OpenStreetMap (Way 30693040, version 6, osm:changeset=46705087, 2017-03-09T10:10:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>The current tower dates to the thirteenth century.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-02-17T17:33:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4973042,
+            41.856679
+          ],
+          [
+            12.4973908,
+            41.8566747
+          ],
+          [
+            12.4973854,
+            41.8566142
+          ],
+          [
+            12.4972988,
+            41.8566185
+          ],
+          [
+            12.4973014,
+            41.8566478
+          ],
+          [
+            12.4973042,
+            41.856679
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423089/osm-location-of-torre-delle-vigne",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-08T20:47:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:07:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:07:26Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T17:33:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T17:33:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T17:33:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-17T18:08:04Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423089/roma",
+      "connectionType": "part_of_physical",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-08T20:48:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:08:11Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:08:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:08:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Angeli 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H5YWQXEK",
+          "formattedCitation": "<div class=\"csl-entry\">De Angeli, S. \u201cStudi preliminari su Tor Marancia, 1. Gli scavi ottocenteschi di Luigi Biondi e il tempio di Liber presso la via Ardeatina.\u201d In <i>Daidalos. Studi e ricerche del Dipartimento di scienze del mondo antico, 6.2004</i>, 203\u201328, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-17T18:08:53Z",
+      "associationCertainty": "certain",
+      "title": "Via Ardeatina",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423089/via-ardeatina",
+      "connectionType": "on",
+      "id": "via-ardeatina",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-08T20:49:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:09:03Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:08:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:08:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/587835546",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Angeli 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H5YWQXEK",
+          "formattedCitation": "<div class=\"csl-entry\">De Angeli, S. \u201cStudi preliminari su Tor Marancia, 1. Gli scavi ottocenteschi di Luigi Biondi e il tempio di Liber presso la via Ardeatina.\u201d In <i>Daidalos. Studi e ricerche del Dipartimento di scienze del mondo antico, 6.2004</i>, 203\u201328, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 C2 Tor Marancia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "55-61",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nogara 1907",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IX92ZH7T",
+      "formattedCitation": "<div class=\"csl-entry\">Nogara, Bartolomeo. <i>Le Nozze Aldobrandine: I Paesaggi Con Scene Dell\u2019Odissea, e Le Altre Pitture Murali Antiche Conservate Nella Biblioteca Vaticana e Nei Musei Pontifici, Con Introduzione Del Dottor Bartolomeo Nogara</i>. Milano: U. Hoepli; Basilica di S. Giovanni in Laterano; Biblioteca apostolica vaticana: Museo sacro; Palazzo Laterano (Rome, Italy), 1907.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Tor_Marancia",
+      "citationDetail": "Tor Marancia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Tor Marancia.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/9072466/tor-marancia.html",
+      "citationDetail": "9072466: Tor Marancia",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Rossi and Granelli 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S4V8PX9C",
+      "formattedCitation": "<div class=\"csl-entry\">De Rossi, Gianfranco, and Antongiulio Granelli. \u201cTor Marancia e la via Ardeatina: Ricognizione e lettura del territorio tra \u2018campagna urbana\u2019 ed espansione edilizia.\u201d In <i>Suburbium\u202f: Il suburbio di Roma dalla crisi del sistema delle ville a Gregorio Magno</i>, 331\u201359. Roma: \u00c9cole Fran\u00e7aise de Rome, 2003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Buonocore 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/78NAZML4",
+      "formattedCitation": "<div class=\"csl-entry\">Buonocore, M. \u201cTor Marancia. Analisi Storico-Topografica.\u201d In <i>Ottava Miscellanea Greca e Romana</i>, 351\u2013393, Taf. Rome: Istituto italiano per la storia antica, 1982.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caldelli 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3U33MFKR",
+      "formattedCitation": "<div class=\"csl-entry\">Caldelli, M. L. \u201cStudi Preliminari Su Tor Marancia, 2. Contributi Dell\u2019epigrafia Ad Una Migliore Comprensione Del Complesso Di Tor Marancia.\u201d In <i>Daidalos. Studi e Ricerche Del Dipartimento Di Scienze Del Mondo Antico, 6.2004</i>, 229\u201351, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Angeli 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H5YWQXEK",
+      "formattedCitation": "<div class=\"csl-entry\">De Angeli, S. \u201cStudi preliminari su Tor Marancia, 1. Gli scavi ottocenteschi di Luigi Biondi e il tempio di Liber presso la via Ardeatina.\u201d In <i>Daidalos. Studi e ricerche del Dipartimento di scienze del mondo antico, 6.2004</i>, 203\u201328, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "21122",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "202-204",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Franceschini 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IWATNX33",
+      "formattedCitation": "<div class=\"csl-entry\">De Franceschini, Marina. <i>Ville dell\u2019Agro Romano</i>. Monografie della carta dell\u2019Agro romano 2. Roma: L\u2019Erma di Bretschneider, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3993559",
+      "citationDetail": "Tormarancia (Q3993559)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Praedium Amaranthianus",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://db.edcs.eu/epigr/edcs_id.php?s_sprache=en&p_edcs_id=EDCS-16100461",
+          "citationDetail": "16100461 = CIL 6.10233",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "EDCS",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YG2BW6GH",
+          "formattedCitation": "<div class=\"csl-entry\">Clauss, Manfred, Anne Kolb, Wolfgang A. Slaby, and Barbara Woitas, eds. <i>Epigraphik-Datenbank\u00a0 Clauss / Slaby</i>. Eichst\u00e4tt: Universit\u00e4t Eichst\u00e4tt-Ingolstadt, n.d. http://www.manfredclauss.de/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2018-02-17.5466678058",
+      "end": 300,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-06-06T19:15:18Z",
+      "uri": "https://pleiades.stoa.org/places/423089/name.2018-02-17.5466678058",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Praedium Amaranthianus",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "attested form; EDCS link @thomase",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T19:11:45Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-06T19:15:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-06T19:13:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T15:11:07Z"
+        },
+        {
+          "comment": "Latin name + CIL",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T15:11:01Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:02:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T18:02:44Z"
+        }
+      ]
+    },
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tor Marancia",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "43 C2 Tor Marancia",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tor-marancia",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-06-06T15:09:45Z",
+      "uri": "https://pleiades.stoa.org/places/423089/tor-marancia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Tor Marancia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-06T19:12:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T15:09:56Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T15:09:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T15:09:45Z"
+        }
+      ]
+    }
+  ],
+  "id": "423089",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=villa"
+  ],
+  "title": "Tor Marancia",
+  "provenance": "Barrington Atlas: BAtlas 43 C2 Tor Marancia",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Tor Marancia</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The modern toponym Tor Marancia is claimed to derive from the Praedium Amaranthianus, a villa belonging to the second-century A.D. freedman Amaranthus.",
+  "reprPoint": [
+    12.497344798445184,
+    41.85664660013871
+  ],
+  "placeTypes": [
+    "villa",
+    "fort"
+  ],
+  "bbox": [
+    12.4972988,
+    41.8566142,
+    12.4973908,
+    41.856679
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/587835546"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:34:48Z",
+  "uri": "https://pleiades.stoa.org/places/423089",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q3993559",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-16T02:37:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-27T03:47:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-26T14:45:02Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-20T18:02:54Z"
+    },
+    {
+      "comment": "references + darmc",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-08T20:48:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-17T18:06:34Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-17T17:37:10Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-17T17:33:17Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-16T18:53:16Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:47:00Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:57:27Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:15:44Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:44:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:13:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:39:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:34:48Z"
+    }
+  ]
+}

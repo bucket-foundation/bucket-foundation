@@ -1,0 +1,359 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7713803,
+          43.6831366
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-san-lazzaro",
+      "properties": {
+        "snippet": "Settlement-modern; AD 1900 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/446574720/osm-location-of-san-lazzaro",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of San Lazzaro"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1875976815",
+          "citationDetail": "Node 1875976815",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1875976815",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-san-lazzaro",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location of San Lazzaro",
+      "provenance": "OpenStreetMap (Node 1875976815, version 1, osm:changeset=12807884, 2012-08-21T12:30:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-06-12T14:37:13Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7713803,
+          43.6831366
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/446574720/osm-location-of-san-lazzaro",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-23T18:43:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-06-14T09:57:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:49:14Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T14:37:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T14:37:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T14:37:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-12T14:38:23Z",
+      "associationCertainty": "certain",
+      "title": "Via Flaminia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/446574720/via-flaminia",
+      "connectionType": "on",
+      "id": "via-flaminia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-06-14T09:57:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:49:15Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T14:38:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T14:38:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/856514595",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Migani 1995",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KM4ETBSR",
+          "formattedCitation": "<div class=\"csl-entry\">Migani, Sabrina. \u201cIl \u2018Ponte di Diocleziano\u2019 in localit\u00e0 San Lazzaro di Fossombrone.\u201d In <i>Opere di assetto territoriale ed urbano</i>, edited by Lorenzo Quilici and Stefania Quilici Gigli, 131\u201338. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 1995.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-12T14:38:59Z",
+      "associationCertainty": "certain",
+      "title": "Metaurus (river)",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/446574720/metaurus-river",
+      "connectionType": "on",
+      "id": "metaurus-river",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-06-14T09:57:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:49:15Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T14:39:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T14:38:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413199",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Migani 1995",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KM4ETBSR",
+          "formattedCitation": "<div class=\"csl-entry\">Migani, Sabrina. \u201cIl \u2018Ponte di Diocleziano\u2019 in localit\u00e0 San Lazzaro di Fossombrone.\u201d In <i>Opere di assetto territoriale ed urbano</i>, edited by Lorenzo Quilici and Stefania Quilici Gigli, 131\u201338. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 1995.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Migani 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KM4ETBSR",
+      "formattedCitation": "<div class=\"csl-entry\">Migani, Sabrina. \u201cIl \u2018Ponte di Diocleziano\u2019 in localit\u00e0 San Lazzaro di Fossombrone.\u201d In <i>Opere di assetto territoriale ed urbano</i>, edited by Lorenzo Quilici and Stefania Quilici Gigli, 131\u201338. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/c.html#CIL-11",
+      "formattedCitation": "CIL 11, 6623",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [],
+  "id": "446574720",
+  "subject": [],
+  "title": "Ponte di Diocleziano, San Lazzaro di Fossombrone",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Ponte di Diocleziano\" in the local comune of San Lazzaro di Fossombrone was a Roman bridge along the Via Flaminia in the valley of the Metaurus river. The Roman bridge was completely destroyed during the Second World War.",
+  "reprPoint": [
+    12.7713803,
+    43.6831366
+  ],
+  "placeTypes": [
+    "bridge",
+    "settlement-modern"
+  ],
+  "bbox": [
+    12.7713803,
+    43.6831366,
+    12.7713803,
+    43.6831366
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/856514595",
+    "https://pleiades.stoa.org/places/413199"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-12T14:36:56Z",
+  "uri": "https://pleiades.stoa.org/places/446574720",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-06-14T09:57:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T18:49:14Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T14:37:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T14:36:56Z"
+    }
+  ]
+}

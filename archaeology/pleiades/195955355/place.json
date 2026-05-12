@@ -1,0 +1,392 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.8631132,
+          37.0065779
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-torres-de-alocaz",
+      "properties": {
+        "snippet": "Settlement, Settlement-modern; AD 640 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/195955355/osm-location-of-torres-de-alocaz",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Torres de Alocaz"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1241655376",
+          "citationDetail": "Node 1241655376",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1241655376",
+          "otherIdentifier": "http://www.openstreetmap.org/browse/node/1241655376",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-torres-de-alocaz",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2100,
+      "title": "OSM location of Torres de Alocaz",
+      "provenance": "OpenStreetMap (Node 1241655376, version 2, osm:changeset=26871950, 2014-11-18T19:59:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        "settlement-modern"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-10-24T20:20:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.8631132,
+          37.0065779
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/195955355/osm-location-of-torres-de-alocaz",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2017-09-13T06:01:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2017-09-13T06:00:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:25:28Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:16:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-24T20:22:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-24T20:22:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-24T20:20:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-24T20:20:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Torre_Alocaz",
+      "citationDetail": "Torre Alocaz",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Torre Alocaz.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Aloquaz",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "Herrera, M.\u00aa Teresa, M.\u00aa Nieves S\u00e1nchez, M.\u00aa Estela Gonz\u00e1lez de Fauve y M.\u00aa Purificaci\u00f3n Zab\u00eda. Textos y Concordancias Electr\u00f3nicos de Documentos Castellanos de Alfonso X. Madison: Hispanic Seminary of Medieval Studies, 1999, CD-ROM.",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6PJGZ3HT",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "id": "name.2016-09-22.7046279646",
+      "end": 1453,
+      "contributors": [],
+      "provenance": "Hispanic Seminary of Medieval Studies",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "details": "",
+      "review_state": "published",
+      "description": "Medieval Spanish name of village associated with modern Torres de Alocaz or Torre Alocaz.",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2016-09-22T17:19:00Z",
+      "uri": "https://pleiades.stoa.org/places/195955355/name.2016-09-22.7046279646",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "attested": "Aloquaz",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-13T15:37:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:25:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:24:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:21:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:20:51Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:19:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:18:53Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T14:16:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-24T20:20:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-24T20:19:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-22T17:19:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-22T17:19:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "195955355",
+  "subject": [],
+  "title": "Aloquaz",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Spanish village located in the south of the province of Sevilla, between Sevilla and C\u00e1diz, that belonged to the kingdom of Alfonso X. It is now known as Torres de Alocaz.",
+  "reprPoint": [
+    -5.8631132,
+    37.0065779
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    -5.8631132,
+    37.0065779,
+    -5.8631132,
+    37.0065779
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-10-27T18:32:32Z",
+  "uri": "https://pleiades.stoa.org/places/195955355",
+  "creators": [
+    {
+      "username": "mjredondo",
+      "homepage": null,
+      "name": "Mar\u00eda Jes\u00fas Redondo",
+      "uri": "https://pleiades.stoa.org/author/mjredondo"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Cleaned up extraneous whitespace in description. See https://github.com/isawnyu/pleiades-gazetteer/issues/140.",
+      "modifiedBy": "thomase",
+      "modified": "2017-10-27T18:42:32Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2017-10-27T18:32:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-13T15:37:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-13T15:35:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T14:25:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T14:24:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T14:18:24Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T14:16:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-24T20:18:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-24T20:18:02Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-22T17:18:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-22T17:18:10Z"
+    }
+  ]
+}

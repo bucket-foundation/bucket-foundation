@@ -1,0 +1,810 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            42.7198415,
+            38.8330769
+          ],
+          [
+            42.7180575,
+            38.8332581
+          ],
+          [
+            42.7181849,
+            38.8338537
+          ],
+          [
+            42.7199523,
+            38.8336854
+          ],
+          [
+            42.7198415,
+            38.8330769
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kef-castle",
+      "properties": {
+        "snippet": "Fort; 900 BC - 600 BC",
+        "link": "https://pleiades.stoa.org/places/622564240/osm-location-of-kef-castle",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Kef Castle"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.7191,
+          38.8335
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-kef-kalesi",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/622564240/cigs-location-of-kef-kalesi",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Kef Kalesi"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "urartian-eastern-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/urartian-eastern-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/183026112",
+          "citationDetail": "Way 183026112",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=183026112",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kef-castle",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": -600,
+      "title": "OSM location of Kef Castle",
+      "provenance": "OpenStreetMap (Way 183026112, version 4, osm:changeset=51794008, 2017-09-06T21:34:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-03-23T13:22:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            42.7198415,
+            38.8330769
+          ],
+          [
+            42.7180575,
+            38.8332581
+          ],
+          [
+            42.7181849,
+            38.8338537
+          ],
+          [
+            42.7199523,
+            38.8336854
+          ],
+          [
+            42.7198415,
+            38.8330769
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/622564240/osm-location-of-kef-castle",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-14T21:51:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-23T13:27:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-23T13:24:00Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-23T13:23:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-23T13:22:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-23T13:22:58Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/428815782",
+          "citationDetail": "volume 1, page 582",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Salvini 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+          "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 239-240",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Salvini 2012",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WKUYD6UX",
+          "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo. <i>Corpus dei testi urartei. Volume IV, Volume IV,</i>. Roma; [Paris: CNR, Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del vicino oriente\u202f; [Diff. de Boccard, 2012.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://de.wikipedia.org/wiki/Kef_Kalesi",
+          "citationDetail": "Kef_Kalesi",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (German)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>, Kef_Kalesi.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q15823298",
+          "citationDetail": "Q15823298",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q15823298.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-kef-kalesi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "CIGS location of Kef Kalesi",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2023-05-23T13:19:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.7191,
+          38.8335
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/622564240/cigs-location-of-kef-kalesi",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T20:33:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-23T13:21:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-23T13:19:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-23T13:19:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -600,
+      "description": "",
+      "contributors": [],
+      "created": "2020-02-24T19:54:17Z",
+      "associationCertainty": "certain",
+      "title": "Urartu",
+      "start": -900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/622564240/urartu",
+      "connectionType": "part_of_admin",
+      "id": "urartu",
+      "attestations": [
+        {
+          "timePeriod": "urartian-eastern-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/urartian-eastern-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-14T21:51:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-03-22T19:28:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-02-24T19:57:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-02-24T19:54:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-02-24T19:54:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/214160492",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_admin"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/634686079",
+      "citationDetail": "564",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6F7MNQN9",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo. <i>Corpus dei testi urartei. Volume V, Volume V,</i>. Paris: \u00c9ditions de Boccard, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/174421990",
+      "citationDetail": "E 4 No. 32",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kleiss 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WZTF2D3Q",
+      "formattedCitation": "<div class=\"csl-entry\">Kleiss, Wolfram, and Harald Hauptmann. <i>Topographische Karte von Urar\u1e6du: Verzeichnis der Fundorte und Bibliographie</i>. Berlin: Reimer, 1976.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/Q007103",
+      "citationDetail": "A 12-04 (Q007103)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/urartianrulersandtheirinscriptions/rusasonofsarduriiia10andb10/index.html",
+      "citationDetail": "Rusa, son of Argi\u0161ti II",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Christiansen and Salvini 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Kef_Kalesi",
+      "citationDetail": "Kef Kalesi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/428815782",
+      "citationDetail": "volume 1, page 582",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "pages 239-240",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WKUYD6UX",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo. <i>Corpus dei testi urartei. Volume IV, Volume IV,</i>. Roma; [Paris: CNR, Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del vicino oriente\u202f; [Diff. de Boccard, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q15823298",
+      "citationDetail": "Kef Castle (Q15823298)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "City of the god Haldi in the land Ziuquni",
+      "attestations": [
+        {
+          "timePeriod": "urartian-eastern-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/urartian-eastern-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/ecut/Q007103",
+          "citationDetail": "A 12-04 (CTU A 12-04)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "eCUT",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "city-of-the-god-haldi-in-the-land-ziuquni",
+      "end": -600,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "xur",
+      "created": "2020-02-24T19:55:58Z",
+      "uri": "https://pleiades.stoa.org/places/622564240/city-of-the-god-haldi-in-the-land-ziuquni",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-24T18:58:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T21:44:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T21:44:07Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-23T13:27:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-03-22T19:28:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-03-22T19:25:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-03-22T19:24:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-02-24T19:55:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-02-24T19:55:58Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kef Kalesi",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/428815782",
+          "citationDetail": "volume 1, page 582",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Salvini 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+          "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 239-240",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Salvini 2012",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WKUYD6UX",
+          "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo. <i>Corpus dei testi urartei. Volume IV, Volume IV,</i>. Roma; [Paris: CNR, Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del vicino oriente\u202f; [Diff. de Boccard, 2012.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://de.wikipedia.org/wiki/Kef_Kalesi",
+          "citationDetail": "Kef_Kalesi",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (German)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>, Kef_Kalesi.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q15823298",
+          "citationDetail": "Q15823298",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q15823298.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kef-kalesi-1",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2023-05-23T13:20:12Z",
+      "uri": "https://pleiades.stoa.org/places/622564240/kef-kalesi-1",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "Kef Kalesi",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T20:33:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-23T13:21:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-23T13:20:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-23T13:20:12Z"
+        }
+      ]
+    }
+  ],
+  "id": "622564240",
+  "subject": [],
+  "title": "Kef Kalesi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Kef Kalesi is an Urartian fortress near Adilcevaz in the area of Lake Van in the southeast of Turkey. According to an Urartian inscription of Rusa, son of Argi\u0161ti II (7th century BCE), it was built by this very king. The inscription further mentions the foundation of a new city at this site which Rusa named \"City of the God Haldi in the Land Ziuquni\".",
+  "reprPoint": [
+    42.71905528762937,
+    38.8334836185023
+  ],
+  "placeTypes": [
+    "fort-2",
+    "fort"
+  ],
+  "bbox": [
+    42.7180575,
+    38.8330769,
+    42.7199523,
+    38.8338537
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/214160492"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-02-24T19:39:48Z",
+  "uri": "https://pleiades.stoa.org/places/622564240",
+  "creators": [
+    {
+      "username": "bchristiansen2",
+      "homepage": null,
+      "name": "Birgit Christiansen ",
+      "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "place type -> fort",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-23T20:33:10Z"
+    },
+    {
+      "comment": "added references provided by cjohansson",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-23T20:32:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-14T21:51:58Z"
+    },
+    {
+      "comment": "citation types",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-14T21:51:13Z"
+    },
+    {
+      "comment": "Zotero fetch",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-23T13:26:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-03-22T19:28:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-03-22T19:27:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-03-22T19:24:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-02-24T20:04:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-02-24T20:04:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-02-24T19:40:42Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-02-24T19:39:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-02-24T19:39:48Z"
+    }
+  ]
+}

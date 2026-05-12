@@ -1,0 +1,14 @@
+# Banake
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/897727
+- **ID**: 897727
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Banake
+
+## Description
+
+An ancient place, cited: BAtlas 91 unlocated Banake

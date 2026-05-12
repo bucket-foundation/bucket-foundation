@@ -1,0 +1,266 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.7061308500441,
+          41.11400312133659
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-point-location",
+      "properties": {
+        "snippet": "Bath; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/501362/batlas-point-location",
+        "description": "Point digitized using QGIS from raster of BAtlas Map 51, georegistered to original projection by the Ancient World Mapping Center in 2002. Dates after BAtlDir.",
+        "location_precision": "precise",
+        "title": "BAtlas Point Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "50 F2 Arriana",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 773 see \"Arriana\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "batlas-point-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 640,
+      "title": "BAtlas Point Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Point digitized using QGIS from raster of BAtlas Map 51, georegistered to original projection by the Ancient World Mapping Center in 2002. Dates after BAtlDir.",
+      "created": "2025-03-30T20:16:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.7061308500441,
+          41.11400312133659
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/501362/batlas-point-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-30T20:58:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-30T20:18:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-30T20:16:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-30T20:16:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "51 F2 Arriana",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "181",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIB 6: Thrakien",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQI2G5PR",
+      "formattedCitation": "<div class=\"csl-entry\">Soustal, Peter. <i>Thrakien</i>. Tabula Imperii Byzantini 6. Vienna: Verlag der \u00f6sterreichischen Akademie der Wissenschaften, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/issue/bch_0007-4217_1978_num_102_2",
+      "citationDetail": "page 724 see \"Arriana\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Touchais 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/63UKVS5I",
+      "formattedCitation": "<div class=\"csl-entry\">Touchais, Gilles. \u201cChronique Des Fouilles et D\u00e9couvertes Arch\u00e9ologiques En Gr\u00e8ce En 1977.\u201d <i>Bulletin de Correspondance Hell\u00e9nique</i> 102, no. 2 (1978): 641\u2013770. https://www.persee.fr/issue/bch_0007-4217_1978_num_102_2.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "501362",
+  "subject": [],
+  "title": "Arriana",
+  "provenance": "Barrington Atlas: BAtlas 51 F2 Arriana",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Arriana</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman-era bathing establishment was identified at modern Arriana in Greece during the 1970s. The facility dates to the second century CE and was destroyed in the third century. Subsequently, the site served as a cemetery through the fourth century.",
+  "reprPoint": [
+    25.7061308500441,
+    41.11400312133659
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    25.7061308500441,
+    41.11400312133659,
+    25.7061308500441,
+    41.11400312133659
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-30T20:25:50Z",
+  "uri": "https://pleiades.stoa.org/places/501362",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.N. Borza"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Touchais 1978; summary after Touchais; removed erroneous country assignment inherited from BAtlDir @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-30T20:58:53Z"
+    },
+    {
+      "comment": "place type = bath/spa per BAtlas; cleaned up references",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-30T20:20:46Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-30T20:18:51Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:40:40Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:05:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-06-24T13:29:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-24T10:55:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-24T10:40:07Z"
+    }
+  ]
+}

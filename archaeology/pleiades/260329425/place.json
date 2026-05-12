@@ -1,0 +1,537 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4899552,
+          40.7483283
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-porta-di-stabia",
+      "properties": {
+        "snippet": "City-gate; 100 BC - AD 99",
+        "link": "https://pleiades.stoa.org/places/260329425/osm-location-of-porta-di-stabia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Porta di Stabia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/305070757",
+          "citationDetail": "Node 305070757",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=305070757",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-porta-di-stabia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "end": 99,
+      "title": "OSM location of Porta di Stabia",
+      "provenance": "OpenStreetMap (Node 305070757, version 12, osm:changeset=154029892, 2024-07-16T19:18:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-gate"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-07-16T19:55:45Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4899552,
+          40.7483283
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/260329425/osm-location-of-porta-di-stabia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-17T10:37:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-16T19:56:22Z"
+        },
+        {
+          "comment": "supersedes previously published location whose underlying OSM data is now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-16T19:56:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-16T19:55:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-16T19:55:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:57:39Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/260329425/433032",
+      "connectionType": "at",
+      "id": "433032",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-01T00:40:48Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-05-31T21:49:09Z",
+      "associationCertainty": "certain",
+      "title": "City wall of Pompeii",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/260329425/city-wall-of-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "city-wall-of-pompeii",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-09T12:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-07T16:08:03Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-07T16:07:52Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-31T21:49:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-31T21:49:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/824486497",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://pompeiiinpictures.com/pompeiiinpictures/Plans/plan%20tombs%20stabg.htm",
+          "citationDetail": "Pompeii Necropoli di Porta Stabia. Porta di Stabia or Stabian Gate Tombs",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "PompeiiinPictures",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+          "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-07-16T19:59:38Z",
+      "associationCertainty": "certain",
+      "title": "Regio VIII, Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/260329425/regio-viii-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-viii-pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-16T20:29:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-15T13:07:49Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-15T13:07:44Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-16T19:59:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-16T19:59:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/538911200",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ellis et al. 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2HQR932Q",
+          "formattedCitation": "<div class=\"csl-entry\">Ellis, Steven J. R., Allison L. C. Emmerson, and Kevin D. Dicus, eds. <i>The Porta Stabia Neighborhood at Pompeii. Volume I, Structure, Stratigraphy, and Space</i>. Oxford: Oxford University Press, Incorporated, 2023. https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=7269081.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://classics.uc.edu/pompeii/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Pompeii Archaeological Research Project: Porta Stabia (PARP:PS)",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/record_view.php?fst_cd=AIAC_356",
+      "citationDetail": "Regio VIII.7.1-15",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FastiOnline (Excavation)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5MUH5XWP",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC), and Center for the Study of Ancient Italy of the University of Texas at Austin (CSAI). <i>FastiOnline (Excavation)</i>, 2004. http://www.fastionline.org/excavation/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ellis 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PQUY752Y",
+      "formattedCitation": "<div class=\"csl-entry\">Ellis, Steven J. R. <i>The Making of Pompeii: Studies in the History and Urban Development of an Ancient Town</i>. Portsmouth, R.I.: Journal of Roman Archaeology, 2011.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pompeiiinpictures.com/pompeiiinpictures/Gates/Gate%20Stabian.htm",
+      "citationDetail": "Pompeii. Porta di Stabia or Stabian Gate",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/pompeii/the-city-gates/stabia-gate",
+      "citationDetail": "Stabia Gate",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AD79",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+      "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Regio_VIII_degli_scavi_archeologici_di_Pompei",
+      "citationDetail": "Regio VIII degli scavi archeologici di Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Regio VIII degli scavi archeologici di Pompei.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/docs/FOLDER-it-2015-328.pdf",
+      "citationDetail": "it-2015-328: Ellis et al. 2015",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FOLD&R",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4672X3J",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC). \u201cFastiOnlineDocuments &amp; Research.\u201d Accessed December 1, 2023. https://www.fastionline.org/folder.php?view=home.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=7269081",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ellis et al. 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2HQR932Q",
+      "formattedCitation": "<div class=\"csl-entry\">Ellis, Steven J. R., Allison L. C. Emmerson, and Kevin D. Dicus, eds. <i>The Porta Stabia Neighborhood at Pompeii. Volume I, Structure, Stratigraphy, and Space</i>. Oxford: Oxford University Press, Incorporated, 2023. https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=7269081.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q125810167",
+      "citationDetail": "Porta di Stabia (Q125810167)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "260329425",
+  "subject": [],
+  "title": "Stabian Gate",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman city gate at the southern terminus of Strada Stabiana in Pompeii.",
+  "reprPoint": [
+    14.4899552,
+    40.7483283
+  ],
+  "placeTypes": [
+    "city-gate"
+  ],
+  "bbox": [
+    14.4899552,
+    40.7483283,
+    14.4899552,
+    40.7483283
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/824486497",
+    "https://pleiades.stoa.org/places/538911200",
+    "https://pleiades.stoa.org/places/71552717",
+    "https://pleiades.stoa.org/places/495101026",
+    "https://pleiades.stoa.org/places/358482340"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-06-02T12:45:49Z",
+  "uri": "https://pleiades.stoa.org/places/260329425",
+  "creators": [
+    {
+      "username": "avarveri",
+      "homepage": null,
+      "name": "Athanasia Varveri",
+      "uri": "https://pleiades.stoa.org/author/avarveri"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-16T19:59:07Z"
+    },
+    {
+      "comment": "add Ellis et al. 2023",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-01T15:14:17Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-11T16:16:15Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-12-23T13:53:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-12T22:11:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-02-20T14:17:16Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-30T19:53:12Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-24T16:02:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "avarveri",
+      "modified": "2015-06-02T12:45:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "avarveri",
+      "modified": "2015-06-02T12:45:49Z"
+    }
+  ]
+}

@@ -1,0 +1,517 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2085466,
+            29.7910452
+          ],
+          [
+            31.2085466,
+            29.7894262
+          ],
+          [
+            31.2103897,
+            29.7894262
+          ],
+          [
+            31.2103897,
+            29.7910452
+          ],
+          [
+            31.2085466,
+            29.7910452
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-bent-pyramid",
+      "properties": {
+        "snippet": "Pyramid; 2670 BC - 2168 BC",
+        "link": "https://pleiades.stoa.org/places/412852518/osm-location-bent-pyramid",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Bent Pyramid"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "nsouchon",
+      "homepage": null,
+      "name": "Nicolas Souchon",
+      "uri": "https://pleiades.stoa.org/author/nsouchon"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/39918834",
+          "citationDetail": "Way 39918834",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=39918834",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-bent-pyramid",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "end": -2168,
+      "title": "OSM location: Bent Pyramid",
+      "provenance": "OpenStreetMap (Way 39918834, version 14, osm:changeset=140307414, 2023-08-24T07:35:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2670,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "pyramid"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-05-27T14:00:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2085466,
+            29.7910452
+          ],
+          [
+            31.2085466,
+            29.7894262
+          ],
+          [
+            31.2103897,
+            29.7894262
+          ],
+          [
+            31.2103897,
+            29.7910452
+          ],
+          [
+            31.2085466,
+            29.7910452
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/412852518/osm-location-bent-pyramid",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-27T14:48:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-27T14:01:59Z"
+        },
+        {
+          "comment": "import new location with full OSM way",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-27T14:01:12Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-27T14:00:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-27T14:00:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-17T15:39:56Z",
+      "associationCertainty": "certain",
+      "title": "Takyris",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/412852518/9963484336",
+      "connectionType": "at",
+      "id": "9963484336",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-27T14:06:25Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-17T15:39:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-17T15:39:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-17T15:39:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/737063",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://fr.wikipedia.org/wiki/Pyramide_rhombo%C3%AFdale",
+          "citationDetail": "Pyramide rhombo\u00efdale",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (French)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Bent_Pyramid",
+      "citationDetail": "Bent Pyramid",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Bent Pyramid.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q459608",
+      "citationDetail": "Bent Pyramid (Q459608)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.griffith.ox.ac.uk/topbib/pdf/pm3-2.pdf",
+      "citationDetail": "pp. 881-882",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Porter 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z94SZ7MM",
+      "formattedCitation": "<div class=\"csl-entry\">Porter, Bertha, Rosalind Louisa Beaufort Moss, Ethel W. Burney, and Jaromir M\u00e1lek. <i>Topographical Bibliography of Ancient Egyptian Hieroglyphic Texts, Reliefs, and Paintings. III. Memphis. Part 2. \u1e62aqq\u00e2ra to Dahsh\u00fbr</i>. 2nd ed. 1931. Reprint, Oxford, 1981. http://www.griffith.ox.ac.uk/topbib/pdf/pm3-2.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Pyramide rhombo\u00efdale",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://fr.wikipedia.org/wiki/Pyramide_rhombo%C3%AFdale",
+          "citationDetail": "Pyramide rhombo\u00efdale",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (French)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "pyramide-rhomboidale",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-05-27T13:50:45Z",
+      "uri": "https://pleiades.stoa.org/places/412852518/pyramide-rhomboidale",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Pyramide rhombo\u00efdale",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-27T14:48:48Z"
+        },
+        {
+          "comment": "add Wikipedia (French) Pyramide rhombo\u00efdale as data source",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-27T14:05:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-05-27T13:53:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-05-27T13:50:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-05-27T13:50:45Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bent Pyramid",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q459608",
+          "citationDetail": "Bent Pyramid (Q459608)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bent-pyramid",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-05-27T13:51:28Z",
+      "uri": "https://pleiades.stoa.org/places/412852518/bent-pyramid",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Bent Pyramid",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-27T14:48:39Z"
+        },
+        {
+          "comment": "add wikidata Bent Pyramid (Q459608) as data source",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-27T14:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-05-27T13:53:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-05-27T13:51:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-05-27T13:51:28Z"
+        }
+      ]
+    }
+  ],
+  "id": "412852518",
+  "subject": [
+    "pyramid",
+    "extant remains"
+  ],
+  "title": "Bent Pyramid",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A pyramid built by Pharaoh Sneferu (ca. 2600 BC).",
+  "reprPoint": [
+    31.20946815,
+    29.7902357
+  ],
+  "placeTypes": [
+    "tomb",
+    "pyramid"
+  ],
+  "bbox": [
+    31.2085466,
+    29.7894262,
+    31.2103897,
+    29.7910452
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/737063"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-05-28T07:24:12Z",
+  "uri": "https://pleiades.stoa.org/places/412852518",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Porter reference by @nsouchon",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-28T13:58:34Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-05-28T07:24:11Z"
+    },
+    {
+      "comment": "add wikidata Q459608",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-27T14:02:54Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-17T15:40:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-17T15:40:52Z"
+    },
+    {
+      "comment": "promoted",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-17T15:40:34Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-17T15:39:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-17T15:39:37Z"
+    }
+  ]
+}

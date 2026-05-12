@@ -1,0 +1,367 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.7056854,
+          37.8096509
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tsoungiza-archaia-nemea",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/643508013/osm-location-of-tsoungiza-archaia-nemea",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tsoungiza (Archaia Nemea)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/12585471496",
+          "citationDetail": "Node 12585471496",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=12585471496",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tsoungiza-archaia-nemea",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Tsoungiza (Archaia Nemea)",
+      "provenance": "OpenStreetMap (Node 12585471496, version 1, osm:changeset=162473645, 2025-02-13T16:44:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-02-13T16:46:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.7056854,
+          37.8096509
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/643508013/osm-location-of-tsoungiza-archaia-nemea",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-14T15:41:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:12:38Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-13T16:46:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-13T16:46:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-13T16:46:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-02-14T02:16:34Z",
+      "associationCertainty": "certain",
+      "title": "Nemea",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/643508013/3944134380",
+      "connectionType": "at",
+      "id": "3944134380",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T02:16:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T02:16:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T02:16:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570504",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cherry and Davis 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BYU7NKMP",
+      "formattedCitation": "<div class=\"csl-entry\">Cherry, John F., and Jack L. Davis. \u201cUnder the Sceptre of Agamemnon. The View from the Hinterlands of Mycenae.\u201d In <i>Urbanism in the Aegean Bronze Age</i>, edited by Keith Branigan, 141\u201359. Sheffield Studies in Aegean Archaeology 4. Sheffield: Sheffield Academic Press, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/44460/",
+      "citationDetail": "44460: Tsoungiza (Archaia Nemea)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/147754",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wright 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D9Y6FLTW",
+      "formattedCitation": "<div class=\"csl-entry\">Wright, James C. \u201cExcavations at Tsoungiza (Archaia Nemea).\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 51, no. 4 (1982): 375\u201397. https://doi.org/10.2307/147754.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2972/j.ctt2jbhvm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pullen 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WIRBTW4J",
+      "formattedCitation": "<div class=\"csl-entry\">PULLEN, DANIEL J., Susan E. Allen, Paul Halstead, Julie M. Hansen, Anna Karabatsoli, Maria Kayafa, Kathleen Krattenmaker, Noel Gale, and Zofia Stos-gale. <i>The Early Bronze Age Village on Tsoungiza Hill</i>. Vol. 1. The American School of Classical Studies at Athens, 2011. https://www.jstor.org/stable/10.2972/j.ctt2jbhvm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q132303437",
+      "citationDetail": "Tsoungiza (Archaia Nemea) (Q132303437)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tsoungiza Hill",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2972/j.ctt2jbhvm",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pullen 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WIRBTW4J",
+          "formattedCitation": "<div class=\"csl-entry\">PULLEN, DANIEL J., Susan E. Allen, Paul Halstead, Julie M. Hansen, Anna Karabatsoli, Maria Kayafa, Kathleen Krattenmaker, Noel Gale, and Zofia Stos-gale. <i>The Early Bronze Age Village on Tsoungiza Hill</i>. Vol. 1. The American School of Classical Studies at Athens, 2011. https://www.jstor.org/stable/10.2972/j.ctt2jbhvm.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tsoungiza-hill",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-02-14T03:13:25Z",
+      "uri": "https://pleiades.stoa.org/places/643508013/tsoungiza-hill",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Tsoungiza Hill",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-14T15:41:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:13:30Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:13:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:13:25Z"
+        }
+      ]
+    }
+  ],
+  "id": "643508013",
+  "subject": [],
+  "title": "Tsoungiza (Archaia Nemea)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The archaeological site of Tsoungiza shows evidence of human activity since the Early Neolithic period. Modern excavations began under Carl Blegen in 1924.",
+  "reprPoint": [
+    22.7056854,
+    37.8096509
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    22.7056854,
+    37.8096509,
+    22.7056854,
+    37.8096509
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570504"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-14T02:16:32Z",
+  "uri": "https://pleiades.stoa.org/places/643508013",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-14T15:41:14Z"
+    },
+    {
+      "comment": "wikidata Q132303437",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T03:14:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T03:12:38Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T03:11:38Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T02:16:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T02:16:32Z"
+    }
+  ]
+}

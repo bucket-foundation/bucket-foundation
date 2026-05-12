@@ -1,0 +1,581 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.973967,
+          31.435273
+        ]
+      },
+      "type": "Feature",
+      "id": "representative-centerpoint-of-sumer",
+      "properties": {
+        "snippet": "Region; 3000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/202833934/representative-centerpoint-of-sumer",
+        "description": "Estimated, representative centerpoint based on historical reconstructions of ancient Sumer and published TAVO maps.",
+        "location_precision": "precise",
+        "title": "Representative centerpoint of Sumer"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RGTC 1",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9R2LKDZM",
+          "formattedCitation": "<div class=\"csl-entry\">Edzard, Dietz Otto, Gertrud Farber, Edmond Sollberger, and Sonderforschungsbereich 19 \u201cT\u00fcbinger Atlas des Vorderen Orients.\u201d <i>Die Orts- Und Gew\u00e4ssernamen Der Pr\u00e4sargonischen Und Sargonischen Zeit</i>. R\u00e9pertoire G\u00e9ographique Des Textes Cun\u00e9iformes 1. Wiesbaden: Ludwig Reichert, 1977.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RGTC 2",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D984RW9Y",
+          "formattedCitation": "<div class=\"csl-entry\">Edzard, Dietz Otto, and Gertrud Farber. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes. 2, 2,</i>. Wiesbaden: L. Reichert, 1974.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "representative-centerpoint-of-sumer",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/region"
+      ],
+      "end": -540,
+      "title": "Representative centerpoint of Sumer",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/region"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 500.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-500m-horizontal-accuracy",
+      "featureType": [
+        "region"
+      ],
+      "description": "Estimated, representative centerpoint based on historical reconstructions of ancient Sumer and published TAVO maps.",
+      "created": "2018-01-11T13:06:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.973967,
+          31.435273
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/202833934/representative-centerpoint-of-sumer",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added PAA",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-13T21:24:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-29T17:45:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T07:11:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T07:08:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T13:06:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T13:06:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/310661280",
+      "citationDetail": "228",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Groneberg 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IKZ2AXKB",
+      "formattedCitation": "<div class=\"csl-entry\">Groneberg, Brigitte. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 3, 3,</i>. Vol. 7. T\u00fcbinger Atlas des Vorderen Orients / Beihefte, B. Wiesbaden: Reichert, 1980. http://www.worldcat.org/oclc/310661280.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "296-297",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zadok 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B49BJP53",
+      "formattedCitation": "<div class=\"csl-entry\">Zadok, Ran. <i>Geographical Names According to New- and Late-Babylonian Texts</i>. Beihefte Zum T\u00fcbinger Atlas Des Vorderen Orients, Geisteswissenschaften, Nr. 7. Wiesbaden: L. Reichert, 1985.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q35355",
+      "citationDetail": "Sumer (Q35355)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sumer",
+      "citationDetail": "Sumer",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "\u0160umeru",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "296-297",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zadok 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B49BJP53",
+          "formattedCitation": "<div class=\"csl-entry\">Zadok, Ran. <i>Geographical Names According to New- and Late-Babylonian Texts</i>. Beihefte Zum T\u00fcbinger Atlas Des Vorderen Orients, Geisteswissenschaften, Nr. 7. Wiesbaden: L. Reichert, 1985.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-11.9669764732",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-01-11T12:20:04Z",
+      "uri": "https://pleiades.stoa.org/places/202833934/name.2018-01-11.9669764732",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-29T17:45:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T07:11:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T07:10:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T12:20:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T12:20:04Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "\u0160umerum",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/310661280",
+          "citationDetail": "228",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Groneberg 1980",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IKZ2AXKB",
+          "formattedCitation": "<div class=\"csl-entry\">Groneberg, Brigitte. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 3, 3,</i>. Vol. 7. T\u00fcbinger Atlas des Vorderen Orients / Beihefte, B. Wiesbaden: Reichert, 1980. http://www.worldcat.org/oclc/310661280.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-11.2149913708",
+      "end": -1600,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-01-11T12:21:37Z",
+      "uri": "https://pleiades.stoa.org/places/202833934/name.2018-01-11.2149913708",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-29T17:45:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T07:11:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T12:21:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T12:21:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kiengir",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/310661280",
+          "citationDetail": "296",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Groneberg 1980",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IKZ2AXKB",
+          "formattedCitation": "<div class=\"csl-entry\">Groneberg, Brigitte. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 3, 3,</i>. Vol. 7. T\u00fcbinger Atlas des Vorderen Orients / Beihefte, B. Wiesbaden: Reichert, 1980. http://www.worldcat.org/oclc/310661280.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-11.3106097009",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2018-01-11T12:24:03Z",
+      "uri": "https://pleiades.stoa.org/places/202833934/name.2018-01-11.3106097009",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-29T17:45:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T07:11:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-29T07:09:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T12:24:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-11T12:24:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "202833934",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Sumer",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/region"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Sumer (Akkadian \u0160umeru; Sumerian Kiengir) is the name of a historical region of southern Mesopotamia, now modern-day southern Iraq. It is home to one of the world\u2019s earliest civilizations and one of the places where writing was first developed. Eridu, Girsu, Lagash, Shuruppak, Umma, Ur, and Uruk are among its most well-known urban centers.",
+  "reprPoint": [
+    45.973967,
+    31.435273
+  ],
+  "placeTypes": [
+    "region"
+  ],
+  "bbox": [
+    45.973967,
+    31.435273,
+    45.973967,
+    31.435273
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/921099766",
+    "https://pleiades.stoa.org/places/912855",
+    "https://pleiades.stoa.org/places/326150788",
+    "https://pleiades.stoa.org/places/935615276",
+    "https://pleiades.stoa.org/places/44626252",
+    "https://pleiades.stoa.org/places/912845",
+    "https://pleiades.stoa.org/places/959120263",
+    "https://pleiades.stoa.org/places/912986",
+    "https://pleiades.stoa.org/places/912985"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-11T12:13:55Z",
+  "uri": "https://pleiades.stoa.org/places/202833934",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T02:09:13Z"
+    },
+    {
+      "comment": "ctype",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-30T21:42:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-29T17:45:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-29T07:11:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-29T07:04:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-29T07:04:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-12T07:49:54Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-11T12:13:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-11T12:13:55Z"
+    }
+  ]
+}

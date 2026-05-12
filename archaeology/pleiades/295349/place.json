@@ -1,0 +1,233 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.116589,
+          36.367032
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Fortified-settlement; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/295349/imagery-location",
+        "description": "Imagery location after description in Boutarene 2017.",
+        "location_precision": "precise",
+        "title": "Imagery Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "end": 300,
+      "title": "Imagery Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "fortified-settlement"
+      ],
+      "description": "Imagery location after description in Boutarene 2017.",
+      "created": "2022-07-20T18:13:01Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.116589,
+          36.367032
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/295349/imagery-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-20T19:51:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-20T18:22:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-20T18:13:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-20T18:13:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "30 H4 Tachachit",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "bibliotheque-numerique.inha.fr/idviewer/21113/156",
+      "citationDetail": "15.27",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AAA",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4TV4GA6X",
+      "formattedCitation": "<div class=\"csl-entry\">Gsell, S. <i>Atlas Arch\u00e9ologique de l\u2019Alg\u00e9rie</i>. Algiers, Paris: Gouverment G\u00e9n\u00e9ral de l\u2019Alg\u00e9rie; Adolphe Jourdan; Fontemoing et Co., 1911. http://bibliotheque-numerique.inha.fr/viewer/21113/?#page=1&amp;viewer=picture.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ummto.dz/dspace/handle/ummto/4275",
+      "citationDetail": "pages 59-61",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Boutarene 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SX3T6QFK",
+      "formattedCitation": "<div class=\"csl-entry\">Boutarene, Tassadit. \u201cL\u2019inscription sur la liste d\u2019inventaire suppl\u00e9mentaire pour la sauvegarde du patrimoine culturel, cas de la wilaya de Bouira.\u201d M\u00e9moire de Fin d\u2019Etude de MASTER II en Architecture, Universite Mouloud Mammeri de Tizi-Ouzou, 2017. https://www.ummto.dz/dspace/handle/ummto/4275.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "295349",
+  "subject": [],
+  "title": "Tachachit Roman Site",
+  "provenance": "Barrington Atlas: BAtlas 30 H4 Tachachit",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Tachachit</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A small fortified hilltop settlement located on private land in the modern Algerian village of \"Cr\u00e8te Rouge\" at Tachachit, which is approximately 8km north of El Adjiba. Noted already by Gsell for AAA, a 2012 cultural inventory notes visible remnants of walls, roof tiles, drainage conduit, a cistern, and a polychrome opus-tesselatum mosaic.",
+  "reprPoint": [
+    4.116589,
+    36.367032
+  ],
+  "placeTypes": [
+    "fortified-settlement"
+  ],
+  "bbox": [
+    4.116589,
+    36.367032,
+    4.116589,
+    36.367032
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-20T18:05:34Z",
+  "uri": "https://pleiades.stoa.org/places/295349",
+  "creators": [
+    {
+      "username": null,
+      "name": "T.W. Potter"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title; summary; added Boutarene 2017; cleaned up references; updated Locations",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-20T19:51:40Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:02:04Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:26:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-25T16:11:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-24T23:23:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-24T21:02:23Z"
+    }
+  ]
+}

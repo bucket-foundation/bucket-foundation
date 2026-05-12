@@ -1,0 +1,242 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.983592,
+          36.989634
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/456257985/imagery-location",
+        "description": "Location determined in Google Earth",
+        "location_precision": "precise",
+        "title": "Imagery Location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "imagery-location",
+      "featureTypeURI": [],
+      "end": null,
+      "title": "Imagery Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "Location determined in Google Earth",
+      "created": "2025-08-28T18:01:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.983592,
+          36.989634
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/456257985/imagery-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T18:02:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T18:02:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T18:01:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T18:01:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-28T18:02:59Z",
+      "associationCertainty": "certain",
+      "title": "Sillyon",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/456257985/sillyon",
+      "connectionType": "at",
+      "id": "sillyon",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-29T02:46:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T18:03:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T18:03:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T18:02:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/639109",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "48-77",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Saltuk 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3QJL2AQX",
+      "formattedCitation": "<div class=\"csl-entry\">Saltuk, Secda. <i>Antik stadyumlar</i>. Sirkeci, \u0130stanbul: \u0130nk\u0131l\u00e2p Kitabevi, 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.anatolianarchaeology.net/the-massive-stadium-of-sillyon-ancient-city-is-being-uncovered/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Loral 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U9GFX9CW",
+      "formattedCitation": "<div class=\"csl-entry\">Loral, Andrew. \u201cThe Massive Stadium of Sillyon Ancient City Is Being Uncovered.\u201d <i>Anatolian Archaeology</i> (blog), April 26, 2024. https://www.anatolianarchaeology.net/the-massive-stadium-of-sillyon-ancient-city-is-being-uncovered/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "456257985",
+  "subject": [],
+  "title": "Stadium (Sillyon)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A massive Roman-era stadium at ancient Sillyon (modern Asar K\u00f6y in Turkey's Antalya province), estimated to have been able to accommodate perhaps as many as 10,000 spectators.",
+  "reprPoint": [
+    30.983592,
+    36.989634
+  ],
+  "placeTypes": [
+    "stadion"
+  ],
+  "bbox": [
+    30.983592,
+    36.989634,
+    30.983592,
+    36.989634
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/639109"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-28T17:48:07Z",
+  "uri": "https://pleiades.stoa.org/places/456257985",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-28T18:05:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-28T18:02:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-28T18:02:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-28T18:00:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-28T17:56:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-28T17:48:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-28T17:48:07Z"
+    }
+  ]
+}

@@ -1,0 +1,456 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.4392047,
+            36.9161537
+          ],
+          [
+            -4.4392189,
+            36.9163884
+          ],
+          [
+            -4.4391999,
+            36.9164547
+          ],
+          [
+            -4.4391194,
+            36.9165077
+          ],
+          [
+            -4.4390271,
+            36.916538
+          ],
+          [
+            -4.4389182,
+            36.9165418
+          ],
+          [
+            -4.4388093,
+            36.9165039
+          ],
+          [
+            -4.4387406,
+            36.9164585
+          ],
+          [
+            -4.4387027,
+            36.9163998
+          ],
+          [
+            -4.4387027,
+            36.9163335
+          ],
+          [
+            -4.4387406,
+            36.9162181
+          ],
+          [
+            -4.4388211,
+            36.9160988
+          ],
+          [
+            -4.4388732,
+            36.9160553
+          ],
+          [
+            -4.4389513,
+            36.9160326
+          ],
+          [
+            -4.4390366,
+            36.916025
+          ],
+          [
+            -4.4390981,
+            36.9160363
+          ],
+          [
+            -4.4391431,
+            36.9160496
+          ],
+          [
+            -4.4391881,
+            36.9161007
+          ],
+          [
+            -4.4392047,
+            36.9161537
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana-de-cortijo-robledo",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/413107853/osm-location-of-villa-romana-de-cortijo-robledo",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Romana de Cortijo Robledo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/468315382",
+          "citationDetail": "Way 468315382",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=468315382",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana-de-cortijo-robledo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa Romana de Cortijo Robledo",
+      "provenance": "OpenStreetMap (Way 468315382, version 1, osm:changeset=45429966, 2017-01-24T11:13:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-06-16T15:25:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.4392047,
+            36.9161537
+          ],
+          [
+            -4.4392189,
+            36.9163884
+          ],
+          [
+            -4.4391999,
+            36.9164547
+          ],
+          [
+            -4.4391194,
+            36.9165077
+          ],
+          [
+            -4.4390271,
+            36.916538
+          ],
+          [
+            -4.4389182,
+            36.9165418
+          ],
+          [
+            -4.4388093,
+            36.9165039
+          ],
+          [
+            -4.4387406,
+            36.9164585
+          ],
+          [
+            -4.4387027,
+            36.9163998
+          ],
+          [
+            -4.4387027,
+            36.9163335
+          ],
+          [
+            -4.4387406,
+            36.9162181
+          ],
+          [
+            -4.4388211,
+            36.9160988
+          ],
+          [
+            -4.4388732,
+            36.9160553
+          ],
+          [
+            -4.4389513,
+            36.9160326
+          ],
+          [
+            -4.4390366,
+            36.916025
+          ],
+          [
+            -4.4390981,
+            36.9160363
+          ],
+          [
+            -4.4391431,
+            36.9160496
+          ],
+          [
+            -4.4391881,
+            36.9161007
+          ],
+          [
+            -4.4392047,
+            36.9161537
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/413107853/osm-location-of-villa-romana-de-cortijo-robledo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-16T21:05:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T15:29:49Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T15:25:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T15:25:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T15:25:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q105217577",
+      "citationDetail": "Q105217577: Roman villa of Cortijo Robledo",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Villa_romana_de_Cortijo_Robledo",
+      "citationDetail": "Villa romana de Cortijo Robledo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dialnet.unirioja.es/servlet/articulo?codigo=4941309",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rold\u00e1n 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2UY92FCN",
+      "formattedCitation": "<div class=\"csl-entry\">Rold\u00e1n, M. <sup>a</sup> Isabel Rodr\u00edguez. \u201cLa villa romana de Cortijo Robledo, Antequera (M\u00e1laga).\u201d <i>Mainake</i>, no. 34 (2013): 45\u201354. https://dialnet.unirioja.es/servlet/articulo?codigo=4941309.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa romana de Cortijo Robledo",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://es.wikipedia.org/wiki/Villa_romana_de_Cortijo_Robledo",
+          "citationDetail": "Villa romana de Cortijo Robledo",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Spanish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "villa-romana-de-cortijo-robledo",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2021-06-16T19:00:48Z",
+      "uri": "https://pleiades.stoa.org/places/413107853/villa-romana-de-cortijo-robledo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa romana de Cortijo Robledo",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-16T21:05:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T19:02:36Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T19:00:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T19:00:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "413107853",
+  "subject": [],
+  "title": "Roman villa of Cortijo Robledo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa rustica dated between the first and fifth centuries. The site occupies a low hill located to the south of Cerro de Robledo, near the Roman settlement of Aratispi. Archaeological fieldwork has demonstrated that the site was involved in the production of olive oil until the later Roman period.",
+  "reprPoint": [
+    -4.438975526512188,
+    36.916290790424085
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -4.4392189,
+    36.916025,
+    -4.4387027,
+    36.9165418
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-06-16T15:24:47Z",
+  "uri": "https://pleiades.stoa.org/places/413107853",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-16T21:05:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T19:05:02Z"
+    },
+    {
+      "comment": "ref. added",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T19:02:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T15:29:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T15:29:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T15:27:52Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T15:24:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T15:24:47Z"
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.3111671,
+            41.012152
+          ],
+          [
+            24.3111775,
+            41.012119
+          ],
+          [
+            24.311214,
+            41.0121255
+          ],
+          [
+            24.3112036,
+            41.0121586
+          ],
+          [
+            24.3111671,
+            41.012152
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-dikili-tash-caius-vibius-quartus",
+      "properties": {
+        "snippet": "Monument; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/952959148/osm-location-of-dikili-tash-caius-vibius-quartus",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Dikili Tash Caius Vibius Quartus Monument"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/882373891",
+          "citationDetail": "Way 882373891",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=882373891",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-dikili-tash-caius-vibius-quartus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 300,
+      "title": "OSM location of Dikili Tash Caius Vibius Quartus Monument",
+      "provenance": "OpenStreetMap (Way 882373891, version 1, osm:changeset=95494944, 2020-12-08T14:52:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-12-08T14:54:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.3111671,
+            41.012152
+          ],
+          [
+            24.3111775,
+            41.012119
+          ],
+          [
+            24.311214,
+            41.0121255
+          ],
+          [
+            24.3112036,
+            41.0121586
+          ],
+          [
+            24.3111671,
+            41.012152
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/952959148/osm-location-of-dikili-tash-caius-vibius-quartus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T15:35:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-07T16:14:42Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-08T14:54:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-08T14:54:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-08T14:54:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-09T15:31:36Z",
+      "associationCertainty": "certain",
+      "title": "Krenides/Philippi/Col. Augusta Iulia Philippensis",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/952959148/krenides-philippi-col-augusta-iulia-philippensis",
+      "connectionType": "near",
+      "id": "krenides-philippi-col-augusta-iulia-philippensis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T15:35:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T15:35:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T15:31:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T15:31:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/501482",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/File:Dikili_Tash_Caius_Vibius_Quartus_Monument.JPG",
+      "citationDetail": "Dikili Tash Caius Vibius Quartus Monument",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "350",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Harrison 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WZKTPW77",
+      "formattedCitation": "<div class=\"csl-entry\">Harrison, James R., and L. L. Welborn. <i>The First Urban Churches 4: Roman Philippi</i>. SBL Press, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://deepblue.lib.umich.edu/handle/2027.42/111635",
+      "citationDetail": "35",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McLaughlin 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7QU2L6IB",
+      "formattedCitation": "<div class=\"csl-entry\">McLaughlin, Jonathan James. \u201cThe Transformation of the Roman Auxiliary Soldier in Thought and Practice.\u201d Ph.D. Dissertation, University of Michigan, 2015. https://deepblue.lib.umich.edu/handle/2027.42/111635.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "952959148",
+  "subject": [],
+  "title": "Stele of Caius Vibius Quartus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The stele of a Roman military officer dating to the first century A.D. located at modern Dikil\u00ed Tas (\u039d\u03c4\u03b9\u03ba\u03b9\u03bb\u03af \u03a4\u03b1\u03c2), an archaeological site with evidence for both prehistoric and Byzantine occupation. The stele stands just to the east of modern Krenides, only 2km from the center of the ancient city of Philippi, which lies on the west side of the modern town.",
+  "reprPoint": [
+    24.311190561494342,
+    41.01213877921214
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    24.3111671,
+    41.012119,
+    24.311214,
+    41.0121586
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/501482"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-08T14:53:41Z",
+  "uri": "https://pleiades.stoa.org/places/952959148",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-09T15:35:01Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-09T15:34:52Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-09T15:32:36Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-09T15:30:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-07T16:14:42Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-08T22:52:54Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-08T14:53:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-08T14:53:41Z"
+    }
+  ]
+}

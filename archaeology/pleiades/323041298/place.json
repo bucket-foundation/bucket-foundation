@@ -1,0 +1,637 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4979807,
+            41.888172
+          ],
+          [
+            12.4979477,
+            41.888178
+          ],
+          [
+            12.4979189,
+            41.8881912
+          ],
+          [
+            12.4979042,
+            41.8882041
+          ],
+          [
+            12.497897,
+            41.8882104
+          ],
+          [
+            12.4978841,
+            41.8882337
+          ],
+          [
+            12.4978815,
+            41.8882589
+          ],
+          [
+            12.4978894,
+            41.8882834
+          ],
+          [
+            12.4979072,
+            41.8883048
+          ],
+          [
+            12.497933,
+            41.8883212
+          ],
+          [
+            12.4979643,
+            41.8883308
+          ],
+          [
+            12.4979981,
+            41.8883327
+          ],
+          [
+            12.4983215,
+            41.8883132
+          ],
+          [
+            12.4983041,
+            41.8881526
+          ],
+          [
+            12.4979807,
+            41.888172
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-basilica",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/323041298/location-of-basilica",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Basilica dei Ss. Quattro Coronati"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/202880841",
+          "citationDetail": "Way 202880841",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=202880841",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 2100,
+      "title": "OSM location of Basilica dei Ss. Quattro Coronati",
+      "provenance": "OpenStreetMap (Way 202880841, version 4, osm:changeset=67154046, 2019-02-13T07:37:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-01-01T16:11:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4979807,
+            41.888172
+          ],
+          [
+            12.4979477,
+            41.888178
+          ],
+          [
+            12.4979189,
+            41.8881912
+          ],
+          [
+            12.4979042,
+            41.8882041
+          ],
+          [
+            12.497897,
+            41.8882104
+          ],
+          [
+            12.4978841,
+            41.8882337
+          ],
+          [
+            12.4978815,
+            41.8882589
+          ],
+          [
+            12.4978894,
+            41.8882834
+          ],
+          [
+            12.4979072,
+            41.8883048
+          ],
+          [
+            12.497933,
+            41.8883212
+          ],
+          [
+            12.4979643,
+            41.8883308
+          ],
+          [
+            12.4979981,
+            41.8883327
+          ],
+          [
+            12.4983215,
+            41.8883132
+          ],
+          [
+            12.4983041,
+            41.8881526
+          ],
+          [
+            12.4979807,
+            41.888172
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/323041298/location-of-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T02:14:41Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-16T20:00:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-16T10:13:46Z"
+        },
+        {
+          "comment": "edited title of location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-08T21:03:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-15T04:05:24Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-01T16:14:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-01T16:11:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-01T16:11:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:50:56Z",
+      "associationCertainty": "certain",
+      "title": "Caelius Mons",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/323041298/695491849",
+      "connectionType": "connection",
+      "id": "695491849",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/695491849",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:50:56Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/323041298/423025",
+      "connectionType": "at",
+      "id": "423025",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-09T20:29:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1536044",
+          "citationDetail": "Q1536044",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Santi_Quattro_Coronati",
+      "citationDetail": "Santi Quattro Coronati",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Santi Quattro Coronati.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.santiquattrocoronati.org/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Augustinian Community of Monastery of Ss. Quattro Coronati",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Blume 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P5FCRF5V",
+      "formattedCitation": "<div class=\"csl-entry\">Blume, Dieter. \u201cDie Aula Gotica von Santi Quattro Corobnati: Kosmos, Antike Und Tugenden Im Selbstverst\u00e4ndnis Der Kurie.\u201d In <i>Die P\u00e4pste Und Rom Zwischen Sp\u00e4tantike Und Mittelalter\u202f: Formen P\u00e4pstlicher Machtentfaltung</i>, 213\u201333. Regensburg: Schnell &amp; Steiner, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Draghi 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NP2CPVCU",
+      "formattedCitation": "<div class=\"csl-entry\">Draghi, Andreina. <i>Gli affreschi dell\u2019Aula gotica nel Monastero dei Santi Quattro Coronati: una storia ritrovata</i>, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Barberini 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9V84EJGG",
+      "formattedCitation": "<div class=\"csl-entry\">Barberini, Maria Giulia. <i>The Basilica of the Santi Quattro Coronati: The Four Crowned Martyrs in Rome</i>. Rome: Fratelli Palombi Editori, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/44515349",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pavolini 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIXXKZDF",
+      "formattedCitation": "<div class=\"csl-entry\">Pavolini, Carlo. \u201cNuovi contributi alla topografia del Celio da rinvenimenti casuali di scavo.\u201d <i>Bullettino della Commissione Archeologica Comunale di Roma</i> 96 (1994): 71\u201394. https://www.jstor.org/stable/44515349.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1536044",
+      "citationDetail": "Santi Quattro Coronati (Q1536044)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Basilica dei Santi Quattro Coronati",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1536044",
+          "citationDetail": "Q1536044",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-11-09.9778994729",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2018-11-09T20:40:08Z",
+      "uri": "https://pleiades.stoa.org/places/323041298/name.2018-11-09.9778994729",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Basilica dei Santi Quattro Coronati",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-16T10:13:46Z"
+        },
+        {
+          "comment": "attested",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-16T10:13:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-09T20:40:16Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-09T20:40:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-09T20:40:08Z"
+        }
+      ]
+    }
+  ],
+  "id": "323041298",
+  "subject": [],
+  "title": "Santi Quattro Coronati",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Santi Quattro Coronati is an early Christian basilica on Rome's Caelian Hill begun by Pope Miltiades in the fourth century A.D.",
+  "reprPoint": [
+    12.498113883409848,
+    41.888245078971686
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    12.4978815,
+    41.8881526,
+    12.4983215,
+    41.8883327
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/695491849",
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-01-01T16:11:30Z",
+  "uri": "https://pleiades.stoa.org/places/323041298",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-16T02:14:24Z"
+    },
+    {
+      "comment": "wikidata Q1536044",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-16T02:12:43Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-01T01:06:19Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-16T10:13:46Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-09T20:28:54Z"
+    },
+    {
+      "comment": "added cnxn",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-22T17:07:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-15T04:05:09Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-01T16:11:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-01T16:11:30Z"
+    }
+  ]
+}

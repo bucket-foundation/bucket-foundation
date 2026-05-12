@@ -1,0 +1,323 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.3498825,
+            31.3185972
+          ],
+          [
+            35.3504647,
+            31.3184218
+          ],
+          [
+            35.3504043,
+            31.3182546
+          ],
+          [
+            35.3503252,
+            31.3182477
+          ],
+          [
+            35.3502472,
+            31.3179821
+          ],
+          [
+            35.3496442,
+            31.3180989
+          ],
+          [
+            35.3498825,
+            31.3185972
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-siege-camp-2",
+      "properties": {
+        "snippet": "Military-installation-or-camp-temporary; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/886501855/location-of-roman-siege-camp-2",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Camp E'"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/87684121",
+          "citationDetail": "Way 87684121",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=87684121",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-siege-camp-2",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "end": 99,
+      "title": "OSM location of Camp E'",
+      "provenance": "OpenStreetMap (Way 87684121, version 10, osm:changeset=138538408, 2023-07-15T10:14:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "military-installation-or-camp-temporary"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-05-19T02:00:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.3498825,
+            31.3185972
+          ],
+          [
+            35.3504647,
+            31.3184218
+          ],
+          [
+            35.3504043,
+            31.3182546
+          ],
+          [
+            35.3503252,
+            31.3182477
+          ],
+          [
+            35.3502472,
+            31.3179821
+          ],
+          [
+            35.3496442,
+            31.3180989
+          ],
+          [
+            35.3498825,
+            31.3185972
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/886501855/location-of-roman-siege-camp-2",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "feature type, location type, temporal attest.",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-29T19:07:29Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-29T19:07:15Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-20T04:13:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-13T18:36:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-17T03:48:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-25T03:56:43Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-19T02:01:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-19T02:01:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-19T02:01:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-12-13T18:34:34Z",
+      "associationCertainty": "certain",
+      "title": "Masada",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/886501855/0745474998",
+      "connectionType": "at",
+      "id": "0745474998",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-13T18:34:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-13T18:34:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-13T18:34:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/687968",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Siege_of_Masada",
+      "citationDetail": "Siege of Masada",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "886501855",
+  "subject": [],
+  "title": "Roman siege Camp E'",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of a Roman siege camp from the siege of the fortress of Masada in A.D. 72.",
+  "reprPoint": [
+    35.35005497780554,
+    31.31827670144162
+  ],
+  "placeTypes": [
+    "military-installation-or-camp-temporary"
+  ],
+  "bbox": [
+    35.3496442,
+    31.3179821,
+    35.3504647,
+    31.3185972
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/687968"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-12-13T18:34:33Z",
+  "uri": "https://pleiades.stoa.org/places/886501855",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-29T19:07:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-01T10:31:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-13T18:36:23Z"
+    },
+    {
+      "comment": "promoted",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-13T18:35:43Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-13T18:34:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-13T18:34:33Z"
+    }
+  ]
+}

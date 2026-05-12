@@ -1,0 +1,343 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0301465,
+            51.3511353
+          ],
+          [
+            0.030057,
+            51.3511709
+          ],
+          [
+            0.029994,
+            51.3511785
+          ],
+          [
+            0.0299513,
+            51.3511721
+          ],
+          [
+            0.0298904,
+            51.3511429
+          ],
+          [
+            0.0298965,
+            51.3510858
+          ],
+          [
+            0.0299412,
+            51.3510338
+          ],
+          [
+            0.0301058,
+            51.3510084
+          ],
+          [
+            0.0302095,
+            51.3510096
+          ],
+          [
+            0.0302217,
+            51.3510503
+          ],
+          [
+            0.0302054,
+            51.3511048
+          ],
+          [
+            0.0301465,
+            51.3511353
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-keston-roman-mausolea",
+      "properties": {
+        "snippet": "Tomb; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/654806992/osm-location-of-keston-roman-mausolea",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Keston Roman Mausolea"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/629546849",
+          "citationDetail": "Way 629546849",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=629546849",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-keston-roman-mausolea",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 410,
+      "title": "OSM location of Keston Roman Mausolea",
+      "provenance": "OpenStreetMap (Way 629546849, version 2, osm:changeset=63117545, 2018-10-02T08:59:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-11-30T04:37:57Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0301465,
+            51.3511353
+          ],
+          [
+            0.030057,
+            51.3511709
+          ],
+          [
+            0.029994,
+            51.3511785
+          ],
+          [
+            0.0299513,
+            51.3511721
+          ],
+          [
+            0.0298904,
+            51.3511429
+          ],
+          [
+            0.0298965,
+            51.3510858
+          ],
+          [
+            0.0299412,
+            51.3510338
+          ],
+          [
+            0.0301058,
+            51.3510084
+          ],
+          [
+            0.0302095,
+            51.3510096
+          ],
+          [
+            0.0302217,
+            51.3510503
+          ],
+          [
+            0.0302054,
+            51.3511048
+          ],
+          [
+            0.0301465,
+            51.3511353
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/654806992/osm-location-of-keston-roman-mausolea",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-19T21:08:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-07T14:07:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-06T03:17:27Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T04:38:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T04:37:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T04:37:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-11-30T04:38:28Z",
+      "associationCertainty": "certain",
+      "title": "Keston",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/654806992/1086501879",
+      "connectionType": "at",
+      "id": "1086501879",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T04:38:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T04:38:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T04:38:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79544",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "Keston Roman villa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "654806992",
+  "subject": [],
+  "title": "Keston Roman Mausoleum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A circular Roman mausoleum was located at the Keston Roman villa. It dates to the third century CE and is located in a cemetery to the north of the villa.",
+  "reprPoint": [
+    0.03005580082683887,
+    51.351087453183325
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    0.0298904,
+    51.3510084,
+    0.0302217,
+    51.3511785
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79544"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-11-30T04:38:25Z",
+  "uri": "https://pleiades.stoa.org/places/654806992",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-07T14:07:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-06T03:17:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-06T03:17:16Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-30T04:38:29Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-30T04:38:25Z"
+    }
+  ]
+}

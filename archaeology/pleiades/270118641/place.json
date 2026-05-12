@@ -1,0 +1,415 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.1925349,
+            12.6184523
+          ],
+          [
+            80.1925115,
+            12.6183941
+          ],
+          [
+            80.1924737,
+            12.6184086
+          ],
+          [
+            80.1924972,
+            12.6184668
+          ],
+          [
+            80.1925349,
+            12.6184523
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ganesh-ratha",
+      "properties": {
+        "snippet": "Shrine; AD 600 - AD 699",
+        "link": "https://pleiades.stoa.org/places/270118641/osm-location-of-ganesh-ratha",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ganesh Ratha"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/597062759",
+          "citationDetail": "Way 597062759",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=597062759",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ganesh-ratha",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 699,
+      "title": "OSM location of Ganesh Ratha",
+      "provenance": "OpenStreetMap (Way 597062759, version 1, osm:changeset=59788920, 2018-06-12T19:23:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-10-31T02:47:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.1925349,
+            12.6184523
+          ],
+          [
+            80.1925115,
+            12.6183941
+          ],
+          [
+            80.1924737,
+            12.6184086
+          ],
+          [
+            80.1924972,
+            12.6184668
+          ],
+          [
+            80.1925349,
+            12.6184523
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/270118641/osm-location-of-ganesh-ratha",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T11:04:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:49:53Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:47:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:47:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:47:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 699,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-22T21:38:24Z",
+      "associationCertainty": "certain",
+      "title": "Mahabalipuram",
+      "start": 600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/270118641/mahabalipuram",
+      "connectionType": "at",
+      "id": "mahabalipuram",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T11:04:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:49:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T21:38:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T21:38:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/835093310",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Ganesha_Ratha",
+      "citationDetail": "Ganesha Ratha",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17053330",
+      "citationDetail": "Q17053330: Ganesha Ratha",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "undefined",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Atyantakamapallaveshvaragriha",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "atyantakamapallaveshvaragriha-1",
+      "end": 699,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 600,
+      "details": "<p>Atyantak\u0101ma-pallave\u015bvara-g\u1e5bha is attested as the name of several\u00a0seventh-century Pallava rock-cut and cave temples in Mah\u0101balipuram. Furthermore many of the verses of the inscription of the Ga\u1e47e\u015baratha are found verbatim on other Pallava monuments of the same period. It is thus not to be excluded that Atyantak\u0101ma-pallave\u015bvara-g\u1e5bha is a later name of the original foundation, given not long after the actual foundation. The original name of the temple, if any, is unknown.</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "sa",
+      "created": "2020-06-23T16:54:59Z",
+      "uri": "https://pleiades.stoa.org/places/270118641/atyantakamapallaveshvaragriha-1",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "attested": "Atyantak\u0101ma-pallave\u015bvara-g\u1e5bha",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T11:04:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:49:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T17:04:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T17:00:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T16:58:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T16:54:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T16:54:59Z"
+        }
+      ]
+    }
+  ],
+  "id": "270118641",
+  "subject": [],
+  "title": "Ganesh Ratha",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Modern name of a seventh-century Pallava rock-cut temple at Mah\u0101balipuram.",
+  "reprPoint": [
+    80.19250431627813,
+    12.618430438149767
+  ],
+  "placeTypes": [
+    "shrine",
+    "temple-2"
+  ],
+  "bbox": [
+    80.1924737,
+    12.6183941,
+    80.1925349,
+    12.6184668
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/835093310"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-22T20:51:15Z",
+  "uri": "https://pleiades.stoa.org/places/270118641",
+  "creators": [
+    {
+      "username": "efrancis",
+      "homepage": null,
+      "name": "Emmanuel Francis",
+      "uri": "https://pleiades.stoa.org/author/efrancis"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-31T11:04:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-31T02:49:53Z"
+    },
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-31T02:49:43Z"
+    },
+    {
+      "comment": "added wikipedia reference - Ganesha Ratha",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-23T02:27:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-07-03T13:21:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-07-03T13:20:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T21:37:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T21:35:46Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:51:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:51:15Z"
+    }
+  ]
+}

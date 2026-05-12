@@ -1,0 +1,284 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9563847,
+          29.7679517
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-hathors-temple",
+      "properties": {
+        "snippet": "Temple-2; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/621938445/osm-location-of-hathors-temple",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Hathor's Temple"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1064563182",
+          "citationDetail": "Node 1064563182",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1064563182",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/29201/",
+          "citationDetail": "29201: Timna Valley, Hathor Temple",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-hathors-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -1000,
+      "title": "OSM location of Hathor's Temple",
+      "provenance": "OpenStreetMap (Node 1064563182, version 3, osm:changeset=66053379, 2019-01-05T17:51:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-04-12T12:45:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9563847,
+          29.7679517
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/621938445/osm-location-of-hathors-temple",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-12T16:26:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-12T12:52:41Z"
+        },
+        {
+          "comment": "time period",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-12T12:52:29Z"
+        },
+        {
+          "comment": "added OSM location for Timna Valley, Hathor Temple",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-12T12:46:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-12T12:45:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-12T12:45:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-12T12:46:52Z",
+      "associationCertainty": "certain",
+      "title": "Timnah",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/621938445/0120382682",
+      "connectionType": "at",
+      "id": "0120382682",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-12T12:46:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-12T12:46:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-12T12:46:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/746825",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/29201/",
+      "citationDetail": "29201: Timna Valley, Hathor Temple",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rothenberg 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4C9MAWTD",
+      "formattedCitation": "<div class=\"csl-entry\">Rothenberg, Benno. <i>The Egyptian Mining Temple at Timna: Researches in the Arabah 1959-1984. 1</i>. London: Institute of Archaeo-Metallurgical Studies, 1988.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.megalithic.co.uk/article.php?sid=14711",
+      "citationDetail": "14711: Timna Valley Temple of Hathor",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TMP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9YPQCWW2",
+      "formattedCitation": "<div class=\"csl-entry\">Burnham, Andy, ed. <i>The Megalithic Portal</i>, 2001. https://www.megalithic.co.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "621938445",
+  "subject": [],
+  "title": "Hathor Temple, Timna Valley",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A shrine sacred to Hathor connected with the Egyptian mining settlement that was extracting copper in the Timna Valley.",
+  "reprPoint": [
+    34.9563847,
+    29.7679517
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    34.9563847,
+    29.7679517,
+    34.9563847,
+    29.7679517
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/746825"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-12T12:46:51Z",
+  "uri": "https://pleiades.stoa.org/places/621938445",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-12T16:26:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-12T12:52:41Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-12T12:49:23Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-12T12:46:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-12T12:46:51Z"
+    }
+  ]
+}

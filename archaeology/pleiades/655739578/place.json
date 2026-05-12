@@ -1,0 +1,258 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7263433,
+          55.1789963
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-fort-remains",
+      "properties": {
+        "snippet": "Unknown, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/655739578/osm-location-of-fort-remains",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of fort remains"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/487195972",
+          "citationDetail": "Node 487195972",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=487195972",
+          "otherIdentifier": "http://www.openstreetmap.org/browse/node/487195972",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-fort-remains",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "OSM location of fort remains",
+      "provenance": "OpenStreetMap (Node 487195972, version 3, osm:changeset=79315791, 2020-01-08T01:15:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2016-09-10T13:20:28Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7263433,
+          55.1789963
+        ]
+      },
+      "locationType": [
+        "representative",
+        "associated_modern",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/655739578/osm-location-of-fort-remains",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T02:29:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-12T11:11:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-10T13:21:07Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-10T13:20:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-10T13:20:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-10T13:20:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/525725",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Breeze 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VFSCLJE5",
+      "formattedCitation": "<div class=\"csl-entry\">Breeze, David J., G. Jobey, B. R. Hartley, J. P. Gillam, and Roger Miket. \u201cThe Roman Fortlet at Barburgh Mill, Dumfriesshire.\u201d <i>Britannia</i> 5 (1974): 130\u201362. https://doi.org/10.2307/525725.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.cambridgeairphotos.com/location/a8/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Cambridge Air Photos: Roman fort, Barburgh Mill",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://canmore.org.uk/site/65789/barburgh-mill",
+      "citationDetail": "65789",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Canmore",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9QC8C2K",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Canmore: National Record of the Historic Environment, Part of Historic Environment Scotland</i>, n.d. https://canmore.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q103145682",
+      "citationDetail": "Barburgh Mill (Samian Ware Discovery Site) (Q103145682)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "655739578",
+  "subject": [],
+  "title": "Barburgh Mill Roman fortlet",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortlet"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman fortlet lying on a small hill near the line of a Roman road (R77). Excavated in the 1970s, the site has now been largely destroyed by a gravel quarry.",
+  "reprPoint": [
+    -3.7263433,
+    55.1789963
+  ],
+  "placeTypes": [
+    "fortlet"
+  ],
+  "bbox": [
+    -3.7263433,
+    55.1789963,
+    -3.7263433,
+    55.1789963
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-16T14:19:42Z",
+  "uri": "https://pleiades.stoa.org/places/655739578",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Barburgh Mill (Samian Ware Discovery Site) (Q103145682)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-15T14:42:44Z"
+    },
+    {
+      "comment": "Edited type for fortlet; update references; wikidata Q58332565 @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-17T02:31:41Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-16T14:19:41Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-12T11:11:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-10T13:21:12Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-10T13:19:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-10T13:19:51Z"
+    }
+  ]
+}

@@ -1,0 +1,614 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.479672,
+            37.4307739
+          ],
+          [
+            14.4795649,
+            37.4307507
+          ],
+          [
+            14.4794295,
+            37.4305666
+          ],
+          [
+            14.479503,
+            37.4303896
+          ],
+          [
+            14.4794287,
+            37.4303825
+          ],
+          [
+            14.4793411,
+            37.4305982
+          ],
+          [
+            14.4795074,
+            37.4308069
+          ],
+          [
+            14.4796189,
+            37.4308315
+          ],
+          [
+            14.479672,
+            37.4307739
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ekklesiasterion",
+      "properties": {
+        "snippet": "Ekklesiasterion; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/966917974/osm-location-of-ekklesiasterion",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Ekklesiasterion"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/159980417",
+          "citationDetail": "Way 159980417",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ekklesiasterion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ekklesiasterion"
+      ],
+      "end": -30,
+      "title": "OSM location of Ekklesiasterion",
+      "provenance": "OpenStreetMap (Way 159980417, version 6, osm:changeset=158830101, 2024-11-06T19:09:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ekklesiasterion"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "ekklesiasterion"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2025-12-10T14:52:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.479672,
+            37.4307739
+          ],
+          [
+            14.4795649,
+            37.4307507
+          ],
+          [
+            14.4794295,
+            37.4305666
+          ],
+          [
+            14.479503,
+            37.4303896
+          ],
+          [
+            14.4794287,
+            37.4303825
+          ],
+          [
+            14.4793411,
+            37.4305982
+          ],
+          [
+            14.4795074,
+            37.4308069
+          ],
+          [
+            14.4796189,
+            37.4308315
+          ],
+          [
+            14.479672,
+            37.4307739
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/966917974/osm-location-of-ekklesiasterion",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-10T14:52:23Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-10T14:52:22Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-12T21:27:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-10-27T21:35:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T02:13:10Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-27T21:43:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-27T21:42:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-27T21:42:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2025-12-10T14:52:07Z",
+      "associationCertainty": "certain",
+      "title": "Morgantina",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/966917974/morgantina",
+      "connectionType": "connection",
+      "id": "morgantina",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-10T14:52:08Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-10T14:52:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-10-27T21:35:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T02:13:10Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T02:12:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T02:12:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462372",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q13626987",
+          "citationDetail": "Q13626987",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Ekklesiasterion_di_Morgantina",
+      "citationDetail": "Ekklesiasterion di Morgantina",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/6863126",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Morgantina Studies",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TCK3PI79",
+      "formattedCitation": "<div class=\"csl-entry\">Morgantina Studies. <i>Morgantina Studies</i>. Edited by Malcolm Bell. 6 vols. Princeton: Princeton University Press, 1981. http://www.worldcat.org/oclc/6863126.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://hcommons.org/deposits/item/hc:13865",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Walsh 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/569MZUND",
+      "formattedCitation": "<div class=\"csl-entry\">Walsh, Justin. \u201cUrbanism and Identity at Classical Morgantina.\u201d <i>Memoirs of American Academy in Rome</i> 56/57 (2017): 115\u201336. https://doi.org/10.17613/M69Q39.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/1086380",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Winter 1963",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BD4S5V6D",
+      "formattedCitation": "<div class=\"csl-entry\">Winter, F. E. \u201cAncient Corinth and the History of Greek Architecture and Town-Planning: A Review Article.\u201d <i>Phoenix</i> 17, no. 4 (1963): 275\u201392. https://doi.org/10.2307/1086380.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/935312145",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hollinshead 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AV9ZPCCA",
+      "formattedCitation": "<div class=\"csl-entry\">Hollinshead, Mary Brooks Berg. <i>Shaping Ceremony: Monumental Steps and Greek Architecture</i>. Madison, Wis: The University of Wisconsin Press, 2015. http://www.worldcat.org/oclc/935312145.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "62",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Whitehead 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8LRIZN4W",
+      "formattedCitation": "<div class=\"csl-entry\">Whitehead, David. <i>From Political Architecture to Stephanus Byzantius: Sources for the Ancient Greek Polis</i>. Stuttgart: Franz Steiner, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "9-10",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stone 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EVLPQSKQ",
+      "formattedCitation": "<div class=\"csl-entry\">Stone, Shelley C. <i>Morgantina Studies, Volume VI The Hellenistic and Roman Fine Pottery.</i> Princeton: Princeton University Press, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q13626987",
+      "citationDetail": "Ekklesiasterion of Morgantina (Q13626987)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ekklesiasterion of Morgantina",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q13626987",
+          "citationDetail": "Q13626987",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-09-28.9512401391",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-12-10T14:58:20Z",
+      "uri": "https://pleiades.stoa.org/places/966917974/name.2017-09-28.9512401391",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Ekklesiasterion of Morgantina",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-10T14:58:20Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-10T14:58:19Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-10-27T21:35:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2017-10-27T21:35:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T02:13:10Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T02:09:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T02:09:38Z"
+        }
+      ]
+    }
+  ],
+  "id": "966917974",
+  "subject": [
+    "extant remains"
+  ],
+  "title": "Ekklesiasterion of Morgantina",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/ekklesiasterion"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The monumental central staircase in the agora of Morgantina has been identified as the Ekklesiasterion. They date after the middle of the third century B.C.",
+  "reprPoint": [
+    14.479480655322691,
+    37.43062668840063
+  ],
+  "placeTypes": [
+    "ekklesiasterion"
+  ],
+  "bbox": [
+    14.4793411,
+    37.4303825,
+    14.479672,
+    37.4308315
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462372"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-10T15:03:03Z",
+  "uri": "https://pleiades.stoa.org/places/966917974",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-10T15:03:04Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-12-10T15:03:03Z"
+    },
+    {
+      "comment": "wikidata Ekklesiasterion of Morgantina (Q13626987)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-12T21:29:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-31T02:38:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-07T20:03:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-10-27T21:35:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-29T02:18:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-29T02:13:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-29T02:11:28Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-29T02:08:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-27T22:27:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-27T22:15:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-27T21:54:02Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-27T21:42:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-27T21:42:16Z"
+    }
+  ]
+}

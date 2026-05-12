@@ -1,0 +1,388 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.2410998,
+            43.0455606
+          ],
+          [
+            -1.2410616,
+            43.0455652
+          ],
+          [
+            -1.2410277,
+            43.045579
+          ],
+          [
+            -1.2410023,
+            43.0456004
+          ],
+          [
+            -1.2409882,
+            43.0456268
+          ],
+          [
+            -1.2409872,
+            43.0456551
+          ],
+          [
+            -1.2409993,
+            43.045682
+          ],
+          [
+            -1.2410232,
+            43.0457042
+          ],
+          [
+            -1.2410532,
+            43.0457185
+          ],
+          [
+            -1.2410877,
+            43.0457251
+          ],
+          [
+            -1.2411233,
+            43.0457236
+          ],
+          [
+            -1.2411565,
+            43.045714
+          ],
+          [
+            -1.2411839,
+            43.0456972
+          ],
+          [
+            -1.2412028,
+            43.0456751
+          ],
+          [
+            -1.2412113,
+            43.0456497
+          ],
+          [
+            -1.2412085,
+            43.0456238
+          ],
+          [
+            -1.2411948,
+            43.0455997
+          ],
+          [
+            -1.2411714,
+            43.0455799
+          ],
+          [
+            -1.2411379,
+            43.0455657
+          ],
+          [
+            -1.2410998,
+            43.0455606
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Tower-defensive; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/487048968/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Urkuluko dorrea"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/74080887",
+          "citationDetail": "Way 74080887",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=74080887",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "end": 300,
+      "title": "OSM location of Urkuluko dorrea",
+      "provenance": "OpenStreetMap (Way 74080887, version 17, osm:changeset=158417813, 2024-10-27T15:18:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tower-defensive"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-05-12T01:14:35Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.2410998,
+            43.0455606
+          ],
+          [
+            -1.2410616,
+            43.0455652
+          ],
+          [
+            -1.2410277,
+            43.045579
+          ],
+          [
+            -1.2410023,
+            43.0456004
+          ],
+          [
+            -1.2409882,
+            43.0456268
+          ],
+          [
+            -1.2409872,
+            43.0456551
+          ],
+          [
+            -1.2409993,
+            43.045682
+          ],
+          [
+            -1.2410232,
+            43.0457042
+          ],
+          [
+            -1.2410532,
+            43.0457185
+          ],
+          [
+            -1.2410877,
+            43.0457251
+          ],
+          [
+            -1.2411233,
+            43.0457236
+          ],
+          [
+            -1.2411565,
+            43.045714
+          ],
+          [
+            -1.2411839,
+            43.0456972
+          ],
+          [
+            -1.2412028,
+            43.0456751
+          ],
+          [
+            -1.2412113,
+            43.0456497
+          ],
+          [
+            -1.2412085,
+            43.0456238
+          ],
+          [
+            -1.2411948,
+            43.0455997
+          ],
+          [
+            -1.2411714,
+            43.0455799
+          ],
+          [
+            -1.2411379,
+            43.0455657
+          ],
+          [
+            -1.2410998,
+            43.0455606
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/487048968/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T01:54:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-17T15:52:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-15T03:58:21Z"
+        },
+        {
+          "comment": "updates",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-15T03:58:08Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-12T01:15:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-12T01:14:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-12T01:14:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Torre_de_Urkulu",
+      "citationDetail": "Torre de Urkulu",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Torre de Urkulu.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dialnet.unirioja.es/servlet/fichero_articulo?codigo=1112392&orden=60340",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Mezqu\u00edriz Irujo, Mar\u00eda \u00c1ngeles. 2004. \"La torre-trofeo de Urkulu.\" Trabajos de arqueolog\u00eda navarra 17 (132):109-115.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5940172",
+      "citationDetail": "Q5940172",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "487048968",
+  "subject": [],
+  "title": "Torre de Urkulu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman tower monument atop mount Urkulu.",
+  "reprPoint": [
+    -1.2410988802381062,
+    43.045643102951644
+  ],
+  "placeTypes": [
+    "tower-defensive",
+    "fort"
+  ],
+  "bbox": [
+    -1.2412113,
+    43.0455606,
+    -1.2409872,
+    43.0457251
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-05-12T01:13:54Z",
+  "uri": "https://pleiades.stoa.org/places/487048968",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q5940172",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T01:55:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-17T15:52:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-15T03:58:21Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-12T01:13:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-12T01:13:54Z"
+    }
+  ]
+}

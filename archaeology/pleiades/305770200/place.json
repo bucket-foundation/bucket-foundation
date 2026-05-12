@@ -1,0 +1,323 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7592688,
+          41.4943754
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-montagna-di-gildone",
+      "properties": {
+        "snippet": "Mountain; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/305770200/osm-location-of-montagna-di-gildone",
+        "description": "Representative location of the mountain peak based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Montagna di Gildone"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2552149251",
+          "citationDetail": "Node 2552149251",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2552149251",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-montagna-di-gildone",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain"
+      ],
+      "end": 2100,
+      "title": "OSM location of Montagna di Gildone",
+      "provenance": "OpenStreetMap (Node 2552149251, version 1, osm:changeset=19122218, 2013-11-26T07:44:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "mountain"
+      ],
+      "description": "Representative location of the mountain peak based on OpenStreetMap.",
+      "created": "2018-04-03T03:14:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.7592688,
+          41.4943754
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/305770200/osm-location-of-montagna-di-gildone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-18T19:29:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-03T15:50:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-03T15:49:18Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-03T03:14:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-03T03:14:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-03T03:14:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Gildone_(Italia)",
+      "citationDetail": "Gildone (Italia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/40344491",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Di Niro 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ECP8UT2A",
+      "formattedCitation": "<div class=\"csl-entry\">Di Niro, Angela, and Pier Paolo Petrone. \u201cInsediamenti Di Epoca Sannitica Nel Territorio Circostante La Valle Del Torrente Tappino (Campobasso, Molise).\u201d <i>Papers of the British School at Rome</i> 61 (1993): 7\u201349. http://www.jstor.org/stable/40344491.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/exploring-nonurban-society-in-the-mediterranean-hillforts-villages-and-sanctuary-sites-in-ancient-samnium-italy/24CEC4EF694A4B4F3E088D41570BA4DB",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stek 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EFL29TSJ",
+      "formattedCitation": "<div class=\"csl-entry\">Stek, Tesse D. \u201cExploring Non-Urban Society in the Mediterranean: Hill-Forts, Villages and Sanctuary Sites in Ancient Samnium, Italy.\u201d <i>Antiquity</i> 92, no. 364 (August 2018). https://doi.org/10.15184/aqy.2018.155.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "127-40",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stek 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/68I5CI2T",
+      "formattedCitation": "<div class=\"csl-entry\">Stek, Tesse Dieder. <i>The State of the Samnites</i>, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Montagna di Gildone",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/exploring-nonurban-society-in-the-mediterranean-hillforts-villages-and-sanctuary-sites-in-ancient-samnium-italy/24CEC4EF694A4B4F3E088D41570BA4DB",
+          "citationDetail": "p. 2 fig. 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Stek 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EFL29TSJ",
+          "formattedCitation": "<div class=\"csl-entry\">Stek, Tesse D. \u201cExploring Non-Urban Society in the Mediterranean: Hill-Forts, Villages and Sanctuary Sites in Ancient Samnium, Italy.\u201d <i>Antiquity</i> 92, no. 364 (August 2018). https://doi.org/10.15184/aqy.2018.155.</div>",
+          "otherIdentifier": "https://doi.org/10.15184/aqy.2018.155",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "montagna-di-gildone",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-02-25T19:44:49Z",
+      "uri": "https://pleiades.stoa.org/places/305770200/montagna-di-gildone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Montagna di Gildone",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-02-28T20:47:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-02-25T19:45:06Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-02-25T19:44:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-02-25T19:44:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "305770200",
+  "subject": [
+    "fortification"
+  ],
+  "title": "Montagna di Gildone",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/mountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A series of noncontinuous fortifications are extant on Mount Gildone (elevation 902 meters) that enclose part of an upland plateau. A nucleus of 23 Samnite tombs was also discovered in the vicinity.",
+  "reprPoint": [
+    14.7592688,
+    41.4943754
+  ],
+  "placeTypes": [
+    "mountain",
+    "settlement"
+  ],
+  "bbox": [
+    14.7592688,
+    41.4943754,
+    14.7592688,
+    41.4943754
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-04-03T03:12:35Z",
+  "uri": "https://pleiades.stoa.org/places/305770200",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Stek 2021 added",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-25T16:04:02Z"
+    },
+    {
+      "comment": "Stek 2018",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-06T14:51:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-18T19:29:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-03T15:50:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-03T15:48:25Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-03T03:12:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-03T03:12:35Z"
+    }
+  ]
+}

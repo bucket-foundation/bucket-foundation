@@ -1,0 +1,513 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7727758,
+            44.9663419
+          ],
+          [
+            13.7730495,
+            44.9662636
+          ],
+          [
+            13.7735054,
+            44.9661332
+          ],
+          [
+            13.7731299,
+            44.9655752
+          ],
+          [
+            13.7724486,
+            44.965803
+          ],
+          [
+            13.7727758,
+            44.9663419
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-rimska-vila-dragonera",
+      "properties": {
+        "snippet": "Villa, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/423894082/osm-location-of-rimska-vila-dragonera",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Rimska vila Dragonera"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7678904,
+            44.9709429
+          ],
+          [
+            13.7676785,
+            44.9709061
+          ],
+          [
+            13.7676599,
+            44.9709379
+          ],
+          [
+            13.7675957,
+            44.9709236
+          ],
+          [
+            13.767618,
+            44.9708679
+          ],
+          [
+            13.767548,
+            44.9708559
+          ],
+          [
+            13.7675981,
+            44.970728
+          ],
+          [
+            13.7676679,
+            44.9707439
+          ],
+          [
+            13.7677312,
+            44.9706203
+          ],
+          [
+            13.7678077,
+            44.9705691
+          ],
+          [
+            13.7677071,
+            44.9707921
+          ],
+          [
+            13.7677316,
+            44.9707976
+          ],
+          [
+            13.7677066,
+            44.9708536
+          ],
+          [
+            13.7679074,
+            44.970897
+          ],
+          [
+            13.7678904,
+            44.9709429
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/423894082/osm-location-of-roman-villa",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman villa"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/297819868",
+          "citationDetail": "Way 297819868",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=297819868",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-rimska-vila-dragonera",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Rimska vila Dragonera",
+      "provenance": "OpenStreetMap (Way 297819868, version 6, osm:changeset=138540847, 2023-07-15T11:24:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2016-03-12T03:39:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7727758,
+            44.9663419
+          ],
+          [
+            13.7730495,
+            44.9662636
+          ],
+          [
+            13.7735054,
+            44.9661332
+          ],
+          [
+            13.7731299,
+            44.9655752
+          ],
+          [
+            13.7724486,
+            44.965803
+          ],
+          [
+            13.7727758,
+            44.9663419
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423894082/osm-location-of-rimska-vila-dragonera",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-05T03:42:19Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-17T11:54:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T19:35:16Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-12T03:42:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-12T03:39:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-12T03:39:21Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/403207377",
+          "citationDetail": "Way 403207377",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=403207377",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Roman villa",
+      "provenance": "OpenStreetMap (Way 403207377, version 3, osm:changeset=137112841, 2023-06-08T21:08:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-03-12T03:43:00Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7678904,
+            44.9709429
+          ],
+          [
+            13.7676785,
+            44.9709061
+          ],
+          [
+            13.7676599,
+            44.9709379
+          ],
+          [
+            13.7675957,
+            44.9709236
+          ],
+          [
+            13.767618,
+            44.9708679
+          ],
+          [
+            13.767548,
+            44.9708559
+          ],
+          [
+            13.7675981,
+            44.970728
+          ],
+          [
+            13.7676679,
+            44.9707439
+          ],
+          [
+            13.7677312,
+            44.9706203
+          ],
+          [
+            13.7678077,
+            44.9705691
+          ],
+          [
+            13.7677071,
+            44.9707921
+          ],
+          [
+            13.7677316,
+            44.9707976
+          ],
+          [
+            13.7677066,
+            44.9708536
+          ],
+          [
+            13.7679074,
+            44.970897
+          ],
+          [
+            13.7678904,
+            44.9709429
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423894082/osm-location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-05T03:42:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-17T11:54:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T19:35:17Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-12T03:43:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-12T03:43:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-12T03:43:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://vici.org/vici/20030/",
+      "citationDetail": "20030: Roman villa - Dragonera south",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/21641/",
+      "citationDetail": "21641: Roman villa - Dragonera north",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.istra.hr/en/experience/culture/cultural-sights/2649",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Dragonera",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "423894082",
+  "subject": [],
+  "title": "Dragonera",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Two coastal villas (villae maritimae) discovered in 2003 and 2004, respectively.",
+  "reprPoint": [
+    13.770330399999999,
+    44.9686329
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    13.767885,
+    44.9663419,
+    13.7727758,
+    44.9709239
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-03-12T03:37:37Z",
+  "uri": "https://pleiades.stoa.org/places/423894082",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-17T11:54:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-16T19:35:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-16T19:34:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-15T05:07:42Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-12T03:37:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-12T03:37:38Z"
+    }
+  ]
+}

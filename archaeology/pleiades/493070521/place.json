@@ -1,0 +1,486 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.4500699,
+          38.1409785
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-moura",
+      "properties": {
+        "snippet": "Settlement, Settlement-modern; AD 640 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/493070521/osm-location-of-moura",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of modern Moura"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/25264853",
+          "citationDetail": "Node 25264853",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=25264853",
+          "otherIdentifier": "http://www.openstreetmap.org/browse/node/25264853",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-moura",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2100,
+      "title": "OSM location of modern Moura",
+      "provenance": "OpenStreetMap (Node 25264853, version 4, osm:changeset=41002182, 2016-07-25T04:08:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2016-10-25T18:39:16Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.4500699,
+          38.1409785
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/493070521/osm-location-of-moura",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-12-15T13:37:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:46:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:46:16Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:41:38Z"
+        },
+        {
+          "comment": "test",
+          "modifiedBy": "thomase",
+          "modified": "2016-12-05T14:06:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:40:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:40:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:39:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:39:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Moura",
+      "citationDetail": "Moura",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Moura.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Moura",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/2265686/moura.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 2265686",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "moura",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Hispanic Seminary of Medieval Studies",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2016-10-25T18:38:30Z",
+      "uri": "https://pleiades.stoa.org/places/493070521/moura",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "attested": "Moura",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-12-15T13:37:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:46:31Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:41:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-11-05T19:21:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:38:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:38:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:38:30Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mora",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "Herrera, M.\u00aa Teresa, M.\u00aa Nieves S\u00e1nchez, M.\u00aa Estela Gonz\u00e1lez de Fauve y M.\u00aa Purificaci\u00f3n Zab\u00eda. Textos y Concordancias Electr\u00f3nicos de Documentos Castellanos de Alfonso X. Madison: Hispanic Seminary of Medieval Studies, 1999, CD-ROM.",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6PJGZ3HT",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "id": "mora",
+      "end": 1453,
+      "contributors": [],
+      "provenance": "Hispanic Seminary of Medieval Studies",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "details": "",
+      "review_state": "published",
+      "description": "Medieval Spanish name of village associated with modern Moura.",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2016-09-29T19:55:27Z",
+      "uri": "https://pleiades.stoa.org/places/493070521/mora",
+      "creators": [
+        {
+          "username": "mjredondo",
+          "homepage": null,
+          "name": "Mar\u00eda Jes\u00fas Redondo",
+          "uri": "https://pleiades.stoa.org/author/mjredondo"
+        }
+      ],
+      "attested": "Mora",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-12-15T13:37:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:46:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:45:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:44:55Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-12-14T17:41:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:36:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-10-25T18:36:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-29T19:55:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mjredondo",
+          "modified": "2016-09-29T19:55:27Z"
+        }
+      ]
+    }
+  ],
+  "id": "493070521",
+  "subject": [],
+  "title": "Mora",
+  "provenance": "Hispanic Seminary of Medieval Studies",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Spanish village that belonged to the kingdom of Alfonso X. It is now known as Moura, and is located in the country of Portugal, across the border from the Spanish cities of Huelva and Badajoz.",
+  "reprPoint": [
+    -7.4500699,
+    38.1409785
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    -7.4500699,
+    38.1409785,
+    -7.4500699,
+    38.1409785
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-10-27T18:33:04Z",
+  "uri": "https://pleiades.stoa.org/places/493070521",
+  "creators": [
+    {
+      "username": "mjredondo",
+      "homepage": null,
+      "name": "Mar\u00eda Jes\u00fas Redondo",
+      "uri": "https://pleiades.stoa.org/author/mjredondo"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Cleaned up extraneous whitespace in description. See https://github.com/isawnyu/pleiades-gazetteer/issues/140.",
+      "modifiedBy": "thomase",
+      "modified": "2017-10-27T18:54:49Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2017-10-27T18:33:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2016-12-15T13:37:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2016-12-15T13:35:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T17:46:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T17:43:52Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-12-14T17:41:38Z"
+    },
+    {
+      "comment": "test",
+      "modifiedBy": "thomase",
+      "modified": "2016-12-05T14:07:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-11-05T19:20:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-25T18:34:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-25T18:33:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-10-25T18:32:37Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-29T19:54:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "mjredondo",
+      "modified": "2016-09-29T19:54:54Z"
+    }
+  ]
+}

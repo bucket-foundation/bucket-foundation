@@ -1,0 +1,14 @@
+# Arktokome
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/614610
+- **ID**: 614610
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Arktokome
+
+## Description
+
+An ancient place, cited: BAtlas 62 unlocated Arktokome

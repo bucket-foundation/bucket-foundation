@@ -1,0 +1,354 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.6565195,
+            25.7186878
+          ],
+          [
+            32.658005,
+            25.7179942
+          ],
+          [
+            32.6597118,
+            25.7172513
+          ],
+          [
+            32.6601544,
+            25.7180342
+          ],
+          [
+            32.6578439,
+            25.7190364
+          ],
+          [
+            32.6578634,
+            25.7190775
+          ],
+          [
+            32.6569307,
+            25.7194477
+          ],
+          [
+            32.6565195,
+            25.7186878
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "temple-of-ammon-at-karnak",
+      "properties": {
+        "snippet": "Temple-2; 2010 BC - 1640 BC",
+        "link": "https://pleiades.stoa.org/places/877521474/temple-of-ammon-at-karnak",
+        "description": "Polygon representing the extent of the Temple of Ammon at Karnak, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Ammon at Karnak"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/476617966",
+          "citationDetail": "Way 476617966",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=476617966",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "temple-of-ammon-at-karnak",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -1640,
+      "title": "OSM location of Temple of Ammon at Karnak",
+      "provenance": "OpenStreetMap (Way 476617966, version 3, osm:changeset=121898842, 2022-06-03T14:26:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon representing the extent of the Temple of Ammon at Karnak, derived from an OpenStreetMap Way.",
+      "created": "2022-06-03T14:27:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.6565195,
+            25.7186878
+          ],
+          [
+            32.658005,
+            25.7179942
+          ],
+          [
+            32.6597118,
+            25.7172513
+          ],
+          [
+            32.6601544,
+            25.7180342
+          ],
+          [
+            32.6578439,
+            25.7190364
+          ],
+          [
+            32.6578634,
+            25.7190775
+          ],
+          [
+            32.6569307,
+            25.7194477
+          ],
+          [
+            32.6565195,
+            25.7186878
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/877521474/temple-of-ammon-at-karnak",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T14:30:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T14:29:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T14:29:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T14:27:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T14:27:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-02T14:41:11Z",
+      "associationCertainty": "certain",
+      "title": "Karnak",
+      "start": -2010,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/877521474/karnak",
+      "connectionType": "at",
+      "id": "karnak",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T14:30:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:42:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:41:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:41:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/786050",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/164942903",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Christophe 1955",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7SZ4PWMH",
+          "formattedCitation": "<div class=\"csl-entry\">Christophe, Louis-A. <i>Les divinit\u00e9s des colonnes de la grande salle hypostyle et leurs \u00e9pith\u00e8tes\u202f; Temple d\u2019Amon \u00e0 Karnak.</i> Le Caire: Institut Fran\u00e7ais d\u2019Arch\u00e9ologie Orientale, 1955. http://www.worldcat.org/oclc/164942903.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/164942903",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Christophe 1955",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7SZ4PWMH",
+      "formattedCitation": "<div class=\"csl-entry\">Christophe, Louis-A. <i>Les divinit\u00e9s des colonnes de la grande salle hypostyle et leurs \u00e9pith\u00e8tes\u202f; Temple d\u2019Amon \u00e0 Karnak.</i> Le Caire: Institut Fran\u00e7ais d\u2019Arch\u00e9ologie Orientale, 1955. http://www.worldcat.org/oclc/164942903.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6363",
+      "citationDetail": "Building 2103467: Tempel des Amun-Re Theben",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "877521474",
+  "subject": [],
+  "title": "Temple of Amon (Karnak)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Middle Kingdom temple of Amon at the heart of the Karnak Temple Complex.",
+  "reprPoint": [
+    32.65833175928817,
+    25.71835341886452
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    32.6565195,
+    25.7172513,
+    32.6601544,
+    25.7194477
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/786050"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-02T14:39:35Z",
+  "uri": "https://pleiades.stoa.org/places/877521474",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Arachne Building 2103467: Tempel des Amun-Re Theben added as reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-04T16:02:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "gmckee",
+      "modified": "2022-06-03T14:30:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T14:42:45Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T14:39:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T14:39:35Z"
+    }
+  ]
+}

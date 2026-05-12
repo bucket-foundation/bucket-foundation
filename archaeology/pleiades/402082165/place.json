@@ -1,0 +1,828 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5036838,
+          41.8952924
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-nymphaeum",
+      "properties": {
+        "snippet": "Fountain, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/402082165/location-of-nymphaeum",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of nymphaeum"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5035881,
+            41.8953868
+          ],
+          [
+            12.5035703,
+            41.8952481
+          ],
+          [
+            12.5035189,
+            41.8951688
+          ],
+          [
+            12.5037931,
+            41.8950896
+          ],
+          [
+            12.5038117,
+            41.8951127
+          ],
+          [
+            12.5037665,
+            41.8951444
+          ],
+          [
+            12.5037523,
+            41.8951979
+          ],
+          [
+            12.5037798,
+            41.8953941
+          ],
+          [
+            12.5035881,
+            41.8953868
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ninfeo-di-alessandro-severo",
+      "properties": {
+        "snippet": "Fountain; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/402082165/osm-location-of-ninfeo-di-alessandro-severo",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ninfeo di Alessandro Severo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/256753115",
+          "citationDetail": "Node 256753115",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=256753115",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-nymphaeum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of nymphaeum",
+      "provenance": "OpenStreetMap (Node 256753115, version 3, osm:changeset=19733549, 2013-12-31T14:47:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fountain",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-12-31T14:51:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5036838,
+          41.8952924
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/402082165/location-of-nymphaeum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-04T21:39:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-20T11:57:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-22T20:30:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-22T20:29:55Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-31T14:51:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-31T14:51:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-31T14:51:30Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/345702226",
+          "citationDetail": "Way 345702226",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=345702226",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ninfeo-di-alessandro-severo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+      ],
+      "end": 640,
+      "title": "OSM location of Ninfeo di Alessandro Severo",
+      "provenance": "OpenStreetMap (Way 345702226, version 5, osm:changeset=134671611, 2023-04-09T00:57:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fountain"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-01-15T14:32:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5035881,
+            41.8953868
+          ],
+          [
+            12.5035703,
+            41.8952481
+          ],
+          [
+            12.5035189,
+            41.8951688
+          ],
+          [
+            12.5037931,
+            41.8950896
+          ],
+          [
+            12.5038117,
+            41.8951127
+          ],
+          [
+            12.5037665,
+            41.8951444
+          ],
+          [
+            12.5037523,
+            41.8951979
+          ],
+          [
+            12.5037798,
+            41.8953941
+          ],
+          [
+            12.5035881,
+            41.8953868
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/402082165/osm-location-of-ninfeo-di-alessandro-severo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-18T02:37:24Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:50:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-15T14:33:18Z"
+        },
+        {
+          "comment": "added OSM location - previously published location now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-15T14:33:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-15T14:32:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-15T14:32:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:53:26Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/402082165/423025",
+      "connectionType": "at",
+      "id": "423025",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-04T21:39:24Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-10-19T20:58:21Z",
+      "associationCertainty": "certain",
+      "title": "Esquilinus Mons",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/402082165/esquilinus-mons",
+      "connectionType": "on",
+      "id": "esquilinus-mons",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:51:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:50:20Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-19T20:58:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-19T20:58:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/679976755",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-15T14:26:50Z",
+      "associationCertainty": "certain",
+      "title": "Horti Lamiani",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/402082165/horti-lamiani",
+      "connectionType": "part_of_physical",
+      "id": "horti-lamiani",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-04T00:01:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-22T15:21:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-15T15:07:42Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-15T14:26:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-15T14:26:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/789002571",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-08-12T19:26:13Z",
+      "associationCertainty": "certain",
+      "title": "Regio V (Esquiliae)",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/402082165/regio-v-esquiliae",
+      "connectionType": "part_of_analytical",
+      "id": "regio-v-esquiliae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-05T11:36:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-05T00:28:02Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-05T00:27:57Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-12T19:26:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-12T19:26:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/406470991",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tedeschi Grisanti 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/32ZZMWXJ",
+          "formattedCitation": "<div class=\"csl-entry\">Tedeschi Grisanti, G. \u201cTrofei di Mario. Il monumento.\u201d In <i>Roma. Archeologia nel centro, 1. L\u2019area archeologica centrale. 2. La citt\u00e0 murata</i>, 487\u2013500, Abb. Lavori e studi di archeologia 6; 1\u20132. Rome: De Luca, 1985.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Ninfeo_di_Alessandro",
+      "citationDetail": "Ninfeo di Alessandro",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sovraintendenzaroma.it/i_luoghi/roma_antica/monumenti/trofei_di_mario",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Monumenti / Roma antica - Sovrintendenza, Trofei di Mario",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tedeschi Grisanti 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C46B8MG2",
+      "formattedCitation": "<div class=\"csl-entry\">Tedeschi Grisanti, Giovanna. <i>I trofei di Mario: il Ninfeo dell\u2019acqua Giulia sull\u2019Esquilino</i>. I Monumenti romani 7. Roma: Istituto di studi romani, 1977.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tedeschi Grisanti 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/32ZZMWXJ",
+      "formattedCitation": "<div class=\"csl-entry\">Tedeschi Grisanti, G. \u201cTrofei di Mario. Il monumento.\u201d In <i>Roma. Archeologia nel centro, 1. L\u2019area archeologica centrale. 2. La citt\u00e0 murata</i>, 487\u2013500, Abb. Lavori e studi di archeologia 6; 1\u20132. Rome: De Luca, 1985.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gautier di Confiengo 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T9HDUIXM",
+      "formattedCitation": "<div class=\"csl-entry\">Gautier di Confiengo, E. \u201cPirro Ligorio ed i \u2018Trofei di Mario.\u2019\u201d In <i>Atti della Pontificia Accademia Romana di Archeologia, Rendiconti, 83.2010-2011</i>, 90\u201399. Roma: Tipografia vaticana, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3877101",
+      "citationDetail": "Nymphaeum of Alexander Severus (Q3877101)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/1088729",
+      "citationDetail": "348-49",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aicher 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3DLKV8EP",
+      "formattedCitation": "<div class=\"csl-entry\">Aicher, Peter J. \u201cTerminal Display Fountains (\u2018Mostre\u2019) and the Aqueducts of Ancient Rome.\u201d <i>Phoenix</i> 47, no. 4 (1993): 339\u201352. https://doi.org/10.2307/1088729.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=401",
+      "citationDetail": "401: ninfeo di Alessandro Severo",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ninfeo di Alessandro",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Ninfeo_di_Alessandro",
+          "citationDetail": "Ninfeo di Alessandro",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2019-01-10.2294633350",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-01-10T19:41:10Z",
+      "uri": "https://pleiades.stoa.org/places/402082165/name.2019-01-10.2294633350",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-04T21:39:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-10T19:41:21Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-10T19:41:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-10T19:41:10Z"
+        }
+      ]
+    }
+  ],
+  "id": "402082165",
+  "subject": [],
+  "title": "Nymphaeum divi Alexandri",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p>Alexander Severus (A.D. 208-235) carried out the project.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monumental nymphaeum on the Esquiline Hill dating to the Severan period; commonly known as \"Trofei di Mario\". The complex is located at a fork between the Via Tiburtina and the Via Labicana.",
+  "reprPoint": [
+    12.50368100145332,
+    41.895267200293134
+  ],
+  "placeTypes": [
+    "fountain",
+    "monument"
+  ],
+  "bbox": [
+    12.5035189,
+    41.8950896,
+    12.5038117,
+    41.8953941
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/679976755",
+    "https://pleiades.stoa.org/places/789002571",
+    "https://pleiades.stoa.org/places/406470991"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-12-31T14:49:11Z",
+  "uri": "https://pleiades.stoa.org/places/402082165",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-22T20:33:10Z"
+    },
+    {
+      "comment": "add Aicher 1993",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-08T19:02:09Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-15T14:41:47Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-05T00:27:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-02-04T21:39:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-08T21:10:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-05-22T20:29:08Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-15T04:12:23Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-31T14:49:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-31T14:49:12Z"
+    }
+  ]
+}

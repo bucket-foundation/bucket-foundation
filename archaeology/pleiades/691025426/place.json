@@ -1,0 +1,337 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.388682,
+          43.815269
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-approximate-center-of-excavation",
+      "properties": {
+        "snippet": "Bridge; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/691025426/imagery-location-approximate-center-of-excavation",
+        "description": "Location determined in Google Earth with reference to Flaux 2023, Figure 1.",
+        "location_precision": "precise",
+        "title": "Imagery Location: Approximate Center of Excavation"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/romanera-alluvial-waste-in-the-vistre-de-la-fontaine-nimes-southeast-france-from-a-sacred-spring-to-a-contaminated-river/856465BDBE25086CA463CC8E56280203#",
+          "citationDetail": "Figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Flaux 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D4XY4P2A",
+          "formattedCitation": "<div class=\"csl-entry\">Flaux, Cl\u00e9ment, Sabrina Save, Maxime Scrinzi, Nicolas Minvielle Larousse, Christophe Vaschalde, Audrey Renaud, Margaux Tillier, Abel Guihou, Pierre Deschamps, and Alain V\u00e9ron. \u201cRoman-Era Alluvial Waste in the Vistre de La Fontaine (N\u00eemes, Southeast France): From a Sacred Spring to a Contaminated River.\u201d <i>Journal of Roman Archaeology</i> 36, no. 1 (June 2023): 50\u201372. https://doi.org/10.1017/S1047759423000132.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-approximate-center-of-excavation",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 300,
+      "title": "Imagery Location: Approximate Center of Excavation",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Location determined in Google Earth with reference to Flaux 2023, Figure 1.",
+      "created": "2023-06-30T21:20:16Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.388682,
+          43.815269
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/691025426/imagery-location-approximate-center-of-excavation",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-30T23:23:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:21:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:20:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:20:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2023-06-30T21:21:24Z",
+      "associationCertainty": "certain",
+      "title": "Le Vistre de la Fontaine",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/691025426/le-vistre-de-la-fontaine-1",
+      "connectionType": "crosses",
+      "id": "le-vistre-de-la-fontaine-1",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-30T23:23:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:21:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:21:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:21:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/542278279",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/romanera-alluvial-waste-in-the-vistre-de-la-fontaine-nimes-southeast-france-from-a-sacred-spring-to-a-contaminated-river/856465BDBE25086CA463CC8E56280203#",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Flaux 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D4XY4P2A",
+          "formattedCitation": "<div class=\"csl-entry\">Flaux, Cl\u00e9ment, Sabrina Save, Maxime Scrinzi, Nicolas Minvielle Larousse, Christophe Vaschalde, Audrey Renaud, Margaux Tillier, Abel Guihou, Pierre Deschamps, and Alain V\u00e9ron. \u201cRoman-Era Alluvial Waste in the Vistre de La Fontaine (N\u00eemes, Southeast France): From a Sacred Spring to a Contaminated River.\u201d <i>Journal of Roman Archaeology</i> 36, no. 1 (June 2023): 50\u201372. https://doi.org/10.1017/S1047759423000132.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/crosses"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/mediterranee/12628",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Flaux 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LNUHIKFG",
+      "formattedCitation": "<div class=\"csl-entry\">Flaux, Cl\u00e9ment, Maxime Scrinzi, and Hatem Djerbi. \u201c\u00c0 quand remonte l\u2019\u00e9tat de r\u00e9f\u00e9rence \u00ab\u202fnaturel\u202f\u00bb du Vistre de la Fontaine (N\u00eemes)\u202f?\u201d <i>M\u00e9diterran\u00e9e. Revue g\u00e9ographique des pays m\u00e9diterran\u00e9ens / Journal of Mediterranean geography</i>, March 8, 2022. https://doi.org/10.4000/mediterranee.12628.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/romanera-alluvial-waste-in-the-vistre-de-la-fontaine-nimes-southeast-france-from-a-sacred-spring-to-a-contaminated-river/856465BDBE25086CA463CC8E56280203#",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Flaux 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D4XY4P2A",
+      "formattedCitation": "<div class=\"csl-entry\">Flaux, Cl\u00e9ment, Sabrina Save, Maxime Scrinzi, Nicolas Minvielle Larousse, Christophe Vaschalde, Audrey Renaud, Margaux Tillier, Abel Guihou, Pierre Deschamps, and Alain V\u00e9ron. \u201cRoman-Era Alluvial Waste in the Vistre de La Fontaine (N\u00eemes, Southeast France): From a Sacred Spring to a Contaminated River.\u201d <i>Journal of Roman Archaeology</i> 36, no. 1 (June 2023): 50\u201372. https://doi.org/10.1017/S1047759423000132.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Le Vistre de la Fontaine",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "le-vistre-de-la-fontaine",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2023-06-30T21:20:40Z",
+      "uri": "https://pleiades.stoa.org/places/691025426/le-vistre-de-la-fontaine",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Le Vistre de la Fontaine",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-30T23:23:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:21:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:20:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-30T21:20:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "691025426",
+  "subject": [],
+  "title": "Roman Bridge: Le Vistre de la Fontaine Palaeochannel",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of a Roman bridge spanning a former channel of Le Vistre de la Fontaine south of N\u00eemes have been excavated. Work at the site also provided significant evidence for Roman-era waste and lead contamination transported down the river from the urban center of Nemausus.",
+  "reprPoint": [
+    4.388682,
+    43.815269
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    4.388682,
+    43.815269,
+    4.388682,
+    43.815269
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/542278279"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-06-30T21:18:37Z",
+  "uri": "https://pleiades.stoa.org/places/691025426",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-30T23:23:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-30T21:23:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-30T21:21:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-30T21:18:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-30T21:18:37Z"
+    }
+  ]
+}

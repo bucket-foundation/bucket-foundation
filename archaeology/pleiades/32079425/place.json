@@ -1,0 +1,390 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.1716154,
+            38.0748945
+          ],
+          [
+            23.1715591,
+            38.0748734
+          ],
+          [
+            23.1715102,
+            38.0748455
+          ],
+          [
+            23.1714577,
+            38.0748059
+          ],
+          [
+            23.171417,
+            38.0747593
+          ],
+          [
+            23.1715125,
+            38.0747195
+          ],
+          [
+            23.1718006,
+            38.0745886
+          ],
+          [
+            23.1718515,
+            38.0746817
+          ],
+          [
+            23.1717321,
+            38.074717
+          ],
+          [
+            23.1717562,
+            38.0747735
+          ],
+          [
+            23.1717603,
+            38.0747938
+          ],
+          [
+            23.171718,
+            38.0748385
+          ],
+          [
+            23.1716887,
+            38.0748711
+          ],
+          [
+            23.1716154,
+            38.0748945
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bouri-cult-site-megara",
+      "properties": {
+        "snippet": "Sanctuary; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/32079425/osm-location-of-bouri-cult-site-megara",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bouri cult site (Megara)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1272537430",
+          "citationDetail": "Way 1272537430",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1272537430",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bouri-cult-site-megara",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": -550,
+      "title": "OSM location of Bouri cult site (Megara)",
+      "provenance": "OpenStreetMap (Way 1272537430, version 2, osm:changeset=149996038, 2024-04-14T14:44:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2026-03-25T14:54:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.1716154,
+            38.0748945
+          ],
+          [
+            23.1715591,
+            38.0748734
+          ],
+          [
+            23.1715102,
+            38.0748455
+          ],
+          [
+            23.1714577,
+            38.0748059
+          ],
+          [
+            23.171417,
+            38.0747593
+          ],
+          [
+            23.1715125,
+            38.0747195
+          ],
+          [
+            23.1718006,
+            38.0745886
+          ],
+          [
+            23.1718515,
+            38.0746817
+          ],
+          [
+            23.1717321,
+            38.074717
+          ],
+          [
+            23.1717562,
+            38.0747735
+          ],
+          [
+            23.1717603,
+            38.0747938
+          ],
+          [
+            23.171718,
+            38.0748385
+          ],
+          [
+            23.1716887,
+            38.0748711
+          ],
+          [
+            23.1716154,
+            38.0748945
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/32079425/osm-location-of-bouri-cult-site-megara",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-25T15:59:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T14:56:24Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T14:55:13Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T14:54:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T14:54:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380232XBou",
+      "citationDetail": "Bouri cult site (Megara)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bouri cult site (Megara)",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://topostext.org/place/380232XBou",
+          "citationDetail": "Bouri cult site (Megara)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "ToposText",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+          "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bouri-cult-site-megara",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "bkiesling",
+          "homepage": null,
+          "name": "Brady Kiesling",
+          "uri": "https://pleiades.stoa.org/author/bkiesling"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-03-25T14:56:19Z",
+      "uri": "https://pleiades.stoa.org/places/32079425/bouri-cult-site-megara",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Bouri cult site (Megara)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-25T15:59:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T14:56:24Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T14:56:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-25T14:56:19Z"
+        }
+      ]
+    }
+  ],
+  "id": "32079425",
+  "subject": [],
+  "title": "Bouri cult site (Megara)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Archaic coastal sanctuary located at Alepochori, Megara, Greece.",
+  "reprPoint": [
+    23.171650781727156,
+    38.074741843605786
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "archaeological-site"
+  ],
+  "bbox": [
+    23.171417,
+    38.0745886,
+    23.1718515,
+    38.0748945
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-03-25T14:54:37Z",
+  "uri": "https://pleiades.stoa.org/places/32079425",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-03-25T15:59:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-25T14:56:24Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-25T14:54:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-25T14:54:37Z"
+    }
+  ]
+}

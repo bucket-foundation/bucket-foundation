@@ -1,0 +1,466 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.9357413,
+          37.4847709
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-chalandriani",
+      "properties": {
+        "snippet": "Cemetery, Settlement-modern; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/30347988/osm-location-of-chalandriani",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Chalandriani"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1846917029",
+          "citationDetail": "Node 1846917029",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1846917029",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-chalandriani",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": -1000,
+      "title": "OSM location of Chalandriani",
+      "provenance": "OpenStreetMap (Node 1846917029, version 6, osm:changeset=59198479, 2018-05-23T05:24:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        "settlement-modern"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2019-01-22T23:21:37Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.9357413,
+          37.4847709
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/30347988/osm-location-of-chalandriani",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2020-02-03T16:25:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2020-02-03T16:24:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2020-02-03T16:24:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-05T14:55:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-05T14:55:36Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-22T23:22:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-22T23:21:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-22T23:21:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-01-21T19:29:23Z",
+      "associationCertainty": "certain",
+      "title": "Syros (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/30347988/syros-island",
+      "connectionType": "on",
+      "id": "syros-island",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "type, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-03T20:33:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:43:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-05T14:55:44Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T19:29:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T19:29:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/590067",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q12886007",
+          "citationDetail": "Chalandriani (Q12886007)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Chalandriani",
+      "citationDetail": "Chalandriani",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hekman 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H99DZFSD",
+      "formattedCitation": "<div class=\"csl-entry\">Hekman, J. J. \u201cChalandriani on Syros. A Early Bronze Age Cemetery in the Cyclades.\u201d In <i>A\u03c1\u03c7\u03b1\u03b9o\u03bbo\u03b3\u03b9\u03ba\u03ae \u0395\u03c6\u03b7\u03bc\u03b5\u03c1\u03af\u03c2, 133.1994</i>, 47\u201374, Abb, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hekman 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HY3QXBAJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hekman, J. J. \u201cThe Early Cycladic Cemetery at Chalandriani on Syros. Report on the 1991 Topographical Survey.\u201d In <i>Newsletter of the Netherlands Institute at Athens, 4.1991</i>, 17\u201343, Abb, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marthar\u0113 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7KAT9YFS",
+      "formattedCitation": "<div class=\"csl-entry\">Marthar\u0113, Mariza. <i>\u03a3\u03cd\u03c1\u03bf\u03c2, \u03a7\u03b1\u03bb\u03b1\u03bd\u03b4\u03c1\u03b9\u03b1\u03bd\u03ae, \u039a\u03b1\u03c3\u03c4\u03c1\u03af: \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03ad\u03c1\u03b5\u03c5\u03bd\u03b1 \u03ba\u03b1\u03b9 \u03c4\u03b7\u03bd \u03c0\u03c1\u03bf\u03c3\u03c4\u03b1\u03c3\u03af\u03b1 \u03c3\u03c4\u03b7\u03bd \u03b1\u03bd\u03ac\u03b4\u03b5\u03b9\u03be\u03b7 \u03c4\u03bf\u03c5 \u03b1\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03bf\u03cd \u03c7\u03ce\u03c1\u03bf\u03c5 = Syros, Chalandriani, Kastri. From the investigation and protection to the presentation of an archaeological site</i>. \u0391\u03b8\u03ae\u03bd\u03b1: \u03a5\u03c0\u03bf\u03c5\u03c1\u03b3\u03b5\u03af\u03bf \u0391\u03b9\u03b3\u03b1\u03af\u03bf\u03c5, \u039a\u0391\u0384 \u0395\u03c6\u03bf\u03c1\u03b5\u03af\u03b1 \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03c4\u03ae\u03c4\u03c9\u03bd, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/505584",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broodbank 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y6PDLBBA",
+      "formattedCitation": "<div class=\"csl-entry\">Broodbank, Cyprian. \u201cThe Longboat and Society in the Cyclades in the Keros-Syros Culture.\u201d <i>American Journal of Archaeology</i> 93, no. 3 (1989): 319\u201337. https://doi.org/10.2307/505584.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q12886007",
+      "citationDetail": "Chalandriani (Q12886007)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Chalandriani",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geonames.org/260173/chalandriani.html",
+          "citationDetail": "260173",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "chalandriani",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2019-06-29T13:52:36Z",
+      "uri": "https://pleiades.stoa.org/places/30347988/chalandriani",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u03a7\u03b1\u03bb\u03b1\u03bd\u03b4\u03c1\u03b9\u03b1\u03bd\u03ae",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:43:15Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-29T13:53:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-29T13:52:46Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-29T13:52:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-29T13:52:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "30347988",
+  "subject": [],
+  "title": "Chalandriani",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>Christos Tsountas carried out excavations of the necropolis in 1898.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A major Early Bronze Age necropolis on Syros, Chalandriani contains tombs related to the Keros-Syros culture of the Early Cycladic II period.",
+  "reprPoint": [
+    24.9357413,
+    37.4847709
+  ],
+  "placeTypes": [
+    "cemetery",
+    "settlement-modern"
+  ],
+  "bbox": [
+    24.9357413,
+    37.4847709,
+    24.9357413,
+    37.4847709
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/590067"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-01-21T19:28:04Z",
+  "uri": "https://pleiades.stoa.org/places/30347988",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-03T20:33:06Z"
+    },
+    {
+      "comment": "added wikidata Q12886007: Chalandriani",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-12T14:31:05Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-12T10:43:15Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-29T14:00:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-05T14:55:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T19:40:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T19:40:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T19:28:51Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T19:28:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T19:28:04Z"
+    }
+  ]
+}

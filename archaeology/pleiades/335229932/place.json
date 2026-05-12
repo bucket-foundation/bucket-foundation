@@ -1,0 +1,371 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.3948837,
+            37.4086349
+          ],
+          [
+            24.3947611,
+            37.4085744
+          ],
+          [
+            24.3948215,
+            37.4084972
+          ],
+          [
+            24.3949441,
+            37.4085577
+          ],
+          [
+            24.3948837,
+            37.4086349
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "northern-sanctuary",
+      "properties": {
+        "snippet": "Sanctuary; 750 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/335229932/northern-sanctuary",
+        "description": "Polygon representing the visible remains of the Northern Sanctuary at Kythnos, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Northern sanctuary"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1029952371",
+          "citationDetail": "Way 1029952371",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1029952371",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mazarakis Ainian 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/23HYSCZ2",
+          "formattedCitation": "<div class=\"csl-entry\">Mazarakis Ainian, Alexander, and Alexandra-Fani Alexandridou. <i>\u0391\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03b5\u03c2 \u03b1\u03c1\u03c7\u03b1\u03b9\u03b1\u03c2 \u039a\u03c5\u03b8\u03bd\u03bf\u03c5</i>. Volos: \u03a0\u03b1\u03bd\u03b5\u03c0\u03b9\u03c3\u03c4\u03b7\u03bc\u03b9\u03b1\u03ba\u03b5\u03c2 \u0395\u03ba\u03b4\u03bf\u03c3\u03b5\u03b9\u03c2 \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03b9\u03b1\u03c2, 2022. https://worldcat.org/title/1376377231</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "northern-sanctuary",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location of Northern sanctuary",
+      "provenance": "OpenStreetMap (Way 1029952371, version 3, osm:changeset=135065708, 2023-04-18T15:40:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Polygon representing the visible remains of the Northern Sanctuary at Kythnos, derived from an OpenStreetMap Way.",
+      "created": "2023-04-18T15:40:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.3948837,
+            37.4086349
+          ],
+          [
+            24.3947611,
+            37.4085744
+          ],
+          [
+            24.3948215,
+            37.4084972
+          ],
+          [
+            24.3949441,
+            37.4085577
+          ],
+          [
+            24.3948837,
+            37.4086349
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/335229932/northern-sanctuary",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-18T17:51:42Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T17:29:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T17:28:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T17:26:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T15:42:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T15:41:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T15:40:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T15:40:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-18T17:28:01Z",
+      "associationCertainty": "certain",
+      "title": "Kythnos",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/335229932/kythnos",
+      "connectionType": "at",
+      "id": "kythnos",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-18T17:51:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T17:28:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T17:28:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-04-18T17:28:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570402",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mazarakis Ainian 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/23HYSCZ2",
+      "formattedCitation": "<div class=\"csl-entry\">Mazarakis Ainian, Alexander, and Alexandra-Fani Alexandridou. <i>\u0391\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03b5\u03c2 \u03b1\u03c1\u03c7\u03b1\u03b9\u03b1\u03c2 \u039a\u03c5\u03b8\u03bd\u03bf\u03c5</i>. Volos: \u03a0\u03b1\u03bd\u03b5\u03c0\u03b9\u03c3\u03c4\u03b7\u03bc\u03b9\u03b1\u03ba\u03b5\u03c2 \u0395\u03ba\u03b4\u03bf\u03c3\u03b5\u03b9\u03c2 \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03b9\u03b1\u03c2, 2022. https://worldcat.org/title/1376377231</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "335229932",
+  "subject": [],
+  "title": "Northern sanctuary at Kythnos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Religious structure in Kythnos constructed in the Archaic period.",
+  "reprPoint": [
+    24.394852600000004,
+    37.408566050000005
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    24.3947611,
+    37.4084972,
+    24.3949441,
+    37.4086349
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570402"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-18T15:40:39Z",
+  "uri": "https://pleiades.stoa.org/places/335229932",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-18T17:51:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2023-04-18T17:28:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2023-04-18T17:28:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2023-04-18T17:27:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2023-04-18T17:26:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2023-04-18T17:26:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2023-04-18T15:40:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2023-04-18T15:40:39Z"
+    }
+  ]
+}

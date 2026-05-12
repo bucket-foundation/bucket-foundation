@@ -1,0 +1,251 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:37:36Z",
+      "associationCertainty": "certain",
+      "title": "Colophon",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/591210113/599577",
+      "connectionType": "connection",
+      "id": "599577",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599577",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.encquran.brill.nl/entries/supplementum-epigraphicum-graecum/seg-39-1243-klaros-honorary-decree-for-menippos-after-120119-bc-a39_1243",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "SEG 39-1243",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.uni-koeln.de/phil-fak/ifa/EpAnat/38%20pdfs%20web/038109.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Rigsby, Kent J. 2005. \u201cAgathopolis and Doulopolis.\u201d Epigraphica Anatolica 38:109\u201315.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/23199292",
+      "formattedCitation": "Robert, Louis and Jeanne Robert. 1989. Claros. I, I. Paris: Ed. Recherche sur les civilisations.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Doulon polis",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/",
+          "formattedCitation": "SEG 39.1243",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "doulon-polis",
+      "end": -30,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "Greek phrase for Doulopolis",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2016-04-20T18:18:48Z",
+      "uri": "https://pleiades.stoa.org/places/591210113/doulon-polis",
+      "creators": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "attested": "\u0394\u03bf\u03cd\u03bb\u03c9\u03bd \u03c0\u03cc\u03bb\u03b5\u03bd\u03c2 ",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-05-10T02:30:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-04-20T18:19:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-04-20T18:18:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-04-20T18:18:52Z"
+        }
+      ]
+    }
+  ],
+  "id": "591210113",
+  "subject": [],
+  "title": "Doulopolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A community within the territory of Colophon. Although there is some controversy as to its status, the name suggests that the community was founded by slaves (or other dissidents) who supported Aristonikos against Rome between 133 and 130/129 BCE. It seems to have been reabsorbed by Colophon at an undetermined point after 130/129. Its location is unknown today.",
+  "reprPoint": [
+    27.164876034010174,
+    38.075518143039886
+  ],
+  "placeTypes": [
+    "unlocated",
+    "settlement"
+  ],
+  "bbox": [
+    27.142647,
+    37.997757,
+    27.204204,
+    38.119933
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599577"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-04-20T18:04:39Z",
+  "uri": "https://pleiades.stoa.org/places/591210113",
+  "creators": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-10T02:30:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-02T01:19:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-04-20T22:40:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rmhorne",
+      "modified": "2016-04-20T18:20:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rmhorne",
+      "modified": "2016-04-20T18:14:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rmhorne",
+      "modified": "2016-04-20T18:13:02Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "rmhorne",
+      "modified": "2016-04-20T18:04:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "rmhorne",
+      "modified": "2016-04-20T18:04:40Z"
+    }
+  ]
+}

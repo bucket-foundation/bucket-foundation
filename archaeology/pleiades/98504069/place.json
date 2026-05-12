@@ -1,0 +1,169 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": -2168,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-07T18:14:40Z",
+      "associationCertainty": "certain",
+      "title": "Abydos/Ebot",
+      "start": -2670,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/98504069/abydos-ebot",
+      "connectionType": "at",
+      "id": "abydos-ebot",
+      "attestations": [
+        {
+          "timePeriod": "old-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-07T19:15:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-07T18:18:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-07T18:14:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-07T18:14:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/756512",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://religiondatabase.org/browse/1081",
+      "citationDetail": "The Abydos Temple of Khentiamentiu",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "DRH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B8HQMAF4",
+      "formattedCitation": "<div class=\"csl-entry\">Edward Slingerland, Michael Muthukrishna, M. Willis Monroe, Rachel Spicer, Caroline Arbuckle, Matthew Hamm, and Ryan Johnson. <i>The Database of Religious History</i>, 2012. https://religiondatabase.org/landing.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Khenti-Amentiu",
+      "citationDetail": "Khenti-Amentiu",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "98504069",
+  "subject": [],
+  "title": "Khentiamentiu, Temple of",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An unexcavated Old Kingdom temple, attested by epigraphic finds at Abydos in Egypt. Its remains are presumed to underlie later Osiris sanctuary structures and part of the modern town.",
+  "reprPoint": [
+    31.917622,
+    26.185099
+  ],
+  "placeTypes": [
+    "unlocated",
+    "temple-2"
+  ],
+  "bbox": [
+    31.917622,
+    26.185099,
+    31.917622,
+    26.185099
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/756512"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-06-07T18:13:46Z",
+  "uri": "https://pleiades.stoa.org/places/98504069",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-19T23:59:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-07T19:15:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-07T18:18:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-07T18:15:46Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-07T18:13:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-07T18:13:46Z"
+    }
+  ]
+}

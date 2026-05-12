@@ -1,0 +1,396 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.608239,
+          32.68025
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-shaar-hagolan-site",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/112487386/imagery-location-of-shaar-hagolan-site",
+        "description": "Point representing the approximate central point of the Neolithic settlement at Sha'ar Hagolan, after Garfinkle and Ben-Shlomo 2009.",
+        "location_precision": "precise",
+        "title": "Imagery location of Sha'ar Hagolan site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 4-5",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Garfinkel and Ben-Shlomo 2009",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P45A35WY",
+          "formattedCitation": "<div class=\"csl-entry\">Garfinkel, Yosef, and David Ben-Shlomo. <i>Sha\u2019ar Hagolan 2: The Rise of Urban Concepts in the Ancient Near East</i>. Qedem Reports 9. Jerusalem: Institute of Archaeology, 2009.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "imagery-location-of-shaar-hagolan-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "Imagery location of Sha'ar Hagolan site",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point representing the approximate central point of the Neolithic settlement at Sha'ar Hagolan, after Garfinkle and Ben-Shlomo 2009.",
+      "created": "2018-03-13T13:28:49Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.608239,
+          32.68025
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/112487386/imagery-location-of-shaar-hagolan-site",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-13T15:04:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:34:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:28:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:28:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -3300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-03-13T13:34:21Z",
+      "associationCertainty": "certain",
+      "title": "Hieromyces (river)",
+      "start": -10000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/112487386/hieromyces-river",
+      "connectionType": "on",
+      "id": "hieromyces-river",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-13T15:04:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:34:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:34:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:34:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678183",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 4-5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Garfinkel and Ben-Shlomo 2009",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P45A35WY",
+          "formattedCitation": "<div class=\"csl-entry\">Garfinkel, Yosef, and David Ben-Shlomo. <i>Sha\u2019ar Hagolan 2: The Rise of Urban Concepts in the Ancient Near East</i>. Qedem Reports 9. Jerusalem: Institute of Archaeology, 2009.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Garfinkle and Ben-Shlomo 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P45A35WY",
+      "formattedCitation": "<div class=\"csl-entry\">Garfinkel, Yosef, and David Ben-Shlomo. <i>Sha\u2019ar Hagolan 2: The Rise of Urban Concepts in the Ancient Near East</i>. Qedem Reports 9. Jerusalem: Institute of Archaeology, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sha%27ar_HaGolan",
+      "citationDetail": "Sha'ar HaGolan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Yarmukian_culture",
+      "citationDetail": "Yarmukian culture",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q85800548",
+      "citationDetail": "Sha'ar HaGolan (Q85800548)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sha\u2018ar HaGolan, Shaar Hagolan, Sha'ar Ha-Golan",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/293581/sha-ar-hagolan.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 293581 (Sha\u2018ar HaGolan)",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "shaaar-hagolan",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Name of the modern kibbutz associated with and lending its name to the nearby Neolithic settlement of the Yarmukian culture.",
+      "transcriptionCompleteness": "complete",
+      "language": "he",
+      "created": "2018-03-13T13:32:52Z",
+      "uri": "https://pleiades.stoa.org/places/112487386/shaaar-hagolan",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u05e9\u05e2\u05e8 \u05d4\u05d2\u05d5\u05dc\u05df",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-13T15:04:32Z"
+        },
+        {
+          "comment": "changed citation type to data source",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-13T15:03:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:34:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:33:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-13T13:32:52Z"
+        }
+      ]
+    }
+  ],
+  "id": "112487386",
+  "subject": [],
+  "title": "Sha'ar Hagolan",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Neolithic settlement of the Yarmukian culture, located on the northwestern bank of the Yarmuk River approximately 1.5 km south of the Sea of Galilee. At 20 hectares, it is one of the largest known Neolithic settlements in the Near East.",
+  "reprPoint": [
+    35.608239,
+    32.68025
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    35.608239,
+    32.68025,
+    35.608239,
+    32.68025
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678183"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-13T13:26:13Z",
+  "uri": "https://pleiades.stoa.org/places/112487386",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Sha'ar HaGolan (Q85800548)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-04T13:48:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-13T15:04:31Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-13T14:10:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-03-13T13:34:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-03-13T13:26:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-03-13T13:26:13Z"
+    }
+  ]
+}

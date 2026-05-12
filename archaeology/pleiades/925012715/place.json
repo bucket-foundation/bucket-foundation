@@ -1,0 +1,425 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.1577398,
+          35.3017298
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ii-i-i-ii1i-i1-2iii-i",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/925012715/osm-location-of-ii-i-i-ii1i-i1-2iii-i",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u0392\u03af\u03bb\u03b1 \u0394\u03b9\u03bf\u03bd\u03cd\u03c3\u03bf\u03c5"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9740328376",
+          "citationDetail": "Node 9740328376",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9740328376",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ii-i-i-ii1i-i1-2iii-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of \u0392\u03af\u03bb\u03b1 \u0394\u03b9\u03bf\u03bd\u03cd\u03c3\u03bf\u03c5",
+      "provenance": "OpenStreetMap (Node 9740328376, version 1, osm:changeset=120994508, 2022-05-14T22:16:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-05-24T21:01:48Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.1577398,
+          35.3017298
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/925012715/osm-location-of-ii-i-i-ii1i-i1-2iii-i",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-25T15:25:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:07:58Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:02:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:01:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:01:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-24T21:06:58Z",
+      "associationCertainty": "certain",
+      "title": "Knosos/Col. Iulia Nobilis Cnosos",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/925012715/knosos-col-iulia-nobilis-cnosos",
+      "connectionType": "at",
+      "id": "knosos-col-iulia-nobilis-cnosos",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-25T15:25:27Z"
+        },
+        {
+          "comment": "added time period",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:09:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:07:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:07:37Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:06:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:06:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589872",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/40960153",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Paton 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7Z4SYQII",
+          "formattedCitation": "<div class=\"csl-entry\">Paton, Sara. \u201cThe Villa Dionysos at Knossos and Its Predecessors.\u201d <i>British School at Athens Studies</i> 2 (1998): 123\u201328. https://www.jstor.org/stable/40960153.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40960153",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Paton 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7Z4SYQII",
+      "formattedCitation": "<div class=\"csl-entry\">Paton, Sara. \u201cThe Villa Dionysos at Knossos and Its Predecessors.\u201d <i>British School at Athens Studies</i> 2 (1998): 123\u201328. https://www.jstor.org/stable/40960153.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/30102802",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hayes 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QR5I5N4E",
+      "formattedCitation": "<div class=\"csl-entry\">Hayes, J. W. \u201cThe Villa Dionysos Excavations, Knossos: The Pottery.\u201d <i>The Annual of the British School at Athens</i> 78 (1983): 97\u2013169. https://doi.org/10.1017/S0068245400019675.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Villa_Dionysus_(Knossos)",
+      "citationDetail": "Category:Villa Dionysus (Knossos)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/annual-of-the-british-school-at-athens/article/socalled-villa-dionysos-at-knossos/423ED7642653DDFC668CA58CBDB4C1C6",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Paton 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9IEZT8HZ",
+      "formattedCitation": "<div class=\"csl-entry\">Paton, Sara. \u201cThe So-Called Villa Dionysos at Knossos.\u201d <i>Annual of the British School at Athens</i> 117 (December 2022): 311\u201351. https://doi.org/10.1017/S0068245421000137.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q55005631",
+      "citationDetail": "Villa Dionysos (Knossos) (Q55005631)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa Dionysos at Knossos",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/40960153",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Paton 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7Z4SYQII",
+          "formattedCitation": "<div class=\"csl-entry\">Paton, Sara. \u201cThe Villa Dionysos at Knossos and Its Predecessors.\u201d <i>British School at Athens Studies</i> 2 (1998): 123\u201328. https://www.jstor.org/stable/40960153.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "villa-dionysos-at-knossos",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-05-24T21:08:46Z",
+      "uri": "https://pleiades.stoa.org/places/925012715/villa-dionysos-at-knossos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa Dionysos at Knossos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-25T15:25:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:08:53Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:08:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-24T21:08:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "925012715",
+  "subject": [],
+  "title": "Villa Dionysos (Knossos)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman-period urban 'villa' at Knossos was excavated by R. W. Hutchinson (1935) and M. R. E. Gough (post-World War II). Based on pottery evidence, the villa dates to the second century CE and comes to be destroyed ca. 170-180.",
+  "reprPoint": [
+    25.1577398,
+    35.3017298
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    25.1577398,
+    35.3017298,
+    25.1577398,
+    35.3017298
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589872"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-24T21:01:32Z",
+  "uri": "https://pleiades.stoa.org/places/925012715",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q55005631",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-12T20:34:11Z"
+    },
+    {
+      "comment": "added Paton 2022",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-24T21:38:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-25T15:25:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-24T21:10:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-24T21:07:58Z"
+    },
+    {
+      "comment": "wikimedia commons",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-24T21:06:31Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-24T21:01:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-24T21:01:33Z"
+    }
+  ]
+}

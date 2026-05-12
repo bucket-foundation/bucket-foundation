@@ -1,0 +1,566 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.9958393,
+            37.0573118
+          ],
+          [
+            40.9957052,
+            37.056554
+          ],
+          [
+            40.9961022,
+            37.0562672
+          ],
+          [
+            40.9985698,
+            37.0562629
+          ],
+          [
+            40.9997821,
+            37.0567039
+          ],
+          [
+            41.0000545,
+            37.0578596
+          ],
+          [
+            40.998873,
+            37.0593524
+          ],
+          [
+            40.9970677,
+            37.0599873
+          ],
+          [
+            40.9960673,
+            37.0588037
+          ],
+          [
+            40.9958393,
+            37.0573118
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-urkesh-tell-mozan",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 2350 BC",
+        "link": "https://pleiades.stoa.org/places/260976011/osm-location-of-urkesh-tell-mozan",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Urkesh (Tell Mozan)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "fdeblauwe",
+      "homepage": null,
+      "name": "Francis Deblauwe",
+      "uri": "https://pleiades.stoa.org/author/fdeblauwe"
+    },
+    {
+      "username": "ekansa",
+      "homepage": null,
+      "name": "Eric Kansa",
+      "uri": "https://pleiades.stoa.org/author/ekansa"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-dynastic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-dynastic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/492110353",
+          "citationDetail": "Way 492110353",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=492110353",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-urkesh-tell-mozan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2350,
+      "title": "OSM location of Urkesh (Tell Mozan)",
+      "provenance": "OpenStreetMap (Way 492110353, version 2, osm:changeset=74601149, 2019-09-17T23:11:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-02-13T19:10:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.9958393,
+            37.0573118
+          ],
+          [
+            40.9957052,
+            37.056554
+          ],
+          [
+            40.9961022,
+            37.0562672
+          ],
+          [
+            40.9985698,
+            37.0562629
+          ],
+          [
+            40.9997821,
+            37.0567039
+          ],
+          [
+            41.0000545,
+            37.0578596
+          ],
+          [
+            40.998873,
+            37.0593524
+          ],
+          [
+            40.9970677,
+            37.0599873
+          ],
+          [
+            40.9960673,
+            37.0588037
+          ],
+          [
+            40.9958393,
+            37.0573118
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/260976011/osm-location-of-urkesh-tell-mozan",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-29T15:30:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-30T21:15:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-29T13:34:43Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T19:11:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T19:10:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T19:10:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Urkesh",
+      "citationDetail": "Urkesh",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Urkesh.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/32624915",
+      "formattedCitation": "TAVO Index (Vol. 3, p. 1625)",
+      "otherIdentifier": " ",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.urkesh.org/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Urkesh",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1758030",
+      "citationDetail": "Q1758030",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tall M\u016bz\u0101n, Tall Muzan, Tell Muzan, Tall Mozan, Tell Mozan",
+      "attestations": [
+        {
+          "timePeriod": "early-dynastic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-dynastic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/32624915",
+          "formattedCitation": "TAVO Index (Vol. 3, p. 1625)",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.urkesh.org/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Urkesh",
+          "otherIdentifier": " ",
+          "type": "seeAlso"
+        }
+      ],
+      "id": "tall-muzan",
+      "end": -1600,
+      "contributors": [
+        {
+          "username": "fdeblauwe",
+          "homepage": null,
+          "name": "Francis Deblauwe",
+          "uri": "https://pleiades.stoa.org/author/fdeblauwe"
+        },
+        {
+          "username": "ekansa",
+          "homepage": null,
+          "name": "Eric Kansa",
+          "uri": "https://pleiades.stoa.org/author/ekansa"
+        }
+      ],
+      "provenance": "TAVO Index",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2950,
+      "details": "GANE OBJECT 59791",
+      "review_state": "published",
+      "description": "A place name from the TAVO Index (Vol. 3, p. 1625)",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2013-08-22T10:50:39Z",
+      "uri": "https://pleiades.stoa.org/places/260976011/tall-muzan",
+      "creators": [
+        {
+          "username": null,
+          "name": "B. Siewert-Mayer"
+        },
+        {
+          "username": null,
+          "name": "W. R\u00f6llig"
+        },
+        {
+          "username": null,
+          "name": "H. Kopp"
+        }
+      ],
+      "attested": null,
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T10:50:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T10:50:49Z"
+        },
+        {
+          "comment": "New locations, names, and places for the Ancient Near East from the Alexandria Archive Institute's GANE project: http://alexandriaarchive.org/projects/gane/.",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T10:50:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T10:50:44Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Urki\u0161, Urkish, Urkesh",
+      "attestations": [
+        {
+          "timePeriod": "middle-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/32624915",
+          "formattedCitation": "TAVO Index (Vol. 3, p. 1743)",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "urkis",
+      "end": -1450,
+      "contributors": [
+        {
+          "username": "fdeblauwe",
+          "homepage": null,
+          "name": "Francis Deblauwe",
+          "uri": "https://pleiades.stoa.org/author/fdeblauwe"
+        },
+        {
+          "username": "ekansa",
+          "homepage": null,
+          "name": "Eric Kansa",
+          "uri": "https://pleiades.stoa.org/author/ekansa"
+        }
+      ],
+      "provenance": "TAVO Index",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1750,
+      "details": "GANE OBJECT 64204",
+      "review_state": "published",
+      "description": "A place name from the TAVO Index (Vol. 3, p. 1743)",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2013-08-22T10:51:04Z",
+      "uri": "https://pleiades.stoa.org/places/260976011/urkis",
+      "creators": [
+        {
+          "username": null,
+          "name": "B. Siewert-Mayer"
+        },
+        {
+          "username": null,
+          "name": "W. R\u00f6llig"
+        },
+        {
+          "username": null,
+          "name": "H. Kopp"
+        }
+      ],
+      "attested": null,
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T10:51:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T10:51:11Z"
+        },
+        {
+          "comment": "New locations, names, and places for the Ancient Near East from the Alexandria Archive Institute's GANE project: http://alexandriaarchive.org/projects/gane/.",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T10:51:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2013-08-22T10:51:09Z"
+        }
+      ]
+    }
+  ],
+  "id": "260976011",
+  "subject": [],
+  "title": "Tall M\u016bz\u0101n",
+  "provenance": "TAVO Index",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>GANE OBJECT 59791</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Urkesh or Urkish (the modern Tell Mozan) is a tell located in the foothills of the Taurus Mountains of northeastern Syria. Hurrians founded the site during the fourth millennium B.C.",
+  "reprPoint": [
+    40.99775812815907,
+    37.057840148340894
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    40.9957052,
+    37.0562629,
+    41.0000545,
+    37.0599873
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/574183540"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-08-22T10:50:20Z",
+  "uri": "https://pleiades.stoa.org/places/260976011",
+  "creators": [
+    {
+      "username": null,
+      "name": "B. Siewert-Mayer"
+    },
+    {
+      "username": null,
+      "name": "W. R\u00f6llig"
+    },
+    {
+      "username": null,
+      "name": "H. Kopp"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-29T15:30:47Z"
+    },
+    {
+      "comment": "wikidata Q1758030",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-29T12:59:44Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-13T19:09:09Z"
+    },
+    {
+      "comment": "reformatted reference per style guide",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-16T23:52:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "admin",
+      "modified": "2013-08-22T10:50:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "admin",
+      "modified": "2013-08-22T10:50:32Z"
+    },
+    {
+      "comment": "New locations, names, and places for the Ancient Near East from the Alexandria Archive Institute's GANE project: http://alexandriaarchive.org/projects/gane/.",
+      "modifiedBy": "admin",
+      "modified": "2013-08-22T10:50:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "admin",
+      "modified": "2013-08-22T10:50:22Z"
+    }
+  ]
+}

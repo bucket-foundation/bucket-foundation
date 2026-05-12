@@ -1,0 +1,356 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            18.170643,
+            40.351272
+          ],
+          [
+            18.1705379,
+            40.35124
+          ],
+          [
+            18.1704229,
+            40.3512483
+          ],
+          [
+            18.1703439,
+            40.3513083
+          ],
+          [
+            18.1703181,
+            40.3513831
+          ],
+          [
+            18.1702995,
+            40.3514636
+          ],
+          [
+            18.1706675,
+            40.3515067
+          ],
+          [
+            18.1706877,
+            40.3514173
+          ],
+          [
+            18.1706928,
+            40.3512984
+          ],
+          [
+            18.170643,
+            40.351272
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/694724623/location-of-roman-theater",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Teatro Romano di Lecce"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/231466071",
+          "citationDetail": "Way 231466071",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=231466071",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Teatro_romano_di_Lecce",
+          "citationDetail": "Teatro romano di Lecce",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Teatro romano di Lecce.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Teatro Romano di Lecce",
+      "provenance": "OpenStreetMap (Way 231466071, version 9, osm:changeset=46615121, 2017-03-06T07:27:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-09T01:47:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            18.170643,
+            40.351272
+          ],
+          [
+            18.1705379,
+            40.35124
+          ],
+          [
+            18.1704229,
+            40.3512483
+          ],
+          [
+            18.1703439,
+            40.3513083
+          ],
+          [
+            18.1703181,
+            40.3513831
+          ],
+          [
+            18.1702995,
+            40.3514636
+          ],
+          [
+            18.1706675,
+            40.3515067
+          ],
+          [
+            18.1706877,
+            40.3514173
+          ],
+          [
+            18.1706928,
+            40.3512984
+          ],
+          [
+            18.170643,
+            40.351272
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/694724623/location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T01:11:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-05T21:10:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-03T14:41:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-04-03T21:07:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-07T15:29:24Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T01:50:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T01:47:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T01:47:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-30T22:32:18Z",
+      "associationCertainty": "certain",
+      "title": "Lupia(e)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/694724623/5382528256",
+      "connectionType": "at",
+      "id": "5382528256",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T22:32:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T22:32:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T22:32:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442642",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Teatro_romano_di_Lecce",
+      "citationDetail": "Teatro romano di Lecce",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "694724623",
+  "subject": [
+    "Theater",
+    "extant remains"
+  ],
+  "title": "Roman theater at Lupia(e)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The precise date of the Roman theater at Lecce is uncertain, but it is generally assigned to the Augustan period.",
+  "reprPoint": [
+    18.1703952,
+    40.3512477
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    18.1703952,
+    40.3512477,
+    18.1703952,
+    40.3512477
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442642"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-30T22:32:17Z",
+  "uri": "https://pleiades.stoa.org/places/694724623",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-05T21:10:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-03T14:42:41Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-03T14:42:34Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T22:32:35Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T22:32:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T22:32:17Z"
+    }
+  ]
+}

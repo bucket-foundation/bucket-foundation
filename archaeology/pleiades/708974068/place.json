@@ -1,0 +1,378 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.833941,
+            40.217184
+          ],
+          [
+            8.8339074,
+            40.2172065
+          ],
+          [
+            8.8338592,
+            40.2172076
+          ],
+          [
+            8.833835,
+            40.2171881
+          ],
+          [
+            8.8338162,
+            40.2171512
+          ],
+          [
+            8.8338256,
+            40.2171215
+          ],
+          [
+            8.8338498,
+            40.2171021
+          ],
+          [
+            8.8338873,
+            40.217098
+          ],
+          [
+            8.8339208,
+            40.2171062
+          ],
+          [
+            8.8339369,
+            40.2171174
+          ],
+          [
+            8.8339571,
+            40.2171338
+          ],
+          [
+            8.8339571,
+            40.2171502
+          ],
+          [
+            8.833941,
+            40.217184
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-nuraghe-toscono",
+      "properties": {
+        "snippet": "Nuraghe; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/708974068/osm-location-of-nuraghe-toscono",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Nuraghe Toscono"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/550762581",
+          "citationDetail": "Way 550762581",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=550762581",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-nuraghe-toscono",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+      ],
+      "end": -1000,
+      "title": "OSM location of Nuraghe Toscono",
+      "provenance": "OpenStreetMap (Way 550762581, version 1, osm:changeset=55146564, 2018-01-04T03:46:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-01-04T03:59:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.833941,
+            40.217184
+          ],
+          [
+            8.8339074,
+            40.2172065
+          ],
+          [
+            8.8338592,
+            40.2172076
+          ],
+          [
+            8.833835,
+            40.2171881
+          ],
+          [
+            8.8338162,
+            40.2171512
+          ],
+          [
+            8.8338256,
+            40.2171215
+          ],
+          [
+            8.8338498,
+            40.2171021
+          ],
+          [
+            8.8338873,
+            40.217098
+          ],
+          [
+            8.8339208,
+            40.2171062
+          ],
+          [
+            8.8339369,
+            40.2171174
+          ],
+          [
+            8.8339571,
+            40.2171338
+          ],
+          [
+            8.8339571,
+            40.2171502
+          ],
+          [
+            8.833941,
+            40.217184
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/708974068/osm-location-of-nuraghe-toscono",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-05T19:57:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-04T04:01:43Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-04T03:59:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-04T03:59:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-04T03:59:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-04T03:58:44Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/708974068/sardinia-island",
+      "connectionType": "part_of_physical",
+      "id": "sardinia-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-05T19:57:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-04T04:01:43Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-04T03:58:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-04T03:58:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Carta Topografica d'Italia. Silanus Foglio n. 498, sez. 2. Foglio n. 498, sez. 2.",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GEXAF9VS",
+      "formattedCitation": "<div class=\"csl-entry\">Istituto geografico militare. \u201cCarta Topografica d\u2019Italia. Silanus Foglio n. 498, sez. 2. Foglio n. 498, sez. 2.\u201d Firenze: Istituto geografico militare, 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Moravetti 1998-2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VGEWN2SJ",
+      "formattedCitation": "<div class=\"csl-entry\">Moravetti, Alberto. <i>Ricerche archeologiche nel Marghine-Planargia</i>. 2 vols. Sassari: C. Delfino, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q52151253",
+      "citationDetail": "Nuraghe Toscono (Q52151253)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "708974068",
+  "subject": [],
+  "title": "Nuraghe Toscono",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A single tower nuraghe standing ca. 7.25 meters.",
+  "reprPoint": [
+    8.833886244347697,
+    40.217152176756876
+  ],
+  "placeTypes": [
+    "nuraghe"
+  ],
+  "bbox": [
+    8.8338162,
+    40.217098,
+    8.8339571,
+    40.2172076
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-04T03:57:48Z",
+  "uri": "https://pleiades.stoa.org/places/708974068",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Wikidata Nuraghe Toscono (Q52151253)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-20T14:48:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-05T19:57:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-04T04:01:43Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-04T04:01:05Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-04T03:58:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-04T03:57:48Z"
+    }
+  ]
+}

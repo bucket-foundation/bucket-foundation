@@ -1,0 +1,1056 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.4856962,
+            31.8333876
+          ],
+          [
+            45.4832929,
+            31.8326037
+          ],
+          [
+            45.4758471,
+            31.8368695
+          ],
+          [
+            45.4750317,
+            31.8378174
+          ],
+          [
+            45.4749244,
+            31.839695
+          ],
+          [
+            45.4763621,
+            31.841846
+          ],
+          [
+            45.4782289,
+            31.8430856
+          ],
+          [
+            45.4800957,
+            31.843359
+          ],
+          [
+            45.4834002,
+            31.8420283
+          ],
+          [
+            45.4856962,
+            31.8333876
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "abu-hatab",
+      "properties": {
+        "snippet": "Tell; 2950 BC - 1600 BC",
+        "link": "https://pleiades.stoa.org/places/797093165/abu-hatab",
+        "description": "Polygon based on OpenStreetMap representing Kisurra after Heinrich 1931.",
+        "location_precision": "precise",
+        "title": "OSM location of Kisurra"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.481,
+          31.8383
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-ishan-abu-hatab",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/797093165/cigs-location-of-ishan-abu-hatab",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Ish\u0101n Ab\u016b \u1e24a\u1e6dab"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-dynastic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-dynastic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1070379148",
+          "citationDetail": "Way 1070379148",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1070379148",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/473949537",
+          "citationDetail": "map between pages 2-3 and tafel 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Heinrich 1931",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/76HYAZRW",
+          "formattedCitation": "<div class=\"csl-entry\">Heinrich, Ernst, Walter Andrae, and Staatliche Museen zu Berlin. Vorderasiatische Abteilung. <i>Fara: Ergebnisse der Ausgrabungen der Deutschen Orient-Gesellschaft in Fara und Hatab 1902/03</i>. Berlin: Staatliche Museen zu Berlin, 1931. http://www.worldcat.org/oclc/473949537.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "abu-hatab",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -1600,
+      "title": "OSM location of Kisurra",
+      "provenance": "OpenStreetMap (Way 1070379148, version 1, osm:changeset=122474120, 2022-06-16T17:30:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2950,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Polygon based on OpenStreetMap representing Kisurra after Heinrich 1931.",
+      "created": "2022-06-16T17:31:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.4856962,
+            31.8333876
+          ],
+          [
+            45.4832929,
+            31.8326037
+          ],
+          [
+            45.4758471,
+            31.8368695
+          ],
+          [
+            45.4750317,
+            31.8378174
+          ],
+          [
+            45.4749244,
+            31.839695
+          ],
+          [
+            45.4763621,
+            31.841846
+          ],
+          [
+            45.4782289,
+            31.8430856
+          ],
+          [
+            45.4800957,
+            31.843359
+          ],
+          [
+            45.4834002,
+            31.8420283
+          ],
+          [
+            45.4856962,
+            31.8333876
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/797093165/abu-hatab",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-09T16:14:11Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-01T14:29:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:35:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:34:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:31:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:31:01Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.4324/9780203875506",
+          "citationDetail": "page 391",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bryce 2009",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZSXV8M2K",
+          "formattedCitation": "<div class=\"csl-entry\">Bryce, Trevor. <i>The Routledge Handbook of the Peoples and Places of Ancient Western Asia: The Near East from the Early Bronze Age to the Fall of the Persian Empire</i>. London; New York: Routledge, 2012. https://doi.org/10.4324/9780203875506.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/Kisurra",
+          "citationDetail": "Kisurra",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Kisurra.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q910252",
+          "citationDetail": "Q910253",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q910253.",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "cigs-location-of-ishan-abu-hatab",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of Ish\u0101n Ab\u016b \u1e24a\u1e6dab",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-06-01T12:46:53Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.481,
+          31.8383
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/797093165/cigs-location-of-ishan-abu-hatab",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-01T14:30:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-01T14:30:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-01T13:26:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-01T13:26:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-01T13:05:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-01T12:46:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-01T12:46:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1600,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2022-06-16T17:35:38Z",
+      "associationCertainty": "certain",
+      "title": "\u0160uruppak",
+      "start": -2950,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/797093165/suruppak",
+      "connectionType": "north_of",
+      "id": "suruppak",
+      "attestations": [
+        {
+          "timePeriod": "early-dynastic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-dynastic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-09T16:16:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:35:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:35:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:35:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/326150788",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/473949537",
+          "citationDetail": "map between pages 2-3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Heinrich 1931",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/76HYAZRW",
+          "formattedCitation": "<div class=\"csl-entry\">Heinrich, Ernst, Walter Andrae, and Staatliche Museen zu Berlin. Vorderasiatische Abteilung. <i>Fara: Ergebnisse der Ausgrabungen der Deutschen Orient-Gesellschaft in Fara und Hatab 1902/03</i>. Berlin: Staatliche Museen zu Berlin, 1931. http://www.worldcat.org/oclc/473949537.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/north_of"
+    },
+    {
+      "end": -1600,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-17T22:01:35Z",
+      "associationCertainty": "certain",
+      "title": "Euphrates (river)",
+      "start": -2950,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/797093165/euphrates-river",
+      "connectionType": "near",
+      "id": "euphrates-river",
+      "attestations": [
+        {
+          "timePeriod": "early-dynastic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-dynastic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912849",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/473949537",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Heinrich 1931",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/76HYAZRW",
+      "formattedCitation": "<div class=\"csl-entry\">Heinrich, Ernst, Walter Andrae, and Staatliche Museen zu Berlin. Vorderasiatische Abteilung. <i>Fara: Ergebnisse der Ausgrabungen der Deutschen Orient-Gesellschaft in Fara und Hatab 1902/03</i>. Berlin: Staatliche Museen zu Berlin, 1931. http://www.worldcat.org/oclc/473949537.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Kisurra&oldid=1089141904",
+      "citationDetail": "Kisurra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/310661280",
+      "citationDetail": "page 140",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Groneberg 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IKZ2AXKB",
+      "formattedCitation": "<div class=\"csl-entry\">Groneberg, Brigitte. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 3, 3,</i>. Vol. 7. T\u00fcbinger Atlas des Vorderen Orients / Beihefte, B. Wiesbaden: Reichert, 1980. http://www.worldcat.org/oclc/310661280.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.aiamilitarypanel.org/profiles/cptraining/iraq05-070.html",
+      "citationDetail": "070. Tell Abu Hatab (ancient: Kisurra)*",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Iraq Significant Sites",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PZM3S7V8",
+      "formattedCitation": "<div class=\"csl-entry\">Fort Drum Cultural Resource Center, and Center for Environmental Management of Military Lands, Colorado State University. <i>Iraq\u2019s Most Significant Ancient Sites and Monuments</i>. United States Department of Defense, US Central Command. Accessed June 17, 2022. https://www.aiamilitarypanel.org/profiles/cptraining/iraq05a.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1515/ZA.2007.003",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goddeeris 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WPITIPUS",
+      "formattedCitation": "<div class=\"csl-entry\">Goddeeris, Anne. \u201cThe Economic Basis of the Local Palace of Kisurra.\u201d <i>Zeitschrift F\u00fcr Assyriologie Und Vorderasiatische Arch\u00e4ologie</i> 97, no. 1 (2007): 47\u201385. https://doi.org/10.1515/ZA.2007.003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/939080935",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goddeeris 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9USB36KE",
+      "formattedCitation": "<div class=\"csl-entry\">Goddeeris, Anne. <i>Tablets from Kisurra in the Collections of the British Museum</i>. Santag 9. Wiesbaden: Harrassowitz, 2009. http://www.worldcat.org/oclc/939080935.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q910253",
+      "citationDetail": "Kisurra (Q910253)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Abu Hatab",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/473949537",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Heinrich 1931",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/76HYAZRW",
+          "formattedCitation": "<div class=\"csl-entry\">Heinrich, Ernst, Walter Andrae, and Staatliche Museen zu Berlin. Vorderasiatische Abteilung. <i>Fara: Ergebnisse der Ausgrabungen der Deutschen Orient-Gesellschaft in Fara und Hatab 1902/03</i>. Berlin: Staatliche Museen zu Berlin, 1931. http://www.worldcat.org/oclc/473949537.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/w/index.php?title=Kisurra&oldid=1089141904",
+          "citationDetail": "Kisurra",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "abu-hatab-1",
+      "end": 1999,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Arabic name for the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2022-06-16T17:37:18Z",
+      "uri": "https://pleiades.stoa.org/places/797093165/abu-hatab-1",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-01T14:31:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:37:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:37:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T17:37:18Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kisurra",
+      "attestations": [
+        {
+          "timePeriod": "early-dynastic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-dynastic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/310661280",
+          "citationDetail": "page 140",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Groneberg 1980",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IKZ2AXKB",
+          "formattedCitation": "<div class=\"csl-entry\">Groneberg, Brigitte. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 3, 3,</i>. Vol. 7. T\u00fcbinger Atlas des Vorderen Orients / Beihefte, B. Wiesbaden: Reichert, 1980. http://www.worldcat.org/oclc/310661280.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kissura",
+      "end": -1600,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2950,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2022-06-19T03:55:53Z",
+      "uri": "https://pleiades.stoa.org/places/797093165/kissura",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "corrected Kissura to Kisurra",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-19T14:20:35Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-19T03:55:52Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-18T02:34:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T22:01:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T21:50:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-17T21:50:35Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ish\u0101n Ab\u016b \u1e24a\u1e6dab",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.4324/9780203875506",
+          "citationDetail": "page 391",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bryce 2009",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZSXV8M2K",
+          "formattedCitation": "<div class=\"csl-entry\">Bryce, Trevor. <i>The Routledge Handbook of the Peoples and Places of Ancient Western Asia: The Near East from the Early Bronze Age to the Fall of the Persian Empire</i>. London; New York: Routledge, 2012. https://doi.org/10.4324/9780203875506.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Kisurra",
+          "citationDetail": "Kisurra",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>, Kisurra.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q910253",
+          "citationDetail": "Q910253",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q910253.",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "ishan-abu-hatab",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for Arabic (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2023-06-01T13:21:46Z",
+      "uri": "https://pleiades.stoa.org/places/797093165/ishan-abu-hatab",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u0625\u0634\u0627\u0646 \u0623\u0628\u0648 \u062d\u0637\u0628",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-01T14:30:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-01T14:30:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-01T13:22:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-01T13:21:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-06-01T13:21:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "797093165",
+  "subject": [],
+  "title": "Kisurra",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Kisurra (modern Tell Abu Hatab) was established in the Early Dynastic II period (ca. 2700 BCE). The importance of this settlement, which was located only a few kilometers north of \u0160uruppak (modern F\u0101r\u0101) and which was situated on the western bank of the Euphrates River, declined significantly during the Old Babylonian Period. Numerous cuneiform tablets have been unearthed at Tell Abu Hatab since 1902.",
+  "reprPoint": [
+    45.48080638931087,
+    31.838166206420365
+  ],
+  "placeTypes": [
+    "tell",
+    "archaeological-site"
+  ],
+  "bbox": [
+    45.4749244,
+    31.8326037,
+    45.4856962,
+    31.843359
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/326150788",
+    "https://pleiades.stoa.org/places/912849"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-16T17:28:32Z",
+  "uri": "https://pleiades.stoa.org/places/797093165",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    },
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q910253",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-09T16:16:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-17T22:01:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-17T21:59:58Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-17T21:59:08Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-17T21:58:25Z"
+    },
+    {
+      "comment": "summary; Novotny",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-17T21:46:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T17:35:56Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T17:28:32Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T17:28:32Z"
+    }
+  ]
+}

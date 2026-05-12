@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.248601,
+            41.2923025
+          ],
+          [
+            13.2484311,
+            41.2921464
+          ],
+          [
+            13.2486111,
+            41.2920432
+          ],
+          [
+            13.2488445,
+            41.2922295
+          ],
+          [
+            13.2486479,
+            41.2923126
+          ],
+          [
+            13.248601,
+            41.2923025
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-capitolium-of-terracina",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/676148654/osm-location-of-capitolium-of-terracina",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Capitolium of Terracina"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1132287168",
+          "citationDetail": "Way 1132287168",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1132287168",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-capitolium-of-terracina",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Capitolium of Terracina",
+      "provenance": "OpenStreetMap (Way 1132287168, version 4, osm:changeset=141381300, 2023-09-17T13:11:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-01-15T21:54:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.248601,
+            41.2923025
+          ],
+          [
+            13.2484311,
+            41.2921464
+          ],
+          [
+            13.2486111,
+            41.2920432
+          ],
+          [
+            13.2488445,
+            41.2922295
+          ],
+          [
+            13.2486479,
+            41.2923126
+          ],
+          [
+            13.248601,
+            41.2923025
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/676148654/osm-location-of-capitolium-of-terracina",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T16:35:38Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-17T16:03:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-16T14:46:02Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-15T21:54:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-15T21:54:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-15T21:54:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-01-15T21:54:47Z",
+      "associationCertainty": "certain",
+      "title": "Tarracina(e)/Anxur",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/676148654/6879807026",
+      "connectionType": "at",
+      "id": "6879807026",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-15T21:54:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-15T21:54:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-15T21:54:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433143",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Capitolium_(Terracina)",
+      "citationDetail": "Category:Capitolium (Terracina)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Valenti 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC8T89QN",
+      "formattedCitation": "<div class=\"csl-entry\">Valenti, Massimiliano. \u201cIl \u2018Capitolium\u2019 e il Tempio Maggiore di Terracina. Due esempi di podi templari a sostruzione cava. Caratteristiche tecnico-formali, funzione e terminologia.\u201d In <i>Architettura del sacro in et\u00e0 romana\u202f: paesaggi, modelli, forme e comunicazione</i>, 49\u201362. Roma: Gangemi Editore, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Longo 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PJANAWZM",
+      "formattedCitation": "<div class=\"csl-entry\">Longo, Pietro. \u201cLe fasi edilizie del Capitolium romano e del primo impianto cristiano.\u201d In <i>Terracina nel Medioevo</i>, pages 9-18. Roma: Viella, settembre, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hesberg 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3I54UA8P",
+      "formattedCitation": "<div class=\"csl-entry\">Hesberg, Henner von. \u201cDie Hierarchie der R\u00e4ume: Strassen und Pl\u00e4tze in St\u00e4dten und Milit\u00e4rlagern zur Zeit der r\u00f6mischen Republik.\u201d In <i>Stadtverkehr in der antiken Welt. Internationales Kolloquium zur 175-Jahrfeier des Deutschen Arch\u00e4ologischen Instituts Rom, 21. bis 23. April 2004</i>, 71\u201386. Wiesbaden: Reichert, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6862182",
+      "citationDetail": "Kapitoltempel von Terracina Terracina, Latina (Provinz)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q30524229",
+      "citationDetail": "Capitolium of Terracina (Q30524229)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "676148654",
+  "subject": [
+    "podium",
+    "Jupiter",
+    "Temple",
+    "extant remains"
+  ],
+  "title": "Capitolium of Terracina",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Tuscanic podium temple that is often referred to as being of the Capitolium type was built at Terracina in the middle of the first century BCE.",
+  "reprPoint": [
+    13.248659968336318,
+    41.292175571707304
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    13.2485314,
+    41.292082,
+    13.2487844,
+    41.2922731
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433143"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-01-15T21:54:47Z",
+  "uri": "https://pleiades.stoa.org/places/676148654",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q30524229",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-05T16:35:13Z"
+    },
+    {
+      "comment": "add arachne reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-05T19:09:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-17T16:03:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-16T14:46:02Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-16T14:45:49Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-15T21:54:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-15T21:54:47Z"
+    }
+  ]
+}

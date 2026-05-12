@@ -1,0 +1,337 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.24325,
+            42.2738496
+          ],
+          [
+            12.2431966,
+            42.2738585
+          ],
+          [
+            12.2432059,
+            42.2738891
+          ],
+          [
+            12.2429613,
+            42.2739299
+          ],
+          [
+            12.2429328,
+            42.2738361
+          ],
+          [
+            12.2432308,
+            42.2737865
+          ],
+          [
+            12.24325,
+            42.2738496
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-church-of-saint-eusebius",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/480714924/osm-location-of-church-of-saint-eusebius",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Church of Saint Eusebius"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/794848645",
+          "citationDetail": "Way 794848645",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=794848645",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-church-of-saint-eusebius",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 1453,
+      "title": "OSM location of Church of Saint Eusebius",
+      "provenance": "OpenStreetMap (Way 794848645, version 1, osm:changeset=83950157, 2020-04-22T15:43:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-04-22T15:43:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.24325,
+            42.2738496
+          ],
+          [
+            12.2431966,
+            42.2738585
+          ],
+          [
+            12.2432059,
+            42.2738891
+          ],
+          [
+            12.2429613,
+            42.2739299
+          ],
+          [
+            12.2429328,
+            42.2738361
+          ],
+          [
+            12.2432308,
+            42.2737865
+          ],
+          [
+            12.24325,
+            42.2738496
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/480714924/osm-location-of-church-of-saint-eusebius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-29T14:40:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-24T20:29:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-24T20:28:18Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T15:44:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T15:43:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T15:43:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-04-22T16:50:25Z",
+      "associationCertainty": "certain",
+      "title": "Via Francigena",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/480714924/via-francigena",
+      "connectionType": "connection",
+      "id": "via-francigena",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-29T14:40:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-24T20:29:03Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T16:50:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T16:50:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/136661131",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.isvroma.it/public/villa/print/griesbach.pdf",
+      "citationDetail": "8",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Griesbach 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WUM3674S",
+      "formattedCitation": "<div class=\"csl-entry\">Griesbach, Jochen. \u201cVilla e mausoleo: mutamenti nel concetto della memoria nel suburbio romano.\u201d <i>Roman villas around the Urbs\u202f: interaction with landscape and environment\u202f: proceedings of a conference at the Swedish Institute in Rome, 17-18 September 2004</i>, 2005, 1\u201311. http://www.isvroma.it/public/villa/print/griesbach.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mannino 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QBBSZ6E4",
+      "formattedCitation": "<div class=\"csl-entry\">Mannino, Natalina, Giovanni Carbonara, and Stefano Francocci. <i>Fra Tardo Antico e Medioevo: una santuario della via Francigena: Sant\u2019Eusebio di Ronciglione: approfondimenti tematici e restauri</i>. Roma: Gangemi editore, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "480714924",
+  "subject": [
+    "paleochristian"
+  ],
+  "title": "Church of Saint Eusebius (Ronciglione)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A paleochristian sanctuary located along the Via Francigena.",
+  "reprPoint": [
+    12.243093269218873,
+    42.27385646318738
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    12.2429328,
+    42.2737865,
+    12.24325,
+    42.2739299
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/136661131"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-04-22T15:43:18Z",
+  "uri": "https://pleiades.stoa.org/places/480714924",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-24T16:24:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-04-29T14:40:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-24T20:29:03Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:47:54Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:45:42Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:43:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:43:18Z"
+    }
+  ]
+}

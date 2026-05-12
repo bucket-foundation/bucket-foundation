@@ -1,0 +1,371 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              15.5,
+              41.0
+            ],
+            [
+              16.0,
+              41.0
+            ],
+            [
+              16.0,
+              41.5
+            ],
+            [
+              15.5,
+              41.5
+            ],
+            [
+              15.5,
+              41.0
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-location",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/443953/batlas-location",
+        "description": "",
+        "location_precision": "rough",
+        "title": "Barrington Atlas location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [],
+      "id": "batlas-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 640,
+      "title": "Barrington Atlas location",
+      "provenance": "Barrington Atlas: BAtlas 45 C2",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": null,
+      "accuracy": null,
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2010-11-11T20:35:11Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              15.5,
+              41.0
+            ],
+            [
+              16.0,
+              41.0
+            ],
+            [
+              16.0,
+              41.5
+            ],
+            [
+              15.5,
+              41.5
+            ],
+            [
+              15.5,
+              41.0
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/443953/batlas-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "I.E.M. Edlund Berry"
+        },
+        {
+          "username": null,
+          "name": "A.M. Small"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T05:11:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-12T12:52:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-11T21:04:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-11T20:35:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-06-10T20:08:50Z",
+      "associationCertainty": "certain",
+      "title": "Herdoniae/Ardaneae/Civitas Serdonis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/443953/herdoniae-ardaneae-civitas-serdonis",
+      "connectionType": "at",
+      "id": "herdoniae-ardaneae-civitas-serdonis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-11T19:07:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-10T20:08:58Z"
+        },
+        {
+          "comment": "cnxn reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-10T20:08:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-10T20:08:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442613",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://digital.casalini.it/2616028",
+          "citationDetail": "9-12",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mertens 1994a",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QITI5LNB",
+          "formattedCitation": "<div class=\"csl-entry\">Mertens, J. \u201cLes ponts de la via Traiana dans la travers\u00e9e du Tavoliere de Foggia.\u201d In <i>Strade romane\u202f: percorsi e infrastrutture</i>, edited by Stefania Quilici Gigli and Lorenzo Quilici, 7\u201318. Rome: \u201cL\u2019Erma\u201d di Bretschneider, 1994. http://digital.casalini.it/2616028.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "45 C2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/164943009",
+      "citationDetail": "39",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Alvisi 1970",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UJRNXDFI",
+      "formattedCitation": "<div class=\"csl-entry\">Alvisi, Giovanna. <i>La Viabilit\u00e0 Romana Della Daunia</i>. Bari: Tip. del Sud, 1971. http://www.worldcat.org/oclc/164943009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://digital.casalini.it/2616028",
+      "citationDetail": "9-12",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mertens 1994a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QITI5LNB",
+      "formattedCitation": "<div class=\"csl-entry\">Mertens, J. \u201cLes ponts de la via Traiana dans la travers\u00e9e du Tavoliere de Foggia.\u201d In <i>Strade romane\u202f: percorsi e infrastrutture</i>, edited by Stefania Quilici Gigli and Lorenzo Quilici, 7\u201318. Rome: \u201cL\u2019Erma\u201d di Bretschneider, 1994. http://digital.casalini.it/2616028.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "443953",
+  "subject": [],
+  "title": "Untitled",
+  "provenance": "Barrington Atlas: BAtlas 45 C2",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: over R. Carapelle at Herdoniae on Via Traiana</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 45 C2 unnamed bridge (over R. Carapelle at Herdoniae on Via Traiana)",
+  "reprPoint": [
+    15.75,
+    41.25
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    15.5,
+    41.0,
+    16.0,
+    41.5
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442613"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-11T20:35:11Z",
+  "uri": "https://pleiades.stoa.org/places/443953",
+  "creators": [
+    {
+      "username": null,
+      "name": "I.E.M. Edlund Berry"
+    },
+    {
+      "username": null,
+      "name": "A.M. Small"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Mertens 1994a",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-10T20:08:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-06T01:37:37Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2015-04-25T04:22:26Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:11:59Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:51:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-12T12:52:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T21:04:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T20:35:11Z"
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3283595,
+          23.7967387
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-hitan-rayan",
+      "properties": {
+        "snippet": "Archaeological-site; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/795817/osm-location-of-hitan-rayan",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Hitan Rayan"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "D. Borough"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/11897353148",
+          "citationDetail": "Node 11897353148",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=11897353148",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-hitan-rayan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "OSM location of Hitan Rayan",
+      "provenance": "OpenStreetMap (Node 11897353148, version 1, osm:changeset=151201116, 2024-05-11T19:58:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-11T19:58:54Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3283595,
+          23.7967387
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/795817/osm-location-of-hitan-rayan",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-12T20:16:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-15T18:11:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-15T18:11:04Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T19:59:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T19:58:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T19:58:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "81 F2 Hitan Rayan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/36381064",
+      "citationDetail": "398-400",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sidebotham 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HE3JJXH3",
+      "formattedCitation": "<div class=\"csl-entry\">Sidebotham, Steven, Willemina Wendrich, and Fred Aldsworth. <i>Berenike 1995\u202f: Preliminary Report of the 1995 Excavations at Berenike (Egyptian Red Sea Coast) and the Survey of the Eastern Desert</i>. Leiden: Research School CNWS\u00a0 School of Asian\u00a0 African\u00a0 and Amerindian Studies, 1996. http://www.worldcat.org/oclc/36381064.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/3822344",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sidebotham, Barnard, and Pyke 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MJDMIYK8",
+      "formattedCitation": "<div class=\"csl-entry\">Sidebotham, Steven E., Hans Barnard, and Gillian Pyke. \u201cFive Enigmatic Late Roman Settlements in the Eastern Desert.\u201d <i>The Journal of Egyptian Archaeology</i> 88 (2002): 187\u2013225. https://doi.org/10.2307/3822344.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "795817",
+  "subject": [],
+  "title": "Hitan Rayan",
+  "provenance": "Barrington Atlas: BAtlas 81 F2 Hitan Rayan",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/ruin",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "The Barrington Atlas Directory notes: Hitan Rayan",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 81 F2 Hitan Rayan (1)",
+  "reprPoint": [
+    35.3283595,
+    23.7967387
+  ],
+  "placeTypes": [
+    "ruin",
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    35.3283595,
+    23.7967387,
+    35.3283595,
+    23.7967387
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-12T11:06:56Z",
+  "uri": "https://pleiades.stoa.org/places/795817",
+  "creators": [
+    {
+      "username": null,
+      "name": "S.M. Burstein"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T20:01:29Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:32:27Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T23:02:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-13T15:45:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-12T11:18:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-12T11:06:56Z"
+    }
+  ]
+}

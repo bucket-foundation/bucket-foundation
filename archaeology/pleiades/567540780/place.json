@@ -1,0 +1,390 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7260453,
+          37.9707431
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-byzantine-cistern",
+      "properties": {
+        "snippet": "Cistern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/567540780/osm-location-byzantine-cistern",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Byzantine Cistern"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5561562525",
+          "citationDetail": "Node 5561562525",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5561562525",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-byzantine-cistern",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+      ],
+      "end": 2099,
+      "title": "OSM Location: Byzantine Cistern",
+      "provenance": "OpenStreetMap (Node 5561562525, version 4, osm:changeset=123476725, 2022-07-11T13:52:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cistern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-07-01T19:29:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7260453,
+          37.9707431
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/567540780/osm-location-byzantine-cistern",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-03T15:28:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:33:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:29:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:29:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:29:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2024-07-01T19:27:04Z",
+      "associationCertainty": "certain",
+      "title": "Acropolis of Athens",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/567540780/acropolis-of-athens",
+      "connectionType": "on",
+      "id": "acropolis-of-athens",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-03T15:28:21Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-02T10:06:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:33:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:27:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:27:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638356144",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "220",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "220",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hurwit 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+      "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/162915",
+      "citationDetail": "138-142",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Travlos 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5Q2AW7H",
+      "formattedCitation": "<div class=\"csl-entry\">Travlos, Ioannes N. <i>Pictorial Dictionary of Ancient Athens</i>. New York: Praeger, 1971. http://www.worldcat.org/oclc/162915.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/bch_0007-4217_1949_num_73_1_2520",
+      "citationDetail": "342-343, 347-348",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Martin 1949",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BZGLHBBT",
+      "formattedCitation": "<div class=\"csl-entry\">Martin, Roland, and Henri Metzger. \u201cRecherches d\u2019Architecture et de topographie \u00e0 l\u2019Ascl\u00e9pi\u00e9ion d\u2019Ath\u00e8nes.\u201d <i>Bulletin de Correspondance Hell\u00e9nique</i> 73 (1949): 316\u201350. https://doi.org/10.3406/bch.1949.2520.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "22",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aleshire 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/REPDN6XN",
+      "formattedCitation": "<div class=\"csl-entry\">Aleshire, Sara B. <i>The Athenian Asklepieion: The People, Their Dedications, and the Inventories</i>. Amsterdam: J.C. Gieben, 1989.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "South Slope Spring",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "220",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "south-slope-spring",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-07-01T19:31:41Z",
+      "uri": "https://pleiades.stoa.org/places/567540780/south-slope-spring",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "South Slope Spring",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-03T15:28:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:33:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:31:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-07-01T19:31:41Z"
+        }
+      ]
+    }
+  ],
+  "id": "567540780",
+  "subject": [],
+  "title": "South Slope Spring",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/spring",
+    "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A spring on the south slope of the Acropolis of Athens, sacred both to the nymphs and Pan.",
+  "reprPoint": [
+    23.7260453,
+    37.9707431
+  ],
+  "placeTypes": [
+    "spring",
+    "cistern"
+  ],
+  "bbox": [
+    23.7260453,
+    37.9707431,
+    23.7260453,
+    37.9707431
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638356144"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-07-01T19:26:36Z",
+  "uri": "https://pleiades.stoa.org/places/567540780",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-03T15:28:21Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-02T10:06:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-07-01T19:33:46Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-07-01T19:26:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-07-01T19:26:36Z"
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.36766,
+          51.22153
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location-whatley",
+      "properties": {
+        "snippet": "Villa; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/805330167/dare-location-whatley",
+        "description": "",
+        "location_precision": "precise",
+        "title": "DARE location: Whatley"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://imperium.ahlfeldt.se/places/26052",
+          "citationDetail": "26052",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARE",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+          "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "dare-location-whatley",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 410,
+      "title": "DARE location: Whatley",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 100.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-2",
+      "featureType": [
+        "villa"
+      ],
+      "description": "",
+      "created": "2025-11-05T22:20:02Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.36766,
+          51.22153
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/805330167/dare-location-whatley",
+      "creators": [
+        {
+          "username": "maximeg",
+          "homepage": null,
+          "name": "Maxime Gu\u00e9nette",
+          "uri": "https://pleiades.stoa.org/author/maximeg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-06T03:16:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-06T03:14:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "maximeg",
+          "modified": "2025-11-05T22:23:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "maximeg",
+          "modified": "2025-11-05T22:20:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "maximeg",
+          "modified": "2025-11-05T22:20:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/6749/",
+      "citationDetail": "6749: Villa at Whatley",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://imperium.ahlfeldt.se/places/26052",
+      "citationDetail": "Whatley (26052)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.wikidata.org/entity/Q17642108",
+      "citationDetail": "Whatley Combe Roman villa (Q17642108)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.heritagegateway.org.uk/Gateway/Results_Single.aspx?uid=202781&resourceID=19191",
+      "citationDetail": "202781",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "805330167",
+  "subject": [],
+  "title": "Whatley Combe Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A 4th-century CE Roman corridor villa near Nunney, United Kingdom.",
+  "reprPoint": [
+    -2.36766,
+    51.22153
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -2.36766,
+    51.22153,
+    -2.36766,
+    51.22153
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-05T22:12:07Z",
+  "uri": "https://pleiades.stoa.org/places/805330167",
+  "creators": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-06T03:16:55Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-06T03:16:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "maximeg",
+      "modified": "2025-11-05T22:23:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "maximeg",
+      "modified": "2025-11-05T22:22:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "maximeg",
+      "modified": "2025-11-05T22:22:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "maximeg",
+      "modified": "2025-11-05T22:21:56Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "maximeg",
+      "modified": "2025-11-05T22:12:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "maximeg",
+      "modified": "2025-11-05T22:12:07Z"
+    }
+  ]
+}

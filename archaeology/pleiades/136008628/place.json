@@ -1,0 +1,668 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7208578,
+          37.9715081
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-iii-r-i1-2i-ii-i-i-i1iiii",
+      "properties": {
+        "snippet": "Cistern, Fountain; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/136008628/osm-location-iii-r-i1-2i-ii-i-i-i1iiii",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: \u039a\u03c1\u03ae\u03bd\u03b7 \"\u039a\u03b1\u03bb\u03bb\u03b9\u03c1\u03c1\u03cc\u03b7\""
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4332841337",
+          "citationDetail": "Node 4332841337",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4332841337",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-iii-r-i1-2i-ii-i-i-i1iiii",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern",
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+      ],
+      "end": 2099,
+      "title": "OSM Location: \u039a\u03c1\u03ae\u03bd\u03b7 \"\u039a\u03b1\u03bb\u03bb\u03b9\u03c1\u03c1\u03cc\u03b7\"",
+      "provenance": "OpenStreetMap (Node 4332841337, version 2, osm:changeset=140040974, 2023-08-18T06:20:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern",
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cistern",
+        "fountain"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-03-16T13:29:54Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7208578,
+          37.9715081
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/136008628/osm-location-iii-r-i1-2i-ii-i-i-i1iiii",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:36:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:32:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:30:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:29:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:29:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2024-03-16T13:11:04Z",
+      "associationCertainty": "certain",
+      "title": "Pnyx",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/136008628/pnyx",
+      "connectionType": "on",
+      "id": "pnyx",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:36:05Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:35:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:32:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:31:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:11:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:11:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/205264674",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/146476",
+          "citationDetail": "202-203",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kourouniotes and Thompson 1932",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SYIMYS8C",
+          "formattedCitation": "<div class=\"csl-entry\">Kourouniotes, K., and Homer A. Thompson. \u201cThe Pnyx in Athens.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 1 (1932): 90\u2013217. https://doi.org/10.2307/146476.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237BKal",
+      "citationDetail": "Pnyx Fountain",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dipylon-judithbindersourcebook.org/sourcebook/NNM/NNM231",
+      "citationDetail": "231. Fountain house, D\u00f6rpfeld\u02bcs Enneakrounos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Judith Binder's Opus Magnum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITY365C",
+      "formattedCitation": "<div class=\"csl-entry\">www.dipylon.org. \u201cJudith Binder\u2019s Opus Magnum | Dipylon,\u201d May 7, 2018. https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archive.org/details/mitteilungendesd30deut/page/n11/mode/2up?ref=ol&view=theater",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gr\u00e4ber 1905",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2KCIK7DK",
+      "formattedCitation": "<div class=\"csl-entry\">Deutsches Arch\u00e4ologisches Institut. Athenische Abteilung. <i>Mitteilungen des Deutschen Arch\u00e4ologischen Instituts, Athenische Abteilung</i>. Berlin [etc.]., Gebr. Mann [etc.], 1876. http://archive.org/details/mitteilungendesd30deut.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "https://www.ascsa.edu.gr/uploads/media/hesperia/146476.pdf",
+      "accessURI": "https://www.jstor.org/stable/146476",
+      "citationDetail": "202-203",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kourouniotes and Thompson 1932",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SYIMYS8C",
+      "formattedCitation": "<div class=\"csl-entry\">Kourouniotes, K., and Homer A. Thompson. \u201cThe Pnyx in Athens.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 1 (1932): 90\u2013217. https://doi.org/10.2307/146476.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Pnyx fountain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://topostext.org/place/380237BKal",
+          "citationDetail": "Pnyx Fountain (Athens)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "ToposText",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+          "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "pnyx-fountain",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "bkiesling",
+          "homepage": null,
+          "name": "Brady Kiesling",
+          "uri": "https://pleiades.stoa.org/author/bkiesling"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-16T13:12:17Z",
+      "uri": "https://pleiades.stoa.org/places/136008628/pnyx-fountain",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Pnyx fountain",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:36:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:33:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:32:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:12:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:12:17Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "D\u00f6rpfeld\u02bcs Enneakrounos",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://dipylon-judithbindersourcebook.org/sourcebook/NNM/NNM231",
+          "citationDetail": "231. Fountain house, D\u00f6rpfeld's Enneakrounos",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Judith Binder's Opus Magnum",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITY365C",
+          "formattedCitation": "<div class=\"csl-entry\">www.dipylon.org. \u201cJudith Binder\u2019s Opus Magnum | Dipylon,\u201d May 7, 2018. https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "dorpfelds-enneakrounos",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-03-16T13:16:27Z",
+      "uri": "https://pleiades.stoa.org/places/136008628/dorpfelds-enneakrounos",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "D\u00f6rpfeld\u02bcs Enneakrounos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:36:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:32:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:16:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:16:27Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "uncertain",
+      "romanized": "Enne\u00e1krounos, Enneakrounos",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1:2.15",
+          "citationDetail": "2.15",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Thuc. Hist. (Jones; Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EFG24VXW",
+          "formattedCitation": "<div class=\"csl-entry\">Thucydides. <i>Thucydidis Historiae; recognovit brevique adnotatione critica instruxit Henricus Stuart Jones ..</i> Edited by Henry Stuart Jones and J. Enoch Powell. 2 vols. Oxonii: e typographeo Clarendoniano, 1942. http://data.perseus.org/texts/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "enneakrounos",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/uncertain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-03-16T13:20:08Z",
+      "uri": "https://pleiades.stoa.org/places/136008628/enneakrounos",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u1f18\u03bd\u03bd\u03b5\u03ac\u03ba\u03c1\u03bf\u03c5\u03bd\u03bf\u03c2 ",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:36:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:32:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:20:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:20:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "uncertain",
+      "romanized": "Kallirrh\u00f3\u0113,Kallirrhoe,Kallirroe",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1:2.15",
+          "citationDetail": "2.15",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Thuc. Hist. (Jones; Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EFG24VXW",
+          "formattedCitation": "<div class=\"csl-entry\">Thucydides. <i>Thucydidis Historiae; recognovit brevique adnotatione critica instruxit Henricus Stuart Jones ..</i> Edited by Henry Stuart Jones and J. Enoch Powell. 2 vols. Oxonii: e typographeo Clarendoniano, 1942. http://data.perseus.org/texts/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "kallirrhoe",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/uncertain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-03-16T13:25:39Z",
+      "uri": "https://pleiades.stoa.org/places/136008628/kallirrhoe",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u039a\u03b1\u03bb\u03bb\u03b9\u03c1\u03c1\u03cc\u03b7",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-16T14:36:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:32:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:25:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-03-16T13:25:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "136008628",
+  "subject": [],
+  "title": "Pnyx fountain",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A rock-cut cistern on the southeast slope of the Pnyx hill in Athens, built in the late sixth century BC and supplied by the Peisistratid aqueduct. It received a mosaic floor in the second C AD. D\u00f6rpfeld identified it with the Enneakrounos fountain known from Classical literature, but this is disputed.",
+  "reprPoint": [
+    23.7208578,
+    37.9715081
+  ],
+  "placeTypes": [
+    "fountain",
+    "cistern"
+  ],
+  "bbox": [
+    23.7208578,
+    37.9715081,
+    23.7208578,
+    37.9715081
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/205264674"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-16T13:10:09Z",
+  "uri": "https://pleiades.stoa.org/places/136008628",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T14:36:05Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-16T14:27:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-16T13:32:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-16T13:31:13Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-16T13:10:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-16T13:10:09Z"
+    }
+  ]
+}

@@ -1,0 +1,322 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.4784608,
+          26.1757838
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-node-5107106021",
+      "properties": {
+        "snippet": "Cemetery; 3300 BC - 1400 BC",
+        "link": "https://pleiades.stoa.org/places/314289452/osm-node-5107106021",
+        "description": "Point based on an OpenStreetMap node representing the Saar al-Jisr Burial Field.",
+        "location_precision": "precise",
+        "title": "OSM location of Saar al-Jisr Burial Field"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5107106021",
+          "citationDetail": "Node 5107106021",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5107106021",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-node-5107106021",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1400,
+      "title": "OSM location of Saar al-Jisr Burial Field",
+      "provenance": "OpenStreetMap (Node 5107106021, version 2, osm:changeset=122469559, 2022-06-16T15:21:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point based on an OpenStreetMap node representing the Saar al-Jisr Burial Field.",
+      "created": "2022-06-16T15:29:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.4784608,
+          26.1757838
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/314289452/osm-node-5107106021",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T23:33:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T02:39:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T02:38:57Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-16T17:30:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:32:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:31:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:29:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:29:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1400,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-16T15:32:29Z",
+      "associationCertainty": "certain",
+      "title": "Saar Site",
+      "start": -3300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/314289452/saar-site",
+      "connectionType": "at",
+      "id": "saar-site",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T23:33:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T02:39:19Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-16T17:30:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:32:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:32:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-16T15:32:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/56036938",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/630678754",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ibrahim 1982",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RMXF9IJ2",
+          "formattedCitation": "<div class=\"csl-entry\">Ibrahim, Moawiyah. <i>Excavations of the Arab Expedition at Sar El-Jisr, Bahrain</i>. Bahrain: State of Bahrain Ministry of Information, 1982. http://www.worldcat.org/oclc/630678754.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/630678754",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ibrahim 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RMXF9IJ2",
+      "formattedCitation": "<div class=\"csl-entry\">Ibrahim, Moawiyah. <i>Excavations of the Arab Expedition at Sar El-Jisr, Bahrain</i>. Bahrain: State of Bahrain Ministry of Information, 1982. http://www.worldcat.org/oclc/630678754.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "314289452",
+  "subject": [],
+  "title": "Saar al-Jisr Burial Field",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Burial ground near the Dilmun temple at Saar also from the Dilmun culture.",
+  "reprPoint": [
+    50.4784608,
+    26.1757838
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    50.4784608,
+    26.1757838,
+    50.4784608,
+    26.1757838
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/56036938"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-16T15:29:17Z",
+  "uri": "https://pleiades.stoa.org/places/314289452",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-12T23:33:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-22T02:39:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-22T02:38:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-22T02:38:17Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-16T17:30:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T15:32:48Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T15:29:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-16T15:29:17Z"
+    }
+  ]
+}

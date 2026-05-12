@@ -1,0 +1,326 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.1339695,
+            38.421938
+          ],
+          [
+            26.1343274,
+            38.4220232
+          ],
+          [
+            26.1344895,
+            38.422206
+          ],
+          [
+            26.1344164,
+            38.4222385
+          ],
+          [
+            26.1342503,
+            38.4223283
+          ],
+          [
+            26.1341257,
+            38.4222927
+          ],
+          [
+            26.1339122,
+            38.4222168
+          ],
+          [
+            26.1339676,
+            38.4220572
+          ],
+          [
+            26.1339695,
+            38.421938
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sanctuary-of-kybele",
+      "properties": {
+        "snippet": "Sanctuary",
+        "link": "https://pleiades.stoa.org/places/376031237/osm-location-of-sanctuary-of-kybele",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Sanctuary of Kybele"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/445444813",
+          "citationDetail": "Way 445444813",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=445444813",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-sanctuary-of-kybele",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": null,
+      "title": "OSM location of Sanctuary of Kybele",
+      "provenance": "OpenStreetMap (Way 445444813, version 2, osm:changeset=132108562, 2023-02-05T13:15:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-30T03:36:47Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.1339695,
+            38.421938
+          ],
+          [
+            26.1343274,
+            38.4220232
+          ],
+          [
+            26.1344895,
+            38.422206
+          ],
+          [
+            26.1344164,
+            38.4222385
+          ],
+          [
+            26.1342503,
+            38.4223283
+          ],
+          [
+            26.1341257,
+            38.4222927
+          ],
+          [
+            26.1339122,
+            38.4222168
+          ],
+          [
+            26.1339676,
+            38.4220572
+          ],
+          [
+            26.1339695,
+            38.421938
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/376031237/osm-location-of-sanctuary-of-kybele",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-11T15:30:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-11T02:17:10Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T03:37:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T03:36:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T03:36:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-30T03:37:05Z",
+      "associationCertainty": "certain",
+      "title": "Babrantion",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/376031237/4255679928",
+      "connectionType": "at",
+      "id": "4255679928",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T03:37:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T03:37:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-30T03:37:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550482",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Babrantium",
+      "citationDetail": "Babrantium",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kaletsch 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JLT4M4TM",
+      "formattedCitation": "<div class=\"csl-entry\">Kaletsch, H. \u201cDaskalopetra. Ein Kybeleheiligtum Auf Chios.\u201d In <i>Forschungen Und Funde. Festschrift Bernhard Neutsch</i>, 223\u201335, Taf. Innsbruck: Verlag des Institutes f\u00fcr Sprachwissenschaft der Universit\u00e4t Innsbruck, 1980.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "376031237",
+  "subject": [
+    "sanctuary",
+    "Kybele"
+  ],
+  "title": "Sanctuary of Kybele",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sanctuary dedicated to Kybele located at Daskalopetra on the island of Chios.",
+  "reprPoint": [
+    26.13417591734172,
+    38.42213961986755
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    26.1339122,
+    38.421938,
+    26.1344895,
+    38.4223283
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550482"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-30T03:37:05Z",
+  "uri": "https://pleiades.stoa.org/places/376031237",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-11T15:30:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-11T02:17:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-11T02:17:07Z"
+    },
+    {
+      "comment": "wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-11T02:14:18Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-30T03:37:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-30T03:37:05Z"
+    }
+  ]
+}

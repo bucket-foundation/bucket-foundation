@@ -1,0 +1,483 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            39.0943015,
+            36.5040221
+          ],
+          [
+            39.0943176,
+            36.5038324
+          ],
+          [
+            39.0942371,
+            36.5035823
+          ],
+          [
+            39.0939045,
+            36.5032589
+          ],
+          [
+            39.0936631,
+            36.5031813
+          ],
+          [
+            39.0923917,
+            36.5029096
+          ],
+          [
+            39.0920752,
+            36.5029528
+          ],
+          [
+            39.0917909,
+            36.5031425
+          ],
+          [
+            39.0915978,
+            36.5035737
+          ],
+          [
+            39.0915656,
+            36.5039618
+          ],
+          [
+            39.09163,
+            36.5042291
+          ],
+          [
+            39.0917695,
+            36.5043671
+          ],
+          [
+            39.092043,
+            36.5045223
+          ],
+          [
+            39.0923595,
+            36.5045698
+          ],
+          [
+            39.0926278,
+            36.5045827
+          ],
+          [
+            39.0928906,
+            36.5045223
+          ],
+          [
+            39.093132,
+            36.5044059
+          ],
+          [
+            39.0933788,
+            36.5043412
+          ],
+          [
+            39.0938079,
+            36.5042852
+          ],
+          [
+            39.0941191,
+            36.5041774
+          ],
+          [
+            39.0943015,
+            36.5040221
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-sabi-abyad",
+      "properties": {
+        "snippet": "Tell; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/413537086/osm-location-of-tell-sabi-abyad",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Sabi Abyad"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/983100829",
+          "citationDetail": "Way 983100829",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=983100829",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-sabi-abyad",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -3300,
+      "title": "OSM location of Tell Sabi Abyad",
+      "provenance": "OpenStreetMap (Way 983100829, version 1, osm:changeset=111173512, 2021-09-14T04:46:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-12-25T06:43:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            39.0943015,
+            36.5040221
+          ],
+          [
+            39.0943176,
+            36.5038324
+          ],
+          [
+            39.0942371,
+            36.5035823
+          ],
+          [
+            39.0939045,
+            36.5032589
+          ],
+          [
+            39.0936631,
+            36.5031813
+          ],
+          [
+            39.0923917,
+            36.5029096
+          ],
+          [
+            39.0920752,
+            36.5029528
+          ],
+          [
+            39.0917909,
+            36.5031425
+          ],
+          [
+            39.0915978,
+            36.5035737
+          ],
+          [
+            39.0915656,
+            36.5039618
+          ],
+          [
+            39.09163,
+            36.5042291
+          ],
+          [
+            39.0917695,
+            36.5043671
+          ],
+          [
+            39.092043,
+            36.5045223
+          ],
+          [
+            39.0923595,
+            36.5045698
+          ],
+          [
+            39.0926278,
+            36.5045827
+          ],
+          [
+            39.0928906,
+            36.5045223
+          ],
+          [
+            39.093132,
+            36.5044059
+          ],
+          [
+            39.0933788,
+            36.5043412
+          ],
+          [
+            39.0938079,
+            36.5042852
+          ],
+          [
+            39.0941191,
+            36.5041774
+          ],
+          [
+            39.0943015,
+            36.5040221
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/413537086/osm-location-of-tell-sabi-abyad",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-08T18:07:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-25T06:44:24Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-25T06:44:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-25T06:43:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-25T06:43:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tell_Sabi_Abyad",
+      "citationDetail": "Tell Sabi Abyad",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sabi-abyad.nl/Page.aspx?pageType=page&pageID=315",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Tell Sabi Abyad",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1147286",
+      "citationDetail": "Tell Sabi Abyad (Q1147286)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tell Sabi Abyad",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1147286",
+          "citationDetail": "Tell Sabi Abyad (Q1147286)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "tell-sabi-abyad",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-08-14T15:29:35Z",
+      "uri": "https://pleiades.stoa.org/places/413537086/tell-sabi-abyad",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u062a\u0644 \u0635\u0628\u064a \u0623\u0628\u064a\u0636",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-14T17:35:27Z"
+        },
+        {
+          "comment": "arabic",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-14T17:35:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-14T15:29:45Z"
+        },
+        {
+          "comment": "add name - Tell Sabi Abyad",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-14T15:29:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-14T15:29:35Z"
+        }
+      ]
+    }
+  ],
+  "id": "413537086",
+  "subject": [],
+  "title": "Tell Sabi Abyad",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological site located in the Balikh River valley of northern Syria. The site consists of four prehistoric settlement horizons that archaeologists describe as Tell Sabi Abyad I to IV.",
+  "reprPoint": [
+    39.09286433944887,
+    36.503762580721855
+  ],
+  "placeTypes": [
+    "settlement",
+    "tell"
+  ],
+  "bbox": [
+    39.0915656,
+    36.5029096,
+    39.0943176,
+    36.5045827
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-05-31T03:15:56Z",
+  "uri": "https://pleiades.stoa.org/places/413537086",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1147286",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-14T15:28:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T13:02:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-31T03:25:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-31T03:24:33Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-31T03:15:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-31T03:15:56Z"
+    }
+  ]
+}

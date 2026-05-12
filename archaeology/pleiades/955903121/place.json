@@ -1,0 +1,433 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.116469,
+          41.991566
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-monte-abatone-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/955903121/imagery-location-of-monte-abatone-necropolis",
+        "description": "Coordinates following GeoHack",
+        "location_precision": "precise",
+        "title": "Imagery location of Monte Abatone necropolis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://geohack.toolforge.org/geohack.php?params=41.991566_N_12.116469_E_globe:earth&language=en",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoHack - Monte Abatone necropolis",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-monte-abatone-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -550,
+      "title": "Imagery location of Monte Abatone necropolis",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Coordinates following GeoHack",
+      "created": "2021-11-22T14:45:02Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.116469,
+          41.991566
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/955903121/imagery-location-of-monte-abatone-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-27T12:29:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-22T14:46:13Z"
+        },
+        {
+          "comment": "location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-22T14:45:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-22T14:45:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-20T15:40:09Z",
+      "associationCertainty": "certain",
+      "title": "Caere",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/955903121/caere",
+      "connectionType": "at",
+      "id": "caere",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-27T12:29:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-22T14:46:13Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-20T15:40:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-20T15:40:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422859",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-06-07T12:37:17Z",
+      "associationCertainty": "certain",
+      "title": "Cemeteries around Caere",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/955903121/cemeteries-around-caere",
+      "connectionType": "part_of_analytical",
+      "id": "cemeteries-around-caere",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-09T14:22:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T19:00:36Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T19:00:30Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:37:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:37:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/426577",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Grabkontexte der Monte Abatone-Nekropole in Cerveteri",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XM8DAUP2",
+          "formattedCitation": "<div class=\"csl-entry\">Russell, Susan, ed. <i>Grabkontexte der Monte Abatone-Nekropole in Cerveteri: der Caere Workshop der Universit\u00e4ten Bonn und Campania \u201cL. Vanvitelli\u201d = Corredi tombali della necropoli di Monte Abatone a Cerveteri: il Workshop Caere delle Universit\u00e0 di Bonn e della Campania \u201cL. Vanvitelli.\u201d</i> Roma: Edizioni Quasar, 2017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3346857",
+      "citationDetail": "Q3346857: Monte Abatone necropolis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Grabkontexte der Monte Abatone-Nekropole in Cerveteri",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XM8DAUP2",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Grabkontexte der Monte Abatone-Nekropole in Cerveteri: der Caere Workshop der Universit\u00e4ten Bonn und Campania \u201cL. Vanvitelli\u201d = Corredi tombali della necropoli di Monte Abatone a Cerveteri: il Workshop Caere delle Universit\u00e0 di Bonn e della Campania \u201cL. Vanvitelli.\u201d</i> Roma: Edizioni Quasar, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Micozzi 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8CKKUMP6",
+      "formattedCitation": "<div class=\"csl-entry\">Micozzi, Marina. \u201cLa tomba 137 e le fasi iniziali della necropoli di Monte Abatone, Cerveteri.\u201d In <i>Archeologia Classica, 69 (N.S.II,8).2018</i>, 613\u201334. Roma: Bretschneidder, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coen et al. 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QKPUW9VG",
+      "formattedCitation": "<div class=\"csl-entry\">Coen, Alessandra, Fernando Gilotta, and Marina Micozzi. \u201cContinuit\u00e0 e discontinuit\u00e0 delle aristocrazie a Cerveteri in et\u00e0 orientalizzante. La documentazione della necropoli di Monte Abatone.\u201d In <i>Annali della fondazione per il Museo \u201cClaudio Faina\u201d, 27 (2020)</i>, pages 713-736. Roma: Quasar, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.19282/ac.33.2.2022.08",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gilotta et al. 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B62WPP3N",
+      "formattedCitation": "<div class=\"csl-entry\">Gilotta, Fernando, Valentina Carafa, Giulia Morpurgo, Carmelo Rizzo, Alessandra Cirafici, Alessandra Avella, Pasquale Argenziano, et al. \u201cResearches at the Monte Abatone Necropolis (Cerveteri).\u201d <i>Archeologia e Calcolatori</i> 33, no. 2 (2022): 135\u201352. https://doi.org/10.19282/ac.33.2.2022.08.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "necropoli di Monte Abatone",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Continuit\u00e0 e discontinuit\u00e0 delle aristocrazie a Cerveteri in et\u00e0 orientalizzante. La documentazione della necropoli di Monte Abatone",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ILQ8DB79",
+          "formattedCitation": "<div class=\"csl-entry\">Coen, Alessandra, Fernando Gilotta, and Marina Micozzi. \u201cContinuit\u00e0 e Discontinuit\u00e0 Delle Aristocrazie a Cerveteri in Et\u00e0 Orientalizzante. La Documentazione Della Necropoli Di Monte Abatone.\u201d In <i>Annali Della Fondazione per Il Museo \u201cClaudio Faina\u201d, 27 (2020)</i>, pages 713-736. Roma: Quasar, 2020.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "necropoli-di-monte-abatone",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2021-11-22T14:46:07Z",
+      "uri": "https://pleiades.stoa.org/places/955903121/necropoli-di-monte-abatone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "necropoli di Monte Abatone",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-27T12:29:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-22T14:46:13Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-22T14:46:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-22T14:46:07Z"
+        }
+      ]
+    }
+  ],
+  "id": "955903121",
+  "subject": [],
+  "title": "Monte Abatone necropolis, Caere",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A necropolis of ancient Caere with particularly important evidence of funerary assemblages showing the influence of the Orientalizing period.",
+  "reprPoint": [
+    12.116469,
+    41.991566
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.116469,
+    41.991566,
+    12.116469,
+    41.991566
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422859",
+    "https://pleiades.stoa.org/places/426577",
+    "https://pleiades.stoa.org/places/722252928",
+    "https://pleiades.stoa.org/places/206207289"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-10-20T15:39:35Z",
+  "uri": "https://pleiades.stoa.org/places/955903121",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Gilotta et al. 2022",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-17T13:18:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-11-27T12:29:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-22T14:46:12Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-20T15:39:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-20T15:39:35Z"
+    }
+  ]
+}

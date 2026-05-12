@@ -1,0 +1,14 @@
+# Porta Fiume (Alife)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/585937801
+- **ID**: 585937801
+- **Coords (lng, lat)**: [14.3292221, 41.3270898]
+- **Subjects**: opus incertum
+- **Time periods**: 
+- **Names**: Porta Fiume
+
+## Description
+
+One of the four gates of the fortified castrum of Allifae. The fortifications are thought to date to the Late Republican period on the basis of building techniques.

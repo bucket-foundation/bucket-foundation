@@ -1,0 +1,431 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6957859,
+            44.3576796
+          ],
+          [
+            11.6962237,
+            44.3574975
+          ],
+          [
+            11.6955133,
+            44.3565221
+          ],
+          [
+            11.6950633,
+            44.3567238
+          ],
+          [
+            11.6957859,
+            44.3576796
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/166695363/location-of-roman-villa",
+        "description": "Representative location based on an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Scavi Villa Clelia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/32401534",
+          "citationDetail": "Way 32401534",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=32401534",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Scavi Villa Clelia",
+      "provenance": "OpenStreetMap (Way 32401534, version 7, osm:changeset=143745083, 2023-11-07T16:43:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on an OpenStreetMap Way.",
+      "created": "2014-02-11T23:13:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6957859,
+            44.3576796
+          ],
+          [
+            11.6962237,
+            44.3574975
+          ],
+          [
+            11.6955133,
+            44.3565221
+          ],
+          [
+            11.6950633,
+            44.3567238
+          ],
+          [
+            11.6957859,
+            44.3576796
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/166695363/location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-02T00:04:47Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-27T01:54:34Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-17T12:30:00Z"
+        },
+        {
+          "comment": "title",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T16:29:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-01-31T15:30:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-12-13T15:51:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-12-13T15:51:30Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-11T23:14:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-11T23:13:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-11T23:13:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2019-05-19T16:28:44Z",
+      "associationCertainty": "certain",
+      "title": "Forum Cornelii",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/166695363/forum-cornelii",
+      "connectionType": "near",
+      "id": "forum-cornelii",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-17T12:30:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T16:28:52Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T16:28:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T16:28:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/393424",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Maioli 1978",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3QBJFDES",
+          "formattedCitation": "<div class=\"csl-entry\">Maioli, M. G. \u201cLa campagna di scavo 1979 a Villa Clelia (Imola). Relazione preliminare.\u201d In <i>Studi romagnoli, 29.1978</i>, 329\u201346, Abb, 1978.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://visitare.comune.imola.bo.it/scoprire/scostoria/villaclelia.cfm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "L'AREA DI VILLA CLELIA",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Maioli 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3QBJFDES",
+      "formattedCitation": "<div class=\"csl-entry\">Maioli, M. G. \u201cLa campagna di scavo 1979 a Villa Clelia (Imola). Relazione preliminare.\u201d In <i>Studi romagnoli, 29.1978</i>, 329\u201346, Abb, 1978.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hessen 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NXLB8DSB",
+      "formattedCitation": "<div class=\"csl-entry\">Hessen, O. v. \u201cAlcune osservazioni sulla tomba 185 di Villa Clelia.\u201d In <i>Studi romagnoli, 29.1978</i>, 457\u201360, 1978.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa Clelia",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "villa-clelia",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2020-02-17T12:29:37Z",
+      "uri": "https://pleiades.stoa.org/places/166695363/villa-clelia",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Villa Clelia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-17T12:30:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-17T12:29:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-17T12:29:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-17T12:29:37Z"
+        }
+      ]
+    }
+  ],
+  "id": "166695363",
+  "subject": [],
+  "title": "Clelia Roman Villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Late Roman villa and necropolis located at modern Imola in Italy.",
+  "reprPoint": [
+    11.6957859,
+    44.3576796
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    11.6957859,
+    44.3576796,
+    11.6957859,
+    44.3576796
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/393424"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-02-11T23:13:16Z",
+  "uri": "https://pleiades.stoa.org/places/166695363",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-17T12:31:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-17T12:30:00Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-17T12:27:05Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-19T16:28:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-12-13T15:50:54Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-11T23:13:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-11T23:13:16Z"
+    }
+  ]
+}

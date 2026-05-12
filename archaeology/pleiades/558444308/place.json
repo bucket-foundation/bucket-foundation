@@ -1,0 +1,411 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            18.3976457,
+            40.0573885
+          ],
+          [
+            18.397754,
+            40.0571157
+          ],
+          [
+            18.3984198,
+            40.0572871
+          ],
+          [
+            18.3983549,
+            40.0576909
+          ],
+          [
+            18.39831,
+            40.0578499
+          ],
+          [
+            18.3982676,
+            40.057847
+          ],
+          [
+            18.3982341,
+            40.0579553
+          ],
+          [
+            18.3981901,
+            40.0579706
+          ],
+          [
+            18.3981469,
+            40.0579756
+          ],
+          [
+            18.3981132,
+            40.0579539
+          ],
+          [
+            18.3977108,
+            40.0576951
+          ],
+          [
+            18.3975331,
+            40.057568
+          ],
+          [
+            18.3976457,
+            40.0573885
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-chiesa-e-la-necropoli",
+      "properties": {
+        "snippet": "Cemetery, Church-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/558444308/osm-location-of-chiesa-e-la-necropoli",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of chiesa e la necropoli paleocristiana di Vaste"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/321834531",
+          "citationDetail": "Way 321834531",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=321834531",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-chiesa-e-la-necropoli",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 640,
+      "title": "OSM location of chiesa e la necropoli paleocristiana di Vaste",
+      "provenance": "OpenStreetMap (Way 321834531, version 6, osm:changeset=136004922, 2023-05-12T07:24:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-18T14:24:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            18.3976457,
+            40.0573885
+          ],
+          [
+            18.397754,
+            40.0571157
+          ],
+          [
+            18.3984198,
+            40.0572871
+          ],
+          [
+            18.3983549,
+            40.0576909
+          ],
+          [
+            18.39831,
+            40.0578499
+          ],
+          [
+            18.3982676,
+            40.057847
+          ],
+          [
+            18.3982341,
+            40.0579553
+          ],
+          [
+            18.3981901,
+            40.0579706
+          ],
+          [
+            18.3981469,
+            40.0579756
+          ],
+          [
+            18.3981132,
+            40.0579539
+          ],
+          [
+            18.3977108,
+            40.0576951
+          ],
+          [
+            18.3975331,
+            40.057568
+          ],
+          [
+            18.3976457,
+            40.0573885
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/558444308/osm-location-of-chiesa-e-la-necropoli",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-11T21:24:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T01:20:10Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T01:19:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-15T01:19:52Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-18T14:25:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-18T14:24:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-18T14:24:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-18T14:25:21Z",
+      "associationCertainty": "certain",
+      "title": "Basta",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/558444308/5215456129",
+      "connectionType": "succeeds",
+      "id": "5215456129",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-18T14:25:35Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-18T14:25:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-18T14:25:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-18T14:25:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442502",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/43836/",
+      "citationDetail": "43836: Basta, Paleochristian Baslica",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1080/00766097.2023.2204749",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Penn 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DIUTF7L7",
+      "formattedCitation": "<div class=\"csl-entry\">Penn, Tim. \u201cSepolture, Rituali e Comunit\u00e0 Nei Secoli IV\u2013VI d.C. Il Cimitero Paleocristiano e Bizantino Di Vaste (Puglia Meridionale): (BAR International Series S3103). Giovanni Mastronuzzi and Valeria Melissano. 21\u2009\u00d7\u200929\u2009Cm. Xxxii + 339 Pp, 387 Colour and B&amp;w Pls and Figs, 23 Tables. Oxford: BAR Publishing, 2022. ISBN 978-1-4073-6013-3; Epub: 978-1-4073-6014-0. Price: \u00a389.00 Pb.\u201d <i>Medieval Archaeology</i> 67, no. 1 (January 2, 2023): 237\u201338. https://doi.org/10.1080/00766097.2023.2204749.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mastronuzzi 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W92ICGFZ",
+      "formattedCitation": "<div class=\"csl-entry\">Mastronuzzi, Giovanni, and Valeria Melissano. \u201cSepolture, Rituali e Comunit\u00e0 Nei Secoli IV-VI d.C. Il Cimitero Paleocristiano e Bizantino Di Vaste (Puglia Meridionale).\u201d <i>BAR International Series</i> 3103 (2022): ALL.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.fastionline.org/record_view.php?fst_cd=AIAC_1206",
+      "citationDetail": "Fondo Giuliano, Vaste",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FastiOnline (Excavation)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5MUH5XWP",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC), and Center for the Study of Ancient Italy of the University of Texas at Austin (CSAI). <i>FastiOnline (Excavation)</i>, 2004. http://www.fastionline.org/excavation/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "558444308",
+  "subject": [
+    "paleochristian"
+  ],
+  "title": "Church and early Christian necropolis at Vaste",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An early Christian complex that included a cult building with several construction phases and a vast cemetery.",
+  "reprPoint": [
+    18.398013244857335,
+    40.057522749766434
+  ],
+  "placeTypes": [
+    "church-2",
+    "cemetery"
+  ],
+  "bbox": [
+    18.3975331,
+    40.0571157,
+    18.3984198,
+    40.0579756
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442502"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-18T14:25:19Z",
+  "uri": "https://pleiades.stoa.org/places/558444308",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-11T21:24:41Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T10:05:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-15T01:20:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-15T01:19:33Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-18T14:25:57Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-18T14:25:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-18T14:25:19Z"
+    }
+  ]
+}

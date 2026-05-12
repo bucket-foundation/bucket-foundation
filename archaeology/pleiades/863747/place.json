@@ -1,0 +1,596 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              46.51607305202583,
+              40.51144013798444
+            ],
+            [
+              46.198415007747485,
+              40.62922345777304
+            ],
+            [
+              45.99854028325774,
+              40.68276133040422
+            ],
+            [
+              45.78795798424176,
+              40.74343758605289
+            ],
+            [
+              45.570237302208284,
+              40.779129501140346
+            ],
+            [
+              45.145503512667574,
+              40.854082522824
+            ],
+            [
+              44.93492121365159,
+              40.8933436294202
+            ],
+            [
+              44.70649295709188,
+              40.921897161490165
+            ],
+            [
+              44.47449550902343,
+              40.954019885068874
+            ],
+            [
+              44.27462078453368,
+              40.961158268086365
+            ],
+            [
+              43.99979303836028,
+              40.98614260864758
+            ],
+            [
+              43.77850316481806,
+              40.97543503412135
+            ],
+            [
+              43.51795218467964,
+              40.95758907657762
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/863747/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Diane Braund"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "enesy",
+      "homepage": null,
+      "name": "Enes Y\u0131landilo\u011flu",
+      "uri": "https://pleiades.stoa.org/author/enesy"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "211808",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "88 B4 Armenia",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": 640,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 1860.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-1-million-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:16:14Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              46.51607305202583,
+              40.51144013798444
+            ],
+            [
+              46.198415007747485,
+              40.62922345777304
+            ],
+            [
+              45.99854028325774,
+              40.68276133040422
+            ],
+            [
+              45.78795798424176,
+              40.74343758605289
+            ],
+            [
+              45.570237302208284,
+              40.779129501140346
+            ],
+            [
+              45.145503512667574,
+              40.854082522824
+            ],
+            [
+              44.93492121365159,
+              40.8933436294202
+            ],
+            [
+              44.70649295709188,
+              40.921897161490165
+            ],
+            [
+              44.47449550902343,
+              40.954019885068874
+            ],
+            [
+              44.27462078453368,
+              40.961158268086365
+            ],
+            [
+              43.99979303836028,
+              40.98614260864758
+            ],
+            [
+              43.77850316481806,
+              40.97543503412135
+            ],
+            [
+              43.51795218467964,
+              40.95758907657762
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/863747/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "David Braund"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-24T00:42:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-23T18:30:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:16:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "88 B4 Armenia Maior",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tiratsian 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4HEININ5",
+      "formattedCitation": "<div class=\"csl-entry\">Tiratsian, G.A. \u201cYuzhnoye Zakavkaz\u2019ye.\u201d In <i>Drevneyshiye Gosudarstva Kavkaza i Sredney Azii</i>, edited by G.A. Koshelenko, 60\u201378. Moscow, 1985.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Roman_Armenia",
+      "citationDetail": "Roman Armenia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Roman Armenia.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/42675",
+      "citationDetail": "GEO ID 42675: Armenia Maior",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Mark Depauw, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5600438",
+      "citationDetail": "Greater Armenia (Q5600438)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Armenia Maior",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "armenia-maior",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "Diane Braund"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 88 B4 Armenia Maior",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-10-05T17:22:40Z",
+      "uri": "https://pleiades.stoa.org/places/863747/armenia-maior",
+      "creators": [
+        {
+          "username": null,
+          "name": "David Braund"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:57:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-10-05T18:25:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-10-05T17:38:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-10-05T17:22:40Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ermeniyye-i K\u00fcbr\u0101",
+      "attestations": [
+        {
+          "timePeriod": "sixteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx",
+          "citationDetail": "1st Volume, 786-7, s.v. \"FA\u1e62L MEMLEKET-\u0130 EFRENC\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "K\u00fcnh\u00fc'l-ahb\u00e2r",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WKDD5W8W",
+          "formattedCitation": "<div class=\"csl-entry\">\u00c2li, Mustafa bin Ahmet. <i>K\u00fcnh\u00fc\u2019l-ahb\u00e2r: (tenkitli metin)</i>. Edited by Suat Donuk and Derya \u00d6rs. 1. bask\u0131. 5 vols. T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131 yay\u0131nlar\u0131. Fatih, \u0130stanbul: T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131, 2020. https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx.</div>",
+          "otherIdentifier": "",
+          "type": "seeAlso"
+        }
+      ],
+      "id": "ermeniyye-i-kubra",
+      "end": 1599,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1500,
+      "details": "<p><em>FA\u1e62L MEMLEKET-\u0130 EFRENC VE ERMEN VE NA\u1e62\u0100R\u0100 BEY\u0100NI\u00a0VE \u1e2aULEF\u0100-YI MES\u012a\u1e24 \u0130\u2018L\u0100NI \u1e94\u0130KR\u0130NDED\u00dcR\u00a0</em><span>(Section: Description of the Lands of the Franks, Armenians, and Christians, and Mention of the Successors of the Messiah):\u00a0Let it not remain hidden that the\u00a0</span><em>\u1e25ud\u016bd-\u0131 vil\u0101yet-i Ermen</em><span>\u00a0(boundaries of the Armenian province) form a vast land opposite\u00a0</span><em>G\u00fcrcist\u0101n</em><span>\u00a0(Georgia).Its capital districts are\u00a0</span><em>Ermeniyye-i \u1e62u\u0121r\u0101</em><span>\u00a0(Armenia Minor) and\u00a0</span><em>Ermeniyye-i K\u00fcbr\u0101</em><span>\u00a0(Greater Armenia).The length (\u1e6d\u016bl) of\u00a0</span><em>Ermeniyye-i K\u00fcbr\u0101</em><span>\u00a0stretches from the frontier of\u00a0</span><em>\u0100zerbayc\u0101n</em><span>\u00a0(Azerbaijan) to the boundary of\u00a0</span><em>Selm\u0101s</em><span>\u00a0(Salmas, Iran).Its breadth (\u2018ar\u017c) extends from the beginning of the\u00a0</span><em>G\u00fcrcist\u0101n</em><span>\u00a0(Georgia) province to the farthest limit of\u00a0</span><em>Ves\u1e6d\u0101n</em><span>. As for\u00a0</span><em>Ermeniyye-i \u1e62u\u0121r\u0101</em><span>\u00a0(Armenia Minor), its length reaches from the Syrian side (</span><em>\u015e\u0101m \u1e6daraf\u0131</em><span>) to the extreme frontier of the\u00a0</span><em>vil\u0101yet-i R\u016bm</em><span>\u00a0(Anatolia). Likewise, its breadth runs from the frontier of\u00a0</span><em>Mal\u0101\u1e6diyye</em><span>\u00a0(Malatya) to the border of\u00a0</span><em>An\u1e6d\u0101kiyye</em><span>\u00a0(Antioch). All directions, regions, and mountains are included within this territory. In ancient times, there were five inhabited principal towns, which were called:\u00a0</span><em>Ay\u0101s</em><span>\u00a0(Yumurtal\u0131k, Turkey),\u00a0</span><em>S\u012bs</em><span>\u00a0(Kozan, Turkey),\u00a0</span><em>\u1e6cars\u016bs</em><span>\u00a0(Tarsus, Turkey),\u00a0</span><em>Adana</em><span>\u00a0(Adana, Turkey), and\u00a0</span><em>Mis\u012bs</em><span>\u00a0(Misis / Yakap\u0131nar, Turkey). All of them lie near one another. In our time, the largest of these towns is\u00a0</span><em>Adana</em><span>.\u00a0</span><em>Mis\u012bs</em><span>\u00a0and\u00a0</span><em>Ay\u0101s</em><span>\u00a0are in ruins, while\u00a0</span><em>S\u012bs</em><span>\u00a0and\u00a0</span><em>\u1e6cars\u016bs</em><span>\u00a0have become towns of medium size. In former days, the region had twenty thousand inhabited villages and fertile settlements; it is reported that today no tithe (</span><em>\u2018\u00f6\u015fr</em><span>) remains from them. Among its products:\u00a0</span><em>\u1e63\u016bf</em><span>\u00a0(woollen cloth), called\u00a0</span><em>\u1e33uds\u012b</em><span>, is said to be woven in\u00a0</span><em>An\u1e33ara</em><span>\u00a0(Ankara), which is subject to the\u00a0</span><em>vil\u0101yet-i R\u016bm</em><span>. And\u00a0</span><em>l\u0101den</em><span>\u00a0(labdanum; fragrant resin), renowned for its delightful scent, is produced on the nearby\u00a0</span><em>Cez\u012bre-i \u1e32\u0131br\u0131s</em><span>\u00a0(the Island of Cyprus). [translation]</span></p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ota",
+      "created": "2025-12-02T20:21:23Z",
+      "uri": "https://pleiades.stoa.org/places/863747/ermeniyye-i-kubra",
+      "creators": [
+        {
+          "username": "enesy",
+          "homepage": null,
+          "name": "Enes Y\u0131landilo\u011flu",
+          "uri": "https://pleiades.stoa.org/author/enesy"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-12-02T20:52:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "enesy",
+          "modified": "2025-12-02T20:22:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "enesy",
+          "modified": "2025-12-02T20:21:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "enesy",
+          "modified": "2025-12-02T20:21:23Z"
+        }
+      ]
+    }
+  ],
+  "id": "863747",
+  "subject": [],
+  "title": "Armenia Maior",
+  "provenance": "Barrington Atlas: BAtlas 88 B4 Armenia Maior",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/province",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "<p>None</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 88 B4 Armenia Maior",
+  "reprPoint": [
+    45.03148378459373,
+    40.83530470746824
+  ],
+  "placeTypes": [
+    "province",
+    "label"
+  ],
+  "bbox": [
+    43.51795218467964,
+    40.51144013798444,
+    46.51607305202583,
+    40.98614260864758
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/874354"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-10-05T17:22:40Z",
+  "uri": "https://pleiades.stoa.org/places/863747",
+  "creators": [
+    {
+      "username": null,
+      "name": "David Braund"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q5600438",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-24T16:09:24Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-24T00:44:53Z"
+    },
+    {
+      "comment": "TM GEO ID 42675",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-15T01:54:04Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-19T21:18:29Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:57:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-05T18:25:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T17:38:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T17:22:40Z"
+    }
+  ]
+}

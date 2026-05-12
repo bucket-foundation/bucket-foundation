@@ -1,0 +1,468 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.7025677,
+          39.231678
+        ]
+      },
+      "type": "Feature",
+      "id": "kocaklar",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/608036268/kocaklar",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ko\u00e7aklar"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2291750324",
+          "citationDetail": "Node 2291750324",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2291750324",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kocaklar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location of Ko\u00e7aklar",
+      "provenance": "OpenStreetMap (Node 2291750324, version 3, osm:changeset=94541163, 2020-11-21T11:47:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-05-21T09:22:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.7025677,
+          39.231678
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/608036268/kocaklar",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T14:31:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T13:46:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T13:43:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T13:42:53Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T02:45:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:22:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:22:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:22:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -600,
+      "description": "",
+      "contributors": [],
+      "created": "2020-05-21T09:23:27Z",
+      "associationCertainty": "certain",
+      "title": "Urartu",
+      "start": -900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/608036268/urartu",
+      "connectionType": "part_of_physical",
+      "id": "urartu",
+      "attestations": [
+        {
+          "timePeriod": "urartian-eastern-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/urartian-eastern-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T14:31:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T13:46:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-07-12T16:35:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:23:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:23:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/214160492",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/174421990",
+      "citationDetail": "E 4 No. 72 (p. 16)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kleiss 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WZTF2D3Q",
+      "formattedCitation": "<div class=\"csl-entry\">Kleiss, Wolfram, and Harald Hauptmann. <i>Topographische Karte von Urar\u1e6du: Verzeichnis der Fundorte und Bibliographie</i>. Berlin: Reimer, 1976. http://www.worldcat.org/oclc/174421990.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/Q006920",
+      "citationDetail": "Minua, son of I\u0161puini: A 05-022 (Q006920)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/428815782",
+      "citationDetail": "p. 213-214",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/428815782",
+      "citationDetail": "p. 182 (map)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/urartianrulersandtheirinscriptions/minuasonofipuinia5andb5/index.html",
+      "citationDetail": "Minua, son of I\u0161puini",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3676445",
+      "citationDetail": "Ko\u00e7aklar (Q3676445)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ko\u00e7aklar",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/428815782",
+          "citationDetail": "p. 68",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Salvini 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+          "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3676445",
+          "citationDetail": "Ko\u00e7aklar (Q3676445)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kocaklar-1",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2020-05-21T09:22:57Z",
+      "uri": "https://pleiades.stoa.org/places/608036268/kocaklar-1",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "attested": "Ko\u00e7aklar",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T14:31:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T13:46:31Z"
+        },
+        {
+          "comment": "add wikidata Q3676445",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-02T13:44:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:22:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T09:22:57Z"
+        }
+      ]
+    }
+  ],
+  "id": "608036268",
+  "subject": [
+    "Urartian",
+    "Urartu"
+  ],
+  "title": "Marmos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Marmos is a settlement in the A\u011fr\u0131 Province in Eastern Turkey. Here a stele with an inscription of the Urartian king Minua (9th/8th century BCE) was found which reports the construction of a canal.",
+  "reprPoint": [
+    42.7025677,
+    39.231678
+  ],
+  "placeTypes": [
+    "findspot",
+    "settlement-modern"
+  ],
+  "bbox": [
+    42.7025677,
+    39.231678,
+    42.7025677,
+    39.231678
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/214160492"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-21T09:22:12Z",
+  "uri": "https://pleiades.stoa.org/places/608036268",
+  "creators": [
+    {
+      "username": "bchristiansen2",
+      "homepage": null,
+      "name": "Birgit Christiansen ",
+      "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-02T14:31:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-02T13:46:30Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-02T13:46:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-07-17T19:53:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-07-12T16:35:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-07-12T16:33:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-07-02T17:51:54Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-05-21T09:22:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-05-21T09:22:12Z"
+    }
+  ]
+}

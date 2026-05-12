@@ -1,0 +1,380 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9571024,
+          32.0808063
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-migdal-afeq-mirabel-fortress-ruins",
+      "properties": {
+        "snippet": "Unknown; AD 1081 - AD 1999",
+        "link": "https://pleiades.stoa.org/places/802393070/osm-location-of-migdal-afeq-mirabel-fortress-ruins",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Migdal Afeq (Mirabel Fortress) Ruins"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "crusader-byzantine-seljuq-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/crusader-byzantine-seljuq-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/278478501",
+          "citationDetail": "Node 278478501",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=278478501",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q568521",
+          "citationDetail": "Migdal Afek (Q568521)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-migdal-afeq-mirabel-fortress-ruins",
+      "featureTypeURI": [],
+      "end": 1999,
+      "title": "OSM location of Migdal Afeq (Mirabel Fortress) Ruins",
+      "provenance": "OpenStreetMap (Node 278478501, version 16, osm:changeset=134664911, 2023-04-08T18:55:58Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1081,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-10-24T23:14:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9571024,
+          32.0808063
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/802393070/osm-location-of-migdal-afeq-mirabel-fortress-ruins",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T21:07:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:59:41Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:47:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:24:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:19:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:19:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T18:51:45Z"
+        },
+        {
+          "comment": "wikidata Migdal Afek (Q568521)",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T18:51:41Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T17:28:19Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-24T23:14:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-24T23:14:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-24T23:14:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-04-18T21:45:38Z",
+      "associationCertainty": "certain",
+      "title": "Aphekou Pyrgos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/802393070/7383693123",
+      "connectionType": "succeeds",
+      "id": "7383693123",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-19T21:07:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:59:41Z"
+        },
+        {
+          "comment": "succeeds",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:48:18Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:48:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:45:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:45:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T21:45:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/687828",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Majdal_Yaba",
+      "citationDetail": "Majdal Yaba",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u1e32edar 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/28LBXQLR",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cThe Castle and Lordship of Mirabel.\u201d In <i>Montjoie: Studies in Crusade History in Honour of Hans Eberhard Mayer</i>, 91\u2013112. Aldershot, Hampshire: Variorum, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/27018856",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marcus 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8ZHJ6IDM",
+      "formattedCitation": "<div class=\"csl-entry\">Marcus, Jenny. \u201cH\u0331orbat Migdal Afeq: Final Report.\u201d <i>Hadashot Arkheologiyot: Excavations and Surveys in Israel / \u05d7\u05d3\u05e9\u05d5\u05ea \u05d0\u05e8\u05db\u05d9\u05d0\u05d5\u05dc\u05d5\u05d2\u05d9\u05d5\u05ea: \u05d7\u05e4\u05d9\u05e8\u05d5\u05ea \u05d5\u05e1\u05e7\u05e8\u05d9\u05dd \u05d1\u05d9\u05e9\u05e8\u05d0\u05dc</i> 132 (2020). https://www.jstor.org/stable/27018856.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "802393070",
+  "subject": [],
+  "title": "Mirabel Fortress",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building",
+    "https://pleiades.stoa.org/vocabularies/place-types/castle"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Crusader fortress, the ruins of which were used to build a 19th-century fortified manor house. They lie over the site of ancient Aphekou Pyrgos in the modern Migdal Tzedek National Park, Israel.",
+  "reprPoint": [
+    34.9571024,
+    32.0808063
+  ],
+  "placeTypes": [
+    "building",
+    "castle"
+  ],
+  "bbox": [
+    34.9571024,
+    32.0808063,
+    34.9571024,
+    32.0808063
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/687828"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-04-18T21:45:37Z",
+  "uri": "https://pleiades.stoa.org/places/802393070",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-19T21:07:01Z"
+    },
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-19T21:06:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T21:59:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T21:59:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T21:56:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T21:49:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T21:47:51Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T21:47:22Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T21:45:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T21:45:37Z"
+    }
+  ]
+}

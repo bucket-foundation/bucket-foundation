@@ -1,0 +1,222 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0167099,
+          34.2002817
+        ]
+      },
+      "type": "Feature",
+      "id": "tell-sabra",
+      "properties": {
+        "snippet": "Tell; 3300 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/47886134/tell-sabra",
+        "description": "Point based on an OpenStreetMap node representing Tell Sabra after Tunca 1987.",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Sabra"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9804334457",
+          "citationDetail": "Node 9804334457",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9804334457",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/906592374",
+          "citationDetail": "page 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tunca 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TNUUTAXI",
+          "formattedCitation": "<div class=\"csl-entry\">Tunca, \u00d6nhan. <i>Tell Sabra</i>. Leuven: Peeters, 1987. http://www.worldcat.org/oclc/906592374.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tell-sabra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -30,
+      "title": "OSM location of Tell Sabra",
+      "provenance": "OpenStreetMap (Node 9804334457, version 1, osm:changeset=122127647, 2022-06-08T17:12:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Tell Sabra after Tunca 1987.",
+      "created": "2022-06-08T17:19:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.0167099,
+          34.2002817
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/47886134/tell-sabra",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T22:58:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T17:23:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T17:23:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T17:19:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T17:19:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/906592374",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tunca 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TNUUTAXI",
+      "formattedCitation": "<div class=\"csl-entry\">Tunca, \u00d6nhan. <i>Tell Sabra</i>. Leuven: Peeters, 1987. http://www.worldcat.org/oclc/906592374.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "47886134",
+  "subject": [],
+  "title": "Tell Sabra",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tell in Mesopotamia occupied during the Proto-Dynastic period I, the early Akkadian period, and the Seleuco-Parthian period. Tell Sabra was submerged with the creation of the Hemrin Dam in 1981.",
+  "reprPoint": [
+    45.0167099,
+    34.2002817
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    45.0167099,
+    34.2002817,
+    45.0167099,
+    34.2002817
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-08T17:19:11Z",
+  "uri": "https://pleiades.stoa.org/places/47886134",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-08T22:58:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-08T22:57:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T17:23:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T17:19:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T17:19:11Z"
+    }
+  ]
+}

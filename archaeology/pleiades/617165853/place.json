@@ -1,0 +1,384 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.5560026,
+            25.2935523
+          ],
+          [
+            32.5562178,
+            25.2932693
+          ],
+          [
+            32.5563959,
+            25.29338
+          ],
+          [
+            32.5561807,
+            25.293663
+          ],
+          [
+            32.5560026,
+            25.2935523
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "temple",
+      "properties": {
+        "snippet": "Temple-2; 304 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/617165853/temple",
+        "description": "A polygon representing the excavated portion (the hypostyle hall) of the Temple of Khnum at Esna.",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Khnum"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/133868409",
+          "citationDetail": "Way 133868409",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=133868409",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Temple of Khnum",
+      "provenance": "OpenStreetMap (Way 133868409, version 5, osm:changeset=132803290, 2023-02-20T18:22:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -304,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "A polygon representing the excavated portion (the hypostyle hall) of the Temple of Khnum at Esna.",
+      "created": "2018-08-31T15:39:13Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.5560026,
+            25.2935523
+          ],
+          [
+            32.5562178,
+            25.2932693
+          ],
+          [
+            32.5563959,
+            25.29338
+          ],
+          [
+            32.5561807,
+            25.293663
+          ],
+          [
+            32.5560026,
+            25.2935523
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/617165853/temple",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-09T02:24:16Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T22:33:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-03T11:31:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-31T15:42:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-31T15:40:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-31T15:39:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-31T15:39:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-31T15:41:36Z",
+      "associationCertainty": "certain",
+      "title": "Latopolis",
+      "start": -304,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/617165853/latopolis",
+      "connectionType": "part_of_admin",
+      "id": "latopolis",
+      "attestations": [
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-03T11:31:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-31T15:42:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-31T15:41:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-31T15:41:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/786059",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_admin"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sauneron 1963-2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2TX2K8GA",
+      "formattedCitation": "<div class=\"csl-entry\">Sauneron, Serge, La\u00efla M\u00e9nassa, and Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale du Caire. <i>Le temple d\u2019Esna</i>. 6 vols. Publications de l\u2019Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale du Caire 321, 321B, 488 A, 1007. Le Caire: Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale, 1963.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sauneron 1959",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VQVF64JZ",
+      "formattedCitation": "<div class=\"csl-entry\">Sauneron, Serge. <i>Quatre campagnes \u00e0 Esna</i>. Publications de l\u2019Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale du Caire. Le Caire: Imprimerie de l\u2019Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale, 1959.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ancientegyptonline.co.uk/esnatemple.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ancient Egypt Online, Esna Temple",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.orghttps://en.wikipedia.org/wiki/Esna",
+      "citationDetail": "Esna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1131024",
+      "citationDetail": "Temple of Khnum (Q1131024)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "617165853",
+  "subject": [],
+  "title": "Temple of Khnum at Esna",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A temple dedicated to the god Khnum constructed during the Ptolemaic and Roman period in the city of Esna (Latopolis). ",
+  "reprPoint": [
+    32.55619925,
+    25.293466149999997
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    32.5560026,
+    25.2932693,
+    32.5563959,
+    25.293663
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/786059"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-31T15:38:46Z",
+  "uri": "https://pleiades.stoa.org/places/617165853",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-23T01:44:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-03T11:31:27Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-02T18:44:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-31T15:42:45Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-31T15:38:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-31T15:38:46Z"
+    }
+  ]
+}

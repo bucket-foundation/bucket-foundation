@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.6059152,
+          38.4761519
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basalica-visigoda",
+      "properties": {
+        "snippet": "Church-2; AD 600 - AD 799",
+        "link": "https://pleiades.stoa.org/places/66997684/osm-location-of-basalica-visigoda",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bas\u00edlica Visigoda"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jmartinez",
+      "homepage": null,
+      "name": "Javier Mart\u00ednez Jim\u00e9nez",
+      "uri": "https://pleiades.stoa.org/author/jmartinez"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jmartinez",
+          "homepage": null,
+          "name": "Javier Mart\u00ednez Jim\u00e9nez",
+          "uri": "https://pleiades.stoa.org/author/jmartinez"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "eighth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eighth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7447418487",
+          "citationDetail": "Node 7447418487",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7447418487",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.brepolsonline.net/doi/10.1484/J.HAM.1.103584?mobileUi=0",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Guti\u00e9rrez Lloret 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6YNJNLYN",
+          "formattedCitation": "<div class=\"csl-entry\">Guti\u00e9rrez Lloret, Sonia, and Julia Sarabia Bautista. \u201cThe Episcopal Complex of Eio-El Tolmo de Minateda (H\u00e9ll\u00edn, Albacete, Spain): Architecture and Spatial Organization, 7th to 8th Centuries Ad.\u201d <i>Hortus Artium Medievalium.</i>, 2013, 267\u2013300. https://doi.org/10.1484/J.HAM.1.103584.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-basalica-visigoda",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 799,
+      "title": "OSM location of Bas\u00edlica Visigoda",
+      "provenance": "OpenStreetMap (Node 7447418487, version 2, osm:changeset=89568581, 2020-08-18T10:33:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-10-06T13:37:53Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.6059152,
+          38.4761519
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/66997684/osm-location-of-basalica-visigoda",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-06T19:16:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:45:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:43:44Z"
+        },
+        {
+          "comment": "@jmartinez",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:42:41Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:42:03Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:38:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:37:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:37:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-10-06T13:42:45Z",
+      "associationCertainty": "certain",
+      "title": "Tolmo de Minateda",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/66997684/1651594363",
+      "connectionType": "at",
+      "id": "1651594363",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:42:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:42:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:42:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/265928",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.brepolsonline.net/doi/10.1484/J.HAM.1.103584?mobileUi=0",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Guti\u00e9rrez Lloret 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6YNJNLYN",
+      "formattedCitation": "<div class=\"csl-entry\">Guti\u00e9rrez Lloret, Sonia, and Julia Sarabia Bautista. \u201cThe Episcopal Complex of Eio-El Tolmo de Minateda (H\u00e9ll\u00edn, Albacete, Spain): Architecture and Spatial Organization, 7th to 8th Centuries Ad.\u201d <i>Hortus Artium Medievalium.</i>, 2013, 267\u2013300. https://doi.org/10.1484/J.HAM.1.103584.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Episcopal complex of Eio-el Tolmo de Minateda",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.brepolsonline.net/doi/10.1484/J.HAM.1.103584?mobileUi=0",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Guti\u00e9rrez Lloret 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6YNJNLYN",
+          "formattedCitation": "<div class=\"csl-entry\">Guti\u00e9rrez Lloret, Sonia, and Julia Sarabia Bautista. \u201cThe Episcopal Complex of Eio-El Tolmo de Minateda (H\u00e9ll\u00edn, Albacete, Spain): Architecture and Spatial Organization, 7th to 8th Centuries Ad.\u201d <i>Hortus Artium Medievalium.</i> 19 (2013): 267\u2013300. https://doi.org/10.1484/J.HAM.1.103584.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "episcopal-complex-of-eio-el-tolmo-de-minateda",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-10-06T13:46:32Z",
+      "uri": "https://pleiades.stoa.org/places/66997684/episcopal-complex-of-eio-el-tolmo-de-minateda",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Episcopal complex of Eio-el Tolmo de Minateda",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-06T19:16:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:46:36Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:46:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-06T13:46:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "66997684",
+  "subject": [],
+  "title": "Episcopal complex of Eio-el Tolmo de Minateda (H\u00e9ll\u00edn, Albacete, Spain)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The episcopal complex of Eio at El Tolmo de Minateda dates to the terminal sixth century CE and was in use during the following two centuries. Its construction may have been directed by Visigothic officials in Toletum.",
+  "reprPoint": [
+    -1.6059152,
+    38.4761519
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    -1.6059152,
+    38.4761519,
+    -1.6059152,
+    38.4761519
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/265928"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-10-06T13:42:43Z",
+  "uri": "https://pleiades.stoa.org/places/66997684",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-10-06T19:16:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-06T13:45:26Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-06T13:45:18Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-06T13:42:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-06T13:42:43Z"
+    }
+  ]
+}

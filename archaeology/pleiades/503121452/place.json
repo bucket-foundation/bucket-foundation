@@ -1,0 +1,405 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            49.8371003,
+            40.3662343
+          ],
+          [
+            49.8370955,
+            40.3662033
+          ],
+          [
+            49.8371078,
+            40.3661735
+          ],
+          [
+            49.8371349,
+            40.3661501
+          ],
+          [
+            49.8371722,
+            40.3661371
+          ],
+          [
+            49.8372131,
+            40.3661368
+          ],
+          [
+            49.8372507,
+            40.3661492
+          ],
+          [
+            49.8372783,
+            40.3661722
+          ],
+          [
+            49.8373965,
+            40.3661045
+          ],
+          [
+            49.8374237,
+            40.3661288
+          ],
+          [
+            49.8372875,
+            40.3662328
+          ],
+          [
+            49.8372674,
+            40.36626
+          ],
+          [
+            49.8372346,
+            40.3662785
+          ],
+          [
+            49.8371946,
+            40.3662854
+          ],
+          [
+            49.8371545,
+            40.3662792
+          ],
+          [
+            49.8371211,
+            40.3662611
+          ],
+          [
+            49.8371003,
+            40.3662343
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-maiden-tower",
+      "properties": {
+        "snippet": "Tower-single; AD 640 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/503121452/osm-location-of-maiden-tower",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Maiden Tower"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/299418016",
+          "citationDetail": "Way 299418016",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=299418016",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-maiden-tower",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-single"
+      ],
+      "end": 2100,
+      "title": "OSM location of Maiden Tower",
+      "provenance": "OpenStreetMap (Way 299418016, version 10, osm:changeset=68459910, 2019-03-24T03:06:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-single"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tower-single"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-01T18:56:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            49.8371003,
+            40.3662343
+          ],
+          [
+            49.8370955,
+            40.3662033
+          ],
+          [
+            49.8371078,
+            40.3661735
+          ],
+          [
+            49.8371349,
+            40.3661501
+          ],
+          [
+            49.8371722,
+            40.3661371
+          ],
+          [
+            49.8372131,
+            40.3661368
+          ],
+          [
+            49.8372507,
+            40.3661492
+          ],
+          [
+            49.8372783,
+            40.3661722
+          ],
+          [
+            49.8373965,
+            40.3661045
+          ],
+          [
+            49.8374237,
+            40.3661288
+          ],
+          [
+            49.8372875,
+            40.3662328
+          ],
+          [
+            49.8372674,
+            40.36626
+          ],
+          [
+            49.8372346,
+            40.3662785
+          ],
+          [
+            49.8371946,
+            40.3662854
+          ],
+          [
+            49.8371545,
+            40.3662792
+          ],
+          [
+            49.8371211,
+            40.3662611
+          ],
+          [
+            49.8371003,
+            40.3662343
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/503121452/osm-location-of-maiden-tower",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T15:42:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-01T18:57:05Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-01T18:57:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-01T18:56:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-01T18:56:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-07T14:49:45Z",
+      "associationCertainty": "certain",
+      "title": "Baku",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/503121452/3850651734",
+      "connectionType": "at",
+      "id": "3850651734",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:49:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:49:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:49:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/46154574",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Maiden_Tower_(Baku)",
+      "citationDetail": "Maiden Tower (Baku)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/958/",
+      "citationDetail": "958: Walled City of Baku with the Shirvanshah's Palace and Maiden Tower",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "503121452",
+  "subject": [
+    "extant remains",
+    "UWHS"
+  ],
+  "title": "Maiden Tower (Baku)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-single",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A twelfth-century monument in the Old City, Baku, Azerbaijan.",
+  "reprPoint": [
+    49.83725340938324,
+    40.36618879882348
+  ],
+  "placeTypes": [
+    "tower-single",
+    "monument"
+  ],
+  "bbox": [
+    49.8370955,
+    40.3661045,
+    49.8374237,
+    40.3662854
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/46154574"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-07T14:49:43Z",
+  "uri": "https://pleiades.stoa.org/places/503121452",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "UNESCO link added",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-01T18:54:06Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-14T18:33:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:50:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:50:48Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:49:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:49:43Z"
+    }
+  ]
+}

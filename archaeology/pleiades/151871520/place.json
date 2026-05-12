@@ -1,0 +1,656 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.7133334,
+            41.5646051
+          ],
+          [
+            -0.7117607,
+            41.5642456
+          ],
+          [
+            -0.7117445,
+            41.5643124
+          ],
+          [
+            -0.7116751,
+            41.5645137
+          ],
+          [
+            -0.7116491,
+            41.5645972
+          ],
+          [
+            -0.7114879,
+            41.5649052
+          ],
+          [
+            -0.7113205,
+            41.5651612
+          ],
+          [
+            -0.7117445,
+            41.5652428
+          ],
+          [
+            -0.712869,
+            41.5656936
+          ],
+          [
+            -0.7129154,
+            41.5656936
+          ],
+          [
+            -0.7133334,
+            41.5646051
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-yacimiento-la-cabaa-eta",
+      "properties": {
+        "snippet": "Archaeological-site; 200 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/151871520/osm-location-yacimiento-la-cabaa-eta",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Yacimiento La Caba\u00f1eta"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/582565682",
+          "citationDetail": "Way 582565682",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=582565682",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-yacimiento-la-cabaa-eta",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -1,
+      "title": "OSM Location: Yacimiento La Caba\u00f1eta",
+      "provenance": "OpenStreetMap (Way 582565682, version 2, osm:changeset=58313289, 2018-04-22T15:46:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-09-06T13:27:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.7133334,
+            41.5646051
+          ],
+          [
+            -0.7117607,
+            41.5642456
+          ],
+          [
+            -0.7117445,
+            41.5643124
+          ],
+          [
+            -0.7116751,
+            41.5645137
+          ],
+          [
+            -0.7116491,
+            41.5645972
+          ],
+          [
+            -0.7114879,
+            41.5649052
+          ],
+          [
+            -0.7113205,
+            41.5651612
+          ],
+          [
+            -0.7117445,
+            41.5652428
+          ],
+          [
+            -0.712869,
+            41.5656936
+          ],
+          [
+            -0.7129154,
+            41.5656936
+          ],
+          [
+            -0.7133334,
+            41.5646051
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/151871520/osm-location-yacimiento-la-cabaa-eta",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-08T13:51:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T14:49:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T14:46:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T13:27:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T13:27:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T13:27:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://english.elpais.com/culture/2023-08-31/the-oldest-roman-forum-in-hispania-has-been-found-in-zaragoza.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Olaya 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4CTZQMN3",
+      "formattedCitation": "<div class=\"csl-entry\">Olaya, Vicente G. \u201cThe Oldest Roman Forum in Hispania Has Been Found in Zaragoza.\u201d <i>EL PA\u00cdS English</i>, August 31, 2023. https://english.elpais.com/culture/2023-08-31/the-oldest-roman-forum-in-hispania-has-been-found-in-zaragoza.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00ednguez 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7P992XXW",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00ednguez Morales, J. A., and A. Mayayo Catal\u00e1n. \u201cEvidencias de producci\u00f3n de cer\u00e1micas en la ciudad romano-republicana de La Caba\u00f1eta El Burgo de Ebro, Zaragoza.\u201d In <i>As produ\u00e7\u00f5es cer\u00e2micas de imita\u00e7\u00e3o na Hispania</i>, edited by Rui Morais, Adolfo Fern\u00e1ndez, and Mar\u00eda Jos\u00e9 Sousa, 151\u201364. Monografias ex Officina Hispana. San Mart\u00edn de Valdeiglesias (Madrid), Porto: Sociedad de Estudios de la Cer\u00e1mica Antigua en Hispania\u202f; Faculdade de Letras Universidade do Porto, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00ednguez 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4ISZAJFJ",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00ednguez, J. A., and A. Mayayo. \u201cPosible \u00e1rea sacra localizada en la ciudad romanorrepublicana de La Caba\u00f1eta (El Burgo de Ebro, Zaragoza).\u201d In <i>Actas II Congreso de Arqueolog\u00eda y Patrimonio Aragon\u00e9s, Zaragoza,\u202f: 9 y 10 de noviembre de 2017</i>, 203\u201312. Zaragoza: Colegio Oficial de Doctores y Licenciados en Filosof\u00eda y Letras y en Ciencias de Arag\u00f3n, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "347751595_Cosmetics_and_pigments_from_the_Roman_Republican_era_in_the_middle_Ebro_valley_characterization_of_samples_from_La_Cabaneta_El_Burgo_de_Ebro_Zaragoza",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00ednguez 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RH24KG4R",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00ednguez, Jos\u00e9, and Josefina P\u00e9rez\u2010Arantegui. \u201cCosmetics and pigments from the Roman Republican era in the middle Ebro valley: characterization of samples from La Caba\u00f1eta (El Burgo de Ebro, Zaragoza).\u201d In <i>III Congreso CAPA</i>. Z",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00ednguez Morales 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9LTB9ZQ5",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00ednguez Morales, Jos\u00e9 Antonio, and Alberto Mayayo Catal\u00e1n. \u201cLos\" Balnea\" de La Caba\u00f1eta (El Burgo de Ebro, Zaragoza): Fases Constructivas e Inserci\u00f3n Del Sector En La Trama Urbana.\u201d In <i>Termas P\u00fablicas de Hispania: Actas Del Congreso Internacional Termas P\u00fablicas de Hispania (Museo Arqueol\u00f3gico de Murcia-Museo Del Teatro Romano de Cartagena, 19-21 de Abril de 2018)</i>, edited by Jos\u00e9 Miguel Noguera Celdr\u00e1n, Virginia Garc\u00eda-Entero, and Marta Pav\u00eda Page, 365\u201381. SPAL Monograf\u00edas Arqueolog\u00eda. Sevilla: Editorial Universidad de Sevilla, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://aespa.revistas.csic.es/index.php/aespa/article/view/117",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ferreruela Gonzalvo 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5QFI36A",
+      "formattedCitation": "<div class=\"csl-entry\">Ferreruela Gonzalvo, Antonio, and Jos\u00e9 Antonio M\u00ednguez Morales. \u201cDos modelos de implantaci\u00f3n urbana romanorrepublicana en el valle medio del Ebro: las ciudades de La Caba\u00f1eta y La Corona.\u201d <i>Archivo Espa\u00f1ol de Arqueolog\u00eda</i> 76, no. 187\u2013188 (December 30, 2003): 247\u201362. https://doi.org/10.3989/aespa.2003.v76.117.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://aespa.revistas.csic.es/index.php/aespa/article/view/115",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ferreruela 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2CU7XPKA",
+      "formattedCitation": "<div class=\"csl-entry\">Ferreruela, A., J. F. Mesa, J. A. M\u00ednguez, and M. Navarro. \u201cUna inscripci\u00f3n republicana de la sede de una posible corporaci\u00f3n en La Caba\u00f1eta (El Burgo de Ebro, Zaragoza): nuevos datos sobre la ocupaci\u00f3n romana del valle del Ebro.\u201d <i>Archivo Espa\u00f1ol de Arqueolog\u00eda</i> 76, no. 187\u2013188 (December 30, 2003): 217\u201330. https://doi.org/10.3989/aespa.2003.v76.115.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://ifc.dpz.es/ojs/index.php/palaeohispanica/article/view/238",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "D\u00edaz Ari\u00f1o 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W7Y89CI3",
+      "formattedCitation": "<div class=\"csl-entry\">D\u00edaz Ari\u00f1o, Borja, and Jos\u00e9 Antonio M\u00ednguez Morales. \u201cUn nuevo grafito ib\u00e9rico procedente de La Caba\u00f1eta (El Burgo de Ebro, Zaragoza).\u201d <i>Palaeohispanica. Revista sobre lenguas y culturas de la Hispania Antigua</i>, no. 9 (2009): 435\u201350. https://doi.org/10.36707/palaeohispanica.v0i9.238.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://aespa.revistas.csic.es/index.php/aespa/article/view/182",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00ednguez Morales 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TW486MGZ",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00ednguez Morales, Jos\u00e9 Antonio, and Borja D\u00edaz Ari\u00f1o. \u201cGrafitos sobre cer\u00e1mica \u2014ib\u00e9ricos, latinos, griegos y signos\u2014 procedentes del yacimiento romanorrepublicano de La Caba\u00f1eta (El Burgo de Ebro, Zaragoza).\u201d <i>Archivo Espa\u00f1ol de Arqueolog\u00eda</i> 84 (December 30, 2011): 51\u201386. https://doi.org/10.3989/aespa.084.011.003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://aespa.revistas.csic.es/index.php/aespa/article/view/556",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "D\u00edaz Ari\u00f1o 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XQFHQ6WB",
+      "formattedCitation": "<div class=\"csl-entry\">D\u00edaz Ari\u00f1o, Borja, and Jos\u00e9 Antonio M\u00ednguez Morales. \u201cDos nuevas inscripciones latinas sobre piedra procedentes de La Caba\u00f1eta (El Burgo de Ebro, Zaragoza).\u201d <i>Archivo Espa\u00f1ol de Arqueolog\u00eda</i> 92 (December 30, 2019): 241\u201349. https://doi.org/10.3989/aespa.092.019.013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dialnet.unirioja.es/servlet/articulo?codigo=4528086",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00ednguez Morales 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JEYDHLL7",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00ednguez Morales, Jos\u00e9 Antonio, and Antonio Ferreruela Gonzalvo. \u201cLas ciudades de La Caba\u00f1eta y La Corona. Su funci\u00f3n en los inicios de la romanizaci\u00f3n del valle medio del Ebro.\u201d In <i>Iberos del Ebro: actas del II congreso internacional (Alca\u00f1iz-Tivissa, 16-19 de noviembre de 2011), 2012, ISBN 978-84-940565-1-2, p\u00e1gs. 257-272</i>, 257\u201372. Institut Catal\u00e0 d\u2019Arqueologia Cl\u00e0ssica (ICAC), 2012. https://dialnet.unirioja.es/servlet/articulo?codigo=4528086.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.researchgate.net/profile/Gallardo-Perez/publication/355189040_EL_YACIMIENTO_DE_LA_CABANETA_-EL_BURGO_DE_EBRO_-_ARGUMENTARIO_EN_CONTRA_DE_LA_UBICACION_DEL_OPPIDUM_CASTRA_AELIA/links/6165d4ec66e6b95f07b4b37c/EL-YACIMIENTO-DE-LA-CABANETA-EL-BURGO-DE-EBRO-ARGUMENTARIO-EN-CONTRA-DE-LA-UBICACION-DEL-OPPIDUM-CASTRA-AELIA.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gallardo 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8Y6NHWB8",
+      "formattedCitation": "<div class=\"csl-entry\">Perez, Gallardo. \u201cEl Yacimiento de \u2018La Caba\u00f1eta\u2019 - El Burgo de Ebro - Argumentario En Contra de La Ubicaci\u00f3n Eel \u2018Oppidum Castra Aelia,\u2019\u201d October 12, 2021. https://www.researchgate.net/profile/Gallardo-Perez/publication/355189040_EL_YACIMIENTO_DE_LA_CABANETA_-EL_BURGO_DE_EBRO_-_ARGUMENTARIO_EN_CONTRA_DE_LA_UBICACION_DEL_OPPIDUM_CASTRA_AELIA/links/6165d4ec66e6b95f07b4b37c/EL-YACIMIENTO-DE-LA-CABANETA-EL-BURGO-DE-EBRO-ARGUMENTARIO-EN-CONTRA-DE-LA-UBICACION-DEL-OPPIDUM-CASTRA-AELIA.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://papiro.unizar.es/ojs/index.php/salduie/article/view/6538",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ferreruela Gonzalvo 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ESZRXAB8",
+      "formattedCitation": "<div class=\"csl-entry\">Ferreruela Gonzalvo, Antonio, and Jos\u00e9 Antonio M\u00ednguez Morales. \u201cExcavaciones arqueol\u00f3gicas en la ciudad romanorrepublicana de \u2018La Caba\u00f1eta\u2019 (El Burgo de Ebro, Zaragoza): campa\u00f1as de 2004 y 2005.\u201d <i>Salduie</i>, no. 6 (December 31, 2006): 331\u201339. https://doi.org/10.26754/ojs_salduie/sald.200666538.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00ednguez 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VZH5DW97",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00ednguez, J. A. \u201cEl collegium de comerciantes it\u00e1licos en La Caba\u00f1eta (El Burgo de Ebro).\u201d In <i>Los espacios de reuni\u00f3n de las asociaciones romanas: di\u00e1logos desde la arqueolog\u00eda y la historia, en homenaje a Bertrand Goffaux</i>, edited by Oliva Rodriguez Gutierrez, Nicolas Tran, Bego\u00f1a Soler Huertas, and Bertrand Goffaux, 436\u201343. Serie Historia y geograf\u00eda (Universidad de Sevilla). Sevilla: Editorial Universitad de Sevilla, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ferreruela Gonzalvo 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B8ZBAA9R",
+      "formattedCitation": "<div class=\"csl-entry\">Ferreruela Gonzalvo, Antonio, and Jos\u00e9 Antonio Minguez Morales. \u201cIntervenciones Arqueol\u00f3gicas En El Yacimiento de La Caba\u00f1eta (El Burgo de Ebro, Zaragoza): A\u00f1os 1997-2003.\u201d <i>Kausis: Revista de La Escuela Taller de Restauraci\u00f3n de Pintura Mural de Arag\u00f3n II</i>, no. 1 (2004): 25\u201343.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q10971491",
+      "citationDetail": "La Caba\u00f1eta (Q10971491)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/La_Caba%C3%B1eta",
+      "citationDetail": "La Caba\u00f1eta",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "La Caba\u00f1eta, Caba\u00f1eta, Cabaneta, La Cabaneta",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://aespa.revistas.csic.es/index.php/aespa/article/view/115",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Ferreruela 2003",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2CU7XPKA",
+          "formattedCitation": "<div class=\"csl-entry\">Ferreruela, A., J. F. Mesa, J. A. M\u00ednguez, and M. Navarro. \u201cUna inscripci\u00f3n republicana de la sede de una posible corporaci\u00f3n en La Caba\u00f1eta (El Burgo de Ebro, Zaragoza): nuevos datos sobre la ocupaci\u00f3n romana del valle del Ebro.\u201d <i>Archivo Espa\u00f1ol de Arqueolog\u00eda</i> 76, no. 187\u2013188 (December 30, 2003): 217\u201330. https://doi.org/10.3989/aespa.2003.v76.115.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "la-cabaneta",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2023-09-06T14:42:56Z",
+      "uri": "https://pleiades.stoa.org/places/151871520/la-cabaneta",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "La Caba\u00f1eta",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-08T13:51:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T14:49:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T14:42:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T14:42:56Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "El Burgo de Ebro, Burgo de Ebro",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://aespa.revistas.csic.es/index.php/aespa/article/view/115",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Ferreruela 2003",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2CU7XPKA",
+          "formattedCitation": "<div class=\"csl-entry\">Ferreruela, A., J. F. Mesa, J. A. M\u00ednguez, and M. Navarro. \u201cUna inscripci\u00f3n republicana de la sede de una posible corporaci\u00f3n en La Caba\u00f1eta (El Burgo de Ebro, Zaragoza): nuevos datos sobre la ocupaci\u00f3n romana del valle del Ebro.\u201d <i>Archivo Espa\u00f1ol de Arqueolog\u00eda</i> 76, no. 187\u2013188 (December 30, 2003): 217\u201330. https://doi.org/10.3989/aespa.2003.v76.115.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "el-burgo-de-ebro",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2023-09-06T14:44:04Z",
+      "uri": "https://pleiades.stoa.org/places/151871520/el-burgo-de-ebro",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "El Burgo de Ebro",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-08T13:51:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T14:49:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T14:44:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-06T14:44:04Z"
+        }
+      ]
+    }
+  ],
+  "id": "151871520",
+  "subject": [],
+  "title": "La Caba\u00f1eta",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman-style settlement at modern El Burgo de Ebro, located on the south bank of the Ebro river, southeast of Zaragoza, Spain. The settlement appears to have been founded in the second century BCE and permanently destroyed in the first century, likely during the Sertorian War (82-72 BCE).",
+  "reprPoint": [
+    -0.7123576688990316,
+    41.564935164816816
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    -0.7133334,
+    41.5642456,
+    -0.7113205,
+    41.5656936
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-06T13:27:15Z",
+  "uri": "https://pleiades.stoa.org/places/151871520",
+  "creators": [
+    {
+      "username": "jmuccigr",
+      "homepage": null,
+      "name": "John Muccigrosso",
+      "uri": "https://pleiades.stoa.org/author/jmuccigr"
+    },
+    {
+      "username": null,
+      "name": "David Meadows"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "fixed typo in summary",
+      "modifiedBy": "thomase",
+      "modified": "2024-01-05T17:40:18Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-08T13:51:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T14:49:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T14:48:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T14:40:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T14:38:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T14:37:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T14:23:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T13:31:09Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T13:27:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-06T13:27:15Z"
+    }
+  ]
+}

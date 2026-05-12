@@ -1,0 +1,500 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            67.1833238,
+            37.2794746
+          ],
+          [
+            67.1836978,
+            37.279468
+          ],
+          [
+            67.1840414,
+            37.2794619
+          ],
+          [
+            67.1840003,
+            37.2785182
+          ],
+          [
+            67.1832874,
+            37.2785421
+          ],
+          [
+            67.1830007,
+            37.278477
+          ],
+          [
+            67.1829316,
+            37.2782042
+          ],
+          [
+            67.1822494,
+            37.2782645
+          ],
+          [
+            67.1822775,
+            37.2785755
+          ],
+          [
+            67.1825364,
+            37.2791205
+          ],
+          [
+            67.1831325,
+            37.2791203
+          ],
+          [
+            67.1833238,
+            37.2794746
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "kara-tepe",
+      "properties": {
+        "snippet": "Abbey; 100 BC - AD 550",
+        "link": "https://pleiades.stoa.org/places/348167893/kara-tepe",
+        "description": "Polygon representing the location of the Kara-Tepe site, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Kara-Tepe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "kangju-yuezhi-kushan-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/kangju-yuezhi-kushan-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antiquity-in-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antiquity-in-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/493758365",
+          "citationDetail": "Way 493758365",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=493758365",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kara-tepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": 550,
+      "title": "OSM location of Kara-Tepe",
+      "provenance": "OpenStreetMap (Way 493758365, version 8, osm:changeset=149979480, 2024-04-14T07:35:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "Polygon representing the location of the Kara-Tepe site, derived from an OpenStreetMap Way.",
+      "created": "2018-02-21T20:35:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            67.1833238,
+            37.2794746
+          ],
+          [
+            67.1836978,
+            37.279468
+          ],
+          [
+            67.1840414,
+            37.2794619
+          ],
+          [
+            67.1840003,
+            37.2785182
+          ],
+          [
+            67.1832874,
+            37.2785421
+          ],
+          [
+            67.1830007,
+            37.278477
+          ],
+          [
+            67.1829316,
+            37.2782042
+          ],
+          [
+            67.1822494,
+            37.2782645
+          ],
+          [
+            67.1822775,
+            37.2785755
+          ],
+          [
+            67.1825364,
+            37.2791205
+          ],
+          [
+            67.1831325,
+            37.2791203
+          ],
+          [
+            67.1833238,
+            37.2794746
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/348167893/kara-tepe",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-17T22:10:29Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-22T01:29:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:39:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:39:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:36:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:35:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:35:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 550,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-21T20:38:42Z",
+      "associationCertainty": "certain",
+      "title": "Tarmita/Termez",
+      "start": -100,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/348167893/tarmita-termez",
+      "connectionType": "near",
+      "id": "tarmita-termez",
+      "attestations": [
+        {
+          "timePeriod": "late-antiquity-in-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antiquity-in-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "kangju-yuezhi-kushan-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/kangju-yuezhi-kushan-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-22T01:29:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:39:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:38:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:38:42Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/971886",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.livius.org/articles/place/kara-tepe/",
+      "citationDetail": "Kara Tepe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+      "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Staviski\u012d 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9ZENFWPP",
+      "formattedCitation": "<div class=\"csl-entry\">\u0421\u0442\u0430\u0432\u0438\u0441\u043a\u0438\u0439, \u0411. \u042f, and \u0418\u043d\u0441\u0442\u0438\u0442\u0443\u0442 \u0432\u043e\u0441\u0442\u043e\u043a\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f (\u0410\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u043d\u0430\u0443\u043a \u0421\u0421\u0421\u0420). <i>\u0411\u0443\u0434\u0434\u0438\u0439\u0441\u043a\u0438\u0435 \u043f\u0430\u043c\u044f\u0442\u043d\u0438\u043a\u0438 \u041a\u0430\u0440\u0430-\u0442\u0435\u043f\u0435 \u0432 \u0421\u0442\u0430\u0440\u043e\u043c \u0422\u0435\u0440\u043c\u0435\u0437\u0435: \u043e\u0441\u043d\u043e\u0432\u043d\u044b\u0435 \u0438\u0442\u043e\u0433\u0438 \u0440\u0430\u0431\u043e\u0442, 1974-1977 \u0433\u0433.</i> \u041c\u043e\u0441\u043a\u0432\u0430: \u0418\u0437\u0434-\u0432\u043e \"\u041d\u0430\u0443\u043a\u0430, \" \u0413\u043b\u0430\u0432. \u0440\u0435\u0434. \u0432\u043e\u0441\u0442\u043e\u0447\u043d\u043e\u0439 \u043b\u0438\u0442-\u0440\u044b, 1982.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q4213429",
+      "citationDetail": "Kara Tepe (Q4213429)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Kara_Tepe",
+      "citationDetail": "Kara Tepe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kara-Tepe, Karatepe",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Staviski\u012d 1982",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9ZENFWPP",
+          "formattedCitation": "<div class=\"csl-entry\">\u0421\u0442\u0430\u0432\u0438\u0441\u043a\u0438\u0439, \u0411. \u042f, and \u0418\u043d\u0441\u0442\u0438\u0442\u0443\u0442 \u0432\u043e\u0441\u0442\u043e\u043a\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f (\u0410\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u043d\u0430\u0443\u043a \u0421\u0421\u0421\u0420). <i>\u0411\u0443\u0434\u0434\u0438\u0439\u0441\u043a\u0438\u0435 \u043f\u0430\u043c\u044f\u0442\u043d\u0438\u043a\u0438 \u041a\u0430\u0440\u0430-\u0442\u0435\u043f\u0435 \u0432 \u0421\u0442\u0430\u0440\u043e\u043c \u0422\u0435\u0440\u043c\u0435\u0437\u0435: \u043e\u0441\u043d\u043e\u0432\u043d\u044b\u0435 \u0438\u0442\u043e\u0433\u0438 \u0440\u0430\u0431\u043e\u0442, 1974-1977 \u0433\u0433.</i> \u041c\u043e\u0441\u043a\u0432\u0430: \u0418\u0437\u0434-\u0432\u043e \"\u041d\u0430\u0443\u043a\u0430, \" \u0413\u043b\u0430\u0432. \u0440\u0435\u0434. \u0432\u043e\u0441\u0442\u043e\u0447\u043d\u043e\u0439 \u043b\u0438\u0442-\u0440\u044b, 1982.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-21.3883288760",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Russian name of the Kara-Tepe site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2018-02-21T20:37:46Z",
+      "uri": "https://pleiades.stoa.org/places/348167893/name.2018-02-21.3883288760",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u041a\u0430\u0440\u0430-\u0442\u0435\u043f\u0435",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-22T01:29:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:39:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:37:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-02-21T20:37:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "348167893",
+  "subject": [],
+  "title": "Kara-Tepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+  ],
+  "details": "<p>Not to be mistaken for the Hittite site of <a class=\"external-link\" href=\"../869993028\" target=\"_self\" title=\"\">Karatepe</a>.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Buddhist monastery constructed near the city of Tarmita/Termez in the early second century CE.",
+  "reprPoint": [
+    67.18351564999999,
+    37.27897195
+  ],
+  "placeTypes": [
+    "abbey"
+  ],
+  "bbox": [
+    67.1832968,
+    37.2787549,
+    67.1837345,
+    37.279189
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/971886"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-02-21T20:35:08Z",
+  "uri": "https://pleiades.stoa.org/places/348167893",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-17T22:02:34Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-28T19:57:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-22T01:29:48Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-22T01:24:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-02-21T20:39:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-02-21T20:38:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-02-21T20:35:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-02-21T20:35:08Z"
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5557035,
+          34.0743512
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-house-of-ephebe",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/125904446/osm-location-of-house-of-ephebe",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of House of Ephebe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4607456192",
+          "citationDetail": "Node 4607456192",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4607456192",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-house-of-ephebe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of House of Ephebe",
+      "provenance": "OpenStreetMap (Node 4607456192, version 1, osm:changeset=45155202, 2017-01-14T08:08:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-04-16T18:48:34Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5557035,
+          34.0743512
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/125904446/osm-location-of-house-of-ephebe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:39:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:39:27Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-16T18:48:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-16T18:48:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-16T18:48:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-16T20:47:39Z",
+      "associationCertainty": "certain",
+      "title": "Volubilis",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/125904446/volubilis",
+      "connectionType": "at",
+      "id": "volubilis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:39:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:39:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T20:47:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T20:47:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275740",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bwilson",
+          "homepage": null,
+          "name": "Brandon Wilson",
+          "uri": "https://pleiades.stoa.org/author/bwilson"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883553652",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "L\u012bm\u0101n et al. 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/67FYBK3R",
+      "formattedCitation": "<div class=\"csl-entry\">L\u012bm\u0101n, \u1e24ass\u0101n, Wily Dubos, \u02bbAbd al-Q\u0101dir \u0160ark\u012b, \u02bbAbd al-Fatt\u0101\u1e25 I\u0161\u1e2b\u0101\u1e2b, and G\u00e9rard Rondeau. <i>Volubilis de mosa\u00efque \u00e0 mosa\u00efque</i>. Casablanca: EDDIF-EDISUD, 1998. http://www.worldcat.org/oclc/883553652.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/19899/",
+      "citationDetail": "19899: House of the Ephebe",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "125904446",
+  "subject": [],
+  "title": "House of the Ephebe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+    "https://pleiades.stoa.org/vocabularies/place-types/piscina-roman"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Roman Peristyle House with interior garden and pool.",
+  "reprPoint": [
+    -5.5557035,
+    34.0743512
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "townhouse",
+    "piscina-roman"
+  ],
+  "bbox": [
+    -5.5557035,
+    34.0743512,
+    -5.5557035,
+    34.0743512
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/275740"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-16T20:42:09Z",
+  "uri": "https://pleiades.stoa.org/places/125904446",
+  "creators": [
+    {
+      "username": "bwilson",
+      "homepage": null,
+      "name": "Brandon Wilson",
+      "uri": "https://pleiades.stoa.org/author/bwilson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:39:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:39:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:39:02Z"
+    },
+    {
+      "comment": "added vici.org 19899: House of the Ephebe reference",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-16T18:49:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T21:08:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T20:43:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T20:42:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T20:42:09Z"
+    }
+  ]
+}

@@ -1,0 +1,482 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4931212,
+            40.7489023
+          ],
+          [
+            14.4931601,
+            40.7489152
+          ],
+          [
+            14.4931756,
+            40.748894
+          ],
+          [
+            14.4931414,
+            40.7488823
+          ],
+          [
+            14.4931212,
+            40.7489023
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomb-of-publius-vesonius-phileros",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/792436981/osm-location-of-tomb-of-publius-vesonius-phileros",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Publius Vesonius Phileros"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/503558999",
+          "citationDetail": "Way 503558999",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=503558999",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tomb-of-publius-vesonius-phileros",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Tomb of Publius Vesonius Phileros",
+      "provenance": "OpenStreetMap (Way 503558999, version 1, osm:changeset=49861456, 2017-06-27T12:57:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-06-11T13:48:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4931212,
+            40.7489023
+          ],
+          [
+            14.4931601,
+            40.7489152
+          ],
+          [
+            14.4931756,
+            40.748894
+          ],
+          [
+            14.4931414,
+            40.7488823
+          ],
+          [
+            14.4931212,
+            40.7489023
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/792436981/osm-location-of-tomb-of-publius-vesonius-phileros",
+      "creators": [
+        {
+          "username": "jhenshaw",
+          "homepage": null,
+          "name": "Jack Henshaw",
+          "uri": "https://pleiades.stoa.org/author/jhenshaw"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-05T00:40:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:03:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:02:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T14:50:32Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T13:49:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T13:48:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T13:48:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2017-07-29T15:18:25Z",
+      "associationCertainty": "certain",
+      "title": "Porta Nocera",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/792436981/porta-nocera",
+      "connectionType": "at",
+      "id": "porta-nocera",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:03:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:02:30Z"
+        },
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-21T02:30:42Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-29T18:04:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jhenshaw",
+          "modified": "2017-07-29T15:22:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jhenshaw",
+          "modified": "2017-07-29T15:18:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jhenshaw",
+          "modified": "2017-07-29T15:18:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/11924821",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jhenshaw",
+          "homepage": null,
+          "name": "Jack Henshaw",
+          "uri": "https://pleiades.stoa.org/author/jhenshaw"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-11T15:02:59Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/792436981/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:03:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:03:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:03:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-11T15:02:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://pompeiiinpictures.com/pompeiiinpictures/tombs/tombs%20nocos%20p8.htm",
+      "citationDetail": "Pompeii Porta Nocera Tombs. South West side of Via delle Tombe.  Tombs 1OS to 31OS.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/25607483?seq=3",
+      "citationDetail": "(1986) 166a",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4EG4F7MC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>L\u2019Ann\u00e9e Epigraphique: Revue Des Publications \u00c9pigrafiques Relatives a l\u2019antiquit\u00e9 Romaine</i>. Paris: Presses Universitaires de France, 1889. https://www.jstor.org/journal/anneepig.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108322786",
+      "citationDetail": "Aedicula tomb of Publius Vesonius Phileros (Q108322786)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/Tombs/tombs%20nocos%20p8.htm",
+      "citationDetail": "Pompeii Porta Nocera Tombs. South West side of Via delle Tombe. Tomb 23OS. Aedicula tomb of Publius Vesonius Phileros, Vesonia, and Marcus Orfellius Faustus, Publius Vesonius Pileros, Publius Vesonius Proculus, Vesonia Urbana, Eliodorus.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/44898619",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Duday and Van Andringa 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TDGD79ZD",
+      "formattedCitation": "<div class=\"csl-entry\">Duday, Henri, and William Van Andringa. \u201cArchaeology of Memory: About the Forms and the Time of Memory in a Necropolis of Pompeii.\u201d <i>Memoirs of the American Academy in Rome. Supplementary Volumes</i> 13 (2017): 73\u201385. https://www.jstor.org/stable/44898619.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "792436981",
+  "subject": [
+    "inscription",
+    "tomb",
+    "extant remains"
+  ],
+  "title": "Tomb of Publius Vesonius Phileros ",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An aedicula tomb built near the Porta Nocera ca. A.D. 25-50 by Publius Vesonius Phileros for himself, his patroness Vesonia, and his friend Marcus Orfellius Faustus. A later added inscription shows a falling out between the two friends.",
+  "reprPoint": [
+    14.493148947456618,
+    40.74889872700585
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    14.4931212,
+    40.7488823,
+    14.4931756,
+    40.7489152
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/11924821",
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/694992195"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-07-29T14:51:02Z",
+  "uri": "https://pleiades.stoa.org/places/792436981",
+  "creators": [
+    {
+      "username": "jhenshaw",
+      "homepage": null,
+      "name": "Jack Henshaw",
+      "uri": "https://pleiades.stoa.org/author/jhenshaw"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-15T16:16:06Z"
+    },
+    {
+      "comment": "Duday and Van Andringa 2017",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-30T00:13:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-30T00:11:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-11T15:03:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-11T15:02:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-11T14:50:10Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-29T18:04:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-29T18:00:45Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-29T17:58:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jhenshaw",
+      "modified": "2017-07-29T15:22:10Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jhenshaw",
+      "modified": "2017-07-29T14:51:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jhenshaw",
+      "modified": "2017-07-29T14:51:02Z"
+    }
+  ]
+}

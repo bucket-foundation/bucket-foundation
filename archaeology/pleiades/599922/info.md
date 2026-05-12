@@ -1,0 +1,14 @@
+# Rhodoussa/Ropousa (island)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/599922
+- **ID**: 599922
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Rhodoussa, Ropousa
+
+## Description
+
+An ancient place, cited: BAtlas 61 G4 Rhodoussa/Ropousa Ins.

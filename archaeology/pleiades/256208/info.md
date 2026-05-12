@@ -1,0 +1,14 @@
+# Herdade do Montinho
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/256208
+- **ID**: 256208
+- **Coords (lng, lat)**: [-7.689583, 37.963096]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=villa
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 26 C4 Herdade do Montinho

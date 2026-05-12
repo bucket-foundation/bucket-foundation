@@ -1,0 +1,306 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.45531,
+          42.3427048
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-borghetto",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/830595308/osm-location-of-borghetto",
+        "description": "Location of associated modern location based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Borghetto"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/843777968",
+          "citationDetail": "Node 843777968",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=843777968",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-borghetto",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location of Borghetto",
+      "provenance": "OpenStreetMap (Node 843777968, version 2, osm:changeset=5383153, 2010-08-02T18:13:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location of associated modern location based on a node derived from OpenStreetMap.",
+      "created": "2020-10-11T14:19:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.45531,
+          42.3427048
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/830595308/osm-location-of-borghetto",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-14T19:17:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-11T14:20:49Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-11T14:19:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-11T14:19:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-11T14:19:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-02T13:25:19Z",
+      "associationCertainty": "certain",
+      "title": "Ager Faliscus (region)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/830595308/ager-faliscus",
+      "connectionType": "part_of_regional",
+      "id": "ager-faliscus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-14T19:17:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-11T14:20:49Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-02T13:25:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-02T13:25:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/532728731",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/pdf/40310568",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Frederiksen 1957",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TT3JBNEZ",
+      "formattedCitation": "<div class=\"csl-entry\">Frederiksen, M.W., and J.B. Ward-Perkins. \u201cThe Ancient Road Systems of the Central and Northern Ager Faliscus. (Notes on Southern Etruria, 2).\u201d <i>Papers of the British School at Rome</i> 25 (1957): 67\u2013208. https://www.jstor.org/stable/40310568.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/40310667",
+      "citationDetail": "69",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kahane 1968",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C2RQNT32",
+      "formattedCitation": "<div class=\"csl-entry\">Kahane, Anne, Leslie Murray Threipland, and John Ward-Perkins. \u201cThe Ager Veientanus, North and East of Veii.\u201d <i>Papers of the British School at Rome</i> 36 (1968): 1\u2013213. http://www.jstor.org/stable/40310667.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "159-62",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dennis 1878",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VT8GW2JX",
+      "formattedCitation": "<div class=\"csl-entry\">Dennis, George T. <i>The Cities and Cemeteries of Etruria</i>. Revised edition, Recordin. 2 vols. London: Murray, 1878.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.archaeopress.com/ArchaeopressShop/Public/displayProductDetail.asp?id={5B092BCB-89F4-4EA0-94FF-811F304B3B27}",
+      "citationDetail": "98",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Patterson 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PCJZ4UYS",
+      "formattedCitation": "<div class=\"csl-entry\">Patterson, Helen, Robert Witcher, and Helga di Giuseppe. <i>Changing Landscapes of Rome\u2019s Northern Hinterland: The British School at Rome\u2019s Tiber Valley Project</i>. Archaeopress Roman Archaeology 70. S.l.: ARCHAEOPRESS, 2020. https://www.jstor.org/stable/jj.15136055.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "830595308",
+  "subject": [],
+  "title": "Grotta Porciosa, Borghetto",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Grotta Porciosa, near Borghetto, was the site of a small but prosperous settlement in the Ager Faliscus.",
+  "reprPoint": [
+    12.45531,
+    42.3427048
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    12.45531,
+    42.3427048,
+    12.45531,
+    42.3427048
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/532728731"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-07-02T13:24:37Z",
+  "uri": "https://pleiades.stoa.org/places/830595308",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-21T21:02:44Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-14T19:17:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-11T14:20:48Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-11T14:19:00Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-02T22:56:19Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-02T20:38:05Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-02T20:35:47Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-02T13:24:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-02T13:24:37Z"
+    }
+  ]
+}

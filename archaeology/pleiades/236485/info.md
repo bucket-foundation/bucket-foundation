@@ -1,0 +1,14 @@
+# Ibollo
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/236485
+- **ID**: 236485
+- **Coords (lng, lat)**: [-6.603493, 43.226959]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=mine, gold
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 24 E1 Ibollo

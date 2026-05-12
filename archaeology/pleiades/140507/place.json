@@ -1,0 +1,358 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.2731176,
+            45.8707122
+          ],
+          [
+            1.2730984,
+            45.8707122
+          ],
+          [
+            1.2730858,
+            45.870464
+          ],
+          [
+            1.2731021,
+            45.8704622
+          ],
+          [
+            1.2731038,
+            45.870445
+          ],
+          [
+            1.2733683,
+            45.870436
+          ],
+          [
+            1.2733784,
+            45.8707251
+          ],
+          [
+            1.2731196,
+            45.8707298
+          ],
+          [
+            1.2731176,
+            45.8707122
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-brachaud-gallo-roman-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/140507/osm-location-of-brachaud-gallo-roman-villa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Brachaud Gallo-Roman Villa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/892436990",
+          "citationDetail": "Way 892436990",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=892436990",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-brachaud-gallo-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Brachaud Gallo-Roman Villa",
+      "provenance": "OpenStreetMap (Way 892436990, version 4, osm:changeset=133272232, 2023-03-03T22:20:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-03T22:21:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.2731176,
+            45.8707122
+          ],
+          [
+            1.2730984,
+            45.8707122
+          ],
+          [
+            1.2730858,
+            45.870464
+          ],
+          [
+            1.2731021,
+            45.8704622
+          ],
+          [
+            1.2731038,
+            45.870445
+          ],
+          [
+            1.2733683,
+            45.870436
+          ],
+          [
+            1.2733784,
+            45.8707251
+          ],
+          [
+            1.2731196,
+            45.8707298
+          ],
+          [
+            1.2731176,
+            45.8707122
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/140507/osm-location-of-brachaud-gallo-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-04T14:24:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-03T22:22:21Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-03T22:22:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-03T22:21:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-03T22:21:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "14 G3 76",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "111-13, 115, 127, 138, 140",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CAG 87",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P8EPAPMW",
+      "formattedCitation": "<div class=\"csl-entry\">Perrier, J. <i>Carte arch\u00e9ologique de la Gaule 87 La Haute-Vienne</i>. Paris, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1007/s12520-021-01401-5",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "DeLaine 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WNLDLF9Y",
+      "formattedCitation": "<div class=\"csl-entry\">DeLaine, Janet. \u201cProduction, Transport and on-Site Organisation of Roman Mortars and Plasters.\u201d <i>Archaeological and Anthropological Sciences</i> 13, no. 11 (October 13, 2021): 195. https://doi.org/10.1007/s12520-021-01401-5.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "140507",
+  "subject": [
+    "dare:feature=villa",
+    "dare:major=0",
+    "dare:ancient=2"
+  ],
+  "title": "Brachaud Roman Villa",
+  "provenance": "Barrington Atlas: BAtlas 14 G3 76",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Brachaud</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An unnamed Gallo-Roman villa at modern Brachaud in France (BAtlas 14 G3 no. 76).",
+  "reprPoint": [
+    1.2732343939095159,
+    45.8705838461797
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    1.2730858,
+    45.870436,
+    1.2733784,
+    45.8707298
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-06-21T12:14:13Z",
+  "uri": "https://pleiades.stoa.org/places/140507",
+  "creators": [
+    {
+      "username": null,
+      "name": "H.S. Sivan"
+    },
+    {
+      "username": null,
+      "name": "R.W. Mathisen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-04T14:25:24Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-03T22:24:02Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-23T17:54:35Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:28:31Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:06:08Z"
+    },
+    {
+      "comment": "improved title.",
+      "modifiedBy": "thomase",
+      "modified": "2011-12-19T16:52:50Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2011-12-19T16:51:18Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2011-11-16T21:19:39Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:57:41Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-06-22T21:03:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-21T12:42:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-21T12:14:13Z"
+    }
+  ]
+}

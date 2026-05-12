@@ -1,0 +1,14 @@
+# Gatcombe
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/79477
+- **ID**: 79477
+- **Coords (lng, lat)**: [-2.67623, 51.437167]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=settlement
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 8 E3 Gatcombe

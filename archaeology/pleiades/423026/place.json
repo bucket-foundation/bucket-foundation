@@ -1,0 +1,622 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.610526,
+          41.915947
+        ]
+      },
+      "type": "Feature",
+      "id": "darmc-location-18502",
+      "properties": {
+        "snippet": "Unknown; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/423026/darmc-location-18502",
+        "description": "150K scale point location",
+        "location_precision": "precise",
+        "title": "DARMC location 18502"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "DARMC, R. Talbert, T. Elliott, S. Gillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://darmc.harvard.edu/",
+          "citationDetail": "18502",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARMC",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+          "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 18502.",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "darmc-location-18502",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": -330,
+      "title": "DARMC location 18502",
+      "provenance": "DARMC OBJECTID: 18502",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "DARMC OBJECTID: 18502",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/darmc-a",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "150K scale point location",
+      "created": "2011-01-21T23:10:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.610526,
+          41.915947
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423026/darmc-location-18502",
+      "creators": [
+        {
+          "username": null,
+          "name": "L. Quilici"
+        },
+        {
+          "username": null,
+          "name": "S. Quilici Gigli"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:56:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T23:23:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T23:10:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T23:10:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2017-12-06T02:32:57Z",
+      "associationCertainty": "certain",
+      "title": "Via Collatina",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423026/via-collatina",
+      "connectionType": "on",
+      "id": "via-collatina",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-08T16:46:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T02:34:11Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T02:33:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T02:32:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/272213280",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Quilici 1963-1964",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9EUWCYP7",
+          "formattedCitation": "<div class=\"csl-entry\">Quilici, L. \u201cLa Via Collatina. Analisi topografica dell\u2019antico percorso, 1. Da Porta Tiburtina all'Acqua Bollicante.\u201d <i>Bullettino della Commissione archeologica comunale di Roma, 79.1963-64</i> 79 (1963): 99\u2013106, Abb.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 C2 La Rustica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Guaitoli 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PQUN9ZI9",
+      "formattedCitation": "<div class=\"csl-entry\">Guaitoli, M., and P. Zaccagni. \u201cLocalit\u00e0 La Rustica. Interventi di scavo collegati ad opere di urbanizzazione.\u201d <i>Bullettino della Commissione archeologica comunale di Roma</i> 90 (1985): 119\u201328.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/899573319",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fulminante 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3UKK64MG",
+      "formattedCitation": "<div class=\"csl-entry\">Fulminante, Francesca. <i>The Urbanization of Rome and Latium Vetus: From the Bronze Age to the Archaic Era</i>, 2014. http://www.worldcat.org/oclc/899573319.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/2963397",
+      "citationDetail": "84",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FormIt Collatia",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CPZ5AUJS",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo. <i>Forma Italiae: Collatia (regio 1, v. 10)</i>. Vol. 10. Forma Italiae, regio 1. Rome: De Luca, 1974. http://www.worldcat.org/oclc/2963397.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.treccani.it/enciclopedia/la-rustica_%28Enciclopedia-dell%27-Arte-Antica%29/",
+      "citationDetail": "\"LA RUSTICA.\" In Enciclopedia dell' Arte Antica (Guaitoli, M. 1995)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TrecEnc",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HHA9M2F7",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Treccani Enciclopedia</i>. Roma: Istituto della Enciclopedia Italiana fondata da Giovanni Treccani. Accessed June 6, 2022. https://www.treccani.it/enciclopedia/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/861036527",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fulminante 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PDI6ZJ2M",
+      "formattedCitation": "<div class=\"csl-entry\">Fulminante, Francesca. <i>Le sepolture principesche nel Latium Vetus: tra la fine della prima eta del ferro e l\u2019inizio dell\u2019eta orientalizzante</i>. Bibliotheca archaeologica (L\u2019Erma) 36. Roma: L\u2019Erma di Bretschneider, 2003. http://www.worldcat.org/oclc/861036527.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Colonna 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WBHAD3HE",
+      "formattedCitation": "<div class=\"csl-entry\">Colonna, G. \u201cUn aspetto oscuro del Lazio antico. Le tombe del VI - V secolo a.C.\u201d <i>La parola del passato, 32.1977</i> 32 (1977): 131\u201365, Abb.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Guaitoli 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LAXL3CF6",
+      "formattedCitation": "<div class=\"csl-entry\">Guaitoli, M. \u201cConsiderazioni Su Alcune Citt\u00e0 Ed Insediamenti Del Lazio in Et\u00e0 Protostorica Ed Arcaica.\u201d <i>Mitteilungen Des Deutschen Arch\u00e4ologischen Instituts. R\u00f6mische Abteilung, 84.1977</i> 84 (1977): 5\u201325, Abb. Taf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "III 44",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nibby 1844",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N47ZI37I",
+      "formattedCitation": "<div class=\"csl-entry\">Nibby, A. <i>Analisi storico-topografico-antiquaria della carta de\u2019 dintorni di Roma</i>. 2. ed. Roma: Tip. delle Belle arti, 1848.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Boscarini 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JSN6PAB3",
+      "formattedCitation": "<div class=\"csl-entry\">Boscarini, Claudio. \u201cLa Rustica (Roma). Un impianto produttivo lungo la Via Collatina.\u201d <i>Amoenitas\u202f: rivista internazionale di studi miscellanei sulla villa romana antica, 2.2012</i> 2 (2012): 199\u2013218.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "99",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici 1963-1964",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9EUWCYP7",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, L. \u201cLa Via Collatina. Analisi topografica dell\u2019antico percorso, 1. Da Porta Tiburtina all'Acqua Bollicante.\u201d <i>Bullettino della Commissione archeologica comunale di Roma, 79.1963-64</i> 79 (1963): 99\u2013106, Abb.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org",
+      "citationDetail": "La Rustica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3821144",
+      "citationDetail": "La Rustica (Q3821144)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fulminante 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZPVV426I",
+      "formattedCitation": "<div class=\"csl-entry\">Fulminante, Francesca. \u201cAger Romanus Antiquus: Defining the Most Ancient of Rome with a GIS-Based Approach.\u201d <i>Archaeological Computing Newsletter</i> 62 (2005): 7\u201316.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://web.archive.org/web/20200422032803/https://abitarearoma.it/alla-scoperta-del-patrimonio-archeologico-de-la-rustica/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Alla scoperta del patrimonio archeologico de La Rustica.",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/STFE5IKY",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Abitare A Roma</i>. \u201cAlla scoperta del patrimonio archeologico de La Rustica. A quando le fasi di tutela e valorizzazione?\u201d February 25, 2014. https://web.archive.org/web/20200422032803/https://abitarearoma.it/alla-scoperta-del-patrimonio-archeologico-de-la-rustica/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/581177",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cornell 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C3XMUCQY",
+      "formattedCitation": "<div class=\"csl-entry\">Cornell, T. J. \u201cRome and Latium Vetus, 1974-79.\u201d <i>Archaeological Reports</i>, no. 26 (1979): 71\u201389. https://doi.org/10/bc8ww7.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "La Rustica",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "43 C2 La Rustica",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "la-rustica",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-08-15T03:36:31Z",
+      "uri": "https://pleiades.stoa.org/places/423026/la-rustica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "La Rustica",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-15T15:22:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T03:36:37Z"
+        },
+        {
+          "comment": "add batlas name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T03:36:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T03:36:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "423026",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "La Rustica",
+  "provenance": "Barrington Atlas: BAtlas 43 C2 La Rustica",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: La Rustica</p>\r\n<p>The site of La Rustica derives its name from a Medieval estate that was situated between the river Anio and the\u00a0fosso di Tor Sapienza. Archaeological research at the site in 1972 revealed a large necropolis.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "La Rustica was a Latin site located along the Via Collatina.",
+  "reprPoint": [
+    12.610526,
+    41.915947
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    12.610526,
+    41.915947,
+    12.610526,
+    41.915947
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/272213280"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:33:37Z",
+  "uri": "https://pleiades.stoa.org/places/423026",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-15T03:35:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-05T03:24:08Z"
+    },
+    {
+      "comment": "Cornell 1979",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-05T03:22:34Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-28T17:15:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T03:31:38Z"
+    },
+    {
+      "comment": "summary, details",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-06T02:36:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-06T02:31:43Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-06T02:28:21Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-06T02:22:02Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:46:01Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:56:45Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:10:51Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:44:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:13:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:39:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:33:37Z"
+    }
+  ]
+}

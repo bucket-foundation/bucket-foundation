@@ -1,0 +1,14 @@
+# Abastanoi/Sambastai
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/59648
+- **ID**: 59648
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ἀβαστάνοι, Sambastai, Megallae, Sabarcae, Sabbas, Sabou
+
+## Description
+
+An ancient place, cited: BAtlas 6 C4 Abastanoi/Sambastai

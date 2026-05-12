@@ -1,0 +1,14 @@
+# Laptoukome
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/614730
+- **ID**: 614730
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Laptoukome
+
+## Description
+
+An ancient place, cited: BAtlas 62 unlocated Laptoukome

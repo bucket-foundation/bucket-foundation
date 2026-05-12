@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5029953,
+          41.8827341
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-amba-aradam-ipponio",
+      "properties": {
+        "snippet": "Unknown; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/256068848/osm-location-of-amba-aradam-ipponio",
+        "description": "An OpenStreetMap node provides a point location for the still-under-construction Amba Aradam/Ipponio metro station, where the archaeological remains of the Praetorian barracks have been discovered.",
+        "location_precision": "precise",
+        "title": "OSM location of Amba Aradam/Ipponio"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2213773652",
+          "citationDetail": "Node 2213773652",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2213773652",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-amba-aradam-ipponio",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 2100,
+      "title": "OSM location of Amba Aradam/Ipponio",
+      "provenance": "OpenStreetMap (Node 2213773652, version 5, osm:changeset=18563428, 2013-10-27T10:13:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "An OpenStreetMap node provides a point location for the still-under-construction Amba Aradam/Ipponio metro station, where the archaeological remains of the Praetorian barracks have been discovered.",
+      "created": "2018-03-03T17:51:32Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5029953,
+          41.8827341
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/256068848/osm-location-of-amba-aradam-ipponio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T13:01:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T18:40:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T18:40:16Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T17:53:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T17:51:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T17:51:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-03-03T17:58:50Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/256068848/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T13:01:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T18:40:38Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T17:58:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T17:58:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/50284/",
+      "citationDetail": "50284: Commander's house",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/27939/",
+      "citationDetail": "27939: Praetorian Guard barracks at Amba Aradam Metro Station",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.bbc.com/news/world-europe-36311156",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Italy unearths huge Roman barracks during Rome metro dig (BBC News: 2016-05-17)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/759L4R4P",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cRome Metro Dig Unearths Roman Barracks.\u201d <i>BBC News</i>, May 17, 2016, sec. Europe. http://www.bbc.com/news/world-europe-36311156.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://roma.repubblica.it/cronaca/2018/03/02/news/roma_nuovi_mosaici_tornano_alla_luce_durante_gli_scavi_della_stazione_metro_di_amba_aradam-190173749/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Roma, scavi metro Amba Aradam",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCXNLFTL",
+      "formattedCitation": "<div class=\"csl-entry\">BOCCACCI, Paolo. \u201cRoma, scavi metro Amba Aradam: scoperta la domus del centurione. Forse era caserma servizi segreti imperatore.\u201d <i>Repubblica.it</i>, March 2, 2018. http://roma.repubblica.it/cronaca/2018/03/02/news/roma_nuovi_mosaici_tornano_alla_luce_durante_gli_scavi_della_stazione_metro_di_amba_aradam-190173749/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Amba_Aradam-Ipponio_(Rome_Metro)",
+      "citationDetail": "Amba Aradam-Ipponio (Rome Metro)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "256068848",
+  "subject": [
+    "mosaics",
+    "extant remains"
+  ],
+  "title": "Praetorian Guard Barracks at Amba Aradam Metro Station",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Excavations for Rome's Metro C public transit line at the Amba Aradam Station revealed the remains of a second century A.D. barracks connected with the Praetorian Guard, along with a domus identified as that of a praetorian commandant. Although ruinous, the architectural complex demonstrates good preservation of some features, notably floor mosaics and wall paintings. The second century A.D. stratigraphic horizon was reached at a depth of approximately 12 meters.",
+  "reprPoint": [
+    12.5029953,
+    41.8827341
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    12.5029953,
+    41.8827341,
+    12.5029953,
+    41.8827341
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-03T17:39:00Z",
+  "uri": "https://pleiades.stoa.org/places/256068848",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-25T03:04:01Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-08T05:16:30Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-04T13:01:51Z"
+    },
+    {
+      "comment": "references: vici -> ctype=related",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-04T13:01:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T18:42:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T18:40:37Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T18:39:02Z"
+    },
+    {
+      "comment": "description",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T17:58:17Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T17:39:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T17:39:00Z"
+    }
+  ]
+}

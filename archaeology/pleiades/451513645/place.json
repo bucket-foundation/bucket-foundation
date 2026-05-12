@@ -1,0 +1,538 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.94858,
+          37.79931
+        ]
+      },
+      "type": "Feature",
+      "id": "cfl-ago-location-kastro-phaneromenis-kastro-kochylou",
+      "properties": {
+        "snippet": "Castle, Archaeological-site; AD 1200 - AD 1299",
+        "link": "https://pleiades.stoa.org/places/451513645/cfl-ago-location-kastro-phaneromenis-kastro-kochylou",
+        "description": "Genovese fortress, located North-North/East of Kochylos, Andros.",
+        "location_precision": "precise",
+        "title": "CFL/AGO Location: Kastro Phaneromenis, Kastro Kochylou"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "thirteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/thirteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=25925",
+          "citationDetail": "Toponym 25925 : Kastro Phaneromenis, Kastro Kochylou",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "CFL/AGO",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+          "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "cfl-ago-location-kastro-phaneromenis-kastro-kochylou",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/castle",
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 1299,
+      "title": "CFL/AGO Location: Kastro Phaneromenis, Kastro Kochylou",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/castle",
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 100.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/cfl-ago-toponym-coordinates",
+      "featureType": [
+        "castle",
+        "archaeological-site"
+      ],
+      "description": "Genovese fortress, located North-North/East of Kochylos, Andros.",
+      "created": "2023-11-28T10:09:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.94858,
+          37.79931
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/451513645/cfl-ago-location-kastro-phaneromenis-kastro-kochylou",
+      "creators": [
+        {
+          "username": "cbouras",
+          "homepage": null,
+          "name": "Catherine Bouras",
+          "uri": "https://pleiades.stoa.org/author/cbouras"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-01T20:34:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-01T15:16:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-30T23:09:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-30T23:09:36Z"
+        },
+        {
+          "comment": "I entered a reference to Chronique Toponym, removed feature : unkown, added substantive archaeological remains, ",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-30T08:39:10Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-29T18:09:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T10:20:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T10:09:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T10:09:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-30T08:40:07Z",
+      "associationCertainty": "certain",
+      "title": "Andros (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/451513645/andros-island",
+      "connectionType": "at",
+      "id": "andros-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-01T20:34:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-30T09:41:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-30T08:40:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-30T08:40:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589693",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cbouras",
+          "homepage": null,
+          "name": "Catherine Bouras",
+          "uri": "https://pleiades.stoa.org/author/cbouras"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=report&id=9596",
+      "citationDetail": "Report 9596: ANDROS. - Kochylas (\u00c9pano Kastro) - 2004",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=25925",
+      "citationDetail": "Toponyme 25925: Kastro Phaneromenis, Kastro Kochylou",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108612440",
+      "citationDetail": "Q108612440: Castle of Faneromeni",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kastro Phaneromenis",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=25925",
+          "citationDetail": "Toponyme 25925: Kastro Phaneromenis, Kastro Kochylou",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "CFL/AGO",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+          "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kastro-phaneromenis",
+      "end": null,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2023-11-28T10:13:41Z",
+      "uri": "https://pleiades.stoa.org/places/451513645/kastro-phaneromenis",
+      "creators": [
+        {
+          "username": "cbouras",
+          "homepage": null,
+          "name": "Catherine Bouras",
+          "uri": "https://pleiades.stoa.org/author/cbouras"
+        }
+      ],
+      "attested": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03a6\u03b1\u03bd\u03b5\u03c1\u03c9\u03bc\u03ad\u03bd\u03b7\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-01T20:34:51Z"
+        },
+        {
+          "comment": "add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-01T20:34:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-01T15:16:23Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-29T18:09:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-29T18:07:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T10:20:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T10:13:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T10:13:41Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kastro Kochylou",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://chronique.efa.gr/?kroute=homepage",
+          "citationDetail": "Toponyme 25925: Kastro Phaneromenis, Kastro Kochylou",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "CFL/AGO",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+          "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kastro-kochylou",
+      "end": null,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2023-11-29T18:07:01Z",
+      "uri": "https://pleiades.stoa.org/places/451513645/kastro-kochylou",
+      "creators": [
+        {
+          "username": "cbouras",
+          "homepage": null,
+          "name": "Catherine Bouras",
+          "uri": "https://pleiades.stoa.org/author/cbouras"
+        }
+      ],
+      "attested": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u039a\u03bf\u03c7\u03cd\u03bb\u03bf\u03c5",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-01T20:34:51Z"
+        },
+        {
+          "comment": "add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-01T20:33:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-01T15:16:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-29T18:07:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-29T18:07:01Z"
+        }
+      ]
+    }
+  ],
+  "id": "451513645",
+  "subject": [],
+  "title": "Kastro Phaneromenis/Kastro Kochylou",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/castle",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the two known Genovese fortresses on Andros.",
+  "reprPoint": [
+    24.94858,
+    37.79931
+  ],
+  "placeTypes": [
+    "fort-2",
+    "castle",
+    "archaeological-site"
+  ],
+  "bbox": [
+    24.94858,
+    37.79931,
+    24.94858,
+    37.79931
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589693"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-28T10:03:17Z",
+  "uri": "https://pleiades.stoa.org/places/451513645",
+  "creators": [
+    {
+      "username": "cbouras",
+      "homepage": null,
+      "name": "Catherine Bouras",
+      "uri": "https://pleiades.stoa.org/author/cbouras"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-01T20:34:51Z"
+    },
+    {
+      "comment": "add wikidata reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-01T20:30:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-12-01T15:16:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-30T23:11:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-29T18:11:59Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-29T18:09:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-29T18:09:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-29T18:02:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-29T18:01:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cbouras",
+      "modified": "2023-11-28T10:20:35Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cbouras",
+      "modified": "2023-11-28T10:03:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cbouras",
+      "modified": "2023-11-28T10:03:17Z"
+    }
+  ]
+}

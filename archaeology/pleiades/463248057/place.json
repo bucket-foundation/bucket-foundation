@@ -1,0 +1,322 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.4849468,
+          40.0828176
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-grotta-dei-cervi",
+      "properties": {
+        "snippet": "Cave; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/463248057/osm-location-of-grotta-dei-cervi",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Grotta dei Cervi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9127355589",
+          "citationDetail": "Node 9127355589",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9127355589",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-grotta-dei-cervi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "end": 2099,
+      "title": "OSM location of Grotta dei Cervi",
+      "provenance": "OpenStreetMap (Node 9127355589, version 2, osm:changeset=139004138, 2023-07-25T19:05:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-04T01:42:54Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.4849468,
+          40.0828176
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/463248057/osm-location-of-grotta-dei-cervi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-06T11:14:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T01:43:57Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T01:43:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T01:42:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T01:42:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/tentativelists/5011/",
+      "citationDetail": "5011: Karstic caves in prehistoric Apulia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHTL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QM4PHLAJ",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage Tentative Lists</i>. Accessed October 25, 2023. https://whc.unesco.org/en/tentativelists/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Deer_Cave_(Otranto)",
+      "citationDetail": "Deer Cave (Otranto)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3777018",
+      "citationDetail": "Deer Cave (Q3777018)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tiberi 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HIQU7TJG",
+      "formattedCitation": "<div class=\"csl-entry\">Tiberi, Ida. <i>Grotta dei Cervi a Porto Badisco: un santuario per le genti del Mediterraneo: (scavi Lo Porto 1970-71)</i>. Millenni 19. Firenze: Museo e istituto fiorentino di preistoria \u201cPaolo Graziosi,\u201d 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aprile et al. 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U4Q83BBT",
+      "formattedCitation": "<div class=\"csl-entry\">Aprile, Giorgia, Salvatore Bianco, Elettra Ingravallo, Italo M. Muntoni, and Ida Tiberi. \u201cLa Grotta dei Cervi di Porto Badisco: Gli scavi Lo Porto 1970-71.\u201d In <i>Rivista di scienze preistoriche, 67 (2017)</i>, 59\u2013110. Firenze: Istituto, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Grotta dei Cervi",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tiberi 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HIQU7TJG",
+          "formattedCitation": "<div class=\"csl-entry\">Tiberi, Ida. <i>Grotta dei Cervi a Porto Badisco: un santuario per le genti del Mediterraneo: (scavi Lo Porto 1970-71)</i>. Millenni 19. Firenze: Museo e istituto fiorentino di preistoria \u201cPaolo Graziosi,\u201d 2019.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "grotta-dei-cervi",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-11-04T01:42:33Z",
+      "uri": "https://pleiades.stoa.org/places/463248057/grotta-dei-cervi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Grotta dei Cervi",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-06T11:14:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T01:43:57Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T01:42:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T01:42:33Z"
+        }
+      ]
+    }
+  ],
+  "id": "463248057",
+  "subject": [
+    "UWHS Submitted"
+  ],
+  "title": "Grotta dei Cervi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A karstic cave located near Porto Badisco in southern Apulia, Italy, the so-called Grotta dei Cervi was first discovered in 1970. The cave system, although not completely documented, contains a wealth of parietal art and pictograms dating to the late Neolithic and Eneolithic periods, ca. 6000 to 5000 years BP.",
+  "reprPoint": [
+    18.4849468,
+    40.0828176
+  ],
+  "placeTypes": [
+    "cave"
+  ],
+  "bbox": [
+    18.4849468,
+    40.0828176,
+    18.4849468,
+    40.0828176
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-04T01:41:54Z",
+  "uri": "https://pleiades.stoa.org/places/463248057",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update wikidata ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-03T15:35:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-06T11:14:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-04T01:43:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-04T01:43:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-04T01:41:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-04T01:41:54Z"
+    }
+  ]
+}

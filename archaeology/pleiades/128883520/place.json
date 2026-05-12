@@ -1,0 +1,409 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.036056,
+          36.787439
+        ]
+      },
+      "type": "Feature",
+      "id": "plan-location-of-burmarina-archive-1",
+      "properties": {
+        "snippet": "Archive-repository; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/128883520/plan-location-of-burmarina-archive-1",
+        "description": "Representative locations of the Neo-Assyrian archive at Burmarina on the basis of Peders\u00e9n 1987 Plan(s) 86.",
+        "location_precision": "precise",
+        "title": "Plan location of Burmarina Archive 1"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "ptushingham",
+      "homepage": null,
+      "name": "Poppy Tushingham",
+      "uri": "https://pleiades.stoa.org/author/ptushingham"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "plan 86",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "plan-location-of-burmarina-archive-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "end": -540,
+      "title": "Plan location of Burmarina Archive 1",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/burmarina-archives-pedersen",
+      "featureType": [
+        "archive-repository"
+      ],
+      "description": "Representative locations of the Neo-Assyrian archive at Burmarina on the basis of Peders\u00e9n 1987 Plan(s) 86.",
+      "created": "2023-02-20T00:39:58Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.036056,
+          36.787439
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/128883520/plan-location-of-burmarina-archive-1",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:19:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-21T16:08:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T00:40:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T00:39:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T00:39:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-20T00:32:46Z",
+      "associationCertainty": "certain",
+      "title": "Bur-mar'ina",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/128883520/bersiba",
+      "connectionType": "at",
+      "id": "bersiba",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:19:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-21T16:08:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-03T17:54:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-03T17:54:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T00:32:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T00:32:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/727743777",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "177\u2013178",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        },
+        {
+          "username": null,
+          "name": "Novotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+      "citationDetail": "177\u2013178",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peders\u00e9n 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+      "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/atae/burmarina_001",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ATAE Burmarina 1",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Burmarina Archive 1",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://uu.diva-portal.org/smash/get/diva2:88568/FULLTEXT01.pdf",
+          "citationDetail": "177\u2013178",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAWQTRAW",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Archives and Libraries in the Ancient Near East, 1500-300 B.C.</i> Bethesda, Ma: CDL, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "burmarina-archive-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern scholarly designation for the archive.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-02-20T00:34:16Z",
+      "uri": "https://pleiades.stoa.org/places/128883520/burmarina-archive-1",
+      "creators": [
+        {
+          "username": "tseidler",
+          "homepage": null,
+          "name": "Thomas Seidler",
+          "uri": "https://pleiades.stoa.org/author/tseidler"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:19:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tseidler",
+          "modified": "2023-03-21T16:08:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T00:34:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tseidler",
+          "modified": "2023-02-20T00:34:16Z"
+        }
+      ]
+    }
+  ],
+  "id": "128883520",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Burmarina Archive 1",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archive-repository"
+  ],
+  "details": "<p>The archive is located in a private house.</p>\r\n<p><img class=\"image-inline external-image\" height=\"181\" src=\"http://oracc.ub.uni-muenchen.de/atae/images/Plan86_general_plan_Burmarina1_p178.png\" width=\"471\" /></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The small town of Burmarina belonged to the area of the city Til-Barsip which was under Neo-Assyrian rule. An archive, consisting of about 130 clay tablets and fragments, including some bullae, was discovered in two rooms, presumably part of a private house, in Area F. Although most texts were written in Assyrian, some were in Aramaic, and some had short Aramaic notes written in ink. While most of the Assyrian texts were loan or purchase documents, the archive also includes short notes and a list. The Aramaic texts concern loans or are short notes written on bullae.",
+  "reprPoint": [
+    38.036056,
+    36.787439
+  ],
+  "placeTypes": [
+    "archive-repository"
+  ],
+  "bbox": [
+    38.036056,
+    36.787439,
+    38.036056,
+    36.787439
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/727743777"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-08T18:03:36Z",
+  "uri": "https://pleiades.stoa.org/places/128883520",
+  "creators": [
+    {
+      "username": "tseidler",
+      "homepage": null,
+      "name": "Thomas Seidler",
+      "uri": "https://pleiades.stoa.org/author/tseidler"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added ORACC reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-11T16:53:39Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "tseidler",
+      "modified": "2023-04-08T18:03:36Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-24T18:19:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tseidler",
+      "modified": "2023-03-21T16:08:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-03-21T10:19:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-03-21T09:28:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-03-21T09:28:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-20T00:40:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-20T00:29:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tseidler",
+      "modified": "2023-02-20T00:29:09Z"
+    }
+  ]
+}

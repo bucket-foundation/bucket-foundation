@@ -1,0 +1,289 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.7709239,
+            18.4094923
+          ],
+          [
+            31.7707576,
+            18.4091564
+          ],
+          [
+            31.7711492,
+            18.4089655
+          ],
+          [
+            31.7713289,
+            18.4093396
+          ],
+          [
+            31.7709239,
+            18.4094923
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-pyramid-ku-1",
+      "properties": {
+        "snippet": "Tomb, ; 1086 BC - 664 BC",
+        "link": "https://pleiades.stoa.org/places/252614721/location-of-pyramid-ku-1",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of pyramid Ku 1"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/240874193",
+          "citationDetail": "Way 240874193",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=240874193",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-pyramid-ku-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -664,
+      "title": "OSM location of pyramid Ku 1",
+      "provenance": "OpenStreetMap (Way 240874193, version 2, osm:changeset=25509656, 2014-09-17T21:11:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1086,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "<p>A ninth century BC tomb connected with\u00a0Pharaoh\u00a0<a class=\"mw-redirect\" href=\"https://en.wikipedia.org/wiki/Sheshonq_I\" title=\"Sheshonq I\">Sheshonq I</a>.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-10-06T21:22:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.7709239,
+            18.4094923
+          ],
+          [
+            31.7707576,
+            18.4091564
+          ],
+          [
+            31.7711492,
+            18.4089655
+          ],
+          [
+            31.7713289,
+            18.4093396
+          ],
+          [
+            31.7709239,
+            18.4094923
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/252614721/location-of-pyramid-ku-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T03:28:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-26T13:30:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-09T01:51:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-06T21:24:19Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-06T21:23:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-06T21:22:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-06T21:22:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-02-26T04:30:26Z",
+      "associationCertainty": "certain",
+      "title": "el Kurru",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/252614721/8264100279",
+      "connectionType": "at",
+      "id": "8264100279",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-26T04:30:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-26T04:30:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-26T04:30:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/805623",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [],
+  "names": [],
+  "id": "252614721",
+  "subject": [],
+  "title": "Pyramid K.1 at El-Kurru",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The oldest tomb at El-Kurru.",
+  "reprPoint": [
+    31.7709239,
+    18.4094923
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    31.7709239,
+    18.4094923,
+    31.7709239,
+    18.4094923
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/805623"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-02-26T04:30:25Z",
+  "uri": "https://pleiades.stoa.org/places/252614721",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-26T13:30:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-26T04:35:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-26T04:33:54Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-26T04:33:49Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-26T04:30:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-26T04:30:25Z"
+    }
+  ]
+}

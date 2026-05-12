@@ -1,0 +1,347 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.9455608,
+            40.6384555
+          ],
+          [
+            22.9467649,
+            40.6378178
+          ],
+          [
+            22.9468083,
+            40.6377911
+          ],
+          [
+            22.9467872,
+            40.6377675
+          ],
+          [
+            22.9468419,
+            40.6377137
+          ],
+          [
+            22.9468704,
+            40.6376085
+          ],
+          [
+            22.9462382,
+            40.6369676
+          ],
+          [
+            22.9462205,
+            40.6369497
+          ],
+          [
+            22.9448803,
+            40.6376964
+          ],
+          [
+            22.9455608,
+            40.6384555
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "romaike-agora",
+      "properties": {
+        "snippet": "Archaeological-site; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/688857980/romaike-agora",
+        "description": "Polygon representing the extent of the visible remains of the Roman forum at Thessalonica, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location: \u03a1\u03c9\u03bc\u03b1\u03ca\u03ba\u03ae \u0391\u03b3\u03bf\u03c1\u03ac"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/14788669",
+          "citationDetail": "Way 14788669",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=14788669",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "romaike-agora",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "OSM location: \u03a1\u03c9\u03bc\u03b1\u03ca\u03ba\u03ae \u0391\u03b3\u03bf\u03c1\u03ac",
+      "provenance": "OpenStreetMap (Way 14788669, version 14, osm:changeset=145921165, 2024-01-05T12:58:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Polygon representing the extent of the visible remains of the Roman forum at Thessalonica, derived from an OpenStreetMap Way.",
+      "created": "2024-02-27T17:07:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.9455608,
+            40.6384555
+          ],
+          [
+            22.9467649,
+            40.6378178
+          ],
+          [
+            22.9468083,
+            40.6377911
+          ],
+          [
+            22.9467872,
+            40.6377675
+          ],
+          [
+            22.9468419,
+            40.6377137
+          ],
+          [
+            22.9468704,
+            40.6376085
+          ],
+          [
+            22.9462382,
+            40.6369676
+          ],
+          [
+            22.9462205,
+            40.6369497
+          ],
+          [
+            22.9448803,
+            40.6376964
+          ],
+          [
+            22.9455608,
+            40.6384555
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/688857980/romaike-agora",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-27T19:32:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-27T17:14:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-27T17:08:12Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-27T17:07:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-27T17:07:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2024-02-27T17:08:54Z",
+      "associationCertainty": "certain",
+      "title": "Thessalonica",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/688857980/thessalonica",
+      "connectionType": "at",
+      "id": "thessalonica",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-27T19:32:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-27T17:14:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-27T17:08:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-27T17:08:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/491741",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Roman_Forum_(Thessaloniki)",
+      "citationDetail": "Roman Forum (Thessaloniki)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/620115240",
+      "citationDetail": "pages 247-248",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Nasrallah 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2TXBFR5S",
+      "formattedCitation": "<div class=\"csl-entry\">Nasrallah, Laura Salah, Ch. Bakirtz\u0113s, and Steven J. Friesen. <i>From Roman to Early Christian Thessalonik\u0113: Studies in Religion and Archaeology</i>. Harvard Theological Studies 64. Cambridge, Mass.: Harvard Theological Studies, Harvard Divinity School\u202f: Distributed by Harvard University Press, 2010. https://www.worldcat.org/oclc/620115240.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [],
+  "id": "688857980",
+  "subject": [],
+  "title": "Roman forum at Thessalonica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/forum"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Two-terraced forum at Thessalonica in use during the Roman period through the 6th century.",
+  "reprPoint": [
+    22.94589499282418,
+    40.63770334773862
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "forum"
+  ],
+  "bbox": [
+    22.9448803,
+    40.6369497,
+    22.9468704,
+    40.6384555
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/491741"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-02-27T17:07:10Z",
+  "uri": "https://pleiades.stoa.org/places/688857980",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-02-27T19:32:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-27T17:14:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-27T17:14:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-27T17:07:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-27T17:07:10Z"
+    }
+  ]
+}

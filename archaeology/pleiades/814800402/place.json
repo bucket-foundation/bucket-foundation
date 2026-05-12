@@ -1,0 +1,322 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5543848,
+          34.0750773
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-house-of-the-flavius-germanus",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/814800402/osm-location-of-house-of-the-flavius-germanus",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of House of the Flavius Germanus, Volubilis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/8913899903",
+          "citationDetail": "Node 8913899903",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=8913899903",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-house-of-the-flavius-germanus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of House of the Flavius Germanus, Volubilis",
+      "provenance": "OpenStreetMap (Node 8913899903, version 1, osm:changeset=107843419, 2021-07-12T13:41:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-07-12T13:41:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5543848,
+          34.0750773
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/814800402/osm-location-of-house-of-the-flavius-germanus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-30T17:35:32Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-23T23:53:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:42:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:42:16Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:42:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:41:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:41:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-16T21:43:00Z",
+      "associationCertainty": "certain",
+      "title": "Volubilis",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/814800402/volubilis",
+      "connectionType": "at",
+      "id": "volubilis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:42:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:42:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T21:43:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T21:43:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275740",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bwilson",
+          "homepage": null,
+          "name": "Brandon Wilson",
+          "uri": "https://pleiades.stoa.org/author/bwilson"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/458298688",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thouvenot 1948",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLWSIXLI",
+      "formattedCitation": "<div class=\"csl-entry\">Thouvenot, Raymond. <i>La Maison aux Travaux d\u2019Hercule [\u00e0 Volubilis]</i>. Paris: Impr. de Daupeley-Gouverneur, 1948. http://catalogue.bnf.fr/ark:/12148/cb31466396k.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://catalog.hathitrust.org/Record/001605508",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Etienne 1960",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCLZZEC3",
+      "formattedCitation": "<div class=\"csl-entry\">Etienne, Robert. <i>Le quartier nord-est de Volubilis.</i> Paris: E. de Boccard, 1960. https://catalog.hathitrust.org/Record/001605508.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/25292/",
+      "citationDetail": "25292: House of the Flavius Germanus, Volubilis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130629903",
+      "citationDetail": "House of Flavius Germanus (Q130629903)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "814800402",
+  "subject": [],
+  "title": "House of Flavius Germanus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+    "https://pleiades.stoa.org/vocabularies/place-types/piscina-roman"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Roman Peristyle House with interior garden and pool.",
+  "reprPoint": [
+    -5.5543848,
+    34.0750773
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "townhouse",
+    "piscina-roman"
+  ],
+  "bbox": [
+    -5.5543848,
+    34.0750773,
+    -5.5543848,
+    34.0750773
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/275740"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-16T21:27:51Z",
+  "uri": "https://pleiades.stoa.org/places/814800402",
+  "creators": [
+    {
+      "username": "bwilson",
+      "homepage": null,
+      "name": "Brandon Wilson",
+      "uri": "https://pleiades.stoa.org/author/bwilson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-30T17:36:12Z"
+    },
+    {
+      "comment": "add wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-23T23:58:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:42:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:42:16Z"
+    },
+    {
+      "comment": "added vici.org 25292: House of the Flavius Germanus, Volubilis reference",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-16T18:46:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T21:27:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T21:27:51Z"
+    }
+  ]
+}

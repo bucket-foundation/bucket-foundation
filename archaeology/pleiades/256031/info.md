@@ -1,0 +1,14 @@
+# Las Brujas
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/256031
+- **ID**: 256031
+- **Coords (lng, lat)**: [-6.221266, 39.948607]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=fort
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 26 D2 Las Brujas

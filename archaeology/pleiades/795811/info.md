@@ -1,0 +1,14 @@
+# Gariya Mustafa 'Amr Gama
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/795811
+- **ID**: 795811
+- **Coords (lng, lat)**: [35.39967, 23.59977]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 81 F2 Gariya Mustafa 'Amr Gama

@@ -1,0 +1,455 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.60316311473809,
+              25.7288035408599
+            ],
+            [
+              32.60358332057998,
+              25.7291713656997
+            ],
+            [
+              32.60305793659016,
+              25.7295261070635
+            ],
+            [
+              32.60267025831325,
+              25.72915317405525
+            ],
+            [
+              32.60316311473809,
+              25.7288035408599
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-great-pit-1",
+      "properties": {
+        "snippet": "Unknown; 1548 BC - 1086 BC",
+        "link": "https://pleiades.stoa.org/places/746584647/imagery-location-great-pit-1",
+        "description": "Imagery Location: visible remains of the great pit",
+        "location_precision": "precise",
+        "title": "Imagery Location: Great pit"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-great-pit-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": -1086,
+      "title": "Imagery Location: Great pit",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Imagery Location: visible remains of the great pit",
+      "created": "2025-03-14T19:11:02Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.60316311473809,
+              25.7288035408599
+            ],
+            [
+              32.60358332057998,
+              25.7291713656997
+            ],
+            [
+              32.60305793659016,
+              25.7295261070635
+            ],
+            [
+              32.60267025831325,
+              25.72915317405525
+            ],
+            [
+              32.60316311473809,
+              25.7288035408599
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/746584647/imagery-location-great-pit-1",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:49:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:24:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:11:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:11:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1086,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-14T19:12:25Z",
+      "associationCertainty": "certain",
+      "title": "Deir el-Medina",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/746584647/deir-el-medina",
+      "connectionType": "at",
+      "id": "deir-el-medina",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:49:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:24:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:12:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:12:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/864388873",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.griffith.ox.ac.uk/topbib/pdf/pm1-2.pdf",
+      "citationDetail": "pp. 691-692",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Porter 1964",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/33DL87J8",
+      "formattedCitation": "<div class=\"csl-entry\">Porter, Bertha, Rosalind Louisa Beaufort Moss, and Ethel W. Burney. <i>Topographical Bibliography of Ancient Egyptian Hieroglyphic Texts, Reliefs, and Paintings. I. The Theban Necropolis. Part 2. Royal Tombs and Smaller Cemeteries</i>. 2nd ed. 1927. Reprint, Oxford, 1964. http://www.griffith.ox.ac.uk/topbib/pdf/pm1-2.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Great Pit",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "great-pit",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-14T19:09:57Z",
+      "uri": "https://pleiades.stoa.org/places/746584647/great-pit",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Great Pit",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:49:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:24:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:09:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:09:57Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Grand puits",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "grands-puits",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-05-06T07:20:52Z",
+      "uri": "https://pleiades.stoa.org/places/746584647/grands-puits",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Grand puits",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "corrected by @nsouchon",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-06T16:16:40Z"
+        },
+        {
+          "comment": "Orthographic correction",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-06T16:16:25Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-05-06T07:20:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:49:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:24:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:11:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:11:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "746584647",
+  "subject": [
+    "temple"
+  ],
+  "title": "Great pit",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/pit"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A great pit dug to the north-east of the village of Deir el-Medina, where hundreds of objects, particularly ostraca, were found.",
+  "reprPoint": [
+    32.60312122894135,
+    25.72916407783798
+  ],
+  "placeTypes": [
+    "pit"
+  ],
+  "bbox": [
+    32.60267025831325,
+    25.7288035408599,
+    32.60358332057998,
+    25.7295261070635
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/864388873"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-14T19:09:19Z",
+  "uri": "https://pleiades.stoa.org/places/746584647",
+  "creators": [
+    {
+      "username": "nsouchon",
+      "homepage": null,
+      "name": "Nicolas Souchon",
+      "uri": "https://pleiades.stoa.org/author/nsouchon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "place type = pit",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-18T20:58:29Z"
+    },
+    {
+      "comment": "removed place type unknown",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-18T20:50:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-17T16:49:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T19:24:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T19:11:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T19:09:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T19:09:19Z"
+    }
+  ]
+}

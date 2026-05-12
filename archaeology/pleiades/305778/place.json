@@ -1,0 +1,191 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:37:19Z",
+      "associationCertainty": "certain",
+      "title": "Saldae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/305778/305142",
+      "connectionType": "flows_into",
+      "id": "305142",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "flows into",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-13T21:04:38Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/305142",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "31 B3-C3 (west of Saldae)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/a.html#AAA-7.5",
+      "formattedCitation": "AAA 7.5",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "305778",
+  "subject": [],
+  "title": "Unnamed aqueduct supplying Saldae",
+  "provenance": "Barrington Atlas: BAtlas 31 B3-C3 (west of Saldae)",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "The Barrington Atlas Directory notes: Saldae",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 31 C3 unnamed aqueduct (Saldae)",
+  "reprPoint": [
+    5.0002534999999995,
+    36.7506985
+  ],
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": [
+    4.942542,
+    36.74021,
+    5.058096,
+    36.760546
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/305142",
+    "https://pleiades.stoa.org/places/309552",
+    "https://pleiades.stoa.org/places/183817900"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T18:43:18Z",
+  "uri": "https://pleiades.stoa.org/places/305778",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.W.B. Fentress"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:05:57Z"
+    },
+    {
+      "comment": "refined title and reference",
+      "modifiedBy": "thomase",
+      "modified": "2011-08-17T14:15:09Z"
+    },
+    {
+      "comment": "Add tunnel connection",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-09T21:27:10Z"
+    },
+    {
+      "comment": "Make connection",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-09T21:18:07Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:27:44Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T20:21:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T18:47:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T18:43:18Z"
+    }
+  ]
+}

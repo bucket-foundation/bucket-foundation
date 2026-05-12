@@ -1,0 +1,425 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.1048962,
+            30.9626989
+          ],
+          [
+            46.1044192,
+            30.9624062
+          ],
+          [
+            46.1040164,
+            30.962807
+          ],
+          [
+            46.1044885,
+            30.963129
+          ],
+          [
+            46.1048962,
+            30.9626989
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-enunmah",
+      "properties": {
+        "snippet": "Temple-2; 2335 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/76011694/osm-location-of-enunmah",
+        "description": "Location based on OpenStreetMap way roughly tracing the outline of the ruins of the temple",
+        "location_precision": "precise",
+        "title": "OSM location of Enunmah"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/553034300",
+          "citationDetail": "Way 553034300",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=553034300",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-enunmah",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -540,
+      "title": "OSM location of Enunmah",
+      "provenance": "OpenStreetMap (Way 553034300, version 1, osm:changeset=55428890, 2018-01-14T12:06:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap way roughly tracing the outline of the ruins of the temple",
+      "created": "2018-01-14T12:08:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            46.1048962,
+            30.9626989
+          ],
+          [
+            46.1044192,
+            30.9624062
+          ],
+          [
+            46.1040164,
+            30.962807
+          ],
+          [
+            46.1044885,
+            30.963129
+          ],
+          [
+            46.1048962,
+            30.9626989
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/76011694/osm-location-of-enunmah",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-28T16:13:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-15T07:41:15Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-15T07:38:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-14T12:10:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-14T12:08:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-14T12:08:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-10T09:30:50Z",
+      "associationCertainty": "certain",
+      "title": "Ur(i)",
+      "start": -2335,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/76011694/ur-i",
+      "connectionType": "at",
+      "id": "ur-i",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-28T16:13:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-15T07:41:15Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-15T07:40:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T09:30:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T09:30:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912985",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883572295",
+      "citationDetail": "135 number 916",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+      "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Enunmah",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/883572295",
+          "citationDetail": "135 number 916",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+          "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-14.6518630523",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2018-01-14T12:08:11Z",
+      "uri": "https://pleiades.stoa.org/places/76011694/name.2018-01-14.6518630523",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-28T16:13:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-15T07:41:15Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-15T07:39:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-14T16:13:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-14T12:08:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-14T12:08:11Z"
+        }
+      ]
+    }
+  ],
+  "id": "76011694",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Enunmah",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The temple was rebuilt by the Neo-Babylonian king Nabonidus.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The \u1e2bil\u1e63u-building of the goddess Ningal inside the Egi\u0161nugal temple at Ur. The Sumerian ceremonial name Enunmah means \"House of the Exalted Prince.\"",
+  "reprPoint": [
+    46.104456556056675,
+    30.962762981050854
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    46.1040164,
+    30.9624062,
+    46.1048962,
+    30.963129
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912985"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-10T09:29:02Z",
+  "uri": "https://pleiades.stoa.org/places/76011694",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-28T16:13:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-15T07:41:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-15T07:37:53Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-10T09:29:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-10T09:29:02Z"
+    }
+  ]
+}

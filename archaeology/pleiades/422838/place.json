@@ -1,0 +1,612 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.6949948,
+            41.6929623
+          ],
+          [
+            12.6951662,
+            41.6934072
+          ],
+          [
+            12.6952501,
+            41.6934983
+          ],
+          [
+            12.6955792,
+            41.6938558
+          ],
+          [
+            12.6972637,
+            41.693243
+          ],
+          [
+            12.6974485,
+            41.6931462
+          ],
+          [
+            12.697699,
+            41.6929728
+          ],
+          [
+            12.6966414,
+            41.6921854
+          ],
+          [
+            12.6959233,
+            41.6926321
+          ],
+          [
+            12.6949948,
+            41.6929623
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-degli-antonini",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/422838/osm-location-of-villa-degli-antonini",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa degli Antonini"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/403947980",
+          "citationDetail": "Way 403947980",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=403947980",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-degli-antonini",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa degli Antonini",
+      "provenance": "OpenStreetMap (Way 403947980, version 3, osm:changeset=121103486, 2022-05-17T14:17:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-03-01T12:57:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.6949948,
+            41.6929623
+          ],
+          [
+            12.6951662,
+            41.6934072
+          ],
+          [
+            12.6952501,
+            41.6934983
+          ],
+          [
+            12.6955792,
+            41.6938558
+          ],
+          [
+            12.6972637,
+            41.693243
+          ],
+          [
+            12.6974485,
+            41.6931462
+          ],
+          [
+            12.697699,
+            41.6929728
+          ],
+          [
+            12.6966414,
+            41.6921854
+          ],
+          [
+            12.6959233,
+            41.6926321
+          ],
+          [
+            12.6949948,
+            41.6929623
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/422838/osm-location-of-villa-degli-antonini",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-09T02:13:32Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-01T14:43:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T17:28:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T12:58:30Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T12:58:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T12:57:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T12:57:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2018-03-01T13:08:00Z",
+      "associationCertainty": "certain",
+      "title": "Via Appia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/422838/via-appia",
+      "connectionType": "near",
+      "id": "via-appia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T17:29:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T13:08:12Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T13:08:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T13:08:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/356966898",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/investigating-the-villa-degli-antonini-at-lanuvium/666542F3DF22AF4A37112FAB460E062D",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Aryamontri 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LY9DUHM8",
+          "formattedCitation": "<div class=\"csl-entry\">Aryamontri, Deborah Chatr, and Timothy Renner. \u201cInvestigating the \u2018Villa Degli Antonini\u2019 at Lanuvium.\u201d <i>Journal of Roman Archaeology</i> 30 (ed 2017): 372\u201386. https://doi.org/10.1017/S104775940007416X.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 C3 Antonini",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cassieri 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ACHN5A9I",
+      "formattedCitation": "<div class=\"csl-entry\">Cassieri, N., and G. Ghini. \u201cLa cosiddetta villa degli Antonini al XVIII miglio della Via Appia.\u201d In <i>Archeologia laziale, 10, 1. La Via Appia. Decimo incontro di studio del Comitato per l\u2019archeologia laziale, [Roma 7-9 novembre 1989]</i>, 168\u2013178, Abb, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/investigating-the-villa-degli-antonini-at-lanuvium/666542F3DF22AF4A37112FAB460E062D",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aryamontri 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LY9DUHM8",
+      "formattedCitation": "<div class=\"csl-entry\">Aryamontri, Deborah Chatr, and Timothy Renner. \u201cInvestigating the \u2018Villa Degli Antonini\u2019 at Lanuvium.\u201d <i>Journal of Roman Archaeology</i> 30 (ed 2017): 372\u201386. https://doi.org/10.1017/S104775940007416X.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Chatr Aryamontri 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P68XKCZC",
+      "formattedCitation": "<div class=\"csl-entry\">Chatr Aryamontri, Deborah, and Timothy Todd Renner. \u201cLa villa degli Antonini nel sublanuvium.\u201d In <i>Sulle tracce di Caligola\u202f: storie di grandi recuperi della Guardia di Finanza al lago di Nemi</i>, 92\u201397. Roma: Gangemi Editore, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/record_view.php?fst_cd=AIAC_2694",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Fasti Online: c.d. Villa degli Antonini",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Chatr Aryamontri 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F9NQ2Q2C",
+      "formattedCitation": "<div class=\"csl-entry\">Chatr Aryamontri, Deborah, Timothy Todd Renner, and Consuelo Cecchini. \u201cNuove Esplorazioni Presso La c.d. Villa Degli Antonini: I Risultati Delle Campagne Di Scavo 2010 e 2011.\u201d In <i>Lazio e Sabina</i>, 291\u201398. Roma: Quasar, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baldassarri 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q2K88JQR",
+      "formattedCitation": "<div class=\"csl-entry\">Baldassarri, Paola. \u201cVille Imperiali e Arredi Scultorei: I Ritratti Dalla Villa Degli Antonini Nell\u2019ager Lanuvinus.\u201d In <i>Residenze Imperiali Nel Lazio</i>, 101\u201316. Roma: Grafitti, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "20765",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q107453713",
+      "citationDetail": "Villa of the Antonines (Q107453713)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa degli Antonini",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/investigating-the-villa-degli-antonini-at-lanuvium/666542F3DF22AF4A37112FAB460E062D",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Aryamontri 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LY9DUHM8",
+          "formattedCitation": "<div class=\"csl-entry\">Aryamontri, Deborah Chatr, and Timothy Renner. \u201cInvestigating the \u2018Villa Degli Antonini\u2019 at Lanuvium.\u201d <i>Journal of Roman Archaeology</i> 30 (ed 2017): 372\u201386. https://doi.org/10.1017/S104775940007416X.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-03-01.0998602365",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2018-03-01T13:16:24Z",
+      "uri": "https://pleiades.stoa.org/places/422838/name.2018-03-01.0998602365",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T17:29:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T13:16:32Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T13:16:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-01T13:16:24Z"
+        }
+      ]
+    }
+  ],
+  "id": "422838",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=villa"
+  ],
+  "title": "Villa degli Antonini",
+  "provenance": "Barrington Atlas: BAtlas 43 C3 Antonini",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Antonini, so-called Villa of Antonines</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called 'Villa of the Antonines', located near Genzano di Roma in the Alban Hills, lies just south of the Via Appia between the road's 18th and 19th milestones.",
+  "reprPoint": [
+    12.696297394504441,
+    41.6930400226527
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    12.6949948,
+    41.6921854,
+    12.697699,
+    41.6938558
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/356966898"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:30:32Z",
+  "uri": "https://pleiades.stoa.org/places/422838",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q107453713",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-22T15:31:59Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-08T14:42:55Z"
+    },
+    {
+      "comment": "Ctype",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-08T13:17:50Z"
+    },
+    {
+      "comment": "references + darmc",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-04T17:34:18Z"
+    },
+    {
+      "comment": "title, summary",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-04T17:26:38Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-01T13:14:51Z"
+    },
+    {
+      "comment": "references, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-01T13:04:20Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-18T03:14:23Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:43:23Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:54:42Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:14:37Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:43:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:12:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:38:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:30:32Z"
+    }
+  ]
+}

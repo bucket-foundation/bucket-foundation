@@ -1,0 +1,306 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.313699,
+          36.903732
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-imagery-location-of-sanctuary-of-kamart",
+      "properties": {
+        "snippet": "Sanctuary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/791512058/approximate-imagery-location-of-sanctuary-of-kamart",
+        "description": "Approximate imagery location based on Google Earth representing the Sanctuary of Kamart after Zehnacker 1965.",
+        "location_precision": "precise",
+        "title": "Approximate imagery location of Sanctuary of Kamart"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1080682309",
+          "citationDetail": "pages 6-7",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Zehnacker 1965",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXVPDSCN",
+          "formattedCitation": "<div class=\"csl-entry\">Zehnacker, Hubert. <i>Les statues du sanctuaire de Kamart (Tunisie).</i> Collection Latomus, LXXVII. Bruxelles, Berchem: Latonus, 1965. http://www.worldcat.org/oclc/1080682309.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "approximate-imagery-location-of-sanctuary-of-kamart",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "Approximate imagery location of Sanctuary of Kamart",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "none",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Approximate imagery location based on Google Earth representing the Sanctuary of Kamart after Zehnacker 1965.",
+      "created": "2022-06-28T17:20:05Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.313699,
+          36.903732
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/791512058/approximate-imagery-location-of-sanctuary-of-kamart",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T17:23:54Z"
+        },
+        {
+          "comment": "edit ref.",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-29T14:55:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T17:21:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T17:20:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T17:20:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-28T17:21:23Z",
+      "associationCertainty": "certain",
+      "title": "Carthago",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/791512058/carthago",
+      "connectionType": "near",
+      "id": "carthago",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-29T17:23:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T17:21:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T17:21:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T17:21:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/314921",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1080682309",
+          "citationDetail": "pages 6-7",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zehnacker 1965",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXVPDSCN",
+          "formattedCitation": "<div class=\"csl-entry\">Zehnacker, Hubert. <i>Les statues du sanctuaire de Kamart (Tunisie).</i> Collection Latomus, LXXVII. Bruxelles, Berchem: Latonus, 1965. http://www.worldcat.org/oclc/1080682309.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1080682309",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zehnacker 1965",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXVPDSCN",
+      "formattedCitation": "<div class=\"csl-entry\">Zehnacker, Hubert. <i>Les statues du sanctuaire de Kamart (Tunisie).</i> Collection Latomus, LXXVII. Bruxelles, Berchem: Latonus, 1965. http://www.worldcat.org/oclc/1080682309.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/rea_0035-2004_1965_num_67_3_3759_t1_0560_0000_2",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marcad\u00e9 1965",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ILW66BWX",
+      "formattedCitation": "<div class=\"csl-entry\">Marcad\u00e9, Jean. \u201cHubert Zehnacker, Les statues du sanctuaire de Kamart (Tunisie) (Coll. \u00ab\u202fLatomus\u202f\u00bb, vol. LXXVII), 1965.\u201d <i>Revue des \u00c9tudes Anciennes</i> 67, no. 3 (1965): 560\u201361. https://www.persee.fr/doc/rea_0035-2004_1965_num_67_3_3759_t1_0560_0000_2.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "791512058",
+  "subject": [],
+  "title": "Punic-Roman Sanctuary, Kamart",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Punic-Roman sanctuary, possibly of Hygieia/Salus or Aesculapius/Eshmun was identified to the northwest of Carthage in the direction of Cape Kamart (Tunisia), mostly on the basis of an assemblage of extremely fragmentary polychromatic terracotta statues, numbering at least 30.",
+  "reprPoint": [
+    10.313699,
+    36.903732
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    10.313699,
+    36.903732,
+    10.313699,
+    36.903732
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/314921"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-28T19:06:11Z",
+  "uri": "https://pleiades.stoa.org/places/791512058",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-29T17:23:54Z"
+    },
+    {
+      "comment": "added Marcad\u00e9 1965; edit summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-29T17:23:41Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T19:06:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T17:21:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T17:17:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T17:17:07Z"
+    }
+  ]
+}

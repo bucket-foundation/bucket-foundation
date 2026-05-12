@@ -1,0 +1,437 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.875248,
+          27.931376
+        ]
+      },
+      "type": "Feature",
+      "id": "center-of-visible-remains-at-beni-hasan",
+      "properties": {
+        "snippet": "Cemetery, ; 2010 BC - 1640 BC",
+        "link": "https://pleiades.stoa.org/places/112509596/center-of-visible-remains-at-beni-hasan",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Center of Visible Remains at Beni Hasan"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.8752957,
+          27.9313392
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-beni-hasan-necropolis",
+      "properties": {
+        "snippet": "Cemetery",
+        "link": "https://pleiades.stoa.org/places/112509596/osm-location-of-beni-hasan-necropolis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Beni Hasan necropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "center-of-visible-remains-at-beni-hasan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1640,
+      "title": "Center of Visible Remains at Beni Hasan",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "cemetery",
+        ""
+      ],
+      "description": "",
+      "created": "2012-04-05T20:05:12Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.875248,
+          27.931376
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/112509596/center-of-visible-remains-at-beni-hasan",
+      "creators": [
+        {
+          "username": "irisf",
+          "homepage": null,
+          "name": "Iris Fernandez",
+          "uri": "https://pleiades.stoa.org/author/irisf"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-09T22:46:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-04-05T20:41:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "irisf",
+          "modified": "2012-04-05T20:12:49Z"
+        },
+        {
+          "comment": "Added Location entry",
+          "modifiedBy": "irisf",
+          "modified": "2012-04-05T20:05:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "irisf",
+          "modified": "2012-04-05T20:05:13Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2710024050",
+          "citationDetail": "Node 2710024050",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2710024050",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-beni-hasan-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": null,
+      "title": "OSM location of Beni Hasan necropolis",
+      "provenance": "OpenStreetMap (Node 2710024050, version 3, osm:changeset=51923979, 2017-09-11T00:53:42Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-04-09T19:26:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.8752957,
+          27.9313392
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/112509596/osm-location-of-beni-hasan-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-15T13:41:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-14T15:09:52Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-09T19:26:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-09T19:26:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-09T19:26:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.britannica.com/EBchecked/topic/60844/Beni-Hasan",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Encyclopedia Britannica: Beni Hasan",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/414",
+      "citationDetail": "GEO ID 414: Beni Hasan",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Beni_Hasan",
+      "citationDetail": "Beni Hasan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Beni Hasan.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q817286",
+      "citationDetail": "Beni Hasan (Q817286)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Beni Hasan, Beni Hassan, Bani Hasan",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://dbpedia.org/resource/Beni_Hasan",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "dbpedia: Beni Hasan",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "beni-hasan",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2012-04-05T20:09:27Z",
+      "uri": "https://pleiades.stoa.org/places/112509596/beni-hasan",
+      "creators": [
+        {
+          "username": "irisf",
+          "homepage": null,
+          "name": "Iris Fernandez",
+          "uri": "https://pleiades.stoa.org/author/irisf"
+        }
+      ],
+      "attested": "\u0628\u0646\u064a \u062d\u0633\u0646\u200e",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-04-05T20:41:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "irisf",
+          "modified": "2012-04-05T20:12:49Z"
+        },
+        {
+          "comment": "Added Modern name entry",
+          "modifiedBy": "irisf",
+          "modified": "2012-04-05T20:09:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "irisf",
+          "modified": "2012-04-05T20:09:27Z"
+        }
+      ]
+    }
+  ],
+  "id": "112509596",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=cemetery"
+  ],
+  "title": "Beni Hasan",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Middle Kingdom cemetery known for its rock-cut tombs of local officials.",
+  "reprPoint": [
+    30.875271849999997,
+    27.9313576
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    30.875248,
+    27.9313392,
+    30.8752957,
+    27.931376
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2012-04-05T19:40:15Z",
+  "uri": "https://pleiades.stoa.org/places/112509596",
+  "creators": [
+    {
+      "username": "irisf",
+      "homepage": null,
+      "name": "Iris Fernandez",
+      "uri": "https://pleiades.stoa.org/author/irisf"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q817286",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-09T02:06:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-14T15:09:42Z"
+    },
+    {
+      "comment": "changed reference type",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-09T19:24:04Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-09T22:43:07Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:26:06Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2012-04-05T20:41:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "irisf",
+      "modified": "2012-04-05T20:12:48Z"
+    },
+    {
+      "comment": "Added Place entry",
+      "modifiedBy": "irisf",
+      "modified": "2012-04-05T19:40:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "irisf",
+      "modified": "2012-04-05T19:40:15Z"
+    }
+  ]
+}

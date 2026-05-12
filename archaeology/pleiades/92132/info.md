@@ -1,0 +1,14 @@
+# Daroecla
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/92132
+- **ID**: 92132
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Daroecla
+
+## Description
+
+An ancient place, cited: BAtlas 9 unlocated Daroecla Ins.

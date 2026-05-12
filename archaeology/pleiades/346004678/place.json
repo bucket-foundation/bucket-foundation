@@ -1,0 +1,376 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2550536,
+          41.2923868
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-santuario-rupestre-di-silvano",
+      "properties": {
+        "snippet": "Sanctuary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/346004678/osm-location-of-santuario-rupestre-di-silvano",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Santuario rupestre di Silvano"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/11197704404",
+          "citationDetail": "Node 11197704404",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=11197704404",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://poj.peeters-leuven.be/content.php?id=3284851&url=article",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Di Rosa 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56ZKRLKR",
+          "formattedCitation": "<div class=\"csl-entry\">Di Rosa, Andrea. \u201cStrutture rupestri di et\u00e0 romana nel territorio di Terracina (Lazio meridionale).\u201d <i>BABESCH</i> 93 (2018): 165\u2013208. https://doi.org/10.2143/BAB.93.0.3284851.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-santuario-rupestre-di-silvano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location of Santuario rupestre di Silvano",
+      "provenance": "OpenStreetMap (Node 11197704404, version 1, osm:changeset=141382093, 2023-09-17T13:31:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-07-05T16:40:01Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.2550536,
+          41.2923868
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/346004678/osm-location-of-santuario-rupestre-di-silvano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-07T13:31:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-07T03:15:08Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T16:40:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T16:40:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T16:40:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-07-05T16:40:45Z",
+      "associationCertainty": "certain",
+      "title": "Tarracina(e)/Anxur",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/346004678/6453312426",
+      "connectionType": "at",
+      "id": "6453312426",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T16:41:00Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T16:40:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T16:40:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T16:40:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433143",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://poj.peeters-leuven.be/content.php?id=3284851&url=article",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Di Rosa 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56ZKRLKR",
+          "formattedCitation": "<div class=\"csl-entry\">Di Rosa, Andrea. \u201cStrutture rupestri di et\u00e0 romana nel territorio di Terracina (Lazio meridionale).\u201d <i>BABESCH</i> 93 (2018): 165\u2013208. https://doi.org/10.2143/BAB.93.0.3284851.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://poj.peeters-leuven.be/content.php?id=3284851&url=article",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Di Rosa 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56ZKRLKR",
+      "formattedCitation": "<div class=\"csl-entry\">Di Rosa, Andrea. \u201cStrutture rupestri di et\u00e0 romana nel territorio di Terracina (Lazio meridionale).\u201d <i>BABESCH</i> 93 (2018): 165\u2013208. https://doi.org/10.2143/BAB.93.0.3284851.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/90720/",
+      "citationDetail": "90720: Santuario rupestre di Silvano",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pedalareversoilcielo.blogspot.com/2014/09/il-santuario-del-dio-silvano-terracina.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Santuario del Dio Silvano (blog post)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SMSK2E6I",
+      "formattedCitation": "<div class=\"csl-entry\">Pedalare Verso il Cielo. \u201cIl Santuario Del Dio Silvano, a Terracina: Quel Che Resta \u00e8 Abbandonato.,\u201d September 3, 2014. https://pedalareversoilcielo.blogspot.com/2014/09/il-santuario-del-dio-silvano-terracina.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Santuario rupestre di Silvano",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "santuario-rupestre-di-silvano",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-07-06T13:40:48Z",
+      "uri": "https://pleiades.stoa.org/places/346004678/santuario-rupestre-di-silvano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Santuario rupestre di Silvano",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-07T13:31:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-07T03:15:08Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T13:40:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T13:40:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "346004678",
+  "subject": [
+    "Silvanus"
+  ],
+  "title": "Santuario rupestre di Silvano",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called rock-cut sanctuary of Silvanus at Terracina.",
+  "reprPoint": [
+    13.2550536,
+    41.2923868
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    13.2550536,
+    41.2923868,
+    13.2550536,
+    41.2923868
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433143"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-07-05T16:40:43Z",
+  "uri": "https://pleiades.stoa.org/places/346004678",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Santuario del Dio Silvano (blog post) and vici.org",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-10T13:34:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-07T13:31:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-07T03:15:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-07T03:15:02Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-05T16:40:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-05T16:40:43Z"
+    }
+  ]
+}

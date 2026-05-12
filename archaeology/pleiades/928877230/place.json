@@ -1,0 +1,438 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.0857667,
+            50.9803929
+          ],
+          [
+            -1.0857349,
+            50.9804096
+          ],
+          [
+            -1.0857142,
+            50.9804322
+          ],
+          [
+            -1.085707,
+            50.9804579
+          ],
+          [
+            -1.0857128,
+            50.9804811
+          ],
+          [
+            -1.0857298,
+            50.9805021
+          ],
+          [
+            -1.0857562,
+            50.9805187
+          ],
+          [
+            -1.0857894,
+            50.9805294
+          ],
+          [
+            -1.0858263,
+            50.980533
+          ],
+          [
+            -1.0858632,
+            50.9805294
+          ],
+          [
+            -1.0858964,
+            50.9805187
+          ],
+          [
+            -1.0859228,
+            50.9805021
+          ],
+          [
+            -1.0859398,
+            50.9804811
+          ],
+          [
+            -1.0859456,
+            50.9804579
+          ],
+          [
+            -1.0859384,
+            50.9804322
+          ],
+          [
+            -1.0859177,
+            50.9804096
+          ],
+          [
+            -1.0858859,
+            50.9803929
+          ],
+          [
+            -1.085847,
+            50.980384
+          ],
+          [
+            -1.0858056,
+            50.980384
+          ],
+          [
+            -1.0857667,
+            50.9803929
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-bronze-age-barrow",
+      "properties": {
+        "snippet": "Tomb, ; 2500 BC - 800 BC",
+        "link": "https://pleiades.stoa.org/places/928877230/location-of-bronze-age-barrow",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bronze Age barrow"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "bronze-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/bronze-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/236028182",
+          "citationDetail": "Way 236028182",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=236028182",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-bronze-age-barrow",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -800,
+      "title": "OSM location of Bronze Age barrow",
+      "provenance": "OpenStreetMap (Way 236028182, version 4, osm:changeset=71622686, 2019-06-26T05:45:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-09-01T03:32:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.0857667,
+            50.9803929
+          ],
+          [
+            -1.0857349,
+            50.9804096
+          ],
+          [
+            -1.0857142,
+            50.9804322
+          ],
+          [
+            -1.085707,
+            50.9804579
+          ],
+          [
+            -1.0857128,
+            50.9804811
+          ],
+          [
+            -1.0857298,
+            50.9805021
+          ],
+          [
+            -1.0857562,
+            50.9805187
+          ],
+          [
+            -1.0857894,
+            50.9805294
+          ],
+          [
+            -1.0858263,
+            50.980533
+          ],
+          [
+            -1.0858632,
+            50.9805294
+          ],
+          [
+            -1.0858964,
+            50.9805187
+          ],
+          [
+            -1.0859228,
+            50.9805021
+          ],
+          [
+            -1.0859398,
+            50.9804811
+          ],
+          [
+            -1.0859456,
+            50.9804579
+          ],
+          [
+            -1.0859384,
+            50.9804322
+          ],
+          [
+            -1.0859177,
+            50.9804096
+          ],
+          [
+            -1.0858859,
+            50.9803929
+          ],
+          [
+            -1.085847,
+            50.980384
+          ],
+          [
+            -1.0858056,
+            50.980384
+          ],
+          [
+            -1.0857667,
+            50.9803929
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/928877230/location-of-bronze-age-barrow",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T19:12:36Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-27T03:49:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-07-16T21:26:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-03T02:15:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-29T21:56:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T03:35:22Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T03:32:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T03:32:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T03:32:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-07-10T11:38:05Z",
+      "associationCertainty": "certain",
+      "title": "Old Winchester Hill",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/928877230/6854006417",
+      "connectionType": "at",
+      "id": "6854006417",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-10T11:38:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-10T11:38:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-10T11:38:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/460428554",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Old_Winchester_Hill",
+      "citationDetail": "Old Winchester Hill",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "928877230",
+  "subject": [],
+  "title": "Bronze Age Barrow at Old Winchester Hill",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A number of Bronze Age barrow tombs are found within the general area of the Iron Age hill fort.",
+  "reprPoint": [
+    -1.085707,
+    50.9804579
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    -1.085707,
+    50.9804579,
+    -1.085707,
+    50.9804579
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/460428554"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-07-10T11:38:04Z",
+  "uri": "https://pleiades.stoa.org/places/928877230",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-07-16T21:26:19Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2019-07-16T21:26:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-10T14:31:33Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-10T14:31:23Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-10T11:38:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-10T11:38:04Z"
+    }
+  ]
+}

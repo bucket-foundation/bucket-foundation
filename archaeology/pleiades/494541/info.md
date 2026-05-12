@@ -1,0 +1,14 @@
+# Bada
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/494541
+- **ID**: 494541
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Bada
+
+## Description
+
+An ancient place, cited: BAtlas 50 unlocated Bada

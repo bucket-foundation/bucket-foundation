@@ -1,0 +1,469 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              14.9969199,
+              42.0718172
+            ],
+            [
+              14.1507182,
+              42.5497821
+            ],
+            [
+              13.777183,
+              42.4444777
+            ],
+            [
+              13.2113871,
+              42.8203259
+            ],
+            [
+              13.1015238,
+              43.1057353
+            ],
+            [
+              12.5192484,
+              42.6831823
+            ],
+            [
+              12.6291117,
+              42.4566372
+            ],
+            [
+              14.7002891,
+              41.3459814
+            ],
+            [
+              14.9969199,
+              42.0718172
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "undetermined-location",
+      "properties": {
+        "snippet": "Regio-augusti; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/865942280/undetermined-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Undetermined location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "undetermined-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/regio-augusti"
+      ],
+      "end": 300,
+      "title": "Undetermined location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/regio-augusti"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "regio-augusti"
+      ],
+      "description": "",
+      "created": "2019-06-13T22:54:42Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              14.9969199,
+              42.0718172
+            ],
+            [
+              14.1507182,
+              42.5497821
+            ],
+            [
+              13.777183,
+              42.4444777
+            ],
+            [
+              13.2113871,
+              42.8203259
+            ],
+            [
+              13.1015238,
+              43.1057353
+            ],
+            [
+              12.5192484,
+              42.6831823
+            ],
+            [
+              12.6291117,
+              42.4566372
+            ],
+            [
+              14.7002891,
+              41.3459814
+            ],
+            [
+              14.9969199,
+              42.0718172
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/865942280/undetermined-location",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-10T03:19:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-10T03:19:11Z"
+        },
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-10T03:18:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:54:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:54:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-13T22:55:51Z",
+      "associationCertainty": "certain",
+      "title": "Samnium (region)",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/865942280/samnium",
+      "connectionType": "part_of_regional",
+      "id": "samnium",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-10T03:19:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-10T03:19:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:55:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:55:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433078",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/978/1/0#234",
+      "citationDetail": "3.5.46ff.",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Plin., NH (Mayhoff: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AK7HSRG",
+      "formattedCitation": "<div class=\"csl-entry\">Plinius Secundus Maior, C. <i>Naturalis Historiae</i>. Edited by Karl Friedrich Theodor Mayhoff. Bibliotheca Scriptorum Graecorum et Romanorum Teubneriana. Lipsiae: Teubner, 1906. http://latin.packhum.org/loc/978/1/0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Regio_IV_Samnium",
+      "citationDetail": "Regio IV Samnium",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q767422",
+      "citationDetail": "Regio IV Samnium (Q767422)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Buonocore 2010a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A9ED6L74",
+      "formattedCitation": "<div class=\"csl-entry\">Buonocore, Marco. \u201cRegio IV (Sabina et Samnium).\u201d In <i>Le trib\u00f9 romane</i>, 207\u20138. Bari: Edipuglia, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Buonocore 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S82X493F",
+      "formattedCitation": "<div class=\"csl-entry\">Buonocore, Marco. \u201cPer una regio IV Augustea tributim descripta: problemi, dubbi, certezze.\u201d In <i>Le trib\u00f9 romane</i>, 29\u201342. Bari: Edipuglia, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://referenceworks.brillonline.com/entries/brill-s-new-pauly-supplements-i-3/the-augustan-division-of-rome-and-italy-into-regions-BNPA174",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Olshausen 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F6WSF7D8",
+      "formattedCitation": "<div class=\"csl-entry\">Olshausen, E. \u201cThe Augustan Division of Rome and Italy into Regions.\u201d <i>Brill\u2019s New Pauly Supplements I - Volume 3\u202f: Historical Atlas of the Ancient World</i>, December 1, 2011. https://referenceworks.brillonline.com/entries/brill-s-new-pauly-supplements-i-3/the-augustan-division-of-rome-and-italy-into-regions-BNPA174.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Regio IV",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "regio-iv",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2019-06-13T22:55:14Z",
+      "uri": "https://pleiades.stoa.org/places/865942280/regio-iv",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "attested": "Regio IV",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-10T03:19:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-10T03:19:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:55:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:55:14Z"
+        }
+      ]
+    }
+  ],
+  "id": "865942280",
+  "subject": [
+    "Augustan regiones"
+  ],
+  "title": "Italia, Regio IV",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/regio-augusti",
+    "https://pleiades.stoa.org/vocabularies/place-types/region"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the administrative regions from Augustus's division of Italy, comprising Samnium. Described by Pliny the Elder in Book III of his Natural History.",
+  "reprPoint": [
+    13.828282656023628,
+    42.2086378298731
+  ],
+  "placeTypes": [
+    "regio-augusti",
+    "region"
+  ],
+  "bbox": [
+    12.5192484,
+    41.3459814,
+    14.9969199,
+    43.1057353
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433078",
+    "https://pleiades.stoa.org/places/413152",
+    "https://pleiades.stoa.org/places/423028"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-06-13T22:53:54Z",
+  "uri": "https://pleiades.stoa.org/places/865942280",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-29T03:20:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-10T03:19:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-10T03:19:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-10T03:18:57Z"
+    },
+    {
+      "comment": "2 refs. added",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-19T23:18:37Z"
+    },
+    {
+      "comment": "references added",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-19T23:12:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-06-13T22:53:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-06-13T22:53:54Z"
+    }
+  ]
+}

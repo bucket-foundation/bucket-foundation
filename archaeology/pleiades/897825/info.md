@@ -1,0 +1,14 @@
+# Peloriarca/Peloriacha/Peloriarcha/Peloriaca
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/897825
+- **ID**: 897825
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Peloriarca, Peloriacha, Peloriarcha, Peloriaca
+
+## Description
+
+An ancient place, cited: BAtlas 91 unlocated Peloria(r)c(h)a

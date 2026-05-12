@@ -1,0 +1,378 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.5393798,
+            37.950738
+          ],
+          [
+            23.5392725,
+            37.9506839
+          ],
+          [
+            23.5391845,
+            37.9505198
+          ],
+          [
+            23.5391845,
+            37.9503996
+          ],
+          [
+            23.5392167,
+            37.9502406
+          ],
+          [
+            23.5392982,
+            37.9501069
+          ],
+          [
+            23.5394313,
+            37.9500781
+          ],
+          [
+            23.5395021,
+            37.9500375
+          ],
+          [
+            23.5396888,
+            37.95009
+          ],
+          [
+            23.5397875,
+            37.9501221
+          ],
+          [
+            23.5397639,
+            37.9504284
+          ],
+          [
+            23.539633,
+            37.9507025
+          ],
+          [
+            23.5393798,
+            37.950738
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-archaeological-site",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/588883629/osm-location-of-archaeological-site",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of archaeological site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1218847367",
+          "citationDetail": "Way 1218847367",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1218847367",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-archaeological-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of archaeological site",
+      "provenance": "OpenStreetMap (Way 1218847367, version 1, osm:changeset=143224783, 2023-10-27T18:38:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-10-30T18:16:13Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.5393798,
+            37.950738
+          ],
+          [
+            23.5392725,
+            37.9506839
+          ],
+          [
+            23.5391845,
+            37.9505198
+          ],
+          [
+            23.5391845,
+            37.9503996
+          ],
+          [
+            23.5392167,
+            37.9502406
+          ],
+          [
+            23.5392982,
+            37.9501069
+          ],
+          [
+            23.5394313,
+            37.9500781
+          ],
+          [
+            23.5395021,
+            37.9500375
+          ],
+          [
+            23.5396888,
+            37.95009
+          ],
+          [
+            23.5397875,
+            37.9501221
+          ],
+          [
+            23.5397639,
+            37.9504284
+          ],
+          [
+            23.539633,
+            37.9507025
+          ],
+          [
+            23.5393798,
+            37.950738
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/588883629/osm-location-of-archaeological-site",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-03T17:47:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-02T19:40:53Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-30T18:16:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-30T18:16:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-30T18:16:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-02T19:36:07Z",
+      "associationCertainty": "certain",
+      "title": "Salamis (settlement)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/588883629/7674238013",
+      "connectionType": "at",
+      "id": "7674238013",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-02T19:36:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-02T19:36:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-02T19:36:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/580100",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.livescience.com/archaeology/depiction-of-trojan-war-hero-ajax-found-in-1800-year-old-submerged-building-in-greece",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Killgrove 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KL9U7MT7",
+      "formattedCitation": "<div class=\"csl-entry\">Killgrove, Kristina. \u201cDepiction of Trojan War Hero Ajax Found in 1,800-Year-Old Submerged Building in Greece | Live Science,\u201d October 28, 2023. https://www.livescience.com/archaeology/depiction-of-trojan-war-hero-ajax-found-in-1800-year-old-submerged-building-in-greece.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.culture.gov.gr/el/Information/SitePages/view.aspx?nID=4760#prettyPhoto",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "\u039a\u03c4\u03ae\u03c1\u03b9\u03bf \u03b5\u03c0\u03c4\u03ac \u03b4\u03c9\u03bc\u03b1\u03c4\u03af\u03c9\u03bd \u03ad\u03c6\u03b5\u03c1\u03b5 \u03c3\u03c4\u03bf \u03c6\u03c9\u03c2 \u03b7 \u03c5\u03c0\u03bf\u03b2\u03c1\u03cd\u03c7\u03b9\u03b1 \u03ad\u03c1\u03b5\u03c5\u03bd\u03b1 \u03c3\u03c4\u03b7 \u03a3\u03b1\u03bb\u03b1\u03bc\u03af\u03bd\u03b1",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.35.3",
+      "citationDetail": "1.35.3",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "588883629",
+  "subject": [],
+  "title": "Possible hero\u00f6n (Salamis)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>Pausanias (1.35.3) describes a temple (<a class=\"text\" href=\"https://www.perseus.tufts.edu/hopper/morph?l=nao%5Cs&amp;la=greek&amp;can=nao%5Cs0&amp;prior=kai\\\" target=\"morph\">\u03bd\u03b1\u1f78\u03c2</a>) of Ajax at Salamis with an ebony statue.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A seven-room building was brought to light by underwater archaeological research in Salamis. The architectural remains may be those of a hero shrine (hero\u00f6n) connected with the Greek hero Ajax.",
+  "reprPoint": [
+    23.53948720916171,
+    37.950382151065455
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    23.5391845,
+    37.9500375,
+    23.5397875,
+    37.950738
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/580100"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-02T19:36:04Z",
+  "uri": "https://pleiades.stoa.org/places/588883629",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-03T17:47:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-03T17:46:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-02T19:40:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-02T19:40:30Z"
+    },
+    {
+      "comment": "title, summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-02T19:37:52Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-02T19:36:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-02T19:36:04Z"
+    }
+  ]
+}

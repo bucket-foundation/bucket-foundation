@@ -1,0 +1,343 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            7.7494514,
+            36.8828809
+          ],
+          [
+            7.749563,
+            36.8825154
+          ],
+          [
+            7.7499524,
+            36.8825915
+          ],
+          [
+            7.7498409,
+            36.8829569
+          ],
+          [
+            7.7494514,
+            36.8828809
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-macellum-of-hippo-regius",
+      "properties": {
+        "snippet": "Macellum; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/750797338/osm-location-of-macellum-of-hippo-regius",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Macellum of Hippo Regius"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1386288788",
+          "citationDetail": "Way 1386288788",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1386288788",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://commons.wikimedia.org/wiki/File:The_Market_(macellum),_constructed_in_the_1st_century_AD_and_refurbished_in_the_4th_century,_Hippo_Regius,_Africa_Proconsularis,_Algeria_-_52574442837.jpg",
+          "citationDetail": "The Market (macellum), constructed in the 1st century AD and refurbished in the 4th century, Hippo Regius, Africa Proconsularis",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikimedia Commons",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+          "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-macellum-of-hippo-regius",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/macellum"
+      ],
+      "end": 640,
+      "title": "OSM location of Macellum of Hippo Regius",
+      "provenance": "OpenStreetMap (Way 1386288788, version 1, osm:changeset=166219054, 2025-05-13T18:52:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/macellum"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "macellum"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-05-13T18:58:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            7.7494514,
+            36.8828809
+          ],
+          [
+            7.749563,
+            36.8825154
+          ],
+          [
+            7.7499524,
+            36.8825915
+          ],
+          [
+            7.7498409,
+            36.8829569
+          ],
+          [
+            7.7494514,
+            36.8828809
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/750797338/osm-location-of-macellum-of-hippo-regius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-14T10:30:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-14T00:58:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-14T00:38:25Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T19:00:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T18:58:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T18:58:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-05-13T19:00:22Z",
+      "associationCertainty": "certain",
+      "title": "Hippo Regius",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/750797338/8228540886",
+      "connectionType": "at",
+      "id": "8228540886",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T19:00:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T19:00:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T19:00:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/305090",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/File:The_Market_(macellum),_constructed_in_the_1st_century_AD_and_refurbished_in_the_4th_century,_Hippo_Regius,_Africa_Proconsularis,_Algeria_-_52574442837.jpg",
+      "citationDetail": "The Market (macellum), constructed in the 1st century AD and refurbished in the 4th century, Hippo Regius, Africa Proconsularis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/new-approaches-to-the-architectural-design-amenities-and-function-of-macella-typologies-scale-and-the-macellum-magnum/75C1747256BD9D46707E99A6B56E8F6C",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hanson 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UL6DHKNS",
+      "formattedCitation": "<div class=\"csl-entry\">Hanson, J. W. \u201cNew Approaches to the Architectural Design, Amenities, and Function of Macella: Typologies, Scale, and the Macellum Magnum.\u201d <i>Journal of Roman Archaeology</i> 37, no. 2 (December 2024): 478\u2013507. https://doi.org/10.1017/S104775942400031X.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/macellum-roman-food-markets-in-asia-minor-and-the-levant/940BD98C4C0284A5BE9A4A31DBD6ADA6",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richard 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PSAMTM8F",
+      "formattedCitation": "<div class=\"csl-entry\">Richard, Julian. \u201cMacellum / \u039c\u03ac\u03ba\u03b5\u03bb\u03bb\u03bf\u03bd: \u2018Roman\u2019 Food Markets in Asia Minor and the Levant.\u201d <i>Journal of Roman Archaeology</i> 27 (ed 2014): 255\u201374. https://doi.org/10.1017/S1047759414001238.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "750797338",
+  "subject": [],
+  "title": "Macellum of Hippo Regius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/macellum"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Macellum of Hippo Regius originates in the early imperial period and is then renovated in Late Antiquity.",
+  "reprPoint": [
+    7.749701906567506,
+    36.882736181216956
+  ],
+  "placeTypes": [
+    "macellum"
+  ],
+  "bbox": [
+    7.7494514,
+    36.8825154,
+    7.7499524,
+    36.8829569
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/305090"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-05-13T19:00:20Z",
+  "uri": "https://pleiades.stoa.org/places/750797338",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-14T10:30:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-14T10:30:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-14T00:58:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-14T00:38:06Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-14T00:37:32Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-13T19:00:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-13T19:00:20Z"
+    }
+  ]
+}

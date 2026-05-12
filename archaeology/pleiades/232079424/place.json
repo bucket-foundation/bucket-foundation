@@ -1,0 +1,772 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.1270484,
+          37.926248
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-for-ploutonion",
+      "properties": {
+        "snippet": "Shrine; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/232079424/osm-location-for-ploutonion",
+        "description": "Representative location based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Pluto's Gate"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/3930850889",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Node 3930850889",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-for-ploutonion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 640,
+      "title": "OSM location of Pluto's Gate",
+      "provenance": "OpenStreetMap",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Representative location based on a node derived from OpenStreetMap.",
+      "created": "2018-03-15T18:07:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.1270484,
+          37.926248
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/232079424/osm-location-for-ploutonion",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-14T23:13:06Z"
+        },
+        {
+          "comment": "chronology",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-14T23:12:43Z"
+        },
+        {
+          "comment": "summary",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-14T22:57:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-10T17:36:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T18:07:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T18:07:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-05-09T23:27:29Z",
+      "associationCertainty": "certain",
+      "title": "Hierapolis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/232079424/hierapolis",
+      "connectionType": "at",
+      "id": "hierapolis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-14T23:13:07Z"
+        },
+        {
+          "comment": "repointed cnxn to correct Hierapolis (638860)",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-13T16:05:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-10T17:36:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-09T23:27:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-09T23:27:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638860",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Strab.+13.4.14&fromdoc=Perseus%3Atext%3A1999.01.0197",
+      "citationDetail": "13.4.14",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augugtus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A2007.01.0081%3Abook%3D23%3Achapter%3D6%3Asection%3D18",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Amm. Marc. 23.6.18",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A2008.01.0593%3Abook%3D68%3Achapter%3D27%3Asection%3D3",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Cassius Dio 68.27.3",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/978/1/194/2658-2676",
+      "citationDetail": "2.208.5",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Plin., NH (Mayhoff: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AK7HSRG",
+      "formattedCitation": "<div class=\"csl-entry\">Plinius Secundus Maior, C. <i>Naturalis Historiae</i>. Edited by Karl Friedrich Theodor Mayhoff. Bibliotheca Scriptorum Graecorum et Romanorum Teubneriana. Lipsiae: Teubner, 1906. http://latin.packhum.org/loc/978/1/0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aentry%3Dhierapolis",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "PECS (Perseus), HIERAPOLIS (Pamukkale) Turkey",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://tesionline.unicatt.it/handle/10280/6146",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Panarelli 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FRSLY5XB",
+      "formattedCitation": "<div class=\"csl-entry\">Panarelli, Pio. \u201cIL PLOUTONION A HIERAPOLIS DI FRIGIA. LO SCAVO E I MATERIALI,\u201d March 17, 2015. http://tesionline.unicatt.it/handle/10280/6146.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.tandfonline.com/doi/full/10.2752/175169609X12464529903092",
+      "citationDetail": "273",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ustinova 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ARMQNYDK",
+      "formattedCitation": "<div class=\"csl-entry\">Ustinova, Yulia. \u201cCave Experiences and Ancient Greek Oracles.\u201d <i>Time and Mind</i> 2, no. 3 (2009): 265\u201386. https://doi.org/10.2752/175169609X12464529903092.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.hierapolis.unisalento.it/home_page",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "University of Salento Hierapolis Excavations",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Ploutonion_at_Hierapolis",
+      "citationDetail": "Ploutonion at Hierapolis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ploutonion",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Ploutonion_at_Hierapolis",
+          "citationDetail": "Ploutonion at Hierapolis",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Strab.+13.4.14&fromdoc=Perseus%3Atext%3A1999.01.0197",
+          "citationDetail": "13.4.14",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Str. (Meineke: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+          "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2018-03-15.4023733377",
+      "end": 300,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2018-03-15T17:21:45Z",
+      "uri": "https://pleiades.stoa.org/places/232079424/name.2018-03-15.4023733377",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "\u03a0\u03bb\u03bf\u03c5\u03c4\u03ce\u03bd\u03b9\u03bf\u03bd",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "references",
+          "modifiedBy": "jbecker",
+          "modified": "2020-01-13T16:42:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-14T23:13:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-10T17:36:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:51:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:48:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:47:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:22:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:21:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:21:45Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Pluto's Gate",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Ploutonion_at_Hierapolis",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia Ploutonion",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-03-15.8392911203",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-03-15T17:44:07Z",
+      "uri": "https://pleiades.stoa.org/places/232079424/name.2018-03-15.8392911203",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-14T23:13:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-10T17:36:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-10T17:33:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:44:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:44:07Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Plutonium",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Ploutonion_at_Hierapolis",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia Ploutonion",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-03-15.8632729237",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2018-03-15T17:44:29Z",
+      "uri": "https://pleiades.stoa.org/places/232079424/name.2018-03-15.8632729237",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-14T23:13:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-10T17:36:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-05-10T17:35:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:44:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-03-15T17:44:29Z"
+        }
+      ]
+    }
+  ],
+  "id": "232079424",
+  "subject": [
+    "sanctuary",
+    "Kore",
+    "cave",
+    "Pluto"
+  ],
+  "title": "Ploutonion at Hierapolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "<p><span>The Plutonion at Hierapolis is a walled sanctuary dedicated to Pluto and Kore centered around a small subterranean cave. The cave itself contained poisonous gas, which killed any animal which entered it. Strabo, Pliny the Elder, and Cassius Dio all report this phenomenon. Ammianus Marcellinus (23.6.18) seems to indicate that the cave was no longer extant in his time. Ancient sources report a sort of cistern around the cave and a theater built above it (Dio 68.27.3).\u00a0 Evidence at the site suggests that the cave was sealed in the sixth century CE. Recent excavations (2008-2014) uncovered a\u00a0<em>theatron</em> set above a wall with an opening in the center, which is the presumed entrance to the ancient cave. The identification of an inscription dedicated to Pluto and Kore over the opening, and the resemblance to ancient descriptions of the site, positively identifies this site as the Plutonion. These excavations were the latest conducted by the Italian Archaeological Mission, which began in 1957.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Ploutonion at Hierapolis is a walled sanctuary dedicated to Pluto and Kore.",
+  "reprPoint": [
+    29.1270484,
+    37.926248
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "shrine"
+  ],
+  "bbox": [
+    29.1270484,
+    37.926248,
+    29.1270484,
+    37.926248
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638860"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-15T17:19:12Z",
+  "uri": "https://pleiades.stoa.org/places/232079424",
+  "creators": [
+    {
+      "username": null,
+      "name": "Douglas Walter"
+    },
+    {
+      "username": null,
+      "name": "Emily Brod"
+    },
+    {
+      "username": null,
+      "name": "Ye\u015fim Yilmaz"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-14T23:13:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-14T22:56:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-14T03:11:47Z"
+    },
+    {
+      "comment": "regularized references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-13T16:03:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T17:36:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T17:31:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T17:12:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T17:10:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T17:06:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T17:05:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T17:05:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T16:46:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-10T16:44:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-09T23:52:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-09T23:42:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-09T23:42:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-09T23:32:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-09T23:31:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-05-09T23:29:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-03-15T17:48:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-03-15T17:24:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-03-15T17:23:59Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-03-15T17:19:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-03-15T17:19:12Z"
+    }
+  ]
+}

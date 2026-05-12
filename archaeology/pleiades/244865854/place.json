@@ -1,0 +1,447 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.64556,
+          38.6958418
+        ]
+      },
+      "type": "Feature",
+      "id": "karagunduz",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/244865854/karagunduz",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Karag\u00fcnd\u00fcz"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1482093825",
+          "citationDetail": "Node 1482093825",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1482093825",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "karagunduz",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location of Karag\u00fcnd\u00fcz",
+      "provenance": "OpenStreetMap (Node 1482093825, version 5, osm:changeset=56760525, 2018-02-28T16:18:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-05-21T08:51:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.64556,
+          38.6958418
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/244865854/karagunduz",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-14T22:30:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-14T22:29:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:29:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:51:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:51:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:51:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -600,
+      "description": "",
+      "contributors": [],
+      "created": "2020-05-21T08:53:32Z",
+      "associationCertainty": "certain",
+      "title": "Urartu",
+      "start": -900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/244865854/urartu",
+      "connectionType": "part_of_physical",
+      "id": "urartu",
+      "attestations": [
+        {
+          "timePeriod": "urartian-eastern-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/urartian-eastern-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-14T22:30:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:29:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:27:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:53:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:53:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/214160492",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/174421990",
+      "citationDetail": "F 4 No. 56 (p. 15)",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "Kleiss 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WZTF2D3Q",
+      "formattedCitation": "<div class=\"csl-entry\">Kleiss, Wolfram, and Harald Hauptmann. <i>Topographische Karte von Urar\u1e6du: Verzeichnis der Fundorte und Bibliographie</i>. Berlin: Reimer, 1976. http://www.worldcat.org/oclc/174421990.</div>",
+      "otherIdentifier": "",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/Q006894",
+      "citationDetail": "I\u0161puini and Minua: A 03-09 (Q006894)",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/Q006984",
+      "citationDetail": "CTU I A 5-86 (Q006984)",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/428815782",
+      "citationDetail": "p. 124, p. 137-138 (A 3-9), p. 261 (A 5-86) ",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+      "otherIdentifier": "",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q10777024",
+      "citationDetail": "Karag\u00fcnd\u00fcz (Q10777024)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Karag\u00fcnd\u00fcz",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/428815782",
+          "citationDetail": "p. 67",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Salvini 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+          "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus dei testi urartei</i>. 3 vols. Documenta Asiana 8. Roma: CNR\u202f: Istituto di studi sulle civilt\u00e0 dell\u2019Egeo e del Vicino Oriente, 2008. http://www.worldcat.org/oclc/428815782.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "charakonis",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2020-05-21T08:52:46Z",
+      "uri": "https://pleiades.stoa.org/places/244865854/charakonis",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "attested": "Karag\u00fcnd\u00fcz",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-14T22:30:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-14T22:30:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-25T00:36:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:29:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:27:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:52:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:52:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "244865854",
+  "subject": [
+    "Urartean",
+    "Urartian",
+    "Urartu"
+  ],
+  "title": "Karag\u00fcnd\u00fcz",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Karag\u00fcnd\u00fcz (Armenian name: Charakonis) is a modern village on the eastern coast of Lake Erce\u00e7 in southeastern Turkey. Here a stela with an inscription of the Urartian kings I\u0161puini (9th century BCE) and Minua (9th / 8th century BCE) was found which praises the victory over the cites Me\u0161ta, Qua, \u0160aritu, and Nigibi and the land Par\u0161ua and gives detailed information about the numbers of soldiers, spoils and deportees (CTU I A 3-9). Furthermore, a partially preserved stela authored by Minua, son of I\u0161puini, has been found alone (CTU I A 5-86).",
+  "reprPoint": [
+    43.64556,
+    38.6958418
+  ],
+  "placeTypes": [
+    "findspot",
+    "settlement-modern"
+  ],
+  "bbox": [
+    43.64556,
+    38.6958418,
+    43.64556,
+    38.6958418
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/214160492"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-21T08:51:21Z",
+  "uri": "https://pleiades.stoa.org/places/244865854",
+  "creators": [
+    {
+      "username": "bchristiansen2",
+      "homepage": null,
+      "name": "Birgit Christiansen ",
+      "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-14T22:30:23Z"
+    },
+    {
+      "comment": "wikidata Karag\u00fcnd\u00fcz (Q10777024)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-14T22:30:03Z"
+    },
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-14T22:28:25Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-25T00:37:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-27T12:29:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-27T12:28:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-27T12:25:58Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-05-21T08:51:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-05-21T08:51:21Z"
+    }
+  ]
+}

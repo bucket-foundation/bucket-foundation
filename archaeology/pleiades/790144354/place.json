@@ -1,0 +1,649 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.009855,
+            31.835855
+          ],
+          [
+            35.009768,
+            31.835823
+          ],
+          [
+            35.009621,
+            31.835735
+          ],
+          [
+            35.0094866,
+            31.8356344
+          ],
+          [
+            35.009346,
+            31.835593
+          ],
+          [
+            35.009284,
+            31.835543
+          ],
+          [
+            35.009088,
+            31.835473
+          ],
+          [
+            35.00896,
+            31.835461
+          ],
+          [
+            35.008789,
+            31.835473
+          ],
+          [
+            35.008392,
+            31.835609
+          ],
+          [
+            35.008322,
+            31.835651
+          ],
+          [
+            35.008202,
+            31.835755
+          ],
+          [
+            35.0078941,
+            31.8361431
+          ],
+          [
+            35.007641,
+            31.836297
+          ],
+          [
+            35.007596,
+            31.836359
+          ],
+          [
+            35.0075631,
+            31.8364715
+          ],
+          [
+            35.007341,
+            31.836692
+          ],
+          [
+            35.0073,
+            31.836908
+          ],
+          [
+            35.007319,
+            31.836976
+          ],
+          [
+            35.007417,
+            31.837045
+          ],
+          [
+            35.007545,
+            31.8370593
+          ],
+          [
+            35.0077008,
+            31.8370454
+          ],
+          [
+            35.0079231,
+            31.8370032
+          ],
+          [
+            35.0081325,
+            31.8369624
+          ],
+          [
+            35.008277,
+            31.836897
+          ],
+          [
+            35.008827,
+            31.836567
+          ],
+          [
+            35.009132,
+            31.836498
+          ],
+          [
+            35.009424,
+            31.836392
+          ],
+          [
+            35.009501,
+            31.836345
+          ],
+          [
+            35.009572,
+            31.836268
+          ],
+          [
+            35.009738,
+            31.836017
+          ],
+          [
+            35.009855,
+            31.835855
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-khirbet-el-aqd",
+      "properties": {
+        "snippet": "Fort-2; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/790144354/osm-location-khirbet-el-aqd",
+        "description": "Polygon representing the extent of the Khirbet el-'Aqd site, derived from an OpenStreetMap Way after Fischer 2025.",
+        "location_precision": "precise",
+        "title": "OSM Location: Khirbet el-'Aqd"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1450103663",
+          "citationDetail": "Way 1450103663",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1450103663",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://worldcat.org/oclc/1536166639",
+          "citationDetail": "pages 2-7",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fischer 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NPEGLF59",
+          "formattedCitation": "<div class=\"csl-entry\">Fischer, Moshe, and Oren Tal. <i>Khirbet El-\u2019Aqd: A Hellenistic-Roman Stronghold in Western Judea</i>. Horizons: TAU Archaeological Series, no. 6. Tel Aviv: The Institute of Archaeology, Tel Aviv University = Sonia and Marco Nadler Institute of Archaeology, 2025. http://worldcat.org/oclc/1536166639.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-khirbet-el-aqd",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 300,
+      "title": "OSM Location: Khirbet el-'Aqd",
+      "provenance": "OpenStreetMap (Way 1450103663, version 1, osm:changeset=174575118, 2025-11-12T19:45:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Polygon representing the extent of the Khirbet el-'Aqd site, derived from an OpenStreetMap Way after Fischer 2025.",
+      "created": "2025-11-12T19:45:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.009855,
+            31.835855
+          ],
+          [
+            35.009768,
+            31.835823
+          ],
+          [
+            35.009621,
+            31.835735
+          ],
+          [
+            35.0094866,
+            31.8356344
+          ],
+          [
+            35.009346,
+            31.835593
+          ],
+          [
+            35.009284,
+            31.835543
+          ],
+          [
+            35.009088,
+            31.835473
+          ],
+          [
+            35.00896,
+            31.835461
+          ],
+          [
+            35.008789,
+            31.835473
+          ],
+          [
+            35.008392,
+            31.835609
+          ],
+          [
+            35.008322,
+            31.835651
+          ],
+          [
+            35.008202,
+            31.835755
+          ],
+          [
+            35.0078941,
+            31.8361431
+          ],
+          [
+            35.007641,
+            31.836297
+          ],
+          [
+            35.007596,
+            31.836359
+          ],
+          [
+            35.0075631,
+            31.8364715
+          ],
+          [
+            35.007341,
+            31.836692
+          ],
+          [
+            35.0073,
+            31.836908
+          ],
+          [
+            35.007319,
+            31.836976
+          ],
+          [
+            35.007417,
+            31.837045
+          ],
+          [
+            35.007545,
+            31.8370593
+          ],
+          [
+            35.0077008,
+            31.8370454
+          ],
+          [
+            35.0079231,
+            31.8370032
+          ],
+          [
+            35.0081325,
+            31.8369624
+          ],
+          [
+            35.008277,
+            31.836897
+          ],
+          [
+            35.008827,
+            31.836567
+          ],
+          [
+            35.009132,
+            31.836498
+          ],
+          [
+            35.009424,
+            31.836392
+          ],
+          [
+            35.009501,
+            31.836345
+          ],
+          [
+            35.009572,
+            31.836268
+          ],
+          [
+            35.009738,
+            31.836017
+          ],
+          [
+            35.009855,
+            31.835855
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/790144354/osm-location-khirbet-el-aqd",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-14T12:21:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:47:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:47:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:46:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:45:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:45:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://worldcat.org/oclc/1536166639",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fischer 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NPEGLF59",
+      "formattedCitation": "<div class=\"csl-entry\">Fischer, Moshe, and Oren Tal. <i>Khirbet El-\u2019Aqd: A Hellenistic-Roman Stronghold in Western Judea</i>. Horizons: TAU Archaeological Series, no. 6. Tel Aviv: The Institute of Archaeology, Tel Aviv University = Sonia and Marco Nadler Institute of Archaeology, 2025. http://worldcat.org/oclc/1536166639.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Horvat_%27Eqed",
+      "citationDetail": "Horvat 'Eqed",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Horvat 'Eqed, Horvat Eqed",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q20502583",
+          "citationDetail": "Horvat Eqed",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "horvat-eqed",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "Hebrew name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "he",
+      "created": "2025-11-12T19:35:06Z",
+      "uri": "https://pleiades.stoa.org/places/790144354/horvat-eqed",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u05d7\u05d5\u05e8\u05d1\u05ea \u05e2\u05e7\u05d3",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-14T12:21:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:47:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:38:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:35:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:35:06Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Khirbet el-\u02bbAqd, Khirbet al-\u02bbAqd, Khurbet el \u02beAkid",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q20502583",
+          "citationDetail": "Horvat Eqed",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "khirbet-el-aqd",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Arabic name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2025-11-12T19:37:35Z",
+      "uri": "https://pleiades.stoa.org/places/790144354/khirbet-el-aqd",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u062e\u0631\u0628\u0629 \u0627\u0644\u0639\u0642\u062f",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-14T12:21:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:47:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:37:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-11-12T19:37:35Z"
+        }
+      ]
+    }
+  ],
+  "id": "790144354",
+  "subject": [],
+  "title": "Khirbet el-\u02bfAqd",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Fort located near ancient Emmaus in the West Bank, constructed in the Hellenistic period and expanded with additional fortifications during the Roman period.",
+  "reprPoint": [
+    35.00853091768964,
+    31.836264780131042
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    35.0073,
+    31.835461,
+    35.009855,
+    31.8370593
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-12T19:32:53Z",
+  "uri": "https://pleiades.stoa.org/places/790144354",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-14T12:21:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2025-11-12T19:47:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2025-11-12T19:47:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2025-11-12T19:38:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2025-11-12T19:37:48Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2025-11-12T19:32:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2025-11-12T19:32:53Z"
+    }
+  ]
+}

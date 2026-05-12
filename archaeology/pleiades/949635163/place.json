@@ -1,0 +1,279 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.6918792,
+          37.8070268
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-barnavos-chamber-tomb-c1749",
+      "properties": {
+        "snippet": "Tomb; 1600 BC - 1200 BC",
+        "link": "https://pleiades.stoa.org/places/949635163/osm-location-of-barnavos-chamber-tomb-c1749",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Barnavos, Chamber Tomb C1749"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-helladic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-helladic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/12585438254",
+          "citationDetail": "Node 12585438254",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=12585438254",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-barnavos-chamber-tomb-c1749",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -1200,
+      "title": "OSM location of Barnavos, Chamber Tomb C1749",
+      "provenance": "OpenStreetMap (Node 12585438254, version 1, osm:changeset=162473771, 2025-02-13T16:47:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-02-13T16:49:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.6918792,
+          37.8070268
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/949635163/osm-location-of-barnavos-chamber-tomb-c1749",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-14T15:41:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:05:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:05:40Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-13T16:49:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-13T16:49:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-13T16:49:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-02-14T03:02:26Z",
+      "associationCertainty": "certain",
+      "title": "Nemea",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/949635163/1469712807",
+      "connectionType": "west_of",
+      "id": "1469712807",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:06:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:02:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:02:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T03:02:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570504",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://muse.jhu.edu/pub/55/article/830501",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wright et al. 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z9Q67F2N",
+          "formattedCitation": "<div class=\"csl-entry\">Wright, James C., Evangelia Pappi, Sevasti Triantaphyllou, Mary K. Dabney, Panagiotis Karkanas, Georgia Kotzamani, and Alexandra Livarda. \u201cNemea Valley Archaeological Project, Excavations at Barnavos: Final Report.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 77, no. 4 (2008): 607\u201354. https://doi.org/10.2972/hesp.77.4.607.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/west_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://muse.jhu.edu/pub/55/article/830501",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wright et al. 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z9Q67F2N",
+      "formattedCitation": "<div class=\"csl-entry\">Wright, James C., Evangelia Pappi, Sevasti Triantaphyllou, Mary K. Dabney, Panagiotis Karkanas, Georgia Kotzamani, and Alexandra Livarda. \u201cNemea Valley Archaeological Project, Excavations at Barnavos: Final Report.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 77, no. 4 (2008): 607\u201354. https://doi.org/10.2972/hesp.77.4.607.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/44466/",
+      "citationDetail": "44466: Barnavos, Chamber Tomb C1749",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "949635163",
+  "subject": [],
+  "title": "Barnavos, Chamber Tomb C1749",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A chamber tomb was excavated to the west of ancient Nemea in 2002 and 2003. The robbed tomb was dated to the Late Helladic IIIA2 period (ca. 1390\u20131315 BC BCE).",
+  "reprPoint": [
+    22.6918792,
+    37.8070268
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    22.6918792,
+    37.8070268,
+    22.6918792,
+    37.8070268
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570504"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-14T03:02:25Z",
+  "uri": "https://pleiades.stoa.org/places/949635163",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-14T15:41:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T03:05:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T03:05:16Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T03:02:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T03:02:25Z"
+    }
+  ]
+}

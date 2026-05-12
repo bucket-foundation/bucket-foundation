@@ -1,0 +1,14 @@
+# Libertinensis Plebs
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/321673
+- **ID**: 321673
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Libertinensis Plebs
+
+## Description
+
+An ancient place, cited: BAtlas 32 unlocated Libertinensis Plebs

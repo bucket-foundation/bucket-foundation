@@ -1,0 +1,14 @@
+# Barake (islands)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/59732
+- **ID**: 59732
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Barake
+
+## Description
+
+An ancient place, cited: BAtlas 6 B5 Barake Inss.

@@ -1,0 +1,14 @@
+# 117
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/856288
+- **ID**: 856288
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 87 L2 no. 117 (Taman' 6 RUS)

@@ -1,0 +1,14 @@
+# Kome
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/536090
+- **ID**: 536090
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kome
+
+## Description
+
+An ancient place, cited: BAtlas 54 unlocated Kome

@@ -1,0 +1,364 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7897332,
+          38.3978793
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-heroon-of-eretria",
+      "properties": {
+        "snippet": "Shrine; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/523458668/osm-location-of-the-heroon-of-eretria",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of The Heroon of Eretria"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4406600462",
+          "citationDetail": "Node 4406600462",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4406600462",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.perseus.tufts.edu/hopper/artifact?name=Eretria%2C+Heroon&object=Building",
+          "citationDetail": "Eretria, Heroon (Building)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Perseus",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6HMSFDS",
+          "formattedCitation": "<div class=\"csl-entry\">Crane, Gregory R., ed. <i>Perseus Digital Library</i>. Boston: Tufts University, 1985. http://www.perseus.tufts.edu/hopper/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-the-heroon-of-eretria",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": -550,
+      "title": "OSM location of The Heroon of Eretria",
+      "provenance": "OpenStreetMap (Node 4406600462, version 9, osm:changeset=140205998, 2023-08-22T02:05:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-04-01T16:18:03Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.7897332,
+          38.3978793
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/523458668/osm-location-of-the-heroon-of-eretria",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-04T17:16:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:25:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:20:14Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:18:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:18:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:18:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-01T16:20:17Z",
+      "associationCertainty": "certain",
+      "title": "The West Quarter",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/523458668/4170842001",
+      "connectionType": "at",
+      "id": "4170842001",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:20:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:20:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:20:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/523458667",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.perseus.tufts.edu/hopper/artifact?name=Eretria%2C+Heroon&object=Building",
+      "citationDetail": "Eretria, Heroon (Building)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Perseus",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6HMSFDS",
+      "formattedCitation": "<div class=\"csl-entry\">Crane, Gregory R., ed. <i>Perseus Digital Library</i>. Boston: Tufts University, 1985. http://www.perseus.tufts.edu/hopper/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "B\u00e9rard 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SSFGHFGB",
+      "formattedCitation": "<div class=\"csl-entry\">B\u00e9rard, C. \u201cTopographie et urbanisme de l\u2019Er\u00e9trie archa\u00efque. L\u2019h\u00e9ro\u00f4n.\u201d In <i>Eretria. Ausgrabungen und Forschungen, 6</i>, 89\u201395, Taf. Bern: Francke, 1978.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "B\u00e9rard 1970",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FRSRDVHH",
+      "formattedCitation": "<div class=\"csl-entry\">B\u00e9rard, Claude. <i>L\u2019H\u00e9r\u00f4on \u00e0 la porte de l \u2019ouest</i>. Eretria 3. Berne: Francke, 1970.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Heroon",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "B\u00e9rard 1970",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FRSRDVHH",
+          "formattedCitation": "<div class=\"csl-entry\">B\u00e9rard, Claude. <i>L\u2019H\u00e9r\u00f4on \u00e0 la porte de l \u2019ouest</i>. Eretria 3. Berne: Francke, 1970.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "heroon",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2024-04-01T16:24:46Z",
+      "uri": "https://pleiades.stoa.org/places/523458668/heroon",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "H\u00e9r\u00f4on",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-04T17:16:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:25:05Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:24:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-01T16:24:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "523458668",
+  "subject": [],
+  "title": "Heroon of Eretria",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A triangular enclosure with approximately 19 burials (both cremation and inhumation) dating to the Geometric period (ca. 750 BC - ca. 630 BC).",
+  "reprPoint": [
+    23.7897332,
+    38.3978793
+  ],
+  "placeTypes": [
+    "tomb",
+    "shrine"
+  ],
+  "bbox": [
+    23.7897332,
+    38.3978793,
+    23.7897332,
+    38.3978793
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/523458667"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-01T16:20:16Z",
+  "uri": "https://pleiades.stoa.org/places/523458668",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-04T17:16:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-01T16:25:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-01T16:23:58Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-01T16:23:42Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-01T16:20:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-01T16:20:16Z"
+    }
+  ]
+}

@@ -1,0 +1,507 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.903396,
+          38.976413
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-centre-of-settlement",
+      "properties": {
+        "snippet": "Unknown; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/155598151/imagery-location-centre-of-settlement",
+        "description": "B\u00e9quignon (1937, 322-324).",
+        "location_precision": "precise",
+        "title": "Imagery Location: Centre of settlement"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.902645,
+              38.976338
+            ],
+            [
+              21.902956,
+              38.976236
+            ],
+            [
+              21.903238,
+              38.976201
+            ],
+            [
+              21.903479,
+              38.976209
+            ],
+            [
+              21.903774,
+              38.976261
+            ],
+            [
+              21.90386,
+              38.976363
+            ],
+            [
+              21.903895,
+              38.976511
+            ],
+            [
+              21.903292,
+              38.976545
+            ],
+            [
+              21.90286,
+              38.976403
+            ],
+            [
+              21.902645,
+              38.976338
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-circuit-wall",
+      "properties": {
+        "snippet": "Unknown; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/155598151/imagery-location-circuit-wall",
+        "description": "As described by B\u00e9quignon (1937, 322-324; Fig. 16).",
+        "location_precision": "precise",
+        "title": "Imagery Location: Circuit wall"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "B\u00e9quignon (1937, 322-324; Fig. 16).",
+          "otherIdentifier": "B\u00e9quignon 1937",
+          "type": "cites"
+        }
+      ],
+      "id": "imagery-location-centre-of-settlement",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": -30,
+      "title": "Imagery Location: Centre of settlement",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2010",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "B\u00e9quignon (1937, 322-324).",
+      "created": "2011-09-15T07:42:12Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.903396,
+          38.976413
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/155598151/imagery-location-centre-of-settlement",
+      "creators": [
+        {
+          "username": "komponisto",
+          "homepage": null,
+          "name": "Robin Iversen R\u00f6nnlund",
+          "uri": "https://pleiades.stoa.org/author/komponisto"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:31:27Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T00:09:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-12T21:48:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2011-09-21T17:11:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "komponisto",
+          "modified": "2011-09-15T07:43:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "komponisto",
+          "modified": "2011-09-15T07:42:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "komponisto",
+          "modified": "2011-09-15T07:42:12Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "B\u00e9quignon (1937, 322-324; Fig. 16).",
+          "otherIdentifier": "B\u00e9quignon 1937",
+          "type": "cites"
+        }
+      ],
+      "id": "imagery-location-circuit-wall",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 2100,
+      "title": "Imagery Location: Circuit wall",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>Fragmentary circuit wall, rectangular blocks.</p>\r\n<p>As described by B\u00e9quignon (1937, 322-324; Fig. 16).</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2010",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "As described by B\u00e9quignon (1937, 322-324; Fig. 16).",
+      "created": "2024-03-12T18:53:35Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              21.902645,
+              38.976338
+            ],
+            [
+              21.902956,
+              38.976236
+            ],
+            [
+              21.903238,
+              38.976201
+            ],
+            [
+              21.903479,
+              38.976209
+            ],
+            [
+              21.903774,
+              38.976261
+            ],
+            [
+              21.90386,
+              38.976363
+            ],
+            [
+              21.903895,
+              38.976511
+            ],
+            [
+              21.903292,
+              38.976545
+            ],
+            [
+              21.90286,
+              38.976403
+            ],
+            [
+              21.902645,
+              38.976338
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/155598151/imagery-location-circuit-wall",
+      "creators": [
+        {
+          "username": "komponisto",
+          "homepage": null,
+          "name": "Robin Iversen R\u00f6nnlund",
+          "uri": "https://pleiades.stoa.org/author/komponisto"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "completed polygon geometry",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-12T18:55:28Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:31:27Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T00:09:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-12T21:48:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2011-09-21T17:12:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "komponisto",
+          "modified": "2011-09-15T07:45:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "komponisto",
+          "modified": "2011-09-15T07:39:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "komponisto",
+          "modified": "2011-09-15T07:32:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "komponisto",
+          "modified": "2011-09-15T07:32:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "224-225",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "St\u00e4hlin 1924",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/75DXF39V",
+      "formattedCitation": "<div class=\"csl-entry\">St\u00e4hlin, Friedrich. <i>Das Hellenische Thessalien: Landeskundliche Und Geschichtliche Beschreibung Thessaliens in Der Hellenischen Und R\u00f6mischen Zeit</i>. Unver\u00e4nderter Nachdruck d. Amsterdam: A. M. Hakkert, 1924.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "322-324; Fig. 16",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "B\u00e9quignon 1937",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZP63SP92",
+      "formattedCitation": "<div class=\"csl-entry\">B\u00e9quignon, Yves. <i>La Vall\u00e9e Du Spercheios Des Origines Au IVe Si\u00e8cle: \u00c9tudes d\u2019arch\u00e9ologie et de Topographic</i>. Biblioth\u00e8que Des \u00c9coles Fran\u00e7aises d\u2019Ath\u00e8nes et de Rome 144. Paris: E. de Boccard, 1937.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://inscriptions.packhum.org/text/148092?&bookid=10&location=1698",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "IG IX,2 1336",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "155598151",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=fort"
+  ],
+  "title": "Palaiokastro",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "<p>Fragmentary remains of circuit wall, some tombs and inscriptions.</p>\r\n<p>St\u00e4hlin (1924, 224-225); B\u00e9quignon (1937, 322-324; Fig. 16);\u00a0<span class=\"s1\"><em>I.</em></span><em>G.\u00a0</em><span class=\"s2\">IX\u00a0</span>2 1336-1339.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement/fortress descibed by St\u00e4hlin (1924, 224-225); B\u00e9quignon (1937, 322-324; Fig. 16).",
+  "reprPoint": [
+    21.90337345072177,
+    38.976390711453554
+  ],
+  "placeTypes": [
+    "settlement",
+    "fort"
+  ],
+  "bbox": [
+    21.902645,
+    38.976201,
+    21.903895,
+    38.976545
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2011-09-15T07:26:20Z",
+  "uri": "https://pleiades.stoa.org/places/155598151",
+  "creators": [
+    {
+      "username": "komponisto",
+      "homepage": null,
+      "name": "Robin Iversen R\u00f6nnlund",
+      "uri": "https://pleiades.stoa.org/author/komponisto"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added links to references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-23T00:12:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2012-12-06T15:18:39Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T22:16:21Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:31:27Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:09:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2011-12-12T21:48:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "komponisto",
+      "modified": "2011-09-15T07:46:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "komponisto",
+      "modified": "2011-09-15T07:26:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "komponisto",
+      "modified": "2011-09-15T07:26:20Z"
+    }
+  ]
+}

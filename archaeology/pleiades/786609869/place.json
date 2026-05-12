@@ -1,0 +1,360 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.2252872,
+            36.4269917
+          ],
+          [
+            36.2253042,
+            36.4268031
+          ],
+          [
+            36.2250655,
+            36.4265012
+          ],
+          [
+            36.2247458,
+            36.4264635
+          ],
+          [
+            36.2246179,
+            36.426515
+          ],
+          [
+            36.2245497,
+            36.4269677
+          ],
+          [
+            36.2247117,
+            36.4271118
+          ],
+          [
+            36.2249675,
+            36.4271495
+          ],
+          [
+            36.2251636,
+            36.4270912
+          ],
+          [
+            36.2252872,
+            36.4269917
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bagras-castle",
+      "properties": {
+        "snippet": "Fort, ; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/786609869/osm-location-of-bagras-castle",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bagras Castle"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/219558575",
+          "citationDetail": "Way 219558575",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=219558575",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bagras-castle",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 1453,
+      "title": "OSM location of Bagras Castle",
+      "provenance": "OpenStreetMap (Way 219558575, version 5, osm:changeset=138021705, 2023-07-02T12:30:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2016-11-07T17:46:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.2252872,
+            36.4269917
+          ],
+          [
+            36.2253042,
+            36.4268031
+          ],
+          [
+            36.2250655,
+            36.4265012
+          ],
+          [
+            36.2247458,
+            36.4264635
+          ],
+          [
+            36.2246179,
+            36.426515
+          ],
+          [
+            36.2245497,
+            36.4269677
+          ],
+          [
+            36.2247117,
+            36.4271118
+          ],
+          [
+            36.2249675,
+            36.4271495
+          ],
+          [
+            36.2251636,
+            36.4270912
+          ],
+          [
+            36.2252872,
+            36.4269917
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/786609869/osm-location-of-bagras-castle",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-23T19:09:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-05T22:27:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-11-07T17:59:42Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-11-07T17:47:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-11-07T17:46:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-11-07T17:46:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 1453,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-05T17:36:43Z",
+      "associationCertainty": "certain",
+      "title": "Pagrae",
+      "start": 640,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/786609869/0030442053",
+      "connectionType": "succeeds",
+      "id": "0030442053",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-05T17:39:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-05T17:38:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-05T17:36:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-05T17:36:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-05T17:36:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/658564",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Bagras",
+          "citationDetail": "Bagras",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Bagras",
+      "citationDetail": "Bagras",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "786609869",
+  "subject": [],
+  "title": "Bagras Castle",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Bagras Castle is located in Turkey's \u0130skenderun district in the Amanus Mountains. The tenth-century castle was rebuilt in the twelfth century.",
+  "reprPoint": [
+    36.22490988529397,
+    36.42681326520273
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    36.2245497,
+    36.4264635,
+    36.2253042,
+    36.4271495
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/658564"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-08-05T17:36:40Z",
+  "uri": "https://pleiades.stoa.org/places/786609869",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-08-05T22:27:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-05T17:39:26Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-05T17:38:20Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-05T17:36:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-05T17:36:40Z"
+    }
+  ]
+}

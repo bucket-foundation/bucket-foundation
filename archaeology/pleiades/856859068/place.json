@@ -1,0 +1,817 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            44.4236063,
+            32.5397459
+          ],
+          [
+            44.4236133,
+            32.5395628
+          ],
+          [
+            44.4237487,
+            32.5395608
+          ],
+          [
+            44.4237184,
+            32.5397459
+          ],
+          [
+            44.4236063,
+            32.5397459
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-way-851556461",
+      "properties": {
+        "snippet": "Temple-2; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/856859068/osm-way-851556461",
+        "description": "Location based on OpenStreetMap Way 851556461.",
+        "location_precision": "precise",
+        "title": "OSM location of Temple D II"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/851556461",
+          "citationDetail": "Way 851556461",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=851556461",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-way-851556461",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -540,
+      "title": "OSM location of Temple D II",
+      "provenance": "OpenStreetMap (Way 851556461, version 1, osm:changeset=91515628, 2020-09-25T14:22:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap Way 851556461.",
+      "created": "2021-01-25T09:12:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            44.4236063,
+            32.5397459
+          ],
+          [
+            44.4236133,
+            32.5395628
+          ],
+          [
+            44.4237487,
+            32.5395608
+          ],
+          [
+            44.4237184,
+            32.5397459
+          ],
+          [
+            44.4236063,
+            32.5397459
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/856859068/osm-way-851556461",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-26T18:01:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:16:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:15:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:14:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:12:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:12:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-25T08:58:39Z",
+      "associationCertainty": "certain",
+      "title": "Babylon",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/856859068/babylon",
+      "connectionType": "part_of_physical",
+      "id": "babylon",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-26T18:01:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:16:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T08:58:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T08:58:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893951",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q000305",
+          "citationDetail": "Tintir IV",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-25T09:00:57Z",
+      "associationCertainty": "certain",
+      "title": "Eniggidrukalamasuma",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/856859068/eniggidrukalamasuma",
+      "connectionType": "abuts",
+      "id": "eniggidrukalamasuma",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-26T18:01:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:16:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:00:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:00:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/568355929",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "34 fig. 2.2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G4TYAF5Z",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Babylon: The Great City</i>. M\u00fcnster: Zaphon, 2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-25T09:02:02Z",
+      "associationCertainty": "certain",
+      "title": "Ay-ib\u016br-\u0161ab\u00fb",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/856859068/ay-ibur-sabu",
+      "connectionType": "abuts",
+      "id": "ay-ibur-sabu",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-26T18:01:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:16:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:02:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:02:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/33309869",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "34 fig. 2.2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G4TYAF5Z",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Babylon: The Great City</i>. M\u00fcnster: Zaphon, 2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2021-01-26T16:10:48Z",
+      "associationCertainty": "certain",
+      "title": "Ka-dingirra",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/856859068/ka-dingirra",
+      "connectionType": "part_of_physical",
+      "id": "ka-dingirra",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T16:58:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T16:58:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T07:49:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-26T16:10:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-26T16:10:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/54136920",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q000305",
+          "citationDetail": "Tintir IV",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/btto/Q000305",
+      "citationDetail": "Tintir IV",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "BTTo ",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "141\u2013142",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peders\u00e9n 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G4TYAF5Z",
+      "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Babylon: The Great City</i>. M\u00fcnster: Zaphon, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883572295",
+      "citationDetail": "99",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+      "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/803804468",
+      "citationDetail": "312\u2013313",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+      "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ehilikalamma",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q000305",
+          "citationDetail": "Tintir IV",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ehilikalamma",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "The Sumerian ceremonial name of the temple of the goddess A\u0161ratu at Babylon is Ehilikalamma, which means \u201cHouse of the Luxuriance of the Land.\u201d",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2021-01-25T09:05:31Z",
+      "uri": "https://pleiades.stoa.org/places/856859068/ehilikalamma",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-26T18:01:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:38:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:38:53Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:38:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:16:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:05:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:05:31Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "b\u012bt A\u0161ratum",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q000305",
+          "citationDetail": "Tintir IV",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "bit-asratum",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "Everyday name of \u201cthe temple of the goddess A\u0161ratu.\u201d",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2021-01-25T09:07:38Z",
+      "uri": "https://pleiades.stoa.org/places/856859068/bit-asratum",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-26T18:01:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:16:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:07:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:07:38Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Temple D II",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/803804468",
+          "citationDetail": "312\u2013313",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 1992",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+          "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-d-ii",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Iraqi excavators referred to the small temple abutting the Nab\u00fb temple Eniggidrukalamasuma as Temple D II.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2021-01-25T09:10:42Z",
+      "uri": "https://pleiades.stoa.org/places/856859068/temple-d-ii",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-26T18:01:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:42:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:42:05Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:41:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:16:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:10:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-25T09:10:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "856859068",
+  "subject": [
+    "ANE",
+    "Babylonian"
+  ],
+  "title": "Ehilikalamma",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>Iraqi\u00a0excavators unearthed and reconstructed this 260 m\u00b2 temple in 1979\u201381.\u00a0The identification of the building as the temple of the goddess A\u0161ratu is based on the fact that the Babylonian topographical text Tintir = Babylon Tablet IV lists four temples in the Ka-dingirra district (modern Sahn). Because the other three temples in this part of Babylon (<a href=\"../../../568355929\" target=\"_self\">Eniggidrukalamasuma</a>,\u00a0<a href=\"../../../213534097\" target=\"_self\">Ema\u0161dari</a>, and <a class=\"external-link\" href=\"https://pleiades.stoa.org/places/452038953\" target=\"_self\" title=\"\">Emah</a>)\u00a0have been securely identified from in-situ inscriptions, it is plausible that Ehilikalamma should be identified with Temple D II.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The temple of the goddess A\u0161ratu, Ehilikalamma (\u201cHouse of the Luxuriance of the Land\u201d), was located in the Ka-dingirra district (modern Sahn) of Babylon. According to the Babylonian topographical text Tintir = Babylon Tablet IV, this was one of four temples in that part of the city, which was located in the northern part of the eastern half of Babylon.",
+  "reprPoint": [
+    44.42367245990868,
+    32.53965037555811
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    44.4236063,
+    32.5395608,
+    44.4237487,
+    32.5397459
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893951",
+    "https://pleiades.stoa.org/places/568355929",
+    "https://pleiades.stoa.org/places/33309869",
+    "https://pleiades.stoa.org/places/54136920"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-01-25T08:57:01Z",
+  "uri": "https://pleiades.stoa.org/places/856859068",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-26T18:01:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-25T09:16:32Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-25T08:57:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-25T08:57:01Z"
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.2929152,
+            36.5288025
+          ],
+          [
+            -6.2928846,
+            36.5287965
+          ],
+          [
+            -6.2928922,
+            36.5287728
+          ],
+          [
+            -6.2928746,
+            36.5287676
+          ],
+          [
+            -6.2929134,
+            36.5286803
+          ],
+          [
+            -6.292968,
+            36.5285556
+          ],
+          [
+            -6.2929774,
+            36.5285361
+          ],
+          [
+            -6.2930477,
+            36.5285553
+          ],
+          [
+            -6.29304,
+            36.5285707
+          ],
+          [
+            -6.2930295,
+            36.5285913
+          ],
+          [
+            -6.2929588,
+            36.5287313
+          ],
+          [
+            -6.2929379,
+            36.5287701
+          ],
+          [
+            -6.2929308,
+            36.5287675
+          ],
+          [
+            -6.2929185,
+            36.5287948
+          ],
+          [
+            -6.2929152,
+            36.5288025
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-arco-de-los-blancos",
+      "properties": {
+        "snippet": "Arch; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/663803333/osm-location-of-arco-de-los-blancos",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Arco de los Blancos"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/698881371",
+          "citationDetail": "Way 698881371",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=698881371",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-arco-de-los-blancos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/arch"
+      ],
+      "end": 300,
+      "title": "OSM location of Arco de los Blancos",
+      "provenance": "OpenStreetMap (Way 698881371, version 8, osm:changeset=141497580, 2023-09-20T07:02:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/arch"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "arch"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-06-13T01:43:38Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.2929152,
+            36.5288025
+          ],
+          [
+            -6.2928846,
+            36.5287965
+          ],
+          [
+            -6.2928922,
+            36.5287728
+          ],
+          [
+            -6.2928746,
+            36.5287676
+          ],
+          [
+            -6.2929134,
+            36.5286803
+          ],
+          [
+            -6.292968,
+            36.5285556
+          ],
+          [
+            -6.2929774,
+            36.5285361
+          ],
+          [
+            -6.2930477,
+            36.5285553
+          ],
+          [
+            -6.29304,
+            36.5285707
+          ],
+          [
+            -6.2930295,
+            36.5285913
+          ],
+          [
+            -6.2929588,
+            36.5287313
+          ],
+          [
+            -6.2929379,
+            36.5287701
+          ],
+          [
+            -6.2929308,
+            36.5287675
+          ],
+          [
+            -6.2929185,
+            36.5287948
+          ],
+          [
+            -6.2929152,
+            36.5288025
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/663803333/osm-location-of-arco-de-los-blancos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-10T14:19:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-13T01:44:03Z"
+        },
+        {
+          "comment": "supersedes previously published location.",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-13T01:43:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-13T01:43:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-13T01:43:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-12T14:54:10Z",
+      "associationCertainty": "certain",
+      "title": "Gadeira/Gades/Col. Augusta Gaditana",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/663803333/2500795907",
+      "connectionType": "at",
+      "id": "2500795907",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-12T14:54:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-12T14:54:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-12T14:54:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256177",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Arco_de_los_Blanco",
+      "citationDetail": "Arco de los Blanco",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Arco de los Blanco.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Arco_de_los_Blanco",
+      "citationDetail": "Arco de los Blanco",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "663803333",
+  "subject": [
+    "Arch",
+    "extant remains"
+  ],
+  "title": "Arco de los Blanco",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/arch"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman gateway.",
+  "reprPoint": [
+    -6.29295492661919,
+    36.52866781608686
+  ],
+  "placeTypes": [
+    "arch"
+  ],
+  "bbox": [
+    -6.2930477,
+    36.5285361,
+    -6.2928746,
+    36.5288025
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256177"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-12T14:54:08Z",
+  "uri": "https://pleiades.stoa.org/places/663803333",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-14T10:21:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T14:57:17Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T14:56:59Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T14:54:23Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T14:54:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T14:54:08Z"
+    }
+  ]
+}

@@ -1,0 +1,886 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              23.7265112,
+              37.9718884
+            ],
+            [
+              23.7265273,
+              37.9718904
+            ],
+            [
+              23.7265087,
+              37.9719856
+            ],
+            [
+              23.7264927,
+              37.9719837
+            ],
+            [
+              23.7265112,
+              37.9718884
+            ]
+          ],
+          [
+            [
+              23.7264954,
+              37.9718865
+            ],
+            [
+              23.7264921,
+              37.9719034
+            ],
+            [
+              23.7263736,
+              37.971889
+            ],
+            [
+              23.7263769,
+              37.9718721
+            ],
+            [
+              23.7264954,
+              37.9718865
+            ]
+          ],
+          [
+            [
+              23.7263616,
+              37.9719505
+            ],
+            [
+              23.7263583,
+              37.9719674
+            ],
+            [
+              23.7264768,
+              37.9719818
+            ],
+            [
+              23.7264801,
+              37.9719649
+            ],
+            [
+              23.7263616,
+              37.9719505
+            ]
+          ],
+          [
+            [
+              23.7263635,
+              37.9719409
+            ],
+            [
+              23.726482,
+              37.9719552
+            ],
+            [
+              23.7264902,
+              37.971913
+            ],
+            [
+              23.7263717,
+              37.9718987
+            ],
+            [
+              23.7263635,
+              37.9719409
+            ]
+          ],
+          [
+            [
+              23.7263494,
+              37.9719297
+            ],
+            [
+              23.7263424,
+              37.9719655
+            ],
+            [
+              23.7262712,
+              37.9719569
+            ],
+            [
+              23.7262782,
+              37.9719211
+            ],
+            [
+              23.7263494,
+              37.9719297
+            ]
+          ],
+          [
+            [
+              23.7262898,
+              37.9718616
+            ],
+            [
+              23.726361,
+              37.9718702
+            ],
+            [
+              23.7263521,
+              37.9719157
+            ],
+            [
+              23.7262809,
+              37.9719071
+            ],
+            [
+              23.7262898,
+              37.9718616
+            ]
+          ],
+          [
+            [
+              23.7261719,
+              37.9719448
+            ],
+            [
+              23.7261542,
+              37.9719427
+            ],
+            [
+              23.7261728,
+              37.9718474
+            ],
+            [
+              23.7262739,
+              37.9718597
+            ],
+            [
+              23.7262554,
+              37.9719549
+            ],
+            [
+              23.7261878,
+              37.9719468
+            ],
+            [
+              23.7262046,
+              37.9718604
+            ],
+            [
+              23.7261888,
+              37.9718585
+            ],
+            [
+              23.7261719,
+              37.9719448
+            ]
+          ],
+          [
+            [
+              23.7261359,
+              37.9719533
+            ],
+            [
+              23.7261594,
+              37.971833
+            ],
+            [
+              23.7265456,
+              37.9718798
+            ],
+            [
+              23.7265222,
+              37.972
+            ],
+            [
+              23.7261359,
+              37.9719533
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-archaeological-site",
+      "properties": {
+        "snippet": "Temple-2; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/929024657/osm-location-archaeological-site",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: archaeological site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/12352551",
+          "citationDetail": "Relation 12352551",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=12352551",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-archaeological-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 2099,
+      "title": "OSM Location: archaeological site",
+      "provenance": "OpenStreetMap (Relation 12352551, version 2, osm:changeset=143077271, 2023-10-24T18:04:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-04-25T23:08:28Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              23.7265112,
+              37.9718884
+            ],
+            [
+              23.7265273,
+              37.9718904
+            ],
+            [
+              23.7265087,
+              37.9719856
+            ],
+            [
+              23.7264927,
+              37.9719837
+            ],
+            [
+              23.7265112,
+              37.9718884
+            ]
+          ],
+          [
+            [
+              23.7264954,
+              37.9718865
+            ],
+            [
+              23.7264921,
+              37.9719034
+            ],
+            [
+              23.7263736,
+              37.971889
+            ],
+            [
+              23.7263769,
+              37.9718721
+            ],
+            [
+              23.7264954,
+              37.9718865
+            ]
+          ],
+          [
+            [
+              23.7263616,
+              37.9719505
+            ],
+            [
+              23.7263583,
+              37.9719674
+            ],
+            [
+              23.7264768,
+              37.9719818
+            ],
+            [
+              23.7264801,
+              37.9719649
+            ],
+            [
+              23.7263616,
+              37.9719505
+            ]
+          ],
+          [
+            [
+              23.7263635,
+              37.9719409
+            ],
+            [
+              23.726482,
+              37.9719552
+            ],
+            [
+              23.7264902,
+              37.971913
+            ],
+            [
+              23.7263717,
+              37.9718987
+            ],
+            [
+              23.7263635,
+              37.9719409
+            ]
+          ],
+          [
+            [
+              23.7263494,
+              37.9719297
+            ],
+            [
+              23.7263424,
+              37.9719655
+            ],
+            [
+              23.7262712,
+              37.9719569
+            ],
+            [
+              23.7262782,
+              37.9719211
+            ],
+            [
+              23.7263494,
+              37.9719297
+            ]
+          ],
+          [
+            [
+              23.7262898,
+              37.9718616
+            ],
+            [
+              23.726361,
+              37.9718702
+            ],
+            [
+              23.7263521,
+              37.9719157
+            ],
+            [
+              23.7262809,
+              37.9719071
+            ],
+            [
+              23.7262898,
+              37.9718616
+            ]
+          ],
+          [
+            [
+              23.7261719,
+              37.9719448
+            ],
+            [
+              23.7261542,
+              37.9719427
+            ],
+            [
+              23.7261728,
+              37.9718474
+            ],
+            [
+              23.7262739,
+              37.9718597
+            ],
+            [
+              23.7262554,
+              37.9719549
+            ],
+            [
+              23.7261878,
+              37.9719468
+            ],
+            [
+              23.7262046,
+              37.9718604
+            ],
+            [
+              23.7261888,
+              37.9718585
+            ],
+            [
+              23.7261719,
+              37.9719448
+            ]
+          ],
+          [
+            [
+              23.7261359,
+              37.9719533
+            ],
+            [
+              23.7261594,
+              37.971833
+            ],
+            [
+              23.7265456,
+              37.9718798
+            ],
+            [
+              23.7265222,
+              37.972
+            ],
+            [
+              23.7261359,
+              37.9719533
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/929024657/osm-location-archaeological-site",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-26T21:54:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:27:41Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:22:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:10:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:08:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:08:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:08:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -550,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-25T23:07:29Z",
+      "associationCertainty": "certain",
+      "title": "Acropolis of Athens",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/929024657/acropolis-of-athens",
+      "connectionType": "on",
+      "id": "acropolis-of-athens",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-26T21:54:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:27:41Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:22:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:10:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:07:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:07:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638356144",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "106-112, 120-122, 134-135",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hurwit 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+      "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/Building-democracy-in-late-archaic-Athens/oclc/1310141860",
+      "citationDetail": "33-38",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Paga 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5RYCD32C",
+      "formattedCitation": "<div class=\"csl-entry\">Paga, Jessica. <i>Building Democracy in Late Archaic Athens</i>. New York: Oxford University Press, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.3764/aja.124.1.0003",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "van Rookhuijzen 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VQDJJZTT",
+      "formattedCitation": "<div class=\"csl-entry\">Rookhuijzen, Jan Z. van. \u201cThe Parthenon Treasury on the Acropolis of Athens.\u201d <i>American Journal of Archaeology</i> 124, no. 1 (2020): 3\u201335. https://doi.org/10.3764/aja.124.1.0003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "D\u00f6rpfeld foundations",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "109-111",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "dorpfeld-foundations",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-04-25T23:10:03Z",
+      "uri": "https://pleiades.stoa.org/places/929024657/dorpfeld-foundations",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "D\u00f6rpfeld foundations",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-26T21:54:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:27:41Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:22:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:10:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:10:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-25T23:10:03Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Archaios Neos",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "120-122",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Hurwit 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4V538JUD",
+          "formattedCitation": "<div class=\"csl-entry\">Hurwit, Jeffrey M. <i>The Athenian Acropolis: History, Mythology, and Archaeology from the Neolithic Era to the Present</i>. Cambridge: Cambridge University Press, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "archaios-neos",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-04-26T23:11:57Z",
+      "uri": "https://pleiades.stoa.org/places/929024657/archaios-neos",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "Archaios Neos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-30T20:21:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:12:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:12:32Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:12:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:12:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:11:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-26T23:11:57Z"
+        }
+      ]
+    }
+  ],
+  "id": "929024657",
+  "subject": [],
+  "title": "D\u00f6rpfeld foundations",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The foundations of a 6th century BC temple on the Acropolis of Athens, dedicated to Athena Polias. It is disputed whether these foundations belong to the same structure as the 6th-century BC architectural fragments known as the Bluebeard temple. At the end of the 6th century, the foundations were reused for another temple of Athena Polias, the Archaios Neos, which was destroyed by the Persians in 480 BC.",
+  "reprPoint": [
+    23.726348727011185,
+    37.9719174799216
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    23.7261359,
+    37.971833,
+    23.7265456,
+    37.972
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638356144",
+    "https://pleiades.stoa.org/places/418714189",
+    "https://pleiades.stoa.org/places/418714190",
+    "https://pleiades.stoa.org/places/929024658"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-25T23:06:59Z",
+  "uri": "https://pleiades.stoa.org/places/929024657",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-26T21:54:10Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-26T02:24:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-25T23:27:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-25T23:27:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-25T23:23:47Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-25T23:22:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-25T23:10:52Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-25T23:07:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-25T23:06:59Z"
+    }
+  ]
+}

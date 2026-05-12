@@ -1,0 +1,528 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.2052,
+          35.9372
+        ]
+      },
+      "type": "Feature",
+      "id": "tall-faqus",
+      "properties": {
+        "snippet": "Findspot",
+        "link": "https://pleiades.stoa.org/places/86964097/tall-faqus",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Tall Faq\u016bs"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.2049616,
+            35.9366414
+          ],
+          [
+            38.2052266,
+            35.9364568
+          ],
+          [
+            38.2053437,
+            35.9364468
+          ],
+          [
+            38.2064775,
+            35.9374696
+          ],
+          [
+            38.2064529,
+            35.9379386
+          ],
+          [
+            38.206724,
+            35.9380933
+          ],
+          [
+            38.2067055,
+            35.9383228
+          ],
+          [
+            38.2057935,
+            35.9388317
+          ],
+          [
+            38.2053745,
+            35.938672
+          ],
+          [
+            38.2053745,
+            35.9385523
+          ],
+          [
+            38.2049062,
+            35.938213
+          ],
+          [
+            38.2046535,
+            35.9377041
+          ],
+          [
+            38.2047521,
+            35.9372102
+          ],
+          [
+            38.2049616,
+            35.9366414
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-faqous",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/86964097/osm-location-of-tell-faqous",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Faq'ous"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/744704236",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Margueron 1982",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N8FTIGRV",
+          "formattedCitation": "<div class=\"csl-entry\">Margueron, Jean. \u201cAux marches de l\u2019empire hittite: un campagne de fouile \u00e0 tell Faq\u2019ous (Syrie), citadelle du pays d\u2019Astata.\u201d In <i>La Syrie au bronze r\u00e9cent: recueil publi\u00e9 \u00e0 l\u2019occasion du cinquantenaire de la d\u00e9couverte d\u2019Ougarit-Ras Shamra\u202f: extraits de la XXVIIe Rencontre assyriologique internationale, Paris, juillet 1980\u202f: protohistoire du Levant</i>, 47\u201366. M\u00e9moire (\u00c9ditions Recherche sur les civilisations) 15. Paris: \u00c9ditions Recherche sur les civilisations, 1982. https://www.worldcat.org/oclc/744704236.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tall-faqus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "end": null,
+      "title": "CIGS location of Tall Faq\u016bs",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "findspot"
+      ],
+      "description": "",
+      "created": "2024-01-12T00:01:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.2052,
+          35.9372
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/86964097/tall-faqus",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-12T15:17:37Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-12T00:01:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-05T17:12:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-05T15:05:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-05T15:04:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-05T15:04:41Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1148905716",
+          "citationDetail": "Way 1148905716",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1148905716",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-faqous",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Tell Faq'ous",
+      "provenance": "OpenStreetMap (Way 1148905716, version 2, osm:changeset=132937202, 2023-02-23T17:41:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-01-12T15:18:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.2049616,
+            35.9366414
+          ],
+          [
+            38.2052266,
+            35.9364568
+          ],
+          [
+            38.2053437,
+            35.9364468
+          ],
+          [
+            38.2064775,
+            35.9374696
+          ],
+          [
+            38.2064529,
+            35.9379386
+          ],
+          [
+            38.206724,
+            35.9380933
+          ],
+          [
+            38.2067055,
+            35.9383228
+          ],
+          [
+            38.2057935,
+            35.9388317
+          ],
+          [
+            38.2053745,
+            35.938672
+          ],
+          [
+            38.2053745,
+            35.9385523
+          ],
+          [
+            38.2049062,
+            35.938213
+          ],
+          [
+            38.2046535,
+            35.9377041
+          ],
+          [
+            38.2047521,
+            35.9372102
+          ],
+          [
+            38.2049616,
+            35.9366414
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/86964097/osm-location-of-tell-faqous",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-23T21:28:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-12T15:18:40Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-12T15:18:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-12T15:18:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-12T15:18:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/744704236",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Margueron 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N8FTIGRV",
+      "formattedCitation": "<div class=\"csl-entry\">Margueron, Jean. \u201cAux marches de l\u2019empire hittite: un campagne de fouile \u00e0 tell Faq\u2019ous (Syrie), citadelle du pays d\u2019Astata.\u201d In <i>La Syrie au bronze r\u00e9cent: recueil publi\u00e9 \u00e0 l\u2019occasion du cinquantenaire de la d\u00e9couverte d\u2019Ougarit-Ras Shamra\u202f: extraits de la XXVIIe Rencontre assyriologique internationale, Paris, juillet 1980\u202f: protohistoire du Levant</i>, 47\u201366. M\u00e9moire (\u00c9ditions Recherche sur les civilisations) 15. Paris: \u00c9ditions Recherche sur les civilisations, 1982. https://www.worldcat.org/oclc/744704236.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://cdli.mpiwg-berlin.mpg.de/proveniences/964",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "CDLI: Provenience: uncertain (mod. Tall Faq\u016bs)",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tall Faq\u016bs",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/744704236",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Margueron 1982",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N8FTIGRV",
+          "formattedCitation": "<div class=\"csl-entry\">Margueron, Jean. \u201cAux marches de l\u2019empire hittite: un campagne de fouile \u00e0 tell Faq\u2019ous (Syrie), citadelle du pays d\u2019Astata.\u201d In <i>La Syrie au bronze r\u00e9cent: recueil publi\u00e9 \u00e0 l\u2019occasion du cinquantenaire de la d\u00e9couverte d\u2019Ougarit-Ras Shamra\u202f: extraits de la XXVIIe Rencontre assyriologique internationale, Paris, juillet 1980\u202f: protohistoire du Levant</i>, 47\u201366. M\u00e9moire (\u00c9ditions Recherche sur les civilisations) 15. Paris: \u00c9ditions Recherche sur les civilisations, 1982. https://www.worldcat.org/oclc/744704236.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tall-faqus-1",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for Arabic (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2024-01-05T15:05:17Z",
+      "uri": "https://pleiades.stoa.org/places/86964097/tall-faqus-1",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u062a\u0644 \u0641\u0642\u0648\u0633",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-05T17:12:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-05T15:05:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-05T15:05:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-05T15:05:17Z"
+        }
+      ]
+    }
+  ],
+  "id": "86964097",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Tall Faq\u016bs",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "",
+  "reprPoint": [
+    38.20541864894527,
+    35.937450987804844
+  ],
+  "placeTypes": [
+    "findspot",
+    "archaeological-site"
+  ],
+  "bbox": [
+    38.2046535,
+    35.9364468,
+    38.206724,
+    35.9388317
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-01-05T15:00:49Z",
+  "uri": "https://pleiades.stoa.org/places/86964097",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-12T15:20:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-01-05T17:12:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2024-01-05T15:05:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cjohansson",
+      "modified": "2024-01-05T15:05:25Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2024-01-05T15:00:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2024-01-05T15:00:49Z"
+    }
+  ]
+}

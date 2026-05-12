@@ -1,0 +1,14 @@
+# Lakimai
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/554269
+- **ID**: 554269
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Lakimai
+
+## Description
+
+An ancient place, cited: BAtlas 56 unlocated *Lakimai

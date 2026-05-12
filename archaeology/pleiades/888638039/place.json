@@ -1,0 +1,388 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.72802998875472,
+              34.749765667262906
+            ],
+            [
+              40.72812043370095,
+              34.749612666688954
+            ],
+            [
+              40.728499169158454,
+              34.749757205359025
+            ],
+            [
+              40.728411238946464,
+              34.749912798570705
+            ],
+            [
+              40.72802998875472,
+              34.749765667262906
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "total-station-and-photogrammetric-location-of-f5-barracks",
+      "properties": {
+        "snippet": "Barracks; AD 200 - AD 299",
+        "link": "https://pleiades.stoa.org/places/888638039/total-station-and-photogrammetric-location-of-f5-barracks",
+        "description": "Total station data collected in 2008 by Jennifer Baird,\u00a0Ben Gourley, Simon James, and Dan Stewart, funded by the Leverhulme Trust and the Society for the Promotion of Roman Studies.",
+        "location_precision": "precise",
+        "title": "Total Station and Photogrammetric Location of F5 Barracks"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "total-station-and-photogrammetric-location-of-f5-barracks",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/barracks"
+      ],
+      "end": 299,
+      "title": "Total Station and Photogrammetric Location of F5 Barracks",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/barracks"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/ydea-chen-nominal-5m",
+      "featureType": [
+        "barracks"
+      ],
+      "description": "Total station data collected in 2008 by Jennifer Baird,\u00a0Ben Gourley, Simon James, and Dan Stewart, funded by the Leverhulme Trust and the Society for the Promotion of Roman Studies.",
+      "created": "2022-12-05T22:54:35Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.72802998875472,
+              34.749765667262906
+            ],
+            [
+              40.72812043370095,
+              34.749612666688954
+            ],
+            [
+              40.728499169158454,
+              34.749757205359025
+            ],
+            [
+              40.728411238946464,
+              34.749912798570705
+            ],
+            [
+              40.72802998875472,
+              34.749765667262906
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/888638039/total-station-and-photogrammetric-location-of-f5-barracks",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T17:13:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T17:13:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T16:14:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2022-12-05T22:54:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-12-05T22:54:39Z",
+      "associationCertainty": "certain",
+      "title": "D(o)ura/Europos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/888638039/douraeuropos",
+      "connectionType": "at",
+      "id": "douraeuropos",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T17:13:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T17:13:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2022-12-05T22:54:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893990",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-12-05T22:54:39Z",
+      "associationCertainty": "certain",
+      "title": "Block F5",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/888638039/block-f5",
+      "connectionType": "part_of_physical",
+      "id": "block-f5",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T17:13:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T17:13:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2022-12-05T22:54:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/451190323",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-12-05T22:54:39Z",
+      "associationCertainty": "certain",
+      "title": "Military Base",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/888638039/military-base",
+      "connectionType": "part_of_physical",
+      "id": "military-base",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T17:13:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T17:13:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2022-12-05T22:54:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/451190407",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1084757192",
+      "citationDetail": "p. 156",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "James 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/UM57GCTF",
+      "formattedCitation": "James, Simon. The Roman Military Base at Dura-Europos, Syria: An Archaeological Visualization. Oxford, New York: Oxford University Press, 2019.",
+      "otherIdentifier": "978-0-19-874356-9",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "888638039",
+  "subject": [
+    "YDEA project"
+  ],
+  "title": "F5 Barracks",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/barracks"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Military barracks located north of the camp wall in the northern part of Block K5 at Dura-Europos.",
+  "reprPoint": [
+    40.72826541676512,
+    34.74976230053141
+  ],
+  "placeTypes": [
+    "barracks"
+  ],
+  "bbox": [
+    40.72802998875472,
+    34.749612666688954,
+    40.728499169158454,
+    34.749912798570705
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893990",
+    "https://pleiades.stoa.org/places/451190323",
+    "https://pleiades.stoa.org/places/451190407"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-12-05T22:54:34Z",
+  "uri": "https://pleiades.stoa.org/places/888638039",
+  "creators": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-19T17:13:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-19T17:13:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "achen",
+      "modified": "2022-12-05T22:54:34Z"
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            47.9604552,
+            34.5004894
+          ],
+          [
+            47.9577729,
+            34.500873
+          ],
+          [
+            47.9584787,
+            34.5024687
+          ],
+          [
+            47.9586107,
+            34.5027671
+          ],
+          [
+            47.9589308,
+            34.5027191
+          ],
+          [
+            47.9590879,
+            34.5029445
+          ],
+          [
+            47.9597977,
+            34.5026808
+          ],
+          [
+            47.9601177,
+            34.5026856
+          ],
+          [
+            47.9609731,
+            34.5025609
+          ],
+          [
+            47.960717,
+            34.5017793
+          ],
+          [
+            47.9604552,
+            34.5004894
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-anahita-temple",
+      "properties": {
+        "snippet": "Temple-2",
+        "link": "https://pleiades.stoa.org/places/261829930/osm-location-of-anahita-temple",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Anahita Temple"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/345763292",
+          "citationDetail": "Way 345763292",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=345763292",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-anahita-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": null,
+      "title": "OSM location of Anahita Temple",
+      "provenance": "OpenStreetMap (Way 345763292, version 5, osm:changeset=100932845, 2021-03-12T21:08:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-24T00:35:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            47.9604552,
+            34.5004894
+          ],
+          [
+            47.9577729,
+            34.500873
+          ],
+          [
+            47.9584787,
+            34.5024687
+          ],
+          [
+            47.9586107,
+            34.5027671
+          ],
+          [
+            47.9589308,
+            34.5027191
+          ],
+          [
+            47.9590879,
+            34.5029445
+          ],
+          [
+            47.9597977,
+            34.5026808
+          ],
+          [
+            47.9601177,
+            34.5026856
+          ],
+          [
+            47.9609731,
+            34.5025609
+          ],
+          [
+            47.960717,
+            34.5017793
+          ],
+          [
+            47.9604552,
+            34.5004894
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/261829930/osm-location-of-anahita-temple",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-17T23:49:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-17T23:16:37Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-17T20:46:25Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-22T01:02:57Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-24T00:35:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-24T00:35:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-24T00:35:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-09-24T00:35:31Z",
+      "associationCertainty": "certain",
+      "title": "[Kangavar]/Concobar",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/261829930/7317983390",
+      "connectionType": "at",
+      "id": "7317983390",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-24T00:35:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-24T00:35:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-24T00:35:31Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/903054",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Anahita,_Kangavar",
+      "citationDetail": "Temple of Anahita, Kangavar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1077215",
+      "citationDetail": "Temple of Anahita at Kangavar (Q1077215)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/tentativelists/5189/",
+      "citationDetail": "5189: Historic Monument of Kangavar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHTL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QM4PHLAJ",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage Tentative Lists</i>. Accessed October 25, 2023. https://whc.unesco.org/en/tentativelists/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "261829930",
+  "subject": [
+    "UWHS Submitted"
+  ],
+  "title": "Anahita Temple",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A platform temple located at Kang\u0101var in the Kermanshah Province of Iran. Some scholars associate the site with the divinity Anahita.",
+  "reprPoint": [
+    47.95943832746686,
+    34.50167189030435
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    47.9577729,
+    34.5004894,
+    47.9609731,
+    34.5029445
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/903054"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-24T00:35:30Z",
+  "uri": "https://pleiades.stoa.org/places/261829930",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-17T23:49:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-17T23:16:37Z"
+    },
+    {
+      "comment": "WHTL",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-17T23:16:31Z"
+    },
+    {
+      "comment": "wikdata Q1077215",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-17T23:15:26Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-22T01:04:33Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-24T00:35:54Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-24T00:35:32Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-24T00:35:30Z"
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.1037582,
+          56.2328139
+        ]
+      },
+      "type": "Feature",
+      "id": "tarasov-mound-site",
+      "properties": {
+        "snippet": "Archaeological-site, Cemetery, Sanctuary, Settlement; 1000 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/839594249/tarasov-mound-site",
+        "description": "Point based on an OpenStreetMap node representing the Tarasov Mound Site after Goldina 2013.",
+        "location_precision": "precise",
+        "title": "OSM location of Tarasov Mound Site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9870635278",
+          "citationDetail": "Node 9870635278",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9870635278",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/889427560",
+          "citationDetail": "pages 6-9",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Goldina 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XKHQ2AYY",
+          "formattedCitation": "<div class=\"csl-entry\">Goldina, R. D, T.A. Kolobova, O.A. Kazantseva, A.E. Mumryakov, and B.A. Shamalov. <i>Tarasovskoe sviatilishche rannego zheleznogo veka v Srednem Prikam\u2019e</i>. Material\u2019i i issledovannia Kamsko-Vyatskoi Arkheologicheskoi Ekspeditsii, Tom 26. Izhevsk: \u0423\u0434\u043c\u0443\u0440\u0442\u0441\u043a\u0438\u0439 \u0433\u043e\u0441\u0443\u0434\u0430\u0440\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442, 2013. http://www.worldcat.org/oclc/889427560.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tarasov-mound-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1,
+      "title": "OSM location of Tarasov Mound Site",
+      "provenance": "OpenStreetMap (Node 9870635278, version 3, osm:changeset=123285221, 2022-07-06T16:34:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "cemetery",
+        "sanctuary",
+        "settlement"
+      ],
+      "description": "Point based on an OpenStreetMap node representing the Tarasov Mound Site after Goldina 2013.",
+      "created": "2022-07-06T16:35:12Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.1037582,
+          56.2328139
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/839594249/tarasov-mound-site",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-06T20:54:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T16:37:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T16:37:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T16:35:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T16:35:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/889427560",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goldina 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XKHQ2AYY",
+      "formattedCitation": "<div class=\"csl-entry\">Goldina, R. D, T.A. Kolobova, O.A. Kazantseva, A.E. Mumryakov, and B.A. Shamalov. <i>Tarasovskoe sviatilishche rannego zheleznogo veka v Srednem Prikam\u2019e</i>. Material\u2019i i issledovannia Kamsko-Vyatskoi Arkheologicheskoi Ekspeditsii, Tom 26. Izhevsk: \u0423\u0434\u043c\u0443\u0440\u0442\u0441\u043a\u0438\u0439 \u0433\u043e\u0441\u0443\u0434\u0430\u0440\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0443\u043d\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442, 2013. http://www.worldcat.org/oclc/889427560.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "839594249",
+  "subject": [],
+  "title": "Tarasov Mound Site",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Area with 17 Early Iron Age mounds located near the modern village Tarasovo and the Kama river in Russia's Udmurtia state. All mounds had settlements except Tarasov I, which was the location of a religious sanctuary and cemetery. The site has been partially destroyed by oil digging in the area.",
+  "reprPoint": [
+    54.1037582,
+    56.2328139
+  ],
+  "placeTypes": [
+    "settlement",
+    "sanctuary",
+    "cemetery",
+    "archaeological-site"
+  ],
+  "bbox": [
+    54.1037582,
+    56.2328139,
+    54.1037582,
+    56.2328139
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-06T16:34:25Z",
+  "uri": "https://pleiades.stoa.org/places/839594249",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-06T20:54:36Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-06T20:54:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-06T16:37:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-06T16:34:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-06T16:34:25Z"
+    }
+  ]
+}

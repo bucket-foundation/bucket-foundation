@@ -1,0 +1,443 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.3973897,
+            35.0839823
+          ],
+          [
+            40.3967375,
+            35.0841475
+          ],
+          [
+            40.3960466,
+            35.0854181
+          ],
+          [
+            40.3955031,
+            35.0866824
+          ],
+          [
+            40.3959068,
+            35.0867459
+          ],
+          [
+            40.3967764,
+            35.086784
+          ],
+          [
+            40.3977624,
+            35.0859899
+          ],
+          [
+            40.3979409,
+            35.0854308
+          ],
+          [
+            40.3980574,
+            35.0850941
+          ],
+          [
+            40.3980574,
+            35.084516
+          ],
+          [
+            40.398267,
+            35.0840649
+          ],
+          [
+            40.3973897,
+            35.0839823
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-bouqras",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/264512380/osm-location-of-tell-bouqras",
+        "description": "Polygon representing the approximate boundaries of the Bouqras site, derived from an OpenStreetMap way following Roodenberg 1986.",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Bouqras"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/492145749",
+          "citationDetail": "Way 492145749",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=492145749",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/18911593",
+          "citationDetail": "8-10",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Roodenberg 1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4TUQUCT",
+          "formattedCitation": "<div class=\"csl-entry\">Roodenberg, J.J. <i>Le mobilier en pierre de Bouqras\u202f: utilisation de la pierre dans un site ne\u0301olithique sur le Moyen Euphrate (Syrie)</i>. Uitgaven van het Nederlands Historisch-Archaeologisch Instituut te I\u0307stanbul 61. Istanbul: Nederlands Historisch-Archaeologisch Instituut te Istanbul, 1986. http://www.worldcat.org/oclc/18911593.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-tell-bouqras",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "OSM location of Tell Bouqras",
+      "provenance": "OpenStreetMap (Way 492145749, version 1, osm:changeset=48505788, 2017-05-08T15:48:42Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the approximate boundaries of the Bouqras site, derived from an OpenStreetMap way following Roodenberg 1986.",
+      "created": "2017-05-08T16:00:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.3973897,
+            35.0839823
+          ],
+          [
+            40.3967375,
+            35.0841475
+          ],
+          [
+            40.3960466,
+            35.0854181
+          ],
+          [
+            40.3955031,
+            35.0866824
+          ],
+          [
+            40.3959068,
+            35.0867459
+          ],
+          [
+            40.3967764,
+            35.086784
+          ],
+          [
+            40.3977624,
+            35.0859899
+          ],
+          [
+            40.3979409,
+            35.0854308
+          ],
+          [
+            40.3980574,
+            35.0850941
+          ],
+          [
+            40.3980574,
+            35.084516
+          ],
+          [
+            40.398267,
+            35.0840649
+          ],
+          [
+            40.3973897,
+            35.0839823
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/264512380/osm-location-of-tell-bouqras",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-05-09T19:13:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-05-09T19:11:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-05-08T16:09:42Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-05-08T16:01:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2017-05-08T16:00:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-05-08T16:00:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/18911593",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Roodenberg 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4TUQUCT",
+      "formattedCitation": "<div class=\"csl-entry\">Roodenberg, J.J. <i>Le mobilier en pierre de Bouqras\u202f: utilisation de la pierre dans un site ne\u0301olithique sur le Moyen Euphrate (Syrie)</i>. Uitgaven van het Nederlands Historisch-Archaeologisch Instituut te I\u0307stanbul 61. Istanbul: Nederlands Historisch-Archaeologisch Instituut te Istanbul, 1986. http://www.worldcat.org/oclc/18911593.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Bouqras",
+      "citationDetail": "Bouqras",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Bouqras.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/proceedings-of-the-prehistoric-society/article/bouqras-revisited-preliminary-report-on-a-project-in-eastern-syria/EEF446CFC06DC9FAD2FD26A27B3D337E",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Akkermans 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SIC2JMUI",
+      "formattedCitation": "<div class=\"csl-entry\">Akkermans, P.A., J.A.K. Boerma, A.T. Clason, and S.G. Hill. \u201cBouqras Revisited: Preliminary Report on a Project in Eastern Syria.\u201d <i>Proceedings of the Prehistoric Society</i> 49 (1983): 335\u201372. doi:https://doi.org/10.1017/S0079497X00008045.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tell Bouqras, Tell Boqras, Tell Boqruss, Tell Buqru\u015f",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/proceedings-of-the-prehistoric-society/article/bouqras-revisited-preliminary-report-on-a-project-in-eastern-syria/EEF446CFC06DC9FAD2FD26A27B3D337E",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Akkermans 1983",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SIC2JMUI",
+          "formattedCitation": "<div class=\"csl-entry\">Akkermans, P.A., J.A.K. Boerma, A.T. Clason, and S.G. Hill. \u201cBouqras Revisited: Preliminary Report on a Project in Eastern Syria.\u201d <i>Proceedings of the Prehistoric Society</i> 49 (1983): 335\u201372. doi:https://doi.org/10.1017/S0079497X00008045.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.discover-syria.com/bank/4653",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Discover Syria 2010",
+          "bibliographicURI": "",
+          "formattedCitation": "Discover Syria. \".\u062a\u0644 \u0628\u0642\u0631\u0635\" Discover Syria. 2010.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tell-bouqras",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2017-05-08T16:09:26Z",
+      "uri": "https://pleiades.stoa.org/places/264512380/tell-bouqras",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u062a\u0644 \u0628\u0642\u0631\u0635",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-05-09T19:13:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-05-09T19:12:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-05-08T16:09:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-05-08T16:09:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-05-08T16:09:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "264512380",
+  "subject": [],
+  "title": "Bouqras",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Neolithic tell site in eastern Syria, inhabited from ca. 7400-6200 BCE.",
+  "reprPoint": [
+    40.39694310611836,
+    35.08541152324175
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    40.3955031,
+    35.0839823,
+    40.398267,
+    35.086784
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-05-08T15:59:56Z",
+  "uri": "https://pleiades.stoa.org/places/264512380",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-09T19:13:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-09T19:10:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-09T19:07:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2017-05-08T16:09:42Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2017-05-08T16:00:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2017-05-08T15:59:56Z"
+    }
+  ]
+}

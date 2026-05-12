@@ -1,0 +1,854 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.48333,
+          41.9
+        ]
+      },
+      "type": "Feature",
+      "id": "quirinal-hill",
+      "properties": {
+        "snippet": "Hill; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/125119394/quirinal-hill",
+        "description": "Representative point location of Monte Quirinale based on coordinates derived from GeoNames.",
+        "location_precision": "precise",
+        "title": "GeoNames location of Monte Quirinale"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    },
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/3169658/monte-quirinale.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 3169658",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "quirinal-hill",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "end": 2100,
+      "title": "GeoNames location of Monte Quirinale",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 30.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geonames-accuracy-assessment",
+      "featureType": [
+        "hill"
+      ],
+      "description": "Representative point location of Monte Quirinale based on coordinates derived from GeoNames.",
+      "created": "2018-02-09T03:07:55Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.48333,
+          41.9
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/125119394/quirinal-hill",
+      "creators": [
+        {
+          "username": "ekeogh",
+          "homepage": null,
+          "name": "Edward Keogh",
+          "uri": "https://pleiades.stoa.org/author/ekeogh"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T01:17:49Z"
+        },
+        {
+          "comment": "modified title and data source to reflect coordinated derived from GeoNames.",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T00:18:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "shales",
+          "modified": "2018-03-23T21:21:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-02-09T03:14:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-02-09T03:07:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-02-09T03:07:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-02-09T03:02:18Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/125119394/roma",
+      "connectionType": "part_of_physical",
+      "id": "roma",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T01:17:49Z"
+        },
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T00:24:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "shales",
+          "modified": "2018-03-23T21:21:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-02-09T03:02:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-02-09T03:02:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "ekeogh",
+          "homepage": null,
+          "name": "Edward Keogh",
+          "uri": "https://pleiades.stoa.org/author/ekeogh"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/914/1/0#44",
+      "citationDetail": "1.44",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Liv. (OCT: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+      "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1163/1574-9347_bnp_e809450",
+      "citationDetail": "Mons Quirinalis (C. H\u00f6cker)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. http://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/474/43/2/7150-7158,12338-12346",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Cic. Rep. 2.11.6, 2.20.13",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/684/1/5/4553-4561,4853-4861#5",
+      "citationDetail": "5.51.4, 5.52.3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Varro LL (Goetz; PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V5DDRESC",
+      "formattedCitation": "<div class=\"csl-entry\">Varro, Marcus Terentius. <i>M. Terenti Varronis De lingua Latina quae supersunt</i>. Edited by Georg Goetz and Fritz Sch\u00f6ll. Lipsiae: B.G. Tevbneri, 1910. https://latin.packhum.org/loc/684/1/0#0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/914/2/1/1078-1086#1",
+      "citationDetail": "Per. 1b.20",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Liv. (OCT: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+      "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/1002/1/7/9473-9481#7",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Quintilian, Inst. 1.6.31",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "231-260",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coarelli 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/755TN8NV",
+      "formattedCitation": "<div class=\"csl-entry\">Coarelli, Filippo. <i>Rome and Environs: An Archaeological Guide</i>. Berkeley: University of California Press, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/1236/1/4/528-535,1136-1143,1434-1441,1726-1733",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Festus, De Verb. 254",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Quirinal_Hill",
+      "citationDetail": "Quirinal Hill",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q207896",
+      "citationDetail": "Quirinal Hill (Q207896)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DQ%3Aentry+group%3D1%3Aentry%3Dquirinalis-collis",
+      "citationDetail": "QUIRINALIS COLLIS",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Carandini 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/USXD9HAL",
+      "formattedCitation": "<div class=\"csl-entry\">Carandini, Andrea. <i>Cercando Quirino: traversata sulle onde elettromagnetiche nel suolo del Quirinale</i>. Saggi 886. Torino: G. Einaudi, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/44515138",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rodr\u00edguez-Almeida 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UIDPRRJ8",
+      "formattedCitation": "<div class=\"csl-entry\">Rodr\u00edguez-Almeida, Emilio. \u201cAlcune notule topografiche sul Quirinale di epoca domizianea.\u201d <i>Bullettino della Commissione Archeologica Comunale di Roma</i> 91, no. 1 (1986): 49\u201360. http://www.jstor.org/stable/44515138.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/42811",
+      "citationDetail": "GEO ID 42811: Quirinalis Mons",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125LQui",
+      "citationDetail": "Quirinal Hill (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5346",
+      "citationDetail": "Quirinal Rom (Metropolitanstadt) (Roma), Italien",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vocab.getty.edu/page/tgn/4012799",
+      "citationDetail": "4012799: Quirinale (hill)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TGN",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLJQ5AZJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Getty Thesaurus of Geographic Names\u00ae Online</i>, n.d. https://www.getty.edu/research/tools/vocabularies/tgn/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikisource.org/wiki/MKL1888:Quirin%C4%81l",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "MKL1888:Quirin\u0101l",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/11313770",
+      "citationDetail": "11313770: the Quirinal Hill (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:5.3.7",
+      "citationDetail": "5.3.7",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877. http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Quirinalis Collis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://latin.packhum.org/loc/1236/1/4/1434-1451",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Fest. 254.42",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2018-02-08.9324068623",
+      "end": 300,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "Toponym as attested in the De Verborum Significatione of Festus.",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2018-02-09T02:56:05Z",
+      "uri": "https://pleiades.stoa.org/places/125119394/name.2018-02-08.9324068623",
+      "creators": [
+        {
+          "username": "ekeogh",
+          "homepage": null,
+          "name": "Edward Keogh",
+          "uri": "https://pleiades.stoa.org/author/ekeogh"
+        }
+      ],
+      "attested": "Quirinalis collis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T01:17:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T00:22:12Z"
+        },
+        {
+          "comment": "added time period, added Festus as 'evidence' for attested name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T00:21:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "shales",
+          "modified": "2018-03-23T21:21:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-02-09T02:57:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-02-09T02:56:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ekeogh",
+          "modified": "2018-02-09T02:56:05Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mons Quirinalis",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://referenceworks.brillonline.com/entries/brill-s-new-pauly/mons-quirinalis-e809450?s.num=2&s.q=quirinalis",
+          "citationDetail": "Mons Quirinalis",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "New Pauly",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+          "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. http://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "id": "name.2018-02-12.1836362345",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2018-02-12T17:40:08Z",
+      "uri": "https://pleiades.stoa.org/places/125119394/name.2018-02-12.1836362345",
+      "creators": [
+        {
+          "username": "shales",
+          "homepage": null,
+          "name": "Sara Hales",
+          "uri": "https://pleiades.stoa.org/author/shales"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T01:17:49Z"
+        },
+        {
+          "comment": "added reference to NP. ",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-24T00:29:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "shales",
+          "modified": "2018-03-23T21:21:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "shales",
+          "modified": "2018-02-12T17:40:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "shales",
+          "modified": "2018-02-12T17:40:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "shales",
+          "modified": "2018-02-12T17:40:08Z"
+        }
+      ]
+    }
+  ],
+  "id": "125119394",
+  "subject": [
+    "Regio VI"
+  ],
+  "title": "Quirinal Hill",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the hills of Rome comprises several smaller peaks. According to tradition, its first inhabitants were Titus Tatius and the Sabines; during the Republic, the hill was mostly residential.",
+  "reprPoint": [
+    12.48333,
+    41.9
+  ],
+  "placeTypes": [
+    "hill"
+  ],
+  "bbox": [
+    12.48333,
+    41.9,
+    12.48333,
+    41.9
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/208084576",
+    "https://pleiades.stoa.org/places/707840687",
+    "https://pleiades.stoa.org/places/987367012",
+    "https://pleiades.stoa.org/places/377055052",
+    "https://pleiades.stoa.org/places/733820896",
+    "https://pleiades.stoa.org/places/524616090",
+    "https://pleiades.stoa.org/places/4672323",
+    "https://pleiades.stoa.org/places/194913213",
+    "https://pleiades.stoa.org/places/377055053",
+    "https://pleiades.stoa.org/places/504705904",
+    "https://pleiades.stoa.org/places/323719627"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-02-09T02:52:50Z",
+  "uri": "https://pleiades.stoa.org/places/125119394",
+  "creators": [
+    {
+      "username": "shales",
+      "homepage": null,
+      "name": "Sara Hales",
+      "uri": "https://pleiades.stoa.org/author/shales"
+    },
+    {
+      "username": "echosmith",
+      "homepage": null,
+      "name": "Echo Smith",
+      "uri": "https://pleiades.stoa.org/author/echosmith"
+    },
+    {
+      "username": "ekeogh",
+      "homepage": null,
+      "name": "Edward Keogh",
+      "uri": "https://pleiades.stoa.org/author/ekeogh"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-05-03T02:06:14Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-01T20:20:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-11T01:50:47Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-11T01:36:40Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-11T01:35:02Z"
+    },
+    {
+      "comment": "added refs: TM GEO, Topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-30T16:07:32Z"
+    },
+    {
+      "comment": "changed reference type wikidata to related",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-14T21:30:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-23T01:22:05Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-22T22:53:32Z"
+    },
+    {
+      "comment": "reference Carandini 2007",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-24T01:21:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-24T01:17:49Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-24T00:14:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "shales",
+      "modified": "2018-03-23T21:21:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-03-23T21:17:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-03-23T21:14:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-03-23T21:12:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-03-23T21:03:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-03-20T20:33:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-03-20T19:29:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-03-20T19:29:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-03-20T19:16:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "shales",
+      "modified": "2018-02-12T17:58:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-02-09T03:23:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-02-09T03:19:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-02-09T02:52:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ekeogh",
+      "modified": "2018-02-09T02:52:50Z"
+    }
+  ]
+}

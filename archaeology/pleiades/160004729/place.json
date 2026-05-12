@@ -1,0 +1,299 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.6010818,
+            24.696331
+          ],
+          [
+            30.6010397,
+            24.6958646
+          ],
+          [
+            30.6012574,
+            24.6958484
+          ],
+          [
+            30.6012776,
+            24.6960724
+          ],
+          [
+            30.6011671,
+            24.6960806
+          ],
+          [
+            30.601189,
+            24.696323
+          ],
+          [
+            30.6010818,
+            24.696331
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-church-at-shams-el-din",
+      "properties": {
+        "snippet": "Church-2",
+        "link": "https://pleiades.stoa.org/places/160004729/osm-location-of-church-at-shams-el-din",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Church at Shams el-Din"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1151098556",
+          "citationDetail": "Way 1151098556",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1151098556",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-church-at-shams-el-din",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": null,
+      "title": "OSM location of Church at Shams el-Din",
+      "provenance": "OpenStreetMap (Way 1151098556, version 1, osm:changeset=133275192, 2023-03-04T01:54:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-04T01:54:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.6010818,
+            24.696331
+          ],
+          [
+            30.6010397,
+            24.6958646
+          ],
+          [
+            30.6012574,
+            24.6958484
+          ],
+          [
+            30.6012776,
+            24.6960724
+          ],
+          [
+            30.6011671,
+            24.6960806
+          ],
+          [
+            30.601189,
+            24.696323
+          ],
+          [
+            30.6010818,
+            24.696331
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/160004729/osm-location-of-church-at-shams-el-din",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-07T19:12:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-08T22:04:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-08T19:12:28Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T01:55:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T01:54:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T01:54:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-04T01:52:57Z",
+      "associationCertainty": "certain",
+      "title": "Shams el-Din",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/160004729/7777488229",
+      "connectionType": "at",
+      "id": "7777488229",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T01:52:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T01:52:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T01:52:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/894410373",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [],
+  "names": [],
+  "id": "160004729",
+  "subject": [],
+  "title": "Church at Shams el-Din",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The church, well visible in Google Earth, is in the SW sector of the archaeological area",
+  "reprPoint": [
+    30.601148244259825,
+    24.696071592512013
+  ],
+  "placeTypes": [
+    "church-2",
+    "church"
+  ],
+  "bbox": [
+    30.6010397,
+    24.6958484,
+    30.6012776,
+    24.696331
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/894410373"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-04T01:52:56Z",
+  "uri": "https://pleiades.stoa.org/places/160004729",
+  "creators": [
+    {
+      "username": "bazzani",
+      "homepage": null,
+      "name": "Bruno Bazzani",
+      "uri": "https://pleiades.stoa.org/author/bazzani"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-08T22:04:54Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-08T22:04:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-08T19:12:28Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-04T01:52:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-04T01:52:56Z"
+    }
+  ]
+}

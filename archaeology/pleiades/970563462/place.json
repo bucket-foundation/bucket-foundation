@@ -1,0 +1,561 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.7979716,
+            39.989764
+          ],
+          [
+            8.7980413,
+            39.9896509
+          ],
+          [
+            8.7982747,
+            39.9897373
+          ],
+          [
+            8.7981996,
+            39.9898462
+          ],
+          [
+            8.7979716,
+            39.989764
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-san-lussorio",
+      "properties": {
+        "snippet": "Church-2; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/970563462/location-of-san-lussorio",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Chiesa romanica di San Lussorio di Forum Traiani"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/249484355",
+          "citationDetail": "Way 249484355",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-san-lussorio",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 1453,
+      "title": "OSM location of Chiesa romanica di San Lussorio di Forum Traiani",
+      "provenance": "OpenStreetMap (Way 249484355, version 5, osm:changeset=44677310, 2016-12-26T08:42:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2026-01-26T18:26:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.7979716,
+            39.989764
+          ],
+          [
+            8.7980413,
+            39.9896509
+          ],
+          [
+            8.7982747,
+            39.9897373
+          ],
+          [
+            8.7981996,
+            39.9898462
+          ],
+          [
+            8.7979716,
+            39.989764
+          ]
+        ]
+      },
+      "locationType": [],
+      "uri": "https://pleiades.stoa.org/places/970563462/location-of-san-lussorio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-26T18:26:05Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-26T18:26:04Z"
+        },
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-04T13:36:01Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-04T13:36:01Z"
+        },
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-29T02:59:54Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-19T02:20:05Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-08-01T16:25:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-08-01T16:25:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-02-20T15:58:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-25T02:39:16Z"
+        },
+        {
+          "comment": "edited description",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-25T02:39:10Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-02T00:26:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-02T00:15:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-02T00:15:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:32:58Z",
+      "associationCertainty": "certain",
+      "title": "Hydata Hypsitana/Forum Traiani",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/970563462/471947",
+      "connectionType": "connection",
+      "id": "471947",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/471947",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/San_Lussorio",
+      "citationDetail": "San Lussorio",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sardegnacultura.it/j/v/253?s=17880&v=2&c=2471&c1=2629&visb=&t=1",
+      "citationDetail": "Fordongianus, Cripta e chiesa di San Lussorio",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sardegna Cultura",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7KQM2T8A",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Sardegna Cultura</i>. Cagliari: La Regione Sardegna. Accessed January 29, 2020. http://www.sardegnacultura.it/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/25342756",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zucca 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CK4YL6RT",
+      "formattedCitation": "<div class=\"csl-entry\">Zucca, Raimondo. <i>Le iscrizioni latine del martyrium di Luxurius (Forum Traiani, Sardinia)</i>. Oristano: Editrice S\u2019Alvure, 1988.</div>",
+      "otherIdentifier": "OCLC: 25342756",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/51232934",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Oppo 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HZGNFL84",
+      "formattedCitation": "<div class=\"csl-entry\">Oppo, Christiana. \u201cIl santuario di San Lussorio a Forum Traiani. Alcune note sulla chiesa bizantina.\u201d In <i>Citt\u00e0, territorio, produzione e commerci nella Sardegna medievale: studi in onore di Letizia Pani Ermini offerti dagli allievi sardi per il settantesimo compleanno</i>, by Rossana Martorelli, 169\u201386. Cagliari: AM &amp; D, 2002.</div>",
+      "otherIdentifier": "ISBN: 978-88-86799-59-1; OCLC: 51232934",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q21187652",
+      "citationDetail": "San Lussorio (Q21187652)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Cripta e chiesa di San Lussorio",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.sardegnacultura.it/j/v/253?s=17880&v=2&c=2471&c1=2629&visb=&t=1",
+          "citationDetail": "Fordongianus, Cripta e chiesa di San Lussorio",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Sardegna Cultura",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7KQM2T8A",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Sardegna Cultura</i>. Cagliari: La Regione Sardegna. Accessed January 29, 2020. http://www.sardegnacultura.it/.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2014-03-24.1887994148",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "modern name",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2026-01-26T18:26:00Z",
+      "uri": "https://pleiades.stoa.org/places/970563462/name.2014-03-24.1887994148",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-26T18:26:00Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-26T18:26:00Z"
+        },
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-04T13:35:57Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-04T13:35:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2016-08-18T18:19:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-25T02:40:53Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-25T02:40:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-25T02:40:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "970563462",
+  "subject": [],
+  "title": "Crypt and church of San Lussorio",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Romanesque church of San Lussorio dates to the early twelfth century.",
+  "reprPoint": [
+    8.798122025175717,
+    39.98974909044457
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    8.7979716,
+    39.9896509,
+    8.7982747,
+    39.9898462
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/471947"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-26T18:24:01Z",
+  "uri": "https://pleiades.stoa.org/places/970563462",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2026-01-26T18:24:02Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2026-01-26T18:24:01Z"
+    },
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-04T13:33:48Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-12-04T13:33:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-29T02:59:39Z"
+    },
+    {
+      "comment": "add wikidata San Lussorio (Q21187652)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-19T02:21:09Z"
+    },
+    {
+      "comment": "ptype -> church",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-04T21:18:02Z"
+    },
+    {
+      "comment": "thomase: Regularized and updated references using PleiadesRefFixerBot",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-04T21:17:42Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2020-01-29T22:09:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "gmoss",
+      "modified": "2016-08-18T18:20:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-02-20T15:59:24Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-02-20T15:57:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-25T03:35:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-25T02:41:22Z"
+    },
+    {
+      "comment": "edited description",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-25T02:38:20Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-02T00:09:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-02T00:09:55Z"
+    }
+  ]
+}

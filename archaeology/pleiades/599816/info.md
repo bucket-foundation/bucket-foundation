@@ -1,0 +1,14 @@
+# Narthekis (island)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/599816
+- **ID**: 599816
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ναρθηκίς
+
+## Description
+
+An ancient place, cited: BAtlas 61 E2 Narthekis Ins.

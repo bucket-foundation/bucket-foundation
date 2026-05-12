@@ -1,0 +1,361 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.6026744,
+            25.7220401
+          ],
+          [
+            32.6035059,
+            25.7216149
+          ],
+          [
+            32.604214,
+            25.7224896
+          ],
+          [
+            32.6030177,
+            25.7230454
+          ],
+          [
+            32.6026744,
+            25.7220401
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "temple-of-amenhotep-temple-of-tuthmosis",
+      "properties": {
+        "snippet": "Temple-2, Tomb; 1548 BC - 1086 BC",
+        "link": "https://pleiades.stoa.org/places/922752946/temple-of-amenhotep-temple-of-tuthmosis",
+        "description": "Polygon based on OpenStreetMap representing the Temple of Amenhotep, son of Hapu.",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Amenhotep, son of Hapu"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/115780897",
+          "citationDetail": "Way 115780897",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=115780897",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "temple-of-amenhotep-temple-of-tuthmosis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -1086,
+      "title": "OSM location of Temple of Amenhotep, son of Hapu",
+      "provenance": "OpenStreetMap (Way 115780897, version 5, osm:changeset=71538744, 2019-06-23T18:36:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2",
+        "tomb"
+      ],
+      "description": "Polygon based on OpenStreetMap representing the Temple of Amenhotep, son of Hapu.",
+      "created": "2022-06-30T17:00:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.6026744,
+            25.7220401
+          ],
+          [
+            32.6035059,
+            25.7216149
+          ],
+          [
+            32.604214,
+            25.7224896
+          ],
+          [
+            32.6030177,
+            25.7230454
+          ],
+          [
+            32.6026744,
+            25.7220401
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/922752946/temple-of-amenhotep-temple-of-tuthmosis",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-23T03:33:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-02T22:30:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T17:02:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T17:02:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T17:00:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T17:00:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1086,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-30T16:59:46Z",
+      "associationCertainty": "certain",
+      "title": "Theban necropolis",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/922752946/theban-necropolis",
+      "connectionType": "at",
+      "id": "theban-necropolis",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-02T22:30:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T17:02:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T16:59:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T16:59:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/836839127",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/252625385",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Robichon 1936",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PFQBJZHT",
+          "formattedCitation": "<div class=\"csl-entry\">Robichon, Cl\u00e9ment, and A Varille. <i>Le Temple du scribe royal Amenhotep fils de Hapou</i>. Fouilles de l\u2019institut fran\u00e7ais du caire, sous la direction de m.p. jouguet, t. XI. Le Caire: Institut Fran\u00e7ais d\u2019Arch\u00e9ologie Orientale, 1936. http://www.worldcat.org/oclc/252625385.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/252625385",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Robichon 1936",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PFQBJZHT",
+      "formattedCitation": "<div class=\"csl-entry\">Robichon, Cl\u00e9ment, and A Varille. <i>Le Temple du scribe royal Amenhotep fils de Hapou</i>. Fouilles de l\u2019institut fran\u00e7ais du caire, sous la direction de m.p. jouguet, t. XI. Le Caire: Institut Fran\u00e7ais d\u2019Arch\u00e9ologie Orientale, 1936. http://www.worldcat.org/oclc/252625385.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Amenhotep,_son_of_Hapu&oldid=1086255003",
+      "citationDetail": "Amenhotep, son of Hapu",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q383259",
+      "citationDetail": "Q383259: Amenhotep, son of Hapu",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Karkowski 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LKYR8IYN",
+      "formattedCitation": "<div class=\"csl-entry\">Karkowski, Janusz, Jaros\u0142aw Klaus Winnicki, and Edda Brecciani. \u201cAmenhotep, Son of Hapu and Imhotep at Deir El-Bahari: Some Reconsiderations.\u201d In <i>Mitteilungen Des Deutschen Arch\u00e4ologischen Instituts. Abteilung Kairo, 39.1983</i>, 93\u2013105, [2] p. of plates. Mainz: Philipp von Zabern, 1984.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "922752946",
+  "subject": [],
+  "title": "Temple of Amenhotep, son of Hapu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A mortuary temple located in the Theban Necropolis that was dedicated to one Amenhotep, son of Hapu, an official in the court of the 18th Dynasty pharaoh Amenhotep III. Numerous roles are attributed to Amenhotep, son of Hapu, including those of priest, scribe, and architect. Likely he received special dispensation for the construction of the mortuary temple.",
+  "reprPoint": [
+    32.60338300269487,
+    25.72233478468855
+  ],
+  "placeTypes": [
+    "tomb",
+    "temple-2"
+  ],
+  "bbox": [
+    32.6026744,
+    25.7216149,
+    32.604214,
+    25.7230454
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/836839127"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-30T16:58:17Z",
+  "uri": "https://pleiades.stoa.org/places/922752946",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-02T23:56:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-02T22:30:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T17:02:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T17:00:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T16:58:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T16:58:17Z"
+    }
+  ]
+}

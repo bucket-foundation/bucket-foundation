@@ -1,0 +1,704 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.3298914,
+            36.097385
+          ],
+          [
+            43.3307579,
+            36.0974174
+          ],
+          [
+            43.3306937,
+            36.0966897
+          ],
+          [
+            43.3300228,
+            36.0966759
+          ],
+          [
+            43.3298914,
+            36.097385
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-way-345278129",
+      "properties": {
+        "snippet": "Temple-2; 1000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/242008148/osm-way-345278129",
+        "description": "Location based on OpenStreetMap Way 345278129.",
+        "location_precision": "precise",
+        "title": "OSM location of Ezida"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/345278129",
+          "citationDetail": "Way 345278129",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=345278129",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-way-345278129",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -540,
+      "title": "OSM location of Ezida",
+      "provenance": "OpenStreetMap (Way 345278129, version 3, osm:changeset=44466733, 2016-12-17T10:47:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap Way 345278129.",
+      "created": "2021-01-14T17:24:19Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.3298914,
+            36.097385
+          ],
+          [
+            43.3307579,
+            36.0974174
+          ],
+          [
+            43.3306937,
+            36.0966897
+          ],
+          [
+            43.3300228,
+            36.0966759
+          ],
+          [
+            43.3298914,
+            36.097385
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/242008148/osm-way-345278129",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-15T01:47:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-15T12:21:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-15T09:29:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:25:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:24:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:24:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-11T16:17:37Z",
+      "associationCertainty": "certain",
+      "title": "Nimrud",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/242008148/nimrud",
+      "connectionType": "part_of_physical",
+      "id": "nimrud",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-15T12:21:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-15T09:29:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:17:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-11T16:17:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-11T16:17:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/894019",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/nimrud/ancientkalhu/thecity/nabustemple/index.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nimrud Project 2013-2014",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-14T17:18:41Z",
+      "associationCertainty": "certain",
+      "title": "Governor's Palace at Kalhu",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/242008148/governors-palace-at-kalhu",
+      "connectionType": "abuts",
+      "id": "governors-palace-at-kalhu",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-15T12:21:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-15T09:29:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:21:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:18:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:18:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/586620869",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/nimrud/ancientkalhu/thecity/nabustemple/index.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nimrud Project 2013-2014",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-14T17:20:05Z",
+      "associationCertainty": "certain",
+      "title": "Burnt Palace at Kalhu",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/242008148/burnt-palace-at-kalhu",
+      "connectionType": "abuts",
+      "id": "burnt-palace-at-kalhu",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-15T12:21:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-15T09:29:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:20:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:20:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/694530902",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/nimrud/ancientkalhu/thecity/nabustemple/index.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nimrud Project 2013-2014",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/nimrud/ancientkalhu/thecity/nabustemple/index.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nimrud Project 2013-2014",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "111\u2013123",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Oates 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S55JVIUS",
+      "formattedCitation": "<div class=\"csl-entry\">Oates, Joan, and David Oates. <i>Nimrud: An Assyrian Imperial City Revealed</i>. London: The British School of Archaeology in Iraq, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Kalhu \u00a713",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/26694950/S\u00een_\u0161arru_i\u0161kun_and_Ezida_in_Calah",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Van Buylaere and Novotny 2009",
+      "bibliographicURI": "",
+      "formattedCitation": "Van Buylaere, Greta and Novotny, Jamie. \u201cS\u00een-\u0161arru-i\u0161kun and Ezida in Calah. Galil, G.; Geller, M.; Millard, A. (eds.), Homeland and Exile: Biblical and Ancient Near Eastern Studies in Honour of Bustenay Oded. Leiden: Brill.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ezida",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/Q003856",
+          "citationDetail": "A\u0161\u0161ur-etel-il\u0101ni 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP online",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ezida",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "Sumerian ceremonial name of the god Nab\u00fb temple at Kalhu.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2021-01-14T17:30:08Z",
+      "uri": "https://pleiades.stoa.org/places/242008148/ezida",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-15T12:21:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-15T09:29:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:30:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:30:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "b\u012bt Nab\u00fb",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/Q003706",
+          "citationDetail": "Ashurbanipal 007",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP online",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q004484",
+          "citationDetail": "Ashurnasirpal II 030",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "bit-nabu",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "details": "",
+      "review_state": "published",
+      "description": "The everyday name of the Nab\u00fb temple.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2021-01-14T17:33:31Z",
+      "uri": "https://pleiades.stoa.org/places/242008148/bit-nabu",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-15T12:21:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-15T09:29:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:34:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:33:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T17:33:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "242008148",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Ezida (Kalhu)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Nab\u00fb temple was one of the nine temples that the ninth-century-BC Assyrian king <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/riao/theassyrianempire883745bc/ashurnasirpalii/index.html\" target=\"_self\" title=\"\">Ashurnasirpal II</a> claims to have (re)founded when he made Kalhu his\u00a0primary royal residence (RIAo <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/riao/Q004484\" target=\"_self\" title=\"\">Ashurnasirpal II 030</a> lines 55\u201360); Ezida, a name that was adopted from this deity\u2019s temple in Borsippa, is situated on the southeast side of the citadel mound. The building plan consists of two large courtyards on the east, the shrines themselves facing onto the inner court; there are also two smaller courtyards, a twin set of shrines, and a reception suite (Throne Room) in the northwest quarter of the building (\"South-East Building\" or SEB). The entire southern part of the temple was rebuilt by <a class=\"external\" href=\"http://oracc.museum.upenn.edu/riao/theassyrianempire883745bc/adadnarariiii/index.html\" id=\"d2e1211\" target=\"_blank\" title=\"\">Adad-n\u0101r\u0101r\u012b III</a>, to whom the seventh-century rulers <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap5/\" target=\"_self\" title=\"\">Ashurbanipal</a> and S\u00een-\u0161arru-i\u0161kun attribute its foundation (or at least its last rebuilding); see RINAP online <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap5/Q003706\" target=\"_self\" title=\"\">Ashurbanipal 007</a> x 88\u201390; and S\u00een-\u0161arru-i\u0161kun <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap5/Q003880\" target=\"_self\" title=\"\">Cylinder B</a>. Little is known about Adad-n\u0101r\u0101r\u012b III\u2019s work on Ezida from the textual record, but inscriptions of his were found on a slab in the main shrine and on colossal statues with folded hands, presumably divine attendants of the god. In addition, B\u0113l-tar\u1e63i-il\u016bma, the governor of Kalhu, dedicated two further statues (also attendants) for the life of <span>Adad-n\u0101r\u0101r\u012b\u00a0</span><span></span>and his mother Sammu-ramat (Semiramis). <span>Adad-n\u0101r\u0101r\u012b</span>\u00a0appears to have (re)built the southern wing of the temple, although the original version of the temple (the northern section) was almost certainly 9th century in date (reign of Ashurnasirpal II).</p>\r\n<p><img class=\"image-inline external-image\" height=\"385\" src=\"http://oracc.museum.upenn.edu/nimrud/images/ancientcity/plan-ezida-kalhu-large.png\" width=\"492\" /></p>\r\n<p>The eighth-century-BC king\u00a0<a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap2/\" target=\"_self\" title=\"\">Sargon II</a> made repairs and alterations, as suggested by the upper wall decoration with recesses and rows of engaged columns in the style of the Nab\u00fb temple at <a class=\"external-link\" href=\"../874458\" target=\"_self\" title=\"\">Dur-\u0160arruk\u012bn</a>. The seventh-century-BC ruler Ashurbanipal, Assyria's last great king, reports that he rebuilt/restored part of Ezida, most likely the southern part of the temple, the wing worked on by <span>Adad-n\u0101r\u0101r\u012b</span><span></span>\u00a0III. Fragments of large decagonal clay prisms found in the debris from the collapse of the upper walls, which had fallen into the rooms soon after the fall of Kalhu, or in the rubble left by squatters or 19th century archaeologists who had dug through the fallen and standing mud brick walls, describe work on this temple. Ashurbanipal describes his work as follows: \u201c[At] that time, the temple of the god Nab\u00fb which is inside Calah (and) which <span>Adad-n\u0101r\u0101r\u012b</span>\u00a0(III), son of <a class=\"external\" href=\"http://oracc.museum.upenn.edu/riao/theassyrianempire883745bc/shamshiadadv/index.html\" id=\"d2e1854\" target=\"_blank\" title=\"\">\u0160am\u0161\u012b-Adad</a>\u00a0(V), king of Assyria, a king prior to me, had built, had become old. I cleared away its dilapidated portion(s) and I mixed beer and wine into (its) kalakku-mortar. Basket carriers moulded bricks while singing. I completely (re)built (this section of Ezida) from top to bottom while there was singing and joyous celebration. I roofed it with long cedar beams (and) [... I] decorated all\u00a0its copings.\u201d This work took place early in Ashurbanipal\u2019s third decade as king. <span>A\u0161\u0161ur-etel-il\u0101ni</span>, Ashurbanipal\u2019s son and immediate successor, made some repairs to the rooms on the east side of the north courtyard, an area that might have served as temple o\ufb03ces. <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap5/Q003856\" target=\"_self\" title=\"\">Bricks</a> of this son of Ashurbanipal attest to this.\u00a0<span>A\u0161\u0161ur-etel-il\u0101ni</span>\u00a0might have also made repairs to the smaller shrines NTS 1 and 2. S\u00een-\u0161arru-i\u0161kun, another son and successor of Ashurbanipal, also made repairs to Ezida, as attested by fragments of clay cylinders discovered in the ruins of the temple. Unfortunately, the building report of that inscription (Cylinder B lines 30\u201337) is badly damaged and little can be gleaned about this project of that Assyrian king. Despite this, <span>S\u00een-\u0161arru-i\u0161kun</span>\u00a0boasts of laying some of Ezida's foundations and placing the statues of Nab\u00fb and Ta\u0161metu back on their daises.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "When Kalhu (biblical Calah, modern Nimrud) became the principal administrative center of the Assyrian Empire in the ninth century BC, king Ashurnasirpal II (r. 883\u2013859 BC) built (or rebuilt) numerous temples. One of those was dedicated to the god Nab\u00fb. Unlike most of the religious buildings constructed at Kalhu, the Ezida (\"True House\") was built in the southeast corner of the Citadel.",
+  "reprPoint": [
+    43.33034155087444,
+    36.097065591217024
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    43.3298914,
+    36.0966759,
+    43.3307579,
+    36.0974174
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/894019",
+    "https://pleiades.stoa.org/places/586620869",
+    "https://pleiades.stoa.org/places/694530902",
+    "https://pleiades.stoa.org/places/906423926"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-01-11T15:47:14Z",
+  "uri": "https://pleiades.stoa.org/places/242008148",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-15T12:21:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-15T09:29:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-15T09:28:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-15T09:23:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-14T18:09:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-14T18:07:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-11T15:47:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-11T15:47:14Z"
+    }
+  ]
+}

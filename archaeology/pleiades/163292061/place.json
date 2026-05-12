@@ -1,0 +1,316 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.4469025,
+          38.0377
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-roman-quarry",
+      "properties": {
+        "snippet": "Quarry; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/163292061/osm-location-roman-quarry",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Roman Quarry"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/338723844",
+          "citationDetail": "Node 338723844",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=338723844",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-roman-quarry",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "end": 300,
+      "title": "OSM Location: Roman Quarry",
+      "provenance": "OpenStreetMap (Node 338723844, version 12, osm:changeset=139046684, 2023-07-26T16:41:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "quarry"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-08-29T03:28:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.4469025,
+          38.0377
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/163292061/osm-location-roman-quarry",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-29T13:56:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T03:55:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T03:29:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T03:28:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T03:28:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-08-29T03:52:55Z",
+      "associationCertainty": "certain",
+      "title": "Karystos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/163292061/karystos",
+      "connectionType": "near",
+      "id": "karystos",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-29T13:56:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T03:55:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T03:52:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T03:52:55Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570336",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "58 G1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=karystos",
+      "citationDetail": "KARYSTOS S Euboia, Greece.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://web.archive.org/web/20220320054242/https://bollettinodiarcheologiaonline.beniculturali.it/wp-content/uploads/2021/10/6_CHIDIROGLOU.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Chidiroglou 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3R2MK7XQ",
+      "formattedCitation": "<div class=\"csl-entry\">Chidiroglou, Maria. \u201cKarystian Marble Trade in the Roman Mediterranean Region. An Overview of Old and New Data.\u201d In <i>Bollettino Di Archeologia on Line I [Volume Speciale]</i>, 48\u201356. Roma: Direzione generale per le antichit\u00e0, 2010. https://web.archive.org/web/20220320054242/https://bollettinodiarcheologiaonline.beniculturali.it/wp-content/uploads/2021/10/6_CHIDIROGLOU.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S1296207402012438",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sutherland 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N2HKGWV4",
+      "formattedCitation": "<div class=\"csl-entry\">Sutherland, Jeanne, and Anne Sutherland. \u201cRoman Marble Quarrying near Karystos Southern Euboea.\u201d <i>Journal of Cultural Heritage</i> 3, no. 4 (October 1, 2002): 251\u201359. https://doi.org/10.1016/S1296-2074(02)01243-8.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.quarryscapes.no/atlas/karystos.pdf",
+      "citationDetail": "Atlas: Karystos, Evia (Greece)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "QuarryScapes",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GN2YEWJ2",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The QuarryScapes Project: Conservation of Ancient Stone Quarry Landscapes in the Eastern Mediterranean</i>. Accessed August 29, 2023. http://www.quarryscapes.no/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vanhove 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIHDGR7E",
+      "formattedCitation": "<div class=\"csl-entry\">Vanhove, D, A. de Wulf, Paul de Paepe, and Luc Moens. <i>Roman Marble Quarries in Southern Euboea and the Associated Road Systems</i>. Monumenta Graeca et Romana 8. New York: E.J. Brill, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "163292061",
+  "subject": [],
+  "title": "Marble Quarries at Karystos",
+  "provenance": "BAtlDir page 882 see \"Karystos\"",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A complex quarry landscape near Karystos, heavily exploited especially in Roman times, for highly prized Cipollino Verde (marmor Carystium).",
+  "reprPoint": [
+    24.4469025,
+    38.0377
+  ],
+  "placeTypes": [
+    "quarry"
+  ],
+  "bbox": [
+    24.4469025,
+    38.0377,
+    24.4469025,
+    38.0377
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570336"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-29T03:27:30Z",
+  "uri": "https://pleiades.stoa.org/places/163292061",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-29T13:56:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-29T03:55:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-29T03:55:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-29T03:54:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-29T03:52:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-29T03:27:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-29T03:27:30Z"
+    }
+  ]
+}

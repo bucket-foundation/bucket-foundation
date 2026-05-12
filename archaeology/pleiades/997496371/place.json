@@ -1,0 +1,431 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.3823319,
+            50.8965385
+          ],
+          [
+            -0.3821173,
+            50.8963511
+          ],
+          [
+            -0.3817883,
+            50.8962618
+          ],
+          [
+            -0.3813091,
+            50.8962683
+          ],
+          [
+            -0.3808831,
+            50.8963025
+          ],
+          [
+            -0.3804786,
+            50.8964515
+          ],
+          [
+            -0.3802079,
+            50.8967337
+          ],
+          [
+            -0.3801388,
+            50.896953
+          ],
+          [
+            -0.3801784,
+            50.8971243
+          ],
+          [
+            -0.3803517,
+            50.8972713
+          ],
+          [
+            -0.3805804,
+            50.8973662
+          ],
+          [
+            -0.3808743,
+            50.8974483
+          ],
+          [
+            -0.3812589,
+            50.8974538
+          ],
+          [
+            -0.381606,
+            50.8973525
+          ],
+          [
+            -0.3818875,
+            50.8972062
+          ],
+          [
+            -0.3821594,
+            50.8969847
+          ],
+          [
+            -0.3823072,
+            50.896768
+          ],
+          [
+            -0.3823319,
+            50.8965385
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Monument",
+        "link": "https://pleiades.stoa.org/places/997496371/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/375392055",
+          "citationDetail": "Way 375392055",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": null,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 375392055, version 7, osm:changeset=102940698, 2021-04-14T15:57:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-11-20T19:15:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.3823319,
+            50.8965385
+          ],
+          [
+            -0.3821173,
+            50.8963511
+          ],
+          [
+            -0.3817883,
+            50.8962618
+          ],
+          [
+            -0.3813091,
+            50.8962683
+          ],
+          [
+            -0.3808831,
+            50.8963025
+          ],
+          [
+            -0.3804786,
+            50.8964515
+          ],
+          [
+            -0.3802079,
+            50.8967337
+          ],
+          [
+            -0.3801388,
+            50.896953
+          ],
+          [
+            -0.3801784,
+            50.8971243
+          ],
+          [
+            -0.3803517,
+            50.8972713
+          ],
+          [
+            -0.3805804,
+            50.8973662
+          ],
+          [
+            -0.3808743,
+            50.8974483
+          ],
+          [
+            -0.3812589,
+            50.8974538
+          ],
+          [
+            -0.381606,
+            50.8973525
+          ],
+          [
+            -0.3818875,
+            50.8972062
+          ],
+          [
+            -0.3821594,
+            50.8969847
+          ],
+          [
+            -0.3823072,
+            50.896768
+          ],
+          [
+            -0.3823319,
+            50.8965385
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/997496371/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-20T19:15:03Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-20T19:15:03Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-11T18:56:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-01T18:07:15Z"
+        },
+        {
+          "comment": "feature type = monument",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T21:24:10Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T21:23:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T19:10:32Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-26T20:46:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-26T20:45:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-26T20:45:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Chanctonbury_Ring",
+      "citationDetail": "Chanctonbury Ring",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/britannia/article/excavations-at-chanctonbury-ring-wiston-west-sussex-1977/1FF9872700290AF4628DCEA53B555A6E",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bedwin 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56DHIL6G",
+      "formattedCitation": "<div class=\"csl-entry\">Bedwin, Owen, David Rudling, Sue Hamilton, Peter Drewett, and Karen Petzoldt. \u201cExcavations at Chanctonbury Ring, Wiston, West Sussex 1977.\u201d <i>Britannia</i> 11 (November 1980): 173\u2013222. https://doi.org/10.2307/525680.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5070867",
+      "citationDetail": "Chanctonbury Ring (Q5070867)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "997496371",
+  "subject": [],
+  "title": "Chanctonbury Ring",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Chanctonbury Ring is a prehistoric hill fort located on Chanctonbury Hill in West Sussex, England. It is part of the present-day South Downs Way.",
+  "reprPoint": [
+    -0.3812329132236567,
+    50.89682886217339
+  ],
+  "placeTypes": [
+    "hillfort",
+    "monument"
+  ],
+  "bbox": [
+    -0.3823319,
+    50.8962618,
+    -0.3801388,
+    50.8974538
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-20T19:13:56Z",
+  "uri": "https://pleiades.stoa.org/places/997496371",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-20T19:13:57Z"
+    },
+    {
+      "comment": "Edited type for hillfort; wikidata Q5070867 @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-11T18:57:57Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-11T18:07:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-01T18:07:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-01T18:07:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T19:10:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T19:10:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T19:10:25Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-26T20:45:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-26T20:44:59Z"
+    }
+  ]
+}

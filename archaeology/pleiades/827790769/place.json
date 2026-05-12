@@ -1,0 +1,608 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": -1086,
+      "description": "",
+      "contributors": [],
+      "created": "2026-04-28T22:13:23Z",
+      "associationCertainty": "certain",
+      "title": "Nubia",
+      "start": -2010,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/827790769/nubia",
+      "connectionType": "in",
+      "id": "nubia",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-05-01T02:49:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T20:50:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:13:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:13:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/953201624",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.1163/1574-9347_bnp_e826030",
+          "citationDetail": "Nubia (S.J. Seidlmayer and A. Berger)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "New Pauly",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+          "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World</i>. Brill, 2015. https://referenceworks.brill.com/display/db/npoe.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://onlinelibrary.wiley.com/book/10.1002/9781444338386",
+      "citationDetail": "Kush (pages 3831-3836)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EncAncHist",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J5X5SRY3",
+      "formattedCitation": "<div class=\"csl-entry\">Bagnall, Roger S., Kai Brodersen, Craige B. Champion, and Andrew Erskine, eds. <i>The Encyclopedia of Ancient History</i>. Accessed February 1, 2018. http://onlinelibrary.wiley.com/book/10.1002/9781444338386.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Kingdom_of_Kush",
+      "citationDetail": "Kingdom of Kush",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/645875157",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "T\u00f6r\u00f6k 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E39WGS6M",
+      "formattedCitation": "<div class=\"csl-entry\">T\u00f6r\u00f6k, L\u00e1szl\u00f3. <i>The Kingdom of Kush: Handbook of the Napatan-Meriotic Civilization</i>. Handbuch Der Orientalistik, Nahe Und Der Mittlere Osten, 31. Bd. New York: Brill, 1998. http://www.worldcat.org/oclc/645875157.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://worldcat.org/oclc/34888835",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Welsby 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NDCN9DJE",
+      "formattedCitation": "<div class=\"csl-entry\">Welsby, Derek A. <i>The Kingdom of Kush: The Napatan and Meroitic Empires</i>. London: British Museum Press, 1996. http://worldcat.org/oclc/34888835.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q241790",
+      "citationDetail": "Kingdom of Kush (Q241790)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ec\u00f4sh, Ech\u00f4sh",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://coptic-dictionary.org/entry.cgi?tla=C777",
+          "citationDetail": "TLA lemma no. C777 \u2c89\u03ed\u2cb1\u03e3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Coptic Dictionary Online",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UCX3CJ5D",
+          "formattedCitation": "<div class=\"csl-entry\">Koptische/Coptic Electronic Language and Literature International Alliance (KELLIA). <i>Coptic Dictionary Online</i>. Accessed October 10, 2022. https://coptic-dictionary.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/645875157",
+          "citationDetail": "page 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "T\u00f6r\u00f6k 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E39WGS6M",
+          "formattedCitation": "<div class=\"csl-entry\">T\u00f6r\u00f6k, L\u00e1szl\u00f3. <i>The Kingdom of Kush: Handbook of the Napatan-Meriotic Civilization</i>. Handbuch Der Orientalistik, Nahe Und Der Mittlere Osten, 31. Bd. New York: Brill, 1998. http://www.worldcat.org/oclc/645875157.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ecosh",
+      "end": 640,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -304,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "cop",
+      "created": "2022-10-10T17:38:51Z",
+      "uri": "https://pleiades.stoa.org/places/827790769/ecosh",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u2c89\u03ed\u2cb1\u03e3",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-10T21:08:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:57:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:53:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:42:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:38:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:38:51Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Qes",
+      "attestations": [
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/645875157",
+          "citationDetail": "page 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "T\u00f6r\u00f6k 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E39WGS6M",
+          "formattedCitation": "<div class=\"csl-entry\">T\u00f6r\u00f6k, L\u00e1szl\u00f3. <i>The Kingdom of Kush: Handbook of the Napatan-Meriotic Civilization</i>. Handbuch Der Orientalistik, Nahe Und Der Mittlere Osten, 31. Bd. New York: Brill, 1998. http://www.worldcat.org/oclc/645875157.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "qes",
+      "end": -30,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -304,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "xmr",
+      "created": "2022-10-10T17:52:45Z",
+      "uri": "https://pleiades.stoa.org/places/827790769/qes",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-10T21:08:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:57:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:52:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:52:45Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kush",
+      "attestations": [
+        {
+          "timePeriod": "third-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "kush",
+      "end": -332,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1086,
+      "details": "",
+      "review_state": "published",
+      "description": "Egyptian name of the kindom",
+      "transcriptionCompleteness": "complete",
+      "language": "egy",
+      "created": "2022-10-10T17:57:06Z",
+      "uri": "https://pleiades.stoa.org/places/827790769/kush",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "K\ua723z, K\ua723s, K\ua723\u0161[j], K\u0161j, K\u0161",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T21:57:39Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-10T21:08:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:57:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:57:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-10T17:57:06Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "k\ua723\u0161",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://thesaurus-linguae-aegyptiae.de/lemma/163680",
+          "citationDetail": "163680: k\ua723\u0161",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "TLA",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QV3K3ID5",
+          "formattedCitation": "<div class=\"csl-entry\">Richter, Tonio Sebastian, Daniel A. Werning, Hans-Werner Fischer-Elfert, and Peter Dils, eds. <i>Thesaurus Linguae Aegyptiae</i>. Berlin-Brandenburgische Akademie der Wissenschaften; S\u00e4chsische Akademie der Wissenschaften zu Leipzig. Accessed April 28, 2026. https://thesaurus-linguae-aegyptiae.de.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.1163/1574-9347_bnp_e826030",
+          "citationDetail": "Nubia",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "New Pauly",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+          "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World</i>. Brill, 2015. https://referenceworks.brill.com/display/db/npoe.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ka723s-1",
+      "end": -1086,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "egy-mdcegyp",
+      "created": "2026-04-28T21:59:40Z",
+      "uri": "https://pleiades.stoa.org/places/827790769/ka723s-1",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "k\ua723\u0161",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T19:08:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:11:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:11:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:08:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:07:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T21:59:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T21:59:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "827790769",
+  "subject": [],
+  "title": "Kush (kingdom)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/kingdom"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Kingdom in Nubia centered around Napata, established as an independent kingdom following the end of the New Kingdom period. Kushite control extended northward during the Third Intermediate Period, and from 744-656 BCE ruled over a unified Egypt as the 25th Dynasty. Following the Assyrian conquest, the kingdom was ruled from Meroe. The kingdom disintegrated in the 3rd century CE.",
+  "reprPoint": [
+    32.78279873176483,
+    17.751420771010146
+  ],
+  "placeTypes": [
+    "kingdom"
+  ],
+  "bbox": [
+    31.853738,
+    16.933976,
+    33.7153707,
+    18.565952
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/953201624",
+    "https://pleiades.stoa.org/places/805634",
+    "https://pleiades.stoa.org/places/805630"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-10-10T17:15:49Z",
+  "uri": "https://pleiades.stoa.org/places/827790769",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Kingdom of Kush (Q241790)",
+      "modifiedBy": "jbecker",
+      "modified": "2026-05-01T02:50:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-10T21:08:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-10T17:57:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-10T17:47:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-10T17:33:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-10T17:15:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-10T17:15:49Z"
+    }
+  ]
+}

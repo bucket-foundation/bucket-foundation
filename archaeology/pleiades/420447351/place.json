@@ -1,0 +1,392 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.492121,
+          41.891664
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-nymphaeum-of-the-via-degli-annibaldi",
+      "properties": {
+        "snippet": "Unknown; 100 BC - AD 99",
+        "link": "https://pleiades.stoa.org/places/420447351/imagery-location-of-nymphaeum-of-the-via-degli-annibaldi",
+        "description": "Coordinates following GeoHack",
+        "location_precision": "precise",
+        "title": "Imagery location of Nymphaeum of the via degli Annibaldi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://geohack.toolforge.org/geohack.php?params=41.891664_N_12.492121_E_globe:earth&language=en",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoHack (41.891664; 12.492121)",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-nymphaeum-of-the-via-degli-annibaldi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 99,
+      "title": "Imagery location of Nymphaeum of the via degli Annibaldi",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Coordinates following GeoHack",
+      "created": "2024-06-20T20:59:57Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.492121,
+          41.891664
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/420447351/imagery-location-of-nymphaeum-of-the-via-degli-annibaldi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-03T15:06:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T21:04:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T21:00:25Z"
+        },
+        {
+          "comment": "add imagery location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T20:59:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T20:59:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-20T20:58:14Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/420447351/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-03T15:06:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T21:04:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T21:03:55Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T20:58:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T20:58:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ciocca 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VXPFDEFF",
+          "formattedCitation": "<div class=\"csl-entry\">Ciocca, S. \u201cUn ninfeo sul Colle Oppio e la famiglia degli Annibaldi.\u201d In <i>Bollettino della Unione storia ed arte, ns8.2004</i>, 24\u201329, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-20T21:03:14Z",
+      "associationCertainty": "certain",
+      "title": "Oppius Mons",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/420447351/oppius-mons",
+      "connectionType": "on",
+      "id": "oppius-mons",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-03T15:06:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T21:04:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T21:03:35Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T21:03:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-20T21:03:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/91325207",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ciocca 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VXPFDEFF",
+          "formattedCitation": "<div class=\"csl-entry\">Ciocca, S. \u201cUn ninfeo sul Colle Oppio e la famiglia degli Annibaldi.\u201d In <i>Bollettino della Unione storia ed arte, ns8.2004</i>, 24\u201329, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ciocca 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VXPFDEFF",
+      "formattedCitation": "<div class=\"csl-entry\">Ciocca, S. \u201cUn ninfeo sul Colle Oppio e la famiglia degli Annibaldi.\u201d In <i>Bollettino della Unione storia ed arte, ns8.2004</i>, 24\u201329, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caruso 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HJILHLF4",
+      "formattedCitation": "<div class=\"csl-entry\">Caruso, Giovanni. \u201cRestauro del Ninfeo di via degli Annibaldi.\u201d <i>Bullettino della Commissione Archeologica Comunale di Roma, Nuova Serie</i> 95, no. 2 (1993): 128\u201329.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=1895",
+      "citationDetail": "1895: ninfeo di via degli annibaldi",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q126759730",
+      "citationDetail": "Nymphaeum of the via degli Annibaldi (Q126759730)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "420447351",
+  "subject": [
+    "Egyptian blue",
+    "extant remains",
+    "mosaic",
+    "nymphaeum"
+  ],
+  "title": "Nymphaeum of via degli Annibaldi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "<p>The nymphaeum is accessed via an unmarked access point close to the point where the Via degli Annibaldi becomes Via Nicola Salvi.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An elaborate nymphaeum on the Oppian Hill discovered in 1895. The complex dates to the Late Republican period. The ancient nymphaeum was partially obliterated by the construction of the Neronian Domus Aurea.",
+  "reprPoint": [
+    12.492121,
+    41.891664
+  ],
+  "placeTypes": [
+    "fountain",
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    12.492121,
+    41.891664,
+    12.492121,
+    41.891664
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/91325207"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-06-20T20:57:58Z",
+  "uri": "https://pleiades.stoa.org/places/420447351",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-03T15:06:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-20T21:32:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-20T21:04:41Z"
+    },
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-20T21:04:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-20T21:02:54Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-20T20:58:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-20T20:57:58Z"
+    }
+  ]
+}

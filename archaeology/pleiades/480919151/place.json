@@ -1,0 +1,950 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.328311,
+          36.09794
+        ]
+      },
+      "type": "Feature",
+      "id": "representative-location-of-the-central-palace",
+      "properties": {
+        "snippet": "Palace; 1000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/480919151/representative-location-of-the-central-palace",
+        "description": "Representative location of the Central Palace based on the visible remains of the Northwest Palace, the palace of Adad-nerari III, the Central Building, and the Southwest Palace.",
+        "location_precision": "precise",
+        "title": "Representative location of the Central Palace"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Kalhu fig. 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "72 fig. 41",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Oates 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S55JVIUS",
+          "formattedCitation": "<div class=\"csl-entry\">Oates, Joan, and David Oates. <i>Nimrud: An Assyrian Imperial City Revealed</i>. London: The British School of Archaeology in Iraq, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "representative-location-of-the-central-palace",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "end": -540,
+      "title": "Representative location of the Central Palace",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "palace"
+      ],
+      "description": "Representative location of the Central Palace based on the visible remains of the Northwest Palace, the palace of Adad-nerari III, the Central Building, and the Southwest Palace.",
+      "created": "2021-01-17T07:47:30Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.328311,
+          36.09794
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/480919151/representative-location-of-the-central-palace",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:44:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:47:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:41:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T11:22:32Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T11:22:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T09:02:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T08:22:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T07:47:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T07:47:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-11T16:13:10Z",
+      "associationCertainty": "certain",
+      "title": "Nimrud",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/480919151/nimrud",
+      "connectionType": "part_of_physical",
+      "id": "nimrud",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:44:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:47:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:41:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T09:02:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-11T16:13:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-11T16:13:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/894019",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-17T07:41:01Z",
+      "associationCertainty": "less-certain",
+      "title": "Northwest Palace at Kalhu",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/480919151/northwest-palace-at-kalhu",
+      "connectionType": "abuts",
+      "id": "northwest-palace-at-kalhu",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:44:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:47:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:41:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T09:02:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T07:41:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T07:41:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/439136375",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Kalhu \u00a7\u00a717, 20\u201321",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-19T07:19:08Z",
+      "associationCertainty": "less-certain",
+      "title": "Palace of Adad-n\u0101r\u0101r\u012b III",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/480919151/palace-of-adad-narari-iii",
+      "connectionType": "part_of_physical",
+      "id": "palace-of-adad-narari-iii",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:44:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:47:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:41:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T09:02:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T07:19:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T07:19:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/309437155",
+      "details": "<p>Only small portions of the Central Palace have survived since it was largely dismantled in antiquity and, therefore, the\u00a0precise area covered by this royal residence and its\u00a0relationship to other buildings constructed within the Kalhu citadel\u00a0remain unknown/uncertain. At least two of Tiglath-pileser III's inscriptions state that his newly-constructed royal residence stretched as far as the Tigris River, a\u00a0situation now complicated by the fact that Iraqi\u00a0excavations\u00a0under the direction of Muzahim Mahmud Hussein discovered a palace constructed by\u00a0Adad-n\u0101r\u0101r\u012b III\u00a0immediately south of the Northwest Palace. It is uncertain if Tiglath-pileser III's palace incorporated the earlier royal residence of\u00a0Adad-n\u0101r\u0101r\u012b III into its plan or if it merely abutted it.</p>",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Kalhu \u00a7\u00a717, 20\u201321",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "70, 73\u201374",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Oates 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S55JVIUS",
+          "formattedCitation": "<div class=\"csl-entry\">Oates, Joan, and David Oates. <i>Nimrud: An Assyrian Imperial City Revealed</i>. London: The British School of Archaeology in Iraq, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-19T07:49:11Z",
+      "associationCertainty": "less-certain",
+      "title": "Central Building at Kalhu",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/480919151/central-building-at-kalhu",
+      "connectionType": "abuts",
+      "id": "central-building-at-kalhu",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:44:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:47:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:41:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T09:02:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T07:49:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T07:49:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/942018830",
+      "details": "<p>The precise relationship between the Central Palace and the Central Building is uncertain given that only small portions of these building survive.</p>",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Kalhu \u00a7\u00a717, 20\u201321",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "71\u201374",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Oates 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S55JVIUS",
+          "formattedCitation": "<div class=\"csl-entry\">Oates, Joan, and David Oates. <i>Nimrud: An Assyrian Imperial City Revealed</i>. London: The British School of Archaeology in Iraq, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-19T07:58:35Z",
+      "associationCertainty": "less-certain",
+      "title": "Upper Chambers at Kalhu",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/480919151/upper-chambers-at-kalhu",
+      "connectionType": "part_of_physical",
+      "id": "upper-chambers-at-kalhu",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:44:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:47:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:41:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T09:02:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T07:58:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T07:58:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/303354808",
+      "details": "<p>The exact relationship between the Central Palace and the Upper Chambers is unclear.</p>",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Kalhu \u00a7\u00a717, 20\u201321",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Kalhu \u00a7\u00a717, 20\u201321",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "71\u201374",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Oates 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S55JVIUS",
+      "formattedCitation": "<div class=\"csl-entry\">Oates, Joan, and David Oates. <i>Nimrud: An Assyrian Imperial City Revealed</i>. London: The British School of Archaeology in Iraq, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap1/Q003460",
+      "citationDetail": "Tiglath-pileser III 47",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 1 online",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ucl.ac.uk/sargon/essentials/cities/kalhu/",
+      "citationDetail": "Kalhu",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Assyrian Empire Builders",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.learningsites.com/CPalace_Nimrud/CPalace_home.php",
+      "citationDetail": "Central Palace",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Learning Sites",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1075376371",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Barnett and Falkner 1962",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HL7VJT4X",
+      "formattedCitation": "<div class=\"csl-entry\">Barnett, R. D, and M Falkner. <i>The Sculptures of Assur-Nasir-Apli II (883-859 b.c.), Tiglath-Pileser III (745-727 b.c.), Esarhaddon (681-669 b.c.) from the Central and South-West Palaces at Nimrud</i>. London: The trustees of the British Museum, 1962.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Central Palace",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Kalhu \u00a7\u00a717, 20\u201321",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "central-palace",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1800,
+      "details": "",
+      "review_state": "published",
+      "description": "Designation given to Tiglath-pileser III's palace at Kalhu by its excavators.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2021-01-17T07:34:06Z",
+      "uri": "https://pleiades.stoa.org/places/480919151/central-palace",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:44:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:47:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:41:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T09:02:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T07:34:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T07:34:06Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "\u0113kal er\u0113ni",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap1/Q003460",
+          "citationDetail": "Tiglath-pileser III 47",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 1 online",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ekal-ereni",
+      "end": -720,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "details": "",
+      "review_state": "published",
+      "description": "At least one Akkadian inscription of Tiglath-pileser III refers to this palaces as the \"Cedar Palace\"; the ceremonial name of the building is not known.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2021-01-17T07:38:26Z",
+      "uri": "https://pleiades.stoa.org/places/480919151/ekal-ereni",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-19T19:44:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:47:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T15:41:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-19T09:02:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T07:38:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-17T07:38:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "480919151",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Central Palace at Kalhu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/palace"
+  ],
+  "details": "<p><a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap1/index.html\" target=\"_self\" title=\"\">Tiglath-pileser III</a> (r. 744\u2013727 BC) constructed a large palace south of the <a class=\"external-link\" href=\"../439136375\" target=\"_self\" title=\"\">Northwest Palace</a> at Kalhu. Several Akkadian inscriptions of his (for example, RINAP 1 online <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap1/Q003460\" target=\"_self\" title=\"\">Tiglath-pileser 47</a>) record that this newly-constructed royal residence, which he called the \u201cCedar Palace\u201d (<i>\u0113kal er\u0113ni</i>), stretched to the Tigris River and had a\u00a0<i>b\u012bt-\u1e2bil\u0101ni</i>, a Hittite-style pillared-portico, built for his personal pleasure. Its walls were lined with large sculpted and inscribed stone orthostats. Tiglath-pileser states that he created \u201cglittering chamber(s) inlaid with precious stones,\u201d which were named \u201c(The) Palatial Halls of Joy Which Bear Abundance, Which Bless the King, (and) Which Make Their Builder Long-Lived.\u201d The most important entrances to the palace were called \u201cGates of Justice Which Give the Correct Judgment for the Rulers of the Four Quarters (of the World), Which Offer the Yield of the Mountains and the Seas, (and) Which Admit the Produce of Mankind Before the King Their Lord.\u201d\u00a0\u00a0Construction on the palace seems to have been started late in Tiglath-pileser\u2019 reign and was unfinished at the time of his death in 727 BC; this is certain from the fact that that several sculptured slabs, left without their inscriptions (annalistic texts) being carved, were discovered. In the seventh century BC, <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/rinap/rinap4/\" target=\"_self\" title=\"\">Esarhaddon</a> (r. 680\u2013669 BC) had Tiglath-pileser\u2019s palace dismantled and had its building materials, especially its limestone slabs, reused in the construction of his own palace.</p>\r\n<p>The Central Palace \u2014 its modern name, which stems from its location in the Kalhu citadel \u2014 was excavated by <a class=\"external-link\" href=\"https://en.wikipedia.org/wiki/Austen_Henry_Layard\" target=\"_self\" title=\"\">Austen Henry Layard</a> in 1845\u201351, <a class=\"external-link\" href=\"https://en.wikipedia.org/wiki/Hormuzd_Rassam\" target=\"_self\" title=\"\">Horzmud Rassam</a> in 1853\u201354 and 1878\u201379, <a class=\"external-link\" href=\"https://en.wikipedia.org/wiki/William_Loftus\" target=\"_self\" title=\"\">William Kennett Loftus</a> in 1854, <a class=\"external-link\" href=\"https://en.wikipedia.org/wiki/Max_Mallowan\" target=\"_self\" title=\"\">Sir Max Mallowan</a> in 1951\u201352, and <a class=\"external-link\" href=\"https://pl.wikipedia.org/wiki/Janusz_Meuszy\u0144ski\" target=\"_self\" title=\"\">Janusz Meuszynski</a> in 1975\u201376. Because Esarhaddon had ransacked this once-grand royal residence for building material, only a small portion of this building remained. Layard remarked that it had been \u201cso completely destroyed that its ground plan cannot be ascertained,\u201d and, thus, the area covered by this palace remains unknown to this day. The relationship of the Central Palace to the other buildings on the citadel mound of Nimrud is also uncertain.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The eighth-century-BC Assyrian king Tiglath-pileser III (r. 744\u2013727 BC) built himself a grand, ornately-decorated royal residence at Kalhu (biblical Calah, modern Nimrud). This (large) palatial complex, which included a pillared-portico (a b\u012bt-\u1e2bil\u0101ni), was constructed south of the Northwest Palace (built by Ashurnasirpal II [r. 883\u2013859 BC]). The \u201cCedar Palace\u201d (as it is referred to in at least one contemporary Akkadian inscription) was largely dismantled by the seventh-century-BC ruler Esarhaddon (r. 680\u2013669 BC), who had its (sculpted and inscribed) limestone slabs reused in his own royal residence (the Southwest Palace). The building is now generally referred to as the \u201cCentral Palace,\u201d a modern designation given to it by its excavators since the palace was constructed in the central part of the Kalhu citadel.",
+  "reprPoint": [
+    43.328311,
+    36.09794
+  ],
+  "placeTypes": [
+    "palace"
+  ],
+  "bbox": [
+    43.328311,
+    36.09794,
+    43.328311,
+    36.09794
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/894019",
+    "https://pleiades.stoa.org/places/439136375",
+    "https://pleiades.stoa.org/places/309437155",
+    "https://pleiades.stoa.org/places/942018830",
+    "https://pleiades.stoa.org/places/303354808",
+    "https://pleiades.stoa.org/places/480919150"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-01-11T15:49:01Z",
+  "uri": "https://pleiades.stoa.org/places/480919151",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update ref. with Zotero link",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-19T19:47:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-19T19:44:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-19T15:47:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-19T15:41:50Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-19T15:41:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-19T09:02:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-19T09:01:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-17T08:17:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-17T08:10:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-11T15:49:02Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-11T15:49:01Z"
+    }
+  ]
+}

@@ -1,0 +1,536 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.1142938,
+            41.9930446
+          ],
+          [
+            12.1142664,
+            41.9930935
+          ],
+          [
+            12.1142632,
+            41.9931463
+          ],
+          [
+            12.1142844,
+            41.9931968
+          ],
+          [
+            12.1143275,
+            41.9932389
+          ],
+          [
+            12.1143874,
+            41.9932675
+          ],
+          [
+            12.1144568,
+            41.9932792
+          ],
+          [
+            12.1145274,
+            41.9932726
+          ],
+          [
+            12.1145908,
+            41.9932485
+          ],
+          [
+            12.1146392,
+            41.9932097
+          ],
+          [
+            12.1146653,
+            41.993166
+          ],
+          [
+            12.1146719,
+            41.9931184
+          ],
+          [
+            12.1146583,
+            41.9930716
+          ],
+          [
+            12.1146259,
+            41.9930303
+          ],
+          [
+            12.1145779,
+            41.9929984
+          ],
+          [
+            12.114519,
+            41.9929792
+          ],
+          [
+            12.1144549,
+            41.9929744
+          ],
+          [
+            12.114392,
+            41.9929847
+          ],
+          [
+            12.1143365,
+            41.9930088
+          ],
+          [
+            12.1142938,
+            41.9930446
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomba-torlonia",
+      "properties": {
+        "snippet": "Tumulus; 400 BC - 301 BC",
+        "link": "https://pleiades.stoa.org/places/722252928/osm-location-of-tomba-torlonia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tomba Torlonia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fourth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/268045844",
+          "citationDetail": "Way 268045844",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=268045844",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tomba-torlonia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": -301,
+      "title": "OSM location of Tomba Torlonia",
+      "provenance": "OpenStreetMap (Way 268045844, version 4, osm:changeset=131379256, 2023-01-17T13:20:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -400,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-01-17T13:20:31Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.1142938,
+            41.9930446
+          ],
+          [
+            12.1142664,
+            41.9930935
+          ],
+          [
+            12.1142632,
+            41.9931463
+          ],
+          [
+            12.1142844,
+            41.9931968
+          ],
+          [
+            12.1143275,
+            41.9932389
+          ],
+          [
+            12.1143874,
+            41.9932675
+          ],
+          [
+            12.1144568,
+            41.9932792
+          ],
+          [
+            12.1145274,
+            41.9932726
+          ],
+          [
+            12.1145908,
+            41.9932485
+          ],
+          [
+            12.1146392,
+            41.9932097
+          ],
+          [
+            12.1146653,
+            41.993166
+          ],
+          [
+            12.1146719,
+            41.9931184
+          ],
+          [
+            12.1146583,
+            41.9930716
+          ],
+          [
+            12.1146259,
+            41.9930303
+          ],
+          [
+            12.1145779,
+            41.9929984
+          ],
+          [
+            12.114519,
+            41.9929792
+          ],
+          [
+            12.1144549,
+            41.9929744
+          ],
+          [
+            12.114392,
+            41.9929847
+          ],
+          [
+            12.1143365,
+            41.9930088
+          ],
+          [
+            12.1142938,
+            41.9930446
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/722252928/osm-location-of-tomba-torlonia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-17T16:14:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:29:39Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:21:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:20:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:20:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-01-17T13:21:34Z",
+      "associationCertainty": "certain",
+      "title": "Monte Abatone necropolis, Caere",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/722252928/6949118092",
+      "connectionType": "at",
+      "id": "6949118092",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:21:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:21:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:21:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/955903121",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://catalogo.beniculturali.it/detail/ArchaeologicalProperty/1201338986",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "tumulo Torlonia (tomba) CERVETERI, ca 320 a.C - ca 300 a.C",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108952024",
+      "citationDetail": "Q108952024: Tomba Torlonia",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/23770/",
+      "citationDetail": "23770: Torlonia Tomb, Cerveteri",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.19282/ac.33.2.2022.08",
+      "citationDetail": "135",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gilotta et al. 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B62WPP3N",
+      "formattedCitation": "<div class=\"csl-entry\">Gilotta, Fernando, Valentina Carafa, Giulia Morpurgo, Carmelo Rizzo, Alessandra Cirafici, Alessandra Avella, Pasquale Argenziano, et al. \u201cResearches at the Monte Abatone Necropolis (Cerveteri).\u201d <i>Archeologia e Calcolatori</i> 33, no. 2 (2022): 135\u201352. https://doi.org/10.19282/ac.33.2.2022.08.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Papi 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLGF5Z9R",
+      "formattedCitation": "<div class=\"csl-entry\">Papi, Rita. <i>Il tumulo Torlonia di Caere</i>. Roma: Gruppo Editoriale l\u2019Espresso, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tomba Torlonia",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q108952024",
+          "citationDetail": "Q108952024: Tomba Torlonia",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "tomba-torlonia",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1800,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-01-17T13:25:18Z",
+      "uri": "https://pleiades.stoa.org/places/722252928/tomba-torlonia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Tomba Torlonia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-17T16:14:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:29:39Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:25:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-17T13:25:18Z"
+        }
+      ]
+    }
+  ],
+  "id": "722252928",
+  "subject": [],
+  "title": "Tomba Torlonia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan tumulus-type tomb in the Monte Abatone necropolis of Caere that dates ca. 320-200 BCE.",
+  "reprPoint": [
+    12.114466938722328,
+    41.99312665872796
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    12.1142632,
+    41.9929744,
+    12.1146719,
+    41.9932792
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/955903121"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-01-17T13:21:33Z",
+  "uri": "https://pleiades.stoa.org/places/722252928",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-17T16:14:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-17T13:29:39Z"
+    },
+    {
+      "comment": "wikidata, vici.org",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-17T13:29:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-17T13:23:07Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-17T13:21:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-17T13:21:33Z"
+    }
+  ]
+}

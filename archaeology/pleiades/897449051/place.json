@@ -1,0 +1,874 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.407549,
+          32.531412
+        ]
+      },
+      "type": "Feature",
+      "id": "proposed-location-of-the-kings-gate",
+      "properties": {
+        "snippet": "City-gate",
+        "link": "https://pleiades.stoa.org/places/897449051/proposed-location-of-the-kings-gate",
+        "description": "The proposed location of the King's Gate is based on a plan of the ruins of Babylon, with 500 m UTM coordinates.",
+        "location_precision": "precise",
+        "title": "Proposed location of the King's Gate"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "31 fig. 2.1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peders\u00e9n 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G4TYAF5Z",
+          "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Babylon: The Great City</i>. M\u00fcnster: Zaphon, 2021.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "proposed-location-of-the-kings-gate",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "end": null,
+      "title": "Proposed location of the King's Gate",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p><span>The proposed location of the King's Gate is based on\u00a0</span><a class=\"external-link\" href=\"https://uppsala.app.box.com/s/cgm386mr39f0we39y8v49ktecc664k0k/file/722124240853\" target=\"_self\" title=\"\">Peders\u00e9n 2021 fig. 2.1</a><span>, which shows a plan of Babylon, with 500 m UTM coordinates given. The\u00a0suggested\u00a0coordinates correspond with a high mound that preserves traces of the ruins of the western wall of the inner city of Babylon. These might belong to the King's Gate.</span></p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "city-gate"
+      ],
+      "description": "The proposed location of the King's Gate is based on a plan of the ruins of Babylon, with 500 m UTM coordinates.",
+      "created": "2021-01-28T06:39:03Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.407549,
+          32.531412
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/897449051/proposed-location-of-the-kings-gate",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:13:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-27T11:59:37Z",
+      "associationCertainty": "certain",
+      "title": "Babylon",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/897449051/babylon",
+      "connectionType": "part_of_physical",
+      "id": "babylon",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:13:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T11:59:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T11:59:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893951",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/803804468",
+          "citationDetail": "24 fig. 4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 1992",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+          "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-27T12:01:34Z",
+      "associationCertainty": "less-certain",
+      "title": "nu-x-\u00f9",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/897449051/nu-x-u",
+      "connectionType": "bounds",
+      "id": "nu-x-u",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:13:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T12:01:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T12:01:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/633091638",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/803804468",
+          "citationDetail": "24 fig. 4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 1992",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+          "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/bounds"
+    },
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-27T17:08:11Z",
+      "associationCertainty": "certain",
+      "title": "Imgur-Enlil",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/897449051/imgur-enlil",
+      "connectionType": "part_of_physical",
+      "id": "imgur-enlil",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:13:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T17:08:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T17:08:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/202833933",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/803804468",
+          "citationDetail": "24 fig. 4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 1992",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+          "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-27T17:09:57Z",
+      "associationCertainty": "certain",
+      "title": "N\u0113med-Enlil",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/897449051/nemed-enlil",
+      "connectionType": "part_of_physical",
+      "id": "nemed-enlil",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:13:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T17:09:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T17:09:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/897225060",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/803804468",
+          "citationDetail": "24 fig. 4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 1992",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+          "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://uppsala.app.box.com/s/cgm386mr39f0we39y8v49ktecc664k0k/file/722124240853",
+      "citationDetail": "31 fig. 2.1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peders\u00e9n 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G4TYAF5Z",
+      "formattedCitation": "<div class=\"csl-entry\">Peders\u00e9n, Olof. <i>Babylon: The Great City</i>. M\u00fcnster: Zaphon, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/803804468",
+      "citationDetail": "24 (fig. 4), 342",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+      "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/btto/Q004801",
+      "citationDetail": "Tintir V",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "BTTo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "King's Gate",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/803804468",
+          "citationDetail": "342",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "George 1992",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+          "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kings-gate",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "English translation of Akkadian Abul-\u0161arri.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2021-01-27T17:16:08Z",
+      "uri": "https://pleiades.stoa.org/places/897449051/kings-gate",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:13:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T17:16:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-27T17:16:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Abul-\u0161arri",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q004801",
+          "citationDetail": "Tintir V",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "abul-sarri",
+      "end": -30,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "",
+      "review_state": "published",
+      "description": "Everyday, Akkadian name of the \"King's Gate\" at Babylon.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2021-01-28T06:33:15Z",
+      "uri": "https://pleiades.stoa.org/places/897449051/abul-sarri",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:13:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:06:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:33:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:33:15Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Lib\u016br-n\u0101d\u00fb\u0161u",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q004801",
+          "citationDetail": "Tintir V",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "libur-nadusu",
+      "end": -540,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "The Akkadian ceremonial name of the King's Gate means \"May Its Founder Flourish.\" This name is mentioned in Tablet V of the series Tintir = Babylon.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2021-01-28T06:35:48Z",
+      "uri": "https://pleiades.stoa.org/places/897449051/libur-nadusu",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:13:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-28T15:08:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:39:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:35:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-28T06:35:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "897449051",
+  "subject": [
+    "ANE",
+    "Babylonian"
+  ],
+  "title": "King's Gate",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "<p><span>The German excavators of Babylon did not excavate any of the city gates west of the Euphrates; the\u00a0King's Gate was one of four unexcavated gates of the inner city.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The King's Gate is one of Babylon's eight city gates and it is situated on the western side of the inner city, directly west of the nu-x-\u00f9 quarter. King Nebuchadnezzar II built the gate ca. 575 B.C.",
+  "reprPoint": [
+    44.407549,
+    32.531412
+  ],
+  "placeTypes": [
+    "unlocated",
+    "city-gate"
+  ],
+  "bbox": [
+    44.407549,
+    32.531412,
+    44.407549,
+    32.531412
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893951",
+    "https://pleiades.stoa.org/places/633091638",
+    "https://pleiades.stoa.org/places/202833933",
+    "https://pleiades.stoa.org/places/897225060"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-01-27T11:57:41Z",
+  "uri": "https://pleiades.stoa.org/places/897449051",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-28T15:13:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-28T15:06:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-28T06:39:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-27T17:06:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-27T11:57:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-27T11:57:41Z"
+    }
+  ]
+}

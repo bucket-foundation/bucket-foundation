@@ -1,0 +1,241 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.0252553,
+            39.9648905
+          ],
+          [
+            -0.0252955,
+            39.9648289
+          ],
+          [
+            -0.0253626,
+            39.9647775
+          ],
+          [
+            -0.0254162,
+            39.964687
+          ],
+          [
+            -0.023662,
+            39.9640559
+          ],
+          [
+            -0.0234099,
+            39.9642204
+          ],
+          [
+            -0.0252553,
+            39.9648905
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/939442083/osm-location-of-roman-villa",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman villa"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/364705286",
+          "citationDetail": "Way 364705286",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=364705286",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Roman villa",
+      "provenance": "OpenStreetMap (Way 364705286, version 2, osm:changeset=33209658, 2015-08-08T22:20:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-08-08T22:20:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.0252553,
+            39.9648905
+          ],
+          [
+            -0.0252955,
+            39.9648289
+          ],
+          [
+            -0.0253626,
+            39.9647775
+          ],
+          [
+            -0.0254162,
+            39.964687
+          ],
+          [
+            -0.023662,
+            39.9640559
+          ],
+          [
+            -0.0234099,
+            39.9642204
+          ],
+          [
+            -0.0252553,
+            39.9648905
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/939442083/osm-location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-05T03:40:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-29T23:24:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-08T22:22:25Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-08T22:22:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-08T22:20:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-08T22:20:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [],
+  "names": [],
+  "id": "939442083",
+  "subject": [],
+  "title": "Villamargo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa.",
+  "reprPoint": [
+    -0.0252553,
+    39.9648905
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -0.0252553,
+    39.9648905,
+    -0.0252553,
+    39.9648905
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-08-08T22:19:52Z",
+  "uri": "https://pleiades.stoa.org/places/939442083",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-29T23:24:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-08T22:22:37Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-08T22:19:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-08T22:19:52Z"
+    }
+  ]
+}

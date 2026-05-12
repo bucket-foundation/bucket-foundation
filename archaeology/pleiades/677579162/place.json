@@ -1,0 +1,227 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.666667,
+          31.816667
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-iktanoh",
+      "properties": {
+        "snippet": "Hill; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/677579162/osm-location-of-tell-iktanoh",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Iktanoh"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/802868875",
+          "citationDetail": "Node 802868875",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=802868875",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-iktanoh",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "end": 2100,
+      "title": "OSM location of Tell Iktanoh",
+      "provenance": "OpenStreetMap (Node 802868875, version 2, osm:changeset=9754268, 2011-11-06T11:29:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hill"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2017-10-22T02:53:41Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.666667,
+          31.816667
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/677579162/osm-location-of-tell-iktanoh",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-01-05T01:39:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-19T14:33:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-19T14:33:21Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-22T02:53:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-22T02:53:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-22T02:53:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/4199017",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Prag 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FGZUIW23",
+      "formattedCitation": "<div class=\"csl-entry\">Prag, Kay. \u201cThe Excavations at Tell Iktanu, 1989 and 1990.\u201d <i>Syria</i> 70, no. 1/2 (1993): 269\u201371. http://www.jstor.org/stable/4199017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "677579162",
+  "subject": [],
+  "title": "Tell Iktanu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An early and middle Bronze Age site in the Jordan valley.",
+  "reprPoint": [
+    35.666667,
+    31.816667
+  ],
+  "placeTypes": [
+    "settlement",
+    "hill"
+  ],
+  "bbox": [
+    35.666667,
+    31.816667,
+    35.666667,
+    31.816667
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-10-03T18:54:44Z",
+  "uri": "https://pleiades.stoa.org/places/677579162",
+  "creators": [
+    {
+      "username": "ctiah",
+      "homepage": null,
+      "name": "Clifflena Tiah",
+      "uri": "https://pleiades.stoa.org/author/ctiah"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-01-05T01:39:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T14:33:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T14:33:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T14:32:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-22T02:55:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-22T02:53:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-03T18:54:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-03T18:54:44Z"
+    }
+  ]
+}

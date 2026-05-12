@@ -1,0 +1,227 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.2866559,
+          32.8686825
+        ]
+      },
+      "type": "Feature",
+      "id": "ksar-douiret",
+      "properties": {
+        "snippet": "Fort; AD 1300 - AD 1923",
+        "link": "https://pleiades.stoa.org/places/681631219/ksar-douiret",
+        "description": "Point representing the location of the Ksar Douiret site, derived from an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location of Ksar Douiret"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/8089039779",
+          "citationDetail": "Node 8089039779",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=8089039779",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "ksar-douiret",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": 1923,
+      "title": "OSM location of Ksar Douiret",
+      "provenance": "OpenStreetMap (Node 8089039779, version 1, osm:changeset=93680735, 2020-11-06T18:55:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Point representing the location of the Ksar Douiret site, derived from an OpenStreetMap Node.",
+      "created": "2020-11-06T19:00:48Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.2866559,
+          32.8686825
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/681631219/ksar-douiret",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-07T03:48:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-11-06T19:05:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-11-06T19:03:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2020-11-06T19:00:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-11-06T19:00:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/63446081",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Louis 1975",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z6WJT6S5",
+      "formattedCitation": "<div class=\"csl-entry\">Louis, Andr\u00e9. <i>Douiret, \u00c9trange Cit\u00e9 Berb\u00e8re Du Sud Tunisien</i>. Tunis: STD, 1975. http://www.worldcat.org/oclc/63446081.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Douiret",
+      "citationDetail": "Douiret",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://douiret.pagesperso-orange.fr/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Douiret",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N8H6PA59",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cDouiret, Ksar de La Tunisie Du Sud (South of Tunisia).\u201d Accessed November 6, 2020. https://douiret.pagesperso-orange.fr/.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [],
+  "id": "681631219",
+  "subject": [],
+  "title": "Ksar Douiret",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Fortified Berber granary (ksar). The surviving structure dates to the 14th century CE, but the site may have been in use as early as the Roman era.",
+  "reprPoint": [
+    10.2866559,
+    32.8686825
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    10.2866559,
+    32.8686825,
+    10.2866559,
+    32.8686825
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-06T19:00:26Z",
+  "uri": "https://pleiades.stoa.org/places/681631219",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-07T03:48:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-07T03:46:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2020-11-06T19:05:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2020-11-06T19:00:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2020-11-06T19:00:26Z"
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.6339666,
+            41.87008
+          ],
+          [
+            -8.6338067,
+            41.8701365
+          ],
+          [
+            -8.6336447,
+            41.8702717
+          ],
+          [
+            -8.6334248,
+            41.8706672
+          ],
+          [
+            -8.633296,
+            41.8711186
+          ],
+          [
+            -8.6333711,
+            41.8713982
+          ],
+          [
+            -8.6335975,
+            41.8717303
+          ],
+          [
+            -8.6337091,
+            41.8718376
+          ],
+          [
+            -8.6339988,
+            41.8719215
+          ],
+          [
+            -8.6343367,
+            41.8718975
+          ],
+          [
+            -8.6344655,
+            41.8718136
+          ],
+          [
+            -8.6345996,
+            41.8716379
+          ],
+          [
+            -8.634723,
+            41.8714222
+          ],
+          [
+            -8.6347562,
+            41.8711791
+          ],
+          [
+            -8.6347294,
+            41.8709674
+          ],
+          [
+            -8.6346586,
+            41.8706911
+          ],
+          [
+            -8.6344826,
+            41.8704001
+          ],
+          [
+            -8.6343056,
+            41.8702324
+          ],
+          [
+            -8.6341329,
+            41.8701399
+          ],
+          [
+            -8.6339666,
+            41.87008
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Fortified-settlement",
+        "link": "https://pleiades.stoa.org/places/277867435/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Romarig\u00e3es"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/201692198",
+          "citationDetail": "Way 201692198",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=201692198",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "end": null,
+      "title": "OSM location of Castro de Romarig\u00e3es",
+      "provenance": "OpenStreetMap (Way 201692198, version 1, osm:changeset=14690969, 2013-01-17T23:25:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fortified-settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2015-03-12T12:28:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.6339666,
+            41.87008
+          ],
+          [
+            -8.6338067,
+            41.8701365
+          ],
+          [
+            -8.6336447,
+            41.8702717
+          ],
+          [
+            -8.6334248,
+            41.8706672
+          ],
+          [
+            -8.633296,
+            41.8711186
+          ],
+          [
+            -8.6333711,
+            41.8713982
+          ],
+          [
+            -8.6335975,
+            41.8717303
+          ],
+          [
+            -8.6337091,
+            41.8718376
+          ],
+          [
+            -8.6339988,
+            41.8719215
+          ],
+          [
+            -8.6343367,
+            41.8718975
+          ],
+          [
+            -8.6344655,
+            41.8718136
+          ],
+          [
+            -8.6345996,
+            41.8716379
+          ],
+          [
+            -8.634723,
+            41.8714222
+          ],
+          [
+            -8.6347562,
+            41.8711791
+          ],
+          [
+            -8.6347294,
+            41.8709674
+          ],
+          [
+            -8.6346586,
+            41.8706911
+          ],
+          [
+            -8.6344826,
+            41.8704001
+          ],
+          [
+            -8.6343056,
+            41.8702324
+          ],
+          [
+            -8.6341329,
+            41.8701399
+          ],
+          [
+            -8.6339666,
+            41.87008
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/277867435/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T20:59:39Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-15T16:31:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-15T00:20:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-14T14:24:17Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T12:28:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T12:28:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T12:28:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.monumentos.gov.pt/site/app_pagesuser/sipa.aspx?id=5261",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "N\u00famero IPA Antigo 00005261",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "277867435",
+  "subject": [],
+  "title": "Couto de Ouro",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fortified, proto-urban Iron Age village. The site is located in the modern Portuguese municipality of Paredes de Coura.",
+  "reprPoint": [
+    -8.6347562,
+    41.8711791
+  ],
+  "placeTypes": [
+    "fortified-settlement"
+  ],
+  "bbox": [
+    -8.6347562,
+    41.8711791,
+    -8.6347562,
+    41.8711791
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-03-12T12:26:55Z",
+  "uri": "https://pleiades.stoa.org/places/277867435",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-15T16:31:11Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-15T16:31:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-15T00:20:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-14T14:27:30Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T12:27:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T12:26:56Z"
+    }
+  ]
+}

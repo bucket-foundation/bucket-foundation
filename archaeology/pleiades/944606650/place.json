@@ -1,0 +1,567 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2601513,
+            36.4964635
+          ],
+          [
+            43.2605482,
+            36.496567
+          ],
+          [
+            43.2610149,
+            36.4964936
+          ],
+          [
+            43.2613261,
+            36.4962478
+          ],
+          [
+            43.2613851,
+            36.4956786
+          ],
+          [
+            43.2609881,
+            36.495312
+          ],
+          [
+            43.2604463,
+            36.4950792
+          ],
+          [
+            43.2600654,
+            36.4951913
+          ],
+          [
+            43.259529,
+            36.4954975
+          ],
+          [
+            43.2596524,
+            36.4959287
+          ],
+          [
+            43.2597918,
+            36.4962047
+          ],
+          [
+            43.2599259,
+            36.4964419
+          ],
+          [
+            43.2601513,
+            36.4964635
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tepe-gawra",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/944606650/osm-location-of-tepe-gawra",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tepe Gawra"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.2604,
+          36.4958
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-tapah-gawra",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/944606650/cigs-location-of-tapah-gawra",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Tapah Gawra"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/492099528",
+          "citationDetail": "Way 492099528",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=492099528",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tepe-gawra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "OSM location of Tepe Gawra",
+      "provenance": "OpenStreetMap (Way 492099528, version 3, osm:changeset=53141841, 2017-10-22T02:38:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-10-22T02:38:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2601513,
+            36.4964635
+          ],
+          [
+            43.2605482,
+            36.496567
+          ],
+          [
+            43.2610149,
+            36.4964936
+          ],
+          [
+            43.2613261,
+            36.4962478
+          ],
+          [
+            43.2613851,
+            36.4956786
+          ],
+          [
+            43.2609881,
+            36.495312
+          ],
+          [
+            43.2604463,
+            36.4950792
+          ],
+          [
+            43.2600654,
+            36.4951913
+          ],
+          [
+            43.259529,
+            36.4954975
+          ],
+          [
+            43.2596524,
+            36.4959287
+          ],
+          [
+            43.2597918,
+            36.4962047
+          ],
+          [
+            43.2599259,
+            36.4964419
+          ],
+          [
+            43.2601513,
+            36.4964635
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/944606650/osm-location-of-tepe-gawra",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T04:43:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-25T04:24:10Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-22T02:39:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-22T02:38:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-22T02:38:42Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.penn.museum/sites/expedition/one-of-iraqs-earliest-towns/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peasnall 2003",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QU49SX6K",
+          "formattedCitation": "<div class=\"csl-entry\">Peasnall, Brian, and Mitchell Rothman. \u201cOne of Iraq\u2019s Earliest Towns: Excavating Tepe Gawra in the Archives of the University of Pennsylvania Museum.\u201d <i>Expedition: The Magazine of the University of Pennsylvania Museum of Archaeology and Anthropology</i> 45, no. 3 (2003): 34\u201339. https://www.penn.museum/sites/expedition/one-of-iraqs-earliest-towns/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/1359869",
+          "citationDetail": "page 229",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Behrens 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GJMA78C5",
+          "formattedCitation": "<div class=\"csl-entry\">Behrens, Hermann. \u201cDie Backsteine Mit Keilinschriften Im University Museum.\u201d <i>Journal of Cuneiform Studies</i> 37, no. 2 (1985): 229\u201348. https://www.jstor.org/stable/1359869.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-tapah-gawra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of Tapah Gawra",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-04-25T12:15:09Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.2604,
+          36.4958
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/944606650/cigs-location-of-tapah-gawra",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-25T13:30:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T13:01:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T13:01:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T12:15:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-25T12:15:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/948173039",
+      "citationDetail": "24, 33",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bryce 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P3ZNEWRV",
+      "formattedCitation": "<div class=\"csl-entry\">Bryce, Trevor. <i>Atlas of the Ancient Near East: From Prehistoric Times to the Roman Imperial Period</i>. London: Routledge, 2016. http://www.worldcat.org/oclc/948173039.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tepe_Gawra",
+      "citationDetail": "Tepe Gawra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Tepe Gawra.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q607583",
+      "citationDetail": "Q607583: Tepe Gawra",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vocab.getty.edu/page/tgn/6005885",
+      "citationDetail": "6005885: Tepe Gawra (deserted settlement)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TGN",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLJQ5AZJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Getty Thesaurus of Geographic Names\u00ae Online</i>, n.d. https://www.getty.edu/research/tools/vocabularies/tgn/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tepe Gawra",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q607583",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Wikidata Q607583",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-10-25.4011445024",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-10-25T04:23:46Z",
+      "uri": "https://pleiades.stoa.org/places/944606650/name.2017-10-25.4011445024",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-17T04:43:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-25T04:24:11Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-25T04:23:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-25T04:23:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "944606650",
+  "subject": [],
+  "title": "Tepe Gawra",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p class=\" \">Tepe Gawra <span>was occupied between ca. 5000 and 1500 B.C. with remains from the Halaf period, the Ubaid period, and the Uruk period. It is one of the few sites with evidence for the Halaf to Ubaid transition (ca. 5,500 to 5,000 B.C.)</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient Mesopotamian settlement located in the Mosul region of northwest Iraq.",
+  "reprPoint": [
+    43.26043738228675,
+    36.49582147175772
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    43.259529,
+    36.4950792,
+    43.2613851,
+    36.496567
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-10-07T16:57:54Z",
+  "uri": "https://pleiades.stoa.org/places/944606650",
+  "creators": [
+    {
+      "username": "ctiah",
+      "homepage": null,
+      "name": "Clifflena Tiah",
+      "uri": "https://pleiades.stoa.org/author/ctiah"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added TGN 6005885: Tepe Gawra (deserted settlement)",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-25T13:31:59Z"
+    },
+    {
+      "comment": "added Wikidata Q607583: Tepe Gawra",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-27T19:23:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-17T04:43:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-25T04:24:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-25T04:22:41Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-22T02:37:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ctiah",
+      "modified": "2016-12-05T18:01:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-07T16:57:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-07T16:57:54Z"
+    }
+  ]
+}

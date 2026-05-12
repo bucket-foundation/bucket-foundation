@@ -1,0 +1,994 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1543883,
+          36.374511
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-adad-gate",
+      "properties": {
+        "snippet": "City-gate; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/719936358/osm-location-of-the-adad-gate",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM Location of the Adad Gate"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/5017059027",
+          "citationDetail": "Node 5017059027",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5017059027",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-adad-gate",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "end": -540,
+      "title": "OSM Location of the Adad Gate",
+      "provenance": "OpenStreetMap (Node 5017059027, version 2, osm:changeset=56058844, 2018-02-04T15:42:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-gate"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-02-06T12:39:10Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.1543883,
+          36.374511
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/719936358/osm-location-of-the-adad-gate",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-07T13:32:34Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-07T11:20:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:59:29Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:58:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:25:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:07:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:52:15Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:50:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:39:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:39:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:39:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T11:08:04Z",
+      "associationCertainty": "certain",
+      "title": "Nineveh/Ninos",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/719936358/nineveh-ninos",
+      "connectionType": "part_of_physical",
+      "id": "nineveh-ninos",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-07T11:20:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:59:28Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:58:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:25:19Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:07:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:52:14Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:47:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:50:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T11:08:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T11:08:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/874621",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T11:08:42Z",
+      "associationCertainty": "certain",
+      "title": "Badnigerimhuluha",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/719936358/badnigerimhuluha",
+      "connectionType": "part_of_physical",
+      "id": "badnigerimhuluha",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-07T11:20:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:59:28Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:58:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:25:19Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:07:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:52:14Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:50:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T11:08:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T11:08:42Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/882947620",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T11:09:23Z",
+      "associationCertainty": "certain",
+      "title": "Badnigalbilukura\u0161u\u0161u",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/719936358/badnigalbilukurasusu",
+      "connectionType": "part_of_physical",
+      "id": "badnigalbilukurasusu",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-07T11:20:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:59:28Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:58:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:25:19Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:07:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:52:14Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:50:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T11:09:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T11:09:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/945930916",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "82-83",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Reade 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UQB2JHDN",
+      "formattedCitation": "<div class=\"csl-entry\">Reade, Julian E. \u201cThe Gates of Nineveh.\u201d <i>State Archives of Assyria Bulletin</i> 22 (2016): 39\u201393.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap3/rinap31introduction/buildingactivitiesatnineveh/index.html#rinap31walls",
+      "citationDetail": "17-19",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 3/1",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "402",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss 9",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/Q003491",
+      "citationDetail": "Sennacherib 017 (Q003491)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 3",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.livius.org/pictures/iraq/mosul-nineveh/nineveh-adad-gate/nineveh-adad-gate/",
+      "citationDetail": "Nineveh, Adad Gate",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius,",
+      "bibliographicURI": "",
+      "formattedCitation": "Nineveh, Adad Gate",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Nineveh",
+      "citationDetail": "Nineveh",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gatesofnineveh.wordpress.com/2016/06/06/the-cleansing-of-mosul/",
+      "citationDetail": "The Cleansing of Mosul",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gates of Nineveh,",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://news.nationalgeographic.com/2016/04/160419-Islamic-State-ISIS-ISIL-Nineveh-gates-Iraq-Mosul-destroyed/",
+      "citationDetail": "Destruction of Nineveh Gates",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "National Geographic,",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "abul Adad",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/Q003491",
+          "citationDetail": "Sennacherib 017 (Q003491)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 3",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-03.6203409621",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "Everyday/common Akkadian name of the gate.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-02-03T15:10:44Z",
+      "uri": "https://pleiades.stoa.org/places/719936358/name.2018-02-03.6203409621",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-07T11:20:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:59:29Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:58:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:25:19Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:07:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:52:14Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:50:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T07:45:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T15:10:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T15:10:44Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Adad Gate",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "82-83",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Reade 2016",
+          "bibliographicURI": "http://atlantides.org/bibliography/r.html#Reade-2016",
+          "formattedCitation": "Julian E. Reade. \"The Gates of Nineveh,\" <i>State Archives of Assyria Bulletin</i> 22, 2016, 39-93.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-04.3364003795",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-02-04T07:46:20Z",
+      "uri": "https://pleiades.stoa.org/places/719936358/name.2018-02-04.3364003795",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-07T11:20:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:59:29Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:58:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:25:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:07:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:52:14Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:50:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:40:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T07:46:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T07:46:20Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Adad-\u0161\u0101rik-hegalli-ana-m\u0101ti",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/Q003491",
+          "citationDetail": "Sennacherib 017 (Q003491)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 3",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-04.4579914053",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "Akkadian ceremonial name of the gate, which means \"The God Adad Is the Provider of Prosperity to the Land.\"",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-02-04T07:49:03Z",
+      "uri": "https://pleiades.stoa.org/places/719936358/name.2018-02-04.4579914053",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-07T11:20:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:59:29Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T06:58:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:25:20Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T20:07:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:52:14Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T15:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-06T12:50:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T07:49:42Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T07:49:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T07:49:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "719936358",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Adad Gate",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "<p>The gate is mentioned in Akkadian inscriptions of the Neo-Assyrian king Sennacherib dating to 697-691 B.C. In those texts, the Adad Gate is listed as the first gate of the northern stretch of wall. The position of the gate is known and it was excavated/restored in 1966-68, 1973, and 1990-91.\u00a0Around April 13, 2016, ISIS/ISIL\u00a0demolished the Adad Gate and the adjacent wall with a bulldozer.</p>\r\n<p>\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The northern city wall of Nineveh had three gates: the Adad Gate was the easternmost of the three. The Neo-Assyrian king Sennacherib constructed it and gave it the Akkadian ceremonial name Adad-\u0161\u0101rik-hegalli-ana-m\u0101ti, which means \"The God Adad Is the Provider of Prosperity to the Land.\"",
+  "reprPoint": [
+    43.1543883,
+    36.374511
+  ],
+  "placeTypes": [
+    "city-gate"
+  ],
+  "bbox": [
+    43.1543883,
+    36.374511,
+    43.1543883,
+    36.374511
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/874621",
+    "https://pleiades.stoa.org/places/882947620",
+    "https://pleiades.stoa.org/places/945930916"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-02-03T08:32:48Z",
+  "uri": "https://pleiades.stoa.org/places/719936358",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-07T13:22:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-07T11:20:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T06:59:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T06:59:19Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T06:58:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T20:25:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T20:24:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T20:09:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T20:07:18Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T20:07:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T15:52:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T15:48:49Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T15:47:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T12:50:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T12:49:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T12:42:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T12:37:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-06T12:35:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-04T07:44:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-03T08:32:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-03T08:32:48Z"
+    }
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3272994,
+            36.8517261
+          ],
+          [
+            10.3261562,
+            36.850516
+          ],
+          [
+            10.3262548,
+            36.8504633
+          ],
+          [
+            10.3263446,
+            36.8505563
+          ],
+          [
+            10.327091,
+            36.8500936
+          ],
+          [
+            10.3282441,
+            36.8511989
+          ],
+          [
+            10.3277479,
+            36.8514276
+          ],
+          [
+            10.3272994,
+            36.8517261
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-dermech-basilica",
+      "properties": {
+        "snippet": "Basilica; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/470606136/location-of-dermech-basilica",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Dermech basilica"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/93164404",
+          "citationDetail": "Way 93164404",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=93164404",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://fr.wikipedia.org/wiki/Site_arch%C3%A9ologique_de_Carthage",
+          "citationDetail": "Site arch\u00e9ologique de Carthage",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (French)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+          "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Site arch\u00e9ologique de Carthage.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://commons.wikimedia.org/wiki/Category:Byzantine_basilica_of_Dermech",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Byzantine basilica of Dermech",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-dermech-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "end": 1453,
+      "title": "OSM location of Dermech basilica",
+      "provenance": "OpenStreetMap (Way 93164404, version 9, osm:changeset=103121588, 2021-04-18T00:54:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "basilica"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-03-15T16:25:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3272994,
+            36.8517261
+          ],
+          [
+            10.3261562,
+            36.850516
+          ],
+          [
+            10.3262548,
+            36.8504633
+          ],
+          [
+            10.3263446,
+            36.8505563
+          ],
+          [
+            10.327091,
+            36.8500936
+          ],
+          [
+            10.3282441,
+            36.8511989
+          ],
+          [
+            10.3277479,
+            36.8514276
+          ],
+          [
+            10.3272994,
+            36.8517261
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/470606136/location-of-dermech-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T02:05:28Z"
+        },
+        {
+          "comment": "ctype, add Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T05:02:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-16T21:02:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-04-14T17:48:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-04-14T17:47:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-20T16:18:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-15T16:25:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:58:05Z",
+      "associationCertainty": "certain",
+      "title": "Carthago",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/470606136/314921",
+      "connectionType": "at",
+      "id": "314921",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-03T13:01:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/314921",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Byzantine_basilica_of_Dermech",
+      "citationDetail": "Byzantine basilica of Dermech",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/854177711",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Leone 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TXIED26T",
+      "formattedCitation": "<div class=\"csl-entry\">Leone, Anna. <i>The End of the Pagan City: Religion, Economy, and Urbanism in Late Antique North Africa</i>. Oxford: Oxford Univeristy Press, 2013. http://www.worldcat.org/oclc/854177711.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Basilique_de_Dermech_I",
+      "citationDetail": "Basilique de Dermech I",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q42597079",
+      "citationDetail": "Q42597079: Byzantine basilica of Dermech",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "470606136",
+  "subject": [],
+  "title": "Dermech basilica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Christian basilica of Byzantine Carthage.",
+  "reprPoint": [
+    10.3272994,
+    36.8517261
+  ],
+  "placeTypes": [
+    "basilica",
+    "church"
+  ],
+  "bbox": [
+    10.3272994,
+    36.8517261,
+    10.3272994,
+    36.8517261
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/314921"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-04-14T17:47:06Z",
+  "uri": "https://pleiades.stoa.org/places/470606136",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added references- wikipedia, wikidata; linked leone 2013 to Zotero, linked Wikimedia Commons to zotero",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-17T18:59:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-16T21:02:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-04-14T17:47:48Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-04-14T17:47:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-04-14T17:47:07Z"
+    }
+  ]
+}

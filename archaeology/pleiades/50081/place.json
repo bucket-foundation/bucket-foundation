@@ -1,0 +1,689 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.1199192,
+          14.1160137
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-modern-kothapatnam",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/50081/osm-location-modern-kothapatnam",
+        "description": "Location based on OpenStreetMap, verified with reference to sketch map in Tripati 2014.",
+        "location_precision": "precise",
+        "title": "OSM Location: modern Kothapatnam"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5451334594",
+          "citationDetail": "Node 5451334594",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5451334594",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.tandfonline.com/doi/abs/10.1111/1095-9270.12043",
+          "citationDetail": "Figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tripati 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6BS3XTMX",
+          "formattedCitation": "<div class=\"csl-entry\">Tripati, Sila, K. P. Rao, S. Kumari, O. Imsong, and V. Vanlalhruaitluangi. \u201cA Single\u2010hole Stone Anchor from Kottapatnam: Early Historic Port Site of Andhra Pradesh, India.\u201d <i>International Journal of Nautical Archaeology</i> 43, no. 1 (March 1, 2014): 188\u201391. https://doi.org/10.1111/1095-9270.12043.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-modern-kothapatnam",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM Location: modern Kothapatnam",
+      "provenance": "OpenStreetMap (Node 5451334594, version 2, osm:changeset=151638391, 2024-05-21T16:54:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap, verified with reference to sketch map in Tripati 2014.",
+      "created": "2026-04-01T20:12:57Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.1199192,
+          14.1160137
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/50081/osm-location-modern-kothapatnam",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-02T13:55:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:35:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:33:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:13:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:12:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:12:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "5 E3 Kottis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archive.org/details/in.gov.ignca.15778/page/n27/mode/2up",
+      "citationDetail": "7.1.14 (page 8)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Ptol. (Renou; IA)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8KUG83QQ",
+      "formattedCitation": "<div class=\"csl-entry\">Renou, Louis. <i>La g\u00e9ographie de Ptol\u00e9m\u00e9e: L\u2019Inde. (vii, 1-4)</i>. Paris: \u00c9. Champion; Biblioteca nazionale marciana, 1925. https://archive.org/details/in.gov.ignca.15778/page/n3/mode/2up.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "333",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Berthelot 1930",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UM33XPEX",
+      "formattedCitation": "<div class=\"csl-entry\">Berthelot, Andr\u00e9. <i>L\u2019Asie Ancienne Centrale et Sud-Orientale d\u2019apr\u00e8s Ptol\u00e9m\u00e9e</i>. Paris: Payot, 1930.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/44143085",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rao 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TUQZW7SM",
+      "formattedCitation": "<div class=\"csl-entry\">Rao, K. P. \u201cKottapatnam: An Early Sea-Port in Southern Andhra Pradesh.\u201d <i>Proceedings of the Indian History Congress</i> 54 (1993): 829\u201331. https://www.jstor.org/stable/44143085.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.tandfonline.com/doi/abs/10.1111/1095-9270.12043",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tripati 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6BS3XTMX",
+      "formattedCitation": "<div class=\"csl-entry\">Tripati, Sila, K. P. Rao, S. Kumari, O. Imsong, and V. Vanlalhruaitluangi. \u201cA Single\u2010hole Stone Anchor from Kottapatnam: Early Historic Port Site of Andhra Pradesh, India.\u201d <i>International Journal of Nautical Archaeology</i> 43, no. 1 (March 1, 2014): 188\u201391. https://doi.org/10.1111/1095-9270.12043.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/54747403",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rao 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q7TK3FUJ",
+      "formattedCitation": "<div class=\"csl-entry\">Rao, K.P. \u201cKottapatnam: A South Indian Port Trading with Eastern Lands.\u201d In <i>Ancient and Medieval Commercial Activities in the Indian Ocean: Testimony of Inscriptions and Ceramic-Sherds: Report of the Taisho University Research Project, 1997-2002</i>, edited by Noboru Karashima, 125\u201333. Tokyo: Taisho University, 2002. https://search.worldcat.org/title/54747403.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.22679/AVS.2019.4.1.025",
+      "citationDetail": "pages 44-45 see \"Kottapatnam\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dayalan 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/47KSCVN9",
+      "formattedCitation": "<div class=\"csl-entry\">Dayalan, Duraiswamy. \u201cAncient Seaports on the Eastern Coast of India: The Hub of the Maritime Silk Route Network.\u201d <i>Acta Via Serica</i> 4, no. 1 (June 15, 2019): 25\u201369. https://doi.org/10.22679/AVS.2019.4.1.025.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q15693437",
+      "citationDetail": "Kothapatnam (Q15693437)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "10100",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kottapatnam",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.22679/AVS.2019.4.1.025",
+          "citationDetail": "page 44",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Dayalan 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/47KSCVN9",
+          "formattedCitation": "<div class=\"csl-entry\">Dayalan, Duraiswamy. \u201cAncient Seaports on the Eastern Coast of India: The Hub of the Maritime Silk Route Network.\u201d <i>Acta Via Serica</i> 4, no. 1 (June 15, 2019): 25\u201369. https://doi.org/10.22679/AVS.2019.4.1.025.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kottapatnam",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-04-01T20:22:43Z",
+      "uri": "https://pleiades.stoa.org/places/50081/kottapatnam",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Kottapatnam",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-02T13:55:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:35:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:24:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:22:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:22:43Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kottapattinam",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://search.worldcat.org/title/45084869",
+          "citationDetail": "page 65 see \"Kottis\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000. https://search.worldcat.org/title/45084869.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kottapattinam",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-04-01T20:24:15Z",
+      "uri": "https://pleiades.stoa.org/places/50081/kottapattinam",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Kottapattinam",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-02T13:55:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:35:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:24:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:24:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:24:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:24:15Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kothapatnam, Kottapa\u1e6dna\u1e41",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/5451334594",
+          "citationDetail": "Node: Kothapatnam (5451334594)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kothapatnam",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "te",
+      "created": "2026-04-01T20:30:05Z",
+      "uri": "https://pleiades.stoa.org/places/50081/kothapatnam",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u0c15\u0c4a\u0c24\u0c4d\u0c24\u0c2a\u0c1f\u0c4d\u0c28\u0c02",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-02T13:55:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:35:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:30:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-01T20:30:05Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Kottis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://archive.org/details/in.gov.ignca.15778/page/n27/mode/2up",
+          "citationDetail": "7.1.14 (page 8)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Ptol. (Renou; IA)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8KUG83QQ",
+          "formattedCitation": "<div class=\"csl-entry\">Renou, Louis. <i>La g\u00e9ographie de Ptol\u00e9m\u00e9e: L\u2019Inde. (vii, 1-4)</i>. Paris: \u00c9. Champion; Biblioteca nazionale marciana, 1925. https://archive.org/details/in.gov.ignca.15778/page/n3/mode/2up.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "kottis",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 5 E3 Kottis",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2026-04-01T20:35:46Z",
+      "uri": "https://pleiades.stoa.org/places/50081/kottis",
+      "creators": [
+        {
+          "username": null,
+          "name": "M.U. Erdosy"
+        }
+      ],
+      "attested": "\u039a\u03bf\u03c4\u03c4\u03af\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "attested form, Greek, and Ptolemy reference; less certain per BAtlDir @thomase",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-02T13:55:26Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T05:39:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-23T17:00:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-23T01:38:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-23T00:59:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "50081",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Kottapatnam",
+  "provenance": "Barrington Atlas: BAtlas 5 E3 Kottis",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/port",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Kottapattinam?</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A modern village near the coast north from Chennai where an archaeologically attested seaport settlement flourished from the 3rd century BCE until the 15th century CE as attested by remnants of Chinese and Thai pottery -- as well as a Chinese coin. It is probably to be identified with Ptolemy's \"Kottis\".",
+  "reprPoint": [
+    80.1199192,
+    14.1160137
+  ],
+  "placeTypes": [
+    "settlement",
+    "port",
+    "settlement-modern"
+  ],
+  "bbox": [
+    80.1199192,
+    14.1160137,
+    80.1199192,
+    14.1160137
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-04-01T19:20:56Z",
+  "uri": "https://pleiades.stoa.org/places/50081",
+  "creators": [
+    {
+      "username": null,
+      "name": "M.U. Erdosy"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update Ptol. ref. with link",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-02T13:57:36Z"
+    },
+    {
+      "comment": "DARMC location 10100 = related",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-02T13:56:48Z"
+    },
+    {
+      "comment": "title; summary; references; modern names; associated modern location from OSM, which supersedes the currently published DARMC location @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-02T13:54:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-19T19:01:06Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T22:27:24Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:39:40Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T20:32:06Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:05:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-23T17:00:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-23T01:38:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-23T00:59:42Z"
+    }
+  ]
+}

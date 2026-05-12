@@ -1,0 +1,372 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.5563074,
+            51.0438167
+          ],
+          [
+            -3.5570101,
+            51.0435908
+          ],
+          [
+            -3.5580722,
+            51.0430478
+          ],
+          [
+            -3.5581849,
+            51.0427138
+          ],
+          [
+            -3.5582064,
+            51.0423833
+          ],
+          [
+            -3.5580562,
+            51.0422619
+          ],
+          [
+            -3.5576431,
+            51.0422484
+          ],
+          [
+            -3.5572193,
+            51.0423361
+          ],
+          [
+            -3.5566956,
+            51.0426504
+          ],
+          [
+            -3.5565917,
+            51.042724
+          ],
+          [
+            -3.5564575,
+            51.0428889
+          ],
+          [
+            -3.5560069,
+            51.0434424
+          ],
+          [
+            -3.5560177,
+            51.0437291
+          ],
+          [
+            -3.5563074,
+            51.0438167
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-oldberry-castle",
+      "properties": {
+        "snippet": "Unknown; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/742741440/location-of-oldberry-castle",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Oldberry Castle, Somerset"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/236032082",
+          "citationDetail": "Way 236032082",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=236032082",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-oldberry-castle",
+      "featureTypeURI": [],
+      "end": 100,
+      "title": "OSM location of Oldberry Castle, Somerset",
+      "provenance": "OpenStreetMap (Way 236032082, version 7, osm:changeset=159094921, 2024-11-13T14:51:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-09-01T05:28:29Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.5563074,
+            51.0438167
+          ],
+          [
+            -3.5570101,
+            51.0435908
+          ],
+          [
+            -3.5580722,
+            51.0430478
+          ],
+          [
+            -3.5581849,
+            51.0427138
+          ],
+          [
+            -3.5582064,
+            51.0423833
+          ],
+          [
+            -3.5580562,
+            51.0422619
+          ],
+          [
+            -3.5576431,
+            51.0422484
+          ],
+          [
+            -3.5572193,
+            51.0423361
+          ],
+          [
+            -3.5566956,
+            51.0426504
+          ],
+          [
+            -3.5565917,
+            51.042724
+          ],
+          [
+            -3.5564575,
+            51.0428889
+          ],
+          [
+            -3.5560069,
+            51.0434424
+          ],
+          [
+            -3.5560177,
+            51.0437291
+          ],
+          [
+            -3.5563074,
+            51.0438167
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/742741440/location-of-oldberry-castle",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "removed deprecated place type",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-16T22:53:14Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-16T22:53:05Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T12:50:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-23T15:44:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T05:29:03Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T05:28:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T05:28:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-01T05:28:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Oldberry_Castle",
+      "citationDetail": "Oldberry Castle",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Oldberry Castle.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://pastscape.org/hob.aspx?hob_id=36531",
+      "citationDetail": "monument no. 36531",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7085504",
+      "citationDetail": "Oldberry Castle (Q7085504)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "742741440",
+  "subject": [],
+  "title": "Oldberry Castle",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Oldberry Castle is an Iron Age hill fort in Somerset, England.",
+  "reprPoint": [
+    -3.5571161930570727,
+    51.04301583000883
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    -3.5582064,
+    51.0422484,
+    -3.5560069,
+    51.0438167
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-16T19:27:56Z",
+  "uri": "https://pleiades.stoa.org/places/742741440",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q7085504",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T04:35:37Z"
+    },
+    {
+      "comment": "Edited type for hillfort @maximeg",
+      "modifiedBy": "thomase",
+      "modified": "2024-12-16T22:52:54Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-16T19:27:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T12:50:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-23T15:44:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T05:29:16Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T05:28:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T05:27:59Z"
+    }
+  ]
+}

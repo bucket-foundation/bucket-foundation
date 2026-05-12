@@ -1,0 +1,397 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.6955172,
+            42.288132
+          ],
+          [
+            26.6963218,
+            42.2872193
+          ],
+          [
+            26.6962682,
+            42.287005
+          ],
+          [
+            26.6961609,
+            42.2869177
+          ],
+          [
+            26.6961072,
+            42.286497
+          ],
+          [
+            26.6960214,
+            42.2863779
+          ],
+          [
+            26.6956137,
+            42.2863144
+          ],
+          [
+            26.6951095,
+            42.2863779
+          ],
+          [
+            26.6949163,
+            42.2866002
+          ],
+          [
+            26.6945194,
+            42.2865525
+          ],
+          [
+            26.694058,
+            42.2864652
+          ],
+          [
+            26.6938756,
+            42.2861398
+          ],
+          [
+            26.6937684,
+            42.2859255
+          ],
+          [
+            26.693468,
+            42.2857747
+          ],
+          [
+            26.692792,
+            42.2858779
+          ],
+          [
+            26.6921161,
+            42.2861716
+          ],
+          [
+            26.6930924,
+            42.2865129
+          ],
+          [
+            26.6933607,
+            42.2871796
+          ],
+          [
+            26.6955172,
+            42.288132
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-yurta-stroyno",
+      "properties": {
+        "snippet": "Archaeological-site, Settlement; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/979926376/osm-location-of-yurta-stroyno",
+        "description": "Polygon representing the extent of the Yurta-Stroyno site, derived from an OpenStreetMap Way after Tu\u0161lov\u00e1 2022.",
+        "location_precision": "precise",
+        "title": "OSM location of Yurta-Stroyno"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1287428012",
+          "citationDetail": "Way 1287428012",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1405850735",
+          "citationDetail": "pages 13-16, 54-55",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tu\u0161lov\u00e1 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YPDBFZIP",
+          "formattedCitation": "<div class=\"csl-entry\">Tu\u0161lov\u00e1, Petra, Barbora Weissova, and Stefan Bakardzhiev, eds. <i>The Yurta-Stroyno Archaeological Project: Studies on the Roman Rural Settlement in Thrace</i>. Studia Hercynia. Monographs 2. Praha: Charles University, Faculty of Arts, 2022. https://www.worldcat.org/oclc/1405850735.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-yurta-stroyno",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 640,
+      "title": "OSM location of Yurta-Stroyno",
+      "provenance": "OpenStreetMap (Way 1287428012, version 1, osm:changeset=151951060, 2024-05-28T15:33:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "settlement"
+      ],
+      "description": "Polygon representing the extent of the Yurta-Stroyno site, derived from an OpenStreetMap Way after Tu\u0161lov\u00e1 2022.",
+      "created": "2025-12-03T19:00:57Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.6955172,
+            42.288132
+          ],
+          [
+            26.6963218,
+            42.2872193
+          ],
+          [
+            26.6962682,
+            42.287005
+          ],
+          [
+            26.6961609,
+            42.2869177
+          ],
+          [
+            26.6961072,
+            42.286497
+          ],
+          [
+            26.6960214,
+            42.2863779
+          ],
+          [
+            26.6956137,
+            42.2863144
+          ],
+          [
+            26.6951095,
+            42.2863779
+          ],
+          [
+            26.6949163,
+            42.2866002
+          ],
+          [
+            26.6945194,
+            42.2865525
+          ],
+          [
+            26.694058,
+            42.2864652
+          ],
+          [
+            26.6938756,
+            42.2861398
+          ],
+          [
+            26.6937684,
+            42.2859255
+          ],
+          [
+            26.693468,
+            42.2857747
+          ],
+          [
+            26.692792,
+            42.2858779
+          ],
+          [
+            26.6921161,
+            42.2861716
+          ],
+          [
+            26.6930924,
+            42.2865129
+          ],
+          [
+            26.6933607,
+            42.2871796
+          ],
+          [
+            26.6955172,
+            42.288132
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/979926376/osm-location-of-yurta-stroyno",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:00:58Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:00:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-31T03:04:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-28T15:38:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-28T15:37:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-28T15:36:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-28T15:36:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1405850735",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tu\u0161lov\u00e1 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YPDBFZIP",
+      "formattedCitation": "<div class=\"csl-entry\">Tu\u0161lov\u00e1, Petra, Barbora Weissova, and Stefan Bakardzhiev, eds. <i>The Yurta-Stroyno Archaeological Project: Studies on the Roman Rural Settlement in Thrace</i>. Studia Hercynia. Monographs 2. Praha: Charles University, Faculty of Arts, 2022. https://www.worldcat.org/oclc/1405850735.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "979926376",
+  "subject": [],
+  "title": "Yurta-Stroyno",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Rural settlement of the Roman and Late Antique periods in Thrace, located near the modern village of Stroyno, Bulgaria.",
+  "reprPoint": [
+    26.694339586257946,
+    42.28679813067194
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    26.6921161,
+    42.2857747,
+    26.6963218,
+    42.288132
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-03T19:03:34Z",
+  "uri": "https://pleiades.stoa.org/places/979926376",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-03T19:03:35Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-12-03T19:03:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-31T03:03:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-05-28T15:38:05Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-05-28T15:35:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-05-28T15:35:41Z"
+    }
+  ]
+}

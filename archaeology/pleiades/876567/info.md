@@ -1,0 +1,14 @@
+# Apadna
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/876567
+- **ID**: 876567
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Apadna
+
+## Description
+
+An ancient place, cited: BAtlas 89 unlocated Apadna

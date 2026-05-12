@@ -1,0 +1,367 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.1527279,
+            35.2975242
+          ],
+          [
+            25.1533957,
+            35.2973797
+          ],
+          [
+            25.1528513,
+            35.2965106
+          ],
+          [
+            25.1522102,
+            35.2966901
+          ],
+          [
+            25.1527279,
+            35.2975242
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "fortetsa-tomb-site",
+      "properties": {
+        "snippet": "Cemetery; 1600 BC - 1080 BC",
+        "link": "https://pleiades.stoa.org/places/359462132/fortetsa-tomb-site",
+        "description": "Polygon based on OpenStreetMap representing the location of the Fortetsa tombs after Brock 1957.",
+        "location_precision": "precise",
+        "title": "OSM location of Fortetsa Tomb Site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1064075623",
+          "citationDetail": "Way 1064075623",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1064075623",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/52652978",
+          "citationDetail": "fig.1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Brock 1957",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A2P5ENI6",
+          "formattedCitation": "<div class=\"csl-entry\">Brock, James K. <i>Fortetsa</i>. Cambridge Univ. Pr., 1957. http://www.worldcat.org/oclc/52652978.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "fortetsa-tomb-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1080,
+      "title": "OSM location of Fortetsa Tomb Site",
+      "provenance": "OpenStreetMap (Way 1064075623, version 1, osm:changeset=121534274, 2022-05-26T15:58:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Polygon based on OpenStreetMap representing the location of the Fortetsa tombs after Brock 1957.",
+      "created": "2022-05-26T16:05:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.1527279,
+            35.2975242
+          ],
+          [
+            25.1533957,
+            35.2973797
+          ],
+          [
+            25.1528513,
+            35.2965106
+          ],
+          [
+            25.1522102,
+            35.2966901
+          ],
+          [
+            25.1527279,
+            35.2975242
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/359462132/fortetsa-tomb-site",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-26T21:19:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-26T16:08:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-26T16:08:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-26T16:07:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-26T16:05:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-26T16:05:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1080,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-26T16:08:03Z",
+      "associationCertainty": "certain",
+      "title": "Knosos/Col. Iulia Nobilis Cnosos",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/359462132/knosos-col-iulia-nobilis-cnosos",
+      "connectionType": "near",
+      "id": "knosos-col-iulia-nobilis-cnosos",
+      "attestations": [
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-26T21:19:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-26T16:08:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-26T16:08:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-26T16:08:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589872",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/52652978",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Brock 1957",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A2P5ENI6",
+          "formattedCitation": "<div class=\"csl-entry\">Brock, James K. <i>Fortetsa</i>. Cambridge Univ. Pr., 1957. http://www.worldcat.org/oclc/52652978.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/52652978",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brock 1957",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A2P5ENI6",
+      "formattedCitation": "<div class=\"csl-entry\">Brock, James K. <i>Fortetsa</i>. Cambridge Univ. Pr., 1957. http://www.worldcat.org/oclc/52652978.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S0278416521000532",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pollard 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q33YNXPA",
+      "formattedCitation": "<div class=\"csl-entry\">Pollard, Dominic. \u201cAll Equal in the Presence of Death? A Quantitative Analysis of the Early Iron Age Cemeteries of Knossos, Crete.\u201d <i>Journal of Anthropological Archaeology</i> 63 (September 1, 2021): 101320. https://doi.org/10.1016/j.jaa.2021.101320.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q133264153",
+      "citationDetail": "Fortetsa necropolis (Q133264153)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "359462132",
+  "subject": [],
+  "title": "Fortetsa Tombs",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Late Minoan burial site just West of the Knossos Acropolis.",
+  "reprPoint": [
+    25.152801932482593,
+    35.29702731247127
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    25.1522102,
+    35.2965106,
+    25.1533957,
+    35.2975242
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589872"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-26T21:19:20Z",
+  "uri": "https://pleiades.stoa.org/places/359462132",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q133264153",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-12T14:31:38Z"
+    },
+    {
+      "comment": "added Pollard 2021; Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-27T02:56:20Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-26T21:19:19Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-26T21:19:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-26T16:08:37Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-26T16:04:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-26T16:04:42Z"
+    }
+  ]
+}

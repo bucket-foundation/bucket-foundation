@@ -1,0 +1,270 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.6752317,
+            37.7740344
+          ],
+          [
+            22.6756613,
+            37.7738146
+          ],
+          [
+            22.6756187,
+            37.7737625
+          ],
+          [
+            22.6751891,
+            37.7739823
+          ],
+          [
+            22.6752317,
+            37.7740344
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-strongylo-aqueduct-bridge",
+      "properties": {
+        "snippet": "Aqueduct; AD 100 - AD 199",
+        "link": "https://pleiades.stoa.org/places/650138313/osm-location-of-strongylo-aqueduct-bridge",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Strongylo Aqueduct bridge"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1289709626",
+          "citationDetail": "Way 1289709626",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1289709626",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-strongylo-aqueduct-bridge",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+      ],
+      "end": 199,
+      "title": "OSM location of Strongylo Aqueduct bridge",
+      "provenance": "OpenStreetMap (Way 1289709626, version 1, osm:changeset=152297930, 2024-06-05T17:15:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "aqueduct"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-06-05T17:19:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.6752317,
+            37.7740344
+          ],
+          [
+            22.6756613,
+            37.7738146
+          ],
+          [
+            22.6756187,
+            37.7737625
+          ],
+          [
+            22.6751891,
+            37.7739823
+          ],
+          [
+            22.6752317,
+            37.7740344
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/650138313/osm-location-of-strongylo-aqueduct-bridge",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-02T15:50:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-05T18:39:39Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-05T17:19:49Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-05T17:19:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-05T17:19:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/148487",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lolos 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PZFTRPPF",
+      "formattedCitation": "<div class=\"csl-entry\">Lolos, Yannis A. \u201cThe Hadrianic Aqueduct of Corinth (With an Appendix on the Roman Aqueducts in Greece).\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 66, no. 2 (1997): 271\u2013314. https://doi.org/10.2307/148487.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/378227WHAS",
+      "citationDetail": "Strongylo Aqueduct bridge (Korinthia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q126369522",
+      "citationDetail": "Strongylo Aqueduct bridge (Q126369522)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "650138313",
+  "subject": [
+    "aqueduct"
+  ],
+  "title": "Strongylo Aqueduct bridge",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of a Roman aqueduct bridge dating ca. 125 CE that once supplied ancient Corinth.",
+  "reprPoint": [
+    22.6754252,
+    37.77389845
+  ],
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": [
+    22.6751891,
+    37.7737625,
+    22.6756613,
+    37.7740344
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-06-05T17:18:02Z",
+  "uri": "https://pleiades.stoa.org/places/650138313",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-02T15:50:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-05T18:39:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-05T17:20:07Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-05T17:19:09Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-05T17:18:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-05T17:18:02Z"
+    }
+  ]
+}

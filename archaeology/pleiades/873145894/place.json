@@ -1,0 +1,391 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.6084412,
+            43.3124739
+          ],
+          [
+            -2.608629,
+            43.3124486
+          ],
+          [
+            -2.6087738,
+            43.3124037
+          ],
+          [
+            -2.6089535,
+            43.3123178
+          ],
+          [
+            -2.6090957,
+            43.3121558
+          ],
+          [
+            -2.609067,
+            43.3120317
+          ],
+          [
+            -2.6089213,
+            43.3117967
+          ],
+          [
+            -2.6084787,
+            43.3115176
+          ],
+          [
+            -2.6082031,
+            43.3117478
+          ],
+          [
+            -2.6077175,
+            43.312128
+          ],
+          [
+            -2.6080815,
+            43.312443
+          ],
+          [
+            -2.6081891,
+            43.3124895
+          ],
+          [
+            -2.6084412,
+            43.3124739
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Fortified-settlement; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/873145894/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/364190391",
+          "citationDetail": "Way 364190391",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=364190391",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "end": -30,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 364190391, version 5, osm:changeset=67712144, 2019-03-02T12:18:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fortified-settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-11-26T00:42:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.6084412,
+            43.3124739
+          ],
+          [
+            -2.608629,
+            43.3124486
+          ],
+          [
+            -2.6087738,
+            43.3124037
+          ],
+          [
+            -2.6089535,
+            43.3123178
+          ],
+          [
+            -2.6090957,
+            43.3121558
+          ],
+          [
+            -2.609067,
+            43.3120317
+          ],
+          [
+            -2.6089213,
+            43.3117967
+          ],
+          [
+            -2.6084787,
+            43.3115176
+          ],
+          [
+            -2.6082031,
+            43.3117478
+          ],
+          [
+            -2.6077175,
+            43.312128
+          ],
+          [
+            -2.6080815,
+            43.312443
+          ],
+          [
+            -2.6081891,
+            43.3124895
+          ],
+          [
+            -2.6084412,
+            43.3124739
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/873145894/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-03T21:36:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T00:45:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T00:45:18Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T00:42:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T00:42:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T00:42:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/45530/",
+      "citationDetail": "45530: Castro Arrola",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q16544867",
+      "citationDetail": "Oppidum of Arrola (Q16544867)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Castro_de_Arrola",
+      "citationDetail": "Castro de Arrola",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Castro de Arrola",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://es.wikipedia.org/wiki/Castro_de_Arrola",
+          "citationDetail": "Castro de Arrola",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Spanish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "castro-de-arrola",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2024-11-26T00:46:33Z",
+      "uri": "https://pleiades.stoa.org/places/873145894/castro-de-arrola",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Castro de Arrola",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-03T21:36:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T00:46:43Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T00:46:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-26T00:46:33Z"
+        }
+      ]
+    }
+  ],
+  "id": "873145894",
+  "subject": [],
+  "title": "Castro de Arrola",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Castro de Arrola or oppidum de Marueleza is an Iron Age oppidum in the province of Vizcaya, Spain. The site dates to the third and second centuries BCE.",
+  "reprPoint": [
+    -2.6084343417304656,
+    43.31206475515278
+  ],
+  "placeTypes": [
+    "fortified-settlement"
+  ],
+  "bbox": [
+    -2.6090957,
+    43.3115176,
+    -2.6077175,
+    43.3124895
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-11-26T00:42:00Z",
+  "uri": "https://pleiades.stoa.org/places/873145894",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-03T21:36:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-26T00:45:29Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-26T00:44:54Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-26T00:42:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-26T00:42:00Z"
+    }
+  ]
+}

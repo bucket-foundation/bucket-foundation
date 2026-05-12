@@ -1,0 +1,321 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.5234869,
+            30.947971
+          ],
+          [
+            29.5235467,
+            30.9478905
+          ],
+          [
+            29.5236384,
+            30.9479407
+          ],
+          [
+            29.5235786,
+            30.9480211
+          ],
+          [
+            29.5234869,
+            30.947971
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-abusir-pharos-tomb",
+      "properties": {
+        "snippet": "Tomb, ; 330 BC - AD 226",
+        "link": "https://pleiades.stoa.org/places/648980580/location-of-abusir-pharos-tomb",
+        "description": "Representative point derived from an OpenStreetMap way",
+        "location_precision": "precise",
+        "title": "OSM location of Abusir Pharos tomb"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "erobinson",
+      "homepage": null,
+      "name": "Elizabeth Robinson",
+      "uri": "https://pleiades.stoa.org/author/erobinson"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "erobinson",
+          "homepage": null,
+          "name": "Elizabeth Robinson",
+          "uri": "https://pleiades.stoa.org/author/erobinson"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman-early-empire-parthian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-parthian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/255811087",
+          "citationDetail": "Way 255811087",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=255811087",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-abusir-pharos-tomb",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 226,
+      "title": "OSM location of Abusir Pharos tomb",
+      "provenance": "OpenStreetMap (Way 255811087, version 2, osm:changeset=23212457, 2014-06-27T12:11:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Representative point derived from an OpenStreetMap way",
+      "created": "2014-01-08T18:12:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.5234869,
+            30.947971
+          ],
+          [
+            29.5235467,
+            30.9478905
+          ],
+          [
+            29.5236384,
+            30.9479407
+          ],
+          [
+            29.5235786,
+            30.9480211
+          ],
+          [
+            29.5234869,
+            30.947971
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/648980580/location-of-abusir-pharos-tomb",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:29:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "erobinson",
+          "modified": "2016-08-04T16:27:12Z"
+        },
+        {
+          "comment": "Edited title and summary to conform with editorial guidelines",
+          "modifiedBy": "erobinson",
+          "modified": "2016-08-04T16:27:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-31T14:41:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-08T19:00:09Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-08T18:13:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-08T18:12:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-08T18:12:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-07T19:53:06Z",
+      "associationCertainty": "certain",
+      "title": "Taposiris Megale",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/648980580/9868410280",
+      "connectionType": "at",
+      "id": "9868410280",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-07T19:53:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-07T19:53:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-07T19:53:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/727241",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Abusir_(Lake_Mariout)#Ancient_tomb",
+      "citationDetail": "Abusir s.v. Ancient tomb",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "648980580",
+  "subject": [],
+  "title": "Abusir Pharos tomb",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A tomb that seems to imitate the famous lighthouse of Alexandria.",
+  "reprPoint": [
+    29.5234429,
+    30.9479952
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    29.5234429,
+    30.9479952,
+    29.5234429,
+    30.9479952
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/727241"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-08-07T19:53:06Z",
+  "uri": "https://pleiades.stoa.org/places/648980580",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-20T11:51:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T16:03:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T16:03:08Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-07T19:53:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-07T19:53:06Z"
+    }
+  ]
+}

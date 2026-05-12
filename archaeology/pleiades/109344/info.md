@@ -1,0 +1,14 @@
+# Siesbach
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/109344
+- **ID**: 109344
+- **Coords (lng, lat)**: [7.2120922, 49.7368436]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=tumulus
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 11 H3 Siesbach

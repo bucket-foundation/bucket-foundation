@@ -1,0 +1,328 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0879681,
+            51.3730349
+          ],
+          [
+            0.0878903,
+            51.3730366
+          ],
+          [
+            0.0878957,
+            51.3730617
+          ],
+          [
+            0.0877509,
+            51.3730667
+          ],
+          [
+            0.0877187,
+            51.3728608
+          ],
+          [
+            0.0879493,
+            51.3728507
+          ],
+          [
+            0.0880539,
+            51.3728457
+          ],
+          [
+            0.0880298,
+            51.372911
+          ],
+          [
+            0.0879681,
+            51.3729177
+          ],
+          [
+            0.0879681,
+            51.3730349
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/646455441/location-of-roman-villa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Crofton Roman villa"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/250709622",
+          "citationDetail": "Way 250709622",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=250709622",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Crofton Roman villa",
+      "provenance": "OpenStreetMap (Way 250709622, version 2, osm:changeset=58264118, 2018-04-20T13:13:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2013-12-08T05:33:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.0879681,
+            51.3730349
+          ],
+          [
+            0.0878903,
+            51.3730366
+          ],
+          [
+            0.0878957,
+            51.3730617
+          ],
+          [
+            0.0877509,
+            51.3730667
+          ],
+          [
+            0.0877187,
+            51.3728608
+          ],
+          [
+            0.0879493,
+            51.3728507
+          ],
+          [
+            0.0880539,
+            51.3728457
+          ],
+          [
+            0.0880298,
+            51.372911
+          ],
+          [
+            0.0879681,
+            51.3729177
+          ],
+          [
+            0.0879681,
+            51.3730349
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/646455441/location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:39:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-22T10:49:19Z"
+        },
+        {
+          "comment": "update title",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-15T13:01:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-08T05:38:03Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-08T05:34:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-08T05:33:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-08T05:33:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Crofton_Roman_Villa",
+      "citationDetail": "Crofton Roman Villa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Crofton Roman Villa.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://cka.moon-demon.co.uk/villa.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Crofton Roman Villa",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5187495",
+      "citationDetail": "Q5187495: Crofton Roman Villa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Philp 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q32T5FHG",
+      "formattedCitation": "<div class=\"csl-entry\">Philp, Brian. <i>The Roman Villa Site at Orpington, Kent: The Detailed Report on the Complete Excavation of the Roman Villa at Crofton, Orpington in 1988-89</i>. Research Report in the Kent Monographies 7. Dover: The Kent Archaeological Rescue Unit, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "646455441",
+  "subject": [],
+  "title": "Crofton Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A villa occupied between ca. AD 140 and 400 now located in Orpington, in the London Borough of Bromley.",
+  "reprPoint": [
+    0.0879718,
+    51.3730202
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    0.0879718,
+    51.3730202,
+    0.0879718,
+    51.3730202
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-12-08T05:33:18Z",
+  "uri": "https://pleiades.stoa.org/places/646455441",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "reference added",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-30T15:04:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-22T10:49:19Z"
+    },
+    {
+      "comment": "added wikidata Q5187495",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-15T13:00:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T05:37:46Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T05:33:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T05:33:18Z"
+    }
+  ]
+}

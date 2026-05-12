@@ -1,0 +1,14 @@
+# Marathe (island)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/536098
+- **ID**: 536098
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Marathe
+
+## Description
+
+An ancient place, cited: BAtlas 54 unlocated Marathe Ins.

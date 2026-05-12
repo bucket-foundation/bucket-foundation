@@ -1,0 +1,364 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4838129,
+            40.753444
+          ],
+          [
+            14.4838897,
+            40.7534264
+          ],
+          [
+            14.4838775,
+            40.7533802
+          ],
+          [
+            14.4837982,
+            40.7533978
+          ],
+          [
+            14.4838129,
+            40.753444
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomb-of-gaius-vestorius-priscus",
+      "properties": {
+        "snippet": "Tomb; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/118633297/osm-location-of-tomb-of-gaius-vestorius-priscus",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Gaius Vestorius Priscus"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/505038029",
+          "citationDetail": "Way 505038029",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=505038029",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/Tombs/tombs%20porta%20vesuvio%20vgj.htm",
+          "citationDetail": "VGJ Pompeii. Tombs at Porta Vesuvio. Tomba di Caio Vestorio Prisco. Tomb of Gaius Vestorius Priscus.",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "PompeiiinPictures",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+          "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-tomb-of-gaius-vestorius-priscus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 99,
+      "title": "OSM location of Tomb of Gaius Vestorius Priscus",
+      "provenance": "OpenStreetMap (Way 505038029, version 2, osm:changeset=96562144, 2020-12-28T22:52:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-03-02T19:31:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4838129,
+            40.753444
+          ],
+          [
+            14.4838897,
+            40.7534264
+          ],
+          [
+            14.4838775,
+            40.7533802
+          ],
+          [
+            14.4837982,
+            40.7533978
+          ],
+          [
+            14.4838129,
+            40.753444
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/118633297/osm-location-of-tomb-of-gaius-vestorius-priscus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-04T18:22:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-02T21:43:33Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-02T19:32:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-02T19:31:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-02T19:31:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-02T19:32:51Z",
+      "associationCertainty": "certain",
+      "title": "Necropolis of Porta Vesuvio",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/118633297/9717234005",
+      "connectionType": "at",
+      "id": "9717234005",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-02T19:32:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-02T19:32:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-02T19:32:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/419672522",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pompeiiinpictures.com/pompeiiinpictures/Tombs/tombs%20porta%20vesuvio%20vgj.htm",
+      "citationDetail": "VGJ Pompeii. Tombs at Porta Vesuvio. Tomba di Caio Vestorio Prisco. Tomb of Gaius Vestorius Priscus.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Moormann 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ADNC3F47",
+      "formattedCitation": "<div class=\"csl-entry\">Moormann, Eric M. \u201cLe tombeau de Caius Vestorius Priscus \u00e0 Pomp\u00e9i.\u201d In <i>Au royaume des ombres\u202f: La peinture fun\u00e9raire antique, 4e si\u00e8cle avant J.-C.-4e si\u00e8cle apr\u00e8s J.-C. Mus\u00e9es et sites arch\u00e9ologiques de Saint-Romain-en-Gal, Vienne, 8 octobre 1998-15 janvier 1999</i>, 96\u2013102. Paris: R\u00e9union des Mus\u00e9es Nationaux, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mols 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T7ZJC5XG",
+      "formattedCitation": "<div class=\"csl-entry\">Mols, Stephanus Theodorus Adrianus Maria, and E. M. Moormann. \u201cLa Tomba Di Vestorius Priscus Come Fenomeno Della Rappresentanza Post-62.\u201d In <i>Arch\u00e4ologie Und Seismologie. La Regione Vesuviana Dal 62 al 79 d.C. Problemi Archeologici e Sismologici. Colloquium, Boscoreale 26. - 27. November 1993</i>, 161\u201366, Abb, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mols 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QLBZMI2I",
+      "formattedCitation": "<div class=\"csl-entry\">Mols, S. T. A. M., and E. M. Moormann. \u201cEx Parvo Crevit. Proposta per Una Lettura Iconografica Della Tomba Di Vestorius Priscus Fuori Porta Vesuvio a Pompei.\u201d In <i>Rivista Di Studi Pompeiani, 6.1993-94</i>, 15\u201352, Abb, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29887294",
+      "citationDetail": "Tomb of Caius Vestorius Priscus (Q29887294)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Tomba_di_Caius_Vestorio_Prisco",
+      "citationDetail": "Category:Tomba di Caius Vestorio Prisco",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/787854591",
+      "citationDetail": "F88, p. 128",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cooley 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/23AM8H3Q",
+      "formattedCitation": "<div class=\"csl-entry\">Cooley, Alison, and M. G. L Cooley. <i>Pompeii: A Sourcebook</i>. London: Routledge, 2006. http://www.worldcat.org/oclc/787854591.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "118633297",
+  "subject": [],
+  "title": "Tomb of Gaius Vestorius Priscus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Tomb of Gaius Vestorius Priscus is located in Pompeii's Porta Vesuvio necropolis. Gaius Vestorius Priscus was an aedile and was granted 2,000 sesterces by the town council for his tomb and funeral. The tomb is decorated with paintings depicting a funereal meal.",
+  "reprPoint": [
+    14.483844404632412,
+    40.75341190417385
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    14.4837982,
+    40.7533802,
+    14.4838897,
+    40.753444
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/419672522"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-02T19:32:49Z",
+  "uri": "https://pleiades.stoa.org/places/118633297",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-04T18:22:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-02T21:43:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-02T21:43:17Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-02T21:38:47Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-02T19:32:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-02T19:32:49Z"
+    }
+  ]
+}

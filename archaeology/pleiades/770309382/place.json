@@ -1,0 +1,408 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.1916985,
+          12.6147635
+        ]
+      },
+      "type": "Feature",
+      "id": "dharmaraja-cave-mahabalipuram",
+      "properties": {
+        "snippet": "Cave, Archaeological-site; AD 600 - AD 699",
+        "link": "https://pleiades.stoa.org/places/770309382/dharmaraja-cave-mahabalipuram",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Dharmaraja Mandapam"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5517871828",
+          "citationDetail": "Node 5517871828",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5517871828",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "dharmaraja-cave-mahabalipuram",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 699,
+      "title": "OSM location of Dharmaraja Mandapam",
+      "provenance": "OpenStreetMap (Node 5517871828, version 2, osm:changeset=57707766, 2018-04-01T09:24:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave",
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-07-03T13:34:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.1916985,
+          12.6147635
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/770309382/dharmaraja-cave-mahabalipuram",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T20:32:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T15:26:07Z"
+        },
+        {
+          "comment": "updates",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T15:24:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-07-03T13:34:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "efrancis",
+          "modified": "2020-07-03T13:34:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-07-03T13:34:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 699,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-23T17:05:53Z",
+      "associationCertainty": "certain",
+      "title": "Mahabalipuram",
+      "start": 600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/770309382/mahabalipuram",
+      "connectionType": "at",
+      "id": "mahabalipuram",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T20:32:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T15:26:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T17:05:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T17:05:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/835093310",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.bl.uk/onlinegallery/onlineex/apac/photocoll/f/019pho000001003u02208000.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "British Library: Front view of the Dharmaraja Cave Temple, Mamallapuram",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "undefined",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dharmaraja Cave",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.bl.uk/onlinegallery/onlineex/apac/photocoll/f/019pho000001003u02208000.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "British Library: Front view of the Dharmaraja Cave Temple, Mamallapuram",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "dharmaraja-cave",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "<p>Modern English name</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-06-23T17:09:42Z",
+      "uri": "https://pleiades.stoa.org/places/770309382/dharmaraja-cave",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "attested": "Dharmaraja Cave",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T20:32:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T20:32:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T15:26:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T15:25:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T17:10:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T17:09:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T17:09:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "770309382",
+  "subject": [],
+  "title": "Dharmaraja Cave",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave",
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Modern name of a seventh-century Pallava cave temple in Mah\u0101balipuram.",
+  "reprPoint": [
+    80.1916985,
+    12.6147635
+  ],
+  "placeTypes": [
+    "cave",
+    "shrine",
+    "temple-2",
+    "archaeological-site"
+  ],
+  "bbox": [
+    80.1916985,
+    12.6147635,
+    80.1916985,
+    12.6147635
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/835093310"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-22T20:53:17Z",
+  "uri": "https://pleiades.stoa.org/places/770309382",
+  "creators": [
+    {
+      "username": "efrancis",
+      "homepage": null,
+      "name": "Emmanuel Francis",
+      "uri": "https://pleiades.stoa.org/author/efrancis"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-22T20:32:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-22T15:26:07Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-22T15:25:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-07-03T13:24:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-23T17:07:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-23T17:07:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:53:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:53:17Z"
+    }
+  ]
+}

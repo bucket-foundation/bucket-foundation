@@ -1,0 +1,461 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.4251735,
+            39.2490408
+          ],
+          [
+            8.4248516,
+            39.2482254
+          ],
+          [
+            8.424771,
+            39.2481812
+          ],
+          [
+            8.424,
+            39.2480713
+          ],
+          [
+            8.4229252,
+            39.2480055
+          ],
+          [
+            8.4222689,
+            39.2483537
+          ],
+          [
+            8.4217974,
+            39.2485325
+          ],
+          [
+            8.4209005,
+            39.2490558
+          ],
+          [
+            8.4206963,
+            39.2491669
+          ],
+          [
+            8.4204362,
+            39.2492516
+          ],
+          [
+            8.4200808,
+            39.2493372
+          ],
+          [
+            8.4199526,
+            39.2494925
+          ],
+          [
+            8.4199501,
+            39.249581
+          ],
+          [
+            8.4202734,
+            39.2499612
+          ],
+          [
+            8.4213605,
+            39.2500228
+          ],
+          [
+            8.421468,
+            39.2499064
+          ],
+          [
+            8.4220812,
+            39.2500398
+          ],
+          [
+            8.4232484,
+            39.2499292
+          ],
+          [
+            8.4238903,
+            39.2497663
+          ],
+          [
+            8.4251662,
+            39.249404
+          ],
+          [
+            8.4251735,
+            39.2490408
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Nuraghe, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/849534583/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Complesso nuragico di Seruci"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/230339567",
+          "citationDetail": "Way 230339567",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=230339567",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM location of Complesso nuragico di Seruci",
+      "provenance": "OpenStreetMap (Way 230339567, version 10, osm:changeset=138539870, 2023-07-15T10:52:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-06-29T22:27:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.4251735,
+            39.2490408
+          ],
+          [
+            8.4248516,
+            39.2482254
+          ],
+          [
+            8.424771,
+            39.2481812
+          ],
+          [
+            8.424,
+            39.2480713
+          ],
+          [
+            8.4229252,
+            39.2480055
+          ],
+          [
+            8.4222689,
+            39.2483537
+          ],
+          [
+            8.4217974,
+            39.2485325
+          ],
+          [
+            8.4209005,
+            39.2490558
+          ],
+          [
+            8.4206963,
+            39.2491669
+          ],
+          [
+            8.4204362,
+            39.2492516
+          ],
+          [
+            8.4200808,
+            39.2493372
+          ],
+          [
+            8.4199526,
+            39.2494925
+          ],
+          [
+            8.4199501,
+            39.249581
+          ],
+          [
+            8.4202734,
+            39.2499612
+          ],
+          [
+            8.4213605,
+            39.2500228
+          ],
+          [
+            8.421468,
+            39.2499064
+          ],
+          [
+            8.4220812,
+            39.2500398
+          ],
+          [
+            8.4232484,
+            39.2499292
+          ],
+          [
+            8.4238903,
+            39.2497663
+          ],
+          [
+            8.4251662,
+            39.249404
+          ],
+          [
+            8.4251735,
+            39.2490408
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/849534583/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T02:41:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-08T22:43:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-12T15:45:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-29T22:30:53Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-29T22:28:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-29T22:27:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-29T22:27:43Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:49:40Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/849534583/472014",
+      "connectionType": "connection",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Complesso_nuragico_di_Seruci",
+      "citationDetail": "Complesso nuragico di Seruci",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Complesso nuragico di Seruci.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sardegnacultura.it/j/v/253?s=21531&v=2&c=2488&c1=2128&t=1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Sardegna Cultura: Gonnesa, complesso di Seruci",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2274063",
+      "citationDetail": "nuraghe Seruci (Q2274063)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "849534583",
+  "subject": [
+    "nuraghe",
+    "extant remains"
+  ],
+  "title": "Seruci",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A nuragic complex including a central nuraghe and an associated village.",
+  "reprPoint": [
+    8.422664466642956,
+    39.24915678192474
+  ],
+  "placeTypes": [
+    "nuraghe",
+    "settlement"
+  ],
+  "bbox": [
+    8.4199501,
+    39.2480055,
+    8.4251735,
+    39.2500398
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-06-29T22:26:54Z",
+  "uri": "https://pleiades.stoa.org/places/849534583",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q2274063",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T02:42:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-08T22:43:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-12T15:44:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-29T22:30:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-29T22:29:28Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-29T22:27:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-29T22:26:54Z"
+    }
+  ]
+}

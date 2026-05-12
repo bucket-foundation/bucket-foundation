@@ -1,0 +1,306 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.586615,
+            41.8555445
+          ],
+          [
+            12.5866177,
+            41.8554655
+          ],
+          [
+            12.5867212,
+            41.8554675
+          ],
+          [
+            12.5867184,
+            41.8555465
+          ],
+          [
+            12.586615,
+            41.8555445
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-torre-spaccata",
+      "properties": {
+        "snippet": "Tower-defensive",
+        "link": "https://pleiades.stoa.org/places/3289911/osm-location-of-torre-spaccata",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Torre spaccata"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/261078270",
+          "citationDetail": "Way 261078270",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=261078270",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-torre-spaccata",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "end": null,
+      "title": "OSM location of Torre spaccata",
+      "provenance": "OpenStreetMap (Way 261078270, version 6, osm:changeset=160615021, 2024-12-25T19:41:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tower-defensive"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-03-27T14:34:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.586615,
+            41.8555445
+          ],
+          [
+            12.5866177,
+            41.8554655
+          ],
+          [
+            12.5867212,
+            41.8554675
+          ],
+          [
+            12.5867184,
+            41.8555465
+          ],
+          [
+            12.586615,
+            41.8555445
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/3289911/osm-location-of-torre-spaccata",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-07T14:53:47Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-12T23:37:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-30T10:36:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-29T23:45:51Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-27T14:34:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-27T14:34:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-27T14:34:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-03-27T14:34:51Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/3289911/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-30T10:36:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-29T23:45:51Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-27T14:34:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-27T14:34:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/File:Torre_spaccata.jpg",
+      "citationDetail": "Torre spaccata",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arnoldus-Huyzendveld 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZRPGMQY",
+      "formattedCitation": "<div class=\"csl-entry\">Arnoldus-Huyzendveld, Antonia. <i>Torre Spaccata: Roma S.D.O.\u202f: le indagini archeologiche</i>. Rubbettino, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "3289911",
+  "subject": [],
+  "title": "Torre Spaccata",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ruined Medieval tower (ninth and tenth centuries) is built atop the remains of a quadrangular Roman tomb of the Antonine period that was executed in opus latericium.",
+  "reprPoint": [
+    12.586668075869564,
+    41.85550598919067
+  ],
+  "placeTypes": [
+    "tower-defensive"
+  ],
+  "bbox": [
+    12.586615,
+    41.8554655,
+    12.5867212,
+    41.8555465
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-27T14:33:42Z",
+  "uri": "https://pleiades.stoa.org/places/3289911",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-30T10:36:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-29T23:45:51Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-29T23:45:40Z"
+    },
+    {
+      "comment": "Arnoldus-Huyzendveld 2008",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-01T13:33:56Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-27T14:33:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-27T14:33:42Z"
+    }
+  ]
+}

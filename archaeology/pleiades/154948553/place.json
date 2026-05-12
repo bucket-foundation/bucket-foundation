@@ -1,0 +1,424 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.5071933,
+            39.8579511
+          ],
+          [
+            34.5072078,
+            39.8580519
+          ],
+          [
+            34.507187,
+            39.8581026
+          ],
+          [
+            34.5071413,
+            39.8581426
+          ],
+          [
+            34.5070785,
+            39.858165
+          ],
+          [
+            34.5070092,
+            39.858166
+          ],
+          [
+            34.5069453,
+            39.8581455
+          ],
+          [
+            34.5068976,
+            39.858107
+          ],
+          [
+            34.506853,
+            39.8580115
+          ],
+          [
+            34.5065721,
+            39.8580888
+          ],
+          [
+            34.506638,
+            39.8582297
+          ],
+          [
+            34.5067723,
+            39.8583383
+          ],
+          [
+            34.5069522,
+            39.858396
+          ],
+          [
+            34.5071472,
+            39.8583931
+          ],
+          [
+            34.5073241,
+            39.85833
+          ],
+          [
+            34.5074528,
+            39.8582175
+          ],
+          [
+            34.5075114,
+            39.8580747
+          ],
+          [
+            34.5074899,
+            39.8579259
+          ],
+          [
+            34.5071933,
+            39.8579511
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tavium-theater",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/154948553/osm-location-of-tavium-theater",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tavium Theater"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/281058608",
+          "citationDetail": "Way 281058608",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=281058608",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tavium-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Tavium Theater",
+      "provenance": "OpenStreetMap (Way 281058608, version 2, osm:changeset=151062073, 2024-05-08T15:21:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-08T15:26:24Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.5071933,
+            39.8579511
+          ],
+          [
+            34.5072078,
+            39.8580519
+          ],
+          [
+            34.507187,
+            39.8581026
+          ],
+          [
+            34.5071413,
+            39.8581426
+          ],
+          [
+            34.5070785,
+            39.858165
+          ],
+          [
+            34.5070092,
+            39.858166
+          ],
+          [
+            34.5069453,
+            39.8581455
+          ],
+          [
+            34.5068976,
+            39.858107
+          ],
+          [
+            34.506853,
+            39.8580115
+          ],
+          [
+            34.5065721,
+            39.8580888
+          ],
+          [
+            34.506638,
+            39.8582297
+          ],
+          [
+            34.5067723,
+            39.8583383
+          ],
+          [
+            34.5069522,
+            39.858396
+          ],
+          [
+            34.5071472,
+            39.8583931
+          ],
+          [
+            34.5073241,
+            39.85833
+          ],
+          [
+            34.5074528,
+            39.8582175
+          ],
+          [
+            34.5075114,
+            39.8580747
+          ],
+          [
+            34.5074899,
+            39.8579259
+          ],
+          [
+            34.5071933,
+            39.8579511
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/154948553/osm-location-of-tavium-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-07T19:25:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-05T18:15:15Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-05T18:14:35Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-08T15:26:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-08T15:26:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-08T15:26:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-05-08T15:26:52Z",
+      "associationCertainty": "certain",
+      "title": "Taouion/Tabia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/154948553/0128923189",
+      "connectionType": "at",
+      "id": "0128923189",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-08T15:26:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-08T15:26:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-08T15:26:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/619267",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q125847257",
+      "citationDetail": "Theater of Tavium (Q125847257)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://theatrum.de/588.html",
+      "citationDetail": "588: TAVIUM, B\u00fcy\u00fck Nefes K\u00f6y (Galatia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "154948553",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Tavium Theater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater of Tavium.",
+  "reprPoint": [
+    34.50707119704049,
+    39.85816134459443
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    34.5065721,
+    39.8579259,
+    34.5075114,
+    39.858396
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/619267"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-05-08T15:26:52Z",
+  "uri": "https://pleiades.stoa.org/places/154948553",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Theatrum reference",
+      "modifiedBy": "thomase",
+      "modified": "2024-10-07T19:26:44Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-10-07T19:25:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-05T18:15:15Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-05T18:15:10Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-08T15:26:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-08T15:26:52Z"
+    }
+  ]
+}

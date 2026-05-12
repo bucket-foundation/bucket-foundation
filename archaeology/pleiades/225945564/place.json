@@ -1,0 +1,453 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.5640736,
+            39.2064123
+          ],
+          [
+            9.5640848,
+            39.2064343
+          ],
+          [
+            9.5640863,
+            39.206458
+          ],
+          [
+            9.564078,
+            39.2064808
+          ],
+          [
+            9.5640607,
+            39.2065004
+          ],
+          [
+            9.5640363,
+            39.2065147
+          ],
+          [
+            9.5640073,
+            39.2065221
+          ],
+          [
+            9.5639767,
+            39.206522
+          ],
+          [
+            9.5639477,
+            39.2065144
+          ],
+          [
+            9.5639235,
+            39.2065
+          ],
+          [
+            9.563906,
+            39.2064796
+          ],
+          [
+            9.5638982,
+            39.2064558
+          ],
+          [
+            9.5639008,
+            39.2064314
+          ],
+          [
+            9.5639138,
+            39.2064091
+          ],
+          [
+            9.5639355,
+            39.2063913
+          ],
+          [
+            9.5639635,
+            39.20638
+          ],
+          [
+            9.5639948,
+            39.2063766
+          ],
+          [
+            9.5640258,
+            39.2063813
+          ],
+          [
+            9.5640531,
+            39.2063936
+          ],
+          [
+            9.5640736,
+            39.2064123
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Nuraghe; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/225945564/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Nuraghe Gibe Truttiri"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/319609040",
+          "citationDetail": "Way 319609040",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=319609040",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+      ],
+      "end": -1000,
+      "title": "OSM location of Nuraghe Gibe Truttiri",
+      "provenance": "OpenStreetMap (Way 319609040, version 5, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-12-30T18:28:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.5640736,
+            39.2064123
+          ],
+          [
+            9.5640848,
+            39.2064343
+          ],
+          [
+            9.5640863,
+            39.206458
+          ],
+          [
+            9.564078,
+            39.2064808
+          ],
+          [
+            9.5640607,
+            39.2065004
+          ],
+          [
+            9.5640363,
+            39.2065147
+          ],
+          [
+            9.5640073,
+            39.2065221
+          ],
+          [
+            9.5639767,
+            39.206522
+          ],
+          [
+            9.5639477,
+            39.2065144
+          ],
+          [
+            9.5639235,
+            39.2065
+          ],
+          [
+            9.563906,
+            39.2064796
+          ],
+          [
+            9.5638982,
+            39.2064558
+          ],
+          [
+            9.5639008,
+            39.2064314
+          ],
+          [
+            9.5639138,
+            39.2064091
+          ],
+          [
+            9.5639355,
+            39.2063913
+          ],
+          [
+            9.5639635,
+            39.20638
+          ],
+          [
+            9.5639948,
+            39.2063766
+          ],
+          [
+            9.5640258,
+            39.2063813
+          ],
+          [
+            9.5640531,
+            39.2063936
+          ],
+          [
+            9.5640736,
+            39.2064123
+          ]
+        ]
+      },
+      "locationType": [],
+      "uri": "https://pleiades.stoa.org/places/225945564/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T19:53:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-30T11:26:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-12T21:57:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-30T04:04:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-01T00:56:12Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-30T18:28:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-30T18:28:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-30T18:28:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:41:26Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/225945564/472014",
+      "connectionType": "on",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-30T11:26:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/46818/",
+      "citationDetail": "46818",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q122180537",
+      "citationDetail": "Nuraghe Gibe Truttiri (Q122180537)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "225945564",
+  "subject": [],
+  "title": "Nuraghe Gibe Truttiri",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A nuraghe located near the beach of Cala Marina.",
+  "reprPoint": [
+    9.563992387674242,
+    39.206449810536526
+  ],
+  "placeTypes": [
+    "nuraghe"
+  ],
+  "bbox": [
+    9.5638982,
+    39.2063766,
+    9.5640863,
+    39.2065221
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-12-30T18:27:21Z",
+  "uri": "https://pleiades.stoa.org/places/225945564",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q122180537",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T19:54:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-30T11:26:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-12T21:57:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-12T21:57:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-30T04:06:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-01T00:55:57Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-12-30T18:27:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-12-30T18:27:21Z"
+    }
+  ]
+}

@@ -1,0 +1,391 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            37.4971255,
+            45.1156886
+          ],
+          [
+            37.4971255,
+            45.1160083
+          ],
+          [
+            37.4975077,
+            45.1166626
+          ],
+          [
+            37.4978758,
+            45.1168774
+          ],
+          [
+            37.4988526,
+            45.1167076
+          ],
+          [
+            37.499341,
+            45.1163929
+          ],
+          [
+            37.4994967,
+            45.1162381
+          ],
+          [
+            37.4993764,
+            45.1158484
+          ],
+          [
+            37.4992136,
+            45.1154738
+          ],
+          [
+            37.4989871,
+            45.1153539
+          ],
+          [
+            37.4986827,
+            45.1153539
+          ],
+          [
+            37.498166,
+            45.115334
+          ],
+          [
+            37.4974511,
+            45.1154438
+          ],
+          [
+            37.4971255,
+            45.1156886
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "chekon",
+      "properties": {
+        "snippet": "Settlement; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/948509452/chekon",
+        "description": "Polygon representing the extent of the primary Chekon site, derived from an OpenStreetMap Way after Korenevskiy 2023.",
+        "location_precision": "precise",
+        "title": "OSM location of Chekon"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1219556156",
+          "citationDetail": "Way 1219556156",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1219556156",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://worldcat.org/oclc/1405202535",
+          "citationDetail": "plates 1-2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korenevskiy 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/99276RPN",
+          "formattedCitation": "<div class=\"csl-entry\">\u041a\u043e\u0440\u0435\u043d\u0435\u0432\u0441\u043a\u0438\u0439, \u0421. \u041d., and \u042e\u0434\u0438\u043d, \u0410. \u0418. <i>\u0427\u0435\u043a\u043e\u043d - \u043f\u043e\u0441\u0435\u043b\u0435\u043d\u0438\u0435 \u0440\u0430\u043d\u043d\u0435\u0433\u043e \u0431\u0440\u043e\u043d\u0437\u043e\u0432\u043e\u0433\u043e \u0432\u0435\u043a\u0430\u00a0 \u0417\u0430\u043f\u0430\u0434\u043d\u043e\u0433\u043e \u041f\u0440\u0435\u0434\u043a\u0430\u0432\u043a\u0430\u0437\u044c\u044f (\u043f\u043e \u0440\u0430\u0441\u043a\u043e\u043f\u043a\u0430\u043c 2018 \u0433)</i>. Moskva: \u0418\u0410 \u0420\u0410\u041d, 2023. https://worldcat.org/oclc/1405202535.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "chekon",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of Chekon",
+      "provenance": "OpenStreetMap (Way 1219556156, version 1, osm:changeset=143374521, 2023-10-30T16:12:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the extent of the primary Chekon site, derived from an OpenStreetMap Way after Korenevskiy 2023.",
+      "created": "2023-10-30T16:16:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            37.4971255,
+            45.1156886
+          ],
+          [
+            37.4971255,
+            45.1160083
+          ],
+          [
+            37.4975077,
+            45.1166626
+          ],
+          [
+            37.4978758,
+            45.1168774
+          ],
+          [
+            37.4988526,
+            45.1167076
+          ],
+          [
+            37.499341,
+            45.1163929
+          ],
+          [
+            37.4994967,
+            45.1162381
+          ],
+          [
+            37.4993764,
+            45.1158484
+          ],
+          [
+            37.4992136,
+            45.1154738
+          ],
+          [
+            37.4989871,
+            45.1153539
+          ],
+          [
+            37.4986827,
+            45.1153539
+          ],
+          [
+            37.498166,
+            45.115334
+          ],
+          [
+            37.4974511,
+            45.1154438
+          ],
+          [
+            37.4971255,
+            45.1156886
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/948509452/chekon",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-30T17:39:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-30T16:18:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-30T16:17:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-30T16:16:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-30T16:16:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/oclc/1405202535",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Korenevskiy 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/99276RPN",
+      "formattedCitation": "<div class=\"csl-entry\">\u041a\u043e\u0440\u0435\u043d\u0435\u0432\u0441\u043a\u0438\u0439, \u0421. \u041d., and \u042e\u0434\u0438\u043d, \u0410. \u0418. <i>\u0427\u0435\u043a\u043e\u043d - \u043f\u043e\u0441\u0435\u043b\u0435\u043d\u0438\u0435 \u0440\u0430\u043d\u043d\u0435\u0433\u043e \u0431\u0440\u043e\u043d\u0437\u043e\u0432\u043e\u0433\u043e \u0432\u0435\u043a\u0430\u00a0 \u0417\u0430\u043f\u0430\u0434\u043d\u043e\u0433\u043e \u041f\u0440\u0435\u0434\u043a\u0430\u0432\u043a\u0430\u0437\u044c\u044f (\u043f\u043e \u0440\u0430\u0441\u043a\u043e\u043f\u043a\u0430\u043c 2018 \u0433)</i>. Moskva: \u0418\u0410 \u0420\u0410\u041d, 2023. https://worldcat.org/oclc/1405202535.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Chekon",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://worldcat.org/oclc/1405202535",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korenevskiy 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/99276RPN",
+          "formattedCitation": "<div class=\"csl-entry\">\u041a\u043e\u0440\u0435\u043d\u0435\u0432\u0441\u043a\u0438\u0439, \u0421. \u041d., and \u042e\u0434\u0438\u043d, \u0410. \u0418. <i>\u0427\u0435\u043a\u043e\u043d - \u043f\u043e\u0441\u0435\u043b\u0435\u043d\u0438\u0435 \u0440\u0430\u043d\u043d\u0435\u0433\u043e \u0431\u0440\u043e\u043d\u0437\u043e\u0432\u043e\u0433\u043e \u0432\u0435\u043a\u0430\u00a0 \u0417\u0430\u043f\u0430\u0434\u043d\u043e\u0433\u043e \u041f\u0440\u0435\u0434\u043a\u0430\u0432\u043a\u0430\u0437\u044c\u044f (\u043f\u043e \u0440\u0430\u0441\u043a\u043e\u043f\u043a\u0430\u043c 2018 \u0433)</i>. Moskva: \u0418\u0410 \u0420\u0410\u041d, 2023. https://worldcat.org/oclc/1405202535.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "chekon-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Russian name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2023-10-30T16:18:25Z",
+      "uri": "https://pleiades.stoa.org/places/948509452/chekon-1",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0427\u0435\u043a\u043e\u043d",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-30T17:39:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-30T16:18:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-30T16:18:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-30T16:18:25Z"
+        }
+      ]
+    }
+  ],
+  "id": "948509452",
+  "subject": [],
+  "title": "Chekon",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement on the Taman Peninsula with signs of habitation dated to the mid-4th-early 3rd millennium BCE.",
+  "reprPoint": [
+    37.498288442882206,
+    45.11604477258205
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    37.4971255,
+    45.115334,
+    37.4994967,
+    45.1168774
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-10-30T16:16:06Z",
+  "uri": "https://pleiades.stoa.org/places/948509452",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-30T17:39:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2023-10-30T16:18:34Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2023-10-30T16:16:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2023-10-30T16:16:06Z"
+    }
+  ]
+}

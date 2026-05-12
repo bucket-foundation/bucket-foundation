@@ -1,0 +1,515 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4842156,
+            40.7506458
+          ],
+          [
+            14.4840893,
+            40.750592
+          ],
+          [
+            14.4841134,
+            40.7505531
+          ],
+          [
+            14.4842457,
+            40.7505929
+          ],
+          [
+            14.4842156,
+            40.7506458
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-shop-of-acastus-vii-5-29",
+      "properties": {
+        "snippet": "Taberna-shop; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/817558810/osm-location-of-shop-of-acastus-vii-5-29",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Shop of Acastus (VII.5.29)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1156300329",
+          "citationDetail": "Way 1156300329",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1156300329",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-shop-of-acastus-vii-5-29",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop"
+      ],
+      "end": 99,
+      "title": "OSM location of Shop of Acastus (VII.5.29)",
+      "provenance": "OpenStreetMap (Way 1156300329, version 1, osm:changeset=133978957, 2023-03-22T13:38:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "taberna-shop"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-03-22T13:41:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4842156,
+            40.7506458
+          ],
+          [
+            14.4840893,
+            40.750592
+          ],
+          [
+            14.4841134,
+            40.7505531
+          ],
+          [
+            14.4842457,
+            40.7505929
+          ],
+          [
+            14.4842156,
+            40.7506458
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/817558810/osm-location-of-shop-of-acastus-vii-5-29",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:25:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T14:15:35Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:42:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:41:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:41:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-22T13:42:42Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/817558810/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:25:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T14:15:35Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:49:47Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:42:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:42:42Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://journals.openedition.org/baefe/7286?fbclid=IwAR0zVgCPbMlopf21sbjb3c7u4TZt1qCUkLcj8M24WwD8xiedrkozj1VJfZI",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zanella et al. 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KSX9HLUH",
+          "formattedCitation": "<div class=\"csl-entry\">Zanella, Sandra, Marine L\u00e9p\u00e9e, and Vincenzo Amato. \u201c\u2018Pomp\u00e9i TransUrbs\u2019 (campagne 2022).\u201d <i>Bulletin arch\u00e9ologique des \u00c9coles fran\u00e7aises \u00e0 l\u2019\u00e9tranger</i>, March 21, 2023. https://journals.openedition.org/baefe/7286?fbclid=IwAR0zVgCPbMlopf21sbjb3c7u4TZt1qCUkLcj8M24WwD8xiedrkozj1VJfZI.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-22T13:43:02Z",
+      "associationCertainty": "certain",
+      "title": "Regio VII, Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/817558810/regio-vii-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-vii-pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:25:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T14:15:35Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:43:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:43:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599902893",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/baefe/7286?fbclid=IwAR0zVgCPbMlopf21sbjb3c7u4TZt1qCUkLcj8M24WwD8xiedrkozj1VJfZI",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zanella et al. 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KSX9HLUH",
+      "formattedCitation": "<div class=\"csl-entry\">Zanella, Sandra, Marine L\u00e9p\u00e9e, and Vincenzo Amato. \u201c\u2018Pomp\u00e9i TransUrbs\u2019 (campagne 2022).\u201d <i>Bulletin arch\u00e9ologique des \u00c9coles fran\u00e7aises \u00e0 l\u2019\u00e9tranger</i>, March 21, 2023. https://journals.openedition.org/baefe/7286?fbclid=IwAR0zVgCPbMlopf21sbjb3c7u4TZt1qCUkLcj8M24WwD8xiedrkozj1VJfZI.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27687118",
+      "citationDetail": "Q27687118: Shop of Acastus (VII.5.29)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://pompeiiinpictures.com/pompeiiinpictures/R7/7%2005%2029.htm",
+      "citationDetail": "VII.5.29 Pompeii. Shop of Acastus.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Shop of Acastus",
+      "attestations": [],
+      "references": [],
+      "id": "shop-of-acastus",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-03-22T13:42:25Z",
+      "uri": "https://pleiades.stoa.org/places/817558810/shop-of-acastus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Shop of Acastus",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:25:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T14:15:35Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:42:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:42:25Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "VII.5.29",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/8667821",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "VanderPoel 1977",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQBMM724",
+          "formattedCitation": "<div class=\"csl-entry\">VanderPoel, Halsted B. <i>Corpus Topographicum Pompeianum</i>. 5 vols. Rome: The University of Texas at Austin, 1977. http://www.worldcat.org/oclc/8667821.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "vii-5.29",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1800,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-03-22T13:49:23Z",
+      "uri": "https://pleiades.stoa.org/places/817558810/vii-5.29",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "VII.5.29",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:25:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T14:15:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:49:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-22T13:49:23Z"
+        }
+      ]
+    }
+  ],
+  "id": "817558810",
+  "subject": [],
+  "title": "Shop of Acastus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Shop of Acastus\" was a taberna in Pompeii that stood to at least two stories. It is located in the same block as the public bath complex at VII, 5, 24.",
+  "reprPoint": [
+    14.48416858676479,
+    40.7505968224339
+  ],
+  "placeTypes": [
+    "taberna-shop"
+  ],
+  "bbox": [
+    14.4840893,
+    40.7505531,
+    14.4842457,
+    40.7506458
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/599902893"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-22T13:40:54Z",
+  "uri": "https://pleiades.stoa.org/places/817558810",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-24T18:25:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-22T14:15:35Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-22T14:15:23Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-22T13:40:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-22T13:40:54Z"
+    }
+  ]
+}

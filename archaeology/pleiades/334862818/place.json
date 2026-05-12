@@ -1,0 +1,401 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.745143,
+            39.5561114
+          ],
+          [
+            30.7448571,
+            39.5555861
+          ],
+          [
+            30.7443035,
+            39.5554688
+          ],
+          [
+            30.7436708,
+            39.5555016
+          ],
+          [
+            30.7433423,
+            39.5557315
+          ],
+          [
+            30.7431841,
+            39.5563647
+          ],
+          [
+            30.7436343,
+            39.5567164
+          ],
+          [
+            30.7443217,
+            39.5570307
+          ],
+          [
+            30.744851,
+            39.5569885
+          ],
+          [
+            30.74507,
+            39.5568243
+          ],
+          [
+            30.745143,
+            39.5561114
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kulluoba-hoyuk",
+      "properties": {
+        "snippet": "Archaeological-site; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/334862818/osm-location-of-kulluoba-hoyuk",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kulluoba Hoyuk"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/230330955",
+          "citationDetail": "Way 230330955",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=230330955",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kulluoba-hoyuk",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -2000,
+      "title": "OSM location of Kulluoba Hoyuk",
+      "provenance": "OpenStreetMap (Way 230330955, version 4, osm:changeset=155980638, 2024-08-30T15:47:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-08-30T15:49:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.745143,
+            39.5561114
+          ],
+          [
+            30.7448571,
+            39.5555861
+          ],
+          [
+            30.7443035,
+            39.5554688
+          ],
+          [
+            30.7436708,
+            39.5555016
+          ],
+          [
+            30.7433423,
+            39.5557315
+          ],
+          [
+            30.7431841,
+            39.5563647
+          ],
+          [
+            30.7436343,
+            39.5567164
+          ],
+          [
+            30.7443217,
+            39.5570307
+          ],
+          [
+            30.744851,
+            39.5569885
+          ],
+          [
+            30.74507,
+            39.5568243
+          ],
+          [
+            30.745143,
+            39.5561114
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/334862818/osm-location-of-kulluoba-hoyuk",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-30T19:33:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-30T16:05:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-30T15:59:31Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-30T15:50:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-30T15:49:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-30T15:49:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q6101388",
+      "citationDetail": "K\u00fcll\u00fcoba H\u00f6y\u00fc\u011f\u00fc (Q6101388)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ceeol.com/search/article-detail?id=963697",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u00dcst\u00fcn T\u00fcrkteki 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C6HAWNFL",
+      "formattedCitation": "<div class=\"csl-entry\">\u00dcst\u00fcn T\u00fcrkteki, Sinem. \u201cEarly Bronze Age Sealing Tradition of K\u00fcll\u00fcoba H\u00f6y\u00fck in the Context of Anatolian Sealing Practice.\u201d <i>Studia Hercynia</i> 24, no. 1 (2020): 7\u201329. https://www.ceeol.com/search/article-detail?id=963697.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.megalithic.co.uk/article.php?sid=37776",
+      "citationDetail": "37776: Kulluoba Hoyuk - Ancient Village or Settlement in Turkey",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TMP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9YPQCWW2",
+      "formattedCitation": "<div class=\"csl-entry\">Burnham, Andy, ed. <i>The Megalithic Portal</i>, 2001. https://www.megalithic.co.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/26112/",
+      "citationDetail": "26112: K\u00fcll\u00fcoba H\u00f6y\u00fck",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kulluoba Hoyuk",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/26112/",
+          "citationDetail": "26112: K\u00fcll\u00fcoba H\u00f6y\u00fck",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kulluoba-hoyuk",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2024-08-30T16:05:32Z",
+      "uri": "https://pleiades.stoa.org/places/334862818/kulluoba-hoyuk",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "K\u00fcll\u00fcoba H\u00f6y\u00fck",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-30T19:33:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-30T16:05:48Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-30T16:05:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-30T16:05:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "334862818",
+  "subject": [],
+  "title": "K\u00fcll\u00fcoba H\u00f6y\u00fc\u011f\u00fc",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "K\u00fcll\u00fcoba H\u00f6y\u00fc\u011f\u00fc is the site of a large settlement mound dating from the Chalcolithic period and continuing to the Early Bronze Age.",
+  "reprPoint": [
+    30.744219779580938,
+    39.556224956278434
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "tell"
+  ],
+  "bbox": [
+    30.7431841,
+    39.5554688,
+    30.745143,
+    39.5570307
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-08-30T15:49:34Z",
+  "uri": "https://pleiades.stoa.org/places/334862818",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-08-30T19:33:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-30T16:05:46Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-30T15:58:11Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-30T15:49:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-30T15:49:34Z"
+    }
+  ]
+}

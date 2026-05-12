@@ -1,0 +1,303 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.201894,
+            29.895421
+          ],
+          [
+            31.2029613,
+            29.895423
+          ],
+          [
+            31.2029636,
+            29.8945203
+          ],
+          [
+            31.2018963,
+            29.8945183
+          ],
+          [
+            31.201894,
+            29.895421
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pyramid-of-neferirkare",
+      "properties": {
+        "snippet": "Pyramid; 2670 BC - 2168 BC",
+        "link": "https://pleiades.stoa.org/places/112501803/osm-location-of-pyramid-of-neferirkare",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pyramid of Neferirkare"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/48808492",
+          "citationDetail": "Way 48808492",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=48808492",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pyramid-of-neferirkare",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "end": -2168,
+      "title": "OSM location of Pyramid of Neferirkare",
+      "provenance": "OpenStreetMap (Way 48808492, version 7, osm:changeset=140307414, 2023-08-24T07:35:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2670,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "pyramid"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-19T21:48:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.201894,
+            29.895421
+          ],
+          [
+            31.2029613,
+            29.895423
+          ],
+          [
+            31.2029636,
+            29.8945203
+          ],
+          [
+            31.2018963,
+            29.8945183
+          ],
+          [
+            31.201894,
+            29.895421
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/112501803/osm-location-of-pyramid-of-neferirkare",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-21T19:56:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-23T20:07:54Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T21:48:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T21:48:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T21:48:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-19T21:48:43Z",
+      "associationCertainty": "certain",
+      "title": "Abu Sir",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/112501803/5233666667",
+      "connectionType": "at",
+      "id": "5233666667",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T21:48:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T21:48:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-19T21:48:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/195443086",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pyramid_of_Neferirkare",
+      "citationDetail": "Pyramid of Neferirkare",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1609149",
+      "citationDetail": "Pyramid of Neferirkare (Q1609149)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "112501803",
+  "subject": [],
+  "title": "Pyramid of Neferirkare",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A pyramid at Abu Sir built for the Fifth Dynasty pharaoh Neferirkare Kakai.",
+  "reprPoint": [
+    31.2024288,
+    29.89497065
+  ],
+  "placeTypes": [
+    "pyramid"
+  ],
+  "bbox": [
+    31.201894,
+    29.8945183,
+    31.2029636,
+    29.895423
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/195443086"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-19T21:48:42Z",
+  "uri": "https://pleiades.stoa.org/places/112501803",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Pyramid of Neferirkare (Q1609149)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-13T14:39:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-21T19:56:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-23T20:07:54Z"
+    },
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-23T20:07:49Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-22T23:55:33Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-19T21:48:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-19T21:48:42Z"
+    }
+  ]
+}

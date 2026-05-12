@@ -1,0 +1,906 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2579874,
+            35.4580345
+          ],
+          [
+            43.2561153,
+            35.4568591
+          ],
+          [
+            43.254435,
+            35.4579567
+          ],
+          [
+            43.2555466,
+            35.4596119
+          ],
+          [
+            43.2579874,
+            35.4580345
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-way-of-the-new-palace-at-assur",
+      "properties": {
+        "snippet": "Unknown; 1600 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/281201084/osm-way-of-the-new-palace-at-assur",
+        "description": "Polygon representing the extent of the New Palace at Assur, derived from an OpenStreetMap Way after Gries 2017 plate 1.",
+        "location_precision": "precise",
+        "title": "OSM Way of the New Palace at Assur"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1067547835",
+          "citationDetail": "Way 1067547835",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1067547835",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/992438862",
+          "citationDetail": "plate 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gries 2017",
+          "bibliographicURI": "",
+          "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-way-of-the-new-palace-at-assur",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": -1000,
+      "title": "OSM Way of the New Palace at Assur",
+      "provenance": "OpenStreetMap (Way 1067547835, version 1, osm:changeset=122064717, 2022-06-07T10:11:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Polygon representing the extent of the New Palace at Assur, derived from an OpenStreetMap Way after Gries 2017 plate 1.",
+      "created": "2022-06-07T10:33:38Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2579874,
+            35.4580345
+          ],
+          [
+            43.2561153,
+            35.4568591
+          ],
+          [
+            43.254435,
+            35.4579567
+          ],
+          [
+            43.2555466,
+            35.4596119
+          ],
+          [
+            43.2579874,
+            35.4580345
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/281201084/osm-way-of-the-new-palace-at-assur",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T20:13:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:40:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:35:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:33:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:33:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1000,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-07T10:27:30Z",
+      "associationCertainty": "certain",
+      "title": "Ashur/\u2018Lamban\u2019?/\u2018Liba(nai)\u2019?",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/281201084/ashur-2018lamban2019-2018liba-nai-2019",
+      "connectionType": "part_of_admin",
+      "id": "ashur-2018lamban2019-2018liba-nai-2019",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T20:13:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:40:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:01:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:27:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:27:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893945",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Preusser 1955",
+          "bibliographicURI": "",
+          "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur ((Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_admin"
+    },
+    {
+      "end": -1000,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-07T10:28:11Z",
+      "associationCertainty": "certain",
+      "title": "Temple of Anu and Adad at Assur",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/281201084/temple-of-anu-and-adad-at-assur",
+      "connectionType": "near",
+      "id": "temple-of-anu-and-adad-at-assur",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T20:13:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:40:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:02:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:28:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:28:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/536694247",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Preusser 1955",
+          "bibliographicURI": "",
+          "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur ((Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": -1000,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-07T10:29:08Z",
+      "associationCertainty": "certain",
+      "title": "Temple of Ishtar at Assur",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/281201084/temple-of-ishtar-at-assur",
+      "connectionType": "near",
+      "id": "temple-of-ishtar-at-assur",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T20:13:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:40:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:03:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:29:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:29:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/299219557",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Preusser 1955",
+          "bibliographicURI": "",
+          "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur ((Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005866/",
+      "citationDetail": "Tukulti-Ninurta I 30",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005841/",
+      "citationDetail": "Tukulti-Ninurta I 05",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005839/",
+      "citationDetail": "Tukulti-Ninurta I 03",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005838/",
+      "citationDetail": "Tukulti-Ninurta I 02",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005837/",
+      "citationDetail": "Tukulti-Ninurta I 01",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/992438862",
+      "citationDetail": "plate 1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gries 2017",
+      "bibliographicURI": "",
+      "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Preusser 1955",
+      "bibliographicURI": "",
+      "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur ((Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/905668443",
+      "citationDetail": "162\u2013164",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Andrae 1977",
+      "bibliographicURI": "",
+      "formattedCitation": "Andrae, W. 1977. Das wiedererstandene Assur. Zweite, durchgesehene und erweiterte Auflage, herausgegeben von Barthel Hrouda. Munich: C. H. Beck.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883572295",
+      "citationDetail": "171 no. 1447",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+      "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Neuer Palast",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/palaste-in-assur/oclc/638827873",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Preusser 1955",
+          "bibliographicURI": "",
+          "formattedCitation": "Preusser, C. 1955. Die Pal\u00e4ste in Assur ((Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 66). Berlin.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "neuer-palast",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2022-06-07T10:31:47Z",
+      "uri": "https://pleiades.stoa.org/places/281201084/neuer-palast",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T20:13:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:40:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:59:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:31:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:31:47Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "New Palace",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://public.eblib.com/choice/publicfullrecord.aspx?p=3155654",
+          "citationDetail": "19 fig. 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 3/2",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CAKUI9UC",
+          "formattedCitation": "<div class=\"csl-entry\">Grayson, Albert Kirk, and Jamie R Novotny. <i>The Royal Inscriptions of Sennacherib, King of Assyria</i>. Winona Lake, Ind.: Eisenbrauns, 2014. http://public.eblib.com/choice/publicfullrecord.aspx?p=3155654.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "new-palace",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-06-07T10:32:31Z",
+      "uri": "https://pleiades.stoa.org/places/281201084/new-palace",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T20:13:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:40:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:00:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:32:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:32:31Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "ekallu e\u0161\u0161etu",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q005866/",
+          "citationDetail": "Tukulti-Ninurta I 30",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ekallu-essetu",
+      "end": -1000,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "",
+      "review_state": "published",
+      "description": "The \"everyday\" name of Elugalumunkurkurra, the palace of Tukult\u012b-Ninurta I at Assur.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2022-06-07T10:50:31Z",
+      "uri": "https://pleiades.stoa.org/places/281201084/ekallu-essetu",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T20:13:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:40:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:50:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T10:50:31Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Elugalumunkurkurra",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q005841/",
+          "citationDetail": "Tukulti-Ninurta I 05",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "elugalumunkurkurra",
+      "end": -1000,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "",
+      "review_state": "published",
+      "description": "Inscriptions of the Middle Assyrian king Tukult\u012b-Ninurta I (1233\u20131197 BC) refer to the \u201cNew Palace\u201d by its Sumerian name Elugalumunkurkurra, which means \u201cHouse of the King, Lord of the Lands.\u201d",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2022-06-07T11:10:27Z",
+      "uri": "https://pleiades.stoa.org/places/281201084/elugalumunkurkurra",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-07T20:13:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:40:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:26:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:10:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-07T11:10:27Z"
+        }
+      ]
+    }
+  ],
+  "id": "281201084",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "New Palace at Assur",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/palace-complex",
+    "https://pleiades.stoa.org/vocabularies/place-types/palace"
+  ],
+  "details": "<p>One inscription of\u00a0Tukult\u012b-Ninurta I (RIAo\u00a0<a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/riao/Q005839/\" target=\"_self\" title=\"\">Tukulti-Ninurta I 03</a>)\u00a0describes the work on the \"New Palace\" as follows:</p>\r\n<p style=\"padding-left: 30px; \">\"At that time I delineated [in the midst] of my city, A\u0161\u0161ur, (the region which stretches) [from] the ziggurat of the god Adad [my lord] to the Craftsman\u2019s Gate, [on the] north [side, extensive] house-plots, far-flung regions, (and) much terrain. Eighty <em>mu\u0161aru</em>\u00a0down its foundation pit I reached bedrock. [...] I <em>erected</em>\u00a0... its sanctuary with limestone [and bricks]. I made its foundation as strong [as] the base of a mountain. (Thus) [I built] (as a place for the exercise) of my rule Elugalumunkurkurra, [a palace], my royal residence [and rooms] for all the [great] gods. I constructed (it) from top [to bottom and] deposited my [monumental inscriptions].\"</p>\r\n<dl><dt><span></span></dt></dl>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Middle Assyrian king Tukult\u012b-Ninurta I (1233\u20131197 BC) built himself a new royal residence at Assur. That palace, which went by the Sumerian name Elugalumunkurkurra (\u201cHouse of the King, Lord of the Lands\u201d), covered an area of about 27000 m\u00b2. After Tukult\u012b-Ninurta I\u2019s reign, the so-called \u201cNew Palace\u201d was no longer maintained and, thus, fell into ruins.",
+  "reprPoint": [
+    43.256119119239386,
+    35.45816944243775
+  ],
+  "placeTypes": [
+    "palace-complex",
+    "palace"
+  ],
+  "bbox": [
+    43.254435,
+    35.4568591,
+    43.2579874,
+    35.4596119
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893945",
+    "https://pleiades.stoa.org/places/536694247",
+    "https://pleiades.stoa.org/places/299219557"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-07T10:26:46Z",
+  "uri": "https://pleiades.stoa.org/places/281201084",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-07T20:13:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T11:40:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T11:40:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T11:28:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T11:06:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T11:05:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T10:58:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T10:42:23Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T10:26:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-07T10:26:46Z"
+    }
+  ]
+}

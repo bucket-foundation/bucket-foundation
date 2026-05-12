@@ -1,0 +1,518 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.0996979,
+            59.1573694
+          ],
+          [
+            -3.1003089,
+            59.1572887
+          ],
+          [
+            -3.1004434,
+            59.1573188
+          ],
+          [
+            -3.1005117,
+            59.157334
+          ],
+          [
+            -3.1006792,
+            59.1574384
+          ],
+          [
+            -3.1007031,
+            59.1574718
+          ],
+          [
+            -3.1006799,
+            59.1575185
+          ],
+          [
+            -3.1006202,
+            59.1576441
+          ],
+          [
+            -3.100377,
+            59.1577254
+          ],
+          [
+            -3.1003133,
+            59.1577467
+          ],
+          [
+            -3.0997153,
+            59.1574686
+          ],
+          [
+            -3.0996979,
+            59.1573694
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-midhowe-broch",
+      "properties": {
+        "snippet": "Monument, ; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/322906034/location-of-midhowe-broch",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Midhowe Broch"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0991385,
+          59.1565434
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-midhowe-chambered-cairn",
+      "properties": {
+        "snippet": "Cairn, ; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/322906034/location-of-midhowe-chambered-cairn",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Midhowe Chambered Cairn"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/114772151",
+          "citationDetail": "Way 114772151",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=114772151",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-midhowe-broch",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -2000,
+      "title": "OSM location of Midhowe Broch",
+      "provenance": "OpenStreetMap (Way 114772151, version 6, osm:changeset=122009732, 2022-06-06T07:47:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-12-21T20:03:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.0996979,
+            59.1573694
+          ],
+          [
+            -3.1003089,
+            59.1572887
+          ],
+          [
+            -3.1004434,
+            59.1573188
+          ],
+          [
+            -3.1005117,
+            59.157334
+          ],
+          [
+            -3.1006792,
+            59.1574384
+          ],
+          [
+            -3.1007031,
+            59.1574718
+          ],
+          [
+            -3.1006799,
+            59.1575185
+          ],
+          [
+            -3.1006202,
+            59.1576441
+          ],
+          [
+            -3.100377,
+            59.1577254
+          ],
+          [
+            -3.1003133,
+            59.1577467
+          ],
+          [
+            -3.0997153,
+            59.1574686
+          ],
+          [
+            -3.0996979,
+            59.1573694
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/322906034/location-of-midhowe-broch",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:43:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-07T00:49:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T13:47:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T13:46:37Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T20:04:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T20:03:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T20:03:47Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1299289924",
+          "citationDetail": "Node 1299289924",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1299289924",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-midhowe-chambered-cairn",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cairn",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -2000,
+      "title": "OSM location of Midhowe Chambered Cairn",
+      "provenance": "OpenStreetMap (Node 1299289924, version 32, osm:changeset=140197672, 2023-08-21T19:24:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cairn",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cairn",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-12-21T20:05:31Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.0991385,
+          59.1565434
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/322906034/location-of-midhowe-chambered-cairn",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:43:34Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-07T00:49:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-16T13:05:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T13:47:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T13:47:00Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T20:05:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T20:05:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T20:05:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:58:51Z",
+      "associationCertainty": "certain",
+      "title": "Orcades (islands)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/322906034/89261",
+      "connectionType": "connection",
+      "id": "89261",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/89261",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Midhowe_Chambered_Cairn",
+      "citationDetail": "Midhowe Chambered Cairn",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Midhowe Chambered Cairn.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q568592",
+      "citationDetail": "Q568592: Midhowe Chambered Cairn",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "322906034",
+  "subject": [],
+  "title": "Midhowe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cairn",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large Neolithic chambered cairn located on the island of Rousay, Orkney, Scotland.",
+  "reprPoint": [
+    -3.09968055,
+    59.15690585
+  ],
+  "placeTypes": [
+    "cairn",
+    "monument"
+  ],
+  "bbox": [
+    -3.1002226,
+    59.1565434,
+    -3.0991385,
+    59.1572683
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/89261"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-12-21T20:01:52Z",
+  "uri": "https://pleiades.stoa.org/places/322906034",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-07T00:49:03Z"
+    },
+    {
+      "comment": "added wikidata Q568592: Midhowe Chambered Cairn",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-21T15:14:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-16T13:05:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-13T13:47:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-13T13:46:16Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-21T20:01:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-21T20:01:52Z"
+    }
+  ]
+}

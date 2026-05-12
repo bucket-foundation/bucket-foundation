@@ -1,0 +1,544 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            49.3346036,
+            32.0344638
+          ],
+          [
+            49.3353088,
+            32.034737
+          ],
+          [
+            49.3346457,
+            32.036087
+          ],
+          [
+            49.3338471,
+            32.0358336
+          ],
+          [
+            49.3346036,
+            32.0344638
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "terraces-at-bardneshandeh",
+      "properties": {
+        "snippet": "Temple-2; 1000 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/912820/terraces-at-bardneshandeh",
+        "description": "Polygon representing the temple terraces at Bardneshandeh, derived from an OpenStreetMap Way after MDP 45.",
+        "location_precision": "precise",
+        "title": "OSM location of Terraces at Bardneshandeh"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "P. Flensted Jensen"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-iron-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-iron-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1007667883",
+          "citationDetail": "Way 1007667883",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "volume 1, pages 6-8",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ghirshman 1976",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AD6ZU997",
+          "formattedCitation": "<div class=\"csl-entry\">Ghirshman, Roman, Tania Ghirshman, H Gasche, and J Harmatta. <i>Terrasses Sacr\u00e9es de Bard-\u00e8 N\u00e9chandeh et Masjid-i Solaiman: L\u2019Iran Du Sud-Ouest Du VIIIe s. Av. n. \u00c8re Au Ve s. de n. \u00c8re</i>. 2 vols. M\u00e9moires de La D\u00e9l\u00e9gation Arch\u00e9ologique En Iran, t. 45. Leiden: Diffusion, E.J. Brill, 1976.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "terraces-at-bardneshandeh",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -330,
+      "title": "OSM location of Terraces at Bardneshandeh",
+      "provenance": "OpenStreetMap (Way 1007667883, version 1, osm:changeset=114406957, 2021-11-30T15:15:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon representing the temple terraces at Bardneshandeh, derived from an OpenStreetMap Way after MDP 45.",
+      "created": "2026-01-08T22:37:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            49.3346036,
+            32.0344638
+          ],
+          [
+            49.3353088,
+            32.034737
+          ],
+          [
+            49.3346457,
+            32.036087
+          ],
+          [
+            49.3338471,
+            32.0358336
+          ],
+          [
+            49.3346036,
+            32.0344638
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/912820/terraces-at-bardneshandeh",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-08T22:37:46Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-08T22:37:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-30T16:43:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-30T15:20:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-30T15:20:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-30T15:17:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-30T15:17:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "93 F1 Bard-i Nishande",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "213",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ghirshman 1950",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NND5NSIU",
+      "formattedCitation": "<div class=\"csl-entry\">R. Ghirshman. \u201cMasjid-i-Soleiman. R\u00e9sidence Des Premiers Ach\u00e9m\u00e9nides.\u201d <i>Syria.\u00a0 Revue d\u2019art Oriental et d\u2019arch\u00e9ologie</i> 27 (1950): 205\u201320.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ghirshman 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AD6ZU997",
+      "formattedCitation": "<div class=\"csl-entry\">Ghirshman, Roman, Tania Ghirshman, H Gasche, and J Harmatta. <i>Terrasses Sacr\u00e9es de Bard-\u00e8 N\u00e9chandeh et Masjid-i Solaiman: L\u2019Iran Du Sud-Ouest Du VIIIe s. Av. n. \u00c8re Au Ve s. de n. \u00c8re</i>. 2 vols. M\u00e9moires de La D\u00e9l\u00e9gation Arch\u00e9ologique En Iran, t. 45. Leiden: Diffusion, E.J. Brill, 1976.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.iranicaonline.org/articles/bard-e-nesanda-a-complex-of-ancient-ruins-in-kuzestan-situated-18-km-northwest-of-the-town-of-masjed-e-solayman-wher",
+      "citationDetail": "BARD-E NE\u0160\u0100NDA",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EncIran (online)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MGQ4IGT7",
+      "formattedCitation": "<div class=\"csl-entry\">Yar-Shater, Ehsan. <i>Encyclop\u00e6dia Iranica (Online)</i>. New York: Columbia University, 2010. http://www.iranicaonline.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "31874",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dare.ht.lu.se/",
+      "citationDetail": "36564",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Lund, Sweden: Department of Archaeology and Ancient History, Lund University, Sweden, 2015. http://dare.ht.lu.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "130",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nylander 1966",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MVZXN5NQ",
+      "formattedCitation": "<div class=\"csl-entry\">Nylander, C. \u201cClamps and Chronology. Achaemenian Problems, 2.\u201d In <i>Iranica Antiqua, 6.1966</i>, 130\u201346, Abb. Taf, 1966.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bardnesh\u0101ndeh, Bard Neshandeh, Bard-i Nishandi, Bard-\u00e8 N\u00e9chandeh ",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geonames.org/6661812/bardneshandeh.html",
+          "citationDetail": "6661812: Bardnesh\u0101ndeh",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bardneshandeh",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Persian name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "fa",
+      "created": "2026-01-08T22:37:26Z",
+      "uri": "https://pleiades.stoa.org/places/912820/bardneshandeh",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0628\u0631\u062f\u0646\u0634\u0627\u0646\u062f\u0647",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-08T22:37:27Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-08T22:37:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-30T16:44:26Z"
+        },
+        {
+          "comment": "update geonames reference to maintain consistent citation style per editorial guidelines",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-30T16:44:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-30T15:17:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-30T15:09:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-30T15:09:19Z"
+        }
+      ]
+    }
+  ],
+  "id": "912820",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=temple"
+  ],
+  "title": "Bard-i Nishande",
+  "provenance": "Barrington Atlas: BAtlas 93 F1 Bard-i Nishande",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Bard-i Nishande, IRQ</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Bard-i Nishande is the site of a ruined ancient landscape consisting of multiple complexes. According to K. Schippmann, these complexes include a ruler's residence or \"castle\", a terraced platform used for ritual activity, and a lower town.",
+  "reprPoint": [
+    49.33459019371017,
+    32.03529052889415
+  ],
+  "placeTypes": [
+    "temple-2",
+    "monument"
+  ],
+  "bbox": [
+    49.3338471,
+    32.0344638,
+    49.3353088,
+    32.036087
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-08T22:36:58Z",
+  "uri": "https://pleiades.stoa.org/places/912820",
+  "creators": [
+    {
+      "username": null,
+      "name": "A. Hausleiter"
+    },
+    {
+      "username": null,
+      "name": "M. Roaf"
+    },
+    {
+      "username": null,
+      "name": "St J. Simpson"
+    },
+    {
+      "username": null,
+      "name": "R. Wenke"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2026-01-08T22:36:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-26T15:51:29Z"
+    },
+    {
+      "comment": "DARE 36564; Nylander 1966; summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-30T16:48:53Z"
+    },
+    {
+      "comment": "added DARMC 31874",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-30T16:43:30Z"
+    },
+    {
+      "comment": "zotero links; DARMC ref. to maintain consistency with retracted location",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-30T16:43:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-29T18:33:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-29T18:31:20Z"
+    },
+    {
+      "comment": "changed deprecated place type",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-29T17:00:24Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:22:54Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T09:31:40Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-02T20:38:52Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:31:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-05T22:22:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T21:27:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-10-05T21:21:46Z"
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.8063783,
+          51.2650232
+        ]
+      },
+      "type": "Feature",
+      "id": "filippovka-burial-ground",
+      "properties": {
+        "snippet": "Cemetery; 700 BC - 301 BC",
+        "link": "https://pleiades.stoa.org/places/793280621/filippovka-burial-ground",
+        "description": "Point representing the approximate location of the Filippovka Burial Ground site derived from an OpenStreetMap Node, following Yablonsky 2010.",
+        "location_precision": "precise",
+        "title": "OSM location of Filippovka Burial Ground"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "seventh-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "sixth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixth-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9768508904",
+          "citationDetail": "Node 9768508904",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9768508904",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.ajaonline.org/sites/default/files/AJA1141_Yablonsky.pdf",
+          "citationDetail": "page 130",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Yablonsky 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K4QZGBSG",
+          "formattedCitation": "<div class=\"csl-entry\">Yablonsky, Leonid. \u201cNew Excavations of the Early Nomadic Burial Ground at Filippovka (Southern Ural Region, Russia).\u201d <i>American Journal of Archaeology</i> 114, no. 1 (January 2010): 129\u201343. https://www.ajaonline.org/sites/default/files/AJA1141_Yablonsky.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "filippovka-burial-ground",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -301,
+      "title": "OSM location of Filippovka Burial Ground",
+      "provenance": "OpenStreetMap (Node 9768508904, version 9, osm:changeset=140360248, 2023-08-25T08:54:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point representing the approximate location of the Filippovka Burial Ground site derived from an OpenStreetMap Node, following Yablonsky 2010.",
+      "created": "2022-05-25T03:16:59Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.8063783,
+          51.2650232
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/793280621/filippovka-burial-ground",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-13T14:10:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T13:03:14Z"
+        },
+        {
+          "comment": "updated title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T12:59:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T03:21:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T03:20:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T03:16:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T03:16:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ajaonline.org/sites/default/files/AJA1141_Yablonsky.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Yablonsky 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K4QZGBSG",
+      "formattedCitation": "<div class=\"csl-entry\">Yablonsky, Leonid. \u201cNew Excavations of the Early Nomadic Burial Ground at Filippovka (Southern Ural Region, Russia).\u201d <i>American Journal of Archaeology</i> 114, no. 1 (January 2010): 129\u201343. https://www.ajaonline.org/sites/default/files/AJA1141_Yablonsky.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Filippovka burial ground",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.ajaonline.org/sites/default/files/AJA1141_Yablonsky.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Yablonsky 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K4QZGBSG",
+          "formattedCitation": "<div class=\"csl-entry\">Yablonsky, Leonid. \u201cNew Excavations of the Early Nomadic Burial Ground at Filippovka (Southern Ural Region, Russia).\u201d <i>American Journal of Archaeology</i> 114, no. 1 (January 2010): 129\u201343. https://doi.org/10.3764/aja.114.1.129.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "filippovka-burial-ground-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-05-25T13:02:45Z",
+      "uri": "https://pleiades.stoa.org/places/793280621/filippovka-burial-ground-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Filippovka burial ground",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T13:03:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T13:02:49Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T13:02:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-25T13:02:45Z"
+        }
+      ]
+    }
+  ],
+  "id": "793280621",
+  "subject": [
+    "kurgan"
+  ],
+  "title": "Filippovka Burial Ground",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological site with nine burial mounds, including an intact royal mound (kurgan), located in the Southern Ural Region of Russia dating from the 6th-4th centuries BCE.",
+  "reprPoint": [
+    53.8063783,
+    51.2650232
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    53.8063783,
+    51.2650232,
+    53.8063783,
+    51.2650232
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-25T02:53:12Z",
+  "uri": "https://pleiades.stoa.org/places/793280621",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-25T13:03:14Z"
+    },
+    {
+      "comment": "update summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-25T13:00:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-25T03:21:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-25T02:53:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-25T02:53:12Z"
+    }
+  ]
+}

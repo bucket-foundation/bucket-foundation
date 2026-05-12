@@ -1,0 +1,461 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3300821,
+            36.8590735
+          ],
+          [
+            10.3309174,
+            36.8587394
+          ],
+          [
+            10.3309884,
+            36.8588467
+          ],
+          [
+            10.3311176,
+            36.8587878
+          ],
+          [
+            10.3310557,
+            36.8586807
+          ],
+          [
+            10.3309458,
+            36.8585512
+          ],
+          [
+            10.3307859,
+            36.858461
+          ],
+          [
+            10.3305965,
+            36.8584217
+          ],
+          [
+            10.330402,
+            36.8584384
+          ],
+          [
+            10.3302273,
+            36.8585089
+          ],
+          [
+            10.3300949,
+            36.8586241
+          ],
+          [
+            10.3300218,
+            36.8587693
+          ],
+          [
+            10.3300173,
+            36.8589258
+          ],
+          [
+            10.3300372,
+            36.8590061
+          ],
+          [
+            10.3300821,
+            36.8590735
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-odeion",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/229363104/location-of-odeion",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Od\u00e9on"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/131384748",
+          "citationDetail": "Way 131384748",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=131384748",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://fr.wikipedia.org/wiki/Colline_de_l'od%C3%A9on_et_parc_des_villas_romaines_de_Carthage",
+          "citationDetail": "Colline de l'od\u00e9on et parc des villas romaines de Carthage",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (French)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+          "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Colline de l'od\u00e9on et parc des villas romaines de Carthage.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-odeion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Od\u00e9on",
+      "provenance": "OpenStreetMap (Way 131384748, version 10, osm:changeset=78696983, 2019-12-20T19:39:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-03-15T16:13:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3300821,
+            36.8590735
+          ],
+          [
+            10.3309174,
+            36.8587394
+          ],
+          [
+            10.3309884,
+            36.8588467
+          ],
+          [
+            10.3311176,
+            36.8587878
+          ],
+          [
+            10.3310557,
+            36.8586807
+          ],
+          [
+            10.3309458,
+            36.8585512
+          ],
+          [
+            10.3307859,
+            36.858461
+          ],
+          [
+            10.3305965,
+            36.8584217
+          ],
+          [
+            10.330402,
+            36.8584384
+          ],
+          [
+            10.3302273,
+            36.8585089
+          ],
+          [
+            10.3300949,
+            36.8586241
+          ],
+          [
+            10.3300218,
+            36.8587693
+          ],
+          [
+            10.3300173,
+            36.8589258
+          ],
+          [
+            10.3300372,
+            36.8590061
+          ],
+          [
+            10.3300821,
+            36.8590735
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/229363104/location-of-odeion",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T19:56:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-03T13:01:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-04-14T03:57:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-20T16:18:36Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-15T16:13:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-15T16:13:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-15T16:13:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-08T16:19:50Z",
+      "associationCertainty": "certain",
+      "title": "Carthago",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/229363104/7906952441",
+      "connectionType": "at",
+      "id": "7906952441",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-08T16:19:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-08T16:19:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-08T16:19:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/314921",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Colline_de_l'od%C3%A9on_et_parc_des_villas_romaines_de_Carthage",
+      "citationDetail": "Colline de l'od\u00e9on et parc des villas romaines de Carthage",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+      "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Colline de l'od\u00e9on et parc des villas romaines de Carthage.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/nda/1478",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Balmelle et al. 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NBA2YMXF",
+      "formattedCitation": "<div class=\"csl-entry\">Balmelle, Catherine, Henri Broise, Jean-Pierre Darmon, and Mongi Enna\u00effe. \u201cCarthage, colline de l\u2019Od\u00e9on. Recherches franco-tunisiennes 1987-2000.\u201d <i>Les nouvelles de l\u2019arch\u00e9ologie</i>, no. 123 (March 30, 2011): 49\u201352. https://doi.org/10.4000/nda.1478.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/antaf_0066-4871_1995_num_31_1_1237",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hallier 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X2G2GL8Z",
+      "formattedCitation": "<div class=\"csl-entry\">Hallier, Gilbert. \u201cLe monument circulaire du plateau de l\u2019Od\u00e9on \u00e0 Carthage\u202f: pr\u00e9cisions sur la conception et la g\u00e9om\u00e9trie d\u2019un parti original.\u201d <i>Antiquit\u00e9s africaines</i> 31, no. 1 (1995): 201\u201330. https://doi.org/10.3406/antaf.1995.1237.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://halshs.archives-ouvertes.fr/halshs-01280678",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Letellier 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y7QWXVDV",
+      "formattedCitation": "<div class=\"csl-entry\">Letellier, \u00c9lo\u00efse. <i>L\u2019insertion urbanistique du th\u00e9\u00e2tre et de l\u2019od\u00e9on de Carthage\u202f: un dossier pluridisciplinaire</i>. Presses universitaires de Provence, 2013. https://halshs.archives-ouvertes.fr/halshs-01280678.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "52",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brent 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WB8MX9LH",
+      "formattedCitation": "<div class=\"csl-entry\">Brent, Allen. <i>Cyprian and Roman Carthage</i>. Cambridge; New York: Cambridge University Press, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q20101358",
+      "citationDetail": "Odeon of Carthage (Q20101358)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "229363104",
+  "subject": [],
+  "title": "Od\u00e9on at Carthage",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The theater and od\u00e9on of Roman Carthage stood in the northeast of the city, some three blocks from the cardo maximus.",
+  "reprPoint": [
+    10.33052844704214,
+    36.85872497516887
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    10.3300173,
+    36.8584217,
+    10.3311176,
+    36.8590735
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/314921"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-08T16:19:49Z",
+  "uri": "https://pleiades.stoa.org/places/229363104",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q20101358",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T19:57:25Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-03T13:01:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-03T13:01:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-03T13:01:15Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-03T13:01:02Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-01T22:05:02Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-08T16:20:11Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-08T16:19:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-08T16:19:49Z"
+    }
+  ]
+}

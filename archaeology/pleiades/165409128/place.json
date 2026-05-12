@@ -1,0 +1,672 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.3407497,
+          37.9393592
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-for-library-of-celsus",
+      "properties": {
+        "snippet": "Architecturalcomplex; 30 BC - AD 2100",
+        "link": "https://pleiades.stoa.org/places/165409128/osm-location-for-library-of-celsus",
+        "description": "Representative location based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM Location for Library of Celsus"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/158244284",
+          "citationDetail": "NW Corner of Library of Celsus",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Node 158244284: ",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-for-library-of-celsus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 2100,
+      "title": "OSM Location for Library of Celsus",
+      "provenance": "OpenStreetMap (Node 158244284, version 10, osm:changeset=147326179, 2024-02-11T12:37:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on a node derived from OpenStreetMap.",
+      "created": "2018-08-01T16:06:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.3407497,
+          37.9393592
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/165409128/osm-location-for-library-of-celsus",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-03T18:50:22Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T03:35:52Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-25T12:43:41Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-13T14:42:44Z"
+        },
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T03:11:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-02T00:58:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-02T00:53:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:53:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:06:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:06:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-01T15:58:10Z",
+      "associationCertainty": "certain",
+      "title": "Ephesus/Arsinoe(ia)",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/165409128/ephesus-arsinoe-ia",
+      "connectionType": "at",
+      "id": "ephesus-arsinoe-ia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-02T00:58:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:53:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T15:58:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T15:58:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599612",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/10.3764/aja.117.3.0383",
+      "citationDetail": "395-402",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Graham 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KVVNREP3",
+      "formattedCitation": "<div class=\"csl-entry\">Graham, Abigail S. \u201cThe Word Is Not Enough: A New Approach to Assessing Monumental Inscriptions. A Case Study from Roman Ephesos.\u201d <i>American Journal of Archaeology</i> 117, no. 3 (2013): 383\u2013412. https://doi.org/10.3764/aja.117.3.0383.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.myilibrary.com?id=459948",
+      "citationDetail": "48-50",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Grant 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L3D5358S",
+      "formattedCitation": "<div class=\"csl-entry\">Grant, Michael. <i>Art in the Roman Empire.</i> Routledge, 2013. http://www.myilibrary.com?id=459948.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/987423969",
+      "citationDetail": "189-198",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Houston 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5L9ZGGMM",
+      "formattedCitation": "<div class=\"csl-entry\">HOUSTON, GEORGE W. <i>INSIDE ROMAN LIBRARIES: Book Collections and Their Management in Antiquity.</i> Chapel Hill: University of North Carolina Press, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/52875831",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ancient libraries in Anatolia",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K9C75GWS",
+      "formattedCitation": "<div class=\"csl-entry\">IATUL Conference, ed. <i>Ancient Libraries in Anatolia: Libraries of Hattusha, Pergamon, Ephesus, Nysa</i>. Ankara: Middle East Technical University Library, 2003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Library_of_Celsus",
+      "citationDetail": "Library of Celsus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Celsus-Bibliothek",
+      "citationDetail": "Celsus-Bibliothek",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DE%3Aentry+group%3D2%3Aentry%3Dephesos",
+      "citationDetail": "EPHESOS Turkey",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/913720609",
+      "citationDetail": "7[2]: 5101",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "IvE",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/R3IFKJ8H",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q744406",
+      "citationDetail": "Q744406: Library of Celsus (Ephesus)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/j.ctt1njk54",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Casson 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNXILTSL",
+      "formattedCitation": "<div class=\"csl-entry\">CASSON, LIONEL. <i>Libraries in the Ancient World</i>. Yale University Press, 2001. http://www.jstor.org/stable/j.ctt1njk54.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5926",
+      "citationDetail": "Celsusbibliothek, Sel\u00e7uk",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Library of Celsus",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Library_of_Celsus",
+          "citationDetail": "Library of Celsus",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-08-01.6053789145",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-08-01T16:08:46Z",
+      "uri": "https://pleiades.stoa.org/places/165409128/name.2018-08-01.6053789145",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-02T00:58:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-02T00:57:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:53:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:34:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:10:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:08:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:08:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Celsus-Bibliothek",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://de.wikipedia.org/wiki/Celsus-Bibliothek",
+          "citationDetail": "Celsus-Bibliothek",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (German)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-08-01.7354487525",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2018-08-01T16:10:03Z",
+      "uri": "https://pleiades.stoa.org/places/165409128/name.2018-08-01.7354487525",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-02T00:58:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-02T00:55:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:53:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:33:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:10:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2018-08-01T16:10:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "165409128",
+  "subject": [
+    "tomb",
+    "extant remains",
+    "library"
+  ],
+  "title": "Library of Celsus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "<p><span>The Library of Celsus, constructed ca. 110-120 CE, was both a library and a monumental tomb for Tiberius Julius Celsus Polemaeanus, a Roman senator and consul who also served as proconsul of Asia under Trajan. <span>Celsus\u2019 son Tiberius Julius Aquila, also a Roman consul, commissioned the building, and his heirs completed it.\u00a0</span>The deceased was buried in a marble sarcophagus within a vaulted chamber, which remains on-site but is not open to the public. This dual function is particularly significant as burial within the limits of a Roman city was a rare honor that signified the deceased\u2019s social status. Fire in the wake of an earthquake destroyed most of the building in 262 CE, and around 400 CE the remaining facade was repurposed into a nymphaeum; this was destroyed later in the 10th or 11th century CE. </span></p>\r\n<p><span>The library was first excavated in 1904 under the supervision of Joseph Keil. Archaeologists in the 1970s later reconstructed the library's facade.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Library of Celsus is a library and monumental tomb in Ephesus which was constructed ca. 110-120 CE.",
+  "reprPoint": [
+    27.3408057,
+    37.9393127
+  ],
+  "placeTypes": [
+    "tomb",
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    27.3408057,
+    37.9393127,
+    27.3408057,
+    37.9393127
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599612"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-01T15:56:55Z",
+  "uri": "https://pleiades.stoa.org/places/165409128",
+  "creators": [
+    {
+      "username": null,
+      "name": "Kaylee Ma"
+    },
+    {
+      "username": null,
+      "name": "Cheryl Fok"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-25T12:43:31Z"
+    },
+    {
+      "comment": "updates, added Arachne ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-13T17:23:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-02T02:03:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-02T01:05:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-02T00:58:07Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-02T00:52:30Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-02T00:50:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T16:53:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T16:52:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T16:52:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T16:43:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T16:39:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T16:38:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T16:33:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T15:56:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2018-08-01T15:56:55Z"
+    }
+  ]
+}

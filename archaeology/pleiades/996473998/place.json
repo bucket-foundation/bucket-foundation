@@ -1,0 +1,385 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.8671501,
+            23.9610924
+          ],
+          [
+            32.8678218,
+            23.9609135
+          ],
+          [
+            32.8678685,
+            23.9608961
+          ],
+          [
+            32.8678008,
+            23.9607436
+          ],
+          [
+            32.8677447,
+            23.9606172
+          ],
+          [
+            32.867698,
+            23.9606345
+          ],
+          [
+            32.8670535,
+            23.9607971
+          ],
+          [
+            32.8671501,
+            23.9610924
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-temple-of-kalabsha",
+      "properties": {
+        "snippet": "Temple-2",
+        "link": "https://pleiades.stoa.org/places/996473998/osm-location-temple-of-kalabsha",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Temple of Kalabsha"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/251212300",
+          "citationDetail": "Way 251212300",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-temple-of-kalabsha",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": null,
+      "title": "OSM location: Temple of Kalabsha",
+      "provenance": "OpenStreetMap (Way 251212300, version 6, osm:changeset=155118477, 2024-08-11T19:17:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-11-20T19:16:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.8671501,
+            23.9610924
+          ],
+          [
+            32.8678218,
+            23.9609135
+          ],
+          [
+            32.8678685,
+            23.9608961
+          ],
+          [
+            32.8678008,
+            23.9607436
+          ],
+          [
+            32.8677447,
+            23.9606172
+          ],
+          [
+            32.867698,
+            23.9606345
+          ],
+          [
+            32.8670535,
+            23.9607971
+          ],
+          [
+            32.8671501,
+            23.9610924
+          ]
+        ]
+      },
+      "locationType": [
+        "relocated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/996473998/osm-location-temple-of-kalabsha",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-20T19:16:34Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-20T19:16:34Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-09T20:30:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-09T20:30:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-19T20:47:05Z"
+        },
+        {
+          "comment": "supersedes previously published location whose underlying OSM data is now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-19T20:47:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-19T20:46:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-19T20:46:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2099,
+      "description": "",
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "created": "2021-07-28T14:46:20Z",
+      "associationCertainty": "certain",
+      "title": "New Kalabsha Island",
+      "start": 1900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/996473998/new-kalabsha-island",
+      "connectionType": "relocated_to",
+      "id": "new-kalabsha-island",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-01T16:40:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-23T22:30:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T16:18:38Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T14:46:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T14:46:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/633872579",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/relocated_to"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Kalabsha",
+      "citationDetail": "Temple of Kalabsha",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q11704302",
+      "citationDetail": "Q11704302: Temple of Kalabsha",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "996473998",
+  "subject": [],
+  "title": "Temple of Kalabsha",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient temple dated ca. 30 BCE was originally located at Bab al-Kalabsha (Gate of Kalabsha), some 50 km south of Aswan. It was relocated to its present site during the construction of the Aswan High Dam with sponsorship from the government of Germany.",
+  "reprPoint": [
+    32.8674545630665,
+    23.960854644217054
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    32.8670535,
+    23.9606172,
+    32.8678685,
+    23.9610924
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/633872579"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-20T19:15:51Z",
+  "uri": "https://pleiades.stoa.org/places/996473998",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-20T19:15:52Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-20T19:15:51Z"
+    },
+    {
+      "comment": "fix typo in summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-24T00:12:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-09-23T22:30:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-28T16:18:38Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-28T14:44:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-28T14:44:47Z"
+    }
+  ]
+}

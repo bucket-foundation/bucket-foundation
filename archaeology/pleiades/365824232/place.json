@@ -1,0 +1,515 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.2782793,
+            49.993105
+          ],
+          [
+            8.2780487,
+            49.9931599
+          ],
+          [
+            8.2778041,
+            49.9932158
+          ],
+          [
+            8.2777924,
+            49.9931978
+          ],
+          [
+            8.2777866,
+            49.9931723
+          ],
+          [
+            8.2777866,
+            49.9931426
+          ],
+          [
+            8.2777994,
+            49.9930957
+          ],
+          [
+            8.2778339,
+            49.9930548
+          ],
+          [
+            8.2778701,
+            49.9930301
+          ],
+          [
+            8.2779209,
+            49.9930072
+          ],
+          [
+            8.2779804,
+            49.9929925
+          ],
+          [
+            8.2780429,
+            49.9929876
+          ],
+          [
+            8.2781164,
+            49.9929948
+          ],
+          [
+            8.2781707,
+            49.9930098
+          ],
+          [
+            8.2782291,
+            49.9930417
+          ],
+          [
+            8.2782658,
+            49.9930766
+          ],
+          [
+            8.2782793,
+            49.993105
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theatre",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/365824232/osm-location-of-roman-theatre",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman Theatre"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.278026,
+          49.993005
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-archaeological-site-of-roman-theater",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/365824232/imagery-location-archaeological-site-of-roman-theater",
+        "description": "The site of the Roman theater in Mainz.",
+        "location_precision": "precise",
+        "title": "Imagery Location: Archaeological site of Roman theater"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/392796352",
+          "citationDetail": "Way 392796352",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=392796352",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theatre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman Theatre",
+      "provenance": "OpenStreetMap (Way 392796352, version 31, osm:changeset=140197656, 2023-08-21T19:23:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-05T04:06:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.2782793,
+            49.993105
+          ],
+          [
+            8.2780487,
+            49.9931599
+          ],
+          [
+            8.2778041,
+            49.9932158
+          ],
+          [
+            8.2777924,
+            49.9931978
+          ],
+          [
+            8.2777866,
+            49.9931723
+          ],
+          [
+            8.2777866,
+            49.9931426
+          ],
+          [
+            8.2777994,
+            49.9930957
+          ],
+          [
+            8.2778339,
+            49.9930548
+          ],
+          [
+            8.2778701,
+            49.9930301
+          ],
+          [
+            8.2779209,
+            49.9930072
+          ],
+          [
+            8.2779804,
+            49.9929925
+          ],
+          [
+            8.2780429,
+            49.9929876
+          ],
+          [
+            8.2781164,
+            49.9929948
+          ],
+          [
+            8.2781707,
+            49.9930098
+          ],
+          [
+            8.2782291,
+            49.9930417
+          ],
+          [
+            8.2782658,
+            49.9930766
+          ],
+          [
+            8.2782793,
+            49.993105
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/365824232/osm-location-of-roman-theatre",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-06T11:30:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-05T04:06:25Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-05T04:06:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-05T04:06:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-05T04:06:03Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://de.wikipedia.org/wiki/R%C3%B6misches_Theater_Mainz",
+          "citationDetail": "R\u00f6misches Theater Mainz",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (German)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/QVRBJVTM",
+          "formattedCitation": "Wikipedia: Die freie Enzyklop\u00e4die (2001-), R\u00f6misches Theater Mainz.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-archaeological-site-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 300,
+      "title": "Imagery Location: Archaeological site of Roman theater",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 4.2,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-digitalglobe-imagery-2012",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "The site of the Roman theater in Mainz.",
+      "created": "2012-03-21T14:55:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.278026,
+          49.993005
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/365824232/imagery-location-archaeological-site-of-roman-theater",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-22T10:17:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-03-21T15:08:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-03-21T15:08:04Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-03-21T15:07:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-03-21T14:55:43Z"
+        },
+        {
+          "comment": "Nice images on Google and Bing satellite maps",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-03-21T14:55:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-03-21T14:55:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-04T15:45:32Z",
+      "associationCertainty": "certain",
+      "title": "Mogontiacum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/365824232/1324167472",
+      "connectionType": "at",
+      "id": "1324167472",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T15:45:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T15:45:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T15:45:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/109169",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Roman_Theatre_(Mainz)",
+      "citationDetail": "Roman Theatre (Mainz)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "365824232",
+  "subject": [
+    "Theater",
+    "extant remains"
+  ],
+  "title": "Roman theater at Mogontiacum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The site of the Roman theater in Mainz.",
+  "reprPoint": [
+    8.278020750065572,
+    49.99305020890556
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    8.2777866,
+    49.9929876,
+    8.2782793,
+    49.9932158
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/109169"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-04T15:45:31Z",
+  "uri": "https://pleiades.stoa.org/places/365824232",
+  "creators": [
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-21T21:57:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:46:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:46:17Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:46:00Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:45:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:45:31Z"
+    }
+  ]
+}

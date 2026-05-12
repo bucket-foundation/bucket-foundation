@@ -1,0 +1,312 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.0478796,
+            47.694096
+          ],
+          [
+            19.0486924,
+            47.6943118
+          ],
+          [
+            19.0490102,
+            47.6936763
+          ],
+          [
+            19.0481666,
+            47.6934759
+          ],
+          [
+            19.0478796,
+            47.694096
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-rustica",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/907371652/osm-location-of-villa-rustica",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Rustica"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/530256842",
+          "citationDetail": "Way 530256842",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-rustica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa Rustica",
+      "provenance": "OpenStreetMap (Way 530256842, version 8, osm:changeset=76964726, 2019-11-12T13:59:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2025-11-25T16:48:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            19.0478796,
+            47.694096
+          ],
+          [
+            19.0486924,
+            47.6943118
+          ],
+          [
+            19.0490102,
+            47.6936763
+          ],
+          [
+            19.0481666,
+            47.6934759
+          ],
+          [
+            19.0478796,
+            47.694096
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/907371652/osm-location-of-villa-rustica",
+      "creators": [
+        {
+          "username": "holgerj",
+          "homepage": null,
+          "name": "Holger R.E. J\u00fcrgenliemk",
+          "uri": "https://pleiades.stoa.org/author/holgerj"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:48:43Z"
+        },
+        {
+          "comment": "added holgerj as creator",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:40:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:40:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:39:48Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:39:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:39:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:39:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Top\u00e1l 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QZER5DBE",
+      "formattedCitation": "<div class=\"csl-entry\">Top\u00e1l, Judit. \u201cDie R\u00f6mische Villa von Szentendre.\u201d In <i>Forschungen Und Ergebnisse. Internationale Tagung \u00dcber R\u00f6mische Villen, Veszpr\u00e9m, 16.-20. Mai 1994</i>, 321\u201335. Veszpr\u00e9m, 1995.</div>",
+      "otherIdentifier": "ISSN 0864-7747",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Villa_Rustica_Szentendre-Skanzen",
+      "citationDetail": "Villa Rustica Szentendre-Skanzen",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "907371652",
+  "subject": [],
+  "title": "Villa rustica of Szentendre-Skanzen",
+  "provenance": "",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A so-called Roman \"Villa Rustica\" covering some 5,200 square meters located at the Szabadt\u00e9ri N\u00e9prajzi M\u00fazeum (Skanzen), Szentendre.",
+  "reprPoint": [
+    19.048442109221526,
+    47.69388827075635
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    19.0478796,
+    47.6934759,
+    19.0490102,
+    47.6943118
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-25T16:49:31Z",
+  "uri": "https://pleiades.stoa.org/places/907371652",
+  "creators": [
+    {
+      "username": "holgerj",
+      "homepage": null,
+      "name": "Holger R.E. J\u00fcrgenliemk",
+      "uri": "https://pleiades.stoa.org/author/holgerj"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:49:32Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:49:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-14T22:41:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-14T22:40:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-14T22:40:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-14T22:38:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-13T17:20:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "holgerj",
+      "modified": "2012-12-06T20:15:10Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "holgerj",
+      "modified": "2012-12-06T18:48:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "holgerj",
+      "modified": "2012-12-06T18:48:05Z"
+    }
+  ]
+}

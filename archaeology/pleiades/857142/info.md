@@ -1,0 +1,14 @@
+# Gvandra
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/857142
+- **ID**: 857142
+- **Coords (lng, lat)**: [40.859971, 43.077379]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 87 F1 Gvandra

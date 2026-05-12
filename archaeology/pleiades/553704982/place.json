@@ -1,0 +1,443 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.0194511,
+          35.5172997
+        ]
+      },
+      "type": "Feature",
+      "id": "kastelli",
+      "properties": {
+        "snippet": "Hill; 2000 BC - 1080 BC",
+        "link": "https://pleiades.stoa.org/places/553704982/kastelli",
+        "description": "Point based on an OpenStreetMap node representing Kastellion.",
+        "location_precision": "precise",
+        "title": "OSM location of Kastellion"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middleminoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middleminoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/293123934",
+          "citationDetail": "Node 293123934",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=293123934",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kastelli",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "end": -1080,
+      "title": "OSM location of Kastellion",
+      "provenance": "OpenStreetMap (Node 293123934, version 8, osm:changeset=153191385, 2024-06-26T08:42:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hill"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Kastellion.",
+      "created": "2022-06-02T18:20:43Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.0194511,
+          35.5172997
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/553704982/kastelli",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-13T00:34:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:44:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:30:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:24:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:20:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:20:43Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1080,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-02T18:28:08Z",
+      "associationCertainty": "certain",
+      "title": "Kydonia",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/553704982/kydonia",
+      "connectionType": "part_of_physical",
+      "id": "kydonia",
+      "attestations": [
+        {
+          "timePeriod": "middleminoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middleminoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:44:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:30:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:28:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:28:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589886",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1068395137",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hallager 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GGPEI2GU",
+          "formattedCitation": "<div class=\"csl-entry\">Tzedakis, Yannis, Carl-Gustaf Styrenius, Erik Hallager, and B. P Hallager, eds. <i>The Greek Swedish Excavations at the Agia Aikaterini Square Kastelli, Khania, 1970-1987 Results of the Excavations under the Dir. of Yannis Tzedakis and Carl-Gustaf Styrenius. 1, From the Geometric to the Modern Greek Period / with Main Contributions by Margrete Hahn, Maria Andreadaki-Vlasaki &amp; Erik Hallager 1. - Text 1, From the Geometric to the Modern Greek Period / with Main Contributions by Margrete Hahn, Maria Andreadaki-Vlasaki &amp; Erik Hallager 1. - Text</i>. Skrifter Utgivna Av Svenska Institutet i Athen 47. Jonsered, Sweden: Distributor, Paul \u00c5str\u00f6ms F\u00f6rlag, 1997. http://www.worldcat.org/oclc/1068395137.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "https://en.wikipedia.org/w/index.php?title=Kastelli_Hill&oldid=1056055437",
+          "accessURI": "https://en.wikipedia.org",
+          "citationDetail": "Kastelli Hill",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1068395137",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hallager 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GGPEI2GU",
+      "formattedCitation": "<div class=\"csl-entry\">Tzedakis, Yannis, Carl-Gustaf Styrenius, Erik Hallager, and B. P Hallager, eds. <i>The Greek Swedish Excavations at the Agia Aikaterini Square Kastelli, Khania, 1970-1987 Results of the Excavations under the Dir. of Yannis Tzedakis and Carl-Gustaf Styrenius. 1, From the Geometric to the Modern Greek Period / with Main Contributions by Margrete Hahn, Maria Andreadaki-Vlasaki &amp; Erik Hallager 1. - Text 1, From the Geometric to the Modern Greek Period / with Main Contributions by Margrete Hahn, Maria Andreadaki-Vlasaki &amp; Erik Hallager 1. - Text</i>. Skrifter Utgivna Av Svenska Institutet i Athen 47. Jonsered, Sweden: Distributor, Paul \u00c5str\u00f6ms F\u00f6rlag, 1997. http://www.worldcat.org/oclc/1068395137.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "https://en.wikipedia.org/w/index.php?title=Kastelli_Hill&oldid=1056055437",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "Kastelli Hill",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=report&id=18542",
+      "citationDetail": "Kastelli Hill - Chania - 2022",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q6374801",
+      "citationDetail": "Kastelli Hill (Q6374801)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kastelli",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "https://www.openstreetmap.org/edit#map=20/35.51733/24.01969",
+          "accessURI": "http://www.openstreetmap.org/",
+          "citationDetail": "\u039a\u03b1\u03c3\u03c4\u03ad\u03bb\u03bb\u03b9",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kastelli-1",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Greek name for this site.",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2022-06-02T18:30:39Z",
+      "uri": "https://pleiades.stoa.org/places/553704982/kastelli-1",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "attested": "\u039a\u03b1\u03c3\u03c4\u03ad\u03bb\u03bb\u03b9",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:44:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:30:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:30:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T18:30:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "553704982",
+  "subject": [],
+  "title": "Kastellion",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Hill in Khania, Crete, that was the center of the Minoan city of Cydonia and was later a Roman acropolis.",
+  "reprPoint": [
+    24.0194511,
+    35.5172997
+  ],
+  "placeTypes": [
+    "hill"
+  ],
+  "bbox": [
+    24.0194511,
+    35.5172997,
+    24.0194511,
+    35.5172997
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589886",
+    "https://pleiades.stoa.org/places/975915186"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-02T18:19:42Z",
+  "uri": "https://pleiades.stoa.org/places/553704982",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q6374801",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T13:47:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T02:44:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-02T02:42:37Z"
+    },
+    {
+      "comment": "added Chronique en ligne reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-27T20:35:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-04T13:44:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T18:30:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T18:28:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T18:20:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T18:19:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T18:19:42Z"
+    }
+  ]
+}

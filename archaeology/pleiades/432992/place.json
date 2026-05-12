@@ -1,0 +1,1134 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4524305,
+          40.7575928
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Settlement; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/432992/dare-location",
+        "description": "Representative point location, site precision",
+        "location_precision": "precise",
+        "title": "DARE Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4537028,
+            40.7574556
+          ],
+          [
+            14.4537016,
+            40.7574668
+          ],
+          [
+            14.4523443,
+            40.7576507
+          ],
+          [
+            14.4523153,
+            40.7575492
+          ],
+          [
+            14.4522281,
+            40.75727
+          ],
+          [
+            14.4521411,
+            40.7568561
+          ],
+          [
+            14.4536951,
+            40.7567771
+          ],
+          [
+            14.4539531,
+            40.7574541
+          ],
+          [
+            14.4539326,
+            40.757453
+          ],
+          [
+            14.4539202,
+            40.7574322
+          ],
+          [
+            14.4538951,
+            40.7574058
+          ],
+          [
+            14.4538559,
+            40.7573885
+          ],
+          [
+            14.4538301,
+            40.7573854
+          ],
+          [
+            14.4538046,
+            40.7573823
+          ],
+          [
+            14.453768,
+            40.7573922
+          ],
+          [
+            14.453742,
+            40.7574086
+          ],
+          [
+            14.4537209,
+            40.7574331
+          ],
+          [
+            14.4537028,
+            40.7574556
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-scavi-archeologici-di-oplonti",
+      "properties": {
+        "snippet": "Villa; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/432992/osm-location-of-scavi-archeologici-di-oplonti",
+        "description": "Representative location of the archaeological area based on a way derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Scavi archeologici di Oplonti"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://francia.ahlfeldt.se/imperium.php",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Johan \u00c5hlfeldt, Digital Atlas of the Roman Empire, 2012.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 300,
+      "title": "DARE Location",
+      "provenance": "Digital Atlas of the Roman Empire (2012-10-15)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-3",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative point location, site precision",
+      "created": "2012-10-20T20:45:40Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4524305,
+          40.7575928
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/432992/dare-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T20:45:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T20:45:41Z"
+        },
+        {
+          "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T20:45:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T20:45:40Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-roman-early-empire",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-roman-early-empire",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/195803487",
+          "citationDetail": "Way 195803487",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=195803487",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-scavi-archeologici-di-oplonti",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Scavi archeologici di Oplonti",
+      "provenance": "OpenStreetMap (Way 195803487, version 13, osm:changeset=75797184, 2019-10-16T18:20:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location of the archaeological area based on a way derived from OpenStreetMap.",
+      "created": "2015-06-25T00:05:07Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4537028,
+            40.7574556
+          ],
+          [
+            14.4537016,
+            40.7574668
+          ],
+          [
+            14.4523443,
+            40.7576507
+          ],
+          [
+            14.4523153,
+            40.7575492
+          ],
+          [
+            14.4522281,
+            40.75727
+          ],
+          [
+            14.4521411,
+            40.7568561
+          ],
+          [
+            14.4536951,
+            40.7567771
+          ],
+          [
+            14.4539531,
+            40.7574541
+          ],
+          [
+            14.4539326,
+            40.757453
+          ],
+          [
+            14.4539202,
+            40.7574322
+          ],
+          [
+            14.4538951,
+            40.7574058
+          ],
+          [
+            14.4538559,
+            40.7573885
+          ],
+          [
+            14.4538301,
+            40.7573854
+          ],
+          [
+            14.4538046,
+            40.7573823
+          ],
+          [
+            14.453768,
+            40.7573922
+          ],
+          [
+            14.453742,
+            40.7574086
+          ],
+          [
+            14.4537209,
+            40.7574331
+          ],
+          [
+            14.4537028,
+            40.7574556
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/432992/osm-location-of-scavi-archeologici-di-oplonti",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-22T18:48:16Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-07T21:50:29Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-05-30T13:08:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-05-30T13:08:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-01T16:33:55Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-25T00:05:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-25T00:05:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-25T00:05:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "44 F4 Oplontis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/9393495",
+      "citationDetail": "250-55",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "GAL Pompei",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/46JQZ4IU",
+      "formattedCitation": "<div class=\"csl-entry\">A De Vos, and M De Vos. <i>Guide archeologiche Laterza: Pompei, Ercolano, Stabia</i>. Guide archeologiche Laterza 11. Bari, Rome: Laterza, 1982. http://www.worldcat.org/oclc/9393495.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace1475.html",
+      "citationDetail": "5B5 (Talbert 1475)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "TP (Talbert: CUP)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QT8GLGGI",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard. \u201cDatabase: Peutinger Map Names and Features, with Commentary and User\u2019s Guide.\u201d In <i>Explore the Peutinger Map</i>. Cambridge UP, 2010. http://www.cambridge.org/us/talbert/talbertdatabase/prm.html.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Torre_Annunziata",
+      "citationDetail": "Torre Annunziata",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Torre Annunziata.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/829",
+      "citationDetail": "829: Archaeological Areas of Pompei, Herculaneum and Torre Annunziata",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.oplontisproject.org/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Oplontis Project",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/it:Scavi%20archeologici%20di%20Oplonti?uselang=en-US",
+      "citationDetail": "Scavi archeologici di Oplonti",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Scavi archeologici di Oplonti.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McGinn 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ACJ4LDEN",
+      "formattedCitation": "<div class=\"csl-entry\">McGinn, Thomas A. J. <i>Pompeian Brothels, Pompeii\u2019s Ancient History, Mirrors and Mysteries, Art and Nature at Oplontis, &amp; the Herculaneum \u201cBasilica.\u201d</i> Journal of Roman Archaeology. Portsmouth, R.I.: Journal of Roman Archaeology, 2002.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://quod.lib.umich.edu/cgi/t/text/text-idx?c=acls;idno=heb90048.0001.001",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Clarke and Muntasser 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4YTYXRJ9",
+      "formattedCitation": "<div class=\"csl-entry\">Clarke, John, and Nayla K. Muntasser. <i>Oplontis: Villa A (\u201cof Poppaea\u201d) at Torre Annunziata, Italy.</i>, 2014. https://quod.lib.umich.edu/cgi/t/text/text-idx?c=acls;idno=heb90048.0001.001.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/docs/FOLDER-it-2013-295.pdf",
+      "citationDetail": "2013-295: Thomas, Michael L., Ivo van der Graaff , Paul Wilkinson . 2013. The Oplontis Project 2012-13: A Report of Excavations at Oplontis B.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FOLD&R",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4672X3J",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC). \u201cFastiOnlineDocuments &amp; Research.\u201d Accessed December 1, 2023. https://www.fastionline.org/folder.php?view=home.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pompeiisites.org/Sezione.jsp?titolo=Poppea%27s+Villa&idSezione=6820&lookfor=oplontis",
+      "citationDetail": "Poppea's Villa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pompeii Sites",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQWYV366",
+      "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo, ed. <i>Pompeii Sites: Portale Ufficiale Parco Archeologico di Pompei</i>. Accessed January 10, 2020. http://pompeiisites.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pompeiisites.org/Sezione.jsp?titolo=OPLONTIS&idSezione=6791",
+      "citationDetail": "Oplontis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pompeii Sites",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQWYV366",
+      "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo, ed. <i>Pompeii Sites: Portale Ufficiale Parco Archeologico di Pompei</i>. Accessed January 10, 2020. http://pompeiisites.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=oplontis",
+      "citationDetail": "OPLONTIS (Torre Annunziata) Campania, Italy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "X, 1063",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "CIL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JCY8WN8B",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Corpus inscriptionum latinarum</i>. Berolini: Apud G. Reimerum, 1862.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Franciscis 1973",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZEETK8CY",
+      "formattedCitation": "<div class=\"csl-entry\">De Franciscis, A. \u201cLa Villa Romana Di Oplontis.\u201d In <i>La Parola Del Passato, 28.1973</i>, 453\u201366, Taf, 1973.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/10626953/villa-poppaea.html",
+      "citationDetail": "10626953: Villa Poppaea",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/oplontis-b-a-center-for-the-distribution-and-export-of-vesuvian-wine/BCA3C0A7C9B289661E6D5FFE1C3A2661",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thomas 2015, 403-11",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DMAKKHS3",
+      "formattedCitation": "<div class=\"csl-entry\">Thomas, Michael. \u201cOplontis B: A Center for the Distribution and Export of Vesuvian Wine.\u201d <i>Journal of Roman Archaeology</i> 28 (2015): 403\u201311. https://doi.org/http://dx.doi.org/10.1017/S104775941500255X.</div>",
+      "otherIdentifier": "http://dx.doi.org/10.1017/S104775941500255X",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/32518",
+      "citationDetail": "GEO ID 32518: Oplontis (Torre Annunziata)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/1877/",
+      "citationDetail": "1877: Oplontis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dare.ht.lu.se/places/21354.html",
+      "citationDetail": "21354",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Lund, Sweden: Department of Archaeology and Ancient History, Lund University, Sweden, 2015. http://dare.ht.lu.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/oplontis-project-20056-observations-on-the-construction-history-of-villa-a-at-torre-annunziata/93FFDCE96F46A8354A6733A6D21CC52C",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thomas and Clarke 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WEZ6KKM9",
+      "formattedCitation": "<div class=\"csl-entry\">Thomas, Michael L., and John R. Clarke. \u201cThe Oplontis Project 2005-6: Observations on the Construction History of Villa A at Torre Annunziata.\u201d <i>Journal of Roman Archaeology</i> 20 (January 2007): 222\u201332. doi:10.1017/S1047759400005389.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "18715",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+      "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 18715.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.ajaonline.org/node/3500",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zarmakoupi 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PZE2XVU3",
+      "formattedCitation": "<div class=\"csl-entry\">Zarmakoupi, Mantha. \u201cBook Review of Oplontis: Villa A (\u2018of Poppaea\u2019) at Torre Annunziata, Italy. Vol. 1, The Ancient Setting and Modern Rediscovery, Edited by John R. Clarke and Nayla K. Muntasser.\u201d <i>American Journal of Archaeology</i> 121, no. 3 (July 2017). doi:10.3764/ajaonline1213.Zarmakoupi.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/408145UOpl",
+      "citationDetail": "Oplontis (Italy)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "Kiesling, Brady. ToposText \u2013 a Reference Tool for Greek Civilization. Version 2.0. Aikaterini Laskaridis Foundation, 2016-.",
+      "otherIdentifier": "http://atlantides.org/bibliography/",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/docs/FOLDER-it-2019-430.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Van der Graaff et al. 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6I4MUF2R",
+      "formattedCitation": "<div class=\"csl-entry\">Van der Graaff, Ivo, Michael L. Thomas, Paul Wilkinson, Jennifer L. Muslin, John R. Clarke, Nayla Muntasser, and Giovanni Di Maio. \u201cFirst Results of Three Seasons of Excavation at Oplontis B (2016-18).\u201d <i>FOLD&amp;R Italy 430</i>, FOLD&amp;R Italy Series, n.d. http://www.fastionline.org/docs/FOLDER-it-2019-430.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Franciscis 1975",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BBIQNC6S",
+      "formattedCitation": "<div class=\"csl-entry\">De Franciscis, Alfonso. <i>Die Pompejanischen Wandmalereien in Der Villa von Oplontis</i>. Recklinghausen: A. Bongers, 1975.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.fulcrum.org/concern/monographs/tb09j7416?fbclid=IwAR2i6ZKDgExWCczIUEcPa-5NgLRBF_U9hXGKYEhu3txE0LDvPQn5a3ss1Es",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Clarke 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E9Q3UFJX",
+      "formattedCitation": "<div class=\"csl-entry\">Clarke, John R. <i>Oplontis: Villa A (\u201cof Poppaea\u201d) at Torre Annunziata, Italy. Volume 2. The Decorations: Painting, Stucco, Pavements, Sculptures</i>. American Council of Learned Societies, 2019. https://www.fulcrum.org/concern/monographs/tb09j7416?fbclid=IwAR2i6ZKDgExWCczIUEcPa-5NgLRBF_U9hXGKYEhu3txE0LDvPQn5a3ss1Es.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vocab.getty.edu/page/tgn/7008405",
+      "citationDetail": "7008405: Torre Annunziata (inhabited place)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TGN",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLJQ5AZJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Getty Thesaurus of Geographic Names\u00ae Online</i>, n.d. https://www.getty.edu/research/tools/vocabularies/tgn/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/8563",
+      "citationDetail": "Villa A - sogenannte Villa der Poppaea sog. Villa der Poppea Sabina, Torre Annunziata",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6327487",
+      "citationDetail": "Villa B Oplontis, (Oplontis / Oplontis / Oplontis), Neapel (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pompeiisites.org/wp-content/uploads/11-E-Journal-Clarke-Oplontis.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bowling et al. 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y5YAQKV5",
+      "formattedCitation": "<div class=\"csl-entry\">Bowling, Heather, Garrett Bruner, John R Clarke, Giovanni di Maio, Jess Galloway, Regina Gee, Nayla K Muntasser, Jennifer L Muslin, Zoe Schofield, and Michael L Thomas. \u201cEarly Results of the 2023 Excavation Season at Oplontis Villa B,\u201d May 21, 2024. https://pompeiisites.org/wp-content/uploads/11-E-Journal-Clarke-Oplontis.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Oplontis",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.cambridge.org/us/talbert/talbertdatabase/TPPlace1475.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "TP 5B5 Oplont[.]s (Talbert 1475)",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "oplontis",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 44 F4 Oplontis",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "la",
+      "created": "2010-11-11T23:27:38Z",
+      "uri": "https://pleiades.stoa.org/places/432992/oplontis",
+      "creators": [
+        {
+          "username": null,
+          "name": "N. Purcell"
+        }
+      ],
+      "attested": "Oplont[.]s",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-20T03:14:11Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T05:01:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-14T13:59:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-12T00:53:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-11T23:27:38Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Oplontis",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8015162/oplontis.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 8015162",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2016-06-29.2995068505",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-06-29T14:28:33Z",
+      "uri": "https://pleiades.stoa.org/places/432992/name.2016-06-29.2995068505",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Oplontis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-07-01T11:47:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T14:29:32Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T14:28:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T14:28:33Z"
+        }
+      ]
+    }
+  ],
+  "id": "432992",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0",
+    "UWHS"
+  ],
+  "title": "Oplontis",
+  "provenance": "Barrington Atlas: BAtlas 44 F4 Oplontis",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Torre Annunziata</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place (modern Torre Annunziata in Italy), lying between Pompeii and Herculaneum and buried by the eruption of Vesuvius in 79 CE. Its ancient name is known only from Peutinger's Roman Map.",
+  "reprPoint": [
+    14.452729119485154,
+    40.75739083926666
+  ],
+  "placeTypes": [
+    "settlement",
+    "villa"
+  ],
+  "bbox": [
+    14.4521411,
+    40.7567771,
+    14.4539531,
+    40.7576507
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/612970100"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-07T23:23:17Z",
+  "uri": "https://pleiades.stoa.org/places/432992",
+  "creators": [
+    {
+      "username": null,
+      "name": "N. Purcell"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Bowling et al. 2023",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-22T18:49:12Z"
+    },
+    {
+      "comment": "arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-16T00:53:50Z"
+    },
+    {
+      "comment": "add Arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-16T00:48:13Z"
+    },
+    {
+      "comment": "add TGN 7008405: Torre Annunziata (inhabited place)",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-12T22:43:29Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-03T02:42:12Z"
+    },
+    {
+      "comment": "added Clarke 2019",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-03T02:39:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-04T03:42:56Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-05T01:34:50Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-19T20:02:41Z"
+    },
+    {
+      "comment": "add ToposText reference provided by bkiesling",
+      "modifiedBy": "admin",
+      "modified": "2018-06-07T23:23:20Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-14T19:35:29Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-30T13:07:21Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-12T02:58:27Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-03T02:37:23Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-03T02:35:15Z"
+    },
+    {
+      "comment": "description",
+      "modifiedBy": "thomase",
+      "modified": "2016-07-01T11:48:35Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-29T14:30:16Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-25T02:49:32Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-25T02:49:17Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-25T00:10:22Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-01T16:56:14Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:45:41Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:01:30Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:11:26Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:46:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-14T13:59:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-12T00:53:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T23:27:38Z"
+    }
+  ]
+}

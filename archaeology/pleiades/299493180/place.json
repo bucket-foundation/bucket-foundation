@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.7759642,
+            38.3623176
+          ],
+          [
+            26.7758918,
+            38.3622756
+          ],
+          [
+            26.775417,
+            38.362448
+          ],
+          [
+            26.775604,
+            38.3630938
+          ],
+          [
+            26.7760241,
+            38.3630145
+          ],
+          [
+            26.7759642,
+            38.3623176
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-limantepe",
+      "properties": {
+        "snippet": "Port; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/299493180/osm-location-of-limantepe",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Limantepe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/475338933",
+          "citationDetail": "Way 475338933",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=475338933",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-limantepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/port"
+      ],
+      "end": -1000,
+      "title": "OSM location of Limantepe",
+      "provenance": "OpenStreetMap (Way 475338933, version 1, osm:changeset=46172140, 2017-02-17T18:07:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/port"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "port"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2017-02-17T18:07:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.7759642,
+            38.3623176
+          ],
+          [
+            26.7758918,
+            38.3622756
+          ],
+          [
+            26.775417,
+            38.362448
+          ],
+          [
+            26.775604,
+            38.3630938
+          ],
+          [
+            26.7760241,
+            38.3630145
+          ],
+          [
+            26.7759642,
+            38.3623176
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/299493180/osm-location-of-limantepe",
+      "creators": [
+        {
+          "username": "cobbp",
+          "homepage": null,
+          "name": "Peter Cobb",
+          "uri": "https://pleiades.stoa.org/author/cobbp"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-17T18:08:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-17T18:08:38Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-17T18:08:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-17T18:07:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-17T18:07:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Limantepe",
+      "citationDetail": "Limantepe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Limantepe.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Limantepe, Liman Tepe",
+      "attestations": [
+        {
+          "timePeriod": "modern-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://topostext.org/place/384268PKla",
+          "citationDetail": "Klazomenai (Ionia) 107 Urla - \u039a\u03bb\u03b1\u03b6\u03bf\u03bc\u03b5\u03bd\u03b1\u03af",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "ToposText",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+          "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2014-02-17.2557230834",
+      "end": 2000,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1918,
+      "details": "",
+      "review_state": "published",
+      "description": "Prehistoric site",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2014-02-17T09:47:11Z",
+      "uri": "https://pleiades.stoa.org/places/299493180/name.2014-02-17.2557230834",
+      "creators": [
+        {
+          "username": "cobbp",
+          "homepage": null,
+          "name": "Peter Cobb",
+          "uri": "https://pleiades.stoa.org/author/cobbp"
+        }
+      ],
+      "attested": "Limantepe",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T15:41:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T15:41:52Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T15:41:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T15:31:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T15:31:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cobbp",
+          "modified": "2014-02-17T09:47:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cobbp",
+          "modified": "2014-02-17T09:47:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cobbp",
+          "modified": "2014-02-17T09:47:14Z"
+        }
+      ]
+    }
+  ],
+  "id": "299493180",
+  "subject": [],
+  "title": "Limantepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/port"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The site of a Bronze Age port settlement near Urla, Turkey.",
+  "reprPoint": [
+    26.77575156749842,
+    38.36268774244405
+  ],
+  "placeTypes": [
+    "settlement",
+    "port"
+  ],
+  "bbox": [
+    26.775417,
+    38.3622756,
+    26.7760241,
+    38.3630938
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-02-17T18:06:35Z",
+  "uri": "https://pleiades.stoa.org/places/299493180",
+  "creators": [
+    {
+      "username": "cobbp",
+      "homepage": null,
+      "name": "Peter Cobb",
+      "uri": "https://pleiades.stoa.org/author/cobbp"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-17T18:08:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-17T18:08:38Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-17T18:06:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-17T18:06:35Z"
+    }
+  ]
+}

@@ -1,0 +1,841 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.501279,
+          38.481828
+        ]
+      },
+      "type": "Feature",
+      "id": "athenian-treasury",
+      "properties": {
+        "snippet": "Treasury; 550 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/707804475/athenian-treasury",
+        "description": "Location for the Athenian Treasury as determined from Google Earth satellite imagery. ",
+        "location_precision": "precise",
+        "title": "Imagery location of the Athenian Treasury at Delphi"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.5012024,
+            38.4818279
+          ],
+          [
+            22.5012932,
+            38.4818603
+          ],
+          [
+            22.5013233,
+            38.4818086
+          ],
+          [
+            22.5012325,
+            38.4817762
+          ],
+          [
+            22.5012024,
+            38.4818279
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-athenian-treasury",
+      "properties": {
+        "snippet": "Treasury; 550 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/707804475/osm-location-of-athenian-treasury",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Athenian Treasury"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "John Paul Aguilar"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.jstor.org/stable/10.1525/ca.2004.23.1.63",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/itemKey/M88FGKIV",
+          "formattedCitation": "R. Neer. 2004. \"The Athenian Treasury at Delphi and the Material of Politics.\" Classical Antiquity 23:63-64.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/artifact?name=Delphi,+Treasury+of+the+Athenians+(XI)&object=building",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": " Perseus Digital Library. \"Delphi, Treasury of the Athenians (XI) (Building).\" Perseus Digital Library Project.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "athenian-treasury",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/treasury"
+      ],
+      "end": 640,
+      "title": "Imagery location of the Athenian Treasury at Delphi",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/treasury"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>The Perseus Digital Library dates the structure to have been erected and in use from c. 510-480 BC. In 1904, however, a portion of the structure was reconstructed using 80% of the original building's material.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2015",
+      "featureType": [
+        "treasury"
+      ],
+      "description": "Location for the Athenian Treasury as determined from Google Earth satellite imagery. ",
+      "created": "2015-04-29T03:11:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.501279,
+          38.481828
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/707804475/athenian-treasury",
+      "creators": [
+        {
+          "username": "hspock",
+          "homepage": null,
+          "name": "Hannah Spock",
+          "uri": "https://pleiades.stoa.org/author/hspock"
+        },
+        {
+          "username": null,
+          "name": "Morgan Lubenow"
+        },
+        {
+          "username": null,
+          "name": "Allison Schaub"
+        },
+        {
+          "username": "jpaguilar",
+          "homepage": null,
+          "name": "JohnPaul Aguilar",
+          "uri": "https://pleiades.stoa.org/author/jpaguilar"
+        },
+        {
+          "username": null,
+          "name": "John Tran"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-05-18T15:22:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-05-18T15:21:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-05-18T15:20:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-05-18T15:20:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-05-04T02:26:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-05-04T02:25:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-05-03T00:51:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-05-03T00:03:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "hspock",
+          "modified": "2015-04-29T03:11:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "hspock",
+          "modified": "2015-04-29T03:11:22Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/145690064",
+          "citationDetail": "Way 145690064",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=145690064",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-athenian-treasury",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/treasury"
+      ],
+      "end": 640,
+      "title": "OSM location of Athenian Treasury",
+      "provenance": "OpenStreetMap (Way 145690064, version 8, osm:changeset=160649917, 2024-12-26T19:02:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/treasury"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "treasury"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-04-16T13:21:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.5012024,
+            38.4818279
+          ],
+          [
+            22.5012932,
+            38.4818603
+          ],
+          [
+            22.5013233,
+            38.4818086
+          ],
+          [
+            22.5012325,
+            38.4817762
+          ],
+          [
+            22.5012024,
+            38.4818279
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/707804475/osm-location-of-athenian-treasury",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-16T13:40:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T13:21:36Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T13:21:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T13:21:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T13:21:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "created": "2016-07-13T13:56:44Z",
+      "associationCertainty": "certain",
+      "title": "Delphi",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/707804475/540726",
+      "connectionType": "at",
+      "id": "540726",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "ctype, added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-26T19:32:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-05-18T15:13:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:56:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540726",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.jstor.org/stable/10.1525/ca.2004.23.1.63",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Neer 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M88FGKIV",
+          "formattedCitation": "<div class=\"csl-entry\">Neer, Richard. \u201cThe Athenian Treasury at Delphi and the Material of Politics.\u201d <i>Classical Antiquity</i> 23, no. 1 (2004): 63\u201393. https://doi.org/10.1525/ca.2004.23.1.63.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/10.1525/ca.2004.23.1.63",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Neer 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M88FGKIV",
+      "formattedCitation": "<div class=\"csl-entry\">Neer, Richard. \u201cThe Athenian Treasury at Delphi and the Material of Politics.\u201d <i>Classical Antiquity</i> 23, no. 1 (2004): 63\u201393. https://doi.org/10.1525/ca.2004.23.1.63.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://archiv.ub.uni-heidelberg.de/propylaeumdok/2159/1/vdH_Athenian_Treasury_2009.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hoff 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/57EVS4PF",
+      "formattedCitation": "<div class=\"csl-entry\">Hoff, Ralf von den. \u201cHerakles, Theseus and the Athenian Treasury at Delphi.\u201d In <i>Structure, Image, Ornament: Architectural Sculpture of the Greek World</i>, edited by Peter Schultz, 96\u2013104. Oxford: Oxford University Press, 2009.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Athenian_Treasury",
+      "citationDetail": "Athenian Treasury",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Athenian Treasury.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/385225BAtr",
+      "citationDetail": "Athenian Treasury (Delphi)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q478011",
+      "citationDetail": "Q478011: Athenian Treasury",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/bch_0007-4217_1912_num_36_1_3155",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dinsmoor 1912",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KBGC4LQ6",
+      "formattedCitation": "<div class=\"csl-entry\">Dinsmoor, William Bell. \u201cStudies of the Delphian Treasuries,\u201d 1912. https://doi.org/10.3406/bch.1912.3155.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Athenian Treasury, Treasury of Athens",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.jstor.org/stable/10.1525/ca.2004.23.1.63",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Neer 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M88FGKIV",
+          "formattedCitation": "<div class=\"csl-entry\">Neer, Richard. \u201cThe Athenian Treasury at Delphi and the Material of Politics.\u201d <i>Classical Antiquity</i> 23, no. 1 (2004): 63\u201393. https://doi.org/10.1525/ca.2004.23.1.63.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2015-04-28.1975637115",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-04-29T03:16:30Z",
+      "uri": "https://pleiades.stoa.org/places/707804475/name.2015-04-28.1975637115",
+      "creators": [
+        {
+          "username": "hspock",
+          "homepage": null,
+          "name": "Hannah Spock",
+          "uri": "https://pleiades.stoa.org/author/hspock"
+        },
+        {
+          "username": null,
+          "name": "Morgan Lubenow"
+        },
+        {
+          "username": null,
+          "name": "Allison Schaub"
+        },
+        {
+          "username": "jpaguilar",
+          "homepage": null,
+          "name": "JohnPaul Aguilar",
+          "uri": "https://pleiades.stoa.org/author/jpaguilar"
+        },
+        {
+          "username": null,
+          "name": "John Tran"
+        }
+      ],
+      "attested": "Athenian Treasury",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update Neer 2004",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T13:23:29Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-05-18T15:22:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-05-18T15:22:24Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-05-18T15:22:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-05-04T03:40:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-05-03T00:51:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-05-03T00:12:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-04-29T04:30:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-04-29T04:20:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "hspock",
+          "modified": "2015-04-29T04:09:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "hspock",
+          "modified": "2015-04-29T03:16:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "hspock",
+          "modified": "2015-04-29T03:16:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "707804475",
+  "subject": [
+    "Delphi",
+    "Apollo",
+    "Treasury, doric, metopes",
+    "Treasury"
+  ],
+  "title": "Athenian Treasury at Delphi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/treasury"
+  ],
+  "details": "<p>Originally built between 510 and 480 BC, and bearing on its podium an inscription that indicates that at least part of the construction was financed by the spoils taken at the battle of Marathon in 490 BC, the Athenian Treasury acted as a stage for wealthy Athenian citizens to display their lavish gifts to Apollo. The location of the Treasury along the Sacred Way in Delphi focused visitors\u2019 attention on its gifts and impressive architectural style. The rectangular structure itself is of the Doric order and bore both pedimental sculpture and a frieze with thirty metopes. All that remains of the pedimental sculpture is a head (possibly belonging to Athena), but a number of metopes have survived. Their arrangement on the building is still a subject of debate, but it is clear that they represent two distinct mythical cycles: the exploits of Theseus and the labors of Herakles.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Athenian Treasury at Delphi, built between 510 and 480 BC, is a building intended to house offerings made to Apollo by the citizens of Athens.",
+  "reprPoint": [
+    22.501270925,
+    38.481823125000005
+  ],
+  "placeTypes": [
+    "treasury"
+  ],
+  "bbox": [
+    22.5012024,
+    38.4817762,
+    22.5013233,
+    38.4818603
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540726"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-04-29T02:58:30Z",
+  "uri": "https://pleiades.stoa.org/places/707804475",
+  "creators": [
+    {
+      "username": "hspock",
+      "homepage": null,
+      "name": "Hannah Spock",
+      "uri": "https://pleiades.stoa.org/author/hspock"
+    },
+    {
+      "username": null,
+      "name": "Morgan Lubenow"
+    },
+    {
+      "username": null,
+      "name": "Allison Schaub"
+    },
+    {
+      "username": "jpaguilar",
+      "homepage": null,
+      "name": "JohnPaul Aguilar",
+      "uri": "https://pleiades.stoa.org/author/jpaguilar"
+    },
+    {
+      "username": null,
+      "name": "John Tran"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Dinsmoor 1912",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-16T13:20:39Z"
+    },
+    {
+      "comment": "added topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-26T19:31:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "arabinowitz",
+      "modified": "2017-05-18T15:22:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2017-05-18T15:12:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2017-05-18T15:11:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "hspock",
+      "modified": "2015-05-04T14:43:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hspock",
+      "modified": "2015-05-04T02:22:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hspock",
+      "modified": "2015-05-03T00:51:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hspock",
+      "modified": "2015-05-03T00:06:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hspock",
+      "modified": "2015-05-03T00:05:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hspock",
+      "modified": "2015-04-29T03:02:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "hspock",
+      "modified": "2015-04-29T03:00:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "hspock",
+      "modified": "2015-04-29T02:58:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "hspock",
+      "modified": "2015-04-29T02:58:30Z"
+    }
+  ]
+}

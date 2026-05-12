@@ -1,0 +1,14 @@
+# Eurymenai?
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/530875
+- **ID**: 530875
+- **Coords (lng, lat)**: [20.919605, 39.630469]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Eurymenai
+
+## Description
+
+An ancient place, cited: BAtlas 54 C2 Eurymenai?

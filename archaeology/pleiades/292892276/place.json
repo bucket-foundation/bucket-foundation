@@ -1,0 +1,352 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.4308461,
+          55.2983423
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-milton-of-tassiesholm-samian-ware",
+      "properties": {
+        "snippet": "Fort-2, Military-installation-or-camp-temporary; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/292892276/osm-location-of-milton-of-tassiesholm-samian-ware",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Milton of Tassiesholm (Samian Ware Discovery Site)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9780583489",
+          "citationDetail": "Node 9780583489",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9780583489",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-milton-of-tassiesholm-samian-ware",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "end": 410,
+      "title": "OSM location of Milton of Tassiesholm (Samian Ware Discovery Site)",
+      "provenance": "OpenStreetMap (Node 9780583489, version 2, osm:changeset=121686145, 2022-05-30T03:01:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2",
+        "military-installation-or-camp-temporary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-05-30T03:01:45Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.4308461,
+          55.2983423
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/292892276/osm-location-of-milton-of-tassiesholm-samian-ware",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-31T20:07:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-30T03:03:19Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-30T03:02:13Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-30T03:01:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-30T03:01:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://canmore.org.uk/site/48383/milton",
+      "citationDetail": "ID 48383",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Canmore",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9QC8C2K",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Canmore: National Record of the Historic Environment, Part of Historic Environment Scotland</i>, n.d. https://canmore.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://roman-britain.co.uk/places/tassiesholm.htm",
+      "citationDetail": "Tassiesholm Roman Auxiliary Fort & Fortlets Temporary Marching Camps",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q103183271",
+      "citationDetail": "Milton of Tassiesholm (Samian Ware Discovery Site) (Q103183271)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "https://www.wikidata.org/wiki/Q56666002",
+      "accessURI": "https://www.wikidata.org/",
+      "citationDetail": "Milton,Roman fort,fortlet & camps (Q56666002)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Milton",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.roman-britain.co.uk/places/milton/",
+          "citationDetail": "Milton (Tassiesholm) Forts",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Roman Britain (www.roman-britain.co.uk)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/PMV8NEDG",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "milton",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-02-26T18:17:54Z",
+      "uri": "https://pleiades.stoa.org/places/292892276/milton",
+      "creators": [
+        {
+          "username": "maximeg",
+          "homepage": null,
+          "name": "Maxime Gu\u00e9nette",
+          "uri": "https://pleiades.stoa.org/author/maximeg"
+        }
+      ],
+      "attested": "Milton",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-27T15:29:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "maximeg",
+          "modified": "2025-02-26T18:21:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "maximeg",
+          "modified": "2025-02-26T18:17:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "maximeg",
+          "modified": "2025-02-26T18:17:54Z"
+        }
+      ]
+    }
+  ],
+  "id": "292892276",
+  "subject": [],
+  "title": "Tassiesholm",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fortlet",
+    "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "According to Canmore, \"a major Roman complex (Flavian to Antonine) at Milton (Roy's Tassieholm) was excavated between 1938 and 1950 by J. Clarke.\"",
+  "reprPoint": [
+    -3.4308461,
+    55.2983423
+  ],
+  "placeTypes": [
+    "fort-2",
+    "fortlet",
+    "military-installation-or-camp-temporary"
+  ],
+  "bbox": [
+    -3.4308461,
+    55.2983423,
+    -3.4308461,
+    55.2983423
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-26T18:17:05Z",
+  "uri": "https://pleiades.stoa.org/places/292892276",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-28T02:04:06Z"
+    },
+    {
+      "comment": "Added name; added Wikidata reference; changed type by @maximeg",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-27T15:29:40Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2025-02-26T18:17:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-31T20:07:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-30T03:03:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-30T03:03:13Z"
+    },
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-30T03:01:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-09T03:18:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-05T00:35:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-04T21:49:23Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-04T21:48:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-04T21:48:12Z"
+    }
+  ]
+}

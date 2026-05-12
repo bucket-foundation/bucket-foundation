@@ -1,0 +1,324 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.8821347,
+            37.2674663
+          ],
+          [
+            21.8824639,
+            37.267834
+          ],
+          [
+            21.8828888,
+            37.2678044
+          ],
+          [
+            21.8833137,
+            37.2674114
+          ],
+          [
+            21.8833296,
+            37.2670775
+          ],
+          [
+            21.8827666,
+            37.2663674
+          ],
+          [
+            21.8822621,
+            37.2664013
+          ],
+          [
+            21.8818744,
+            37.2665957
+          ],
+          [
+            21.8821347,
+            37.2674663
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-acropolis-of-malthes",
+      "properties": {
+        "snippet": "Acropolis; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/505948680/osm-location-of-acropolis-of-malthes",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Acropolis of Malthes"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/383352983",
+          "citationDetail": "Way 383352983",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=383352983",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-acropolis-of-malthes",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+      ],
+      "end": -1000,
+      "title": "OSM location of Acropolis of Malthes",
+      "provenance": "OpenStreetMap (Way 383352983, version 2, osm:changeset=67653561, 2019-02-28T14:35:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "acropolis"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2019-04-08T14:19:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.8821347,
+            37.2674663
+          ],
+          [
+            21.8824639,
+            37.267834
+          ],
+          [
+            21.8828888,
+            37.2678044
+          ],
+          [
+            21.8833137,
+            37.2674114
+          ],
+          [
+            21.8833296,
+            37.2670775
+          ],
+          [
+            21.8827666,
+            37.2663674
+          ],
+          [
+            21.8822621,
+            37.2664013
+          ],
+          [
+            21.8818744,
+            37.2665957
+          ],
+          [
+            21.8821347,
+            37.2674663
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/505948680/osm-location-of-acropolis-of-malthes",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-07-06T20:18:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-06T14:37:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-06T14:35:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-06T14:34:58Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-08T14:20:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-08T14:19:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-08T14:19:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-07-05T01:36:07Z",
+      "associationCertainty": "certain",
+      "title": "Dorion",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/505948680/9670892005",
+      "connectionType": "at",
+      "id": "9670892005",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-05T01:36:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-05T01:36:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-05T01:36:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570202",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Worsham 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BWXCTA9I",
+      "formattedCitation": "<div class=\"csl-entry\">Worsham, Rebecca, Claire Zikidi, and Michael Lindblom. \u201cPreliminary Report of the Malthi Archaeological Project, 2015-2016.\u201d In <i>Opuscula, 11 (2018)</i>, 7\u201327, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "505948680",
+  "subject": [],
+  "title": "Acropolis of Malthi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The acropolis of ancient Dorion.",
+  "reprPoint": [
+    21.882601422793122,
+    37.26707656823839
+  ],
+  "placeTypes": [
+    "acropolis"
+  ],
+  "bbox": [
+    21.8818744,
+    37.2663674,
+    21.8833296,
+    37.267834
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570202"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-07-05T01:36:06Z",
+  "uri": "https://pleiades.stoa.org/places/505948680",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-07-06T20:18:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-06T14:35:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-06T14:34:31Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-05T01:36:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-05T01:36:06Z"
+    }
+  ]
+}

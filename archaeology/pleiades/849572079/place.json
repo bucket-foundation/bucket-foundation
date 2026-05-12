@@ -1,0 +1,298 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.512562,
+          51.222079
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-novochigolskiy-kurgan",
+      "properties": {
+        "snippet": "Cemetery, Tumulus; 2000 BC - AD 199",
+        "link": "https://pleiades.stoa.org/places/849572079/imagery-location-of-novochigolskiy-kurgan",
+        "description": "Point representing the approximate Google Earth centerpoint of the largest kurgan group in the Novochigolskiy Kurgan site, after Berezutskiy 2021.",
+        "location_precision": "precise",
+        "title": "Imagery location of Novochigolskiy kurgan"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1425471745",
+          "citationDetail": "pages 14-15",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Berezutskiy 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVXUVCS6",
+          "formattedCitation": "<div class=\"csl-entry\">\u0411\u0435\u0440\u0435\u0437\u0443\u0446\u043a\u0438\u0439, \u0412. \u0414. <i>\u041d\u043e\u0432\u043e\u0447\u0438\u0433\u043e\u043b\u044c\u0441\u043a\u0438\u0435 \u043a\u0443\u0440\u0433\u0430\u043d\u044b: \u041c\u043e\u043d\u043e\u0433\u0440\u0430\u0444\u0438\u044f</i>. Voronezh: \u0418\u0430\u0434a\u0442\u0435\u043b\u044c\u0441\u043a\u043e-\u043f\u043e\u043b\u0438\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0446\u0435\u043d\u0442\u0440 \u201c\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u043a\u043d\u0438\u0433\u0430,\u201d 2021. https://www.worldcat.org/oclc/1425471745.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-novochigolskiy-kurgan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": 199,
+      "title": "Imagery location of Novochigolskiy kurgan",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "cemetery",
+        "tumulus"
+      ],
+      "description": "Point representing the approximate Google Earth centerpoint of the largest kurgan group in the Novochigolskiy Kurgan site, after Berezutskiy 2021.",
+      "created": "2024-03-12T15:53:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.512562,
+          51.222079
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/849572079/imagery-location-of-novochigolskiy-kurgan",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-15T14:21:22Z"
+        },
+        {
+          "comment": "add missing Positional Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-15T14:21:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-12T15:55:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-12T15:53:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-12T15:53:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1425471745",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Berezutskiy 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVXUVCS6",
+      "formattedCitation": "<div class=\"csl-entry\">\u0411\u0435\u0440\u0435\u0437\u0443\u0446\u043a\u0438\u0439, \u0412. \u0414. <i>\u041d\u043e\u0432\u043e\u0447\u0438\u0433\u043e\u043b\u044c\u0441\u043a\u0438\u0435 \u043a\u0443\u0440\u0433\u0430\u043d\u044b: \u041c\u043e\u043d\u043e\u0433\u0440\u0430\u0444\u0438\u044f</i>. Voronezh: \u0418\u0430\u0434a\u0442\u0435\u043b\u044c\u0441\u043a\u043e-\u043f\u043e\u043b\u0438\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0446\u0435\u043d\u0442\u0440 \u201c\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u043a\u043d\u0438\u0433\u0430,\u201d 2021. https://www.worldcat.org/oclc/1425471745.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Novochigol'skie kurgany",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1425471745",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Berezutskiy 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVXUVCS6",
+          "formattedCitation": "<div class=\"csl-entry\">\u0411\u0435\u0440\u0435\u0437\u0443\u0446\u043a\u0438\u0439, \u0412. \u0414. <i>\u041d\u043e\u0432\u043e\u0447\u0438\u0433\u043e\u043b\u044c\u0441\u043a\u0438\u0435 \u043a\u0443\u0440\u0433\u0430\u043d\u044b: \u041c\u043e\u043d\u043e\u0433\u0440\u0430\u0444\u0438\u044f</i>. Voronezh: \u0418\u0430\u0434a\u0442\u0435\u043b\u044c\u0441\u043a\u043e-\u043f\u043e\u043b\u0438\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0446\u0435\u043d\u0442\u0440 \u201c\u041d\u0430\u0443\u0447\u043d\u0430\u044f \u043a\u043d\u0438\u0433\u0430,\u201d 2021. https://www.worldcat.org/oclc/1425471745.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "novochigolskie-kurgany",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Russian name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2024-03-12T15:54:49Z",
+      "uri": "https://pleiades.stoa.org/places/849572079/novochigolskie-kurgany",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u041d\u043e\u0432\u043e\u0447\u0438\u0433\u043e\u043b\u044c\u0441\u043a\u0438\u0435 \u043a\u0443\u0440\u0433\u0430\u043d\u044b",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-15T14:21:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-12T15:55:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-12T15:54:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-12T15:54:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "849572079",
+  "subject": [],
+  "title": "Novochigol'skie kurgan",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cemetery site located on the banks of the Chigla River, near the modern village of Novaya Chigla, Voronezh Oblast. The site contains 28 burials associated with the Srubnaya Culture (Late Bronze Age 1900-1200 BCE) and the Sarmatians (1st-2nd centuries CE).",
+  "reprPoint": [
+    40.512562,
+    51.222079
+  ],
+  "placeTypes": [
+    "cemetery",
+    "tumulus"
+  ],
+  "bbox": [
+    40.512562,
+    51.222079,
+    40.512562,
+    51.222079
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-12T15:45:34Z",
+  "uri": "https://pleiades.stoa.org/places/849572079",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-15T14:21:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-12T15:55:06Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-12T15:45:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-12T15:45:34Z"
+    }
+  ]
+}

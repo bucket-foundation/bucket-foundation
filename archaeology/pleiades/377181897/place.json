@@ -1,0 +1,538 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5369452,
+            41.8612154
+          ],
+          [
+            12.5368465,
+            41.8611217
+          ],
+          [
+            12.5369372,
+            41.8610687
+          ],
+          [
+            12.5370359,
+            41.8611624
+          ],
+          [
+            12.5369452,
+            41.8612154
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sepolcro-dei-pancrazi",
+      "properties": {
+        "snippet": "Tomb; AD 1 - AD 199",
+        "link": "https://pleiades.stoa.org/places/377181897/osm-location-of-sepolcro-dei-pancrazi",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Sepolcro dei Pancrazi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/254605568",
+          "citationDetail": "Way 254605568",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=254605568",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-sepolcro-dei-pancrazi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 199,
+      "title": "OSM location of Sepolcro dei Pancrazi",
+      "provenance": "OpenStreetMap (Way 254605568, version 2, osm:changeset=85857085, 2020-05-28T01:04:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-12-23T18:56:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5369452,
+            41.8612154
+          ],
+          [
+            12.5368465,
+            41.8611217
+          ],
+          [
+            12.5369372,
+            41.8610687
+          ],
+          [
+            12.5370359,
+            41.8611624
+          ],
+          [
+            12.5369452,
+            41.8612154
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/377181897/osm-location-of-sepolcro-dei-pancrazi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-04T16:27:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:53:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:52:43Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-23T18:56:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-23T18:56:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-23T18:56:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-23T18:56:49Z",
+      "associationCertainty": "certain",
+      "title": "Parco delle Tombe di via Latina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/377181897/8099884298",
+      "connectionType": "at",
+      "id": "8099884298",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:53:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-23T18:56:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-23T18:56:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-23T18:56:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/426597",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tortorella 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VTL4M8JX",
+          "formattedCitation": "<div class=\"csl-entry\">Tortorella, Stefano. \u201cIl sepolcro cosiddetto dei Pancrazi (o meglio dei Valerii Paullini) sulla via Latina.\u201d In <i>Sicilia antiqua\u202f: An International Journal of Archaeology, 19 (2022)</i>, pages 155-165. Pisa\u202f;\u00a0 Roma: Serra, 2022.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q123986360",
+      "citationDetail": "Pancrazi tomb (Via Latina) (Q123986360)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tortorella 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VTL4M8JX",
+      "formattedCitation": "<div class=\"csl-entry\">Tortorella, Stefano. \u201cIl sepolcro cosiddetto dei Pancrazi (o meglio dei Valerii Paullini) sulla via Latina.\u201d In <i>Sicilia antiqua\u202f: An International Journal of Archaeology, 19 (2022)</i>, pages 155-165. Pisa\u202f;\u00a0 Roma: Serra, 2022.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/44515311",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vodret 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DIX3HG6U",
+      "formattedCitation": "<div class=\"csl-entry\">Vodret, Antonello. \u201cVia Latina.\u201d <i>Bullettino Della Commissione Archeologica Comunale Di Roma</i> 91, no. 2 (1986): 615\u201323. https://www.jstor.org/stable/44515311.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5738",
+      "citationDetail": "Sepolcro dei Pancrazi Rom, (Roma), Rom (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/13123",
+      "citationDetail": "Hauptraum des Sepolcro dei Pancrazi Sepolcro dei Pancrazi, Rom",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/13122",
+      "citationDetail": "Vorraum des Sepolcro dei Pancrazi Sepolcro dei Pancrazi, Rom",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "III, p. 166",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "LTURS",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7W77TJVH",
+      "formattedCitation": "<div class=\"csl-entry\">La Regina, Adriano, ed. <i>Lexicon Topographicum Urbis Romae: Suburbium</i>. 5 vols. Rome: Quasar, 2001. http://www.worldcat.org/oclc/607676178.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sepolcro dei Pancrazi",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tortorella 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VTL4M8JX",
+          "formattedCitation": "<div class=\"csl-entry\">Tortorella, Stefano. \u201cIl sepolcro cosiddetto dei Pancrazi (o meglio dei Valerii Paullini) sulla via Latina.\u201d In <i>Sicilia antiqua\u202f: An International Journal of Archaeology, 19 (2022)</i>, pages 155-165. Pisa\u202f;\u00a0 Roma: Serra, 2022.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sepolcro-dei-pancrazi",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1800,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-12-24T17:54:39Z",
+      "uri": "https://pleiades.stoa.org/places/377181897/sepolcro-dei-pancrazi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Sepolcro dei Pancrazi,",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-04T16:27:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:54:45Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:54:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:54:39Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "sepolcro dei Valerii Paullini",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tortorella 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VTL4M8JX",
+          "formattedCitation": "<div class=\"csl-entry\">Tortorella, Stefano. \u201cIl sepolcro cosiddetto dei Pancrazi (o meglio dei Valerii Paullini) sulla via Latina.\u201d In <i>Sicilia antiqua\u202f: An International Journal of Archaeology, 19 (2022)</i>, pages 155-165. Pisa\u202f;\u00a0 Roma: Serra, 2022.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sepolcro-dei-valerii-paullini",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "a possible alternate appellation for the tomb",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-12-24T17:55:49Z",
+      "uri": "https://pleiades.stoa.org/places/377181897/sepolcro-dei-valerii-paullini",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "sepolcro dei Valerii Paullini",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-04T16:27:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:55:55Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:55:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T17:55:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "377181897",
+  "subject": [],
+  "title": "Sepolcro dei Pancrazi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Sepolcro dei Pancrazi is a Roman tomb on the Via Latina dated to the late first or early second century CE. It belonged to a collegium funerarium (funerary college) of the Pancratii, a name attested in two extant inscriptions. The burial chambers are well-appointed with floor mosaics and frescoed walls, as well as stucco decorations.",
+  "reprPoint": [
+    12.5369412,
+    41.861142050000005
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.5368465,
+    41.8610687,
+    12.5370359,
+    41.8612154
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/426597"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-12-23T18:56:49Z",
+  "uri": "https://pleiades.stoa.org/places/377181897",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-01-04T16:27:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T17:53:28Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T17:52:22Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-23T19:02:39Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-23T18:56:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-23T18:56:49Z"
+    }
+  ]
+}

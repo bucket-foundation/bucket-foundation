@@ -1,0 +1,364 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.4057124,
+            34.8132188
+          ],
+          [
+            32.405721,
+            34.8130004
+          ],
+          [
+            32.4060247,
+            34.8129741
+          ],
+          [
+            32.4060295,
+            34.8132041
+          ],
+          [
+            32.4057124,
+            34.8132188
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "lempa-prehistoric-village",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/623202122/lempa-prehistoric-village",
+        "description": "Polygon based on OpenStreetMap representing Lemba Lakkous.",
+        "location_precision": "precise",
+        "title": "OSM location of Lemba Lakkous"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/104915866",
+          "citationDetail": "Way 104915866",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=104915866",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "lempa-prehistoric-village",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of Lemba Lakkous",
+      "provenance": "OpenStreetMap (Way 104915866, version 3, osm:changeset=89451621, 2020-08-15T16:59:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon based on OpenStreetMap representing Lemba Lakkous.",
+      "created": "2022-06-08T18:14:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.4057124,
+            34.8132188
+          ],
+          [
+            32.405721,
+            34.8130004
+          ],
+          [
+            32.4060247,
+            34.8129741
+          ],
+          [
+            32.4060295,
+            34.8132041
+          ],
+          [
+            32.4057124,
+            34.8132188
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/623202122/lempa-prehistoric-village",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T22:58:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T18:16:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T18:15:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T18:14:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T18:14:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -2000,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-06-08T18:16:11Z",
+      "associationCertainty": "certain",
+      "title": "Cyprus (island)",
+      "start": -10000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/623202122/cyprus-island",
+      "connectionType": "on",
+      "id": "cyprus-island",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T22:58:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T22:58:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T18:16:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T18:16:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T18:16:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707498",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1085579569",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peltenburg 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FTZPTQ63",
+          "formattedCitation": "<div class=\"csl-entry\">Peltenburg, E. J. <i>Excavations at Lemba Lakkous, 1976-1983</i>. Vol. Lemba Archaeological Project Volume I. Studies in Mediterranean Archaeology, Vol.LXX:1. G\u00f6teborg: Paul \u00c5str\u00f6ms F\u00f6rlag, 1985. http://www.worldcat.org/oclc/1085579569.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1085579569",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peltenburg 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FTZPTQ63",
+      "formattedCitation": "<div class=\"csl-entry\">Peltenburg, E. J. <i>Excavations at Lemba Lakkous, 1976-1983</i>. Vol. Lemba Archaeological Project Volume I. Studies in Mediterranean Archaeology, Vol.LXX:1. G\u00f6teborg: Paul \u00c5str\u00f6ms F\u00f6rlag, 1985. http://www.worldcat.org/oclc/1085579569.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Lemba-Lakkous",
+      "citationDetail": "Lemba-Lakkous",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1776730",
+      "citationDetail": "Q1776730",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "623202122",
+  "subject": [],
+  "title": "Lemba Lakkous",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Late Neolithic settlement located near Chloraka, Cyprus. This site is the first example of the Erimi group of settlements that flourished in Cyprus ca. 3750-2300 BCE.",
+  "reprPoint": [
+    32.40587355268096,
+    34.8131005594715
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    32.4057124,
+    34.8129741,
+    32.4060295,
+    34.8132188
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707498"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-08T18:13:57Z",
+  "uri": "https://pleiades.stoa.org/places/623202122",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1776730",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T03:41:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-08T22:58:48Z"
+    },
+    {
+      "comment": "added wikipedia reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-08T22:14:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T18:16:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T18:13:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T18:13:57Z"
+    }
+  ]
+}

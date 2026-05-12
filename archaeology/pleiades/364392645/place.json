@@ -1,0 +1,380 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.4656701,
+            50.0216264
+          ],
+          [
+            1.4657572,
+            50.0220686
+          ],
+          [
+            1.4655522,
+            50.0221407
+          ],
+          [
+            1.4652795,
+            50.0221259
+          ],
+          [
+            1.4650152,
+            50.0220424
+          ],
+          [
+            1.4648437,
+            50.0219259
+          ],
+          [
+            1.4647462,
+            50.0217947
+          ],
+          [
+            1.4647124,
+            50.0216503
+          ],
+          [
+            1.4647498,
+            50.0214982
+          ],
+          [
+            1.464864,
+            50.021356
+          ],
+          [
+            1.4650584,
+            50.0212381
+          ],
+          [
+            1.4652179,
+            50.0211868
+          ],
+          [
+            1.4654002,
+            50.0211599
+          ],
+          [
+            1.4655872,
+            50.0212265
+          ],
+          [
+            1.4656701,
+            50.0216264
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tha-c-ac-tre",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/364392645/osm-location-of-tha-c-ac-tre",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Th\u00e9\u00e2tre"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/305181351",
+          "citationDetail": "Way 305181351",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=305181351",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tha-c-ac-tre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Th\u00e9\u00e2tre",
+      "provenance": "OpenStreetMap (Way 305181351, version 3, osm:changeset=66897949, 2019-02-04T09:47:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-03-09T23:13:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.4656701,
+            50.0216264
+          ],
+          [
+            1.4657572,
+            50.0220686
+          ],
+          [
+            1.4655522,
+            50.0221407
+          ],
+          [
+            1.4652795,
+            50.0221259
+          ],
+          [
+            1.4650152,
+            50.0220424
+          ],
+          [
+            1.4648437,
+            50.0219259
+          ],
+          [
+            1.4647462,
+            50.0217947
+          ],
+          [
+            1.4647124,
+            50.0216503
+          ],
+          [
+            1.4647498,
+            50.0214982
+          ],
+          [
+            1.464864,
+            50.021356
+          ],
+          [
+            1.4650584,
+            50.0212381
+          ],
+          [
+            1.4652179,
+            50.0211868
+          ],
+          [
+            1.4654002,
+            50.0211599
+          ],
+          [
+            1.4655872,
+            50.0212265
+          ],
+          [
+            1.4656701,
+            50.0216264
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/364392645/osm-location-of-tha-c-ac-tre",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-12T09:54:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-09T23:14:08Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-09T23:13:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-09T23:13:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-09T23:13:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-04T15:46:54Z",
+      "associationCertainty": "certain",
+      "title": "[Augusta] Ambianorum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/364392645/2146905951",
+      "connectionType": "at",
+      "id": "2146905951",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T15:46:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T15:46:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-04T15:46:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/108771",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=augusta-ambianorum",
+      "citationDetail": "AUGUSTA AMBIANORUM Seine-Maritime, France",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "364392645",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Roman theater at [Augusta] Ambianorum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater lies to the east of the ancient settlement.",
+  "reprPoint": [
+    1.465269340631112,
+    50.02167411087569
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    1.4647124,
+    50.0211599,
+    1.4657572,
+    50.0221407
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/108771"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-04T15:46:53Z",
+  "uri": "https://pleiades.stoa.org/places/364392645",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-09T23:14:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-28T10:53:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-26T02:34:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-26T02:31:54Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:47:16Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:46:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-04T15:46:53Z"
+    }
+  ]
+}

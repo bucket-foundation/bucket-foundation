@@ -1,0 +1,282 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.2582946,
+            46.4698916
+          ],
+          [
+            11.2583314,
+            46.4699687
+          ],
+          [
+            11.2584107,
+            46.4701308
+          ],
+          [
+            11.2584463,
+            46.4701822
+          ],
+          [
+            11.2586173,
+            46.4701245
+          ],
+          [
+            11.2588055,
+            46.4700814
+          ],
+          [
+            11.2587547,
+            46.4700028
+          ],
+          [
+            11.2587406,
+            46.4698777
+          ],
+          [
+            11.2587336,
+            46.4696983
+          ],
+          [
+            11.2583316,
+            46.469724
+          ],
+          [
+            11.2582946,
+            46.4698916
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana",
+      "properties": {
+        "snippet": "Villa; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/378639806/osm-location-of-villa-romana",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa romana"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/281889436",
+          "citationDetail": "Way 281889436",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=281889436",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa romana",
+      "provenance": "OpenStreetMap (Way 281889436, version 2, osm:changeset=46527573, 2017-03-02T17:19:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-11-08T04:43:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.2582946,
+            46.4698916
+          ],
+          [
+            11.2583314,
+            46.4699687
+          ],
+          [
+            11.2584107,
+            46.4701308
+          ],
+          [
+            11.2584463,
+            46.4701822
+          ],
+          [
+            11.2586173,
+            46.4701245
+          ],
+          [
+            11.2588055,
+            46.4700814
+          ],
+          [
+            11.2587547,
+            46.4700028
+          ],
+          [
+            11.2587406,
+            46.4698777
+          ],
+          [
+            11.2587336,
+            46.4696983
+          ],
+          [
+            11.2583316,
+            46.469724
+          ],
+          [
+            11.2582946,
+            46.4698916
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/378639806/osm-location-of-villa-romana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-09T01:45:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-08T12:16:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-08T04:44:42Z"
+        },
+        {
+          "comment": "added oSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-08T04:44:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-08T04:44:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-08T04:43:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/R%C3%B6merzeitliche_Villa_(St._Pauls)",
+      "citationDetail": "R\u00f6merzeitliche Villa (St. Pauls)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/QVRBJVTM",
+      "formattedCitation": "Wikipedia: Die freie Enzyklop\u00e4die (2001-), R\u00f6merzeitliche Villa (St. Pauls).",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "378639806",
+  "subject": [],
+  "title": "St. Pauls villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Late Roman villa discovered ca. 2005.",
+  "reprPoint": [
+    11.25855004715436,
+    46.46992202649107
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    11.2582946,
+    46.4696983,
+    11.2588055,
+    46.4701822
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-02-11T05:53:20Z",
+  "uri": "https://pleiades.stoa.org/places/378639806",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-11-08T12:16:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-08T04:44:42Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-11T05:53:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-11T05:53:20Z"
+    }
+  ]
+}

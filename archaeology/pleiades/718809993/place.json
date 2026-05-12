@@ -1,0 +1,467 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.2271268,
+            32.9736008
+          ],
+          [
+            35.2286718,
+            32.9706485
+          ],
+          [
+            35.2345083,
+            32.9701445
+          ],
+          [
+            35.2369973,
+            32.9712966
+          ],
+          [
+            35.2381131,
+            32.9733848
+          ],
+          [
+            35.238199,
+            32.976481
+          ],
+          [
+            35.2349374,
+            32.977489
+          ],
+          [
+            35.2337358,
+            32.9764089
+          ],
+          [
+            35.2306459,
+            32.9763369
+          ],
+          [
+            35.2218053,
+            32.9751129
+          ],
+          [
+            35.2220628,
+            32.9734568
+          ],
+          [
+            35.2271268,
+            32.9736008
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "62c62a",
+      "properties": {
+        "snippet": "Settlement-modern; 3300 BC - AD 2100",
+        "link": "https://pleiades.stoa.org/places/718809993/62c62a",
+        "description": "Polygon representing the modern village of Jatt, constructed on the Tel Jatt site, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Jatt"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/91580267",
+          "citationDetail": "Way 91580267",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=91580267",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "62c62a",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2100,
+      "title": "OSM location of Jatt",
+      "provenance": "OpenStreetMap (Way 91580267, version 4, osm:changeset=56343047, 2018-02-14T05:51:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Polygon representing the modern village of Jatt, constructed on the Tel Jatt site, derived from an OpenStreetMap Way.",
+      "created": "2018-07-20T18:53:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.2271268,
+            32.9736008
+          ],
+          [
+            35.2286718,
+            32.9706485
+          ],
+          [
+            35.2345083,
+            32.9701445
+          ],
+          [
+            35.2369973,
+            32.9712966
+          ],
+          [
+            35.2381131,
+            32.9733848
+          ],
+          [
+            35.238199,
+            32.976481
+          ],
+          [
+            35.2349374,
+            32.977489
+          ],
+          [
+            35.2337358,
+            32.9764089
+          ],
+          [
+            35.2306459,
+            32.9763369
+          ],
+          [
+            35.2218053,
+            32.9751129
+          ],
+          [
+            35.2220628,
+            32.9734568
+          ],
+          [
+            35.2271268,
+            32.9736008
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/718809993/62c62a",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-01T13:02:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-31T20:27:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-20T18:55:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-20T18:53:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-20T18:53:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Artzy 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K36DWL34",
+      "formattedCitation": "<div class=\"csl-entry\">Artzy, Michal. <i>The Jatt Metal Hoard in Northern Canaanite/Phoenician and Cypriote Context</i>. Cuadernos de Arqueolog\u00eda Mediterr\u00e1nea 14. Barcelona: Edicions Bellaterra, 2006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Jatt,_Israel",
+      "citationDetail": "Jatt, Israel",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Ginti-Kirmil",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "EA 289:18",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8R6FX6I7",
+          "formattedCitation": "<div class=\"csl-entry\">Rainey, Anson F, and William M Schniedewind. <i>The El-Amarna Correspondence: A New Edition of the Cuneiform Letters from the Site of El-Amarna Based on Collations of All Extant Tablets</i>. Handbook of Oriental Studies. Section 1, Ancient Near East 110. Leiden, Boston: Brill, 2015.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ginti-kirmil",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-07-31T20:21:12Z",
+      "uri": "https://pleiades.stoa.org/places/718809993/ginti-kirmil",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "Gin<sub>8</sub>-ti-ki-ir-mi-il<sup>KI</sup>",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-01T13:02:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-31T20:27:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-31T20:21:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-31T20:21:12Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Jatt",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/294629/jatt.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Geonames, Jatt",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "jatt",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "he",
+      "created": "2018-07-31T20:27:17Z",
+      "uri": "https://pleiades.stoa.org/places/718809993/jatt",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u05d2\u2018\u05ea",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-01T13:02:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-31T20:27:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-31T20:27:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-31T20:27:17Z"
+        }
+      ]
+    }
+  ],
+  "id": "718809993",
+  "subject": [],
+  "title": "Tel Jatt",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A site between the Sharon Plain and the Samarian Hills on which the modern town of Jatt is built. The site contains numerous Bronze Age burials and signs of habitation as late as the Bronze Age. The site has been proposed as a possible location for the town of Ginti-kirmil mentioned in the Amarna letters.",
+  "reprPoint": [
+    35.23055496370524,
+    32.97396069268557
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    35.2218053,
+    32.9701445,
+    35.238199,
+    32.977489
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-07-20T18:52:42Z",
+  "uri": "https://pleiades.stoa.org/places/718809993",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-01T13:02:05Z"
+    },
+    {
+      "comment": "wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-01T13:01:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-07-31T20:27:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-07-20T18:53:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-07-20T18:52:42Z"
+    }
+  ]
+}

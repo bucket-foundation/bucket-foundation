@@ -1,0 +1,301 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.9601743,
+            41.5925854
+          ],
+          [
+            12.9597184,
+            41.592112
+          ],
+          [
+            12.9610058,
+            41.5915383
+          ],
+          [
+            12.9613867,
+            41.5920398
+          ],
+          [
+            12.9601743,
+            41.5925854
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-forum-of-luna",
+      "properties": {
+        "snippet": "Plaza, ; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/149706992/osm-location-of-forum-of-luna",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of forum of Norba"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/216271885",
+          "citationDetail": "Way 216271885",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=216271885",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-forum-of-luna",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of forum of Norba",
+      "provenance": "OpenStreetMap (Way 216271885, version 3, osm:changeset=120103948, 2022-04-23T20:18:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "plaza",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-04-07T23:55:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.9601743,
+            41.5925854
+          ],
+          [
+            12.9597184,
+            41.592112
+          ],
+          [
+            12.9610058,
+            41.5915383
+          ],
+          [
+            12.9613867,
+            41.5920398
+          ],
+          [
+            12.9601743,
+            41.5925854
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/149706992/osm-location-of-forum-of-luna",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-31T18:20:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-04-09T16:08:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-08T01:09:27Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-07T23:57:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-07T23:55:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-07T23:55:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-03-17T14:48:36Z",
+      "associationCertainty": "certain",
+      "title": "Norba",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/149706992/1161054960",
+      "connectionType": "at",
+      "id": "1161054960",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:48:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:48:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-17T14:48:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422987",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici and Quilici Gigli 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6F3Y2T6G",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo, and Stefania Quilici Gigli. \u201cNorba: la monumentalizzazione tardo repubblicana dell\u2019acropoli maggiore.\u201d In <i>Citt\u00e0 e monumenti nell\u2019Italia antica</i>, 237\u201366, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "149706992",
+  "subject": [],
+  "title": "Forum of Norba",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The forum of Norba measures ca. 125 x 63 m.",
+  "reprPoint": [
+    12.9601743,
+    41.5925854
+  ],
+  "placeTypes": [
+    "plaza"
+  ],
+  "bbox": [
+    12.9601743,
+    41.5925854,
+    12.9601743,
+    41.5925854
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422987"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-03-17T14:48:34Z",
+  "uri": "https://pleiades.stoa.org/places/149706992",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-18T19:52:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T19:12:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T19:12:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:49:12Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:48:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-17T14:48:34Z"
+    }
+  ]
+}

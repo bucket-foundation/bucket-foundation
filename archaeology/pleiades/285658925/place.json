@@ -1,0 +1,385 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.9808463,
+            37.6026448
+          ],
+          [
+            -0.980503,
+            37.6023047
+          ],
+          [
+            -0.9804211,
+            37.6023592
+          ],
+          [
+            -0.9807655,
+            37.6026985
+          ],
+          [
+            -0.9808463,
+            37.6026448
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-casa-de-salvius",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/285658925/osm-location-of-casa-de-salvius",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Casa de Salvius"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/224162260",
+          "citationDetail": "Way 224162260",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=224162260",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.nature.com/articles/s40494-025-02198-5",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cosano 2026",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H93ZCIAH",
+          "formattedCitation": "<div class=\"csl-entry\">Cosano Hidalgo, Daniel, Gonzalo Castillo Alc\u00e1ntara, Alicia Fern\u00e1ndez D\u00edaz, Jos\u00e9 Miguel Noguera Celdr\u00e1n, and Jos\u00e9 Rafael Ruiz Arrebola. \u201cArchaeometric Characterisation of Materials and Techniques in Roman Wall Painting: The Domus of Salvius in Cartagena, Spain.\u201d <i>Npj Heritage Science</i> 14, no. 1 (January 26, 2026): 58. https://doi.org/10.1038/s40494-025-02198-5.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-casa-de-salvius",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of Casa de Salvius",
+      "provenance": "OpenStreetMap (Way 224162260, version 5, osm:changeset=138540383, 2023-07-15T11:06:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2026-01-26T21:07:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.9808463,
+            37.6026448
+          ],
+          [
+            -0.980503,
+            37.6023047
+          ],
+          [
+            -0.9804211,
+            37.6023592
+          ],
+          [
+            -0.9807655,
+            37.6026985
+          ],
+          [
+            -0.9808463,
+            37.6026448
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/285658925/osm-location-of-casa-de-salvius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-27T19:05:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:29:15Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:08:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:07:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:07:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-01-26T21:27:13Z",
+      "associationCertainty": "certain",
+      "title": "Carthago Nova/Col. Urbs Iulia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/285658925/8331941162",
+      "connectionType": "at",
+      "id": "8331941162",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:27:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:27:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:27:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/265849",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.nature.com/articles/s40494-025-02198-5",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cosano 2026",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H93ZCIAH",
+      "formattedCitation": "<div class=\"csl-entry\">Cosano Hidalgo, Daniel, Gonzalo Castillo Alc\u00e1ntara, Alicia Fern\u00e1ndez D\u00edaz, Jos\u00e9 Miguel Noguera Celdr\u00e1n, and Jos\u00e9 Rafael Ruiz Arrebola. \u201cArchaeometric Characterisation of Materials and Techniques in Roman Wall Painting: The Domus of Salvius in Cartagena, Spain.\u201d <i>Npj Heritage Science</i> 14, no. 1 (January 26, 2026): 58. https://doi.org/10.1038/s40494-025-02198-5.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q137906638",
+      "citationDetail": "Domus of Salvius (Q137906638)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Domus of Salvius",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.nature.com/articles/s40494-025-02198-5",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cosano 2026",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H93ZCIAH",
+          "formattedCitation": "<div class=\"csl-entry\">Cosano Hidalgo, Daniel, Gonzalo Castillo Alc\u00e1ntara, Alicia Fern\u00e1ndez D\u00edaz, Jos\u00e9 Miguel Noguera Celdr\u00e1n, and Jos\u00e9 Rafael Ruiz Arrebola. \u201cArchaeometric Characterisation of Materials and Techniques in Roman Wall Painting: The Domus of Salvius in Cartagena, Spain.\u201d <i>Npj Heritage Science</i> 14, no. 1 (January 26, 2026): 58. https://doi.org/10.1038/s40494-025-02198-5.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "domus-of-salvius",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-01-26T21:29:08Z",
+      "uri": "https://pleiades.stoa.org/places/285658925/domus-of-salvius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Domus of Salvius",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-27T19:05:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:29:16Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:29:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:29:08Z"
+        }
+      ]
+    }
+  ],
+  "id": "285658925",
+  "subject": [
+    "domus",
+    "wall painting"
+  ],
+  "title": "Domus of Salvius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A well-appointed domus of the first century CE located on the Molinete hill in Cartagena, Spain.",
+  "reprPoint": [
+    -0.9806337662414615,
+    37.60250160650574
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    -0.9808463,
+    37.6023047,
+    -0.9804211,
+    37.6026985
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/265849"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-26T21:27:10Z",
+  "uri": "https://pleiades.stoa.org/places/285658925",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-27T19:05:18Z"
+    },
+    {
+      "comment": "wikidata Q137906638",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-26T21:41:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-26T21:29:15Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-26T21:28:15Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-26T21:27:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-26T21:27:10Z"
+    }
+  ]
+}

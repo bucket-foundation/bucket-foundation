@@ -1,0 +1,590 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.3794362,
+            37.9363707
+          ],
+          [
+            34.3791042,
+            37.9366325
+          ],
+          [
+            34.3789085,
+            37.9372032
+          ],
+          [
+            34.3789339,
+            37.9377537
+          ],
+          [
+            34.3791809,
+            37.9382304
+          ],
+          [
+            34.3796661,
+            37.9384788
+          ],
+          [
+            34.3803216,
+            37.9384923
+          ],
+          [
+            34.3808578,
+            37.9382237
+          ],
+          [
+            34.3813573,
+            37.9377857
+          ],
+          [
+            34.3814958,
+            37.9373707
+          ],
+          [
+            34.3813999,
+            37.9371454
+          ],
+          [
+            34.3811445,
+            37.9368726
+          ],
+          [
+            34.380574,
+            37.9365235
+          ],
+          [
+            34.3798872,
+            37.9362968
+          ],
+          [
+            34.3794362,
+            37.9363707
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "kinik-hoyuk",
+      "properties": {
+        "snippet": "Settlement; 1750 BC - 700 BC",
+        "link": "https://pleiades.stoa.org/places/707263269/kinik-hoyuk",
+        "description": "Polygon representing the boundaries of the K\u0131n\u0131k H\u00f6y\u00fck site, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of K\u0131n\u0131k H\u00f6y\u00fck"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "nkaye",
+      "homepage": null,
+      "name": "Noah Kaye",
+      "uri": "https://pleiades.stoa.org/author/nkaye"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-hittite-northern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-hittite-northern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "copy_of_middle-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/copy_of_middle-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-hittite-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-hittite-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-hittite-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-hittite-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-iron-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-iron-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/279592603",
+          "citationDetail": "Way 279592603",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=279592603",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kinik-hoyuk",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -700,
+      "title": "OSM location of K\u0131n\u0131k H\u00f6y\u00fck",
+      "provenance": "OpenStreetMap (Way 279592603, version 2, osm:changeset=25146420, 2014-08-31T19:50:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the boundaries of the K\u0131n\u0131k H\u00f6y\u00fck site, derived from an OpenStreetMap Way.",
+      "created": "2017-04-20T17:51:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.3794362,
+            37.9363707
+          ],
+          [
+            34.3791042,
+            37.9366325
+          ],
+          [
+            34.3789085,
+            37.9372032
+          ],
+          [
+            34.3789339,
+            37.9377537
+          ],
+          [
+            34.3791809,
+            37.9382304
+          ],
+          [
+            34.3796661,
+            37.9384788
+          ],
+          [
+            34.3803216,
+            37.9384923
+          ],
+          [
+            34.3808578,
+            37.9382237
+          ],
+          [
+            34.3813573,
+            37.9377857
+          ],
+          [
+            34.3814958,
+            37.9373707
+          ],
+          [
+            34.3813999,
+            37.9371454
+          ],
+          [
+            34.3811445,
+            37.9368726
+          ],
+          [
+            34.380574,
+            37.9365235
+          ],
+          [
+            34.3798872,
+            37.9362968
+          ],
+          [
+            34.3794362,
+            37.9363707
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/707263269/kinik-hoyuk",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T16:22:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-21T16:36:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2017-04-21T16:30:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T18:07:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T17:55:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T17:51:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T17:51:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -700,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2017-04-20T18:06:40Z",
+      "associationCertainty": "certain",
+      "title": "Tyana/Col. Aurelia Antoniniana",
+      "start": -1200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/707263269/tyana-col-aurelia-antoniniana",
+      "connectionType": "near",
+      "id": "tyana-col-aurelia-antoniniana",
+      "attestations": [
+        {
+          "timePeriod": "early-iron-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-iron-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "located near",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-08T17:32:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-21T16:36:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T18:07:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T18:06:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T18:06:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/648801",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.kulturvarliklari.gov.tr/Eklenti/43562,36kazi2.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "d'Alfonso 2015",
+      "bibliographicURI": "",
+      "formattedCitation": "d'Alfonso, Lorenzo, et al. 2015. \"Archaeological Excavations at K\u0131n\u0131k H\u00f6y\u00fck, 2013 = K\u0131n\u0131k H\u00f6y\u00fck 2013 Y\u0131l\u0131 Kaz\u0131lar\u0131).\" Kaz\u0131 Sonu\u00e7lar\u0131 Toplpant\u0131s\u0131 36, vol. 2, 489-516.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.kinikhoyuk.org/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "K\u0131n\u0131k H\u00f6y\u00fck Archaeological Project",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CEMRR9UG",
+      "formattedCitation": "<div class=\"csl-entry\">K\u0131n\u0131k H\u00f6y\u00fck Archaeological Project. <i>K\u0131n\u0131k H\u00f6y\u00fck Archaeological Project</i>. Institute for the Study of the Ancient World and Universit\u00e0 degli Studi di Pavia, 2014. http://www.kinikhoyuk.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q22085863",
+      "citationDetail": "K\u0131n\u0131k H\u00f6y\u00fck (Q22085863)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "K\u0131n\u0131k H\u00f6y\u00fck",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.kulturvarliklari.gov.tr/Eklenti/43562,36kazi2.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "d'Alfonso 2015",
+          "bibliographicURI": "",
+          "formattedCitation": "d'Alfonso, Lorenzo, et al. 2015. \"Archaeological Excavations at K\u0131n\u0131k H\u00f6y\u00fck, 2013 = K\u0131n\u0131k H\u00f6y\u00fck 2013 Y\u0131l\u0131 Kaz\u0131lar\u0131).\" Kaz\u0131 Sonu\u00e7lar\u0131 Toplpant\u0131s\u0131 36, vol. 2, 489-516.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.kinikhoyuk.org",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "K\u0131n\u0131k H\u00f6y\u00fck Archaeological Project 2014",
+          "bibliographicURI": "",
+          "formattedCitation": "K\u0131n\u0131k H\u00f6y\u00fck Archaeological Project. 2014. \"K\u0131n\u0131k H\u00f6y\u00fck Archaeological Project.\" Institute for the Study of the Ancient World & Universit\u00e0 degli Studi di Pavia.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ka-na-k-hapya1-4k",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2017-04-20T18:02:49Z",
+      "uri": "https://pleiades.stoa.org/places/707263269/ka-na-k-hapya1-4k",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "K\u0131n\u0131k H\u00f6y\u00fck",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-21T16:36:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2017-04-21T16:27:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T18:07:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T18:02:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-04-20T18:02:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "707263269",
+  "subject": [],
+  "title": "K\u0131n\u0131k H\u00f6y\u00fck",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological site in southern Cappadocia. Inhabited from the Late Bronze Age through the Middle Iron Age, K\u0131n\u0131k H\u00f6y\u00fck was an important settlement in the Kingdom of Tuwana.",
+  "reprPoint": [
+    34.38010735521965,
+    37.93741644609968
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    34.3789085,
+    37.9362968,
+    34.3814958,
+    37.9384923
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/648801"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-04-20T17:50:13Z",
+  "uri": "https://pleiades.stoa.org/places/707263269",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q22085863",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-16T16:24:29Z"
+    },
+    {
+      "comment": "adjusted KHAP short title",
+      "modifiedBy": "thomase",
+      "modified": "2017-09-09T20:03:46Z"
+    },
+    {
+      "comment": "updated KHAP reference",
+      "modifiedBy": "thomase",
+      "modified": "2017-09-09T20:03:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-04-21T16:36:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2017-04-20T18:07:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2017-04-20T18:03:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2017-04-20T17:51:21Z"
+    },
+    {
+      "comment": "References needed.",
+      "modifiedBy": "gmckee",
+      "modified": "2017-04-20T17:50:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2017-04-20T17:50:13Z"
+    }
+  ]
+}

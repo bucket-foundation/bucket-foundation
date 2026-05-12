@@ -1,0 +1,569 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.83436,
+            45.1103817
+          ],
+          [
+            10.8345278,
+            45.1104602
+          ],
+          [
+            10.8343402,
+            45.110662
+          ],
+          [
+            10.8346524,
+            45.1108018
+          ],
+          [
+            10.8358842,
+            45.1095467
+          ],
+          [
+            10.8354029,
+            45.1093079
+          ],
+          [
+            10.83436,
+            45.1103817
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-archaeological-area",
+      "properties": {
+        "snippet": "Settlement; 550 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/851887955/osm-location-of-archaeological-area",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Parco archeologico del Forcello"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "scosta",
+      "homepage": null,
+      "name": "Stefano Costa",
+      "uri": "https://pleiades.stoa.org/author/scosta"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/129994245",
+          "citationDetail": "Way 129994245",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=129994245",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-archaeological-area",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -330,
+      "title": "OSM location of Parco archeologico del Forcello",
+      "provenance": "OpenStreetMap (Way 129994245, version 4, osm:changeset=81018517, 2020-02-14T16:44:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2015-05-17T17:31:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.83436,
+            45.1103817
+          ],
+          [
+            10.8345278,
+            45.1104602
+          ],
+          [
+            10.8343402,
+            45.110662
+          ],
+          [
+            10.8346524,
+            45.1108018
+          ],
+          [
+            10.8358842,
+            45.1095467
+          ],
+          [
+            10.8354029,
+            45.1093079
+          ],
+          [
+            10.83436,
+            45.1103817
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/851887955/osm-location-of-archaeological-area",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T02:39:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:34:18Z"
+        },
+        {
+          "comment": "update title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-08T22:51:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-25T15:59:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-17T17:37:03Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-17T17:36:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-17T17:31:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-17T17:31:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Bagnolo_San_Vito",
+      "citationDetail": "Bagnolo San Vito",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Bagnolo San Vito.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.parcoarcheologicoforcello.it/etruschi.php",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Il Parco Archeologico del Forcello di Bagnolo San Vito",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/1507953/Gli_Etruschi_a_nord_del_Po_la_citt%C3%A0_etrusca_senza_nome_del_Forcello_di_Bagnolo_S._Vito_MN_",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Marinis 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CGBZXQX",
+      "formattedCitation": "<div class=\"csl-entry\">De Marinis, Raffaele, and Marta Rapi, eds. <i>L\u2019abitato Etrusco Del Forcello Di Bagnolo S. Vito (Mantova): Le Fasi Arcaiche: Volume Realizzato in Occasione Della Mostra \"Gli Etruschi a Nord Del Po: Le Fasi Di Et\u00e0 Arcaica Dell\u2019abitato Del Forcello Di Bagnolo S. Vito, Bagnolo San Vito (MN), Villa Riva Berni, 8 Febbraio-20 Marzo 2005</i>. 2nd ed. enl. and corr. Firenze: Tipografia Latini, 2007.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baldoni 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UELX553T",
+      "formattedCitation": "<div class=\"csl-entry\">Baldoni, Daniela, and Eros Benedini. <i>Gli Etruschi a nord del Po</i>. Mantova: Accademia Nazionale Virgiliana di Scienze Lettere e Arti, 1989.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Marinis 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3DYF8F5L",
+      "formattedCitation": "<div class=\"csl-entry\">De Marinis, Raffaele. <i>Gli Etruschi a nord del Po: Mantova, Palazzo Ducale-Galleria dell\u2019Estivale, 21 Settembre 1986-12 Gennaio 1987</i>. Mantova, Italia: Provincia e Comune di Mantova, 1986.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "147",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Turfa 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E899GLH5",
+      "formattedCitation": "<div class=\"csl-entry\">Turfa, Jean MacIntosh. <i>Divining the Etruscan world: the brontoscopic calendar and religious practice</i>. Cambridge, UK; New York: Cambridge University Press, 2012.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "San Biagio",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8949053/san-biagio.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 8949053",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "name.2015-08-26.3765757610",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2015-08-26T05:21:02Z",
+      "uri": "https://pleiades.stoa.org/places/851887955/name.2015-08-26.3765757610",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:34:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-26T05:21:24Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-26T05:21:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-26T05:21:04Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bagnolo San Vito",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8949053/san-biagio.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 260893",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "name.2015-08-26.5126882919",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2015-08-26T05:22:26Z",
+      "uri": "https://pleiades.stoa.org/places/851887955/name.2015-08-26.5126882919",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:34:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-26T05:22:39Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-26T05:22:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-26T05:22:29Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Forcello",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8979108/forcello.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 8979108",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2015-09-25.6567168933",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2015-09-25T15:58:00Z",
+      "uri": "https://pleiades.stoa.org/places/851887955/name.2015-09-25.6567168933",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:34:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-25T15:58:20Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-25T15:58:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-25T15:58:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "851887955",
+  "subject": [],
+  "title": "Forcello",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan settlement north of the Po river.",
+  "reprPoint": [
+    10.835045449640344,
+    45.11005425974724
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    10.8343402,
+    45.1093079,
+    10.8358842,
+    45.1108018
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-05-17T17:31:02Z",
+  "uri": "https://pleiades.stoa.org/places/851887955",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T02:39:55Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-08T22:55:58Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-26T05:25:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-26T00:44:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-26T00:43:29Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "scosta",
+      "modified": "2015-08-25T21:56:43Z"
+    },
+    {
+      "comment": "add more references, clearer description",
+      "modifiedBy": "scosta",
+      "modified": "2015-08-25T21:54:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-05-17T17:41:09Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-05-17T17:31:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-05-17T17:31:03Z"
+    }
+  ]
+}

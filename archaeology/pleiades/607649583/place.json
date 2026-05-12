@@ -1,0 +1,393 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.6503575,
+            39.997914
+          ],
+          [
+            8.6513441,
+            39.9967009
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ponte-romano",
+      "properties": {
+        "snippet": "Bridge; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/607649583/osm-location-of-ponte-romano",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ponte romano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/285341592",
+          "citationDetail": "Way 285341592",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=285341592",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ponte-romano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 300,
+      "title": "OSM location of Ponte romano",
+      "provenance": "OpenStreetMap (Way 285341592, version 6, osm:changeset=84131095, 2020-04-26T07:19:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-04-05T03:01:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.6503575,
+            39.997914
+          ],
+          [
+            8.6513441,
+            39.9967009
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/607649583/osm-location-of-ponte-romano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T14:39:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-18T02:44:49Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-09T19:43:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-07T02:48:01Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-05T03:01:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-05T03:01:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-05T03:01:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-04-18T02:44:05Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/607649583/sardinia-island",
+      "connectionType": "on",
+      "id": "sardinia-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T14:39:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-18T02:44:49Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-18T02:44:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-18T02:44:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.degruyterbrill.com/document/doi/10.1515/opar-2022-0320/html",
+          "citationDetail": "13",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gosner 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F98QPU7A",
+          "formattedCitation": "<div class=\"csl-entry\">Gosner, Linda R., and Jessica Nowlin. \u201cApproaching Interaction in Iron Age Sardinia: Multi-Scalar Survey Evidence from the Sinis Archaeological Project and the Progetto S\u2019Urachi.\u201d <i>Open Archaeology</i> 9, no. 1 (January 1, 2023). https://doi.org/10.1515/opar-2022-0320.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/11876/",
+      "citationDetail": "11876: Tramatza, Ponte Romano",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/File:Roman_bridge_on_the_road_from_Forum_Traiani_to_Othoca,_1st_century_BC_-_1st_century_AD,_Tramatza,_Sardinia_(16773140041).jpg",
+      "citationDetail": "Roman bridge on the road from Forum Traiani to Othoca, 1st century BC - 1st century AD, Tramatza, Sardinia",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.degruyterbrill.com/document/doi/10.1515/opar-2022-0320/html",
+      "citationDetail": "p. 13",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gosner 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F98QPU7A",
+      "formattedCitation": "<div class=\"csl-entry\">Gosner, Linda R., and Jessica Nowlin. \u201cApproaching Interaction in Iron Age Sardinia: Multi-Scalar Survey Evidence from the Sinis Archaeological Project and the Progetto S\u2019Urachi.\u201d <i>Open Archaeology</i> 9, no. 1 (January 1, 2023). https://doi.org/10.1515/opar-2022-0320.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tramatza Roman bridge",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.degruyterbrill.com/document/doi/10.1515/opar-2022-0320/html",
+          "citationDetail": "13",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gosner 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F98QPU7A",
+          "formattedCitation": "<div class=\"csl-entry\">Gosner, Linda R., and Jessica Nowlin. \u201cApproaching Interaction in Iron Age Sardinia: Multi-Scalar Survey Evidence from the Sinis Archaeological Project and the Progetto S\u2019Urachi.\u201d <i>Open Archaeology</i> 9, no. 1 (January 1, 2023). https://doi.org/10.1515/opar-2022-0320.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tramatza-roman-bridge",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-04-18T02:37:49Z",
+      "uri": "https://pleiades.stoa.org/places/607649583/tramatza-roman-bridge",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Tramatza Roman bridge",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-18T14:39:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-18T02:44:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-18T02:44:39Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-18T02:37:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-18T02:37:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "607649583",
+  "subject": [],
+  "title": "Tramatza Roman bridge",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The remains of a Roman bridge at Tramatza cross the Riu di Mare Foghe. Gosner and Nowlin assert that this bridge likely dates to the first century BCE and that its construction may have allowed for better access to the Sardinian interior in the direction of Forum Traiani (Fordongianus). The bridge was repaired in the Middle Ages and again in 1826.",
+  "reprPoint": [
+    8.6508508,
+    39.99730745
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    8.6503575,
+    39.9967009,
+    8.6513441,
+    39.997914
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-04-05T03:00:59Z",
+  "uri": "https://pleiades.stoa.org/places/607649583",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-18T14:39:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-18T02:44:49Z"
+    },
+    {
+      "comment": "update summary and references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-18T02:43:25Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-09T19:43:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-07T02:48:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-07T02:47:57Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-05T03:01:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-05T03:00:59Z"
+    }
+  ]
+}

@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.090556,
+          36.068333
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-imagery-location-of-tell-mureybet",
+      "properties": {
+        "snippet": "Tell; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/10236664/approximate-imagery-location-of-tell-mureybet",
+        "description": "Approximate imagery location based on Google Earth representing Tell Mureybet after Ducos 1978.",
+        "location_precision": "precise",
+        "title": "Approximate imagery location of Tell Mureybet"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1071246423",
+          "citationDetail": "page 3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ducos 1978",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7Q3RYTE4",
+          "formattedCitation": "<div class=\"csl-entry\">Ducos, Pierre. <i>Tell-Mureybet (Syrie, IX - VII mill\u00e9naires)\u202f; \u00e9tude arch\u00e9ozoologique et probl\u00e8mes d\u2019\u00e9cologie humaine. 1</i>. Paris: Ed. du CNRS, 1978. http://www.worldcat.org/oclc/1071246423.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "approximate-imagery-location-of-tell-mureybet",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -3300,
+      "title": "Approximate imagery location of Tell Mureybet",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Approximate imagery location based on Google Earth representing Tell Mureybet after Ducos 1978.",
+      "created": "2022-07-27T19:50:16Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.090556,
+          36.068333
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/10236664/approximate-imagery-location-of-tell-mureybet",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T13:54:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-27T19:50:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-27T19:50:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-27T19:50:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -3300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-27T19:48:06Z",
+      "associationCertainty": "certain",
+      "title": "Euphrates (river)",
+      "start": -10000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/10236664/euphrates-river",
+      "connectionType": "on",
+      "id": "euphrates-river",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T13:54:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-27T19:50:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-27T19:48:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-27T19:48:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912849",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1071246423",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ducos 1978",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7Q3RYTE4",
+          "formattedCitation": "<div class=\"csl-entry\">Ducos, Pierre. <i>Tell-Mureybet (Syrie, IX - VII mill\u00e9naires)\u202f; \u00e9tude arch\u00e9ozoologique et probl\u00e8mes d\u2019\u00e9cologie humaine. 1</i>. Paris: Ed. du CNRS, 1978. http://www.worldcat.org/oclc/1071246423.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/w/index.php?title=Mureybet&oldid=1087699031",
+          "citationDetail": "Mureybet",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1071246423",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ducos 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7Q3RYTE4",
+      "formattedCitation": "<div class=\"csl-entry\">Ducos, Pierre. <i>Tell-Mureybet (Syrie, IX - VII mill\u00e9naires)\u202f; \u00e9tude arch\u00e9ozoologique et probl\u00e8mes d\u2019\u00e9cologie humaine. 1</i>. Paris: Ed. du CNRS, 1978. http://www.worldcat.org/oclc/1071246423.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Mureybet&oldid=1087699031",
+      "citationDetail": "Mureybet",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/22482/",
+      "citationDetail": "22482: Mureybet",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/paleo_0153-9345_1984_num_10_2_938",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Calley 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GHLEGZZU",
+      "formattedCitation": "<div class=\"csl-entry\">Calley, Sylvie. \u201cLe d\u00e9bitage natoufien de Mureybet\u202f: \u00e9tude pr\u00e9liminaire.\u201d <i>Pal\u00e9orient</i> 10, no. 2 (1984): 35\u201348. https://doi.org/10.3406/paleo.1984.938.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1427189",
+      "citationDetail": "Q1427189: Mureybet",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "10236664",
+  "subject": [
+    "Mureybetian",
+    "PPNA"
+  ],
+  "title": "Tell Mureybet",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A settlement mound in Syria that was occupied between 10,200 BCE and 8,000 BCE. The site was submerged by the creation of the Tabqa Dam in 1976. The site was a locus of settlement for the Mureybetian culture (Pre-Pottery Neolithic A).",
+  "reprPoint": [
+    38.090556,
+    36.068333
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    38.090556,
+    36.068333,
+    38.090556,
+    36.068333
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912849"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-28T20:15:23Z",
+  "uri": "https://pleiades.stoa.org/places/10236664",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "incorporate elements from drafting state stub; https://pleiades.stoa.org/places/661792314, plus added references to wikidata, vici.org; tags added",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-29T16:10:12Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-28T20:15:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T13:54:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-27T19:50:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-27T19:45:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-27T19:45:43Z"
+    }
+  ]
+}

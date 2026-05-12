@@ -1,0 +1,684 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.6088898,
+          25.73294
+        ]
+      },
+      "type": "Feature",
+      "id": "tt65-nebamun-imiseba-monastery-of-cyriacus",
+      "properties": {
+        "snippet": "Abbey; 1548 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/523134405/tt65-nebamun-imiseba-monastery-of-cyriacus",
+        "description": "Point representing the entrance to TT65/the Monastery of Cyriacus, derived from an OpenStreetMap node after Kampp 1996.",
+        "location_precision": "precise",
+        "title": "OSM location of TT65 Nebamun/Imiseba/Monastery of Cyriacus"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6106997715",
+          "citationDetail": "Node 6106997715",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6106997715",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Plate III",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kampp 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LSIZDIYU",
+          "formattedCitation": "<div class=\"csl-entry\">Friederike. Kampp. <i>Die thebanische Nekropole: zum Wandel des Grabgedankens von der XVIII. bis zur XX. Dynastie</i>. Theben\u202f; Bd. 13. Mainz am Rhein: Verlag Philipp von Zabern, 1996.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tt65-nebamun-imiseba-monastery-of-cyriacus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": 640,
+      "title": "OSM location of TT65 Nebamun/Imiseba/Monastery of Cyriacus",
+      "provenance": "OpenStreetMap (Node 6106997715, version 3, osm:changeset=152658922, 2024-06-14T05:18:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "Point representing the entrance to TT65/the Monastery of Cyriacus, derived from an OpenStreetMap node after Kampp 1996.",
+      "created": "2018-11-30T20:06:55Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.6088898,
+          25.73294
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/523134405/tt65-nebamun-imiseba-monastery-of-cyriacus",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-09T01:40:36Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-23T03:32:21Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-01T14:19:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:15:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:15:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:14:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:11:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:06:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:06:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2018-11-30T20:13:33Z",
+      "associationCertainty": "certain",
+      "title": "Diospolis Magna/Thebai",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/523134405/diospolis-magna-thebai",
+      "connectionType": "near",
+      "id": "diospolis-magna-thebai",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-01T14:19:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:15:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:13:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:13:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/786017",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2019-06-07T15:57:39Z",
+      "associationCertainty": "certain",
+      "title": "Theban necropolis",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/523134405/theban-necropolis",
+      "connectionType": "part_of_analytical",
+      "id": "theban-necropolis",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-07T23:55:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-07T19:34:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-06-07T16:00:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2019-06-07T16:00:02Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "gmckee",
+          "modified": "2019-06-07T15:59:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-06-07T15:57:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-06-07T15:57:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-06-07T15:57:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/836839127",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hasznos 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7QL8AK96",
+          "formattedCitation": "<div class=\"csl-entry\">Hasznos, Andrea. <i>Coptic Texts from the \u201cMonastery of Cyriacus\u201d, TT 65</i>. Studia Aegyptiaca\u202f; 20. Budapest: ELTE E\u00f6tv\u00f6s kiad\u00f3, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "B\u00e1cs 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MH3MFUNV",
+      "formattedCitation": "<div class=\"csl-entry\">B\u00e1cs, Tam\u00e1s A. \u201cFirst Preliminary Report on the Work of the Hungarian Mission in Thebes in Theban Tomb No 65 (Nebamun/Imiseba).\u201d <i>Mitteilungen Des Deutschen Arch\u00e4ologischen Instituts Abteilung Kairo</i> 54 (1998): 49\u201364.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hasznos 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7QL8AK96",
+      "formattedCitation": "<div class=\"csl-entry\">Hasznos, Andrea. <i>Coptic Texts from the \u201cMonastery of Cyriacus\u201d, TT 65</i>. Studia Aegyptiaca\u202f; 20. Budapest: ELTE E\u00f6tv\u00f6s kiad\u00f3, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.tmpbibliography.com/resources/bibliography_5nv_tombs_of_the_nobles_tt65_nebamun_usurped_by_imiseba.html",
+      "citationDetail": "Bibliography for TT 65: Nebamun, usurped by Imiseba.",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theban Mapping Project",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IX24HG5K",
+      "formattedCitation": "<div class=\"csl-entry\">American Research Center in Egypt. \u201cTheban Mapping Project,\u201d 2021 2020. https://thebanmappingproject.com/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/TT65",
+      "citationDetail": "TT65",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q16511602",
+      "citationDetail": "TT65 (Q16511602)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Tomb_of_Nebamun_TT65",
+      "citationDetail": "Category:Tomb of Nebamun TT65",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cWikimedia Commons.\u201d Media file repository. Wikimedia Commons, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/TT65",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cybulski 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I9H7W6J8",
+      "formattedCitation": "<div class=\"csl-entry\">Cybulski, Jerome S. \u201cBioarchaeology, TT65 Project, Hungarian Mission in Thebes.\u201d In <i>Egyptian Bioarchaeology\u202f: Humans, Animals, and the Environment</i>, edited by S. Ikram, 21\u201329. Leiden: Sidestone Press, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monastery of Cyriacus",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hasznos 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7QL8AK96",
+          "formattedCitation": "<div class=\"csl-entry\">Hasznos, Andrea. <i>Coptic Texts from the \u201cMonastery of Cyriacus\u201d, TT 65</i>. Studia Aegyptiaca\u202f; 20. Budapest: ELTE E\u00f6tv\u00f6s kiad\u00f3, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 53",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "B\u00e1cs 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MH3MFUNV",
+          "formattedCitation": "<div class=\"csl-entry\">B\u00e1cs, Tam\u00e1s A. \u201cFirst Preliminary Report on the Work of the Hungarian Mission in Thebes in Theban Tomb No 65 (Nebamun/Imiseba).\u201d <i>Mitteilungen Des Deutschen Arch\u00e4ologischen Instituts Abteilung Kairo</i> 54 (1998): 49\u201364.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-11-30.5132822594",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-11-30T19:36:32Z",
+      "uri": "https://pleiades.stoa.org/places/523134405/name.2018-11-30.5132822594",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-01T14:19:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T20:15:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T19:36:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-11-30T19:36:32Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "TT65",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.griffith.ox.ac.uk/gri/4tt65_intro.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Sheikh Abd el-Qurna. TT 65, Nebamun, Overseer of the Granary. Usurped by Imiseba, Head of the temple-scribes of the estate of Amun. Temp. Hatshepsut and Ramesses IX.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-12-01.9711480823",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-12-01T14:22:14Z",
+      "uri": "https://pleiades.stoa.org/places/523134405/name.2018-12-01.9711480823",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-01T14:22:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-01T14:22:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-01T14:22:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-01T14:22:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-01T14:22:14Z"
+        }
+      ]
+    }
+  ],
+  "id": "523134405",
+  "subject": [],
+  "title": "Tomb of Nebamun at Thebes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Theban Tomb no. 65 (TT65), the tomb of Nebamun, dated to the reign of Hatshepsut. The tomb was reused in the Twentieth Dynasty for Imiseba, a member of the Theban Clergy. In late antiquity it (along with several of the surrounding tombs) was repurposed as an anchorite dwelling, called in modern times the \"Monastery of Cyriacus.\"",
+  "reprPoint": [
+    32.6088898,
+    25.73294
+  ],
+  "placeTypes": [
+    "tomb",
+    "abbey"
+  ],
+  "bbox": [
+    32.6088898,
+    25.73294,
+    32.6088898,
+    25.73294
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/786017",
+    "https://pleiades.stoa.org/places/836839127"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-30T19:31:57Z",
+  "uri": "https://pleiades.stoa.org/places/523134405",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-09T01:42:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-07T19:33:29Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-01T14:18:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-01T14:18:28Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-01T14:08:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-11-30T20:15:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-11-30T19:32:40Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-11-30T19:32:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-11-30T19:31:57Z"
+    }
+  ]
+}

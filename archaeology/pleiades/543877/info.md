@@ -1,0 +1,14 @@
+# Symaitha
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/543877
+- **ID**: 543877
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Symaitha
+
+## Description
+
+An ancient settlement, attested by literary or documentary sources, whose precise location cannot be determined today

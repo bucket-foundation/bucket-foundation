@@ -1,0 +1,359 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.1224188,
+            40.6445771
+          ],
+          [
+            22.1222016,
+            40.6444693
+          ],
+          [
+            22.1220916,
+            40.6441905
+          ],
+          [
+            22.1221774,
+            40.64393
+          ],
+          [
+            22.1223571,
+            40.6438262
+          ],
+          [
+            22.1228802,
+            40.6438363
+          ],
+          [
+            22.1228426,
+            40.6443899
+          ],
+          [
+            22.1225342,
+            40.6444021
+          ],
+          [
+            22.1224188,
+            40.6445771
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mieza-theater",
+      "properties": {
+        "snippet": "Theatre; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/209287973/osm-location-of-mieza-theater",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mieza theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/515937999",
+          "citationDetail": "Way 515937999",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=515937999",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mieza-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": -30,
+      "title": "OSM location of Mieza theater",
+      "provenance": "OpenStreetMap (Way 515937999, version 2, osm:changeset=115807224, 2022-01-05T17:54:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-09-13T01:19:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.1224188,
+            40.6445771
+          ],
+          [
+            22.1222016,
+            40.6444693
+          ],
+          [
+            22.1220916,
+            40.6441905
+          ],
+          [
+            22.1221774,
+            40.64393
+          ],
+          [
+            22.1223571,
+            40.6438262
+          ],
+          [
+            22.1228802,
+            40.6438363
+          ],
+          [
+            22.1228426,
+            40.6443899
+          ],
+          [
+            22.1225342,
+            40.6444021
+          ],
+          [
+            22.1224188,
+            40.6445771
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/209287973/osm-location-of-mieza-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-09-13T20:02:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:46:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:46:18Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T01:19:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T01:19:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T01:19:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-09-13T14:38:11Z",
+      "associationCertainty": "certain",
+      "title": "Mieza",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/209287973/2919611810",
+      "connectionType": "at",
+      "id": "2919611810",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:38:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:38:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T14:38:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/491664",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Mieza_(Macedonia)",
+      "citationDetail": "Mieza (Macedonia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u03a0\u03bf\u03c5\u03bb\u03b1\u03ba\u03ac\u03ba\u03b7\u03c2 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7AW9JXZT",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a0\u03bf\u03c5\u03bb\u03b1\u03ba\u03ac\u03ba\u03b7\u03c2, \u039d\u03b5\u03ba\u03c4\u03ac\u03c1\u03b9\u03bf\u03c2. \u201c\u0391\u03c1\u03c7\u03b1\u03af\u03bf \u03b8\u03ad\u03b1\u03c4\u03c1\u03bf \u039c\u03af\u03b5\u03b6\u03b1\u03c2: \u03b7 \u03b1\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03b9\u03ba\u03ae \u03ad\u03c1\u03b5\u03c5\u03bd\u03b1 \u03c4\u03c9\u03bd \u03b5\u03c4\u03ce\u03bd 2007 \u03ba\u03b1\u03b9 2008.\u201d In <i>\u03a4\u03bf \u03b1\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03cc \u03ad\u03c1\u03b3\u03bf \u03c3\u03c4\u03b7 \u039c\u03b1\u03ba\u03b5\u03b4\u03bf\u03bd\u03af\u03b1 \u03ba\u03b1\u03b9 \u0398\u03c1\u03ac\u03ba\u03b7, 22 (2008)</i>, 159\u201368. \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03bf\u03bd\u03af\u03ba\u03b7: \u03a5\u03c0\u03bf\u03c5\u03c1\u03b3\u03b5\u03af\u03bf \u03a0\u03bf\u03bb\u03b9\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd, \u03a4\u03b1\u03bc\u03b5\u03af\u03bf \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ce\u03bd \u03a0\u03cc\u03c1\u03c9\u03bd \u03ba\u03b1\u03b9 \u0391\u03c0\u03b1\u03bb\u03bb\u03bf\u03c4\u03c1\u03b9\u03ce\u03c3\u03b5\u03c9\u03bd, \u0391\u03c1\u03b9\u03c3\u03c4\u03bf\u03c4\u03ad\u03bb\u03b5\u03b9\u03bf \u03a0\u03b1\u03bd\u03b5\u03c0\u03b9\u03c3\u03c4\u03ae\u03bc\u03b9\u03bf \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03bf\u03bd\u03af\u03ba\u03b7\u03c2, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/23268/",
+      "citationDetail": "23268: Mieza",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q24263012",
+      "citationDetail": "Mieza Theatre (Q24263012)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "209287973",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Mieza theater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The theater at Mieza dates from the second century BCE.",
+  "reprPoint": [
+    22.12250585549792,
+    40.644158869511614
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    22.1220916,
+    40.6438262,
+    22.1228802,
+    40.6445771
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/491664"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-09-13T14:38:10Z",
+  "uri": "https://pleiades.stoa.org/places/209287973",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q24263012",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T03:39:16Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-09-13T20:02:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-13T14:46:30Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-13T14:45:51Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-13T14:38:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-13T14:38:10Z"
+    }
+  ]
+}

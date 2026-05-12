@@ -1,0 +1,407 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.518467,
+            37.6762433
+          ],
+          [
+            30.5182346,
+            37.6761975
+          ],
+          [
+            30.5182078,
+            37.6762677
+          ],
+          [
+            30.5179091,
+            37.6762085
+          ],
+          [
+            30.517896,
+            37.6762423
+          ],
+          [
+            30.5179021,
+            37.6762955
+          ],
+          [
+            30.5179274,
+            37.6763419
+          ],
+          [
+            30.5179523,
+            37.6763764
+          ],
+          [
+            30.5179853,
+            37.6764061
+          ],
+          [
+            30.5180408,
+            37.6764366
+          ],
+          [
+            30.5181044,
+            37.6764575
+          ],
+          [
+            30.5181655,
+            37.6764698
+          ],
+          [
+            30.5182428,
+            37.6764676
+          ],
+          [
+            30.5183023,
+            37.6764573
+          ],
+          [
+            30.5183559,
+            37.6764305
+          ],
+          [
+            30.5183895,
+            37.6764058
+          ],
+          [
+            30.518413,
+            37.676377
+          ],
+          [
+            30.5184332,
+            37.6763445
+          ],
+          [
+            30.518467,
+            37.6762433
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-odeion",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/160453231/osm-location-of-odeion",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of odeion"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/211483630",
+          "citationDetail": "Way 211483630",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=211483630",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-odeion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of odeion",
+      "provenance": "OpenStreetMap (Way 211483630, version 3, osm:changeset=61594394, 2018-08-12T17:00:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-31T16:55:31Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.518467,
+            37.6762433
+          ],
+          [
+            30.5182346,
+            37.6761975
+          ],
+          [
+            30.5182078,
+            37.6762677
+          ],
+          [
+            30.5179091,
+            37.6762085
+          ],
+          [
+            30.517896,
+            37.6762423
+          ],
+          [
+            30.5179021,
+            37.6762955
+          ],
+          [
+            30.5179274,
+            37.6763419
+          ],
+          [
+            30.5179523,
+            37.6763764
+          ],
+          [
+            30.5179853,
+            37.6764061
+          ],
+          [
+            30.5180408,
+            37.6764366
+          ],
+          [
+            30.5181044,
+            37.6764575
+          ],
+          [
+            30.5181655,
+            37.6764698
+          ],
+          [
+            30.5182428,
+            37.6764676
+          ],
+          [
+            30.5183023,
+            37.6764573
+          ],
+          [
+            30.5183559,
+            37.6764305
+          ],
+          [
+            30.5183895,
+            37.6764058
+          ],
+          [
+            30.518413,
+            37.676377
+          ],
+          [
+            30.5184332,
+            37.6763445
+          ],
+          [
+            30.518467,
+            37.6762433
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/160453231/osm-location-of-odeion",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-01T18:42:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T17:00:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:59:42Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:56:13Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:55:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:55:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-07T14:17:45Z",
+      "associationCertainty": "certain",
+      "title": "Sagalassos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/160453231/4656482276",
+      "connectionType": "at",
+      "id": "4656482276",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:17:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:17:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:17:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/639087",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://interactive.archaeology.org/sagalassos/field07/odeion1.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Odeion: Aims 2007",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "160453231",
+  "subject": [],
+  "title": "Odeion at Sagalassos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Odeion at Sagalassos occupies a terrace that is north of the Lower Agora and downslope from the Upper Agora.",
+  "reprPoint": [
+    30.5184978,
+    37.676264
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    30.5184978,
+    37.676264,
+    30.5184978,
+    37.676264
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/639087"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-07T14:17:44Z",
+  "uri": "https://pleiades.stoa.org/places/160453231",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-20T19:15:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-18T12:18:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-18T12:16:22Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:18:04Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:17:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:17:44Z"
+    }
+  ]
+}

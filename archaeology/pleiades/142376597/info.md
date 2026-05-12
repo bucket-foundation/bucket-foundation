@@ -1,0 +1,14 @@
+# Tomen y mur
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/142376597
+- **ID**: 142376597
+- **Coords (lng, lat)**: [-3.926825, 52.929676]
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+The Roman fort at modern day Tomen y Mur, presumably Flavian in date, was likely abandoned by the middle of the second century A.D.

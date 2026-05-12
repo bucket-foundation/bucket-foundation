@@ -1,0 +1,384 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.1894953,
+            12.6087621
+          ],
+          [
+            80.1895781,
+            12.6087173
+          ],
+          [
+            80.1895299,
+            12.6086324
+          ],
+          [
+            80.189447,
+            12.6086772
+          ],
+          [
+            80.1894953,
+            12.6087621
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-dharmaraja-ratha",
+      "properties": {
+        "snippet": "Shrine; AD 600 - AD 699",
+        "link": "https://pleiades.stoa.org/places/536439049/osm-location-of-dharmaraja-ratha",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Dharmaraja Ratha"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/576022688",
+          "citationDetail": "Way 576022688",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=576022688",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-dharmaraja-ratha",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 699,
+      "title": "OSM location of Dharmaraja Ratha",
+      "provenance": "OpenStreetMap (Way 576022688, version 2, osm:changeset=57838442, 2018-04-05T15:01:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-10-31T02:51:07Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.1894953,
+            12.6087621
+          ],
+          [
+            80.1895781,
+            12.6087173
+          ],
+          [
+            80.1895299,
+            12.6086324
+          ],
+          [
+            80.189447,
+            12.6086772
+          ],
+          [
+            80.1894953,
+            12.6087621
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/536439049/osm-location-of-dharmaraja-ratha",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T10:55:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:52:21Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:51:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:51:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:51:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 699,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-22T21:09:14Z",
+      "associationCertainty": "certain",
+      "title": "Mahabalipuram",
+      "start": 600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/536439049/mahabalipuram",
+      "connectionType": "at",
+      "id": "mahabalipuram",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T10:55:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:52:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T21:09:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T21:09:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/835093310",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 699,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2020-06-23T20:44:44Z",
+      "associationCertainty": "certain",
+      "title": "Five Rathas",
+      "start": 600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/536439049/five-rathas",
+      "connectionType": "near",
+      "id": "five-rathas",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T10:56:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T10:55:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:52:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T20:44:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T20:44:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/781071241",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Dharmaraja_Ratha",
+      "citationDetail": "Dharmaraja Ratha",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "536439049",
+  "subject": [],
+  "title": "Dharmaraja Ratha",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Modern name of a seventh-century Pallava rock-cut temple in Mah\u0101balipuram.",
+  "reprPoint": [
+    80.18951256413438,
+    12.608697243152433
+  ],
+  "placeTypes": [
+    "shrine",
+    "temple-2"
+  ],
+  "bbox": [
+    80.189447,
+    12.6086324,
+    80.1895781,
+    12.6087621
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/835093310",
+    "https://pleiades.stoa.org/places/781071241",
+    "https://pleiades.stoa.org/places/781071241"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-22T20:49:53Z",
+  "uri": "https://pleiades.stoa.org/places/536439049",
+  "creators": [
+    {
+      "username": "efrancis",
+      "homepage": null,
+      "name": "Emmanuel Francis",
+      "uri": "https://pleiades.stoa.org/author/efrancis"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-31T10:55:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-31T02:52:21Z"
+    },
+    {
+      "comment": "wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-31T02:52:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-07-03T13:15:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T21:07:52Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:49:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:49:53Z"
+    }
+  ]
+}

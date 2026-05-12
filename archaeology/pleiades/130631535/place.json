@@ -1,0 +1,396 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.9635,
+          36.464
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-tell-hassuna",
+      "properties": {
+        "snippet": "Settlement; 6500 BC - 3800 BC",
+        "link": "https://pleiades.stoa.org/places/130631535/imagery-location-of-tell-hassuna",
+        "description": "Coordinates following GeoHack.",
+        "location_precision": "precise",
+        "title": "Imagery location of Tell Hassuna"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "ubaid",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ubaid",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://tools.wmflabs.org/geohack/geohack.php?pagename=Tell_Hassuna&params=36_27_50.4000_N_42_57_48.6000_E_type:landmark",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoHack - Tell Hassuna",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-tell-hassuna",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3800,
+      "title": "Imagery location of Tell Hassuna",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -6500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Coordinates following GeoHack.",
+      "created": "2018-01-16T15:08:14Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.9635,
+          36.464
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/130631535/imagery-location-of-tell-hassuna",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-18T20:49:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-17T02:14:50Z"
+        },
+        {
+          "comment": "added location via GeoHack",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-16T15:08:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-16T15:08:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-03T02:20:48Z",
+      "associationCertainty": "certain",
+      "title": "Tigris/Diglitus (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/130631535/tigris-diglitus-river",
+      "connectionType": "on",
+      "id": "tigris-diglitus-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-04T18:17:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T02:20:52Z"
+        },
+        {
+          "comment": "cnxn reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T02:20:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-03T02:20:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912964",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Tell_Hassuna",
+          "citationDetail": "Tell Hassuna",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2733421",
+      "citationDetail": "Hassuna (Q2733421)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tell_Hassuna",
+      "citationDetail": "Tell Hassuna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tell Hassuna",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PWPHJ8UJ",
+      "formattedCitation": "<div class=\"csl-entry\">IRAQ Kingdom of Iraq, 1921-1958, Ministry of Education, Department of Antiquities, and Seton Howard Frederick LLOYD. <i>Tell Hassuna. Excavations by the Iraq Government Directorate General of Antiquities in 1943 and 1944. By Seton Lloyd and Fuad Safar, Etc. (Reprinted for Private Circulation from Journal of Near Eastern Studies.) [With Plates.</i>, 1945.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/542914",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lloyd 1945",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KA297RE5",
+      "formattedCitation": "<div class=\"csl-entry\">Lloyd, Seton, Fuad Safar, and Robert J. Braidwood. \u201cTell Hassuna Excavations by the Iraq Government Directorate General of Antiquities in 1943 and 1944.\u201d <i>Journal of Near Eastern Studies</i> 4, no. 4 (1945): 255\u201389. http://www.jstor.org/stable/542914.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/43073280",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Van Buren 1946",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AZYZKJRA",
+      "formattedCitation": "<div class=\"csl-entry\">Van Buren, E. Douglas. \u201cExcavations in Mesopotamia.\u201d <i>Orientalia</i> 15 (1946): 497\u2013503. http://www.jstor.org/stable/43073280.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Mortensen and Ingholt 1970",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NWYGCP8U",
+      "formattedCitation": "<div class=\"csl-entry\">Mortensen, Peder, and Harald Ingholt. <i>Tell Shimshara: The Hassuna Period</i>. K\u00f8benhavn: Munksgaard i kommission, 1970.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hassuna, Tell Hassuna",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q2733421",
+          "citationDetail": "Q2733421",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-16.4255086214",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-01-16T15:11:20Z",
+      "uri": "https://pleiades.stoa.org/places/130631535/name.2018-01-16.4255086214",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-18T20:49:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-17T02:14:51Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-16T15:11:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-16T15:11:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "130631535",
+  "subject": [],
+  "title": "Tell Hassuna",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>Fuad Safar discovered Tell Hassuna in 1942. Excavations under Seton Lloyd were carried out in 1943 and 1944.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tell Hassuna is a settlement of northern Iraq, located in the Nineveh Province approximately 35km south-west of Nineveh. This is the type site for the Hassuna culture of the early sixth millennium B.C.",
+  "reprPoint": [
+    42.9635,
+    36.464
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    42.9635,
+    36.464,
+    42.9635,
+    36.464
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912964"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-16T14:53:28Z",
+  "uri": "https://pleiades.stoa.org/places/130631535",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-03T02:19:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-18T20:49:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-17T02:14:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-16T15:12:10Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-16T15:10:08Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-16T14:53:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-16T14:53:28Z"
+    }
+  ]
+}

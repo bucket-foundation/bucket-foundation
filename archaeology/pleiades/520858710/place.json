@@ -1,0 +1,410 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.7318424,
+            43.4329825
+          ],
+          [
+            6.7319158,
+            43.4330264
+          ],
+          [
+            6.7319896,
+            43.4330611
+          ],
+          [
+            6.732112,
+            43.4330546
+          ],
+          [
+            6.7321822,
+            43.4330306
+          ],
+          [
+            6.7322673,
+            43.432988
+          ],
+          [
+            6.7323552,
+            43.4329014
+          ],
+          [
+            6.7323888,
+            43.4328246
+          ],
+          [
+            6.7323606,
+            43.4327564
+          ],
+          [
+            6.7323068,
+            43.4326958
+          ],
+          [
+            6.7322652,
+            43.4326517
+          ],
+          [
+            6.7322102,
+            43.4326907
+          ],
+          [
+            6.7321587,
+            43.4327293
+          ],
+          [
+            6.7320317,
+            43.4328336
+          ],
+          [
+            6.7318555,
+            43.4329615
+          ],
+          [
+            6.7318424,
+            43.4329825
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-porte-des-gaules",
+      "properties": {
+        "snippet": "City-gate, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/520858710/osm-location-of-porte-des-gaules",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Porte des Gaules"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/31993147",
+          "citationDetail": "Way 31993147",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=31993147",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.frejus.fr/?p_idref=49",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Porte des Gaules",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-porte-des-gaules",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Porte des Gaules",
+      "provenance": "OpenStreetMap (Way 31993147, version 3, osm:changeset=57723044, 2018-04-01T21:24:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-gate",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-14T21:07:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.7318424,
+            43.4329825
+          ],
+          [
+            6.7319158,
+            43.4330264
+          ],
+          [
+            6.7319896,
+            43.4330611
+          ],
+          [
+            6.732112,
+            43.4330546
+          ],
+          [
+            6.7321822,
+            43.4330306
+          ],
+          [
+            6.7322673,
+            43.432988
+          ],
+          [
+            6.7323552,
+            43.4329014
+          ],
+          [
+            6.7323888,
+            43.4328246
+          ],
+          [
+            6.7323606,
+            43.4327564
+          ],
+          [
+            6.7323068,
+            43.4326958
+          ],
+          [
+            6.7322652,
+            43.4326517
+          ],
+          [
+            6.7322102,
+            43.4326907
+          ],
+          [
+            6.7321587,
+            43.4327293
+          ],
+          [
+            6.7320317,
+            43.4328336
+          ],
+          [
+            6.7318555,
+            43.4329615
+          ],
+          [
+            6.7318424,
+            43.4329825
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/520858710/osm-location-of-porte-des-gaules",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-05T03:56:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:14:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:13:29Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:08:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:07:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:07:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-09-29T17:05:46Z",
+      "associationCertainty": "certain",
+      "title": "Col. Forum Iulii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/520858710/7466532959",
+      "connectionType": "at",
+      "id": "7466532959",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-29T17:05:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-29T17:05:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-29T17:05:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/157836",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Fr%C3%A9jus",
+      "citationDetail": "Fr\u00e9jus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/16590/",
+      "citationDetail": "16590",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "520858710",
+  "subject": [],
+  "title": "Porte des Gaules",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The point of entry of the Via Aurelia.",
+  "reprPoint": [
+    6.732136225386777,
+    43.43288705965023
+  ],
+  "placeTypes": [
+    "city-gate"
+  ],
+  "bbox": [
+    6.7318424,
+    43.4326517,
+    6.7323888,
+    43.4330611
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/157836"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-09-29T17:05:45Z",
+  "uri": "https://pleiades.stoa.org/places/520858710",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-05T03:56:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-27T19:41:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-20T19:32:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-20T19:32:00Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-29T17:08:55Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-29T17:05:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-29T17:05:45Z"
+    }
+  ]
+}

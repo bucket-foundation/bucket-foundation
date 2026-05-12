@@ -1,0 +1,14 @@
+# Peiros (river)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/570572
+- **ID**: 570572
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Peiros, Piros
+
+## Description
+
+An ancient place, cited: BAtlas 58 B1 Peiros fl.

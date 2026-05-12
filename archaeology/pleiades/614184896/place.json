@@ -1,0 +1,588 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5847648,
+          37.2925184
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-valle-dei-templi",
+      "properties": {
+        "snippet": "Unknown; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/614184896/location-of-valle-dei-templi",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Valle dei Templi"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.5847648,
+            37.2925184
+          ],
+          [
+            13.5839738,
+            37.2928311
+          ],
+          [
+            13.5812368,
+            37.2925049
+          ],
+          [
+            13.5790098,
+            37.293509
+          ],
+          [
+            13.5778442,
+            37.2926997
+          ],
+          [
+            13.5782976,
+            37.2915338
+          ],
+          [
+            13.5783695,
+            37.2915071
+          ],
+          [
+            13.5800378,
+            37.2908867
+          ],
+          [
+            13.5807289,
+            37.2907042
+          ],
+          [
+            13.5819008,
+            37.2905569
+          ],
+          [
+            13.5830527,
+            37.2903205
+          ],
+          [
+            13.5842562,
+            37.2901136
+          ],
+          [
+            13.5874746,
+            37.2897108
+          ],
+          [
+            13.5894124,
+            37.2894881
+          ],
+          [
+            13.5907657,
+            37.2892989
+          ],
+          [
+            13.6008331,
+            37.2880389
+          ],
+          [
+            13.6013046,
+            37.2893363
+          ],
+          [
+            13.6003531,
+            37.2899132
+          ],
+          [
+            13.6000003,
+            37.2900234
+          ],
+          [
+            13.6000079,
+            37.2903882
+          ],
+          [
+            13.6000247,
+            37.2910027
+          ],
+          [
+            13.5893546,
+            37.2934002
+          ],
+          [
+            13.5862168,
+            37.2942873
+          ],
+          [
+            13.5860124,
+            37.2940383
+          ],
+          [
+            13.5847648,
+            37.2925184
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-boundary-of-archaeological-park",
+      "properties": {
+        "snippet": "Archaeological-site; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/614184896/osm-location-boundary-of-archaeological-park",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Boundary of Archaeological Park"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/467307261",
+          "citationDetail": "Node 467307261",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=467307261",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-valle-dei-templi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 2100,
+      "title": "OSM location of Valle dei Templi",
+      "provenance": "OpenStreetMap (Node 467307261, version 2, osm:changeset=5819962, 2010-09-19T13:49:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-03-20T18:56:43Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5847648,
+          37.2925184
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/614184896/location-of-valle-dei-templi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-30T15:43:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-22T19:31:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-22T16:34:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-20T18:57:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-20T18:56:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-20T18:56:46Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/39096127",
+          "citationDetail": "Way 39096127",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=39096127",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-boundary-of-archaeological-park",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 2099,
+      "title": "OSM Location: Boundary of Archaeological Park",
+      "provenance": "OpenStreetMap (Way 39096127, version 26, osm:changeset=122289651, 2022-06-12T16:40:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-03-07T15:32:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.5847648,
+            37.2925184
+          ],
+          [
+            13.5839738,
+            37.2928311
+          ],
+          [
+            13.5812368,
+            37.2925049
+          ],
+          [
+            13.5790098,
+            37.293509
+          ],
+          [
+            13.5778442,
+            37.2926997
+          ],
+          [
+            13.5782976,
+            37.2915338
+          ],
+          [
+            13.5783695,
+            37.2915071
+          ],
+          [
+            13.5800378,
+            37.2908867
+          ],
+          [
+            13.5807289,
+            37.2907042
+          ],
+          [
+            13.5819008,
+            37.2905569
+          ],
+          [
+            13.5830527,
+            37.2903205
+          ],
+          [
+            13.5842562,
+            37.2901136
+          ],
+          [
+            13.5874746,
+            37.2897108
+          ],
+          [
+            13.5894124,
+            37.2894881
+          ],
+          [
+            13.5907657,
+            37.2892989
+          ],
+          [
+            13.6008331,
+            37.2880389
+          ],
+          [
+            13.6013046,
+            37.2893363
+          ],
+          [
+            13.6003531,
+            37.2899132
+          ],
+          [
+            13.6000003,
+            37.2900234
+          ],
+          [
+            13.6000079,
+            37.2903882
+          ],
+          [
+            13.6000247,
+            37.2910027
+          ],
+          [
+            13.5893546,
+            37.2934002
+          ],
+          [
+            13.5862168,
+            37.2942873
+          ],
+          [
+            13.5860124,
+            37.2940383
+          ],
+          [
+            13.5847648,
+            37.2925184
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/614184896/osm-location-boundary-of-archaeological-park",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-08T01:49:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-07T15:33:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-07T15:32:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-07T15:32:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-07T15:32:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-05T17:33:19Z",
+      "associationCertainty": "certain",
+      "title": "Akragas/Agrigentum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/614184896/9990082155",
+      "connectionType": "at",
+      "id": "9990082155",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:33:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:33:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:33:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462086",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Valle_dei_Templi",
+      "citationDetail": "Valle dei Templi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/baefe/7224",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cavalier 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I3G53SPW",
+      "formattedCitation": "<div class=\"csl-entry\">Cavalier, Laurence, Marielle Bernier, Valentina Caminneci, \u00c9milie Cayre, Elsa Fourni\u00e9, Dario Giuliano, Askold Ivantchik, and Nikolai Sudarev. \u201cLe sanctuaire des divinit\u00e9s chthoniennes \u00e0 Akragas.\u201d <i>Bulletin arch\u00e9ologique des \u00c9coles fran\u00e7aises \u00e0 l\u2019\u00e9tranger</i>, March 3, 2023. https://journals.openedition.org/baefe/7224.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "614184896",
+  "subject": [],
+  "title": "Valle dei Templi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The \"Valle dei Templi\" of Agrigento is an archaeological site in Sicily located on a ridge, as opposed to the false suggestion of the conventional name, outside modern Agrigento.",
+  "reprPoint": [
+    13.587215522529295,
+    37.29179506880398
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    13.5778442,
+    37.2880389,
+    13.6013046,
+    37.2942873
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462086",
+    "https://pleiades.stoa.org/places/983899139"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-07-05T17:33:17Z",
+  "uri": "https://pleiades.stoa.org/places/614184896",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Cavalier 2023",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-07T15:31:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-27T19:42:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-30T15:42:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:52:14Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:33:32Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:33:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:33:17Z"
+    }
+  ]
+}

@@ -1,0 +1,428 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.2972869,
+            51.8620254
+          ],
+          [
+            -4.2973675,
+            51.8620914
+          ],
+          [
+            -4.2972593,
+            51.8621888
+          ],
+          [
+            -4.2969438,
+            51.862318
+          ],
+          [
+            -4.2963813,
+            51.8625331
+          ],
+          [
+            -4.2956362,
+            51.8621107
+          ],
+          [
+            -4.2959383,
+            51.8619254
+          ],
+          [
+            -4.2961078,
+            51.8618423
+          ],
+          [
+            -4.2962749,
+            51.8617604
+          ],
+          [
+            -4.2963881,
+            51.8618424
+          ],
+          [
+            -4.2964346,
+            51.8618212
+          ],
+          [
+            -4.2966237,
+            51.8618961
+          ],
+          [
+            -4.2966932,
+            51.8619236
+          ],
+          [
+            -4.2967552,
+            51.8618586
+          ],
+          [
+            -4.2971294,
+            51.8620558
+          ],
+          [
+            -4.2972869,
+            51.8620254
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/153271174/location-of-roman-amphitheater",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman amphitheater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/257168620",
+          "citationDetail": "Way 257168620",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=257168620",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Moridunum_(Carmarthen)",
+          "citationDetail": "Moridunum (Carmarthen)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Moridunum (Carmarthen).",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-roman-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman amphitheater",
+      "provenance": "OpenStreetMap (Way 257168620, version 9, osm:changeset=153934580, 2024-07-14T15:06:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-01-18T21:48:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.2972869,
+            51.8620254
+          ],
+          [
+            -4.2973675,
+            51.8620914
+          ],
+          [
+            -4.2972593,
+            51.8621888
+          ],
+          [
+            -4.2969438,
+            51.862318
+          ],
+          [
+            -4.2963813,
+            51.8625331
+          ],
+          [
+            -4.2956362,
+            51.8621107
+          ],
+          [
+            -4.2959383,
+            51.8619254
+          ],
+          [
+            -4.2961078,
+            51.8618423
+          ],
+          [
+            -4.2962749,
+            51.8617604
+          ],
+          [
+            -4.2963881,
+            51.8618424
+          ],
+          [
+            -4.2964346,
+            51.8618212
+          ],
+          [
+            -4.2966237,
+            51.8618961
+          ],
+          [
+            -4.2966932,
+            51.8619236
+          ],
+          [
+            -4.2967552,
+            51.8618586
+          ],
+          [
+            -4.2971294,
+            51.8620558
+          ],
+          [
+            -4.2972869,
+            51.8620254
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/153271174/location-of-roman-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-09T04:03:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-05T21:12:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-21T16:57:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-18T21:48:50Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-18T21:48:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-18T21:48:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-18T21:48:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-31T00:30:11Z",
+      "associationCertainty": "certain",
+      "title": "*Moridunum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/153271174/6115967974",
+      "connectionType": "at",
+      "id": "6115967974",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-31T00:30:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-31T00:30:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-31T00:30:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79602",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Moridunum_(Carmarthen)",
+      "citationDetail": "Moridunum (Carmarthen)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27924306",
+      "citationDetail": "Amphitheatre Moridunum - geograph.org.uk - 777546",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27924306",
+      "citationDetail": "Q27924306: Carmarthen Amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "153271174",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Roman amphitheater at *Moridunum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman amphitheater at Moridunum is located in Carmarthenshire. It is one of only seven surviving Roman amphitheaters in Britain.",
+  "reprPoint": [
+    -4.2965029,
+    51.8619809
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    -4.2965029,
+    51.8619809,
+    -4.2965029,
+    51.8619809
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79602"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-31T00:30:10Z",
+  "uri": "https://pleiades.stoa.org/places/153271174",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata, wikimedia commons references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-26T16:02:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-05T21:12:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T00:42:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T00:42:35Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T00:30:31Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T00:30:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T00:30:10Z"
+    }
+  ]
+}

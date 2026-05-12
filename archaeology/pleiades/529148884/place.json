@@ -1,0 +1,311 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.4333086,
+          40.0161816
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-grotta-romanelli",
+      "properties": {
+        "snippet": "Cave; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/529148884/osm-location-of-grotta-romanelli",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Grotta Romanelli"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3820767714",
+          "citationDetail": "Node 3820767714",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3820767714",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-grotta-romanelli",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "end": 2099,
+      "title": "OSM location of Grotta Romanelli",
+      "provenance": "OpenStreetMap (Node 3820767714, version 2, osm:changeset=46615121, 2017-03-06T07:26:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-03T21:40:40Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.4333086,
+          40.0161816
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/529148884/osm-location-of-grotta-romanelli",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-06T11:15:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T21:38:34Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-03T21:41:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-03T21:40:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-03T21:40:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/tentativelists/5011/",
+      "citationDetail": "5011: Karstic caves in prehistoric Apulia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHTL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QM4PHLAJ",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage Tentative Lists</i>. Accessed October 25, 2023. https://whc.unesco.org/en/tentativelists/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3777009",
+      "citationDetail": "Q3777009: Grotta Romanelli",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org",
+      "citationDetail": "Grotta Romanelli",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1007/s12371-019-00376-z",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sardella 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WAAG3TST",
+      "formattedCitation": "<div class=\"csl-entry\">Sardella, R., D. A. Iurino, B. Mecozzi, D. Sigari, F. Bona, L. Bellucci, M. Coltorti, et al. \u201cGrotta Romanelli (Lecce, Southern Italy) Between Past and Future: New Studies and Perspectives for an Archaeo-Geosite Symbol of the Palaeolithic in Europe.\u201d <i>Geoheritage</i> 11, no. 4 (December 1, 2019): 1413\u201332. https://doi.org/10.1007/s12371-019-00376-z.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Grotta Romanelli",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.1007/s12371-019-00376-z",
+          "citationDetail": "Grotta Romanelli",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Sardella 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WAAG3TST",
+          "formattedCitation": "<div class=\"csl-entry\">Sardella, R., D. A. Iurino, B. Mecozzi, D. Sigari, F. Bona, L. Bellucci, M. Coltorti, et al. \u201cGrotta Romanelli (Lecce, Southern Italy) Between Past and Future: New Studies and Perspectives for an Archaeo-Geosite Symbol of the Palaeolithic in Europe.\u201d <i>Geoheritage</i> 11, no. 4 (December 1, 2019): 1413\u201332. https://doi.org/10.1007/s12371-019-00376-z.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "grotta-romanelli",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-11-04T21:36:30Z",
+      "uri": "https://pleiades.stoa.org/places/529148884/grotta-romanelli",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Grotta Romanelli",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-11-06T11:15:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T21:38:34Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T21:36:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T21:36:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "529148884",
+  "subject": [
+    "UWHS Submitted"
+  ],
+  "title": "Grotta Romanelli",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Grotta Romanelli (Lecce, Southern Italy) is a karstic cave in a coastal position that was occupied by humans beginning in the Middle Pleistocene period.",
+  "reprPoint": [
+    18.4333086,
+    40.0161816
+  ],
+  "placeTypes": [
+    "cave"
+  ],
+  "bbox": [
+    18.4333086,
+    40.0161816,
+    18.4333086,
+    40.0161816
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-03T21:40:18Z",
+  "uri": "https://pleiades.stoa.org/places/529148884",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update WHTL url",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-03T13:48:05Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-11-06T11:15:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-04T21:38:34Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-04T21:38:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-03T21:40:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-03T21:40:18Z"
+    }
+  ]
+}

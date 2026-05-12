@@ -1,0 +1,781 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5025192,
+            41.8765512
+          ],
+          [
+            12.5025487,
+            41.8765452
+          ],
+          [
+            12.5025678,
+            41.8765467
+          ],
+          [
+            12.5025852,
+            41.8765522
+          ],
+          [
+            12.5026003,
+            41.8765627
+          ],
+          [
+            12.5026073,
+            41.8765788
+          ],
+          [
+            12.502606,
+            41.8765956
+          ],
+          [
+            12.502593,
+            41.8766096
+          ],
+          [
+            12.5025785,
+            41.8766181
+          ],
+          [
+            12.5025595,
+            41.8766288
+          ],
+          [
+            12.5025464,
+            41.8766347
+          ],
+          [
+            12.5025142,
+            41.8766515
+          ],
+          [
+            12.5024164,
+            41.8765422
+          ],
+          [
+            12.5023599,
+            41.8764801
+          ],
+          [
+            12.5023027,
+            41.8764172
+          ],
+          [
+            12.502322,
+            41.8764091
+          ],
+          [
+            12.5023494,
+            41.8763988
+          ],
+          [
+            12.5023631,
+            41.8763948
+          ],
+          [
+            12.502377,
+            41.8763933
+          ],
+          [
+            12.5023954,
+            41.8763935
+          ],
+          [
+            12.5024176,
+            41.8763973
+          ],
+          [
+            12.5024325,
+            41.8764044
+          ],
+          [
+            12.5024424,
+            41.8764171
+          ],
+          [
+            12.5024439,
+            41.8764279
+          ],
+          [
+            12.5024424,
+            41.876438
+          ],
+          [
+            12.5024386,
+            41.8764466
+          ],
+          [
+            12.502428,
+            41.8764593
+          ],
+          [
+            12.5024875,
+            41.8765186
+          ],
+          [
+            12.5025192,
+            41.8765512
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "City-gate, ; 30 BC - AD 1453",
+        "link": "https://pleiades.stoa.org/places/870073463/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Porta Latina"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/205000677",
+          "citationDetail": "Way 205000677",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=205000677",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 1453,
+      "title": "OSM location of Porta Latina",
+      "provenance": "OpenStreetMap (Way 205000677, version 11, osm:changeset=114477431, 2021-12-02T10:24:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-gate",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2015-06-01T20:58:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5025192,
+            41.8765512
+          ],
+          [
+            12.5025487,
+            41.8765452
+          ],
+          [
+            12.5025678,
+            41.8765467
+          ],
+          [
+            12.5025852,
+            41.8765522
+          ],
+          [
+            12.5026003,
+            41.8765627
+          ],
+          [
+            12.5026073,
+            41.8765788
+          ],
+          [
+            12.502606,
+            41.8765956
+          ],
+          [
+            12.502593,
+            41.8766096
+          ],
+          [
+            12.5025785,
+            41.8766181
+          ],
+          [
+            12.5025595,
+            41.8766288
+          ],
+          [
+            12.5025464,
+            41.8766347
+          ],
+          [
+            12.5025142,
+            41.8766515
+          ],
+          [
+            12.5024164,
+            41.8765422
+          ],
+          [
+            12.5023599,
+            41.8764801
+          ],
+          [
+            12.5023027,
+            41.8764172
+          ],
+          [
+            12.502322,
+            41.8764091
+          ],
+          [
+            12.5023494,
+            41.8763988
+          ],
+          [
+            12.5023631,
+            41.8763948
+          ],
+          [
+            12.502377,
+            41.8763933
+          ],
+          [
+            12.5023954,
+            41.8763935
+          ],
+          [
+            12.5024176,
+            41.8763973
+          ],
+          [
+            12.5024325,
+            41.8764044
+          ],
+          [
+            12.5024424,
+            41.8764171
+          ],
+          [
+            12.5024439,
+            41.8764279
+          ],
+          [
+            12.5024424,
+            41.876438
+          ],
+          [
+            12.5024386,
+            41.8764466
+          ],
+          [
+            12.502428,
+            41.8764593
+          ],
+          [
+            12.5024875,
+            41.8765186
+          ],
+          [
+            12.5025192,
+            41.8765512
+          ]
+        ]
+      },
+      "locationType": [
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/870073463/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-21T11:58:34Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T15:53:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T15:53:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-01T21:09:38Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-01T20:59:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-01T20:58:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-01T20:58:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T14:04:29Z",
+      "associationCertainty": "certain",
+      "title": "Via Latina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/870073463/93042695",
+      "connectionType": "on",
+      "id": "93042695",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype: on",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-11T22:20:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/93042695",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T14:04:29Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/870073463/423025",
+      "connectionType": "at",
+      "id": "423025",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-21T12:01:45Z"
+        },
+        {
+          "comment": "ctype: at",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-11T22:20:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:04:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Porta_Latina",
+          "citationDetail": "Porta Latina",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-01T18:07:27Z",
+      "associationCertainty": "certain",
+      "title": "Aurelian Walls",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/870073463/aurelian-walls",
+      "connectionType": "part_of_physical",
+      "id": "aurelian-walls",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-21T12:01:00Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-21T11:59:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-11T22:19:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-02T10:48:21Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-01T18:07:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-01T18:07:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/529700371",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Porta_Latina",
+          "citationDetail": "Porta Latina",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DP%3Aentry+group%3D2%3Aentry%3Dporta-latina",
+      "citationDetail": "PORTA LATINA",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Porta_Latina",
+      "citationDetail": "Porta Latina",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Porta Latina.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125FPLa",
+      "citationDetail": "Porta/Via Latina (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/12172",
+      "citationDetail": "Porta Latina Rom, (Roma), Rom (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "213, Abb. 953",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nash 1968",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JMB6FZSP",
+      "formattedCitation": "<div class=\"csl-entry\">Nash, Ernest, and Deutsches Arch\u00e4ologisches Institut. <i>Pictorial Dictionary of Ancient Rome</i>. 2 vols. London: Thames &amp; Hudson, 1968.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "100-9",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richmond 1930",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EVZDQ3F5",
+      "formattedCitation": "<div class=\"csl-entry\">Richmond, I. A. <i>The City Wall of Imperial Rome: An Account of Its Architectural Development from Aurelian to Narses</i>. Oxford University Press, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/11856575/porta-latina.html",
+      "citationDetail": "11856575: Porta Latina",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1720229",
+      "citationDetail": "Porta Latina (Q1720229)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "870073463",
+  "subject": [
+    "fortification",
+    "gate",
+    "extant remains"
+  ],
+  "title": "Porta Latina",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A city gate in the Aurelian Wall that was substantially modified under Honorius in the fifth century A.D.",
+  "reprPoint": [
+    12.502455818637932,
+    41.876516343929154
+  ],
+  "placeTypes": [
+    "city-gate"
+  ],
+  "bbox": [
+    12.5023027,
+    41.8763933,
+    12.5026073,
+    41.8766515
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/93042695",
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/529700371",
+    "https://pleiades.stoa.org/places/52737372"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-06-01T20:58:19Z",
+  "uri": "https://pleiades.stoa.org/places/870073463",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata, geonames added",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-11T21:08:32Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-21T12:04:34Z"
+    },
+    {
+      "comment": "added topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-23T20:58:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T15:57:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T15:56:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-01T21:09:16Z"
+    },
+    {
+      "comment": "added cnxn",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-01T21:06:53Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-01T20:58:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-01T20:58:20Z"
+    }
+  ]
+}

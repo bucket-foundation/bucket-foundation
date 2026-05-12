@@ -1,0 +1,14 @@
+# Meleagreion
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/573366
+- **ID**: 573366
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Meleagreion
+
+## Description
+
+An ancient place, cited: BAtlas 58 unlocated Meleagreion

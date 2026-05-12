@@ -1,0 +1,582 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.328236,
+          36.100708
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-the-sarrat-niphi-temple",
+      "properties": {
+        "snippet": "Temple-2; 1000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/344586145/imagery-location-of-the-sarrat-niphi-temple",
+        "description": "Representative location of the \u0160arrat-niphi temple based on the visible ruins of the building.",
+        "location_precision": "precise",
+        "title": "Imagery location of the \u0160arrat-niphi temple"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "107\u2013110",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Oates 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S55JVIUS",
+          "formattedCitation": "<div class=\"csl-entry\">Oates, Joan, and David Oates. <i>Nimrud: An Assyrian Imperial City Revealed</i>. London: The British School of Archaeology in Iraq, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/4200523",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Reade 2002",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IFV32YYI",
+          "formattedCitation": "<div class=\"csl-entry\">Reade, J. E. \u201cThe Ziggurrat and Temples of Nimrud.\u201d <i>Iraq</i> 64 (2002): 135\u2013216. https://doi.org/10.2307/4200523.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/nimrud/ancientkalhu/thecity/zigguratandtemples/index.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nimrud Project 2013-2014",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-the-sarrat-niphi-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -540,
+      "title": "Imagery location of the \u0160arrat-niphi temple",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location of the \u0160arrat-niphi temple based on the visible ruins of the building.",
+      "created": "2021-01-13T12:34:27Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.328236,
+          36.100708
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/344586145/imagery-location-of-the-sarrat-niphi-temple",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-14T15:03:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:48:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:34:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:34:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-11T15:58:52Z",
+      "associationCertainty": "certain",
+      "title": "Nimrud",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/344586145/nimrud",
+      "connectionType": "part_of_physical",
+      "id": "nimrud",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-14T15:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:48:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T11:56:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-11T15:58:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-11T15:58:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/894019",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "107\u2013110",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Oates 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S55JVIUS",
+          "formattedCitation": "<div class=\"csl-entry\">Oates, Joan, and David Oates. <i>Nimrud: An Assyrian Imperial City Revealed</i>. London: The British School of Archaeology in Iraq, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/4200523",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Reade 2002",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IFV32YYI",
+          "formattedCitation": "<div class=\"csl-entry\">Reade, J. E. \u201cThe Ziggurrat and Temples of Nimrud.\u201d <i>Iraq</i> 64 (2002): 135\u2013216. https://doi.org/10.2307/4200523.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-13T12:09:12Z",
+      "associationCertainty": "less-certain",
+      "title": "Ninurta temple (Kalhu)",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/344586145/ninurta-temple-kalhu",
+      "connectionType": "part_of_physical",
+      "id": "ninurta-temple-kalhu",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-14T15:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:48:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:09:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:09:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/62810658",
+      "details": "<p><a class=\"external-link\" href=\"https://www.academia.edu/30244758/2002_The_ziggurrat_and_temples_of_Nimrud\" target=\"_self\" title=\"\">Reade 2002</a> (p. 192) describes the relationship between the Ninurta and \u0160arrat-nip\u1e2bi temples as Kalhu as follows: \u201cThe \u0160arrat Nip\u1e2bi shrine was so close to the Ninurta shrine area that the two must be regarded as parts of a single temple complex comparable with that at D\u016br-\u0160arruk\u0113n (Fig. 39). Layard (Ms D, 36) stated that \"no remains of building [were] discovered between [the shrines] ... the interval appears to have been paved with bricks, mostly having the name of the founder of the N.W. Palace\". This implies that both shrines faced a single courtyard, but his use of the word \"appears\" shows that he did not establish this, and he probably relied on the existence of pavements in front of both. The Layard and the Mallowan/Sobolewski plans, Figs. 20, 23, give different versions of the relationship between the northern wall of the courtyard adjoining the Ninurta complex and the southern wall of the \u0160arrat Nip\u1e2bi complex, but on both plans the two walls are inappropriately positioned to have faced a single courtyard, even though Assyrian courtyards were not strictly rectangular. Either the plans are misleading and the shrines did face a single courtyard, or there were two courtyards separated by a gate-chamber: a Ninurta Court, with the Ninurta complex on its western side, and a separate Sarrat Nip\u1e2bi Court further east, which had the shrine of this goddess on its northern side. The question should be easily resolved in the field, but at present the evidence seems evenly balanced. The reconstruction in Fig. 2 adopts the arrangement with separate courtyards.\u201d</p>\r\n<p><img class=\"image-inline external-image\" height=\"533\" src=\"http://oracc.museum.upenn.edu/nimrud/images/ancientcity/ziggurat-plan-reade-2002-large.jpg\" width=\"371\" /></p>",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/4200523",
+          "citationDetail": "fig. 2, 191\u2013193",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Reade 2002",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IFV32YYI",
+          "formattedCitation": "<div class=\"csl-entry\">Reade, J. E. \u201cThe Ziggurrat and Temples of Nimrud.\u201d <i>Iraq</i> 64 (2002): 135\u2013216. https://doi.org/10.2307/4200523.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-14T07:46:47Z",
+      "associationCertainty": "certain",
+      "title": "Northwest Palace at Kalhu",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/344586145/northwest-palace-at-kalhu",
+      "connectionType": "near",
+      "id": "northwest-palace-at-kalhu",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-14T15:03:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T07:47:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T07:46:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-14T07:46:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/439136375",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/4200523",
+          "citationDetail": "137 fig. 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Reade 2002",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IFV32YYI",
+          "formattedCitation": "<div class=\"csl-entry\">Reade, J. E. \u201cThe Ziggurrat and Temples of Nimrud.\u201d <i>Iraq</i> 64 (2002): 135\u2013216. https://doi.org/10.2307/4200523.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/4200523",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Reade 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IFV32YYI",
+      "formattedCitation": "<div class=\"csl-entry\">Reade, J. E. \u201cThe Ziggurrat and Temples of Nimrud.\u201d <i>Iraq</i> 64 (2002): 135\u2013216. https://doi.org/10.2307/4200523.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "107\u2013110",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Oates 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S55JVIUS",
+      "formattedCitation": "<div class=\"csl-entry\">Oates, Joan, and David Oates. <i>Nimrud: An Assyrian Imperial City Revealed</i>. London: The British School of Archaeology in Iraq, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/nimrud/ancientkalhu/thecity/zigguratandtemples/index.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nimrud Project 2013-2014",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Kalhu \u00a711",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "b\u012bt \u0160arrat-niphi",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q004482",
+          "citationDetail": "Ashurnasirpal II 028",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "bit-sarrat-niphi",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "The Sumerian ceremonial name of the \u0160arrat-niphi temple is not attested in extant Assyrian texts. The building is known only by its common, everyday name, \u201cthe temple of the goddess \u0160arrat-niphi.\u201d",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2021-01-13T12:11:08Z",
+      "uri": "https://pleiades.stoa.org/places/344586145/bit-sarrat-niphi",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-14T15:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:48:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:11:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2021-01-13T12:11:08Z"
+        }
+      ]
+    }
+  ],
+  "id": "344586145",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "\u0160arrat-niphi temple (Kalhu)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>Akkadian inscriptions of the ninth-century-BC Assyrian king <a href=\"http://oracc.museum.upenn.edu/riao/theassyrianempire883745bc/ashurnasirpalii/index.html\"><span>Ashurnasirpal II</span></a> (r. 883\u2013859 BC) record that that ruler built (or rebuilt) temples to the deities Adad, Damkina, Ea-\u0161arru, Enlil, Gula, Nab\u00fb, Ninurta, S\u00een, \u0160ala, and \u0160arrat-niphi, as well as to the Sebetti and Kidmuri; for example, see RIAo <a href=\"http://oracc.museum.upenn.edu/riao/Q004484\"><span>Ashurnasirpal II 030</span></a> lines 53\u201378a. Of those, only four have been positively identified during nineteenth- and twentieth-century excavations: the <a href=\"../846526213\"><span>Kidmuri temple</span></a>, the <a href=\"../242008148\"><span>Nab\u00fb temple</span></a>, the <a href=\"../62810658\"><span>Ninurta temple</span></a>, and the <span>\u0160arrat-niphi temple</span>.</p>\r\n<p>The \u0160arrat-niphi temple was discovered by <a class=\"external-link\" href=\"https://en.wikipedia.org/wiki/Austen_Henry_Layard\" target=\"_self\" title=\"\">Sir Austen Henry Layard</a>\u00a0(1849\u201351). The building was also later excavated by <a class=\"external-link\" href=\"https://en.wikipedia.org/wiki/Max_Mallowan\" target=\"_self\" title=\"\">Sir Max Mallowa</a>n (1951) and the Director General of Iraq\u2019s <a class=\"external-link\" href=\"https://theglobalcoalition.org/en/cultural-heritage/\" target=\"_self\" title=\"\">State Board of Antiquities</a> (1973\u201374).\u00a0<span>Entrance to the temple was flanked by colossal, <span>inscribed</span>\u00a0lions.</span></p>\r\n<p>\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "When Kalhu (biblical Calah, modern Nimrud) became the principal administrative center of the Assyrian Empire in the ninth century BC, king Ashurnasirpal II (r. 883\u2013859 BC) built (or rebuilt) numerous temples. One of those was dedicated to the goddess \u0160arrat-niphi (an aspect of I\u0161tar).",
+  "reprPoint": [
+    43.328236,
+    36.100708
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    43.328236,
+    36.100708,
+    43.328236,
+    36.100708
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/894019",
+    "https://pleiades.stoa.org/places/62810658",
+    "https://pleiades.stoa.org/places/439136375",
+    "https://pleiades.stoa.org/places/897364594"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-01-11T15:53:39Z",
+  "uri": "https://pleiades.stoa.org/places/344586145",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-14T15:03:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-13T12:48:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-13T12:38:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-13T12:26:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-11T15:53:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2021-01-11T15:53:39Z"
+    }
+  ]
+}

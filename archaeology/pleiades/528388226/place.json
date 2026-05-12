@@ -1,0 +1,304 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7718366,
+          23.5404115
+        ]
+      },
+      "type": "Feature",
+      "id": "cave-19-visnupada-cave",
+      "properties": {
+        "snippet": "Cave, Temple-2; AD 200 - AD 499",
+        "link": "https://pleiades.stoa.org/places/528388226/cave-19-visnupada-cave",
+        "description": "Point representing the entrance to Cave 19 at Udayagiri, derived from an OpenStreetMap node after Willis 2009.",
+        "location_precision": "precise",
+        "title": "OSM location of Cave 19 (Vi\u1e63\u1e47upada cave)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/11750800509",
+          "citationDetail": "Node 11750800509",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=11750800509",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://worldcat.org/oclc/235032277",
+          "citationDetail": "page 13",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Willis 2009",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HDBZHRDX",
+          "formattedCitation": "<div class=\"csl-entry\">Willis, Michael D. <i>The Archaeology of Hindu Ritual: Temples and the Establishment of the Gods</i>. Cambridge: Cambridge University Press, 2009. https://worldcat.org/oclc/235032277.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cave-19-visnupada-cave",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 499,
+      "title": "OSM location of Cave 19 (Vi\u1e63\u1e47upada cave)",
+      "provenance": "OpenStreetMap (Node 11750800509, version 2, osm:changeset=148974885, 2024-03-21T17:15:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave",
+        "temple-2"
+      ],
+      "description": "Point representing the entrance to Cave 19 at Udayagiri, derived from an OpenStreetMap node after Willis 2009.",
+      "created": "2024-03-21T17:27:06Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7718366,
+          23.5404115
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/528388226/cave-19-visnupada-cave",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-22T19:01:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:28:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:28:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:27:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:27:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 499,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-21T17:26:25Z",
+      "associationCertainty": "certain",
+      "title": "Udayagiri Caves",
+      "start": 200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/528388226/udayagiri-caves",
+      "connectionType": "part_of_analytical",
+      "id": "udayagiri-caves",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-22T19:01:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:26:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:26:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:26:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/478135823",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/oclc/235032277",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Willis 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HDBZHRDX",
+      "formattedCitation": "<div class=\"csl-entry\">Willis, Michael D. <i>The Archaeology of Hindu Ritual: Temples and the Establishment of the Gods</i>. Cambridge: Cambridge University Press, 2009. https://worldcat.org/oclc/235032277.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Udayagiri_Caves",
+      "citationDetail": "Udayagiri Caves",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "528388226",
+  "subject": [],
+  "title": "Cave 19 at Udayagiri",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The largest cave temple at Udayagiri, known as the Amrita or Vi\u1e63\u1e47upada cave.",
+  "reprPoint": [
+    77.7718366,
+    23.5404115
+  ],
+  "placeTypes": [
+    "cave",
+    "temple-2"
+  ],
+  "bbox": [
+    77.7718366,
+    23.5404115,
+    77.7718366,
+    23.5404115
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/478135823"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-21T17:25:40Z",
+  "uri": "https://pleiades.stoa.org/places/528388226",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-22T19:01:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-21T17:26:37Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-21T17:25:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-21T17:25:40Z"
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.353218,
+          35.3065054
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-village-of-bellapais",
+      "properties": {
+        "snippet": "Settlement-modern",
+        "link": "https://pleiades.stoa.org/places/402912540/osm-location-of-village-of-bellapais",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of village of Bellapais"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/276379675",
+          "citationDetail": "Node 276379675",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=276379675",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-village-of-bellapais",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": null,
+      "title": "OSM location of village of Bellapais",
+      "provenance": "OpenStreetMap (Node 276379675, version 32, osm:changeset=65705394, 2018-12-22T23:57:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-07-03T12:28:16Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.353218,
+          35.3065054
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/402912540/osm-location-of-village-of-bellapais",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-05T21:04:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-03T12:28:40Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-03T12:28:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-03T12:28:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-03T12:28:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-03T12:24:09Z",
+      "associationCertainty": "certain",
+      "title": "Vounous Cemetery (Cyprus)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/402912540/vounous-cemetery-cyprus",
+      "connectionType": "at",
+      "id": "vounous-cemetery-cyprus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-05T21:04:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-03T12:27:04Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-03T12:24:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-03T12:24:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/204600749",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/archaeologia/article/abs/ithe-excavations-at-vounousbellapais-in-cyprus-19312/29B1752652C69E0C0F30259DFF754C91",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Dikaios 1940",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SN8J6AA6",
+          "formattedCitation": "<div class=\"csl-entry\">Dikaios, P. \u201cI.\u2014The Excavations at Vounous-Bellapais in Cyprus, 1931\u20132.\u201d <i>Archaeologia</i> 88 (ed 1940): 1\u2013174. https://doi.org/10.1017/S0261340900014557.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/948173039",
+      "citationDetail": "148",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bryce 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P3ZNEWRV",
+      "formattedCitation": "<div class=\"csl-entry\">Bryce, Trevor. <i>Atlas of the Ancient Near East: From Prehistoric Times to the Roman Imperial Period</i>. London: Routledge, 2016. http://www.worldcat.org/oclc/948173039.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/archaeologia/article/abs/ithe-excavations-at-vounousbellapais-in-cyprus-19312/29B1752652C69E0C0F30259DFF754C91",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dikaios 1940",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SN8J6AA6",
+      "formattedCitation": "<div class=\"csl-entry\">Dikaios, P. \u201cI.\u2014The Excavations at Vounous-Bellapais in Cyprus, 1931\u20132.\u201d <i>Archaeologia</i> 88 (ed 1940): 1\u2013174. https://doi.org/10.1017/S0261340900014557.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "402912540",
+  "subject": [],
+  "title": "Vounous-Bellapais",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A series of Bronze Age tombs were excavated at Vounous-Bellapais in the early 1930s.",
+  "reprPoint": [
+    33.353218,
+    35.3065054
+  ],
+  "placeTypes": [
+    "cemetery",
+    "settlement-modern"
+  ],
+  "bbox": [
+    33.353218,
+    35.3065054,
+    33.353218,
+    35.3065054
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/204600749"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-10-03T17:18:13Z",
+  "uri": "https://pleiades.stoa.org/places/402912540",
+  "creators": [
+    {
+      "username": "ctiah",
+      "homepage": null,
+      "name": "Clifflena Tiah",
+      "uri": "https://pleiades.stoa.org/author/ctiah"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-05T21:04:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-03T12:27:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-03T12:26:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ctiah",
+      "modified": "2016-11-14T19:04:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-03T17:18:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-03T17:18:13Z"
+    }
+  ]
+}

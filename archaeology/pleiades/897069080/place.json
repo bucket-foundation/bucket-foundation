@@ -1,0 +1,514 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.3006454,
+          37.5792375
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement, ; 2000 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/897069080/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castro da Cola"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.3012104,
+            37.5794444
+          ],
+          [
+            -8.3008777,
+            37.5795858
+          ],
+          [
+            -8.300814,
+            37.5795131
+          ],
+          [
+            -8.3007503,
+            37.5794231
+          ],
+          [
+            -8.3006303,
+            37.5793654
+          ],
+          [
+            -8.3002984,
+            37.5791321
+          ],
+          [
+            -8.3002447,
+            37.5789555
+          ],
+          [
+            -8.3001602,
+            37.5788513
+          ],
+          [
+            -8.3001139,
+            37.5787074
+          ],
+          [
+            -8.3001636,
+            37.5786303
+          ],
+          [
+            -8.3003527,
+            37.5785182
+          ],
+          [
+            -8.3004318,
+            37.5784789
+          ],
+          [
+            -8.3004566,
+            37.5785112
+          ],
+          [
+            -8.3004136,
+            37.5785367
+          ],
+          [
+            -8.3004882,
+            37.5786123
+          ],
+          [
+            -8.3005808,
+            37.578699
+          ],
+          [
+            -8.3007229,
+            37.5788636
+          ],
+          [
+            -8.3008194,
+            37.579005
+          ],
+          [
+            -8.3009341,
+            37.5791873
+          ],
+          [
+            -8.3010715,
+            37.5792283
+          ],
+          [
+            -8.3012104,
+            37.5794444
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-castro-de-cola",
+      "properties": {
+        "snippet": "Fortified-settlement; 2000 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/897069080/osm-location-of-castro-de-cola",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Cola"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/487871684",
+          "citationDetail": "Node 487871684",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=487871684",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -550,
+      "title": "OSM location of Castro da Cola",
+      "provenance": "OpenStreetMap (Node 487871684, version 3, osm:changeset=22107216, 2014-05-03T15:23:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-05-03T15:26:02Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.3006454,
+          37.5792375
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/897069080/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T22:31:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-02-07T17:24:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-04T20:49:30Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-03T15:27:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-03T15:26:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-03T15:26:05Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/449051730",
+          "citationDetail": "Way 449051730",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=449051730",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-castro-de-cola",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "end": -550,
+      "title": "OSM location of Castro de Cola",
+      "provenance": "OpenStreetMap (Way 449051730, version 5, osm:changeset=85396675, 2020-05-18T17:42:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fortified-settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-05-07T16:19:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.3012104,
+            37.5794444
+          ],
+          [
+            -8.3008777,
+            37.5795858
+          ],
+          [
+            -8.300814,
+            37.5795131
+          ],
+          [
+            -8.3007503,
+            37.5794231
+          ],
+          [
+            -8.3006303,
+            37.5793654
+          ],
+          [
+            -8.3002984,
+            37.5791321
+          ],
+          [
+            -8.3002447,
+            37.5789555
+          ],
+          [
+            -8.3001602,
+            37.5788513
+          ],
+          [
+            -8.3001139,
+            37.5787074
+          ],
+          [
+            -8.3001636,
+            37.5786303
+          ],
+          [
+            -8.3003527,
+            37.5785182
+          ],
+          [
+            -8.3004318,
+            37.5784789
+          ],
+          [
+            -8.3004566,
+            37.5785112
+          ],
+          [
+            -8.3004136,
+            37.5785367
+          ],
+          [
+            -8.3004882,
+            37.5786123
+          ],
+          [
+            -8.3005808,
+            37.578699
+          ],
+          [
+            -8.3007229,
+            37.5788636
+          ],
+          [
+            -8.3008194,
+            37.579005
+          ],
+          [
+            -8.3009341,
+            37.5791873
+          ],
+          [
+            -8.3010715,
+            37.5792283
+          ],
+          [
+            -8.3012104,
+            37.5794444
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/897069080/osm-location-of-castro-de-cola",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T15:31:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T15:46:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-07T16:19:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-07T16:19:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Castle_of_Cola",
+      "citationDetail": "Castle of Cola",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Castle of Cola.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3752952",
+      "citationDetail": "Castro da Cola (Q3752952)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "897069080",
+  "subject": [],
+  "title": "Castro da Cola",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Bronze and Iron Age oppidum with subsequent Islamic-era occupation, located southwest of modern Ourique in Protugal's Beja district.",
+  "reprPoint": [
+    -8.300637794878888,
+    37.57914639241997
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "settlement"
+  ],
+  "bbox": [
+    -8.3012104,
+    37.5784789,
+    -8.3001139,
+    37.5795858
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-05-03T15:25:00Z",
+  "uri": "https://pleiades.stoa.org/places/897069080",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q3752952",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-18T03:13:47Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-09T15:46:46Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-25T22:31:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-04T20:49:06Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-03T15:25:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-03T15:25:00Z"
+    }
+  ]
+}

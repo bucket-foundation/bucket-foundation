@@ -1,0 +1,423 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2966325,
+            49.1462132
+          ],
+          [
+            2.2969826,
+            49.1462904
+          ],
+          [
+            2.2970268,
+            49.1462623
+          ],
+          [
+            2.2970603,
+            49.1462255
+          ],
+          [
+            2.2970751,
+            49.1461921
+          ],
+          [
+            2.2970201,
+            49.1461798
+          ],
+          [
+            2.2970054,
+            49.1461386
+          ],
+          [
+            2.2969718,
+            49.1460965
+          ],
+          [
+            2.2968806,
+            49.1460623
+          ],
+          [
+            2.2967827,
+            49.1460658
+          ],
+          [
+            2.2967063,
+            49.146079
+          ],
+          [
+            2.2966902,
+            49.1461
+          ],
+          [
+            2.2966553,
+            49.1461053
+          ],
+          [
+            2.2966231,
+            49.1461167
+          ],
+          [
+            2.2966097,
+            49.146143
+          ],
+          [
+            2.2966299,
+            49.1461562
+          ],
+          [
+            2.2966285,
+            49.1461816
+          ],
+          [
+            2.2966325,
+            49.1462132
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-beaumont-sur-oise-amphitheatre",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/537062868/osm-location-of-beaumont-sur-oise-amphitheatre",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Beaumont-sur-Oise amphitheatre"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/705285102",
+          "citationDetail": "Way 705285102",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=705285102",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-beaumont-sur-oise-amphitheatre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Beaumont-sur-Oise amphitheatre",
+      "provenance": "OpenStreetMap (Way 705285102, version 1, osm:changeset=72366397, 2019-07-17T22:00:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-07-17T22:00:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            2.2966325,
+            49.1462132
+          ],
+          [
+            2.2969826,
+            49.1462904
+          ],
+          [
+            2.2970268,
+            49.1462623
+          ],
+          [
+            2.2970603,
+            49.1462255
+          ],
+          [
+            2.2970751,
+            49.1461921
+          ],
+          [
+            2.2970201,
+            49.1461798
+          ],
+          [
+            2.2970054,
+            49.1461386
+          ],
+          [
+            2.2969718,
+            49.1460965
+          ],
+          [
+            2.2968806,
+            49.1460623
+          ],
+          [
+            2.2967827,
+            49.1460658
+          ],
+          [
+            2.2967063,
+            49.146079
+          ],
+          [
+            2.2966902,
+            49.1461
+          ],
+          [
+            2.2966553,
+            49.1461053
+          ],
+          [
+            2.2966231,
+            49.1461167
+          ],
+          [
+            2.2966097,
+            49.146143
+          ],
+          [
+            2.2966299,
+            49.1461562
+          ],
+          [
+            2.2966285,
+            49.1461816
+          ],
+          [
+            2.2966325,
+            49.1462132
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/537062868/osm-location-of-beaumont-sur-oise-amphitheatre",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:45:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-28T19:04:43Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-17T22:01:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-17T22:00:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-17T22:00:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-07-17T22:01:58Z",
+      "associationCertainty": "certain",
+      "title": "Beaumont-sur-Oise",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/537062868/beaumont-sur-oise",
+      "connectionType": "at",
+      "id": "beaumont-sur-oise",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:45:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-28T19:04:44Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-17T22:01:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-17T22:01:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/108795",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q28971463",
+      "citationDetail": "Q28971463: Beaumont-sur-Oise amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/4165/",
+      "citationDetail": "4165: Amphith\u00e9\u00e2tre Beaumont-sur-Oise",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Gallo-Roman_amphitheatre_in_Beaumont-sur-Oise",
+      "citationDetail": "Category:Gallo-Roman amphitheatre in Beaumont-sur-Oise",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "537062868",
+  "subject": [],
+  "title": "Beaumont-sur-Oise amphitheater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Beaumont-sur-Oise Gallo-Roman amphitheater.",
+  "reprPoint": [
+    2.29684213323275,
+    49.14617306506241
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    2.2966097,
+    49.1460623,
+    2.2970751,
+    49.1462904
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/108795"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-07-17T22:00:32Z",
+  "uri": "https://pleiades.stoa.org/places/537062868",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-12T10:45:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-28T19:04:43Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-28T19:04:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-18T14:03:14Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-17T22:03:06Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-17T22:00:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-17T22:00:32Z"
+    }
+  ]
+}

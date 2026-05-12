@@ -1,0 +1,228 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.9513238,
+          37.6170294
+        ]
+      },
+      "type": "Feature",
+      "id": "buston-vi-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 1600 BC - 1200 BC",
+        "link": "https://pleiades.stoa.org/places/875060625/buston-vi-necropolis",
+        "description": "Point based on an OpenStreetMap node representing the Buston VI Necropolis after Dubova 2015.",
+        "location_precision": "precise",
+        "title": "OSM location of Buston VI Necropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9804108224",
+          "citationDetail": "Node 9804108224",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9804108224",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1154014090",
+          "citationDetail": "pages 11-12",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Dubova 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q5UP9KP8",
+          "formattedCitation": "<div class=\"csl-entry\">Dubova, N. A. <i>Antropologiia naseleniia IUzhnogo Uzbekistana epokhi pozdnei bronzy: (po materialam nekropolia Buston VI) = Anthropology of the late bronze age popultation of Southern Uzbekistan (Materials of the Buston VI Necropolis)</i>. Moscow: Russian Academy of Sciences, 2015. http://www.worldcat.org/oclc/1154014090.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "buston-vi-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1200,
+      "title": "OSM location of Buston VI Necropolis",
+      "provenance": "OpenStreetMap (Node 9804108224, version 1, osm:changeset=122121485, 2022-06-08T14:30:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point based on an OpenStreetMap node representing the Buston VI Necropolis after Dubova 2015.",
+      "created": "2022-06-08T14:35:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          66.9513238,
+          37.6170294
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/875060625/buston-vi-necropolis",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2024-10-31T18:02:35Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T22:55:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T14:38:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T14:37:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T14:37:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T14:35:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-08T14:35:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1154014090",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dubova 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q5UP9KP8",
+      "formattedCitation": "<div class=\"csl-entry\">Dubova, N. A. <i>Antropologiia naseleniia IUzhnogo Uzbekistana epokhi pozdnei bronzy: (po materialam nekropolia Buston VI) = Anthropology of the late bronze age popultation of Southern Uzbekistan (Materials of the Buston VI Necropolis)</i>. Moscow: Russian Academy of Sciences, 2015. http://www.worldcat.org/oclc/1154014090.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "875060625",
+  "subject": [],
+  "title": "Buston VI Necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Necropolis in Southern Uzbekistan with late Bronze Age remains.",
+  "reprPoint": [
+    66.9513238,
+    37.6170294
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    66.9513238,
+    37.6170294,
+    66.9513238,
+    37.6170294
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-08T14:35:13Z",
+  "uri": "https://pleiades.stoa.org/places/875060625",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-08T22:55:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T14:38:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T14:35:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-08T14:35:13Z"
+    }
+  ]
+}

@@ -1,0 +1,526 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.3310333,
+            20.7369059
+          ],
+          [
+            30.3312143,
+            20.7359734
+          ],
+          [
+            30.332696,
+            20.7362207
+          ],
+          [
+            30.3325141,
+            20.7368822
+          ],
+          [
+            30.3319706,
+            20.7387094
+          ],
+          [
+            30.3311976,
+            20.7386237
+          ],
+          [
+            30.3309054,
+            20.7385654
+          ],
+          [
+            30.3306566,
+            20.7384912
+          ],
+          [
+            30.3310333,
+            20.7369059
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-sai-island-pharaonic-settlement",
+      "properties": {
+        "snippet": "Archaeological-site; 1548 BC - 1086 BC",
+        "link": "https://pleiades.stoa.org/places/522966643/osm-location-sai-island-pharaonic-settlement",
+        "description": "Location based on OpenStreetMap. Dates after Budka 2025",
+        "location_precision": "precise",
+        "title": "OSM Location: Sai Island, Pharaonic settlement "
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/223119474",
+          "citationDetail": "Way 223119474",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=223119474",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://brill.com/view/journals/ow/5/1/article-p1_003.xml",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Budka 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ABGTKKCZ",
+          "formattedCitation": "<div class=\"csl-entry\">Budka, Julia. \u201cNubian Style Pottery from the New Kingdom Town of Sai Island.\u201d <i>Old World: Journal of Ancient Africa and Eurasia</i> 5, no. 1 (February 3, 2025): 1\u201381. https://doi.org/10.1163/26670755-04020011.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-sai-island-pharaonic-settlement",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -1086,
+      "title": "OSM Location: Sai Island, Pharaonic settlement ",
+      "provenance": "OpenStreetMap (Way 223119474, version 3, osm:changeset=151167391, 2024-05-10T23:46:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after Budka 2025",
+      "created": "2026-04-28T22:31:29Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.3310333,
+            20.7369059
+          ],
+          [
+            30.3312143,
+            20.7359734
+          ],
+          [
+            30.332696,
+            20.7362207
+          ],
+          [
+            30.3325141,
+            20.7368822
+          ],
+          [
+            30.3319706,
+            20.7387094
+          ],
+          [
+            30.3311976,
+            20.7386237
+          ],
+          [
+            30.3309054,
+            20.7385654
+          ],
+          [
+            30.3306566,
+            20.7384912
+          ],
+          [
+            30.3310333,
+            20.7369059
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/522966643/osm-location-sai-island-pharaonic-settlement",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T19:02:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T00:54:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:32:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:31:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:31:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:31:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-04-28T22:50:42Z",
+      "associationCertainty": "certain",
+      "title": "Jazirat Say",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/522966643/jazirat-say",
+      "connectionType": "on",
+      "id": "jazirat-say",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T19:02:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T00:54:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:50:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:50:42Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/565495644",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://brill.com/view/journals/ow/5/1/article-p1_003.xml",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Budka 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ABGTKKCZ",
+          "formattedCitation": "<div class=\"csl-entry\">Budka, Julia. \u201cNubian Style Pottery from the New Kingdom Town of Sai Island.\u201d <i>Old World: Journal of Ancient Africa and Eurasia</i> 5, no. 1 (February 3, 2025): 1\u201381. https://doi.org/10.1163/26670755-04020011.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://brill.com/view/journals/ow/5/1/article-p1_003.xml",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Budka 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ABGTKKCZ",
+      "formattedCitation": "<div class=\"csl-entry\">Budka, Julia. \u201cNubian Style Pottery from the New Kingdom Town of Sai Island.\u201d <i>Old World: Journal of Ancient Africa and Eurasia</i> 5, no. 1 (February 3, 2025): 1\u201381. https://doi.org/10.1163/26670755-04020011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/55626/",
+      "citationDetail": "55626: Sai Island, Pharaonic settlement",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "\u0160\ua723\ua725.t, Schaat, Sha\u00e2t",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://thesaurus-linguae-aegyptiae.de/lemma/861103",
+          "citationDetail": "861103: \u0160\ua723\ua725.t",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "TLA",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QV3K3ID5",
+          "formattedCitation": "<div class=\"csl-entry\">Richter, Tonio Sebastian, Daniel A. Werning, Hans-Werner Fischer-Elfert, and Peter Dils, eds. <i>Thesaurus Linguae Aegyptiae</i>. Berlin-Brandenburgische Akademie der Wissenschaften; S\u00e4chsische Akademie der Wissenschaften zu Leipzig. Accessed April 28, 2026. https://thesaurus-linguae-aegyptiae.de.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://brill.com/view/journals/ow/5/1/article-p1_003.xml",
+          "citationDetail": "page 3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Budka 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ABGTKKCZ",
+          "formattedCitation": "<div class=\"csl-entry\">Budka, Julia. \u201cNubian Style Pottery from the New Kingdom Town of Sai Island.\u201d <i>Old World: Journal of Ancient Africa and Eurasia</i> 5, no. 1 (February 3, 2025): 1\u201381. https://doi.org/10.1163/26670755-04020011.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sa723a725.t",
+      "end": -1086,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "egy-mdcegyp",
+      "created": "2026-04-28T22:40:40Z",
+      "uri": "https://pleiades.stoa.org/places/522966643/sa723a725.t",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u0160\ua723\ua725.t",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T19:02:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T00:54:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T00:47:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:42:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:40:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:40:40Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sai City",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://brill.com/view/journals/ow/5/1/article-p1_003.xml",
+          "citationDetail": "page 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Budka 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ABGTKKCZ",
+          "formattedCitation": "<div class=\"csl-entry\">Budka, Julia. \u201cNubian Style Pottery from the New Kingdom Town of Sai Island.\u201d <i>Old World: Journal of Ancient Africa and Eurasia</i> 5, no. 1 (February 3, 2025): 1\u201381. https://doi.org/10.1163/26670755-04020011.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sai-city",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-04-28T22:43:38Z",
+      "uri": "https://pleiades.stoa.org/places/522966643/sai-city",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Sai City",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T19:02:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T00:54:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:43:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-28T22:43:38Z"
+        }
+      ]
+    }
+  ],
+  "id": "522966643",
+  "subject": [],
+  "title": "New Kingdom Town of Sai Island",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Located on the eastern side of Sai Island in the Nile River, remains of an orthogonal fortified settlement have been dated to the Egyptian New Kingdom, part of a long history of habitation of the island, both before and after.",
+  "reprPoint": [
+    30.33164700332163,
+    20.73732798587055
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    30.3306566,
+    20.7359734,
+    30.332696,
+    20.7387094
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/565495644"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-04-28T22:30:54Z",
+  "uri": "https://pleiades.stoa.org/places/522966643",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-29T19:02:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-29T00:54:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-29T00:44:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-28T22:30:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-28T22:30:54Z"
+    }
+  ]
+}

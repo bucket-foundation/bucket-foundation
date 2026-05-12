@@ -1,0 +1,821 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.0740299,
+            37.5985158
+          ],
+          [
+            23.0739811,
+            37.5985018
+          ],
+          [
+            23.0739466,
+            37.5984777
+          ],
+          [
+            23.0739249,
+            37.5984459
+          ],
+          [
+            23.0739183,
+            37.5984105
+          ],
+          [
+            23.0739278,
+            37.5983744
+          ],
+          [
+            23.0739459,
+            37.5983494
+          ],
+          [
+            23.0739819,
+            37.5983242
+          ],
+          [
+            23.0740312,
+            37.5983105
+          ],
+          [
+            23.0740928,
+            37.5983154
+          ],
+          [
+            23.0741338,
+            37.598334
+          ],
+          [
+            23.0741614,
+            37.5983597
+          ],
+          [
+            23.0741777,
+            37.5983931
+          ],
+          [
+            23.0741783,
+            37.5984306
+          ],
+          [
+            23.0741636,
+            37.5984637
+          ],
+          [
+            23.0741334,
+            37.5984927
+          ],
+          [
+            23.0740947,
+            37.5985105
+          ],
+          [
+            23.0740299,
+            37.5985158
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-iii-i-i-i-i-i-iioi-iui-ii-i",
+      "properties": {
+        "snippet": "Temple-2; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/995644788/osm-location-of-iii-i-i-i-i-i-iioi-iui-ii-i",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u0398\u03cc\u03bb\u03bf\u03c2 \u03a0\u03bf\u03bb\u03c5\u03ba\u03bb\u03b5\u03af\u03c4\u03bf\u03c5"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    },
+    {
+      "username": null,
+      "name": "Alex Tagashir-McGillicuddy"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/150017959",
+          "citationDetail": "Way 150017959",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-iii-i-i-i-i-i-iioi-iui-ii-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -30,
+      "title": "OSM location of \u0398\u03cc\u03bb\u03bf\u03c2 \u03a0\u03bf\u03bb\u03c5\u03ba\u03bb\u03b5\u03af\u03c4\u03bf\u03c5",
+      "provenance": "OpenStreetMap (Way 150017959, version 7, osm:changeset=146935736, 2024-02-01T08:37:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-11-25T16:49:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.0740299,
+            37.5985158
+          ],
+          [
+            23.0739811,
+            37.5985018
+          ],
+          [
+            23.0739466,
+            37.5984777
+          ],
+          [
+            23.0739249,
+            37.5984459
+          ],
+          [
+            23.0739183,
+            37.5984105
+          ],
+          [
+            23.0739278,
+            37.5983744
+          ],
+          [
+            23.0739459,
+            37.5983494
+          ],
+          [
+            23.0739819,
+            37.5983242
+          ],
+          [
+            23.0740312,
+            37.5983105
+          ],
+          [
+            23.0740928,
+            37.5983154
+          ],
+          [
+            23.0741338,
+            37.598334
+          ],
+          [
+            23.0741614,
+            37.5983597
+          ],
+          [
+            23.0741777,
+            37.5983931
+          ],
+          [
+            23.0741783,
+            37.5984306
+          ],
+          [
+            23.0741636,
+            37.5984637
+          ],
+          [
+            23.0741334,
+            37.5984927
+          ],
+          [
+            23.0740947,
+            37.5985105
+          ],
+          [
+            23.0740299,
+            37.5985158
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/995644788/osm-location-of-iii-i-i-i-i-i-iioi-iui-ii-i",
+      "creators": [
+        {
+          "username": null,
+          "name": "Catie Herberg"
+        },
+        {
+          "username": null,
+          "name": "Alex Tagashira-McGillicuddy"
+        },
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:49:54Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:49:54Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-01T16:24:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-08T14:23:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T20:40:00Z"
+        },
+        {
+          "comment": "update creators, contributors",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T20:39:44Z"
+        },
+        {
+          "comment": "imported new osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T20:39:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T20:38:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T20:38:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2021-01-29T21:25:16Z",
+      "associationCertainty": "certain",
+      "title": "Sanctuary of Asklepios at Epidauros",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/995644788/sanctuary-of-asklepios-at-epidauros",
+      "connectionType": "at",
+      "id": "sanctuary-of-asklepios-at-epidauros",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-29T23:15:24Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-29T23:15:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:33:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:25:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:25:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570127",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "Catie Herberg"
+        },
+        {
+          "username": null,
+          "name": "Alex Tagashira-McGillicuddy"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:2.27.3",
+      "citationDetail": "2.27.3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.1.1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": " http://www.worldcat.org/oclc/1361705",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Berve 1963",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3VM5JYNU",
+      "formattedCitation": "<div class=\"csl-entry\">Berve, Helmut, Gottfried Gruben, and Max Hirmer. <i>Greek Temples, Theatres, and Shrines.</i> New York: H.N. Abrams, 1963.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/63523",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Burford 1969",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MBITAUNG",
+      "formattedCitation": "<div class=\"csl-entry\">Burford, Alison. <i>The Greek Temple Builders at Epidauros; a Social and Economic Study of Building in the Asklepian Sanctuary, during the Fourth and Early Third Centuries B.C.</i> Toronto: University of Toronto Press, 1969.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/497211",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Elderkin 1911",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GEIGK7II",
+      "formattedCitation": "<div class=\"csl-entry\">Elderkin, George W. \u201cTholos and Abaton at Epidaurus.\u201d <i>American Journal of Archaeology</i> 15, no. 2 (1911): 161\u201367. https://doi.org/10.2307/497211.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/491/",
+      "citationDetail": "491: Sanctuary of Asklepios at Epidaurus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Epidaurus",
+      "citationDetail": "Epidaurus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q38279699",
+      "citationDetail": "Tholos/Thymele at the Sanctuary of Asklepios at Epidaurus (Q38279699)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/376231BTho",
+      "citationDetail": "Tholos (Epidauros Asklepieion)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tholos at the Sanctuary of Asklepios, Epidaurus",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "  http://whc.unesco.org/en/list/491/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "WHL",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+          "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tholos-at-the-sanctuary-of-asklepios",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-11-25T16:49:28Z",
+      "uri": "https://pleiades.stoa.org/places/995644788/tholos-at-the-sanctuary-of-asklepios",
+      "creators": [
+        {
+          "username": null,
+          "name": "Catie Herberg"
+        },
+        {
+          "username": null,
+          "name": "Alex Tagashir-McGillicuddy"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:49:29Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:49:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-29T23:15:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:33:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:29:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:28:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:28:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tholos",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:2.27.3",
+          "citationDetail": "2.27.3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.1.1.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tholos",
+      "end": 300,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2025-11-25T16:48:14Z",
+      "uri": "https://pleiades.stoa.org/places/995644788/tholos",
+      "creators": [
+        {
+          "username": null,
+          "name": "Catie Herberg"
+        },
+        {
+          "username": null,
+          "name": "Alex Tagashira-McGillicuddy"
+        }
+      ],
+      "attested": "\u0398\u03cc\u03bb\u03bf\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:48:14Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:48:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-29T23:15:24Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-29T23:14:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:33:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:32:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:32:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2021-01-29T21:32:01Z"
+        }
+      ]
+    }
+  ],
+  "id": "995644788",
+  "subject": [
+    "sanctuary",
+    "UWHS"
+  ],
+  "title": "Tholos at the Sanctuary of Asklepios, Epidauros",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p><span id=\"docs-internal-guid-475c26a1-7fff-605f-5495-a2f081fc2b7e\"><span>The <em>Tholos</em> at the Sanctuary of Asklepios in Epidaurus,\u00a0<span>designed by the architect Polykleitos the Younger,</span>\u00a0was constructed between 365-360 BCE and was finished 27 years later. The circular Tholos features a Doric architectural style with 26 columns surrounding the cella and 14 Corinthian columns inside the structure. Beneath the marble floor of the <em>Tholos</em> lies a constructed labyrinth. Although the purpose of this feature is unknown, it is theorized that it could have served as a dwelling for snakes, and emblems of Asklepios, or could have been used for healing or burial rites. In Pausanias,\u00a0</span><span>the structure is described as having paintings by Pausias depicting Love and Drunkenness, along with slabs written in Doric Greek inscribed with the names of those healed at the Sanctuary, the illnesses from which they suffered, and the treatment they received. </span></span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Tholos, a circular structure in the Sanctuary of Asklepios at Epidaurus, was constructed between 365 and 360 BCE. Polykleitos the Younger designed it, and it features Doric architecture and a constructed labyrinth beneath its floor.",
+  "reprPoint": [
+    23.074049189295664,
+    37.59841317509734
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    23.0739183,
+    37.5983105,
+    23.0741783,
+    37.5985158
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570127"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-25T16:50:08Z",
+  "uri": "https://pleiades.stoa.org/places/995644788",
+  "creators": [
+    {
+      "username": null,
+      "name": "Catie Herberg"
+    },
+    {
+      "username": null,
+      "name": "Alex Tagashira-McGillicuddy"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:50:10Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:50:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-19T20:59:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-19T20:18:44Z"
+    },
+    {
+      "comment": "add wikidata, add topostext @bkiesling",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-19T20:18:28Z"
+    },
+    {
+      "comment": "edited WHL reference",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-30T00:29:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-29T23:15:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-29T23:12:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2021-01-29T21:33:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2021-01-29T21:21:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2021-01-29T19:04:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2020-11-23T23:51:29Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2020-11-23T23:51:28Z"
+    }
+  ]
+}

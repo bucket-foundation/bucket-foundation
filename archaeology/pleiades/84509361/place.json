@@ -1,0 +1,589 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.8849439,
+            37.6715715
+          ],
+          [
+            26.8848363,
+            37.6719981
+          ],
+          [
+            26.8859832,
+            37.6721795
+          ],
+          [
+            26.8860909,
+            37.6717529
+          ],
+          [
+            26.8849439,
+            37.6715715
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-great-temple-of-hera",
+      "properties": {
+        "snippet": "Temple-2; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/84509361/osm-location-of-great-temple-of-hera",
+        "description": "",
+        "location_precision": "precise",
+        "title": "OSM Location of Great Temple of Hera"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/37451044",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "OSM Way 37451044",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-great-temple-of-hera",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -550,
+      "title": "OSM Location of Great Temple of Hera",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "",
+      "created": "2022-09-09T20:56:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.8849439,
+            37.6715715
+          ],
+          [
+            26.8848363,
+            37.6719981
+          ],
+          [
+            26.8859832,
+            37.6721795
+          ],
+          [
+            26.8860909,
+            37.6717529
+          ],
+          [
+            26.8849439,
+            37.6715715
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/84509361/osm-location-of-great-temple-of-hera",
+      "creators": [
+        {
+          "username": null,
+          "name": "Anna Wilson"
+        },
+        {
+          "username": null,
+          "name": "Casandrah Catterton"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added Generic OSM Accuracy Assessment",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T22:35:20Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T18:53:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:17:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:11:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-09T20:56:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-09T20:56:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -550,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-22T21:03:41Z",
+      "associationCertainty": "certain",
+      "title": "Heraion",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/84509361/heraion",
+      "connectionType": "at",
+      "id": "heraion",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T18:53:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:17:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:03:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:03:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599641",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/7764",
+      "citationDetail": "Building 2104939: Gro\u00dfer Hera-Tempel, Heraion",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Heraion_of_Samos#Third_temple_(Polycrates_temple)",
+      "citationDetail": "Heraion of Samos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://odysseus.culture.gr/h/2/eh251.jsp?obj_id=572",
+      "citationDetail": "Heraion of Samos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Odysseus",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KADCFN2V",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a5\u03c0\u03bf\u03c5\u03c1\u03b3\u03b5\u03af\u03bf \u03a0\u03bf\u03bb\u03b9\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd \u03ba\u03b1\u03b9 \u0391\u03b8\u03bb\u03b7\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd. <i>\u039f\u0394\u03a5\u03a3\u03a3\u0395Y\u03a3</i>, 2012. http://odysseus.culture.gr/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/928517269",
+      "citationDetail": "69-80",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shipley 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U58M35EB",
+      "formattedCitation": "<div class=\"csl-entry\">Shipley, Graham. <i>A History of Samos, 800-188 B.C</i>. New York: Clarendon Press, 1987. http://www.worldcat.org/oclc/928517269.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Great Temple of Hera",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Heraion_of_Samos#Third_temple_(Polycrates_temple)",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English): Heraion of Samos",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://whc.unesco.org/en/list/595",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "UNESCO: Pythagoreion and Heraion of Samos",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "great-temple-of-hera",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-05-22T21:13:13Z",
+      "uri": "https://pleiades.stoa.org/places/84509361/great-temple-of-hera",
+      "creators": [
+        {
+          "username": null,
+          "name": "Anna Wilson"
+        },
+        {
+          "username": null,
+          "name": "Casandrah Catterton"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T18:53:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:17:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:16:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:13:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:13:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:13:13Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Polycrates Temple",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Heraion_of_Samos#Third_temple_(Polycrates_temple)",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English): Heraion of Samos",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "polycrates-temple",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-05-22T21:14:25Z",
+      "uri": "https://pleiades.stoa.org/places/84509361/polycrates-temple",
+      "creators": [
+        {
+          "username": null,
+          "name": "Anna Wilson"
+        },
+        {
+          "username": null,
+          "name": "Casandrah Catterton"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T18:53:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T18:51:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:17:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:16:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:14:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:14:25Z"
+        }
+      ]
+    }
+  ],
+  "id": "84509361",
+  "subject": [
+    "Hera"
+  ],
+  "title": "Great Temple of Hera",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p dir=\"ltr\"><span>The Great Temple of Hera (or Polycrates temple) is the third temple to Hera at the Samian Heraion. Constructed by the tyrant Polycrates between 540 and 530 BCE, the temple measured 55.16 m x 108.63 m. The Ionic temple was built in a peristyle of at least 155, 20 m columns, which makes it one of the largest Greek temples built. The temple served as the hub for the cult of the Samian Hera and housed the <em>xoanon</em> \u2014 wooden cult statue \u2014 of Hera. During the Byzantine period, the temple was extensively quarried.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Great Temple of Hera, or Polycrates Temple, is the third temple constructed at the Heraion of Samos between 540 and 530 BCE.",
+  "reprPoint": [
+    26.885463581041755,
+    37.67187549411405
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    26.8848363,
+    37.6715715,
+    26.8860909,
+    37.6721795
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599641"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-09T20:52:53Z",
+  "uri": "https://pleiades.stoa.org/places/84509361",
+  "creators": [
+    {
+      "username": null,
+      "name": "Anna Wilson"
+    },
+    {
+      "username": null,
+      "name": "Casandrah Catterton"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-23T18:53:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-23T18:53:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T21:17:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T21:17:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T21:11:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-16T17:53:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-16T17:35:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-16T17:32:30Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-09T20:52:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-09T20:52:53Z"
+    }
+  ]
+}

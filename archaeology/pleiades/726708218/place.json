@@ -1,0 +1,315 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.6501584,
+            32.8259252
+          ],
+          [
+            35.6506822,
+            32.825908
+          ],
+          [
+            35.650671,
+            32.8256675
+          ],
+          [
+            35.6502853,
+            32.8256803
+          ],
+          [
+            35.6501472,
+            32.8256848
+          ],
+          [
+            35.6501528,
+            32.8258037
+          ],
+          [
+            35.6501584,
+            32.8259252
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basilika",
+      "properties": {
+        "snippet": "Church-2",
+        "link": "https://pleiades.stoa.org/places/726708218/osm-location-of-basilika",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Basilika"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/687316038",
+          "citationDetail": "Way 687316038",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=687316038",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basilika",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": null,
+      "title": "OSM location of Basilika",
+      "provenance": "OpenStreetMap (Way 687316038, version 2, osm:changeset=85311424, 2020-05-16T17:15:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-08-11T14:35:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.6501584,
+            32.8259252
+          ],
+          [
+            35.6506822,
+            32.825908
+          ],
+          [
+            35.650671,
+            32.8256675
+          ],
+          [
+            35.6502853,
+            32.8256803
+          ],
+          [
+            35.6501472,
+            32.8256848
+          ],
+          [
+            35.6501528,
+            32.8258037
+          ],
+          [
+            35.6501584,
+            32.8259252
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/726708218/osm-location-of-basilika",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-26T10:00:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-12T10:58:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-11T14:39:17Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-11T14:37:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-11T14:36:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-11T14:35:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-08-11T14:37:32Z",
+      "associationCertainty": "certain",
+      "title": "Chorsia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/726708218/6524371697",
+      "connectionType": "at",
+      "id": "6524371697",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-11T14:37:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-11T14:37:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-11T14:37:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678093",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tsaferis 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UCRSTMMH",
+      "formattedCitation": "<div class=\"csl-entry\">Tsaferis, V. \u201cThe Early Christian Basilica of Kursi.\u201d In <i>Actes Du Xe Congr\u00e8s International d\u2019arch\u00e9ologie Chr\u00e9tienne, Thessalonique 28 Septembre - 4 Octobre 1980, 2. Communications. \u03a0\u03c1\u03b1\u03ba\u03c4\u03b9\u03ba\u03ac \u03a4o\u03c5 10o\u03c5 \u0394\u03b9\u03b5\u03b8\u03bdo\u03cd\u03c2 \u03a3\u03c5\u03bd\u03b5\u03b4\u03c1\u03afo\u03c5\u202f!\u03a1\u03b9\u03c3\u03c4\u03b9\u03b1\u03bd\u03b9\u03ba\u03ae\u03c2 A\u03c1\u03c7\u03b1\u03b9o\u03bbo\u03b3\u03af\u03b1\u03c2, \u0398\u03b5\u03c3\u03c3\u03b1\u03bbo\u03bd\u03af\u03ba\u03b7 28 \u03a3\u03b5\u03c0\u03c4\u03b5\u03bc\u03b2\u03c1\u03afo\u03c5 - 4 O\u03ba\u03c4o\u03b2\u03c1\u03afo\u03c5 1980, B\u2019. A\u03bd\u03b1\u03bao\u03b9\u03bd\u03ce\u03c3\u03b5\u03b9\u03c2</i>, 605\u201311, Abb. Thessalonik\u0113\u202f: Citt\u00e0 del Vaticano: Hetaireia Makedonikon Spudon\u202f; Pontificio Istituto di Archeologia Cristiana, 1984.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "726708218",
+  "subject": [
+    "paleochristian"
+  ],
+  "title": "Kursi paleochristian basilica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An early Christian basilica was excavated at Kursi, near the Sea of Galilee in the Golan Heights.",
+  "reprPoint": [
+    35.65041472218479,
+    32.825796384419704
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    35.6501472,
+    32.8256675,
+    35.6506822,
+    32.8259252
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678093"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-11T14:37:30Z",
+  "uri": "https://pleiades.stoa.org/places/726708218",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T10:00:54Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-12T10:58:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-12T10:58:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-11T14:39:16Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-11T14:39:04Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-11T14:37:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-11T14:37:30Z"
+    }
+  ]
+}

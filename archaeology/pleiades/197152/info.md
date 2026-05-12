@@ -1,0 +1,14 @@
+# Avendo
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/197152
+- **ID**: 197152
+- **Coords (lng, lat)**: [15.131095, 44.940597]
+- **Subjects**: dare:ancient=1, dare:major=0, dare:feature=station
+- **Time periods**: 
+- **Names**: Avendo
+
+## Description
+
+An ancient place, cited: BAtlas 20 C5 Avendo

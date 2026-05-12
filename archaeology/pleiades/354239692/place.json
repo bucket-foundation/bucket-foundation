@@ -1,0 +1,485 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2614144,
+            41.7735169
+          ],
+          [
+            12.261266,
+            41.7735095
+          ],
+          [
+            12.2612095,
+            41.7734112
+          ],
+          [
+            12.2612412,
+            41.773021
+          ],
+          [
+            12.2614374,
+            41.7730345
+          ],
+          [
+            12.2614144,
+            41.7735169
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basilica-di-s-ippolito-e",
+      "properties": {
+        "snippet": "Church, ; AD 300 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/354239692/osm-location-of-basilica-di-s-ippolito-e",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Basilica di S.Ippolito e Antiquarium"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/424667570",
+          "citationDetail": "Way 424667570",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=424667570",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basilica-di-s-ippolito-e",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 1453,
+      "title": "OSM location of Basilica di S.Ippolito e Antiquarium",
+      "provenance": "OpenStreetMap (Way 424667570, version 2, osm:changeset=45030996, 2017-01-09T17:03:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-06-13T01:54:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2614144,
+            41.7735169
+          ],
+          [
+            12.261266,
+            41.7735095
+          ],
+          [
+            12.2612095,
+            41.7734112
+          ],
+          [
+            12.2612412,
+            41.773021
+          ],
+          [
+            12.2614374,
+            41.7730345
+          ],
+          [
+            12.2614144,
+            41.7735169
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/354239692/osm-location-of-basilica-di-s-ippolito-e",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-17T14:55:31Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-28T23:53:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-20T11:57:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-11-19T19:35:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T10:58:40Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T01:55:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T01:54:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T01:54:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:35:00Z",
+      "associationCertainty": "certain",
+      "title": "Portus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/354239692/423012",
+      "connectionType": "connection",
+      "id": "423012",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:35:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:35:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:35:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423012",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://archeoroma.beniculturali.it/siti-archeologici/ostia/basilica-sippolito-antiquarium",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Basilica di S.Ippolito e Antiquarium",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/10626337/basilica-e-conventino-di-sant-ippolito.html",
+      "citationDetail": "10626337: Basilica e Conventino di Sant'Ippolito",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.treccani.it/enciclopedia/porto_res-931ae4b9-66c1-11e1-b491-d5ce3506d72e_(Enciclopedia-dell'-Arte-Antica)/",
+      "citationDetail": "Pavolini, C. \"PORTO.\" In Enciclopedia dell' Arte Antica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "TrecEnc",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HHA9M2F7",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Treccani Enciclopedia</i>. Roma: Istituto della Enciclopedia Italiana fondata da Giovanni Treccani. Accessed June 6, 2022. https://www.treccani.it/enciclopedia/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.co.uk/books?id=Jg3XrcuLeqsC&lpg=PA385&ots=Hw0x1wAm45&dq=Basilica%20di%20S.Ippolito%20portus&pg=PA385#v=onepage&q=Basilica%20di%20S.Ippolito%20portus&f=false",
+      "citationDetail": "385-8",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brent 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T9SWN8TD",
+      "formattedCitation": "<div class=\"csl-entry\">Brent, Allen. <i>Hippolytus and the Roman Church in the Third Century: Communities in Tension Before the Emergence of a Monarch-Bishop</i>. BRILL, 1995.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q139393641",
+      "citationDetail": "Basilica of Saint Hippolytus and Antiquarium (Q139393641)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=4505",
+      "citationDetail": "4505: basilica paleocristiana di San Ippolito",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Basilica e Conventino di Sant'Ippolito",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/10626337/basilica-e-conventino-di-sant-ippolito.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 10626337",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "basilica-e-conventino-di-santippolito",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-06-13T10:57:20Z",
+      "uri": "https://pleiades.stoa.org/places/354239692/basilica-e-conventino-di-santippolito",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Basilica e Conventino di Sant'Ippolito",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-20T11:57:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-11-19T19:35:13Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T10:57:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T10:57:20Z"
+        }
+      ]
+    }
+  ],
+  "id": "354239692",
+  "subject": [
+    "basilica",
+    "extant remains",
+    "paleochristian"
+  ],
+  "title": "Basilica and convent of S. Ippolito",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "<p>The basilica of S.Ippolito (Saint Hippolytus) is located near the ancient canal known as the <em>fossa Traiana</em>, now Fiumicino. The basilica, the most important paleochristian site of the Roman suburbium, was constructed between the end of the fourth and the beginning of the fifth century A.D. The apsidal basilica was in use until the fifteenth century.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An important paleochristian complex located in the area of Portus.",
+  "reprPoint": [
+    12.261328672930102,
+    41.77326379444295
+  ],
+  "placeTypes": [
+    "church-2",
+    "architecturalcomplex",
+    "church"
+  ],
+  "bbox": [
+    12.2612095,
+    41.773021,
+    12.2614374,
+    41.7735169
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423012"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-06-13T01:50:52Z",
+  "uri": "https://pleiades.stoa.org/places/354239692",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "info.roma 4505: basilica paleocristiana di San Ippolito",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-17T15:02:04Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-17T15:00:18Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T06:47:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-20T11:57:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-04T19:41:23Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-04T19:40:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-11-19T19:35:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-11-19T19:35:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-13T11:10:08Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-13T10:56:02Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-13T01:50:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-13T01:50:52Z"
+    }
+  ]
+}

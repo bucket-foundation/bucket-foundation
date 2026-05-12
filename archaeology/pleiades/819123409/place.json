@@ -1,0 +1,522 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.5288818,
+            39.6195373
+          ],
+          [
+            36.5287326,
+            39.6192877
+          ],
+          [
+            36.5283702,
+            39.6191334
+          ],
+          [
+            36.5277264,
+            39.6190907
+          ],
+          [
+            36.5272447,
+            39.6191432
+          ],
+          [
+            36.5271381,
+            39.6193863
+          ],
+          [
+            36.5273641,
+            39.6198099
+          ],
+          [
+            36.5277435,
+            39.6200792
+          ],
+          [
+            36.5281059,
+            39.6202237
+          ],
+          [
+            36.5284299,
+            39.6202073
+          ],
+          [
+            36.5285706,
+            39.6201055
+          ],
+          [
+            36.5288818,
+            39.6195373
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "kayalipinar-hoyuk",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/819123409/kayalipinar-hoyuk",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kayal\u0131p\u0131nar H\u00f6y\u00fck"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.5279,
+          39.6211
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-kayalipinar",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/819123409/cigs-location-of-kayalipinar",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Kayal\u0131p\u0131nar"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/183419371",
+          "citationDetail": "Way 183419371",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=183419371",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kayalipinar-hoyuk",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Kayal\u0131p\u0131nar H\u00f6y\u00fck",
+      "provenance": "OpenStreetMap (Way 183419371, version 1, osm:changeset=13295689, 2012-09-29T12:10:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-05-22T11:16:24Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.5288818,
+            39.6195373
+          ],
+          [
+            36.5287326,
+            39.6192877
+          ],
+          [
+            36.5283702,
+            39.6191334
+          ],
+          [
+            36.5277264,
+            39.6190907
+          ],
+          [
+            36.5272447,
+            39.6191432
+          ],
+          [
+            36.5271381,
+            39.6193863
+          ],
+          [
+            36.5273641,
+            39.6198099
+          ],
+          [
+            36.5277435,
+            39.6200792
+          ],
+          [
+            36.5281059,
+            39.6202237
+          ],
+          [
+            36.5284299,
+            39.6202073
+          ],
+          [
+            36.5285706,
+            39.6201055
+          ],
+          [
+            36.5288818,
+            39.6195373
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/819123409/kayalipinar-hoyuk",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T18:40:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:28:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:17:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:16:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:16:24Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 355, Abb 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "M\u00fcller-Karpe 2000",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVP3BA3R",
+          "formattedCitation": "<div class=\"csl-entry\">M\u00fcller-Karpe, Andreas. \u201cKayal\u0131p\u0131nar in Ostkappadokien: Ein Neuer Hethitischer Tontafelfundplatz.\u201d <i>Mitteilungen Der Deutschen Orient-Gesellschaft Zu Berlin</i> 132 (2000): 355\u201365.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://tr.wikipedia.org/wiki/Kayal\u0131p\u0131nar,_Y\u0131ld\u0131zeli",
+          "citationDetail": "Kayal\u0131p\u0131nar,_Y\u0131ld\u0131zeli",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Turkish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>, Kayal\u0131p\u0131nar,_Y\u0131ld\u0131zeli.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1352918",
+          "citationDetail": "Q1352918",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q1352918.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-kayalipinar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of Kayal\u0131p\u0131nar",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-05-22T11:28:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.5279,
+          39.6211
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/819123409/cigs-location-of-kayalipinar",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T18:40:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:28:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:28:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:28:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00fcller-Karpe 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVP3BA3R",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00fcller-Karpe, Andreas. \u201cKayal\u0131p\u0131nar in Ostkappadokien: Ein Neuer Hethitischer Tontafelfundplatz.\u201d <i>Mitteilungen Der Deutschen Orient-Gesellschaft Zu Berlin</i> 132 (2000): 355\u201365.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kayal\u0131p\u0131nar",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "M\u00fcller-Karpe 2000",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVP3BA3R",
+          "formattedCitation": "<div class=\"csl-entry\">M\u00fcller-Karpe, Andreas. \u201cKayal\u0131p\u0131nar in Ostkappadokien: Ein Neuer Hethitischer Tontafelfundplatz.\u201d <i>Mitteilungen Der Deutschen Orient-Gesellschaft Zu Berlin</i> 132 (2000): 355\u201365.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://tr.wikipedia.org/wikiKayal\u0131p\u0131nar,_Y\u0131ld\u0131zeli",
+          "citationDetail": "Kayal\u0131p\u0131nar,_Y\u0131ld\u0131zeli",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Turkish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>, Kayal\u0131p\u0131nar,_Y\u0131ld\u0131zeli.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1352918",
+          "citationDetail": "Q1352918",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q1352918.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kayalipinar",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2023-05-22T11:28:17Z",
+      "uri": "https://pleiades.stoa.org/places/819123409/kayalipinar",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "Kayal\u0131p\u0131nar",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T18:40:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:28:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:28:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-05-22T11:28:17Z"
+        }
+      ]
+    }
+  ],
+  "id": "819123409",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "\u0160amu\u1e2ba",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Hittite settlement.",
+  "reprPoint": [
+    36.52795733036599,
+    39.62034654366937
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    36.5271381,
+    39.6190907,
+    36.5288818,
+    39.6211
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-22T11:08:43Z",
+  "uri": "https://pleiades.stoa.org/places/819123409",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-23T18:40:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-22T11:28:52Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-22T11:08:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2023-05-22T11:08:43Z"
+    }
+  ]
+}

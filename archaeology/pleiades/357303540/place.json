@@ -1,0 +1,458 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.9764962,
+            31.9883253
+          ],
+          [
+            35.9764667,
+            31.98848
+          ],
+          [
+            35.9764131,
+            31.9885505
+          ],
+          [
+            35.976228,
+            31.9886051
+          ],
+          [
+            35.9760885,
+            31.9885073
+          ],
+          [
+            35.9761663,
+            31.9884345
+          ],
+          [
+            35.9762307,
+            31.9883685
+          ],
+          [
+            35.9763728,
+            31.9883208
+          ],
+          [
+            35.9764962,
+            31.9883253
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ain-ghazal",
+      "properties": {
+        "snippet": "Settlement, ; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/357303540/osm-location-of-ain-ghazal",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of 'Ain Ghazal"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/419597162",
+          "citationDetail": "Way 419597162",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=419597162",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ain-ghazal",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -3300,
+      "title": "OSM location of 'Ain Ghazal",
+      "provenance": "OpenStreetMap (Way 419597162, version 4, osm:changeset=144843430, 2023-12-06T20:29:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-05-20T02:08:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.9764962,
+            31.9883253
+          ],
+          [
+            35.9764667,
+            31.98848
+          ],
+          [
+            35.9764131,
+            31.9885505
+          ],
+          [
+            35.976228,
+            31.9886051
+          ],
+          [
+            35.9760885,
+            31.9885073
+          ],
+          [
+            35.9761663,
+            31.9884345
+          ],
+          [
+            35.9762307,
+            31.9883685
+          ],
+          [
+            35.9763728,
+            31.9883208
+          ],
+          [
+            35.9764962,
+            31.9883253
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/357303540/osm-location-of-ain-ghazal",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T16:21:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-05-23T21:20:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-20T02:09:34Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-20T02:09:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-20T02:08:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-20T02:08:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/%27Ain_Ghazal",
+      "citationDetail": "'Ain Ghazal",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), 'Ain Ghazal.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Schmandt-Besserat 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z489DLFI",
+      "formattedCitation": "<div class=\"csl-entry\">Schmandt-Besserat, Denise, ed. <i>Symbols at \u02bbAin Ghazal</i>. \u02bfAin Ghazal Excavation Reports, v. 3. Berlin: ex oriente, 2013.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=C-TQpUtI-dgC&lpg=PA13&dq=ain%20ghazal&pg=PA13#v=onepage&q=ain%20ghazal&f=false",
+      "citationDetail": "12-13",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peregrine and Ember 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AR43ZBZZ",
+      "formattedCitation": "<div class=\"csl-entry\">Peregrine, Peter N., and Melvin Ember. <i>Encyclopedia of Prehistory: Volume 8: South and Southwest Asia</i>. Springer Science &amp; Business Media, 2003. https://books.google.com/books?id=C-TQpUtI-dgC&amp;lpg=PA13&amp;dq=ain%20ghazal&amp;pg=PA13#v=onepage&amp;q=ain%20ghazal&amp;f=false.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1179/lev.1997.29.1.115",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McAdam 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IRZ3XX34",
+      "formattedCitation": "<div class=\"csl-entry\">McAdam, Ellen. \u201cThe Figurines from the 1982\u20135 Seasons of Excavations at Ain Ghazal.\u201d <i>Levant</i> 29, no. 1 (January 1, 1997): 115\u201345. https://doi.org/10.1179/lev.1997.29.1.115.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/41731965",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rollefson and Simmons 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RBT77GEE",
+      "formattedCitation": "<div class=\"csl-entry\">Rollefson, Gary O., and Alan H. Simmons. \u201cThe Life and Death of \u2019Ain Ghazal.\u201d <i>Archaeology</i> 40, no. 6 (1987): 38\u201345. https://www.jstor.org/stable/41731965.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/1357573",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Schmandt-Besserat 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LBF8NQYB",
+      "formattedCitation": "<div class=\"csl-entry\">Schmandt-Besserat, Denise. \u201c\u02bfAin Ghazal \u2018Monumental\u2019 Figures.\u201d <i>Bulletin of the American Schools of Oriental Research</i>, no. 310 (1998): 1\u201317. https://doi.org/10.2307/1357573.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/41489571",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rollefson 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZYYNRME3",
+      "formattedCitation": "<div class=\"csl-entry\">Rollefson, Gary O. \u201cRitual and Ceremony at Neolithic Ain Ghazal (Jordan).\u201d <i>Pal\u00e9orient</i> 9, no. 2 (1983): 29\u201338. https://www.jstor.org/stable/41489571.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/1357072",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Banning and Boyd 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NANWLXH5",
+      "formattedCitation": "<div class=\"csl-entry\">Banning, E. B., and Brian F. Byrd. \u201cThe Architecture of PPNB \u02bfAin Ghazal, Jordan.\u201d <i>Bulletin of the American Schools of Oriental Research</i>, no. 255 (1984): 15\u201320. https://doi.org/10.2307/1357072.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=--x-3W2R_QwC&lpg=PA19&ots=WqoUb0_ybH&dq=gates%20ancient%20cities%20ain%20ghazal&pg=PA19#v=onepage&q=gates%20ancient%20cities%20ain%20ghazal&f=false",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Gates 2013, 19-20.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1007/978-1-4020-4409-0_66",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mandel 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CGUCKRAV",
+      "formattedCitation": "<div class=\"csl-entry\">Mandel, Rolfe D., and Alan H. Simmons. \u201c\u2019Ain Ghazal.\u201d In <i>Encyclopedia of Geoarchaeology</i>, edited by Allan S. Gilbert, 1\u20133. Dordrecht: Springer Netherlands, 2017. https://doi.org/10.1007/978-1-4020-4409-0_66.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/books/cambridge-world-history/ain-ghazal-jordan/F2D876FEE48FC03D3E6E713F3A2EC584",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rollefson 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CHCF53PR",
+      "formattedCitation": "<div class=\"csl-entry\">Rollefson, Gary O. \u201c\u2019Ain Ghazal, Jordan.\u201d In <i>The Cambridge World History: Volume 2: A World with Agriculture, 12,000 BCE\u2013500 CE</i>, edited by Candice Goucher and Graeme Barker, 2:243\u201360. The Cambridge World History. Cambridge: Cambridge University Press, 2015. https://doi.org/10.1017/CBO9780511978807.010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/530427",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rollefson, Simmons, and Kafafi 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G23AW9VV",
+      "formattedCitation": "<div class=\"csl-entry\">Rollefson, Gary O., Alan H. Simmons, and Zeidan Kafafi. \u201cNeolithic Cultures at \u2019Ain Ghazal, Jordan.\u201d <i>Journal of Field Archaeology</i> 19, no. 4 (1992): 443\u201370. https://doi.org/10.2307/530427.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q423625",
+      "citationDetail": "Ayn Ghazal (Q423625)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "357303540",
+  "subject": [
+    "Neolithic, aceramic"
+  ],
+  "title": "'Ain Ghazal",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Neolithic settlement of\u00a0'Ain Ghazal is located in northwestern Jordan, today in the outskirts of modern Amman. Occupation at the site began toward the end of the eighth millennium B.C. (ca. 7250 B.C.) and continued until ca. 5000 B.C. Covering some 15 hectares, 'Ain Ghazal is one of the largest Neolithic settlements known in the Near East.</p>\r\n<p>'Ain Ghazal began as a typical Neolithic village. Its domestic architecture is agglomerative in nature and built atop an artificial terrace.\u00a0</p>\r\n<p>'Ain Ghazal shows evidence for early cultivation of cereals and legumes, as well as evidence for early goat domestication.</p>\r\n<p>The people of 'Ain Ghazal \u00a0practiced secondary burial of human crania, similar to other such deposits known at sites such as Jericho. A series of 32 anthropomorphic statues have been found in two deposits.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Neolithic settlement inhabited from ca. 7250 BC to 5000 BC; located in the northwest of Jordan.",
+  "reprPoint": [
+    35.976309156197885,
+    31.98845681014916
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    35.9760885,
+    31.9883208,
+    35.9764962,
+    31.9886051
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2012-12-06T05:45:54Z",
+  "uri": "https://pleiades.stoa.org/places/357303540",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q423625",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T16:43:09Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T16:41:03Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T16:33:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-22T00:04:55Z"
+    },
+    {
+      "comment": "added categorization",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-23T21:29:18Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2016-05-23T21:20:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-23T21:16:37Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-23T21:15:51Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-23T21:11:22Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-23T21:05:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-20T02:09:50Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2012-12-14T06:25:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-06T22:03:49Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-06T05:45:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-06T05:45:54Z"
+    }
+  ]
+}

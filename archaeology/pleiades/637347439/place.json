@@ -1,0 +1,331 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2844825,
+          52.5628445
+        ]
+      },
+      "type": "Feature",
+      "id": "longthorpe-ii",
+      "properties": {
+        "snippet": "Ceramicproduction, Metalworking; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/637347439/longthorpe-ii",
+        "description": "Point based on an OpenStreetMap node representing Longthorpe II after Dannell 1987",
+        "location_precision": "precise",
+        "title": "OSM location of Longthorpe II"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9806593654",
+          "citationDetail": "Node 9806593654",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9806593654",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=CKgvAAAAMAAJ",
+          "citationDetail": "figs. 2, 8, page 61",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Dannell 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JFZGUDS4",
+          "formattedCitation": "<div class=\"csl-entry\">Dannell, G. B, and J. P Wild. <i>Longthorpe II: The Military Works-Depot\u202f: An Episode in Landscape History</i>. London: Society for the Promotion of Roman Studies, 1987. http://books.google.com/books?id=CKgvAAAAMAAJ.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "longthorpe-ii",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ceramicproduction",
+        "https://pleiades.stoa.org/vocabularies/place-types/metalworking"
+      ],
+      "end": 410,
+      "title": "OSM location of Longthorpe II",
+      "provenance": "OpenStreetMap (Node 9806593654, version 2, osm:changeset=122168878, 2022-06-09T14:18:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ceramicproduction",
+        "https://pleiades.stoa.org/vocabularies/place-types/metalworking"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "ceramicproduction",
+        "metalworking"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Longthorpe II after Dannell 1987",
+      "created": "2022-06-09T14:19:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2844825,
+          52.5628445
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/637347439/longthorpe-ii",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T14:46:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-10T10:57:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T14:23:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T14:21:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T14:19:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T14:19:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-09T14:22:33Z",
+      "associationCertainty": "certain",
+      "title": "Longthorpe",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/637347439/longthorpe",
+      "connectionType": "near",
+      "id": "longthorpe",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-10T10:57:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T14:23:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T14:22:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-09T14:22:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442436712",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=CKgvAAAAMAAJ",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Dannell 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JFZGUDS4",
+          "formattedCitation": "<div class=\"csl-entry\">Dannell, G. B, and J. P Wild. <i>Longthorpe II: The Military Works-Depot\u202f: An Episode in Landscape History</i>. London: Society for the Promotion of Roman Studies, 1987. http://books.google.com/books?id=CKgvAAAAMAAJ.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=CKgvAAAAMAAJ",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dannell 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JFZGUDS4",
+      "formattedCitation": "<div class=\"csl-entry\">Dannell, G. B, and J. P Wild. <i>Longthorpe II: The Military Works-Depot\u202f: An Episode in Landscape History</i>. London: Society for the Promotion of Roman Studies, 1987. http://books.google.com/books?id=CKgvAAAAMAAJ.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/525724",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Frere et al. 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V776M3M3",
+      "formattedCitation": "<div class=\"csl-entry\">Frere, S. S., J. K. St. Joseph, D. Charlesworth, R. Goodburn, B. R. Hartley, B. J. Marples, J. N. L. Myres, R. Reece, and M. Wilson. \u201cThe Roman Fortress at Longthorpe.\u201d <i>Britannia</i> 5 (1974): 1\u2013129. https://doi.org/10.2307/525724.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/britannia/article/abs/longthorpe-ii-the-military-worksdepot-an-episode-in-landscape-history-by-gb-dannell-jp-wild-britannia-monograph-8-society-for-the-promotion-of-roman-studies-london-1987-pp-206-pls-27-figs-48-tables-19-price-1575-isbn-0-907764-8-8/E3A0E6F98CC1DC7FC170E91D1E87BD16",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Todd 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RFIIC55D",
+      "formattedCitation": "<div class=\"csl-entry\">Todd, Malcolm. \u201cLongthorpe II. The Military Works-Depot: An Episode in Landscape History. By G.B. Dannell, J.P. Wild. Britannia Monograph 8. Society for the Promotion of Roman Studies, London, 1987. Pp. 206, Pls. 27, Figs. 48, Tables 19. Price: \u00a315.75. ISBN 0 907764 8 8.\u201d <i>Britannia</i> 20 (November 1989): 352\u2013352. https://doi.org/10.2307/526178.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "637347439",
+  "subject": [],
+  "title": "Longthorpe II",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/metalworking",
+    "https://pleiades.stoa.org/vocabularies/place-types/ceramicproduction"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Pre-Roman Iron Age farmstead with a relatively short occupational history gave way to a Roman installation that was situated outside the confines of the first-century fort at Longthorpe near Peterborough. This installation was termed a \"works-depot\" by its excavators and shows evidence of both ceramic production and metalworking. The installation was likely established soon after the fort's own foundation in the late 40s. It is an unusual site for this period.",
+  "reprPoint": [
+    -0.2844825,
+    52.5628445
+  ],
+  "placeTypes": [
+    "metalworking",
+    "ceramicproduction"
+  ],
+  "bbox": [
+    -0.2844825,
+    52.5628445,
+    -0.2844825,
+    52.5628445
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442436712"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-09T16:21:38Z",
+  "uri": "https://pleiades.stoa.org/places/637347439",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-10T10:57:46Z"
+    },
+    {
+      "comment": "update summary, references",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-10T10:57:14Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-09T16:21:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T14:23:34Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T14:14:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-09T14:14:40Z"
+    }
+  ]
+}

@@ -1,0 +1,479 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5403142,
+            41.8590713
+          ],
+          [
+            12.5403996,
+            41.859145
+          ],
+          [
+            12.5404784,
+            41.8590943
+          ],
+          [
+            12.5403929,
+            41.8590206
+          ],
+          [
+            12.5403142,
+            41.8590713
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mausoleo-di-campo-barbarico",
+      "properties": {
+        "snippet": "Tomb; AD 200 - AD 299",
+        "link": "https://pleiades.stoa.org/places/57783831/osm-location-of-mausoleo-di-campo-barbarico",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mausoleo di Campo Barbarico"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/534090923",
+          "citationDetail": "Way 534090923",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=534090923",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mausoleo-di-campo-barbarico",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 299,
+      "title": "OSM location of Mausoleo di Campo Barbarico",
+      "provenance": "OpenStreetMap (Way 534090923, version 2, osm:changeset=127015331, 2022-10-04T20:37:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-10-04T20:38:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5403142,
+            41.8590713
+          ],
+          [
+            12.5403996,
+            41.859145
+          ],
+          [
+            12.5404784,
+            41.8590943
+          ],
+          [
+            12.5403929,
+            41.8590206
+          ],
+          [
+            12.5403142,
+            41.8590713
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/57783831/osm-location-of-mausoleo-di-campo-barbarico",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T21:14:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:38:41Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:38:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:38:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:38:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-10-04T20:37:04Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/57783831/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T21:14:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:38:41Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:37:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:37:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fasciani 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JC59YS7Q",
+          "formattedCitation": "<div class=\"csl-entry\">Fasciani, Cristina. \u201cIl mausoleo di Campo Barbarico.\u201d In <i>Scienze dell\u2019antichit\u00e0\u202f: Storia, archeologia, antropologia, 21 (2015)</i>, Fasc.1, 209-221. Roma: Universit\u00e0 degli studi di Roma \u201cLa Sapienza,\u201d 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-10-04T20:37:30Z",
+      "associationCertainty": "certain",
+      "title": "Via Latina",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/57783831/via-latina",
+      "connectionType": "on",
+      "id": "via-latina",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T21:14:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:38:41Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:37:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:37:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/93042695",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fasciani 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JC59YS7Q",
+          "formattedCitation": "<div class=\"csl-entry\">Fasciani, Cristina. \u201cIl mausoleo di Campo Barbarico.\u201d In <i>Scienze dell\u2019antichit\u00e0\u202f: Storia, archeologia, antropologia, 21 (2015)</i>, Fasc.1, 209-221. Roma: Universit\u00e0 degli studi di Roma \u201cLa Sapienza,\u201d 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fasciani 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JC59YS7Q",
+      "formattedCitation": "<div class=\"csl-entry\">Fasciani, Cristina. \u201cIl mausoleo di Campo Barbarico.\u201d In <i>Scienze dell\u2019antichit\u00e0\u202f: Storia, archeologia, antropologia, 21 (2015)</i>, Fasc.1, 209-221. Roma: Universit\u00e0 degli studi di Roma \u201cLa Sapienza,\u201d 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ilmessaggero.it/roma/tuscolana/roma_via_latina_antica_scavi_manto_stradale_appia_antica_parco_archeologico_scoperta_news_oggi-6966399.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\"Roma, risorge l'antica via Latina\" Il Messaggero 4-October 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZDVJWLE",
+      "formattedCitation": "<div class=\"csl-entry\">Il Messaggero. \u201cRoma, risorge l\u2019antica via Latina: spunta il manto originale di 2300 anni fa.\u201d October 4, 2022. https://www.ilmessaggero.it/roma/tuscolana/roma_via_latina_antica_scavi_manto_stradale_appia_antica_parco_archeologico_scoperta_news_oggi-6966399.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Mausoleo_di_Campo_Barbarico",
+      "citationDetail": "Mausoleo di Campo Barbarico",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q97180948",
+      "citationDetail": "Q97180948: Mausoleum Campo Barbarico",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mausoleum Campo Barbarico",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q97180948",
+          "citationDetail": "Q97180948: Mausoleum Campo Barbarico",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "mausoleum-campo-barbarico",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-10-04T20:36:32Z",
+      "uri": "https://pleiades.stoa.org/places/57783831/mausoleum-campo-barbarico",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Mausoleum Campo Barbarico",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-04T21:14:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:38:41Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:36:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-04T20:36:32Z"
+        }
+      ]
+    }
+  ],
+  "id": "57783831",
+  "subject": [
+    "tomb",
+    "extant remains",
+    "opus latericium"
+  ],
+  "title": "Mausoleum Campo Barbarico",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Campo Barbarico Mausoleum is a third-century CE Roman \"temple tomb\" located at the fourth mile of the Via Latina. The tomb's position is immediately to the south of the archaeological area of the Tombs of the Via Latina. In 2022, additional in situ tracts of the Via Latina's pavement were excavated adjacent to the mausoleum.",
+  "reprPoint": [
+    12.540396290917684,
+    41.85908280285413
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.5403142,
+    41.8590206,
+    12.5404784,
+    41.859145
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/93042695"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-10-04T20:35:35Z",
+  "uri": "https://pleiades.stoa.org/places/57783831",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-04T21:14:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-04T20:38:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-04T20:38:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-04T20:35:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-04T20:35:35Z"
+    }
+  ]
+}

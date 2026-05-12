@@ -1,0 +1,488 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.4128742,
+            42.0798145
+          ],
+          [
+            13.4129389,
+            42.0797805
+          ],
+          [
+            13.4130003,
+            42.079719
+          ],
+          [
+            13.4130405,
+            42.0796552
+          ],
+          [
+            13.413054,
+            42.0795856
+          ],
+          [
+            13.4130513,
+            42.0795418
+          ],
+          [
+            13.4129869,
+            42.0795537
+          ],
+          [
+            13.4129145,
+            42.0795856
+          ],
+          [
+            13.4129148,
+            42.0796531
+          ],
+          [
+            13.412885,
+            42.079703
+          ],
+          [
+            13.4128528,
+            42.0797229
+          ],
+          [
+            13.4128557,
+            42.0797665
+          ],
+          [
+            13.4128742,
+            42.0798145
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theater-of-alba-fucens",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/132738979/osm-location-of-roman-theater-of-alba-fucens",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater of Alba Fucens"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/262574306",
+          "citationDetail": "Way 262574306",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=262574306",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theater-of-alba-fucens",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman theater of Alba Fucens",
+      "provenance": "OpenStreetMap (Way 262574306, version 3, osm:changeset=161006065, 2025-01-05T00:13:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-01-05T00:14:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.4128742,
+            42.0798145
+          ],
+          [
+            13.4129389,
+            42.0797805
+          ],
+          [
+            13.4130003,
+            42.079719
+          ],
+          [
+            13.4130405,
+            42.0796552
+          ],
+          [
+            13.413054,
+            42.0795856
+          ],
+          [
+            13.4130513,
+            42.0795418
+          ],
+          [
+            13.4129869,
+            42.0795537
+          ],
+          [
+            13.4129145,
+            42.0795856
+          ],
+          [
+            13.4129148,
+            42.0796531
+          ],
+          [
+            13.412885,
+            42.079703
+          ],
+          [
+            13.4128528,
+            42.0797229
+          ],
+          [
+            13.4128557,
+            42.0797665
+          ],
+          [
+            13.4128742,
+            42.0798145
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/132738979/osm-location-of-roman-theater-of-alba-fucens",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T20:53:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T18:40:48Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T02:49:47Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-05T00:14:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-05T00:14:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-05T00:14:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-01-05T00:55:50Z",
+      "associationCertainty": "certain",
+      "title": "Alba Fucens",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/132738979/5506242426",
+      "connectionType": "at",
+      "id": "5506242426",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-05T00:55:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-05T00:55:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-05T00:55:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413005",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Teatro_romano_di_Alba_Fucens",
+      "citationDetail": "Teatro romano di Alba Fucens",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q90537702",
+      "citationDetail": "Roman theater of Alba Fucens (Q90537702)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://theatrum.de/570.html",
+      "citationDetail": "570",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/20184180",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Devijver 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/266VLW7D",
+      "formattedCitation": "<div class=\"csl-entry\">Devijver, Hubert, and Frank van Wonterghem. \u201cDocumenti epigrafici riguardanti l\u2019acquedotto e il teatro di Alba Fucens: Gli interventi di due magistrati-benefattori nel I secolo d. C.\u201d <i>Zeitschrift f\u00fcr Papyrologie und Epigraphik</i> 58 (1985): 163\u201381. https://www.jstor.org/stable/20184180.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Teatro romano di Alba Fucens",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Teatro_romano_di_Alba_Fucens",
+          "citationDetail": "Teatro romano di Alba Fucens",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "teatro-romano-di-alba-fucens",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2026-04-29T18:40:40Z",
+      "uri": "https://pleiades.stoa.org/places/132738979/teatro-romano-di-alba-fucens",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Teatro romano di Alba Fucens",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-29T20:53:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T18:40:48Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T18:40:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-29T18:40:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "132738979",
+  "subject": [
+    "theater",
+    "Theater"
+  ],
+  "title": "Roman theater of Alba Fucens",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater of Alba Fucens",
+  "reprPoint": [
+    13.412953835300742,
+    42.079672057060826
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    13.4128528,
+    42.0795418,
+    13.413054,
+    42.0798145
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413005"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-01-05T00:55:48Z",
+  "uri": "https://pleiades.stoa.org/places/132738979",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Devijver 1985",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-30T00:22:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-30T00:19:08Z"
+    },
+    {
+      "comment": "added Theatrum.de reference",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-29T20:54:30Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-29T20:53:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-29T18:40:48Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-29T18:29:55Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-05T00:55:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-05T00:55:48Z"
+    }
+  ]
+}

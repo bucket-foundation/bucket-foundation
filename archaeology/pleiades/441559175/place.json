@@ -1,0 +1,448 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.4906488,
+            42.6741968
+          ],
+          [
+            11.4912374,
+            42.673728
+          ],
+          [
+            11.4916808,
+            42.673375
+          ],
+          [
+            11.4920402,
+            42.673651
+          ],
+          [
+            11.4920402,
+            42.673726
+          ],
+          [
+            11.4923138,
+            42.6739666
+          ],
+          [
+            11.4923781,
+            42.6741125
+          ],
+          [
+            11.4923567,
+            42.674219
+          ],
+          [
+            11.4921274,
+            42.6743549
+          ],
+          [
+            11.4918118,
+            42.6745421
+          ],
+          [
+            11.4917273,
+            42.6745921
+          ],
+          [
+            11.4916915,
+            42.6746134
+          ],
+          [
+            11.4913583,
+            42.6747653
+          ],
+          [
+            11.4906488,
+            42.6741968
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-necropoli-etrusca-del-puntone",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/441559175/osm-location-necropoli-etrusca-del-puntone",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Necropoli Etrusca del Puntone"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1276743208",
+          "citationDetail": "Way 1276743208",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1276743208",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-necropoli-etrusca-del-puntone",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -550,
+      "title": "OSM location: Necropoli Etrusca del Puntone",
+      "provenance": "OpenStreetMap (Way 1276743208, version 1, osm:changeset=150571364, 2024-04-27T09:31:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-09-25T03:11:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.4906488,
+            42.6741968
+          ],
+          [
+            11.4912374,
+            42.673728
+          ],
+          [
+            11.4916808,
+            42.673375
+          ],
+          [
+            11.4920402,
+            42.673651
+          ],
+          [
+            11.4920402,
+            42.673726
+          ],
+          [
+            11.4923138,
+            42.6739666
+          ],
+          [
+            11.4923781,
+            42.6741125
+          ],
+          [
+            11.4923567,
+            42.674219
+          ],
+          [
+            11.4921274,
+            42.6743549
+          ],
+          [
+            11.4918118,
+            42.6745421
+          ],
+          [
+            11.4917273,
+            42.6745921
+          ],
+          [
+            11.4916915,
+            42.6746134
+          ],
+          [
+            11.4913583,
+            42.6747653
+          ],
+          [
+            11.4906488,
+            42.6741968
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/441559175/osm-location-necropoli-etrusca-del-puntone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-25T10:51:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-25T03:12:02Z"
+        },
+        {
+          "comment": "supersedes previously published location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-25T03:11:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-25T03:11:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-25T03:11:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:52:06Z",
+      "associationCertainty": "certain",
+      "title": "*Aurinia/Saturnia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/441559175/413044",
+      "connectionType": "near",
+      "id": "413044",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "type cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-15T05:02:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413044",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Pian_di_Palma",
+      "citationDetail": "Pian di Palma",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Pian di Palma.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Necropoli Etrusca del Puntone",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/1276743208#map=19/42.674039/11.491596",
+          "citationDetail": "Way: Necropoli Etrusca del Puntone (1276743208)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "necropoli-etrusca-del-puntone",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-09-25T03:13:58Z",
+      "uri": "https://pleiades.stoa.org/places/441559175/necropoli-etrusca-del-puntone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Necropoli Etrusca del Puntone",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-25T10:51:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-25T03:14:05Z"
+        },
+        {
+          "comment": "add name via OSM",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-25T03:14:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-25T03:13:58Z"
+        }
+      ]
+    }
+  ],
+  "id": "441559175",
+  "subject": [
+    "travertine"
+  ],
+  "title": "Puntone necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan necropolis dating to the seventh-fifth centuries B.C. The ancient settlement associated with the site may have been Palmule.",
+  "reprPoint": [
+    11.491544266954492,
+    42.67410012604668
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    11.4906488,
+    42.673375,
+    11.4923781,
+    42.6747653
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413044"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-02-15T17:17:07Z",
+  "uri": "https://pleiades.stoa.org/places/441559175",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-15T05:02:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-15T16:32:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-15T16:31:53Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-15T17:17:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-15T17:17:08Z"
+    }
+  ]
+}

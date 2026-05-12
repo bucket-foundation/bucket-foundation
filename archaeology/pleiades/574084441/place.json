@@ -1,0 +1,281 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.1301861,
+          36.6060013
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Fort-2, Acropolis; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/574084441/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u03a0\u03b1\u03bb\u03b1\u03b9\u03cc\u03ba\u03b1\u03c3\u03c4\u03c1\u03bf"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5766323754",
+          "citationDetail": "Node 5766323754",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5766323754",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+      ],
+      "end": -30,
+      "title": "OSM location of \u03a0\u03b1\u03bb\u03b1\u03b9\u03cc\u03ba\u03b1\u03c3\u03c4\u03c1\u03bf",
+      "provenance": "OpenStreetMap (Node 5766323754, version 1, osm:changeset=60807749, 2018-07-17T16:58:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2",
+        "acropolis"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-06-02T04:26:42Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.1301861,
+          36.6060013
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/574084441/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-21T15:19:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-20T19:07:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-20T18:24:39Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-02T04:27:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-02T04:26:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-02T04:26:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-19T19:29:43Z",
+      "associationCertainty": "certain",
+      "title": "Nisyros (settlement)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/574084441/1831596857",
+      "connectionType": "at",
+      "id": "1831596857",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T19:29:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T19:29:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T19:29:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599829",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Economakis 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/74ZCWZCI",
+      "formattedCitation": "<div class=\"csl-entry\">Economakis, Richard, and Cornelis de Vries. <i>Nisyros: History and Architecture of an Aegean Island</i>. M Library of Art. Athens: Melissa Publishing House, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Curuni 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZVIE7ELQ",
+      "formattedCitation": "<div class=\"csl-entry\">Curuni, Spiridione Alessandro. \u201cLe mura poligonali (megalitiche): i casi del Pale\u00f2castro di Nisyros (Grecia) e dell\u2019Acropoli di Butrinto (Albania).\u201d In <i>Quarto Seminario internazionale di studi sulle mura poligonali</i>, 9\u201319. Roma: Aracna, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "574084441",
+  "subject": [
+    "megalithic",
+    "polygonal masonry"
+  ],
+  "title": "Paleokastro, Nisyros",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The classical and Hellenistic period acropolis of the island of Nisyros dates from the sixth to the fourth century BCE.",
+  "reprPoint": [
+    27.1301861,
+    36.6060013
+  ],
+  "placeTypes": [
+    "fort-2",
+    "acropolis"
+  ],
+  "bbox": [
+    27.1301861,
+    36.6060013,
+    27.1301861,
+    36.6060013
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599829"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-19T19:29:42Z",
+  "uri": "https://pleiades.stoa.org/places/574084441",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-21T15:19:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-20T19:07:19Z"
+    },
+    {
+      "comment": "references x 2",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-20T19:07:10Z"
+    },
+    {
+      "comment": "title, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-20T18:24:11Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-19T19:29:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-19T19:29:42Z"
+    }
+  ]
+}

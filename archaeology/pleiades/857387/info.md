@@ -1,0 +1,14 @@
+# Zydreitai
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/857387
+- **ID**: 857387
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Zydreitai
+
+## Description
+
+An ancient place, cited: BAtlas 87 G3 Zydreitai

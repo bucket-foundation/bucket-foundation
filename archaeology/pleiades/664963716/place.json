@@ -1,0 +1,354 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.8310661,
+            42.0383515
+          ],
+          [
+            11.8313343,
+            42.038242
+          ],
+          [
+            11.8311719,
+            42.0379981
+          ],
+          [
+            11.8311344,
+            42.0379593
+          ],
+          [
+            11.8310821,
+            42.0379334
+          ],
+          [
+            11.831015,
+            42.0379294
+          ],
+          [
+            11.8309547,
+            42.0379424
+          ],
+          [
+            11.8309051,
+            42.0379633
+          ],
+          [
+            11.8308796,
+            42.0379832
+          ],
+          [
+            11.8308675,
+            42.0380061
+          ],
+          [
+            11.8308581,
+            42.038029
+          ],
+          [
+            11.8308608,
+            42.0380559
+          ],
+          [
+            11.8308782,
+            42.0381057
+          ],
+          [
+            11.8310661,
+            42.0383515
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-peschiera-di-castrum-novum",
+      "properties": {
+        "snippet": "Fishpond; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/664963716/osm-location-of-peschiera-di-castrum-novum",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Peschiera di Castrum Novum"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/271886593",
+          "citationDetail": "Way 271886593",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=271886593",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-peschiera-di-castrum-novum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fishpond"
+      ],
+      "end": 300,
+      "title": "OSM location of Peschiera di Castrum Novum",
+      "provenance": "OpenStreetMap (Way 271886593, version 2, osm:changeset=26960837, 2014-11-22T21:17:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fishpond"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fishpond"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-05-11T13:11:35Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.8310661,
+            42.0383515
+          ],
+          [
+            11.8313343,
+            42.038242
+          ],
+          [
+            11.8311719,
+            42.0379981
+          ],
+          [
+            11.8311344,
+            42.0379593
+          ],
+          [
+            11.8310821,
+            42.0379334
+          ],
+          [
+            11.831015,
+            42.0379294
+          ],
+          [
+            11.8309547,
+            42.0379424
+          ],
+          [
+            11.8309051,
+            42.0379633
+          ],
+          [
+            11.8308796,
+            42.0379832
+          ],
+          [
+            11.8308675,
+            42.0380061
+          ],
+          [
+            11.8308581,
+            42.038029
+          ],
+          [
+            11.8308608,
+            42.0380559
+          ],
+          [
+            11.8308782,
+            42.0381057
+          ],
+          [
+            11.8310661,
+            42.0383515
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/664963716/osm-location-of-peschiera-di-castrum-novum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-26T15:58:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T14:46:50Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T13:12:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T13:11:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T13:11:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-11T13:12:22Z",
+      "associationCertainty": "certain",
+      "title": "Castrum Novum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/664963716/7424996294",
+      "connectionType": "at",
+      "id": "7424996294",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T13:12:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T13:12:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T13:12:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432772",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Castrum_Novum",
+      "citationDetail": "Castrum Novum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "664963716",
+  "subject": [],
+  "title": "Peschiera di Castrum Novum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fishpond"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Artificial fishponds of the Roman period at Castrum Novum.",
+  "reprPoint": [
+    11.831085813571486,
+    42.03813432239725
+  ],
+  "placeTypes": [
+    "fishpond"
+  ],
+  "bbox": [
+    11.8308581,
+    42.0379294,
+    11.8313343,
+    42.0383515
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432772"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-11T13:12:20Z",
+  "uri": "https://pleiades.stoa.org/places/664963716",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-26T15:58:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-26T14:46:49Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-26T14:46:42Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-11T13:12:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-11T13:12:20Z"
+    }
+  ]
+}

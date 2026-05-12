@@ -1,0 +1,403 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.991947,
+          32.834993
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Ruin; AD 500 - AD 599",
+        "link": "https://pleiades.stoa.org/places/375256/imagery-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "sixth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ruin"
+      ],
+      "end": 599,
+      "title": "Imagery Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ruin"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "ruin"
+      ],
+      "description": "",
+      "created": "2025-02-12T22:02:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.991947,
+          32.834993
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/375256/imagery-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T16:46:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T22:02:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T22:02:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T22:02:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "38 D1 20",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "377, 386",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stucchi 1975",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MK6NMMWU",
+      "formattedCitation": "<div class=\"csl-entry\">Stucchi, Sandro. <i>Architettura Cirenaica</i>. Monografie Di Archeologia Libica 9. Roma: L\u2019Erma di Bretschneider, 1975.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/libyan-studies/article/gis-of-the-chora-of-cyrene-fortifications-and-christian-buildings-in-late-antiquity/B1617D7C73A2A4C6BC7A922D89AD96C5",
+      "citationDetail": "pages 33 (figure 1), 40, 47, 48 (figure 15), 54, 56-57",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Abdalrahim Sheriff Saad 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WIHLZA8K",
+      "formattedCitation": "<div class=\"csl-entry\">Saad, A. Abdalrahim Sheriff, S. Farag Abdel Hati, Sonia Antonelli, Oliva Menozzi, Veronica Petraccia, and Maria Carla Somma. \u201cGIS of the Chora of Cyrene: Fortifications and Christian Buildings in Late Antiquity.\u201d <i>Libyan Studies</i> 47 (November 2016): 31\u201366. https://doi.org/10.1017/lis.2016.7.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "pages 110, 119-124, 135, 155, 157, 290",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Menozzi 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AWFTNV2",
+      "formattedCitation": "<div class=\"csl-entry\">MENOZZI, OLIVA. <i>Archaeological Mission of Chieti University in Libya Reports 2006-2008.</i> S.l: ARCHAEOPRESS, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "BAtlas 38 D1 20",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "38 D1 20",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-38-d1-20",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-02-12T21:03:28Z",
+      "uri": "https://pleiades.stoa.org/places/375256/batlas-38-d1-20",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "BAtlas 38 D1 20",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T16:46:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T22:03:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T21:03:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T21:03:28Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Berteleis",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/libyan-studies/article/gis-of-the-chora-of-cyrene-fortifications-and-christian-buildings-in-late-antiquity/B1617D7C73A2A4C6BC7A922D89AD96C5",
+          "citationDetail": "page 33",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Abdalrahim Sheriff Saad 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WIHLZA8K",
+          "formattedCitation": "<div class=\"csl-entry\">Saad, A. Abdalrahim Sheriff, S. Farag Abdel Hati, Sonia Antonelli, Oliva Menozzi, Veronica Petraccia, and Maria Carla Somma. \u201cGIS of the Chora of Cyrene: Fortifications and Christian Buildings in Late Antiquity.\u201d <i>Libyan Studies</i> 47 (November 2016): 31\u201366. https://doi.org/10.1017/lis.2016.7.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "berteleis",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-02-12T21:37:12Z",
+      "uri": "https://pleiades.stoa.org/places/375256/berteleis",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Berteleis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-14T16:46:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T22:03:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T21:37:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-12T21:37:12Z"
+        }
+      ]
+    }
+  ],
+  "id": "375256",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=church"
+  ],
+  "title": "Bertelles",
+  "provenance": "Barrington Atlas: BAtlas 38 D1 20",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+    "https://pleiades.stoa.org/vocabularies/place-types/ruin"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Bertelles</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A \"fortified basilica\" in Cyrenaica, probably dating to the 6th century CE and associated with nearby farmsteads and tombs, the latter dating to the Roman period, but reused in late antiquity.",
+  "reprPoint": [
+    21.991947,
+    32.834993
+  ],
+  "placeTypes": [
+    "church-2",
+    "basilica",
+    "ruin"
+  ],
+  "bbox": [
+    21.991947,
+    32.834993,
+    21.991947,
+    32.834993
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-12T20:50:06Z",
+  "uri": "https://pleiades.stoa.org/places/375256",
+  "creators": [
+    {
+      "username": null,
+      "name": "D.J. Mattingly"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title; cleaned up references; summary; place type = basilica + church; added Abdalrahim Sheriff Saad 2016; added Menozzi 2020; added alternate modern name @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T16:46:07Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-12T20:50:06Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:28:17Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:31:07Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:35:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-08T14:38:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-08T14:36:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-08T14:20:52Z"
+    }
+  ]
+}

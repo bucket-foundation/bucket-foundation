@@ -1,0 +1,275 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2026-04-24T02:21:30Z",
+      "associationCertainty": "less-certain",
+      "title": "Sanctuary of Metaneira",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/623023668/sanctuary-of-metaneira",
+      "connectionType": "route_next",
+      "id": "sanctuary-of-metaneira",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-27T18:15:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-27T06:04:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-24T02:21:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-24T02:21:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/160459928",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.39.2",
+          "citationDetail": "1.39.2",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/route_next"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-04-24T02:24:46Z",
+      "associationCertainty": "certain",
+      "title": "Eleusis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/623023668/eleusis",
+      "connectionType": "at",
+      "id": "eleusis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-27T18:15:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-27T06:04:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-24T02:24:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-24T02:24:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579920",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/10185099",
+      "citationDetail": "10185099: the Tombs of the Seven against Thebes (Eleusis)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q124644607",
+      "citationDetail": "Tombs of the Seven against Thebes, at road from Eleusis to Megara (Q124644607)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.39.2",
+      "citationDetail": "1.39.2",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0007.tlg001.perseus-grc1:29.5",
+      "citationDetail": "Thes. 29.5",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Plut. (Perrin 1914; Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/24DPWZ8V",
+      "formattedCitation": "<div class=\"csl-entry\">Plutarch. <i>Plutarch\u2019s Lives</i>. Edited by Bernadotte Perrin. 11 vols. London; New York: W. Heinemann\u202f; Macmillan, 1914. http://data.perseus.org/texts/urn:cts:greekLit:tlg0007.tlg031.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [],
+  "id": "623023668",
+  "subject": [],
+  "title": "Tomb of the Seven against Thebes at Eleusis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "According to Pausanias, the Seven against Thebes were buried at Eleusis, at the road to Megara, after the sanctuary of Metaneira. The location of this monument is unknown today.",
+  "reprPoint": [
+    23.537401,
+    38.041101
+  ],
+  "placeTypes": [
+    "unlocated",
+    "tomb"
+  ],
+  "bbox": [
+    23.537401,
+    38.041101,
+    23.537401,
+    38.041101
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/160459928",
+    "https://pleiades.stoa.org/places/579920"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-04-24T02:19:00Z",
+  "uri": "https://pleiades.stoa.org/places/623023668",
+  "creators": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "correct wikidata access uri",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-27T19:16:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-27T18:15:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-27T18:15:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-27T18:15:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-27T06:04:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-24T02:23:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-24T02:19:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-24T02:19:02Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-24T02:19:00Z"
+    }
+  ]
+}

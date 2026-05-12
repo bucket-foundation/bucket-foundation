@@ -1,0 +1,339 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5354181,
+          31.2539283
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bab-edh-dhra",
+      "properties": {
+        "snippet": "Settlement; 3300 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/772038890/osm-location-of-bab-edh-dhra",
+        "description": "Point representing the location of Bab edh-Dhra', derived from an Open Street Map node.",
+        "location_precision": "precise",
+        "title": "OSM location of Bab edh-Dhra'"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3637064328",
+          "citationDetail": "Node 3637064328",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3637064328",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bab-edh-dhra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of Bab edh-Dhra'",
+      "provenance": "OpenStreetMap (Node 3637064328, version 1, osm:changeset=32446830, 2015-07-06T12:07:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point representing the location of Bab edh-Dhra', derived from an Open Street Map node.",
+      "created": "2017-06-23T17:51:16Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5354181,
+          31.2539283
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/772038890/osm-location-of-bab-edh-dhra",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-23T18:40:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-06-23T17:59:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-06-23T17:53:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2017-06-23T17:51:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-06-23T17:51:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2307/i290739",
+      "citationDetail": "1-60",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Freedman 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UR27VH2Z",
+      "formattedCitation": "<div class=\"csl-entry\">Freedman, David Noel, and American Schools of Oriental Research. <i>Preliminary Excavation Reports: B\u00e2b Edh-Dhr\u00e2, Sardis, Meiron, Tell El-Hesi, Carthage (Punic)</i>. Annual of the American Schools of Oriental Research 43. Cambridge, MA: American Schools of Oriental Research, 1978. https://www.jstor.org/stable/10.2307/i290739.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Bab_edh-Dhra",
+      "citationDetail": "Bab edh-Dhra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Bab edh-Dhra.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vm.arts.unimelb.edu.au/report/babedhra.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Bab edh-Dhra'",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/163191992",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rast 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KMF46B47",
+      "formattedCitation": "<div class=\"csl-entry\">Rast, Walter E, R. Thomas Schaub, and Jordan Expedition to the Dead Sea Plain. <i>B\u00e2b Edh-Dhr\u00e2\u02bb: Excavations at the Town Site\u202f: (1975-1981) 1 1</i>. Winona Lake, Ind.: Eisenbrauns, 2003. http://www.worldcat.org/oclc/163191992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bab adh-Dhra', Bab edh-Dhra', Bab al-Dhra', Ba\u0304b edh-Dhra\u0304\u02bb Ba\u0304b adh-Dhra\u0304\u02bb, Ba\u0304b al-Dhra\u0304\u02bb ",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Bab_edh-Dhra",
+          "citationDetail": "Bab edh-Dhra",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Bab edh-Dhra.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2307/i290739",
+          "citationDetail": "pages 1-60",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Freedman 1978",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UR27VH2Z",
+          "formattedCitation": "<div class=\"csl-entry\">Freedman, David Noel, and American Schools of Oriental Research. <i>Preliminary Excavation Reports: B\u00e2b Edh-Dhr\u00e2, Sardis, Meiron, Tell El-Hesi, Carthage (Punic)</i>. Annual of the American Schools of Oriental Research 43. Cambridge, MA: American Schools of Oriental Research, 1978. https://www.jstor.org/stable/10.2307/i290739.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "bab-adh-dhra",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2017-06-23T17:58:55Z",
+      "uri": "https://pleiades.stoa.org/places/772038890/bab-adh-dhra",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0628\u0627\u0628 \u0627\u0644\u0630\u0631\u0627\u0639",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-23T18:40:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-23T18:39:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-06-23T17:59:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-06-23T17:58:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-06-23T17:58:55Z"
+        }
+      ]
+    }
+  ],
+  "id": "772038890",
+  "subject": [],
+  "title": "Bab adh-Dhra'",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An early Bronze Age settlement near the Dead Sea inhabited from approximately 3150-2150 BCE.",
+  "reprPoint": [
+    35.5354181,
+    31.2539283
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    35.5354181,
+    31.2539283,
+    35.5354181,
+    31.2539283
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-06-23T17:50:39Z",
+  "uri": "https://pleiades.stoa.org/places/772038890",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-23T18:40:02Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-23T18:38:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2017-06-23T17:59:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2017-06-23T17:54:13Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2017-06-23T17:50:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2017-06-23T17:50:39Z"
+    }
+  ]
+}

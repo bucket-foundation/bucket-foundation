@@ -1,0 +1,374 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.65514791212,
+          50.2230699504
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-the-archaeological-site",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/597847356/location-of-the-archaeological-site",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Location of the archaeological site"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "location-of-the-archaeological-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 640,
+      "title": "Location of the archaeological site",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2011",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2012-01-12T11:47:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.65514791212,
+          50.2230699504
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/597847356/location-of-the-archaeological-site",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:54:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-01-12T13:59:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T11:56:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T11:48:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T11:47:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T11:47:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.roscheiderhof.de/kulturdb/client/einObjekt.php?id=12496",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Datenbank der Kulturg\u00fcter in der Region Trier",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sarabodis villa",
+      "attestations": [
+        {
+          "timePeriod": "early-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.wulfila.be/tw/query/?lemma=13934",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Gysseling (1960), Toponymisch Woordenboek",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.mgh.de/dmgh/diplomata/resolving/D_Kar._1_16",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Cartulary of Pr\u00fcm (liber aureus) f. 2, 10th century",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "sarabodis-villa",
+      "end": 850,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 650,
+      "details": "\r\n<p>King Pippin gives possessions in Sarresdorf to the monastery Pr\u00fcm (762)</p>\r\n",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2012-01-12T11:55:34Z",
+      "uri": "https://pleiades.stoa.org/places/597847356/sarabodis-villa",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "attested": "Sarabodis uilla",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:54:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-01-12T13:59:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T11:56:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T11:55:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T11:55:35Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sarresdorf",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Gerolstein",
+          "citationDetail": "Gerolstein",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Gerolstein.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "sarresdorf",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Sarresdorf, Gemeinde Gerolstein, Rheinland-Pfalz",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2012-01-12T12:01:49Z",
+      "uri": "https://pleiades.stoa.org/places/597847356/sarresdorf",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "attested": "Sarresdorf",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:54:05Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-01-12T13:59:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T12:02:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T12:01:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jahlfeldt",
+          "modified": "2012-01-12T12:01:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "597847356",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=villa"
+  ],
+  "title": "Sarresdorf",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/estate"
+  ],
+  "details": "\r\n<p>Remains of a Roman <em>villa rustica</em> discovered 1908</p>\r\n",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Roman villa rustica",
+  "reprPoint": [
+    6.65514791212,
+    50.2230699504
+  ],
+  "placeTypes": [
+    "villa",
+    "estate"
+  ],
+  "bbox": [
+    6.65514791212,
+    50.2230699504,
+    6.65514791212,
+    50.2230699504
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2012-01-12T11:44:53Z",
+  "uri": "https://pleiades.stoa.org/places/597847356",
+  "creators": [
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:26:08Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:54:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2012-01-12T13:59:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jahlfeldt",
+      "modified": "2012-01-12T12:05:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jahlfeldt",
+      "modified": "2012-01-12T11:44:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jahlfeldt",
+      "modified": "2012-01-12T11:44:53Z"
+    }
+  ]
+}

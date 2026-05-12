@@ -1,0 +1,701 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.7001814,
+            35.0339639
+          ],
+          [
+            25.7003096,
+            35.0332145
+          ],
+          [
+            25.7005671,
+            35.0327402
+          ],
+          [
+            25.7010821,
+            35.0323888
+          ],
+          [
+            25.7011036,
+            35.0319495
+          ],
+          [
+            25.7010821,
+            35.0313521
+          ],
+          [
+            25.7004169,
+            35.0306669
+          ],
+          [
+            25.6999019,
+            35.0298235
+          ],
+          [
+            25.6994084,
+            35.0291206
+          ],
+          [
+            25.699387,
+            35.0285584
+          ],
+          [
+            25.6991724,
+            35.0280312
+          ],
+          [
+            25.6985072,
+            35.027592
+          ],
+          [
+            25.6981424,
+            35.0271878
+          ],
+          [
+            25.6981424,
+            35.026764
+          ],
+          [
+            25.6977133,
+            35.0260963
+          ],
+          [
+            25.6978206,
+            35.025288
+          ],
+          [
+            25.6983999,
+            35.0245676
+          ],
+          [
+            25.6984643,
+            35.0237769
+          ],
+          [
+            25.6986145,
+            35.0229158
+          ],
+          [
+            25.6986343,
+            35.0224248
+          ],
+          [
+            25.6985501,
+            35.0221426
+          ],
+          [
+            25.6981639,
+            35.0210707
+          ],
+          [
+            25.6979064,
+            35.020526
+          ],
+          [
+            25.6980137,
+            35.0195946
+          ],
+          [
+            25.6978849,
+            35.0191729
+          ],
+          [
+            25.697327,
+            35.0185754
+          ],
+          [
+            25.6970481,
+            35.0182766
+          ],
+          [
+            25.6971768,
+            35.0180658
+          ],
+          [
+            25.6974987,
+            35.0176264
+          ],
+          [
+            25.6976703,
+            35.0170465
+          ],
+          [
+            25.6972841,
+            35.0165369
+          ],
+          [
+            25.6968764,
+            35.0162733
+          ],
+          [
+            25.6970052,
+            35.0157636
+          ],
+          [
+            25.6965975,
+            35.015131
+          ],
+          [
+            25.6961469,
+            35.0148146
+          ],
+          [
+            25.6961027,
+            35.0140495
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "River; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/589801/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/825930171",
+          "citationDetail": "Way 825930171",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=825930171",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "end": 2099,
+      "title": "OSM Location",
+      "provenance": "OpenStreetMap (Way 825930171, version 5, osm:changeset=98307987, 2021-01-28T16:18:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "river"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-08-14T12:52:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.7001814,
+            35.0339639
+          ],
+          [
+            25.7003096,
+            35.0332145
+          ],
+          [
+            25.7005671,
+            35.0327402
+          ],
+          [
+            25.7010821,
+            35.0323888
+          ],
+          [
+            25.7011036,
+            35.0319495
+          ],
+          [
+            25.7010821,
+            35.0313521
+          ],
+          [
+            25.7004169,
+            35.0306669
+          ],
+          [
+            25.6999019,
+            35.0298235
+          ],
+          [
+            25.6994084,
+            35.0291206
+          ],
+          [
+            25.699387,
+            35.0285584
+          ],
+          [
+            25.6991724,
+            35.0280312
+          ],
+          [
+            25.6985072,
+            35.027592
+          ],
+          [
+            25.6981424,
+            35.0271878
+          ],
+          [
+            25.6981424,
+            35.026764
+          ],
+          [
+            25.6977133,
+            35.0260963
+          ],
+          [
+            25.6978206,
+            35.025288
+          ],
+          [
+            25.6983999,
+            35.0245676
+          ],
+          [
+            25.6984643,
+            35.0237769
+          ],
+          [
+            25.6986145,
+            35.0229158
+          ],
+          [
+            25.6986343,
+            35.0224248
+          ],
+          [
+            25.6985501,
+            35.0221426
+          ],
+          [
+            25.6981639,
+            35.0210707
+          ],
+          [
+            25.6979064,
+            35.020526
+          ],
+          [
+            25.6980137,
+            35.0195946
+          ],
+          [
+            25.6978849,
+            35.0191729
+          ],
+          [
+            25.697327,
+            35.0185754
+          ],
+          [
+            25.6970481,
+            35.0182766
+          ],
+          [
+            25.6971768,
+            35.0180658
+          ],
+          [
+            25.6974987,
+            35.0176264
+          ],
+          [
+            25.6976703,
+            35.0170465
+          ],
+          [
+            25.6972841,
+            35.0165369
+          ],
+          [
+            25.6968764,
+            35.0162733
+          ],
+          [
+            25.6970052,
+            35.0157636
+          ],
+          [
+            25.6965975,
+            35.015131
+          ],
+          [
+            25.6961469,
+            35.0148146
+          ],
+          [
+            25.6961027,
+            35.0140495
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/589801/osm-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-15T22:10:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-14T13:22:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-14T13:22:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-14T12:54:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-14T12:52:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-14T12:52:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "60 E2 Hellen? fl.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "109",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Faure 1967",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/25AJIPSD",
+      "formattedCitation": "<div class=\"csl-entry\">Faure, P. \u201cAux Fronti\u00e8res de l\u2019Etat de Lato:\u00a0 50 Toponymes.\u201d In <i>Europa; Studien Zur Geschichte Und Epigraphik Fr\u00fchen Aegaeis: Festschrift F\u00fcr Ernst Grumach</i>, edited by William Charles Brice, 94\u2013112. Berlin: De Gruyter, 1967.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "49",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Faure 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6N8GF38M",
+      "formattedCitation": "<div class=\"csl-entry\">P. Faure. \u201cHydronymes Cr\u00e9toises.\u201d <i>Kretologia</i> 16 (1984): 30\u201361.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Petritses",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 49 see \"\u03c4\u1fc6\u03c2 \u0393\u03c1\u03b1 \u039b\u03c5\u03b3\u03b9\u03b1\u03c2 \u03c0\u03bf\u03c4\u03b1\u03bc\u03cc\u03c2\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Faure 1984",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6N8GF38M",
+          "formattedCitation": "<div class=\"csl-entry\">P. Faure. \u201cHydronymes Cr\u00e9toises.\u201d <i>Kretologia</i> 16 (1984): 30\u201361.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "petritses",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2022-08-15T17:19:47Z",
+      "uri": "https://pleiades.stoa.org/places/589801/petritses",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u03a0\u03b5\u03c4\u03c1\u03af\u03c4\u03c3\u03b7\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-15T22:11:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-15T17:19:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-15T17:19:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-15T17:19:47Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hellen",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "hellen",
+      "end": -30,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 60 E2 Hellen? fl.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2022-08-14T13:22:52Z",
+      "uri": "https://pleiades.stoa.org/places/589801/hellen",
+      "creators": [
+        {
+          "username": null,
+          "name": "J. Bennet"
+        },
+        {
+          "username": null,
+          "name": "G. Reger"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "certain; Greek",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-15T22:11:10Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:48:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-22T20:04:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-22T19:58:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-22T19:19:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "589801",
+  "subject": [],
+  "title": "Hellen (river)",
+  "provenance": "Barrington Atlas: BAtlas 60 E2 Hellen? fl.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/river"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Petritsi/Gra Lygia</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient river of southeast Crete, possibly to be identified with a modern stream that empties into the Libyan Sea just east of the modern village of Gra Lygia in the Ierapetra municipal region.",
+  "reprPoint": [
+    25.69852165789575,
+    35.02400800651216
+  ],
+  "placeTypes": [
+    "river"
+  ],
+  "bbox": [
+    25.6961027,
+    35.0140495,
+    25.7011036,
+    35.0339639
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-14T12:47:47Z",
+  "uri": "https://pleiades.stoa.org/places/589801",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Bennet"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title; summary; cleaned up references; added associated modern (less certain) location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-15T22:10:30Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-06T23:35:57Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:48:22Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:33:51Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-22T20:04:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:58:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:19:51Z"
+    }
+  ]
+}

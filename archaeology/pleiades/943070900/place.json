@@ -1,0 +1,215 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.1786028,
+          35.3487777
+        ]
+      },
+      "type": "Feature",
+      "id": "sotira",
+      "properties": {
+        "snippet": "Cemetery; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/943070900/sotira",
+        "description": "Point representing the location of the Sotira site, derived from an Open Street Map node after Webb 2024.",
+        "location_precision": "precise",
+        "title": "Sotira"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/13184459669",
+          "citationDetail": "Node 13184459669",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=13184459669",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://worldcat.org/oclc/1468160997",
+          "citationDetail": "pages 2-5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Webb 2024",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GV9Z59KY",
+          "formattedCitation": "<div class=\"csl-entry\">Webb, Jennifer M. <i>Lapithos Sotira, Cyprus: Early and Middle Bronze Age Tombs Excavated in 1968/69</i>. Studies in Mediterranean Archaeology, v. 157. Nicosia: Astrom Editions, 2024. http://worldcat.org/oclc/1468160997.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sotira",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1000,
+      "title": "Sotira",
+      "provenance": "OpenStreetMap (Node 13184459669, version 1, osm:changeset=172669519, 2025-09-30T16:44:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point representing the location of the Sotira site, derived from an Open Street Map node after Webb 2024.",
+      "created": "2025-09-30T16:45:14Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.1786028,
+          35.3487777
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/943070900/sotira",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-01T16:38:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T16:47:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T16:47:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T16:47:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T16:45:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T16:45:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://worldcat.org/oclc/1468160997",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Webb 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GV9Z59KY",
+      "formattedCitation": "<div class=\"csl-entry\">Webb, Jennifer M. <i>Lapithos Sotira, Cyprus: Early and Middle Bronze Age Tombs Excavated in 1968/69</i>. Studies in Mediterranean Archaeology, v. 157. Nicosia: Astrom Editions, 2024. http://worldcat.org/oclc/1468160997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "943070900",
+  "subject": [],
+  "title": "Sotira",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Site approximately 1 km north of the modern village of Lapithos, northern Cyprus, containing several burials from the Early and Middle Bronze Age.",
+  "reprPoint": [
+    33.1786028,
+    35.3487777
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    33.1786028,
+    35.3487777,
+    33.1786028,
+    35.3487777
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-30T16:43:40Z",
+  "uri": "https://pleiades.stoa.org/places/943070900",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-10-01T16:38:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-30T16:47:59Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-30T16:43:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-30T16:43:40Z"
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.2049616,
+            35.9366414
+          ],
+          [
+            38.2052266,
+            35.9364568
+          ],
+          [
+            38.2053437,
+            35.9364468
+          ],
+          [
+            38.2064775,
+            35.9374696
+          ],
+          [
+            38.2064529,
+            35.9379386
+          ],
+          [
+            38.206724,
+            35.9380933
+          ],
+          [
+            38.2067055,
+            35.9383228
+          ],
+          [
+            38.2057935,
+            35.9388317
+          ],
+          [
+            38.2053745,
+            35.938672
+          ],
+          [
+            38.2053745,
+            35.9385523
+          ],
+          [
+            38.2049062,
+            35.938213
+          ],
+          [
+            38.2046535,
+            35.9377041
+          ],
+          [
+            38.2047521,
+            35.9372102
+          ],
+          [
+            38.2049616,
+            35.9366414
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "tell-faqous",
+      "properties": {
+        "snippet": "Unknown; 1344 BC - 1212 BC",
+        "link": "https://pleiades.stoa.org/places/753895540/tell-faqous",
+        "description": "Polygon representing the extent of the Tell Faq'ous site, derived from an OpenStreetMap Way after Margueron 1982 and 2022.",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Faq'ous"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "egyptian-hittite-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/egyptian-hittite-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1148905716",
+          "citationDetail": "Way 1148905716",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1148905716",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1354328519",
+          "citationDetail": "pages 18-23",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Margueron 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KH74MD2D",
+          "formattedCitation": "<div class=\"csl-entry\">Margueron, Jean, and B\u00e9atrice Muller, eds. <i>Recherches au pays d\u2019A\u0161tata: Emar III, le mat\u00e9riel de Tell Mesk\u00e9n\u00e9 et de Tell Faq\u2019ous</i>. 2 vols. Biblioth\u00e8que arch\u00e9ologique et historique. Beyrouth: Presses de l\u2019Ifpo, 2022. https://www.worldcat.org/oclc/1354328519.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/744704236",
+          "citationDetail": "page 48",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Margueron 1982",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N8FTIGRV",
+          "formattedCitation": "<div class=\"csl-entry\">Margueron, Jean. \u201cAux marches de l\u2019empire hittite: un campagne de fouile \u00e0 tell Faq\u2019ous (Syrie), citadelle du pays d\u2019Astata.\u201d In <i>La Syrie au bronze r\u00e9cent: recueil publi\u00e9 \u00e0 l\u2019occasion du cinquantenaire de la d\u00e9couverte d\u2019Ougarit-Ras Shamra\u202f: extraits de la XXVIIe Rencontre assyriologique internationale, Paris, juillet 1980\u202f: protohistoire du Levant</i>, 47\u201366. M\u00e9moire (\u00c9ditions Recherche sur les civilisations) 15. Paris: \u00c9ditions Recherche sur les civilisations, 1982. https://www.worldcat.org/oclc/744704236.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tell-faqous",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": -1212,
+      "title": "OSM location of Tell Faq'ous",
+      "provenance": "OpenStreetMap (Way 1148905716, version 1, osm:changeset=132936718, 2023-02-23T17:27:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1344,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Polygon representing the extent of the Tell Faq'ous site, derived from an OpenStreetMap Way after Margueron 1982 and 2022.",
+      "created": "2023-02-23T17:39:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.2049616,
+            35.9366414
+          ],
+          [
+            38.2052266,
+            35.9364568
+          ],
+          [
+            38.2053437,
+            35.9364468
+          ],
+          [
+            38.2064775,
+            35.9374696
+          ],
+          [
+            38.2064529,
+            35.9379386
+          ],
+          [
+            38.206724,
+            35.9380933
+          ],
+          [
+            38.2067055,
+            35.9383228
+          ],
+          [
+            38.2057935,
+            35.9388317
+          ],
+          [
+            38.2053745,
+            35.938672
+          ],
+          [
+            38.2053745,
+            35.9385523
+          ],
+          [
+            38.2049062,
+            35.938213
+          ],
+          [
+            38.2046535,
+            35.9377041
+          ],
+          [
+            38.2047521,
+            35.9372102
+          ],
+          [
+            38.2049616,
+            35.9366414
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/753895540/tell-faqous",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-23T20:52:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-02-23T17:44:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2023-02-23T17:43:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-02-23T17:41:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2023-02-23T17:39:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-02-23T17:39:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1212,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-23T17:43:39Z",
+      "associationCertainty": "certain",
+      "title": "Euphrates (river)",
+      "start": -1344,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/753895540/euphrates-river",
+      "connectionType": "on",
+      "id": "euphrates-river",
+      "attestations": [
+        {
+          "timePeriod": "egyptian-hittite-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/egyptian-hittite-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-23T20:52:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-02-23T17:44:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-02-23T17:43:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-02-23T17:43:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912849",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/744704236",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Margueron 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N8FTIGRV",
+      "formattedCitation": "<div class=\"csl-entry\">Margueron, Jean. \u201cAux marches de l\u2019empire hittite: un campagne de fouile \u00e0 tell Faq\u2019ous (Syrie), citadelle du pays d\u2019Astata.\u201d In <i>La Syrie au bronze r\u00e9cent: recueil publi\u00e9 \u00e0 l\u2019occasion du cinquantenaire de la d\u00e9couverte d\u2019Ougarit-Ras Shamra\u202f: extraits de la XXVIIe Rencontre assyriologique internationale, Paris, juillet 1980\u202f: protohistoire du Levant</i>, 47\u201366. M\u00e9moire (\u00c9ditions Recherche sur les civilisations) 15. Paris: \u00c9ditions Recherche sur les civilisations, 1982. https://www.worldcat.org/oclc/744704236.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1354328519",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Margueron 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KH74MD2D",
+      "formattedCitation": "<div class=\"csl-entry\">Margueron, Jean, and B\u00e9atrice Muller, eds. <i>Recherches au pays d\u2019A\u0161tata: Emar III, le mat\u00e9riel de Tell Mesk\u00e9n\u00e9 et de Tell Faq\u2019ous</i>. 2 vols. Biblioth\u00e8que arch\u00e9ologique et historique. Beyrouth: Presses de l\u2019Ifpo, 2022. https://www.worldcat.org/oclc/1354328519.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "753895540",
+  "subject": [],
+  "title": "Tell Faq'ous",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/citadel"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Citadel on the modern banks of Lake Assad in Syria located near the Emar site and containing remains dated to the late Bronze Age.",
+  "reprPoint": [
+    38.20563729789053,
+    35.93770197560969
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "citadel"
+  ],
+  "bbox": [
+    38.2046535,
+    35.9364468,
+    38.206724,
+    35.9388317
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912849"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-23T17:39:19Z",
+  "uri": "https://pleiades.stoa.org/places/753895540",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-23T20:52:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2023-02-23T17:44:14Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2023-02-23T17:39:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2023-02-23T17:39:19Z"
+    }
+  ]
+}

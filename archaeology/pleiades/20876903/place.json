@@ -1,0 +1,544 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              -3.2961387,
+              51.3906774
+            ],
+            [
+              -3.2964531,
+              51.3904337
+            ],
+            [
+              -3.2964215,
+              51.3904197
+            ],
+            [
+              -3.2960463,
+              51.3902526
+            ],
+            [
+              -3.2958248,
+              51.3903748
+            ],
+            [
+              -3.2958133,
+              51.3903687
+            ],
+            [
+              -3.2956922,
+              51.3904229
+            ],
+            [
+              -3.2956015,
+              51.3904427
+            ],
+            [
+              -3.2956073,
+              51.3904508
+            ],
+            [
+              -3.2956103,
+              51.3904549
+            ],
+            [
+              -3.2956832,
+              51.3904401
+            ],
+            [
+              -3.2959578,
+              51.3905832
+            ],
+            [
+              -3.2961387,
+              51.3906774
+            ]
+          ],
+          [
+            [
+              -3.296105,
+              51.3905407
+            ],
+            [
+              -3.2959638,
+              51.3904681
+            ],
+            [
+              -3.2960127,
+              51.3904311
+            ],
+            [
+              -3.2961539,
+              51.3905037
+            ],
+            [
+              -3.296105,
+              51.3905407
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-cold-knap-roman-building",
+      "properties": {
+        "snippet": "Building; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/20876903/osm-location-of-cold-knap-roman-building",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Cold Knap Roman Building"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/12229835",
+          "citationDetail": "Relation 12229835",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=12229835",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-cold-knap-roman-building",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/building"
+      ],
+      "end": 410,
+      "title": "OSM location of Cold Knap Roman Building",
+      "provenance": "OpenStreetMap (Relation 12229835, version 2, osm:changeset=147095554, 2024-02-05T14:10:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/building"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "building"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-06-28T00:10:42Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              -3.2961387,
+              51.3906774
+            ],
+            [
+              -3.2964531,
+              51.3904337
+            ],
+            [
+              -3.2964215,
+              51.3904197
+            ],
+            [
+              -3.2960463,
+              51.3902526
+            ],
+            [
+              -3.2958248,
+              51.3903748
+            ],
+            [
+              -3.2958133,
+              51.3903687
+            ],
+            [
+              -3.2956922,
+              51.3904229
+            ],
+            [
+              -3.2956015,
+              51.3904427
+            ],
+            [
+              -3.2956073,
+              51.3904508
+            ],
+            [
+              -3.2956103,
+              51.3904549
+            ],
+            [
+              -3.2956832,
+              51.3904401
+            ],
+            [
+              -3.2959578,
+              51.3905832
+            ],
+            [
+              -3.2961387,
+              51.3906774
+            ]
+          ],
+          [
+            [
+              -3.296105,
+              51.3905407
+            ],
+            [
+              -3.2959638,
+              51.3904681
+            ],
+            [
+              -3.2960127,
+              51.3904311
+            ],
+            [
+              -3.2961539,
+              51.3905037
+            ],
+            [
+              -3.296105,
+              51.3905407
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/20876903/osm-location-of-cold-knap-roman-building",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full relation geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-27T17:24:22Z"
+        },
+        {
+          "comment": "Reimported full relation geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-15T13:43:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-28T14:39:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T00:13:53Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T00:11:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T00:10:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T00:10:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-28T00:07:36Z",
+      "associationCertainty": "certain",
+      "title": "Barry",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/20876903/8567421687",
+      "connectionType": "at",
+      "id": "8567421687",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T00:07:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T00:07:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T00:07:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79316",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://coflein.gov.uk/en/site/93263/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Coflein, COLD KNAP ROMAN BUILDING",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.ggat.org.uk/cadw/great_local_sites/pdf/ColdKnap_Romansite.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Great Archaeological Sites in the Vale of Glamorgan 3. COLD KNAP ROMAN SITE",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/12234/",
+      "citationDetail": "12234: Cold Knap Roman Building",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q121890897",
+      "citationDetail": "Cold Knap Roman building (Q121890897)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Cold Knap Roman building",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q121890897",
+          "citationDetail": "Cold Knap Roman building (Q121890897)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "cold-knap-roman-building",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-11-27T17:25:19Z",
+      "uri": "https://pleiades.stoa.org/places/20876903/cold-knap-roman-building",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Cold Knap Roman building",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-28T23:35:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-27T17:25:26Z"
+        },
+        {
+          "comment": "name - Cold Knap Roman building",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-27T17:25:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-27T17:25:19Z"
+        }
+      ]
+    }
+  ],
+  "id": "20876903",
+  "subject": [],
+  "title": "Cold Knap Roman Building",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building",
+    "https://pleiades.stoa.org/vocabularies/place-types/station"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A courtyard building of a non-military nature dating to the later Roman period (second to third century CE) was located on the seafront at modern Barry (Wales, United Kingdom).",
+  "reprPoint": [
+    -3.29603894292663,
+    51.390459082134186
+  ],
+  "placeTypes": [
+    "building",
+    "station"
+  ],
+  "bbox": [
+    -3.2964531,
+    51.3902526,
+    -3.2956015,
+    51.3906774
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79316"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-28T00:07:36Z",
+  "uri": "https://pleiades.stoa.org/places/20876903",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q121890897",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T03:35:03Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-27T19:55:13Z"
+    },
+    {
+      "comment": "add vici.org 12234: Cold Knap Roman Building",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-27T19:27:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-28T14:39:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-28T14:39:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T00:13:53Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T00:13:33Z"
+    },
+    {
+      "comment": "update title",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T00:07:45Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T00:07:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T00:07:36Z"
+    }
+  ]
+}

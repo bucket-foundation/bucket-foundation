@@ -1,0 +1,501 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.8565157,
+          48.1154448
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-baths",
+      "properties": {
+        "snippet": "Bath, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/949690958/location-of-roman-baths",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "location of Roman baths"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.8565181,
+            48.1154356
+          ],
+          [
+            16.8563461,
+            48.1159274
+          ],
+          [
+            16.8564249,
+            48.1159368
+          ],
+          [
+            16.8565312,
+            48.1159494
+          ],
+          [
+            16.8564849,
+            48.1161052
+          ],
+          [
+            16.8563253,
+            48.1167666
+          ],
+          [
+            16.8563237,
+            48.1167837
+          ],
+          [
+            16.8555294,
+            48.1167732
+          ],
+          [
+            16.8551823,
+            48.1167702
+          ],
+          [
+            16.8551818,
+            48.1163305
+          ],
+          [
+            16.8551787,
+            48.1162392
+          ],
+          [
+            16.8551775,
+            48.1162037
+          ],
+          [
+            16.8551781,
+            48.1161029
+          ],
+          [
+            16.8551802,
+            48.1157385
+          ],
+          [
+            16.8551817,
+            48.1154917
+          ],
+          [
+            16.8565181,
+            48.1154356
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-palastruine-rapmische-therme",
+      "properties": {
+        "snippet": "Bath",
+        "link": "https://pleiades.stoa.org/places/949690958/osm-location-of-palastruine-rapmische-therme",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Palastruine / R\u00f6mische Therme"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/326383329",
+          "citationDetail": "Node 326383329",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=326383329",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-baths",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "location of Roman baths",
+      "provenance": "OpenStreetMap (Node 326383329, version 5, osm:changeset=9762307, 2011-11-07T07:15:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-03-12T22:07:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.8565157,
+          48.1154448
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/949690958/location-of-roman-baths",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-14T08:11:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-14T03:56:52Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-12T22:08:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-12T22:07:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-12T22:07:26Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/29658648",
+          "citationDetail": "Way 29658648",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=29658648",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-palastruine-rapmische-therme",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": null,
+      "title": "OSM location of Palastruine / R\u00f6mische Therme",
+      "provenance": "OpenStreetMap (Way 29658648, version 7, osm:changeset=57087915, 2018-03-11T17:04:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-04-20T20:54:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.8565181,
+            48.1154356
+          ],
+          [
+            16.8563461,
+            48.1159274
+          ],
+          [
+            16.8564249,
+            48.1159368
+          ],
+          [
+            16.8565312,
+            48.1159494
+          ],
+          [
+            16.8564849,
+            48.1161052
+          ],
+          [
+            16.8563253,
+            48.1167666
+          ],
+          [
+            16.8563237,
+            48.1167837
+          ],
+          [
+            16.8555294,
+            48.1167732
+          ],
+          [
+            16.8551823,
+            48.1167702
+          ],
+          [
+            16.8551818,
+            48.1163305
+          ],
+          [
+            16.8551787,
+            48.1162392
+          ],
+          [
+            16.8551775,
+            48.1162037
+          ],
+          [
+            16.8551781,
+            48.1161029
+          ],
+          [
+            16.8551802,
+            48.1157385
+          ],
+          [
+            16.8551817,
+            48.1154917
+          ],
+          [
+            16.8565181,
+            48.1154356
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/949690958/osm-location-of-palastruine-rapmische-therme",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T18:10:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-08T23:54:37Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-20T20:54:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-20T20:54:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-20T20:54:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:58:23Z",
+      "associationCertainty": "certain",
+      "title": "Carnuntum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/949690958/128376",
+      "connectionType": "at",
+      "id": "128376",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T22:20:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/128376",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "G\u0103zdac 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HFZF5AWD",
+      "formattedCitation": "<div class=\"csl-entry\">G\u0103zdac, Cristian. \u201cMore than a Quadrans! The Numismatic Evidence from the Roman Baths in the Residential Quarter of Carnuntum.\u201d In <i>Carnuntum Jahrbuch. Zeitschrift F\u00fcr Arch\u00e4ologie Und Kulturgeschichte Des Donauraumes, 2015 (2015)</i>, 115\u201319. Wien: \u00d6sterreichischen Akademie der Wissenschaften, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "949690958",
+  "subject": [],
+  "title": "Roman baths at Carnuntum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman baths at Carnuntum.",
+  "reprPoint": [
+    16.856177108206634,
+    48.11576682882369
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    16.8551775,
+    48.1154356,
+    16.8565312,
+    48.1167837
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/128376"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-07-06T10:27:20Z",
+  "uri": "https://pleiades.stoa.org/places/949690958",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-09T18:10:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-08T23:54:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-08T23:54:25Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T22:19:58Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-07-06T10:27:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-07-06T10:27:20Z"
+    }
+  ]
+}

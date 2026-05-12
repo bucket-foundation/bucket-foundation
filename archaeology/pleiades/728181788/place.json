@@ -1,0 +1,402 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3664802,
+            55.4063819
+          ],
+          [
+            -2.3669658,
+            55.4057943
+          ],
+          [
+            -2.3676547,
+            55.4053301
+          ],
+          [
+            -2.3682712,
+            55.4051154
+          ],
+          [
+            -2.3690086,
+            55.4050644
+          ],
+          [
+            -2.3697567,
+            55.4051474
+          ],
+          [
+            -2.3702846,
+            55.4053862
+          ],
+          [
+            -2.3701587,
+            55.4060103
+          ],
+          [
+            -2.3695765,
+            55.4064395
+          ],
+          [
+            -2.3687804,
+            55.4069829
+          ],
+          [
+            -2.3679171,
+            55.407356
+          ],
+          [
+            -2.3673972,
+            55.4074215
+          ],
+          [
+            -2.3665903,
+            55.4072253
+          ],
+          [
+            -2.3664802,
+            55.4063819
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-woden-law-hill-fort",
+      "properties": {
+        "snippet": "Hillfort; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/728181788/osm-location-of-woden-law-hill-fort",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Woden Law hill fort"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/232893198",
+          "citationDetail": "Way 232893198",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=232893198",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-woden-law-hill-fort",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "end": 100,
+      "title": "OSM location of Woden Law hill fort",
+      "provenance": "OpenStreetMap (Way 232893198, version 5, osm:changeset=136464001, 2023-05-23T16:08:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hillfort"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2016-07-11T14:00:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3664802,
+            55.4063819
+          ],
+          [
+            -2.3669658,
+            55.4057943
+          ],
+          [
+            -2.3676547,
+            55.4053301
+          ],
+          [
+            -2.3682712,
+            55.4051154
+          ],
+          [
+            -2.3690086,
+            55.4050644
+          ],
+          [
+            -2.3697567,
+            55.4051474
+          ],
+          [
+            -2.3702846,
+            55.4053862
+          ],
+          [
+            -2.3701587,
+            55.4060103
+          ],
+          [
+            -2.3695765,
+            55.4064395
+          ],
+          [
+            -2.3687804,
+            55.4069829
+          ],
+          [
+            -2.3679171,
+            55.407356
+          ],
+          [
+            -2.3673972,
+            55.4074215
+          ],
+          [
+            -2.3665903,
+            55.4072253
+          ],
+          [
+            -2.3664802,
+            55.4063819
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/728181788/osm-location-of-woden-law-hill-fort",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "update feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-11T19:11:50Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-11T19:11:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-09-20T13:48:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-11T14:00:59Z"
+        },
+        {
+          "comment": "imported new OSM location as previous OSM node deleted",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-11T14:00:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-11T14:00:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-11T14:00:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DW%3Aentry+group%3D1%3Aentry%3Dwoden-law",
+      "citationDetail": "WODEN LAW Roxburghshire, Scotland",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://canmore.org.uk/site/58068/woden-law",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Canmore:  Woden Law",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pennymuir_Roman_camps",
+      "citationDetail": "Pennymuir Roman camps",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Pennymuir Roman camps.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archaeologydataservice.ac.uk/archiveDS/archiveDownload?t=arch-352-1/dissemination/pdf/vol_112/112_277_284.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Richmond, I. A. and J. Joseph. 1982. \"Excavations at Woden Law, 1950.\" Proc Soc Antiq Scot 112: 277-84.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.megalithic.co.uk/article.php?sid=10649",
+      "citationDetail": "Woden Law - Hillfort in Scotland in Scottish Borders",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TMP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9YPQCWW2",
+      "formattedCitation": "<div class=\"csl-entry\">Burnham, Andy, ed. <i>The Megalithic Portal</i>, 2001. https://www.megalithic.co.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/beyond-walls-reassessing-iron-age-and-roman-encounters-in-northern-britain/A0A550AF76A74E96194A55029F98B4CA",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fern\u00e1ndez-G\u00f6tz 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J75B3PH6",
+      "formattedCitation": "<div class=\"csl-entry\">Fern\u00e1ndez-G\u00f6tz, Manuel, Dave Cowley, Derek Hamilton, Ian J. Hardwick, and Sophie McDonald. \u201cBeyond Walls: Reassessing Iron Age and Roman Encounters in Northern Britain.\u201d <i>Antiquity</i>, May 25, 2022, 1\u20139. https://doi.org/10.15184/aqy.2022.47.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q31105689",
+      "citationDetail": "Woden Law (Q31105689)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "728181788",
+  "subject": [
+    "fortification",
+    "fort"
+  ],
+  "title": "Woden Law hill fort",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Woden Law hill fort is a multi-vallate Iron Age site in Scotland.",
+  "reprPoint": [
+    -2.368314920489027,
+    55.406172859056554
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    -2.3702846,
+    55.4050644,
+    -2.3664802,
+    55.4074215
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-11T18:44:07Z",
+  "uri": "https://pleiades.stoa.org/places/728181788",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for hill fort; wikidata Woden Law (Q31105689) @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-11T19:12:46Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-22T02:59:21Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-11T13:58:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-08-12T14:15:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-09T14:50:35Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-09T14:49:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-09T14:48:57Z"
+    }
+  ]
+}

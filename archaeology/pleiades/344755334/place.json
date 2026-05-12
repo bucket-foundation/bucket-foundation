@@ -1,0 +1,363 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.2165988,
+            40.8300473
+          ],
+          [
+            14.2180921,
+            40.8303925
+          ],
+          [
+            14.2181565,
+            40.8304074
+          ],
+          [
+            14.2180247,
+            40.8298362
+          ],
+          [
+            14.2176921,
+            40.8291462
+          ],
+          [
+            14.2173604,
+            40.828779
+          ],
+          [
+            14.2171541,
+            40.8288464
+          ],
+          [
+            14.2168171,
+            40.8284843
+          ],
+          [
+            14.2166624,
+            40.8284486
+          ],
+          [
+            14.2166131,
+            40.8284372
+          ],
+          [
+            14.2165809,
+            40.8284718
+          ],
+          [
+            14.2169518,
+            40.8287809
+          ],
+          [
+            14.2170007,
+            40.8288727
+          ],
+          [
+            14.2169878,
+            40.8290223
+          ],
+          [
+            14.2167399,
+            40.8294133
+          ],
+          [
+            14.2165988,
+            40.8300473
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-the-tomb",
+      "properties": {
+        "snippet": "Tomb, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/344755334/location-of-the-tomb",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Parco Vergiliano - Tomba di Virgilio"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/144553772",
+          "citationDetail": "Way 144553772",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=144553772",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-the-tomb",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Parco Vergiliano - Tomba di Virgilio",
+      "provenance": "OpenStreetMap (Way 144553772, version 10, osm:changeset=100657088, 2021-03-08T18:54:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-12-17T18:48:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.2165988,
+            40.8300473
+          ],
+          [
+            14.2180921,
+            40.8303925
+          ],
+          [
+            14.2181565,
+            40.8304074
+          ],
+          [
+            14.2180247,
+            40.8298362
+          ],
+          [
+            14.2176921,
+            40.8291462
+          ],
+          [
+            14.2173604,
+            40.828779
+          ],
+          [
+            14.2171541,
+            40.8288464
+          ],
+          [
+            14.2168171,
+            40.8284843
+          ],
+          [
+            14.2166624,
+            40.8284486
+          ],
+          [
+            14.2166131,
+            40.8284372
+          ],
+          [
+            14.2165809,
+            40.8284718
+          ],
+          [
+            14.2169518,
+            40.8287809
+          ],
+          [
+            14.2170007,
+            40.8288727
+          ],
+          [
+            14.2169878,
+            40.8290223
+          ],
+          [
+            14.2167399,
+            40.8294133
+          ],
+          [
+            14.2165988,
+            40.8300473
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/344755334/location-of-the-tomb",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:30:35Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-20T18:50:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-12T15:43:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-12T15:43:22Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-17T18:51:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-17T18:48:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-17T18:48:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Parco_Vergiliano_a_Piedigrotta",
+      "citationDetail": "Parco Vergiliano a Piedigrotta",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Parco Vergiliano a Piedigrotta.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Virgil's_tomb",
+      "citationDetail": "Virgil's tomb",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Virgil's tomb.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17053341",
+      "citationDetail": "Q17053341: Virgil's tomb",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "344755334",
+  "subject": [],
+  "title": "Tomb of Virgil",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called tomb of the Latin poet Virgil.",
+  "reprPoint": [
+    14.2167051,
+    40.8284399
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    14.2167051,
+    40.8284399,
+    14.2167051,
+    40.8284399
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-12-17T18:48:09Z",
+  "uri": "https://pleiades.stoa.org/places/344755334",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata Q17053341: Virgil's tomb",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-21T18:05:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-20T18:50:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-12T15:43:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-12T15:42:46Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-17T18:48:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-17T18:48:09Z"
+    }
+  ]
+}

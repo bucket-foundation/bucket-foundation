@@ -1,0 +1,358 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.6885083,
+            40.7053925
+          ],
+          [
+            23.6892686,
+            40.7050677
+          ],
+          [
+            23.6892464,
+            40.7049371
+          ],
+          [
+            23.6890447,
+            40.7048349
+          ],
+          [
+            23.6889619,
+            40.7048205
+          ],
+          [
+            23.6888207,
+            40.7048943
+          ],
+          [
+            23.688791,
+            40.7048817
+          ],
+          [
+            23.6885553,
+            40.7049633
+          ],
+          [
+            23.6884313,
+            40.7049888
+          ],
+          [
+            23.6883334,
+            40.7050324
+          ],
+          [
+            23.6882289,
+            40.7049857
+          ],
+          [
+            23.6881918,
+            40.7050001
+          ],
+          [
+            23.6885083,
+            40.7053925
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-vrasna-fort-thessaloniki",
+      "properties": {
+        "snippet": "Fort-2; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/247348186/osm-location-of-vrasna-fort-thessaloniki",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Vrasna fort (Thessaloniki)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1174863885",
+          "citationDetail": "Way 1174863885",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1174863885",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-vrasna-fort-thessaloniki",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": -30,
+      "title": "OSM location of Vrasna fort (Thessaloniki)",
+      "provenance": "OpenStreetMap (Way 1174863885, version 1, osm:changeset=136386365, 2023-05-21T20:22:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-05-21T20:24:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.6885083,
+            40.7053925
+          ],
+          [
+            23.6892686,
+            40.7050677
+          ],
+          [
+            23.6892464,
+            40.7049371
+          ],
+          [
+            23.6890447,
+            40.7048349
+          ],
+          [
+            23.6889619,
+            40.7048205
+          ],
+          [
+            23.6888207,
+            40.7048943
+          ],
+          [
+            23.688791,
+            40.7048817
+          ],
+          [
+            23.6885553,
+            40.7049633
+          ],
+          [
+            23.6884313,
+            40.7049888
+          ],
+          [
+            23.6883334,
+            40.7050324
+          ],
+          [
+            23.6882289,
+            40.7049857
+          ],
+          [
+            23.6881918,
+            40.7050001
+          ],
+          [
+            23.6885083,
+            40.7053925
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/247348186/osm-location-of-vrasna-fort-thessaloniki",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-23T17:26:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-21T20:31:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-21T20:30:51Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-21T20:24:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-21T20:24:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-21T20:24:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-21T20:24:58Z",
+      "associationCertainty": "certain",
+      "title": "Bormiskos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/247348186/6983742654",
+      "connectionType": "at",
+      "id": "6983742654",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-21T20:24:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-21T20:24:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-21T20:24:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/501380",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/407236FVra",
+      "citationDetail": "Vrasna fort (Thessaloniki) Vrasna - \u0392\u03c1\u03b1\u03c3\u03bd\u03ac",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "247348186",
+  "subject": [],
+  "title": "Vrasna fort (Thessaloniki)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fortified site located at Trypimeni Petra, between the foothills of Mount Kerdyllion and the coastline at Vrasna, dating to the fourth-first century BCE.",
+  "reprPoint": [
+    23.68873036688315,
+    40.705077790786625
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    23.6881918,
+    40.7048205,
+    23.6892686,
+    40.7053925
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/501380"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-21T20:24:57Z",
+  "uri": "https://pleiades.stoa.org/places/247348186",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-23T17:26:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-21T20:31:01Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-21T20:30:39Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-21T20:24:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-21T20:24:57Z"
+    }
+  ]
+}

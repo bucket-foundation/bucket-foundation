@@ -1,0 +1,323 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.9094902,
+            38.5724969
+          ],
+          [
+            -7.9093658,
+            38.5725483
+          ],
+          [
+            -7.9092329,
+            38.5723519
+          ],
+          [
+            -7.9092733,
+            38.5723352
+          ],
+          [
+            -7.9093573,
+            38.5723005
+          ],
+          [
+            -7.9094902,
+            38.5724969
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-termas-romanas-de-avora",
+      "properties": {
+        "snippet": "Bath; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/389853508/osm-location-of-termas-romanas-de-avora",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Termas Romanas de \u00c9vora"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/499199734",
+          "citationDetail": "Way 499199734",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=499199734",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-termas-romanas-de-avora",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 300,
+      "title": "OSM location of Termas Romanas de \u00c9vora",
+      "provenance": "OpenStreetMap (Way 499199734, version 1, osm:changeset=49384062, 2017-06-09T02:21:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-09-09T15:05:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.9094902,
+            38.5724969
+          ],
+          [
+            -7.9093658,
+            38.5725483
+          ],
+          [
+            -7.9092329,
+            38.5723519
+          ],
+          [
+            -7.9092733,
+            38.5723352
+          ],
+          [
+            -7.9093573,
+            38.5723005
+          ],
+          [
+            -7.9094902,
+            38.5724969
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/389853508/osm-location-of-termas-romanas-de-avora",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T20:48:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-10T13:17:47Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-09T15:06:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-09T15:05:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-09T15:05:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-09-09T15:08:06Z",
+      "associationCertainty": "certain",
+      "title": "Ebora",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/389853508/ebora",
+      "connectionType": "at",
+      "id": "ebora",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T20:48:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-10T13:17:47Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-09T15:08:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-09T15:08:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256151",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/11819314/roman-ruins-baths.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "GeoNames 11819314",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sarantopoulos 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TTGWX5TR",
+      "formattedCitation": "<div class=\"csl-entry\">Sarantopoulos, P. \u201cThermae de Ebora Liberalitas Iulia.\u201d In <i>Termas Romanas En El Occidente Del Imperio\u202f: II Coloquio Internacional de Arqueolog\u00eda En Gij\u00f3n (Gij\u00f3n 1999)</i>, 281\u2013282, Abb. Gij\u00f3n: VTP, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "389853508",
+  "subject": [],
+  "title": "Roman baths of Ebora",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman baths of Ebora were in use during the second and third centuries. The archaeological site was discovered in 1987.",
+  "reprPoint": [
+    -7.909361549763638,
+    38.57242439942808
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    -7.9094902,
+    38.5723005,
+    -7.9092329,
+    38.5725483
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256151"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-09-09T15:05:12Z",
+  "uri": "https://pleiades.stoa.org/places/389853508",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-25T20:48:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-10T13:17:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-10T13:17:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-09T16:02:00Z"
+    },
+    {
+      "comment": "GeoNames 11819314",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-09T15:19:50Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-09T15:05:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-09T15:05:12Z"
+    }
+  ]
+}

@@ -1,0 +1,548 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.9647167,
+          39.210255
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/946658103/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of De\u011firmend\u00fcz\u00fc"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2291750302",
+          "citationDetail": "Node 2291750302",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2291750302",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM Location of De\u011firmend\u00fcz\u00fc",
+      "provenance": "OpenStreetMap (Node 2291750302, version 3, osm:changeset=41767331, 2016-08-29T01:53:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-05-21T08:48:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.9647167,
+          39.210255
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/946658103/osm-location",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:15:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:16:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:48:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:48:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:48:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -600,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2020-05-21T08:49:41Z",
+      "associationCertainty": "certain",
+      "title": "Urartu",
+      "start": -900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/946658103/urartu",
+      "connectionType": "part_of_admin",
+      "id": "urartu",
+      "attestations": [
+        {
+          "timePeriod": "urartian-eastern-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/urartian-eastern-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:15:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T20:54:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:16:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:14:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:49:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:49:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/214160492",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_admin"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/index.html",
+      "citationDetail": "Minua, son of I\u0161puini: A 05-070 (Q006968)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.26650/anar.2019.22.660245",
+      "citationDetail": "p. 8",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gen\u00e7, B. , Konyar, E. 2020",
+      "bibliographicURI": "http://www.worldcat.org/oclc/241596080",
+      "formattedCitation": "Gen\u00e7, B. , Konyar, E. \"Van Kalesi Anal\u0131k\u0131z Yap\u0131s\u0131: \u0130\u015flev ve Kronolojisine Dair Bir De\u011ferlendirme\". Anadolu Ara\u015ft\u0131rmalar\u0131 (2020): 1-23.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/urartianrulersandtheirinscriptions/minuasonofipuinia5andb5/index.html",
+      "citationDetail": "Minua, son of I\u0161puini",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 182, 250-251",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SHPA4R98",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo, Neda Parmegiani, and Roberto Dan. <i>Corpus e testi urartei; le iscrizioni su pietra e roccia Volume I, Volume I,</i>. Roma: CNR Istituto di studi sulle civilt\u00e0 dell\u2019egeo e del vicino oriente, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Qami\u015fvan, Kami\u015fvan, Gam\u00ea\u015fvan, Qamisvan, Kamisvan, Gamesvan",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://ku.wikipedia.org/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Kurdish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/62PTDBKZ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>W\u00eek\u00eepediyaya: ens\u00eeklopediya azad</i>, 2021. https://ku.wikipedia.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/310597/kamisvan.html",
+          "citationDetail": "310597: Kam\u0131\u015fvan",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "qamisvan",
+      "end": 1999,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ku",
+      "created": "2020-05-21T08:49:16Z",
+      "uri": "https://pleiades.stoa.org/places/946658103/qamisvan",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:15:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:12:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:07:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:05:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:16:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-27T12:13:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:49:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-05-21T08:49:16Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "De\u011firmend\u00fcz\u00fc, Degirmenduzu",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://tr.wikipedia.org/wiki/De%C4%9Firmend%C3%BCz%C3%BC,_Patnos",
+          "citationDetail": "De\u011firmend\u00fcz\u00fc, Patnos",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Turkish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geonames.org/317390/degirmenduezue.html",
+          "citationDetail": "317390: De\u011firmend\u00fcz\u00fc",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "degirmenduzu",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2021-04-26T21:12:07Z",
+      "uri": "https://pleiades.stoa.org/places/946658103/degirmenduzu",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "De\u011firmend\u00fcz\u00fc",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:15:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:14:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:14:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:14:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:12:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-26T21:12:07Z"
+        }
+      ]
+    }
+  ],
+  "id": "946658103",
+  "subject": [
+    "Urartian",
+    "Urartu"
+  ],
+  "title": "Qami\u015fvan/De\u011firmend\u00fcz\u00fc",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "De\u011firmend\u00fcz\u00fc (formerly Qami\u015fvan/Kami\u015fvan) is a modern village situated ca. 8 km in the east of Pathos (Aznavurtepe / Anzavurtepe) in the A\u011fr\u0131 Province in eastern Turkey. Here a column base with an inscription of the Urartian king Minua, son of I\u0161puini (9th/8th century BCE) has been found (CTU I A 5-70)",
+  "reprPoint": [
+    42.9647167,
+    39.210255
+  ],
+  "placeTypes": [
+    "findspot",
+    "settlement-modern"
+  ],
+  "bbox": [
+    42.9647167,
+    39.210255,
+    42.9647167,
+    39.210255
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/214160492"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-21T08:48:24Z",
+  "uri": "https://pleiades.stoa.org/places/946658103",
+  "creators": [
+    {
+      "username": "bchristiansen2",
+      "homepage": null,
+      "name": "Birgit Christiansen ",
+      "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-26T21:21:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-26T21:15:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-26T21:07:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-26T20:58:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-27T12:16:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-27T12:16:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-27T12:14:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-27T12:12:52Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-05-21T08:48:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-05-21T08:48:24Z"
+    }
+  ]
+}

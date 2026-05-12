@@ -1,0 +1,14 @@
+# Karakurthamamı
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/619180
+- **ID**: 619180
+- **Coords (lng, lat)**: [34.039843, 39.10862]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 63 E2 Karakurthamamı

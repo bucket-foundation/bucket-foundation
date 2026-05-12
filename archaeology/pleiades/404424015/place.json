@@ -1,0 +1,560 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.08796961115,
+              51.507084684
+            ],
+            [
+              -0.09069182552,
+              51.50696150891
+            ],
+            [
+              -0.09212041372,
+              51.50722369891
+            ],
+            [
+              -0.09329781372,
+              51.50619809906
+            ],
+            [
+              -0.09543181372,
+              51.50622379906
+            ],
+            [
+              -0.09634146148,
+              51.50457319317
+            ],
+            [
+              -0.09733031372,
+              51.50388819941
+            ],
+            [
+              -0.09606271372,
+              51.50294829955
+            ],
+            [
+              -0.0923113876,
+              51.50129718985
+            ],
+            [
+              -0.08887864735,
+              51.50074956978
+            ],
+            [
+              -0.08810083363,
+              51.50221632999
+            ],
+            [
+              -0.08663715813,
+              51.50400717468
+            ],
+            [
+              -0.08630342736,
+              51.50426264102
+            ],
+            [
+              -0.08629087055,
+              51.50689270894
+            ],
+            [
+              -0.08796961115,
+              51.507084684
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-southwark",
+      "properties": {
+        "snippet": "Settlement; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/404424015/osm-location-of-roman-southwark",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman Southwark"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/702285118",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Way 702285118",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-southwark",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 410,
+      "title": "OSM location of Roman Southwark",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-07-07T19:08:00Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.08796961115,
+              51.507084684
+            ],
+            [
+              -0.08629087055,
+              51.50689270894
+            ],
+            [
+              -0.08630342736,
+              51.50426264102
+            ],
+            [
+              -0.08663715813,
+              51.50400717468
+            ],
+            [
+              -0.08810083363,
+              51.50221632999
+            ],
+            [
+              -0.08887864735,
+              51.50074956978
+            ],
+            [
+              -0.0923113876,
+              51.50129718985
+            ],
+            [
+              -0.09606271372,
+              51.50294829955
+            ],
+            [
+              -0.09733031372,
+              51.50388819941
+            ],
+            [
+              -0.09634146148,
+              51.50457319317
+            ],
+            [
+              -0.09543181372,
+              51.50622379906
+            ],
+            [
+              -0.09329781372,
+              51.50619809906
+            ],
+            [
+              -0.09212041372,
+              51.50722369891
+            ],
+            [
+              -0.09069182552,
+              51.50696150891
+            ],
+            [
+              -0.08796961115,
+              51.507084684
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/404424015/osm-location-of-roman-southwark",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-07T20:48:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-07T20:47:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:15:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:08:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:08:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:08:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2019-07-07T19:12:51Z",
+      "associationCertainty": "certain",
+      "title": "Londinium/Augusta",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/404424015/londinium-augusta",
+      "connectionType": "near",
+      "id": "londinium-augusta",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-07T20:48:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:16:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:12:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:12:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79574",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2019-07-07T19:13:41Z",
+      "associationCertainty": "certain",
+      "title": "Watling Street",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/404424015/watling-street",
+      "connectionType": "on",
+      "id": "watling-street",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-07T20:48:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:16:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:13:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:13:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/491855883",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cowan 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCXZ3A3X",
+      "formattedCitation": "<div class=\"csl-entry\">Cowan, Carrie, Fiona Seeley, Angela Wardle, and Andrew Westman. <i>Roman Southwark - Settlement and Economy: Excavations in Southwark 1973-1991</i>. MoLAS Monograph 42. London: Museum of London Archaeology, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=404843",
+      "citationDetail": "Monument No. 404843",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Southwark",
+      "citationDetail": "Southwark",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5273898",
+      "citationDetail": "Southwark (Q5273898)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Southwark",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "southwark",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2019-07-07T19:09:26Z",
+      "uri": "https://pleiades.stoa.org/places/404424015/southwark",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "attested": "Southwark",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-07T20:48:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:16:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:09:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-07-07T19:09:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "404424015",
+  "subject": [],
+  "title": "Southwark",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An extensive Roman settlement located on the south bank of the River Thames opposite Londinium.",
+  "reprPoint": [
+    -0.09117030413103774,
+    51.50423891938272
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -0.09733031372,
+    51.50074956978,
+    -0.08629087055,
+    51.50722369891
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79574",
+    "https://pleiades.stoa.org/places/491855883",
+    "https://pleiades.stoa.org/places/646165662"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-07-07T16:58:04Z",
+  "uri": "https://pleiades.stoa.org/places/404424015",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q5273898",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-26T01:31:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-07T20:48:28Z"
+    },
+    {
+      "comment": "wikipedia ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-07T20:48:13Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-07T20:46:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-07-07T19:15:59Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-07-07T16:58:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-07-07T16:58:04Z"
+    }
+  ]
+}

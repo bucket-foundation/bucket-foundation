@@ -1,0 +1,285 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1776114,
+          42.2564918
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-capranica",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/687957706/osm-location-of-capranica",
+        "description": "Associated modern location based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Capranica"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/72963962",
+          "citationDetail": "Node 72963962",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=72963962",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-capranica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location of Capranica",
+      "provenance": "OpenStreetMap (Node 72963962, version 9, osm:changeset=41983557, 2016-09-07T16:51:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Associated modern location based on a node derived from OpenStreetMap.",
+      "created": "2020-03-05T15:28:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1776114,
+          42.2564918
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/687957706/osm-location-of-capranica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-06-08T11:19:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-05T15:29:23Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-05T15:29:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-05T15:28:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-05T15:28:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-14T22:06:05Z",
+      "associationCertainty": "certain",
+      "title": "Sutrium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/687957706/sutrium",
+      "connectionType": "near",
+      "id": "sutrium",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-06-08T11:19:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-30T15:23:03Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-14T22:06:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-14T22:06:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413328",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lombardi and Santella 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BJEGI68B",
+      "formattedCitation": "<div class=\"csl-entry\">Lombardi, L., and L. Santella. \u201cIl castellaccio di Capo Ripa (Capranica VT). Un oppidum etrusco di confine della seconda met\u00e0 del IV secolo a.C.\u201d In <i>Informazioni, 3,11.1994</i>, 13\u201319, Abb, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cambi 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/REGTFDFP",
+      "formattedCitation": "<div class=\"csl-entry\">Cambi, Franco, ed. \u201cIl ruolo degli oppida e la difesa del territorio in Etruria: casi di studio e prospettive di ricerca.\u201d In <i>Aristonothos</i>, 370 p. Aristonothos 5. Trento: Tangram edizioni scientifiche, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.degruyter.com/view/journals/etst/23/1-2/article-p107.xml",
+      "citationDetail": "112 fig. 2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Colivicchi 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EJNEA373",
+      "formattedCitation": "<div class=\"csl-entry\">Colivicchi, Fabio. \u201cA Blurring Frontier: The Territory of Caere in the Fourth and Third Centuries B. C. E.\u201d <i>Etruscan and Italic Studies</i> 23, no. 1\u20132 (November 4, 2020): 107\u201329. https://doi.org/10.1515/etst-2020-0016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "687957706",
+  "subject": [],
+  "title": "Castellaccio di Capo Ripa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Hellenistic fortified site (?oppidum) near Capranica (Viterbo).",
+  "reprPoint": [
+    12.1776114,
+    42.2564918
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    12.1776114,
+    42.2564918,
+    12.1776114,
+    42.2564918
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413328"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-14T21:36:18Z",
+  "uri": "https://pleiades.stoa.org/places/687957706",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Colivicchi 2020",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-30T00:35:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-06-08T11:19:37Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-05T15:28:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-30T15:23:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-14T21:37:46Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-14T21:36:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-14T21:36:18Z"
+    }
+  ]
+}

@@ -1,0 +1,375 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5087535,
+          43.213866
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-col-di-marzo",
+      "properties": {
+        "snippet": "Hill; 550 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/764628801/osm-location-of-col-di-marzo",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Col di Marzo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2525275654",
+          "citationDetail": "Node 2525275654",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2525275654",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-col-di-marzo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "end": -330,
+      "title": "OSM location of Col di Marzo",
+      "provenance": "OpenStreetMap (Node 2525275654, version 3, osm:changeset=57215550, 2018-03-15T15:39:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>Survey and excavation in 2011 revealed remains consistent with fifth century BC occupation on the terraced hilltop of Col di Marzo (645 meters above sea level).</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hill"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-05-07T17:32:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5087535,
+          43.213866
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/764628801/osm-location-of-col-di-marzo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-11T09:10:19Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-07-07T16:14:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-06T14:25:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-06T14:23:05Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-07T17:34:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-07T17:32:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-07T17:32:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-07-06T17:06:00Z",
+      "associationCertainty": "certain",
+      "title": "Arna",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/764628801/arna",
+      "connectionType": "near",
+      "id": "arna",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-07-07T16:14:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-06T17:06:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-06T17:06:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-06T17:06:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413030",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://onlinelibrary.wiley.com/doi/abs/10.1111/arcm.12582",
+          "citationDetail": "1121",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ceccarelli et al. 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WFD7VDVZ",
+          "formattedCitation": "<div class=\"csl-entry\">Ceccarelli, L., C. Moletti, M. Bellotto, G. Dotelli, and S. Stoddart. \u201cCompositional Characterization of Etruscan Earthen Architecture and Ceramic Production.\u201d <i>Archaeometry</i> 62, no. 6 (2020): 1130\u201344. https://doi.org/10.1111/arcm.12582.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-15T14:32:02Z",
+      "associationCertainty": "certain",
+      "title": "Montelabate",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/764628801/montelabate",
+      "connectionType": "part_of_analytical",
+      "id": "montelabate",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-15T20:31:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-15T14:32:11Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-15T14:32:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-15T14:32:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/451403861",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/papers-of-the-british-school-at-rome/article/production-and-trade-in-central-italy-in-the-roman-period-the-amphora-workshop-of-montelabate-in-umbria/E83BA8AE20ABA630B8FACBB5B7F03F84",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ceccarelli 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T8FHB9BK",
+          "formattedCitation": "<div class=\"csl-entry\">Ceccarelli, Letizia. \u201cPRODUCTION AND TRADE IN CENTRAL ITALY IN THE ROMAN PERIOD: THE AMPHORA WORKSHOP OF MONTELABATE IN UMBRIA.\u201d <i>Papers of the British School at Rome</i> 85 (October 2017): 109\u201341. https://doi.org/10.1017/S0068246217000058.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.arch.cam.ac.uk/projects/montelabate/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "The Montelabate project",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/41725324",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stoddart et al. 2012, 257-294",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G5EE3Z4X",
+      "formattedCitation": "<div class=\"csl-entry\">Stoddart, Simon, Pier Matteo Barone, Jeremy Bennett, and Letizia Ceccarelli. \u201cOPENING THE FRONTIER: THE GUBBIO\u2013PERUGIA FRONTIER IN THE COURSE OF HISTORY.\u201d <i>Papers of the British School at Rome</i> 80 (2012): 257\u201394. https://doi.org/https://doi-org.proxy.binghamton.edu/10.1017/S0068246212000128.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://onlinelibrary.wiley.com/doi/abs/10.1111/arcm.12582",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ceccarelli et al. 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WFD7VDVZ",
+      "formattedCitation": "<div class=\"csl-entry\">Ceccarelli, L., C. Moletti, M. Bellotto, G. Dotelli, and S. Stoddart. \u201cCompositional Characterization of Etruscan Earthen Architecture and Ceramic Production.\u201d <i>Archaeometry</i> 62, no. 6 (2020): 1130\u201344. https://doi.org/10.1111/arcm.12582.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "764628801",
+  "subject": [],
+  "title": "Col di Marzo, Perugia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Survey and excavation at Montelabate overlooking the upper Tiber valley in the territory of Perugia have revealed evidence for an Etruscan settlement on the hill of Col di Marzo (Perugia). This place is located some 10 km from Arna and rises to 645 meters above sea level.",
+  "reprPoint": [
+    12.5091397,
+    43.2135298
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "hill"
+  ],
+  "bbox": [
+    12.5091397,
+    43.2135298,
+    12.5091397,
+    43.2135298
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413030",
+    "https://pleiades.stoa.org/places/451403861"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-09-28T16:16:19Z",
+  "uri": "https://pleiades.stoa.org/places/764628801",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-07-07T16:14:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-06T17:05:20Z"
+    },
+    {
+      "comment": "update title",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-06T16:40:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-06T14:25:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-06T14:25:26Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-28T16:19:28Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-28T16:16:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-28T16:16:19Z"
+    }
+  ]
+}

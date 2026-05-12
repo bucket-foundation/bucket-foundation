@@ -1,0 +1,780 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.8126812,
+            25.6655674
+          ],
+          [
+            28.8124505,
+            25.6643973
+          ],
+          [
+            28.813062,
+            25.6643924
+          ],
+          [
+            28.8140169,
+            25.6644601
+          ],
+          [
+            28.8141349,
+            25.6652096
+          ],
+          [
+            28.8138989,
+            25.6653014
+          ],
+          [
+            28.8137004,
+            25.6653981
+          ],
+          [
+            28.8135341,
+            25.665403
+          ],
+          [
+            28.8126812,
+            25.6655674
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-deir-el-hagar",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/776223/osm-location-of-deir-el-hagar",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Deir el-Hagar"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.813372,
+          25.664694
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-view-of-the-visible-remains-of-the-temple-at-deir-el-hagar",
+      "properties": {
+        "snippet": "Temple-2, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/776223/imagery-location-view-of-the-visible-remains-of-the-temple-at-deir-el-hagar",
+        "description": "Deir el-Hagar is a sandstone temple on the western edge of Dakhla Oasis.",
+        "location_precision": "precise",
+        "title": "Imagery Location: visible remains of the temple at Deir el-Hagar"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "rrumora",
+      "homepage": null,
+      "name": "Roko Rumora",
+      "uri": "https://pleiades.stoa.org/author/rrumora"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/265726300",
+          "citationDetail": "Way 265726300",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=265726300",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-deir-el-hagar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Deir el-Hagar",
+      "provenance": "OpenStreetMap (Way 265726300, version 2, osm:changeset=111081409, 2021-09-12T02:33:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-12-27T01:50:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.8126812,
+            25.6655674
+          ],
+          [
+            28.8124505,
+            25.6643973
+          ],
+          [
+            28.813062,
+            25.6643924
+          ],
+          [
+            28.8140169,
+            25.6644601
+          ],
+          [
+            28.8141349,
+            25.6652096
+          ],
+          [
+            28.8138989,
+            25.6653014
+          ],
+          [
+            28.8137004,
+            25.6653981
+          ],
+          [
+            28.8135341,
+            25.665403
+          ],
+          [
+            28.8126812,
+            25.6655674
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/776223/osm-location-of-deir-el-hagar",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-06T22:44:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-27T01:51:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-27T01:51:25Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-27T01:50:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-27T01:50:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-27T01:50:16Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.touregypt.net/featurestories/deir-el-hagar.htm",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Deir Al Hagar Temple",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/way/265726300",
+          "citationDetail": "Way 265726300",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm way: 265726300",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-view-of-the-visible-remains-of-the-temple-at-deir-el-hagar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "Imagery Location: visible remains of the temple at Deir el-Hagar",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "temple-2",
+        ""
+      ],
+      "description": "Deir el-Hagar is a sandstone temple on the western edge of Dakhla Oasis.",
+      "created": "2012-07-18T20:08:51Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.813372,
+          25.664694
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/776223/imagery-location-view-of-the-visible-remains-of-the-temple-at-deir-el-hagar",
+      "creators": [
+        {
+          "username": "rrumora",
+          "homepage": null,
+          "name": "Roko Rumora",
+          "uri": "https://pleiades.stoa.org/author/rrumora"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-23T03:39:37Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-12T01:54:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-12T01:51:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-20T14:00:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-20T13:59:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-20T13:46:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrumora",
+          "modified": "2012-07-18T20:11:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrumora",
+          "modified": "2012-07-18T20:08:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrumora",
+          "modified": "2012-07-18T20:08:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-08-24T15:27:59Z",
+      "associationCertainty": "certain",
+      "title": "Esotero (Oasis)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/776223/esotero-oasis",
+      "connectionType": "part_of_regional",
+      "id": "esotero-oasis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:28:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:28:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:28:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:27:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/776172",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "79 inset *Sioua",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.ifao.egnet.net/bifao/Bifao092_art_08.pdf",
+      "citationDetail": "124-29 (n. 54)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kaper 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3SHIR3ZC",
+      "formattedCitation": "<div class=\"csl-entry\">O. Kaper. \u201cEgyptian Toponyms of Dakhla Oasis.\u201d <i>Bulletin de l\u2019Institut Fran\u00e7ais d\u2019Arch\u00e9ologie Orientale</i> 92 (1992): 117\u201332.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/3559",
+      "citationDetail": "GEO ID 3559: Sioua (Deir el-Hagar)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://de.wikivoyage.org/wiki/Deir_el-%E1%B8%A4agar",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Deir el-\u1e24agar",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "24769",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+      "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 24769.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q14207694",
+      "citationDetail": "Deir el-Hagar (Q14207694)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sioua",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "sioua",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 79 inset *Sioua",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "",
+      "created": "2009-10-06T21:57:04Z",
+      "uri": "https://pleiades.stoa.org/places/776223/sioua",
+      "creators": [
+        {
+          "username": null,
+          "name": "G. Wagner"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:23:50Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-14T12:30:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-06T22:00:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-06T21:57:04Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Deir el-Hagar, Deir el-Haggar, Deir al-Hagar, Deir al Haggar",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.touregypt.net/featurestories/deir-el-hagar.htm",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Deir Al Hagar Temple",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2012-07-18.1527027307",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Deir el-Hagar, the \u2018Monastery of Stone\u2019, is a sandstone temple on the western edge of Dakhla Oasis.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2012-07-18T20:11:12Z",
+      "uri": "https://pleiades.stoa.org/places/776223/name.2012-07-18.1527027307",
+      "creators": [
+        {
+          "username": "rrumora",
+          "homepage": null,
+          "name": "Roko Rumora",
+          "uri": "https://pleiades.stoa.org/author/rrumora"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-20T13:59:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-20T13:59:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrumora",
+          "modified": "2012-07-18T20:11:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrumora",
+          "modified": "2012-07-18T20:11:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrumora",
+          "modified": "2012-07-18T20:11:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "776223",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "*Sioua",
+  "provenance": "Barrington Atlas: BAtlas 79 inset *Sioua",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/region",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Deir el-Hagar</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "\"Sioua\" is the Greek reconstruction of an ancient toponym (found in Egyptian sources: S\u00b7t-w\u021d\u1e25) that encompassed some part of the western end of the Dakhla Oasis in Egypt (certainly the site now known as Deir al-Haggar was included, and possibly also Amheida).",
+  "reprPoint": [
+    28.81331486451365,
+    25.664803687192475
+  ],
+  "placeTypes": [
+    "region",
+    "settlement",
+    "temple-2"
+  ],
+  "bbox": [
+    28.8124505,
+    25.6643924,
+    28.8141349,
+    25.6655674
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/776172"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-06T21:57:04Z",
+  "uri": "https://pleiades.stoa.org/places/776223",
+  "creators": [
+    {
+      "username": null,
+      "name": "G. Wagner"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q14207694",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-27T01:51:03Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-12T02:31:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-08T12:42:45Z"
+    },
+    {
+      "comment": "DARMC reference",
+      "modifiedBy": "thomase",
+      "modified": "2017-08-24T15:29:39Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-12T01:50:55Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:26:47Z"
+    },
+    {
+      "comment": "updated references and description",
+      "modifiedBy": "thomase",
+      "modified": "2012-07-20T21:50:36Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2012-07-20T14:00:49Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:23:50Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T22:56:04Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-02T20:30:46Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-14T12:30:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-06T22:00:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-06T21:57:04Z"
+    }
+  ]
+}

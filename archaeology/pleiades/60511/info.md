@@ -1,0 +1,14 @@
+# Etymandroi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/60511
+- **ID**: 60511
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Etymandroi
+
+## Description
+
+An ancient people whose territory is unlocated

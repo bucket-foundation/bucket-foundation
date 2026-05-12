@@ -1,0 +1,423 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.2411409,
+            46.3836475
+          ],
+          [
+            6.2410536,
+            46.3836751
+          ],
+          [
+            6.2408832,
+            46.3833485
+          ],
+          [
+            6.2408393,
+            46.3832635
+          ],
+          [
+            6.240891,
+            46.3832556
+          ],
+          [
+            6.2409023,
+            46.383218
+          ],
+          [
+            6.2412447,
+            46.3831955
+          ],
+          [
+            6.241312,
+            46.3831969
+          ],
+          [
+            6.2413747,
+            46.3832115
+          ],
+          [
+            6.2414355,
+            46.3832328
+          ],
+          [
+            6.2414993,
+            46.3832605
+          ],
+          [
+            6.2416435,
+            46.3833568
+          ],
+          [
+            6.2417981,
+            46.3834802
+          ],
+          [
+            6.2414933,
+            46.3836403
+          ],
+          [
+            6.2413433,
+            46.3836723
+          ],
+          [
+            6.2412798,
+            46.3836623
+          ],
+          [
+            6.2412354,
+            46.3836536
+          ],
+          [
+            6.2411883,
+            46.3836415
+          ],
+          [
+            6.2411593,
+            46.3836617
+          ],
+          [
+            6.2411409,
+            46.3836475
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/393453384/location-of-roman-amphitheater",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "location of Roman amphitheater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/36853557",
+          "citationDetail": "Way 36853557",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=36853557",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.nyon.ch/fr/vivre/culture-histoire/amphitheatre-romain-617-3866",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "AMPHITH\u00c9\u00c2TRE ROMAIN",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-roman-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "location of Roman amphitheater",
+      "provenance": "OpenStreetMap (Way 36853557, version 5, osm:changeset=20434109, 2014-02-07T17:03:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-01-19T01:24:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.2411409,
+            46.3836475
+          ],
+          [
+            6.2410536,
+            46.3836751
+          ],
+          [
+            6.2408832,
+            46.3833485
+          ],
+          [
+            6.2408393,
+            46.3832635
+          ],
+          [
+            6.240891,
+            46.3832556
+          ],
+          [
+            6.2409023,
+            46.383218
+          ],
+          [
+            6.2412447,
+            46.3831955
+          ],
+          [
+            6.241312,
+            46.3831969
+          ],
+          [
+            6.2413747,
+            46.3832115
+          ],
+          [
+            6.2414355,
+            46.3832328
+          ],
+          [
+            6.2414993,
+            46.3832605
+          ],
+          [
+            6.2416435,
+            46.3833568
+          ],
+          [
+            6.2417981,
+            46.3834802
+          ],
+          [
+            6.2414933,
+            46.3836403
+          ],
+          [
+            6.2413433,
+            46.3836723
+          ],
+          [
+            6.2412798,
+            46.3836623
+          ],
+          [
+            6.2412354,
+            46.3836536
+          ],
+          [
+            6.2411883,
+            46.3836415
+          ],
+          [
+            6.2411593,
+            46.3836617
+          ],
+          [
+            6.2411409,
+            46.3836475
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/393453384/location-of-roman-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-03T01:25:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-20T22:57:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T01:25:31Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T01:25:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T01:24:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T01:24:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-10T00:47:28Z",
+      "associationCertainty": "certain",
+      "title": "Col. Iulia Equestris/Noviodunum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/393453384/0483385717",
+      "connectionType": "at",
+      "id": "0483385717",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T00:47:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T00:47:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-10T00:47:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/177496",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Noviodunum_(Switzerland)",
+      "citationDetail": "Noviodunum (Switzerland)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "393453384",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Roman amphitheater at Noviodunum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman amphitheater at Noviodunum was only discovered in 1996 and likely dates to the second century A.D. The arena measures ca. 50 x 36 meters.",
+  "reprPoint": [
+    6.2412447,
+    46.3831955
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    6.2412447,
+    46.3831955,
+    6.2412447,
+    46.3831955
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/177496"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-10T00:47:27Z",
+  "uri": "https://pleiades.stoa.org/places/393453384",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T00:49:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T00:49:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T00:49:23Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T00:47:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-10T00:47:27Z"
+    }
+  ]
+}

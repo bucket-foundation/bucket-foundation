@@ -1,0 +1,301 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.9988937,
+            38.9726741
+          ],
+          [
+            22.9987981,
+            38.9725602
+          ],
+          [
+            22.9989389,
+            38.9724969
+          ],
+          [
+            22.9990287,
+            38.9726023
+          ],
+          [
+            22.9988937,
+            38.9726741
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-glyfa-ancient-cemetery",
+      "properties": {
+        "snippet": "Cemetery; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/873325866/osm-location-of-glyfa-ancient-cemetery",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Glyfa ancient cemetery"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1272414420",
+          "citationDetail": "Way 1272414420",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1272414420",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-glyfa-ancient-cemetery",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1000,
+      "title": "OSM location of Glyfa ancient cemetery",
+      "provenance": "OpenStreetMap (Way 1272414420, version 2, osm:changeset=149972310, 2024-04-13T23:10:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-04-13T23:12:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.9988937,
+            38.9726741
+          ],
+          [
+            22.9987981,
+            38.9725602
+          ],
+          [
+            22.9989389,
+            38.9724969
+          ],
+          [
+            22.9990287,
+            38.9726023
+          ],
+          [
+            22.9988937,
+            38.9726741
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/873325866/osm-location-of-glyfa-ancient-cemetery",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-15T20:44:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-13T23:15:00Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-13T23:12:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-13T23:12:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-13T23:12:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/390230XAnC",
+      "citationDetail": "Antron MH cemetery (Phthiotis)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Papakonstantinou 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H5PP2YJC",
+      "formattedCitation": "<div class=\"csl-entry\">Papakonstantinou, M. P. \u201cEarly Mycenaean Tumuli at Glypha in Phthiotis (Ancient Antron).\u201d In <i>Bulletin of the Institute of Classical Studies [University of London], 41.1996</i>, 137\u201338, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Papaconstantinou 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PSS3MN8H",
+      "formattedCitation": "<div class=\"csl-entry\">Papaconstantinou, M. P. \u201cThe Grave Circle B of Antron. Preliminary Report.\u201d In <i>Aegeum\u202f: Annales d\u2019arch\u00e9ologie \u00c9g\u00e9enne de l\u2019Universit\u00e9 de Li\u00e8ge. Annales d\u2019arch\u00e9ologie \u00c9g\u00e9enne de l\u2019Universit\u00e9 de Li\u00e8ge, 20.1999</i>, 625\u201331, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=19241",
+      "citationDetail": "Toponyme 19241: Glyfa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q38281183",
+      "citationDetail": "Glyfa ancient cemetery (Q38281183)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "873325866",
+  "subject": [],
+  "title": "Glyfa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Middle Helladic necropolis excavated to the west of Fanos, Phthiotis, Greece.",
+  "reprPoint": [
+    22.99891354826213,
+    38.97258382110815
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    22.9987981,
+    38.9724969,
+    22.9990287,
+    38.9726741
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-13T23:11:06Z",
+  "uri": "https://pleiades.stoa.org/places/873325866",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added CFL/AGO and Wikidata references provided by bkiesling",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-15T20:46:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-15T20:44:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-13T23:15:00Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-13T23:14:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-13T23:12:01Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-13T23:11:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-13T23:11:06Z"
+    }
+  ]
+}

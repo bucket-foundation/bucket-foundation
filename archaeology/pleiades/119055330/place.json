@@ -1,0 +1,450 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.4292726,
+            36.9858047
+          ],
+          [
+            45.4289657,
+            36.985655
+          ],
+          [
+            45.4288103,
+            36.9853925
+          ],
+          [
+            45.4289019,
+            36.9851229
+          ],
+          [
+            45.4290859,
+            36.9850382
+          ],
+          [
+            45.4293745,
+            36.985077
+          ],
+          [
+            45.4296493,
+            36.9852235
+          ],
+          [
+            45.4297398,
+            36.9855656
+          ],
+          [
+            45.4296069,
+            36.9857187
+          ],
+          [
+            45.4292726,
+            36.9858047
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-agrab-tepe-dalma-ii",
+      "properties": {
+        "snippet": "Tell; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/119055330/osm-location-of-agrab-tepe-dalma-ii",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Agrab Tepe - Dalma II"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1118409738",
+          "citationDetail": "Way 1118409738",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1118409738",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-agrab-tepe-dalma-ii",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -3300,
+      "title": "OSM location of Agrab Tepe - Dalma II",
+      "provenance": "OpenStreetMap (Way 1118409738, version 1, osm:changeset=129569238, 2022-11-30T16:54:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-11-30T16:58:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.4292726,
+            36.9858047
+          ],
+          [
+            45.4289657,
+            36.985655
+          ],
+          [
+            45.4288103,
+            36.9853925
+          ],
+          [
+            45.4289019,
+            36.9851229
+          ],
+          [
+            45.4290859,
+            36.9850382
+          ],
+          [
+            45.4293745,
+            36.985077
+          ],
+          [
+            45.4296493,
+            36.9852235
+          ],
+          [
+            45.4297398,
+            36.9855656
+          ],
+          [
+            45.4296069,
+            36.9857187
+          ],
+          [
+            45.4292726,
+            36.9858047
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/119055330/osm-location-of-agrab-tepe-dalma-ii",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-02T19:53:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T18:02:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T17:59:59Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T16:58:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T16:58:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-30T16:58:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-12-02T17:54:10Z",
+      "associationCertainty": "certain",
+      "title": "Dalma Tepe",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/119055330/6504178524",
+      "connectionType": "near",
+      "id": "6504178524",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T17:55:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T17:54:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T17:54:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T17:54:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/821512518",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.metmuseum.org/art/metpublications/excavations_at_agrab_tepe_iran_the_metropolitan_museum_journal_v_8_1973",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Muscarella 1973",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6NUXGCXR",
+          "formattedCitation": "<div class=\"csl-entry\">Muscarella, O. W. \u201cExcavations at Agrab Tepe, Iran.\u201d In <i>Metropolitan Museum Journal, 8.1973</i>, 47\u201376, Abb, 1973. https://www.metmuseum.org/art/metpublications/excavations_at_agrab_tepe_iran_the_metropolitan_museum_journal_v_8_1973.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.metmuseum.org/art/metpublications/excavations_at_agrab_tepe_iran_the_metropolitan_museum_journal_v_8_1973",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Muscarella 1973",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6NUXGCXR",
+      "formattedCitation": "<div class=\"csl-entry\">Muscarella, O. W. \u201cExcavations at Agrab Tepe, Iran.\u201d In <i>Metropolitan Museum Journal, 8.1973</i>, 47\u201376, Abb, 1973. https://www.metmuseum.org/art/metpublications/excavations_at_agrab_tepe_iran_the_metropolitan_museum_journal_v_8_1973.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/30822/",
+      "citationDetail": "30822: Agrab Tepe - Dalma II",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/543123",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dyson 1965",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QCID7CAW",
+      "formattedCitation": "<div class=\"csl-entry\">Dyson, Robert H. \u201cProblems of Protohistoric Iran as Seen from Hasanlu.\u201d <i>Journal of Near Eastern Studies</i> 24, no. 3 (1965): 193\u2013217. https://www.jstor.org/stable/543123.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Agrab Tepe",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.metmuseum.org/art/metpublications/excavations_at_agrab_tepe_iran_the_metropolitan_museum_journal_v_8_1973",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Muscarella 1973",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6NUXGCXR",
+          "formattedCitation": "<div class=\"csl-entry\">Muscarella, O. W. \u201cExcavations at Agrab Tepe, Iran.\u201d In <i>Metropolitan Museum Journal, 8.1973</i>, 47\u201376, Abb, 1973. https://www.metmuseum.org/art/metpublications/excavations_at_agrab_tepe_iran_the_metropolitan_museum_journal_v_8_1973.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "agrab-tepe",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-12-02T18:02:08Z",
+      "uri": "https://pleiades.stoa.org/places/119055330/agrab-tepe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Agrab Tepe",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-12-02T19:53:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T18:02:17Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T18:02:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-02T18:02:08Z"
+        }
+      ]
+    }
+  ],
+  "id": "119055330",
+  "subject": [],
+  "title": "Agrab Tepe - Dalma II",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of three tells (archaeological mounds) located near Dalma in northwestern Iran, the excavation of Agrab Tepe in 1961 yielded Neolithic remains. According to Muscarella (1973), the tell is sited southwest of Hasanlu in the Solduz Valley.",
+  "reprPoint": [
+    45.42927474818429,
+    36.98541504545225
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    45.4288103,
+    36.9850382,
+    45.4297398,
+    36.9858047
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/821512518"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-12-02T17:54:09Z",
+  "uri": "https://pleiades.stoa.org/places/119055330",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-12-02T19:53:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-02T18:02:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-02T18:01:34Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-02T17:57:41Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-02T17:54:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-02T17:54:09Z"
+    }
+  ]
+}

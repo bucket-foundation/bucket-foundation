@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.0241897,
+            46.4629228
+          ],
+          [
+            13.0244439,
+            46.4631479
+          ],
+          [
+            13.024633,
+            46.4631002
+          ],
+          [
+            13.0249481,
+            46.4628694
+          ],
+          [
+            13.0251517,
+            46.4627408
+          ],
+          [
+            13.0253684,
+            46.4626039
+          ],
+          [
+            13.0252922,
+            46.4625581
+          ],
+          [
+            13.0253186,
+            46.4625247
+          ],
+          [
+            13.0250831,
+            46.4624637
+          ],
+          [
+            13.0249083,
+            46.4623683
+          ],
+          [
+            13.0241897,
+            46.4629228
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-foro-romano-e-basilica-forense",
+      "properties": {
+        "snippet": "Forum, Basilica; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/98150857/osm-location-of-foro-romano-e-basilica-forense",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Foro romano e Basilica forense"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/195379055",
+          "citationDetail": "Way 195379055",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=195379055",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-foro-romano-e-basilica-forense",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum",
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "end": 300,
+      "title": "OSM location of Foro romano e Basilica forense",
+      "provenance": "OpenStreetMap (Way 195379055, version 6, osm:changeset=146652248, 2024-01-25T00:08:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum",
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "forum",
+        "basilica"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-01-25T00:14:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.0241897,
+            46.4629228
+          ],
+          [
+            13.0244439,
+            46.4631479
+          ],
+          [
+            13.024633,
+            46.4631002
+          ],
+          [
+            13.0249481,
+            46.4628694
+          ],
+          [
+            13.0251517,
+            46.4627408
+          ],
+          [
+            13.0253684,
+            46.4626039
+          ],
+          [
+            13.0252922,
+            46.4625581
+          ],
+          [
+            13.0253186,
+            46.4625247
+          ],
+          [
+            13.0250831,
+            46.4624637
+          ],
+          [
+            13.0249083,
+            46.4623683
+          ],
+          [
+            13.0241897,
+            46.4629228
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/98150857/osm-location-of-foro-romano-e-basilica-forense",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-26T22:02:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T00:19:16Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T00:16:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T00:14:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T00:14:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-01-25T00:18:15Z",
+      "associationCertainty": "certain",
+      "title": "Iulium Carnicum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/98150857/8955427067",
+      "connectionType": "at",
+      "id": "8955427067",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T00:18:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T00:18:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T00:18:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/187430",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mainardis 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V8VCQMRD",
+      "formattedCitation": "<div class=\"csl-entry\">Mainardis, Fulvia. <i>Iulium Carnicum: storia ed epigrafia</i>. Antichit\u00e0 altoadriatiche.\u00a0 Monografie 4. Trieste: Editreg, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "98150857",
+  "subject": [],
+  "title": "Roman forum of Iulium Carnicum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica",
+    "https://pleiades.stoa.org/vocabularies/place-types/forum"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman forum and civic basilica at Iulium Carnicum (modern Zuglio)",
+  "reprPoint": [
+    13.024778187638749,
+    46.4627525684737
+  ],
+  "placeTypes": [
+    "basilica",
+    "forum"
+  ],
+  "bbox": [
+    13.0241897,
+    46.4623683,
+    13.0253684,
+    46.4631479
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/187430"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-01-25T00:18:15Z",
+  "uri": "https://pleiades.stoa.org/places/98150857",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-01-26T22:02:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-25T00:19:16Z"
+    },
+    {
+      "comment": "title, summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-25T00:19:04Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-25T00:18:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-25T00:18:15Z"
+    }
+  ]
+}

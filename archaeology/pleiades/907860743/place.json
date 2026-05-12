@@ -1,0 +1,408 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3154,
+          38.3215
+        ]
+      },
+      "type": "Feature",
+      "id": "topostext-location",
+      "properties": {
+        "snippet": "Unlocated, City-gate",
+        "link": "https://pleiades.stoa.org/places/907860743/topostext-location",
+        "description": "Approximate, representative location derived from ToposText",
+        "location_precision": "precise",
+        "title": "ToposText Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://topostext.org/place/383233FNei",
+          "citationDetail": "383233FNei",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "ToposText",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+          "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q106526386",
+          "citationDetail": "Q106526386",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "topostext-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "end": null,
+      "title": "ToposText Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 1000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/topostext-low-confidence",
+      "featureType": [
+        "unlocated",
+        "city-gate"
+      ],
+      "description": "Approximate, representative location derived from ToposText",
+      "created": "2026-05-11T10:45:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3154,
+          38.3215
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/907860743/topostext-location",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-11T17:33:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:45:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:45:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:45:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2026-05-11T10:39:19Z",
+      "associationCertainty": "certain",
+      "title": "Thebai/Thebae",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/907860743/thebai-thebae",
+      "connectionType": "part_of_physical",
+      "id": "thebai-thebae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-11T17:33:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:45:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:39:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:39:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/541138",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:9.8.4",
+          "citationDetail": "9.8.4",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/10149864",
+      "citationDetail": "10149864: the Neistan Gates (Thebes)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q106526386",
+      "citationDetail": "Q106526386",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/383233FNei",
+      "citationDetail": "383233FNei",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:9.8.4",
+      "citationDetail": "9.8.4",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:9.25.1",
+      "citationDetail": "9.25.1",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Neistas Pylai",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:9.8.4",
+          "citationDetail": "9.8.4",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "neistas-pylai",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2026-05-11T10:42:24Z",
+      "uri": "https://pleiades.stoa.org/places/907860743/neistas-pylai",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "attested": "\u039d\u03b7\u03af\u03c3\u03c4\u03b1\u03c2 \u03c0\u03cd\u03bb\u03b1\u03b9",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-11T17:33:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:45:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:43:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:42:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T10:42:24Z"
+        }
+      ]
+    }
+  ],
+  "id": "907860743",
+  "subject": [],
+  "title": "Neistan Gate (Thebes)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the gates that surrounds the city of Thebes on the road to Kabeirion. No archaeological evidence for it has yet been found.",
+  "reprPoint": [
+    23.3154,
+    38.3215
+  ],
+  "placeTypes": [
+    "unlocated",
+    "city-gate"
+  ],
+  "bbox": [
+    23.3154,
+    38.3215,
+    23.3154,
+    38.3215
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/541138"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-05-11T11:03:26Z",
+  "uri": "https://pleiades.stoa.org/places/907860743",
+  "creators": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-05-11T17:33:19Z"
+    },
+    {
+      "comment": "Added (Thebes) to title",
+      "modifiedBy": "thomase",
+      "modified": "2026-05-11T17:32:58Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "acampbell",
+      "modified": "2026-05-11T11:03:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "acampbell",
+      "modified": "2026-05-11T10:45:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "acampbell",
+      "modified": "2026-05-11T10:37:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "acampbell",
+      "modified": "2026-05-11T10:37:15Z"
+    }
+  ]
+}

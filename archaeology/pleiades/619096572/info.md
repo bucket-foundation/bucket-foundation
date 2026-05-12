@@ -1,0 +1,14 @@
+# Tall Nimrūd
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/619096572
+- **ID**: 619096572
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Tall Nimrūd, Tall Nimrud, Tell Nimrud
+
+## Description
+
+A place from the TAVO Index

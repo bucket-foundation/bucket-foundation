@@ -1,0 +1,273 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4001243,
+          35.8851671
+        ]
+      },
+      "type": "Feature",
+      "id": "domus-romana",
+      "properties": {
+        "snippet": "Villa, ; 550 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/741991861/domus-romana",
+        "description": "West corner of the museum built on the site of a Roman Villa. Time periods following the Barrington Atlas (BAtlas 47 inset Melita).",
+        "location_precision": "precise",
+        "title": "Domus Romana"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/385317114",
+          "citationDetail": "Node 385317114",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=385317114",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "domus-romana",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "Domus Romana",
+      "provenance": "OpenStreetMap Node: 385317114 (version 1, changeset 976247, Sun, 26 Apr 2009 16:57:36 +0000)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "West corner of the museum built on the site of a Roman Villa. Time periods following the Barrington Atlas (BAtlas 47 inset Melita).",
+      "created": "2012-11-12T18:47:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4001243,
+          35.8851671
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/741991861/domus-romana",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Fix typo in description",
+          "modifiedBy": "sgillies",
+          "modified": "2012-11-12T18:58:33Z"
+        },
+        {
+          "comment": "change feature type to villa",
+          "modifiedBy": "sgillies",
+          "modified": "2012-11-12T18:56:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-11-12T18:55:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-11-12T18:47:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sgillies",
+          "modified": "2012-11-12T18:47:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-11-12T18:47:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-03-16T15:49:24Z",
+      "associationCertainty": "certain",
+      "title": "Melita",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/741991861/7643929896",
+      "connectionType": "at",
+      "id": "7643929896",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-16T15:49:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-16T15:49:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-16T15:49:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462310",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.openstreetmap.org/browse/node/385317114",
+      "citationDetail": "Node 385317114",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "OSM",
+      "bibliographicURI": "",
+      "formattedCitation": "osm:node=385317114",
+      "otherIdentifier": " ",
+      "type": "cites"
+    }
+  ],
+  "names": [],
+  "id": "741991861",
+  "subject": [],
+  "title": "Domus Romana",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "West corner of the museum built on the site of a Roman Villa. Time periods following the Barrington Atlas (BAtlas 47 inset Melita).",
+  "reprPoint": [
+    14.4001243,
+    35.8851671
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    14.4001243,
+    35.8851671,
+    14.4001243,
+    35.8851671
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462310"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-03-16T15:49:21Z",
+  "uri": "https://pleiades.stoa.org/places/741991861",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-16T15:50:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-16T15:50:08Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-16T15:49:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-16T15:49:21Z"
+    }
+  ]
+}

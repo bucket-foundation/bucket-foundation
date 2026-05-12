@@ -1,0 +1,355 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.4882376,
+            41.3134684
+          ],
+          [
+            13.4883143,
+            41.3133958
+          ],
+          [
+            13.4883722,
+            41.3134303
+          ],
+          [
+            13.4882955,
+            41.3135028
+          ],
+          [
+            13.4882376,
+            41.3134684
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tempio-di-apollo",
+      "properties": {
+        "snippet": "Temple-2; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/672095639/osm-location-of-tempio-di-apollo",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tempio di Apollo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/58494375",
+          "citationDetail": "Way 58494375",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=58494375",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tempio-di-apollo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -30,
+      "title": "OSM location of Tempio di Apollo",
+      "provenance": "OpenStreetMap (Way 58494375, version 4, osm:changeset=17932935, 2013-09-20T02:23:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-06T01:09:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.4882376,
+            41.3134684
+          ],
+          [
+            13.4883143,
+            41.3133958
+          ],
+          [
+            13.4883722,
+            41.3134303
+          ],
+          [
+            13.4882955,
+            41.3135028
+          ],
+          [
+            13.4882376,
+            41.3134684
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/672095639/osm-location-of-tempio-di-apollo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-11T21:10:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-25T07:04:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-25T07:03:09Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-06T01:09:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-06T01:09:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-06T01:09:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-09-06T01:11:48Z",
+      "associationCertainty": "certain",
+      "title": "Via Appia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/672095639/via-appia",
+      "connectionType": "on",
+      "id": "via-appia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-11T21:10:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-25T07:04:55Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-25T07:04:39Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-06T01:11:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-06T01:11:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/356966898",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.openedition.org/cdf/4241",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Lacam 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2WKDA8Z3",
+          "formattedCitation": "<div class=\"csl-entry\">Lacam, Jean-Claude, and Daniela Quadrino. \u201cItri. Gola di S.\u00a0Andrea. Apollinis (\u00a0?) templum / oratorium.\u201d In <i>Fana, templa, delubra. Corpus dei luoghi di culto dell\u2019Italia antica (FTD) - 4\u202f: Regio I: Fondi, Formia, Minturno, Ponza</i>, by Cristina Ferrante, 30\u201334. Institut des civilisations. Paris: Coll\u00e8ge de France, 2016. https://doi.org/10.4000/books.cdf.4241.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bacigalupo 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SB8DA2AV",
+      "formattedCitation": "<div class=\"csl-entry\">Bacigalupo, Cinzia, Anna De Meo, and Tommaso Leti Messina. \u201cIl santuario di Apollo tra Fondi e Itri: nuovi dati dal rilevamento.\u201d In <i>Atlante tematico di topografia antica, 28 (2018)</i>, 155\u201359. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici 2003a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R2BR782N",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo. \u201cIl tempio di Apollo ad clivum Fundanum sulla Via Appia al valico di Itri.\u201d In <i>Santuari e luoghi di culto nell\u2019Italia antica</i>, 127\u201375. Roma: L\u2019Erma di Bretschneider, 2003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.openedition.org/cdf/4241",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lacam 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2WKDA8Z3",
+      "formattedCitation": "<div class=\"csl-entry\">Lacam, Jean-Claude, and Daniela Quadrino. \u201cItri. Gola di S.\u00a0Andrea. Apollinis (\u00a0?) templum / oratorium.\u201d In <i>Fana, templa, delubra. Corpus dei luoghi di culto dell\u2019Italia antica (FTD) - 4\u202f: Regio I: Fondi, Formia, Minturno, Ponza</i>, by Cristina Ferrante, 30\u201334. Institut des civilisations. Paris: Coll\u00e8ge de France, 2016. https://doi.org/10.4000/books.cdf.4241.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "672095639",
+  "subject": [
+    "Apollo"
+  ],
+  "title": "Gola di S. Andrea, Itri",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Located along the course of the Via Appia between Fondi and Itri are the remains of a likely sanctuary of Apollo that dates to the fourth and third century BCE.",
+  "reprPoint": [
+    13.488304899917766,
+    41.31344931621566
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    13.4882376,
+    41.3133958,
+    13.4883722,
+    41.3135028
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/356966898"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-07-25T19:11:59Z",
+  "uri": "https://pleiades.stoa.org/places/672095639",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-11T21:10:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-25T07:04:55Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-25T07:04:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-25T07:04:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-25T07:02:26Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-09T15:13:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-06T01:18:23Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-25T19:12:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-25T19:11:59Z"
+    }
+  ]
+}

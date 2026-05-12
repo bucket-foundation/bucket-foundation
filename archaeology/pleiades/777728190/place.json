@@ -1,0 +1,450 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            44.3409942,
+            32.3917844
+          ],
+          [
+            44.3416915,
+            32.3911819
+          ],
+          [
+            44.3424613,
+            32.3917278
+          ],
+          [
+            44.3418203,
+            32.3923755
+          ],
+          [
+            44.3409942,
+            32.3917844
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-eurmeiminanki",
+      "properties": {
+        "snippet": "Temple-2; 720 BC - 100 BC",
+        "link": "https://pleiades.stoa.org/places/777728190/osm-location-of-eurmeiminanki",
+        "description": "Representative location based on OpenStreetMap way that traces the outline of the ruins of the ziggurat",
+        "location_precision": "precise",
+        "title": "OSM location of Eurmeiminanki "
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/552082008",
+          "citationDetail": "Way 552082008",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=552082008",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-eurmeiminanki",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -100,
+      "title": "OSM location of Eurmeiminanki ",
+      "provenance": "OpenStreetMap (Way 552082008, version 2, osm:changeset=55315603, 2018-01-10T08:44:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap way that traces the outline of the ruins of the ziggurat",
+      "created": "2018-01-10T08:45:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            44.3409942,
+            32.3917844
+          ],
+          [
+            44.3416915,
+            32.3911819
+          ],
+          [
+            44.3424613,
+            32.3917278
+          ],
+          [
+            44.3418203,
+            32.3923755
+          ],
+          [
+            44.3409942,
+            32.3917844
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/777728190/osm-location-of-eurmeiminanki",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-26T14:33:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-26T14:32:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T09:12:28Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T09:12:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:51:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:47:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:45:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:45:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-10T08:48:23Z",
+      "associationCertainty": "certain",
+      "title": "Borsippa/Burs",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/777728190/borsippa-burs",
+      "connectionType": "at",
+      "id": "borsippa-burs",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-26T14:33:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T09:12:28Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T09:12:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:51:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:48:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:48:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893964",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-10T08:49:24Z",
+      "associationCertainty": "certain",
+      "title": "Ezida",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/777728190/ezida",
+      "connectionType": "near",
+      "id": "ezida",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-26T14:33:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T09:12:28Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T09:12:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:51:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:49:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-10T08:49:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/184449166",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883572295",
+      "citationDetail": "157 number 1193",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+      "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/803804468",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+      "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/27734/",
+      "citationDetail": "27734",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://ebookcentral.proquest.com/lib/liberty/detail.action?docID=4186234",
+      "citationDetail": "333",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Orlin et al. 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3TKI9YU6",
+      "formattedCitation": "<div class=\"csl-entry\">Orlin, Eric M, Lisbeth S Fried, Jennifer Wright Knust, Michael L Satlow, and Michael E Pregill, eds. <i>The Routledge Encyclopedia of Ancient Mediterranean Religions</i>. New York, NY: Routledge, 2016. http://ebookcentral.proquest.com/lib/liberty/detail.action?docID=4186234.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "777728190",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Eurmeiminanki",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ziggurat of the god the god Nab\u00fb at Borsippa. The Sumerian ceremonial name Eurmeiminanki means \"House which Gathers the Seven (Me's) of Heaven and Underworld.\"",
+  "reprPoint": [
+    44.341734384475714,
+    32.39177257023264
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    44.3409942,
+    32.3911819,
+    44.3424613,
+    32.3923755
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893964",
+    "https://pleiades.stoa.org/places/184449166",
+    "https://pleiades.stoa.org/places/184449166"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-10T08:40:03Z",
+  "uri": "https://pleiades.stoa.org/places/777728190",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-26T14:33:20Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-26T14:32:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-10T09:12:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-10T09:12:21Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-10T09:12:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-10T08:51:20Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-10T08:40:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-01-10T08:40:03Z"
+    }
+  ]
+}

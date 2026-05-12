@@ -1,0 +1,14 @@
+# Coissa
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/874429
+- **ID**: 874429
+- **Coords (lng, lat)**: [40.065888, 38.145754]
+- **Subjects**: dare:ancient=1, dare:major=0, dare:feature=station
+- **Time periods**: 
+- **Names**: Coissa
+
+## Description
+
+An ancient place, cited: BAtlas 89 C2 Coissa

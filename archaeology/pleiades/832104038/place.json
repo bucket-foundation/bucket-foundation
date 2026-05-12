@@ -1,0 +1,216 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6684417,
+          41.9701328
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-monte-dellincastro",
+      "properties": {
+        "snippet": "Hill; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/832104038/osm-location-of-monte-dellincastro",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Monte dell'Incastro"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3065073143",
+          "citationDetail": "Node 3065073143",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3065073143",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-monte-dellincastro",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "end": 2099,
+      "title": "OSM location of Monte dell'Incastro",
+      "provenance": "OpenStreetMap (Node 3065073143, version 1, osm:changeset=25285450, 2014-09-07T13:16:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hill"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-05-11T03:36:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6684417,
+          41.9701328
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/832104038/osm-location-of-monte-dellincastro",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-15T14:18:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-18T17:56:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-17T14:19:44Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-11T03:36:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-11T03:36:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-11T03:36:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/papers-of-the-british-school-at-rome/article/classical-topography-of-the-roman-campagnai/E3E23DDC5640C364F3DDF7C9DECD958E",
+      "citationDetail": "104",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ashby 1902",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMGDRNEU",
+      "formattedCitation": "<div class=\"csl-entry\">Ashby, Thomas. \u201cThe Classical Topography of the Roman Campagna (Part 1).\u201d <i>Papers of the British School at Rome</i> 1 (1902): 125\u2013285. https://doi.org/https://doi.org/10.1017/S0068246200004876.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "832104038",
+  "subject": [],
+  "title": "Monte Dell'Incastro (Guidonia Montecelio)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Monte Dell'Incastro in Guidonia Montecelio, Lazio, is a hill that is the site of ancient construction activity, including villas, a nymphaeum, and a subterranean cult of Hercules.",
+  "reprPoint": [
+    12.6684417,
+    41.9701328
+  ],
+  "placeTypes": [
+    "hill"
+  ],
+  "bbox": [
+    12.6684417,
+    41.9701328,
+    12.6684417,
+    41.9701328
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/832104039",
+    "https://pleiades.stoa.org/places/803270681"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-11T03:36:07Z",
+  "uri": "https://pleiades.stoa.org/places/832104038",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-18T17:56:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-17T14:19:44Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-17T14:19:38Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-17T12:52:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-17T12:50:10Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-11T03:36:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-11T03:36:07Z"
+    }
+  ]
+}

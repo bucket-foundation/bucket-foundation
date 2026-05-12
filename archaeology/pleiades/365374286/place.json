@@ -1,0 +1,254 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.9326355,
+          38.1568794
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-i-ii-i1i-ii-i-ii1i1-2ii-i",
+      "properties": {
+        "snippet": "Sanctuary",
+        "link": "https://pleiades.stoa.org/places/365374286/osm-location-of-i-ii-i1i-ii-i-ii1i1-2ii-i",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u03a0\u03cd\u03b8\u03b9\u03bf \u03c4\u03b7\u03c2 \u039f\u03b9\u03bd\u03cc\u03b7\u03c2"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4162956733",
+          "citationDetail": "Node 4162956733",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4162956733",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-i-ii-i1i-ii-i-ii1i1-2ii-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": null,
+      "title": "OSM location of \u03a0\u03cd\u03b8\u03b9\u03bf \u03c4\u03b7\u03c2 \u039f\u03b9\u03bd\u03cc\u03b7\u03c2",
+      "provenance": "OpenStreetMap (Node 4162956733, version 2, osm:changeset=56069351, 2018-02-04T23:13:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-12-16T02:24:13Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.9326355,
+          38.1568794
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/365374286/osm-location-of-i-ii-i1i-ii-i-ii1i1-2ii-i",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-15T01:34:25Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-05T00:57:00Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-21T20:05:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-18T15:56:53Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-16T02:24:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-16T02:24:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-16T02:24:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-12-16T17:40:20Z",
+      "associationCertainty": "certain",
+      "title": "Oinoe (Marathon)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/365374286/4203803272",
+      "connectionType": "at",
+      "id": "4203803272",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-16T17:40:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-16T17:40:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-12-16T17:40:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/580039",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://odysseus.culture.gr/h/2/gh251.jsp?obj_id=19841",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Building in Oinoi Marathona",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "365374286",
+  "subject": [],
+  "title": "Oracular sanctuary at Oinoe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Located to the east of the medieval tower at Oinoe are the remains of a rectangular peristylar building measuring approximately 13.60 x 17.30 meters. The peristyle used marble columns set atop marble pilasters. Spyridon Marinatos discovered the site in 1972.",
+  "reprPoint": [
+    23.9326355,
+    38.1568794
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    23.9326355,
+    38.1568794,
+    23.9326355,
+    38.1568794
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/580039"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-12-16T17:40:19Z",
+  "uri": "https://pleiades.stoa.org/places/365374286",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-21T20:05:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-18T15:56:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-16T17:48:05Z"
+    },
+    {
+      "comment": "title, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-16T17:47:55Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-16T17:40:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-12-16T17:40:19Z"
+    }
+  ]
+}

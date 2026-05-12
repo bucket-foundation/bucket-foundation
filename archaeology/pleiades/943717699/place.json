@@ -1,0 +1,441 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.995507,
+            42.5915654
+          ],
+          [
+            11.9953039,
+            42.5918361
+          ],
+          [
+            11.9950593,
+            42.5918352
+          ],
+          [
+            11.994851,
+            42.5917542
+          ],
+          [
+            11.9948228,
+            42.5915794
+          ],
+          [
+            11.9948665,
+            42.5913728
+          ],
+          [
+            11.9949943,
+            42.5912885
+          ],
+          [
+            11.9951954,
+            42.5912709
+          ],
+          [
+            11.9953279,
+            42.5913327
+          ],
+          [
+            11.9954244,
+            42.5913722
+          ],
+          [
+            11.995507,
+            42.5915654
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-gran-carro-bolsena",
+      "properties": {
+        "snippet": "Settlement; 2000 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/943717699/osm-location-of-gran-carro-bolsena",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Gran Carro (Bolsena)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/949193274",
+          "citationDetail": "Way 949193274",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=949193274",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-gran-carro-bolsena",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -550,
+      "title": "OSM location of Gran Carro (Bolsena)",
+      "provenance": "OpenStreetMap (Way 949193274, version 1, osm:changeset=105643216, 2021-05-31T20:14:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-05-31T20:22:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.995507,
+            42.5915654
+          ],
+          [
+            11.9953039,
+            42.5918361
+          ],
+          [
+            11.9950593,
+            42.5918352
+          ],
+          [
+            11.994851,
+            42.5917542
+          ],
+          [
+            11.9948228,
+            42.5915794
+          ],
+          [
+            11.9948665,
+            42.5913728
+          ],
+          [
+            11.9949943,
+            42.5912885
+          ],
+          [
+            11.9951954,
+            42.5912709
+          ],
+          [
+            11.9953279,
+            42.5913327
+          ],
+          [
+            11.9954244,
+            42.5913722
+          ],
+          [
+            11.995507,
+            42.5915654
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/943717699/osm-location-of-gran-carro-bolsena",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-03T17:24:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:36:42Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:22:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:22:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:22:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-05-31T20:24:05Z",
+      "associationCertainty": "certain",
+      "title": "Volsiniensis L.",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/943717699/volsiniensis-l",
+      "connectionType": "part_of_physical",
+      "id": "volsiniensis-l",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-03T17:24:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:36:43Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:24:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:24:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413388",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tamburini 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZPNXU92Q",
+      "formattedCitation": "<div class=\"csl-entry\">Tamburini, P., and Raffaello Cioni. <i>Un abitato villanoviano perilacustre: il \u201cGran Carro\u201d sul lago di Bolsena (1959-1985)</i>. Archaeologica 113. Roma: G. Bretschneider, 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caneva 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BNIRV6HU",
+      "formattedCitation": "<div class=\"csl-entry\">Caneva, Claudio, Claudio Giardino, and Roberto Cesareo. \u201cM\u00e9thodologies de recherches pour la pal\u00e9om\u00e9tallugie: les metaux du site villanovien du Gran Carro (Bolsena).\u201d In <i>L\u2019arch\u00e9om\u00e9trie dans les pays europ\u00e9ens de langue latine et l\u2019implication de l\u2019arch\u00e9om\u00e9trie dans les grands travaux de sauvetage arch\u00e9ologique\u202f: Actes du Colloque d\u2019Arch\u00e9om\u00e9trie 1995, P\u00e9rigueux (Dordogne, France)</i>, 153\u201356. Rennes, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gran Carro",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tamburini 1995",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZPNXU92Q",
+          "formattedCitation": "<div class=\"csl-entry\">Tamburini, P., and Raffaello Cioni. <i>Un abitato villanoviano perilacustre: il \u201cGran Carro\u201d sul lago di Bolsena (1959-1985)</i>. Archaeologica 113. Roma: G. Bretschneider, 1995.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "gran-carro",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2021-05-31T20:23:26Z",
+      "uri": "https://pleiades.stoa.org/places/943717699/gran-carro",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Gran Carro",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-03T17:24:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:36:42Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:36:36Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:23:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-31T20:23:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "943717699",
+  "subject": [],
+  "title": "Gran Carro (Bolsena)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Proto-Villanovan settlement at Lake Bolsena. Discovered in 1959, this protohistoric settlement was situated on an island that is now submerged in the waters of the lake.",
+  "reprPoint": [
+    11.99514611851094,
+    42.59155923049283
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    11.9948228,
+    42.5912709,
+    11.995507,
+    42.5918361
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413388"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-05-31T20:09:52Z",
+  "uri": "https://pleiades.stoa.org/places/943717699",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-03T17:24:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-31T20:36:42Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-31T20:36:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-31T20:22:09Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-31T20:09:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-31T20:09:52Z"
+    }
+  ]
+}

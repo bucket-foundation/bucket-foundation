@@ -1,0 +1,651 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.914167,
+          37.00222
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-nichoria",
+      "properties": {
+        "snippet": "Settlement, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/423679103/location-of-nichoria",
+        "description": "location verified in Google Earth.",
+        "location_precision": "precise",
+        "title": "Imagery location of Nichoria"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "mgierhart",
+      "homepage": null,
+      "name": "Maija Gierhart",
+      "uri": "https://pleiades.stoa.org/author/mgierhart"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.ims.demokritos.gr/ceradat/ceradat_site.php?SITE=Nichoria",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "ceraDAT - Nichoria",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-nichoria",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "Imagery location of Nichoria",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "location verified in Google Earth.",
+      "created": "2013-04-08T01:13:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.914167,
+          37.00222
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/423679103/location-of-nichoria",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-08T14:53:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-04-13T12:18:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-13T01:21:27Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-08T01:14:49Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-08T01:13:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-04-08T01:13:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:41:25Z",
+      "associationCertainty": "certain",
+      "title": "Messenia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423679103/570480",
+      "connectionType": "part_of_regional",
+      "id": "570480",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "added reference, change cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-12T00:07:48Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570480",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/147682",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "McDonald 1972",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MJU9ZUTC",
+          "formattedCitation": "<div class=\"csl-entry\">McDonald, William A. \u201cExcavations at Nichoria in Messenia: 1969-71.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 41, no. 2 (1972): 218\u201373. https://doi.org/10.2307/147682.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Nichoria",
+      "citationDetail": "Nichoria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/504173",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shelmerdine 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AKHZQHML",
+      "formattedCitation": "<div class=\"csl-entry\">Shelmerdine, Cynthia W. \u201cNichoria in Context: A Major Town in the Pylos Kingdom.\u201d <i>American Journal of Archaeology</i> 85, no. 3 (1981): 319\u201325. https://doi.org/10.2307/504173.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/147682",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McDonald 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MJU9ZUTC",
+      "formattedCitation": "<div class=\"csl-entry\">McDonald, William A. \u201cExcavations at Nichoria in Messenia: 1969-71.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 41, no. 2 (1972): 218\u201373. https://doi.org/10.2307/147682.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.utexas.edu/research/pasp/publications/pdf/themis.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Palaima, T. G. 2000. \"\u0398\u03ad\u03bc\u03b9\u03c2 in the Mycenaean Lexicon and the Etymology of the Place-Name *ti-mi-to a-ko\". Faventia 22.1:7\u201319",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://onlinelibrary.wiley.com/doi/abs/10.1002/9781444338386.wbeah02136",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EAH: Nichoria",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2W3YTP27",
+      "formattedCitation": "<div class=\"csl-entry\">Galanakis, Yannis. \u201cNichoria.\u201d In <i>The Encyclopedia of Ancient History</i>. Wiley-Blackwell, 2012. https://doi.org/10.1002/9781444338386.wbeah02136.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1595514",
+      "citationDetail": "Q1595514: Nichoria",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/370219UNic",
+      "citationDetail": "Nichoria exc. (Messenia) Rizomylos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Nichoria",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "McDonald et al. 1983",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QMNTGL9",
+          "formattedCitation": "<div class=\"csl-entry\">McDonald, William A, William D. E Coulson, and John Rosser. <i>Excavations at Nichoria in Southwest Greece. Vol. 3, Vol. 3,</i>. Minneapolis: University of Minnesota Press, 1983.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "nichoria",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-09-12T00:09:17Z",
+      "uri": "https://pleiades.stoa.org/places/423679103/nichoria",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Nichoria",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-11T19:43:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-12T02:23:59Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-12T00:09:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-12T00:09:17Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "ti-mi-to-a-ke-e, ti-mi-to a-ke-e",
+      "attestations": [
+        {
+          "timePeriod": "late-helladic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-helladic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://smea.isma.cnr.it/wp-content/uploads/2015/07/Sainer_An-Index-of-the-Place-Names-at-Pylos.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Sainer 1976",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H4QM7ID8",
+          "formattedCitation": "<div class=\"csl-entry\">Sainer, Alan P. \u201cAn Index of the Place Names at Pylos.\u201d <i>Studi Micenei Ed Egeo-Anatolici</i>, no. 17 (1976): 17\u201363. http://smea.isma.cnr.it/wp-content/uploads/2015/07/Sainer_An-Index-of-the-Place-Names-at-Pylos.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.academia.edu/963845/The_Geography_of_the_Mycenaean_Kingdoms",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bennet 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7773UUPG",
+          "formattedCitation": "<div class=\"csl-entry\">Bennet, John. \u201cThe Geography of the Mycenaean Kingdoms.\u201d In <i>A Companion to Linear B: Mycenaean Greek Texts and Their World</i>, edited by Yves Duhoux and Anna Morpurgo Davies, 137\u201368. Louvain: Peeters, 2011.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/504173",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Shelmerdine 1981",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AKHZQHML",
+          "formattedCitation": "<div class=\"csl-entry\">Shelmerdine, Cynthia W. \u201cNichoria in Context: A Major Town in the Pylos Kingdom.\u201d <i>American Journal of Archaeology</i> 85, no. 3 (1981): 319\u201325. https://doi.org/10.2307/504173.</div>",
+          "otherIdentifier": "DOI: 10.2307/504173; ISSN: 0002-9114",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://sites.utexas.edu/scripts/publications/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Palaima 2000",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WNHXSIB4",
+          "formattedCitation": "<div class=\"csl-entry\">Palaima, Thomas G. \u201cThemis in the Mycenaean Lexicon and the Etymology of the Place-Name *ti-Mi-to a-Ko.\u201d <i>Faventia</i> 22, no. 1 (2000): 7\u201319. https://sites.utexas.edu/scripts/publications/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "PY An(3) 661.10",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Olivier and Del Freo 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UCXIAZVC",
+          "formattedCitation": "<div class=\"csl-entry\">Olivier, Jean-Pierre, and Maurizio Del Freo. <i>The Pylos Tablets Transcribed</i>. 2nd ed. Padova, Italy: Libreriauniversitaria.it, 2020.</div>",
+          "otherIdentifier": "ISBN: 978-88-335-9205-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "PY Cn(5) 600",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Olivier and Del Freo 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UCXIAZVC",
+          "formattedCitation": "<div class=\"csl-entry\">Olivier, Jean-Pierre, and Maurizio Del Freo. <i>The Pylos Tablets Transcribed</i>. 2nd ed. Padova, Italy: Libreriauniversitaria.it, 2020.</div>",
+          "otherIdentifier": "ISBN: 978-88-335-9205-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "PY Jn(1) 829.13",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Olivier and Del Freo 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UCXIAZVC",
+          "formattedCitation": "<div class=\"csl-entry\">Olivier, Jean-Pierre, and Maurizio Del Freo. <i>The Pylos Tablets Transcribed</i>. 2nd ed. Padova, Italy: Libreriauniversitaria.it, 2020.</div>",
+          "otherIdentifier": "ISBN: 978-88-335-9205-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "PY Ma 123.1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Olivier and Del Freo 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UCXIAZVC",
+          "formattedCitation": "<div class=\"csl-entry\">Olivier, Jean-Pierre, and Maurizio Del Freo. <i>The Pylos Tablets Transcribed</i>. 2nd ed. Padova, Italy: Libreriauniversitaria.it, 2020.</div>",
+          "otherIdentifier": "ISBN: 978-88-335-9205-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "PY Na(1) 361",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Olivier and Del Freo 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UCXIAZVC",
+          "formattedCitation": "<div class=\"csl-entry\">Olivier, Jean-Pierre, and Maurizio Del Freo. <i>The Pylos Tablets Transcribed</i>. 2nd ed. Padova, Italy: Libreriauniversitaria.it, 2020.</div>",
+          "otherIdentifier": "ISBN: 978-88-335-9205-3",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ti-mi-to-a-ke-e",
+      "end": -1200,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "<p>Further Province</p>",
+      "review_state": "published",
+      "description": "Likely toponym for Nichoria attested in Linear B tablets.",
+      "transcriptionCompleteness": "complete",
+      "language": "grc-Linb",
+      "created": "2022-05-05T00:28:36Z",
+      "uri": "https://pleiades.stoa.org/places/423679103/ti-mi-to-a-ke-e",
+      "creators": [
+        {
+          "username": "mgierhart",
+          "homepage": null,
+          "name": "Maija Gierhart",
+          "uri": "https://pleiades.stoa.org/author/mgierhart"
+        }
+      ],
+      "attested": "\ud800\udc34\ud800\udc16\ud800\udc35\ud800\udc00\ud800\udc10\ud800\udc01",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "reconnected Bennet 2011 reference to Zotero",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-05T18:56:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T17:30:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-08T18:23:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-08T18:23:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-08T07:56:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-08T07:56:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-05T00:28:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-05T00:28:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "423679103",
+  "subject": [],
+  "title": "Nichoria",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Located in Messenia, Nichoria was a site with important Bronze Age and Iron Age phases.",
+  "reprPoint": [
+    21.914167,
+    37.00222
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    21.914167,
+    37.00222,
+    21.914167,
+    37.00222
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570480",
+    "https://pleiades.stoa.org/places/384326689"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-03-14T20:44:06Z",
+  "uri": "https://pleiades.stoa.org/places/423679103",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-03T00:39:06Z"
+    },
+    {
+      "comment": "reference cleanup; added topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-12T00:07:13Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-09T02:43:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-04-13T12:18:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-04-13T01:20:59Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-04-08T01:12:03Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-03-14T20:45:51Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-03-14T20:44:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-03-14T20:44:07Z"
+    }
+  ]
+}

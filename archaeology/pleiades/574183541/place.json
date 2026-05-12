@@ -1,0 +1,896 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            50.5091276,
+            26.1496413
+          ],
+          [
+            50.5102091,
+            26.1507854
+          ],
+          [
+            50.5114021,
+            26.152569
+          ],
+          [
+            50.513999,
+            26.1550242
+          ],
+          [
+            50.5147071,
+            26.1537145
+          ],
+          [
+            50.5152007,
+            26.1530211
+          ],
+          [
+            50.5153723,
+            26.1522314
+          ],
+          [
+            50.5168851,
+            26.1517595
+          ],
+          [
+            50.5168207,
+            26.1513069
+          ],
+          [
+            50.5168851,
+            26.1467997
+          ],
+          [
+            50.5154045,
+            26.1468189
+          ],
+          [
+            50.5154237,
+            26.1462866
+          ],
+          [
+            50.5116257,
+            26.1461132
+          ],
+          [
+            50.5116794,
+            26.1423763
+          ],
+          [
+            50.5095895,
+            26.1413484
+          ],
+          [
+            50.5086239,
+            26.1433614
+          ],
+          [
+            50.5067571,
+            26.1449987
+          ],
+          [
+            50.5042465,
+            26.1474257
+          ],
+          [
+            50.5064888,
+            26.1492748
+          ],
+          [
+            50.5071218,
+            26.1488896
+          ],
+          [
+            50.5082055,
+            26.1498623
+          ],
+          [
+            50.5091276,
+            26.1496413
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "aali-burial-mounds",
+      "properties": {
+        "snippet": "Cemetery, Tumulus; 2500 BC - 1500 BC",
+        "link": "https://pleiades.stoa.org/places/574183541/aali-burial-mounds",
+        "description": "Polygon representing the location of the A'ali Burial Mounds, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of A'ali Burial Mounds"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.5256,
+          26.1517
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-2018ali",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/574183541/cigs-location-of-2018ali",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of \u2018\u0100l\u012b"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-middle-bronze-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-middle-bronze-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/199987518",
+          "citationDetail": "Way 199987518",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=199987518",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Laursen 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4ZG5YT8",
+          "formattedCitation": "<div class=\"csl-entry\">Laursen, Steffen Terp, Gianni Marchesi, Jesper Olsen, Thomas Van de Velde, Jutland Archaeological Society, and Bahrain Authority for Culture &amp; Antiquities. <i>The Royal Mounds of A\u2019ali in Bahrain: The Emergence of Kingship in Early Dilmun</i>. Jutland Archaeological Society Publications 100. Aarhus: Aarhus Universitetsforlag, 2017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "aali-burial-mounds",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": -1500,
+      "title": "OSM location of A'ali Burial Mounds",
+      "provenance": "OpenStreetMap (Way 199987518, version 2, osm:changeset=56833670, 2018-03-02T21:53:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        "tumulus"
+      ],
+      "description": "Polygon representing the location of the A'ali Burial Mounds, derived from an OpenStreetMap Way.",
+      "created": "2018-08-27T16:51:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            50.5091276,
+            26.1496413
+          ],
+          [
+            50.5102091,
+            26.1507854
+          ],
+          [
+            50.5114021,
+            26.152569
+          ],
+          [
+            50.513999,
+            26.1550242
+          ],
+          [
+            50.5147071,
+            26.1537145
+          ],
+          [
+            50.5152007,
+            26.1530211
+          ],
+          [
+            50.5153723,
+            26.1522314
+          ],
+          [
+            50.5168851,
+            26.1517595
+          ],
+          [
+            50.5168207,
+            26.1513069
+          ],
+          [
+            50.5168851,
+            26.1467997
+          ],
+          [
+            50.5154045,
+            26.1468189
+          ],
+          [
+            50.5154237,
+            26.1462866
+          ],
+          [
+            50.5116257,
+            26.1461132
+          ],
+          [
+            50.5116794,
+            26.1423763
+          ],
+          [
+            50.5095895,
+            26.1413484
+          ],
+          [
+            50.5086239,
+            26.1433614
+          ],
+          [
+            50.5067571,
+            26.1449987
+          ],
+          [
+            50.5042465,
+            26.1474257
+          ],
+          [
+            50.5064888,
+            26.1492748
+          ],
+          [
+            50.5071218,
+            26.1488896
+          ],
+          [
+            50.5082055,
+            26.1498623
+          ],
+          [
+            50.5091276,
+            26.1496413
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/574183541/aali-burial-mounds",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-29T03:57:47Z"
+        },
+        {
+          "comment": "title",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-29T03:55:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T16:53:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T16:53:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T16:51:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T16:51:42Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "less-certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.researchgate.net/publication/326477096_L'archeologie_du_royaume_de_Bahrein_aujourd'hui_entre_avancees_et_inquietudes",
+          "citationDetail": "Page 120, figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Lombard 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/98D6RCVK",
+          "formattedCitation": "<div class=\"csl-entry\">Lombard, Pierre. \u201cL\u2019arch\u00e9ologie du royaume de Bahre\u00efn aujourd\u2019hui, entre avanc\u00e9es et inqui\u00e9tudes.\u201d <i>Routes de l\u2019Orient, Hors-s\u00e9rie</i> 2 (2016): 117\u201338. https://www.researchgate.net/publication/326477096_L\u2019archeologie_du_royaume_de_Bahrein_aujourd\u2019hui_entre_avancees_et_inquietudes.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://onlinelibrary-wiley-com.ezproxy.its.uu.se/doi/pdfdirect/10.1111/j.1600-0471.2008.00291.x",
+          "citationDetail": "page 110, figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Potts 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4QLKGKRR",
+          "formattedCitation": "<div class=\"csl-entry\">Potts, D. T. \u201cThe Deacon and the Dove: On Some Early Christian (?) Grave Stelae from al-Maqsha and Shakhura (Bahrain).\u201d <i>Arabian Archaeology and Epigraphy</i> 9 (2008): 109\u201319. https://onlinelibrary-wiley-com.ezproxy.its.uu.se/doi/pdfdirect/10.1111/j.1600-0471.2008.00291.x.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-2018ali",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of \u2018\u0100l\u012b",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-03-21T12:37:47Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.5256,
+          26.1517
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/574183541/cigs-location-of-2018ali",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-11T15:32:29Z"
+        },
+        {
+          "comment": "ctype of location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-11T02:30:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-03-21T12:41:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-03-21T12:37:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-03-21T12:37:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1500,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-27T16:55:08Z",
+      "associationCertainty": "less-certain",
+      "title": "Dilmun",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/574183541/dilmun",
+      "connectionType": "part_of_admin",
+      "id": "dilmun",
+      "attestations": [
+        {
+          "timePeriod": "middle-bronze-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-29T03:57:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T16:55:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T16:55:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T16:55:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-27T16:55:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912837",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_admin"
+    },
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2019-07-06T13:39:07Z",
+      "associationCertainty": "certain",
+      "title": "Dilmun Burial Mounds",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/574183541/dilmun-burial-mounds",
+      "connectionType": "part_of_analytical",
+      "id": "dilmun-burial-mounds",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-07-30T20:38:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-06T19:43:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-06T13:39:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-06T13:39:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/933683602",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://whc.unesco.org/en/list/1542",
+          "citationDetail": "Dilmun Burial Mounds",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "WHL",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+          "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-07-07T01:44:54Z",
+      "associationCertainty": "certain",
+      "title": "Tylos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/574183541/tylos-island",
+      "connectionType": "on",
+      "id": "tylos-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-17T17:10:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-17T14:25:27Z"
+        },
+        {
+          "comment": "cnxn reference wikidata",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-17T14:25:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-07T01:44:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-07T01:44:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/932485",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q5276996",
+          "citationDetail": "Dilmun Burial Mounds (Q5276996)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Laursen 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4ZG5YT8",
+      "formattedCitation": "<div class=\"csl-entry\">Laursen, Steffen Terp, Gianni Marchesi, Jesper Olsen, Thomas Van de Velde, Jutland Archaeological Society, and Bahrain Authority for Culture &amp; Antiquities. <i>The Royal Mounds of A\u2019ali in Bahrain: The Emergence of Kingship in Early Dilmun</i>. Jutland Archaeological Society Publications 100. Aarhus: Aarhus Universitetsforlag, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Dilmun_Burial_Mounds",
+      "citationDetail": "Dilmun Burial Mounds",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5276996",
+      "citationDetail": "Dilmun Burial Mounds (Q5276996)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "\u2018\u0100l\u012b",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://onlinelibrary-wiley-com.ezproxy.its.uu.se/doi/pdfdirect/10.1111/j.1600-0471.2008.00291.x",
+          "citationDetail": "page 110, figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Potts 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4QLKGKRR",
+          "formattedCitation": "<div class=\"csl-entry\">Potts, D. T. \u201cThe Deacon and the Dove: On Some Early Christian (?) Grave Stelae from al-Maqsha and Shakhura (Bahrain).\u201d <i>Arabian Archaeology and Epigraphy</i> 9 (2008): 109\u201319. https://onlinelibrary-wiley-com.ezproxy.its.uu.se/doi/pdfdirect/10.1111/j.1600-0471.2008.00291.x.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.researchgate.net/publication/326477096_L'archeologie_du_royaume_de_Bahrein_aujourd'hui_entre_avancees_et_inquietudes",
+          "citationDetail": "page 120, figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Lombard 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/98D6RCVK",
+          "formattedCitation": "<div class=\"csl-entry\">Lombard, Pierre. \u201cL\u2019arch\u00e9ologie du royaume de Bahre\u00efn aujourd\u2019hui, entre avanc\u00e9es et inqui\u00e9tudes.\u201d <i>Routes de l\u2019Orient, Hors-s\u00e9rie</i> 2 (2016): 117\u201338. https://www.researchgate.net/publication/326477096_L\u2019archeologie_du_royaume_de_Bahrein_aujourd\u2019hui_entre_avancees_et_inquietudes.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "2018ali",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for [LANGUAGE (YEAR)] (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2023-03-21T12:40:24Z",
+      "uri": "https://pleiades.stoa.org/places/574183541/2018ali",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u0639\u0627\u0644\u064a",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-24T18:24:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-21T17:17:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-03-21T12:40:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-03-21T12:40:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-03-21T12:40:24Z"
+        }
+      ]
+    }
+  ],
+  "id": "574183541",
+  "subject": [],
+  "title": "A'ali Mound Cemetery",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large complex of burial mounds located near the town of A'ali in central Bahrain. The burials date to the early Dilmun era, ca. 2050-1700 BCE.",
+  "reprPoint": [
+    50.51848006922147,
+    26.149873444121326
+  ],
+  "placeTypes": [
+    "cemetery",
+    "archaeological-site",
+    "tumulus"
+  ],
+  "bbox": [
+    50.5042465,
+    26.1413484,
+    50.5256,
+    26.1550242
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912837",
+    "https://pleiades.stoa.org/places/933683602",
+    "https://pleiades.stoa.org/places/932485"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-27T16:51:09Z",
+  "uri": "https://pleiades.stoa.org/places/574183541",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-17T14:24:54Z"
+    },
+    {
+      "comment": "wikidata Q5276996",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-29T04:05:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-29T03:57:47Z"
+    },
+    {
+      "comment": "added wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-29T03:56:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-27T16:53:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-27T16:53:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-27T16:51:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-27T16:51:09Z"
+    }
+  ]
+}

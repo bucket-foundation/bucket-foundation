@@ -1,0 +1,411 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            37.2744399,
+            36.3781131
+          ],
+          [
+            37.2746153,
+            36.3786151
+          ],
+          [
+            37.2754271,
+            36.3785001
+          ],
+          [
+            37.2759473,
+            36.3780745
+          ],
+          [
+            37.2760564,
+            36.3774395
+          ],
+          [
+            37.2762326,
+            36.3765815
+          ],
+          [
+            37.2756895,
+            36.3765082
+          ],
+          [
+            37.2751222,
+            36.3764349
+          ],
+          [
+            37.2744879,
+            36.3775724
+          ],
+          [
+            37.2745952,
+            36.3780216
+          ],
+          [
+            37.2744399,
+            36.3781131
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-qaramel",
+      "properties": {
+        "snippet": "Archaeological-site; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/945731146/osm-location-of-tell-qaramel",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Qaramel"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/569566873",
+          "citationDetail": "Way 569566873",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=569566873",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-qaramel",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -3300,
+      "title": "OSM location of Tell Qaramel",
+      "provenance": "OpenStreetMap (Way 569566873, version 3, osm:changeset=155584082, 2024-08-22T02:46:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-08-22T02:47:31Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            37.2744399,
+            36.3781131
+          ],
+          [
+            37.2746153,
+            36.3786151
+          ],
+          [
+            37.2754271,
+            36.3785001
+          ],
+          [
+            37.2759473,
+            36.3780745
+          ],
+          [
+            37.2760564,
+            36.3774395
+          ],
+          [
+            37.2762326,
+            36.3765815
+          ],
+          [
+            37.2756895,
+            36.3765082
+          ],
+          [
+            37.2751222,
+            36.3764349
+          ],
+          [
+            37.2744879,
+            36.3775724
+          ],
+          [
+            37.2745952,
+            36.3780216
+          ],
+          [
+            37.2744399,
+            36.3781131
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/945731146/osm-location-of-tell-qaramel",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-05T13:51:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-05T13:36:07Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-22T02:48:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-22T02:47:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-22T02:47:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tell_Qaramel",
+      "citationDetail": "Tell Qaramel",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pcma.uw.edu.pl/wp-content/uploads/pam/PAM_1999_XI/33.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mazurowski 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QM5FZPE9",
+      "formattedCitation": "<div class=\"csl-entry\">Mazurowski, Ryszard F. \u201cPRELIMINARY REPORT ON THE FIRST SEASON, 1999.\u201d <i>Polish Archaeology in the Mediterranean</i> 11 (1999): 285\u201396. https://pcma.uw.edu.pl/wp-content/uploads/pam/PAM_1999_XI/33.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/product/identifier/S0033822200056083/type/journal_article",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mazurowski 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QKBFGFVF",
+      "formattedCitation": "<div class=\"csl-entry\">Mazurowski, Ryszard F, Danuta J Michczy\u0144ska, Anna Pazdur, and Natalia Piotrowska. \u201cChronology of the Early Pre-Pottery Neolithic Settlement Tell Qaramel, Northern Syria, in the Light of Radiocarbon Dating.\u201d <i>Radiocarbon</i> 51, no. 2 (2009): 771\u201381. https://doi.org/10.1017/S0033822200056083.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mazurowski 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9XH6HN36",
+      "formattedCitation": "<div class=\"csl-entry\">Mazurowski, Ryszard, Youssef Kanjou, and Polish Centre of Mediterranean Archaeology, eds. <i>Tell Qaramel 1999-2007: Protoneolithic and Early Pre-Pottery Neolithic Settlement in Northern Syria: Preliminary Results of Syrian-Polish Archaeological Excavations 1999-2007 = Un Village Protoneolithique et Preceramique En Syrie Du Nord: Resultats Des Fouilles Syriennes et Polonaises 1999-2007</i>. PCMA Excavation Series 2. Warsaw: Polish Centre of Mediterranean Archaeology, University of Warsaw, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q4178402",
+      "citationDetail": "Tell Qaramel (Q4178402)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tell Qaramel",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/",
+          "citationDetail": "Tell Qaramel (Q4178402)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "tell-qaramel",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-08-05T03:37:42Z",
+      "uri": "https://pleiades.stoa.org/places/945731146/tell-qaramel",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Tell Qaramel",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-05T13:51:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-05T13:36:08Z"
+        },
+        {
+          "comment": "add name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-05T03:37:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-05T03:37:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "945731146",
+  "subject": [],
+  "title": "Tell Qaramel",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A settlement mound with evidence of human activity stretching from the Pre-Pottery Neolithic A period to the Hellenistic period.",
+  "reprPoint": [
+    37.275315087965055,
+    36.377511177304925
+  ],
+  "placeTypes": [
+    "tell",
+    "archaeological-site"
+  ],
+  "bbox": [
+    37.2744399,
+    36.3764349,
+    37.2762326,
+    36.3786151
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-08-22T02:47:00Z",
+  "uri": "https://pleiades.stoa.org/places/945731146",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-05T13:51:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-05T13:36:07Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-18T01:23:41Z"
+    },
+    {
+      "comment": "wikidata Q4178402",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-12T19:19:43Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-22T13:27:57Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-22T02:47:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-22T02:47:00Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Praibalis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/1001903
+- **ID**: 1001903
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Praibalis
+
+## Description
+
+An ancient place, cited: BAtlas 102 C3 no. 17 (Praibalis)

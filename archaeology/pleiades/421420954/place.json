@@ -1,0 +1,461 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.59964551686675,
+              25.72021758574236
+            ],
+            [
+              32.59970815331624,
+              25.72026293633233
+            ],
+            [
+              32.59961535650842,
+              25.72035852670899
+            ],
+            [
+              32.59954819070726,
+              25.72030782669066
+            ],
+            [
+              32.59964551686675,
+              25.72021758574236
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagey-location-house-of-butehamon",
+      "properties": {
+        "snippet": "Townhouse; 1086 BC - 664 BC",
+        "link": "https://pleiades.stoa.org/places/421420954/imagey-location-house-of-butehamon",
+        "description": "Imagery Location: visible remains of the house of Butehamon",
+        "location_precision": "precise",
+        "title": "Imagery Location: House of Butehamon"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagey-location-house-of-butehamon",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": -664,
+      "title": "Imagery Location: House of Butehamon",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1086,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Imagery Location: visible remains of the house of Butehamon",
+      "created": "2025-03-26T14:53:19Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.59964551686675,
+              25.72021758574236
+            ],
+            [
+              32.59970815331624,
+              25.72026293633233
+            ],
+            [
+              32.59961535650842,
+              25.72035852670899
+            ],
+            [
+              32.59954819070726,
+              25.72030782669066
+            ],
+            [
+              32.59964551686675,
+              25.72021758574236
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/421420954/imagey-location-house-of-butehamon",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-26T19:11:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:57:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:53:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:53:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -664,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-26T14:56:09Z",
+      "associationCertainty": "certain",
+      "title": "Medinet Habu",
+      "start": -1086,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/421420954/medinet-habu",
+      "connectionType": "at",
+      "id": "medinet-habu",
+      "attestations": [
+        {
+          "timePeriod": "third-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-26T19:11:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:57:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:56:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:56:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/321318358",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.griffith.ox.ac.uk/topbib/pdf/pm1-2.pdf",
+      "citationDetail": "p. 773",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Porter 1964",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/33DL87J8",
+      "formattedCitation": "<div class=\"csl-entry\">Porter, Bertha, Rosalind Louisa Beaufort Moss, and Ethel W. Burney. <i>Topographical Bibliography of Ancient Egyptian Hieroglyphic Texts, Reliefs, and Paintings. I. The Theban Necropolis. Part 2. Royal Tombs and Smaller Cemeteries</i>. 2nd ed. 1927. Reprint, Oxford, 1964. http://www.griffith.ox.ac.uk/topbib/pdf/pm1-2.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/oip66.pdf",
+      "citationDetail": "pp. 4-5",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Holscher 1954",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/64NL4YDV",
+      "formattedCitation": "<div class=\"csl-entry\">H\u00f6lscher, Uvo. <i>The Excavation of Medinet Habu. V. Post-Ramessid Remains</i>. Translated by Elizabeth B. Hauser. Oriental Institut Publications 66. Chicago: The University of Chicago Press, 1954. https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/oip21.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q133575897",
+      "citationDetail": "House of Butehamon (Q133575897)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "House of Butehamon",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "house-of-butehamon-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-26T14:54:14Z",
+      "uri": "https://pleiades.stoa.org/places/421420954/house-of-butehamon-1",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "House of Butehamon",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-26T19:11:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:57:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:54:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:54:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Maison de Bout\u00e9hamon",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "maison-de-boutehamon",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-03-26T14:54:50Z",
+      "uri": "https://pleiades.stoa.org/places/421420954/maison-de-boutehamon",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Maison de Bout\u00e9hamon",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-26T19:11:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:57:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:54:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-26T14:54:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "421420954",
+  "subject": [
+    "townhouse"
+  ],
+  "title": "House of Butehamon",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "House of the scribe Butehamon in the enclosure of the funerary temple of Ramses III at Medinet Habu, near the western fortified gate.",
+  "reprPoint": [
+    32.599628675694525,
+    25.720287446996757
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    32.59954819070726,
+    25.72021758574236,
+    32.59970815331624,
+    25.72035852670899
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/321318358"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-27T13:27:16Z",
+  "uri": "https://pleiades.stoa.org/places/421420954",
+  "creators": [
+    {
+      "username": "nsouchon",
+      "homepage": null,
+      "name": "Nicolas Souchon",
+      "uri": "https://pleiades.stoa.org/author/nsouchon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q133575897",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-28T13:10:09Z"
+    },
+    {
+      "comment": "added Holscher 1954 by @nsouchon",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-27T20:26:45Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-27T13:27:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-26T19:11:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-26T14:57:17Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-26T14:49:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-26T14:49:19Z"
+    }
+  ]
+}

@@ -1,0 +1,432 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.822161,
+            41.4825775
+          ],
+          [
+            13.822161,
+            41.4825976
+          ],
+          [
+            13.8221127,
+            41.4826227
+          ],
+          [
+            13.8220832,
+            41.4826428
+          ],
+          [
+            13.8220537,
+            41.4826358
+          ],
+          [
+            13.8220068,
+            41.4826047
+          ],
+          [
+            13.8219706,
+            41.4825755
+          ],
+          [
+            13.8220135,
+            41.4825444
+          ],
+          [
+            13.8220497,
+            41.4825223
+          ],
+          [
+            13.8220712,
+            41.4825394
+          ],
+          [
+            13.822098,
+            41.4825233
+          ],
+          [
+            13.822161,
+            41.4825775
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mausoleo-di-ummidia-quadratilla",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/954457992/osm-location-of-mausoleo-di-ummidia-quadratilla",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mausoleo di Ummidia Quadratilla"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/584016427",
+          "citationDetail": "Way 584016427",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=584016427",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mausoleo-di-ummidia-quadratilla",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Mausoleo di Ummidia Quadratilla",
+      "provenance": "OpenStreetMap (Way 584016427, version 1, osm:changeset=58487482, 2018-04-27T19:49:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-02-12T04:44:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.822161,
+            41.4825775
+          ],
+          [
+            13.822161,
+            41.4825976
+          ],
+          [
+            13.8221127,
+            41.4826227
+          ],
+          [
+            13.8220832,
+            41.4826428
+          ],
+          [
+            13.8220537,
+            41.4826358
+          ],
+          [
+            13.8220068,
+            41.4826047
+          ],
+          [
+            13.8219706,
+            41.4825755
+          ],
+          [
+            13.8220135,
+            41.4825444
+          ],
+          [
+            13.8220497,
+            41.4825223
+          ],
+          [
+            13.8220712,
+            41.4825394
+          ],
+          [
+            13.822098,
+            41.4825233
+          ],
+          [
+            13.822161,
+            41.4825775
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/954457992/osm-location-of-mausoleo-di-ummidia-quadratilla",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T14:06:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-21T14:47:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-12T04:51:48Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-12T04:44:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-12T04:44:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-12T04:44:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-02-12T04:44:41Z",
+      "associationCertainty": "certain",
+      "title": "Casinum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/954457992/0817071229",
+      "connectionType": "at",
+      "id": "0817071229",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-12T04:44:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-12T04:44:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-12T04:44:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432764",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Mausoleo_di_Ummidia_Quadratilla",
+      "citationDetail": "Mausoleo di Ummidia Quadratilla",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3852985",
+      "citationDetail": "Mausoleum of Ummidia Quadratilla (Q3852985)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mausoleum of Ummidia Quadratilla",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3852985",
+          "citationDetail": "Mausoleum of Ummidia Quadratilla (Q3852985)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "mausoleum-of-ummidia-quadratilla",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-07-05T14:08:00Z",
+      "uri": "https://pleiades.stoa.org/places/954457992/mausoleum-of-ummidia-quadratilla",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Mausoleum of Ummidia Quadratilla",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-07T21:13:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T14:08:06Z"
+        },
+        {
+          "comment": "add name ",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T14:08:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-05T14:08:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "954457992",
+  "subject": [],
+  "title": "Mausoleo di Ummidia Quadratilla",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman tomb located in the archaeological area of Casinum that dates to either the first or second centuries CE.",
+  "reprPoint": [
+    13.822069543246004,
+    41.482579659814654
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    13.8219706,
+    41.4825223,
+    13.822161,
+    41.4826428
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432764"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-12T04:44:40Z",
+  "uri": "https://pleiades.stoa.org/places/954457992",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q3852985",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-05T14:06:57Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-21T14:47:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-12T04:51:48Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-12T04:51:34Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-12T04:44:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-12T04:44:40Z"
+    }
+  ]
+}

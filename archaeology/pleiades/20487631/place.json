@@ -1,0 +1,186 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "created": "2020-12-01T05:01:15Z",
+      "associationCertainty": "certain",
+      "title": "Smyrna/Eurydikeia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/20487631/smyrna-eurydikeia",
+      "connectionType": "at",
+      "id": "smyrna-eurydikeia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-20T11:35:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-02T21:57:01Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-02T21:48:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-01T14:50:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-01T05:01:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-01T05:01:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-01T05:01:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550893",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "alguan",
+          "homepage": null,
+          "name": "Annette Lei Guan",
+          "uri": "https://pleiades.stoa.org/author/alguan"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/962518196",
+      "citationDetail": "page 267",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Petzl 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/SBAQIQX4",
+      "formattedCitation": "<div class=\"csl-entry\">Petzl, George. <i>Die Inschriften von Smyrna</i>. Inschriften griechischer St\u00e4dte aus Kleinasien. Bonn: R. Habelt, 1982. http://www.worldcat.org/oclc/962518196.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "20487631",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "Tomb Garden of Theodoros at Smyrna",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A funerary garden attested in text carved on a marble block from the settlement of Smyrna",
+  "reprPoint": null,
+  "placeTypes": [
+    "garden-hortus",
+    "unlocated",
+    "tomb"
+  ],
+  "bbox": null,
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550893"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-01T05:00:23Z",
+  "uri": "https://pleiades.stoa.org/places/20487631",
+  "creators": [
+    {
+      "username": "alguan",
+      "homepage": null,
+      "name": "Annette Lei Guan",
+      "uri": "https://pleiades.stoa.org/author/alguan"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-20T11:35:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-02T21:57:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-02T21:50:56Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-02T21:48:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-12-01T14:55:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T05:01:40Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T05:00:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T05:00:23Z"
+    }
+  ]
+}

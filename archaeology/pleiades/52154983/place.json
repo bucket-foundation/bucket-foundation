@@ -1,0 +1,631 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.9199105,
+            37.1762253
+          ],
+          [
+            21.9211585,
+            37.1758819
+          ],
+          [
+            21.9211284,
+            37.1758158
+          ],
+          [
+            21.9213289,
+            37.1757606
+          ],
+          [
+            21.9210226,
+            37.1750398
+          ],
+          [
+            21.9206411,
+            37.175141
+          ],
+          [
+            21.9203658,
+            37.1745434
+          ],
+          [
+            21.9198071,
+            37.1747138
+          ],
+          [
+            21.9200649,
+            37.1753042
+          ],
+          [
+            21.9198357,
+            37.1753667
+          ],
+          [
+            21.9200612,
+            37.175877
+          ],
+          [
+            21.9197686,
+            37.1759718
+          ],
+          [
+            21.9199105,
+            37.1762253
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-messene-asclepeion",
+      "properties": {
+        "snippet": "Archaeological-site; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/52154983/osm-location-messene-asclepeion",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Messene Asclepeion"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jmuccigr",
+      "homepage": null,
+      "name": "John Muccigrosso",
+      "uri": "https://pleiades.stoa.org/author/jmuccigr"
+    },
+    {
+      "username": "icristofaro",
+      "homepage": null,
+      "name": "Ilaria Cristofaro",
+      "uri": "https://pleiades.stoa.org/author/icristofaro"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/280618740",
+          "citationDetail": "Way 280618740",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=280618740",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-messene-asclepeion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "OSM Location: Messene Asclepeion",
+      "provenance": "OpenStreetMap (Way 280618740, version 14, osm:changeset=140162727, 2023-08-21T06:03:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-09-22T19:44:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.9199105,
+            37.1762253
+          ],
+          [
+            21.9211585,
+            37.1758819
+          ],
+          [
+            21.9211284,
+            37.1758158
+          ],
+          [
+            21.9213289,
+            37.1757606
+          ],
+          [
+            21.9210226,
+            37.1750398
+          ],
+          [
+            21.9206411,
+            37.175141
+          ],
+          [
+            21.9203658,
+            37.1745434
+          ],
+          [
+            21.9198071,
+            37.1747138
+          ],
+          [
+            21.9200649,
+            37.1753042
+          ],
+          [
+            21.9198357,
+            37.1753667
+          ],
+          [
+            21.9200612,
+            37.175877
+          ],
+          [
+            21.9197686,
+            37.1759718
+          ],
+          [
+            21.9199105,
+            37.1762253
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/52154983/osm-location-messene-asclepeion",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-22T21:18:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-22T19:48:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-22T19:45:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-22T19:44:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-22T19:44:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-03-12T02:06:40Z",
+      "associationCertainty": "certain",
+      "title": "Messene",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/52154983/4002019338",
+      "connectionType": "at",
+      "id": "4002019338",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-12T02:06:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-12T02:06:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-12T02:06:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570479",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Torelli 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EF9S3RHD",
+      "formattedCitation": "<div class=\"csl-entry\">Torelli, M. \u201cL\u2019Asklepieion di Messene, lo scultore Damofonte e Pausania.\u201d In <i>In memoria di Enrico Paribeni</i>, 465\u201383, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hayashida 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FGMY4CUL",
+      "formattedCitation": "<div class=\"csl-entry\">Hayashida, Yoshinobu, Ry\u016bichi Yoshitake, Juko Ito, and Juri Yoneoka. <i>Architectural Study of the Stoas of the Asklepieion at Ancient Messene</i>. Fukuoka: Kyushu Univ. Press, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/372219SAsk",
+      "citationDetail": "Asklepieion (Messene) Archaia Messene - \u0391\u03c3\u03ba\u03bb\u03b7\u03c0\u03b9\u03b5\u03af\u03bf\u03bd",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/2158",
+      "citationDetail": "Heiligtum des Asklepios (Asklepieion) Messenien (Regionalbezirke) (\u0399\u03b8\u03ce\u03bc\u03b7 / \u039c\u03b5\u03c3\u03c3\u03ae\u03bd\u03b7), Griechenland",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1350442",
+      "citationDetail": "Tempel des Asklepios Messene, (\u0399\u03b8\u03ce\u03bc\u03b7 / \u039c\u03b5\u03c3\u03c3\u03ae\u03bd\u03b7), Messenien (Regionalbezirke)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q107162500",
+      "citationDetail": "Asklepieion of Messene (Q107162500)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://romeresearchgroup.org/items/1001089",
+      "citationDetail": "1001089: Asclepeion",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TCW",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZV7SNRDS",
+      "formattedCitation": "<div class=\"csl-entry\">John D. Muccigrosso, and Louis I. Hamilton. <i>Temples of the Classical World</i>. Rome Research Group. Accessed October 15, 2024. https://romeresearchgroup.org/database-of-temples/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/1354012",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Themelis 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6D8GYK2J",
+      "formattedCitation": "<div class=\"csl-entry\">Themelis, Petros. \u201cHellenistic Architectural Terracottas from Messene.\u201d <i>Hesperia Supplements</i> 27 (1994): 141\u2013398. https://doi.org/10.2307/1354012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edition.fi/finnishinstituteathens/catalog/book/1051",
+      "citationDetail": "pages 119-120",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Themelis 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q2NSB3LC",
+      "formattedCitation": "<div class=\"csl-entry\">Themelis, Petros. \u201cRoman Messene. The Gymnasium.\u201d In <i>The Greek East in the Roman Context: Proceedings of a Colloquium Organised by the Finnish Institute at Athens May 21 and 22, 1999</i>, edited by Olli Salomies, Helsinki:119\u201326. The Finnish Institute at Athens, 2001. https://doi.org/10.62444/fia.1051.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.3130/aija.69.207_4",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Yoshitake 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WPVQ4Z66",
+      "formattedCitation": "<div class=\"csl-entry\">\u5409\u6b66\u9686\u4e00, \u6797\u7530\u7fa9\u4f38, and \u4f0a\u85e4\u91cd\u525b. \u201c\u30ae\u30ea\u30b7\u30a2\u53e4\u4ee3\u90fd\u5e02\u30e1\u30c3\u30bb\u30cd\u306e\u30a2\u30b9\u30af\u30ec\u30d4\u30aa\u30b9\u795e\u57df\u306b\u304a\u3051\u308b\u30b9\u30c8\u30a2\u306e\u7814\u7a76: \u30aa\u30fc\u30c0\u30fc\u53ca\u3073\u5c0f\u5c4b\u7d44\u306e\u5fa9\u5143 = A Study of the Stoas of the Asklepieion in Ancient Messene: Reconstruction of the Order and Roof Structure.\u201d <i>\u65e5\u672c\u5efa\u7bc9\u5b66\u4f1a\u8a08\u753b\u7cfb\u8ad6\u6587\u96c6 = Journal of Architecture and Planning</i> 69, no. 585 (2004): 207\u201312. https://doi.org/10.3130/aija.69.207_4.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/17787/",
+      "citationDetail": "17787: Asclepeion, Messene",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Asklepieion of Messene",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q107162500",
+          "citationDetail": "Asklepieion of Messene (Q107162500)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "asklepieion-of-messene",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-09-22T21:22:10Z",
+      "uri": "https://pleiades.stoa.org/places/52154983/asklepieion-of-messene",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Asklepieion of Messene",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-23T10:46:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-22T21:22:17Z"
+        },
+        {
+          "comment": "name - Asklepieion of Messene, wikidata",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-22T21:22:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-22T21:22:10Z"
+        }
+      ]
+    }
+  ],
+  "id": "52154983",
+  "subject": [
+    "temple",
+    "Asclepius",
+    "dare:feature=temple"
+  ],
+  "title": "Asklepieion of Messene",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>The Asklepieion of Messene was a sanctuary of the Greek god of healing, Asklepios, and served as a pilgrimage site for those seeking to be healed. The Asklepieion is comprised of a square area of 71.91 by 66.67 meters in the center of the city, adjacent to the agora. A Doric temple was built in this precinct in 214 BC. The stoas on the north and south ends of the enclosure have fa\u00e7ades with Corinthian columns supporting an Ionic architrave and a frieze decorated with bulls\u2019 heads alternating with floral scrolls and bowls. The complex is closely connected with civic buildings, including the city's bouleuterion, and it has been suggested that the sanctuary housed both civic and religious activities.</p>\r\n<p>The complex continued to be restored and renovated during the Roman period through the 3rd c. AD, but by the second half of the 4th c. AD it had fallen out of use. It is mentioned by Pausanias, who states that it housed famous statues, including some of the god Asklepios himself. Anastasios Orlandos initiated the excavations of this complex during the 1960s.</p>\r\n<p><strong>Orientation:</strong></p>\r\n<p>The Orientation of the\u00a0<span>Asklepieion towards the south\u2013east is 109,3\u00b0\u00a0\u00b11\u00b0 (skyline altitude of 10\u00b0 towards Eva Mountain).</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Asklepieion in Ancient Messene is a sanctuary of Asklepios, the Greek god of healing, constructed in 214 BC. The complex includes civic as well as sacred buildings",
+  "reprPoint": [
+    21.92041552158939,
+    37.175439862196754
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "archaeological-site"
+  ],
+  "bbox": [
+    21.9197686,
+    37.1745434,
+    21.9213289,
+    37.1762253
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570479",
+    "https://pleiades.stoa.org/places/983069784"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-09T14:27:45Z",
+  "uri": "https://pleiades.stoa.org/places/52154983",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "April Kissinger"
+    },
+    {
+      "username": null,
+      "name": "Eric Shea"
+    },
+    {
+      "username": null,
+      "name": "Chelsea Lee"
+    },
+    {
+      "username": "swright",
+      "homepage": null,
+      "name": "Sterling Wright",
+      "uri": "https://pleiades.stoa.org/author/swright"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added the Orientation of the structure as measured by myself as part of a wider post-doc project, by @icristofaro",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-10T12:00:32Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "icristofaro",
+      "modified": "2025-11-09T14:27:43Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-22T21:21:30Z"
+    },
+    {
+      "comment": "added TCW reference provided by jmuccigr; migrated references from imagery location to place resource level ahead of location retraction/supersession; added vici.org reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-22T20:26:47Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-22T19:48:16Z"
+    },
+    {
+      "comment": "Wikidata Q107162500: Asklepieion of Messene",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-29T03:23:47Z"
+    },
+    {
+      "comment": "added arachne references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-29T03:20:33Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-06T15:14:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-12T03:02:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-12T03:02:05Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-12T03:01:39Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-12T02:06:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-12T02:06:31Z"
+    }
+  ]
+}

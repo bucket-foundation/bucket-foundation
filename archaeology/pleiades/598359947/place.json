@@ -1,0 +1,272 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.073008,
+          35.159856
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-imagery-location-of-platyskinos",
+      "properties": {
+        "snippet": "Settlement; 1600 BC - 1080 BC",
+        "link": "https://pleiades.stoa.org/places/598359947/approximate-imagery-location-of-platyskinos",
+        "description": "Approximate imagery location based on Google Earth representing Platyskinos after Tsipopoulou 1995.",
+        "location_precision": "precise",
+        "title": "Approximate imagery location of Platyskinos"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/34259181",
+          "citationDetail": "Figs. 1 and 5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tsipopoulou 1995",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KS8KWBPD",
+          "formattedCitation": "<div class=\"csl-entry\">Tsipopoulou, Metaxia, Lucia Vagnetti, Paolo Belli, Peter M Day, Maria A Liston, and Istituto per gli studi micenei ed egeo-anatolici (Italy) Consiglio nazionale delle ricerche (Italy). <i>Achladia: scavi e ricerche della Missione greco-italiana in Creta orientale\u202f: 1991-1993</i>. Incunabula Graeca, Vol.XCVII. Roma: Gruppo editorale internazionale, 1995. http://www.worldcat.org/oclc/34259181.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "approximate-imagery-location-of-platyskinos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1080,
+      "title": "Approximate imagery location of Platyskinos",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Approximate imagery location based on Google Earth representing Platyskinos after Tsipopoulou 1995.",
+      "created": "2022-06-30T15:18:59Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.073008,
+          35.159856
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/598359947/approximate-imagery-location-of-platyskinos",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-01T19:47:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T15:20:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T15:19:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T15:18:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1080,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-30T15:16:57Z",
+      "associationCertainty": "certain",
+      "title": "Achladia",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/598359947/achladia",
+      "connectionType": "near",
+      "id": "achladia",
+      "attestations": [
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-01T19:47:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T15:20:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T15:16:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-30T15:16:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/598926917",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/34259181",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tsipopoulou 1995",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KS8KWBPD",
+          "formattedCitation": "<div class=\"csl-entry\">Tsipopoulou, Metaxia, Lucia Vagnetti, Paolo Belli, Peter M Day, Maria A Liston, and Istituto per gli studi micenei ed egeo-anatolici (Italy) Consiglio nazionale delle ricerche (Italy). <i>Achladia: scavi e ricerche della Missione greco-italiana in Creta orientale\u202f: 1991-1993</i>. Incunabula Graeca, Vol.XCVII. Roma: Gruppo editorale internazionale, 1995. http://www.worldcat.org/oclc/34259181.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/34259181",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tsipopoulou 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KS8KWBPD",
+      "formattedCitation": "<div class=\"csl-entry\">Tsipopoulou, Metaxia, Lucia Vagnetti, Paolo Belli, Peter M Day, Maria A Liston, and Istituto per gli studi micenei ed egeo-anatolici (Italy) Consiglio nazionale delle ricerche (Italy). <i>Achladia: scavi e ricerche della Missione greco-italiana in Creta orientale\u202f: 1991-1993</i>. Incunabula Graeca, Vol.XCVII. Roma: Gruppo editorale internazionale, 1995. http://www.worldcat.org/oclc/34259181.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "598359947",
+  "subject": [],
+  "title": "Platyskinos (settlement)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement on Crete from the Late Minoan period near Achladia.",
+  "reprPoint": [
+    26.073008,
+    35.159856
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    26.073008,
+    35.159856,
+    26.073008,
+    35.159856
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/598926917"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-30T15:15:50Z",
+  "uri": "https://pleiades.stoa.org/places/598359947",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-01T19:47:50Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-01T19:47:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T15:20:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T15:15:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-30T15:15:50Z"
+    }
+  ]
+}

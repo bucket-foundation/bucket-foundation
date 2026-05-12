@@ -1,0 +1,14 @@
+# Stodmenos
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/614843
+- **ID**: 614843
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Stodmenos
+
+## Description
+
+An ancient place, cited: BAtlas 62 unlocated Stodmenos

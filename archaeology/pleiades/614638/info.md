@@ -1,0 +1,14 @@
+# Dabenoi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/614638
+- **ID**: 614638
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Dabenoi
+
+## Description
+
+An ancient place, cited: BAtlas 62 unlocated Dabenoi?

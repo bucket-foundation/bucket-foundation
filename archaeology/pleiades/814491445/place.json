@@ -1,0 +1,366 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.9525005,
+            41.5685463
+          ],
+          [
+            0.9532461,
+            41.5683095
+          ],
+          [
+            0.9532086,
+            41.5682172
+          ],
+          [
+            0.9541455,
+            41.5677853
+          ],
+          [
+            0.9544459,
+            41.5676529
+          ],
+          [
+            0.9553007,
+            41.5686506
+          ],
+          [
+            0.9548823,
+            41.5688874
+          ],
+          [
+            0.9544746,
+            41.5690881
+          ],
+          [
+            0.9539703,
+            41.5692446
+          ],
+          [
+            0.9528438,
+            41.5695336
+          ],
+          [
+            0.9527848,
+            41.5694493
+          ],
+          [
+            0.9529814,
+            41.5693787
+          ],
+          [
+            0.9529668,
+            41.5693534
+          ],
+          [
+            0.9525005,
+            41.5685463
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-oppidum",
+      "properties": {
+        "snippet": "Settlement, ; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/814491445/location-of-oppidum",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Poblat Ib\u00e8ric dels Vilars"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/152204064",
+          "citationDetail": "Way 152204064",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=152204064",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-oppidum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -330,
+      "title": "OSM location of Poblat Ib\u00e8ric dels Vilars",
+      "provenance": "OpenStreetMap (Way 152204064, version 11, osm:changeset=138540383, 2023-07-15T11:06:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-03-23T05:54:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.9525005,
+            41.5685463
+          ],
+          [
+            0.9532461,
+            41.5683095
+          ],
+          [
+            0.9532086,
+            41.5682172
+          ],
+          [
+            0.9541455,
+            41.5677853
+          ],
+          [
+            0.9544459,
+            41.5676529
+          ],
+          [
+            0.9553007,
+            41.5686506
+          ],
+          [
+            0.9548823,
+            41.5688874
+          ],
+          [
+            0.9544746,
+            41.5690881
+          ],
+          [
+            0.9539703,
+            41.5692446
+          ],
+          [
+            0.9528438,
+            41.5695336
+          ],
+          [
+            0.9527848,
+            41.5694493
+          ],
+          [
+            0.9529814,
+            41.5693787
+          ],
+          [
+            0.9529668,
+            41.5693534
+          ],
+          [
+            0.9525005,
+            41.5685463
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/814491445/location-of-oppidum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T03:12:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T23:10:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T22:10:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T22:10:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-08-24T17:14:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T05:55:36Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T05:54:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T05:54:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-23T05:54:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Vilars_de_Arbeca",
+      "citationDetail": "Vilars de Arbeca",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Vilars de Arbeca.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q11927070",
+      "citationDetail": "Jaciment del Vilar (Q11927070)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "814491445",
+  "subject": [],
+  "title": "Los Vilars",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fortified Iberian site in use from ca. 750 B.C. to 325 B.C.",
+  "reprPoint": [
+    0.9538186591490598,
+    41.56865640141259
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    0.9525005,
+    41.5676529,
+    0.9553007,
+    41.5695336
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-03-23T05:53:52Z",
+  "uri": "https://pleiades.stoa.org/places/814491445",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q11927070",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T03:13:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:09:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-08-24T17:14:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-08-24T17:13:54Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-23T05:53:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-23T05:53:53Z"
+    }
+  ]
+}

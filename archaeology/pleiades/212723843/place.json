@@ -1,0 +1,459 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              35.1690381,
+              31.688716
+            ],
+            [
+              35.1704184,
+              31.6884651
+            ],
+            [
+              35.1705097,
+              31.6888374
+            ],
+            [
+              35.1705327,
+              31.6890031
+            ],
+            [
+              35.1705294,
+              31.6891595
+            ],
+            [
+              35.1690574,
+              31.6891795
+            ],
+            [
+              35.1690381,
+              31.688716
+            ]
+          ],
+          [
+            [
+              35.1710777,
+              31.6884966
+            ],
+            [
+              35.171365,
+              31.6888966
+            ],
+            [
+              35.173098,
+              31.6881525
+            ],
+            [
+              35.1727929,
+              31.6876695
+            ],
+            [
+              35.1710777,
+              31.6884966
+            ]
+          ],
+          [
+            [
+              35.167287,
+              31.6889796
+            ],
+            [
+              35.1683974,
+              31.6886597
+            ],
+            [
+              35.1686387,
+              31.6892211
+            ],
+            [
+              35.1674715,
+              31.689526
+            ],
+            [
+              35.167287,
+              31.6889796
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-solomons-pools",
+      "properties": {
+        "snippet": "Reservoir; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/212723843/osm-location-of-solomons-pools",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Solomon's Pools"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/14243316",
+          "citationDetail": "Relation 14243316",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=14243316",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-solomons-pools",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/reservoir"
+      ],
+      "end": 300,
+      "title": "OSM location of Solomon's Pools",
+      "provenance": "OpenStreetMap (Relation 14243316, version 7, osm:changeset=142450272, 2023-10-11T19:32:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/reservoir"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "reservoir"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-12-24T11:43:45Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              35.1690381,
+              31.688716
+            ],
+            [
+              35.1704184,
+              31.6884651
+            ],
+            [
+              35.1705097,
+              31.6888374
+            ],
+            [
+              35.1705327,
+              31.6890031
+            ],
+            [
+              35.1705294,
+              31.6891595
+            ],
+            [
+              35.1690574,
+              31.6891795
+            ],
+            [
+              35.1690381,
+              31.688716
+            ]
+          ],
+          [
+            [
+              35.1710777,
+              31.6884966
+            ],
+            [
+              35.171365,
+              31.6888966
+            ],
+            [
+              35.173098,
+              31.6881525
+            ],
+            [
+              35.1727929,
+              31.6876695
+            ],
+            [
+              35.1710777,
+              31.6884966
+            ]
+          ],
+          [
+            [
+              35.167287,
+              31.6889796
+            ],
+            [
+              35.1683974,
+              31.6886597
+            ],
+            [
+              35.1686387,
+              31.6892211
+            ],
+            [
+              35.1674715,
+              31.689526
+            ],
+            [
+              35.167287,
+              31.6889796
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/212723843/osm-location-of-solomons-pools",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:25:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-24T11:45:18Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-24T11:44:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-24T11:43:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-24T11:43:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/23288/",
+      "citationDetail": "23288: Solomon's Pools",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Solomon%27s_Pools",
+      "citationDetail": "Solomon's Pools",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2916617",
+      "citationDetail": "Solomon's Pools (Q2916617)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6233220",
+      "citationDetail": "Birak Sulayman (Salomons-Teiche), Luftbild Salomons Teiche, Bethlehem",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2375825",
+      "citationDetail": "2375825: Birak Sulayman",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>iDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Solomon's Pools",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Solomon%27s_Pools",
+          "citationDetail": "Solomon's Pools",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "solomons-pools",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-12-24T11:45:09Z",
+      "uri": "https://pleiades.stoa.org/places/212723843/solomons-pools",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Solomon's Pools",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:25:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-24T11:45:18Z"
+        },
+        {
+          "comment": "name - Solomon's Pools",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-24T11:45:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-24T11:45:09Z"
+        }
+      ]
+    }
+  ],
+  "id": "212723843",
+  "subject": [],
+  "title": "Solomon's Pools",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/reservoir"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Solomon's Pools\" are three ancient reservoirs located in the south-central West Bank, approximately 3.5 kilometres (2.2 mi) southwest of Bethlehem. They date to the early Roman period.",
+  "reprPoint": [
+    35.170172078654474,
+    31.688715160937214
+  ],
+  "placeTypes": [
+    "reservoir"
+  ],
+  "bbox": [
+    35.167287,
+    31.6876695,
+    35.173098,
+    31.689526
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-24T11:43:12Z",
+  "uri": "https://pleiades.stoa.org/places/212723843",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-13T21:25:42Z"
+    },
+    {
+      "comment": "add arachne, iDAI.gazetteer",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-25T16:06:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-24T11:45:17Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-24T11:43:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-24T11:43:12Z"
+    }
+  ]
+}

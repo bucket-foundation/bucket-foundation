@@ -1,0 +1,397 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.1814203,
+            28.9843264
+          ],
+          [
+            33.1815169,
+            28.9844308
+          ],
+          [
+            33.1817004,
+            28.9844333
+          ],
+          [
+            33.1818117,
+            28.984364
+          ],
+          [
+            33.1818643,
+            28.9842449
+          ],
+          [
+            33.18186,
+            28.9841029
+          ],
+          [
+            33.1817615,
+            28.9840414
+          ],
+          [
+            33.1816662,
+            28.9840031
+          ],
+          [
+            33.1815018,
+            28.984102
+          ],
+          [
+            33.1814494,
+            28.9841662
+          ],
+          [
+            33.1814203,
+            28.9843264
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-ras-budran",
+      "properties": {
+        "snippet": "Fort-2; 3000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/555858016/osm-location-of-tell-ras-budran",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Ras Budran"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/907084072",
+          "citationDetail": "Way 907084072",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=907084072",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-ras-budran",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": -2000,
+      "title": "OSM location of Tell Ras Budran",
+      "provenance": "OpenStreetMap (Way 907084072, version 1, osm:changeset=99258642, 2021-02-14T16:54:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-02-14T18:18:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.1814203,
+            28.9843264
+          ],
+          [
+            33.1815169,
+            28.9844308
+          ],
+          [
+            33.1817004,
+            28.9844333
+          ],
+          [
+            33.1818117,
+            28.984364
+          ],
+          [
+            33.1818643,
+            28.9842449
+          ],
+          [
+            33.18186,
+            28.9841029
+          ],
+          [
+            33.1817615,
+            28.9840414
+          ],
+          [
+            33.1816662,
+            28.9840031
+          ],
+          [
+            33.1815018,
+            28.984102
+          ],
+          [
+            33.1814494,
+            28.9841662
+          ],
+          [
+            33.1814203,
+            28.9843264
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/555858016/osm-location-of-tell-ras-budran",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-15T22:13:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-14T18:26:12Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-14T18:21:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-14T18:18:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-14T18:18:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tell_Ras_Budran",
+      "citationDetail": "Tell Ras Budran",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q104834170",
+      "citationDetail": "Q104834170: Tell Ras Budran",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journals.uchicago.edu/doi/abs/10.1086/BASOR25066952",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mumford 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/225YB4EI",
+      "formattedCitation": "<div class=\"csl-entry\">Mumford, Gregory. \u201cTell Ras Budran (Site 345): Defining Egypt\u2019s Eastern Frontier and Mining\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 Operations in South Sinai during the Late Old Kingdom (Early EB IV/MB\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 I).\u201d <i>Bulletin of the American Schools of Oriental Research</i> 342 (May 1, 2006): 13\u201367. https://doi.org/10.1086/BASOR25066952.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tell Ras Budran",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.journals.uchicago.edu/doi/abs/10.1086/BASOR25066952",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mumford 2006",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/225YB4EI",
+          "formattedCitation": "<div class=\"csl-entry\">Mumford, Gregory. \u201cTell Ras Budran (Site 345): Defining Egypt\u2019s Eastern Frontier and Mining\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 Operations in South Sinai during the Late Old Kingdom (Early EB IV/MB\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 I).\u201d <i>Bulletin of the American Schools of Oriental Research</i> 342 (May 1, 2006): 13\u201367. https://doi.org/10.1086/BASOR25066952.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tell-ras-budran",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2021-02-14T18:25:46Z",
+      "uri": "https://pleiades.stoa.org/places/555858016/tell-ras-budran",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Tell Ras Budran",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-15T22:13:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-14T18:26:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-14T18:26:02Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-14T18:25:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-14T18:25:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "555858016",
+  "subject": [],
+  "title": "Tell Ras Budran",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "<p>According to Mumford 2006, the site was identified by an expedition of The University of Toronto. The circular structure dates to the late Old Kingdom period and it is thought to be one of three such \"forts\" in the South Sinai.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An unusual circular \"fort\" dating to the Old Kingdom period of ancient Egypt.",
+  "reprPoint": [
+    33.18164870764451,
+    28.984232198129767
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    33.1814203,
+    28.9840031,
+    33.1818643,
+    28.9844333
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-02-14T18:15:06Z",
+  "uri": "https://pleiades.stoa.org/places/555858016",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-15T22:13:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-14T20:47:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-14T18:26:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-14T18:25:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-14T18:25:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-14T18:22:57Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-14T18:15:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-14T18:15:06Z"
+    }
+  ]
+}

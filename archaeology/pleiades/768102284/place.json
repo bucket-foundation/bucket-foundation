@@ -1,0 +1,242 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.1782424,
+          36.2093782
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-st-pierre-church",
+      "properties": {
+        "snippet": "Cave, Church-2; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/768102284/osm-location-of-the-st-pierre-church",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of the St. Pierre Church"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/364696567",
+          "citationDetail": "Node 364696567",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=364696567",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-st-pierre-church",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 2099,
+      "title": "OSM Location of the St. Pierre Church",
+      "provenance": "OpenStreetMap (Node 364696567, version 18, osm:changeset=140207753, 2023-08-22T03:54:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave",
+        "church-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2021-11-17T16:31:01Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.1782424,
+          36.2093782
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/768102284/osm-location-of-the-st-pierre-church",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-02T19:21:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-17T16:32:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-17T16:32:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-17T16:31:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-17T16:31:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-17T16:31:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-17T16:31:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Church_of_Saint_Peter",
+      "citationDetail": "Church of Saint Peter",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "768102284",
+  "subject": [],
+  "title": "Cave of Saint Peter",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/cave"
+  ],
+  "details": "<p dir=\"ltr\">The city of Antioch was called by the Romans Antiochia ad Orontes with reference to the river which crossed it. Antioch soon became the most important city in the area. In the second century AD it had 500,000 inhabitants and with Alexandria it was for several centuries the main center of this part of the Eastern Roman Empire. Antioch played a great role in the early development of Christianity and St. Peter and St. Paul are said to have lived there for many years. A cave in the outskirts of the ancient city is considered the most ancient church and it was visited by Pope Paul VI in 1962.</p>\r\n<p dir=\"ltr\">Each year this grotto, also called the Church of St Peter, is visited by thousands of tourists and pilgrims. Thus the grotto was proclaimed a \"site of pilgrimage in 1963 by Pope Paul IV\". (Dark 209) Furthermore, it is claimed that this cave was used as a church by the Apostle Peter and the first Christians and that it was here the name Christian was used for the first time. It is claimed that Peter when coming to Antioch, founded a church there and found the cave fitting for this purpose. It is held that the grotto was chosen because it was a suitable hiding place for the persecuted Christians. Sources: Diana Dark, Eastern Turkey (Connecticut: The Globe Pequet Press Inc., 2014) 209.;\u00a0<span id=\"docs-internal-guid-17e3ef6b-cd77-1094-e681-2e043d1d226d\">Uysal Yenip\u0131nar, Antiocheia, Hatay (Izmir: Etki, 2010) 246.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A cave in the outskirts of Antioch that was converted into a church.",
+  "reprPoint": [
+    36.1782424,
+    36.2093782
+  ],
+  "placeTypes": [
+    "church-2",
+    "cave"
+  ],
+  "bbox": [
+    36.1782424,
+    36.2093782,
+    36.1782424,
+    36.2093782
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-07-27T03:03:38Z",
+  "uri": "https://pleiades.stoa.org/places/768102284",
+  "creators": [
+    {
+      "username": "rrichardson",
+      "homepage": null,
+      "name": "Reid Richardson",
+      "uri": "https://pleiades.stoa.org/author/rrichardson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-02T19:22:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-11-15T16:01:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-15T15:23:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-15T15:23:26Z"
+    },
+    {
+      "comment": "added wikipedia reference",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-15T15:20:34Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "rrichardson",
+      "modified": "2015-07-27T03:03:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "rrichardson",
+      "modified": "2015-07-27T03:03:39Z"
+    }
+  ]
+}

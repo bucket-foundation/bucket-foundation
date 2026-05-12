@@ -1,0 +1,252 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.053028,
+          37.738167
+        ]
+      },
+      "type": "Feature",
+      "id": "silver-mine-at-thorikos",
+      "properties": {
+        "snippet": "Mine-2; 550 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/503211161/silver-mine-at-thorikos",
+        "description": "A silver mine at Thorikos. A schematic map of the mine is carved into the rocks at the site.",
+        "location_precision": "precise",
+        "title": "Silver Mine at Thorikos"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Thoricus",
+          "citationDetail": "Thoricus",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Thoricus.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "silver-mine-at-thorikos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mine-2"
+      ],
+      "end": -330,
+      "title": "Silver Mine at Thorikos",
+      "provenance": "GPS in the field",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mine-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>Coordinates taken on 13 June 2013 with a Sony DSC-HX200V GPS camera</p>",
+      "review_state": "published",
+      "accuracy_value": 15.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-handheld-gps",
+      "featureType": [
+        "mine-2"
+      ],
+      "description": "A silver mine at Thorikos. A schematic map of the mine is carved into the rocks at the site.",
+      "created": "2013-06-14T03:57:34Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.053028,
+          37.738167
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/503211161/silver-mine-at-thorikos",
+      "creators": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "changed type to mine",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-15T18:55:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-16T23:28:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rmhorne",
+          "modified": "2013-08-14T20:55:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2013-08-14T20:54:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rmhorne",
+          "modified": "2013-06-14T03:57:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rmhorne",
+          "modified": "2013-06-14T03:57:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-01-09T14:22:17Z",
+      "associationCertainty": "certain",
+      "title": "Thorikos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/503211161/7370503828",
+      "connectionType": "at",
+      "id": "7370503828",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-09T14:22:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-09T14:22:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-09T14:22:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/580119",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [],
+  "names": [],
+  "id": "503211161",
+  "subject": [],
+  "title": "Silver Mine at Thorikos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/mine-2"
+  ],
+  "details": "<p>Coordinates taken on 13 June 2013 with a Sony DSC-HX200V GPS camera</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A silver mine at Thorikos. A schematic map of the mine is carved into the rocks at the site.",
+  "reprPoint": [
+    24.053028,
+    37.738167
+  ],
+  "placeTypes": [
+    "mine-2"
+  ],
+  "bbox": [
+    24.053028,
+    37.738167,
+    24.053028,
+    37.738167
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/580119"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-01-09T14:22:15Z",
+  "uri": "https://pleiades.stoa.org/places/503211161",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "changed type to mine",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-15T18:55:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-09T14:22:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-09T14:22:35Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-09T14:22:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-09T14:22:15Z"
+    }
+  ]
+}

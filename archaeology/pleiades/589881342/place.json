@@ -1,0 +1,405 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.2917445,
+          41.7545232
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-terme-del-nuotatore-v-x-3",
+      "properties": {
+        "snippet": "Bath",
+        "link": "https://pleiades.stoa.org/places/589881342/osm-location-of-terme-del-nuotatore-v-x-3",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Terme del Nuotatore (V,X,3)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/10558410752",
+          "citationDetail": "Node 10558410752",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=10558410752",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-terme-del-nuotatore-v-x-3",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": null,
+      "title": "OSM location of Terme del Nuotatore (V,X,3)",
+      "provenance": "OpenStreetMap (Node 10558410752, version 1, osm:changeset=131318579, 2023-01-16T00:57:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-08-09T01:40:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.2917445,
+          41.7545232
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/589881342/osm-location-of-terme-del-nuotatore-v-x-3",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-11T15:01:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:28:37Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T01:41:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T01:40:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T01:40:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-09T13:14:35Z",
+      "associationCertainty": "certain",
+      "title": "Regio V, Ostia Antica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/589881342/2758896809",
+      "connectionType": "part_of_analytical",
+      "id": "2758896809",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:27:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:14:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:14:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:14:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/535208378",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Medri 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M9IN5QFB",
+          "formattedCitation": "<div class=\"csl-entry\">Medri, Maura, and Valeria Di Cola. <i>Ostia V: le terme del nuotatore\u202f: cronologia di un\u2019insula ostiense</i>. Studi miscellanei. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q107085956",
+      "citationDetail": "Terme del Nuotatore (Q107085956)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/8383",
+      "citationDetail": "Terme del Nuotatore Ostia, (Ostia), Rom (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Panella 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DBAY4SNL",
+      "formattedCitation": "<div class=\"csl-entry\">Panella, Clementina, and Giorgio Rizzo. <i>Ostia VI Le terme del nuotatore,</i>. Studi miscellanei (Testo stampato) 38. Roma: L\u2019\"Erma\" di Bretschneider, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "II. 4 C.15",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nielsen 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4YEI8PQJ",
+      "formattedCitation": "<div class=\"csl-entry\">Nielsen, Inge. <i>Thermae et Balnea: The Architecture and Cultural History of Roman Public Baths</i>. 2 vols. Aarhus: University Press, 1990.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Medri 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M9IN5QFB",
+      "formattedCitation": "<div class=\"csl-entry\">Medri, Maura, and Valeria Di Cola. <i>Ostia V: le terme del nuotatore\u202f: cronologia di un\u2019insula ostiense</i>. Studi miscellanei. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ostia-antica.org/regio5/10/10-3.htm",
+      "citationDetail": "Regio V - Insula X - Terme del Nuotatore (V,X,3) (Baths of the Swimmer)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ostia - Harbour City of Ancient Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+      "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Terme del Nuotatore",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Medri 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M9IN5QFB",
+          "formattedCitation": "<div class=\"csl-entry\">Medri, Maura, and Valeria Di Cola. <i>Ostia V: le terme del nuotatore\u202f: cronologia di un\u2019insula ostiense</i>. Studi miscellanei. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "terme-del-nuotatore",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-08-09T13:27:02Z",
+      "uri": "https://pleiades.stoa.org/places/589881342/terme-del-nuotatore",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Terme del Nuotatore",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-11T15:01:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:28:37Z"
+        },
+        {
+          "comment": "name reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:27:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-09T13:27:02Z"
+        }
+      ]
+    }
+  ],
+  "id": "589881342",
+  "subject": [],
+  "title": "Terme del Nuotatore",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Baths of the Swimmer\" or \"Terme del Nuotatore\" (V,X,3) in region 5 of the ancient city of Ostia takes its modern name from a partially preserved black-and-white mosaic pavement. These baths were built in the late first century CE during the reign of Domitian. The complex was rebuilt during the Antonine period. The complex remained in use until ca. 250. The site was first excavated during 1938-1942. Andrea Carandini directed another campaign of excavation from 1966 to 1975.",
+  "reprPoint": [
+    12.2917445,
+    41.7545232
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    12.2917445,
+    41.7545232,
+    12.2917445,
+    41.7545232
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/535208378"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-09T13:14:35Z",
+  "uri": "https://pleiades.stoa.org/places/589881342",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-11T15:01:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:29:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:28:37Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:28:22Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:26:30Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:21:50Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:14:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-09T13:14:35Z"
+    }
+  ]
+}

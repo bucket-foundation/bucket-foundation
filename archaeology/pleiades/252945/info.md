@@ -1,0 +1,14 @@
+# Eustibaikula-Eusti
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/252945
+- **ID**: 252945
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Eustibaikula-Eusti
+
+## Description
+
+An ancient place, cited: BAtlas 25 unlocated Eustibaikula-Eusti

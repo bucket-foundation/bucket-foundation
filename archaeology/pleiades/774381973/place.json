@@ -1,0 +1,405 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.4739931,
+            35.0281698
+          ],
+          [
+            32.4739502,
+            35.0276602
+          ],
+          [
+            32.474114,
+            35.0274702
+          ],
+          [
+            32.4737937,
+            35.0274359
+          ],
+          [
+            32.4732304,
+            35.0269527
+          ],
+          [
+            32.4742657,
+            35.0262937
+          ],
+          [
+            32.4747432,
+            35.0268868
+          ],
+          [
+            32.4759243,
+            35.0264127
+          ],
+          [
+            32.4772322,
+            35.0273927
+          ],
+          [
+            32.4777257,
+            35.0282186
+          ],
+          [
+            32.4774478,
+            35.0285564
+          ],
+          [
+            32.4761604,
+            35.0289341
+          ],
+          [
+            32.4748514,
+            35.0290835
+          ],
+          [
+            32.474197,
+            35.0287057
+          ],
+          [
+            32.4739931,
+            35.0281698
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pelathousa-village",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/774381973/osm-location-of-pelathousa-village",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Pelathousa village"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/217393053",
+          "citationDetail": "Way 217393053",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=217393053",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pelathousa-village",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM Location of Pelathousa village",
+      "provenance": "OpenStreetMap (Way 217393053, version 3, osm:changeset=40387068, 2016-06-30T09:13:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-03-02T23:35:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.4739931,
+            35.0281698
+          ],
+          [
+            32.4739502,
+            35.0276602
+          ],
+          [
+            32.474114,
+            35.0274702
+          ],
+          [
+            32.4737937,
+            35.0274359
+          ],
+          [
+            32.4732304,
+            35.0269527
+          ],
+          [
+            32.4742657,
+            35.0262937
+          ],
+          [
+            32.4747432,
+            35.0268868
+          ],
+          [
+            32.4759243,
+            35.0264127
+          ],
+          [
+            32.4772322,
+            35.0273927
+          ],
+          [
+            32.4777257,
+            35.0282186
+          ],
+          [
+            32.4774478,
+            35.0285564
+          ],
+          [
+            32.4761604,
+            35.0289341
+          ],
+          [
+            32.4748514,
+            35.0290835
+          ],
+          [
+            32.474197,
+            35.0287057
+          ],
+          [
+            32.4739931,
+            35.0281698
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/774381973/osm-location-of-pelathousa-village",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-03T18:12:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:38:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:36:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:35:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:35:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 599,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-02T23:19:33Z",
+      "associationCertainty": "certain",
+      "title": "Limni",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/774381973/limni",
+      "connectionType": "material_source",
+      "id": "limni",
+      "attestations": [
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "sixth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-03T18:12:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:38:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:19:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:19:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707564",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X23000640",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Sdralia 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LYEQSIGR",
+          "formattedCitation": "<div class=\"csl-entry\">Sdralia, Anna-Maria, Vasiliki Kassianidou, and Thilo Rehren. \u201cLate Roman Copper Smelting in Polis Chrysochous, Cyprus.\u201d <i>Journal of Archaeological Science: Reports</i> 48 (April 1, 2023): 103889. https://doi.org/10.1016/j.jasrep.2023.103889.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/material_source"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X23000640",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sdralia 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LYEQSIGR",
+      "formattedCitation": "<div class=\"csl-entry\">Sdralia, Anna-Maria, Vasiliki Kassianidou, and Thilo Rehren. \u201cLate Roman Copper Smelting in Polis Chrysochous, Cyprus.\u201d <i>Journal of Archaeological Science: Reports</i> 48 (April 1, 2023): 103889. https://doi.org/10.1016/j.jasrep.2023.103889.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "774381973",
+  "subject": [],
+  "title": "Pelathousa Slag Heap",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/slag-heap",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A copper-smelting slag heap located in the village of Pelathousa in western Cyprus, dating to the 4th-6th century CE and likely derived from ore mined at the Limni mine, which is approximately 1 kilometer to the northwest.",
+  "reprPoint": [
+    32.47538030687726,
+    35.02767273807266
+  ],
+  "placeTypes": [
+    "slag-heap",
+    "settlement-modern"
+  ],
+  "bbox": [
+    32.4732304,
+    35.0262937,
+    32.4777257,
+    35.0290835
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707564"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-02T23:18:10Z",
+  "uri": "https://pleiades.stoa.org/places/774381973",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-03T18:12:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:38:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:38:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:22:02Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:18:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:18:10Z"
+    }
+  ]
+}

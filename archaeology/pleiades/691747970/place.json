@@ -1,0 +1,353 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.5946069,
+          25.7053045
+        ]
+      },
+      "type": "Feature",
+      "id": "birket-habu",
+      "properties": {
+        "snippet": "Lake; 1548 BC - 1086 BC",
+        "link": "https://pleiades.stoa.org/places/691747970/birket-habu",
+        "description": "Point based on OpenStreetMap representing Birket Habu after Wikidata",
+        "location_precision": "precise",
+        "title": "OSM location of Birket Habu"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9786687070",
+          "citationDetail": "Node 9786687070",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9786687070",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "http://www.wikidata.org/entity/Q4087021",
+          "accessURI": "https://www.wikidata.org/",
+          "citationDetail": "Birket Habu",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "https://en.wikipedia.org/w/index.php?title=Malkata&oldid=1090780508",
+          "accessURI": "https://en.wikipedia.org",
+          "citationDetail": "Malkata",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "birket-habu",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/lake"
+      ],
+      "end": -1086,
+      "title": "OSM location of Birket Habu",
+      "provenance": "OpenStreetMap (Node 9786687070, version 1, osm:changeset=121782482, 2022-05-31T19:45:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/lake"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "lake"
+      ],
+      "description": "Point based on OpenStreetMap representing Birket Habu after Wikidata",
+      "created": "2022-05-31T19:52:09Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.5946069,
+          25.7053045
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/691747970/birket-habu",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-15T00:53:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-31T20:26:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T19:57:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T19:55:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T19:52:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T19:52:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1086,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-31T19:57:01Z",
+      "associationCertainty": "certain",
+      "title": "Malkata",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/691747970/malkata",
+      "connectionType": "at",
+      "id": "malkata",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-31T20:26:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T19:57:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T19:57:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T19:57:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/223974299",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/jar-sealings-and-amphorae-of-the-18th-dynasty-a-technological-study/oclc/492953602&referer=brief_results",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hope 1978",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NXT2ZC3P",
+          "formattedCitation": "<div class=\"csl-entry\">Hope, Colin A., David Bourke O\u2019Connor Kemp, Barry John, and Pa.) University museum (Philadelphie. <i>Jar Sealings and Amphorae of the 18th Dynasty: A Technological Study</i>. Egyptology Today, No.2 vol.V. Warminster: Aris &amp; Phillips, 1978. https://www.worldcat.org/title/jar-sealings-and-amphorae-of-the-18th-dynasty-a-technological-study/oclc/492953602&amp;referer=brief_results.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "https://www.wikidata.org/wiki/Q4087021",
+          "accessURI": "https://www.wikidata.org/",
+          "citationDetail": "Birket Habu",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "https://en.wikipedia.org/w/index.php?title=Malkata&oldid=1090780508",
+          "accessURI": "https://en.wikipedia.org",
+          "citationDetail": "Malkata",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/jar-sealings-and-amphorae-of-the-18th-dynasty-a-technological-study/oclc/492953602&referer=brief_results",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hope 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NXT2ZC3P",
+      "formattedCitation": "<div class=\"csl-entry\">Hope, Colin A., David Bourke O\u2019Connor Kemp, Barry John, and Pa.) University museum (Philadelphie. <i>Jar Sealings and Amphorae of the 18th Dynasty: A Technological Study</i>. Egyptology Today, No.2 vol.V. Warminster: Aris &amp; Phillips, 1978. https://www.worldcat.org/title/jar-sealings-and-amphorae-of-the-18th-dynasty-a-technological-study/oclc/492953602&amp;referer=brief_results.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "https://en.wikipedia.org/w/index.php?title=Malkata&oldid=1090780508",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "Malkata",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.wikidata.org/wiki/Q4087021",
+      "citationDetail": "Birket Habu (Q4087021)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "691747970",
+  "subject": [],
+  "title": "Birket Habu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/lake"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An artificial lake created to bring water from the Nile to the Palace of Amenhotep III at Malkata in Egypt.",
+  "reprPoint": [
+    32.5946069,
+    25.7053045
+  ],
+  "placeTypes": [
+    "lake"
+  ],
+  "bbox": [
+    32.5946069,
+    25.7053045,
+    32.5946069,
+    25.7053045
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/223974299"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-31T19:51:50Z",
+  "uri": "https://pleiades.stoa.org/places/691747970",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-15T00:54:42Z"
+    },
+    {
+      "comment": "correct wikidata link and type. edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-01T00:22:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-31T20:26:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T19:57:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T19:51:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T19:51:50Z"
+    }
+  ]
+}

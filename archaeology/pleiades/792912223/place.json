@@ -1,0 +1,367 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.7134581,
+          39.2001193
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-so-called-midas-monument",
+      "properties": {
+        "snippet": "Monument; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/792912223/location-of-so-called-midas-monument",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of so-called 'Midas Monument'"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/29487496",
+          "citationDetail": "Node 29487496",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=29487496",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-so-called-midas-monument",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": -550,
+      "title": "OSM location of so-called 'Midas Monument'",
+      "provenance": "OpenStreetMap (Node 29487496, version 10, osm:changeset=138021705, 2023-07-02T12:29:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-05-18T20:41:48Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.7134581,
+          39.2001193
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/792912223/location-of-so-called-midas-monument",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T00:51:56Z"
+        },
+        {
+          "comment": "summary, archae remains updated",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-09T15:38:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-11T12:21:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-24T21:37:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:43:04Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:42:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:41:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:41:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-28T00:52:32Z",
+      "associationCertainty": "certain",
+      "title": "Yaz\u0131l\u0131kaya (Eski\u015fehir)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/792912223/3527990052",
+      "connectionType": "at",
+      "id": "3527990052",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T00:52:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T00:52:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T00:52:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/609570",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Yaz%C4%B1l%C4%B1,_Han&uselang=en",
+      "citationDetail": "Yaz\u0131l\u0131, Han s.v. \"The Midas Monument\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/crai_0065-0536_1950_num_94_2_78530",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gabriel 1950",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2I5DHGAV",
+      "formattedCitation": "<div class=\"csl-entry\">Gabriel, Albert. \u201cAu sujet du \u00ab\u202fMonument de Midas\u202f\u00bb.\u201d <i>Comptes rendus des s\u00e9ances de l\u2019Acad\u00e9mie des Inscriptions et Belles-Lettres</i> 94, no. 2 (1950): 202\u20138. https://doi.org/10.3406/crai.1950.78530.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Haspels 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F6XIVIK3",
+      "formattedCitation": "<div class=\"csl-entry\">Haspels, C. H. Emilie, Dietrich Berndt, and Halet \u00c7ambel. <i>Midas City Excavations and Surveys in the Highlands of Phrygia</i>. Galatasaray, \u0130stanbul: Archaeology and Art Publications, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Haspels 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T7G7XBXJ",
+      "formattedCitation": "<div class=\"csl-entry\">Haspels, C. H. Emilie. <i>The Highlands of Phrygia: Sites and Monuments</i>. 2 vols. Princeton, NJ: Princeton University Press, 1971.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Midas Monument",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/29487496#map=19/39.200119/30.713458",
+          "citationDetail": "Node: Midas Monument (29487496)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "midas-monument",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-08-28T01:19:43Z",
+      "uri": "https://pleiades.stoa.org/places/792912223/midas-monument",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Midas Monument",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T14:56:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T01:19:48Z"
+        },
+        {
+          "comment": "name - Midas Monument",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T01:19:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T01:19:43Z"
+        }
+      ]
+    }
+  ],
+  "id": "792912223",
+  "subject": [],
+  "title": "so-called 'Midas Monument'",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A rock-cut Phrygian monument dating to the seventh century BCE that carries an inscribed dedication in Old Phrygian by Ates, son of Arkias, to Midas.",
+  "reprPoint": [
+    30.7134581,
+    39.2001193
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    30.7134581,
+    39.2001193,
+    30.7134581,
+    39.2001193
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/609570"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-28T00:52:32Z",
+  "uri": "https://pleiades.stoa.org/places/792912223",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-28T14:56:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-28T01:19:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-28T01:18:39Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-28T00:52:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-28T00:52:32Z"
+    }
+  ]
+}

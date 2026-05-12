@@ -1,0 +1,361 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5561263,
+            41.895405
+          ],
+          [
+            12.5556355,
+            41.8953411
+          ],
+          [
+            12.5553995,
+            41.8952852
+          ],
+          [
+            12.5553163,
+            41.8952293
+          ],
+          [
+            12.5552949,
+            41.8951534
+          ],
+          [
+            12.5553378,
+            41.8950795
+          ],
+          [
+            12.5554397,
+            41.8950436
+          ],
+          [
+            12.5558715,
+            41.8950875
+          ],
+          [
+            12.556188,
+            41.8951374
+          ],
+          [
+            12.5561263,
+            41.895405
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basilica-constaninana",
+      "properties": {
+        "snippet": "Basilica; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/759838643/osm-location-of-basilica-constaninana",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Basilica Constaninana"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/254502079",
+          "citationDetail": "Way 254502079",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=254502079",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basilica-constaninana",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "end": 640,
+      "title": "OSM location of Basilica Constaninana",
+      "provenance": "OpenStreetMap (Way 254502079, version 3, osm:changeset=141542716, 2023-09-21T06:45:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "basilica"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-06-07T14:28:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5561263,
+            41.895405
+          ],
+          [
+            12.5556355,
+            41.8953411
+          ],
+          [
+            12.5553995,
+            41.8952852
+          ],
+          [
+            12.5553163,
+            41.8952293
+          ],
+          [
+            12.5552949,
+            41.8951534
+          ],
+          [
+            12.5553378,
+            41.8950795
+          ],
+          [
+            12.5554397,
+            41.8950436
+          ],
+          [
+            12.5558715,
+            41.8950875
+          ],
+          [
+            12.556188,
+            41.8951374
+          ],
+          [
+            12.5561263,
+            41.895405
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/759838643/osm-location-of-basilica-constaninana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-02T15:52:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:43:58Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:28:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:28:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:28:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-07T14:28:49Z",
+      "associationCertainty": "certain",
+      "title": "Villa Gordiani",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/759838643/5299320342",
+      "connectionType": "at",
+      "id": "5299320342",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:28:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:28:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:28:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422936",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/26331764",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Blanco and Nepi 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BM4IKCNN",
+      "formattedCitation": "<div class=\"csl-entry\">Blanco, Alessandro, Daniele Nepi, and Alessandro Vella. \u201cVia Prenestina / Via Casilina.\u201d <i>Bullettino della Commissione Archeologica Comunale di Roma</i> 114 (2013): 285\u201394. https://www.jstor.org/stable/26331764.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q123514137",
+      "citationDetail": "Early-christian Basilica of Villa Gordiani (Q123514137)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Villa_Gordiani_(Rome)_-_Basilica_paleocristiana",
+      "citationDetail": "Category:Villa Gordiani (Rome) - Basilica paleocristiana",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "759838643",
+  "subject": [
+    "paleochristian"
+  ],
+  "title": "Paleochristian Basilica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Paleochristian Basilica in the Villa Gordiani Park is located adjacent to the mausoleum and immediately post-dates the tomb.",
+  "reprPoint": [
+    12.555758621677972,
+    41.895213649326344
+  ],
+  "placeTypes": [
+    "basilica"
+  ],
+  "bbox": [
+    12.5552949,
+    41.8950436,
+    12.556188,
+    41.895405
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422936"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-06-07T14:28:49Z",
+  "uri": "https://pleiades.stoa.org/places/759838643",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-02T23:09:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-02T15:52:01Z"
+    },
+    {
+      "comment": "tag",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T06:55:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:43:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:43:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:29:05Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:28:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:28:49Z"
+    }
+  ]
+}

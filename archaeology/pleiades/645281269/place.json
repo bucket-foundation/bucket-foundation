@@ -1,0 +1,453 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.3884289,
+            40.6530628
+          ],
+          [
+            8.3884037,
+            40.65306
+          ],
+          [
+            8.3883788,
+            40.6530638
+          ],
+          [
+            8.388357,
+            40.6530739
+          ],
+          [
+            8.3883422,
+            40.6530875
+          ],
+          [
+            8.3883337,
+            40.653104
+          ],
+          [
+            8.3883325,
+            40.6531217
+          ],
+          [
+            8.3883386,
+            40.6531387
+          ],
+          [
+            8.3883514,
+            40.6531535
+          ],
+          [
+            8.3883697,
+            40.6531645
+          ],
+          [
+            8.3883916,
+            40.6531706
+          ],
+          [
+            8.3884149,
+            40.6531712
+          ],
+          [
+            8.3884373,
+            40.6531662
+          ],
+          [
+            8.3884565,
+            40.6531562
+          ],
+          [
+            8.3884706,
+            40.6531421
+          ],
+          [
+            8.3884785,
+            40.6531237
+          ],
+          [
+            8.3884777,
+            40.6531044
+          ],
+          [
+            8.3884683,
+            40.6530864
+          ],
+          [
+            8.3884513,
+            40.653072
+          ],
+          [
+            8.3884289,
+            40.6530628
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Nuraghe, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/645281269/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Mannu Nuraghe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/370525252",
+          "citationDetail": "Way 370525252",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=370525252",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM location of Mannu Nuraghe",
+      "provenance": "OpenStreetMap (Way 370525252, version 6, osm:changeset=143271693, 2023-10-28T16:39:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2015-09-14T05:08:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.3884289,
+            40.6530628
+          ],
+          [
+            8.3884037,
+            40.65306
+          ],
+          [
+            8.3883788,
+            40.6530638
+          ],
+          [
+            8.388357,
+            40.6530739
+          ],
+          [
+            8.3883422,
+            40.6530875
+          ],
+          [
+            8.3883337,
+            40.653104
+          ],
+          [
+            8.3883325,
+            40.6531217
+          ],
+          [
+            8.3883386,
+            40.6531387
+          ],
+          [
+            8.3883514,
+            40.6531535
+          ],
+          [
+            8.3883697,
+            40.6531645
+          ],
+          [
+            8.3883916,
+            40.6531706
+          ],
+          [
+            8.3884149,
+            40.6531712
+          ],
+          [
+            8.3884373,
+            40.6531662
+          ],
+          [
+            8.3884565,
+            40.6531562
+          ],
+          [
+            8.3884706,
+            40.6531421
+          ],
+          [
+            8.3884785,
+            40.6531237
+          ],
+          [
+            8.3884777,
+            40.6531044
+          ],
+          [
+            8.3884683,
+            40.6530864
+          ],
+          [
+            8.3884513,
+            40.653072
+          ],
+          [
+            8.3884289,
+            40.6530628
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/645281269/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-29T01:28:47Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-20T14:18:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-01T00:47:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T23:08:50Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T22:12:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-25T22:12:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-14T05:09:44Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-14T05:09:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-14T05:08:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-09-14T05:08:43Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:41:22Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/645281269/472014",
+      "connectionType": "connection",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.comune.olmedo.ss.it/pg/29/nuraghe-mannu",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Comune di Olmedo: Nuraghe Mannu",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "645281269",
+  "subject": [
+    "nuraghe",
+    "extant remains"
+  ],
+  "title": "Nuraghe Mannu, Olmedo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A single-tower nuraghe built in the later second millennium B.C.",
+  "reprPoint": [
+    8.388357,
+    40.6530739
+  ],
+  "placeTypes": [
+    "nuraghe"
+  ],
+  "bbox": [
+    8.388357,
+    40.6530739,
+    8.388357,
+    40.6530739
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-09-14T05:07:29Z",
+  "uri": "https://pleiades.stoa.org/places/645281269",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-01T00:47:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:08:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:08:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:08:21Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-14T05:07:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-14T05:07:30Z"
+    }
+  ]
+}

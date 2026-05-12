@@ -1,0 +1,988 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.5189809,
+              41.8536534
+            ],
+            [
+              12.5190254,
+              41.8536817
+            ],
+            [
+              12.5197161,
+              41.8541309
+            ],
+            [
+              12.5260401,
+              41.8540683
+            ],
+            [
+              12.5255202,
+              41.8549653
+            ],
+            [
+              12.5253676,
+              41.8551038
+            ],
+            [
+              12.5252773,
+              41.855166
+            ],
+            [
+              12.5251025,
+              41.8552799
+            ],
+            [
+              12.5231268,
+              41.8558748
+            ],
+            [
+              12.5213404,
+              41.8553595
+            ],
+            [
+              12.5199036,
+              41.8559941
+            ],
+            [
+              12.5188716,
+              41.8563407
+            ],
+            [
+              12.5187232,
+              41.8561548
+            ],
+            [
+              12.5180498,
+              41.8563815
+            ],
+            [
+              12.5172002,
+              41.855217
+            ]
+          ],
+          [
+            [
+              12.5172002,
+              41.855217
+            ],
+            [
+              12.5173583,
+              41.8550787
+            ],
+            [
+              12.5173728,
+              41.855066
+            ],
+            [
+              12.5173881,
+              41.8550522
+            ],
+            [
+              12.5183531,
+              41.8541803
+            ],
+            [
+              12.5184056,
+              41.8541803
+            ],
+            [
+              12.5184266,
+              41.854159
+            ],
+            [
+              12.5184488,
+              41.8541365
+            ],
+            [
+              12.5184426,
+              41.854102
+            ],
+            [
+              12.5186463,
+              41.8539248
+            ],
+            [
+              12.5188621,
+              41.8537571
+            ]
+          ],
+          [
+            [
+              12.5188621,
+              41.8537571
+            ],
+            [
+              12.5189351,
+              41.8536934
+            ],
+            [
+              12.5189809,
+              41.8536534
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-monuments-complex-of-maxentius",
+      "properties": {
+        "snippet": "Palace-complex, Villa; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/423129/osm-location-monuments-complex-of-maxentius",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Monuments complex of Maxentius"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/2995050",
+          "citationDetail": "Relation 2995050",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=2995050",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-monuments-complex-of-maxentius",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace-complex",
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM Location: Monuments complex of Maxentius",
+      "provenance": "OpenStreetMap (Relation 2995050, version 9, osm:changeset=145982153, 2024-01-07T08:50:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace-complex",
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "palace-complex",
+        "villa"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-04-07T21:00:57Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.5189809,
+              41.8536534
+            ],
+            [
+              12.5190254,
+              41.8536817
+            ],
+            [
+              12.5197161,
+              41.8541309
+            ],
+            [
+              12.5260401,
+              41.8540683
+            ],
+            [
+              12.5255202,
+              41.8549653
+            ],
+            [
+              12.5253676,
+              41.8551038
+            ],
+            [
+              12.5252773,
+              41.855166
+            ],
+            [
+              12.5251025,
+              41.8552799
+            ],
+            [
+              12.5231268,
+              41.8558748
+            ],
+            [
+              12.5213404,
+              41.8553595
+            ],
+            [
+              12.5199036,
+              41.8559941
+            ],
+            [
+              12.5188716,
+              41.8563407
+            ],
+            [
+              12.5187232,
+              41.8561548
+            ],
+            [
+              12.5180498,
+              41.8563815
+            ],
+            [
+              12.5172002,
+              41.855217
+            ]
+          ],
+          [
+            [
+              12.5172002,
+              41.855217
+            ],
+            [
+              12.5173583,
+              41.8550787
+            ],
+            [
+              12.5173728,
+              41.855066
+            ],
+            [
+              12.5173881,
+              41.8550522
+            ],
+            [
+              12.5183531,
+              41.8541803
+            ],
+            [
+              12.5184056,
+              41.8541803
+            ],
+            [
+              12.5184266,
+              41.854159
+            ],
+            [
+              12.5184488,
+              41.8541365
+            ],
+            [
+              12.5184426,
+              41.854102
+            ],
+            [
+              12.5186463,
+              41.8539248
+            ],
+            [
+              12.5188621,
+              41.8537571
+            ]
+          ],
+          [
+            [
+              12.5188621,
+              41.8537571
+            ],
+            [
+              12.5189351,
+              41.8536934
+            ],
+            [
+              12.5189809,
+              41.8536534
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423129/osm-location-monuments-complex-of-maxentius",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full relation geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-21T14:54:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-08T00:53:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-07T21:02:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-07T21:02:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-07T21:00:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-07T21:00:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:41:41Z",
+      "associationCertainty": "certain",
+      "title": "Via Appia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423129/356966898",
+      "connectionType": "connection",
+      "id": "356966898",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/356966898",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 C2 Villa Maxentii",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/3440139",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pisani Sartorio 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TCT8FJ37",
+      "formattedCitation": "<div class=\"csl-entry\">Pisani Sartorio, Giuseppina, and Raissa Calza. <i>La Villa Di Massenzio Sulla via Appia: Il Palazzo, Le Opere d\u2019arte</i>. Monumenti Romani 6. Roma: Istituto di studi romani, 1976.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.edr-edr.it/edr_programmi/res_complex_comune.php?do=book&id_nr=EDR111327",
+      "citationDetail": "111327 = CIL 6.1138",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "EDR",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C5IKZ2Y3",
+      "formattedCitation": "<div class=\"csl-entry\">International Association for Greek and Latin Epigraphy, and Universit\u00e0 degli Studi di Roma La Sapienza. <i>Epigraphic Database Roma</i>. Rome: University of Rome \u201cLa Sapienza,\u201d 1999. http://www.edr-edr.it/default/index.php.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/8015042/villa-of-maxentius.html",
+      "citationDetail": "8015042: Villa of Maxentius",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/25609499",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Conlin 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CE8BCZY8",
+      "formattedCitation": "<div class=\"csl-entry\">Conlin, Diane A., Anne E. Haeckl, Gianni Ponti, Christopher Gregg, and Paola Virgili. \u201cThe Villa of Maxentius on the Via Appia: Report on the 2005 Excavations.\u201d <i>Memoirs of the American Academy in Rome</i> 51/52 (2006): 347\u201370. http://www.jstor.org/stable/25609499.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ioppolo 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7B3QGP2M",
+      "formattedCitation": "<div class=\"csl-entry\">Pisani Sartorio, Giuseppina, and Giovanni Ioppolo, eds. <i>La Villa Di Massenzio Sulla via Appia: Il Circo</i>. Monumenti Romani 9. Roma: Colombo; Istituto nazionale di studi romani, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/3353",
+      "citationDetail": "Villa des Maxentius an der Via Appia Via Appia, Italien",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125BVMx",
+      "citationDetail": "Villa of Maxentius (Rome) ",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Villa_of_Maxentius",
+      "citationDetail": "Villa of Maxentius",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2363459",
+      "citationDetail": "Villa Maxentii (Q2363459)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/24902/",
+      "citationDetail": "24902: Rome, Maxentius` Villa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa Maxentii",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "villa-maxentii",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 43 C2 Villa Maxentii",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-10T22:35:29Z",
+      "uri": "https://pleiades.stoa.org/places/423129/villa-maxentii",
+      "creators": [
+        {
+          "username": null,
+          "name": "L. Quilici"
+        },
+        {
+          "username": null,
+          "name": "S. Quilici Gigli"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:57:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-11T05:13:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:39:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:35:29Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa of Maxentius",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8015042/villa-of-maxentius.html",
+          "citationDetail": "8015042: Villa of Maxentius",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "villa-of-maxentius",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-06-29T20:54:14Z",
+      "uri": "https://pleiades.stoa.org/places/423129/villa-of-maxentius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa of Maxentius",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-16T10:31:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-23T14:26:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T20:54:37Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T20:54:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-29T20:54:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa di Massenzio",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8015042/villa-of-maxentius.html",
+          "citationDetail": "8015042: Villa of Maxentius",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-04-26.3701817959",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2018-04-26T16:55:30Z",
+      "uri": "https://pleiades.stoa.org/places/423129/name.2018-04-26.3701817959",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa di Massenzio",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-16T10:31:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-16T10:31:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-23T14:25:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-26T16:55:45Z"
+        },
+        {
+          "comment": "name via GeoNames 8015042",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-26T16:55:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-26T16:55:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "423129",
+  "subject": [
+    "dare:major=0",
+    "basis villae",
+    "opus quadratum",
+    "dare:feature=villa",
+    "extant remains",
+    "opus listatum",
+    "dare:ancient=1",
+    "opus incertum"
+  ],
+  "title": "Villa Maxentii",
+  "provenance": "Barrington Atlas: BAtlas 43 C2 Villa Maxentii",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/circus",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/palace-complex"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Triopium of Herodes Atticus and Villa of Maxentius</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A complex on the Via Appia constructed by Maxentius in the early fourth century A.D.",
+  "reprPoint": [
+    12.521486177002927,
+    41.85492777775086
+  ],
+  "placeTypes": [
+    "circus",
+    "villa",
+    "palace-complex"
+  ],
+  "bbox": [
+    12.5172002,
+    41.8536534,
+    12.5260401,
+    41.8563815
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/356966898",
+    "https://pleiades.stoa.org/places/916973546",
+    "https://pleiades.stoa.org/places/461581649",
+    "https://pleiades.stoa.org/places/607306666"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-08-15T20:34:48Z",
+  "uri": "https://pleiades.stoa.org/places/423129",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references; added Wikipedia, Wikidata, and vici.org references",
+      "modifiedBy": "thomase",
+      "modified": "2024-08-15T20:51:12Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-21T14:55:57Z"
+    },
+    {
+      "comment": "added topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-28T03:14:14Z"
+    },
+    {
+      "comment": "ref. cleanup",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-23T14:25:15Z"
+    },
+    {
+      "comment": "Arachne 8004748: Villa des Maxentius an der Via Appia Via Appia",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-28T02:26:14Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-26T16:49:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-24T17:04:18Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-29T20:53:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-21T06:08:30Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-10-11T05:47:19Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-10-11T05:45:33Z"
+    },
+    {
+      "comment": "description, connection",
+      "modifiedBy": "thomase",
+      "modified": "2012-12-05T02:47:42Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2012-12-05T02:46:33Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:41:29Z"
+    },
+    {
+      "comment": "edited feature type",
+      "modifiedBy": "jbecker",
+      "modified": "2012-09-27T23:47:45Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:57:53Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:45:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:13:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:39:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:35:29Z"
+    }
+  ]
+}

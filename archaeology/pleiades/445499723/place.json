@@ -1,0 +1,360 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1426708,
+          43.5442232
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villaggio-8-6-secolo-ac",
+      "properties": {
+        "snippet": "Settlement; 1000 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/445499723/osm-location-of-villaggio-8-6-secolo-ac",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villaggio 8 - 6 secolo ac"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.1426923,
+            43.5446043
+          ],
+          [
+            12.1436794,
+            43.5439666
+          ],
+          [
+            12.1432824,
+            43.5433444
+          ],
+          [
+            12.1420486,
+            43.5438033
+          ],
+          [
+            12.1423812,
+            43.5444098
+          ],
+          [
+            12.1426923,
+            43.5446043
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/445499723/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1407767138",
+          "citationDetail": "Node 1407767138",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1407767138",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villaggio-8-6-secolo-ac",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1,
+      "title": "OSM location of Villaggio 8 - 6 secolo ac",
+      "provenance": "OpenStreetMap (Node 1407767138, version 1, osm:changeset=9090014, 2011-08-21T23:51:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-10-17T17:35:25Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.1426708,
+          43.5442232
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/445499723/osm-location-of-villaggio-8-6-secolo-ac",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-17T22:10:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T17:41:48Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T17:35:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T17:35:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T17:35:25Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/127123760",
+          "citationDetail": "Way 127123760",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=127123760",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 127123760, version 1, osm:changeset=9090014, 2011-08-21T23:51:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-10-17T17:42:13Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.1426923,
+            43.5446043
+          ],
+          [
+            12.1436794,
+            43.5439666
+          ],
+          [
+            12.1432824,
+            43.5433444
+          ],
+          [
+            12.1420486,
+            43.5438033
+          ],
+          [
+            12.1423812,
+            43.5444098
+          ],
+          [
+            12.1426923,
+            43.5446043
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/445499723/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-17T22:10:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T19:57:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T17:42:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T17:42:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-17T17:42:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://publications-prairial.fr/frontiere-s/index.php?id=1044",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dominici 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LMKHVSQY",
+      "formattedCitation": "<div class=\"csl-entry\">Dominici, Corso M. \u201cSettlement and Culture in the Inner Apennines: A Diachronic Topographic Analysis of Casentino and Valtiberina (7th\u20115th Centuries BCE).\u201d <i>Fronti\u00e8re\u00b7s. Revue d\u2019arch\u00e9ologie, Histoire &amp; Histoire de l\u2019art</i>, no. Suppl\u00e9ment 1 (May 20, 2022). https://doi.org/10.35562/frontieres.1044.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Alberti et al. 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X46UW2RW",
+      "formattedCitation": "<div class=\"csl-entry\">Alberti, Daniela, Giampiero Laurenzi, and Adriana Moroni Lanfredini. \u201cEvidenze dell\u2019et\u00e0 del Ferro al Trebbio, in Alta Valtiberina (AR).\u201d <i>Rassegna di Archeologia, 18 A (2001)</i>, 2001, 91\u2013101.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "445499723",
+  "subject": [],
+  "title": "Trebbio",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Iron Age settlement covering some 20 ha was identified at Trebbio, located to the south of Sansepolcro.",
+  "reprPoint": [
+    12.142767771227145,
+    43.54408594267767
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    12.1420486,
+    43.5433444,
+    12.1436794,
+    43.5446043
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-10-17T17:35:11Z",
+  "uri": "https://pleiades.stoa.org/places/445499723",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-17T22:10:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-17T17:41:47Z"
+    },
+    {
+      "comment": "Alberti et al. 2001",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-17T17:41:43Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-17T17:35:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-17T17:35:11Z"
+    }
+  ]
+}

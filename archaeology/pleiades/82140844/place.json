@@ -1,0 +1,249 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.66159,
+          51.36515
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location-boxted",
+      "properties": {
+        "snippet": "Unknown; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/82140844/dare-location-boxted",
+        "description": "",
+        "location_precision": "precise",
+        "title": "DARE location: Boxted"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "imperium.ahlfeldt.se/places/25918",
+          "citationDetail": "Boxted: 25918",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARE",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/DJKMJPD7",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "dare-location-boxted",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 410,
+      "title": "DARE location: Boxted",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "none",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 100.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-2",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2026-03-09T21:12:59Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.66159,
+          51.36515
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/82140844/dare-location-boxted",
+      "creators": [
+        {
+          "username": "maximeg",
+          "homepage": null,
+          "name": "Maxime Gu\u00e9nette",
+          "uri": "https://pleiades.stoa.org/author/maximeg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-11T23:26:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "maximeg",
+          "modified": "2026-03-09T21:13:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "maximeg",
+          "modified": "2026-03-09T21:13:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "maximeg",
+          "modified": "2026-03-09T21:12:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/624430910",
+      "citationDetail": "108",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Scott 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EGWGRRDJ",
+      "formattedCitation": "<div class=\"csl-entry\">Scott, Eleanor. <i>A Gazetteer of Roman Villas in Britain</i>. Leicester: Leicester University Archaeological Research Centre, 1993. http://www.worldcat.org/oclc/624430910.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.wikidata.org/entity/Q17647286",
+      "citationDetail": "A Romano-British villa at Boxted (Q17647286)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "imperium.ahlfeldt.se/places/25918",
+      "citationDetail": "Boxted: 25918",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vici.org/vici/6584",
+      "citationDetail": "Villa at Boxted: 6584",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1009022",
+      "citationDetail": "1009022: A Romano-British villa at Boxted",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>, n.d. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "82140844",
+  "subject": [],
+  "title": "Boxted Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa excavated in the late 1880s and dating from the late first century CE to the late second century at Boxted, Upchurch, United Kingdom",
+  "reprPoint": [
+    0.66159,
+    51.36515
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    0.66159,
+    51.36515,
+    0.66159,
+    51.36515
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-03-09T21:11:06Z",
+  "uri": "https://pleiades.stoa.org/places/82140844",
+  "creators": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "NHLE",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-24T20:26:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-11T23:26:40Z"
+    },
+    {
+      "comment": "contributor needs to fetch zotero links to populate all biblio fields in references - update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-10T13:49:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "maximeg",
+      "modified": "2026-03-09T21:13:17Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "maximeg",
+      "modified": "2026-03-09T21:11:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "maximeg",
+      "modified": "2026-03-09T21:11:06Z"
+    }
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            53.1849393,
+            30.2077832
+          ],
+          [
+            53.1852139,
+            30.2081314
+          ],
+          [
+            53.1852826,
+            30.2082477
+          ],
+          [
+            53.1856484,
+            30.208085
+          ],
+          [
+            53.185745,
+            30.2081499
+          ],
+          [
+            53.1862063,
+            30.2080804
+          ],
+          [
+            53.1869708,
+            30.2076495
+          ],
+          [
+            53.1865282,
+            30.2069307
+          ],
+          [
+            53.186378,
+            30.2067591
+          ],
+          [
+            53.18523,
+            30.2074314
+          ],
+          [
+            53.1853319,
+            30.2075658
+          ],
+          [
+            53.1849393,
+            30.2077832
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-tall-i-takht-throne-hill",
+      "properties": {
+        "snippet": "Hill, Fort, ; 540 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/435270670/location-of-tall-i-takht-throne-hill",
+        "description": "The ancient citadel. Location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tall-i Takht (Throne Hill)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/203739491",
+          "citationDetail": "Way 203739491",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=203739491",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.livius.org/pan-paz/pasargadae/pasargadae_citadel.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Livius.org, Pasargadae: Citadel",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-tall-i-takht-throne-hill",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill",
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -330,
+      "title": "OSM location of Tall-i Takht (Throne Hill)",
+      "provenance": "OpenStreetMap (Way 203739491, version 4, osm:changeset=56762439, 2018-02-28T17:26:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -540,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hill",
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hill",
+        "fort",
+        ""
+      ],
+      "description": "The ancient citadel. Location based on OpenStreetMap.",
+      "created": "2013-05-22T15:28:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            53.1849393,
+            30.2077832
+          ],
+          [
+            53.1852139,
+            30.2081314
+          ],
+          [
+            53.1852826,
+            30.2082477
+          ],
+          [
+            53.1856484,
+            30.208085
+          ],
+          [
+            53.185745,
+            30.2081499
+          ],
+          [
+            53.1862063,
+            30.2080804
+          ],
+          [
+            53.1869708,
+            30.2076495
+          ],
+          [
+            53.1865282,
+            30.2069307
+          ],
+          [
+            53.186378,
+            30.2067591
+          ],
+          [
+            53.18523,
+            30.2074314
+          ],
+          [
+            53.1853319,
+            30.2075658
+          ],
+          [
+            53.1849393,
+            30.2077832
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/435270670/location-of-tall-i-takht-throne-hill",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-19T15:04:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-03T01:01:15Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-19T18:45:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-22T15:33:42Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-22T15:29:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-22T15:28:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-22T15:28:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-05T17:22:02Z",
+      "associationCertainty": "certain",
+      "title": "Pasargadae/Batrakatash",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/435270670/3226369149",
+      "connectionType": "at",
+      "id": "3226369149",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:22:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:22:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T17:22:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/922693",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.livius.org/pan-paz/pasargadae/pasargadae_citadel.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Livius.org, Pasargadae: Citadel",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "435270670",
+  "subject": [],
+  "title": "Tall-i Takht (Throne Hill)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hill",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ancient citadel of Pasargadae.",
+  "reprPoint": [
+    53.1846882,
+    30.2077698
+  ],
+  "placeTypes": [
+    "hill",
+    "fort"
+  ],
+  "bbox": [
+    53.1846882,
+    30.2077698,
+    53.1846882,
+    30.2077698
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/922693"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-07-05T17:22:01Z",
+  "uri": "https://pleiades.stoa.org/places/435270670",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-11T00:13:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-11T00:13:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:22:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:22:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:22:28Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:22:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T17:22:01Z"
+    }
+  ]
+}

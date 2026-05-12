@@ -1,0 +1,253 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.329777,
+          32.973416
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-google-earth-location-of-peqiin-cave",
+      "properties": {
+        "snippet": "Cemetery, Cave; 6200 BC - 3750 BC",
+        "link": "https://pleiades.stoa.org/places/980268339/approximate-google-earth-location-of-peqiin-cave",
+        "description": "Point representing the approximate location to the entrance to Peqi'in Cave, after Shalem 2013.",
+        "location_precision": "precise",
+        "title": "Approximate Google Earth location of Peqi'in Cave"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "chalcolithic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/chalcolithic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/868601457",
+          "citationDetail": "pages 19-20",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Shalem 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EHYWE5ZF",
+          "formattedCitation": "<div class=\"csl-entry\">Shalem, Dina, Zvi Gal, and Howard Smithline. <i>Peqi\u02bbin: A Late Chalcolithic Burial Site Upper Galilee, Israel</i>. Land of Galilee 2. Kineret, Israel: Kinneret Academic College Institute for Galilean Archaeology\u202f: Ostracon, 2013. https://www.worldcat.org/oclc/868601457.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "approximate-google-earth-location-of-peqiin-cave",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "end": -3750,
+      "title": "Approximate Google Earth location of Peqi'in Cave",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -6200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "cemetery",
+        "cave"
+      ],
+      "description": "Point representing the approximate location to the entrance to Peqi'in Cave, after Shalem 2013.",
+      "created": "2025-12-19T17:04:42Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.329777,
+          32.973416
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/980268339/approximate-google-earth-location-of-peqiin-cave",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-08T04:24:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-19T17:05:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-19T17:04:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-19T17:04:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -3750,
+      "description": "",
+      "contributors": [],
+      "created": "2025-12-19T17:05:15Z",
+      "associationCertainty": "certain",
+      "title": "Baka",
+      "start": -6200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/980268339/baka",
+      "connectionType": "west_of",
+      "id": "baka",
+      "attestations": [
+        {
+          "timePeriod": "chalcolithic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/chalcolithic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-08T04:24:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-19T17:05:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-19T17:05:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-19T17:05:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678046",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/west_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/868601457",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shalem 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EHYWE5ZF",
+      "formattedCitation": "<div class=\"csl-entry\">Shalem, Dina, Zvi Gal, and Howard Smithline. <i>Peqi\u02bbin: A Late Chalcolithic Burial Site Upper Galilee, Israel</i>. Land of Galilee 2. Kineret, Israel: Kinneret Academic College Institute for Galilean Archaeology\u202f: Ostracon, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "980268339",
+  "subject": [],
+  "title": "Peqi'in Cave",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave",
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cave located near the modern village of al-Buqei'a, used as a burial site in the late Chalcolithic period.",
+  "reprPoint": [
+    35.329777,
+    32.973416
+  ],
+  "placeTypes": [
+    "cave",
+    "cemetery"
+  ],
+  "bbox": [
+    35.329777,
+    32.973416,
+    35.329777,
+    32.973416
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678046"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-19T17:00:11Z",
+  "uri": "https://pleiades.stoa.org/places/980268339",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-08T04:24:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2025-12-19T17:05:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2025-12-19T17:00:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2025-12-19T17:00:11Z"
+    }
+  ]
+}

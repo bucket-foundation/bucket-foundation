@@ -1,0 +1,556 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.229199,
+          36.4819549
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tepe-chenchi",
+      "properties": {
+        "snippet": "Settlement; 1000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/146790518/osm-location-of-tepe-chenchi",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tepe Chenchi"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "chorst",
+          "homepage": null,
+          "name": "Claudia Horst",
+          "uri": "https://pleiades.stoa.org/author/chorst"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/5286364554",
+          "citationDetail": "Node 5286364554",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5286364554",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tepe-chenchi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -540,
+      "title": "OSM location of Tepe Chenchi",
+      "provenance": "OpenStreetMap (Node 5286364554, version 1, osm:changeset=54661127, 2017-12-15T18:19:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-12-15T18:22:02Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.229199,
+          36.4819549
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/146790518/osm-location-of-tepe-chenchi",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-31T13:57:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-31T13:57:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:35:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:19:05Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-30T20:26:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-03T12:49:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-03T12:48:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T18:23:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T18:22:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T18:22:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/884661172",
+      "citationDetail": "9, map 4 grid C5",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Helsinki Atlas 2001,",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+      "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1006831066",
+      "citationDetail": "7/2-1 182",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RGTC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VN3GQE7N",
+      "formattedCitation": "<div class=\"csl-entry\">Kupper, Jean Robert, and Wolfgang R\u00f6llig. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes</i>. Wiesbaden: Reichert, 1974.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/Q004028",
+      "citationDetail": "Sennacherib 223 (Q004028)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 3",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tepe Chenchi",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/884661172",
+          "citationDetail": "9, map 4 grid C5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Helsinki Atlas 2001,",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+          "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1006831066",
+          "citationDetail": "182",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/2-1",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-12-15.9968474438",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "chorst",
+          "homepage": null,
+          "name": "Claudia Horst",
+          "uri": "https://pleiades.stoa.org/author/chorst"
+        }
+      ],
+      "provenance": "",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2017-12-15T18:20:58Z",
+      "uri": "https://pleiades.stoa.org/places/146790518/name.2017-12-15.9968474438",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-31T13:57:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:35:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:19:44Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-30T20:26:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-03T12:49:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-03T12:47:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-03T12:46:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T18:20:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "chorst",
+          "modified": "2017-12-15T18:20:58Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gingilini\u0161",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/230137758",
+          "citationDetail": "182",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/1",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZYLSAR5",
+          "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, Wolfgang R\u00f6llig, Dietz Otto Edzard, Brigitte Groneberg, \u1e2a\u0101lid N\u0101\u0161if, Giuseppe F Del Monte, Ran Zadok, et al. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes 7,1 7,1</i>. T\u00fcbinger Atlas des Vorderen Orients / Beihefte / B, 7,7,1. Wiesbaden: Reichert, 2007. http://www.worldcat.org/oclc/230137758.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-01-31.2042762562",
+      "end": -540,
+      "contributors": [
+        {
+          "username": "chorst",
+          "homepage": null,
+          "name": "Claudia Horst",
+          "uri": "https://pleiades.stoa.org/author/chorst"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-01-31T07:21:02Z",
+      "uri": "https://pleiades.stoa.org/places/146790518/name.2018-01-31.2042762562",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-31T13:57:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:35:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:21:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "chorst",
+          "modified": "2018-01-31T07:21:02Z"
+        }
+      ]
+    }
+  ],
+  "id": "146790518",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Gingilini\u0161",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>According to the \"Bavian Inscription\" of the Neo-Assyrian king Sennacherib, <span class=\"w\" style=\"text-align: start; \">Gingilini\u0161</span><span style=\"text-align: start; float: none; \"></span> was one of eighteen cities from which canals were dug to direct water to the main canal and aqueduct system that was being built to bring vast amounts of water to the Assyrian capital Nineveh.</p>\r\n<p>\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A town mentioned in an Akkadian inscription of the Neo-Assyrian king Sennacherib. This place is generally identified with the modern Tepe Chenchi.",
+  "reprPoint": [
+    43.229199,
+    36.4819549
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    43.229199,
+    36.4819549,
+    43.229199,
+    36.4819549
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-07-04T09:40:11Z",
+  "uri": "https://pleiades.stoa.org/places/146790518",
+  "creators": [
+    {
+      "username": "chorst",
+      "homepage": null,
+      "name": "Claudia Horst",
+      "uri": "https://pleiades.stoa.org/author/chorst"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "reconnected RGTC reference to corresponding entry in Zotero library",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-07T18:21:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-31T13:57:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:35:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:35:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:34:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:34:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:33:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:28:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-31T07:18:21Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-30T20:26:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-30T20:25:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-30T20:24:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-03T12:49:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2018-01-03T12:44:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-15T18:07:15Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "chorst",
+      "modified": "2017-12-07T05:21:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "chorst",
+      "modified": "2016-07-04T09:44:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "chorst",
+      "modified": "2016-07-04T09:40:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "chorst",
+      "modified": "2016-07-04T09:40:11Z"
+    }
+  ]
+}

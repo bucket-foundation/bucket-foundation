@@ -1,0 +1,585 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.6284548,
+            37.6399631
+          ],
+          [
+            21.6286667,
+            37.6399972
+          ],
+          [
+            21.628916,
+            37.6390269
+          ],
+          [
+            21.6287041,
+            37.6389928
+          ],
+          [
+            21.6284548,
+            37.6399631
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-gymnasium",
+      "properties": {
+        "snippet": "Gymnasium; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/728329643/osm-location-of-gymnasium",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Gymnasium"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "Mckenzie Cornish"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Tyler Engalla"
+    },
+    {
+      "username": null,
+      "name": "Jennifer Townzen"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "Mallory Barbosa"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/146770785",
+          "citationDetail": "Way 146770785",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=146770785",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-gymnasium",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+      ],
+      "end": -30,
+      "title": "OSM location of Gymnasium",
+      "provenance": "OpenStreetMap (Way 146770785, version 15, osm:changeset=150180211, 2024-04-18T15:03:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "gymnasium"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-05-15T01:38:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.6284548,
+            37.6399631
+          ],
+          [
+            21.6286667,
+            37.6399972
+          ],
+          [
+            21.628916,
+            37.6390269
+          ],
+          [
+            21.6287041,
+            37.6389928
+          ],
+          [
+            21.6284548,
+            37.6399631
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/728329643/osm-location-of-gymnasium",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-16T15:57:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-16T14:58:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-16T14:58:14Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-15T01:45:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-15T01:38:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-15T01:38:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:37:11Z",
+      "associationCertainty": "certain",
+      "title": "Olympia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/728329643/570531",
+      "connectionType": "connection",
+      "id": "570531",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570531",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/artifact?name=Olympia,%20Gymnasium&object=Building",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Crane, G. \"Olympia, Gymnasium (Building).\" Perseus Digital Library.",
+      "otherIdentifier": " ",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://library.la84.org/SportsLibrary/Olympika/Olympika_1997/olympika0601i.pdf ",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/cites",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Decker, W. 1997. Review of \u201cDas Gymnasion von Olympia: Geschichte und Funktion [The Gymnasium of Olympia: History and Function]\u201d by Wacker, C. 1996. Olympika: The International Journal of Olympic Studies, 115-120. ",
+      "otherIdentifier": " ",
+      "type": "cites"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Olympia,_Greece",
+      "citationDetail": "Olympia, Greece",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Olympia, Greece.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q25461278",
+      "citationDetail": "Gymnasion of Olympia (Q25461278)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gymnasium at Olympia",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://simple.wikipedia.org/wiki/Olympia#Gymnasium",
+          "citationDetail": "Olympia",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Simple English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UYGJ56ZV",
+          "formattedCitation": "Simple English Wikipedia: the free encyclopedia that anyone can change (2001-), Olympia.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2015-05-03.1195621681",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": null,
+          "name": "Mckenzie Cornish"
+        },
+        {
+          "username": null,
+          "name": "Tyler Engalla"
+        },
+        {
+          "username": null,
+          "name": "Jennifer Townzen"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        },
+        {
+          "username": null,
+          "name": "Mallory Barbosa"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-05-03T19:17:39Z",
+      "uri": "https://pleiades.stoa.org/places/728329643/name.2015-05-03.1195621681",
+      "creators": [
+        {
+          "username": "rmcneil",
+          "homepage": null,
+          "name": "Robert McNeil",
+          "uri": "https://pleiades.stoa.org/author/rmcneil"
+        }
+      ],
+      "attested": "Gymnasium at Olympia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T20:00:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T19:50:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T19:50:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T19:49:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmcneil",
+          "modified": "2015-05-03T19:52:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rmcneil",
+          "modified": "2015-05-03T19:17:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rmcneil",
+          "modified": "2015-05-03T19:17:41Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gymnasion von Olympia",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://library.la84.org/SportsLibrary/Olympika/Olympika_1997/olympika0601i.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Decker, W. 1997. Review of \u201cDas Gymnasion von Olympia: Geschichte und Funktion [The Gymnasium of Olympia: History and Function]\u201d by Wacker, C. 1996. Olympika: The International Journal of Olympic Studies, 115-120. ",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "gymnasion-von-olympia",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2016-08-10T19:53:04Z",
+      "uri": "https://pleiades.stoa.org/places/728329643/gymnasion-von-olympia",
+      "creators": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "attested": "Gymnasion von Olympia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T20:00:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T19:53:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T19:53:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T19:53:04Z"
+        }
+      ]
+    }
+  ],
+  "id": "728329643",
+  "subject": [
+    "gymnasium"
+  ],
+  "title": "Gymnasium at Olympia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+  ],
+  "details": "<p><span id=\"docs-internal-guid-5989bbcf-1b11-853a-d10d-63ce62700780\">The Gymnasium was a building at Olympia (constructed ca. 250 BC) where athletes could train for the competitions at the Olympic games. It lies northwest of the Altis enclosure on flat land next to the Kladeos riverbank. The quadrilateral building has a central courtyard surrounded by colonnades in the Doric order. The west wing is occupied by a series of rooms meant for the athletes, while the east wing had a solid outer wall with an internal double Doric colonnade and another colonnade of sixty columns along the court. The outer bottom part of the wall was made of poros blocks with stone-built buttresses on the exterior; the upper elevation was in baked mudbrick. The building included a court that was used for practicing the javelin and discus, with dimensions identical to the field of competition for those events. The gymnasium is only partially preserved, as the west wing has been eroded away by the Kladeos River.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Gymnasium of Olympia was a practice and training field constructed in 250 BC for male Hellenic athletes competing in the Olympic Games.",
+  "reprPoint": [
+    21.6286854,
+    37.639495
+  ],
+  "placeTypes": [
+    "gymnasium"
+  ],
+  "bbox": [
+    21.6284548,
+    37.6389928,
+    21.628916,
+    37.6399972
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570531"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-05-03T18:56:01Z",
+  "uri": "https://pleiades.stoa.org/places/728329643",
+  "creators": [
+    {
+      "username": "rmcneil",
+      "homepage": null,
+      "name": "Robert McNeil",
+      "uri": "https://pleiades.stoa.org/author/rmcneil"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-15T01:46:41Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T20:00:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T19:58:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T19:57:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T19:55:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T19:54:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T19:28:25Z"
+    },
+    {
+      "comment": "removed incorrect feature type (stadion)",
+      "modifiedBy": "thomase",
+      "modified": "2016-05-27T14:28:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rmcneil",
+      "modified": "2015-05-04T02:16:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rmcneil",
+      "modified": "2015-05-03T19:49:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rmcneil",
+      "modified": "2015-05-03T19:44:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rmcneil",
+      "modified": "2015-05-03T19:39:10Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "rmcneil",
+      "modified": "2015-05-03T18:56:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "rmcneil",
+      "modified": "2015-05-03T18:56:02Z"
+    }
+  ]
+}

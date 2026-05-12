@@ -1,0 +1,415 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            83.0780573,
+            26.8715858
+          ],
+          [
+            83.0778947,
+            26.8717453
+          ],
+          [
+            83.0780898,
+            26.8730509
+          ],
+          [
+            83.0773093,
+            26.8739937
+          ],
+          [
+            83.0769678,
+            26.8745595
+          ],
+          [
+            83.0765612,
+            26.8756909
+          ],
+          [
+            83.0766426,
+            26.8761261
+          ],
+          [
+            83.0768865,
+            26.8764016
+          ],
+          [
+            83.0776508,
+            26.8768658
+          ],
+          [
+            83.0793583,
+            26.8769093
+          ],
+          [
+            83.0802852,
+            26.8765177
+          ],
+          [
+            83.0805942,
+            26.876039
+          ],
+          [
+            83.0809194,
+            26.8753863
+          ],
+          [
+            83.081017,
+            26.8742838
+          ],
+          [
+            83.0804803,
+            26.8729783
+          ],
+          [
+            83.0804966,
+            26.8716438
+          ],
+          [
+            83.079651,
+            26.8715568
+          ],
+          [
+            83.0791143,
+            26.8714552
+          ],
+          [
+            83.0785614,
+            26.8714407
+          ],
+          [
+            83.078285,
+            26.8714697
+          ],
+          [
+            83.0780573,
+            26.8715858
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kopia",
+      "properties": {
+        "snippet": "Settlement, Production; 1000 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/599210092/osm-location-of-kopia",
+        "description": "Polygon representing the extent of the Kopia site, derived from an OpenStreetMap Way after Kanungo 2013.",
+        "location_precision": "precise",
+        "title": "OSM Location of Kopia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1025548828",
+          "citationDetail": "Way 1025548828",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1025548828",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/880919509",
+          "citationDetail": "pages 27-33",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kanungo 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6HUTUD5G",
+          "formattedCitation": "<div class=\"csl-entry\">Kanungo, Alok Kumar. <i>Glass in Ancient India: Excavations at Kopia</i>. Thiruvananthapuram: Kerala Council for Historical Research, 2013. http://www.worldcat.org/oclc/880919509.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-kopia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "end": -1,
+      "title": "OSM Location of Kopia",
+      "provenance": "OpenStreetMap (Way 1025548828, version 2, osm:changeset=116712239, 2022-01-28T15:32:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        "production"
+      ],
+      "description": "Polygon representing the extent of the Kopia site, derived from an OpenStreetMap Way after Kanungo 2013.",
+      "created": "2022-01-28T15:32:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            83.0780573,
+            26.8715858
+          ],
+          [
+            83.0778947,
+            26.8717453
+          ],
+          [
+            83.0780898,
+            26.8730509
+          ],
+          [
+            83.0773093,
+            26.8739937
+          ],
+          [
+            83.0769678,
+            26.8745595
+          ],
+          [
+            83.0765612,
+            26.8756909
+          ],
+          [
+            83.0766426,
+            26.8761261
+          ],
+          [
+            83.0768865,
+            26.8764016
+          ],
+          [
+            83.0776508,
+            26.8768658
+          ],
+          [
+            83.0793583,
+            26.8769093
+          ],
+          [
+            83.0802852,
+            26.8765177
+          ],
+          [
+            83.0805942,
+            26.876039
+          ],
+          [
+            83.0809194,
+            26.8753863
+          ],
+          [
+            83.081017,
+            26.8742838
+          ],
+          [
+            83.0804803,
+            26.8729783
+          ],
+          [
+            83.0804966,
+            26.8716438
+          ],
+          [
+            83.079651,
+            26.8715568
+          ],
+          [
+            83.0791143,
+            26.8714552
+          ],
+          [
+            83.0785614,
+            26.8714407
+          ],
+          [
+            83.078285,
+            26.8714697
+          ],
+          [
+            83.0780573,
+            26.8715858
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/599210092/osm-location-of-kopia",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-28T15:39:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-01-28T15:34:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-01-28T15:34:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-01-28T15:32:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-01-28T15:32:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/880919509",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kanungo 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6HUTUD5G",
+      "formattedCitation": "<div class=\"csl-entry\">Kanungo, Alok Kumar. <i>Glass in Ancient India: Excavations at Kopia</i>. Thiruvananthapuram: Kerala Council for Historical Research, 2013. http://www.worldcat.org/oclc/880919509.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/24191226",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kanungo 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/86G7GUKX",
+      "formattedCitation": "<div class=\"csl-entry\">Kanungo, Alok K., and Robert H. Brill. \u201cKopia, India\u2019s First Glassmaking Site: Dating and Chemical Analysis.\u201d <i>Journal of Glass Studies</i> 51 (2009): 11\u201325. https://www.jstor.org/stable/24191226.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1475-4754.2009.00497.x",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kanungo et al. 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YNIGQUMX",
+      "formattedCitation": "<div class=\"csl-entry\">Kanungo, A. K., V. N. Misra, K. Dutta, G. V. Ravi Prasad, M. G. Yadava, and G. W. L. Hodgins. \u201cThe Radiocarbon Chronology of Kopia, an Early Glass Manufacturing Centre in India.\u201d <i>Archaeometry</i> 52, no. 5 (2010): 899\u2013918. https://doi.org/10.1111/j.1475-4754.2009.00497.x.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "599210092",
+  "subject": [
+    "glassmaking"
+  ],
+  "title": "Kopia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/production",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement and glassmaking site in northern India, inhabited and in use during the first millennium BCE.",
+  "reprPoint": [
+    83.0789322670274,
+    26.874272256012016
+  ],
+  "placeTypes": [
+    "production",
+    "settlement"
+  ],
+  "bbox": [
+    83.0765612,
+    26.8714407,
+    83.081017,
+    26.8769093
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-01-28T15:32:18Z",
+  "uri": "https://pleiades.stoa.org/places/599210092",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-01-31T13:48:29Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-28T15:39:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-01-28T15:34:39Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-01-28T15:32:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-01-28T15:32:18Z"
+    }
+  ]
+}

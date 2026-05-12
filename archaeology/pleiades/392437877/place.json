@@ -1,0 +1,326 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.855762,
+          37.780327
+        ]
+      },
+      "type": "Feature",
+      "id": "cfl-ago-location-strophilas",
+      "properties": {
+        "snippet": "Archaeological-site; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/392437877/cfl-ago-location-strophilas",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CFL/AGO Location: Strophilas"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=70023",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Chronique en ligne - toponyme : Strpohilas",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "cfl-ago-location-strophilas",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -3300,
+      "title": "CFL/AGO Location: Strophilas",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 100.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/cfl-ago-toponym-coordinates",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-11-28T12:47:41Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.855762,
+          37.780327
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/392437877/cfl-ago-location-strophilas",
+      "creators": [
+        {
+          "username": "cbouras",
+          "homepage": null,
+          "name": "Catherine Bouras",
+          "uri": "https://pleiades.stoa.org/author/cbouras"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "archaeological site; representative; neolithic",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-13T21:30:17Z"
+        },
+        {
+          "comment": "paa; associate modern",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-13T21:29:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-12T00:41:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:50:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:47:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:47:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-28T12:50:14Z",
+      "associationCertainty": "certain",
+      "title": "Andros (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/392437877/andros-island",
+      "connectionType": "at",
+      "id": "andros-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-12T00:41:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:50:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:50:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:50:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589693",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cbouras",
+          "homepage": null,
+          "name": "Catherine Bouras",
+          "uri": "https://pleiades.stoa.org/author/cbouras"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=70023",
+      "citationDetail": "Toponyme 70023: Strophilas",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Strophilas",
+      "attestations": [],
+      "references": [],
+      "id": "strophilas-1",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2023-11-28T12:49:08Z",
+      "uri": "https://pleiades.stoa.org/places/392437877/strophilas-1",
+      "creators": [
+        {
+          "username": "cbouras",
+          "homepage": null,
+          "name": "Catherine Bouras",
+          "uri": "https://pleiades.stoa.org/author/cbouras"
+        }
+      ],
+      "attested": "\u03a3\u03c4\u03c1\u03cc\u03c6\u03b9\u03bb\u03b1\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-12T00:41:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:50:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:49:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cbouras",
+          "modified": "2023-11-28T12:49:08Z"
+        }
+      ]
+    }
+  ],
+  "id": "392437877",
+  "subject": [],
+  "title": "Strophilas ",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/cape"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Ancient site on the promontory of Strophilas, Andros. Archaeological evidence of a town from Late Neolithic to Early Cycladic (4500-3300 BC).",
+  "reprPoint": [
+    24.855762,
+    37.780327
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "cape"
+  ],
+  "bbox": [
+    24.855762,
+    37.780327,
+    24.855762,
+    37.780327
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589693"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-28T12:44:33Z",
+  "uri": "https://pleiades.stoa.org/places/392437877",
+  "creators": [
+    {
+      "username": "cbouras",
+      "homepage": null,
+      "name": "Catherine Bouras",
+      "uri": "https://pleiades.stoa.org/author/cbouras"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-12T00:41:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-11T21:27:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cbouras",
+      "modified": "2023-11-28T12:50:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cbouras",
+      "modified": "2023-11-28T12:44:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cbouras",
+      "modified": "2023-11-28T12:44:33Z"
+    }
+  ]
+}

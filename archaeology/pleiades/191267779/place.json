@@ -1,0 +1,299 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.1410828,
+          36.1383811
+        ]
+      },
+      "type": "Feature",
+      "id": "gird-i-bazar",
+      "properties": {
+        "snippet": "Settlement; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/191267779/gird-i-bazar",
+        "description": "Point representing the location of the Gird-i Bazar site; derived from an OpenStreetMap Way after Radner et al. 2019. ",
+        "location_precision": "precise",
+        "title": "OSM location of Gird-i Bazar"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6661283634",
+          "citationDetail": "Node 6661283634",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6661283634",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "gird-i-bazar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -540,
+      "title": "OSM location of Gird-i Bazar",
+      "provenance": "OpenStreetMap (Node 6661283634, version 1, osm:changeset=72818830, 2019-07-30T15:37:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point representing the location of the Gird-i Bazar site; derived from an OpenStreetMap Way after Radner et al. 2019. ",
+      "created": "2019-08-02T18:06:13Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.1410828,
+          36.1383811
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/191267779/gird-i-bazar",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-02T20:14:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-02T18:07:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-02T18:07:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-02T18:06:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-02T18:06:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-08-02T18:05:39Z",
+      "associationCertainty": "certain",
+      "title": "Dinka Settlement Complex",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/191267779/dinka-settlement-complex",
+      "connectionType": "part_of_physical",
+      "id": "dinka-settlement-complex",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-02T20:14:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-02T20:14:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-02T18:07:24Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-02T18:05:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-02T18:05:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/467476385",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1004660007",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Radner et al. 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TDFNQRH7",
+          "formattedCitation": "<div class=\"csl-entry\">Radner, Karen, Florian Janoscha Kreppner, and Andrea Squitieri, eds. <i>Unearthing the Dinka Settlement Complex: The 2016 Season at Gird-i Bazar and Qalat-i Dinka</i>. Peshdar Plain Project Publications 2. Gladbeck: Pe-We-Verlag, 2017. http://www.worldcat.org/oclc/1004660007.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/966410804",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Radner et al. 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QAIVFDXP",
+      "formattedCitation": "<div class=\"csl-entry\">Radner, Karen, Florian Janoscha Kreppner, and Andrea Squitieri, eds. <i>Exploring the Neo-Assyrian Frontier with Western Iran: The 2015 Season at Gird-i Bazar and Qalat-i Dinka</i>. Peshdar Plain Project Publications 1. Gladbeck: PeWe-Verlag, 2016. http://www.worldcat.org/oclc/966410804.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1004660007",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Radner et al. 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TDFNQRH7",
+      "formattedCitation": "<div class=\"csl-entry\">Radner, Karen, Florian Janoscha Kreppner, and Andrea Squitieri, eds. <i>Unearthing the Dinka Settlement Complex: The 2016 Season at Gird-i Bazar and Qalat-i Dinka</i>. Peshdar Plain Project Publications 2. Gladbeck: Pe-We-Verlag, 2017. http://www.worldcat.org/oclc/1004660007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1098176915",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Radner at al. 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UI9NIWSJ",
+      "formattedCitation": "<div class=\"csl-entry\">Radner, Karen, Florian Janoscha Kreppner, and Andrea Squitieri, eds. <i>The Dinka Settlement Complex 2017: The Final Season at Gird-i Bazar and First Work in the Lower Town</i>. Peshdar Plain Project Publications 3. Gladbeck: PeWe-Verlag, 2018. http://www.worldcat.org/oclc/1098176915.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "191267779",
+  "subject": [],
+  "title": "Gird-i Bazar",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Archaeological site in the Peshdar Plain with remains dated to the Neo-Assyrian period. The site is part of a larger frontier settlement known as the Dinka Settlement Complex.",
+  "reprPoint": [
+    45.1410828,
+    36.1383811
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    45.1410828,
+    36.1383811,
+    45.1410828,
+    36.1383811
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/467476385"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-08-02T18:04:37Z",
+  "uri": "https://pleiades.stoa.org/places/191267779",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-08-02T20:14:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-08-02T18:07:23Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-08-02T18:04:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-08-02T18:04:37Z"
+    }
+  ]
+}

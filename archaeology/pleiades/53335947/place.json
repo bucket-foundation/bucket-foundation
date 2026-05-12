@@ -1,0 +1,320 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1,
+          21.616667
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-askut-island",
+      "properties": {
+        "snippet": "Fort-2, Island; 2010 BC - 1640 BC",
+        "link": "https://pleiades.stoa.org/places/53335947/osm-location-askut-island",
+        "description": "Island located on the Nile with a Middle Kingdom fortress. The site was inundated as a result of the construction of the Aswan High Dam in the 1960s.",
+        "location_precision": "precise",
+        "title": "OSM Location of submerged Askut Island"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7731569574",
+          "citationDetail": "Node 7731569574",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7731569574",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-askut-island",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/island"
+      ],
+      "end": -1640,
+      "title": "OSM Location of submerged Askut Island",
+      "provenance": "OpenStreetMap (Node 7731569574, version 1, osm:changeset=88253249, 2020-07-20T14:48:58Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/island"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2",
+        "island"
+      ],
+      "description": "Island located on the Nile with a Middle Kingdom fortress. The site was inundated as a result of the construction of the Aswan High Dam in the 1960s.",
+      "created": "2022-05-25T14:58:34Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1,
+          21.616667
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/53335947/osm-location-askut-island",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-25T15:27:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T15:03:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T15:00:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T14:58:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T14:58:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-25T15:02:06Z",
+      "associationCertainty": "certain",
+      "title": "Nilus (river)",
+      "start": -2010,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/53335947/nilus-river",
+      "connectionType": "at",
+      "id": "nilus-river",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-25T15:27:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T15:03:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T15:02:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-25T15:02:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/727172",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/469443903",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Smith 1995",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9AWH3K9M",
+          "formattedCitation": "<div class=\"csl-entry\">Smith, Stuart Tyson. <i>Askut in Nubia\u202f: The Economics and Ideology of Egyptian Imperialism in the Second Millennium B.C.</i> Kegan Paul International, 1995. http://www.worldcat.org/oclc/469443903.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "https://en.wikipedia.org/w/index.php?title=Askut&oldid=1003519414",
+          "accessURI": "https://en.wikipedia.org",
+          "citationDetail": "Askut",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/469443903",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Smith 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9AWH3K9M",
+      "formattedCitation": "<div class=\"csl-entry\">Smith, Stuart Tyson. <i>Askut in Nubia\u202f: The Economics and Ideology of Egyptian Imperialism in the Second Millennium B.C.</i> Kegan Paul International, 1995. http://www.worldcat.org/oclc/469443903.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "https://en.wikipedia.org/w/index.php?title=Askut&oldid=1003519414",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "Askut",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/4908",
+      "citationDetail": "GEO ID 4908: Askut",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "53335947",
+  "subject": [],
+  "title": "Askut",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/island"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Ancient Egyptian island fortress on the Nile in the Middle Kingdom, now submerged.",
+  "reprPoint": [
+    31.1,
+    21.616667
+  ],
+  "placeTypes": [
+    "fort-2",
+    "island"
+  ],
+  "bbox": [
+    31.1,
+    21.616667,
+    31.1,
+    21.616667
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/727172"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-25T14:58:18Z",
+  "uri": "https://pleiades.stoa.org/places/53335947",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added TM GEO ID 4908: Askut",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-25T15:43:18Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-25T15:27:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-25T15:03:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-25T15:02:46Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-25T14:58:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-25T14:58:18Z"
+    }
+  ]
+}

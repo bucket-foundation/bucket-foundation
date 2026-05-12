@@ -1,0 +1,513 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.4310445,
+            30.3379998
+          ],
+          [
+            35.4311673,
+            30.3380671
+          ],
+          [
+            35.4309121,
+            30.338415
+          ],
+          [
+            35.4307884,
+            30.3383488
+          ],
+          [
+            35.4310445,
+            30.3379998
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-deir",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/783362997/osm-location-of-the-deir",
+        "description": "Representative location based on coordinates derived from OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Monastery (Ad Deir)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/41032088",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Way 41032088",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-deir",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM Location of Monastery (Ad Deir)",
+      "provenance": "OpenStreetMap (Way 41032088, version 8, osm:changeset=127664781, 2022-10-17T10:58:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Representative location based on coordinates derived from OpenStreetMap",
+      "created": "2022-09-07T17:48:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.4310445,
+            30.3379998
+          ],
+          [
+            35.4311673,
+            30.3380671
+          ],
+          [
+            35.4309121,
+            30.338415
+          ],
+          [
+            35.4307884,
+            30.3383488
+          ],
+          [
+            35.4310445,
+            30.3379998
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/783362997/osm-location-of-the-deir",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T23:04:04Z"
+        },
+        {
+          "comment": "Generic OSM Accuracy Assessment, edit title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-25T20:15:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-07T18:18:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:56:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:48:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:48:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "created": "2022-09-07T17:44:33Z",
+      "associationCertainty": "certain",
+      "title": "Petra",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/783362997/petra",
+      "connectionType": "at",
+      "id": "petra",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-07T18:18:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:56:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:44:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:44:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/697725",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "Amir Weksler"
+        },
+        {
+          "username": null,
+          "name": "Louise de Picciotto"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/892840902",
+      "citationDetail": "62-66",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Alpass 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9JEN22GW",
+      "formattedCitation": "<div class=\"csl-entry\">Alpass, Peter. <i>The Religious Life of Nabataea</i>. Classical Studies E-Books Online, Collection 2013. Leyde: Brill, 2013. https://doi.org/10.1163/9789004216235.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Ad_Deir",
+      "citationDetail": "Ad Deir",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/48706598",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Amadasi and Schneider 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VMHGMFSS",
+      "formattedCitation": "<div class=\"csl-entry\">Amadasi, Maria Giulia, and Eugenia Equini Schneider. <i>Petra</i>. Chicago: University of Chicago Press, 2002. http://www.worldcat.org/oclc/48706598.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "The Deir",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/892840902",
+          "citationDetail": "62-66",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Allpass 2013",
+          "bibliographicURI": "",
+          "formattedCitation": "Alpass, Peter. 2013. The Religious Life of Nabataea. Leiden, NETHERLANDS, THE: BRILL.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "the-deir",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-09-07T17:53:23Z",
+      "uri": "https://pleiades.stoa.org/places/783362997/the-deir",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "The Deir",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-07T18:18:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:56:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:53:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:53:23Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "ad-Deir",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Ad_Deir",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English): Ad Deir",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ad-deir",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2022-09-07T17:54:53Z",
+      "uri": "https://pleiades.stoa.org/places/783362997/ad-deir",
+      "creators": [
+        {
+          "username": null,
+          "name": "Amir Weksler"
+        },
+        {
+          "username": null,
+          "name": "Louise de Picciotto"
+        }
+      ],
+      "attested": "\u0627\u0644\u062f\u064a\u0631",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-07T18:18:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:56:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:55:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:54:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-07T17:54:53Z"
+        }
+      ]
+    }
+  ],
+  "id": "783362997",
+  "subject": [
+    "Temple"
+  ],
+  "title": "The Deir",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p dir=\"ltr\"><span id=\"docs-internal-guid-5b2d06cc-7fff-dc12-871e-99773597404f\"><span>The Deir is a rock-cut monumental structure with an elaborate architectural facade in Petra, likely dating to the mid-first century CE,. The function of the Deir is not certain. While other similar structures at Petra were used as tombs, there is no evidence of burials within the Deir, and it may instead have served some religious purpose. During the Byzantine period, several crosses were carved on the walls, indicating that it may have been repurposed as a church. </span></span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Monumental religious building carved out of rock in Petra, Jordan which was used for a variety of complex religious ceremonies and customs after the time of its completion in the mid-first century CE.",
+  "reprPoint": [
+    35.4309779687154,
+    30.338207674338875
+  ],
+  "placeTypes": [
+    "temple-2",
+    "monument"
+  ],
+  "bbox": [
+    35.4307884,
+    30.3379998,
+    35.4311673,
+    30.338415
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/697725"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-07T17:40:44Z",
+  "uri": "https://pleiades.stoa.org/places/783362997",
+  "creators": [
+    {
+      "username": null,
+      "name": "Amir Weksler"
+    },
+    {
+      "username": null,
+      "name": "Louise de Picciotto"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-08T03:52:09Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-07T18:18:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-07T17:56:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-07T17:41:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-07T17:40:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-07T17:40:44Z"
+    }
+  ]
+}

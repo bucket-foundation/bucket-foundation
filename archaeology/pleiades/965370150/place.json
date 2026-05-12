@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.1922234,
+          12.6180857
+        ]
+      },
+      "type": "Feature",
+      "id": "representative-point-derived-from-an-openstreetmap",
+      "properties": {
+        "snippet": "Cave, Shrine, Temple-2; AD 600 - AD 699",
+        "link": "https://pleiades.stoa.org/places/965370150/representative-point-derived-from-an-openstreetmap",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "Representative point derived from an OpenStreetMap node"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/353978532",
+          "citationDetail": "Node 353978532",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "representative-point-derived-from-an-openstreetmap",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 699,
+      "title": "Representative point derived from an OpenStreetMap node",
+      "provenance": "OpenStreetMap (Node 353978532, version 2, osm:changeset=7479950, 2011-03-06T23:53:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave",
+        "shrine",
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-12-19T18:47:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.1922234,
+          12.6180857
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/965370150/representative-point-derived-from-an-openstreetmap",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-19T18:47:23Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-19T18:47:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T20:37:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T20:34:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-29T16:16:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-29T16:10:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-29T16:10:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-22T20:14:33Z",
+      "associationCertainty": "certain",
+      "title": "Mahabalipuram",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/965370150/mahabalipuram",
+      "connectionType": "at",
+      "id": "mahabalipuram",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T20:37:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T20:34:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T20:14:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T20:14:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/835093310",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Group_of_Monuments_at_Mahabalipuram",
+      "citationDetail": "Group of Monuments at Mahabalipuram",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Varaha_Cave_Temple",
+      "citationDetail": "Varaha Cave Temple",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/249/",
+      "citationDetail": "249: Group of Monuments at Mahabalipuram",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "undefined",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Varaha Cave",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "varaha-cave",
+      "end": 1899,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1800,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-06-22T21:14:42Z",
+      "uri": "https://pleiades.stoa.org/places/965370150/varaha-cave",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T20:37:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T20:34:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T21:16:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T21:15:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T21:14:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-22T21:14:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "965370150",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Varaha Cave",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine",
+    "https://pleiades.stoa.org/vocabularies/place-types/cave",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The modern name of a seventh-century Pallava cave temple in Mah\u0101balipuram.",
+  "reprPoint": [
+    80.1922234,
+    12.6180857
+  ],
+  "placeTypes": [
+    "shrine",
+    "cave",
+    "temple-2"
+  ],
+  "bbox": [
+    80.1922234,
+    12.6180857,
+    80.1922234,
+    12.6180857
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/835093310"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-19T18:49:48Z",
+  "uri": "https://pleiades.stoa.org/places/965370150",
+  "creators": [
+    {
+      "username": "efrancis",
+      "homepage": null,
+      "name": "Emmanuel Francis",
+      "uri": "https://pleiades.stoa.org/author/efrancis"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-19T18:49:49Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-12-19T18:49:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-22T20:37:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-22T20:34:55Z"
+    },
+    {
+      "comment": "added UWHS tag, UNESCO ref. and Wikipedia refs.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-22T20:34:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-07-03T13:13:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-07-03T13:11:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-07-03T13:10:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T21:13:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T21:05:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:31:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:21:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:13:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:11:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-22T20:11:07Z"
+    }
+  ]
+}

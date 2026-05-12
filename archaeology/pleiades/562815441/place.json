@@ -1,0 +1,448 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.212397,
+          33.2702562
+        ]
+      },
+      "type": "Feature",
+      "id": "645642628631629-635648631",
+      "properties": {
+        "snippet": "Archaeological-site, Cemetery; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/562815441/645642628631629-635648631",
+        "description": "Point representing the location of the Roman/Byzantine necropolis at Tyre el Bass, derived from an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location of \u0645\u0642\u0628\u0631\u0629 \u0635\u0648\u0631"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6175282718",
+          "citationDetail": "Node 6175282718",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6175282718",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "645642628631629-635648631",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": 640,
+      "title": "OSM location of \u0645\u0642\u0628\u0631\u0629 \u0635\u0648\u0631",
+      "provenance": "OpenStreetMap (Node 6175282718, version 2, osm:changeset=70500802, 2019-05-22T05:34:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "cemetery"
+      ],
+      "description": "Point representing the location of the Roman/Byzantine necropolis at Tyre el Bass, derived from an OpenStreetMap Node.",
+      "created": "2022-09-19T19:25:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.212397,
+          33.2702562
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/562815441/645642628631629-635648631",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-19T21:20:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:30:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:26:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:25:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:25:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-09-19T19:29:10Z",
+      "associationCertainty": "certain",
+      "title": "Tyrus/Col. Septimia Severa",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/562815441/tyrus-col-septimia-severa",
+      "connectionType": "at",
+      "id": "tyrus-col-septimia-severa",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-19T21:20:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:30:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:29:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:29:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678437",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-09-19T19:30:30Z",
+      "associationCertainty": "certain",
+      "title": "Phoenician cemetery at al-Bass",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/562815441/phoenician-cemetery-at-al-bass",
+      "connectionType": "abuts",
+      "id": "phoenician-cemetery-at-al-bass",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-19T21:20:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:30:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:30:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:30:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/562815440",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/55209623",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aubet 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YYR7VYN8",
+      "formattedCitation": "<div class=\"csl-entry\">Aubet, Mar\u00eda Eugenia. <i>The Phoenician Cemetery of Tyre-Al Bass: Excavations, 1997-1999</i>. BAAL. Hors-S\u00e9rie 1. Beyrouth, Liban: Minist\u00e8re de la Culture, Direction G\u00e9n\u00e9rale des Antiquit\u00e9s, 2004. https://www.worldcat.org/oclc/55209623.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tyre_Necropolis",
+      "citationDetail": "Tyre Necropolis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/299",
+      "citationDetail": "299: Tyre",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "al-Bass, el-Bass, al-Ba\u1e63, al-Buss, al-Bu\u1e63",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/55209623",
+          "citationDetail": "page 492",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Aubet 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YYR7VYN8",
+          "formattedCitation": "<div class=\"csl-entry\">Aubet, Mar\u00eda Eugenia. <i>The Phoenician Cemetery of Tyre-Al Bass: Excavations, 1997-1999</i>. BAAL. Hors-S\u00e9rie 1. Beyrouth, Liban: Minist\u00e8re de la Culture, Direction G\u00e9n\u00e9rale des Antiquit\u00e9s, 2004. https://www.worldcat.org/oclc/55209623.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "al-bass",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "The modern Arabic name of the site is used generically to refer to both the Roman/Byzantine necropolis and the adjacent Phoenician site.",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2022-09-19T19:28:33Z",
+      "uri": "https://pleiades.stoa.org/places/562815441/al-bass",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0627\u0644\u0628\u0635",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-19T21:20:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:30:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:28:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-19T19:28:33Z"
+        }
+      ]
+    }
+  ],
+  "id": "562815441",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Roman necropolis at al-Bass",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Tyre necropolis, part of the UNESCO World Heritage site of Tyre, contains a triumphal arch and hundreds of stone sarcophagi dated to the Roman and Byzantine periods. It is located adjacent to an older Phoenician burial site.",
+  "reprPoint": [
+    35.212397,
+    33.2702562
+  ],
+  "placeTypes": [
+    "cemetery",
+    "archaeological-site"
+  ],
+  "bbox": [
+    35.212397,
+    33.2702562,
+    35.212397,
+    33.2702562
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678437",
+    "https://pleiades.stoa.org/places/562815440"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-19T19:23:59Z",
+  "uri": "https://pleiades.stoa.org/places/562815441",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update UWHS link + tag",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-20T02:09:09Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-19T21:20:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-09-19T19:30:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2022-09-19T19:25:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-09-19T19:23:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-09-19T19:23:59Z"
+    }
+  ]
+}

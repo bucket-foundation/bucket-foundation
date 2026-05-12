@@ -1,0 +1,425 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4806498,
+            41.8896464
+          ],
+          [
+            12.4806235,
+            41.8896411
+          ],
+          [
+            12.4806495,
+            41.8895675
+          ],
+          [
+            12.4807994,
+            41.8895968
+          ],
+          [
+            12.4807738,
+            41.8896705
+          ],
+          [
+            12.4807579,
+            41.8896687
+          ],
+          [
+            12.4806498,
+            41.8896464
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-casa-dei-crescenzi",
+      "properties": {
+        "snippet": "Unknown; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/111763397/osm-location-of-casa-dei-crescenzi",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Casa dei Crescenzi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/124282253",
+          "citationDetail": "Way 124282253",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=124282253",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-casa-dei-crescenzi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 1453,
+      "title": "OSM location of Casa dei Crescenzi",
+      "provenance": "OpenStreetMap (Way 124282253, version 4, osm:changeset=61660816, 2018-08-14T14:49:42Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-02-15T00:51:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4806498,
+            41.8896464
+          ],
+          [
+            12.4806235,
+            41.8896411
+          ],
+          [
+            12.4806495,
+            41.8895675
+          ],
+          [
+            12.4807994,
+            41.8895968
+          ],
+          [
+            12.4807738,
+            41.8896705
+          ],
+          [
+            12.4807579,
+            41.8896687
+          ],
+          [
+            12.4806498,
+            41.8896464
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/111763397/osm-location-of-casa-dei-crescenzi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-16T14:10:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T20:51:39Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T00:52:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T00:51:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T00:51:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-02-15T00:52:52Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/111763397/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-16T14:10:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T20:51:40Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T00:52:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T00:52:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Casa_dei_Crescenzi",
+      "citationDetail": "Casa dei Crescenzi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "458",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hamilton 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GZKZUF3Y",
+      "formattedCitation": "<div class=\"csl-entry\">Hamilton, Louis I., and Stefano Riccioni. <i>Rome Re-Imagined: Twelfth-Century Jews, Christians and Muslims Encounter the Eternal City</i>. BRILL, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Docci 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KBEIN25U",
+      "formattedCitation": "<div class=\"csl-entry\">Docci, Marina, and Maria Grazia Turco, eds. \u201cLa casa dei Crescenzi: storia e restauri.\u201d In <i>Bollettino del Centro di studi per la storia dell\u2019architettura</i>. Bollettino del Centro di studi per la storia dell\u2019architettura, 45/52 (2008/2015), 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Barbanera 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IZ9WN2CP",
+      "formattedCitation": "<div class=\"csl-entry\">Barbanera, M., and S. Pergola. \u201cElementi architettonici antichi e post-antichi riutilizzati nella cosiddetta Casa dei Crescenzi. La memoria dell\u2019antico nell\u2019edilizia civile a Roma.\u201d In <i>Bullettino della Commissione archeologica comunale di Roma, 98.1997</i>, 301\u201328, Abb, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q56333829",
+      "citationDetail": "Casa dei Crescenzi (Q56333829)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Casa dei Crescenzi",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Barbanera 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IZ9WN2CP",
+          "formattedCitation": "<div class=\"csl-entry\">Barbanera, M., and S. Pergola. \u201cElementi architettonici antichi e post-antichi riutilizzati nella cosiddetta Casa dei Crescenzi. La memoria dell\u2019antico nell\u2019edilizia civile a Roma.\u201d In <i>Bullettino della Commissione archeologica comunale di Roma, 98.1997</i>, 301\u201328, Abb, 1997.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "casa-dei-crescenzi",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2020-02-15T20:51:29Z",
+      "uri": "https://pleiades.stoa.org/places/111763397/casa-dei-crescenzi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Casa dei Crescenzi",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-16T14:10:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T20:51:40Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T20:51:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T20:51:29Z"
+        }
+      ]
+    }
+  ],
+  "id": "111763397",
+  "subject": [],
+  "title": "Casa dei Crescenzi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A structure in Rome built between 1040 and 1065 by one Niccol\u00f2, son of Crescenzio and Teodora, in order to control the Ponte Emilio, on whose transit the family charged a toll. The building incorporates ancient spolia.",
+  "reprPoint": [
+    12.480711500173337,
+    41.88961920753698
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    12.4806235,
+    41.8895675,
+    12.4807994,
+    41.8896705
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-02-15T00:51:21Z",
+  "uri": "https://pleiades.stoa.org/places/111763397",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Casa dei Crescenzi (Q56333829) added",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-13T00:49:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-16T14:10:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-15T20:51:39Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-15T20:50:51Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-15T00:51:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-15T00:51:21Z"
+    }
+  ]
+}

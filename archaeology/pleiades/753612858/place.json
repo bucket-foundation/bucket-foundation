@@ -1,0 +1,428 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4840985,
+          40.7533795
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-so-called-porta-vesuvio",
+      "properties": {
+        "snippet": "City-gate, ; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/753612858/osm-location-of-so-called-porta-vesuvio",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of so-called \"Porta Vesuvio\""
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-roman-early-empire",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-roman-early-empire",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/317736807",
+          "citationDetail": "Node 317736807",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=317736807",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-so-called-porta-vesuvio",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of so-called \"Porta Vesuvio\"",
+      "provenance": "OpenStreetMap (Node 317736807, version 7, osm:changeset=75393984, 2019-10-07T21:13:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-gate",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-07-01T20:59:12Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4840985,
+          40.7533795
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/753612858/osm-location-of-so-called-porta-vesuvio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-06T03:18:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-23T09:18:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-02T00:55:46Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-01T21:00:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-01T20:59:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-01T20:59:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:37:41Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/753612858/433032",
+      "connectionType": "at",
+      "id": "433032",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-06T03:19:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.dainst.org/entity/12219",
+          "citationDetail": "Porta Vesuviana (Porta del Vesuvio) Pompei, (Pompeii), Pompei",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-22T17:17:59Z",
+      "associationCertainty": "certain",
+      "title": "City wall of Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/753612858/city-wall-of-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "city-wall-of-pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-23T09:18:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-22T17:18:04Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-22T17:18:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-22T17:17:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/824486497",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/pompeii/the-city-gates/vesuvius-gate",
+      "citationDetail": "Vesuvius Gate",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AD79",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+      "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Beste 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LEFHKKC3",
+      "formattedCitation": "<div class=\"csl-entry\">Beste, Heinz-J\u00fcrgen. \u201cPompei: Regio VI Insula 16 e La Zona Di Porta Vesuvio.\u201d In <i>Rivista Di Studi Pompeiani, 15 (2004)</i>, 180\u201389. Roma: L\u2019ERMA, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bernadelli 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EKXSPAIF",
+      "formattedCitation": "<div class=\"csl-entry\">Bernadelli, R. \u201cIl Tripartitore d\u2019acqua Di Porta Vesuvio a Pompei.\u201d In <i>Studi Urbinati, B. Scienze Umane e Sociali, 45.1971</i>, 1151\u20131156, Taf, 45.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Miano 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GNFTML47",
+      "formattedCitation": "<div class=\"csl-entry\">Miano, Pasquale. \u201cPorta Vesuvio e l\u2019accessibilit\u00e0 Al Sito Archeologico: Una Potenzialit\u00e0 Da Indagare.\u201d In <i>Pompei Accessibile\u202f: Per Una Fruizione Ampliata Del Sito Archeologico</i>, 307\u201314. Roma: Erma di Bretschneider, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stefani 1995/1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N3QL6GVN",
+      "formattedCitation": "<div class=\"csl-entry\">Stefani, Grete. \u201cContributo alla carta archeologica dell\u2019\u2019ager pompeianus\u2019. I rinvenimenti presso Porta Vesuvio.\u201d <i>Rivista di studi pompeiani</i> 7 (1995): 11\u201333.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/cefr/4941",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lemaire 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G3JFR3WL",
+      "formattedCitation": "<div class=\"csl-entry\">Lemaire, Bastien, and Jean-Pierre Brun. \u201cDu Fondo Barbatelli \u00e0 la Porte du V\u00e9suve\u202f: Une fen\u00eatre d\u2019\u00e9tude dans le faubourg septentrional de Pomp\u00e9i. Campagne 2019.\u201d <i>Chronique des activit\u00e9s arch\u00e9ologiques de l\u2019\u00c9cole fran\u00e7aise de Rome</i>, December 17, 2020. https://doi.org/10.4000/cefr.4941.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/baefe/10380?fbclid=IwAR3EFqRiiRUxe_pKMoYQhlnssR5IbaQ07Yi7iHR9n4TVxGFOzizz-7SmxfU_aem_AfDar-Y2-cj8iemUM5ndiNpBK-6DCR6MlT-N5tEy5N72jMadxRR4ZiwCIgRRmeIqMan66E3iUxSm9riBA5DRAJYG",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lemaire 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5X86E3QQ",
+      "formattedCitation": "<div class=\"csl-entry\">Lemaire, Bastien, Jean-Pierre Brun, Laetitia Cavassa, Marina Covolan, Marcella Leone, and Nicolas Leys. \u201cDu Fondo Barbatelli \u00e0 la Porte du V\u00e9suve\u202f: une fen\u00eatre d\u2019\u00e9tude dans le faubourg septentrional de Pomp\u00e9i.\u201d <i>Bulletin arch\u00e9ologique des \u00c9coles fran\u00e7aises \u00e0 l\u2019\u00e9tranger</i>, March 28, 2024. https://doi.org/10.4000/baefe.10380.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q125810728",
+      "citationDetail": "Porta Vesuvio (Q125810728)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "753612858",
+  "subject": [
+    "tufo"
+  ],
+  "title": "Porta Vesuvio",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Porta Vesuvio\" was damaged in the earthquake of A.D. 62.",
+  "reprPoint": [
+    14.4840985,
+    40.7533795
+  ],
+  "placeTypes": [
+    "city-gate"
+  ],
+  "bbox": [
+    14.4840985,
+    40.7533795,
+    14.4840985,
+    40.7533795
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/824486497"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-07-01T20:58:30Z",
+  "uri": "https://pleiades.stoa.org/places/753612858",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q125810728",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T21:40:52Z"
+    },
+    {
+      "comment": "Lemaire 2024",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-06T03:18:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-23T09:18:07Z"
+    },
+    {
+      "comment": "reference added -Lemaire 2020",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-22T17:17:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-11T16:51:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-02T00:55:46Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-02T00:55:26Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-01T20:58:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-01T20:58:31Z"
+    }
+  ]
+}

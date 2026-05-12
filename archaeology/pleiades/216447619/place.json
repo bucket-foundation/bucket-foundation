@@ -1,0 +1,380 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-04-10T04:25:05Z",
+      "associationCertainty": "certain",
+      "title": "Ilium/Troia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/216447619/ilium-troia",
+      "connectionType": "part_of_physical",
+      "id": "ilium-troia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-21T17:19:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-20T11:13:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-13T09:58:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-10T04:25:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-10T04:25:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550595",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/8240597",
+      "citationDetail": "8240597: the Scaian Gates",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3399245",
+      "citationDetail": "Scaean Gate (Q3399245)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/people/17639",
+      "citationDetail": "17639: Scaean Gate",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:13.1.21",
+      "citationDetail": "13.1.21",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877. http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0548.tlg002.perseus-grc1:e.5.3",
+      "citationDetail": "e.5.3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Apollod. Bibl. (Frazer: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PTDGFYQ5",
+      "formattedCitation": "<div class=\"csl-entry\">Apollodorus. <i>Apollodorus, The library.</i> Edited by James George Frazer. 2 vols. Loeb Classical Library. Cambridge; London: Harvard University Press\u202f; William Heinemann Ltd., 1921. http://data.perseus.org/texts/urn:cts:greekLit:tlg0548.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Skaiai Pylai",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:13.1.21",
+          "citationDetail": "13.1.21",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Str. (Meineke: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+          "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877. http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "skaiai-pylai",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2026-04-10T04:20:22Z",
+      "uri": "https://pleiades.stoa.org/places/216447619/skaiai-pylai",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "attested": "\u03a3\u03ba\u03b1\u03b9\u03b1\u1f76 \u03c0\u03cd\u03bb\u03b1\u03b9",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-21T17:19:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-20T11:13:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-10T04:24:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-10T04:20:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-04-10T04:20:22Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Scaeae portae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:latinLit:phi0690.phi003.perseus-lat1:2.588-2.623",
+          "citationDetail": "2.612",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Verg. Aen. (Greenough; Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RRQDCI4M",
+          "formattedCitation": "<div class=\"csl-entry\">Virgil. <i>The Bucolics, AEneid, and Georgics of Virgil</i>. Edited by J. B. Greenough. Boston: Ginn, 1900. http://data.perseus.org/texts/urn:cts:latinLit:phi0690.phi003.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "scaeae-portae",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2026-04-21T17:22:39Z",
+      "uri": "https://pleiades.stoa.org/places/216447619/scaeae-portae",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Scaeae portae",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-22T23:42:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-21T17:22:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-21T17:22:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-21T17:22:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "216447619",
+  "subject": [],
+  "title": "Scaean Gate",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+    "https://pleiades.stoa.org/vocabularies/place-types/defensive-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The gate encompassed by the fortifications of Troy.",
+  "reprPoint": [
+    26.238197642278294,
+    39.957369438662475
+  ],
+  "placeTypes": [
+    "city-gate",
+    "defensive-wall"
+  ],
+  "bbox": [
+    26.2361715,
+    39.9561932,
+    26.2398507,
+    39.9585298
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550595"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-04-10T04:18:10Z",
+  "uri": "https://pleiades.stoa.org/places/216447619",
+  "creators": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-21T17:19:43Z"
+    },
+    {
+      "comment": "update references, contribs",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-21T00:25:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-20T11:13:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-10T04:22:30Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-10T04:18:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-10T04:18:10Z"
+    }
+  ]
+}

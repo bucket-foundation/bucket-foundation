@@ -1,0 +1,332 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6390334,
+            42.4159891
+          ],
+          [
+            11.6390269,
+            42.4161703
+          ],
+          [
+            11.6393531,
+            42.4161655
+          ],
+          [
+            11.6393216,
+            42.4160164
+          ],
+          [
+            11.6392103,
+            42.4160261
+          ],
+          [
+            11.6390334,
+            42.4159891
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-tomb-of-the-dolphin",
+      "properties": {
+        "snippet": "Tomb, ; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/704548440/location-of-tomb-of-the-dolphin",
+        "description": "An early Hellenistic painted tomb at Vulci. Location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of the Dolphin"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/122413580",
+          "citationDetail": "Way 122413580",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=122413580",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=K25ydBTGhbkC&lpg=PA277&ots=CykKEqykYr&dq=tomb%20of%20the%20dolphin%20vulci&pg=PA277#v=onepage&q=tomb%20of%20the%20dolphin%20vulci&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Steingr\u00e4ber, S. 2006. Abundance of Life: Etruscan Wall Painting. Los Angeles: Getty Publications. p. 277.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-tomb-of-the-dolphin",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of Tomb of the Dolphin",
+      "provenance": "OpenStreetMap (Way 122413580, version 2, osm:changeset=152361591, 2024-06-07T07:21:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "An early Hellenistic painted tomb at Vulci. Location based on OpenStreetMap.",
+      "created": "2013-07-11T15:38:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6390334,
+            42.4159891
+          ],
+          [
+            11.6390269,
+            42.4161703
+          ],
+          [
+            11.6393531,
+            42.4161655
+          ],
+          [
+            11.6393216,
+            42.4160164
+          ],
+          [
+            11.6392103,
+            42.4160261
+          ],
+          [
+            11.6390334,
+            42.4159891
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/704548440/location-of-tomb-of-the-dolphin",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-30T02:03:43Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T05:36:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T20:21:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-18T00:18:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:32:31Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:41:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:38:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:38:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-04-13T18:33:12Z",
+      "associationCertainty": "certain",
+      "title": "Ponte Rotto necropolis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/704548440/7923934413",
+      "connectionType": "at",
+      "id": "7923934413",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-13T18:33:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-13T18:33:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-13T18:33:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/362248862",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=K25ydBTGhbkC&lpg=PA277&ots=CykKEqykYr&dq=tomb%20of%20the%20dolphin%20vulci&pg=PA277#v=onepage&q=tomb%20of%20the%20dolphin%20vulci&f=false",
+      "citationDetail": "277",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Steingr\u00e4ber 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S3BCQWH2",
+      "formattedCitation": "<div class=\"csl-entry\">Steingr\u00e4ber, Stephan, and Russell Stockman. <i>Abundance of Life: Etruscan Wall Painting</i>. Los Angeles: The J. Paul Getty Museum, 2006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "704548440",
+  "subject": [],
+  "title": "Tomb of the Dolphin",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An early Hellenistic painted tomb at Vulci.",
+  "reprPoint": [
+    11.6390388,
+    42.4159693
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    11.6390388,
+    42.4159693,
+    11.6390388,
+    42.4159693
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/362248862"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-04-13T18:33:11Z",
+  "uri": "https://pleiades.stoa.org/places/704548440",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-04-19T11:32:31Z"
+    },
+    {
+      "comment": "linked reference to Zotero",
+      "modifiedBy": "thomase",
+      "modified": "2020-04-19T11:32:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-13T18:39:05Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-13T18:39:00Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-13T18:33:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-13T18:33:11Z"
+    }
+  ]
+}

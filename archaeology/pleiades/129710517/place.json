@@ -1,0 +1,330 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.8809974,
+          54.0159448
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-buttercrambe",
+      "properties": {
+        "snippet": "Settlement-modern, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/129710517/osm-location-of-buttercrambe",
+        "description": "Representative location of the modern hamlet of Buttercrambe based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Buttercrambe"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/81854719",
+          "citationDetail": "Node 81854719",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=81854719",
+          "otherIdentifier": "http://www.openstreetmap.org/browse/node/81854719",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-buttercrambe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "OSM location of Buttercrambe",
+      "provenance": "OpenStreetMap (Node 81854719, version 5, osm:changeset=47561161, 2017-04-08T07:58:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern",
+        ""
+      ],
+      "description": "Representative location of the modern hamlet of Buttercrambe based on a node derived from OpenStreetMap.",
+      "created": "2016-10-27T19:42:13Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.8809974,
+          54.0159448
+        ]
+      },
+      "locationType": [
+        "representative",
+        "associated_modern",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/129710517/osm-location-of-buttercrambe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T14:43:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-07T09:05:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-27T21:31:40Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-27T19:42:49Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-27T19:42:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-27T19:42:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "ctupman",
+          "homepage": null,
+          "name": "Charlotte Tupman",
+          "uri": "https://pleiades.stoa.org/author/ctupman"
+        }
+      ],
+      "created": "2017-02-28T15:51:05Z",
+      "associationCertainty": "certain",
+      "title": "Derventio (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/129710517/derventio-river",
+      "connectionType": "near",
+      "id": "derventio-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-07T09:05:27Z"
+        },
+        {
+          "comment": "",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-28T17:10:26Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "ctupman",
+          "modified": "2017-02-28T15:51:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-27T21:31:30Z"
+        },
+        {
+          "comment": "added cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-27T21:30:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-27T21:30:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/89167",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/itemKey/M8SE8ZFM",
+          "formattedCitation": "Horne and Lawton 1998, 327-9",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://roman-britain.co.uk/places/buttercrambe_moor.htm",
+      "citationDetail": "Buttercrambe Moor Camp Temporary Marching Camp",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/12375/?lang=en",
+      "citationDetail": "12375",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=1104712",
+      "citationDetail": "monument no. 1104712",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/526826",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Horne and Lawton 1998, 327-9",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M8SE8ZFM",
+      "formattedCitation": "<div class=\"csl-entry\">Horne, Peter D., and Ian G. Lawton. \u201cButtercrambe Moor Roman Camp, Buttercrambe with Bossall, North Yorkshire (SE 7160 5695).\u201d <i>Britannia</i> 29 (1998): 327\u201329. http://www.jstor.org/stable/526826.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "129710517",
+  "subject": [],
+  "title": "Buttercrambe Moor Roman camp",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+    "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman temporary camp first identified by means of cropmarks in July 1995. The camp was located on the high ground to the north of the River Derwent.",
+  "reprPoint": [
+    -0.8809974,
+    54.0159448
+  ],
+  "placeTypes": [
+    "settlement-modern",
+    "military-installation-or-camp-temporary"
+  ],
+  "bbox": [
+    -0.8809974,
+    54.0159448,
+    -0.8809974,
+    54.0159448
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/89167"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-10-27T19:40:36Z",
+  "uri": "https://pleiades.stoa.org/places/129710517",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-04T14:46:10Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-07T09:05:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-27T21:31:35Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-27T21:28:22Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-27T19:40:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-27T19:40:36Z"
+    }
+  ]
+}

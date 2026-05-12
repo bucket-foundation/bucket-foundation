@@ -1,0 +1,585 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              15.57264609322641,
+              41.39925613821197
+            ],
+            [
+              15.594418161429871,
+              41.39318851264716
+            ],
+            [
+              15.605125735956108,
+              41.391403916892784
+            ],
+            [
+              15.620116340292782,
+              41.38961932113841
+            ],
+            [
+              15.632965429724322,
+              41.38747780623305
+            ],
+            [
+              15.646885276608373,
+              41.38712088708229
+            ],
+            [
+              15.665088153303032,
+              41.38569321047868
+            ],
+            [
+              15.679364919338013,
+              41.38569321047868
+            ],
+            [
+              15.692927847071303,
+              41.384622453026054
+            ],
+            [
+              15.707918451407977,
+              41.38569321047868
+            ],
+            [
+              15.721481379141267,
+              41.38712088708229
+            ],
+            [
+              15.735401226025317,
+              41.38783472538404
+            ],
+            [
+              15.744681123948112,
+              41.38890548283666
+            ],
+            [
+              15.758244051681174,
+              41.390690078591035
+            ],
+            [
+              15.772877736867144,
+              41.39354543179792
+            ],
+            [
+              15.783228392242393,
+              41.39604386585415
+            ],
+            [
+              15.797505158277374,
+              41.39996997651366
+            ],
+            [
+              15.80892657110553,
+              41.404253006324154
+            ],
+            [
+              15.818920307329847,
+              41.40639452122946
+            ],
+            [
+              15.828200205252699,
+              41.410320631889135
+            ],
+            [
+              15.843904647891065,
+              41.41888669151007
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "batlas-map-label-location",
+      "properties": {
+        "snippet": "Label; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/442764/batlas-map-label-location",
+        "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+        "location_precision": "precise",
+        "title": "BAtlas Map Label Location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "mheubel",
+      "homepage": null,
+      "name": "Michael Heubel",
+      "uri": "https://pleiades.stoa.org/author/mheubel"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Richard Talbert"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        },
+        {
+          "username": null,
+          "name": "Richard Talbert"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "mheubel",
+          "homepage": null,
+          "name": "Michael Heubel",
+          "uri": "https://pleiades.stoa.org/author/mheubel"
+        }
+      ],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://github.com/AWMC/geodata/blob/a289d378b75eba8c9b640f0248763e3cbf9d2583/Cultural-Data/regional_name_linework/regional_names_linework.geojson",
+          "citationDetail": "211652",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AWMC Geodata: Regional Name Linework",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/AKGKQTM5",
+          "formattedCitation": "<div class=\"csl-entry\">AWMC Geodata: Regional Name Linework. Geojson. Chapel Hill: Ancient World Mapping Center, University of North Carolina at Chapel Hill, June 20, 2016. Github.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "45 C2 Saltus",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. Barrington Atlas of the Greek and Roman World. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "batlas-map-label-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "end": 640,
+      "title": "BAtlas Map Label Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/label"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 930.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/awmc-batlas-data-1-500-000-scale",
+      "featureType": [
+        "label"
+      ],
+      "description": "Centerline/arc of label location used on the Barrington Atlas map for this feature",
+      "created": "2022-08-30T11:15:24Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              15.57264609322641,
+              41.39925613821197
+            ],
+            [
+              15.594418161429871,
+              41.39318851264716
+            ],
+            [
+              15.605125735956108,
+              41.391403916892784
+            ],
+            [
+              15.620116340292782,
+              41.38961932113841
+            ],
+            [
+              15.632965429724322,
+              41.38747780623305
+            ],
+            [
+              15.646885276608373,
+              41.38712088708229
+            ],
+            [
+              15.665088153303032,
+              41.38569321047868
+            ],
+            [
+              15.679364919338013,
+              41.38569321047868
+            ],
+            [
+              15.692927847071303,
+              41.384622453026054
+            ],
+            [
+              15.707918451407977,
+              41.38569321047868
+            ],
+            [
+              15.721481379141267,
+              41.38712088708229
+            ],
+            [
+              15.735401226025317,
+              41.38783472538404
+            ],
+            [
+              15.744681123948112,
+              41.38890548283666
+            ],
+            [
+              15.758244051681174,
+              41.390690078591035
+            ],
+            [
+              15.772877736867144,
+              41.39354543179792
+            ],
+            [
+              15.783228392242393,
+              41.39604386585415
+            ],
+            [
+              15.797505158277374,
+              41.39996997651366
+            ],
+            [
+              15.80892657110553,
+              41.404253006324154
+            ],
+            [
+              15.818920307329847,
+              41.40639452122946
+            ],
+            [
+              15.828200205252699,
+              41.410320631889135
+            ],
+            [
+              15.843904647891065,
+              41.41888669151007
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/442764/batlas-map-label-location",
+      "creators": [
+        {
+          "username": null,
+          "name": "A.M. Small"
+        },
+        {
+          "username": null,
+          "name": "I.E.M. Edlund Berry"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-31T19:06:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-31T18:05:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T11:15:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "45 C2 Saltus Carminianensis?",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "181-85",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Volpe 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KXX5SH3R",
+      "formattedCitation": "<div class=\"csl-entry\">Volpe, Giuliano. <i>Contadini, Pastori e Mercanti Nell\u2019Apulia Tardoantica</i>. Munera 6. Bari: Edipuglia, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.academia.edu/926470/G._Volpe_Il_Saltus_Carminianensis_Una_grande_proprieta_imperiale_e_una_diocesi_rurale_nella_Apulia_tardoantica_Boletin_Arkeolan_15_2007-2008_pp._127-141",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Volpe 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AVXZMXF5",
+      "formattedCitation": "<div class=\"csl-entry\">Volpe, Giuliano. \u201cII Saltus Carminianensis: Una Grande Propriet\u00e0 Imperiale e Una Diocesi Rurale Nella Apulia Tardoantica.\u201d <i>Bolet\u00edn Arkeolan</i>, no. 15 (2007): 127\u201341.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://babel.hathitrust.org/cgi/pt?id=hvd.32044014316806&view=1up&seq=193&skin=2021&q1=saltus%20Carminianensis",
+      "citationDetail": "Occ. 12.18",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "NotDig (Seeck: Hathi)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GEE2XBWU",
+      "formattedCitation": "<div class=\"csl-entry\">Seeck, Otto. <i>Notitia Dignitatum: Accedunt Notitia Urbis Constantinopolitanae et Latercula Provinciarum</i>. Berlin: Apud Weidmannos, 1876. https://catalog.hathitrust.org/api/volumes/oclc/10027454.html.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Saltus Carminianensis",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://babel.hathitrust.org/cgi/pt?id=hvd.32044014316806&view=1up&seq=193&skin=2021&q1=saltus%20Carminianensis",
+          "citationDetail": "Oc. 12.18 (page 155)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "NotDig (Seeck: Hathi)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GEE2XBWU",
+          "formattedCitation": "<div class=\"csl-entry\">Seeck, Otto. <i>Notitia Dignitatum: Accedunt Notitia Urbis Constantinopolitanae et Latercula Provinciarum</i>. Berlin: Apud Weidmannos, 1876. https://catalog.hathitrust.org/api/volumes/oclc/10027454.html.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "saltus-carminianensis",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 45 C2 Saltus Carminianensis?",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2022-08-31T19:24:36Z",
+      "uri": "https://pleiades.stoa.org/places/442764/saltus-carminianensis",
+      "creators": [
+        {
+          "username": null,
+          "name": "I.E.M. Edlund Berry"
+        },
+        {
+          "username": null,
+          "name": "A.M. Small"
+        }
+      ],
+      "attested": "Saltus Carminianensis",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "certain; latin; evidence",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-31T19:26:34Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T05:10:50Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-12T12:54:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-11T21:05:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-11T20:43:28Z"
+        }
+      ]
+    }
+  ],
+  "id": "442764",
+  "subject": [],
+  "title": "Saltus Carminianensis",
+  "provenance": "Barrington Atlas: BAtlas 45 C2 Saltus Carminianensis?",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/estate",
+    "https://pleiades.stoa.org/vocabularies/place-types/label"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: grazings near Carmeia</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Saltus Carminianensis was a large imperial property of northern Apulia mentioned in the Notitia Dignitatum Occidentis. Its precise location and borders are not known today.",
+  "reprPoint": [
+    15.709742632788439,
+    41.39316356026262
+  ],
+  "placeTypes": [
+    "estate",
+    "label"
+  ],
+  "bbox": [
+    15.57264609322641,
+    41.384622453026054,
+    15.843904647891065,
+    41.41888669151007
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-31T19:07:17Z",
+  "uri": "https://pleiades.stoa.org/places/442764",
+  "creators": [
+    {
+      "username": null,
+      "name": "I.E.M. Edlund Berry"
+    },
+    {
+      "username": null,
+      "name": "A.M. Small"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title; summary; cleaned up references",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-31T19:26:27Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-31T19:07:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-04T05:16:54Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-14T17:23:01Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:10:49Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:50:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-12T12:54:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T21:05:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T20:43:27Z"
+    }
+  ]
+}

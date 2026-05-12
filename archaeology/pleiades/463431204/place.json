@@ -1,0 +1,388 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2213675,
+            29.8758364
+          ],
+          [
+            31.2213817,
+            29.8757727
+          ],
+          [
+            31.2213891,
+            29.8757395
+          ],
+          [
+            31.2210557,
+            29.8756836
+          ],
+          [
+            31.2210173,
+            29.8758557
+          ],
+          [
+            31.2212863,
+            29.8759008
+          ],
+          [
+            31.221303,
+            29.8758256
+          ],
+          [
+            31.2213675,
+            29.8758364
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomb-of-mereruka",
+      "properties": {
+        "snippet": "Tomb; 2670 BC - 2168 BC",
+        "link": "https://pleiades.stoa.org/places/463431204/osm-location-of-tomb-of-mereruka",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Mereruka"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1247572460",
+          "citationDetail": "Way 1247572460",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1247572460",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tomb-of-mereruka",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -2168,
+      "title": "OSM location of Tomb of Mereruka",
+      "provenance": "OpenStreetMap (Way 1247572460, version 2, osm:changeset=163978615, 2025-03-23T09:54:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2670,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-09-14T14:36:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2213675,
+            29.8758364
+          ],
+          [
+            31.2213817,
+            29.8757727
+          ],
+          [
+            31.2213891,
+            29.8757395
+          ],
+          [
+            31.2210557,
+            29.8756836
+          ],
+          [
+            31.2210173,
+            29.8758557
+          ],
+          [
+            31.2212863,
+            29.8759008
+          ],
+          [
+            31.221303,
+            29.8758256
+          ],
+          [
+            31.2213675,
+            29.8758364
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/463431204/osm-location-of-tomb-of-mereruka",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-15T09:43:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:41:12Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:37:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:36:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:36:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-09-14T14:38:22Z",
+      "associationCertainty": "certain",
+      "title": "Saqqarah",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/463431204/7025683864",
+      "connectionType": "at",
+      "id": "7025683864",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:38:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:38:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:38:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/796289136",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://isac.uchicago.edu/research/publications/oip/mastaba-mereruka-part-i-chambers-1-10",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Duell 1938",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3IQ5DREY",
+      "formattedCitation": "<div class=\"csl-entry\">Duell, Prentice, ed. <i>The Mastaba of Mereruka</i>. University of Chicago Oriental Institute Publications. Chicago, Illinois: The University of Chicago Press, 1938. https://isac.uchicago.edu/research/publications/oip/mastaba-mereruka-part-i-chambers-1-10.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "mastaba of Mereruka",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://isac.uchicago.edu/research/publications/oip/mastaba-mereruka-part-i-chambers-1-10",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Duell 1938",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3IQ5DREY",
+          "formattedCitation": "<div class=\"csl-entry\">Duell, Prentice, ed. <i>The Mastaba of Mereruka</i>. University of Chicago Oriental Institute Publications. Chicago, Illinois: The University of Chicago Press, 1938. https://isac.uchicago.edu/research/publications/oip/mastaba-mereruka-part-i-chambers-1-10.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "mastaba-of-mereruka",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-09-14T14:40:55Z",
+      "uri": "https://pleiades.stoa.org/places/463431204/mastaba-of-mereruka",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "mastaba of Mereruka",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-15T09:43:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:41:00Z"
+        },
+        {
+          "comment": "name - mastaba of Mereruka",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:40:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:40:55Z"
+        }
+      ]
+    }
+  ],
+  "id": "463431204",
+  "subject": [
+    "mastaba",
+    "wall painting"
+  ],
+  "title": "Tomb of Mereruka",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The mastaba tomb of the vizier Mereruka at Saqqarah dates to the Sixth Dynasty of ancient Egypt.",
+  "reprPoint": [
+    31.22119944875206,
+    29.87579202017256
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    31.2210173,
+    29.8756836,
+    31.2213891,
+    29.8759008
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/796289136"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-14T14:38:21Z",
+  "uri": "https://pleiades.stoa.org/places/463431204",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-15T09:43:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-14T14:41:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-14T14:40:17Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-14T14:38:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-14T14:38:22Z"
+    }
+  ]
+}

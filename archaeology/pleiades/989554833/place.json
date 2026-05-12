@@ -1,0 +1,346 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.2192031,
+          29.8664033
+        ]
+      },
+      "type": "Feature",
+      "id": "deir-apa-jeremiah",
+      "properties": {
+        "snippet": "Abbey; AD 300 - AD 850",
+        "link": "https://pleiades.stoa.org/places/989554833/deir-apa-jeremiah",
+        "description": "Point representing the location of Deir Apa Jeremiah, derived from an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location of Deir Apa Jeremiah"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7826815775",
+          "citationDetail": "Node 7826815775",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "deir-apa-jeremiah",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": 850,
+      "title": "OSM location of Deir Apa Jeremiah",
+      "provenance": "OpenStreetMap (Node 7826815775, version 1, osm:changeset=89649194, 2020-08-19T18:17:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "Point representing the location of Deir Apa Jeremiah, derived from an OpenStreetMap Node.",
+      "created": "2026-01-14T18:51:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.2192031,
+          29.8664033
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/989554833/deir-apa-jeremiah",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:51:50Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:51:50Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-18T22:54:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-19T20:02:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-08-19T18:31:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2020-08-19T18:30:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-08-19T18:30:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2020-08-19T18:28:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-08-19T18:28:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 850,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-19T18:31:02Z",
+      "associationCertainty": "certain",
+      "title": "Saqqarah",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/989554833/saqqarah",
+      "connectionType": "at",
+      "id": "saqqarah",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-19T20:02:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-08-19T18:31:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-08-19T18:31:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-08-19T18:31:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/796289136",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/976877619",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wietheger 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HX85KM48",
+      "formattedCitation": "<div class=\"csl-entry\">Wietheger, C\u00e4cilia. <i>Das Jeremias-Kloster Zu Saqqara Unter Besonderer Ber\u00fccksichtigung Der Inschriften</i>. Arbeiten Zum Sp\u00e4tantiken Und Koptischen \u00c4gypten 1. Altenberge, [Germany]: Oros, 1992. http://www.worldcat.org/oclc/976877619.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "3:772-779",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CoptEnc",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QTH7T3NR",
+      "formattedCitation": "<div class=\"csl-entry\">AS Atiya, ed. <i>The Coptic Encyclopedia</i>. New York, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://paths.uniroma1.it/atlas/places/75",
+      "citationDetail": "75: Monastery of Apa Jeremiah",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "PAThsAtl",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/USCS9QGQ",
+      "formattedCitation": "<div class=\"csl-entry\">Bogdani, Julian, and Paolo Rosati. <i>An Archaeological Atlas of Coptic Literature</i>. PAThs - Tracking Papyrus and Parchment Paths: An Archaeological Atlas of Coptic Literature. Literary Texts in Their Geographical Context: Production, Copying, Usage, Dissemination and Storage. Roma: Sapienza Universit\u00e0 di Roma, 2016. https://atlas.paths-erc.eu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "989554833",
+  "subject": [],
+  "title": "Deir Apa Jeremiah",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Late antique monastery at Saqqarah constructed around 470 CE and abandoned by the middle of the 9th century.",
+  "reprPoint": [
+    31.2192031,
+    29.8664033
+  ],
+  "placeTypes": [
+    "abbey"
+  ],
+  "bbox": [
+    31.2192031,
+    29.8664033,
+    31.2192031,
+    29.8664033
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/796289136"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-14T18:54:38Z",
+  "uri": "https://pleiades.stoa.org/places/989554833",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2026-01-14T18:54:39Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2026-01-14T18:54:38Z"
+    },
+    {
+      "comment": "added related reference to Paths Atlas",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-05T20:03:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-19T20:02:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2020-08-19T18:31:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-08-19T18:28:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-08-19T18:26:13Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2020-08-19T18:21:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2020-08-19T18:21:32Z"
+    }
+  ]
+}

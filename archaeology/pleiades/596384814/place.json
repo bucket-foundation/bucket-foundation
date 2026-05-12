@@ -1,0 +1,733 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6805098,
+          42.9653884
+        ]
+      },
+      "type": "Feature",
+      "id": "gps-location",
+      "properties": {
+        "snippet": "Villa; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/596384814/gps-location",
+        "description": "The archaeological site where the pars urbana of the villa and the mansio were found.",
+        "location_precision": "precise",
+        "title": "GPS Location of Villa and mansio"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.6797686,
+            42.9671138
+          ],
+          [
+            10.6809305,
+            42.9659585
+          ],
+          [
+            10.6804204,
+            42.9652963
+          ],
+          [
+            10.6781995,
+            42.9670922
+          ],
+          [
+            10.6797686,
+            42.9671138
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-vignale",
+      "properties": {
+        "snippet": "Station; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/596384814/osm-location-of-vignale",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Vignale"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "gps-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "GPS Location of Villa and mansio",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 15.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-handheld-gps",
+      "featureType": [
+        "villa"
+      ],
+      "description": "The archaeological site where the pars urbana of the villa and the mansio were found.",
+      "created": "2011-12-15T22:42:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.6805098,
+          42.9653884
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/596384814/gps-location",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2017-10-27T21:57:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-23T18:52:45Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:52:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-19T16:47:24Z"
+        },
+        {
+          "comment": "",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-19T16:44:12Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "scosta",
+          "modified": "2011-12-17T06:49:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-16T14:58:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-16T14:58:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2011-12-15T22:44:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "scosta",
+          "modified": "2011-12-15T22:42:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2011-12-15T22:42:37Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/27954068",
+          "citationDetail": "Way 27954068",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=27954068",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-vignale",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/station"
+      ],
+      "end": 640,
+      "title": "OSM location of Vignale",
+      "provenance": "OpenStreetMap (Way 27954068, version 5, osm:changeset=28415006, 2015-01-26T10:33:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/station"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "station"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-09-29T18:02:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.6797686,
+            42.9671138
+          ],
+          [
+            10.6809305,
+            42.9659585
+          ],
+          [
+            10.6804204,
+            42.9652963
+          ],
+          [
+            10.6781995,
+            42.9670922
+          ],
+          [
+            10.6797686,
+            42.9671138
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/596384814/osm-location-of-vignale",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-10-27T21:57:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T18:03:31Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T18:03:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T18:02:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-29T18:02:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:53:12Z",
+      "associationCertainty": "certain",
+      "title": "Aquae Populoniae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/596384814/409214",
+      "connectionType": "connection",
+      "id": "409214",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/409214",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:53:12Z",
+      "associationCertainty": "certain",
+      "title": "Fufluna/Populonium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/596384814/403212",
+      "connectionType": "connection",
+      "id": "403212",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403212",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:53:12Z",
+      "associationCertainty": "certain",
+      "title": "Falesia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/596384814/403206",
+      "connectionType": "connection",
+      "id": "403206",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403206",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:53:13Z",
+      "associationCertainty": "certain",
+      "title": "Via Aemilia Scauri",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/596384814/502042016",
+      "connectionType": "connection",
+      "id": "502042016",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/502042016",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/470181143",
+      "formattedCitation": "Patera, A. and  E.J. Shepherd, L. Dallai, E. Zanini 2003. \"Il Vignale ritrovato.\" In Materiali per Populonia 2, 281-313. Firenze: Edizioni del Giglio",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Vignale",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Memorie e documenti per servire alla storia di Lucca V, 1837 Lucca: Bertini.",
+          "otherIdentifier": "MDL V, 3, 1517",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "vignale",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "details": "\r\n<p>A document dated to 980 AD bears the first attestation of the name: \u201c<em>Actum loco et finibus Cornino ubi dicitur Viniale</em>\u201d.</p>\r\n",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2011-12-17T09:23:30Z",
+      "uri": "https://pleiades.stoa.org/places/596384814/vignale",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "attested": "Vignale",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:52:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-12-19T16:48:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2011-12-17T09:24:17Z"
+        },
+        {
+          "comment": "details on the name",
+          "modifiedBy": "scosta",
+          "modified": "2011-12-17T09:23:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2011-12-17T09:23:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "596384814",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=villa"
+  ],
+  "title": "Vignale",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/station",
+    "https://pleiades.stoa.org/vocabularies/place-types/production",
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/estate"
+  ],
+  "details": "<p>The archaeological site of Vignale was inhabited continuously from the third century B.C. to the fifth century A.D. Until the middle of the first century B.C. While it was probably a small farm, it nevertheless had already some connection with the road network. Around 40 B.C. a villa was established at the site, with a production of wine-carrying amphorae (Dressel 1). During the principate of Augustus, alongside the villa some buildings started to function as a <em>mansio</em>. Only a few decades later, during the reign of Tiberius or Nero, a new owner established a massive production centre for roof-tiles at the site, some of them bearing the maker's stamp M\u00b7FULVI\u00b7ANT. Some of these stamps were also found in Rome. By the second century A.D., the settlement was no longer an active production centre, but continued to be a dwelling place. In the fifth century, possibly following a short period of abandonment, a small village occupied the ruins, with wooden huts and a large funerary area.</p>\r\n<p>The archaeological site has been known since 1831, but regular excavation only began in 2003.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa, mansio, and Late Antique settlement along the Via Aemilia Scauri.",
+  "reprPoint": [
+    10.680078965689772,
+    42.96590092499852
+  ],
+  "placeTypes": [
+    "station",
+    "production",
+    "cemetery",
+    "villa",
+    "estate"
+  ],
+  "bbox": [
+    10.6781995,
+    42.9652963,
+    10.6809305,
+    42.9671138
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/409214",
+    "https://pleiades.stoa.org/places/403212",
+    "https://pleiades.stoa.org/places/403206",
+    "https://pleiades.stoa.org/places/502042016"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2011-12-15T22:37:35Z",
+  "uri": "https://pleiades.stoa.org/places/596384814",
+  "creators": [
+    {
+      "username": "scosta",
+      "homepage": null,
+      "name": "Stefano Costa",
+      "uri": "https://pleiades.stoa.org/author/scosta"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-30T12:19:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-29T18:06:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-23T18:50:20Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T22:16:23Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:52:26Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "scosta",
+      "modified": "2011-12-17T06:46:09Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2011-12-16T14:58:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "scosta",
+      "modified": "2011-12-15T22:45:39Z"
+    },
+    {
+      "comment": "added new place",
+      "modifiedBy": "scosta",
+      "modified": "2011-12-15T22:37:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "scosta",
+      "modified": "2011-12-15T22:37:35Z"
+    }
+  ]
+}

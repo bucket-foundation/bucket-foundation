@@ -1,0 +1,14 @@
+# Arzimneis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/614612
+- **ID**: 614612
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Arzimneis
+
+## Description
+
+An ancient place, cited: BAtlas 62 unlocated Arzimneis

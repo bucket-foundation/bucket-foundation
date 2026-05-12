@@ -1,0 +1,573 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.742996,
+            37.9744568
+          ],
+          [
+            23.7428339,
+            37.9734835
+          ],
+          [
+            23.7437812,
+            37.9737001
+          ],
+          [
+            23.7438748,
+            37.974043
+          ],
+          [
+            23.7439661,
+            37.9740756
+          ],
+          [
+            23.7438905,
+            37.9745319
+          ],
+          [
+            23.7437656,
+            37.9745711
+          ],
+          [
+            23.7433943,
+            37.9744262
+          ],
+          [
+            23.7432285,
+            37.9744006
+          ],
+          [
+            23.7431502,
+            37.9744251
+          ],
+          [
+            23.742996,
+            37.9744568
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-aristotles-lyceum",
+      "properties": {
+        "snippet": "Architecturalcomplex; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/122572945/osm-location-of-aristotles-lyceum",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Aristotle's Lyceum"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "rselth",
+      "homepage": null,
+      "name": "Rosemary Selth",
+      "uri": "https://pleiades.stoa.org/author/rselth"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/82150737",
+          "citationDetail": "Way 82150737",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=82150737",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-aristotles-lyceum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": -30,
+      "title": "OSM location of Aristotle's Lyceum",
+      "provenance": "OpenStreetMap (Way 82150737, version 6, osm:changeset=50967901, 2017-08-09T10:06:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-08-09T13:10:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.742996,
+            37.9744568
+          ],
+          [
+            23.7428339,
+            37.9734835
+          ],
+          [
+            23.7437812,
+            37.9737001
+          ],
+          [
+            23.7438748,
+            37.974043
+          ],
+          [
+            23.7439661,
+            37.9740756
+          ],
+          [
+            23.7438905,
+            37.9745319
+          ],
+          [
+            23.7437656,
+            37.9745711
+          ],
+          [
+            23.7433943,
+            37.9744262
+          ],
+          [
+            23.7432285,
+            37.9744006
+          ],
+          [
+            23.7431502,
+            37.9744251
+          ],
+          [
+            23.742996,
+            37.9744568
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/122572945/osm-location-of-aristotles-lyceum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-14T18:06:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-14T14:52:08Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-09T13:10:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-09T13:10:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-09T13:10:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-09T13:11:18Z",
+      "associationCertainty": "certain",
+      "title": "Athenae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/122572945/athenae",
+      "connectionType": "at",
+      "id": "athenae",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-14T18:06:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-14T14:52:08Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-09T13:11:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-09T13:11:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579885",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Lyceum_(Classical)",
+      "citationDetail": "Lyceum (Classical)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ritchie Jr. 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D6XF2EX4",
+      "formattedCitation": "<div class=\"csl-entry\">Ritchie Jr., C. E. \u201cThe Lyceum, the Garden of Theophrastos, and the Garden of the Muses. A Topographical Re-Evaluation.\u201d In <i>\u03a6\u03af\u03bb\u03b9\u03b1 \u0388\u03c0\u03b7 \u0395\u03b9\u03c2 \u0393\u03b5\u03ce\u03c1\u03b3\u03b9o\u03bd E. M\u03c5\u03bb\u03c9\u03bd\u03ac\u03bd \u0394\u03b9\u03ac \u03a4\u03b1 60 \u0388\u03c4\u03b7 \u03a4o\u03c5 \u0391\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03b9\u03bao\u03cd \u03a4o\u03c5 \u0388\u03c1\u03b3o\u03c5, 3</i>, 250\u201360, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/10151508",
+      "citationDetail": "10151508: The Sanctuary of Apollo Lyceios (Athens)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.atticinscriptions.com/browse/byoriginallocation/lyceum/",
+      "citationDetail": "Original Location: Lyceum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AIO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZPCURT27",
+      "formattedCitation": "<div class=\"csl-entry\">Lambert, Stephen, Polly Low, Peter Liddel, and Chris de Lisle, eds. <i>Attic Inscriptions Online</i>. Athens: British School at Athens, 2012. https://www.atticinscriptions.com/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.atticinscriptions.com/browse/byfindspot/lyceum/",
+      "citationDetail": "Findspot: Lyceum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AIO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZPCURT27",
+      "formattedCitation": "<div class=\"csl-entry\">Lambert, Stephen, Polly Low, Peter Liddel, and Chris de Lisle, eds. <i>Attic Inscriptions Online</i>. Athens: British School at Athens, 2012. https://www.atticinscriptions.com/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2362033",
+      "citationDetail": "Lyceum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237BLyk",
+      "citationDetail": "Lyceum (Athens) 95 Regillis St., Athens - \u039b\u03c5\u03ba\u03b5\u03af\u03bf\u03bd",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016-. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1160664",
+      "citationDetail": "Lyceum (Q1160664)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014-. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Lykeion",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0007.tlg001.perseus-grc1:27.4",
+          "citationDetail": "Thes. 27.4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Plut. (Perrin 1914; Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/24DPWZ8V",
+          "formattedCitation": "<div class=\"csl-entry\">Plutarch. <i>Plutarch\u2019s Lives</i>. Edited by Bernadotte Perrin. 11 vols. London; New York: W. Heinemann\u202f; Macmillan, 1914. http://data.perseus.org/texts/urn:cts:greekLit:tlg0007.tlg031.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "lykeion",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-02-23T01:27:52Z",
+      "uri": "https://pleiades.stoa.org/places/122572945/lykeion",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u039b\u03cd\u03ba\u03b5\u03b9\u03bf\u03bd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-23T17:28:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-02-23T01:29:20Z"
+        },
+        {
+          "comment": "add Greek name",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-02-23T01:27:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-02-23T01:27:52Z"
+        }
+      ]
+    }
+  ],
+  "id": "122572945",
+  "subject": [],
+  "title": "Lyceum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sanctuary of Apollo Lyceios in Athens, which served as the seat of Aristotle's Peripatetic school of philosophy founded in 335/4 BCE. The Lyceum was destroyed by Sulla in 86 BCE.",
+  "reprPoint": [
+    23.743379697192637,
+    37.97403098290296
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "architecturalcomplex",
+    "gymnasium"
+  ],
+  "bbox": [
+    23.7428339,
+    37.9734835,
+    23.7439661,
+    37.9745711
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579885",
+    "https://pleiades.stoa.org/places/945419342",
+    "https://pleiades.stoa.org/places/271882541",
+    "https://pleiades.stoa.org/places/582870"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-10-29T00:01:50Z",
+  "uri": "https://pleiades.stoa.org/places/122572945",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "@thomase checked and added references provided by @bkiesling",
+      "modifiedBy": "thomase",
+      "modified": "2025-10-29T00:12:35Z"
+    },
+    {
+      "comment": "add AIO findspot; add iDAI.gazetteer reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-29T19:32:01Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-03-29T00:24:33Z"
+    },
+    {
+      "comment": "add aio orig loc; add Greek name; add status as a Gymnasium",
+      "modifiedBy": "thomase",
+      "modified": "2024-02-23T17:28:05Z"
+    },
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-28T17:40:30Z"
+    },
+    {
+      "comment": "added contributor entries for MANTO reference provided by MANTO team",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-08T19:02:56Z"
+    },
+    {
+      "comment": "summary; place type += sanctuary; added MANTO reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-18T20:43:51Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-18T20:17:18Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-14T18:06:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-14T14:52:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-14T14:52:00Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-09T19:26:30Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-09T13:09:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-09T13:09:24Z"
+    }
+  ]
+}

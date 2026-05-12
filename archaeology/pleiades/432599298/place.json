@@ -1,0 +1,227 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2909146,
+            41.7531197
+          ],
+          [
+            12.2907257,
+            41.7529569
+          ],
+          [
+            12.2909279,
+            41.7529075
+          ],
+          [
+            12.2910176,
+            41.7529633
+          ],
+          [
+            12.2909146,
+            41.7531197
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-domus-delle-gorgoni-i-xiii-6",
+      "properties": {
+        "snippet": "Townhouse",
+        "link": "https://pleiades.stoa.org/places/432599298/osm-location-of-domus-delle-gorgoni-i-xiii-6",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Domus delle Gorgoni (I,XIII,6)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1287529331",
+          "citationDetail": "Way 1287529331",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1287529331",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-domus-delle-gorgoni-i-xiii-6",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": null,
+      "title": "OSM location of Domus delle Gorgoni (I,XIII,6)",
+      "provenance": "OpenStreetMap (Way 1287529331, version 1, osm:changeset=151966882, 2024-05-29T00:00:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-29T00:01:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2909146,
+            41.7531197
+          ],
+          [
+            12.2907257,
+            41.7529569
+          ],
+          [
+            12.2909279,
+            41.7529075
+          ],
+          [
+            12.2910176,
+            41.7529633
+          ],
+          [
+            12.2909146,
+            41.7531197
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/432599298/osm-location-of-domus-delle-gorgoni-i-xiii-6",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-27T14:09:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-31T02:29:39Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T00:01:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T00:01:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T00:01:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/3751998",
+      "citationDetail": "Domus delle Gorgoni Ostia, (Ostia), Rom (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "432599298",
+  "subject": [],
+  "title": "House of the Gorgons",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called House of the Gorgons at Ostia originally dates to the late republican period. It has an unusual trapezoidal plan and is divided into 17 rooms.",
+  "reprPoint": [
+    12.290879898170418,
+    41.75299518409565
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    12.2907257,
+    41.7529075,
+    12.2910176,
+    41.7531197
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-05-28T23:58:11Z",
+  "uri": "https://pleiades.stoa.org/places/432599298",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-27T14:09:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-31T02:29:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-31T02:29:34Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-28T23:58:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-28T23:58:11Z"
+    }
+  ]
+}

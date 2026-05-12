@@ -1,0 +1,486 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.1447052,
+            38.3626127
+          ],
+          [
+            23.1448924,
+            38.3622187
+          ],
+          [
+            23.1454734,
+            38.3623727
+          ],
+          [
+            23.1454019,
+            38.3624304
+          ],
+          [
+            23.1453373,
+            38.3625273
+          ],
+          [
+            23.1452596,
+            38.3626077
+          ],
+          [
+            23.1452173,
+            38.3626953
+          ],
+          [
+            23.1451784,
+            38.3627603
+          ],
+          [
+            23.1447052,
+            38.3626127
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ii-ii-ii3ii-iii-i-i-i-i-iiui1iii1",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/162490152/osm-location-of-ii-ii-ii3ii-iii-i-i-i-i-iiui1iii1",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u039d\u03b1\u03cc\u03c2 \u039f\u03b3\u03c7\u03b7\u03c3\u03c4\u03af\u03bf\u03c5 \u03a0\u03bf\u03c3\u03b5\u03b9\u03b4\u03ce\u03bd\u03b1"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1265901712",
+          "citationDetail": "Way 1265901712",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1265901712",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ii-ii-ii3ii-iii-i-i-i-i-iiui1iii1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of \u039d\u03b1\u03cc\u03c2 \u039f\u03b3\u03c7\u03b7\u03c3\u03c4\u03af\u03bf\u03c5 \u03a0\u03bf\u03c3\u03b5\u03b9\u03b4\u03ce\u03bd\u03b1",
+      "provenance": "OpenStreetMap (Way 1265901712, version 1, osm:changeset=149106236, 2024-03-24T21:10:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-03-24T21:11:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.1447052,
+            38.3626127
+          ],
+          [
+            23.1448924,
+            38.3622187
+          ],
+          [
+            23.1454734,
+            38.3623727
+          ],
+          [
+            23.1454019,
+            38.3624304
+          ],
+          [
+            23.1453373,
+            38.3625273
+          ],
+          [
+            23.1452596,
+            38.3626077
+          ],
+          [
+            23.1452173,
+            38.3626953
+          ],
+          [
+            23.1451784,
+            38.3627603
+          ],
+          [
+            23.1447052,
+            38.3626127
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/162490152/osm-location-of-ii-ii-ii3ii-iii-i-i-i-i-iiui1iii1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-26T17:17:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:11:31Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:11:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:11:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:11:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-24T21:04:44Z",
+      "associationCertainty": "certain",
+      "title": "Onchestos",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/162490152/onchestos",
+      "connectionType": "at",
+      "id": "onchestos",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-26T17:17:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:07:45Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:04:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:04:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540984",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:9.26.5",
+          "citationDetail": "9.26.5",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/3586963",
+      "citationDetail": "Kultbild: Poseidon Onchestios (Paus. 9, 26, 5) Onchestos, (\u1f48\u03b3\u03c7\u03b7\u03c3\u03c4\u03cc\u03c2 / Onch\u0113stos), B\u00f6otien (Regionalbezirk)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": " https://resource.manto.unh.edu/9610214",
+      "citationDetail": "9610214: the Sanctuary of Poseidon (Onchestos)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:9.26.5",
+      "citationDetail": "9.26.5",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/10774932",
+      "citationDetail": "10774932: the Grove of Poseidon (Onchestos)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:9.2.33",
+      "citationDetail": "9.2.33",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877. http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://scaife.perseus.org/reader/urn:cts:greekLit:tlg0012.tlg001.perseus-eng3:2.494-2.510",
+      "citationDetail": "Il. 2.494-2.510",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Hom. (Allen 1920; Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MTUPQA3P",
+      "formattedCitation": "<div class=\"csl-entry\">Homer. <i>Homeri Opera</i>. Edited by Thomas W Allen. Editio altera. 5 vols. Oxonii; New York: E Typographeo Clarendoniano; Oxford University Press, 1920. http://www.perseus.tufts.edu/hopper/text?doc=urn:cts:greekLit:tlg0012.tlg001.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "naos kai agalma Poseidonos Onchestiou\u03bd\u03b1\u03cc\u03c2 \u03ba\u03b1\u1f76 \u1f04\u03b3\u03b1\u03bb\u03bc\u03b1 \u03a0\u03bf\u03c3\u03b5\u03b9\u03b4\u1ff6\u03bd\u03bf\u03c2 \u1f48\u03b3\u03c7\u03b7\u03c3\u03c4\u03af\u03bf\u03c5",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:9.26.5",
+          "citationDetail": "9.26.5",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "naos-kai-agalma-poseidonos-onchestiounaos-ka-galma-poseidnos-gkhestiou",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-03-24T21:06:25Z",
+      "uri": "https://pleiades.stoa.org/places/162490152/naos-kai-agalma-poseidonos-onchestiounaos-ka-galma-poseidnos-gkhestiou",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u03bd\u03b1\u03cc\u03c2 \u03ba\u03b1\u1f76 \u1f04\u03b3\u03b1\u03bb\u03bc\u03b1 \u03a0\u03bf\u03c3\u03b5\u03b9\u03b4\u1ff6\u03bd\u03bf\u03c2 \u1f48\u03b3\u03c7\u03b7\u03c3\u03c4\u03af\u03bf\u03c5",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-26T17:17:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:07:45Z"
+        },
+        {
+          "comment": "added Greek name, Pausanias reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:06:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-24T21:06:25Z"
+        }
+      ]
+    }
+  ],
+  "id": "162490152",
+  "subject": [
+    "Poseidon"
+  ],
+  "title": "Sanctuary of Poseidon (Onchestos)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Pausanias describes a Sanctuary of Poseidon located at Onchestos that preserved a grove sacred to the god and that Homer had once praised.",
+  "reprPoint": [
+    23.14507310796321,
+    38.36248070609776
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "archaeological-site"
+  ],
+  "bbox": [
+    23.1447052,
+    38.3622187,
+    23.1454734,
+    38.3627603
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540984"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-24T21:03:55Z",
+  "uri": "https://pleiades.stoa.org/places/162490152",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-26T17:17:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-24T22:02:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-24T21:07:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-24T21:07:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-24T21:06:45Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-24T21:03:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-24T21:03:55Z"
+    }
+  ]
+}

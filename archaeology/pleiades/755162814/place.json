@@ -1,0 +1,379 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.88514,
+          37.803959
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-phaneromeni-excavations",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/755162814/imagery-location-of-phaneromeni-excavations",
+        "description": "Location identified in Google Earth following descriptions and map in Korka 2017. Dates after ArchGrOn.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Phaneromeni Excavations"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "cbouras",
+      "homepage": null,
+      "name": "Catherine Bouras",
+      "uri": "https://pleiades.stoa.org/author/cbouras"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea",
+          "citationDetail": "33:12",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korka 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DVTXNBDM",
+          "formattedCitation": "<div class=\"csl-entry\">Eleni Korka. \u201cExcavating the Ancient City of Tenea.\u201d Streaming lecture, New York, March 1, 2017. https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-phaneromeni-excavations",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -550,
+      "title": "Imagery Location of Phaneromeni Excavations",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Location identified in Google Earth following descriptions and map in Korka 2017. Dates after ArchGrOn.",
+      "created": "2020-10-27T17:08:05Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.88514,
+          37.803959
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/755162814/imagery-location-of-phaneromeni-excavations",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T18:03:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:26:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:11:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:08:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:08:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-10-27T17:27:17Z",
+      "associationCertainty": "certain",
+      "title": "Tenea",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/755162814/tenea",
+      "connectionType": "at",
+      "id": "tenea",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T18:03:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:27:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:27:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:27:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:27:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570711",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=homepage",
+      "citationDetail": "4507: Phaneromeni - Chiliomodi - 2009",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ArchGrOnline",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QR57TWP2",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, and Kostis Christakis, eds. <i>Archaeology in Greece Online</i>. Athens, Greece: \u00c9cole fran\u00e7aise d\u2019Ath\u00e8nes; British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea",
+      "citationDetail": "8:07",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Korka 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DVTXNBDM",
+      "formattedCitation": "<div class=\"csl-entry\">Eleni Korka. \u201cExcavating the Ancient City of Tenea.\u201d Streaming lecture, March 1, 2017. https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/864817968",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Korka 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RGWRU27W",
+      "formattedCitation": "<div class=\"csl-entry\">Korka, E. \u201cI\u00a0 grapti\u00a0 porini\u00a0 sarkofagos\u00a0 Faneromenis\u00a0 Chiliomodiou\u00a0 Korinthias.\u201d In <i>The Corinthia and the Northeast Peloponnese: topography and history from prehistoric times until the end of antiquity: proceedings of the international conference\u202f: held at Loutraki, March 26-29, 2009</i>, edited by Konstantin Kissas and Wolf-Dietrich Niemeier, 305\u201311. Athenaia. M\u00fcnchen: Hirmer Verlag GmbH, 2013. http://www.worldcat.org/oclc/864817968.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kamareta - Phaneromeni, Camareta - Faneromeni",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea",
+          "citationDetail": "33:12",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Korka 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DVTXNBDM",
+          "formattedCitation": "<div class=\"csl-entry\">Eleni Korka. \u201cExcavating the Ancient City of Tenea.\u201d Streaming lecture, New York, March 1, 2017. https://isaw.nyu.edu/events/archive/2016/excavating-the-ancient-city-of-tenea.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kamareta-phaneromeni",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2020-10-27T17:14:38Z",
+      "uri": "https://pleiades.stoa.org/places/755162814/kamareta-phaneromeni",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u039a\u03b1\u03bc\u03b1\u03c1\u03ad\u03c4\u03b1 - \u03a6\u03b1\u03bd\u03b5\u03c1\u03c9\u03bc\u03ad\u03bd\u03b7",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T18:03:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:26:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:14:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:14:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T17:14:38Z"
+        }
+      ]
+    }
+  ],
+  "id": "755162814",
+  "subject": [],
+  "title": "Phaneromeni Burials (Chiliomodi)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monumental sarcophagus of archaic date was excavated in situ in 1984 at a place known today as Phaneromeni in the eastern part of modern Chiliomodi's (Greece) village territory. Its location provides evidence for the urban extent of ancient Tenea.",
+  "reprPoint": [
+    22.88514,
+    37.803959
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    22.88514,
+    37.803959,
+    22.88514,
+    37.803959
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570711"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-10-27T17:04:30Z",
+  "uri": "https://pleiades.stoa.org/places/755162814",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-13T13:50:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T18:03:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:26:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:26:17Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:05:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:04:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T17:04:30Z"
+    }
+  ]
+}

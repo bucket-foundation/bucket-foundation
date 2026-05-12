@@ -1,0 +1,429 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2878634,
+            41.7532798
+          ],
+          [
+            12.2876663,
+            41.7531852
+          ],
+          [
+            12.2877454,
+            41.7530933
+          ],
+          [
+            12.2879426,
+            41.7531879
+          ],
+          [
+            12.2878634,
+            41.7532798
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tempio-collegiale-and-mitreo-di",
+      "properties": {
+        "snippet": "Architecturalcomplex, Shrine; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/352230499/osm-location-of-tempio-collegiale-and-mitreo-di",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tempio Collegiale and Mitreo di Fructosus (I,X,4)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1303982479",
+          "citationDetail": "Way 1303982479",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1303982479",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tempio-collegiale-and-mitreo-di",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 300,
+      "title": "OSM location of Tempio Collegiale and Mitreo di Fructosus (I,X,4)",
+      "provenance": "OpenStreetMap (Way 1303982479, version 1, osm:changeset=154462117, 2024-07-26T21:42:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex",
+        "shrine"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-07-26T21:43:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2878634,
+            41.7532798
+          ],
+          [
+            12.2876663,
+            41.7531852
+          ],
+          [
+            12.2877454,
+            41.7530933
+          ],
+          [
+            12.2879426,
+            41.7531879
+          ],
+          [
+            12.2878634,
+            41.7532798
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/352230499/osm-location-of-tempio-collegiale-and-mitreo-di",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-01T18:31:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T17:10:51Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-26T21:44:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-26T21:43:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-26T21:43:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "The so-called Guild Temple and Mithraeum of Fructosus is located at Ostia and is included in \"Regio I\" of the archaeological site.",
+      "contributors": [],
+      "created": "2024-07-26T21:45:07Z",
+      "associationCertainty": "certain",
+      "title": "Regio I, Ostia Antica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/352230499/regio-i-ostia-antica",
+      "connectionType": "part_of_analytical",
+      "id": "regio-i-ostia-antica",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-01T17:28:15Z"
+        },
+        {
+          "comment": "update",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-31T19:18:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T17:10:51Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T17:07:23Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-26T21:45:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-26T21:45:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/461688683",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q127872528",
+          "citationDetail": "Guild Temple and Mithraeum of Fructosus (Q127872528)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "The so-called Guild Temple and Mithraeum of Fructosus is located at Ostia.",
+      "contributors": [],
+      "created": "2024-07-26T21:45:30Z",
+      "associationCertainty": "certain",
+      "title": "Ostia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/352230499/ostia",
+      "connectionType": "at",
+      "id": "ostia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-01T17:28:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-31T19:17:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T17:10:51Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T17:06:55Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-26T21:45:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-26T21:45:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422995",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q127872528",
+          "citationDetail": "Guild Temple and Mithraeum of Fructosus (Q127872528)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=9767",
+      "citationDetail": "9767: Mitreo di Fructuosus a Ostia Antica",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q127872528",
+      "citationDetail": "Guild Temple and Mithraeum of Fructosus (Q127872528)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ostia-antica.org/regio1/10/10-4.htm#:~:text=The%20mithraeum%20of%20Fructosus&text=Preparations%20had%20been%20made%20for,with%20opus%20vittatum%20and%20stucco.",
+      "citationDetail": "Regio I - Insula X - Tempio Collegiale and Mitreo di Fructosus (I,X,4) (Guild Temple and Mithraeum of Fructosus)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ostia - Harbour City of Ancient Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+      "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "352230499",
+  "subject": [
+    "opus vittatum",
+    "Mithras"
+  ],
+  "title": "Guild Temple and Mithraeum of Fructosus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An architectural complex excavated in 1938 at the intersection of Via del Pomerio and Via del Tempio Rotondo in Ostia. The guild temple dates to the reign of Alexander Severus (222 - 235 CE). Based on epigraphic evidence, this shrine may belong to the guild of the stuppatores. A mithraic shrine with a patron named Fructosus is to be found in the substructure of the podium.",
+  "reprPoint": [
+    12.28780443970903,
+    41.75318654844685
+  ],
+  "placeTypes": [
+    "shrine",
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    12.2876663,
+    41.7530933,
+    12.2879426,
+    41.7532798
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/461688683",
+    "https://pleiades.stoa.org/places/422995"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-07-26T21:43:26Z",
+  "uri": "https://pleiades.stoa.org/places/352230499",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-08-01T18:31:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-08-01T18:31:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T17:10:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T17:10:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-26T21:49:31Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-26T21:43:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-26T21:43:26Z"
+    }
+  ]
+}

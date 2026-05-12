@@ -1,0 +1,293 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.264187,
+          42.4813921
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-so-called-piramide-etrusca",
+      "properties": {
+        "snippet": "Tomb, ; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/47730716/osm-location-of-so-called-piramide-etrusca",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of so-called Piramide Etrusca"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2701601323",
+          "citationDetail": "Node 2701601323",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2701601323",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-so-called-piramide-etrusca",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -550,
+      "title": "OSM location of so-called Piramide Etrusca",
+      "provenance": "OpenStreetMap (Node 2701601323, version 7, osm:changeset=165642425, 2025-04-30T16:25:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>A rock-cut monument dating to the archaic period.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-05-20T18:33:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.264187,
+          42.4813921
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/47730716/osm-location-of-so-called-piramide-etrusca",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-05T16:43:07Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-04T14:30:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-04T14:30:38Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-04T00:42:27Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-22T11:02:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-29T16:19:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-20T18:34:33Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-20T18:34:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-20T18:33:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-20T18:33:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-08-11T19:45:59Z",
+      "associationCertainty": "certain",
+      "title": "Polimartium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/47730716/7597232046",
+      "connectionType": "at",
+      "id": "7597232046",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-11T19:45:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-11T19:45:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-11T19:45:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413268",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ceci 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HTJ9AJ9G",
+      "formattedCitation": "<div class=\"csl-entry\">Ceci, Francesca, Salvatore Fosci, and Luciano Proietti. <i>I misteri della piramide di Bomarzo: indagine sulle origini dell\u2019enigmatico monolite nascosto nei boschi viterbesi</i>. Orvieto (Tr): Intermedia edizioni, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.isprambiente.gov.it/it/pubblicazioni/periodici-tecnici/memorie-descrittive-della-carta-geologica-ditalia/i-siti-della-memoria-geologica-nel-territorio-del-lazio-2",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ricci 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JM46F2JZ",
+      "formattedCitation": "<div class=\"csl-entry\">Ricci, Valeria, and Roberto Bonomo. \u201cLa Piramide di Bomarzo (VT).\u201d <i>I siti della memoria geologica nel territorio del Lazio / editors Marco Pantaloni</i> Fabiana Console (2020): Diego Mantero. https://www.isprambiente.gov.it/it/pubblicazioni/periodici-tecnici/memorie-descrittive-della-carta-geologica-ditalia/i-siti-della-memoria-geologica-nel-territorio-del-lazio-2.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "47730716",
+  "subject": [],
+  "title": "Etruscan Pyramid of Bomarzo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p>A rock-cut monument dating to the archaic period.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Etruscan Pyramid of Bomarzo is a megalithic, rock-cut monument at Bomarzo. It likely dates to the late Archaic period.",
+  "reprPoint": [
+    12.264187,
+    42.4813921
+  ],
+  "placeTypes": [
+    "tomb",
+    "monument"
+  ],
+  "bbox": [
+    12.264187,
+    42.4813921,
+    12.264187,
+    42.4813921
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413268"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-08-11T19:45:58Z",
+  "uri": "https://pleiades.stoa.org/places/47730716",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-05T16:43:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-04T14:30:38Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-04T14:30:23Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-12T15:17:57Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-11T19:46:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-11T19:45:58Z"
+    }
+  ]
+}

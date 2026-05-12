@@ -1,0 +1,391 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.3453111,
+            40.8068584
+          ],
+          [
+            14.3453541,
+            40.8067958
+          ],
+          [
+            14.345289,
+            40.8067742
+          ],
+          [
+            14.3452374,
+            40.8067569
+          ],
+          [
+            14.3452158,
+            40.8067487
+          ],
+          [
+            14.3451934,
+            40.8067527
+          ],
+          [
+            14.3451776,
+            40.8067691
+          ],
+          [
+            14.3451713,
+            40.8067795
+          ],
+          [
+            14.3451713,
+            40.8067957
+          ],
+          [
+            14.3451758,
+            40.8068053
+          ],
+          [
+            14.3452137,
+            40.8068196
+          ],
+          [
+            14.3453111,
+            40.8068584
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-south-western-baths",
+      "properties": {
+        "snippet": "Bath; 100 BC - AD 99",
+        "link": "https://pleiades.stoa.org/places/582358863/osm-location-of-south-western-baths",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of South-Western Baths"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1362385927",
+          "citationDetail": "Way 1362385927",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1362385927",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-south-western-baths",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 99,
+      "title": "OSM location of South-Western Baths",
+      "provenance": "OpenStreetMap (Way 1362385927, version 1, osm:changeset=162869341, 2025-02-23T21:26:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-08T02:43:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.3453111,
+            40.8068584
+          ],
+          [
+            14.3453541,
+            40.8067958
+          ],
+          [
+            14.345289,
+            40.8067742
+          ],
+          [
+            14.3452374,
+            40.8067569
+          ],
+          [
+            14.3452158,
+            40.8067487
+          ],
+          [
+            14.3451934,
+            40.8067527
+          ],
+          [
+            14.3451776,
+            40.8067691
+          ],
+          [
+            14.3451713,
+            40.8067795
+          ],
+          [
+            14.3451713,
+            40.8067957
+          ],
+          [
+            14.3451758,
+            40.8068053
+          ],
+          [
+            14.3452137,
+            40.8068196
+          ],
+          [
+            14.3453111,
+            40.8068584
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/582358863/osm-location-of-south-western-baths",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T20:36:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T15:06:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T15:02:15Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T02:43:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T02:43:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T02:43:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-08T15:00:10Z",
+      "associationCertainty": "certain",
+      "title": "Herculaneum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/582358863/0108760295",
+      "connectionType": "at",
+      "id": "0108760295",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T15:00:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T15:00:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T15:00:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432873",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://herculaneum.uk/Villa%20dei%20Papiri/Herculaneum%20Villa%20dei%20Papiri%20p05.htm",
+      "citationDetail": "Herculaneum. Villa dei Papiri or Villa of the Papyri or Villa dei Pisoni. Part 5. South-western baths.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Herculaneum in Pictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AMQQUFKT",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cHerculaneum in Pictures.\u201d Herculaneum in Pictures, 2018. http://www.herculaneum.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q133190089",
+      "citationDetail": "South-Western Baths at Herculaneum (Q133190089)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "582358863",
+  "subject": [
+    "baths"
+  ],
+  "title": "South-Western Baths",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shipshed",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A bath complex at Herculaneum that was discovered in the excavations of the so-called \"Insula Occidentalis\". It was not in use as a bath at the time of the 79 CE eruption as it had been repurposed as a ship-shed.",
+  "reprPoint": [
+    14.345260874990739,
+    40.80680030282923
+  ],
+  "placeTypes": [
+    "shipshed",
+    "bath"
+  ],
+  "bbox": [
+    14.3451713,
+    40.8067487,
+    14.3453541,
+    40.8068584
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432873"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-08T15:00:08Z",
+  "uri": "https://pleiades.stoa.org/places/582358863",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T20:36:35Z"
+    },
+    {
+      "comment": "place type += shipshed",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T20:36:28Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T20:29:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T15:06:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T15:06:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T15:05:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T15:01:55Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T15:00:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T15:00:08Z"
+    }
+  ]
+}

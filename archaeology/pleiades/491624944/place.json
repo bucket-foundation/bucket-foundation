@@ -1,0 +1,446 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8906686,
+            32.281909
+          ],
+          [
+            35.8907723,
+            32.2820851
+          ],
+          [
+            35.8912541,
+            32.2818822
+          ],
+          [
+            35.8912366,
+            32.2818525
+          ],
+          [
+            35.8911042,
+            32.2819082
+          ],
+          [
+            35.8910698,
+            32.2818498
+          ],
+          [
+            35.8910348,
+            32.2817904
+          ],
+          [
+            35.8911661,
+            32.2817352
+          ],
+          [
+            35.8911492,
+            32.2817066
+          ],
+          [
+            35.8906686,
+            32.281909
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-temple-of-artemis",
+      "properties": {
+        "snippet": "Temple-2",
+        "link": "https://pleiades.stoa.org/places/491624944/osm-location-of-the-temple-of-artemis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of The Temple of Artemis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/92425307",
+          "citationDetail": "Way 92425307",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=92425307",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.dainst.org/entity/7128",
+          "citationDetail": "Tempel der Artemis Gerasa, (\u0413\u0435\u0440\u0430\u0441\u0430 / \u0393\u03ad\u03c1\u03b1\u03c3\u03b1 / Antiochia am Chrysorrhoas / Gar\u0161u), Jerash (Muhafazat)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-the-temple-of-artemis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": null,
+      "title": "OSM location of The Temple of Artemis",
+      "provenance": "OpenStreetMap (Way 92425307, version 10, osm:changeset=127604607, 2022-10-16T08:45:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-08-30T14:15:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8906686,
+            32.281909
+          ],
+          [
+            35.8907723,
+            32.2820851
+          ],
+          [
+            35.8912541,
+            32.2818822
+          ],
+          [
+            35.8912366,
+            32.2818525
+          ],
+          [
+            35.8911042,
+            32.2819082
+          ],
+          [
+            35.8910698,
+            32.2818498
+          ],
+          [
+            35.8910348,
+            32.2817904
+          ],
+          [
+            35.8911661,
+            32.2817352
+          ],
+          [
+            35.8911492,
+            32.2817066
+          ],
+          [
+            35.8906686,
+            32.281909
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/491624944/osm-location-of-the-temple-of-artemis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-31T13:09:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-31T13:09:04Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T14:16:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T14:15:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T14:15:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-30T14:33:06Z",
+      "associationCertainty": "certain",
+      "title": "Gerasa/Antiochia ad Chrysorhoam",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/491624944/3862219929",
+      "connectionType": "at",
+      "id": "3862219929",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T14:33:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T14:33:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T14:33:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678158",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/7128",
+      "citationDetail": "Tempel der Artemis Gerasa, (\u0413\u0435\u0440\u0430\u0441\u0430 / \u0393\u03ad\u03c1\u03b1\u03c3\u03b1 / Antiochia am Chrysorrhoas / Gar\u0161u), Jerash (Muhafazat)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2527347",
+      "citationDetail": "Temple of Artemis (Q2527347)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Artemis,_Jerash",
+      "citationDetail": "Temple of Artemis, Jerash",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://publication.doa.gov.jo/Publications/ViewChapterPublic/807",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Parapetti 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6A8W7MST",
+      "formattedCitation": "<div class=\"csl-entry\">Parapetti, Roberto. \u201cThe Architectural Significance of the Sanctuary of Artemis at Gerasa.\u201d <i>Https://Publication.Doa.Gov.Jo/Publications/ViewChapterPublic/807</i>, 1982, 255\u201360. https://publication.doa.gov.jo/Publications/ViewChapterPublic/807.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sanctuary of Artemis at Gerasa",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://publication.doa.gov.jo/Publications/ViewChapterPublic/807",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Parapetti 1982",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6A8W7MST",
+          "formattedCitation": "<div class=\"csl-entry\">Parapetti, Roberto. \u201cThe Architectural Significance of the Sanctuary of Artemis at Gerasa.\u201d <i>Https://Publication.Doa.Gov.Jo/Publications/ViewChapterPublic/807</i>, 1982, 255\u201360. https://publication.doa.gov.jo/Publications/ViewChapterPublic/807.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sanctuary-of-artemis-at-gerasa",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-08-30T17:25:39Z",
+      "uri": "https://pleiades.stoa.org/places/491624944/sanctuary-of-artemis-at-gerasa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Sanctuary of Artemis at Gerasa",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-31T13:09:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T17:25:51Z"
+        },
+        {
+          "comment": "name - Sanctuary of Artemis at Gerasa",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T17:25:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T17:25:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "491624944",
+  "subject": [
+    "Corinthian",
+    "Artemis"
+  ],
+  "title": "Temple of Artemis, Jerash",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Temple of Artemis in Jerash.",
+  "reprPoint": [
+    35.890979440378274,
+    32.28188798945153
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    35.8906686,
+    32.2817066,
+    35.8912541,
+    32.2820851
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678158",
+    "https://pleiades.stoa.org/places/138349927"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-30T14:33:05Z",
+  "uri": "https://pleiades.stoa.org/places/491624944",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-31T13:09:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-31T13:09:04Z"
+    },
+    {
+      "comment": "Parapetti 1982",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T17:24:55Z"
+    },
+    {
+      "comment": "wikipedia Temple of Artemis, Jerash",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T16:35:00Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T15:36:58Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T14:33:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T14:33:05Z"
+    }
+  ]
+}

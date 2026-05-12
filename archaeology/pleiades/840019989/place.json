@@ -1,0 +1,541 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.993547,
+            37.9260541
+          ],
+          [
+            23.9934404,
+            37.926069
+          ],
+          [
+            23.9935142,
+            37.9263702
+          ],
+          [
+            23.9940534,
+            37.9262874
+          ],
+          [
+            23.9939406,
+            37.9258232
+          ],
+          [
+            23.9938559,
+            37.9258257
+          ],
+          [
+            23.9939519,
+            37.9262226
+          ],
+          [
+            23.9936019,
+            37.9262749
+          ],
+          [
+            23.993547,
+            37.9260541
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-stoa-at-brauron",
+      "properties": {
+        "snippet": "Stoa; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/840019989/osm-location-of-stoa-at-brauron",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Stoa at Brauron"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Way 991003340",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-stoa-at-brauron",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+      ],
+      "end": -30,
+      "title": "OSM Location of Stoa at Brauron",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "stoa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-05-22T22:07:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.993547,
+            37.9260541
+          ],
+          [
+            23.9934404,
+            37.926069
+          ],
+          [
+            23.9935142,
+            37.9263702
+          ],
+          [
+            23.9940534,
+            37.9262874
+          ],
+          [
+            23.9939406,
+            37.9258232
+          ],
+          [
+            23.9938559,
+            37.9258257
+          ],
+          [
+            23.9939519,
+            37.9262226
+          ],
+          [
+            23.9936019,
+            37.9262749
+          ],
+          [
+            23.993547,
+            37.9260541
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/840019989/osm-location-of-stoa-at-brauron",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "corrected OSM reference from \"node\" to \"way\"",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-13T21:57:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-29T20:08:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-29T20:08:29Z"
+        },
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-29T20:07:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-23T00:58:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T22:13:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T22:07:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T22:07:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-22T21:51:20Z",
+      "associationCertainty": "certain",
+      "title": "Artemis Brauronia",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/840019989/artemis-brauronia",
+      "connectionType": "at",
+      "id": "artemis-brauronia",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-23T00:58:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T22:13:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:51:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T21:51:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579879",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/artifact?name=Brauron&object=site",
+      "citationDetail": "Brauron (Site)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Perseus AAAB",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVMQVC96",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cPerseus Art and Archaeology Artifact Browser.\u201d Accessed August 23, 2023. https://www.perseus.tufts.edu/hopper/artifactBrowser.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Brauron#%CE%A0-shaped_stoa",
+      "citationDetail": "Brauron s.v. \"\u03a0-shaped stoa\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://referenceworks.brillonline.com/entries/brill-s-new-pauly/brauron-e219820",
+      "citationDetail": "Brauron",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/24936188",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Papadimitriou 1963",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CUAFP8ZB",
+      "formattedCitation": "<div class=\"csl-entry\">Papadimitriou, John. \u201cThe Sanctuary of Artemis at Brauron.\u201d <i>Scientific American</i> 208, no. 6 (1963): 110\u201323. https://www.jstor.org/stable/24936188.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q132326811",
+      "citationDetail": "Stoa at Brauron (Q132326811)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Stoa at Brauron",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/148334",
+          "citationDetail": "160",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Miles 1989",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ISIW3VPL",
+          "formattedCitation": "<div class=\"csl-entry\">Miles, Margaret M. \u201cA Reconstruction of the Temple of Nemesis at Rhamnous.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 58, no. 2 (1989): 133\u2013249. https://doi.org/10.2307/148334.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "stoa-at-brauron",
+      "end": null,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-05-22T22:00:55Z",
+      "uri": "https://pleiades.stoa.org/places/840019989/stoa-at-brauron",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-23T00:58:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-23T00:58:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T22:13:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T22:00:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2023-05-22T22:00:55Z"
+        }
+      ]
+    }
+  ],
+  "id": "840019989",
+  "subject": [
+    "Artemis"
+  ],
+  "title": "Stoa at Brauron",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+  ],
+  "details": "<p><span id=\"docs-internal-guid-6f3c4d36-7fff-f80f-4e6b-0d0c9ea93c5a\"><span>The Stoa at Brauron was the main administrative center for the cult practice at the Sanctuary of Artemis Brauronia. The \u03a0-shaped Doric stoa was constructed circa 430-420 BCE and is thought to have remained partially incomplete throughout its use. Excavations of the site by Papadimitriou began in 1948 and continued through 1962.\u00a0 Many votive stelae as well as other votive offerings were found in the stoa as well as tables and couches that indicate this space may have been used for dining. Another theorized use of the stoa was that it was used to house the <em>arktoi</em>, young girls who would \u201cact a bear\u201d during religious festivals. Also recovered from the stoa were partial records of dedications. These dedications included clothing of women dedicated after or during childbirth, suggesting the cult site was important for women hoping for successful childbirth or commemorating a terminal one. The stoa is the only currently standing building at the site due to its partial reconstruction.</span></span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Stoa at Brauron, within the larger Artemis Brauronia complex, housed dining spaces as well as votive offerings to the goddess Artemis. The Stoa was \u03a0-shaped, wrapping around a courtyard that separated it from the temple of Artemis at Brauron, which it faced. Worship at the cult site began ca. the eighth century BCE. The site was abandoned after a flood in the third century BCE.",
+  "reprPoint": [
+    23.993777534866684,
+    37.9261593947807
+  ],
+  "placeTypes": [
+    "stoa"
+  ],
+  "bbox": [
+    23.9934404,
+    37.9258232,
+    23.9940534,
+    37.9263702
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579879"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-22T21:49:45Z",
+  "uri": "https://pleiades.stoa.org/places/840019989",
+  "creators": [
+    {
+      "username": null,
+      "name": "Basil-Anne Stackpole"
+    },
+    {
+      "username": null,
+      "name": "Julie Mason"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q132326811",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-14T01:27:34Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-29T20:07:19Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-23T00:58:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-23T00:58:19Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-23T00:57:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T22:13:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T22:13:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T22:12:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T21:55:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T21:49:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2023-05-22T21:49:45Z"
+    }
+  ]
+}

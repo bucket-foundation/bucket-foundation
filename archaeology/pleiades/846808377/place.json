@@ -1,0 +1,284 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.6336,
+          37.637
+        ]
+      },
+      "type": "Feature",
+      "id": "topostext-location",
+      "properties": {
+        "snippet": "Monument, Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/846808377/topostext-location",
+        "description": "Representative point and dates sourced from ToposText.",
+        "location_precision": "precise",
+        "title": "Topostext Location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://topostext.org/place/376216GEnd",
+          "citationDetail": "376216GEnd",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "ToposText",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+          "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "topostext-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "Topostext Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 1000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/topostext-low-confidence",
+      "featureType": [
+        "monument",
+        "tomb"
+      ],
+      "description": "Representative point and dates sourced from ToposText.",
+      "created": "2026-03-26T01:54:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.6336,
+          37.637
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/846808377/topostext-location",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-30T14:22:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-03-30T10:58:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "acampbell",
+          "modified": "2026-03-26T01:57:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-03-26T01:54:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-03-26T01:54:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-03-26T01:55:46Z",
+      "associationCertainty": "certain",
+      "title": "Olympia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/846808377/olympia",
+      "connectionType": "at",
+      "id": "olympia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-30T14:22:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-03-30T10:58:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-03-26T01:55:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-03-26T01:55:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570531",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q107031178",
+      "citationDetail": "Q107031178",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/10214996",
+      "citationDetail": "10214996: the Tomg of Endymion (Olympia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/376216GEnd",
+      "citationDetail": "376216GEnd",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:6.20.9",
+      "accessURI": "http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1",
+      "citationDetail": "6.20.9",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [],
+  "id": "846808377",
+  "subject": [],
+  "title": "Tomb of Endymion (Olympia)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A lost monument to Endymion seen by Pausanius near the starting area of the stadium of Olympia.",
+  "reprPoint": [
+    21.6336,
+    37.637
+  ],
+  "placeTypes": [
+    "tomb",
+    "monument"
+  ],
+  "bbox": [
+    21.6336,
+    37.637,
+    21.6336,
+    37.637
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570531"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-03-26T01:52:02Z",
+  "uri": "https://pleiades.stoa.org/places/846808377",
+  "creators": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-03-30T14:22:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "acampbell",
+      "modified": "2026-03-30T10:58:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "acampbell",
+      "modified": "2026-03-26T01:52:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "acampbell",
+      "modified": "2026-03-26T01:52:02Z"
+    }
+  ]
+}

@@ -1,0 +1,726 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-08-18T12:30:54Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/158081395/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-03T17:51:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-29T15:41:06Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-29T15:41:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-18T12:31:18Z"
+        },
+        {
+          "comment": "added connection",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-18T12:30:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-18T12:30:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Circus_Flaminius",
+          "citationDetail": "Circus Flaminius",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Circus Flaminius.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-03T17:51:30Z",
+      "associationCertainty": "certain",
+      "title": "Forum Holitorium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/158081395/forum-holitorium",
+      "connectionType": "bounds",
+      "id": "forum-holitorium",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-11T00:48:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-03T17:51:38Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-03T17:51:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-03T17:51:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/72845305",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/bounds"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-24T22:15:22Z",
+      "associationCertainty": "certain",
+      "title": "Regio IX (Circus Flaminius)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/158081395/regio-ix-circus-flaminius",
+      "connectionType": "part_of_analytical",
+      "id": "regio-ix-circus-flaminius",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-27T22:57:27Z"
+        },
+        {
+          "comment": "wikidata Q1092967: Circus Flaminius",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-25T17:43:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-25T17:42:42Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-24T22:15:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-24T22:15:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/936873471",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1092967",
+          "citationDetail": "Q1092967: Circus Flaminius",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Circus_Flaminius",
+      "citationDetail": "Circus Flaminius",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tucci 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9IQM9PNA",
+      "formattedCitation": "<div class=\"csl-entry\">Tucci, Pier Luigi. \u201cNuove ricerche sulla topografia dell\u2019area del circo Flaminio.\u201d <i>Studi Romani</i> 41 (1993): 229\u201342.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40310726",
+      "citationDetail": "3-26",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wiseman 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BWWV7YVD",
+      "formattedCitation": "<div class=\"csl-entry\">Wiseman, T. P. \u201cThe Circus Flaminius.\u201d <i>Papers of the British School at Rome</i> 42 (1974): 3\u201326. https://www.jstor.org/stable/40310726.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40310737",
+      "citationDetail": "44-7",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wiseman 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D9SFM2H3",
+      "formattedCitation": "<div class=\"csl-entry\">Wiseman, T. P. \u201cTwo Questions on the Circus Flaminius.\u201d <i>Papers of the British School at Rome</i> 44 (1976): 44\u201347. https://www.jstor.org/stable/40310737.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0054%3Aalphabetic+letter%3DC%3Aentry+group%3D2%3Aentry%3Dcircus-flaminius",
+      "citationDetail": "CIRCUS FLAMINIUS",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Platner 1929 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6XK259J",
+      "formattedCitation": "<div class=\"csl-entry\">Platner, Samuel Ball, and Thomas Ashby. <i>A Topographical Dictionary of Ancient Rome</i>. London: Oxford University Press, 1929. http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0054.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/684/1/17/5674-5690",
+      "citationDetail": "5.154.5",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Varro LL (Goetz; PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V5DDRESC",
+      "formattedCitation": "<div class=\"csl-entry\">Varro, Marcus Terentius. <i>M. Terenti Varronis De lingua Latina quae supersunt</i>. Edited by Georg Goetz and Fritz Sch\u00f6ll. Lipsiae: B.G. Tevbneri, 1910. https://latin.packhum.org/loc/684/1/0#0.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/370180",
+      "citationDetail": "287-306",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Flory 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BWKPSTDV",
+      "formattedCitation": "<div class=\"csl-entry\">Flory, Marleen B. \u201cDynastic Ideology, the Domus Augusta, and Imperial Women: A Lost Statuary Group in the Circus Flaminius.\u201d <i>Transactions of the American Philological Association (1974-)</i> 126 (1996): 287\u2013306. https://doi.org/10.2307/370180.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/474/22/10/1674-1682",
+      "citationDetail": "Sest. 33.12",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Cic. Orationes (Clark/Peterson: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BNAC8MFP",
+      "formattedCitation": "<div class=\"csl-entry\">Cicero, Marcus Tullius. <i>Orationes</i>. Edited by Albert Curtis Clark and William Peterson. 6 vols. Scriptorum classicorum bibliotheca Oxoniensis. Oxonii: E Typographeo Clarendoniano, 1905. https://latin.packhum.org/canon#a474.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/474/28/13/1431-1439",
+      "citationDetail": "Planc. 55.2",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Cic. Orationes (Clark/Peterson: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BNAC8MFP",
+      "formattedCitation": "<div class=\"csl-entry\">Cicero, Marcus Tullius. <i>Orationes</i>. Edited by Albert Curtis Clark and William Peterson. 6 vols. Scriptorum classicorum bibliotheca Oxoniensis. Oxonii: E Typographeo Clarendoniano, 1905. https://latin.packhum.org/canon#a474.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/474/57/13/545-553",
+      "citationDetail": "Att. 1.14.1.8",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Cic. Att. (Shackleton Bailey: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QNWZUSJM",
+      "formattedCitation": "<div class=\"csl-entry\">Cicero, Marcus Tullius. <i>Cicero\u2019s Letters to Atticus</i>. Edited by D.R. Shackleton Bailey. 6 vols. Cambridge Classical Texts and Commentaries 3. Cambridge: University Press, 1965. http://latin.packhum.org/loc/474/57/0.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/914/1/865/73-81",
+      "citationDetail": "27.21.1.2",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Liv. (OCT: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+      "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/43931",
+      "citationDetail": "GEO ID 43931: Circus Flaminius",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/43715",
+      "citationDetail": "GEO ID 43715: Regio IX",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/906915238",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jacobs and Conlin 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DNE4RFQZ",
+      "formattedCitation": "<div class=\"csl-entry\">Jacobs, Paul W, and Diane Atnally Conlin. <i>Campus Martius: The Field of Mars in the Life of Ancient Rome</i>. New York, NY: Cambridge Univ. Press, 2015. http://www.worldcat.org/oclc/906915238.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125BCFl",
+      "citationDetail": "Circus Flaminius (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1092967",
+      "citationDetail": "Circus Flaminius (Q1092967)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Castagnoli 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N4L7M24D",
+      "formattedCitation": "<div class=\"csl-entry\">Castagnoli, Ferdinando. \u201cUn nuovo documento per la topografia di Roma antica.\u201d In <i>Studi romani, 33.1985</i>, 205\u201311, Taf, 1985.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/42706319",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tucci 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIYEIIFF",
+      "formattedCitation": "<div class=\"csl-entry\">Tucci, P.L. \u201cThe Marble Plan of the Via Anicia and the Temple of Castor and Pollux in Circo Flaminio: The State of the Question.\u201d <i>Papers of the British School at Rome</i> 81 (2013): 91\u2013407. https://www.jstor.org/stable/42706319.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gatti 1960",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PUBFJKJX",
+      "formattedCitation": "<div class=\"csl-entry\">Gatti, G. \u201cDove erano situati il teatro di Balbo e il Circo Flaminio? -.\u201d In <i>Capitolium, 35.1960</i>, 3\u201312, Abb, 1960.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/1221/7/0/10709-10743",
+      "citationDetail": "Mon. Anc. 4.2",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Aug. (Malcovati; PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIDD2QBJ",
+      "formattedCitation": "<div class=\"csl-entry\">Augustus. <i>Imperatoris Caesaris Augusti operum fragmenta quartum</i>. Edited by Enrica Malcovati. 4th ed. Corpus scriptorum Latinorum Paravianum. Augusta Taurinorum]: I.B. Paravia, 1962. https://latin.packhum.org/author/1221.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "circus Flaminius",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://latin.packhum.org/loc/684/1/17/5674-5690",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Varro LL 5.154.5",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "circus-flaminius",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2016-08-18T12:43:40Z",
+      "uri": "https://pleiades.stoa.org/places/158081395/circus-flaminius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "circus Flaminius",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-11T00:48:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-19T00:10:37Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-18T12:43:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-18T12:43:40Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Circo Flaminio",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1092967",
+          "citationDetail": "Q1092967",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "circo-flaminio",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-04-01T21:45:05Z",
+      "uri": "https://pleiades.stoa.org/places/158081395/circo-flaminio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Circo Flaminio",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-27T22:58:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-27T22:57:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-01T21:45:17Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-01T21:45:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-01T21:45:06Z"
+        }
+      ]
+    }
+  ],
+  "id": "158081395",
+  "subject": [],
+  "title": "Circus Flaminius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/circus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Located in the southern Campus Martius, the Circus Flaminius is a large area built by C. Flaminius Nepos in 221 B.C. Various games, including the ludi plebeii, ludi Taurii, ludi saeculares, were celebrated here. The circus was also a place of popular assembly.",
+  "reprPoint": [
+    12.478572635180829,
+    41.89252230417062
+  ],
+  "placeTypes": [
+    "circus"
+  ],
+  "bbox": [
+    12.4783033,
+    41.8911116,
+    12.4803659,
+    41.8927174
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/72845305",
+    "https://pleiades.stoa.org/places/936873471",
+    "https://pleiades.stoa.org/places/236573248",
+    "https://pleiades.stoa.org/places/805897375",
+    "https://pleiades.stoa.org/places/300583267"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-08-18T12:22:47Z",
+  "uri": "https://pleiades.stoa.org/places/158081395",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-06T16:08:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-09T19:39:23Z"
+    },
+    {
+      "comment": "Gatti 1960",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-04T12:28:31Z"
+    },
+    {
+      "comment": "Tucci 2013",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-03T20:24:58Z"
+    },
+    {
+      "comment": "Castagnoli 1985",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-03T19:55:00Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-03T19:51:05Z"
+    },
+    {
+      "comment": "wikidata, bkiesling",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-17T19:08:02Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-17T19:06:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-17T20:57:58Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-11T00:48:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-08-01T12:52:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-29T15:46:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-19T00:10:30Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-18T12:48:52Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-18T12:42:47Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-18T12:22:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-18T12:22:47Z"
+    }
+  ]
+}

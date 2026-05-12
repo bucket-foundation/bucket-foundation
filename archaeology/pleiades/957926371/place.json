@@ -1,0 +1,465 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4854074,
+          40.7480807
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-terme-sarno",
+      "properties": {
+        "snippet": "Bath; 100 BC - AD 99",
+        "link": "https://pleiades.stoa.org/places/957926371/osm-location-of-terme-sarno",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Terme Sarno"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9951350807",
+          "citationDetail": "Node 9951350807",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9951350807",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-terme-sarno",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 99,
+      "title": "OSM location of Terme Sarno",
+      "provenance": "OpenStreetMap (Node 9951350807, version 3, osm:changeset=138539870, 2023-07-15T10:52:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-06-14T03:36:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4854074,
+          40.7480807
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/957926371/osm-location-of-terme-sarno",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-21T18:26:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-21T17:08:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-21T17:07:51Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T03:37:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T03:36:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T03:36:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-14T03:37:18Z",
+      "associationCertainty": "certain",
+      "title": "Regio VIII, Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/957926371/regio-viii-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-viii-pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-21T18:26:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-21T17:08:02Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T03:37:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T03:37:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/538911200",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-14T14:55:51Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/957926371/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-21T18:26:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-21T17:08:02Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T14:55:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T14:55:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27688067",
+      "citationDetail": "Sarno Baths (Q27688067)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S1296207418305806",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bernardi 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KZHX796E",
+      "formattedCitation": "<div class=\"csl-entry\">Bernardi, Leonardo, and Maria Stella Busana. \u201cThe Sarno Baths in Pompeii: Context and State of the Art.\u201d <i>Journal of Cultural Heritage</i>, Multidisciplinary study of the Sarno Baths in Pompeii, 40 (November 1, 2019): 231\u201339. https://doi.org/10.1016/j.culher.2019.04.012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.proquest.com/docview/303484205/abstract/BF753B1E57CC42ABPQ/1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Koloski-Ostrow 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/44DE56RL",
+      "formattedCitation": "<div class=\"csl-entry\">KOLOSKI-OSTROW, ANN OLGA. \u201cThe Sarno Bath Complex: Architecture in Pompeii\u2019s Last Years.\u201d Ph.D., University of Michigan, 1986. https://www.proquest.com/docview/303484205/abstract/BF753B1E57CC42ABPQ/1.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/470399279",
+      "citationDetail": "66",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fagan 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BPDUGCFI",
+      "formattedCitation": "<div class=\"csl-entry\">Fagan, Garrett G. <i>Bathing in Public in the Roman World</i>. Ann Arbor (Mich.): The University of Michigan Press, 2002. http://www.worldcat.org/oclc/470399279.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "38",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bosiljkov 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NNMV2BF6",
+      "formattedCitation": "<div class=\"csl-entry\">Bosiljkov, Violeta Bokan, Andreja Padovnik, and Tilen Turk. <i>Conservation and Restoration of Historic Mortars and Masonry Structures: HMC 2022</i>. Springer Nature, 2023.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.google.com/books/edition/The_World_of_Pompeii/OmuGAgAAQBAJ?hl=en&gbpv=1&dq=Sarno+Baths&pg=PA238&printsec=frontcover",
+      "citationDetail": "238",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dobbins and Foss 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HZQSPX77",
+      "formattedCitation": "<div class=\"csl-entry\">Dobbins, John Joseph, and Pedar William Foss. <i>The World of Pompeii</i>. London; New York: Routledge, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sarno Bath Complex",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.proquest.com/docview/303484205/abstract/BF753B1E57CC42ABPQ/1",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Koloski-Ostrow 1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/44DE56RL",
+          "formattedCitation": "<div class=\"csl-entry\">KOLOSKI-OSTROW, ANN OLGA. \u201cThe Sarno Bath Complex: Architecture in Pompeii\u2019s Last Years.\u201d Ph.D., University of Michigan, 1986. https://www.proquest.com/docview/303484205/abstract/BF753B1E57CC42ABPQ/1.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sarno-bath-complex",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-06-14T14:08:07Z",
+      "uri": "https://pleiades.stoa.org/places/957926371/sarno-bath-complex",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Sarno Bath Complex",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-11-21T18:26:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-21T17:08:02Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T14:08:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-14T14:08:07Z"
+        }
+      ]
+    }
+  ],
+  "id": "957926371",
+  "subject": [
+    "baths"
+  ],
+  "title": "Sarno Baths",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Sarno Baths\" (Regio VIII, Insula 2, nos. 17\u201321) at Pompeii resulted from the merger and remodeling of two atrium houses, no. 18 and no. 21. There is considerable debate in the scholarly literature as to the architectural phasing.",
+  "reprPoint": [
+    14.4854074,
+    40.7480807
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    14.4854074,
+    40.7480807,
+    14.4854074,
+    40.7480807
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/538911200",
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/838230144"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-06-14T03:36:24Z",
+  "uri": "https://pleiades.stoa.org/places/957926371",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-11-21T18:26:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-21T17:08:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-21T17:07:18Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-21T01:02:51Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-20T18:51:25Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-14T14:06:18Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-14T03:36:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-14T03:36:24Z"
+    }
+  ]
+}

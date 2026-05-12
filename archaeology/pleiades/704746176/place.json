@@ -1,0 +1,449 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            70.4683205,
+            34.3660218
+          ],
+          [
+            70.4683964,
+            34.3662072
+          ],
+          [
+            70.46861,
+            34.3665604
+          ],
+          [
+            70.4689138,
+            34.366699
+          ],
+          [
+            70.4692139,
+            34.366723
+          ],
+          [
+            70.4696081,
+            34.3665266
+          ],
+          [
+            70.4697613,
+            34.366308
+          ],
+          [
+            70.4697258,
+            34.3660493
+          ],
+          [
+            70.4690889,
+            34.3653762
+          ],
+          [
+            70.4685312,
+            34.3654242
+          ],
+          [
+            70.4682635,
+            34.3656961
+          ],
+          [
+            70.4683205,
+            34.3660218
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-hadda",
+      "properties": {
+        "snippet": "Settlement, ; 30 BC - AD 550",
+        "link": "https://pleiades.stoa.org/places/704746176/osm-location-of-hadda",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Hadda"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antiquity-in-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antiquity-in-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/380947492",
+          "citationDetail": "Way 380947492",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=380947492",
+          "otherIdentifier": "http://www.openstreetmap.org/browse/way/380947492",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-hadda",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 550,
+      "title": "OSM location of Hadda",
+      "provenance": "OpenStreetMap (Way 380947492, version 3, osm:changeset=42409301, 2016-09-24T18:04:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2016-10-01T16:32:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            70.4683205,
+            34.3660218
+          ],
+          [
+            70.4683964,
+            34.3662072
+          ],
+          [
+            70.46861,
+            34.3665604
+          ],
+          [
+            70.4689138,
+            34.366699
+          ],
+          [
+            70.4692139,
+            34.366723
+          ],
+          [
+            70.4696081,
+            34.3665266
+          ],
+          [
+            70.4697613,
+            34.366308
+          ],
+          [
+            70.4697258,
+            34.3660493
+          ],
+          [
+            70.4690889,
+            34.3653762
+          ],
+          [
+            70.4685312,
+            34.3654242
+          ],
+          [
+            70.4682635,
+            34.3656961
+          ],
+          [
+            70.4683205,
+            34.3660218
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/704746176/osm-location-of-hadda",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-08T20:37:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T18:39:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-01T16:35:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-01T16:35:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-01T16:34:15Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-01T16:33:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-01T16:32:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-01T16:32:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Hadda,_Afghanistan",
+      "citationDetail": "Hadda, Afghanistan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Hadda, Afghanistan.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Chakhil-i-Ghoundi_Stupa",
+      "citationDetail": "Chakhil-i-Ghoundi Stupa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Chakhil-i-Ghoundi Stupa.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "n. 404",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ball 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I5AVS237",
+      "formattedCitation": "<div class=\"csl-entry\">Ball, Warwick, and Jean Claude Gardin. <i>Archaeological Gazetteer of Afghanistan</i>. 2 vols. Synth\u00e8se (Editions Recherche Sur Les Civilisations) 8. Paris: Editions Recherche sur les civilisations, 1982.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.aiamilitarypanel.org/profiles/cptraining/afgh05-084.html",
+      "citationDetail": "084. Hadda",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CENTCOM Afghanistan",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KQP9AVP6",
+      "formattedCitation": "<div class=\"csl-entry\">CENTCOM Historical/Cultural Advisory Group. \u201cCultural Heritage Training - Afghanistan.\u201d Accessed August 2, 2017. https://www.aiamilitarypanel.org/profiles/cptraining/afghanstart.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q515069",
+      "citationDetail": "Hadda (Q515069)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hadda",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Hadda,_Afghanistan",
+          "citationDetail": "Hadda, Afghanistan",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Hadda, Afghanistan.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "hadda",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "English name of Afghan site.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-02-24T18:39:27Z",
+      "uri": "https://pleiades.stoa.org/places/704746176/hadda",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Hadda",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T18:39:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T18:39:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T18:39:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T18:39:27Z"
+        }
+      ]
+    }
+  ],
+  "id": "704746176",
+  "subject": [],
+  "title": "Hadda",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Ha\u1e0d\u1e0da, a Greco-Buddhist archeological site, is located in the ancient region of Gandhara, near the Khyber Pass, some ten kilometers south of the city of Jalalabad. This major archaeological site from which archaeologists recovered over 23,000 Greco-Buddhist sculptures in the twentieth century is thought to have been destroyed by ongoing military conflict in Afghanistan.",
+  "reprPoint": [
+    70.46899347038541,
+    34.36605039344699
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    70.4682635,
+    34.3653762,
+    70.4697613,
+    34.366723
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-25T22:05:44Z",
+  "uri": "https://pleiades.stoa.org/places/704746176",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-08T15:54:41Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-16T19:19:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-24T18:39:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-09-19T02:24:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-25T22:10:08Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-25T22:05:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-25T22:05:44Z"
+    }
+  ]
+}

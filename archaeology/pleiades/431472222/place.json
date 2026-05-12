@@ -1,0 +1,471 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.2050153,
+            44.0402846
+          ],
+          [
+            8.2051783,
+            44.0403275
+          ],
+          [
+            8.2053017,
+            44.040193
+          ],
+          [
+            8.2054164,
+            44.0400306
+          ],
+          [
+            8.2055116,
+            44.0398797
+          ],
+          [
+            8.2055766,
+            44.0397568
+          ],
+          [
+            8.2054713,
+            44.0397081
+          ],
+          [
+            8.2053453,
+            44.0396849
+          ],
+          [
+            8.2051709,
+            44.040032
+          ],
+          [
+            8.205018,
+            44.0402499
+          ],
+          [
+            8.2050153,
+            44.0402846
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-funeral-monuments-of-the-via",
+      "properties": {
+        "snippet": "Cemetery; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/431472222/osm-location-of-funeral-monuments-of-the-via",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of funeral monuments of the via Giulia Augusta"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/325182558",
+          "citationDetail": "Way 325182558",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=325182558",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-funeral-monuments-of-the-via",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": 300,
+      "title": "OSM location of funeral monuments of the via Giulia Augusta",
+      "provenance": "OpenStreetMap (Way 325182558, version 2, osm:changeset=166706919, 2025-05-24T17:28:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-05-24T17:29:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.2050153,
+            44.0402846
+          ],
+          [
+            8.2051783,
+            44.0403275
+          ],
+          [
+            8.2053017,
+            44.040193
+          ],
+          [
+            8.2054164,
+            44.0400306
+          ],
+          [
+            8.2055116,
+            44.0398797
+          ],
+          [
+            8.2055766,
+            44.0397568
+          ],
+          [
+            8.2054713,
+            44.0397081
+          ],
+          [
+            8.2053453,
+            44.0396849
+          ],
+          [
+            8.2051709,
+            44.040032
+          ],
+          [
+            8.205018,
+            44.0402499
+          ],
+          [
+            8.2050153,
+            44.0402846
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/431472222/osm-location-of-funeral-monuments-of-the-via",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-23T16:42:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-21T14:57:34Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-24T17:29:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-24T17:29:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-24T17:29:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-05-24T18:07:08Z",
+      "associationCertainty": "certain",
+      "title": "Album Ingaunum/Albingaunum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/431472222/0286299678",
+      "connectionType": "at",
+      "id": "0286299678",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-24T18:07:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-24T18:07:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-24T18:07:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/157803",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-05-24T18:08:21Z",
+      "associationCertainty": "certain",
+      "title": "Via Julia Augusta",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/431472222/via-julia-augusta",
+      "connectionType": "on",
+      "id": "via-julia-augusta",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-23T16:42:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-21T14:57:34Z"
+        },
+        {
+          "comment": "wikidata Q55686099",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-24T18:08:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-24T18:08:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/507729266",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q55686099",
+          "citationDetail": "funeral monuments of the via Giulia Augusta (Q55686099)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q55686099",
+      "citationDetail": "funeral monuments of the via Giulia Augusta (Q55686099)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "funeral monuments of the via Giulia Augusta",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q55686099",
+          "citationDetail": "funeral monuments of the via Giulia Augusta (Q55686099)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "funeral-monuments-of-the-via-giulia-augusta",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-06-21T14:57:17Z",
+      "uri": "https://pleiades.stoa.org/places/431472222/funeral-monuments-of-the-via-giulia-augusta",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "funeral monuments of the via Giulia Augusta",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-23T16:42:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-21T14:57:34Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-21T14:57:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-21T14:57:17Z"
+        }
+      ]
+    }
+  ],
+  "id": "431472222",
+  "subject": [],
+  "title": "funeral monuments of the Via Iulia Augusta",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman necropolis located along the course of the Via Iulia Augusta in modern Albenga, Italy. The archaeological area includes the remains of at least nine tombs dating to the first and second centuries CE. These family tombs faced the ancient roadway. Nino Lamboglia carried out the first archaeological fieldwork here in the 1930s.",
+  "reprPoint": [
+    8.205293747790272,
+    44.040005529650124
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    8.2050153,
+    44.0396849,
+    8.2055766,
+    44.0403275
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/157803",
+    "https://pleiades.stoa.org/places/507729266"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-05-24T18:07:06Z",
+  "uri": "https://pleiades.stoa.org/places/431472222",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-23T16:42:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-21T14:57:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-21T14:56:01Z"
+    },
+    {
+      "comment": "wikidata Q55686099",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-24T18:07:32Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-24T18:07:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-24T18:07:06Z"
+    }
+  ]
+}

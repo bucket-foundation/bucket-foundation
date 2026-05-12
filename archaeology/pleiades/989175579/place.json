@@ -1,0 +1,140 @@
+{
+  "features": [],
+  "contributors": [],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-05-04T00:16:39Z",
+      "associationCertainty": "certain",
+      "title": "Temple of Athena (Ilium)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/989175579/temple-of-athena-ilium",
+      "connectionType": "succeeds",
+      "id": "temple-of-athena-ilium",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-05-11T17:32:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-11T11:44:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-04T00:16:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-05-04T00:16:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/877521473",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/8195110",
+      "citationDetail": "8195110: the Temple of Athena at Troy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0548.tlg001.perseus-grc1:3.12.3",
+      "citationDetail": "Bib. 3.12.3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Apollod. Bibl. (Frazer: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PTDGFYQ5",
+      "formattedCitation": "<div class=\"csl-entry\">Apollodorus. <i>Apollodorus, The library.</i> Edited by James George Frazer. 2 vols. Loeb Classical Library. Cambridge; London: Harvard University Press\u202f; William Heinemann Ltd., 1921. http://data.perseus.org/texts/urn:cts:greekLit:tlg0548.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [],
+  "id": "989175579",
+  "subject": [],
+  "title": "Bronze Age Temple of Athena (Ilium)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Early Temple of Athena located in the Citadel of Ilion/Troy, built prior to the Hellenistic, Doric temple at Ilion. Said to have been ransacked by the Greeks in Homer's Iliad.",
+  "reprPoint": null,
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": null,
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/877521473"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-04-10T04:11:09Z",
+  "uri": "https://pleiades.stoa.org/places/989175579",
+  "creators": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-05-11T17:32:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "acampbell",
+      "modified": "2026-05-11T11:44:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "acampbell",
+      "modified": "2026-05-04T00:29:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-10T04:11:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-10T04:11:09Z"
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-02-06T01:33:14Z",
+      "associationCertainty": "certain",
+      "title": "Celenderis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/458576716/celenderis",
+      "connectionType": "near",
+      "id": "celenderis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-13T18:15:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-02-12T22:54:23Z"
+        },
+        {
+          "comment": "Based on information in MANTO and attestations by Apollodorus",
+          "modifiedBy": "acampbell",
+          "modified": "2026-02-06T01:33:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-02-06T01:33:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/648596",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "3.14.3",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "Apollod. Bibl. (Frazer: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/PTDGFYQ5",
+          "formattedCitation": "Apollod. Bibl. 3.14.3",
+          "otherIdentifier": "",
+          "type": "cites"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0548.tlg001.perseus-grc1:3.14",
+      "citationDetail": "3.14.3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Apollod. Bibl. (Frazer: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PTDGFYQ5",
+      "formattedCitation": "<div class=\"csl-entry\">Apollodorus. <i>Apollodorus, The library.</i> Edited by James George Frazer. 2 vols. Loeb Classical Library. Cambridge; London: Harvard University Press\u202f; William Heinemann Ltd., 1921. http://data.perseus.org/texts/urn:cts:greekLit:tlg0548.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/11331325 ",
+      "citationDetail": "11331325: Hyria (Cilicia)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hyria",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0548.tlg001.perseus-grc1:3.14.3",
+          "citationDetail": "3.14.3",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Apollod. Bibl. (Frazer: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PTDGFYQ5",
+          "formattedCitation": "<div class=\"csl-entry\">Apollodorus. <i>Apollodorus, The library.</i> Edited by James George Frazer. 2 vols. Loeb Classical Library. Cambridge; London: Harvard University Press\u202f; William Heinemann Ltd., 1921. http://data.perseus.org/texts/urn:cts:greekLit:tlg0548.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "hyria",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "An ancient city near Celenderis in the region of Cilicia, Anatolia, modern-day Turkey",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2026-02-06T01:28:36Z",
+      "uri": "https://pleiades.stoa.org/places/458576716/hyria",
+      "creators": [
+        {
+          "username": "acampbell",
+          "homepage": null,
+          "name": "Anika Campbell",
+          "uri": "https://pleiades.stoa.org/author/acampbell"
+        }
+      ],
+      "attested": "\u1f59\u03c1\u03b9\u03ad\u03c9\u03bd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-13T18:15:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "acampbell",
+          "modified": "2026-02-12T22:54:23Z"
+        },
+        {
+          "comment": "Fixed Perseus URI",
+          "modifiedBy": "acampbell",
+          "modified": "2026-02-09T20:03:56Z"
+        },
+        {
+          "comment": "Fixed Formatted Citation ",
+          "modifiedBy": "acampbell",
+          "modified": "2026-02-06T01:53:46Z"
+        },
+        {
+          "comment": "Name taken from Apollodorus, dating of the city based on data in MANTO and time period Apollodorus was writing",
+          "modifiedBy": "acampbell",
+          "modified": "2026-02-06T01:28:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "acampbell",
+          "modified": "2026-02-06T01:28:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "458576716",
+  "subject": [],
+  "title": "Hyria (Cilicia)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient, unlocated city located near Celenderis (modern Ayd\u0131nc\u0131k, Turkey) in the region of Cilicia, Anatolia.",
+  "reprPoint": [
+    33.323694,
+    36.144259
+  ],
+  "placeTypes": [
+    "unlocated",
+    "settlement"
+  ],
+  "bbox": [
+    33.323694,
+    36.144259,
+    33.323694,
+    36.144259
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/648596"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-02-06T01:40:15Z",
+  "uri": "https://pleiades.stoa.org/places/458576716",
+  "creators": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2026-02-13T18:56:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-02-13T18:15:44Z"
+    },
+    {
+      "comment": "MANTO = related",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-13T03:06:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-12T22:54:23Z"
+    },
+    {
+      "comment": "Corrected Perseus Access URL",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-12T22:53:23Z"
+    },
+    {
+      "comment": "Removed 'kingdom' from place type, and added 'unlocated' and 'settlement' to place type",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-09T03:23:23Z"
+    },
+    {
+      "comment": "In title, changed (Celenderis) to (Cilicia) for accurate representation",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-09T03:10:40Z"
+    },
+    {
+      "comment": "Added (Celenderis) to title of place",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-09T03:00:47Z"
+    },
+    {
+      "comment": "Added correct access URL",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-06T02:54:24Z"
+    },
+    {
+      "comment": "Elaborated on citation detail to include 'Hyria (Cilicia)",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-06T02:22:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-06T01:53:19Z"
+    },
+    {
+      "comment": "Added MANTO reference",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-06T01:51:51Z"
+    },
+    {
+      "comment": "Added 'unlocated' to 'ancient city', and added 'At modern day Ayd\u0131nc\u0131k Turkey' to description of place",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-06T01:43:10Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-06T01:40:14Z"
+    },
+    {
+      "comment": "Created Hyria as new place. Added Apollod. Bibl. 3.14.3 as primary source",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-06T00:59:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "acampbell",
+      "modified": "2026-02-06T00:59:41Z"
+    }
+  ]
+}

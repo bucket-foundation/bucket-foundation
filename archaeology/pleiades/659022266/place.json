@@ -1,0 +1,339 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.8674622,
+          43.8484748
+        ]
+      },
+      "type": "Feature",
+      "id": "monte-rocche",
+      "properties": {
+        "snippet": "Settlement, Hill, ; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/659022266/monte-rocche",
+        "description": "Representative point derived from Open Street Map",
+        "location_precision": "precise",
+        "title": "OSM location of Monte Rocche"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2717373741",
+          "citationDetail": "Node 2717373741",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2717373741",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "monte-rocche",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/hill",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Monte Rocche",
+      "provenance": "OpenStreetMap (Node 2717373741, version 1, osm:changeset=21102757, 2014-03-14T17:01:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/hill",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        "hill",
+        ""
+      ],
+      "description": "Representative point derived from Open Street Map",
+      "created": "2014-03-14T17:02:23Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.8674622,
+          43.8484748
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/659022266/monte-rocche",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-15T14:31:20Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-15T14:31:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "bdturner",
+          "modified": "2015-06-25T15:51:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2015-06-25T13:13:15Z"
+        },
+        {
+          "comment": "temporal attestations",
+          "modifiedBy": "scosta",
+          "modified": "2015-06-25T13:12:38Z"
+        },
+        {
+          "comment": "temporal attestations",
+          "modifiedBy": "scosta",
+          "modified": "2015-06-25T13:11:43Z"
+        },
+        {
+          "comment": "add location",
+          "modifiedBy": "scosta",
+          "modified": "2014-03-14T17:03:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "scosta",
+          "modified": "2014-03-14T17:02:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2014-03-14T17:02:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://openlibrary.org/books/OL25438918M/Monte_Rocche_%28Castellaro%29._Un_insediamento_d%27altura_del_Ponente_Ligure",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gambaro et al. 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4664JDEN",
+      "formattedCitation": "<div class=\"csl-entry\">Gambaro, Luigi, Angiolo Del Lucchese, and Marco Rendeli, eds. <i>Monte Rocche (Castellaro). Un insediamento d\u2019altura del Ponente Ligure</i>. Grafiche Amadeo, 2013. https://openlibrary.org/books/OL25438918M/Monte_Rocche_%28Castellaro%29._Un_insediamento_d%27altura_del_Ponente_Ligure.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monte Rocche",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/itemKey/4664JDEN",
+          "formattedCitation": "Gambaro, Luigi, Angiolo Del Lucchese, and Marco Rendeli, ed. 2013. Monte Rocche (Castellaro). Un insediamento d\u2019altura del Ponente Ligure. Grafiche Amadeo.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2014-03-14.7273219886",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern place name for a settlement of the Iron Age and Roman period in western Liguria.",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2014-03-14T16:49:58Z",
+      "uri": "https://pleiades.stoa.org/places/659022266/name.2014-03-14.7273219886",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "attested": "Monte Rocche",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "bdturner",
+          "modified": "2015-06-25T15:51:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2015-06-25T13:13:32Z"
+        },
+        {
+          "comment": "Excavation report as evidence of the modern place name",
+          "modifiedBy": "scosta",
+          "modified": "2015-06-25T13:05:52Z"
+        },
+        {
+          "comment": "correct language",
+          "modifiedBy": "scosta",
+          "modified": "2015-06-25T13:04:02Z"
+        },
+        {
+          "comment": "more descriptive description as per Brian's comments",
+          "modifiedBy": "scosta",
+          "modified": "2015-06-25T13:03:15Z"
+        },
+        {
+          "comment": "added modern name",
+          "modifiedBy": "scosta",
+          "modified": "2014-03-14T16:50:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2014-03-14T16:50:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "659022266",
+  "subject": [],
+  "title": "Monte Rocche",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/hill"
+  ],
+  "details": "<p>The archaeological site was subjected to intensive field-walking and shows occupation from the Late Iron Age to the Middle Imperial period. Imported ceramics were found together with local products produced according to earlier\u00a0material culture traditions. This has led some scholars to acknowledge an \u201cincomplete\u201d Romanization process.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A settlement of the Iron Age and Roman period in western Liguria.",
+  "reprPoint": [
+    7.8674622,
+    43.8484748
+  ],
+  "placeTypes": [
+    "settlement",
+    "hill"
+  ],
+  "bbox": [
+    7.8674622,
+    43.8484748,
+    7.8674622,
+    43.8484748
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-03-14T16:47:26Z",
+  "uri": "https://pleiades.stoa.org/places/659022266",
+  "creators": [
+    {
+      "username": "scosta",
+      "homepage": null,
+      "name": "Stefano Costa",
+      "uri": "https://pleiades.stoa.org/author/scosta"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-15T14:31:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-26T03:06:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "bdturner",
+      "modified": "2015-06-18T19:17:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "scosta",
+      "modified": "2014-03-14T17:05:23Z"
+    },
+    {
+      "comment": "added new archaeological site",
+      "modifiedBy": "scosta",
+      "modified": "2014-03-14T16:47:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "scosta",
+      "modified": "2014-03-14T16:47:26Z"
+    }
+  ]
+}

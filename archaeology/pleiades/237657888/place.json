@@ -1,0 +1,418 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.7487289,
+            40.2991013
+          ],
+          [
+            8.7487325,
+            40.2991284
+          ],
+          [
+            8.7487247,
+            40.2991549
+          ],
+          [
+            8.7487063,
+            40.2991782
+          ],
+          [
+            8.7486793,
+            40.2991959
+          ],
+          [
+            8.7486464,
+            40.2992062
+          ],
+          [
+            8.7486108,
+            40.2992081
+          ],
+          [
+            8.748574,
+            40.2992006
+          ],
+          [
+            8.7485426,
+            40.2991841
+          ],
+          [
+            8.7485203,
+            40.2991605
+          ],
+          [
+            8.7485097,
+            40.2991326
+          ],
+          [
+            8.748512,
+            40.2991036
+          ],
+          [
+            8.748527,
+            40.2990768
+          ],
+          [
+            8.7485528,
+            40.2990555
+          ],
+          [
+            8.7485866,
+            40.299042
+          ],
+          [
+            8.7486244,
+            40.2990379
+          ],
+          [
+            8.7486593,
+            40.2990431
+          ],
+          [
+            8.7486904,
+            40.2990564
+          ],
+          [
+            8.7487144,
+            40.2990765
+          ],
+          [
+            8.7487289,
+            40.2991013
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Nuraghe, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/237657888/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Nuraghe Columbos"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/266490132",
+          "citationDetail": "Way 266490132",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=266490132",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM location of Nuraghe Columbos",
+      "provenance": "OpenStreetMap (Way 266490132, version 5, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "nuraghe",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-09-20T17:25:29Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.7487289,
+            40.2991013
+          ],
+          [
+            8.7487325,
+            40.2991284
+          ],
+          [
+            8.7487247,
+            40.2991549
+          ],
+          [
+            8.7487063,
+            40.2991782
+          ],
+          [
+            8.7486793,
+            40.2991959
+          ],
+          [
+            8.7486464,
+            40.2992062
+          ],
+          [
+            8.7486108,
+            40.2992081
+          ],
+          [
+            8.748574,
+            40.2992006
+          ],
+          [
+            8.7485426,
+            40.2991841
+          ],
+          [
+            8.7485203,
+            40.2991605
+          ],
+          [
+            8.7485097,
+            40.2991326
+          ],
+          [
+            8.748512,
+            40.2991036
+          ],
+          [
+            8.748527,
+            40.2990768
+          ],
+          [
+            8.7485528,
+            40.2990555
+          ],
+          [
+            8.7485866,
+            40.299042
+          ],
+          [
+            8.7486244,
+            40.2990379
+          ],
+          [
+            8.7486593,
+            40.2990431
+          ],
+          [
+            8.7486904,
+            40.2990564
+          ],
+          [
+            8.7487144,
+            40.2990765
+          ],
+          [
+            8.7487289,
+            40.2991013
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/237657888/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-13T15:43:41Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T20:17:50Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-04T11:04:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T14:42:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T00:02:07Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-09-20T17:25:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-09-20T17:25:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-09-20T17:25:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:59:14Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/237657888/472014",
+      "connectionType": "connection",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/",
+      "formattedCitation": "Tharros.info: List of nuraghi Previous Nuraghe Columbos (423)",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "237657888",
+  "subject": [],
+  "title": "Nuraghe Colombos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/nuraghe",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "",
+  "reprPoint": [
+    8.748620910642606,
+    40.299123180931524
+  ],
+  "placeTypes": [
+    "nuraghe",
+    "settlement"
+  ],
+  "bbox": [
+    8.7485097,
+    40.2990379,
+    8.7487325,
+    40.2992081
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-09-20T17:25:08Z",
+  "uri": "https://pleiades.stoa.org/places/237657888",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-04T11:04:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T14:42:05Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-09-20T17:25:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-09-20T17:25:08Z"
+    }
+  ]
+}

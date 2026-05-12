@@ -1,0 +1,471 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.5473409,
+            39.8693505
+          ],
+          [
+            22.5470871,
+            39.8690749
+          ],
+          [
+            22.5468063,
+            39.8688152
+          ],
+          [
+            22.5467086,
+            39.8687379
+          ],
+          [
+            22.5465001,
+            39.8685729
+          ],
+          [
+            22.5466382,
+            39.8684753
+          ],
+          [
+            22.5467961,
+            39.8684427
+          ],
+          [
+            22.54715,
+            39.8685372
+          ],
+          [
+            22.5473679,
+            39.8686021
+          ],
+          [
+            22.5475447,
+            39.8686727
+          ],
+          [
+            22.5477324,
+            39.8687444
+          ],
+          [
+            22.547975,
+            39.8688599
+          ],
+          [
+            22.547622,
+            39.8691583
+          ],
+          [
+            22.5473409,
+            39.8693505
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-khani-kokkonas",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/113317585/osm-location-khani-kokkonas",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: \u03a7\u03ac\u03bd\u03b9 \u039a\u03bf\u03ba\u03ba\u03ce\u03bd\u03b1\u03c2"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/671580444",
+          "citationDetail": "Way 671580444",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=671580444",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-khani-kokkonas",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM Location: \u03a7\u03ac\u03bd\u03b9 \u039a\u03bf\u03ba\u03ba\u03ce\u03bd\u03b1\u03c2",
+      "provenance": "OpenStreetMap (Way 671580444, version 9, osm:changeset=161898434, 2025-01-29T13:53:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-12-10T00:50:29Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.5473409,
+            39.8693505
+          ],
+          [
+            22.5470871,
+            39.8690749
+          ],
+          [
+            22.5468063,
+            39.8688152
+          ],
+          [
+            22.5467086,
+            39.8687379
+          ],
+          [
+            22.5465001,
+            39.8685729
+          ],
+          [
+            22.5466382,
+            39.8684753
+          ],
+          [
+            22.5467961,
+            39.8684427
+          ],
+          [
+            22.54715,
+            39.8685372
+          ],
+          [
+            22.5473679,
+            39.8686021
+          ],
+          [
+            22.5475447,
+            39.8686727
+          ],
+          [
+            22.5477324,
+            39.8687444
+          ],
+          [
+            22.547975,
+            39.8688599
+          ],
+          [
+            22.547622,
+            39.8691583
+          ],
+          [
+            22.5473409,
+            39.8693505
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/113317585/osm-location-khani-kokkonas",
+      "creators": [
+        {
+          "username": "elkon",
+          "homepage": null,
+          "name": "Eleftheria Konstantinidou",
+          "uri": "https://pleiades.stoa.org/author/elkon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:32:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-15T02:19:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T00:51:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T00:51:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T00:50:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T00:50:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.openstreetmap.org/way/671580444#map=17/39.868670/22.551342",
+      "citationDetail": "Way: \u03a7\u03ac\u03bd\u03b9 \u039a\u03bf\u03ba\u03ba\u03ce\u03bd\u03b1\u03c2 (671580444)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+      "shortTitle": "OSM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsDataSource"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q64438329",
+      "citationDetail": "Chani Kokkonas (Q64438329)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsDataSource"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?r=topo_public&id=70083",
+      "citationDetail": "Toponyme 70083: Chani tis Kokkonas-\u03a7\u03ac\u03bd\u03b9 \u03c4\u03b7\u03c2 \u039a\u03bf\u03ba\u03ba\u03cc\u03bd\u03b1\u03c2",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Androudis 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3YWQ8URI",
+      "formattedCitation": "<div class=\"csl-entry\">Androudis, Paschalis, and Stavroula Sdrolia. \u201c\u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ad\u03c2 \u0388\u03c1\u03b5\u03c5\u03bd\u03b5\u03c2 \u03a3\u03c4\u03bf \u0392\u03c5\u03b6\u03b1\u03bd\u03c4\u03b9\u03bd\u03cc \u03a3\u03c5\u03b3\u03ba\u03c1\u03cc\u03c4\u03b7\u03bc\u03b1 \u039d\u03b1\u03bf\u03cd \u039a\u03b1\u03b9 \u03a0\u03b1\u03bd\u03b4\u03bf\u03c7\u03b5\u03af\u03bf\u03c5 \u03a3\u03c4\u03b7 \u0398\u03ad\u03c3\u03b7 \u00ab\u03a7\u03ac\u03bd\u03b9 \u039a\u03bf\u03ba\u03cc\u03bd\u03b1\u03c2\u00bb \u03a4\u03b5\u03bc\u03c0\u03ce\u03bd,\u201d 25:113\u201322. A\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03cc \u0388\u03c1\u03b3\u03bf \u03a3\u03c4\u03b7 \u039c\u03b1\u03ba\u03b5\u03b4\u03bf\u03bd\u03af\u03b1 \u039a\u03b1\u03b9 \u03a3\u03c4\u03b7 \u0398\u03c1\u03ac\u03ba\u03b7. \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03bf\u03bd\u03af\u03ba\u03b7: \u03a5\u03c0\u03bf\u03c5\u03c1\u03b3\u03b5\u03af\u03bf \u03a0\u03bf\u03bb\u03b9\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd \u03ba\u03b1\u03b9 \u0391\u03b8\u03bb\u03b7\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd, \u0391\u03c1\u03b9\u03c3\u03c4\u03bf\u03c4\u03ad\u03bb\u03b5\u03b9\u03bf \u03a0\u03b1\u03bd\u03b5\u03c0\u03b9\u03c3\u03c4\u03ae\u03bc\u03b9\u03bf \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03bf\u03bd\u03af\u03ba\u03b7\u03c2, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Androudis 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XCYATILD",
+      "formattedCitation": "<div class=\"csl-entry\">Androudis, Paschalis. \u201cThe Pilgrimage near and within the Valley of Tempi in Thessaly during the Middle-Byzantine Period: Historical and Archaeological Data.\u201d In <i>F\u00fcr Seelenheil Und Lebensgl\u00fcck: Das Byzantinische Pilgerwesen Und Seine Wurzeln</i>, 107\u201317. Byzanz Zwischen Orient Und Okzident 10. Heidelberg, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Chani Kokkonas",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/671580444#map=17/39.868670/22.551342",
+          "citationDetail": "Way: \u03a7\u03ac\u03bd\u03b9 \u039a\u03bf\u03ba\u03ba\u03ce\u03bd\u03b1\u03c2 (671580444)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q64438329",
+          "citationDetail": "Chani Kokkonas (Q64438329)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "chani-kokkonas",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2025-12-10T00:49:03Z",
+      "uri": "https://pleiades.stoa.org/places/113317585/chani-kokkonas",
+      "creators": [
+        {
+          "username": "elkon",
+          "homepage": null,
+          "name": "Eleftheria Konstantinidou",
+          "uri": "https://pleiades.stoa.org/author/elkon"
+        }
+      ],
+      "attested": "\u03a7\u03ac\u03bd\u03b9 \u039a\u03bf\u03ba\u03ba\u03ce\u03bd\u03b1\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:32:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:31:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-15T02:19:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T00:49:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T00:49:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "113317585",
+  "subject": [],
+  "title": "Chani Kokkonas",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Chani Kokkonas is an archaeological site in Tempe valley, Thessaly, Greece. The excavations revealed remains of a Hellenistic complex with both ritual and workshop areas, as well as a Byzantine church and guesthouse (khan).",
+  "reprPoint": [
+    22.547235544691894,
+    39.86882936498366
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    22.5465001,
+    39.8684427,
+    22.547975,
+    39.8693505
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-20T06:05:39Z",
+  "uri": "https://pleiades.stoa.org/places/113317585",
+  "creators": [
+    {
+      "username": "elkon",
+      "homepage": null,
+      "name": "Eleftheria Konstantinidou",
+      "uri": "https://pleiades.stoa.org/author/elkon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Added see further references by @elkon",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-20T18:28:30Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "elkon",
+      "modified": "2026-01-20T06:05:36Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-13T21:32:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-13T21:31:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-15T02:19:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-15T02:18:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-10T01:04:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-10T00:47:29Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-10T00:47:27Z"
+    }
+  ]
+}

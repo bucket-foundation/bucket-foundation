@@ -1,0 +1,275 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2028803,
+            35.8516724
+          ],
+          [
+            9.2029282,
+            35.8516787
+          ],
+          [
+            9.2029355,
+            35.8516424
+          ],
+          [
+            9.2028876,
+            35.8516361
+          ],
+          [
+            9.2028803,
+            35.8516724
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pyramidal-mausoleum-of-maktar",
+      "properties": {
+        "snippet": "Tomb",
+        "link": "https://pleiades.stoa.org/places/364883647/osm-location-of-pyramidal-mausoleum-of-maktar",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pyramidal mausoleum of Maktar"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/268663021",
+          "citationDetail": "Way 268663021",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=268663021",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pyramidal-mausoleum-of-maktar",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": null,
+      "title": "OSM location of Pyramidal mausoleum of Maktar",
+      "provenance": "OpenStreetMap (Way 268663021, version 3, osm:changeset=143134733, 2023-10-25T21:12:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-02-22T04:37:40Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2028803,
+            35.8516724
+          ],
+          [
+            9.2029282,
+            35.8516787
+          ],
+          [
+            9.2029355,
+            35.8516424
+          ],
+          [
+            9.2028876,
+            35.8516361
+          ],
+          [
+            9.2028803,
+            35.8516724
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/364883647/osm-location-of-pyramidal-mausoleum-of-maktar",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-30T19:46:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-30T19:46:55Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-22T04:38:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-22T04:37:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-22T04:37:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-02-22T04:38:29Z",
+      "associationCertainty": "certain",
+      "title": "Mactaris",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/364883647/1094112465",
+      "connectionType": "at",
+      "id": "1094112465",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-22T04:38:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-22T04:38:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-22T04:38:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/324774",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q42756821",
+      "citationDetail": "Pyramidal mausoleum of Maktar (Q42756821)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "364883647",
+  "subject": [],
+  "title": "Pyramidal mausoleum of Maktar",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Representative location based on OpenStreetMap",
+  "reprPoint": [
+    9.2029079,
+    35.8516574
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    9.2028803,
+    35.8516361,
+    9.2029355,
+    35.8516787
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/324774"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-22T04:38:27Z",
+  "uri": "https://pleiades.stoa.org/places/364883647",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-30T19:46:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-30T19:46:55Z"
+    },
+    {
+      "comment": "wikidata Q42756821",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-22T04:38:54Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-22T04:38:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-22T04:38:27Z"
+    }
+  ]
+}

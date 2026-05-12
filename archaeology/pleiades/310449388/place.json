@@ -1,0 +1,606 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.15753,
+          30.86275
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-tall-marjab",
+      "properties": {
+        "snippet": "Settlement; 6500 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/310449388/imagery-location-of-tall-marjab",
+        "description": "Location following Adams 1981.",
+        "location_precision": "precise",
+        "title": "CIGS location of Tall Marjab"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "ubaid",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ubaid",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "uruk-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/uruk-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://oi.uchicago.edu/research/publications/misc/heartland-cities-surveys-ancient-settlement-and-land-use-central",
+          "citationDetail": ": 339 Site 29 and Fig. 1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Adams 1981",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BMUC3AID",
+          "formattedCitation": "<div class=\"csl-entry\">Adams, Robert McCormick. <i>Heartland of Cities: Surveys of Ancient Settlement and Land Use on the Central Floodplain of the Euphrates</i>. Chicago: University of Chicago Press, 1981. https://oi.uchicago.edu/research/publications/misc/heartland-cities-surveys-ancient-settlement-and-land-use-central.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Vol. IV: Fig. 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hall 1927",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B9ZMD5K9",
+          "formattedCitation": "<div class=\"csl-entry\">Woolley, Leonard, H. R Hall, and Leon Legrain. <i>Ur Excavations</i>. London: Oxford University Press, 1927.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-tall-marjab",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1000,
+      "title": "CIGS location of Tall Marjab",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -6500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "<p><span>Position agrees approximately (~500 m) with that given in Adam's survey map (Adams 1981: 299) and the map of the Ur hinterland provided by Woolley and Mallowan (UE IV: Fig. 1). Signature from satellite imagery poor.</span></p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location following Adams 1981.",
+      "created": "2018-12-10T14:14:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.15753,
+          30.86275
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/310449388/imagery-location-of-tall-marjab",
+      "creators": [
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-31T19:57:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T09:19:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T09:18:55Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T09:18:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T08:35:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T08:35:23Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T08:35:05Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-22T14:18:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-22T14:17:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:48:24Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:45:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:43:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:38:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:37:15Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:35:08Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:38:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:27:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:14:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:14:21Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T14:17:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-03-12T10:53:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-12-10T14:15:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-12-10T14:15:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-12-10T14:14:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://digital.library.stonybrook.edu/cdm/ref/collection/amar/id/152602",
+      "citationDetail": "Vol. IV: 82-85",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hall 1927",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B9ZMD5K9",
+      "formattedCitation": "<div class=\"csl-entry\">Woolley, Leonard, H. R Hall, and Leon Legrain. <i>Ur Excavations</i>. London: Oxford University Press, 1927.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://oi.uchicago.edu/research/publications/misc/heartland-cities-surveys-ancient-settlement-and-land-use-central",
+      "citationDetail": ": 339, Site 29",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Adams 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BMUC3AID",
+      "formattedCitation": "<div class=\"csl-entry\">Adams, Robert McCormick. <i>Heartland of Cities: Surveys of Ancient Settlement and Land Use on the Central Floodplain of the Euphrates</i>. Chicago: University of Chicago Press, 1981. https://oi.uchicago.edu/research/publications/misc/heartland-cities-surveys-ancient-settlement-and-land-use-central.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Vol 8: 429",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Merejib, Murei\u01e7ib, Meraijib, Mereijib, Mreijib, Muray\u01e7ib, Mur\u0101jib",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Vol. 8: 429",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://legacy.lib.utexas.edu/maps/ams/iraq_and_iran/",
+          "citationDetail": ": H-38 K",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "US AMS K501 (1931-)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N7FLKEJ4",
+          "formattedCitation": "<div class=\"csl-entry\">US Army Map Service. \u201cIraq and Iran 1:235,440 AMS K501 (G.S.G.S. 3919).\u201d Washington, D.C.: Army Map Service, U.S. Army, 1931. http://legacy.lib.utexas.edu/maps/ams/iraq_and_iran/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-12-10.3628815875",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-12-10T14:18:33Z",
+      "uri": "https://pleiades.stoa.org/places/310449388/name.2018-12-10.3628815875",
+      "creators": [
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-22T14:18:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:48:24Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:38:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:27:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:19:35Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T14:17:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-03-12T10:53:03Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-12-10T14:18:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-12-10T14:18:33Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Marjab, Murajib",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Vol. 8: 429",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RLAss",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+          "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "uo-o-o",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2018-12-10T14:22:56Z",
+      "uri": "https://pleiades.stoa.org/places/310449388/uo-o-o",
+      "creators": [
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u0645\u0631\u062c\u0628",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-22T14:18:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:48:24Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T13:40:05Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:38:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-07-22T11:27:29Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T14:17:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2019-03-12T10:53:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-12-10T14:23:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-12-10T14:22:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-12-10T14:22:56Z"
+        }
+      ]
+    }
+  ],
+  "id": "310449388",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Tall Marjab",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tall Marjab is a small, heavily denuded mound in the Dhi Qar province of southern Iraq, some 15 kilometers south of Nasiriya and ca. 10 kilometres southeast of Ur. Traces of a small settlement dating to fourth and third millennium BCE were found here in the course of brief excavations by British archaeologists Leonard Woolley and Max Mallowan in 1929-30.",
+  "reprPoint": [
+    46.15753,
+    30.86275
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    46.15753,
+    30.86275,
+    46.15753,
+    30.86275
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-12-10T13:55:43Z",
+  "uri": "https://pleiades.stoa.org/places/310449388",
+  "creators": [
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-31T19:57:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T09:44:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T09:44:12Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T09:43:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-22T14:18:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-22T14:14:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rrattenborg",
+      "modified": "2019-07-22T13:48:23Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "rrattenborg",
+      "modified": "2019-07-22T11:38:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rrattenborg",
+      "modified": "2019-07-22T11:27:28Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-17T14:17:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rrattenborg",
+      "modified": "2019-03-12T10:53:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-12-10T13:56:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-12-10T13:55:43Z"
+    }
+  ]
+}

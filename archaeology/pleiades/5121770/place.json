@@ -1,0 +1,348 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4925739,
+          40.7503006
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pompeii-i-14-1",
+      "properties": {
+        "snippet": "Taberna-shop; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/5121770/osm-location-of-pompeii-i-14-1",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pompeii I.14.1"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/12078533961",
+          "citationDetail": "Node 12078533961",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=12078533961",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pompeii-i-14-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop"
+      ],
+      "end": 99,
+      "title": "OSM location of Pompeii I.14.1",
+      "provenance": "OpenStreetMap (Node 12078533961, version 1, osm:changeset=154524292, 2024-07-28T14:37:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "taberna-shop"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-07-28T14:38:55Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4925739,
+          40.7503006
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/5121770/osm-location-of-pompeii-i-14-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-31T14:56:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:51:25Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:39:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:38:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:38:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-07-28T14:40:20Z",
+      "associationCertainty": "certain",
+      "title": "Regio I, Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/5121770/regio-i-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-i-pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-31T14:56:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:51:25Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:40:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:40:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/222138654",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://pompeiisites.org/wp-content/uploads/8-E-Journal-Emmerson.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Emmerson et al. 2024",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3HUM6JAL",
+          "formattedCitation": "<div class=\"csl-entry\">Emmerson, Allison L.C., Mary-Evelyn Farrior, Gabriel Higgs, Jordan R. Rogers, and Mark Robinson. \u201cExcavating a Matmaker\u2019s Workshop at Pompeii I 14, 1/11\u201314.\u201d <i>Scavi Di Pompei E-Journal</i> 8 (May 21, 2024): 2\u201315. https://pompeiisites.org/wp-content/uploads/8-E-Journal-Emmerson.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-07-28T14:41:06Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/5121770/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-31T14:56:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:51:25Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:41:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T14:41:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://pompeiisites.org/wp-content/uploads/8-E-Journal-Emmerson.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Emmerson et al. 2024",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3HUM6JAL",
+          "formattedCitation": "<div class=\"csl-entry\">Emmerson, Allison L.C., Mary-Evelyn Farrior, Gabriel Higgs, Jordan R. Rogers, and Mark Robinson. \u201cExcavating a Matmaker\u2019s Workshop at Pompeii I 14, 1/11\u201314.\u201d <i>Scavi Di Pompei E-Journal</i> 8 (May 21, 2024): 2\u201315. https://pompeiisites.org/wp-content/uploads/8-E-Journal-Emmerson.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://pompeiisites.org/wp-content/uploads/8-E-Journal-Emmerson.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Emmerson et al. 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3HUM6JAL",
+      "formattedCitation": "<div class=\"csl-entry\">Emmerson, Allison L.C., Mary-Evelyn Farrior, Gabriel Higgs, Jordan R. Rogers, and Mark Robinson. \u201cExcavating a Matmaker\u2019s Workshop at Pompeii I 14, 1/11\u201314.\u201d <i>Scavi Di Pompei E-Journal</i> 8 (May 21, 2024): 2\u201315. https://pompeiisites.org/wp-content/uploads/8-E-Journal-Emmerson.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27070550",
+      "citationDetail": "Q27070550",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Caupona_I.14.1._(Pompeii)",
+      "citationDetail": "Category:Caupona I.14.1. (Pompeii)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "5121770",
+  "subject": [],
+  "title": "Pompeii I.14.1",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A building complex in Regio I of ancient Pompeii that in its final phases was devoted to commercial use that included the production of woven mats.",
+  "reprPoint": [
+    14.4925739,
+    40.7503006
+  ],
+  "placeTypes": [
+    "taberna-shop"
+  ],
+  "bbox": [
+    14.4925739,
+    40.7503006,
+    14.4925739,
+    40.7503006
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/222138654",
+    "https://pleiades.stoa.org/places/433032"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-07-28T14:38:36Z",
+  "uri": "https://pleiades.stoa.org/places/5121770",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-31T14:56:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T14:51:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T14:46:24Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T14:38:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T14:38:36Z"
+    }
+  ]
+}

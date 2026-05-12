@@ -1,0 +1,404 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.2767281,
+          42.0988911
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-la-marmotta",
+      "properties": {
+        "snippet": "Settlement; 6000 BC - 4000 BC",
+        "link": "https://pleiades.stoa.org/places/424390148/osm-location-of-la-marmotta",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of La Marmotta"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "6th-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/6th-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "5th-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/5th-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9878724483",
+          "citationDetail": "Node 9878724483",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9878724483",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-la-marmotta",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -4000,
+      "title": "OSM location of La Marmotta",
+      "provenance": "OpenStreetMap (Node 9878724483, version 3, osm:changeset=132103630, 2023-02-05T10:30:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -6000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-06-12T18:37:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.2767281,
+          42.0988911
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/424390148/osm-location-of-la-marmotta",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-13T15:18:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:38:56Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:37:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:37:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:37:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-06-12T18:38:37Z",
+      "associationCertainty": "certain",
+      "title": "Sabatinus lacus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/424390148/sabatinus-lacus",
+      "connectionType": "at",
+      "id": "sabatinus-lacus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-13T15:18:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:38:56Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:38:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:38:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413290",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2307/jj.2373310",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mineo et al. 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JX7MVT2K",
+          "formattedCitation": "<div class=\"csl-entry\">Mineo, Mario, Juan Gibaja, and Niccol\u00f2 Mazzucco, eds. <i>The Submerged Site of La Marmotta (Rome, Italy): Decrypting a Neolithic Society</i>. Oxford: Oxbow Books, 2023. https://www.jstor.org/stable/10.2307/jj.2373310.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2307/jj.2373310",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mineo et al. 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JX7MVT2K",
+      "formattedCitation": "<div class=\"csl-entry\">Mineo, Mario, Juan Gibaja, and Niccol\u00f2 Mazzucco, eds. <i>The Submerged Site of La Marmotta (Rome, Italy): Decrypting a Neolithic Society</i>. Oxford: Oxbow Books, 2023. https://www.jstor.org/stable/10.2307/jj.2373310.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Beccaccioli et al. 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SEUCPQ8S",
+      "formattedCitation": "<div class=\"csl-entry\">Beccaccioli, Marzia, Claudia Moricca, Luigi Faino, Rita Reale, Mario Mineo, and Massimo Reverberi. \u201cThe Neolithic Site \u2018La Marmotta\u2019: DNA Metabarcoding to Identify the Microbial Deterioration of Waterlogged Archeological Wood.\u201d <i>Frontiers in Microbiology</i> 14 (2023): 1129983\u20131129983. https://doi.org/10.3389/fmicb.2023.1129983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mazzucco et al. 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GDDU3KJK",
+      "formattedCitation": "<div class=\"csl-entry\">Mazzucco, Niccol\u00f2, Mario Mineo, Daniele Arobba, Rosanna Caramiello, Laura Caruso Ferm\u00e9, Bernard Gassin, Denis Guilbeau, et al. \u201cMultiproxy Study of 7500-Year-Old Wooden Sickles from the Lakeshore Village of La Marmotta, Italy.\u201d <i>Scientific Reports</i> 12, no. 1 (2022): 14976\u201314976. https://doi.org/10.1038/s41598-022-18597-8.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mineo et al. 2023a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YVI5KF4B",
+      "formattedCitation": "<div class=\"csl-entry\">Mineo, Mario, Niccol\u00f2 Mazzucco, Mauro Rottoli, Gerard Remolins, Laura Caruso-Ferme, and Juan F. Gibaja. \u201cTextiles, Basketry and Cordage from the Early Neolithic Settlement of La Marmotta, Lazio.\u201d <i>Antiquity</i> 97, no. 392 (2023): 314\u201330. https://doi.org/10.15184/aqy.2023.21.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S0277379124002476",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Petrinelli Pannocchia et al. 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YK9L7PRZ",
+      "formattedCitation": "<div class=\"csl-entry\">Petrinelli Pannocchia, Cristiana, Alice Vassanelli, Vincenzo Palleschi, Stefano Legnaioli, Mario Mineo, Gerard Remolins Zamora, Niccol\u00f2 Mazzucco, and Juan F. Gibaja. \u201cNew Evidence Reveals the Earliest Use of Cinnabar in the Western Mediterranean: The Neolithic Settlement of La Marmotta (Lazio, Italy).\u201d <i>Quaternary Science Reviews</i> 335 (July 1, 2024): 108746. https://doi.org/10.1016/j.quascirev.2024.108746.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q125876858",
+      "citationDetail": "La Marmotta (Q125876858)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "La Marmotta",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/10.2307/jj.2373310",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mineo et al. 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JX7MVT2K",
+          "formattedCitation": "<div class=\"csl-entry\">Mineo, Mario, Juan Gibaja, and Niccol\u00f2 Mazzucco, eds. <i>The Submerged Site of La Marmotta (Rome, Italy): Decrypting a Neolithic Society</i>. Oxford: Oxbow Books, 2023. https://www.jstor.org/stable/10.2307/jj.2373310.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "la-marmotta",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-06-12T18:38:15Z",
+      "uri": "https://pleiades.stoa.org/places/424390148/la-marmotta",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "La Marmotta",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-13T15:18:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:38:56Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:38:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-12T18:38:15Z"
+        }
+      ]
+    }
+  ],
+  "id": "424390148",
+  "subject": [
+    "cinnabar"
+  ],
+  "title": "La Marmotta",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Early Neolithic settlement that is now submerged beneath the waters of Lake Bracciano. Settlement activity begins ca. 5750 BCE.",
+  "reprPoint": [
+    12.2767281,
+    42.0988911
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    12.2767281,
+    42.0988911,
+    12.2767281,
+    42.0988911
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413290"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-06-12T18:36:42Z",
+  "uri": "https://pleiades.stoa.org/places/424390148",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata La Marmotta (Q125876858)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-29T19:33:46Z"
+    },
+    {
+      "comment": "add Petrinelli Pannocchia et al. 2024, tagged for cinnabar",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-29T19:30:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-13T15:18:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-12T18:38:56Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-12T18:36:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-12T18:36:42Z"
+    }
+  ]
+}

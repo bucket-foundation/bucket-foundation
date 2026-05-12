@@ -1,0 +1,416 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.6191417,
+            41.3009626
+          ],
+          [
+            -8.6187665,
+            41.3004072
+          ],
+          [
+            -8.6186606,
+            41.3002573
+          ],
+          [
+            -8.6180037,
+            41.3006157
+          ],
+          [
+            -8.6179503,
+            41.3006286
+          ],
+          [
+            -8.6177239,
+            41.3006651
+          ],
+          [
+            -8.6176708,
+            41.3007591
+          ],
+          [
+            -8.6176363,
+            41.3008503
+          ],
+          [
+            -8.6176202,
+            41.3010091
+          ],
+          [
+            -8.6176583,
+            41.3011796
+          ],
+          [
+            -8.6178109,
+            41.301291
+          ],
+          [
+            -8.6179974,
+            41.3013805
+          ],
+          [
+            -8.6184777,
+            41.3011641
+          ],
+          [
+            -8.6187128,
+            41.3009916
+          ],
+          [
+            -8.6189392,
+            41.3009511
+          ],
+          [
+            -8.6190203,
+            41.3009559
+          ],
+          [
+            -8.6191417,
+            41.3009626
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement, ; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/886273706/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Alvarelhos"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/152828487",
+          "citationDetail": "Way 152828487",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=152828487",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Castro de Alvarelhos",
+      "provenance": "OpenStreetMap (Way 152828487, version 18, osm:changeset=141758793, 2023-09-26T06:41:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2015-03-11T15:44:00Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.6191417,
+            41.3009626
+          ],
+          [
+            -8.6187665,
+            41.3004072
+          ],
+          [
+            -8.6186606,
+            41.3002573
+          ],
+          [
+            -8.6180037,
+            41.3006157
+          ],
+          [
+            -8.6179503,
+            41.3006286
+          ],
+          [
+            -8.6177239,
+            41.3006651
+          ],
+          [
+            -8.6176708,
+            41.3007591
+          ],
+          [
+            -8.6176363,
+            41.3008503
+          ],
+          [
+            -8.6176202,
+            41.3010091
+          ],
+          [
+            -8.6176583,
+            41.3011796
+          ],
+          [
+            -8.6178109,
+            41.301291
+          ],
+          [
+            -8.6179974,
+            41.3013805
+          ],
+          [
+            -8.6184777,
+            41.3011641
+          ],
+          [
+            -8.6187128,
+            41.3009916
+          ],
+          [
+            -8.6189392,
+            41.3009511
+          ],
+          [
+            -8.6190203,
+            41.3009559
+          ],
+          [
+            -8.6191417,
+            41.3009626
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/886273706/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-13T14:41:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-08-01T15:55:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-24T22:03:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-24T19:36:54Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-11T15:44:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-11T15:44:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-11T15:44:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://pt.wikipedia.org/wiki/Castro_de_Alvarelhos",
+      "citationDetail": "Castro de Alvarelhos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Portuguese)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/DT7TR55T",
+      "formattedCitation": "Wikip\u00e9dia: A enciclop\u00e9dia livre que todos podem editar (2001-), Castro de Alvarelhos.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.castrosdonoroeste.pt/castro-de-alvarelhos/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Castro de Alvarelhos",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Torres 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MHM99A3R",
+      "formattedCitation": "<div class=\"csl-entry\">Torres, Joaquim. <i>Tesouro Monet\u00e1rio Do Castro de Alvarelhos: Estudo Numism\u00e1tico\u202f; Seria\u00e7ao Cronol\u00f3gica e Hist\u00f3rica</i>. Santo Tirso, [N.S.] 1.1977/79, 2/3. Santo Tirso: Camara Municipal, 1979.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Lockyear 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y74H2N6R",
+      "formattedCitation": "<div class=\"csl-entry\">Lockyear, Kris. <i>Patterns and Process in Late Roman Republican Coin Hoards, 157-2 BC</i>. BAR International Series 1733. Oxford: Archaeopress, 2007.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.patrimoniocultural.pt/pt/patrimonio/patrimonio-imovel/pesquisa-do-patrimonio/classificado-ou-em-vias-de-classificacao/geral/view/74025/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "DGPC: Castro Alvarelhos",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17390115",
+      "citationDetail": "Castro de Alvarelhos (Q17390115)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "886273706",
+  "subject": [
+    "fortification"
+  ],
+  "title": "Castro de Alvarelhos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The site is noted for a hoard of Late Republican Roman coins unearthed there.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A multi-period fortified site with occupation stretching from the Bronze Age to the Middle Ages.",
+  "reprPoint": [
+    -8.618348945917054,
+    41.3008435382869
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -8.6191417,
+    41.3002573,
+    -8.6176202,
+    41.3013805
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-03-11T15:42:39Z",
+  "uri": "https://pleiades.stoa.org/places/886273706",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-13T14:44:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-19T00:09:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-24T22:03:44Z"
+    },
+    {
+      "comment": "added details",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-24T22:03:32Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-24T19:33:03Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-11T15:42:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-11T15:42:40Z"
+    }
+  ]
+}

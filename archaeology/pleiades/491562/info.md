@@ -1,0 +1,14 @@
+# Charakoma
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/491562
+- **ID**: 491562
+- **Coords (lng, lat)**: [22.959993, 40.793957]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Charakoma
+
+## Description
+
+An ancient place, cited: BAtlas 50 C3 Charakoma

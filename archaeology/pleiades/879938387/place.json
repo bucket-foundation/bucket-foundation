@@ -1,0 +1,339 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              16.6041765,
+              47.4567858
+            ],
+            [
+              16.6059763,
+              47.4564228
+            ],
+            [
+              16.6054125,
+              47.4551205
+            ]
+          ],
+          [
+            [
+              16.6054125,
+              47.4551205
+            ],
+            [
+              16.6036182,
+              47.4555064
+            ],
+            [
+              16.6041765,
+              47.4567858
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "romisches-militarlager",
+      "properties": {
+        "snippet": "Military-installation-or-camp-temporary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/879938387/romisches-militarlager",
+        "description": "Polygon representing the location of the Roman military camp at Strebersdorf, derived from an OpenStreetMap Relation.",
+        "location_precision": "precise",
+        "title": "OSM location of R\u00f6misches Milit\u00e4rlager"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/8343666",
+          "citationDetail": "Relation 8343666",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=8343666",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1250304109",
+          "citationDetail": "pages 149-150",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Sedlmayer 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GJGTY9R4",
+          "formattedCitation": "<div class=\"csl-entry\">Sedlmayer, Helga. <i>Ad metalla! zum Milit\u00e4rplatz Strebersdorf in den pannonischen Eisenrevieren an der Bernsteinstrasse</i>. Monographies Instrumentum 68. Dr\u00e9mil-Lefage: Editions Mergoil, 2020. http://www.worldcat.org/oclc/1250304109.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "romisches-militarlager",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "end": 300,
+      "title": "OSM location of R\u00f6misches Milit\u00e4rlager",
+      "provenance": "OpenStreetMap (Relation 8343666, version 3, osm:changeset=103986276, 2021-05-02T09:40:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "military-installation-or-camp-temporary"
+      ],
+      "description": "Polygon representing the location of the Roman military camp at Strebersdorf, derived from an OpenStreetMap Relation.",
+      "created": "2022-03-01T16:54:58Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              16.6041765,
+              47.4567858
+            ],
+            [
+              16.6059763,
+              47.4564228
+            ],
+            [
+              16.6054125,
+              47.4551205
+            ]
+          ],
+          [
+            [
+              16.6054125,
+              47.4551205
+            ],
+            [
+              16.6036182,
+              47.4555064
+            ],
+            [
+              16.6041765,
+              47.4567858
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/879938387/romisches-militarlager",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-02T13:51:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-01T16:58:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-01T16:56:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-01T16:54:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-01T16:54:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1250304109",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sedlmayer 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GJGTY9R4",
+      "formattedCitation": "<div class=\"csl-entry\">Sedlmayer, Helga. <i>Ad metalla! zum Milit\u00e4rplatz Strebersdorf in den pannonischen Eisenrevieren an der Bernsteinstrasse</i>. Monographies Instrumentum 68. Dr\u00e9mil-Lefage: Editions Mergoil, 2020. http://www.worldcat.org/oclc/1250304109.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Rhispia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1250304109",
+          "citationDetail": "pages 121-123",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Sedlmayer 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GJGTY9R4",
+          "formattedCitation": "<div class=\"csl-entry\">Sedlmayer, Helga. <i>Ad metalla! zum Milit\u00e4rplatz Strebersdorf in den pannonischen Eisenrevieren an der Bernsteinstrasse</i>. Monographies Instrumentum 68. Dr\u00e9mil-Lefage: Editions Mergoil, 2020. http://www.worldcat.org/oclc/1250304109.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "rhispia",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "Possible Roman name for the military camp at Strebersdorf.",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2022-03-01T16:58:31Z",
+      "uri": "https://pleiades.stoa.org/places/879938387/rhispia",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "Rhispia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-02T13:51:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-01T16:58:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-01T16:58:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-01T16:58:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "879938387",
+  "subject": [],
+  "title": "Strebersdorf",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Roman military encampment located approximately halfway between Savaria and Scarabantia, containing remains dated to the 1st-2nd centuries CE.",
+  "reprPoint": [
+    16.604799118833082,
+    47.45595827645848
+  ],
+  "placeTypes": [
+    "military-installation-or-camp-temporary"
+  ],
+  "bbox": [
+    16.6036182,
+    47.4551205,
+    16.6059763,
+    47.4567858
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-01T16:54:46Z",
+  "uri": "https://pleiades.stoa.org/places/879938387",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-02T14:59:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-02T13:51:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-01T16:58:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-01T16:57:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-01T16:54:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-01T16:54:46Z"
+    }
+  ]
+}

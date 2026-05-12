@@ -1,0 +1,329 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.1279944,
+            50.6347185
+          ],
+          [
+            5.1278576,
+            50.6345875
+          ],
+          [
+            5.1278168,
+            50.6344733
+          ],
+          [
+            5.12792,
+            50.634382
+          ],
+          [
+            5.1280689,
+            50.634318
+          ],
+          [
+            5.1282585,
+            50.6343485
+          ],
+          [
+            5.1283978,
+            50.6344703
+          ],
+          [
+            5.128381,
+            50.6346347
+          ],
+          [
+            5.1282897,
+            50.634752
+          ],
+          [
+            5.1281937,
+            50.6347642
+          ],
+          [
+            5.1279944,
+            50.6347185
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-tumulus-davennes",
+      "properties": {
+        "snippet": "Tumulus; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/635557876/osm-location-tumulus-davennes",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Tumulus d'Avennes"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/377678925",
+          "citationDetail": "Way 377678925",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=377678925",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-tumulus-davennes",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": 99,
+      "title": "OSM location: Tumulus d'Avennes",
+      "provenance": "OpenStreetMap (Way 377678925, version 4, osm:changeset=138540748, 2023-07-15T11:21:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-12-21T20:46:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.1279944,
+            50.6347185
+          ],
+          [
+            5.1278576,
+            50.6345875
+          ],
+          [
+            5.1278168,
+            50.6344733
+          ],
+          [
+            5.12792,
+            50.634382
+          ],
+          [
+            5.1280689,
+            50.634318
+          ],
+          [
+            5.1282585,
+            50.6343485
+          ],
+          [
+            5.1283978,
+            50.6344703
+          ],
+          [
+            5.128381,
+            50.6346347
+          ],
+          [
+            5.1282897,
+            50.634752
+          ],
+          [
+            5.1281937,
+            50.6347642
+          ],
+          [
+            5.1279944,
+            50.6347185
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/635557876/osm-location-tumulus-davennes",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:48:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:48:04Z"
+        },
+        {
+          "comment": "supersedes previously published location whose underlying OSM data is now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:47:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:46:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:46:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://nl.wikipedia.org/wiki/Tumulus_van_Avennes",
+      "citationDetail": "Tumulus van Avennes",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Dutch)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/X8UQRPJW",
+      "formattedCitation": "Wikipedia: De vrije encyclopedie (2001-), Tumulus van Avennes.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Tumulus_d%27Avennes",
+      "citationDetail": "Tumulus d'Avennes",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+      "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Tumulus d'Avennes.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2527398",
+      "citationDetail": "Tumulus of Avennes (Q2527398)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "635557876",
+  "subject": [],
+  "title": "Tumulus of Avennes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Tumulus of Avennes is a Gallo-Roman burial mound dated to the Flavian period located in Li\u00e8ge Braives, Belgium.",
+  "reprPoint": [
+    5.12812240437939,
+    50.63453827261455
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    5.1278168,
+    50.634318,
+    5.1283978,
+    50.6347642
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-16T20:52:59Z",
+  "uri": "https://pleiades.stoa.org/places/635557876",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T20:48:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T20:48:04Z"
+    },
+    {
+      "comment": "wikidata Q2527398",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T20:47:57Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T20:45:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-19T00:36:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-27T21:25:54Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-27T21:25:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-16T20:55:02Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-16T20:53:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-16T20:52:59Z"
+    }
+  ]
+}

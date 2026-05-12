@@ -1,0 +1,535 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.4987413,
+            38.4831395
+          ],
+          [
+            22.4986667,
+            38.4832333
+          ],
+          [
+            22.4968305,
+            38.4823401
+          ],
+          [
+            22.4968004,
+            38.4822851
+          ],
+          [
+            22.4967903,
+            38.4821726
+          ],
+          [
+            22.4968254,
+            38.482115
+          ],
+          [
+            22.4968906,
+            38.4820626
+          ],
+          [
+            22.4969876,
+            38.4820168
+          ],
+          [
+            22.4971063,
+            38.4820129
+          ],
+          [
+            22.4989456,
+            38.4829021
+          ],
+          [
+            22.4988892,
+            38.4829735
+          ],
+          [
+            22.4971771,
+            38.4821462
+          ],
+          [
+            22.497118,
+            38.4821176
+          ],
+          [
+            22.4970495,
+            38.4821215
+          ],
+          [
+            22.4969843,
+            38.4821516
+          ],
+          [
+            22.4969492,
+            38.4822066
+          ],
+          [
+            22.4969558,
+            38.4822707
+          ],
+          [
+            22.4970113,
+            38.4822977
+          ],
+          [
+            22.4970745,
+            38.4823285
+          ],
+          [
+            22.4987413,
+            38.4831395
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/333036426/osm-location",
+        "description": "Representative point location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM Location of Stadium of Delphi"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/145690087",
+          "citationDetail": "Way 145690087",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=145690087",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM Location of Stadium of Delphi",
+      "provenance": "OpenStreetMap (Way 145690087, version 5, osm:changeset=159046276, 2024-11-12T11:37:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        ""
+      ],
+      "description": "Representative point location based on OpenStreetMap.",
+      "created": "2016-01-08T19:25:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.4987413,
+            38.4831395
+          ],
+          [
+            22.4986667,
+            38.4832333
+          ],
+          [
+            22.4968305,
+            38.4823401
+          ],
+          [
+            22.4968004,
+            38.4822851
+          ],
+          [
+            22.4967903,
+            38.4821726
+          ],
+          [
+            22.4968254,
+            38.482115
+          ],
+          [
+            22.4968906,
+            38.4820626
+          ],
+          [
+            22.4969876,
+            38.4820168
+          ],
+          [
+            22.4971063,
+            38.4820129
+          ],
+          [
+            22.4989456,
+            38.4829021
+          ],
+          [
+            22.4988892,
+            38.4829735
+          ],
+          [
+            22.4971771,
+            38.4821462
+          ],
+          [
+            22.497118,
+            38.4821176
+          ],
+          [
+            22.4970495,
+            38.4821215
+          ],
+          [
+            22.4969843,
+            38.4821516
+          ],
+          [
+            22.4969492,
+            38.4822066
+          ],
+          [
+            22.4969558,
+            38.4822707
+          ],
+          [
+            22.4970113,
+            38.4822977
+          ],
+          [
+            22.4970745,
+            38.4823285
+          ],
+          [
+            22.4987413,
+            38.4831395
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/333036426/osm-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:39:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-03T14:24:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-03T03:08:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2016-05-27T14:35:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2016-01-08T19:29:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2016-01-08T19:25:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2016-01-08T19:25:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:47:16Z",
+      "associationCertainty": "certain",
+      "title": "Delphi",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/333036426/540726",
+      "connectionType": "at",
+      "id": "540726",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "added reference, time period",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-26T19:37:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540726",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Aupert 1979",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M85ZU5HJ",
+          "formattedCitation": "<div class=\"csl-entry\">Aupert, Pierre, and Olivier Callot. <i>Le stade</i>. Fouilles de Delphes. Paris: Editions de Boccard, 1979.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Stadium_of_Delphi",
+      "citationDetail": "Stadium of Delphi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Delphi_stadium",
+      "citationDetail": "Category:Delphi stadium",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cWikimedia Commons.\u201d Media file repository. Wikimedia Commons, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aupert 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M85ZU5HJ",
+      "formattedCitation": "<div class=\"csl-entry\">Aupert, Pierre, and Olivier Callot. <i>Le stade</i>. Fouilles de Delphes. Paris: Editions de Boccard, 1979.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/385225BSta",
+      "citationDetail": "Stadium (Delphi)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q21705214",
+      "citationDetail": "Q21705214: stadium of Delphi",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "333036426",
+  "subject": [
+    "extant remains",
+    "stadium"
+  ],
+  "title": "Stadium of Delphi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Stadium of Delphi was perhaps built in the later fourth century B.C.",
+  "reprPoint": [
+    22.4971063,
+    38.4820129
+  ],
+  "placeTypes": [
+    "stadion"
+  ],
+  "bbox": [
+    22.4971063,
+    38.4820129,
+    22.4971063,
+    38.4820129
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540726"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-02-18T01:07:37Z",
+  "uri": "https://pleiades.stoa.org/places/333036426",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-26T19:38:20Z"
+    },
+    {
+      "comment": "added topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-26T19:36:54Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-03T14:24:03Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-03T03:16:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-03T03:08:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-03T03:08:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2016-05-27T14:35:18Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2015-02-18T01:07:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2015-02-18T01:07:37Z"
+    }
+  ]
+}

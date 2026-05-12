@@ -1,0 +1,585 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4786501,
+          40.7523925
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-di-diomede",
+      "properties": {
+        "snippet": "Villa; 330 BC - AD 99",
+        "link": "https://pleiades.stoa.org/places/142165735/osm-location-of-villa-di-diomede",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa di Diomede"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4787071,
+          40.7523864
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-villa-of-diomedes",
+      "properties": {
+        "snippet": "Villa, ; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/142165735/imagery-location-of-villa-of-diomedes",
+        "description": "verified in Google Earth 2013.",
+        "location_precision": "precise",
+        "title": "Imagery location of Villa of Diomedes"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/319120209",
+          "citationDetail": "Node 319120209",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=319120209",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-di-diomede",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 99,
+      "title": "OSM location of Villa di Diomede",
+      "provenance": "OpenStreetMap (Node 319120209, version 7, osm:changeset=161774861, 2025-01-26T10:37:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-01-16T01:40:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4786501,
+          40.7523925
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/142165735/osm-location-of-villa-di-diomede",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-15T03:02:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-23T21:37:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-16T01:40:31Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-16T01:40:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-16T01:40:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-16T01:40:04Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/319120209",
+          "citationDetail": "Node 319120209",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "OSM Villa di Diomede (319120209)",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-villa-of-diomedes",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "Imagery location of Villa of Diomedes",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "verified in Google Earth 2013.",
+      "created": "2013-02-20T17:57:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4787071,
+          40.7523864
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/142165735/imagery-location-of-villa-of-diomedes",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-22T20:11:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-20T17:57:42Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-20T17:57:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-20T17:57:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:37:13Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/142165735/433032",
+      "connectionType": "at",
+      "id": "433032",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "ctype to 'at'; added reference; added time period",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:15:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kockel 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GJHGVXQY",
+          "formattedCitation": "<div class=\"csl-entry\">Kockel, Valentin. \u201cTre ville nel suburbio di Pompei: Villa di Cicerone - Villa di Diomede - Villa delle Colonne a Mosaico.\u201d In <i>Citt\u00e0 vesuviane\u202f: antichit\u00e0 e fortuna\u202f: il suburbio e l\u2019agro di Pompei, Ercolano, Oplontis e Stabiae</i>, 50\u201368. Roma: Treccani editrice, 2015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/pompeii/villas-outside-the-walls/villa-of-diomedes",
+      "citationDetail": "Villa of Diomedes",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AD79",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+      "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Villa_of_Diomedes",
+      "citationDetail": "Villa of Diomedes",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q48740865",
+      "citationDetail": "Q48740865: Villa of Diomedes",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Maiuri 1947",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9DPVVA7S",
+      "formattedCitation": "<div class=\"csl-entry\">Maiuri, Amedeo, and Roberto Pane. <i>La casa di Loreio Tiburtino e la villa di Diomede in Pompei</i>. I monumenti italiani, ser. II, fasc. I. Roma: Libreria dello stato, 1947.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fontaine 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9NHZG2E",
+      "formattedCitation": "<div class=\"csl-entry\">Fontaine, Thomas Heinrich Maria. \u201cDie Dekorationen Vierten Stils der Villa di Diomede in Pompeji.\u201d In <i>Functional and spatial analysis of wall painting. Proceedings of the 5th International Congress on Ancient Wall Painting, Amsterdam, 8-12 september 1992</i>, 64\u201371. Leiden: Stichting BABESCH, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kockel 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GJHGVXQY",
+      "formattedCitation": "<div class=\"csl-entry\">Kockel, Valentin. \u201cTre ville nel suburbio di Pompei: Villa di Cicerone - Villa di Diomede - Villa delle Colonne a Mosaico.\u201d In <i>Citt\u00e0 vesuviane\u202f: antichit\u00e0 e fortuna\u202f: il suburbio e l\u2019agro di Pompei, Ercolano, Oplontis e Stabiae</i>, 50\u201368. Roma: Treccani editrice, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dessales 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JSLPKISI",
+      "formattedCitation": "<div class=\"csl-entry\">Dessales, H\u00e9l\u00e8ne. <i>The Villa of Diomedes: The Making of a Roman Villa in Pompeii</i>. Paris: Hermann Editeur, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/11116",
+      "citationDetail": "Villa des Diomedes Villa di Diomede, Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.openedition.org/efr/62786",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dessales et al. 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TJARTUH7",
+      "formattedCitation": "<div class=\"csl-entry\">Dessales, H\u00e9l\u00e8ne, Julien Cavero, Julien Dubouloz, and Alban-Brice Pimpaud. \u201cLa Villa de Diom\u00e8de \u00e0 Pomp\u00e9i. Implantation et transformations architecturales.\u201d In <i>Villae maritimae del Mediterraneo occidentale\u202f: Nascita, diffusione e trasformazione di un modello architettonico</i>, edited by Giulia Ciucci, Barbara Davidde Petriaggi, and Corinne Rousse, 67\u201382. Collection de l\u2019\u00c9cole fran\u00e7aise de Rome. Rome: Publications de l\u2019\u00c9cole fran\u00e7aise de Rome, 2024. https://doi.org/10.4000/120x9.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa di Diomede",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Kockel 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GJHGVXQY",
+          "formattedCitation": "<div class=\"csl-entry\">Kockel, Valentin. \u201cTre ville nel suburbio di Pompei: Villa di Cicerone - Villa di Diomede - Villa delle Colonne a Mosaico.\u201d In <i>Citt\u00e0 vesuviane\u202f: antichit\u00e0 e fortuna\u202f: il suburbio e l\u2019agro di Pompei, Ercolano, Oplontis e Stabiae</i>, 50\u201368. Roma: Treccani editrice, 2015.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "villa-di-diomede",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2020-05-16T16:14:48Z",
+      "uri": "https://pleiades.stoa.org/places/142165735/villa-di-diomede",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa di Diomede",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-19T07:11:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:14:59Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:14:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:14:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "142165735",
+  "subject": [],
+  "title": "Villa of Diomedes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A suburban villa of Pompeii located outside the Herculaneum gate, the Villa of Diomedes was excavated between 1771 and 1774 and named after the tomb of Marcus Arrius Diomedes which faces the entrance on the opposite side of the road.",
+  "reprPoint": [
+    14.4787071,
+    40.7523864
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    14.4787071,
+    40.7523864,
+    14.4787071,
+    40.7523864
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-02-20T17:55:21Z",
+  "uri": "https://pleiades.stoa.org/places/142165735",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Dessales et al. 2024",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-28T16:25:02Z"
+    },
+    {
+      "comment": "arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-16T01:41:05Z"
+    },
+    {
+      "comment": "reference added",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-29T14:38:25Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-27T16:51:51Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-16T16:14:06Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-22T20:11:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-20T17:58:00Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-20T17:55:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-20T17:55:21Z"
+    }
+  ]
+}

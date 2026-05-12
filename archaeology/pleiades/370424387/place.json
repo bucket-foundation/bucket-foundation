@@ -1,0 +1,269 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.3061873,
+            37.5407651
+          ],
+          [
+            23.3064029,
+            37.5405264
+          ],
+          [
+            23.3060527,
+            37.5403276
+          ],
+          [
+            23.3058371,
+            37.5405663
+          ],
+          [
+            23.3061873,
+            37.5407651
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kalloni-excavation",
+      "properties": {
+        "snippet": "Archaeological-site; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/370424387/osm-location-of-kalloni-excavation",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kalloni excavation"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1288701145",
+          "citationDetail": "Way 1288701145",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1288701145",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kalloni-excavation",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -1000,
+      "title": "OSM location of Kalloni excavation",
+      "provenance": "OpenStreetMap (Way 1288701145, version 1, osm:changeset=152124276, 2024-06-01T14:30:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-06-01T14:34:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.3061873,
+            37.5407651
+          ],
+          [
+            23.3064029,
+            37.5405264
+          ],
+          [
+            23.3060527,
+            37.5403276
+          ],
+          [
+            23.3058371,
+            37.5405663
+          ],
+          [
+            23.3061873,
+            37.5407651
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/370424387/osm-location-of-kalloni-excavation",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-27T14:29:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-01T14:38:27Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-01T14:34:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-01T14:34:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-01T14:34:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/375233XKal",
+      "citationDetail": "Kalloni excavation (Troizenia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Konsolak\u0113-Giannopoulou 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/66UXE62R",
+      "formattedCitation": "<div class=\"csl-entry\">Konsolak\u0113-Giannopoulou, Helen\u0113. \u201c\u039c\u03b5\u03c3\u03bf\u03b5\u03bb\u03bb\u03b1\u03b4\u03b9\u03ba\u03cc\u03c2 - \u03a5\u03c3\u03c4\u03b5\u03c1\u03bf\u03b5\u03bb\u03bb\u03b1\u03b4\u03b9\u03ba\u03cc\u03c2 \u039f\u03b9\u03ba\u03b9\u03c3\u03bc\u03cc\u03c2 \u0392\u03b9\u03bf\u03c4\u03b5\u03bd\u03c7\u03ce\u03bd \u03a3\u03c4\u03b7\u03bd \u039a\u03b1\u03bb\u03bb\u03bf\u03bd\u03ae \u03a4\u03b7\u03c2 \u03a4\u03c1\u03bf\u03b9\u03b6\u03b7\u03bd\u03af\u03b1\u03c2.\u201d In <i>\u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ae \u0395\u03c6\u03b7\u03bc\u03b5\u03c1\u03af\u03c2, 160 (2021)</i>, pages 1-26. \u0391\u03b8\u03ae\u03bd\u03b1: \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03c2 \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ae \u0395\u03c4\u03b1\u03b9\u03c1\u03b5\u03af\u03b1, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=report&id=1936",
+      "citationDetail": "Report 1936: KALLONI - Agios Georgios - 2006",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "370424387",
+  "subject": [],
+  "title": "Kalloni",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Middle Helladic to Late Helladic settlement located near Kalloni, Troizenia, Attiki, the Kalloni site was excavated in 2005.",
+  "reprPoint": [
+    23.306120000000004,
+    37.54054635
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    23.3058371,
+    37.5403276,
+    23.3064029,
+    37.5407651
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-06-01T14:33:39Z",
+  "uri": "https://pleiades.stoa.org/places/370424387",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added CFL/AGO reference",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-27T14:35:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-27T14:29:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-01T14:38:26Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-01T14:33:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-01T14:33:39Z"
+    }
+  ]
+}

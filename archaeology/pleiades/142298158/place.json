@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.0835195,
+            25.5027512
+          ],
+          [
+            29.0834277,
+            25.5027682
+          ],
+          [
+            29.0834196,
+            25.5027525
+          ],
+          [
+            29.0833787,
+            25.5027627
+          ],
+          [
+            29.0833673,
+            25.5027289
+          ],
+          [
+            29.0833868,
+            25.502718
+          ],
+          [
+            29.0833921,
+            25.5026411
+          ],
+          [
+            29.0835366,
+            25.502608
+          ],
+          [
+            29.0835497,
+            25.502727
+          ],
+          [
+            29.0835209,
+            25.5027361
+          ],
+          [
+            29.0835195,
+            25.5027512
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "ain-al-sabil-church",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/142298158/ain-al-sabil-church",
+        "description": "Polygon based on OpenStreetMap representing 'Ain el-Sabil Church after Bayoumy 2019.",
+        "location_precision": "precise",
+        "title": "OSM location of 'Ain el-Sabil Church"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1113493663",
+          "citationDetail": "Way 1113493663",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1113493663",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/j.ctv138wsg1.32",
+          "citationDetail": "pages 353-356",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bayoumy 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9L3CFLDH",
+          "formattedCitation": "<div class=\"csl-entry\">Bayoumy, Kamel A., Mahmoud M. Masoud, Andrew Connor, Bruce E. Parr, Sabri Y. Abd al-Rahman, Maher B. Amin, Sobhi Ashour, et al. \u201c\u2018Ain al-Sabil in Dakhleh Oasis.\u201d In <i>Proceedings of the Ninth International Dakhleh Oasis Project Conference</i>, edited by Gillian E. Bowen and Colin A. Hope, IX:353\u201366. Papers Presented in Honour of Anthony J. Mills. Oxbow Books, 2019. https://doi.org/10.2307/j.ctv138wsg1.32.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ain-al-sabil-church",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 640,
+      "title": "OSM location of 'Ain el-Sabil Church",
+      "provenance": "OpenStreetMap (Way 1113493663, version 1, osm:changeset=128965248, 2022-11-16T01:26:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Polygon based on OpenStreetMap representing 'Ain el-Sabil Church after Bayoumy 2019.",
+      "created": "2022-11-16T01:34:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.0835195,
+            25.5027512
+          ],
+          [
+            29.0834277,
+            25.5027682
+          ],
+          [
+            29.0834196,
+            25.5027525
+          ],
+          [
+            29.0833787,
+            25.5027627
+          ],
+          [
+            29.0833673,
+            25.5027289
+          ],
+          [
+            29.0833868,
+            25.502718
+          ],
+          [
+            29.0833921,
+            25.5026411
+          ],
+          [
+            29.0835366,
+            25.502608
+          ],
+          [
+            29.0835497,
+            25.502727
+          ],
+          [
+            29.0835209,
+            25.5027361
+          ],
+          [
+            29.0835195,
+            25.5027512
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/142298158/ain-al-sabil-church",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-16T13:34:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-16T01:38:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-16T01:37:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-16T01:34:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-16T01:34:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-11-16T01:38:25Z",
+      "associationCertainty": "certain",
+      "title": "Ain el-Sabil",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/142298158/ain-el-sabil",
+      "connectionType": "at",
+      "id": "ain-el-sabil",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-16T13:34:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-16T01:38:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-16T01:38:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-16T01:38:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/551781152",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/j.ctv138wsg1.32",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bayoumy 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9L3CFLDH",
+          "formattedCitation": "<div class=\"csl-entry\">Bayoumy, Kamel A., Mahmoud M. Masoud, Andrew Connor, Bruce E. Parr, Sabri Y. Abd al-Rahman, Maher B. Amin, Sobhi Ashour, et al. \u201c\u2018Ain al-Sabil in Dakhleh Oasis.\u201d In <i>Proceedings of the Ninth International Dakhleh Oasis Project Conference</i>, edited by Gillian E. Bowen and Colin A. Hope, IX:353\u201366. Papers Presented in Honour of Anthony J. Mills. Oxbow Books, 2019. https://doi.org/10.2307/j.ctv138wsg1.32.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/j.ctv138wsg1.32",
+      "citationDetail": "pages 356-358",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bayoumy 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9L3CFLDH",
+      "formattedCitation": "<div class=\"csl-entry\">Bayoumy, Kamel A., Mahmoud M. Masoud, Andrew Connor, Bruce E. Parr, Sabri Y. Abd al-Rahman, Maher B. Amin, Sobhi Ashour, et al. \u201c\u2018Ain al-Sabil in Dakhleh Oasis.\u201d In <i>Proceedings of the Ninth International Dakhleh Oasis Project Conference</i>, edited by Gillian E. Bowen and Colin A. Hope, IX:353\u201366. Papers Presented in Honour of Anthony J. Mills. Oxbow Books, 2019. https://doi.org/10.2307/j.ctv138wsg1.32.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "142298158",
+  "subject": [],
+  "title": "'Ain el-Sabil Church",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Late antique mud-brick church located at Ain el-Sabil in Egypt. The exact dating of the site is still unknown.",
+  "reprPoint": [
+    29.083462417996664,
+    25.50269366382761
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    29.0833673,
+    25.502608,
+    29.0835497,
+    25.5027682
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/551781152"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-11-16T01:33:43Z",
+  "uri": "https://pleiades.stoa.org/places/142298158",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-16T13:34:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-16T01:38:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-16T01:37:46Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-16T01:33:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-16T01:33:43Z"
+    }
+  ]
+}

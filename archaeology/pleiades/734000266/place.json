@@ -1,0 +1,324 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.6041585,
+          36.8881154
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-iiii-i1i-i-i-i3i1ioii-issiii-i-ii",
+      "properties": {
+        "snippet": "Settlement; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/734000266/osm-location-of-iiii-i1i-i-i-i3i1ioii-issiii-i-ii",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03cc\u03c2 \u03a7\u03ce\u03c1\u03bf\u03c2 \u0394\u03b1\u03c3\u03ba\u03b1\u03bb\u03b9\u03bf\u03cd \u039a\u03ad\u03c1\u03bf\u03c5"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6061196317",
+          "citationDetail": "Node 6061196317",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6061196317",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-iiii-i1i-i-i-i3i1ioii-issiii-i-ii",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03cc\u03c2 \u03a7\u03ce\u03c1\u03bf\u03c2 \u0394\u03b1\u03c3\u03ba\u03b1\u03bb\u03b9\u03bf\u03cd \u039a\u03ad\u03c1\u03bf\u03c5",
+      "provenance": "OpenStreetMap (Node 6061196317, version 1, osm:changeset=64494206, 2018-11-14T17:34:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-01-21T13:52:45Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.6041585,
+          36.8881154
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/734000266/osm-location-of-iiii-i1i-i-i-i3i1ioii-issiii-i-ii",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-08T18:44:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-04T20:44:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T13:57:58Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T13:54:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T13:52:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T13:52:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-01-21T13:49:06Z",
+      "associationCertainty": "certain",
+      "title": "Daskalio",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/734000266/daskalio",
+      "connectionType": "part_of_physical",
+      "id": "daskalio",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-04T20:44:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-04T20:44:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T13:57:58Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T13:49:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-21T13:49:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/212270979",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "D\u014dumas et al. 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZSQCGRDH",
+      "formattedCitation": "<div class=\"csl-entry\">D\u014dumas, Christos, Lila Marankou, Colin Renfrew, Giorgos Gavalas, and Kik\u0113 Birtacha, eds. <i>Keros, Dhaskalio Kavos: The Investigations of 1987-88 = \u039a\u03ad\u03c1\u03bf\u03c2, \u039a\u03ac\u03b2\u03bf\u03c2 \u0394\u03b1\u03c3\u03ba\u03b1\u03bb\u03b9\u03bf\u03c5</i>. Keros, v. 1. Cambridge, UK: McDonald Institute for Archaeological Research, University of Cambridge\u202f;\u00a0 Distributed by Oxbow Books, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Renfrew et al. 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QHG8EE5P",
+      "formattedCitation": "<div class=\"csl-entry\">Renfrew, Colin, Olga Philaniotou, Neil Brodie, Giorgos Gavalas, Michael J. Boyd, Bill Blake, McDonald Institute for Archaeological Research, Stavros S. Niarchos Foundation, A. G. Leventis Foundation, and Institute for Aegean Prehistory, eds. <i>The Settlement at Dhaskalio</i>. McDonald Institute Monographs, volume I. Cambridge: McDonald Institute for Archaeological Research, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/20745362",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Renfrew et al. 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YPY3D7JD",
+      "formattedCitation": "<div class=\"csl-entry\">Renfrew, Colin, Olga Philaniotou, Neil Brodie, and Giorgos Gavalas. \u201cTHE EARLY CYCLADIC SETTLEMENT AT DHASKALIO, KEROS: PRELIMINARY REPORT OF THE 2008 EXCAVATION SEASON.\u201d <i>The Annual of the British School at Athens</i> 104 (2009): 27\u201347. https://www.jstor.org/stable/20745362.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/49248/",
+      "citationDetail": "49248: Dhaskalio [Keros]",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "734000266",
+  "subject": [],
+  "title": "Dhaskalio (settlement)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Early Cycladic settlement identified on the island of Daskalio in the Cyclades. This settlement is the most substantial yet known for the Early Bronze Age in the Cyclades.",
+  "reprPoint": [
+    25.6041585,
+    36.8881154
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    25.6041585,
+    36.8881154,
+    25.6041585,
+    36.8881154
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/212270979"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-01-21T13:48:43Z",
+  "uri": "https://pleiades.stoa.org/places/734000266",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add vici.org 49248: Dhaskalio [Keros]",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-20T02:25:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-02-04T20:44:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2019-02-04T20:44:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T13:57:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T13:55:30Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T13:48:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-21T13:48:43Z"
+    }
+  ]
+}

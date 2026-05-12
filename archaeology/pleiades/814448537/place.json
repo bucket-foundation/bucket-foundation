@@ -1,0 +1,263 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "created": "2020-12-01T02:34:09Z",
+      "associationCertainty": "certain",
+      "title": "Asklepieion (Kos)",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/814448537/asklepieion-kos",
+      "connectionType": "near",
+      "id": "asklepieion-kos",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-02T11:51:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-01T15:26:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-01T03:34:01Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-01T03:33:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-01T02:39:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-01T02:34:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-01T02:34:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599528",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "alguan",
+          "homepage": null,
+          "name": "Annette Lei Guan",
+          "uri": "https://pleiades.stoa.org/author/alguan"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0385.tlg001.perseus-grc1:51.8.3",
+      "citationDetail": "51.8.3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Cassius Dio (Cary: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KSHBBJR4",
+      "formattedCitation": "<div class=\"csl-entry\">Cassius Dio Cocceianus. <i>Dio\u2019s Roman history</i>. Edited by Earnest Cary and Herbert Baldwin Foster. Loeb Classical Library 32, 37, 53, 66, 82, 83, 175\u2013176. London; New York: W. Heinemann\u202f; Macmillan, 1914. http://data.perseus.org/texts/urn:cts:greekLit:tlg0385.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:latinLit:phi1038.phi001.perseus-lat1:1.1.19",
+      "citationDetail": "1.1.19",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Val. Max. (Kempf: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F47DR7ZY",
+      "formattedCitation": "<div class=\"csl-entry\">Valerius Maximus, Julius Paris, and Januarius Nepotianus. <i>Valerii Maximi Factorvm et dictorvm memorabilivm libri novem</i>. Edited by Carolus Kempf. Bibliotheca scriptorum Graecorum et Romanorum Teubneriana. Lipsiae: In aedibus B.G. Tevbneri, 1888. http://data.perseus.org/texts/urn:cts:latinLit:phi1038.phi001.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1140889143",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Herzog 1928",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TW85W5Z5",
+      "formattedCitation": "<div class=\"csl-entry\">Herzog, Rudolf. <i>Heilige Gesetze von Kos</i>. Berlin: Verlag der Akademie der Wissenschaften, 1928.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "814448537",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "Grove of Asklepios at Kos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/grove",
+    "https://pleiades.stoa.org/vocabularies/place-types/unlocated",
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Mentioned in ancient sources, this sacred grove in the ancient sanctuary of Asklepios, located on the Aegean island of Kos, cannot be precisely located today.",
+  "reprPoint": [
+    27.25737304421626,
+    36.87574187710659
+  ],
+  "placeTypes": [
+    "grove",
+    "unlocated",
+    "sanctuary"
+  ],
+  "bbox": [
+    27.2560577,
+    36.8747346,
+    27.2587099,
+    36.8766496
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599528"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-01T02:29:53Z",
+  "uri": "https://pleiades.stoa.org/places/814448537",
+  "creators": [
+    {
+      "username": "alguan",
+      "homepage": null,
+      "name": "Annette Lei Guan",
+      "uri": "https://pleiades.stoa.org/author/alguan"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-23T13:36:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-02T11:51:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-02T11:51:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-12-01T15:28:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T03:34:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T03:33:55Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T03:33:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T02:39:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T02:39:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T02:38:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T02:36:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T02:35:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T02:32:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T02:29:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-01T02:29:53Z"
+    }
+  ]
+}

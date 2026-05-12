@@ -1,0 +1,966 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.8178402,
+            40.9155746
+          ],
+          [
+            14.8178154,
+            40.915558
+          ],
+          [
+            14.8190009,
+            40.9144047
+          ],
+          [
+            14.8202589,
+            40.9131771
+          ],
+          [
+            14.8202844,
+            40.9131923
+          ],
+          [
+            14.819315,
+            40.9141402
+          ],
+          [
+            14.8188994,
+            40.914545
+          ],
+          [
+            14.8178402,
+            40.9155746
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-serino-aqueduct",
+      "properties": {
+        "snippet": "Aqueduct, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/662332233/location-of-serino-aqueduct",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Acquedotto di Serino"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/202129398",
+          "citationDetail": "Way 202129398",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=202129398",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-serino-aqueduct",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Acquedotto di Serino",
+      "provenance": "OpenStreetMap (Way 202129398, version 5, osm:changeset=69385303, 2019-04-19T19:05:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "aqueduct",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-06-30T03:48:11Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.8178402,
+            40.9155746
+          ],
+          [
+            14.8178154,
+            40.915558
+          ],
+          [
+            14.8190009,
+            40.9144047
+          ],
+          [
+            14.8202589,
+            40.9131771
+          ],
+          [
+            14.8202844,
+            40.9131923
+          ],
+          [
+            14.819315,
+            40.9141402
+          ],
+          [
+            14.8188994,
+            40.914545
+          ],
+          [
+            14.8178402,
+            40.9155746
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/662332233/location-of-serino-aqueduct",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-07T03:00:50Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T00:47:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-03T21:30:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-01T17:05:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-09-19T02:24:17Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-30T03:48:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-30T03:48:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-30T03:48:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-03T15:19:23Z",
+      "associationCertainty": "certain",
+      "title": "Abellinum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662332233/9634000086",
+      "connectionType": "at",
+      "id": "9634000086",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T15:19:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T15:19:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T15:19:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432618",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-03T15:54:31Z",
+      "associationCertainty": "certain",
+      "title": "Castellum aquae",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662332233/castellum-aquae",
+      "connectionType": "flows_into",
+      "id": "castellum-aquae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-04T20:59:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:42:33Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:42:26Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T15:54:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T15:54:31Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/419672523",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://iwaponline.com/ws/article/7/1/131/26273/Historical-development-of-the-Augustan-Aqueduct-in",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Feo 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WDSD2M52",
+          "formattedCitation": "<div class=\"csl-entry\">De Feo, G., and R. M. A. Napoli. \u201cHistorical Development of the Augustan Aqueduct in Southern Italy: Twenty Centuries of Works from Serino to Naples.\u201d <i>Water Supply</i> 7, no. 1 (March 1, 2007): 131\u201338. https://doi.org/10.2166/ws.2007.015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    },
+    {
+      "end": 300,
+      "description": "The Piscina Mirabilis was supplied with water via the Aqua Augusta which channeled water from spring-fed sources at Serino, near ancient Abellinum.",
+      "contributors": [],
+      "created": "2020-08-03T15:58:44Z",
+      "associationCertainty": "certain",
+      "title": "Piscina Mirabilis",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662332233/piscina-mirabilis",
+      "connectionType": "flows_into",
+      "id": "piscina-mirabilis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-03T21:30:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:03:38Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:03:32Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T15:58:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T15:58:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/812127750",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Piscina_Mirabilis",
+          "citationDetail": "Piscina Mirabilis",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-03T16:10:21Z",
+      "associationCertainty": "certain",
+      "title": "Herculaneum",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662332233/herculaneum",
+      "connectionType": "flows_into",
+      "id": "herculaneum",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-04T20:59:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T22:04:07Z"
+        },
+        {
+          "comment": "added reference, time period, ctype to flows into",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T22:04:01Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:10:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:10:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432873",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://iwaponline.com/ws/article/7/1/131/26273/Historical-development-of-the-Augustan-Aqueduct-in",
+          "citationDetail": "134",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Feo 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WDSD2M52",
+          "formattedCitation": "<div class=\"csl-entry\">De Feo, G., and R. M. A. Napoli. \u201cHistorical Development of the Augustan Aqueduct in Southern Italy: Twenty Centuries of Works from Serino to Naples.\u201d <i>Water Supply</i> 7, no. 1 (March 1, 2007): 131\u201338. https://doi.org/10.2166/ws.2007.015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-03T16:11:09Z",
+      "associationCertainty": "certain",
+      "title": "Parthenope/Neapolis",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662332233/parthenope-neapolis",
+      "connectionType": "flows_into",
+      "id": "parthenope-neapolis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-04T20:59:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:37:50Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:37:44Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:11:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:11:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433014",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://iwaponline.com/ws/article/7/1/131/26273/Historical-development-of-the-Augustan-Aqueduct-in",
+          "citationDetail": "134",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Feo 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WDSD2M52",
+          "formattedCitation": "<div class=\"csl-entry\">De Feo, G., and R. M. A. Napoli. \u201cHistorical Development of the Augustan Aqueduct in Southern Italy: Twenty Centuries of Works from Serino to Naples.\u201d <i>Water Supply</i> 7, no. 1 (March 1, 2007): 131\u201338. https://doi.org/10.2166/ws.2007.015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-03T16:11:59Z",
+      "associationCertainty": "certain",
+      "title": "Sarno",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662332233/sarno",
+      "connectionType": "flows_into",
+      "id": "sarno",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-04T20:59:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:32:38Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:32:31Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:12:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:11:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433101",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://iwaponline.com/ws/article/7/1/131/26273/Historical-development-of-the-Augustan-Aqueduct-in",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Feo 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WDSD2M52",
+          "formattedCitation": "<div class=\"csl-entry\">De Feo, G., and R. M. A. Napoli. \u201cHistorical Development of the Augustan Aqueduct in Southern Italy: Twenty Centuries of Works from Serino to Naples.\u201d <i>Water Supply</i> 7, no. 1 (March 1, 2007): 131\u201338. https://doi.org/10.2166/ws.2007.015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-03T16:16:31Z",
+      "associationCertainty": "certain",
+      "title": "Acerrae",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662332233/acerrae",
+      "connectionType": "flows_into",
+      "id": "acerrae",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-04T20:59:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T22:14:30Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T22:14:24Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:16:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:16:31Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432621",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://iwaponline.com/ws/article/7/1/131/26273/Historical-development-of-the-Augustan-Aqueduct-in",
+          "citationDetail": "134",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Feo 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WDSD2M52",
+          "formattedCitation": "<div class=\"csl-entry\">De Feo, G., and R. M. A. Napoli. \u201cHistorical Development of the Augustan Aqueduct in Southern Italy: Twenty Centuries of Works from Serino to Naples.\u201d <i>Water Supply</i> 7, no. 1 (March 1, 2007): 131\u201338. https://doi.org/10.2166/ws.2007.015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-08-03T16:17:34Z",
+      "associationCertainty": "certain",
+      "title": "Atella (Campania)",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662332233/atella",
+      "connectionType": "flows_into",
+      "id": "atella",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-04T20:59:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:39:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:39:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T23:39:42Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:17:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:17:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432705",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://iwaponline.com/ws/article/7/1/131/26273/Historical-development-of-the-Augustan-Aqueduct-in",
+          "citationDetail": "134",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Feo 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WDSD2M52",
+          "formattedCitation": "<div class=\"csl-entry\">De Feo, G., and R. M. A. Napoli. \u201cHistorical Development of the Augustan Aqueduct in Southern Italy: Twenty Centuries of Works from Serino to Naples.\u201d <i>Water Supply</i> 7, no. 1 (March 1, 2007): 131\u201338. https://doi.org/10.2166/ws.2007.015.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Aqua_Augusta_(Naples)",
+      "citationDetail": "Aqua Augusta (Naples)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q631734",
+      "citationDetail": "Q631734: Aqua Augusta",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://iwaponline.com/ws/article/7/1/131/26273/Historical-development-of-the-Augustan-Aqueduct-in",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Feo 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WDSD2M52",
+      "formattedCitation": "<div class=\"csl-entry\">De Feo, G., and R. M. A. Napoli. \u201cHistorical Development of the Augustan Aqueduct in Southern Italy: Twenty Centuries of Works from Serino to Naples.\u201d <i>Water Supply</i> 7, no. 1 (March 1, 2007): 131\u201338. https://doi.org/10.2166/ws.2007.015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Acquedotto romano del Serino",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Acquedotto_romano_del_Serino",
+          "citationDetail": "Acquedotto romano del Serino",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "acquedotto-romano-del-serino",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2020-08-03T16:05:55Z",
+      "uri": "https://pleiades.stoa.org/places/662332233/acquedotto-romano-del-serino",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Acquedotto romano del Serino",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-08-03T21:30:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:06:09Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:05:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-08-03T16:05:55Z"
+        }
+      ]
+    }
+  ],
+  "id": "662332233",
+  "subject": [],
+  "title": "Aqua Augusta (Naples)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Aqua Augusta (Naples), also known as the Acquedotto romano del Serino, is a complex aqueduct system supplying Roman-period sites in the Bay of Naples. The aqueduct system was built between ca. 33 and 12 B.C. It supplied a number of Campanian centers, including Pompeii, Herculaneum, and Puteoli.",
+  "reprPoint": [
+    14.819050348144994,
+    40.91437619377649
+  ],
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": [
+    14.8178154,
+    40.9131771,
+    14.8202844,
+    40.9155746
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432618",
+    "https://pleiades.stoa.org/places/419672523",
+    "https://pleiades.stoa.org/places/812127750",
+    "https://pleiades.stoa.org/places/432873",
+    "https://pleiades.stoa.org/places/432815",
+    "https://pleiades.stoa.org/places/433014",
+    "https://pleiades.stoa.org/places/433101",
+    "https://pleiades.stoa.org/places/432621",
+    "https://pleiades.stoa.org/places/432705"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-08-03T15:19:22Z",
+  "uri": "https://pleiades.stoa.org/places/662332233",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-03T23:38:32Z"
+    },
+    {
+      "comment": "added wikidata reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-03T21:58:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-08-03T21:30:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-03T16:07:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-03T15:31:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-03T15:30:57Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-03T15:19:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-03T15:19:22Z"
+    }
+  ]
+}

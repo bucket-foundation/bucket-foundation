@@ -1,0 +1,560 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.61153111551975,
+              25.72807698342519
+            ],
+            [
+              32.61219957097211,
+              25.72863393903966
+            ],
+            [
+              32.6114046528712,
+              25.72935481302141
+            ],
+            [
+              32.61077177735423,
+              25.72882233401924
+            ],
+            [
+              32.61153111551975,
+              25.72807698342519
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-funerary-temple-of-amenhotep-ii-1",
+      "properties": {
+        "snippet": "Temple-2; 1548 BC - 1086 BC",
+        "link": "https://pleiades.stoa.org/places/949519860/imagery-location-funerary-temple-of-amenhotep-ii-1",
+        "description": "Imagery Location: visible remains of the funerary temple of Amenhotep II",
+        "location_precision": "precise",
+        "title": "Imagery Location: Funerary temple of Amenhotep II"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-funerary-temple-of-amenhotep-ii-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -1086,
+      "title": "Imagery Location: Funerary temple of Amenhotep II",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1548,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Imagery Location: visible remains of the funerary temple of Amenhotep II",
+      "created": "2025-03-14T18:41:04Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.61153111551975,
+              25.72807698342519
+            ],
+            [
+              32.61219957097211,
+              25.72863393903966
+            ],
+            [
+              32.6114046528712,
+              25.72935481302141
+            ],
+            [
+              32.61077177735423,
+              25.72882233401924
+            ],
+            [
+              32.61153111551975,
+              25.72807698342519
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/949519860/imagery-location-funerary-temple-of-amenhotep-ii-1",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:52:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:26:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:41:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:41:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1086,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-14T18:36:15Z",
+      "associationCertainty": "certain",
+      "title": "Theban necropolis",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/949519860/theban-necropolis",
+      "connectionType": "at",
+      "id": "theban-necropolis",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:52:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:26:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:36:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:36:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/836839127",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.griffith.ox.ac.uk/topbib/pdf/pm2.pdf",
+      "citationDetail": "pp. 429-431",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Porter 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WSVSMMAU",
+      "formattedCitation": "<div class=\"csl-entry\">Porter, Bertha, Rosalind Louisa Beaufort Moss, and Ethel W. Burney. <i>Topographical Bibliography of Ancient Egyptian Hieroglyphic Texts, Reliefs, and Paintings. II. Theban Temples</i>. 2nd ed. 1929. Reprint, Oxford: Clarendon Press, 1972. http://www.griffith.ox.ac.uk/topbib/pdf/pm2.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of a million years of Amenhotep II",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "temple-of-a-million-years-of-amenhotep-ii",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-14T18:33:33Z",
+      "uri": "https://pleiades.stoa.org/places/949519860/temple-of-a-million-years-of-amenhotep-ii",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Temple of a million years of Amenhotep II",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:52:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:26:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:33:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:33:33Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Funerary temple of Amenhotep II",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "funerary-temple-of-amenhotep-ii",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-14T18:34:14Z",
+      "uri": "https://pleiades.stoa.org/places/949519860/funerary-temple-of-amenhotep-ii",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Funerary temple of Amenhotep II",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:52:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:26:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:34:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:34:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple fun\u00e9raire d'Amenhotep II",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "temple-funeraire-damenhotep-ii",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-03-14T18:34:50Z",
+      "uri": "https://pleiades.stoa.org/places/949519860/temple-funeraire-damenhotep-ii",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Temple fun\u00e9raire d'Amenhotep II",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:52:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:26:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:34:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:34:50Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple des millions d'ann\u00e9es d'Amenhotep II",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "temple-des-millions-dannees-damenhotep-ii",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-03-14T18:35:26Z",
+      "uri": "https://pleiades.stoa.org/places/949519860/temple-des-millions-dannees-damenhotep-ii",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Temple des millions d'ann\u00e9es d'Amenhotep II",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:52:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T19:26:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:35:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-14T18:35:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "949519860",
+  "subject": [
+    "temple"
+  ],
+  "title": "Funerary temple of Amenhotep II",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Temple dedicated to the cult of King Amenhotep II located on the west bank of Thebes.",
+  "reprPoint": [
+    32.611480231705606,
+    25.728719130877536
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    32.61077177735423,
+    25.72807698342519,
+    32.61219957097211,
+    25.72935481302141
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/836839127"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-14T18:31:54Z",
+  "uri": "https://pleiades.stoa.org/places/949519860",
+  "creators": [
+    {
+      "username": "nsouchon",
+      "homepage": null,
+      "name": "Nicolas Souchon",
+      "uri": "https://pleiades.stoa.org/author/nsouchon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-17T16:52:27Z"
+    },
+    {
+      "comment": "refreshed full citation and access URI for Porter 1972",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-17T16:52:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T19:26:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T18:32:56Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T18:31:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-14T18:31:54Z"
+    }
+  ]
+}

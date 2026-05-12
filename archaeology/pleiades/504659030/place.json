@@ -1,0 +1,159 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2017-06-16T10:57:01Z",
+      "associationCertainty": "certain",
+      "title": "Aquae Sulis",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/504659030/aquae-sulis",
+      "connectionType": "at",
+      "id": "aquae-sulis",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:22:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:22:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "saloni",
+          "modified": "2017-06-16T10:57:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "saloni",
+          "modified": "2017-06-16T10:57:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79299",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "saloni",
+          "homepage": null,
+          "name": "Syvanne Aloni",
+          "uri": "https://pleiades.stoa.org/author/saloni"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/980071056",
+      "citationDetail": "pp. 75-6; 80",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "La Trobe-Bateman and Niblett 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9MB3U4GH",
+      "formattedCitation": "<div class=\"csl-entry\">La Trobe-Bateman, Emily, and Rosalind Niblett. <i>Bath: a study of settlement around the sacred hot springs from the mesolithic to the 17th century AD\u202f: an archaeological assessment</i>, 2016. http://www.worldcat.org/oclc/980071056.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Citizen House (Westgate Building), Heritage Gateway",
+      "bibliographicURI": "http://www.heritagegateway.org.uk/Gateway/Results_Single.aspx?uid=MBN1794&resourceID=1036",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "504659030",
+  "subject": [],
+  "title": "Citizen House (Westgate Building)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The remains of a possible Roman rampart were identified on the St John\u2019s Hospital site in 1954.",
+  "reprPoint": null,
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": null,
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79299"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-06-16T10:44:14Z",
+  "uri": "https://pleiades.stoa.org/places/504659030",
+  "creators": [
+    {
+      "username": "saloni",
+      "homepage": null,
+      "name": "Syvanne Aloni",
+      "uri": "https://pleiades.stoa.org/author/saloni"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-21T14:22:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-21T14:22:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-21T14:22:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "saloni",
+      "modified": "2017-06-16T10:47:45Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "saloni",
+      "modified": "2017-06-16T10:44:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "saloni",
+      "modified": "2017-06-16T10:44:14Z"
+    }
+  ]
+}

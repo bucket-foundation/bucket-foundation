@@ -1,0 +1,678 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.7479536,
+            18.2228302
+          ],
+          [
+            30.748233,
+            18.2204313
+          ],
+          [
+            30.7460654,
+            18.2199148
+          ],
+          [
+            30.7436728,
+            18.221902
+          ],
+          [
+            30.7420425,
+            18.2233381
+          ],
+          [
+            30.7417095,
+            18.2238994
+          ],
+          [
+            30.7419026,
+            18.2241032
+          ],
+          [
+            30.7418382,
+            18.2246739
+          ],
+          [
+            30.7414394,
+            18.2250399
+          ],
+          [
+            30.7405937,
+            18.2277718
+          ],
+          [
+            30.740186,
+            18.2295552
+          ],
+          [
+            30.739553,
+            18.2330402
+          ],
+          [
+            30.7399177,
+            18.2338554
+          ],
+          [
+            30.7411623,
+            18.2340592
+          ],
+          [
+            30.7419777,
+            18.2337943
+          ],
+          [
+            30.7429218,
+            18.2316544
+          ],
+          [
+            30.7458276,
+            18.2258723
+          ],
+          [
+            30.746114,
+            18.2247513
+          ],
+          [
+            30.7469308,
+            18.2240053
+          ],
+          [
+            30.7479536,
+            18.2228302
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-old-dongola",
+      "properties": {
+        "snippet": "Settlement; AD 300 - AD 1450",
+        "link": "https://pleiades.stoa.org/places/865674318/osm-location-of-old-dongola",
+        "description": "Polygon representing the Old Dongola archaeological site, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Old Dongola"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "enesy",
+      "homepage": null,
+      "name": "Enes Y\u0131landilo\u011flu",
+      "uri": "https://pleiades.stoa.org/author/enesy"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "caliphate-umayyad-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/caliphate-umayyad-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "abassid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/abassid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fatimid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fatimid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ayyubid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ayyubid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/194217480",
+          "citationDetail": "Way 194217480",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=194217480",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-old-dongola",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 1450,
+      "title": "OSM location of Old Dongola",
+      "provenance": "OpenStreetMap (Way 194217480, version 5, osm:changeset=99608653, 2021-02-19T17:02:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the Old Dongola archaeological site, derived from an OpenStreetMap Way.",
+      "created": "2018-03-05T17:54:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.7479536,
+            18.2228302
+          ],
+          [
+            30.748233,
+            18.2204313
+          ],
+          [
+            30.7460654,
+            18.2199148
+          ],
+          [
+            30.7436728,
+            18.221902
+          ],
+          [
+            30.7420425,
+            18.2233381
+          ],
+          [
+            30.7417095,
+            18.2238994
+          ],
+          [
+            30.7419026,
+            18.2241032
+          ],
+          [
+            30.7418382,
+            18.2246739
+          ],
+          [
+            30.7414394,
+            18.2250399
+          ],
+          [
+            30.7405937,
+            18.2277718
+          ],
+          [
+            30.740186,
+            18.2295552
+          ],
+          [
+            30.739553,
+            18.2330402
+          ],
+          [
+            30.7399177,
+            18.2338554
+          ],
+          [
+            30.7411623,
+            18.2340592
+          ],
+          [
+            30.7419777,
+            18.2337943
+          ],
+          [
+            30.7429218,
+            18.2316544
+          ],
+          [
+            30.7458276,
+            18.2258723
+          ],
+          [
+            30.746114,
+            18.2247513
+          ],
+          [
+            30.7469308,
+            18.2240053
+          ],
+          [
+            30.7479536,
+            18.2228302
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/865674318/osm-location-of-old-dongola",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T02:07:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-05T18:31:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T18:01:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T17:56:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T17:54:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T17:54:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Old_Dongola",
+      "citationDetail": "Old Dongola",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u0141ajtar 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ICAS7JTZ",
+      "formattedCitation": "<div class=\"csl-entry\">\u0141ajtar, Adam, and Jacques van der Vliet. <i>Empowering the Dead in Christian Nubia: The Texts from a Medieval Funerary Complex in Dongola</i>. Journal of Juristic Papyrology. Supplement, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q433112",
+      "citationDetail": "Old Dongola (Q433112)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/55627/",
+      "citationDetail": "55627: Old Dongola",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dunqulah al Qad\u012bmah",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/376115/dunqulah-al-qadimah.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Geonames, Dunqulah al Qad\u012bmah",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-03-05.6342149739",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2018-03-05T17:58:42Z",
+      "uri": "https://pleiades.stoa.org/places/865674318/name.2018-03-05.6342149739",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-05T18:31:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T18:01:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T17:58:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T17:58:42Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dunqul\u0101 al-\u02bfAj\u016bz",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/376115/dunqulah-al-qadimah.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Geonames, Dunqulah al Qad\u012bmah",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Old_Dongola",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia, Old Dongola",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "dunqula-al-e-aja-z",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2018-03-05T18:00:30Z",
+      "uri": "https://pleiades.stoa.org/places/865674318/dunqula-al-e-aja-z",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u062f\u0646\u0642\u0644\u0627 \u0627\u0644\u0639\u062c\u0648\u0632\u200e",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-05T18:31:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T18:01:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T18:00:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-03-05T18:00:30Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dun\u1e33ula",
+      "attestations": [
+        {
+          "timePeriod": "sixteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx",
+          "citationDetail": "1st Volume, 857",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "K\u00fcnh\u00fc'l-ahb\u00e2r",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WKDD5W8W",
+          "formattedCitation": "<div class=\"csl-entry\">\u00c2li, Mustafa bin Ahmet. <i>K\u00fcnh\u00fc\u2019l-ahb\u00e2r: (tenkitli metin)</i>. Edited by Suat Donuk and Derya \u00d6rs. 1. bask\u0131. 5 vols. T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131 yay\u0131nlar\u0131. Fatih, \u0130stanbul: T\u00fcrkiye Yazma Eserler Kurumu Ba\u015fkanl\u0131\u011f\u0131, 2020. https://ekitap.yek.gov.tr/urun/kunhu%E2%80%99l-ahbar--takim-5-cilt-_821.aspx.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "dunkula",
+      "end": 1599,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1500,
+      "details": "<p data-start=\"202\" data-end=\"323\">Another is the <em>N\u016bbe</em> (Nubia) realm, which N\u016bbe, son of <em>\u1e32ar\u1e6d\u012bn</em>, son of <em>Nab\u1e63ar</em>, son of <em>\u1e24\u0101m</em>, built and established.\u00a0The capital of this land is the city of <em>Dun\u1e33ula</em> (Dongola, Sudan), which was first settled and made prosperous by the people of <em>S\u016bd\u0101n</em> (the Cushitic / Nubian peoples).\u00a0Its inhabitants follow the <em>Na\u1e63\u0101r\u0101-y\u0131 Ya\u2018\u1e33\u016bbiyye</em> (Jacobite / Miaphysite Christian) religion and are counted among the people of unbelief and error. [translation]</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ota",
+      "created": "2025-12-06T12:46:42Z",
+      "uri": "https://pleiades.stoa.org/places/865674318/dunkula",
+      "creators": [
+        {
+          "username": "enesy",
+          "homepage": null,
+          "name": "Enes Y\u0131landilo\u011flu",
+          "uri": "https://pleiades.stoa.org/author/enesy"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-30T16:06:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "enesy",
+          "modified": "2025-12-06T12:46:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "enesy",
+          "modified": "2025-12-06T12:46:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "enesy",
+          "modified": "2025-12-06T12:46:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "865674318",
+  "subject": [],
+  "title": "Dongola",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The late antique capital of the Nubian state of Makuria, Dongola remained an important center of trade through the medieval period.",
+  "reprPoint": [
+    30.743493166829953,
+    18.226694640097133
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    30.739553,
+    18.2199148,
+    30.748233,
+    18.2340592
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-05T17:52:30Z",
+  "uri": "https://pleiades.stoa.org/places/865674318",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata, vici.org",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T02:10:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-01T12:17:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-05T18:31:56Z"
+    },
+    {
+      "comment": "edited summary, fetched Zotero for Wikipedia reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-05T18:30:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-03-05T18:01:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-03-05T17:53:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-03-05T17:52:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-03-05T17:52:30Z"
+    }
+  ]
+}

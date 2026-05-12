@@ -1,0 +1,389 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.4049479,
+          34.7758591
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomb-3",
+      "properties": {
+        "snippet": "Tomb; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/20024633/osm-location-of-tomb-3",
+        "description": "",
+        "location_precision": "precise",
+        "title": "OSM Location of Tomb 3"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/564687139",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "OSM Node 564687139",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-tomb-3",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -30,
+      "title": "OSM Location of Tomb 3",
+      "provenance": "OpenStreetMap (Node 564687139, version 8, osm:changeset=118978970, 2022-03-27T12:27:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "",
+      "created": "2022-09-27T18:11:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.4049479,
+          34.7758591
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/20024633/osm-location-of-tomb-3",
+      "creators": [
+        {
+          "username": null,
+          "name": "Ariel Cooper"
+        },
+        {
+          "username": null,
+          "name": "Matthew Redford"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-27T20:26:38Z"
+        },
+        {
+          "comment": "OpenStreetMap (Node 564687139, version 8, osm:changeset=118978970, 2022-03-27T12:27:46Z)",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-27T20:26:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:45:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:11:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:11:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-09-27T18:01:35Z",
+      "associationCertainty": "certain",
+      "title": "Tombs of the Kings",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/20024633/tombs-of-the-kings",
+      "connectionType": "at",
+      "id": "tombs-of-the-kings",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-27T20:26:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:45:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:01:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:01:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/848646653",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/1041431954",
+      "citationDetail": "21-23",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hadjisavvas 2014",
+      "bibliographicURI": "",
+      "formattedCitation": "Hadjisavvas, Sophocles. 2011. Digging up the Tombs of the Kings: A World Heritage Site. Nicosia: Napaphos Publishers.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Guimier-Sorbets and Michaelides 2009",
+      "bibliographicURI": "http://atlantides.org/bibliography/g.html#Guimier-Sorbets-and-Michaelides-2009",
+      "formattedCitation": "Guimier-Sorbets, A.-M., and D. Michaelides. 2009. \u201cAlexandrian Influences on the Architecture and Decoration of the Hellenistic Tombs of Cyprus.\u201d In Egypt and Cyprus in Antiquity, D. Michaelides, V. Kassianidou, and R.S. Merrillees (eds.). Oxbow, 216\u201333.",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tomb 3",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hadjisavvas 2014",
+          "bibliographicURI": "http://atlantides.org/bibliography/h.html#Hadjisavvas-2014",
+          "formattedCitation": "Hadjisavvas, Sophocles. 2014. Digging up the Tombs of the Kings: A World Heritage Site. Nicosia: Napaphos Publishers.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tomb-3",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-09-27T18:45:11Z",
+      "uri": "https://pleiades.stoa.org/places/20024633/tomb-3",
+      "creators": [
+        {
+          "username": null,
+          "name": "Ariel Cooper"
+        },
+        {
+          "username": null,
+          "name": "Matthew Redford"
+        }
+      ],
+      "attested": "Tomb 3",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-27T20:26:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:45:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:45:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-27T18:45:11Z"
+        }
+      ]
+    }
+  ],
+  "id": "20024633",
+  "subject": [
+    "tomb"
+  ],
+  "title": "Tomb 3 (Tombs of the Kings)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "<p>Tomb 3 is located in the \"Tombs of the Kings\" necropolis of Nea Paphos. Tomb 3 is recognizable for its well-preserved peristyle atrium, surrounded by Doric columns, with several tomb complexes branching out from it. The eastern side of the tomb was first excavated in 1977, which revealed a number of mostly plundered pit-shaped tombs, including several tombs intended for young children. A subsequent excavation of the western side in 1989 found more of these pit-shaped tombs, as well as evidence of a drainage system. Both of these excavations yielded Hellenistic era pottery and coinage, meaning these tombs were in use between the 3rd and 1st centuries BCE. This tomb is now recognized as part of a UNESCO World Heritage Site, and much of the destroyed or damaged architecture has been restored using materials from elsewhere in the necropolis.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tomb 3 is a rock-cut tomb with a peristyle courtyard in the \"Tombs of the Kings\" necropolis of Nea Paphos.",
+  "reprPoint": [
+    32.4049479,
+    34.7758591
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    32.4049479,
+    34.7758591,
+    32.4049479,
+    34.7758591
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/848646653"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-27T17:06:19Z",
+  "uri": "https://pleiades.stoa.org/places/20024633",
+  "creators": [
+    {
+      "username": null,
+      "name": "Ariel Cooper"
+    },
+    {
+      "username": null,
+      "name": "Matthew Redford"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-27T20:26:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-27T18:45:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-27T18:43:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-27T17:06:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-27T17:06:19Z"
+    }
+  ]
+}

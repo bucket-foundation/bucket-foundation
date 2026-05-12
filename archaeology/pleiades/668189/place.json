@@ -1,0 +1,922 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.361407,
+          35.533726
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Settlement; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/668189/dare-location",
+        "description": "Representative point location, site precision",
+        "location_precision": "precise",
+        "title": "DARE Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            37.3666893,
+            35.5411121
+          ],
+          [
+            37.3661658,
+            35.5414174
+          ],
+          [
+            37.3651658,
+            35.5412518
+          ],
+          [
+            37.3642002,
+            35.5408153
+          ],
+          [
+            37.3627196,
+            35.5397502
+          ],
+          [
+            37.3617111,
+            35.5393137
+          ],
+          [
+            37.3576127,
+            35.5378994
+          ],
+          [
+            37.3563896,
+            35.5372534
+          ],
+          [
+            37.3556386,
+            35.5368518
+          ],
+          [
+            37.3544155,
+            35.5352511
+          ],
+          [
+            37.3538147,
+            35.5344828
+          ],
+          [
+            37.352892,
+            35.5328414
+          ],
+          [
+            37.3529564,
+            35.532527
+          ],
+          [
+            37.3540507,
+            35.531846
+          ],
+          [
+            37.3549091,
+            35.5306935
+          ],
+          [
+            37.355467,
+            35.5303443
+          ],
+          [
+            37.3569261,
+            35.529541
+          ],
+          [
+            37.3586641,
+            35.5286329
+          ],
+          [
+            37.3598658,
+            35.5284234
+          ],
+          [
+            37.3629986,
+            35.5273756
+          ],
+          [
+            37.3642861,
+            35.5279693
+          ],
+          [
+            37.3666893,
+            35.5293664
+          ],
+          [
+            37.3680626,
+            35.5311475
+          ],
+          [
+            37.3702727,
+            35.5329357
+          ],
+          [
+            37.3710023,
+            35.5333898
+          ],
+          [
+            37.3711954,
+            35.5346645
+          ],
+          [
+            37.3709379,
+            35.5353454
+          ],
+          [
+            37.3709379,
+            35.5357296
+          ],
+          [
+            37.3690711,
+            35.5379821
+          ],
+          [
+            37.368599,
+            35.5390472
+          ],
+          [
+            37.3675476,
+            35.5401472
+          ],
+          [
+            37.3666893,
+            35.5411121
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-locstion-of-el-anderin",
+      "properties": {
+        "snippet": "Settlement; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/668189/osm-locstion-of-el-anderin",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM locstion of El Anderin"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://francia.ahlfeldt.se/imperium.php",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Johan \u00c5hlfeldt, Digital Atlas of the Roman Empire, 2012.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 640,
+      "title": "DARE Location",
+      "provenance": "Digital Atlas of the Roman Empire (2012-10-15)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-3",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative point location, site precision",
+      "created": "2012-10-20T23:07:57Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.361407,
+          35.533726
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668189/dare-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:07:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:07:58Z"
+        },
+        {
+          "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:07:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T23:07:58Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/803144179",
+          "citationDetail": "Way 803144179",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=803144179",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-locstion-of-el-anderin",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 640,
+      "title": "OSM locstion of El Anderin",
+      "provenance": "OpenStreetMap (Way 803144179, version 1, osm:changeset=85110008, 2020-05-13T00:29:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-05-13T00:31:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            37.3666893,
+            35.5411121
+          ],
+          [
+            37.3661658,
+            35.5414174
+          ],
+          [
+            37.3651658,
+            35.5412518
+          ],
+          [
+            37.3642002,
+            35.5408153
+          ],
+          [
+            37.3627196,
+            35.5397502
+          ],
+          [
+            37.3617111,
+            35.5393137
+          ],
+          [
+            37.3576127,
+            35.5378994
+          ],
+          [
+            37.3563896,
+            35.5372534
+          ],
+          [
+            37.3556386,
+            35.5368518
+          ],
+          [
+            37.3544155,
+            35.5352511
+          ],
+          [
+            37.3538147,
+            35.5344828
+          ],
+          [
+            37.352892,
+            35.5328414
+          ],
+          [
+            37.3529564,
+            35.532527
+          ],
+          [
+            37.3540507,
+            35.531846
+          ],
+          [
+            37.3549091,
+            35.5306935
+          ],
+          [
+            37.355467,
+            35.5303443
+          ],
+          [
+            37.3569261,
+            35.529541
+          ],
+          [
+            37.3586641,
+            35.5286329
+          ],
+          [
+            37.3598658,
+            35.5284234
+          ],
+          [
+            37.3629986,
+            35.5273756
+          ],
+          [
+            37.3642861,
+            35.5279693
+          ],
+          [
+            37.3666893,
+            35.5293664
+          ],
+          [
+            37.3680626,
+            35.5311475
+          ],
+          [
+            37.3702727,
+            35.5329357
+          ],
+          [
+            37.3710023,
+            35.5333898
+          ],
+          [
+            37.3711954,
+            35.5346645
+          ],
+          [
+            37.3709379,
+            35.5353454
+          ],
+          [
+            37.3709379,
+            35.5357296
+          ],
+          [
+            37.3690711,
+            35.5379821
+          ],
+          [
+            37.368599,
+            35.5390472
+          ],
+          [
+            37.3675476,
+            35.5401472
+          ],
+          [
+            37.3666893,
+            35.5411121
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668189/osm-locstion-of-el-anderin",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-14T07:53:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-13T00:31:41Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-13T00:31:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-13T00:31:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-13T00:31:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "68 D2 Androna/Andarna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/492415864",
+      "citationDetail": "47-63",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Butler 1920",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BDJ5ZIST",
+      "formattedCitation": "<div class=\"csl-entry\">Butler, Howard Crosby. \u201cArchitecture: Northern Syria.\u201d In <i>Syria: Publications of the Princeton University Archaeological Expeditions to Syria in 1904-1905 and 1909</i>, Vol. 2b. Leyden: E. J. Brill, 1920. http://www.worldcat.org/oclc/283660550.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "1990.934",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TPJPTDAA",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Bulletin Epigraphique</i>, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "3132",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Strube 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/78A4LXLB",
+      "formattedCitation": "<div class=\"csl-entry\">Strube, Christine. <i>Al Andarin, das antike Androna: Oberfl\u00e4chenbefunde und Grabungsergebnisse: die Umfassungsmauern und das Kastron</i>. Monographien (R\u00f6misch-Germanisches Zentralmuseum Mainz). Mainz: Verlag des R\u00f6misch-Germanischen Zentralmuseums, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Androna",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "androna",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 68 D2 Androna/Andarna",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-19T12:21:12Z",
+      "uri": "https://pleiades.stoa.org/places/668189/androna",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:44:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T14:02:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:28:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:21:12Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Andarna",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "andarna",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Warner"
+        },
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 68 D2 Androna/Andarna",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-19T12:21:13Z",
+      "uri": "https://pleiades.stoa.org/places/668189/andarna",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.P. Brown"
+        },
+        {
+          "username": null,
+          "name": "P.-L. Gatier"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T07:44:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-19T14:02:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:28:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-19T12:21:13Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Al-Andar\u012bn, Andarin, Al-Andarin",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q12180802",
+          "citationDetail": "Q12180802: Androna",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "al-andarin",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Arabic name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2020-05-12T17:13:34Z",
+      "uri": "https://pleiades.stoa.org/places/668189/al-andarin",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0627\u0644\u0623\u0646\u062f\u0631\u064a\u0646",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-13T00:26:10Z"
+        },
+        {
+          "comment": "edited reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-13T00:26:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-12T17:13:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-12T17:13:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-12T17:13:34Z"
+        }
+      ]
+    }
+  ],
+  "id": "668189",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Androna/Andarna",
+  "provenance": "Barrington Atlas: BAtlas 68 D2 Androna/Andarna",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: el-Anderin</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Modern Al Andarin, a ruined late-antique / early Byzantine walled city located in modern Syria, about 75km south-southeast of Aleppo.",
+  "reprPoint": [
+    37.361916581508396,
+    35.53396689231347
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    37.352892,
+    35.5273756,
+    37.3711954,
+    35.5414174
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-06T19:56:39Z",
+  "uri": "https://pleiades.stoa.org/places/668189",
+  "creators": [
+    {
+      "username": null,
+      "name": "J.P. Brown"
+    },
+    {
+      "username": null,
+      "name": "P.-L. Gatier"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary; added Strube 2015; cleaned up references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-07T15:49:44Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-06T19:56:38Z"
+    },
+    {
+      "comment": "DARMC 3132",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-13T00:30:24Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:07:59Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:44:42Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T18:56:12Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:55:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-19T14:02:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T12:28:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T12:21:12Z"
+    }
+  ]
+}

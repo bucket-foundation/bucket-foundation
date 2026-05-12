@@ -1,0 +1,473 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.2000113,
+            33.9992102
+          ],
+          [
+            36.2000432,
+            33.9992444
+          ],
+          [
+            36.2002311,
+            33.9991242
+          ],
+          [
+            36.2001992,
+            33.99909
+          ],
+          [
+            36.2000113,
+            33.9992102
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-so-called-stone-of-the-pregnant",
+      "properties": {
+        "snippet": "Monument; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/633455581/osm-location-of-so-called-stone-of-the-pregnant",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of so-called Stone of the Pregnant Woman"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/244881406",
+          "citationDetail": "Way 244881406",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=244881406",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-so-called-stone-of-the-pregnant",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 300,
+      "title": "OSM location of so-called Stone of the Pregnant Woman",
+      "provenance": "OpenStreetMap (Way 244881406, version 4, osm:changeset=43747895, 2016-11-17T22:27:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-06-12T18:14:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.2000113,
+            33.9992102
+          ],
+          [
+            36.2000432,
+            33.9992444
+          ],
+          [
+            36.2002311,
+            33.9991242
+          ],
+          [
+            36.2001992,
+            33.99909
+          ],
+          [
+            36.2000113,
+            33.9992102
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/633455581/osm-location-of-so-called-stone-of-the-pregnant",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-18T23:56:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:47:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:47:28Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:15:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:14:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:14:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 99,
+      "description": "The Stone of the Pregnant Woman is a Roman monolith in Baalbek.",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2020-06-12T15:14:53Z",
+      "associationCertainty": "certain",
+      "title": "Heliopolis/Col. Iulia Augusta Felix",
+      "start": 1,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/633455581/heliopolis-col-iulia-augusta-felix",
+      "connectionType": "at",
+      "id": "heliopolis-col-iulia-augusta-felix",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:47:48Z"
+        },
+        {
+          "comment": "Wikidata Q662865 as reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:46:54Z"
+        },
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:18:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:16:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:14:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:14:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678179",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q662865",
+          "citationDetail": "Q662865",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Stone_of_the_Pregnant_Woman",
+      "citationDetail": "Stone of the Pregnant Woman",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/syria_0039-7946_1977_num_54_1_6623",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Adam 1977",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HJ9KINLK",
+      "formattedCitation": "<div class=\"csl-entry\">Adam, Jean-Pierre. \u201cA propos du trilithon de Baalbek. Le transport et la mise en oeuvre des m\u00e9galithes.\u201d <i>Syria. Arch\u00e9ologie, Art et histoire</i> 54, no. 1 (1977): 31\u201363. https://doi.org/10.3406/syria.1977.6623.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ruprechtsberger 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I72GDSXL",
+      "formattedCitation": "<div class=\"csl-entry\">Ruprechtsberger, Erwin M., and Karl Haslinger. <i>Vom Steinbruch zum Jupitertempel von Heliopolis / Baalbek (Libanon)</i>. Linzer arch\u00e4ologische Forschungen, Bd. 30. Linz: Nordico - Mus. d. Stadt Linz, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/17892/",
+      "citationDetail": "17892: Quarry, Baalbek",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "ethnic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hajar el Hibla",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Stone_of_the_Pregnant_Woman",
+          "citationDetail": "Stone of the Pregnant Woman",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "hajar-el-hibla",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "The Stone of the Pregnant Woman is known as Hajar el Hibla in Arabic.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2020-06-12T15:15:55Z",
+      "uri": "https://pleiades.stoa.org/places/633455581/hajar-el-hibla",
+      "creators": [
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "attested": "Hajar el Hibla",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:48:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:47:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:16:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:15:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:15:55Z"
+        }
+      ]
+    }
+  ],
+  "id": "633455581",
+  "subject": [],
+  "title": "Stone of the Pregnant Woman",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/quarry",
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Stone of the Pregnant Woman in Baalbek, Lebanon is one of the largest monoliths ever quarried.",
+  "reprPoint": [
+    36.200121200000005,
+    33.9991672
+  ],
+  "placeTypes": [
+    "quarry",
+    "monument"
+  ],
+  "bbox": [
+    36.2000113,
+    33.99909,
+    36.2002311,
+    33.9992444
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678179"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-12T15:10:34Z",
+  "uri": "https://pleiades.stoa.org/places/633455581",
+  "creators": [
+    {
+      "username": null,
+      "name": "jfu"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "ctype",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-21T19:15:13Z"
+    },
+    {
+      "comment": "vici.org 17892: Quarry, Baalbek",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-13T00:00:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T20:41:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T18:47:48Z"
+    },
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T18:37:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T18:14:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T15:16:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T15:10:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T15:10:34Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Herakleia?
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/530889
+- **ID**: 530889
+- **Coords (lng, lat)**: [20.916094, 39.219873]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Herakleia
+
+## Description
+
+An ancient place, cited: BAtlas 54 C3 Herakleia?

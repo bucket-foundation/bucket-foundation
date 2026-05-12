@@ -1,0 +1,361 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.8382409,
+          25.6810829
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-gebel-el-muzawaka",
+      "properties": {
+        "snippet": "Archaeological-site; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/756300531/osm-location-of-gebel-el-muzawaka",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Gebel el-Muzawaka"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2713422970",
+          "citationDetail": "Node 2713422970",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2713422970",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-gebel-el-muzawaka",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 640,
+      "title": "OSM location of Gebel el-Muzawaka",
+      "provenance": "OpenStreetMap (Node 2713422970, version 1, osm:changeset=21056309, 2014-03-12T01:56:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2026-04-14T01:57:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.8382409,
+          25.6810829
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/756300531/osm-location-of-gebel-el-muzawaka",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-14T15:48:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T01:57:38Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T01:57:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T01:57:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T01:57:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-08-24T15:27:18Z",
+      "associationCertainty": "certain",
+      "title": "Esotero (Oasis)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/756300531/esotero-oasis",
+      "connectionType": "part_of_regional",
+      "id": "esotero-oasis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:27:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:27:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:27:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:27:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/776172",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "138",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vivian 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ATTPQUPE",
+      "formattedCitation": "<div class=\"csl-entry\">Vivian, Cassandra. <i>The Western Desert of Egypt: An Explorer\u2019s Handbook</i>. Cairo: American University in Cairo Press, 2000.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/3656",
+      "citationDetail": "GEO ID, 3656: Muzawwaqa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://de.wikivoyage.org/wiki/Q%C4%81rat_el-Muzawwaqa",
+      "citationDetail": "Q\u0101rat el-Muzawwaqa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikivoyage (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5ANGXJIB",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikivoyage \u2013 Freie Reiseinformationen rund um die Welt</i>. Accessed September 27, 2019. https://de.wikivoyage.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://imperium.ahlfeldt.se/places/37660.html",
+      "citationDetail": "37660",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q14218523",
+      "citationDetail": "Qarat el-Muzawwaqa (Q14218523)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "756300531",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=cemetery"
+  ],
+  "title": "Gebel el-Muzawaka",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Greek and Roman period necropolis at Gebel el-Muzawaka, in Egypt's Dakhleh Oasis.",
+  "reprPoint": [
+    28.8382409,
+    25.6810829
+  ],
+  "placeTypes": [
+    "cemetery",
+    "archaeological-site"
+  ],
+  "bbox": [
+    28.8382409,
+    25.6810829,
+    28.8382409,
+    25.6810829
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/776172"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-09-17T18:21:08Z",
+  "uri": "https://pleiades.stoa.org/places/756300531",
+  "creators": [
+    {
+      "username": "nnagy",
+      "homepage": null,
+      "name": "Nate Nagy",
+      "uri": "https://pleiades.stoa.org/author/nnagy"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "dare, wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-14T19:27:11Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-14T01:59:04Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-12T02:01:46Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:28:49Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:18:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-07T01:44:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T21:20:44Z"
+    },
+    {
+      "comment": "entered in reference data",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T21:20:33Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T19:36:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-17T18:25:28Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-17T18:21:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nnagy",
+      "modified": "2010-09-17T18:21:08Z"
+    }
+  ]
+}

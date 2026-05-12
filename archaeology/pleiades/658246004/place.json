@@ -1,0 +1,705 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7688673,
+            41.2422514
+          ],
+          [
+            13.7689102,
+            41.2423442
+          ],
+          [
+            13.7689075,
+            41.2424591
+          ],
+          [
+            13.7688619,
+            41.2425459
+          ],
+          [
+            13.7687895,
+            41.2426265
+          ],
+          [
+            13.7686178,
+            41.2427112
+          ],
+          [
+            13.7685401,
+            41.2427395
+          ],
+          [
+            13.7683362,
+            41.2427294
+          ],
+          [
+            13.7682209,
+            41.2426991
+          ],
+          [
+            13.7681964,
+            41.2426896
+          ],
+          [
+            13.7681757,
+            41.2426815
+          ],
+          [
+            13.768076,
+            41.2426427
+          ],
+          [
+            13.7680385,
+            41.2425781
+          ],
+          [
+            13.7680278,
+            41.2425317
+          ],
+          [
+            13.7680117,
+            41.2424954
+          ],
+          [
+            13.7686422,
+            41.2423156
+          ],
+          [
+            13.7688673,
+            41.2422514
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/658246004/location-of-roman-theater",
+        "description": "Representative location based on a way derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmoss",
+      "homepage": null,
+      "name": "Gabriel Moss",
+      "uri": "https://pleiades.stoa.org/author/gmoss"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/228287750",
+          "citationDetail": "Way 228287750",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=228287750",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman theater",
+      "provenance": "OpenStreetMap (Way 228287750, version 6, osm:changeset=120477358, 2022-05-02T20:21:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Representative location based on a way derived from OpenStreetMap.",
+      "created": "2013-11-25T01:16:07Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.7688673,
+            41.2422514
+          ],
+          [
+            13.7689102,
+            41.2423442
+          ],
+          [
+            13.7689075,
+            41.2424591
+          ],
+          [
+            13.7688619,
+            41.2425459
+          ],
+          [
+            13.7687895,
+            41.2426265
+          ],
+          [
+            13.7686178,
+            41.2427112
+          ],
+          [
+            13.7685401,
+            41.2427395
+          ],
+          [
+            13.7683362,
+            41.2427294
+          ],
+          [
+            13.7682209,
+            41.2426991
+          ],
+          [
+            13.7681964,
+            41.2426896
+          ],
+          [
+            13.7681757,
+            41.2426815
+          ],
+          [
+            13.768076,
+            41.2426427
+          ],
+          [
+            13.7680385,
+            41.2425781
+          ],
+          [
+            13.7680278,
+            41.2425317
+          ],
+          [
+            13.7680117,
+            41.2424954
+          ],
+          [
+            13.7686422,
+            41.2423156
+          ],
+          [
+            13.7688673,
+            41.2422514
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/658246004/location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T20:13:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T19:28:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-25T01:17:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-25T01:17:05Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-25T01:16:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-25T01:16:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-25T01:16:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:45:10Z",
+      "associationCertainty": "certain",
+      "title": "Minturnae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/658246004/432940",
+      "connectionType": "at",
+      "id": "432940",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-20T02:59:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:45:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:45:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:45:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432940",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q94896241",
+          "citationDetail": "Q94896241",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=minturnae",
+      "citationDetail": "MINTURNAE (Minturno) Italy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aurigemma 1955",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J2E45CG8",
+      "formattedCitation": "<div class=\"csl-entry\">Aurigemma, Salvatore, and Angelo De Santis. <i>Gaeta, Formia, Minturno</i>. Itinerari dei musei, gallerie e monumenti d\u2019Italia 92. Roma: Istituto Poligrafico dello Stato, Libreria dello Stato, 1955.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=Q7sRDAAAQBAJ&lpg=PR28&dq=Roman%20Theater%20Minturnae&pg=PA90#v=onepage&q=Roman%20Theater%20Minturnae&f=false",
+      "citationDetail": "90",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sear 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HXSX8YS3",
+      "formattedCitation": "<div class=\"csl-entry\">Sear, Frank. <i>Roman Theatres: An Architectural Study</i>. Lighning Source, UK; New York: Oxford University Press, 2010.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/10377654/teatro-romano-minturno.html",
+      "citationDetail": "10377654: Teatro Romano Minturno",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/9461",
+      "citationDetail": "Theater von Minturnae / Minturno Minturno, (Minturnae), Latina (Provinz)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q94896241",
+      "citationDetail": "Roman theater of Minturnae (Q94896241)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arnold 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7ZK8TKMY",
+      "formattedCitation": "<div class=\"csl-entry\">Arnold, Stefan, and Klaus M\u00fcller. <i>Das r\u00f6mische Theater von Minturnae</i>. Sonderschriften (Deutsches Arch\u00e4ologisches Institut. R\u00f6mische Abteilung). Wiesbaden: Harrassowitz Verlag, 2025.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://theatrum.de/494.html",
+      "citationDetail": "494: MINTURNAE, Minturno (Regio I)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Theater of Minturnae",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=minturnae",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "PECS (Perseus), MINTURNAE (Minturno) Italy",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "name.2016-06-27.5188773588",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-06-27T16:07:40Z",
+      "uri": "https://pleiades.stoa.org/places/658246004/name.2016-06-27.5188773588",
+      "creators": [
+        {
+          "username": "gmoss",
+          "homepage": null,
+          "name": "Gabriel Moss",
+          "uri": "https://pleiades.stoa.org/author/gmoss"
+        }
+      ],
+      "attested": "Theater of Minturnae",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T19:28:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T19:25:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmoss",
+          "modified": "2016-06-27T16:07:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmoss",
+          "modified": "2016-06-27T16:07:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmoss",
+          "modified": "2016-06-27T16:07:40Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Teatro Romano Minturno",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/10377654/teatro-romano-minturno.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 10377654",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "teatro-romano-minturno",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern, conventional name in Italian.",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-06-27T19:27:02Z",
+      "uri": "https://pleiades.stoa.org/places/658246004/teatro-romano-minturno",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Teatro Romano Minturno",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T19:28:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T19:27:13Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T19:27:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T19:27:02Z"
+        }
+      ]
+    }
+  ],
+  "id": "658246004",
+  "subject": [
+    "theater",
+    "extant remains"
+  ],
+  "title": "Roman Theater of Minturnae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A theater constructed in Minturnae under Augustus or Tiberius, and further embellished under Hadrian.",
+  "reprPoint": [
+    13.768492537118927,
+    41.24251225713176
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    13.7680117,
+    41.2422514,
+    13.7689102,
+    41.2427395
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432940"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-06-24T20:32:39Z",
+  "uri": "https://pleiades.stoa.org/places/658246004",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Arnold 2025",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-03T13:16:40Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T20:14:29Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-18T14:17:54Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-18T02:49:13Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-27T19:27:53Z"
+    },
+    {
+      "comment": "edited references to meet citation guide",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-27T19:24:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmoss",
+      "modified": "2016-06-27T16:08:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmoss",
+      "modified": "2016-06-27T16:04:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmoss",
+      "modified": "2016-06-27T15:59:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmoss",
+      "modified": "2016-06-27T15:57:40Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmoss",
+      "modified": "2016-06-27T15:53:36Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-24T20:32:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-24T20:32:39Z"
+    }
+  ]
+}

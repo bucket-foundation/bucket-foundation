@@ -1,0 +1,304 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7853187,
+            35.24391
+          ],
+          [
+            23.7855441,
+            35.2440604
+          ],
+          [
+            23.7859016,
+            35.2437909
+          ],
+          [
+            23.7855423,
+            35.243479
+          ],
+          [
+            23.7854182,
+            35.2435572
+          ],
+          [
+            23.7851366,
+            35.2437361
+          ],
+          [
+            23.7853187,
+            35.24391
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-asclepios",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/681778040/osm-location-of-temple-of-asclepios",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Asclepios"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/348319607",
+          "citationDetail": "Way 348319607",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=348319607",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-asclepios",
+      "featureTypeURI": [],
+      "end": null,
+      "title": "OSM location of Temple of Asclepios",
+      "provenance": "OpenStreetMap (Way 348319607, version 2, osm:changeset=34257271, 2015-09-26T07:05:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-03-07T01:25:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7853187,
+            35.24391
+          ],
+          [
+            23.7855441,
+            35.2440604
+          ],
+          [
+            23.7859016,
+            35.2437909
+          ],
+          [
+            23.7855423,
+            35.243479
+          ],
+          [
+            23.7854182,
+            35.2435572
+          ],
+          [
+            23.7851366,
+            35.2437361
+          ],
+          [
+            23.7853187,
+            35.24391
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/681778040/osm-location-of-temple-of-asclepios",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-08T10:20:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-07T16:16:11Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-07T01:26:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-07T01:25:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-07T01:25:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-03-07T01:26:35Z",
+      "associationCertainty": "certain",
+      "title": "Lissos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/681778040/3952076658",
+      "connectionType": "at",
+      "id": "3952076658",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-07T01:26:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-07T01:26:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-07T01:26:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589914",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baldwin-Bowsky 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JHP3KIVJ",
+      "formattedCitation": "<div class=\"csl-entry\">Baldwin-Bowsky, Martha W. \u201cProlegomena to a Dossier: Inscriptions Fromthe Asklepieion at Lissos (Crete).\u201d In <i>Cyprus, Crete and the Aegean Islands in Antiquity</i>. Krakow: Jagiellonian University Press, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "681778040",
+  "subject": [
+    "Asclepius"
+  ],
+  "title": "Temple of Asclepios",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Asklepieion at Lissus, Crete.",
+  "reprPoint": [
+    23.785521305009713,
+    35.2437694798605
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    23.7851366,
+    35.243479,
+    23.7859016,
+    35.2440604
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589914"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-07T01:26:33Z",
+  "uri": "https://pleiades.stoa.org/places/681778040",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-08T10:20:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-08T10:20:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-07T16:17:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-07T16:16:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-07T01:27:05Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-07T01:26:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-07T01:26:33Z"
+    }
+  ]
+}

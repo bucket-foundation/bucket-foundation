@@ -1,0 +1,498 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.723028,
+            37.7074948
+          ],
+          [
+            28.7233313,
+            37.707517
+          ],
+          [
+            28.7233598,
+            37.707274
+          ],
+          [
+            28.7234202,
+            37.7067589
+          ],
+          [
+            28.7231167,
+            37.7067367
+          ],
+          [
+            28.7230561,
+            37.7072544
+          ],
+          [
+            28.723028,
+            37.7074948
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-civil-basilica",
+      "properties": {
+        "snippet": "Basilica; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/685696905/osm-location-of-civil-basilica",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Civil Basilica"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "cananac",
+      "homepage": null,
+      "name": "Canan Ar\u0131kan-Caba",
+      "uri": "https://pleiades.stoa.org/author/cananac"
+    },
+    {
+      "username": "kmccullough",
+      "homepage": null,
+      "name": "Katelin McCullough",
+      "uri": "https://pleiades.stoa.org/author/kmccullough"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/949540995",
+          "citationDetail": "Way 949540995",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=949540995",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-civil-basilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "end": 300,
+      "title": "OSM location of Civil Basilica",
+      "provenance": "OpenStreetMap (Way 949540995, version 4, osm:changeset=169107009, 2025-07-18T12:30:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "basilica"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-07-18T12:35:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.723028,
+            37.7074948
+          ],
+          [
+            28.7233313,
+            37.707517
+          ],
+          [
+            28.7233598,
+            37.707274
+          ],
+          [
+            28.7234202,
+            37.7067589
+          ],
+          [
+            28.7231167,
+            37.7067367
+          ],
+          [
+            28.7230561,
+            37.7072544
+          ],
+          [
+            28.723028,
+            37.7074948
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/685696905/osm-location-of-civil-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-18T12:49:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-18T12:36:21Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-18T12:36:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-18T12:35:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-18T12:35:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-12T00:07:10Z",
+      "associationCertainty": "certain",
+      "title": "Aphrodisias",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/685696905/6308634257",
+      "connectionType": "at",
+      "id": "6308634257",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-12T00:07:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-12T00:07:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-12T00:07:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638753",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://aphrodisias.classics.ox.ac.uk/civilbasilica",
+      "citationDetail": "Civil Basilica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aphrodisias Excavations",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/62RSHP77",
+      "formattedCitation": "<div class=\"csl-entry\">Smith, R.R.R., K. Welch, E. \u00d6\u011f\u00fc\u015f, and J. Lenaghan. \u201cAphrodisias: Aphrodisias Excavations,\u201d 2017. http://aphrodisias.classics.ox.ac.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stinson 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3MHZ2FIZ",
+      "formattedCitation": "<div class=\"csl-entry\">Stinson, Philip. \u201cImitation and Adaptation in Architectural Design: Two Roman Basilicas at Ephesus and Aphrodisias.\u201d In <i>Neue Zeiten - Neue Sitten</i>, 91\u2013100. Wien: Phoibos, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stinson 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7X5PULHB",
+      "formattedCitation": "<div class=\"csl-entry\">Stinson, Philip. \u201cLocal Meanings of the Civil Basilica at Aphrodisias: Image, Text, and Monument.\u201d In <i>Basiliques et Agoras de Gr\u00e8ce et d\u2019Asie Mineure</i>, 107\u201326. Bordeaux: Ausonius \u00c9d, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.beck-elibrary.de/index.php?doi=10.17104/0017-1417-2018-7",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gehrke 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCU2LGLV",
+      "formattedCitation": "<div class=\"csl-entry\">Gehrke, Hans-Joachim, Henner Von Hesberg, Christoph Horn, Martin Hose, Joseph Maran, Ernst Vogt, Katharina Volk, and Paul Zanker, eds. \u201c[No Title Found].\u201d <i>Gnomon</i> 90, no. 7 (2018). https://doi.org/10.17104/0017-1417-2018-7.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stinson 2007a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PR6BUXGQ",
+      "formattedCitation": "<div class=\"csl-entry\">Stinson, Philip. \u201cThe Civil Basilica of Aphrodisias in Its Local and Wider Settings.\u201d Ph.D. Dissertation, New York University, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Crawford 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VC9HBRF9",
+      "formattedCitation": "<div class=\"csl-entry\">Crawford, Michael H. <i>Diocletian\u2019s Edict of Maximum Prices at the Civil Basilica in Aphrodisias</i>. Aphrodisias. Wiesbaden: Reichert Verlag, 2023.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stinson 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FFXKTL4V",
+      "formattedCitation": "<div class=\"csl-entry\">Stinson, Philip. <i>The Civil Basilica</i>. Aphrodisias. Wiesbaden: Reichert Verlag, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q135409837",
+      "citationDetail": "Civil Basilica at Aphrodisias in Caria (Q135409837)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Civil Basilica",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q135409837",
+          "citationDetail": "Civil Basilica at Aphrodisias in Caria (Q135409837)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "civil-basilica",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-07-18T12:39:53Z",
+      "uri": "https://pleiades.stoa.org/places/685696905/civil-basilica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-18T12:49:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-18T12:40:01Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-18T12:39:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-18T12:39:53Z"
+        }
+      ]
+    }
+  ],
+  "id": "685696905",
+  "subject": [],
+  "title": "Civil Basilica at Aphrodisias",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Civil Basilica at Aphrodisias was a three-aisled public hall measuring approximately 145 by 30 meters. It opened off the southwest corner of the South Agora. It dates to the late first century CE.",
+  "reprPoint": [
+    28.72322405167948,
+    37.707126814225326
+  ],
+  "placeTypes": [
+    "basilica"
+  ],
+  "bbox": [
+    28.723028,
+    37.7067367,
+    28.7234202,
+    37.707517
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638753"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-07-18T07:52:57Z",
+  "uri": "https://pleiades.stoa.org/places/685696905",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-18T12:41:08Z"
+    },
+    {
+      "comment": "Edited; update references; wikidata Civil Basilica at Aphrodisias in Caria (Q135409837); reviewed, check-in of working copy @cananac",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-18T12:40:43Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "cananac",
+      "modified": "2025-07-18T07:52:56Z"
+    },
+    {
+      "comment": "add summary, two references (Stinson)",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-26T03:39:39Z"
+    },
+    {
+      "comment": "check in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-09T19:05:59Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "kmccullough",
+      "modified": "2018-03-23T19:10:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-12T00:09:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-12T00:09:41Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-12T00:07:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-12T00:07:09Z"
+    }
+  ]
+}

@@ -1,0 +1,649 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.6290703,
+            40.8722802
+          ],
+          [
+            8.6290784,
+            40.872197
+          ],
+          [
+            8.6289684,
+            40.8720936
+          ],
+          [
+            8.6288826,
+            40.8720692
+          ],
+          [
+            8.628778,
+            40.8718867
+          ],
+          [
+            8.6289014,
+            40.8718664
+          ],
+          [
+            8.6289429,
+            40.8716862
+          ],
+          [
+            8.6289014,
+            40.8715378
+          ],
+          [
+            8.6291455,
+            40.8714608
+          ],
+          [
+            8.6293493,
+            40.8718766
+          ],
+          [
+            8.6294405,
+            40.8720064
+          ],
+          [
+            8.6294754,
+            40.8720672
+          ],
+          [
+            8.6290703,
+            40.8722802
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/472022/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Santa Filitica"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/285330142",
+          "citationDetail": "Way 285330142",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=285330142",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Santa Filitica",
+      "provenance": "OpenStreetMap (Way 285330142, version 2, osm:changeset=67494993, 2019-02-23T14:29:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-05-30T21:32:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.6290703,
+            40.8722802
+          ],
+          [
+            8.6290784,
+            40.872197
+          ],
+          [
+            8.6289684,
+            40.8720936
+          ],
+          [
+            8.6288826,
+            40.8720692
+          ],
+          [
+            8.628778,
+            40.8718867
+          ],
+          [
+            8.6289014,
+            40.8718664
+          ],
+          [
+            8.6289429,
+            40.8716862
+          ],
+          [
+            8.6289014,
+            40.8715378
+          ],
+          [
+            8.6291455,
+            40.8714608
+          ],
+          [
+            8.6293493,
+            40.8718766
+          ],
+          [
+            8.6294405,
+            40.8720064
+          ],
+          [
+            8.6294754,
+            40.8720672
+          ],
+          [
+            8.6290703,
+            40.8722802
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/472022/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-14T14:07:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-09T10:11:46Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-09T03:13:21Z"
+        },
+        {
+          "comment": "update",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-09T03:13:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-12-03T14:40:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-23T21:26:28Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-30T21:33:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-30T21:33:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-30T21:33:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:57:14Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/472022/472014",
+      "connectionType": "on",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference, cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-14T14:08:25Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:57:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43970336",
+          "citationDetail": "48 A2 Sorso",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "48 A2 Sorso",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://zenon.dainst.org/Record/000257480",
+      "citationDetail": "756-57",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rowland 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C7VJ7SGD",
+      "formattedCitation": "<div class=\"csl-entry\">Rowland Jr., R. J. \u201cThe Archaeology of Roman Sardinia. A Selected Typical Inventory.\u201d In <i>Aufstieg Und Niedergang Der R\u00f6mischen Welt, 2, 11, 1 Principat. Band 11 (1. Teilband), Politische Geschichte (Randv\u00f6lker: Sizilien Und Sardinien; Italien Und Rom; Allgemeines)</i>, 740\u2013875, Abb. Taf. Berlin\u202f; New York: De Gruyter, 1988. https://zenon.dainst.org/Record/000257480.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/7925/",
+      "citationDetail": "7925: Sorso, Villa Romana di Santa Filitica",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1163/9789004307704_020",
+      "citationDetail": "Chapter 18 Byzantine Sardinia, pages 505-506, 513-514",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CBI",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQJB6CYQ",
+      "formattedCitation": "<div class=\"csl-entry\">Cosentino, Salvatore, ed. <i>A Companion to Byzantine Italy</i>. Brill\u2019s Companions to the Byzantine World. Leiden: Brill, 2021. http://public.eblib.com/choice/PublicFullRecord.aspx?p=6476867.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sardegnacultura.it/j/v/287?s=18145&v=2&c=2489",
+      "citationDetail": "Sorso, Complesso di Santa Filitica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sardegna Cultura",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7KQM2T8A",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Sardegna Cultura</i>. Cagliari: La Regione Sardegna. Accessed January 29, 2020. http://www.sardegnacultura.it/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.researchgate.net/profile/Vittorio-Longo/publication/289342682_Ground_Penetrating_Radar_and_Geoelectrical_Surveys_to_investigate_the_Santa_Filitica_Archaeological_Complex_Northern_Sardinia/links/569cf0cb08ae2e9667ec3ef4/Ground-Penetrating-Radar-and-Geoelectrical-Surveys-to-investigate-the-Santa-Filitica-Archaeological-Complex-Northern-Sardinia.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Testone 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SH33C8I4",
+      "formattedCitation": "<div class=\"csl-entry\">Testone, V., V. Longo, G. Algeri, M. C. Bottacchi, and D. Campo. \u201cGround Penetrating Radar and Geoelectrical Surveys to Investigate the Santa Filitica Archaeological Complex (Northern Sardinia).\u201d <i>Rendiconti Online Societa Geologica Italiana</i> 21 (2012): 675\u201377. https://www.researchgate.net/profile/Vittorio-Longo/publication/289342682_Ground_Penetrating_Radar_and_Geoelectrical_Surveys_to_investigate_the_Santa_Filitica_Archaeological_Complex_Northern_Sardinia/links/569cf0cb08ae2e9667ec3ef4/Ground-Penetrating-Radar-and-Geoelectrical-Surveys-to-investigate-the-Santa-Filitica-Archaeological-Complex-Northern-Sardinia.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vocab.getty.edu/page/tgn/7669150",
+      "citationDetail": "7669150: Santa Filitica (deserted settlement)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TGN",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLJQ5AZJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Getty Thesaurus of Geographic Names\u00ae Online</i>, n.d. https://www.getty.edu/research/tools/vocabularies/tgn/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q30260923",
+      "citationDetail": "Q30260923: Santa Filitica Roman villa and ancient settlement",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Insediamento_di_Santa_Filitica_(Sorso)",
+      "citationDetail": "Category:Insediamento di Santa Filitica (Sorso)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sorso",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 740 see \"Sorso\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.researchgate.net/profile/Vittorio-Longo/publication/289342682_Ground_Penetrating_Radar_and_Geoelectrical_Surveys_to_investigate_the_Santa_Filitica_Archaeological_Complex_Northern_Sardinia/links/569cf0cb08ae2e9667ec3ef4/Ground-Penetrating-Radar-and-Geoelectrical-Surveys-to-investigate-the-Santa-Filitica-Archaeological-Complex-Northern-Sardinia.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Testone 2012",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SH33C8I4",
+          "formattedCitation": "<div class=\"csl-entry\">Testone, V., V. Longo, G. Algeri, M. C. Bottacchi, and D. Campo. \u201cGround Penetrating Radar and Geoelectrical Surveys to Investigate the Santa Filitica Archaeological Complex (Northern Sardinia).\u201d <i>Rendiconti Online Societa Geologica Italiana</i> 21 (2012): 675\u201377. https://www.researchgate.net/profile/Vittorio-Longo/publication/289342682_Ground_Penetrating_Radar_and_Geoelectrical_Surveys_to_investigate_the_Santa_Filitica_Archaeological_Complex_Northern_Sardinia/links/569cf0cb08ae2e9667ec3ef4/Ground-Penetrating-Radar-and-Geoelectrical-Surveys-to-investigate-the-Santa-Filitica-Archaeological-Complex-Northern-Sardinia.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "sorso",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-04-09T10:56:22Z",
+      "uri": "https://pleiades.stoa.org/places/472022/sorso",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Sorso",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-10T13:33:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-09T10:57:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-09T10:56:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-09T10:56:22Z"
+        }
+      ]
+    }
+  ],
+  "id": "472022",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=villa"
+  ],
+  "title": "Santa Filitica",
+  "provenance": "Barrington Atlas: BAtlas 48 A2 Sorso",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Sorso</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa and subsequent Vandal-era and, following a period of abandonment, Byzantine-era village, located on the northwest Sardinian coast in the northern part of the modern municipal territory of Sorso. Pre-modern names for the site are unknown.",
+  "reprPoint": [
+    8.62910865215511,
+    40.87188315215023
+  ],
+  "placeTypes": [
+    "settlement",
+    "villa"
+  ],
+  "bbox": [
+    8.628778,
+    40.8714608,
+    8.6294754,
+    40.8722802
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-09T10:39:41Z",
+  "uri": "https://pleiades.stoa.org/places/472022",
+  "creators": [
+    {
+      "username": null,
+      "name": "S.L. Dyson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikimedia, wikidata references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-10T14:26:18Z"
+    },
+    {
+      "comment": "add TGN 7669150: Santa Filitica (deserted settlement)",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-10T13:36:54Z"
+    },
+    {
+      "comment": "title; summary; place type += settlement; added references (CBI, Sardegna Cultura, Testone 2012); associated modern name \"Sorso\"",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-10T13:33:02Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-09T10:39:39Z"
+    },
+    {
+      "comment": "add vici.org",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-09T03:15:38Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-09T03:12:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-27T02:28:04Z"
+    },
+    {
+      "comment": "added cnxn",
+      "modifiedBy": "jbecker",
+      "modified": "2014-12-23T21:26:02Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:00:09Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:27:46Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-10T00:25:44Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:59:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-12T12:26:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T20:26:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-11T20:23:22Z"
+    }
+  ]
+}

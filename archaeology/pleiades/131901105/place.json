@@ -1,0 +1,345 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4204294,
+          42.2995222
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-necropoli-di-montarano",
+      "properties": {
+        "snippet": "Cemetery",
+        "link": "https://pleiades.stoa.org/places/131901105/osm-location-of-necropoli-di-montarano",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Necropoli di Montarano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/10804688267",
+          "citationDetail": "Node 10804688267",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=10804688267",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-necropoli-di-montarano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": null,
+      "title": "OSM location of Necropoli di Montarano",
+      "provenance": "OpenStreetMap (Node 10804688267, version 1, osm:changeset=134820336, 2023-04-12T14:25:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-04-12T14:26:30Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4204294,
+          42.2995222
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/131901105/osm-location-of-necropoli-di-montarano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-21T16:01:47Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-09T16:32:01Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-09T18:00:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-17T16:13:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-15T02:34:56Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:26:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:26:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:26:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-12T14:26:50Z",
+      "associationCertainty": "certain",
+      "title": "Falerii Veteres",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/131901105/6107771953",
+      "connectionType": "at",
+      "id": "6107771953",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:26:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:26:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:26:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413126",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://bmcr.brynmawr.edu/2023/2023.03.05/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BMCR 2023.03.05",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SSDI4QZQ",
+      "formattedCitation": "<div class=\"csl-entry\">Bernard, Seth. \u201cReview of: Falerii Veteres. Il Sepolcreto Di Montarano: Scavi, Materiali e Contesti.\u201d <i>Bryn Mawr Classical Review</i>, 2023. https://bmcr.brynmawr.edu/2023/2023.03.05/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ligabue 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YR4LICSF",
+      "formattedCitation": "<div class=\"csl-entry\">Ligabue, Giovanni. <i>Falerii Veteres: Il Sepolcreto Di Montarano: Scavi, Materiali e Contesti</i>. Monumenti Antichi. Serie Miscellanea, volume XXVIII (LXXXIII della serie generale). Roma: Giorgio Bretschneider editore, 2022.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "sepolcreto di Montarano",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ligabue 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YR4LICSF",
+          "formattedCitation": "<div class=\"csl-entry\">Ligabue, Giovanni. <i>Falerii Veteres: Il Sepolcreto Di Montarano: Scavi, Materiali e Contesti</i>. Monumenti Antichi. Serie Miscellanea, volume XXVIII (LXXXIII della serie generale). Roma: Giorgio Bretschneider editore, 2022.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sepolcreto-di-montarano",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2023-04-15T02:34:49Z",
+      "uri": "https://pleiades.stoa.org/places/131901105/sepolcreto-di-montarano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "sepolcreto di Montarano",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-17T16:13:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-15T02:34:56Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-15T02:34:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-15T02:34:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "131901105",
+  "subject": [
+    "necropolis"
+  ],
+  "title": "Necropoli di Montarano",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A necropolis located to the north of ancient Falerii Veteres containing more than 67 tombs.",
+  "reprPoint": [
+    12.4204294,
+    42.2995222
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.4204294,
+    42.2995222,
+    12.4204294,
+    42.2995222
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413126"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-12T14:26:50Z",
+  "uri": "https://pleiades.stoa.org/places/131901105",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-17T16:13:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-15T02:35:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-15T02:34:56Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-15T02:34:08Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-12T14:26:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-12T14:26:50Z"
+    }
+  ]
+}

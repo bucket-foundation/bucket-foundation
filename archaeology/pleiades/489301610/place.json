@@ -1,0 +1,422 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.60144846789915,
+              25.71903297363496
+            ],
+            [
+              32.60132430378929,
+              25.71893710622535
+            ],
+            [
+              32.60138807211753,
+              25.7188701373971
+            ],
+            [
+              32.60151400024461,
+              25.7189703090762
+            ],
+            [
+              32.60144846789915,
+              25.71903297363496
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-funerary-chapel-of-ankhnesneferibre",
+      "properties": {
+        "snippet": "Temple-2, Tomb; 664 BC - 332 BC",
+        "link": "https://pleiades.stoa.org/places/489301610/imagery-location-funerary-chapel-of-ankhnesneferibre",
+        "description": "Imagery Location: approximate location of the remains of funerary chapel of Ankhnesneferibre",
+        "location_precision": "precise",
+        "title": "Imagery Location: Funerary chapel of Ankhnesneferibre"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-funerary-chapel-of-ankhnesneferibre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -332,
+      "title": "Imagery Location: Funerary chapel of Ankhnesneferibre",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -664,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "temple-2",
+        "tomb"
+      ],
+      "description": "Imagery Location: approximate location of the remains of funerary chapel of Ankhnesneferibre",
+      "created": "2025-04-04T17:22:02Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.60144846789915,
+              25.71903297363496
+            ],
+            [
+              32.60132430378929,
+              25.71893710622535
+            ],
+            [
+              32.60138807211753,
+              25.7188701373971
+            ],
+            [
+              32.60151400024461,
+              25.7189703090762
+            ],
+            [
+              32.60144846789915,
+              25.71903297363496
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/489301610/imagery-location-funerary-chapel-of-ankhnesneferibre",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-05T09:17:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:23:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:22:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:22:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -332,
+      "description": "",
+      "contributors": [],
+      "created": "2025-04-04T17:22:42Z",
+      "associationCertainty": "certain",
+      "title": "Medinet Habu",
+      "start": -664,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/489301610/medinet-habu",
+      "connectionType": "at",
+      "id": "medinet-habu",
+      "attestations": [
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-05T09:17:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:23:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:22:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:22:42Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/321318358",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/oip21.pdf",
+      "citationDetail": "pp. 18, 28-29",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Holscher 1954",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/64NL4YDV",
+      "formattedCitation": "<div class=\"csl-entry\">H\u00f6lscher, Uvo. <i>The Excavation of Medinet Habu. V. Post-Ramessid Remains</i>. Translated by Elizabeth B. Hauser. Oriental Institut Publications 66. Chicago: The University of Chicago Press, 1954. https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/oip21.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Funerary chapel of Ankhnesneferibre",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "funerary-chapel-of-ankhnesneferibre",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-04-04T17:19:45Z",
+      "uri": "https://pleiades.stoa.org/places/489301610/funerary-chapel-of-ankhnesneferibre",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Funerary chapel of Ankhnesneferibre",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-05T09:17:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:23:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:20:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:19:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:19:45Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Chapelle fun\u00e9raire d'\u00c2nkhnesn\u00e9feribr\u00ea",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "chapelle-funeraire-dankhnesneferibre",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-04-04T17:20:15Z",
+      "uri": "https://pleiades.stoa.org/places/489301610/chapelle-funeraire-dankhnesneferibre",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Chapelle fun\u00e9raire d'\u00c2nkhnesn\u00e9feribr\u00ea",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-05T09:17:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:23:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:20:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-04-04T17:20:15Z"
+        }
+      ]
+    }
+  ],
+  "id": "489301610",
+  "subject": [
+    "tomb",
+    "temple"
+  ],
+  "title": "Funerary chapel of Ankhnesneferibre",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Presumed remains of the funerary chapel of the Divine Adoratrice of Amun Ankhnesneferibre.",
+  "reprPoint": [
+    32.601418593878215,
+    25.718952278121943
+  ],
+  "placeTypes": [
+    "tomb",
+    "temple-2"
+  ],
+  "bbox": [
+    32.60132430378929,
+    25.7188701373971,
+    32.60151400024461,
+    25.71903297363496
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/321318358"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-04-04T17:19:16Z",
+  "uri": "https://pleiades.stoa.org/places/489301610",
+  "creators": [
+    {
+      "username": "nsouchon",
+      "homepage": null,
+      "name": "Nicolas Souchon",
+      "uri": "https://pleiades.stoa.org/author/nsouchon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-05T09:17:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-04-04T17:23:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-04-04T17:19:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-04-04T17:19:16Z"
+    }
+  ]
+}

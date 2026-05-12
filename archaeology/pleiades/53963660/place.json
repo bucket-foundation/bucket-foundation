@@ -1,0 +1,314 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.6484207,
+            41.7985664
+          ],
+          [
+            12.6485123,
+            41.7985342
+          ],
+          [
+            12.6484848,
+            41.7984906
+          ],
+          [
+            12.6485326,
+            41.7984738
+          ],
+          [
+            12.648563,
+            41.798522
+          ],
+          [
+            12.648668,
+            41.7984851
+          ],
+          [
+            12.6485684,
+            41.7983274
+          ],
+          [
+            12.6484772,
+            41.7983594
+          ],
+          [
+            12.6485068,
+            41.7984061
+          ],
+          [
+            12.6484231,
+            41.7984355
+          ],
+          [
+            12.6483914,
+            41.7983855
+          ],
+          [
+            12.6483218,
+            41.7984099
+          ],
+          [
+            12.6484207,
+            41.7985664
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-castello-savelli",
+      "properties": {
+        "snippet": "Castle; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/53963660/osm-location-of-castello-savelli",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Castello Savelli"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/484234098",
+          "citationDetail": "Way 484234098",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=484234098",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-castello-savelli",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/castle"
+      ],
+      "end": 1453,
+      "title": "OSM location of Castello Savelli",
+      "provenance": "OpenStreetMap (Way 484234098, version 2, osm:changeset=48623728, 2017-05-12T13:02:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/castle"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "castle"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-03-20T14:27:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.6484207,
+            41.7985664
+          ],
+          [
+            12.6485123,
+            41.7985342
+          ],
+          [
+            12.6484848,
+            41.7984906
+          ],
+          [
+            12.6485326,
+            41.7984738
+          ],
+          [
+            12.648563,
+            41.798522
+          ],
+          [
+            12.648668,
+            41.7984851
+          ],
+          [
+            12.6485684,
+            41.7983274
+          ],
+          [
+            12.6484772,
+            41.7983594
+          ],
+          [
+            12.6485068,
+            41.7984061
+          ],
+          [
+            12.6484231,
+            41.7984355
+          ],
+          [
+            12.6483914,
+            41.7983855
+          ],
+          [
+            12.6483218,
+            41.7984099
+          ],
+          [
+            12.6484207,
+            41.7985664
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/53963660/osm-location-of-castello-savelli",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-07T21:37:25Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-01T22:47:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-01T22:44:12Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-20T14:30:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-20T14:27:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-20T14:27:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Castello_Savelli_Torlonia",
+      "citationDetail": "Castello Savelli Torlonia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3662367",
+      "citationDetail": "Castello Savelli Torlonia (Q3662367)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "53963660",
+  "subject": [],
+  "title": "Castello Savelli Torlonia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/castle"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A castle at Palombara Sabina that originates in the eleventh century.",
+  "reprPoint": [
+    12.648494148002174,
+    41.7984494349425
+  ],
+  "placeTypes": [
+    "castle"
+  ],
+  "bbox": [
+    12.6483218,
+    41.7983274,
+    12.648668,
+    41.7985664
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-03-20T14:26:55Z",
+  "uri": "https://pleiades.stoa.org/places/53963660",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q3662367",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-07T21:37:10Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-01T22:47:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-01T22:44:12Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-20T14:27:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-20T14:26:55Z"
+    }
+  ]
+}

@@ -1,0 +1,624 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.9298915,
+          36.8135141
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-modern-village-of-mursia",
+      "properties": {
+        "snippet": "Settlement-modern; 1700 BC - 1400 BC",
+        "link": "https://pleiades.stoa.org/places/662780947/osm-location-of-modern-village-of-mursia",
+        "description": "Location based on OpenStreetMap. Dates for the Bronze Age site after Cattani 2019a.",
+        "location_precision": "precise",
+        "title": "OSM Location of modern village of Mursia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "sicilian-bronze-advanced",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sicilian-bronze-advanced",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/315064302",
+          "citationDetail": "Node 315064302",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=315064302",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.disci.unibo.it/it/ricerca/archeologia/missioni-archeologiche/missioni-archeologiche-in-italia/mursia-pantelleria-tp/descrizione-generale",
+          "citationDetail": "Descrizione generale",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cattani 2019a",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6BRT4H4M",
+          "formattedCitation": "<div class=\"csl-entry\">Cattani, Maurizio, and Sebastiano Tusa. \u201cMursia (Pantelleria - TP),\u201d 2019. http://www.disci.unibo.it/it/ricerca/archeologia/missioni-archeologiche/missioni-archeologiche-in-italia/mursia-pantelleria-tp/index.html.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-modern-village-of-mursia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": -1400,
+      "title": "OSM Location of modern village of Mursia",
+      "provenance": "OpenStreetMap (Node 315064302, version 2, osm:changeset=74238142, 2019-09-08T22:49:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap. Dates for the Bronze Age site after Cattani 2019a.",
+      "created": "2019-09-29T14:40:47Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.9298915,
+          36.8135141
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/662780947/osm-location-of-modern-village-of-mursia",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-29T15:55:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:55:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:55:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:54:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:54:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:48:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:40:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:40:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-09-29T14:38:28Z",
+      "associationCertainty": "certain",
+      "title": "Pantelleria (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662780947/pantelleria-island",
+      "connectionType": "part_of_physical",
+      "id": "pantelleria-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-29T15:55:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:55:52Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:39:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:39:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:38:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:38:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462168",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8978615/localita-mursia.html",
+          "citationDetail": "8978615: Localit\u00e0 Mursia",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/pantelleria-revisited/7A16FE4D422F4F42389AEF20031A87B6#",
+      "citationDetail": "pages 203-204",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Trump 1963",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y6BUBAHN",
+      "formattedCitation": "<div class=\"csl-entry\">Trump, David. \u201cPantelleria Revisited.\u201d <i>Antiquity</i> 37, no. 147 (September 1963): 203\u20136. https://doi.org/10.1017/S0003598X00029963.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nicoletti 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVRIG867",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cMursia. Un emporio nel Canale di Sicilia alle soglie della Protostoria.\u201d In <i>Traffici, commerci e vie di distribuzione nel Mediterraneo tra protostoria e V. secolo a.C.: atti del Convegno internazionale, Gela, 27-28-29 maggio 2009</i>. Palermo: Regione Siciliana, Assessorato ai Beni Culturali, Ambientali e della Pubblica Istruzione, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://ipotesidipreistoria.unibo.it/issue/view/553/showToc",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "IpoTESI di Preistoria 7",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JTRMY8PC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IpoTESI di Preistoria</i>. Vol. 7. Bologna: Tribunale di Bologna, 2015. https://ipotesidipreistoria.unibo.it/issue/view/553/showToc.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.disci.unibo.it/it/ricerca/archeologia/progetti-ricerca/mursia-isola-di-pantelleria-tp",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cattani 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PYARG7LE",
+      "formattedCitation": "<div class=\"csl-entry\">Cattani, Maurizio. \u201cMursia, isola di Pantelleria (TP).\u201d Dipartimento di Storia Culture Civilt\u00e0, Alma Mater Studiorum, Universit\u00e0 di Bologna, 2019. http://www.disci.unibo.it/it/ricerca/archeologia/progetti-ricerca/mursia-isola-di-pantelleria-tp.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.disci.unibo.it/it/ricerca/archeologia/missioni-archeologiche/missioni-archeologiche-in-italia/mursia-pantelleria-tp/index.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cattani 2019a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6BRT4H4M",
+      "formattedCitation": "<div class=\"csl-entry\">Cattani, Maurizio, and Sebastiano Tusa. \u201cMursia (Pantelleria - TP),\u201d 2019. http://www.disci.unibo.it/it/ricerca/archeologia/missioni-archeologiche/missioni-archeologiche-in-italia/mursia-pantelleria-tp/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X23002110",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peinetti 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LEDDM6JJ",
+      "formattedCitation": "<div class=\"csl-entry\">Peinetti, Alessandro, Florencia Debandi, and Maurizio Cattani. \u201cBronze Age Combustion Structures of Italian Contexts in Comparison: Via Ordiere-Solarolo (Ravenna) and Mursia (Pantelleria Island). Archaeological, Geoarchaeological and Experimental Data.\u201d <i>Journal of Archaeological Science: Reports</i> 49 (June 1, 2023): 104036. https://doi.org/10.1016/j.jasrep.2023.104036.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mursia",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://ipotesidipreistoria.unibo.it/issue/view/553/showToc",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "IpoTESI di Preistoria 7",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JTRMY8PC",
+          "formattedCitation": "<div class=\"csl-entry\"><i>IpoTESI di Preistoria</i>. Vol. 7. Bologna: Tribunale di Bologna, 2015. https://ipotesidipreistoria.unibo.it/issue/view/553/showToc.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "mursia",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Italian name of village on Pantelleria as used by the excavators of the coincident Bronze Age site.",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-09-29T14:33:56Z",
+      "uri": "https://pleiades.stoa.org/places/662780947/mursia",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Mursia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-29T15:55:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:55:52Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:39:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:39:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:33:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:33:56Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "La Mursia",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/pantelleria-revisited/7A16FE4D422F4F42389AEF20031A87B6#",
+          "citationDetail": "page 203",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Trump 1963",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y6BUBAHN",
+          "formattedCitation": "<div class=\"csl-entry\">Trump, David. \u201cPantelleria Revisited.\u201d <i>Antiquity</i> 37, no. 147 (September 1963): 203\u20136. https://doi.org/10.1017/S0003598X00029963.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "la-mursia",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Village name as rendered by Trump 1963.",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-09-29T14:35:28Z",
+      "uri": "https://pleiades.stoa.org/places/662780947/la-mursia",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "La Mursia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-29T15:55:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:55:52Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:39:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:39:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:35:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:35:28Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Localit\u00e0 Mursia",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/8978615/localita-mursia.html",
+          "citationDetail": "8978615: Localit\u00e0 Mursia",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "localita-mursia",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "Official name of the modern village area as reported by GeoNames.",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-09-29T14:37:13Z",
+      "uri": "https://pleiades.stoa.org/places/662780947/localita-mursia",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Localit\u00e0 Mursia, Localita Mursia",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-29T15:55:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:55:52Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:39:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:39:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:37:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T14:37:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "662780947",
+  "subject": [],
+  "title": "Mursia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A modern village on the northwest coast of the Mediterranean island of Pantelleria. Mursia lies atop a settlement of late Bronze Age date that is associated with the cemetery (Sesi) that lies immediately to its south.",
+  "reprPoint": [
+    11.9298915,
+    36.8135141
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    11.9298915,
+    36.8135141,
+    11.9298915,
+    36.8135141
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462168",
+    "https://pleiades.stoa.org/places/662780948"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-09-29T14:13:53Z",
+  "uri": "https://pleiades.stoa.org/places/662780947",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Peinetti 2023",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-07T21:33:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-29T15:55:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T14:55:52Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T14:39:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T14:39:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T14:32:10Z"
+    },
+    {
+      "comment": "adjusted title",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T14:25:05Z"
+    },
+    {
+      "comment": "created on the basis of Trump 1963 and Nicoletti 2010",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T14:13:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T14:13:53Z"
+    }
+  ]
+}

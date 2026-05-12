@@ -1,0 +1,476 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.6282061,
+            32.6834666
+          ],
+          [
+            35.6280666,
+            32.6834846
+          ],
+          [
+            35.6279271,
+            32.6837104
+          ],
+          [
+            35.6279271,
+            32.6839091
+          ],
+          [
+            35.6279378,
+            32.6840806
+          ],
+          [
+            35.6281846,
+            32.6842973
+          ],
+          [
+            35.6282704,
+            32.6844238
+          ],
+          [
+            35.628485,
+            32.6844509
+          ],
+          [
+            35.6288069,
+            32.6845141
+          ],
+          [
+            35.6289571,
+            32.6845321
+          ],
+          [
+            35.6291931,
+            32.684198
+          ],
+          [
+            35.6295042,
+            32.6839723
+          ],
+          [
+            35.6295579,
+            32.683882
+          ],
+          [
+            35.6303411,
+            32.684189
+          ],
+          [
+            35.6313174,
+            32.6845592
+          ],
+          [
+            35.6315213,
+            32.68418
+          ],
+          [
+            35.630384,
+            32.6829157
+          ],
+          [
+            35.6301587,
+            32.6828345
+          ],
+          [
+            35.6299763,
+            32.6830151
+          ],
+          [
+            35.6297295,
+            32.6835298
+          ],
+          [
+            35.6287961,
+            32.6835479
+          ],
+          [
+            35.6283241,
+            32.6834305
+          ],
+          [
+            35.6282061,
+            32.6834666
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "tel-dover",
+      "properties": {
+        "snippet": "Settlement, Tell; 1400 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/251529383/tel-dover",
+        "description": "Polygon representing the visible remains at Tel Dover, derived from an OpenStreetMap after Golani 2025.",
+        "location_precision": "precise",
+        "title": "Tel Dover"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "iron-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1432302983",
+          "citationDetail": "Way 1432302983",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1432302983",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://worldcat.org/oclc/1505968156",
+          "citationDetail": "pages 1-5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Golani 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZRIPBVR",
+          "formattedCitation": "<div class=\"csl-entry\">Golani, Amir, and Samuel Richard Wolff. <i>Tel Dover (Khirbet Ed-Duweir) on the Yarmuk River: The Late Bronze and Iron Age Levels</i>. \u00c4gypten Und Altes Testament, Bd. 130. M\u00fcnster: Zaphon, 2025. http://worldcat.org/oclc/1505968156.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tel-dover",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -550,
+      "title": "Tel Dover",
+      "provenance": "OpenStreetMap (Way 1432302983, version 1, osm:changeset=172346532, 2025-09-23T14:04:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1400,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        "tell"
+      ],
+      "description": "Polygon representing the visible remains at Tel Dover, derived from an OpenStreetMap after Golani 2025.",
+      "created": "2025-09-23T14:04:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.6282061,
+            32.6834666
+          ],
+          [
+            35.6280666,
+            32.6834846
+          ],
+          [
+            35.6279271,
+            32.6837104
+          ],
+          [
+            35.6279271,
+            32.6839091
+          ],
+          [
+            35.6279378,
+            32.6840806
+          ],
+          [
+            35.6281846,
+            32.6842973
+          ],
+          [
+            35.6282704,
+            32.6844238
+          ],
+          [
+            35.628485,
+            32.6844509
+          ],
+          [
+            35.6288069,
+            32.6845141
+          ],
+          [
+            35.6289571,
+            32.6845321
+          ],
+          [
+            35.6291931,
+            32.684198
+          ],
+          [
+            35.6295042,
+            32.6839723
+          ],
+          [
+            35.6295579,
+            32.683882
+          ],
+          [
+            35.6303411,
+            32.684189
+          ],
+          [
+            35.6313174,
+            32.6845592
+          ],
+          [
+            35.6315213,
+            32.68418
+          ],
+          [
+            35.630384,
+            32.6829157
+          ],
+          [
+            35.6301587,
+            32.6828345
+          ],
+          [
+            35.6299763,
+            32.6830151
+          ],
+          [
+            35.6297295,
+            32.6835298
+          ],
+          [
+            35.6287961,
+            32.6835479
+          ],
+          [
+            35.6283241,
+            32.6834305
+          ],
+          [
+            35.6282061,
+            32.6834666
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/251529383/tel-dover",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-24T01:04:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-23T14:12:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-23T14:08:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-23T14:07:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-23T14:04:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-23T14:04:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://worldcat.org/oclc/1505968156",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Golani 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZRIPBVR",
+      "formattedCitation": "<div class=\"csl-entry\">Golani, Amir, and Samuel Richard Wolff. <i>Tel Dover (Khirbet Ed-Duweir) on the Yarmuk River: The Late Bronze and Iron Age Levels</i>. \u00c4gypten Und Altes Testament, Bd. 130. M\u00fcnster: Zaphon, 2025. http://worldcat.org/oclc/1505968156.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Khirbet ed-Duweir, Khirbet ad-Duwayr",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.wikidata.org/entity/Q86001659",
+          "citationDetail": "Tel Dover",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "khirbet-ed-duweir",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Arabic name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-09-23T14:12:35Z",
+      "uri": "https://pleiades.stoa.org/places/251529383/khirbet-ed-duweir",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u062e\u0631\u0628\u0629 \u0627\u0644\u062f\u0648\u064a\u0631",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-24T01:04:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-23T14:12:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-23T14:12:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-23T14:12:35Z"
+        }
+      ]
+    }
+  ],
+  "id": "251529383",
+  "subject": [],
+  "title": "Tel Dover",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement on the Yarmuk River in the southern Golan, approximately 5 km south of the Sea of Galilee, consisting of a round tell and a lower terrace covering approximately two hectares. The site contains signs of habitation from the Late Bronze Age through the Iron Age (ca. 15th-8th centuries BCE).",
+  "reprPoint": [
+    35.62971930458114,
+    32.68384252238884
+  ],
+  "placeTypes": [
+    "settlement",
+    "tell"
+  ],
+  "bbox": [
+    35.6279271,
+    32.6828345,
+    35.6315213,
+    32.6845592
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-23T14:02:45Z",
+  "uri": "https://pleiades.stoa.org/places/251529383",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-24T01:04:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-23T14:15:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-23T14:12:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-23T14:08:20Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-23T14:02:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-23T14:02:45Z"
+    }
+  ]
+}

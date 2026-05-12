@@ -1,0 +1,354 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.5050292,
+          36.7552419
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-iiii-i1i-i-i-i3i1ioii-issiii-i-i",
+      "properties": {
+        "snippet": "Archaeological-site; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/280341406/osm-location-of-iiii-i1i-i-i-i3i1ioii-issiii-i-i",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03cc\u03c2 \u03a7\u03ce\u03c1\u03bf\u03c2 \u03a6\u03c5\u03bb\u03b1\u03ba\u03c9\u03c0\u03ae\u03c2 \u039c\u03ae\u03bb\u03bf\u03c5"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/12662853564",
+          "citationDetail": "Node 12662853564",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=12662853564",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-iiii-i1i-i-i-i3i1ioii-issiii-i-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -1000,
+      "title": "OSM location of \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03cc\u03c2 \u03a7\u03ce\u03c1\u03bf\u03c2 \u03a6\u03c5\u03bb\u03b1\u03ba\u03c9\u03c0\u03ae\u03c2 \u039c\u03ae\u03bb\u03bf\u03c5",
+      "provenance": "OpenStreetMap (Node 12662853564, version 1, osm:changeset=163613662, 2025-03-14T14:55:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-14T14:56:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.5050292,
+          36.7552419
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/280341406/osm-location-of-iiii-i1i-i-i-i3i1ioii-issiii-i-i",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-14T17:38:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-14T14:57:24Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-14T14:57:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-14T14:56:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-14T14:56:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:32:13Z",
+      "associationCertainty": "certain",
+      "title": "Melos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/280341406/570475",
+      "connectionType": "on",
+      "id": "570475",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-14T17:40:29Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570475",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Phylakopi",
+      "citationDetail": "Phylakopi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Phylakopi.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Renfrew 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SUUAW85J",
+      "formattedCitation": "<div class=\"csl-entry\">Renfrew, Colin, and J. Malcolm Wagstaff, eds. <i>An Island Polity: The Archaeology of Exploitation in Melos</i>. New York: Cambridge University Press, 1982.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/10.2972/hesperia.88.2.0215",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Earle 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G33A3DCD",
+      "formattedCitation": "<div class=\"csl-entry\">Earle, Jason W. \u201cMycenaeans on Melos? Reassessing a Late Bronze Age Ceramic Deposit at Phylakopi.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 88, no. 2 (2019): 215\u201382. https://doi.org/10.2972/hesperia.88.2.0215.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1447360",
+      "citationDetail": "Phylakopi (Q1447360)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.helladic.info/MAPC/pkey_report_wparam.php?place=C1187",
+      "citationDetail": "C1187: Phylakopi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "MycAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCVZLMUJ",
+      "formattedCitation": "<div class=\"csl-entry\">Consoli, Robert H. <i>Mycenaean Atlas Project</i>, 2017. https://www.helladic.info.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/368245UPhy",
+      "citationDetail": "Phylakopi exc. (Melos)  Phylakopi - \u03a6\u03c5\u03bb\u03b1\u03ba\u03c9\u03c0\u03ae",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016-. https://topostext.org/.</div>",
+      "otherIdentifier": "http://atlantides.org/bibliography/",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "280341406",
+  "subject": [],
+  "title": "Phylakopi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A major Bronze Age settlement on Melos with evidence for continuous occupation from the third millennium BC until the twelfth century BC, Phylakopi provides important information about the Cycladic civilization.",
+  "reprPoint": [
+    24.5050292,
+    36.7552419
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    24.5050292,
+    36.7552419,
+    24.5050292,
+    36.7552419
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570475"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-04T20:04:34Z",
+  "uri": "https://pleiades.stoa.org/places/280341406",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added references provided by bkiesling",
+      "modifiedBy": "admin",
+      "modified": "2025-11-04T20:04:35Z"
+    },
+    {
+      "comment": "added MycAtlas reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-14T17:42:29Z"
+    },
+    {
+      "comment": "wikidata Q1447360",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-14T14:53:34Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T14:48:41Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-01-29T22:58:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-01-27T16:16:26Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-01-27T16:13:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2013-01-27T16:08:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-01-27T16:08:39Z"
+    }
+  ]
+}

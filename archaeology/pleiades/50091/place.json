@@ -1,0 +1,640 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            74.3262055,
+            14.0142166
+          ],
+          [
+            74.3264632,
+            14.0146674
+          ],
+          [
+            74.3269569,
+            14.014518
+          ],
+          [
+            74.3278904,
+            14.0149296
+          ],
+          [
+            74.3290243,
+            14.015612
+          ],
+          [
+            74.3295422,
+            14.0162844
+          ],
+          [
+            74.329912,
+            14.01717
+          ],
+          [
+            74.3301112,
+            14.017698
+          ],
+          [
+            74.3299468,
+            14.0179492
+          ],
+          [
+            74.3294669,
+            14.0184301
+          ],
+          [
+            74.3288088,
+            14.0187536
+          ],
+          [
+            74.3282143,
+            14.0186695
+          ],
+          [
+            74.3278264,
+            14.0185261
+          ],
+          [
+            74.3272541,
+            14.0185003
+          ],
+          [
+            74.3269798,
+            14.0190748
+          ],
+          [
+            74.3267847,
+            14.0195738
+          ],
+          [
+            74.326383,
+            14.0200475
+          ],
+          [
+            74.3261284,
+            14.0202133
+          ],
+          [
+            74.3255124,
+            14.0204314
+          ],
+          [
+            74.3251338,
+            14.0203588
+          ],
+          [
+            74.3249025,
+            14.0201568
+          ],
+          [
+            74.3249474,
+            14.0199199
+          ],
+          [
+            74.3245468,
+            14.0195654
+          ],
+          [
+            74.3244212,
+            14.0192723
+          ],
+          [
+            74.3244864,
+            14.0188976
+          ],
+          [
+            74.3244768,
+            14.0183103
+          ],
+          [
+            74.3243603,
+            14.0172868
+          ],
+          [
+            74.3245354,
+            14.0166928
+          ],
+          [
+            74.3244498,
+            14.0161804
+          ],
+          [
+            74.3246349,
+            14.0157843
+          ],
+          [
+            74.3248898,
+            14.0156879
+          ],
+          [
+            74.3251204,
+            14.0157744
+          ],
+          [
+            74.3252397,
+            14.015392
+          ],
+          [
+            74.3251566,
+            14.0146502
+          ],
+          [
+            74.3251993,
+            14.0144047
+          ],
+          [
+            74.3262055,
+            14.0142166
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Island, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/50091/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Netrani (island)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/19854333",
+          "citationDetail": "Way 19854333",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=19854333",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Netrani_Island",
+          "citationDetail": "Netrani Island",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Netrani Island.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/island",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "OSM location of Netrani (island)",
+      "provenance": "OpenStreetMap (Way 19854333, version 8, osm:changeset=101065995, 2021-03-15T17:20:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/island",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "island",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-04-14T04:11:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            74.3262055,
+            14.0142166
+          ],
+          [
+            74.3264632,
+            14.0146674
+          ],
+          [
+            74.3269569,
+            14.014518
+          ],
+          [
+            74.3278904,
+            14.0149296
+          ],
+          [
+            74.3290243,
+            14.015612
+          ],
+          [
+            74.3295422,
+            14.0162844
+          ],
+          [
+            74.329912,
+            14.01717
+          ],
+          [
+            74.3301112,
+            14.017698
+          ],
+          [
+            74.3299468,
+            14.0179492
+          ],
+          [
+            74.3294669,
+            14.0184301
+          ],
+          [
+            74.3288088,
+            14.0187536
+          ],
+          [
+            74.3282143,
+            14.0186695
+          ],
+          [
+            74.3278264,
+            14.0185261
+          ],
+          [
+            74.3272541,
+            14.0185003
+          ],
+          [
+            74.3269798,
+            14.0190748
+          ],
+          [
+            74.3267847,
+            14.0195738
+          ],
+          [
+            74.326383,
+            14.0200475
+          ],
+          [
+            74.3261284,
+            14.0202133
+          ],
+          [
+            74.3255124,
+            14.0204314
+          ],
+          [
+            74.3251338,
+            14.0203588
+          ],
+          [
+            74.3249025,
+            14.0201568
+          ],
+          [
+            74.3249474,
+            14.0199199
+          ],
+          [
+            74.3245468,
+            14.0195654
+          ],
+          [
+            74.3244212,
+            14.0192723
+          ],
+          [
+            74.3244864,
+            14.0188976
+          ],
+          [
+            74.3244768,
+            14.0183103
+          ],
+          [
+            74.3243603,
+            14.0172868
+          ],
+          [
+            74.3245354,
+            14.0166928
+          ],
+          [
+            74.3244498,
+            14.0161804
+          ],
+          [
+            74.3246349,
+            14.0157843
+          ],
+          [
+            74.3248898,
+            14.0156879
+          ],
+          [
+            74.3251204,
+            14.0157744
+          ],
+          [
+            74.3252397,
+            14.015392
+          ],
+          [
+            74.3251566,
+            14.0146502
+          ],
+          [
+            74.3251993,
+            14.0144047
+          ],
+          [
+            74.3262055,
+            14.0142166
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/50091/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-27T21:24:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T13:06:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-02T01:23:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-14T04:12:03Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-14T04:11:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-14T04:11:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-14T04:11:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "5 C4 Leuke Ins.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "53",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "PME (Casson)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q4N2Z8P5",
+      "formattedCitation": "<div class=\"csl-entry\">Casson, Lionel. <i>The Periplus maris Erythraei: text with introduction, translation, and commentary</i>. Princeton, NJ: Princeton University Press, 1989.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/p.html#Ptol.-7.1.95",
+      "formattedCitation": "Ptol. 7.1.95",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/843532247",
+      "citationDetail": "p. 315",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cohen 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3IUMQ8JG",
+      "formattedCitation": "<div class=\"csl-entry\">Cohen, Getzel. <i>The Hellenistic Settlements in the East from Armenia and Mesopotamia to Bactria and India</i>. Hellenistic Culture and Society 54. Berkeley: University of California Press, 2013. https://doi.org/https://doi.org/10.1525/9780520953567.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Leuke",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "leuke",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 5 C4 Leuke Ins.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-09-23T00:59:51Z",
+      "uri": "https://pleiades.stoa.org/places/50091/leuke",
+      "creators": [
+        {
+          "username": null,
+          "name": "M.U. Erdosy"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T05:39:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-23T17:00:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-23T01:38:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-23T00:59:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "50091",
+  "subject": [],
+  "title": "Leuke (island)",
+  "provenance": "Barrington Atlas: BAtlas 5 C4 Leuke Ins.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/island"
+  ],
+  "details": "The Barrington Atlas Directory notes: Pigeon",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 5 C4 Leuke Ins.",
+  "reprPoint": [
+    74.3250429,
+    14.0188543
+  ],
+  "placeTypes": [
+    "island"
+  ],
+  "bbox": [
+    74.3250429,
+    14.0188543,
+    74.3250429,
+    14.0188543
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-09-23T00:59:50Z",
+  "uri": "https://pleiades.stoa.org/places/50091",
+  "creators": [
+    {
+      "username": null,
+      "name": "M.U. Erdosy"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-28T00:32:09Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:39:44Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:05:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-23T17:00:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-23T01:38:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-23T00:59:50Z"
+    }
+  ]
+}

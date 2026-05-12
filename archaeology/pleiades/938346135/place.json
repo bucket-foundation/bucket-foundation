@@ -1,0 +1,429 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.4133086,
+            19.6078564
+          ],
+          [
+            30.4114567,
+            19.6074741
+          ],
+          [
+            30.4113017,
+            19.6093368
+          ],
+          [
+            30.4132791,
+            19.6100944
+          ],
+          [
+            30.4134488,
+            19.6101152
+          ],
+          [
+            30.4134488,
+            19.6100249
+          ],
+          [
+            30.4136775,
+            19.610004
+          ],
+          [
+            30.4136997,
+            19.6092881
+          ],
+          [
+            30.4133234,
+            19.6092673
+          ],
+          [
+            30.4133086,
+            19.6078564
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-doukki-gel",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/938346135/osm-location-of-doukki-gel",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Doukki Gel"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/184538220",
+          "citationDetail": "Way 184538220",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=184538220",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-doukki-gel",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Doukki Gel",
+      "provenance": "OpenStreetMap (Way 184538220, version 2, osm:changeset=14324212, 2012-12-18T21:32:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-11T00:53:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.4133086,
+            19.6078564
+          ],
+          [
+            30.4114567,
+            19.6074741
+          ],
+          [
+            30.4113017,
+            19.6093368
+          ],
+          [
+            30.4132791,
+            19.6100944
+          ],
+          [
+            30.4134488,
+            19.6101152
+          ],
+          [
+            30.4134488,
+            19.6100249
+          ],
+          [
+            30.4136775,
+            19.610004
+          ],
+          [
+            30.4136997,
+            19.6092881
+          ],
+          [
+            30.4133234,
+            19.6092673
+          ],
+          [
+            30.4133086,
+            19.6078564
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/938346135/osm-location-of-doukki-gel",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-11T14:28:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T14:48:35Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T00:53:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T00:53:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T00:53:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 99,
+      "description": "",
+      "contributors": [],
+      "created": "2024-05-11T14:40:29Z",
+      "associationCertainty": "certain",
+      "title": "Prummu?/Primii?",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/938346135/4297304413",
+      "connectionType": "succeeds",
+      "id": "4297304413",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T14:48:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T14:41:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T14:40:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T14:40:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-11T14:40:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/805649",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://fr.wikipedia.org",
+          "citationDetail": "Doukki Gel",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (French)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bonnet 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTHR9MWB",
+      "formattedCitation": "<div class=\"csl-entry\">Bonnet, Charles. \u201cDoukki Gel, une ville africaine aux fronti\u00e8res de l\u2019\u00c9gypte.\u201d In <i>Comptes Rendus des S\u00e9ances de l\u2019Ann\u00e9e, 2017 (2017)</i>, 1347\u201367, fasc. 2017, 4. Paris: Diffusion de Boccard, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bonnet 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CLR26LBF",
+      "formattedCitation": "<div class=\"csl-entry\">Bonnet, Charles, S\u00e9verine Marchi, and Dominique Valbelle. <i>Le jujubier: ville sacr\u00e9e des pharaons noirs</i>. Mission arch\u00e9ologique suisse-franco-soudanaise de Kerma/Doukki Gel. Paris: \u00c9ditions Kh\u00e9ops, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bonnet 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DXMS2JAG",
+      "formattedCitation": "<div class=\"csl-entry\">Bonnet, Charles, and Dominique Valbelle. <i>Les temples \u00e9gyptiens de Pan\u00e9b\u00e8s \u2019 \u2019le jujubier \u2019 \u2019 \u00e0 Doukki Gel - Soudan</i>. Paris: \u00c9ditions Kh\u00e9ops, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bietak 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QKDR2FMH",
+      "formattedCitation": "<div class=\"csl-entry\">Bietak, Manfred, and Silvia Prell, eds. <i>Ancient Egyptian and Ancient Near Eastern Palaces</i>. 2 vols. Denkschriften Der Gesamtakademie, Bd. 83, v. 5, 8, Band LXXXIII, volumes 5, 8. Vienna: Austrian Academy of Sciences Press, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=31212523",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ruffieux 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TQFJM9PA",
+      "formattedCitation": "<div class=\"csl-entry\">Ruffieux, P. <i>Egyptiens et Nubiens a Kerma La Ceramique de Doukki Gel (Soudan) Au Nouvel Empire</i>. Orientalia Lovaniensia Analecta Series. Leuven: Peeters Publishers &amp; Booksellers, 2023. https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=31212523.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q16964645",
+      "citationDetail": "Dokki Gel (Q16964645)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Doukki_Gel",
+      "citationDetail": "Doukki Gel",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "938346135",
+  "subject": [],
+  "title": "Doukki Gel",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient city founded by Egyptian pharaohs ca. 1450 BCE, Doukki Gel succeeds the earlier site of Kerma.",
+  "reprPoint": [
+    30.412511358596937,
+    19.608813780917654
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    30.4113017,
+    19.6074741,
+    30.4136997,
+    19.6101152
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/805649"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-05-11T14:40:29Z",
+  "uri": "https://pleiades.stoa.org/places/938346135",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-11T14:28:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T14:48:35Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T14:46:51Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T14:42:34Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T14:40:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-11T14:40:29Z"
+    }
+  ]
+}

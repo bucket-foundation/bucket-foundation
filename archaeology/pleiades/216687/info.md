@@ -1,0 +1,14 @@
+# Abrit
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/216687
+- **ID**: 216687
+- **Coords (lng, lat)**: [27.808726, 43.887651]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 22 E5 Abrit

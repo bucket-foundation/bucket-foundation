@@ -1,0 +1,476 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.0190947,
+            35.9947142
+          ],
+          [
+            9.0196901,
+            35.9942672
+          ],
+          [
+            9.0195775,
+            35.9941717
+          ],
+          [
+            9.0194326,
+            35.9941066
+          ],
+          [
+            9.0193039,
+            35.9940458
+          ],
+          [
+            9.019159,
+            35.9940588
+          ],
+          [
+            9.0190142,
+            35.9941152
+          ],
+          [
+            9.0189015,
+            35.9942238
+          ],
+          [
+            9.018864,
+            35.9943453
+          ],
+          [
+            9.0188694,
+            35.9944755
+          ],
+          [
+            9.0189659,
+            35.9946057
+          ],
+          [
+            9.0190947,
+            35.9947142
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-theater",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/176578175/osm-location-of-theater",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/284080847",
+          "citationDetail": "Way 284080847",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=284080847",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of theater",
+      "provenance": "OpenStreetMap (Way 284080847, version 1, osm:changeset=22528700, 2014-05-24T18:03:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-05-24T18:04:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.0190947,
+            35.9947142
+          ],
+          [
+            9.0196901,
+            35.9942672
+          ],
+          [
+            9.0195775,
+            35.9941717
+          ],
+          [
+            9.0194326,
+            35.9941066
+          ],
+          [
+            9.0193039,
+            35.9940458
+          ],
+          [
+            9.019159,
+            35.9940588
+          ],
+          [
+            9.0190142,
+            35.9941152
+          ],
+          [
+            9.0189015,
+            35.9942238
+          ],
+          [
+            9.018864,
+            35.9943453
+          ],
+          [
+            9.0188694,
+            35.9944755
+          ],
+          [
+            9.0189659,
+            35.9946057
+          ],
+          [
+            9.0190947,
+            35.9947142
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/176578175/osm-location-of-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T09:24:43Z"
+        },
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T09:17:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-24T18:08:00Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-24T18:06:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-24T18:04:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-24T18:04:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-04-19T09:18:11Z",
+      "associationCertainty": "certain",
+      "title": "Assuras",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/176578175/8918128885",
+      "connectionType": "at",
+      "id": "8918128885",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T09:18:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T09:18:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T09:18:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/324669",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/959161774",
+      "citationDetail": "page 276",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sear 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7BIRCPUI",
+      "formattedCitation": "<div class=\"csl-entry\">Sear, Frank. <i>Roman Theatres: An Architectural Study</i>. Oxford; New York: Oxford University Press, 2006. http://www.worldcat.org/oclc/959161774.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q42755146",
+      "citationDetail": "Q42755146: Theatre of Assuras",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://theatrum.de/894.html",
+      "citationDetail": "894: ASSURAS, Zanfur (Africa Proconsularis)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Theatre of Assuras",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q42755146",
+          "citationDetail": "Theatre of Assuras (Q42755146)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "theatre-of-assuras",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-10-03T15:22:07Z",
+      "uri": "https://pleiades.stoa.org/places/176578175/theatre-of-assuras",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Theatre of Assuras",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-07T20:32:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-03T15:22:13Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-03T15:22:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-03T15:22:07Z"
+        }
+      ]
+    }
+  ],
+  "id": "176578175",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Theater of Assuras",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater of Assuras (Zanfour, Tunisia).",
+  "reprPoint": [
+    9.019231556317568,
+    35.99434250430643
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    9.018864,
+    35.9940458,
+    9.0196901,
+    35.9947142
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/324669"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-04-19T09:18:11Z",
+  "uri": "https://pleiades.stoa.org/places/176578175",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-08T02:05:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-03T15:21:14Z"
+    },
+    {
+      "comment": "theatrum.de",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-03T15:20:29Z"
+    },
+    {
+      "comment": "add wikidata reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-26T17:00:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-26T16:59:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T09:24:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T09:24:36Z"
+    },
+    {
+      "comment": "sear 2006",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T09:24:16Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T09:21:46Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T09:18:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T09:18:11Z"
+    }
+  ]
+}

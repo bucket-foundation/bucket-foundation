@@ -1,0 +1,492 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.228991,
+          36.506592
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-residence-j",
+      "properties": {
+        "snippet": "Palace; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/282907842/imagery-location-of-residence-j",
+        "description": "Representative point based on the visible remains of Residence J.",
+        "location_precision": "precise",
+        "title": "Imagery location of Residence J"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://oi.uchicago.edu/research/projects/excavations-khorsabad",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Excavations At Khorsabad",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://artsandculture.google.com/asset/sites-\u00e9ternels-site-arch\u00e9ologique-de-khorsabad-aujourdhui-avec-superposition-du-plan-iconem/JgEMMC6vGxxYyg",
+          "citationDetail": "Khorsabad",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Sites \u00e9ternels",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-residence-j",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "end": -540,
+      "title": "Imagery location of Residence J",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Representative point based on visible remains of Residence J, with aid of a\u00a0<a class=\"external-link\" href=\"https://artsandculture.google.com/asset/sites-%C3%A9ternels-site-arch%C3%A9ologique-de-khorsabad-aujourdhui-avec-superposition-du-plan-iconem/JgEMMC6vGxxYyg?ms=%7B%22x%22%3A0.5%2C%22y%22%3A0.5%2C%22z%22%3A9.208212915025001%2C%22size%22%3A%7B%22width%22%3A1.2416076343911926%2C%22height%22%3A1.237500000000001%7D%7D\" target=\"_self\" title=\"\">superimposed plan</a>\u00a0of the citadel over the present ruins of the site.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "palace"
+      ],
+      "description": "Representative point based on the visible remains of Residence J.",
+      "created": "2020-12-31T09:33:33Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.228991,
+          36.506592
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/282907842/imagery-location-of-residence-j",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-03T13:18:45Z"
+        },
+        {
+          "comment": "title",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-03T13:18:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:55:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:33:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:33:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-30T15:47:27Z",
+      "associationCertainty": "certain",
+      "title": "Dur-Sharrukin",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/282907842/dur-sharrukin",
+      "connectionType": "part_of_physical",
+      "id": "dur-sharrukin",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-03T13:18:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:55:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-30T15:47:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-30T15:47:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/874458",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Loud, Frankfort, and Jacobsen 1936",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KTVGQQFW",
+          "formattedCitation": "<div class=\"csl-entry\">Loud, Gordon, Henri Frankfort, and Thorkild Jacobsen. <i>Khorsabad. 1, 1,</i>. Chicago, Ill.: The University of Chicago Press, 1936.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-31T09:28:16Z",
+      "associationCertainty": "certain",
+      "title": "Nab\u00fb temple (Khorsabad) ",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/282907842/nabu-temple-khorsabad",
+      "connectionType": "abuts",
+      "id": "nabu-temple-khorsabad",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-03T13:18:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:55:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:28:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:28:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/508774533",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://oi.uchicago.edu/research/projects/excavations-khorsabad",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Excavations At Khorsabad",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://oi.uchicago.edu/research/projects/excavations-khorsabad",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Excavations At Khorsabad",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Dur-Sharrukin",
+      "citationDetail": "Dur-Sharrukin",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archeologie.culture.fr/khorsabad/en/city",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Khorsabad, The City of Sargon",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Loud, Frankfort, and Jacobsen 1936",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KTVGQQFW",
+      "formattedCitation": "<div class=\"csl-entry\">Loud, Gordon, Henri Frankfort, and Thorkild Jacobsen. <i>Khorsabad. 1, 1,</i>. Chicago, Ill.: The University of Chicago Press, 1936.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Residence J",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://oi.uchicago.edu/research/projects/excavations-khorsabad",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Excavations At Khorsabad",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Loud, Frankfort, and Jacobsen 1936",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KTVGQQFW",
+          "formattedCitation": "<div class=\"csl-entry\">Loud, Gordon, Henri Frankfort, and Thorkild Jacobsen. <i>Khorsabad. 1, 1,</i>. Chicago, Ill.: The University of Chicago Press, 1936.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "residence-j",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name assigned to the Assyrian royal residence at D\u016br-\u0160arruk\u012bn. The building's ancient name and owner/principal occupant are not known.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-12-31T09:30:19Z",
+      "uri": "https://pleiades.stoa.org/places/282907842/residence-j",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-03T13:18:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:55:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:30:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-12-31T09:30:19Z"
+        }
+      ]
+    }
+  ],
+  "id": "282907842",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Khorsabad Residence J",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/palace"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The eighth-century-BC Assyrian king Sargon II (r. 721\u2013705 BC) had several royal residences constructed in the citadel of his new capital, D\u016br-\u0160arruk\u012bn (modern Khorsabad). Residence J, which has constructed on the western side of the citadel, is presumed to have been for one of the highest officials of the Assyrian Empire. Since no inscriptions were discovered in the ruins of the building, the owner/principal occupant of the this Assyrian palace is not known.",
+  "reprPoint": [
+    43.228991,
+    36.506592
+  ],
+  "placeTypes": [
+    "palace"
+  ],
+  "bbox": [
+    43.228991,
+    36.506592,
+    43.228991,
+    36.506592
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/874458",
+    "https://pleiades.stoa.org/places/508774533",
+    "https://pleiades.stoa.org/places/748147228"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-30T15:38:11Z",
+  "uri": "https://pleiades.stoa.org/places/282907842",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-03T13:18:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-12-31T09:55:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-12-31T09:54:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-12-30T15:38:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-12-30T15:38:11Z"
+    }
+  ]
+}

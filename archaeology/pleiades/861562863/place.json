@@ -1,0 +1,418 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.0945697,
+            41.9260019
+          ],
+          [
+            13.0944889,
+            41.9260382
+          ],
+          [
+            13.0945243,
+            41.9260798
+          ],
+          [
+            13.0945603,
+            41.9260604
+          ],
+          [
+            13.0946001,
+            41.9260938
+          ],
+          [
+            13.0946839,
+            41.9261357
+          ],
+          [
+            13.0948048,
+            41.9261787
+          ],
+          [
+            13.0949356,
+            41.9261895
+          ],
+          [
+            13.094941,
+            41.9261435
+          ],
+          [
+            13.0950554,
+            41.9261517
+          ],
+          [
+            13.0951279,
+            41.9261183
+          ],
+          [
+            13.0951191,
+            41.9260716
+          ],
+          [
+            13.0950635,
+            41.9260835
+          ],
+          [
+            13.0949416,
+            41.9260641
+          ],
+          [
+            13.0948321,
+            41.926049
+          ],
+          [
+            13.094844,
+            41.9259574
+          ],
+          [
+            13.0947322,
+            41.925949
+          ],
+          [
+            13.0946323,
+            41.9259572
+          ],
+          [
+            13.0945706,
+            41.9259855
+          ],
+          [
+            13.0945697,
+            41.9260019
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-rocca-abbaziale",
+      "properties": {
+        "snippet": "Castle; AD 1000 - AD 1099",
+        "link": "https://pleiades.stoa.org/places/861562863/osm-location-of-rocca-abbaziale",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Rocca Abbaziale"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "eleventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eleventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/153585997",
+          "citationDetail": "Way 153585997",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=153585997",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-rocca-abbaziale",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/castle"
+      ],
+      "end": 1099,
+      "title": "OSM location of Rocca Abbaziale",
+      "provenance": "OpenStreetMap (Way 153585997, version 5, osm:changeset=119280328, 2022-04-03T22:33:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/castle"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "castle"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-04-06T19:46:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.0945697,
+            41.9260019
+          ],
+          [
+            13.0944889,
+            41.9260382
+          ],
+          [
+            13.0945243,
+            41.9260798
+          ],
+          [
+            13.0945603,
+            41.9260604
+          ],
+          [
+            13.0946001,
+            41.9260938
+          ],
+          [
+            13.0946839,
+            41.9261357
+          ],
+          [
+            13.0948048,
+            41.9261787
+          ],
+          [
+            13.0949356,
+            41.9261895
+          ],
+          [
+            13.094941,
+            41.9261435
+          ],
+          [
+            13.0950554,
+            41.9261517
+          ],
+          [
+            13.0951279,
+            41.9261183
+          ],
+          [
+            13.0951191,
+            41.9260716
+          ],
+          [
+            13.0950635,
+            41.9260835
+          ],
+          [
+            13.0949416,
+            41.9260641
+          ],
+          [
+            13.0948321,
+            41.926049
+          ],
+          [
+            13.094844,
+            41.9259574
+          ],
+          [
+            13.0947322,
+            41.925949
+          ],
+          [
+            13.0946323,
+            41.9259572
+          ],
+          [
+            13.0945706,
+            41.9259855
+          ],
+          [
+            13.0945697,
+            41.9260019
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/861562863/osm-location-of-rocca-abbaziale",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-09T13:11:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-09T01:42:36Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-06T19:46:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-06T19:46:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-06T19:46:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-04-06T19:47:10Z",
+      "associationCertainty": "certain",
+      "title": "Sublaqueum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/861562863/sublaqueum",
+      "connectionType": "succeeds",
+      "id": "sublaqueum",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-09T13:11:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-09T01:42:36Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-06T19:47:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-06T19:47:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423078",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17025596",
+      "citationDetail": "Rocca Abbaziale (Q17025596)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Rocca_abbaziale",
+      "citationDetail": "Rocca abbaziale",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/UMFZH98D",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "861562863",
+  "subject": [],
+  "title": "Rocca Abbaziale",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/castle"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Rocca Abbaziale at Subiaco was built by Giovanni V in the eleventh century.",
+  "reprPoint": [
+    13.09481116298715,
+    41.926073805879575
+  ],
+  "placeTypes": [
+    "castle"
+  ],
+  "bbox": [
+    13.0944889,
+    41.925949,
+    13.0951279,
+    41.9261895
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423078"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-04-06T19:45:50Z",
+  "uri": "https://pleiades.stoa.org/places/861562863",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-09T13:11:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-09T01:42:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-09T01:42:22Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-06T19:45:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-06T19:45:50Z"
+    }
+  ]
+}

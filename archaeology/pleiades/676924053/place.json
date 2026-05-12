@@ -1,0 +1,266 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6631319,
+          43.5457308
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-wall",
+      "properties": {
+        "snippet": "City-wall; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/676924053/osm-location-of-roman-wall",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Muralla Romana de Gijon"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2754695680",
+          "citationDetail": "Node 2754695680",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2754695680",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-wall",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "end": 300,
+      "title": "OSM location of Muralla Romana de Gijon",
+      "provenance": "OpenStreetMap (Node 2754695680, version 3, osm:changeset=62516331, 2018-09-12T10:57:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-wall"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-05-11T17:25:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.6631319,
+          43.5457308
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/676924053/osm-location-of-roman-wall",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-16T01:05:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:39:52Z"
+        },
+        {
+          "comment": "title, summary, remains",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-06T15:38:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-21T03:07:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-21T03:07:34Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-11T17:25:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-11T17:25:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-11T17:25:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-04-21T13:31:38Z",
+      "associationCertainty": "certain",
+      "title": "Gigia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/676924053/4988813320",
+      "connectionType": "at",
+      "id": "4988813320",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-21T13:31:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-21T13:31:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-21T13:31:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/236475",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fern\u00e1ndez Ochoa 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XJCIUYLL",
+      "formattedCitation": "<div class=\"csl-entry\">Fern\u00e1ndez Ochoa, Carmen. <i>La Muralla Romana de Gij\u00f3n (Asturias)</i>. Serie Patrimonio (Gij\u00f3n, Spain) 3. Madrid: Electa, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "676924053",
+  "subject": [],
+  "title": "Roman wall, Gijon",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman fortification wall that dates initially to the third or fourth century.",
+  "reprPoint": [
+    -5.6631319,
+    43.5457308
+  ],
+  "placeTypes": [
+    "city-wall"
+  ],
+  "bbox": [
+    -5.6631319,
+    43.5457308,
+    -5.6631319,
+    43.5457308
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/236475"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-04-21T13:31:38Z",
+  "uri": "https://pleiades.stoa.org/places/676924053",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-12T10:39:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-06T15:40:17Z"
+    },
+    {
+      "comment": "referenc",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-06T15:39:42Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-21T13:32:12Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-21T13:31:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-21T13:31:38Z"
+    }
+  ]
+}

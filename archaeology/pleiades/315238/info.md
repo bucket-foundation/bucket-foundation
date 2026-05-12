@@ -1,0 +1,14 @@
+# Tusca (river)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/315238
+- **ID**: 315238
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Tusca fluvius
+
+## Description
+
+An ancient place, cited: BAtlas 32 C3 Tusca fl.

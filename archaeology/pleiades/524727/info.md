@@ -1,0 +1,14 @@
+# Untitled
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/524727
+- **ID**: 524727
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+Constantinopolis → Hebdomon → Dekaton → W

@@ -1,0 +1,390 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4781231,
+            41.6550373
+          ],
+          [
+            12.4780996,
+            41.6550438
+          ],
+          [
+            12.4780775,
+            41.6550463
+          ],
+          [
+            12.4780447,
+            41.6550338
+          ],
+          [
+            12.4780366,
+            41.6550256
+          ],
+          [
+            12.4780259,
+            41.6550147
+          ],
+          [
+            12.4780262,
+            41.6550119
+          ],
+          [
+            12.4780286,
+            41.6549917
+          ],
+          [
+            12.4780473,
+            41.6549701
+          ],
+          [
+            12.4780601,
+            41.6549621
+          ],
+          [
+            12.4780735,
+            41.6549561
+          ],
+          [
+            12.4780896,
+            41.6549541
+          ],
+          [
+            12.4781064,
+            41.6549511
+          ],
+          [
+            12.4781151,
+            41.6549476
+          ],
+          [
+            12.4781432,
+            41.6549571
+          ],
+          [
+            12.4781593,
+            41.6549666
+          ],
+          [
+            12.4781701,
+            41.6549826
+          ],
+          [
+            12.4781647,
+            41.6550072
+          ],
+          [
+            12.4781231,
+            41.6550373
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-la-madonnella",
+      "properties": {
+        "snippet": "Church-2; AD 400 - AD 499",
+        "link": "https://pleiades.stoa.org/places/959754434/osm-location-of-la-madonnella",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of La Madonnella"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/808215554",
+          "citationDetail": "Way 808215554",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=808215554",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-la-madonnella",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 499,
+      "title": "OSM location of La Madonnella",
+      "provenance": "OpenStreetMap (Way 808215554, version 1, osm:changeset=85736957, 2020-05-26T01:32:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 400,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-04-20T02:52:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4781231,
+            41.6550373
+          ],
+          [
+            12.4780996,
+            41.6550438
+          ],
+          [
+            12.4780775,
+            41.6550463
+          ],
+          [
+            12.4780447,
+            41.6550338
+          ],
+          [
+            12.4780366,
+            41.6550256
+          ],
+          [
+            12.4780259,
+            41.6550147
+          ],
+          [
+            12.4780262,
+            41.6550119
+          ],
+          [
+            12.4780286,
+            41.6549917
+          ],
+          [
+            12.4780473,
+            41.6549701
+          ],
+          [
+            12.4780601,
+            41.6549621
+          ],
+          [
+            12.4780735,
+            41.6549561
+          ],
+          [
+            12.4780896,
+            41.6549541
+          ],
+          [
+            12.4781064,
+            41.6549511
+          ],
+          [
+            12.4781151,
+            41.6549476
+          ],
+          [
+            12.4781432,
+            41.6549571
+          ],
+          [
+            12.4781593,
+            41.6549666
+          ],
+          [
+            12.4781701,
+            41.6549826
+          ],
+          [
+            12.4781647,
+            41.6550072
+          ],
+          [
+            12.4781231,
+            41.6550373
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/959754434/osm-location-of-la-madonnella",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-21T10:45:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-21T03:38:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-21T03:38:26Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-20T02:53:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-20T02:52:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-20T02:52:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DL%3Aentry+group%3D2%3Aentry%3Dlavinium",
+      "citationDetail": "LAVINIUM (Pratica di Mare) Latium, Italy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/7236899",
+      "citationDetail": "Fundstelle: Lavinium/Pozzo \u201azona della Madonella\u2019 [V. Boecker, Kat-Nr. 27.c] Lavinium, Italien",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/7082224",
+      "citationDetail": "Pozzo \u201azona della Madonella\u2019 Lavinium, Italien, Europa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "959754434",
+  "subject": [
+    "paleochristian"
+  ],
+  "title": "Santa Maria delle Vigne",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Paleochristian church (fifth century CE) located near ancient Lavinium.",
+  "reprPoint": [
+    12.478097529827632,
+    41.654996942180695
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    12.4780259,
+    41.6549476,
+    12.4781701,
+    41.6550463
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-20T02:52:25Z",
+  "uri": "https://pleiades.stoa.org/places/959754434",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T10:10:36Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-21T10:45:19Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-21T03:51:49Z"
+    },
+    {
+      "comment": "iDAI.gazetteer",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-21T03:51:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-21T03:38:35Z"
+    },
+    {
+      "comment": "reference, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-21T03:38:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-20T02:52:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-20T02:52:25Z"
+    }
+  ]
+}

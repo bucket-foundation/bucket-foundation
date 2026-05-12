@@ -1,0 +1,486 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3926691,
+            55.4200779
+          ],
+          [
+            -2.3927786,
+            55.4199704
+          ],
+          [
+            -2.3926776,
+            55.4197482
+          ],
+          [
+            -2.3904621,
+            55.4156408
+          ],
+          [
+            -2.3903519,
+            55.4155715
+          ],
+          [
+            -2.390212,
+            55.4155563
+          ],
+          [
+            -2.3874595,
+            55.4159689
+          ],
+          [
+            -2.387025,
+            55.41605
+          ],
+          [
+            -2.3869922,
+            55.4161074
+          ],
+          [
+            -2.3871398,
+            55.4163387
+          ],
+          [
+            -2.3882183,
+            55.4180996
+          ],
+          [
+            -2.3861676,
+            55.4184825
+          ],
+          [
+            -2.3866558,
+            55.4192075
+          ],
+          [
+            -2.3864117,
+            55.4192696
+          ],
+          [
+            -2.3865632,
+            55.4194703
+          ],
+          [
+            -2.3868158,
+            55.4194273
+          ],
+          [
+            -2.3877923,
+            55.4208081
+          ],
+          [
+            -2.3879492,
+            55.4210529
+          ],
+          [
+            -2.3926691,
+            55.4200779
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-camp",
+      "properties": {
+        "snippet": "Military-installation-or-camp-temporary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/260256453/location-of-roman-camp",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/189066429",
+          "citationDetail": "Way 189066429",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=189066429",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-camp",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "end": 300,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 189066429, version 3, osm:changeset=104918567, 2021-05-18T23:38:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "military-installation-or-camp-temporary"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-11-26T15:31:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3926691,
+            55.4200779
+          ],
+          [
+            -2.3927786,
+            55.4199704
+          ],
+          [
+            -2.3926776,
+            55.4197482
+          ],
+          [
+            -2.3904621,
+            55.4156408
+          ],
+          [
+            -2.3903519,
+            55.4155715
+          ],
+          [
+            -2.390212,
+            55.4155563
+          ],
+          [
+            -2.3874595,
+            55.4159689
+          ],
+          [
+            -2.387025,
+            55.41605
+          ],
+          [
+            -2.3869922,
+            55.4161074
+          ],
+          [
+            -2.3871398,
+            55.4163387
+          ],
+          [
+            -2.3882183,
+            55.4180996
+          ],
+          [
+            -2.3861676,
+            55.4184825
+          ],
+          [
+            -2.3866558,
+            55.4192075
+          ],
+          [
+            -2.3864117,
+            55.4192696
+          ],
+          [
+            -2.3865632,
+            55.4194703
+          ],
+          [
+            -2.3868158,
+            55.4194273
+          ],
+          [
+            -2.3877923,
+            55.4208081
+          ],
+          [
+            -2.3879492,
+            55.4210529
+          ],
+          [
+            -2.3926691,
+            55.4200779
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/260256453/location-of-roman-camp",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T04:32:50Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T04:28:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-18T21:33:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-08T03:36:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-08T03:36:08Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-26T15:31:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-26T15:31:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-26T15:31:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:51:57Z",
+      "associationCertainty": "certain",
+      "title": "Dere Street",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/260256453/82519025",
+      "connectionType": "connection",
+      "id": "82519025",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:51:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/82519025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pennymuir_Roman_camps",
+      "citationDetail": "Pennymuir Roman camps",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Pennymuir Roman camps.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://places.discovertheborders.co.uk/places/136.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "PENNYMUIR ROMAN CAMPS AND DERE STREET",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://roman-britain.co.uk/places/pennymuir.htm",
+      "citationDetail": "Pennymuir Camps Temporary Marching Camps",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://canmore.rcahms.gov.uk/en/site/83741/photographs/pennymuir/",
+      "citationDetail": "83741 Pennymuir",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Canmore",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9QC8C2K",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Canmore: National Record of the Historic Environment, Part of Historic Environment Scotland</i>, n.d. https://canmore.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DP%3Aentry+group%3D3%3Aentry%3Dpennymuir",
+      "citationDetail": "PENNYMUIR Roxburghshire, Scotland",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7164485",
+      "citationDetail": "Pennymuir Roman camps (Q7164485)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "260256453",
+  "subject": [],
+  "title": "Pennymuir",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/military-installation-or-camp-temporary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Temporary Roman marching camps along the line of Dere Street.",
+  "reprPoint": [
+    -2.3892070895714443,
+    55.41839657312137
+  ],
+  "placeTypes": [
+    "military-installation-or-camp-temporary"
+  ],
+  "bbox": [
+    -2.3927786,
+    55.4155563,
+    -2.3861676,
+    55.4210529
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/82519025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-16T14:03:45Z",
+  "uri": "https://pleiades.stoa.org/places/260256453",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type; wikidata Pennymuir Roman camps (Q7164485) @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-17T04:30:35Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-16T14:03:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-18T21:33:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-04-09T04:04:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-04-08T03:35:39Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-04-08T03:35:18Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-26T15:30:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-26T15:30:52Z"
+    }
+  ]
+}

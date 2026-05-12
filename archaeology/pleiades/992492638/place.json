@@ -1,0 +1,467 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.4648129,
+            38.5676307
+          ],
+          [
+            43.4641696,
+            38.5673387
+          ],
+          [
+            43.4636071,
+            38.5680961
+          ],
+          [
+            43.4642504,
+            38.5683882
+          ],
+          [
+            43.4648129,
+            38.5676307
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-aaaaa-anzaf-kalesi",
+      "properties": {
+        "snippet": "Fort-2; 900 BC - 600 BC",
+        "link": "https://pleiades.stoa.org/places/992492638/osm-location-aaaaa-anzaf-kalesi",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: A\u015fa\u011f\u0131-Anzaf Kalesi"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "tseidler",
+      "homepage": null,
+      "name": "Thomas Seidler",
+      "uri": "https://pleiades.stoa.org/author/tseidler"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "urartian-eastern-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/urartian-eastern-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1057267893",
+          "citationDetail": "Way 1057267893",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-aaaaa-anzaf-kalesi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": -600,
+      "title": "OSM Location: A\u015fa\u011f\u0131-Anzaf Kalesi",
+      "provenance": "OpenStreetMap (Way 1057267893, version 1, osm:changeset=120554508, 2022-05-04T17:31:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-11-25T16:47:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.4648129,
+            38.5676307
+          ],
+          [
+            43.4641696,
+            38.5673387
+          ],
+          [
+            43.4636071,
+            38.5680961
+          ],
+          [
+            43.4642504,
+            38.5683882
+          ],
+          [
+            43.4648129,
+            38.5676307
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/992492638/osm-location-aaaaa-anzaf-kalesi",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:47:10Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:47:09Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T14:27:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T14:25:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T14:25:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T14:25:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-02T14:25:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-03-22T18:43:24Z",
+      "associationCertainty": "certain",
+      "title": "Urartu",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/992492638/urartu-1",
+      "connectionType": "part_of_admin",
+      "id": "urartu-1",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-18T13:55:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-20T17:35:23Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-06-20T17:34:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-03-22T18:45:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-03-22T18:43:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-03-22T18:43:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bchristiansen2",
+          "modified": "2020-03-22T18:43:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/214160492",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bchristiansen2",
+          "homepage": null,
+          "name": "Birgit Christiansen ",
+          "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_admin"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1081171511",
+      "citationDetail": "p. 48 A 2-6",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6F7MNQN9",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo. <i>Corpus dei testi urartei. Volume V, Volume V,</i>. Paris: \u00c9ditions de Boccard, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/ecut/index.html",
+      "citationDetail": "A 02-06 (Q006881)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "eCUT",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CU8QAI9",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Electronic Corpus of Urartian Texts (ECUT) Project</i>. Munich: Ludwig-Maximilians-Universit\u00e4t M\u00fcnchen, Historisches Seminar - Alte Geschichte, 2016. http://oracc.museum.upenn.edu/ecut/index.html.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/3642346",
+      "citationDetail": "p. 40; p. 43; pl. 4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Burney 1957",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4YQKJL2Q",
+      "formattedCitation": "<div class=\"csl-entry\">Burney, C. A. \u201cUrartian Fortresses and Towns in the Van Region.\u201d <i>Anatolian Studies</i> 7 (1957): 37\u201353. https://doi.org/10.2307/3642346.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Belli 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3X5KLCZX",
+      "formattedCitation": "<div class=\"csl-entry\">Belli, Oktay. <i>The Anzaf fortresses and the gods of Urartu</i>. Galatasary, \u0130stanbul: Arkeoloji ve Sanat Yayinlari, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "992492638",
+  "subject": [
+    "Urartean",
+    "ANE",
+    "Urartian",
+    "Urartu"
+  ],
+  "title": "A\u015fa\u011f\u0131 Anzaf Fortress",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The A\u015fa\u011f\u0131 Anzaf Fortress (\"Lower Anzaf Fortress\") is situated in the Van region in southeast Turkey. It was built by the Urartian King I\u0161puini (9th / 8th century BCE) who reports about his building activity in several building inscriptions (see especially the building inscription on the fortification wall (CTU A 2-6). Another fortress at Anzaf, namely Yukar\u0131 Anzaf (Upper Anzaf) was built by I\u0161puini's son Minua (9th / 8th century BCE).",
+  "reprPoint": [
+    43.464210004302146,
+    38.56786343329692
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    43.4636071,
+    38.5673387,
+    43.4648129,
+    38.5683882
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/214160492",
+    "https://pleiades.stoa.org/places/822238500"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-25T16:47:29Z",
+  "uri": "https://pleiades.stoa.org/places/992492638",
+  "creators": [
+    {
+      "username": "bchristiansen2",
+      "homepage": null,
+      "name": "Birgit Christiansen ",
+      "uri": "https://pleiades.stoa.org/author/bchristiansen2"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:47:30Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:47:29Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-02T13:47:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-18T13:55:29Z"
+    },
+    {
+      "comment": "edit summary, update place type",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-18T13:52:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-06-05T19:09:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-06-05T19:09:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-06-05T11:51:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-06-05T11:51:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-06-05T11:50:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-05-29T14:57:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-05-29T14:56:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-05-29T14:54:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-05-29T14:46:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tseidler",
+      "modified": "2023-03-14T17:58:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-20T17:35:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-20T17:35:07Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-06-20T17:34:23Z"
+    },
+    {
+      "comment": "linked references to Zotero library",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-23T13:14:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-03-22T18:45:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-03-22T18:44:46Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-02-24T14:18:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bchristiansen2",
+      "modified": "2020-02-24T14:18:54Z"
+    }
+  ]
+}

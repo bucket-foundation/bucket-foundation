@@ -1,0 +1,337 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.789062,
+          39.54673
+        ]
+      },
+      "type": "Feature",
+      "id": "vici-org-location",
+      "properties": {
+        "snippet": "Archaeological-site; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/618644371/vici-org-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Vici.org location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/51730/",
+          "citationDetail": "51730: Dodona. Bouleuterion.",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "vici-org-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "Vici.org location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/vici-org-5m",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2025-07-23T20:24:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.789062,
+          39.54673
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/618644371/vici-org-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-25T01:55:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-23T20:37:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-23T20:25:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-23T20:24:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-23T20:24:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-07-23T20:24:36Z",
+      "associationCertainty": "certain",
+      "title": "Dodona (Epirus)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/618644371/dodona-epirus",
+      "connectionType": "at",
+      "id": "dodona-epirus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-25T01:55:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-23T20:37:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-23T20:24:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-23T20:24:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/530843",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.argophilia.com/news/bouleuterion-at-the-sanctuary-of-dodona-restoration/243693/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Udrea 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PSFVZTKS",
+      "formattedCitation": "<div class=\"csl-entry\">Udrea, Victoria. \u201cSanctuary of Dodona Prepares for Bouleuterion Restoration Works This Year.\u201d <i>Argophilia</i> (blog), July 22, 2025. https://www.argophilia.com/news/bouleuterion-at-the-sanctuary-of-dodona-restoration/243693/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://hdl.handle.net/10442/hedi/17443",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lyrou 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KKH53BXL",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a6\u03c9\u03c4\u03b5\u03b9\u03bd\u03ae \u039b\u03cd\u03c1\u03bf\u03c5. \u201c\u039f\u03b9\u03ba\u03bf\u03b4\u03bf\u03bc\u03ae\u03bc\u03b1\u03c4\u03b1 \u03c0\u03bf\u03bb\u03b9\u03c4\u03b9\u03ba\u03bf\u03cd \u03c7\u03b1\u03c1\u03b1\u03ba\u03c4\u03ae\u03c1\u03b1 \u03c3\u03c4\u03b7 \u03b2\u03bf\u03c1\u03b5\u03b9\u03bf\u03b4\u03c5\u03c4\u03b9\u03ba\u03ae \u0395\u03bb\u03bb\u03ac\u03b4\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b1\u03c1\u03c7\u03b1\u03b9\u03cc\u03c4\u03b7\u03c4\u03b1: \u03c0\u03c1\u03c5\u03c4\u03b1\u03bd\u03b5\u03af\u03b1 - \u03b2\u03bf\u03c5\u03bb\u03b5\u03c5\u03c4\u03ae\u03c1\u03b9\u03b1 - \u03b1\u03c1\u03c7\u03b5\u03af\u03b1.\u201d \u0394\u03b9\u03b4\u03b1\u03ba\u03c4\u03bf\u03c1\u03b9\u03ba\u03ae \u0394\u03b9\u03b1\u03c4\u03c1\u03b9\u03b2\u03ae, \u03a0\u03b1\u03bd\u03b5\u03c0\u03b9\u03c3\u03c4\u03ae\u03bc\u03b9\u03bf \u0399\u03c9\u03b1\u03bd\u03bd\u03af\u03bd\u03c9\u03bd. \u03a3\u03c7\u03bf\u03bb\u03ae \u03a6\u03b9\u03bb\u03bf\u03c3\u03bf\u03c6\u03b9\u03ba\u03ae. \u03a4\u03bc\u03ae\u03bc\u03b1 \u0399\u03c3\u03c4\u03bf\u03c1\u03af\u03b1\u03c2 \u03ba\u03b1\u03b9 \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03af\u03b1\u03c2, 2009. http://hdl.handle.net/10442/hedi/17443.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.uni-lj.si/DocumentaPraehistorica/article/view/47.22",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vasileiou 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DX38QHJI",
+      "formattedCitation": "<div class=\"csl-entry\">Vasileiou, Eleni. \u201cRevisiting Prebuilding Dodona.\u201d <i>Documenta Praehistorica</i> 47 (December 2, 2020): 404\u201310. https://doi.org/10.4312/dp.47.22.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/51730/",
+      "citationDetail": "51730: Dodona. Bouleuterion.",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Bouleuterion_in_Dodona",
+      "citationDetail": "Category:Bouleuterion in Dodona",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q115768447",
+      "citationDetail": "Bouleuterion in Dodona (Q115768447)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Buleuterio_de_Dodona",
+      "citationDetail": "Buleuterio de Dodona",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://onlinelibrary.wiley.com/doi/abs/10.1002/9781118327586.ch24",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Camp 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ESZD978T",
+      "formattedCitation": "<div class=\"csl-entry\">Camp II, John McK. \u201cBouleuteria and Odeia.\u201d In <i>A Companion to Greek Architecture</i>, 342\u201359. John Wiley &amp; Sons, Ltd, 2016. https://doi.org/10.1002/9781118327586.ch24.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [],
+  "id": "618644371",
+  "subject": [],
+  "title": "Bouleuterion at Dodona",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Constructed during the Hellenistic period, this meeting hall served the Epirote league. It was destroyed and rebuilt multiple times before going out of use for this purpose during the early Roman empire.",
+  "reprPoint": [
+    20.789062,
+    39.54673
+  ],
+  "placeTypes": [
+    "building",
+    "archaeological-site"
+  ],
+  "bbox": [
+    20.789062,
+    39.54673,
+    20.789062,
+    39.54673
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/530843",
+    "https://pleiades.stoa.org/places/721831063"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-07-23T20:21:00Z",
+  "uri": "https://pleiades.stoa.org/places/618644371",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-25T01:55:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-23T20:37:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-23T20:31:13Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-23T20:21:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-23T20:21:00Z"
+    }
+  ]
+}

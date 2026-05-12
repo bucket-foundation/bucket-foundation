@@ -1,0 +1,14 @@
+# Pokrovskoye
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/226726
+- **ID**: 226726
+- **Coords (lng, lat)**: [31.611639, 46.536389]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=settlement
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 23 E2 Pokrovskoye

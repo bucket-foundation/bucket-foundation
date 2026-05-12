@@ -1,0 +1,348 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.058444,
+          51.509172
+        ]
+      },
+      "type": "Feature",
+      "id": "representative-point-of-center-of-remains-after-information-in-britannia",
+      "properties": {
+        "snippet": "Bath; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/662780373/representative-point-of-center-of-remains-after-information-in-britannia",
+        "description": "Coordinates following Burnham et al. 2003.",
+        "location_precision": "precise",
+        "title": "Representative point of center of remains"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Roman Britain in 2002, I. Sites Explored",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZMK2HT6C",
+          "formattedCitation": "<div class=\"csl-entry\">Burnham, Barry C., Fraser Hunter, and A. P. Fitzpatrick. \u201cRoman Britain in 2002, I. Sites Explored.\u201d <i>Britannia</i> 34 (2003): 293\u2013382.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "representative-point-of-center-of-remains-after-information-in-britannia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 410,
+      "title": "Representative point of center of remains",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "<p>Britannia provided OS grid reference of TQ 34836 80702. Verified against street address of excavation (172-176 The Highway).</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Coordinates following Burnham et al. 2003.",
+      "created": "2017-09-23T03:15:45Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.058444,
+          51.509172
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/662780373/representative-point-of-center-of-remains-after-information-in-britannia",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T22:51:43Z"
+        },
+        {
+          "comment": "edited summary",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T22:49:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-23T03:19:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-23T03:17:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-23T03:15:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-23T03:15:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-08T14:41:45Z",
+      "associationCertainty": "certain",
+      "title": "Londinium/Augusta",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/662780373/londinium-augusta",
+      "connectionType": "near",
+      "id": "londinium-augusta",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-07T20:49:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-08T14:41:54Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-08T14:41:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-08T14:41:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79574",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Douglas 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9YDSNXXE",
+          "formattedCitation": "<div class=\"csl-entry\">Douglas, Alistair. \u201cThe \u2018Babe Ruth\u2019 Bath-House: Londinium\u2019s Later Port?\u201d <i>Current Archaeology</i> 17, no. 193 (2004): 20\u201331.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Greater Lon: Tower Hamlets No. 9, 347",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Roman Britain in 2002, I. Sites Explored",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZMK2HT6C",
+      "formattedCitation": "<div class=\"csl-entry\">Burnham, Barry C., Fraser Hunter, and A. P. Fitzpatrick. \u201cRoman Britain in 2002, I. Sites Explored.\u201d <i>Britannia</i> 34 (2003): 293\u2013382.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Douglas et al. 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H7WMIIPC",
+      "formattedCitation": "<div class=\"csl-entry\">Douglas, Alistair, James Gerrard, and Berni Sudds. <i>A Roman Settlement and Bath House at Shadwell: Excavations at Tobacco Dock and Babe Ruth Resturant, The Highway, London</i>. Pre-Construct Archaeology Monograph Series 12. Pre-construct Archaeology, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/The_Highway",
+      "citationDetail": "The Highway",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), The Highway.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lakin et al. 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9PZZWTZ9",
+      "formattedCitation": "<div class=\"csl-entry\">Lakin, D., Joanna Bird, Kevin Rielly, Charlotte Ainsley, and Fiona Seeley. <i>The Roman Tower at Shadwell, London: A Reappraisal</i>. MoLAS Archaeology Studies Series, no. 8. London: Museum of London Archaeology Service, 2002.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Douglas 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9YDSNXXE",
+      "formattedCitation": "<div class=\"csl-entry\">Douglas, Alistair. \u201cThe \u2018Babe Ruth\u2019 Bath-House: Londinium\u2019s Later Port?\u201d <i>Current Archaeology</i> 17, no. 193 (2004): 20\u201331.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "662780373",
+  "subject": [],
+  "title": "Shadwell Roman Bathhouse",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A second to fourth century A.D. Romano-British bathhouse that was excavated in 2002. Findspot of RIB 3012.",
+  "reprPoint": [
+    -0.058444,
+    51.509172
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    -0.058444,
+    51.509172,
+    -0.058444,
+    51.509172
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79574"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-09-23T03:08:52Z",
+  "uri": "https://pleiades.stoa.org/places/662780373",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-08T14:40:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-08T14:28:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-06T22:51:42Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-06T22:51:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2017-09-23T03:19:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sarcanon",
+      "modified": "2017-09-23T03:11:19Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sarcanon",
+      "modified": "2017-09-23T03:08:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2017-09-23T03:08:52Z"
+    }
+  ]
+}

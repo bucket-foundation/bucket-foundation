@@ -1,0 +1,254 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.46343,
+          30.308293
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-khirbet-braq",
+      "properties": {
+        "snippet": "Ruin",
+        "link": "https://pleiades.stoa.org/places/487519333/imagery-location-of-khirbet-braq",
+        "description": "Location determined in Google Earth with reference to Abudnah 2018 and Hamarneh 2023.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Khirbet Braq"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://publications.acorjordan.org/articles/petra-khirbat-braq-2018-2019/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Abudnah 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8TBN79LJ",
+          "formattedCitation": "<div class=\"csl-entry\">Abudnah, Fawzi, Micheline Kurdy, Zayad Al-Salameen, and Laurent Tholbecq. \u201cPetra: Khirbat Braq (2018\u20132019).\u201d <i>Archaeology in Jordan</i>, no. 2 (2019 (2020 2018): 113\u201314. https://publications.acorjordan.org/articles/petra-khirbat-braq-2018-2019/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.1080/00758914.2023.2174671",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Hamarneh 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5WHR634T",
+          "formattedCitation": "<div class=\"csl-entry\">Hamarneh, Catreena. \u201cTo Whom Does the Water Flow? A New Aqueduct Branch of Ayn Braq in Petra, Jordan.\u201d <i>Levant</i> 0, no. 0 (March 21, 2023): 1\u201312. https://doi.org/10.1080/00758914.2023.2174671.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-khirbet-braq",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ruin"
+      ],
+      "end": null,
+      "title": "Imagery Location of Khirbet Braq",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ruin"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "ruin"
+      ],
+      "description": "Location determined in Google Earth with reference to Abudnah 2018 and Hamarneh 2023.",
+      "created": "2023-04-14T21:19:31Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.46343,
+          30.308293
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/487519333/imagery-location-of-khirbet-braq",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-15T00:20:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:24:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:23:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:22:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:19:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:19:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:19:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-14T21:36:51Z",
+      "associationCertainty": "certain",
+      "title": "Ayn Braq Aqueduct",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/487519333/ayn-braq-aqueduct",
+      "connectionType": "flows_into",
+      "id": "ayn-braq-aqueduct",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-15T00:20:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:36:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:36:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:36:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/226691932",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    }
+  ],
+  "references": [],
+  "names": [],
+  "id": "487519333",
+  "subject": [],
+  "title": "Braq",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/spring",
+    "https://pleiades.stoa.org/vocabularies/place-types/ruin",
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Khirbet Braq is the modern name of a ruined Nabatean sanctuary at Ayn Braq in Jordan, a spring that, in antiquity, was channeled through an aqueduct to supply ancient Petra. The heavily looted site is located just south of modern Wadi Musa, on the west side of the modern road to Taybeh.",
+  "reprPoint": [
+    35.46343,
+    30.308293
+  ],
+  "placeTypes": [
+    "spring",
+    "ruin",
+    "sanctuary",
+    "archaeological-site"
+  ],
+  "bbox": [
+    35.46343,
+    30.308293,
+    35.46343,
+    30.308293
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/226691932"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-14T21:17:09Z",
+  "uri": "https://pleiades.stoa.org/places/487519333",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-15T00:20:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-14T21:24:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-14T21:17:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-14T21:17:09Z"
+    }
+  ]
+}

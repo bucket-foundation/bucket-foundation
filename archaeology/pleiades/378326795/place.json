@@ -1,0 +1,450 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.302521,
+          38.073602
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-after-kasiri-2019",
+      "properties": {
+        "snippet": "Archaeological-site; 1000 BC - 650 BC",
+        "link": "https://pleiades.stoa.org/places/378326795/imagery-location-after-kasiri-2019",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location after Kasiri 2019"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.3007019,
+          38.074328
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-cemetery",
+      "properties": {
+        "snippet": "Archaeological-site; 1000 BC - 650 BC",
+        "link": "https://pleiades.stoa.org/places/378326795/osm-location-of-cemetery",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of cemetery"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-iron-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-iron-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X18304036",
+          "citationDetail": "Fig. 3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kasiri 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LGETQACD",
+          "formattedCitation": "<div class=\"csl-entry\">Kasiri, Masoud B., Bahram Ajorloo, and Mehdi Razani. \u201cChemical Relative Dating of Skeletons of the Iron Age Cemetery of Tabriz on the Basis of Fluorine, Uranium, and Nitrogen Content.\u201d <i>Journal of Archaeological Science: Reports</i> 24 (April 1, 2019): 330\u201337. https://doi.org/10.1016/j.jasrep.2019.01.028.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-after-kasiri-2019",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -650,
+      "title": "Imagery Location after Kasiri 2019",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2022-07-28T21:46:52Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.302521,
+          38.073602
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/378326795/imagery-location-after-kasiri-2019",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-29T01:05:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:55:42Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:50:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:49:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:46:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:46:52Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-iron-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-iron-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3379472402",
+          "citationDetail": "Node 3379472402",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3379472402",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-cemetery",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -650,
+      "title": "OSM Location of cemetery",
+      "provenance": "OpenStreetMap (Node 3379472402, version 1, osm:changeset=29197330, 2015-03-02T12:14:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-07-28T21:47:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.3007019,
+          38.074328
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/378326795/osm-location-of-cemetery",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-29T01:05:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:55:43Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:50:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:49:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:47:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:47:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:47:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -650,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-28T21:49:45Z",
+      "associationCertainty": "certain",
+      "title": "Tabr\u012bz",
+      "start": -1000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/378326795/tabriz",
+      "connectionType": "at",
+      "id": "tabriz",
+      "attestations": [
+        {
+          "timePeriod": "early-iron-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-iron-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-29T01:05:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:55:43Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:50:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:49:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:49:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-28T21:49:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/430344981",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X18304036",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kasiri 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LGETQACD",
+      "formattedCitation": "<div class=\"csl-entry\">Kasiri, Masoud B., Bahram Ajorloo, and Mehdi Razani. \u201cChemical Relative Dating of Skeletons of the Iron Age Cemetery of Tabriz on the Basis of Fluorine, Uranium, and Nitrogen Content.\u201d <i>Journal of Archaeological Science: Reports</i> 24 (April 1, 2019): 330\u201337. https://doi.org/10.1016/j.jasrep.2019.01.028.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X17304224",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kasiri 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6JF2JVC3",
+      "formattedCitation": "<div class=\"csl-entry\">Kasiri, Masoud B., and Hadi Z. Karimi. \u201cStudy of Skeletons of the Iron Age Cemetery of Tabriz by Strontium Isotopes Analysis.\u201d <i>Journal of Archaeological Science: Reports</i> 16 (December 1, 2017): 359\u201364. https://doi.org/10.1016/j.jasrep.2017.10.030.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Mus%C3%A9e_de_l%27%C3%82ge_du_fer_de_Tabriz",
+      "citationDetail": "Mus\u00e9e de l'\u00c2ge du fer de Tabriz",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.tripadvisor.com/Attraction_Review-g303961-d7694723-Reviews-Iron_Age_Museum-Tabriz_East_Azerbaijan_Province.html",
+      "citationDetail": "Iron Age Museum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tripadvisor",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T7CPQVB2",
+      "formattedCitation": "<div class=\"csl-entry\">Tripadvisor. \u201cTripadvisor.\u201d Accessed July 28, 2022. https://www.tripadvisor.com/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "378326795",
+  "subject": [],
+  "title": "Tabriz: Iron Age Cemetery",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "In 1997, during work to restore and consolidate the \"Blue Mosque\" in modern Tabriz, Iran, an extensive Iron Age cemetery was discovered and excavated. Since 2007, the site has been partly open to the public as an open-air museum.",
+  "reprPoint": [
+    46.301611449999996,
+    38.073965
+  ],
+  "placeTypes": [
+    "cemetery",
+    "archaeological-site"
+  ],
+  "bbox": [
+    46.3007019,
+    38.073602,
+    46.302521,
+    38.074328
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/430344981"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-28T21:44:10Z",
+  "uri": "https://pleiades.stoa.org/places/378326795",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-29T01:05:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T21:55:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T21:55:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T21:51:51Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T21:50:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T21:49:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T21:48:56Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T21:44:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-28T21:44:10Z"
+    }
+  ]
+}

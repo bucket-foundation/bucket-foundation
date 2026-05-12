@@ -1,0 +1,14 @@
+# Macedonia (Archaic and Classical kingdom)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/668537581
+- **ID**: 668537581
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+Founded by the Argead dynasty, the kingdom of Macedonia was originally located on the political, social, and cultural periphery of Greece. It was allied with the Persian Empire, and the Macedonian king Alexander I supplied troops to fight the Athenian/Spartan alliance at the Battle of Platea in 479 BCE. Thereafter Macedonia became increasingly part of the Greek political world, which culminated in Philip II's subjugation of the majority of Greece after the Battle of Chaeronea in 338 BCE. Alexander III ("the Great') expanded Macedonian control over the entirety of the Persian Empire. After Alexander's death in 323 BCE the kingdom was fought over by his successors who declared themselves kings in 306 BCE, effectively ending the unified kingdom.

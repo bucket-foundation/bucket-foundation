@@ -1,0 +1,279 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.6644884,
+          26.5101559
+        ]
+      },
+      "type": "Feature",
+      "id": "tomb-of-the-mayor-of-athribis",
+      "properties": {
+        "snippet": "Tomb; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/270369684/tomb-of-the-mayor-of-athribis",
+        "description": "Point representing the location of the entrance to the tomb of Psenosiris, derived from an OpenStreetMap Node after Abuel-Yazid 2023.",
+        "location_precision": "precise",
+        "title": "OSM location: Tomb of the Mayor of Athribis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/11804985690",
+          "citationDetail": "Node 11804985690",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=11804985690",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1419940718",
+          "citationDetail": "pages 278-279",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Abuel-Yazid 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F6IDBYAH",
+          "formattedCitation": "<div class=\"csl-entry\">Abuel-Yazid, Mohamed. <i>The Tomb of the Mayor of Athribis</i>. Studien Zur Sp\u00e4t\u00e4gyptischen Religion 40. Wiesbaden: Harrassowitz Verlag, 2023. https://www.worldcat.org/oclc/1419940718.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tomb-of-the-mayor-of-athribis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 99,
+      "title": "OSM location: Tomb of the Mayor of Athribis",
+      "provenance": "OpenStreetMap (Node 11804985690, version 1, osm:changeset=149780285, 2024-04-09T14:33:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Point representing the location of the entrance to the tomb of Psenosiris, derived from an OpenStreetMap Node after Abuel-Yazid 2023.",
+      "created": "2024-04-09T14:37:51Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.6644884,
+          26.5101559
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/270369684/tomb-of-the-mayor-of-athribis",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T15:38:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-04-09T14:41:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-04-09T14:40:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-04-09T14:37:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-04-09T14:37:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 99,
+      "description": "",
+      "contributors": [],
+      "created": "2024-04-09T14:40:43Z",
+      "associationCertainty": "certain",
+      "title": "Athribis/Triph(i)eion",
+      "start": 1,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/270369684/athribis-triph-i-eion",
+      "connectionType": "at",
+      "id": "athribis-triph-i-eion",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T15:38:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-04-09T14:41:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-04-09T14:40:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-04-09T14:40:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/756538",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1419940718",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Abuel-Yazid 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F6IDBYAH",
+      "formattedCitation": "<div class=\"csl-entry\">Abuel-Yazid, Mohamed. <i>The Tomb of the Mayor of Athribis</i>. Studien Zur Sp\u00e4t\u00e4gyptischen Religion 40. Wiesbaden: Harrassowitz Verlag, 2023. https://www.worldcat.org/oclc/1419940718.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "270369684",
+  "subject": [],
+  "title": "Tomb of the Mayor of Athribis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The tomb of Psenosiris, identified in a tomb inscription as the Mayor of Athribis, is a rock-cut shaft tomb with a richly-decorated burial chamber. The tomb was constructed in the necropolis of Athribis in the middle of the first century CE (ca. 37-54 CE).",
+  "reprPoint": [
+    31.6644884,
+    26.5101559
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    31.6644884,
+    26.5101559,
+    31.6644884,
+    26.5101559
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/756538"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-10T21:08:52Z",
+  "uri": "https://pleiades.stoa.org/places/270369684",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-07T01:46:49Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "auser",
+      "modified": "2024-04-10T21:08:51Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-09T15:38:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-04-09T14:41:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2024-04-09T14:41:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-04-09T14:29:29Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-04-09T14:29:27Z"
+    }
+  ]
+}

@@ -1,0 +1,433 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.578849,
+          25.695202
+        ]
+      },
+      "type": "Feature",
+      "id": "gps-location-isis-temple",
+      "properties": {
+        "snippet": "Temple-2, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/477915982/gps-location-isis-temple",
+        "description": "Coordinates determined using hand-held GPS unit.",
+        "location_precision": "precise",
+        "title": "GPS Location of Isis Temple"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.5791693,
+            25.6953051
+          ],
+          [
+            32.5783512,
+            25.6954698
+          ],
+          [
+            32.5781714,
+            25.6948271
+          ],
+          [
+            32.5783332,
+            25.6949135
+          ],
+          [
+            32.5784651,
+            25.6948001
+          ],
+          [
+            32.5790405,
+            25.6948513
+          ],
+          [
+            32.5790933,
+            25.6950374
+          ],
+          [
+            32.5791693,
+            25.6953051
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-deir-el-shelwit",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/477915982/osm-location-of-deir-el-shelwit",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Deir el-Shelwit"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "gps-location-isis-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "GPS Location of Isis Temple",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 15.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-handheld-gps",
+      "featureType": [
+        "temple-2",
+        ""
+      ],
+      "description": "Coordinates determined using hand-held GPS unit.",
+      "created": "2013-03-05T11:10:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.578849,
+          25.695202
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/477915982/gps-location-isis-temple",
+      "creators": [
+        {
+          "username": "bazzani",
+          "homepage": null,
+          "name": "Bruno Bazzani",
+          "uri": "https://pleiades.stoa.org/author/bazzani"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T20:25:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-14T08:40:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-14T08:38:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "bazzani",
+          "modified": "2013-03-05T11:12:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bazzani",
+          "modified": "2013-03-05T11:10:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bazzani",
+          "modified": "2013-03-05T11:10:19Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/346520677",
+          "citationDetail": "Way 346520677",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=346520677",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-deir-el-shelwit",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Deir el-Shelwit",
+      "provenance": "OpenStreetMap (Way 346520677, version 5, osm:changeset=50028544, 2017-07-04T08:59:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-10-04T22:28:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.5791693,
+            25.6953051
+          ],
+          [
+            32.5783512,
+            25.6954698
+          ],
+          [
+            32.5781714,
+            25.6948271
+          ],
+          [
+            32.5783332,
+            25.6949135
+          ],
+          [
+            32.5784651,
+            25.6948001
+          ],
+          [
+            32.5790405,
+            25.6948513
+          ],
+          [
+            32.5790933,
+            25.6950374
+          ],
+          [
+            32.5791693,
+            25.6953051
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/477915982/osm-location-of-deir-el-shelwit",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-07T20:24:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-04T22:31:00Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-04T22:28:45Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-04T22:28:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-04T22:28:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Deir_el-Shelwit",
+      "citationDetail": "Deir el-Shelwit",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Deir el-Shelwit.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.arce.org/conservation/featuredconservation/u32",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "ARCE conservation project",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q820028",
+      "citationDetail": "Deir el-Shelwit (Q820028)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "477915982",
+  "subject": [
+    "Isis",
+    "extant remains"
+  ],
+  "title": "Deir el-Shelwit",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A small temple dedicated to Isis on West bank of the Nile at Luxor. Its ancient name is unknown.",
+  "reprPoint": [
+    32.57874777789502,
+    25.69515427320102
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    32.5781714,
+    25.6948001,
+    32.5791693,
+    25.6954698
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-03-05T11:05:45Z",
+  "uri": "https://pleiades.stoa.org/places/477915982",
+  "creators": [
+    {
+      "username": "bazzani",
+      "homepage": null,
+      "name": "Bruno Bazzani",
+      "uri": "https://pleiades.stoa.org/author/bazzani"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Deir el-Shelwit (Q820028)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-04T22:30:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T20:24:44Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-14T08:40:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-14T08:39:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-14T08:39:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2013-03-14T08:39:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bazzani",
+      "modified": "2013-03-05T11:05:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bazzani",
+      "modified": "2013-03-05T11:05:46Z"
+    }
+  ]
+}

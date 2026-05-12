@@ -1,0 +1,14 @@
+# Ossa
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/897819
+- **ID**: 897819
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ossa
+
+## Description
+
+An ancient place, cited: BAtlas 91 unlocated Ossa

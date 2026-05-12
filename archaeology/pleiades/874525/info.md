@@ -1,0 +1,14 @@
+# Iouliopolis?
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/874525
+- **ID**: 874525
+- **Coords (lng, lat)**: [39.11209, 38.048722]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Iouliopolis, Heba
+
+## Description
+
+An ancient place, cited: BAtlas 89 B3 Iouliopolis?

@@ -1,0 +1,394 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            44.3965715,
+            40.3807673
+          ],
+          [
+            44.3965615,
+            40.3806218
+          ],
+          [
+            44.3966513,
+            40.3806182
+          ],
+          [
+            44.3966461,
+            40.3805429
+          ],
+          [
+            44.3968133,
+            40.3805362
+          ],
+          [
+            44.3968165,
+            40.380583
+          ],
+          [
+            44.3968591,
+            40.3805814
+          ],
+          [
+            44.3968614,
+            40.3806153
+          ],
+          [
+            44.396883,
+            40.3806144
+          ],
+          [
+            44.3968905,
+            40.3807238
+          ],
+          [
+            44.3967481,
+            40.3807294
+          ],
+          [
+            44.3967502,
+            40.3807602
+          ],
+          [
+            44.3965715,
+            40.3807673
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "54d56157257457857d56157e56157656f",
+      "properties": {
+        "snippet": "Abbey; AD 1200 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/599653931/54d56157257457857d56157e56157656f",
+        "description": "Polygon representing the location of the Sagmosavank monastery, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of \u054d\u0561\u0572\u0574\u0578\u057d\u0561\u057e\u0561\u0576\u056f"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/189609622",
+          "citationDetail": "Way 189609622",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=189609622",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "54d56157257457857d56157e56157656f",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": 2100,
+      "title": "OSM location of \u054d\u0561\u0572\u0574\u0578\u057d\u0561\u057e\u0561\u0576\u056f",
+      "provenance": "OpenStreetMap (Way 189609622, version 8, osm:changeset=76499015, 2019-11-01T14:06:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "Polygon representing the location of the Sagmosavank monastery, derived from an OpenStreetMap Way.",
+      "created": "2019-12-04T19:19:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            44.3965715,
+            40.3807673
+          ],
+          [
+            44.3965615,
+            40.3806218
+          ],
+          [
+            44.3966513,
+            40.3806182
+          ],
+          [
+            44.3966461,
+            40.3805429
+          ],
+          [
+            44.3968133,
+            40.3805362
+          ],
+          [
+            44.3968165,
+            40.380583
+          ],
+          [
+            44.3968591,
+            40.3805814
+          ],
+          [
+            44.3968614,
+            40.3806153
+          ],
+          [
+            44.396883,
+            40.3806144
+          ],
+          [
+            44.3968905,
+            40.3807238
+          ],
+          [
+            44.3967481,
+            40.3807294
+          ],
+          [
+            44.3967502,
+            40.3807602
+          ],
+          [
+            44.3965715,
+            40.3807673
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/599653931/54d56157257457857d56157e56157656f",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-12-19T12:19:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-11T21:50:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-04T19:20:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-04T19:19:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-04T19:19:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Saghmosavank",
+      "citationDetail": "Saghmosavank",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jakobson 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RFUAWELF",
+      "formattedCitation": "<div class=\"csl-entry\">Jakobson, Alexandr L., K. G Ghafadaryan, and Giovanni Curatola. <i>K\u02bbasakhi vank\u02bber: Hovhannavank\u02bb/Saghmosavank\u02bb</i>. 1a ed. Documenti di architettura armena 15. Milano, Italia: OEMME, 1986.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Saghmosavank",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q2984721",
+          "citationDetail": "Saghmosavank (Q2984721)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "saghmosavank",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Armenian name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "hy",
+      "created": "2019-12-11T21:50:07Z",
+      "uri": "https://pleiades.stoa.org/places/599653931/saghmosavank",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u054d\u0561\u0572\u0574\u0578\u057d\u0561\u057e\u0561\u0576\u0584",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-12-19T12:19:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-11T21:50:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-11T21:50:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-11T21:50:07Z"
+        }
+      ]
+    }
+  ],
+  "id": "599653931",
+  "subject": [],
+  "title": "Saghmosavank",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Medieval Armenian monastery in the village of Saghmosavan, Aragatsotn Province, Armenia constructed in the 13th century.",
+  "reprPoint": [
+    44.39672362243958,
+    40.38065618286667
+  ],
+  "placeTypes": [
+    "abbey"
+  ],
+  "bbox": [
+    44.3965615,
+    40.3805362,
+    44.3968905,
+    40.3807673
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-12-04T19:19:07Z",
+  "uri": "https://pleiades.stoa.org/places/599653931",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-12-19T12:19:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-11T21:50:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-11T21:48:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-04T19:19:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-04T19:19:07Z"
+    }
+  ]
+}

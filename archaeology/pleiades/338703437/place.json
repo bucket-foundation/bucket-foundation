@@ -1,0 +1,330 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.0049147,
+            49.0620566
+          ],
+          [
+            9.0062546,
+            49.062042
+          ],
+          [
+            9.0061847,
+            49.0618947
+          ],
+          [
+            9.006024,
+            49.0616648
+          ],
+          [
+            9.0057095,
+            49.0613875
+          ],
+          [
+            9.0054417,
+            49.0612131
+          ],
+          [
+            9.0049233,
+            49.0610252
+          ],
+          [
+            9.0049152,
+            49.0613284
+          ],
+          [
+            9.0053633,
+            49.0613231
+          ],
+          [
+            9.0053646,
+            49.0619744
+          ],
+          [
+            9.0049199,
+            49.0619773
+          ],
+          [
+            9.0049147,
+            49.0620566
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-way-193538565",
+      "properties": {
+        "snippet": "Archaeological-site, Sanctuary; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/338703437/osm-way-193538565",
+        "description": "Polygon representing the open-air archaeological site at G\u00fcglingen, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of G\u00fcglingen Mithraeum"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/193538565",
+          "citationDetail": "Way 193538565",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=193538565",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-way-193538565",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location of G\u00fcglingen Mithraeum",
+      "provenance": "OpenStreetMap (Way 193538565, version 2, osm:changeset=40120370, 2016-06-18T17:29:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "sanctuary"
+      ],
+      "description": "Polygon representing the open-air archaeological site at G\u00fcglingen, derived from an OpenStreetMap Way.",
+      "created": "2022-06-03T19:04:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.0049147,
+            49.0620566
+          ],
+          [
+            9.0062546,
+            49.062042
+          ],
+          [
+            9.0061847,
+            49.0618947
+          ],
+          [
+            9.006024,
+            49.0616648
+          ],
+          [
+            9.0057095,
+            49.0613875
+          ],
+          [
+            9.0054417,
+            49.0612131
+          ],
+          [
+            9.0049233,
+            49.0610252
+          ],
+          [
+            9.0049152,
+            49.0613284
+          ],
+          [
+            9.0053633,
+            49.0613231
+          ],
+          [
+            9.0053646,
+            49.0619744
+          ],
+          [
+            9.0049199,
+            49.0619773
+          ],
+          [
+            9.0049147,
+            49.0620566
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/338703437/osm-way-193538565",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:29:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T19:05:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T19:05:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T19:04:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-03T19:04:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1236851790",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Siemers-Klenner 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9S4ENXV9",
+      "formattedCitation": "<div class=\"csl-entry\">Siemers-Klenner, Ines. <i>Arch\u00e4ologie des Mithraskultes: Architektur und Kultpraxis am Beispiel der Tempel von G\u00fcglingen, Kreis Heilbronn</i>. Forschungen und Berichte zur Arch\u00e4ologie in Baden-W\u00fcrttemberg. Wiesbaden: Dr. Ludwig Reichert Verlag, 2020. http://www.worldcat.org/oclc/1236851790.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.mithraeum.eu/monumentum/mithraum_in_guglingen",
+      "citationDetail": "Mithr\u00e4um von G\u00fcglingen",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NMithr",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BEPITUFQ",
+      "formattedCitation": "<div class=\"csl-entry\">Abu\u00edn L\u00f3pez, Andreu. <i>The New Mithraeum</i>. Accessed March 2, 2022. https://www.mithraeum.eu.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "338703437",
+  "subject": [
+    "Mithras"
+  ],
+  "title": "G\u00fcglingen Mithraeum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sanctuary dedicated to Mithras located near modern Heilbronn, Germany, in use during the second-third centuries CE.",
+  "reprPoint": [
+    9.005454271750061,
+    49.06166027420389
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "archaeological-site",
+    "temple-2"
+  ],
+  "bbox": [
+    9.0049147,
+    49.0610252,
+    9.0062546,
+    49.0620566
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/118734"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-06T01:30:07Z",
+  "uri": "https://pleiades.stoa.org/places/338703437",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added NMithr reference; Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-06T15:52:41Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-06T01:30:06Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-04T13:29:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-06-03T19:05:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-06-03T19:00:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-06-03T19:00:11Z"
+    }
+  ]
+}

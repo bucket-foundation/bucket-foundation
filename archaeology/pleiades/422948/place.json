@@ -1,0 +1,877 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2629976,
+            41.7706991
+          ],
+          [
+            12.2637213,
+            41.7699199
+          ],
+          [
+            12.2645872,
+            41.7690466
+          ],
+          [
+            12.2641655,
+            41.7688482
+          ],
+          [
+            12.2639786,
+            41.7687602
+          ],
+          [
+            12.263892,
+            41.7687859
+          ],
+          [
+            12.2636878,
+            41.7689278
+          ],
+          [
+            12.2629855,
+            41.7694378
+          ],
+          [
+            12.2626968,
+            41.7696834
+          ],
+          [
+            12.2625139,
+            41.7699654
+          ],
+          [
+            12.2625911,
+            41.770114
+          ],
+          [
+            12.2625789,
+            41.7702443
+          ],
+          [
+            12.2625301,
+            41.7704475
+          ],
+          [
+            12.2629976,
+            41.7706991
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-necropolis",
+      "properties": {
+        "snippet": "Cemetery, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/422948/location-of-necropolis",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Isola Sacra necropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "Jweiland",
+      "homepage": null,
+      "name": "Jonathan Weiland",
+      "uri": "https://pleiades.stoa.org/author/Jweiland"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/253875336",
+          "citationDetail": "Way 253875336",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=253875336",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Isola Sacra necropolis",
+      "provenance": "OpenStreetMap (Way 253875336, version 10, osm:changeset=132103630, 2023-02-05T10:30:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-12-27T22:01:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2629976,
+            41.7706991
+          ],
+          [
+            12.2637213,
+            41.7699199
+          ],
+          [
+            12.2645872,
+            41.7690466
+          ],
+          [
+            12.2641655,
+            41.7688482
+          ],
+          [
+            12.2639786,
+            41.7687602
+          ],
+          [
+            12.263892,
+            41.7687859
+          ],
+          [
+            12.2636878,
+            41.7689278
+          ],
+          [
+            12.2629855,
+            41.7694378
+          ],
+          [
+            12.2626968,
+            41.7696834
+          ],
+          [
+            12.2625139,
+            41.7699654
+          ],
+          [
+            12.2625911,
+            41.770114
+          ],
+          [
+            12.2625789,
+            41.7702443
+          ],
+          [
+            12.2625301,
+            41.7704475
+          ],
+          [
+            12.2629976,
+            41.7706991
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/422948/location-of-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-06T14:53:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T21:26:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-20T18:44:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-20T01:48:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-20T01:48:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-27T22:02:46Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-27T22:01:54Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-27T22:01:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-27T22:01:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-09-15T14:27:02Z",
+      "associationCertainty": "certain",
+      "title": "Ostia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/422948/ostia",
+      "connectionType": "near",
+      "id": "ostia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-14T19:43:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:34:25Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:27:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:27:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422995",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.openedition.org/efr/3734",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Germoni 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2BXRTSQG",
+          "formattedCitation": "<div class=\"csl-entry\">Germoni, Paola, Simon Keay, Martin Millett, and Kristian Strutt. \u201cOstia beyond the Tiber\u00a0: Recent Archaeological Discoveries in\u00a0the\u00a0Isola\u00a0Sacra.\u201d In <i>Ricerche Su Ostia e Il Suo Territorio\u202f: Atti Del Terzo Seminario Ostiense\u00a0 (Roma, \u00c9cole Fran\u00e7aise de Rome,\u00a0 21-22 Ottobre 2015)</i>, edited by Nicolas Laubry, Fausto Zevi, and Mireille C\u00e9beillac-Gervasoni. Collection de l\u2019\u00c9cole Fran\u00e7aise de Rome. Rome: Publications de l\u2019\u00c9cole fran\u00e7aise de Rome, 2018. http://books.openedition.org/efr/3734.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-09-15T14:27:38Z",
+      "associationCertainty": "certain",
+      "title": "Tiberis (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/422948/tiberis-river",
+      "connectionType": "near",
+      "id": "tiberis-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-14T19:43:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:34:25Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:27:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:27:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423080",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.openedition.org/efr/3734",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Germoni 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2BXRTSQG",
+          "formattedCitation": "<div class=\"csl-entry\">Germoni, Paola, Simon Keay, Martin Millett, and Kristian Strutt. \u201cOstia beyond the Tiber\u00a0: Recent Archaeological Discoveries in\u00a0the\u00a0Isola\u00a0Sacra.\u201d In <i>Ricerche Su Ostia e Il Suo Territorio\u202f: Atti Del Terzo Seminario Ostiense\u00a0 (Roma, \u00c9cole Fran\u00e7aise de Rome,\u00a0 21-22 Ottobre 2015)</i>, edited by Nicolas Laubry, Fausto Zevi, and Mireille C\u00e9beillac-Gervasoni. Collection de l\u2019\u00c9cole Fran\u00e7aise de Rome. Rome: Publications de l\u2019\u00c9cole fran\u00e7aise de Rome, 2018. http://books.openedition.org/efr/3734.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-09-15T14:28:44Z",
+      "associationCertainty": "certain",
+      "title": "Portus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/422948/portus",
+      "connectionType": "near",
+      "id": "portus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-14T19:43:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:34:25Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:28:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-09-15T14:28:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423012",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.openedition.org/efr/3734",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Germoni 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2BXRTSQG",
+          "formattedCitation": "<div class=\"csl-entry\">Germoni, Paola, Simon Keay, Martin Millett, and Kristian Strutt. \u201cOstia beyond the Tiber\u00a0: Recent Archaeological Discoveries in\u00a0the\u00a0Isola\u00a0Sacra.\u201d In <i>Ricerche Su Ostia e Il Suo Territorio\u202f: Atti Del Terzo Seminario Ostiense\u00a0 (Roma, \u00c9cole Fran\u00e7aise de Rome,\u00a0 21-22 Ottobre 2015)</i>, edited by Nicolas Laubry, Fausto Zevi, and Mireille C\u00e9beillac-Gervasoni. Collection de l\u2019\u00c9cole Fran\u00e7aise de Rome. Rome: Publications de l\u2019\u00c9cole fran\u00e7aise de Rome, 2018. http://books.openedition.org/efr/3734.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 B2 Isola Sacra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Calza 1940",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V4MDSUZU",
+      "formattedCitation": "<div class=\"csl-entry\">Calza, G. <i>La Necropoli Del Porto Di Roma Nell\u2019 Isola Sacra</i>. Roma: La Libreria dello stato; Istituto nazionale di archeologia e storia dell\u2019arte (Italy), 1940.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Isola_Sacra_Necropolis",
+      "citationDetail": "Isola Sacra Necropolis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Isola Sacra Necropolis.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/297130",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Toynbee 1941",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U4T4YMZ8",
+      "formattedCitation": "<div class=\"csl-entry\">Toynbee, J. M. C. \u201cReview of La Necropoli Del Porto Di Roma Nell\u2019Isola Sacra.\u201d <i>The Journal of Roman Studies</i> 31 (1941): 207\u20139. https://doi.org/10.2307/297130.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sciencedirect.com/science/article/pii/S004724840090410X",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lieberman 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3HN5VNVS",
+      "formattedCitation": "<div class=\"csl-entry\">Lieberman, Daniel E. \u201cOsteodental Biology of the People of Portus Romae (Necropolis of Isola Sacra, 2nd\u20133rd Cent. AD).\u201d <i>Journal of Human Evolution</i> 39, no. 1 (July 1, 2000): 124\u201326. https://doi.org/10.1006/jhev.2000.0410.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://archeoroma.beniculturali.it/en/node/187",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Necropoli di Porto",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=Qyy8ngEACAAJ&dq=isola+sacra+portus&hl=en&sa=X&ei=g0qvVOuBHcmcygTX4oLACg&ved=0CCYQ6AEwAQ",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Calza 1931",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SQ48234B",
+      "formattedCitation": "<div class=\"csl-entry\">Calza, Guido. <i>Ostia: Isola Sacra\u202f: la necropoli del Portus Romae</i>, 1931.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=wQWfAgAAQBAJ&lpg=PA174&dq=isola%20sacra%20portus&pg=PA174#v=onepage&q=isola%20sacra%20portus&f=false",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Moffat and Prowse 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/98NJLVZD",
+      "formattedCitation": "<div class=\"csl-entry\">Moffat, Tina, and Tracy Prowse. <i>Human Diet And Nutrition In Biocultural Perspective: Past Meets Present</i>. Berghahn Books, 2014.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sciencedirect.com/science/article/pii/S0305440303001183",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Prowse 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5LZB5CSE",
+      "formattedCitation": "<div class=\"csl-entry\">Prowse, Tracy, Henry P. Schwarcz, Shelley Saunders, Roberto Macchiarelli, and Luca Bondioli. \u201cIsotopic Paleodiet Studies of Skeletons from the Imperial Roman-Age Cemetery of Isola Sacra, Rome, Italy.\u201d <i>Journal of Archaeological Science</i> 31, no. 3 (March 1, 2004): 259\u201372. https://doi.org/10.1016/j.jas.2003.08.008.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/3168729/isola-sacra.html",
+      "citationDetail": "3168729: Isola Sacra",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/499928",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bloch 1944",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DC9S33JZ",
+      "formattedCitation": "<div class=\"csl-entry\">Bloch, Herbert. \u201cReview of La Necropoli Del Porto Di Roma Nell\u2019 Isola Sacra.\u201d <i>American Journal of Archaeology</i> 48, no. 2 (1944): 213\u201318. https://doi.org/10.2307/499928.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "23147",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/living-and-dying-at-the-portus-romae/45826A65DFBB57264740D4B6CE9A8A27",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "O'Connell 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M462467G",
+      "formattedCitation": "<div class=\"csl-entry\">O\u2019Connell, Tamsin C., Rachel M. Ballantyne, Sheila Hamilton-Dyer, Evi Margaritis, Samantha Oxford, Walter Pantano, Martin Millett, and Simon J. Keay. \u201cLiving and Dying at the Portus Romae.\u201d <i>Antiquity</i> 93, no. 369 (June 2019): 719\u201334. https://doi.org/10.15184/aqy.2019.64.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.repository.cam.ac.uk/handle/1810/308194",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Germoni 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YZI3ZIHY",
+      "formattedCitation": "<div class=\"csl-entry\">Germoni, Paola. \u201cGazetteer of Sites.\u201d In <i>The Isola Sacra Survey: Ostia, Portus and the Port System of Imperial Rome</i>, edited by Simon Keay, Martin Millett, Kristian Strutt, and Paola Germoni. Cambridge: McDonald Institute for Archaeological Research, 2020. https://doi.org/10.17863/CAM.55288.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q6085845",
+      "citationDetail": "Q6085845: Isola Sacra Necropolis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vocab.getty.edu/page/tgn/7008899",
+      "citationDetail": "7008899: Isola Sacra (general region)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TGN",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZLJQ5AZJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Getty Thesaurus of Geographic Names\u00ae Online</i>, n.d. https://www.getty.edu/research/tools/vocabularies/tgn/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1205673",
+      "citationDetail": "Isola Sacra Rom (Metropolitanstadt), Italien, Europa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Necropolis of Porto - Isola Sacra",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/10626335/necropolis-of-porto-isola-sacra.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 10626335",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "necropolis-of-porto-isola-sacra",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Conventionalized modern name of the archaeological area of the necropolis.",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-06-13T01:47:45Z",
+      "uri": "https://pleiades.stoa.org/places/422948/necropolis-of-porto-isola-sacra",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Necropolis of Porto - Isola Sacra",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-06-13T18:52:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T01:48:00Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T01:47:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-13T01:47:45Z"
+        }
+      ]
+    }
+  ],
+  "id": "422948",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=cemetery",
+    "bioarchaeology"
+  ],
+  "title": "Isola Sacra",
+  "provenance": "Barrington Atlas: BAtlas 43 B2 Isola Sacra",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Isola Sacra</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An extensive second and third century A.D. necropolis located between the city of Ostia and Portus.",
+  "reprPoint": [
+    12.263455130718919,
+    41.769668056090744
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.2625139,
+    41.7687602,
+    12.2645872,
+    41.7706991
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422995",
+    "https://pleiades.stoa.org/places/423080",
+    "https://pleiades.stoa.org/places/423012"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:32:22Z",
+  "uri": "https://pleiades.stoa.org/places/422948",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add TGN, add Arachne Isola Sacra Rom (Metropolitanstadt), Italien, Europa",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-15T03:42:30Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-15T14:33:58Z"
+    },
+    {
+      "comment": "referencs",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-15T12:57:23Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T14:29:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-13T21:26:57Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-10-10T17:53:55Z"
+    },
+    {
+      "comment": "checked-in working copy with additional references.",
+      "modifiedBy": "jbecker",
+      "modified": "2015-09-05T01:40:45Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-09T03:38:20Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-07T13:33:07Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:44:55Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:55:53Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:16:16Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:44:10Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:12:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:38:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:32:22Z"
+    }
+  ]
+}

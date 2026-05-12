@@ -1,0 +1,251 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.138532,
+          38.366312
+        ]
+      },
+      "type": "Feature",
+      "id": "bouleuterion",
+      "properties": {
+        "snippet": "Architecturalcomplex, ; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/499970655/bouleuterion",
+        "description": "Approximate center point of agora of Onchestos sanctuary visible in satellite imagery.",
+        "location_precision": "precise",
+        "title": "Agora"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "bouleuterion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "Agora",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2013",
+      "featureType": [
+        "architecturalcomplex",
+        ""
+      ],
+      "description": "Approximate center point of agora of Onchestos sanctuary visible in satellite imagery.",
+      "created": "2016-08-21T16:51:47Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.138532,
+          38.366312
+        ]
+      },
+      "locationType": [
+        "central_point",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/499970655/bouleuterion",
+      "creators": [
+        {
+          "username": "diffenda",
+          "homepage": null,
+          "name": "Dan Diffendale",
+          "uri": "https://pleiades.stoa.org/author/diffenda"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-20T13:17:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T17:00:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T16:58:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T16:52:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T16:51:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T16:51:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-01T20:32:47Z",
+      "associationCertainty": "certain",
+      "title": "Onchestos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/499970655/7675915926",
+      "connectionType": "at",
+      "id": "7675915926",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:32:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:32:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:32:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540984",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [],
+  "names": [],
+  "id": "499970655",
+  "subject": [],
+  "title": "Agora of Onchestos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Approximate center point of agora of Onchestos sanctuary visible in satellite imagery.",
+  "reprPoint": [
+    23.138532,
+    38.366312
+  ],
+  "placeTypes": [
+    "plaza",
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    23.138532,
+    38.366312,
+    23.138532,
+    38.366312
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540984"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-01T20:32:46Z",
+  "uri": "https://pleiades.stoa.org/places/499970655",
+  "creators": [
+    {
+      "username": "diffenda",
+      "homepage": null,
+      "name": "Dan Diffendale",
+      "uri": "https://pleiades.stoa.org/author/diffenda"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-20T13:17:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T13:34:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T13:34:25Z"
+    },
+    {
+      "comment": "title, place type",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:33:09Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:32:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:32:46Z"
+    }
+  ]
+}

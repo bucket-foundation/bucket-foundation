@@ -1,0 +1,375 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.483086,
+          40.759386
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-point-representing-location-of-archaeological",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/881305239/osm-point-representing-location-of-archaeological",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM point representing location of archaeological area"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/246981664",
+          "citationDetail": "Node 246981664",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=246981664",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-point-representing-location-of-archaeological",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM point representing location of archaeological area",
+      "provenance": "OpenStreetMap (Node 246981664, version 5, osm:changeset=7129490, 2011-01-30T01:15:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2021-02-27T16:16:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.483086,
+          40.759386
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/881305239/osm-point-representing-location-of-archaeological",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-28T01:21:25Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-02T12:06:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T18:12:45Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T16:16:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T16:16:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T16:16:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-02-27T15:53:18Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/881305239/pompeii",
+      "connectionType": "near",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-02T12:06:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T18:12:45Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T15:53:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T15:53:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://pompeiisites.org/en/press-kit-en/the-excavations-of-civita-giuliana/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Pompeii Sites: THE EXCAVATIONS OF CIVITA GIULIANA",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stefani 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F9E3GHB2",
+      "formattedCitation": "<div class=\"csl-entry\">Stefani, Grete. <i>Pompei. Vecchi scavi sconosciuti: la villa rinvenuta dal marchese Giovanni Imperiali in localit\u00e0 Civita (1907-1908)</i>. Monografie / Soprintendenza archeologica di Pompei 9. Roma: \u201cL\u2019ERMA\u201d di Bretschneider, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q105702558",
+      "citationDetail": "Q105702558: Civita Giuliana",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Civita Giuliana",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://pompeiisites.org/en/press-kit-en/the-excavations-of-civita-giuliana/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Pompeii Sites: The Excavations of Civita Giuliana",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "civita-giuliana",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2021-02-27T18:13:37Z",
+      "uri": "https://pleiades.stoa.org/places/881305239/civita-giuliana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Civita Giuliana",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-02T12:06:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T18:13:43Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T18:13:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-27T18:13:37Z"
+        }
+      ]
+    }
+  ],
+  "id": "881305239",
+  "subject": [],
+  "title": "Civita Giuliana",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>Archaeological fieldwork since 2017 has been able to bring important finds to light, including organic objects (e.g., furnishings) encased in a pyroclastic flow, thus allowing excavators to make casts of the impressions left by the processes of decay. Evidence for livestock in a stable context was discovered, and in 2021 it was announced that an ornate chariot without comparison in Roman Italy had been found. In November 2021, heritage officials announced the discovery and documentation of a segment of the\u00a0<em>pars rustica\u00a0</em>interpreted as the domestic quarters for household workers, perhaps enslaved persons, of the estate.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Civita Giuliana is located in the northern suburbium of Pompeii, about 700 meters from the city walls. Thus far the site has produced archaeological evidence of suburban villas in Pompeii's hinterland. Early twentieth-century excavations were carried out here, only to be published in 1994. Clandestine looting at the site brought about a cooperative effort to resume excavations in the interests of heritage protection in 2017.",
+  "reprPoint": [
+    14.483086,
+    40.759386
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    14.483086,
+    40.759386,
+    14.483086,
+    40.759386
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-02-27T15:52:30Z",
+  "uri": "https://pleiades.stoa.org/places/881305239",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-28T01:22:17Z"
+    },
+    {
+      "comment": "updated details",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-06T16:21:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-02T12:06:19Z"
+    },
+    {
+      "comment": "added Wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-27T18:29:28Z"
+    },
+    {
+      "comment": "details",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-27T18:16:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-27T18:12:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-27T16:07:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-27T16:04:18Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-27T15:52:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-27T15:52:30Z"
+    }
+  ]
+}

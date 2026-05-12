@@ -1,0 +1,14 @@
+# Apeilokarion
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/260484
+- **ID**: 260484
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Apeilokarion
+
+## Description
+
+An ancient place, cited: BAtlas 26 unlocated Apeilokarion

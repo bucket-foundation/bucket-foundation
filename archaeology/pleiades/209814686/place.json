@@ -1,0 +1,315 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5572297,
+            42.6401176
+          ],
+          [
+            12.5576742,
+            42.6401232
+          ],
+          [
+            12.5577074,
+            42.639817
+          ],
+          [
+            12.5576538,
+            42.6396478
+          ],
+          [
+            12.5571838,
+            42.6396948
+          ],
+          [
+            12.5572221,
+            42.6398827
+          ],
+          [
+            12.5572297,
+            42.6401176
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-forum",
+      "properties": {
+        "snippet": "Forum; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/209814686/osm-location-of-forum",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of forum"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/77013780",
+          "citationDetail": "Way 77013780",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=77013780",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-forum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "end": 300,
+      "title": "OSM location of forum",
+      "provenance": "OpenStreetMap (Way 77013780, version 3, osm:changeset=131877731, 2023-01-30T12:03:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forum"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "forum"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-27T20:29:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5572297,
+            42.6401176
+          ],
+          [
+            12.5576742,
+            42.6401232
+          ],
+          [
+            12.5577074,
+            42.639817
+          ],
+          [
+            12.5576538,
+            42.6396478
+          ],
+          [
+            12.5571838,
+            42.6396948
+          ],
+          [
+            12.5572221,
+            42.6398827
+          ],
+          [
+            12.5572297,
+            42.6401176
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/209814686/osm-location-of-forum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T19:51:19Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T19:51:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-28T17:00:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-28T16:59:00Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:30:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:29:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-27T20:29:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-11-11T14:53:45Z",
+      "associationCertainty": "certain",
+      "title": "Carsulae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/209814686/0253281010",
+      "connectionType": "at",
+      "id": "0253281010",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:53:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:53:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-11T14:53:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413065",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Carsulae",
+      "citationDetail": "Carsulae",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "209814686",
+  "subject": [],
+  "title": "Forum of Carsulae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/forum"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Forum of Carsulae is supported by terraces and it includes the basilica and a twin sanctuary, in addition to tabernae.",
+  "reprPoint": [
+    12.557450644803847,
+    42.639891251619716
+  ],
+  "placeTypes": [
+    "forum"
+  ],
+  "bbox": [
+    12.5571838,
+    42.6396478,
+    12.5577074,
+    42.6401232
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413065",
+    "https://pleiades.stoa.org/places/600795755",
+    "https://pleiades.stoa.org/places/721328707"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-11T14:53:44Z",
+  "uri": "https://pleiades.stoa.org/places/209814686",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Place type",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T19:51:51Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-29T22:08:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:55:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:54:57Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:53:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-11T14:53:44Z"
+    }
+  ]
+}

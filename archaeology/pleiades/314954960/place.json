@@ -1,0 +1,411 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.4738267,
+            51.6376334
+          ],
+          [
+            6.4737488,
+            51.6374196
+          ],
+          [
+            6.4736251,
+            51.6373005
+          ],
+          [
+            6.4733662,
+            51.6372038
+          ],
+          [
+            6.4730545,
+            51.6371152
+          ],
+          [
+            6.4727225,
+            51.6371364
+          ],
+          [
+            6.472412,
+            51.6374701
+          ],
+          [
+            6.4724868,
+            51.6376111
+          ],
+          [
+            6.4725953,
+            51.6377032
+          ],
+          [
+            6.472716,
+            51.6377753
+          ],
+          [
+            6.4728292,
+            51.6378374
+          ],
+          [
+            6.4731131,
+            51.6379141
+          ],
+          [
+            6.4736342,
+            51.6378803
+          ],
+          [
+            6.4738267,
+            51.6376334
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-amphitheater-birten",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/314954960/osm-location-of-amphitheater-birten",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Amphitheater Birten"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/34402869",
+          "citationDetail": "Way 34402869",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=34402869",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-amphitheater-birten",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Amphitheater Birten",
+      "provenance": "OpenStreetMap (Way 34402869, version 4, osm:changeset=77338155, 2019-11-20T17:20:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-11-16T17:40:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.4738267,
+            51.6376334
+          ],
+          [
+            6.4737488,
+            51.6374196
+          ],
+          [
+            6.4736251,
+            51.6373005
+          ],
+          [
+            6.4733662,
+            51.6372038
+          ],
+          [
+            6.4730545,
+            51.6371152
+          ],
+          [
+            6.4727225,
+            51.6371364
+          ],
+          [
+            6.472412,
+            51.6374701
+          ],
+          [
+            6.4724868,
+            51.6376111
+          ],
+          [
+            6.4725953,
+            51.6377032
+          ],
+          [
+            6.472716,
+            51.6377753
+          ],
+          [
+            6.4728292,
+            51.6378374
+          ],
+          [
+            6.4731131,
+            51.6379141
+          ],
+          [
+            6.4736342,
+            51.6378803
+          ],
+          [
+            6.4738267,
+            51.6376334
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/314954960/osm-location-of-amphitheater-birten",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-15T18:05:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T10:06:00Z"
+        },
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-19T10:05:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-07T23:05:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-16T17:41:31Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-16T17:41:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-16T17:41:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-16T17:40:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-31T00:23:40Z",
+      "associationCertainty": "certain",
+      "title": "Castra Vetera",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/314954960/2203574755",
+      "connectionType": "at",
+      "id": "2203574755",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-31T00:23:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-31T00:23:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-31T00:23:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/108867",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://amphi-theatrum.de/1451.html",
+      "citationDetail": "1451: Vetera, Birten (Germania Inferior)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Amphi-theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NTQZEIIX",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, Marin Buovac, and Maria Engracia Mu\u00f1oz-Santos. <i>Amphi-theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://amphi-theatrum.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2234744",
+      "citationDetail": "Birten amphitheatre (Q2234744)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "314954960",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Amphitheater Birten",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman amphitheater located at Castra Vetera (modern Birten Germany)",
+  "reprPoint": [
+    6.473129646426461,
+    51.637525610636345
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    6.472412,
+    51.6371152,
+    6.4738267,
+    51.6379141
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/108867"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-31T00:23:39Z",
+  "uri": "https://pleiades.stoa.org/places/314954960",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Birten amphitheatre (Q2234744)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-15T18:06:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T10:06:00Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T10:05:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T10:05:23Z"
+    },
+    {
+      "comment": "added Amphi-theatrum reference",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-19T10:03:55Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T00:23:57Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T00:23:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-31T00:23:39Z"
+    }
+  ]
+}

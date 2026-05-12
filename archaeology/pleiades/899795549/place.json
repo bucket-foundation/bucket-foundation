@@ -1,0 +1,400 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.7792581,
+            41.9352558
+          ],
+          [
+            12.7793591,
+            41.9353524
+          ],
+          [
+            12.7795585,
+            41.9355431
+          ],
+          [
+            12.779668,
+            41.9354893
+          ],
+          [
+            12.7797105,
+            41.9354049
+          ],
+          [
+            12.7797155,
+            41.9353033
+          ],
+          [
+            12.7796141,
+            41.9352078
+          ],
+          [
+            12.7794766,
+            41.9351826
+          ],
+          [
+            12.7793598,
+            41.9352037
+          ],
+          [
+            12.7792581,
+            41.9352558
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "odeon",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/899795549/odeon",
+        "description": "Polygon representing the location of the Odeon, derived from an OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM location of Odeon at Hadrian's Villa"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/230872802",
+          "citationDetail": "Way 230872802",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=230872802",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "odeon",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Odeon at Hadrian's Villa",
+      "provenance": "OpenStreetMap (Way 230872802, version 5, osm:changeset=135106688, 2023-04-19T14:50:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Polygon representing the location of the Odeon, derived from an OpenStreetMap way.",
+      "created": "2020-10-08T16:39:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.7792581,
+            41.9352558
+          ],
+          [
+            12.7793591,
+            41.9353524
+          ],
+          [
+            12.7795585,
+            41.9355431
+          ],
+          [
+            12.779668,
+            41.9354893
+          ],
+          [
+            12.7797105,
+            41.9354049
+          ],
+          [
+            12.7797155,
+            41.9353033
+          ],
+          [
+            12.7796141,
+            41.9352078
+          ],
+          [
+            12.7794766,
+            41.9351826
+          ],
+          [
+            12.7793598,
+            41.9352037
+          ],
+          [
+            12.7792581,
+            41.9352558
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/899795549/odeon",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-23T03:40:43Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-19T14:50:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-09T00:44:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-10-08T16:45:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-10-08T16:41:13Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2020-10-08T16:39:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-10-08T16:39:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-10-08T16:44:36Z",
+      "associationCertainty": "certain",
+      "title": "Villa Hadriani",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/899795549/villa-hadriani",
+      "connectionType": "part_of_analytical",
+      "id": "villa-hadriani",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-09T00:44:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-10-08T16:45:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-10-08T16:44:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-10-08T16:44:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423127",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1091952099",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Franceschini 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KFWL5QA3",
+      "formattedCitation": "<div class=\"csl-entry\">Franceschini, Marina De, and Giuseppe Veneziano. <i>Villa Adriana: architettura celeste: i segreti e i solstizi</i>. Accademia Villa Adriana 1. Roma: L\u2019Erma\" di Bretschneider, 2011. http://www.worldcat.org/oclc/1091952099.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://digital.casalini.it/3070514",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ottati 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LHRJHPZ2",
+      "formattedCitation": "<div class=\"csl-entry\">Ottati, A. \u201cArchitecture with concave and convex rhythms and its decoration in Hadrian age: the Maritime Theatre and the Southern pavilion of Piazza d\u2019Oro in Hadrian\u2019s Villa.\u201d In <i>Interdisciplinary studies on ancient stone: ASMOSIA X: proceedings of the tenth International Conference of ASMOSIA, Association for the Study of Marble &amp; Other Stones in Antiquity, Rome, 21-26 May 2012</i>, 3\u201312. Roma: L\u2019\"Erma\" di Bretschneider, 2015. http://digital.casalini.it/3070514.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "140",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sear 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HXSX8YS3",
+      "formattedCitation": "<div class=\"csl-entry\">Sear, Frank. <i>Roman Theatres: An Architectural Study</i>. Lighning Source, UK; New York: Oxford University Press, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://vwhl.soic.indiana.edu/villa/souththeater.php",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "ODEUM (SOUTH THEATER)",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/31309/",
+      "citationDetail": "31309: Tivoli Villa Adriana Odeon",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "899795549",
+  "subject": [],
+  "title": "Odeon at Hadrian's Villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Odeon at Hadrian's Villa is also referred to as the South Theater. It is located at the southern end of the Villa Adriana.",
+  "reprPoint": [
+    12.779510437785266,
+    41.93533657382323
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    12.7792581,
+    41.9351826,
+    12.7797155,
+    41.9355431
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423127"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-10-08T16:37:21Z",
+  "uri": "https://pleiades.stoa.org/places/899795549",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "vici.org 31309: Tivoli Villa Adriana Odeon",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-23T13:45:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-09T00:44:04Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-09T00:43:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2020-10-08T16:45:53Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2020-10-08T16:37:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2020-10-08T16:37:21Z"
+    }
+  ]
+}

@@ -1,0 +1,337 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            50.4864001,
+            34.0647473
+          ],
+          [
+            50.4868547,
+            34.0644607
+          ],
+          [
+            50.4868882,
+            34.0644984
+          ],
+          [
+            50.4869526,
+            34.0644584
+          ],
+          [
+            50.4866898,
+            34.0641674
+          ],
+          [
+            50.4865583,
+            34.0642451
+          ],
+          [
+            50.4865181,
+            34.0642018
+          ],
+          [
+            50.4863934,
+            34.0642729
+          ],
+          [
+            50.4864229,
+            34.0643062
+          ],
+          [
+            50.4861493,
+            34.064484
+          ],
+          [
+            50.4864001,
+            34.0647473
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-uo1oo-o-r-uo-uu",
+      "properties": {
+        "snippet": "Architecturalcomplex, Temple-2; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/861709370/osm-location-of-uo1oo-o-r-uo-uu",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u0645\u0639\u0628\u062f \u062e\u0648\u0631\u0647\u0647"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/909268654",
+          "citationDetail": "Way 909268654",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=909268654",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-uo1oo-o-r-uo-uu",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -30,
+      "title": "OSM location of \u0645\u0639\u0628\u062f \u062e\u0648\u0631\u0647\u0647",
+      "provenance": "OpenStreetMap (Way 909268654, version 1, osm:changeset=99675299, 2021-02-21T10:58:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex",
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-04-14T00:05:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            50.4864001,
+            34.0647473
+          ],
+          [
+            50.4868547,
+            34.0644607
+          ],
+          [
+            50.4868882,
+            34.0644984
+          ],
+          [
+            50.4869526,
+            34.0644584
+          ],
+          [
+            50.4866898,
+            34.0641674
+          ],
+          [
+            50.4865583,
+            34.0642451
+          ],
+          [
+            50.4865181,
+            34.0642018
+          ],
+          [
+            50.4863934,
+            34.0642729
+          ],
+          [
+            50.4864229,
+            34.0643062
+          ],
+          [
+            50.4861493,
+            34.064484
+          ],
+          [
+            50.4864001,
+            34.0647473
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/861709370/osm-location-of-uo1oo-o-r-uo-uu",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-14T10:42:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-14T00:06:52Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-14T00:06:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-14T00:05:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-14T00:05:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DK%3Aentry+group%3D4%3Aentry%3Dkhurha",
+      "citationDetail": "KHURHA Iran",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://irangazetteer.humspace.ucla.edu/catalogue/khorheh-%D8%AE%D9%88%D8%B1%D9%87%D9%87/",
+      "citationDetail": "Khorheh \u062e\u0648\u0631\u0647\u0647",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ArchGazIran",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5CPMQMIW",
+      "formattedCitation": "<div class=\"csl-entry\">Mousavi, Ali, M. Rahim Shayegan, and Marissa Stevens, eds. <i>The Archaeological Gazetteer of Iran</i>. Los Angeles: UCLA Pourdavoud Center for the Study of the Iranian World, 2020. https://irangazetteer.humspace.ucla.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/29756923",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hakemi 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EX4W7LMC",
+      "formattedCitation": "<div class=\"csl-entry\">Hakemi, Ali. \u201cThe Excavation of Khurha.\u201d <i>East and West</i> 40, no. 1/4 (1990): 11\u201341. https://www.jstor.org/stable/29756923.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "861709370",
+  "subject": [
+    "Ionic",
+    "extant remains",
+    "Sasanian"
+  ],
+  "title": "Khurha",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A partially-excavated complex near modern Qum in Iran. The site was possibly a sanctuary and likely dates to the Seleucid age. There is some evidence that the site continued in use into the Parthian period.",
+  "reprPoint": [
+    50.48654850000407,
+    34.064443795860285
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "temple-2",
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    50.4861493,
+    34.0641674,
+    50.4869526,
+    34.0647473
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-07-07T04:38:53Z",
+  "uri": "https://pleiades.stoa.org/places/861709370",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-14T10:42:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-14T10:41:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-14T10:38:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-14T00:06:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-14T00:04:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-14T00:03:51Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-07T04:38:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-07T04:38:53Z"
+    }
+  ]
+}

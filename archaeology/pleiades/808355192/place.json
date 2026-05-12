@@ -1,0 +1,292 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.04181,
+            42.8649857
+          ],
+          [
+            -7.0419142,
+            42.8651385
+          ],
+          [
+            -7.0422959,
+            42.8654073
+          ],
+          [
+            -7.0424126,
+            42.8653754
+          ],
+          [
+            -7.0425272,
+            42.865216
+          ],
+          [
+            -7.0425963,
+            42.8647288
+          ],
+          [
+            -7.0425373,
+            42.8644693
+          ],
+          [
+            -7.042269,
+            42.8643946
+          ],
+          [
+            -7.0419533,
+            42.8644582
+          ],
+          [
+            -7.0418614,
+            42.8648271
+          ],
+          [
+            -7.04181,
+            42.8649857
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement; 900 BC - 100 BC",
+        "link": "https://pleiades.stoa.org/places/808355192/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Santa Mar\u00eda"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "castro-culture-iron-age-ca.-900-bc-100-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/castro-culture-iron-age-ca.-900-bc-100-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/268499637",
+          "citationDetail": "Way 268499637",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=268499637",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -100,
+      "title": "OSM location of Castro de Santa Mar\u00eda",
+      "provenance": "OpenStreetMap (Way 268499637, version 2, osm:changeset=37551930, 2016-03-01T19:18:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2015-03-12T19:57:24Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.04181,
+            42.8649857
+          ],
+          [
+            -7.0419142,
+            42.8651385
+          ],
+          [
+            -7.0422959,
+            42.8654073
+          ],
+          [
+            -7.0424126,
+            42.8653754
+          ],
+          [
+            -7.0425272,
+            42.865216
+          ],
+          [
+            -7.0425963,
+            42.8647288
+          ],
+          [
+            -7.0425373,
+            42.8644693
+          ],
+          [
+            -7.042269,
+            42.8643946
+          ],
+          [
+            -7.0419533,
+            42.8644582
+          ],
+          [
+            -7.0418614,
+            42.8648271
+          ],
+          [
+            -7.04181,
+            42.8649857
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/808355192/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-26T01:35:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-20T11:51:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-04T16:01:28Z"
+        },
+        {
+          "comment": "title",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-04T15:59:43Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T19:58:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T19:57:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T19:57:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://gl.wikipedia.org/wiki/Castro_de_Santa_Mar%C3%ADa_de_Cervantes",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Wikipedia (gl) Castro de Santa Mar\u00eda de Cervantes",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "808355192",
+  "subject": [],
+  "title": "Santa Mar\u00eda do Castro",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The castro of Santa Mar\u00eda de Cervantes is located on the banks of the Ancares river the municipality of Cervantes, in the province of Lugo.",
+  "reprPoint": [
+    -7.0425356,
+    42.8650993
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -7.0425356,
+    42.8650993,
+    -7.0425356,
+    42.8650993
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-03-12T19:57:03Z",
+  "uri": "https://pleiades.stoa.org/places/808355192",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-20T11:51:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T16:01:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-04T16:01:21Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T19:57:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T19:57:04Z"
+    }
+  ]
+}

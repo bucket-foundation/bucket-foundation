@@ -1,0 +1,353 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.36166,
+            45.14385
+          ],
+          [
+            36.36045,
+            45.14608
+          ],
+          [
+            36.36492,
+            45.14934
+          ],
+          [
+            36.36886,
+            45.14952
+          ],
+          [
+            36.36904,
+            45.1514
+          ],
+          [
+            36.37384,
+            45.15243
+          ],
+          [
+            36.3771822,
+            45.1521657
+          ],
+          [
+            36.3776662,
+            45.1507921
+          ],
+          [
+            36.37625,
+            45.14934
+          ],
+          [
+            36.37264,
+            45.14814
+          ],
+          [
+            36.3669352,
+            45.1473967
+          ],
+          [
+            36.36646,
+            45.14557
+          ],
+          [
+            36.36166,
+            45.14385
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kostyrino",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/856253/osm-location-of-kostyrino",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kostyrino"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "Diane Braund"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/30711533",
+          "citationDetail": "Way 30711533",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=30711533",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kostyrino",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Kostyrino",
+      "provenance": "OpenStreetMap (Way 30711533, version 7, osm:changeset=134043057, 2023-03-23T22:44:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-08-23T00:14:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.36166,
+            45.14385
+          ],
+          [
+            36.36045,
+            45.14608
+          ],
+          [
+            36.36492,
+            45.14934
+          ],
+          [
+            36.36886,
+            45.14952
+          ],
+          [
+            36.36904,
+            45.1514
+          ],
+          [
+            36.37384,
+            45.15243
+          ],
+          [
+            36.3771822,
+            45.1521657
+          ],
+          [
+            36.3776662,
+            45.1507921
+          ],
+          [
+            36.37625,
+            45.14934
+          ],
+          [
+            36.37264,
+            45.14814
+          ],
+          [
+            36.3669352,
+            45.1473967
+          ],
+          [
+            36.36646,
+            45.14557
+          ],
+          [
+            36.36166,
+            45.14385
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/856253/osm-location-of-kostyrino",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-23T14:11:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-23T13:21:18Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-23T00:14:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-23T00:14:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-23T00:14:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "87 K2 82",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "268",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kruglikova 1975",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TVF35IAK",
+      "formattedCitation": "<div class=\"csl-entry\">Kruglikova, Irina Timofeevna. <i>\u0421\u0435\u043b\u044c\u0441\u043a\u043e\u0435 \u0425\u043e\u0437\u044f\u0439\u0441\u0442\u0432\u043e \u0411\u043e\u0441\u043f\u043e\u0440\u0430</i>. Moskva: Nauka, 1975.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 1249",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlDir",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "856253",
+  "subject": [],
+  "title": "Kostyrino (Ukraine)",
+  "provenance": "Barrington Atlas: BAtlas 87 K2 82",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Kostyrino UKR</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Kostyrino (Ukraine) is included as numbered feature 82 on Barrington Atlas map 87 K2.",
+  "reprPoint": [
+    36.36886769801595,
+    45.14860939895445
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    36.36045,
+    45.14385,
+    36.3776662,
+    45.15243
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-23T13:20:04Z",
+  "uri": "https://pleiades.stoa.org/places/856253",
+  "creators": [
+    {
+      "username": null,
+      "name": "David Braund"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "edit title, summary; BAtlDir p. 1249; place type = settlement (BAtlas symbol) by @jbecker",
+      "modifiedBy": "thomase",
+      "modified": "2025-08-23T14:11:13Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-23T13:20:02Z"
+    },
+    {
+      "comment": "Kruglikova 1975",
+      "modifiedBy": "jbecker",
+      "modified": "2022-02-26T03:06:33Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:48:39Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:15:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-28T13:51:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-28T11:27:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-28T11:16:43Z"
+    }
+  ]
+}

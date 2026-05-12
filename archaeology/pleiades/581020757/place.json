@@ -1,0 +1,488 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.2937065,
+            39.908579
+          ],
+          [
+            26.2934023,
+            39.9083388
+          ],
+          [
+            26.2929727,
+            39.9083182
+          ],
+          [
+            26.2927401,
+            39.9085173
+          ],
+          [
+            26.2927401,
+            39.9088399
+          ],
+          [
+            26.2929101,
+            39.9090252
+          ],
+          [
+            26.2931875,
+            39.9090664
+          ],
+          [
+            26.2935275,
+            39.9089634
+          ],
+          [
+            26.2936617,
+            39.9087781
+          ],
+          [
+            26.2937065,
+            39.908579
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-hanaytepe",
+      "properties": {
+        "snippet": "Tell; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/581020757/osm-location-of-hanaytepe",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Hanaytepe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/212382389",
+          "citationDetail": "Way 212382389",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=212382389",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-hanaytepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -1000,
+      "title": "OSM location of Hanaytepe",
+      "provenance": "OpenStreetMap (Way 212382389, version 4, osm:changeset=164357227, 2025-04-01T05:28:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-19T02:48:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.2937065,
+            39.908579
+          ],
+          [
+            26.2934023,
+            39.9083388
+          ],
+          [
+            26.2929727,
+            39.9083182
+          ],
+          [
+            26.2927401,
+            39.9085173
+          ],
+          [
+            26.2927401,
+            39.9088399
+          ],
+          [
+            26.2929101,
+            39.9090252
+          ],
+          [
+            26.2931875,
+            39.9090664
+          ],
+          [
+            26.2935275,
+            39.9089634
+          ],
+          [
+            26.2936617,
+            39.9087781
+          ],
+          [
+            26.2937065,
+            39.908579
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/581020757/osm-location-of-hanaytepe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmckee",
+          "modified": "2026-03-10T13:43:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T01:14:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T01:12:30Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T00:33:01Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T02:48:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T02:48:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T02:48:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-03-10T01:15:30Z",
+      "associationCertainty": "certain",
+      "title": "Troas (region)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/581020757/troas-region",
+      "connectionType": "part_of_regional",
+      "id": "troas-region",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmckee",
+          "modified": "2026-03-10T13:43:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T01:15:37Z"
+        },
+        {
+          "comment": "cnxn, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T01:15:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T01:15:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550944",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Blum 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BJD7J9ES",
+          "formattedCitation": "<div class=\"csl-entry\">Blum. \u201cArch\u00e4ologische Untersuchungen Zur Voreisenzeitlichen Kultursequenz Des Bozk\u00f6y-Hanaytepe, Nordwestt\u00fcrkei.\u201d <i>Studia Troica</i> 19 (2011): 119\u201377.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/57652/",
+      "citationDetail": "57652: Hanay Tepe",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q132182273",
+      "citationDetail": "Hanay Hill (Q132182273)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://kulturenvanteri.com/yer/hanay-tepe/",
+      "citationDetail": "Hanay Tepe",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "K\u00fclt\u00fcr Envanteri",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y4452C6M",
+      "formattedCitation": "<div class=\"csl-entry\">Caner Cang\u00fcl, and A. Erdem \u015eent\u00fcrk, eds. <i>K\u00fclt\u00fcr Envanteri</i>, n.d. https://kulturenvanteri.com/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Blum 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BJD7J9ES",
+      "formattedCitation": "<div class=\"csl-entry\">Blum. \u201cArch\u00e4ologische Untersuchungen Zur Voreisenzeitlichen Kultursequenz Des Bozk\u00f6y-Hanaytepe, Nordwestt\u00fcrkei.\u201d <i>Studia Troica</i> 19 (2011): 119\u201377.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://worldcat.org/oclc/887872091",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aslan 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9AH479HG",
+      "formattedCitation": "<div class=\"csl-entry\">Aslan, R\u00fcstem, and Fecri Polat. <i>Bozk\u00f6y-Hanaytepe ve \u00e7evresi prehistorik d\u00f6nem ara\u015ft\u0131rmalar\u0131</i>. \u00c7anakkale: Troia Vakf\u0131 yay\u0131nlar\u0131, 2012. http://worldcat.org/oclc/887872091.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bozkoy-Hanaytepe",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Blum 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BJD7J9ES",
+          "formattedCitation": "<div class=\"csl-entry\">Blum. \u201cArch\u00e4ologische Untersuchungen Zur Voreisenzeitlichen Kultursequenz Des Bozk\u00f6y-Hanaytepe, Nordwestt\u00fcrkei.\u201d <i>Studia Troica</i> 19 (2011): 119\u201377.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "bozkoy-hanaytepe",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2026-03-10T01:12:09Z",
+      "uri": "https://pleiades.stoa.org/places/581020757/bozkoy-hanaytepe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Bozk\u00f6y-Hanaytepe",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmckee",
+          "modified": "2026-03-10T13:43:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T01:12:30Z"
+        },
+        {
+          "comment": "add name",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T01:12:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-10T01:12:09Z"
+        }
+      ]
+    }
+  ],
+  "id": "581020757",
+  "subject": [],
+  "title": "Bozk\u00f6y-Hanaytepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A settlement mound and archaeological site located in the Troad containing evidence of habitation from the Chalcolithic through the Late Bronze Ages.",
+  "reprPoint": [
+    26.293195219251732,
+    39.90868390172034
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    26.2927401,
+    39.9083182,
+    26.2937065,
+    39.9090664
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550944"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-19T02:48:15Z",
+  "uri": "https://pleiades.stoa.org/places/581020757",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "gmckee",
+      "modified": "2026-03-10T13:43:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2026-03-10T13:43:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2026-03-10T13:39:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-10T01:12:30Z"
+    },
+    {
+      "comment": "update title, summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-10T00:47:25Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-10T00:36:31Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-19T02:48:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-19T02:48:15Z"
+    }
+  ]
+}

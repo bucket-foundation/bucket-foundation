@@ -1,0 +1,14 @@
+# Ottorokorra/Ottorokora
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/60610
+- **ID**: 60610
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ottorokorra, Ottorokora
+
+## Description
+
+An ancient settlement, attested by literary or documentary sources, whose precise location cannot be determined today

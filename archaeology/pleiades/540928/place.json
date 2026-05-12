@@ -1,0 +1,731 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.8917188,
+          38.2482204
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Acropolis, Wall-2; 1000 BC - 701 BC",
+        "link": "https://pleiades.stoa.org/places/540928/osm-location",
+        "description": "Location based on OpenStreetMap. Dates after Bintliff and Fossey.",
+        "location_precision": "precise",
+        "title": "OSM Location of Korsiai (Mali)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "mkarabogias",
+      "homepage": null,
+      "name": "Michael Karabogias",
+      "uri": "https://pleiades.stoa.org/author/mkarabogias"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "eighth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eighth-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "ninth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ninth-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "tenth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/tenth-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6939672128",
+          "citationDetail": "Node 6939672128",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6939672128",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis",
+        "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+      ],
+      "end": -701,
+      "title": "OSM Location of Korsiai (Mali)",
+      "provenance": "Barrington Atlas 55 A3 Chorsiai",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis",
+        "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "acropolis",
+        "wall-2"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after Bintliff and Fossey.",
+      "created": "2021-10-19T03:46:43Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.8917188,
+          38.2482204
+        ]
+      },
+      "locationType": [],
+      "uri": "https://pleiades.stoa.org/places/540928/osm-location",
+      "creators": [
+        {
+          "username": "mkarabogias",
+          "homepage": null,
+          "name": "Michael Karabogias",
+          "uri": "https://pleiades.stoa.org/author/mkarabogias"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "dates; title",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:51:43Z"
+        },
+        {
+          "comment": "summary; dates",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:28:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:28:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-19T19:39:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-19T19:39:30Z"
+        },
+        {
+          "comment": "dates",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-19T19:39:22Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-19T16:23:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mkarabogias",
+          "modified": "2021-10-19T03:51:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mkarabogias",
+          "modified": "2021-10-19T03:51:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mkarabogias",
+          "modified": "2021-10-19T03:48:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "mkarabogias",
+          "modified": "2021-10-19T03:46:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mkarabogias",
+          "modified": "2021-10-19T03:46:43Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -701,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-22T22:11:37Z",
+      "associationCertainty": "certain",
+      "title": "Chorsiai",
+      "start": -800,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/540928/6975056122",
+      "connectionType": "relocated_to",
+      "id": "6975056122",
+      "attestations": [
+        {
+          "timePeriod": "eighth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eighth-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "adjusted dates and connection type (relocated to)",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-06T15:36:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:33:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:11:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:11:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:11:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540711",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/relocated_to"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-22T22:27:18Z",
+      "associationCertainty": "certain",
+      "title": "K\u00e1stron Kh\u00f3stion",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/540928/kastron-khostion",
+      "connectionType": "near",
+      "id": "kastron-khostion",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:27:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:27:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/995667313",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "55 D4 Mali",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/19744479",
+      "citationDetail": "194-95",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fossey 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SZAWKZV5",
+      "formattedCitation": "<div class=\"csl-entry\">Fossey, John M. <i>Topography and Population of Ancient Boiotia</i>. 1st ed. 2 in 1 vols. Chicago: Ares, 1988. http://www.worldcat.org/oclc/19744479.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "219",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bintliff 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N4GULAPI",
+      "formattedCitation": "<div class=\"csl-entry\">Bintliff, John. <i>The Complete Archaeology of Greece: From Hunter-Gatherers to the 20th Century AD</i>. Chichester: Wiley-Blackwell, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "11, 340-341",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Morin 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y9ZFQE3M",
+      "formattedCitation": "<div class=\"csl-entry\">Jacques Morin. <i>Kh\u00f3stia II: The Bronze Age\u202f: Results of Canadian Explorations and Excavations at Kh\u00f3stia, Boiotia, Central Greece</i>. McGill University Monographs in Classical Archaeology and History\u202f; No. 21. Chicago: Ares, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "13604",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "M\u00e1li, Mali",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/19744479",
+          "citationDetail": "194",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Fossey 1988",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SZAWKZV5",
+          "formattedCitation": "<div class=\"csl-entry\">Fossey, John M. <i>Topography and Population of Ancient Boiotia</i>. 1st ed. 2 in 1 vols. Chicago: Ares, 1988. http://www.worldcat.org/oclc/19744479.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "mali",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Greek name of peak.",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2021-10-22T22:30:08Z",
+      "uri": "https://pleiades.stoa.org/places/540928/mali",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:08Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Prodromos, Pr\u00f3dromos, Pr\u00f3dhromos",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/254662/prodromos.html",
+          "citationDetail": "254662: Pr\u00f3dromos",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/19744479",
+          "citationDetail": "187",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Fossey 1988",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SZAWKZV5",
+          "formattedCitation": "<div class=\"csl-entry\">Fossey, John M. <i>Topography and Population of Ancient Boiotia</i>. 1st ed. 2 in 1 vols. Chicago: Ares, 1988. http://www.worldcat.org/oclc/19744479.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "prodromos",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2021-10-22T22:30:35Z",
+      "uri": "https://pleiades.stoa.org/places/540928/prodromos",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u03a0\u03c1\u03cc\u03b4\u03c1\u03bf\u03bc\u03bf\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:35Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Khostia, Kh\u00f3stia, Chostia",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/254662/prodromos.html",
+          "citationDetail": "254662: Pr\u00f3dromos",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.persee.fr/doc/mom_0766-0510_1986_sem_11_1_2073",
+          "citationDetail": "page 94 figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Roesch 1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I3VZWSPT",
+          "formattedCitation": "<div class=\"csl-entry\">Roesch, Paul. \u201cL\u2019eau et les textiles\u202f: Chorsiai de B\u00e9otie.\u201d <i>MOM \u00c9ditions</i> 11, no. 1 (1986): 93\u201399. https://www.persee.fr/doc/mom_0766-0510_1986_sem_11_1_2073.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/19744479",
+          "citationDetail": "187-94",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fossey 1988",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SZAWKZV5",
+          "formattedCitation": "<div class=\"csl-entry\">Fossey, John M. <i>Topography and Population of Ancient Boiotia</i>. 1st ed. 2 in 1 vols. Chicago: Ares, 1988. http://www.worldcat.org/oclc/19744479.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "khostia",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2021-10-22T22:30:35Z",
+      "uri": "https://pleiades.stoa.org/places/540928/khostia",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u03a7\u03ce\u03c3\u03c4\u03b9\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-22T22:30:35Z"
+        }
+      ]
+    }
+  ],
+  "id": "540928",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "Mali",
+  "provenance": "Barrington Atlas: BAtlas 55 D4 Mali",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/acropolis",
+    "https://pleiades.stoa.org/vocabularies/place-types/wall-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Mali</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Near modern Khostia/Prodromos in Boeotia, M\u00e1li is the modern name of a peak on a ridgeline where extensive remains of an ancient site, possibly a \"refuge site\" for the polis of Khorsiai, have been discovered. The population of Khorsiai are thought to have relocated back to the original nucleus of the community at nearby K\u00e1stron Khost\u00edon sometime in the early Archaic period.",
+  "reprPoint": [
+    22.8917188,
+    38.2482204
+  ],
+  "placeTypes": [
+    "settlement",
+    "acropolis",
+    "wall-2"
+  ],
+  "bbox": [
+    22.8917188,
+    38.2482204,
+    22.8917188,
+    38.2482204
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540711",
+    "https://pleiades.stoa.org/places/995667313"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-06T15:22:37Z",
+  "uri": "https://pleiades.stoa.org/places/540928",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Fossey"
+    },
+    {
+      "username": null,
+      "name": "J. Morin"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "created darmc citation to preserve project linkage after DARMC location was withdrawn",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-06T15:34:43Z"
+    },
+    {
+      "comment": "summary by @mkarabogias; added names, location, and Bintliff and Morin references provided by mkarabogias and by jbecker",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-06T15:34:01Z"
+    },
+    {
+      "comment": "Fossey 1988",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-18T14:23:50Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:55:55Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:07:46Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T21:43:14Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:17:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-23T14:14:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-23T00:47:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-23T00:40:06Z"
+    }
+  ]
+}

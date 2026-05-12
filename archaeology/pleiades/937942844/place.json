@@ -1,0 +1,400 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.60861,
+            25.737955
+          ],
+          [
+            32.6087083,
+            25.7379142
+          ],
+          [
+            32.6086616,
+            25.7378181
+          ],
+          [
+            32.6085634,
+            25.7378581
+          ],
+          [
+            32.60861,
+            25.737955
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-tomb-entry-modern-wall",
+      "properties": {
+        "snippet": "Unknown; 1086 BC - 664 BC",
+        "link": "https://pleiades.stoa.org/places/937942844/osm-location-tomb-entry-modern-wall",
+        "description": "Location based on OpenStreetMap. Identification via photos and diagrams in Jamen 2023.",
+        "location_precision": "precise",
+        "title": "OSM Location: Tomb Entry (modern wall)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/255180451",
+          "citationDetail": "Way 255180451",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=255180451",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://beg.huma-num.fr/guest-about",
+          "citationDetail": "\u00c0 propos (figures 1 and 2)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Jamen 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DBAWFXUM",
+          "formattedCitation": "<div class=\"csl-entry\">Jamen, France, and Alain Dautant. <i>BeG: La Cachette de Bab El-Gasous</i>. Paris: Institut National d\u2019Histoire de l\u2019Art, 2023. http://beg.huma-num.fr/index.htm.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-tomb-entry-modern-wall",
+      "featureTypeURI": [],
+      "end": -664,
+      "title": "OSM Location: Tomb Entry (modern wall)",
+      "provenance": "OpenStreetMap (Way 255180451, version 1, osm:changeset=19799881, 2014-01-04T07:30:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1086,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "Location based on OpenStreetMap. Identification via photos and diagrams in Jamen 2023.",
+      "created": "2023-04-20T15:21:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.60861,
+            25.737955
+          ],
+          [
+            32.6087083,
+            25.7379142
+          ],
+          [
+            32.6086616,
+            25.7378181
+          ],
+          [
+            32.6085634,
+            25.7378581
+          ],
+          [
+            32.60861,
+            25.737955
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/937942844/osm-location-tomb-entry-modern-wall",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-21T03:29:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:26:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:23:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:21:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:21:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:21:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -664,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-20T15:20:32Z",
+      "associationCertainty": "certain",
+      "title": "Deir el-Bahari",
+      "start": -1086,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/937942844/deir-el-bahari",
+      "connectionType": "at",
+      "id": "deir-el-bahari",
+      "attestations": [
+        {
+          "timePeriod": "third-intermediate-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-intermediate-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-21T03:29:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:26:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:20:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:20:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/512504673",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://beg.huma-num.fr/index.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jamen 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DBAWFXUM",
+      "formattedCitation": "<div class=\"csl-entry\">Jamen, France, and Alain Dautant. <i>BeG: La Cachette de Bab El-Gasous</i>. Paris: Institut National d\u2019Histoire de l\u2019Art, 2023. http://beg.huma-num.fr/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q111630541",
+      "citationDetail": "Bab el-Gasus (Q111630541)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bab el-Gousous, Bab el-Gasous",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://beg.huma-num.fr/guest-about",
+          "citationDetail": "\u00c0 propos, see \"Historique des fouilles\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Jamen 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DBAWFXUM",
+          "formattedCitation": "<div class=\"csl-entry\">Jamen, France, and Alain Dautant. <i>BeG: La Cachette de Bab El-Gasous</i>. Paris: Institut National d\u2019Histoire de l\u2019Art, 2023. http://beg.huma-num.fr/index.htm.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bab-el-gousous",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2023-04-20T15:25:18Z",
+      "uri": "https://pleiades.stoa.org/places/937942844/bab-el-gousous",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u0627\u0644\u0642\u0640\u064f\u0633\u0640\u064f\u0648\u0633 \u0628\u0627\u0628",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-21T03:29:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:26:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:25:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:25:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-20T15:25:18Z"
+        }
+      ]
+    }
+  ],
+  "id": "937942844",
+  "subject": [],
+  "title": "Bab el-Gasous",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The collective tomb known in modern times as \"La Cachette de Bab el-Gasous\" at Deir el-Bahari in Egypt was discovered in the early twentieth century and its contents (the remains and funerary equipment of 153 members of the Theban elite dating to the end of the 21st dynasty) were distributed to some 90 museums around the world. The tomb extended under the \"Court of Hatshepsut\" from a concealed entry located north of the east end of the court and now surrounded by a low stone wall.",
+  "reprPoint": [
+    32.60863576879366,
+    25.73788642687271
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    32.6085634,
+    25.7378181,
+    32.6087083,
+    25.737955
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/512504673"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-20T15:19:00Z",
+  "uri": "https://pleiades.stoa.org/places/937942844",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Bab el-Gasus (Q111630541)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-03T23:54:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-21T03:29:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-20T15:26:59Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-20T15:19:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-20T15:19:00Z"
+    }
+  ]
+}

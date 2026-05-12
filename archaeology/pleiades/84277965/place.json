@@ -1,0 +1,620 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8326148,
+            36.6619748
+          ],
+          [
+            4.8329499,
+            36.6612906
+          ],
+          [
+            4.8325326,
+            36.6611676
+          ],
+          [
+            4.8322184,
+            36.6618784
+          ],
+          [
+            4.8326148,
+            36.6619748
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-visible-ruins-of-cistern",
+      "properties": {
+        "snippet": "Cistern; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/84277965/osm-location-visible-ruins-of-cistern",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: visible ruins of cistern"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1388834159",
+          "citationDetail": "Way 1388834159",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1388834159",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-visible-ruins-of-cistern",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+      ],
+      "end": 640,
+      "title": "OSM Location: visible ruins of cistern",
+      "provenance": "OpenStreetMap (Way 1388834159, version 1, osm:changeset=166623607, 2025-05-22T17:36:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cistern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-05-22T17:37:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.8326148,
+            36.6619748
+          ],
+          [
+            4.8329499,
+            36.6612906
+          ],
+          [
+            4.8325326,
+            36.6611676
+          ],
+          [
+            4.8322184,
+            36.6618784
+          ],
+          [
+            4.8326148,
+            36.6619748
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/84277965/osm-location-visible-ruins-of-cistern",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-22T19:36:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:24:58Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:11:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:55:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:39:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:37:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:37:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-05-22T17:29:53Z",
+      "associationCertainty": "certain",
+      "title": "Tubusuctu",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/84277965/tubusuctu",
+      "connectionType": "at",
+      "id": "tubusuctu",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-22T19:36:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:24:58Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:11:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:55:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:29:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:29:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/305171",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.proquest.com/docview/304806089?pq-origsite=primo",
+      "citationDetail": "pages 48-49 sub \"119: Tubusuptu 1 (Western Aqueduct)\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hughes 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WYNH3P58",
+      "formattedCitation": "<div class=\"csl-entry\">Hughes, Ryan. \u201cThe Aqueduct and Its Context: The Case of North Africa.\u201d Mastter of Arts in Classical Archaeology, Tufts University, 2007. ProQuest. https://www.proquest.com/docview/304806089?pq-origsite=primo.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006",
+      "citationDetail": "TUBUSUCTU or Tubusuptu (Tiklat) Algeria.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://bibliotheque-numerique.inha.fr/viewer/21113/?#page=60&viewer=picture&o=bookmark&n=0&q=",
+      "citationDetail": "sub 7.27 (page 7, column 2, plan and page 8, column 1, number 7) ",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AAA",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4P9BAIHE",
+      "formattedCitation": "<div class=\"csl-entry\">Gsell, S. <i>Atlas Arch\u00e9ologique de l\u2019Alg\u00e9rie</i>. Algiers, Paris: Gouverment G\u00e9n\u00e9ral de l\u2019Alg\u00e9rie; Adolphe Jourdan; Fontemoing et Co., 1911. http://bibliotheque-numerique.inha.fr/viewer/21113/?#page=1&amp;viewer=picture.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dspace.ummto.dz/handle/ummto/815",
+      "citationDetail": "pages 66-68 see \"1.2 Les citernes d\u2019El Ariouia\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Laoues 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VJA2FM5F",
+      "formattedCitation": "<div class=\"csl-entry\">Laoues, Souad. \u201cL\u2019aqueduc de la tribu fenaia, un patrimoine arch\u00e9ologique en p\u00e9ril.\u201d M\u00e9moire de Magister, sp\u00e9cialit\u00e9 architecture, Universit\u00e9 Mouloud MAMMERI de Tizi-Ouzou, 2015. https://dspace.ummto.dz/handle/ummto/815.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "El Arouia",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.proquest.com/docview/304806089?pq-origsite=primo",
+          "citationDetail": "pages 48-49 sub \"119: Tubusuptu 1 (Western Aqueduct)\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Hughes 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WYNH3P58",
+          "formattedCitation": "<div class=\"csl-entry\">Hughes, Ryan. \u201cThe Aqueduct and Its Context: The Case of North Africa.\u201d Mastter of Arts in Classical Archaeology, Tufts University, 2007. ProQuest. https://www.proquest.com/docview/304806089?pq-origsite=primo.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "el-arouia",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-05-22T17:28:57Z",
+      "uri": "https://pleiades.stoa.org/places/84277965/el-arouia",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-22T19:36:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:24:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:19:04Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:11:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:55:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:28:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T17:28:57Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "El Ariouia",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://dspace.ummto.dz/handle/ummto/815",
+          "citationDetail": "page 66 see \"1.2 Les citernes d\u2019El Ariouia\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Laoues 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VJA2FM5F",
+          "formattedCitation": "<div class=\"csl-entry\">Laoues, Souad. \u201cL\u2019aqueduc de la tribu fenaia, un patrimoine arch\u00e9ologique en p\u00e9ril.\u201d M\u00e9moire de Magister, sp\u00e9cialit\u00e9 architecture, Universit\u00e9 Mouloud MAMMERI de Tizi-Ouzou, 2015. https://dspace.ummto.dz/handle/ummto/815.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "el-ariouia",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-05-22T18:18:20Z",
+      "uri": "https://pleiades.stoa.org/places/84277965/el-ariouia",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-22T19:36:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:24:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:18:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:18:20Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Citernes Sup\u00e9rieures",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://dspace.ummto.dz/handle/ummto/815",
+          "citationDetail": "page 66 see \"1.2 Les citernes d\u2019El Ariouia\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Laoues 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VJA2FM5F",
+          "formattedCitation": "<div class=\"csl-entry\">Laoues, Souad. \u201cL\u2019aqueduc de la tribu fenaia, un patrimoine arch\u00e9ologique en p\u00e9ril.\u201d M\u00e9moire de Magister, sp\u00e9cialit\u00e9 architecture, Universit\u00e9 Mouloud MAMMERI de Tizi-Ouzou, 2015. https://dspace.ummto.dz/handle/ummto/815.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "citernes-superieures",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-05-22T18:20:48Z",
+      "uri": "https://pleiades.stoa.org/places/84277965/citernes-superieures",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Citernes Sup\u00e9rieures",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-22T19:36:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:24:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:20:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-22T18:20:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "84277965",
+  "subject": [],
+  "title": "El Ar(i)ouia cisterns (Tubusuctu)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A barrel-vaulted cistern complex located to the immediate north of Tubusuctu that could hold nearly 12,000 cubic meters of water. It was fed by the so-called \"Western Aqueduct\" of Tubusuctu.",
+  "reprPoint": [
+    4.832579465451924,
+    36.661573530645185
+  ],
+  "placeTypes": [
+    "cistern"
+  ],
+  "bbox": [
+    4.8322184,
+    36.6611676,
+    4.8329499,
+    36.6619748
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/305171"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-05-22T17:26:14Z",
+  "uri": "https://pleiades.stoa.org/places/84277965",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-22T19:36:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T18:24:58Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T18:13:40Z"
+    },
+    {
+      "comment": "added Laoues 2015",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T18:12:21Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T18:11:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T17:55:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T17:54:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T17:40:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T17:26:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T17:26:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-22T17:26:14Z"
+    }
+  ]
+}

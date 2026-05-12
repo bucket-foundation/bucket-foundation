@@ -1,0 +1,534 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.3206096,
+            35.2219668
+          ],
+          [
+            25.3197255,
+            35.2223314
+          ],
+          [
+            25.3187642,
+            35.2223454
+          ],
+          [
+            25.3182149,
+            35.2223034
+          ],
+          [
+            25.3173609,
+            35.2220895
+          ],
+          [
+            25.3171077,
+            35.221767
+          ],
+          [
+            25.3168674,
+            35.2210553
+          ],
+          [
+            25.3169618,
+            35.2205715
+          ],
+          [
+            25.3176699,
+            35.2202419
+          ],
+          [
+            25.318614,
+            35.2195828
+          ],
+          [
+            25.3201504,
+            35.2190043
+          ],
+          [
+            25.3234656,
+            35.2187746
+          ],
+          [
+            25.3238443,
+            35.2192769
+          ],
+          [
+            25.3239484,
+            35.2200175
+          ],
+          [
+            25.3223262,
+            35.2216793
+          ],
+          [
+            25.32091,
+            35.2218686
+          ],
+          [
+            25.3206096,
+            35.2219668
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-papoura-hill-circular-structure",
+      "properties": {
+        "snippet": "Archaeological-site; 2000 BC - 1600 BC",
+        "link": "https://pleiades.stoa.org/places/872969492/osm-location-of-papoura-hill-circular-structure",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Papoura Hill Circular Structure"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "Robert Consoli"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middleminoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middleminoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1291345903",
+          "citationDetail": "Way 1291345903",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1291345903",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-papoura-hill-circular-structure",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -1600,
+      "title": "OSM location of Papoura Hill Circular Structure",
+      "provenance": "OpenStreetMap (Way 1291345903, version 4, osm:changeset=153192683, 2024-06-26T09:06:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-07-09T20:04:24Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.3206096,
+            35.2219668
+          ],
+          [
+            25.3197255,
+            35.2223314
+          ],
+          [
+            25.3187642,
+            35.2223454
+          ],
+          [
+            25.3182149,
+            35.2223034
+          ],
+          [
+            25.3173609,
+            35.2220895
+          ],
+          [
+            25.3171077,
+            35.221767
+          ],
+          [
+            25.3168674,
+            35.2210553
+          ],
+          [
+            25.3169618,
+            35.2205715
+          ],
+          [
+            25.3176699,
+            35.2202419
+          ],
+          [
+            25.318614,
+            35.2195828
+          ],
+          [
+            25.3201504,
+            35.2190043
+          ],
+          [
+            25.3234656,
+            35.2187746
+          ],
+          [
+            25.3238443,
+            35.2192769
+          ],
+          [
+            25.3239484,
+            35.2200175
+          ],
+          [
+            25.3223262,
+            35.2216793
+          ],
+          [
+            25.32091,
+            35.2218686
+          ],
+          [
+            25.3206096,
+            35.2219668
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/872969492/osm-location-of-papoura-hill-circular-structure",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T17:28:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T23:46:24Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T20:05:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T20:04:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T20:04:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-07-09T20:05:55Z",
+      "associationCertainty": "certain",
+      "title": "Creta (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/872969492/creta-island",
+      "connectionType": "on",
+      "id": "creta-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T17:28:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T23:46:25Z"
+        },
+        {
+          "comment": "wikidata Q126594295",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T23:46:17Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T20:05:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T20:05:55Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589748",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q126594295",
+          "citationDetail": "Papoura Hill Circular Structure (Q126594295)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Papoura_Hill_Circular_Structure",
+      "citationDetail": "Papoura Hill Circular Structure",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q126594295",
+      "citationDetail": "Papoura Hill Circular Structure (Q126594295)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.helladic.info/MAPC/pkey_report_wparam.php?place=C7876",
+      "citationDetail": "C7876: Papoura Hill Structure",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MycAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCVZLMUJ",
+      "formattedCitation": "<div class=\"csl-entry\">Consoli, Robert H. <i>Mycenaean Atlas Project</i>, 2017. https://www.helladic.info.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.smithsonianmag.com/smart-news/discovery-of-4000-year-old-structure-in-greece-stumps-archaeologists-and-threatens-major-airport-construction-180984536/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wizevich 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YR9P4A9Q",
+      "formattedCitation": "<div class=\"csl-entry\">Wizevich, Eli. \u201cDiscovery of 4,000-Year-Old Structure in Greece Stumps Archaeologists and Threatens Major Airport Construction.\u201d <i>Smithsonian Magazine</i>, June 12, 2024. https://www.smithsonianmag.com/smart-news/discovery-of-4000-year-old-structure-in-greece-stumps-archaeologists-and-threatens-major-airport-construction-180984536/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Papoura Hill Circular Structure",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q126594295",
+          "citationDetail": "Papoura Hill Circular Structure (Q126594295)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "papoura-hill-circular-structure",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-07-09T20:06:22Z",
+      "uri": "https://pleiades.stoa.org/places/872969492/papoura-hill-circular-structure",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Papoura Hill Circular Structure",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-10T17:28:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T23:46:25Z"
+        },
+        {
+          "comment": "name, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T23:45:47Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T20:06:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-09T20:06:22Z"
+        }
+      ]
+    }
+  ],
+  "id": "872969492",
+  "subject": [],
+  "title": "Papoura Hill Circular Structure",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Minoan architectural complex that consists of sets of concentric stone circles, the Papoura Hill Circular Structure is located on Papoura Hill, northwest of Kastelli Crete. The structure is dated ca. 2000 -1700 BCE.",
+  "reprPoint": [
+    25.320435071380466,
+    35.22054021943617
+  ],
+  "placeTypes": [
+    "architecturalcomplex",
+    "archaeological-site"
+  ],
+  "bbox": [
+    25.3168674,
+    35.2187746,
+    25.3239484,
+    35.2223454
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589748"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-07-09T20:04:03Z",
+  "uri": "https://pleiades.stoa.org/places/872969492",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Wizevich 2024 reference, provided by Robert Consoli via MycAtlas",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-10T17:31:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-10T17:28:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-10T17:26:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-09T23:46:24Z"
+    },
+    {
+      "comment": "add wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-09T23:39:45Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-09T20:04:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-09T20:04:03Z"
+    }
+  ]
+}

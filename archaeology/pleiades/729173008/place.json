@@ -1,0 +1,520 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.5357149,
+            43.8157448
+          ],
+          [
+            28.5356117,
+            43.8157173
+          ],
+          [
+            28.5355278,
+            43.815666
+          ],
+          [
+            28.5354946,
+            43.815631
+          ],
+          [
+            28.5354586,
+            43.815556
+          ],
+          [
+            28.5354698,
+            43.8154502
+          ],
+          [
+            28.535521,
+            43.8153799
+          ],
+          [
+            28.5355696,
+            43.8153437
+          ],
+          [
+            28.5356653,
+            43.8153045
+          ],
+          [
+            28.5357738,
+            43.8152913
+          ],
+          [
+            28.5358848,
+            43.8153064
+          ],
+          [
+            28.5359791,
+            43.8153472
+          ],
+          [
+            28.5360485,
+            43.8154089
+          ],
+          [
+            28.5360804,
+            43.8154691
+          ],
+          [
+            28.5360858,
+            43.8155484
+          ],
+          [
+            28.5360683,
+            43.8155999
+          ],
+          [
+            28.5360125,
+            43.8156683
+          ],
+          [
+            28.5359276,
+            43.8157188
+          ],
+          [
+            28.5358239,
+            43.8157454
+          ],
+          [
+            28.5357149,
+            43.8157448
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "movila-documaci",
+      "properties": {
+        "snippet": "Cemetery, Tumulus; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/729173008/movila-documaci",
+        "description": "Polygon representing the location of the Documaci Mound, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Movila Documaci"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/175054148",
+          "citationDetail": "Way 175054148",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=175054148",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "movila-documaci",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": -30,
+      "title": "OSM location of Movila Documaci",
+      "provenance": "OpenStreetMap (Way 175054148, version 2, osm:changeset=15275949, 2013-03-06T21:22:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        "tumulus"
+      ],
+      "description": "Polygon representing the location of the Documaci Mound, derived from an OpenStreetMap Way.",
+      "created": "2022-03-31T17:10:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.5357149,
+            43.8157448
+          ],
+          [
+            28.5356117,
+            43.8157173
+          ],
+          [
+            28.5355278,
+            43.815666
+          ],
+          [
+            28.5354946,
+            43.815631
+          ],
+          [
+            28.5354586,
+            43.815556
+          ],
+          [
+            28.5354698,
+            43.8154502
+          ],
+          [
+            28.535521,
+            43.8153799
+          ],
+          [
+            28.5355696,
+            43.8153437
+          ],
+          [
+            28.5356653,
+            43.8153045
+          ],
+          [
+            28.5357738,
+            43.8152913
+          ],
+          [
+            28.5358848,
+            43.8153064
+          ],
+          [
+            28.5359791,
+            43.8153472
+          ],
+          [
+            28.5360485,
+            43.8154089
+          ],
+          [
+            28.5360804,
+            43.8154691
+          ],
+          [
+            28.5360858,
+            43.8155484
+          ],
+          [
+            28.5360683,
+            43.8155999
+          ],
+          [
+            28.5360125,
+            43.8156683
+          ],
+          [
+            28.5359276,
+            43.8157188
+          ],
+          [
+            28.5358239,
+            43.8157454
+          ],
+          [
+            28.5357149,
+            43.8157448
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/729173008/movila-documaci",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T17:36:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-31T17:14:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-31T17:12:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-31T17:10:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-31T17:10:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2022-03-31T17:14:06Z",
+      "associationCertainty": "certain",
+      "title": "Callatis",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/729173008/callatis",
+      "connectionType": "near",
+      "id": "callatis",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T17:36:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-31T17:14:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-31T17:14:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-31T17:14:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/216744",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "S\u00eerbu 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/92BRYEQK",
+      "formattedCitation": "<div class=\"csl-entry\">S\u00eerbu, Valeriu, Maria-Magdalena \u0218tefan, and Dan \u0218tefan, eds. <i>A Monumental Hellenistic Funerary Ensemble at Callatis on the Western Black Sea. The Documaci Tumulus, Volume 1</i>. Archaeopress Archaeology. Oxford: Archaeopress Publishing Ltd, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q111452486",
+      "citationDetail": "Documaci tumulus (Q111452486)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Documaci tumulus",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q111452486",
+          "citationDetail": "Documaci tumulus (Q111452486)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "documaci-tumulus",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-08T17:33:47Z",
+      "uri": "https://pleiades.stoa.org/places/729173008/documaci-tumulus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Documaci tumulus",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T20:38:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T17:33:54Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T17:33:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T17:33:47Z"
+        }
+      ]
+    }
+  ],
+  "id": "729173008",
+  "subject": [],
+  "title": "Documaci tumulus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An elite tomb structure constructed in the late 4th to early 3rd century BCE near the Hellenistic settlement of Callatis.",
+  "reprPoint": [
+    28.535771836915075,
+    43.815519925596604
+  ],
+  "placeTypes": [
+    "cemetery",
+    "tumulus"
+  ],
+  "bbox": [
+    28.5354586,
+    43.8152913,
+    28.5360858,
+    43.8157454
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/216744"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-31T17:06:25Z",
+  "uri": "https://pleiades.stoa.org/places/729173008",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T17:34:42Z"
+    },
+    {
+      "comment": "wikidata Q111452486",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-26T03:34:19Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-31T17:36:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-31T17:14:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-31T17:13:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-31T17:06:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-31T17:06:25Z"
+    }
+  ]
+}

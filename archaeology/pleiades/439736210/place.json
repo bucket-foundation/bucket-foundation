@@ -1,0 +1,343 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3494673,
+          43.8430445
+        ]
+      },
+      "type": "Feature",
+      "id": "tour-magne",
+      "properties": {
+        "snippet": "Fort, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/439736210/tour-magne",
+        "description": "Representative point location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tour Magne"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/316891115",
+          "citationDetail": "Node 316891115",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=316891115",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://fr.wikipedia.org/wiki/Tour_Magne",
+          "citationDetail": "Tour Magne",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (French)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+          "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Tour Magne.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tour-magne",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Tour Magne",
+      "provenance": "OpenStreetMap (changeset 11165466, Sat, 31 Mar 2012 12:15:28 +0000)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort",
+        ""
+      ],
+      "description": "Representative point location based on OpenStreetMap.",
+      "created": "2012-08-20T19:44:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3494673,
+          43.8430445
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/439736210/tour-magne",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T15:18:33Z"
+        },
+        {
+          "comment": "Add generic OSM accuracy assessment reference",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-03T17:16:00Z"
+        },
+        {
+          "comment": "Reverted to revision ${version}",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-02T17:01:15Z"
+        },
+        {
+          "comment": "Add cadastre fran\u00e7ais reference",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-02T16:53:47Z"
+        },
+        {
+          "comment": "More specific provenance, tower",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-02T03:43:00Z"
+        },
+        {
+          "comment": "Add description, Wikipedia reference",
+          "modifiedBy": "sgillies",
+          "modified": "2012-09-26T03:51:12Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-08-20T19:47:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-08-20T19:46:55Z"
+        },
+        {
+          "comment": "New location from OSM",
+          "modifiedBy": "sgillies",
+          "modified": "2012-08-20T19:44:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-08-20T19:44:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:37:51Z",
+      "associationCertainty": "certain",
+      "title": "Nemausus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/439736210/148142",
+      "connectionType": "connection",
+      "id": "148142",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/148142",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.arenes-nimes.com/en/discovering-site/tour-magne",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "The Tour Magne",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Tour_Magne",
+      "citationDetail": "Tour Magne",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+      "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Tour Magne.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Tour_Magne",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Wikimedia Commons Category:Tour Magne",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.ot-nimes.fr/patrimoine/histoire-et-sites/les-sites/les-monuments/la-tour-magne/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "La Tour Magne",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "439736210",
+  "subject": [
+    "fortification",
+    "tower",
+    "extant remains"
+  ],
+  "title": "Tour Magne",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Situated atop Mount Cavalier, the so-called \"Tour Magne\" is a tower on the fortified walls of ancient Nemausus. The tower dates to the time of Augustus.",
+  "reprPoint": [
+    4.3494673,
+    43.8430445
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    4.3494673,
+    43.8430445,
+    4.3494673,
+    43.8430445
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/148142"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-07-01T13:56:18Z",
+  "uri": "https://pleiades.stoa.org/places/439736210",
+  "creators": [
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-16T00:35:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T15:17:55Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T15:17:32Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-07-01T13:56:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-07-01T13:56:18Z"
+    }
+  ]
+}

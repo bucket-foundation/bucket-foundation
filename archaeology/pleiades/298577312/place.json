@@ -1,0 +1,401 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.2961854,
+            37.6594224
+          ],
+          [
+            27.2970433,
+            37.6594239
+          ],
+          [
+            27.2970443,
+            37.6590604
+          ],
+          [
+            27.2961864,
+            37.659059
+          ],
+          [
+            27.2961854,
+            37.6594224
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-athena",
+      "properties": {
+        "snippet": "Temple-2; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/298577312/osm-location-of-temple-of-athena",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Athena"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/245115005",
+          "citationDetail": "Way 245115005",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=245115005",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-athena",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Temple of Athena",
+      "provenance": "OpenStreetMap (Way 245115005, version 3, osm:changeset=160590404, 2024-12-24T23:49:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-02-23T19:13:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.2961854,
+            37.6594224
+          ],
+          [
+            27.2970433,
+            37.6594239
+          ],
+          [
+            27.2970443,
+            37.6590604
+          ],
+          [
+            27.2961864,
+            37.659059
+          ],
+          [
+            27.2961854,
+            37.6594224
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/298577312/osm-location-of-temple-of-athena",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-24T15:42:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-23T19:19:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-23T19:19:03Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-23T19:13:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-23T19:13:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-23T19:13:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-13T23:51:46Z",
+      "associationCertainty": "certain",
+      "title": "Priene/\u2018Lince\u2019?",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/298577312/3062050081",
+      "connectionType": "at",
+      "id": "3062050081",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-13T23:51:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-13T23:51:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-13T23:51:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599905",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/artifacts/building/Priene%2C+Temple+of+Athena",
+      "citationDetail": "Priene, Temple of Athena (Building)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Perseus AAAB",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVMQVC96",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cPerseus Art and Archaeology Artifact Browser.\u201d Accessed August 23, 2023. https://www.perseus.tufts.edu/hopper/artifactBrowser.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://en.wikisource.org/wiki/1911_Encyclop\u00e6dia_Britannica/Priene",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Wikisource, the Free Online Library 2013, Dec 24. \"1911 Encyclopaedia Britannica/Priene.\" ",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Carter 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMQTTTYN",
+      "formattedCitation": "<div class=\"csl-entry\">Carter, Joseph Coleman. <i>The Sculpture of the Sanctuary of Athena Polias at Priene</i>. London: Society of Antiquaries of London in association with British Museum Publications\u202f: Distributed by Thames and Hudson, 1983.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/artifacts/site/Priene",
+      "citationDetail": "Priene (Site)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Perseus AAAB",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVMQVC96",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cPerseus Art and Archaeology Artifact Browser.\u201d Accessed August 23, 2023. https://www.perseus.tufts.edu/hopper/artifactBrowser.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.britishmuseum.org/explore/highlights/highlight_objects/gr/d/dedication_by_alexander.aspx",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Cook, B. F.  1987. Dedication by Alexander the Great to Athena Polias. London: The British Museum Press.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/940567313",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Koenigs 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H27X2Q46",
+      "formattedCitation": "<div class=\"csl-entry\">Koenigs, Wolf, and Deutsches arch\u00e4ologisches Institut. <i>Der Athenatempel von Priene</i>. Wiesbaden: Reichert Verlag, 2015. http://www.worldcat.org/oclc/940567313.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3983229",
+      "citationDetail": "Temple of Athena (Priene) (Q3983229)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "298577312",
+  "subject": [
+    "Ionic",
+    "dare:feature=major temple",
+    "temple",
+    "Athena"
+  ],
+  "title": "The Temple of Athena Polias at Priene",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Temple of Athena, built in the mid-4th century BC of gray-blue marble, is the largest and oldest monument at Priene. By the second century BC, It housed a sacred statue of Athena; later, it was adapted to serve the cult of the Roman Emperor, and finally transformed into a church. The temple was built in the Ionic order by the architect Pytheos, and was dedicated by Alexander the Great, who paid for part or all of its construction, in 334 BC. A marble inscription, now found in the British Museum, said: \u201cKing Alexander dedicated the temple to Athena Polias.\u201d Pytheos followed a rigorous system of proportions, and some architectural graffiti found on the blocks of the temple may be planning sketches. The temple stood on a platform above a high terrace wall with a stoa behind it; it had 6 columns on the facade, 10 on each of the sides, and a rear porch. The ceiling of the peristyle featured coffers carved with elaborate mythological scenes.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The temple of Athena at Priene, designed by the architect Pytheos, is an especially good example of the Late Classical form of the Ionic order.",
+  "reprPoint": [
+    27.296614867560347,
+    37.659241425042254
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    27.2961854,
+    37.659059,
+    27.2970443,
+    37.6594239
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599905"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-13T23:51:43Z",
+  "uri": "https://pleiades.stoa.org/places/298577312",
+  "creators": [
+    {
+      "username": "jmiller",
+      "homepage": null,
+      "name": "Jackson N Miller",
+      "uri": "https://pleiades.stoa.org/author/jmiller"
+    },
+    {
+      "username": null,
+      "name": "Anastasia Kokiousis"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-23T19:18:36Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-23T19:17:32Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-11T03:04:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-13T23:55:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-13T23:54:06Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-13T23:53:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-13T23:52:07Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-13T23:51:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-13T23:51:43Z"
+    }
+  ]
+}

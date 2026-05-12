@@ -1,0 +1,962 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              28.86531702542085,
+              25.66272213076784
+            ],
+            [
+              28.87579685507312,
+              25.66242760228504
+            ],
+            [
+              28.87576447541981,
+              25.67263637923921
+            ],
+            [
+              28.86554287013328,
+              25.67274695887545
+            ],
+            [
+              28.86531702542085,
+              25.66272213076784
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-extent-of-site-survey",
+      "properties": {
+        "snippet": "Unknown, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/776235/imagery-location-extent-of-site-survey",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location: Extent of Site Survey"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.871525,
+            25.6675557
+          ],
+          [
+            28.8715684,
+            25.6681297
+          ],
+          [
+            28.8707673,
+            25.6681789
+          ],
+          [
+            28.8707239,
+            25.6676049
+          ],
+          [
+            28.871525,
+            25.6675557
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ama-y-eida",
+      "properties": {
+        "snippet": "Archaeological-site; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/776235/osm-location-of-ama-y-eida",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Am\u1e25eida"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "adamp",
+      "homepage": null,
+      "name": "Adam Prins",
+      "uri": "https://pleiades.stoa.org/author/adamp"
+    },
+    {
+      "username": null,
+      "name": "Jen Thum"
+    },
+    {
+      "username": "bazzani",
+      "homepage": null,
+      "name": "Bruno Bazzani",
+      "uri": "https://pleiades.stoa.org/author/bazzani"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "Herbert Verreth"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": null,
+      "name": "Mark Depauw"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-extent-of-site-survey",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "Imagery Location: Extent of Site Survey",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "Bounding polygon drawn by eye in Google Earth on the basis of KMZ file downloaded from www.amheida.org on 8 April 2011 (http://www.nyu.edu/isaw/amheida/inc/kmz/amheida.kmz) at an eye  altitude of 1.74 km (Image copyright 2011 DigitalGlobe; Imagery Date: Jun 26, 2005).",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/2b85bfd7-27bb-4498-be9e-f2817c111e98",
+      "featureType": [
+        "unknown",
+        ""
+      ],
+      "description": "",
+      "created": "2011-04-08T20:56:39Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              28.86531702542085,
+              25.66272213076784
+            ],
+            [
+              28.87579685507312,
+              25.66242760228504
+            ],
+            [
+              28.87576447541981,
+              25.67263637923921
+            ],
+            [
+              28.86554287013328,
+              25.67274695887545
+            ],
+            [
+              28.86531702542085,
+              25.66272213076784
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/776235/imagery-location-extent-of-site-survey",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Remove z coordinate values",
+          "modifiedBy": "sgillies",
+          "modified": "2012-11-08T05:09:45Z"
+        },
+        {
+          "comment": "Retitle, fix review state of accuracy assessment doc",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-30T18:31:31Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:23:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T22:02:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T22:02:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T21:04:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T20:56:40Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/265698662",
+          "citationDetail": "Way 265698662",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=265698662",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ama-y-eida",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 640,
+      "title": "OSM location of Am\u1e25eida",
+      "provenance": "OpenStreetMap (Way 265698662, version 2, osm:changeset=29342722, 2015-03-09T03:00:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-12-29T01:19:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.871525,
+            25.6675557
+          ],
+          [
+            28.8715684,
+            25.6681297
+          ],
+          [
+            28.8707673,
+            25.6681789
+          ],
+          [
+            28.8707239,
+            25.6676049
+          ],
+          [
+            28.871525,
+            25.6675557
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/776235/osm-location-of-ama-y-eida",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-03T19:14:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-29T01:20:14Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-29T01:20:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-29T01:19:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-29T01:19:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:48:03Z",
+      "associationCertainty": "certain",
+      "title": "Esotero (Oasis)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/776235/776172",
+      "connectionType": "part_of_regional",
+      "id": "776172",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "connection type",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-25T20:23:51Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:48:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:48:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:48:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/776172",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "79 inset Trimithis?",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "190-92",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wagner 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2NV4AV2U",
+      "formattedCitation": "<div class=\"csl-entry\">Wagner, Guy. <i>Les Oasis d\u2019Egypte \u00e0 l\u2019\u00e9poque Grecque, Romaine et Byzantine d\u2019apr\u00e8s Les Documents Grecs: Recherches de Papyrologie et d\u2019\u00e9pigraphie Grecques</i>. Biblioth\u00e8que d\u2019\u00e9tude, t. 1. Le Caire: Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale du Caire, 1987.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://amheida.org/inc/pdf/Minerva_17_6-2006.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bagnall 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X3LKLSBS",
+      "formattedCitation": "<div class=\"csl-entry\">Bagnall, Roger. \u201cRoman Amheida: Excavating a Town in Egypt\u2019s Dakhleh Oasis.\u201d <i>Minerva</i> 17, no. 6 (2006): 26\u201329. https://archive.nyu.edu/bitstream/2451/28281/2/D198-Roman%20Amheida.%20Excavating%20a%20Town%20in%20Egypt\u2019s%20Dakhleh%20Oasis.pdf.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://amheida.org/index.php?content=publications",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "New York University Excavations at Amheida Publications page",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/2733",
+      "citationDetail": "Geo ID 2733: Trimithis (Amheida)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.amheida.com",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "New York University Excavations at Amheida: Excavation Database",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q14202004",
+      "citationDetail": "Amheida (Q14202004)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "25262",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/3322056",
+      "citationDetail": "Amheida el-Dakhla Oase, \u00c4gypten, Afrika",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2276532",
+      "citationDetail": "2276532: Amheida",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/abs/geometric-painting-in-lateantique-egypt-the-ceiling-of-a-4thc-church-at-amheida-dakhla-oasis/2EA6A064F61F4FC8F213818662E40AB9",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aravecchia 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/234DC2H5",
+      "formattedCitation": "<div class=\"csl-entry\">Aravecchia, Nicola. \u201cGeometric Painting in Late-Antique Egypt: The Ceiling of a 4th-c. Church at Amheida (Dakhla Oasis).\u201d <i>Journal of Roman Archaeology</i> 33 (January 2020): 449\u201366. https://doi.org/10.1017/S1047759420001117.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Boozer 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H7ZNQPTN",
+      "formattedCitation": "<div class=\"csl-entry\">Boozer, Anna Lucille. <i>A Late Romano-Egyptian House in the Dakhla Oasis: Amheida House B2</i>. Amheida 2. New York: New York University Press, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Boozer 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R5ULRU56",
+      "formattedCitation": "<div class=\"csl-entry\">Boozer, Anna Lucille. \u201cMemory and Microhistory of a City: Domestic Contexts in Roman Amheida, Egypt.\u201d In <i>Archaeology and Memory</i>, 128\u201357. Oxford, UK\u202f:\u00a0 Oakville, CT: Oxbow Books\u202f;,\u00a0 David Brown Book Co, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caputo 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZSNBYYGP",
+      "formattedCitation": "<div class=\"csl-entry\">Caputo, Clementina. \u201cPottery from the Fourth Century House of Serenos in Trimithis/Amheida (Dakhla Oasis).\u201d In <i>LRCW</i>, 1011\u201326. Alexandrie: Centre d\u2019\u00c9tudes Alexandrines, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bagnall 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9A5MSJV2",
+      "formattedCitation": "<div class=\"csl-entry\">Bagnall, Roger S., ed. <i>An Oasis City</i>. New York: New York University Press, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ast 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G25NBG8J",
+      "formattedCitation": "<div class=\"csl-entry\">Ast, Rodney, and Paola Davoli. \u201cOstraka and Stratigraphy at Amheida (Dakhla Oasis, Egypt): A Methodological Issue.\u201d In <i>Proceedings of the 27th International Congress of Papyrology, Warsaw, 29 July - 3 August 2013</i>, 1447\u201371. Warsaw: Fundacja im. Rafala Taubenschlaga, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Trimithis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "trimithis",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 79 inset Trimithis?",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-10-06T21:57:12Z",
+      "uri": "https://pleiades.stoa.org/places/776235/trimithis",
+      "creators": [
+        {
+          "username": null,
+          "name": "G. Wagner"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:23:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T22:02:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T22:02:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T21:05:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-10-14T12:30:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-06T22:00:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-10-06T21:57:12Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Amheida",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.amheida.org",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "New York University Excavations at Amheida",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "amheida",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "bazzani",
+          "homepage": null,
+          "name": "Bruno Bazzani",
+          "uri": "https://pleiades.stoa.org/author/bazzani"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 79 inset Trimithis?",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name of site in Dahkleh Oasis",
+      "transcriptionCompleteness": "complete",
+      "language": "arz",
+      "created": "2011-04-08T21:35:46Z",
+      "uri": "https://pleiades.stoa.org/places/776235/amheida",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "fixed language",
+          "modifiedBy": "thomase",
+          "modified": "2012-11-14T19:38:03Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:23:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T22:02:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T22:02:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T21:35:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2011-04-08T21:35:47Z"
+        }
+      ]
+    }
+  ],
+  "id": "776235",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=1",
+    "dare:feature=major settlement"
+  ],
+  "title": "Trimithis",
+  "provenance": "Barrington Atlas: BAtlas 79 inset Trimithis?",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>The site of Amheida, in Egypt's <a class=\"external-link\" href=\"../776172\">Dahkleh Oasis</a>, has been under active excavation since 2001 and is now led by a team from New York University. On that project's website (<a class=\"external-link\" href=\"http://www.amheida.org\">www.amheida.org</a>)<span>, one can find extensive and up-to-date information, including\u00a0<a href=\"http://amheida.org/index.php?content=publications\" target=\"_blank\">PDF copies of publications</a>,\u00a0<a href=\"http://amheida.org/index.php?content=reports\" target=\"_blank\">annual reports</a>,\u00a0<a href=\"http://amheida.org/index.php?content=maps\" target=\"_blank\">maps</a>\u00a0(including KML for download), and the\u00a0<a href=\"http://www.columbia.edu/cu/lweb/data/eresources/clio/DakhlehOasisLibraryCollection.htm\" target=\"_blank\">catalog of the dig house library</a>, as well as information about\u00a0<a href=\"http://amheida.org/index.php?content=student_info\" target=\"_blank\">NYU's undergraduate program in Egypt</a>\u00a0(an archaeological field school on-site</span>\u00a0at Amheida).</p>\r\n<p>The <a class=\"external-link\" href=\"http://www.nyu.edu/isaw/awib.htm\"><em>Ancient World Image Bank</em></a> (a publication of NYU's <a class=\"external-link\" href=\"http://www.nyu.edu/isaw/\">Institute for the Study of the Ancient World</a>, whose director runs the Amheida excavations) provides an <a class=\"external-link\" href=\"http://www.flickr.com/photos/isawnyu/sets/72157624340575014/\">extensive set of open-access imagery from the site</a>.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient settlement of at least Roman and Late Antique date, situated in the Dahkleh Oasis at a site now called Amheida.",
+  "reprPoint": [
+    28.870883251943305,
+    25.667739548836416
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    28.86531702542085,
+    25.66242760228504,
+    28.87579685507312,
+    25.67274695887545
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/776172",
+    "https://pleiades.stoa.org/places/210536349",
+    "https://pleiades.stoa.org/places/303094941"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-06T21:57:11Z",
+  "uri": "https://pleiades.stoa.org/places/776235",
+  "creators": [
+    {
+      "username": null,
+      "name": "G. Wagner"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-29T01:26:13Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-29T01:22:10Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-29T01:19:04Z"
+    },
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-28T19:00:33Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-29T14:44:39Z"
+    },
+    {
+      "comment": "Change type tm geo id",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-29T14:05:38Z"
+    },
+    {
+      "comment": "add link to excavation database",
+      "modifiedBy": "thomase",
+      "modified": "2017-08-24T14:57:06Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2013-08-08T16:49:23Z"
+    },
+    {
+      "comment": "connection",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-15T18:02:47Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-14T19:38:21Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "bazzani",
+      "modified": "2012-10-31T23:29:10Z"
+    },
+    {
+      "comment": "DARE feature tag fix.",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-23T19:37:51Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:26:50Z"
+    },
+    {
+      "comment": "Trismegistos references from Adam Prins et al (adamp, Mark Depauw, Herbert Verreth, Jen Thum) and reviewd by Tom Elliott (thomase) in May 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-05-03T17:30:50Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:23:56Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T22:56:08Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-02T20:34:56Z"
+    },
+    {
+      "comment": "added T. Elliott",
+      "modifiedBy": "thomase",
+      "modified": "2011-04-08T22:12:27Z"
+    },
+    {
+      "comment": "Improved coordinates (bounding polygon), plus better name, details and up-to-date references.",
+      "modifiedBy": "thomase",
+      "modified": "2011-04-08T22:03:32Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2011-04-08T21:05:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-14T12:30:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-06T22:00:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-06T21:57:12Z"
+    }
+  ]
+}

@@ -1,0 +1,458 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.3894788,
+            42.0228509
+          ],
+          [
+            12.3892477,
+            42.0232247
+          ],
+          [
+            12.3891802,
+            42.023685
+          ],
+          [
+            12.3891925,
+            42.0243139
+          ],
+          [
+            12.3898162,
+            42.0242379
+          ],
+          [
+            12.3904525,
+            42.0229772
+          ],
+          [
+            12.3902932,
+            42.0226677
+          ],
+          [
+            12.3901966,
+            42.0224833
+          ],
+          [
+            12.3897067,
+            42.0226497
+          ],
+          [
+            12.3894788,
+            42.0228509
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-archaeological-area-of-villa-campetti",
+      "properties": {
+        "snippet": "Villa, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/607885597/location-of-archaeological-area-of-villa-campetti",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of archaeological area of Villa di Campetti"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/102571483",
+          "citationDetail": "Way 102571483",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=102571483",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://veio.altervista.org/Sito/la-storia/progetto-veio/campetti/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Campetti",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.com/books?id=gx2Fj7Rm80EC&lpg=PA362&dq=basis%20villae&pg=PA362#v=onepage&q=basis%20villae&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "De Franceschini 2005",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-archaeological-area-of-villa-campetti",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of archaeological area of Villa di Campetti",
+      "provenance": "OpenStreetMap (Way 102571483, version 6, osm:changeset=7997486, 2011-04-28T18:53:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>At Campetii approximately 10,000 square meters of the Roman period settlement at Veii have been excavated, including the remains of a villa.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-07-13T22:46:47Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.3894788,
+            42.0228509
+          ],
+          [
+            12.3892477,
+            42.0232247
+          ],
+          [
+            12.3891802,
+            42.023685
+          ],
+          [
+            12.3891925,
+            42.0243139
+          ],
+          [
+            12.3898162,
+            42.0242379
+          ],
+          [
+            12.3904525,
+            42.0229772
+          ],
+          [
+            12.3902932,
+            42.0226677
+          ],
+          [
+            12.3901966,
+            42.0224833
+          ],
+          [
+            12.3897067,
+            42.0226497
+          ],
+          [
+            12.3894788,
+            42.0228509
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/607885597/location-of-archaeological-area-of-villa-campetti",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-29T02:15:08Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-21T05:57:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-19T19:04:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-19T19:04:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T23:12:03Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T23:11:40Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T22:47:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T22:46:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T22:46:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-02-24T17:55:56Z",
+      "associationCertainty": "certain",
+      "title": "Veii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/607885597/9564762353",
+      "connectionType": "at",
+      "id": "9564762353",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T17:55:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T17:55:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T17:55:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423116",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Veio",
+      "citationDetail": "Veio",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Veio.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=gx2Fj7Rm80EC&lpg=PA362&dq=basis%20villae&pg=PA362#v=onepage&q=basis%20villae&f=false",
+      "citationDetail": "3-9",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Franceschini 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IWATNX33",
+      "formattedCitation": "<div class=\"csl-entry\">De Franceschini, Marina. <i>Ville dell\u2019Agro Romano</i>. Monografie della carta dell\u2019Agro romano 2. Roma: L\u2019Erma di Bretschneider, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/pdf/40310633.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ward Perkins 1961",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G9DSH9ZA",
+      "formattedCitation": "<div class=\"csl-entry\">Ward Perkins, J.B. \u201cVeii. The Historical Topography of the Ancient City.\u201d <i>Papers of the British School at Rome</i> 29 (1961): 1\u2013123. https://www.jstor.org/stable/pdf/40310633.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/949205965",
+      "citationDetail": "631",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marzano 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZN7DAZR",
+      "formattedCitation": "<div class=\"csl-entry\">Marzano, Annalisa. <i>Roman Villas in Central Italy: A Social and Economic History.</i> Leiden: E.J. Brill, 2007. http://www.worldcat.org/oclc/949205965.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130380932",
+      "citationDetail": "Q130380932",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6014048",
+      "citationDetail": "6014048: Campetti-Bezirk: Hausgrundmauern Veio",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "607885597",
+  "subject": [
+    "basis villae",
+    "extant remains",
+    "villa"
+  ],
+  "title": "Archaeological area of Villa di Campetti",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>At Campetii, approximately 10,000 square meters of the Roman-period settlement at Veii have been excavated, including the remains of a villa.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The site of a Roman villa complex covering ca. 10,000 square meters. The villa was built in the late republican period (second-first centuries B.C.) on the hillside adjacent to the Archaic Portonaccio sanctuary.",
+  "reprPoint": [
+    12.389748159838975,
+    42.02341724854583
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    12.3891802,
+    42.0224833,
+    12.3904525,
+    42.0243139
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423116"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-02-24T17:55:55Z",
+  "uri": "https://pleiades.stoa.org/places/607885597",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-29T02:32:41Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-29T02:20:42Z"
+    },
+    {
+      "comment": "ref. update",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-30T21:13:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-04T13:17:46Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-03-09T19:59:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-24T18:40:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-24T18:40:21Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-24T17:55:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-24T17:55:55Z"
+    }
+  ]
+}

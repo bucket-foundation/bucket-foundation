@@ -1,0 +1,875 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.9693569,
+            32.9017301
+          ],
+          [
+            21.9693944,
+            32.9015716
+          ],
+          [
+            21.9693612,
+            32.9015584
+          ],
+          [
+            21.9693556,
+            32.9015259
+          ],
+          [
+            21.9693747,
+            32.901492
+          ],
+          [
+            21.9694088,
+            32.9014846
+          ],
+          [
+            21.9695263,
+            32.9012519
+          ],
+          [
+            21.9697871,
+            32.9013843
+          ],
+          [
+            21.9698396,
+            32.9012755
+          ],
+          [
+            21.9700482,
+            32.9013577
+          ],
+          [
+            21.9699992,
+            32.9014741
+          ],
+          [
+            21.9702779,
+            32.9016104
+          ],
+          [
+            21.9701081,
+            32.9018671
+          ],
+          [
+            21.9697072,
+            32.9017637
+          ],
+          [
+            21.9696856,
+            32.9018119
+          ],
+          [
+            21.9693569,
+            32.9017301
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "palace-of-the-dux",
+      "properties": {
+        "snippet": "Architecturalcomplex, ; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/589166546/palace-of-the-dux",
+        "description": "Representative OpenStreetMap location of the ruins of a rich architectural complex in Apollonia (modern Marsa Susa).",
+        "location_precision": "precise",
+        "title": "OSM location of the so-called Palace of the Dux in Apollonia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/266150464",
+          "citationDetail": "Way 266150464",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=266150464",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "palace-of-the-dux",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of the so-called Palace of the Dux in Apollonia",
+      "provenance": "OpenStreetMap (Way 266150464, version 4, osm:changeset=61063720, 2018-07-25T17:46:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex",
+        ""
+      ],
+      "description": "Representative OpenStreetMap location of the ruins of a rich architectural complex in Apollonia (modern Marsa Susa).",
+      "created": "2016-04-26T15:36:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            21.9693569,
+            32.9017301
+          ],
+          [
+            21.9693944,
+            32.9015716
+          ],
+          [
+            21.9693612,
+            32.9015584
+          ],
+          [
+            21.9693556,
+            32.9015259
+          ],
+          [
+            21.9693747,
+            32.901492
+          ],
+          [
+            21.9694088,
+            32.9014846
+          ],
+          [
+            21.9695263,
+            32.9012519
+          ],
+          [
+            21.9697871,
+            32.9013843
+          ],
+          [
+            21.9698396,
+            32.9012755
+          ],
+          [
+            21.9700482,
+            32.9013577
+          ],
+          [
+            21.9699992,
+            32.9014741
+          ],
+          [
+            21.9702779,
+            32.9016104
+          ],
+          [
+            21.9701081,
+            32.9018671
+          ],
+          [
+            21.9697072,
+            32.9017637
+          ],
+          [
+            21.9696856,
+            32.9018119
+          ],
+          [
+            21.9693569,
+            32.9017301
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/589166546/palace-of-the-dux",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-22T23:32:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-06T22:14:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-06T22:13:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-03T11:09:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T15:37:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T15:36:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T15:36:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:50:01Z",
+      "associationCertainty": "certain",
+      "title": "Apollonia/Sozousa",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/589166546/373732",
+      "connectionType": "connection",
+      "id": "373732",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/373732",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/product/identifier/S0003598X00035535/type/journal_article",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goodchild 1960",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EAM8YXPF",
+      "formattedCitation": "<div class=\"csl-entry\">Goodchild, Richard. \u201cA Byzantine Palace at Apollonia (Cyrenaica).\u201d <i>Antiquity</i> 34, no. 136 (1960): 246\u201358. https://doi.org/10.1017/S0003598X00035535.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goodchild 1971a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LTEFEIPG",
+      "formattedCitation": "<div class=\"csl-entry\">Goodchild, R. G. <i>Kyrene und Apollonia</i>. Ruinenst\u00e4dte Nordafrikas. Z\u00fcrich: Raggi Verlag, 1971.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "271-4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kenrick 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F7T27BND",
+      "formattedCitation": "<div class=\"csl-entry\">Kenrick, Philip M, and Ahmed Buzaian. <i>Cyrenaica</i>. London: Silphium Press, 2013.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "95-103",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ward-Perkins 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NR7DB9W6",
+      "formattedCitation": "<div class=\"csl-entry\">Ward-Perkins, J. B, and R. G Goodchild. <i>Christian Monuments of Cyrenaica</i>. Edited by Joyce Reynolds. Society for Libyan Studies Monograph 4. London: Society for Libyan Studies, 2003.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "375, 451, 454, 497, 537, 541, 560",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stucchi 1975",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MK6NMMWU",
+      "formattedCitation": "<div class=\"csl-entry\">Stucchi, Sandro. <i>Architettura Cirenaica</i>. Monografie Di Archeologia Libica 9. Roma: L\u2019Erma di Bretschneider, 1975.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ellis 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z654A3A7",
+      "formattedCitation": "<div class=\"csl-entry\">Ellis, S. \u201cThe Palace of the Dux at Apollonia, and Related Houses.\u201d In <i>Cyrenaica in Antiquity. [Papers Presented at the Colloquium on Society and Economy in Cyrenaica, Cambridge March - April 1983.]</i>, 15\u201325, Abb, 1985.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Palace of the Dux",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/a-byzantine-palace-at-apollonia-cyrenaica/oclc/5974799045",
+          "formattedCitation": "Goodchild 1960",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/cyrenaica/oclc/863572165",
+          "formattedCitation": "Kenrick 2013, 271-4",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/christian-monuments-of-cyrenaica/oclc/52238129",
+          "formattedCitation": "Christian Monuments 2003, 95-103",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2016-04-26.1293334101",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-04-26T15:45:23Z",
+      "uri": "https://pleiades.stoa.org/places/589166546/name.2016-04-26.1293334101",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Palace of the Dux",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-06T22:14:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-05T20:28:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-02T20:50:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T15:45:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T15:45:25Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Palazzo del Dux",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/architettura-cirenaica/oclc/2099264",
+          "formattedCitation": "Stucchi 1975, 375, 451, 454, 497, 537, 541, 560",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=I7jpAWhwq6EC&lpg=PA168&ots=8s5TGYcxjT&dq=palazzo%20del%20dux%20apollonia&pg=PA168#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Touring Club Italiano, Libia (GoogleBooks)",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=BujnFe06rNUC&lpg=PA277&ots=vTo0e5MtCg&dq=palazzo%20del%20dux%20apollonia&pg=PA145#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Lonely Planet Guide (Italian), Libia (GoogleBooks)",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=bWpmjqBBn3kC&lpg=PA95&ots=lyVK-j6RJj&dq=palazzo%20del%20dux%20apollonia&pg=PA95#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Sfameni 2006 (GoogleBooks), 95",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://books.google.co.uk/books?id=QsKwQ75x3rEC&lpg=PA63&ots=oevDbIIKEA&dq=palazzo%20del%20dux%20apollonia&pg=PA63#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Munzi 2004 (GoogleBooks), 63",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "palazzo-del-dux",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-04-26T15:56:28Z",
+      "uri": "https://pleiades.stoa.org/places/589166546/palazzo-del-dux",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Palazzo del Dux",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-06T22:14:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-05T20:28:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-02T22:35:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T15:56:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T15:56:30Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Casa della Torretta Semicircolare",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/architettura-cirenaica/oclc/2099264",
+          "formattedCitation": "Stucchi 1975, 45, 497",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "casa-della-torretta-semicircolare",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "\r\n<p>Stucchi (1975) refers to the central building of the complex, that other archaeologists consider part of the \"The Palace of the Dux\", as a separate entity with the individual name of \"Casa della Torretta Semicircolare\".</p>\r\n",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-04-26T16:01:13Z",
+      "uri": "https://pleiades.stoa.org/places/589166546/casa-della-torretta-semicircolare",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Casa della Torretta Semicircolare",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-06T22:14:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-05T20:28:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-05T20:27:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-02T22:33:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T16:03:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T16:01:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T16:01:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Casa del Cortile Lastricato",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.worldcat.org/title/architettura-cirenaica/oclc/2099264",
+          "formattedCitation": "Stucchi 1975, 497",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "casa-del-cortile-lastricato",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "\r\n<p>Stucchi (1975) refers to the eastern building of the complex, that other archaeologists consider part of the \"The Palace of the Dux\", as a separate entity with the individual name of \"Casa del Cortile Lastricato\".</p>\r\n",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-04-26T16:03:27Z",
+      "uri": "https://pleiades.stoa.org/places/589166546/casa-del-cortile-lastricato",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Casa del Cortile Lastricato",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-06T22:14:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-05T20:28:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-05T20:26:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "vvitale",
+          "modified": "2016-05-02T22:33:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T16:03:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2016-04-26T16:03:29Z"
+        }
+      ]
+    }
+  ],
+  "id": "589166546",
+  "subject": [],
+  "title": "So-called Palace of the Dux",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "<p>The architectural complex seems to be somehow divided into three, entangled, areas. Kenrick 2013 calls the whole unit \"Palace of the Dux\". Stucchi 1975 uses that name only to refer to the larger, western part, while the middle one is called \"Casa della Torretta Semicircolare\" and the eastern part \"Casa del Cortile Lastricato\". Christian Monuments 2003 only speaks about the main unit and the one immediately next to it (what Stucchi calls \"Casa della Torretta Semicircolare\") and refers to both of them together as the \"Palace of the Dux\" (the eastern building is not included in the analysis).</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large building complex located on the western hill of Apollonia, probably built between the fifth and sixth centuries A.D. Its position and size, the presence of a chapel with a reliquary, and some public rooms led Goodchild to identify it as the residence of the Dux.",
+  "reprPoint": [
+    21.96979066232467,
+    32.90156993101458
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    21.9693556,
+    32.9012519,
+    21.9702779,
+    32.9018671
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/373732"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-04-26T15:30:37Z",
+  "uri": "https://pleiades.stoa.org/places/589166546",
+  "creators": [
+    {
+      "username": "vvitale",
+      "homepage": null,
+      "name": "Valeria Vitale",
+      "uri": "https://pleiades.stoa.org/author/vvitale"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-22T23:36:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-06T22:14:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-06T22:12:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "vvitale",
+      "modified": "2016-05-05T20:28:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-05-05T20:21:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-05-05T20:18:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-05-05T20:17:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-05-02T20:51:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-04-26T16:29:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-04-26T16:04:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2016-04-26T15:32:32Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "vvitale",
+      "modified": "2016-04-26T15:30:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "vvitale",
+      "modified": "2016-04-26T15:30:37Z"
+    }
+  ]
+}

@@ -1,0 +1,392 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3303249,
+            42.8120952
+          ],
+          [
+            10.3300895,
+            42.8119442
+          ],
+          [
+            10.330148,
+            42.811891
+          ],
+          [
+            10.3301606,
+            42.8118924
+          ],
+          [
+            10.3301795,
+            42.8118945
+          ],
+          [
+            10.3301923,
+            42.8118959
+          ],
+          [
+            10.3302992,
+            42.8118338
+          ],
+          [
+            10.3303299,
+            42.8118471
+          ],
+          [
+            10.3303682,
+            42.8118201
+          ],
+          [
+            10.3304094,
+            42.8118014
+          ],
+          [
+            10.3304204,
+            42.8118154
+          ],
+          [
+            10.3304757,
+            42.8117958
+          ],
+          [
+            10.3305738,
+            42.8118822
+          ],
+          [
+            10.3303249,
+            42.8120952
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-villa-romana-della-linguella",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/850888151/osm-location-villa-romana-della-linguella",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Villa romana della Linguella"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/852958850",
+          "citationDetail": "Way 852958850",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=852958850",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-villa-romana-della-linguella",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location: Villa romana della Linguella",
+      "provenance": "OpenStreetMap (Way 852958850, version 6, osm:changeset=161824727, 2025-01-27T16:09:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2026-04-06T02:37:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3303249,
+            42.8120952
+          ],
+          [
+            10.3300895,
+            42.8119442
+          ],
+          [
+            10.330148,
+            42.811891
+          ],
+          [
+            10.3301606,
+            42.8118924
+          ],
+          [
+            10.3301795,
+            42.8118945
+          ],
+          [
+            10.3301923,
+            42.8118959
+          ],
+          [
+            10.3302992,
+            42.8118338
+          ],
+          [
+            10.3303299,
+            42.8118471
+          ],
+          [
+            10.3303682,
+            42.8118201
+          ],
+          [
+            10.3304094,
+            42.8118014
+          ],
+          [
+            10.3304204,
+            42.8118154
+          ],
+          [
+            10.3304757,
+            42.8117958
+          ],
+          [
+            10.3305738,
+            42.8118822
+          ],
+          [
+            10.3303249,
+            42.8120952
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/850888151/osm-location-villa-romana-della-linguella",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-06T18:01:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-06T02:38:22Z"
+        },
+        {
+          "comment": "supersedes prev publ loc which relies on now-deprecated OSM data.",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-06T02:38:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-06T02:37:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-06T02:37:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-24T21:04:54Z",
+      "associationCertainty": "certain",
+      "title": "Ilva/Aethalia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/850888151/ilva-aethalia-island",
+      "connectionType": "connection",
+      "id": "ilva-aethalia-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-12T12:21:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-11T13:46:31Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-24T21:04:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-24T21:04:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403222",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/949205965",
+      "citationDetail": "670-1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marzano 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZN7DAZR",
+      "formattedCitation": "<div class=\"csl-entry\">Marzano, Annalisa. <i>Roman Villas in Central Italy: A Social and Economic History.</i> Leiden: E.J. Brill, 2007. http://www.worldcat.org/oclc/949205965.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/17511/",
+      "citationDetail": "17511: Villa Romana della Linguella",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q16621635",
+      "citationDetail": "Villa romana della Linguella (Q16621635)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "850888151",
+  "subject": [],
+  "title": "Linguella Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A multi-phase villa on the island of Elba.",
+  "reprPoint": [
+    10.330336269181034,
+    42.81192948135228
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    10.3300895,
+    42.8117958,
+    10.3305738,
+    42.8120952
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/403222"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-06-24T21:04:22Z",
+  "uri": "https://pleiades.stoa.org/places/850888151",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Villa romana della Linguella (Q16621635)",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-06T02:41:15Z"
+    },
+    {
+      "comment": "added vici.org Villa Romana della Linguella",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-27T14:57:41Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-12T12:21:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-11T13:46:30Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-24T21:04:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-24T21:04:22Z"
+    }
+  ]
+}

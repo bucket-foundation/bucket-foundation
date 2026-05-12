@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.9243965,
+            26.1717642
+          ],
+          [
+            31.9258879,
+            26.1712442
+          ],
+          [
+            31.9254158,
+            26.1701176
+          ],
+          [
+            31.9238172,
+            26.1705943
+          ],
+          [
+            31.9243965,
+            26.1717642
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "tomb-of-senwosret-iii",
+      "properties": {
+        "snippet": "Tomb; 2010 BC - 1640 BC",
+        "link": "https://pleiades.stoa.org/places/367582654/tomb-of-senwosret-iii",
+        "description": "Polygon representing the location of the tomb of Senwosret III, derived from an OpenStreetMap Way after Wegner 2007.",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Senwosret III"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/628065792",
+          "citationDetail": "Way 628065792",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=628065792",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 4-8",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wegner 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PUGGYJH2",
+          "formattedCitation": "<div class=\"csl-entry\">Wegner, Joseph. <i>The Mortuary Temple of Senwosret III at Abydos</i>. Publication of the Pennsylvania-Yale Expedition to Egypt 8. New Haven, Conn.; Oxford: Yale Egyptological Seminar, 2007.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tomb-of-senwosret-iii",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -1640,
+      "title": "OSM location of Tomb of Senwosret III",
+      "provenance": "OpenStreetMap (Way 628065792, version 3, osm:changeset=138538250, 2023-07-15T10:09:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Polygon representing the location of the tomb of Senwosret III, derived from an OpenStreetMap Way after Wegner 2007.",
+      "created": "2018-09-25T16:09:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.9243965,
+            26.1717642
+          ],
+          [
+            31.9258879,
+            26.1712442
+          ],
+          [
+            31.9254158,
+            26.1701176
+          ],
+          [
+            31.9238172,
+            26.1705943
+          ],
+          [
+            31.9243965,
+            26.1717642
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/367582654/tomb-of-senwosret-iii",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-05T02:36:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-25T19:34:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:14:19Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:14:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:11:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:10:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:09:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:09:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1640,
+      "description": "",
+      "contributors": [],
+      "created": "2018-09-25T16:10:53Z",
+      "associationCertainty": "certain",
+      "title": "Abydos/Ebot",
+      "start": -2010,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/367582654/abydos-ebot",
+      "connectionType": "part_of_regional",
+      "id": "abydos-ebot",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-25T19:34:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:14:19Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:14:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:11:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:10:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:10:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/756512",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    },
+    {
+      "end": -1640,
+      "description": "",
+      "contributors": [],
+      "created": "2018-09-25T16:11:44Z",
+      "associationCertainty": "certain",
+      "title": "Mortuary Temple of Senwosret III",
+      "start": -2010,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/367582654/mortuary-temple-of-senwosret-iii",
+      "connectionType": "near",
+      "id": "mortuary-temple-of-senwosret-iii",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-25T19:34:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:14:19Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:14:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:11:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:11:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-25T16:11:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/184145664",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wegner 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PUGGYJH2",
+      "formattedCitation": "<div class=\"csl-entry\">Wegner, Joseph. <i>The Mortuary Temple of Senwosret III at Abydos</i>. Publication of the Pennsylvania-Yale Expedition to Egypt 8. New Haven, Conn.; Oxford: Yale Egyptological Seminar, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Senusret_III",
+      "citationDetail": "Senusret III",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "367582654",
+  "subject": [],
+  "title": "Tomb of Senwosret III",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "<p>Senwosret III is also associated with a\u00a0pyramid complex north-east of the\u00a0Red Pyramid\u00a0of\u00a0Dashur. It is possible that the pyramid complex at Dashur was a cenotaph while the pharaoh was actually buried in the Abydos complex.<sup class=\"reference\" id=\"cite_ref-15\"><br /></sup></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The tomb of Senwosret III, a pharaoh of the 12th Dynasty in Egypt.",
+  "reprPoint": [
+    31.924864081288415,
+    26.170924877983822
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    31.9238172,
+    26.1701176,
+    31.9258879,
+    26.1717642
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/756512",
+    "https://pleiades.stoa.org/places/184145664"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-09-25T16:08:43Z",
+  "uri": "https://pleiades.stoa.org/places/367582654",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-25T19:34:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-25T19:33:48Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-25T19:31:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-25T16:14:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-25T16:14:11Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-25T16:14:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-25T16:11:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-25T16:08:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-25T16:08:43Z"
+    }
+  ]
+}

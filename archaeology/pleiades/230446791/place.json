@@ -1,0 +1,402 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.7181742,
+            37.5512836
+          ],
+          [
+            22.7181253,
+            37.5511233
+          ],
+          [
+            22.7184591,
+            37.5510594
+          ],
+          [
+            22.7185079,
+            37.5512198
+          ],
+          [
+            22.7181742,
+            37.5512836
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-house-of-the-tiles",
+      "properties": {
+        "snippet": "Archaeological-site; 3000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/230446791/osm-location-of-house-of-the-tiles",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of House of the Tiles"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-helladic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-helladic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1031862597",
+          "citationDetail": "Way 1031862597",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1031862597",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1590858",
+          "citationDetail": "House of the Tiles (Q1590858)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-house-of-the-tiles",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -2000,
+      "title": "OSM location of House of the Tiles",
+      "provenance": "OpenStreetMap (Way 1031862597, version 2, osm:changeset=159627692, 2024-11-26T17:47:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-08T20:57:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.7181742,
+            37.5512836
+          ],
+          [
+            22.7181253,
+            37.5511233
+          ],
+          [
+            22.7184591,
+            37.5510594
+          ],
+          [
+            22.7185079,
+            37.5512198
+          ],
+          [
+            22.7181742,
+            37.5512836
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/230446791/osm-location-of-house-of-the-tiles",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T20:40:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T21:11:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T21:04:42Z"
+        },
+        {
+          "comment": "add wikidata Q1590858",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T20:58:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T20:57:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T20:57:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-08T20:58:06Z",
+      "associationCertainty": "certain",
+      "title": "Lerna",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/230446791/4865253247",
+      "connectionType": "at",
+      "id": "4865253247",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T20:58:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T20:58:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T20:58:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570424",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1590858",
+      "citationDetail": "House of the Tiles (Q1590858)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/41663290",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caskey 1955",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7ISJFCX5",
+      "formattedCitation": "<div class=\"csl-entry\">Caskey, John L. \u201cThe House of the Tiles at Lerna: An Early Bronze Age Palace.\u201d <i>Archaeology</i> 8, no. 2 (1955): 116\u201320. https://www.jstor.org/stable/41663290.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/House_of_the_Tiles",
+      "citationDetail": "House of the Tiles",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Whitley 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NCUGRQFX",
+      "formattedCitation": "<div class=\"csl-entry\">Whitley, J. \u201cCycles of Collapse in Greek Prehistory. The House of the Tiles at Lerna and the Heroon at Lefkandi.\u201d In <i>Explaining Social Change\u202f: Studies in Honour of Colin Renfrew</i>, edited by John Cherry, Christopher Scarre, and Stephen Shennan, 193\u2013201. McDonald Institute Monographs. Cambridge, England\u202f: Oxford, England: McDonald Institute for Archaeological Research\u202f; Distributed by Oxbow Books, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "House of the Tiles",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/41663290",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Caskey 1955",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7ISJFCX5",
+          "formattedCitation": "<div class=\"csl-entry\">Caskey, John L. \u201cThe House of the Tiles at Lerna: An Early Bronze Age Palace.\u201d <i>Archaeology</i> 8, no. 2 (1955): 116\u201320. https://www.jstor.org/stable/41663290.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "house-of-the-tiles",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-08T21:01:47Z",
+      "uri": "https://pleiades.stoa.org/places/230446791/house-of-the-tiles",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "House of the Tiles",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T20:40:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T21:11:16Z"
+        },
+        {
+          "comment": "name added",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T21:01:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-08T21:01:47Z"
+        }
+      ]
+    }
+  ],
+  "id": "230446791",
+  "subject": [],
+  "title": "House of the Tiles",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"House of the Tiles\" at Lerna belongs to the Korakou culture in the Early Helladic II period (ca. 2500\u20132300 BCE). It was a monumental two-story building (12 x 25 meters) and has been interpreted as either a \"proto-palace\" or administrative center.",
+  "reprPoint": [
+    22.71831663312144,
+    37.551171513663654
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    22.7181253,
+    37.5510594,
+    22.7185079,
+    37.5512836
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570424"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-08T20:58:04Z",
+  "uri": "https://pleiades.stoa.org/places/230446791",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T20:40:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T21:11:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T21:11:05Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T21:04:20Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T20:58:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-08T20:58:04Z"
+    }
+  ]
+}

@@ -1,0 +1,438 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9144502,
+            33.6855576
+          ],
+          [
+            10.9141349,
+            33.6854412
+          ],
+          [
+            10.9137712,
+            33.6853467
+          ],
+          [
+            10.9134934,
+            33.685376
+          ],
+          [
+            10.9133498,
+            33.6854923
+          ],
+          [
+            10.913292,
+            33.6855982
+          ],
+          [
+            10.9132962,
+            33.6857011
+          ],
+          [
+            10.9133577,
+            33.6858462
+          ],
+          [
+            10.9134576,
+            33.686037
+          ],
+          [
+            10.9136005,
+            33.6862242
+          ],
+          [
+            10.9137449,
+            33.6862947
+          ],
+          [
+            10.9139553,
+            33.6862956
+          ],
+          [
+            10.9142514,
+            33.6862658
+          ],
+          [
+            10.9144707,
+            33.6858994
+          ],
+          [
+            10.9145298,
+            33.6857719
+          ],
+          [
+            10.9144502,
+            33.6855576
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-meninx-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/80154394/osm-location-of-meninx-amphitheater",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Meninx amphitheater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1117938029",
+          "citationDetail": "Way 1117938029",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1117938029",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-meninx-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 640,
+      "title": "OSM location of Meninx amphitheater",
+      "provenance": "OpenStreetMap (Way 1117938029, version 6, osm:changeset=141235563, 2023-09-14T02:39:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-14T02:39:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9144502,
+            33.6855576
+          ],
+          [
+            10.9141349,
+            33.6854412
+          ],
+          [
+            10.9137712,
+            33.6853467
+          ],
+          [
+            10.9134934,
+            33.685376
+          ],
+          [
+            10.9133498,
+            33.6854923
+          ],
+          [
+            10.913292,
+            33.6855982
+          ],
+          [
+            10.9132962,
+            33.6857011
+          ],
+          [
+            10.9133577,
+            33.6858462
+          ],
+          [
+            10.9134576,
+            33.686037
+          ],
+          [
+            10.9136005,
+            33.6862242
+          ],
+          [
+            10.9137449,
+            33.6862947
+          ],
+          [
+            10.9139553,
+            33.6862956
+          ],
+          [
+            10.9142514,
+            33.6862658
+          ],
+          [
+            10.9144707,
+            33.6858994
+          ],
+          [
+            10.9145298,
+            33.6857719
+          ],
+          [
+            10.9144502,
+            33.6855576
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/80154394/osm-location-of-meninx-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-18T15:44:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-14T14:08:05Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-14T02:40:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-14T02:39:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-14T02:39:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-09-14T02:40:08Z",
+      "associationCertainty": "certain",
+      "title": "Meninx (settlement)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/80154394/2086492290",
+      "connectionType": "at",
+      "id": "2086492290",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-14T02:40:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-14T02:40:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-14T02:40:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/344439",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29002301",
+      "citationDetail": "Q29002301: Meninx amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/17566/",
+      "citationDetail": "17566: El Kantara,Amphitheater,TN - MENINX",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/2663818",
+      "citationDetail": "Amphitheater von Meninx Meninx, (\u039c\u1fc6\u03bd\u03b9\u03b3\u03be / Meninx), Djerba",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "257",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Golvin 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56QXVE6Y",
+      "formattedCitation": "<div class=\"csl-entry\">Golvin, Jean-Claude. <i>L\u2019Amphith\u00e9\u00e2tre romain: essai sur la th\u00e9orisation de sa forme et de ses fonctions</i>. Paris: Diffusion De Boccard, 1988.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DM%3Aentry+group%3D4%3Aentry%3Dmeninx",
+      "citationDetail": "MENINX (El Kantara) Tunisia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/crai_0065-0536_1942_num_86_4_85670",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Duval 1942",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A8JAQ5K5",
+      "formattedCitation": "<div class=\"csl-entry\">Duval, Paul-Marie. \u201cRecherches arch\u00e9ologiques \u00e0 M\u00e9ninx (Tunisie), Cherchel et Tipasa (Alg\u00e9rie).\u201d <i>Comptes rendus des s\u00e9ances de l\u2019Acad\u00e9mie des Inscriptions et Belles-Lettres</i> 86, no. 4 (1942): 221\u201325. https://doi.org/10.3406/crai.1942.85670.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "80154394",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Meninx amphitheater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman amphitheater of Meninx.",
+  "reprPoint": [
+    10.9139006656768,
+    33.68580865566671
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    10.913292,
+    33.6853467,
+    10.9145298,
+    33.6862956
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/344439"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-14T02:40:08Z",
+  "uri": "https://pleiades.stoa.org/places/80154394",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-18T15:44:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-14T14:08:05Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-14T14:07:59Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-14T02:42:51Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-14T02:40:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-14T02:40:08Z"
+    }
+  ]
+}

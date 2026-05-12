@@ -1,0 +1,14 @@
+# Pelousion
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/741553
+- **ID**: 741553
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Pelousion
+
+## Description
+
+An ancient place, cited: BAtlas 75 unlocated Pelousion

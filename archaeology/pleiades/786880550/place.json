@@ -1,0 +1,260 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.598625,
+          45.281367
+        ]
+      },
+      "type": "Feature",
+      "id": "adriatlas-location",
+      "properties": {
+        "snippet": "Archaeological-site; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/786880550/adriatlas-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "AdriAtlas Location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://adriaticummare.org/en/bdd/adriatlas-notice?idSite=1000",
+          "citationDetail": "1000: Santa Marina (Croatia)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "AdriAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FJVRSTA7",
+          "formattedCitation": "<div class=\"csl-entry\">The International Association of the Adriaticum Mare. \u201cAtlas of the Ancient Adriatic,\u201d 2010. http://adriaticummare.org/en/bdd.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "adriatlas-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 640,
+      "title": "AdriAtlas Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2022-06-09T21:52:23Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.598625,
+          45.281367
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/786880550/adriatlas-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-10T00:38:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-09T21:53:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-09T21:52:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-09T21:52:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-09T21:52:49Z",
+      "associationCertainty": "certain",
+      "title": "Loron workshop (Croatia)  ",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/786880550/loron-workshop-croatia",
+      "connectionType": "near",
+      "id": "loron-workshop-croatia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-10T00:38:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-09T21:53:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-09T21:52:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-09T21:52:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/970142378",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://adriaticummare.org/en/bdd/adriatlas-notice?idSite=1000",
+      "citationDetail": "1000: Santa Marina (Croatia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AdriAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FJVRSTA7",
+      "formattedCitation": "<div class=\"csl-entry\">The International Association of the Adriaticum Mare. \u201cAtlas of the Ancient Adriatic,\u201d 2010. http://adriaticummare.org/en/bdd.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/baefe/5098#ftn1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rousse 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QXE3GPJ",
+      "formattedCitation": "<div class=\"csl-entry\">Rousse, Corinne, Gaetano Ben\u010di\u0107, Davor Munda, Nicolas Garnier, Klaudia Bartoli\u0107 Siroti\u0107, Vincent Dumas, Ninon Basuau, and Paola Maggi. \u201cLa villa de Santa Marina (Tar Vabriga \u2013 Torre Abrega, Croatie).\u201d <i>Bulletin arch\u00e9ologique des \u00c9coles fran\u00e7aises \u00e0 l\u2019\u00e9tranger</i>, May 9, 2022. https://journals.openedition.org/baefe/5098#ftn1.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "786880550",
+  "subject": [],
+  "title": "Santa Marina (Villa)",
+  "provenance": "http://adriaticummare.org/en/bdd/adriatlas-notice?idSite=1000",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large seaside villa on two terraces overlooking the modern Santa Marina bay near Varbiga, Croatia. The villa lies on the northern coast of a headland; the major amphora workshop at Loron occupies the southern coastal site.",
+  "reprPoint": [
+    13.598625,
+    45.281367
+  ],
+  "placeTypes": [
+    "villa",
+    "archaeological-site"
+  ],
+  "bbox": [
+    13.598625,
+    45.281367,
+    13.598625,
+    45.281367
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/970142378"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-09T21:47:52Z",
+  "uri": "https://pleiades.stoa.org/places/786880550",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-10T00:38:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-09T21:53:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-09T21:47:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-09T21:47:52Z"
+    }
+  ]
+}

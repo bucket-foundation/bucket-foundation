@@ -1,0 +1,14 @@
+# Nande
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/884895
+- **ID**: 884895
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Nande
+
+## Description
+
+An ancient place, cited: BAtlas 90 unlocated Nande

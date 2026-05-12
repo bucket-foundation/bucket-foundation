@@ -1,0 +1,384 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.6210663,
+            40.0164379
+          ],
+          [
+            34.6207236,
+            40.0158999
+          ],
+          [
+            34.620381,
+            40.0151782
+          ],
+          [
+            34.6200897,
+            40.0149945
+          ],
+          [
+            34.6191474,
+            40.0149224
+          ],
+          [
+            34.6184792,
+            40.0150076
+          ],
+          [
+            34.6185734,
+            40.0153751
+          ],
+          [
+            34.6183421,
+            40.0155719
+          ],
+          [
+            34.618522,
+            40.0157818
+          ],
+          [
+            34.6191988,
+            40.015795
+          ],
+          [
+            34.6202096,
+            40.0168316
+          ],
+          [
+            34.6206037,
+            40.0169759
+          ],
+          [
+            34.6207493,
+            40.0165888
+          ],
+          [
+            34.6210663,
+            40.0164379
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-buyukkale",
+      "properties": {
+        "snippet": "Fort, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/614962220/osm-location-of-buyukkale",
+        "description": "The royal citadel of Hattusa. Location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM Location of B\u00fcy\u00fckkale"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/114570703",
+          "citationDetail": "Way 114570703",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=114570703",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.hattuscha.de/English/kingspalace.htm",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "The Royal Citadel of B\u00fcy\u00fckkale ",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-buyukkale",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "OSM Location of B\u00fcy\u00fckkale",
+      "provenance": "OpenStreetMap (Way 114570703, version 4, osm:changeset=37021205, 2016-02-05T14:43:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort",
+        ""
+      ],
+      "description": "The royal citadel of Hattusa. Location based on OpenStreetMap.",
+      "created": "2013-05-18T20:47:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.6210663,
+            40.0164379
+          ],
+          [
+            34.6207236,
+            40.0158999
+          ],
+          [
+            34.620381,
+            40.0151782
+          ],
+          [
+            34.6200897,
+            40.0149945
+          ],
+          [
+            34.6191474,
+            40.0149224
+          ],
+          [
+            34.6184792,
+            40.0150076
+          ],
+          [
+            34.6185734,
+            40.0153751
+          ],
+          [
+            34.6183421,
+            40.0155719
+          ],
+          [
+            34.618522,
+            40.0157818
+          ],
+          [
+            34.6191988,
+            40.015795
+          ],
+          [
+            34.6202096,
+            40.0168316
+          ],
+          [
+            34.6206037,
+            40.0169759
+          ],
+          [
+            34.6207493,
+            40.0165888
+          ],
+          [
+            34.6210663,
+            40.0164379
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/614962220/osm-location-of-buyukkale",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T19:29:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-05-21T18:09:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:58:24Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:48:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:47:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-18T20:47:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-07T13:26:39Z",
+      "associationCertainty": "certain",
+      "title": "Hattusa",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/614962220/3995724670",
+      "connectionType": "at",
+      "id": "3995724670",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:26:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:26:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:26:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/283602441",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.hattuscha.de/English/kingspalace.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "The Royal Citadel of B\u00fcy\u00fckkale ",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Hattusa",
+      "citationDetail": "Hattusa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "614962220",
+  "subject": [],
+  "title": "B\u00fcy\u00fckkale ",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The royal citadel of Hattusa.",
+  "reprPoint": [
+    34.6210663,
+    40.0164379
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    34.6210663,
+    40.0164379,
+    34.6210663,
+    40.0164379
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/283602441"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-07T13:26:38Z",
+  "uri": "https://pleiades.stoa.org/places/614962220",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-14T18:33:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:27:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:27:32Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:26:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:26:38Z"
+    }
+  ]
+}

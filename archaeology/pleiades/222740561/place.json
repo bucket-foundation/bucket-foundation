@@ -1,0 +1,405 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              32.8845172,
+              24.0251668
+            ],
+            [
+              32.8846829,
+              24.0251587
+            ],
+            [
+              32.8846793,
+              24.0250969
+            ],
+            [
+              32.8846766,
+              24.0250513
+            ],
+            [
+              32.8845109,
+              24.0250595
+            ],
+            [
+              32.8845135,
+              24.0251042
+            ],
+            [
+              32.8845172,
+              24.0251668
+            ]
+          ],
+          [
+            [
+              32.8845038,
+              24.0251839
+            ],
+            [
+              32.8847029,
+              24.0251762
+            ],
+            [
+              32.8846991,
+              24.025096
+            ],
+            [
+              32.8846967,
+              24.025043
+            ],
+            [
+              32.8844976,
+              24.0250507
+            ],
+            [
+              32.8845001,
+              24.0251048
+            ],
+            [
+              32.8845038,
+              24.0251839
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-trajans-kiosk",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/222740561/osm-location-of-trajans-kiosk",
+        "description": "Relocated modern location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Trajan's Kiosk"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/16737987",
+          "citationDetail": "Relation 16737987",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=16737987",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Trajan%27s_Kiosk",
+          "citationDetail": "Trajan's Kiosk",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-trajans-kiosk",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Trajan's Kiosk",
+      "provenance": "OpenStreetMap (Relation 16737987, version 1, osm:changeset=144320795, 2023-11-22T10:46:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Relocated modern location based on OpenStreetMap",
+      "created": "2024-05-10T03:49:11Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              32.8845172,
+              24.0251668
+            ],
+            [
+              32.8846829,
+              24.0251587
+            ],
+            [
+              32.8846793,
+              24.0250969
+            ],
+            [
+              32.8846766,
+              24.0250513
+            ],
+            [
+              32.8845109,
+              24.0250595
+            ],
+            [
+              32.8845135,
+              24.0251042
+            ],
+            [
+              32.8845172,
+              24.0251668
+            ]
+          ],
+          [
+            [
+              32.8845038,
+              24.0251839
+            ],
+            [
+              32.8847029,
+              24.0251762
+            ],
+            [
+              32.8846991,
+              24.025096
+            ],
+            [
+              32.8846967,
+              24.025043
+            ],
+            [
+              32.8844976,
+              24.0250507
+            ],
+            [
+              32.8845001,
+              24.0251048
+            ],
+            [
+              32.8845038,
+              24.0251839
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "relocated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/222740561/osm-location-of-trajans-kiosk",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-11T13:54:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T15:11:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T04:14:37Z"
+        },
+        {
+          "comment": "add OSM location for Trajan's Kiosk",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T03:50:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T03:49:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T03:49:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-05-10T15:08:09Z",
+      "associationCertainty": "certain",
+      "title": "Philae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/222740561/6893427268",
+      "connectionType": "at",
+      "id": "6893427268",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T15:08:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T15:08:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-10T15:08:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/786089",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Trajan%27s_Kiosk",
+      "citationDetail": "Trajan's Kiosk",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Keersmaecker 2004a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KGXLKEBA",
+      "formattedCitation": "<div class=\"csl-entry\">Keersmaecker, Roger O. de. <i>Travellers\u2019 Graffiti from Egypt and the Sudan. 3: Philae - the Kiosk of Trajan</i>. Berchem (Antwerp): Graffito Graffiti, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7833054",
+      "citationDetail": "Trajan's Kiosk (Q7833054)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "222740561",
+  "subject": [],
+  "title": "Trajan's Kiosk",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ancient monument referred to as \"Trajan's Kiosk\" or the \"Pharaoh's Bed\" is an incomplete hypaethral temple that dates to the second century CE. The monument is currently located on Agilkia Island although it was originally built on the island of Philae. It was relocated in the 1960s as part of the International Campaign to Save the Monuments of Nubia.",
+  "reprPoint": [
+    32.88459874067905,
+    24.02511147569656
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    32.8844976,
+    24.025043,
+    32.8847029,
+    24.0251839
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/786089"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-05-10T15:08:07Z",
+  "uri": "https://pleiades.stoa.org/places/222740561",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Wikidata Trajan's Kiosk (Q7833054)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-17T15:02:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-11T13:54:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-10T15:11:48Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-10T15:11:40Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-10T15:08:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-10T15:08:07Z"
+    }
+  ]
+}

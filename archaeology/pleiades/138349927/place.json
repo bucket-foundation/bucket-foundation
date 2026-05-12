@@ -1,0 +1,330 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8925712,
+            32.2813049
+          ],
+          [
+            35.8926697,
+            32.2812649
+          ],
+          [
+            35.8926582,
+            32.2812446
+          ],
+          [
+            35.8925934,
+            32.2811305
+          ],
+          [
+            35.8925789,
+            32.281105
+          ],
+          [
+            35.8924804,
+            32.2811449
+          ],
+          [
+            35.8922233,
+            32.2812492
+          ],
+          [
+            35.8923231,
+            32.2814055
+          ],
+          [
+            35.8925712,
+            32.2813049
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-propylaeum-of-the-sanctuary-of",
+      "properties": {
+        "snippet": "Gateway; AD 100 - AD 199",
+        "link": "https://pleiades.stoa.org/places/138349927/osm-location-of-propylaeum-of-the-sanctuary-of",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Propylaeum of the Sanctuary of Artemis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/115555856",
+          "citationDetail": "Way 115555856",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=115555856",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-propylaeum-of-the-sanctuary-of",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+      ],
+      "end": 199,
+      "title": "OSM location of Propylaeum of the Sanctuary of Artemis",
+      "provenance": "OpenStreetMap (Way 115555856, version 5, osm:changeset=79867163, 2020-01-21T16:48:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "gateway"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-08-30T16:35:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8925712,
+            32.2813049
+          ],
+          [
+            35.8926697,
+            32.2812649
+          ],
+          [
+            35.8926582,
+            32.2812446
+          ],
+          [
+            35.8925934,
+            32.2811305
+          ],
+          [
+            35.8925789,
+            32.281105
+          ],
+          [
+            35.8924804,
+            32.2811449
+          ],
+          [
+            35.8922233,
+            32.2812492
+          ],
+          [
+            35.8923231,
+            32.2814055
+          ],
+          [
+            35.8925712,
+            32.2813049
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/138349927/osm-location-of-propylaeum-of-the-sanctuary-of",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-02T11:44:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-31T14:04:07Z"
+        },
+        {
+          "comment": "add OSM location of Propylaeum of the Sanctuary of Artemis",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T16:35:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T16:35:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T16:35:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-08-30T16:35:46Z",
+      "associationCertainty": "certain",
+      "title": "Temple of Artemis, Jerash",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/138349927/7468788541",
+      "connectionType": "part_of_analytical",
+      "id": "7468788541",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T16:36:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T16:35:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T16:35:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-30T16:35:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/491624944",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Artemis,_Jerash",
+      "citationDetail": "Temple of Artemis, Jerash",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://publication.doa.gov.jo/Publications/ViewChapterPublic/807",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Parapetti 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6A8W7MST",
+      "formattedCitation": "<div class=\"csl-entry\">Parapetti, Roberto. \u201cThe Architectural Significance of the Sanctuary of Artemis at Gerasa.\u201d <i>Https://Publication.Doa.Gov.Jo/Publications/ViewChapterPublic/807</i>, 1982, 255\u201360. https://publication.doa.gov.jo/Publications/ViewChapterPublic/807.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "138349927",
+  "subject": [],
+  "title": "Propylaeum of the Sanctuary of Artemis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Propylaeum of the Sanctuary of Artemis is a monumental gateway to the sanctuary and was completed ca. 150 CE.",
+  "reprPoint": [
+    35.89244809925688,
+    32.28125556729856
+  ],
+  "placeTypes": [
+    "gateway"
+  ],
+  "bbox": [
+    35.8922233,
+    32.281105,
+    35.8926697,
+    32.2814055
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/491624944"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-30T16:35:43Z",
+  "uri": "https://pleiades.stoa.org/places/138349927",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-02T11:44:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-31T14:04:07Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-31T14:03:52Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T16:35:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-30T16:35:43Z"
+    }
+  ]
+}

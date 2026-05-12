@@ -1,0 +1,14 @@
+# Bithias
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/658413
+- **ID**: 658413
+- **Coords**: (no precise location)
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Bithias
+
+## Description
+
+An ancient place, cited: BAtlas 67 G2 Bithias

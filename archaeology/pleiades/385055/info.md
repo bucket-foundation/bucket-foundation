@@ -1,0 +1,14 @@
+# Unnamed bridge at Vitricium
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/385055
+- **ID**: 385055
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 39 B2 unnamed bridge (at Vitricium)

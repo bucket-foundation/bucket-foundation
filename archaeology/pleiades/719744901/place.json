@@ -1,0 +1,376 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3192607,
+            36.8599367
+          ],
+          [
+            10.3197863,
+            36.859178
+          ],
+          [
+            10.3185325,
+            36.858622
+          ],
+          [
+            10.3180069,
+            36.8593806
+          ],
+          [
+            10.3192607,
+            36.8599367
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "cisterns-of-la-maalga",
+      "properties": {
+        "snippet": "Cistern; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/719744901/cisterns-of-la-maalga",
+        "description": "Polygon representing the location of the Cisterns of La Malga, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Cisterns of La Maalga"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/153679400",
+          "citationDetail": "Way 153679400",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=153679400",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "cisterns-of-la-maalga",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+      ],
+      "end": 300,
+      "title": "OSM location of Cisterns of La Maalga",
+      "provenance": "OpenStreetMap (Way 153679400, version 4, osm:changeset=70121893, 2019-05-10T19:19:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cistern"
+      ],
+      "description": "Polygon representing the location of the Cisterns of La Malga, derived from an OpenStreetMap Way.",
+      "created": "2019-05-10T19:19:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3192607,
+            36.8599367
+          ],
+          [
+            10.3197863,
+            36.859178
+          ],
+          [
+            10.3185325,
+            36.858622
+          ],
+          [
+            10.3180069,
+            36.8593806
+          ],
+          [
+            10.3192607,
+            36.8599367
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/719744901/cisterns-of-la-maalga",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-11T03:29:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-11T03:29:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:25:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:25:27Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:25:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:22:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:20:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:19:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:19:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2019-05-10T19:24:43Z",
+      "associationCertainty": "certain",
+      "title": "Carthago",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/719744901/carthago",
+      "connectionType": "at",
+      "id": "carthago",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-11T03:29:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:25:33Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:25:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:24:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:24:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T19:24:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/314921",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Panero 2008",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "La Maalga e i porti punici di Cartagine una citt\u00e0 e il suo territorio dalla fondazione fenicia alla dominazione romana",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/78LJWDT4",
+      "formattedCitation": "<div class=\"csl-entry\">Panero, Elisa. <i>La Maalga e i porti punici di Cartagine una citt\u00e0 e il suo territorio dalla fondazione fenicia alla dominazione romana</i>. Mongrafie di Mesopotamia 10. Firenze: Le lettere, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Cisterns_of_La_Malga",
+      "citationDetail": "Cisterns of La Malga",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [],
+  "id": "719744901",
+  "subject": [],
+  "title": "Cisterns of La Maalga",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A group of 15 large cisterns constructed during the late Punic era as a water supply for the city of Carthage.",
+  "reprPoint": [
+    10.318896608907574,
+    36.85927933333119
+  ],
+  "placeTypes": [
+    "cistern"
+  ],
+  "bbox": [
+    10.3180069,
+    36.858622,
+    10.3197863,
+    36.8599367
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/314921"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-05-10T19:18:52Z",
+  "uri": "https://pleiades.stoa.org/places/719744901",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-11T03:29:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-11T03:29:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-10T19:25:33Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-10T19:25:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-10T19:22:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-10T19:22:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-10T19:18:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-10T19:18:52Z"
+    }
+  ]
+}

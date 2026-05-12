@@ -1,0 +1,508 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.3098943,
+            42.5502955
+          ],
+          [
+            12.3098031,
+            42.5501276
+          ],
+          [
+            12.3100311,
+            42.5500584
+          ],
+          [
+            12.3100981,
+            42.5499952
+          ],
+          [
+            12.3101491,
+            42.5500643
+          ],
+          [
+            12.3101705,
+            42.550252
+          ],
+          [
+            12.3098943,
+            42.5502955
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/330348886/location-of-roman-villa",
+        "description": "Poggio Gramignano, Lugnano in Teverina. Polygonal geometry representing the visible enclosure of the site, derived from an OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM location of Poggio Gramignano villa romana"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/261548140",
+          "citationDetail": "Way 261548140",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=261548140",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Lugnano_in_Teverina",
+          "citationDetail": "Lugnano in Teverina",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Lugnano in Teverina.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Poggio Gramignano villa romana",
+      "provenance": "OpenStreetMap (Way 261548140, version 2, osm:changeset=46743062, 2017-03-10T16:34:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Poggio Gramignano, Lugnano in Teverina. Polygonal geometry representing the visible enclosure of the site, derived from an OpenStreetMap way.",
+      "created": "2014-02-14T14:52:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.3098943,
+            42.5502955
+          ],
+          [
+            12.3098031,
+            42.5501276
+          ],
+          [
+            12.3100311,
+            42.5500584
+          ],
+          [
+            12.3100981,
+            42.5499952
+          ],
+          [
+            12.3101491,
+            42.5500643
+          ],
+          [
+            12.3101705,
+            42.550252
+          ],
+          [
+            12.3098943,
+            42.5502955
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/330348886/location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-27T20:04:50Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-12T12:21:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-16T00:31:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-25T03:33:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-03-25T03:33:34Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-14T14:53:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-14T14:52:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-14T14:52:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-24T03:41:17Z",
+      "associationCertainty": "certain",
+      "title": "Lugnano",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/330348886/6777292865",
+      "connectionType": "at",
+      "id": "6777292865",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-24T03:41:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-24T03:41:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-24T03:41:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413185",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Lugnano_in_Teverina",
+      "citationDetail": "Lugnano in Teverina",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Lugnano in Teverina.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/949205965",
+      "citationDetail": "717",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marzano 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZN7DAZR",
+      "formattedCitation": "<div class=\"csl-entry\">Marzano, Annalisa. <i>Roman Villas in Central Italy: A Social and Economic History.</i> Leiden: E.J. Brill, 2007. http://www.worldcat.org/oclc/949205965.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.archaeopress.com/ArchaeopressShop/Public/displayProductDetail.asp?id={5B092BCB-89F4-4EA0-94FF-811F304B3B27}",
+      "citationDetail": "125, 160, 224",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Patterson 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PCJZ4UYS",
+      "formattedCitation": "<div class=\"csl-entry\">Patterson, Helen, Robert Witcher, and Helga di Giuseppe. <i>CHANGING LANDSCAPES OF ROME\u2019S NORTHERN HINTERLAND: The British School at Rome\u2019s Tiber Valley Project.</i> Archaeopress Roman Archaeology 70. S.l.: ARCHAEOPRESS, 2020. https://www.archaeopress.com/ArchaeopressShop/Public/displayProductDetail.asp?id={5B092BCB-89F4-4EA0-94FF-811F304B3B27}.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/stately-homes-recent-work-on-villas-in-italy-henri-broise-and-xavier-lafon-la-villa-prato-de-sperlonga-collection-de-lecole-francaise-de-rome-285-2000-2003-pp-210-302-figs-7-foldout-plans-isbn-2728305951-59-paperback-mara-sternini-ed-la-villa-romana-di-cottanello-ledipuglia-bari-2000-pp-207-67-pls-some-in-color-isbn-887228273x-44-hardback-david-and-noelle-soren-a-roman-villa-and-a-late-roman-infant-cemetery-excavation-at-poggio-gramignano-lugnano-in-teverina-lerma-di-bretschneider-roma-1999-pp-687-plus-310-figs-and-269-pls-isbn-8870629899-597-hardback-xavier-lafon-villa-maritima-recherches-sur-les-villas-littorales-de-litalie-romaine-iiie-siecle-av-jc-iiie-siecle-ap-jc-bibliotheque-des-ecoles-francaises-dathenes-et-de-rome-fasc-307-ecole-francaise-de-rome-2001-pp-527-figs-217-3-pls-horstexte-isbn-2728306184-99-hardback/0FC0B311DCAF082AB1431D2468A3AE8F",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fentress 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GLS7BH8S",
+      "formattedCitation": "<div class=\"csl-entry\">Fentress, Elizabeth. \u201cStately Homes: Recent Work on Villas in Italy - HENRI BROISE and XAVIER LAFON, LA VILLA PRATO DE SPERLONGA (Collection de l\u2019\u00c9cole Fran\u00e7aise de Rome 285, 2000 [2003]) Pp. 210, 302 Figs., 7 Fold-out Plans. ISBN 2-7283-0595-1. $59 (Paperback). - MARA STERNINI (Ed.), LA VILLA ROMANA DI COTTANELLO (L\u2019Edipuglia, Bari 2000), Pp. 207, 67 Pls. (Some in Color). ISBN 88-7228-273-X. $44 (Hardback). - DAVID and NOELLE SOREN, A ROMAN VILLA AND A LATE ROMAN INFANT CEMETERY. EXCAVATION AT POGGIO GRAMIGNANO (LUGNANO IN TEVERINA) (L\u2019Erma Di Bretschneider, Roma 1999) Pp. 687, plus 310 Figs. and 269 Pls. ISBN 88-7062-989-9. $597 (Hardback). - XAVIER LAFON, VILLA MARITIMA. RECHERCHES SUR LES VILLAS LITTORALES DE L\u2019ITALIE ROMAINE (IIIe SI\u00c8CLE Av. J.-C. / IIIe SI\u00c8CLE Ap. J.-C.) (Biblioth\u00e8que Des Ecoles Fran\u00e7aises d\u2019Ath\u00e8nes et de Rome Fasc. 307; Ecole Fran\u00e7aise de Rome 2001). Pp. 527, Figs. 217, 3 Pls. Hors-Texte. ISBN 2-7283-0618-4. $99 (Hardback).\u201d <i>Journal of Roman Archaeology</i> 16 (ed 2003): 545\u201356. https://doi.org/10.1017/S104775940001343X.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journals.uchicago.edu/doi/10.1086/718295",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wilson 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AN2DCJME",
+      "formattedCitation": "<div class=\"csl-entry\">Wilson, Jordan A. \u201cNegotiating Infant Personhood in Death: Interpreting Atypical Burials in the Late Roman Infant and Child Cemetery at Poggio Gramignano (Italy).\u201d <i>American Journal of Archaeology</i> 126, no. 2 (April 2022): 219\u201341. https://doi.org/10.1086/718295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q66945050",
+      "citationDetail": "Poggio Gramignano Roman Villa (Q66945050)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Poggio Gramignano Roman Villa",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q66945050",
+          "citationDetail": "Poggio Gramignano Roman Villa (Q66945050)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "poggio-gramignano-roman-villa",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-01-03T03:19:27Z",
+      "uri": "https://pleiades.stoa.org/places/330348886/poggio-gramignano-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Poggio Gramignano Roman Villa",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-05T19:12:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-03T03:19:33Z"
+        },
+        {
+          "comment": "name - Poggio Gramignano Roman Villa",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-03T03:19:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-03T03:19:27Z"
+        }
+      ]
+    }
+  ],
+  "id": "330348886",
+  "subject": [],
+  "title": "Poggio Gramignano Roman Villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>Polygonal geometry representing the visible enclosure of the site, derived from an OpenStreetMap way.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa in the modern Lugnano commune of Italy's Terni province. Substantial architectural remains dating to the Roman imperial period have been excavated there, as well as a later (5th century CE?) collection of child and infant burials that gained significant media attention.",
+  "reprPoint": [
+    12.310006647287038,
+    42.5501617535709
+  ],
+  "placeTypes": [
+    "cemetery",
+    "villa"
+  ],
+  "bbox": [
+    12.3098031,
+    42.5499952,
+    12.3101705,
+    42.5502955
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413185"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-06-24T03:41:13Z",
+  "uri": "https://pleiades.stoa.org/places/330348886",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Poggio Gramignano Roman Villa (Q66945050)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-11T04:43:07Z"
+    },
+    {
+      "comment": "edit capitalization in summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-28T14:41:21Z"
+    },
+    {
+      "comment": "place type += cemetery",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-27T20:11:33Z"
+    },
+    {
+      "comment": "wikipedia reference: see also",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-27T20:11:09Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-27T20:10:26Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-27T20:05:09Z"
+    },
+    {
+      "comment": "added Fentress 2003 and Wilson 2022",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-26T04:00:29Z"
+    },
+    {
+      "comment": "Patterson 2020",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-09T15:28:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-12T12:21:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-24T03:42:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-24T03:42:20Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-24T03:41:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-24T03:41:13Z"
+    }
+  ]
+}

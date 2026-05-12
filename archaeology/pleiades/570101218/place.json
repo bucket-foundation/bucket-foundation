@@ -1,0 +1,378 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.7261792,
+            37.4182158
+          ],
+          [
+            -4.725734,
+            37.4184331
+          ],
+          [
+            -4.7242748,
+            37.416601
+          ],
+          [
+            -4.724366,
+            37.4164434
+          ],
+          [
+            -4.7245323,
+            37.4163454
+          ],
+          [
+            -4.7247952,
+            37.416192
+          ],
+          [
+            -4.7261792,
+            37.4182158
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-excavated-area",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/570101218/osm-location-of-excavated-area",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of excavated area"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/248889155",
+          "citationDetail": "Way 248889155",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=248889155",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.villaebaeticae.es/villas-visitables/16-villa-fuente-alamo-puente-genil-cordoba",
+          "citationDetail": "\"Villa Fuente \u00c1lamo (Puente Genil, C\u00f3rdoba)\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Villae Baeticae",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EVB39D7U",
+          "formattedCitation": "<div class=\"csl-entry\">Seminario de Arqueolog\u00eda, Universidad Pablo de Olavide. <i>Villae Baeticae: Villas Y Paisaje Cultural Romano de La B\u00e9tica</i>. Sevilla, 2012\u20132014. http://www.villaebaeticae.es/index.php.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-excavated-area",
+      "featureTypeURI": [],
+      "end": 640,
+      "title": "OSM Location of excavated area",
+      "provenance": "OpenStreetMap (Way 248889155, version 1, osm:changeset=19165772, 2013-11-28T19:04:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2017-04-20T21:17:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.7261792,
+            37.4182158
+          ],
+          [
+            -4.725734,
+            37.4184331
+          ],
+          [
+            -4.7242748,
+            37.416601
+          ],
+          [
+            -4.724366,
+            37.4164434
+          ],
+          [
+            -4.7245323,
+            37.4163454
+          ],
+          [
+            -4.7247952,
+            37.416192
+          ],
+          [
+            -4.7261792,
+            37.4182158
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/570101218/osm-location-of-excavated-area",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-25T00:25:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-24T10:48:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:23:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:22:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:22:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:20:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:19:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:17:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:17:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.villaebaeticae.es/villas-visitables/16-villa-fuente-alamo-puente-genil-cordoba",
+      "citationDetail": "\"Villa Fuente \u00c1lamo (Puente Genil, C\u00f3rdoba)\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Villae Baeticae",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EVB39D7U",
+      "formattedCitation": "<div class=\"csl-entry\">Seminario de Arqueolog\u00eda, Universidad Pablo de Olavide. <i>Villae Baeticae: Villas Y Paisaje Cultural Romano de La B\u00e9tica</i>. Sevilla, 2012\u20132014. http://www.villaebaeticae.es/index.php.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q43589960",
+      "citationDetail": "Q43589960: Villa romana de Fuente \u00c1lamo",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa Fuente \u00c1lamo",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.villaebaeticae.es/villas-visitables/16-villa-fuente-alamo-puente-genil-cordoba",
+          "citationDetail": "\"Villa Fuente \u00c1lamo (Puente Genil, C\u00f3rdoba)\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Villae Baeticae",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EVB39D7U",
+          "formattedCitation": "<div class=\"csl-entry\">Seminario de Arqueolog\u00eda, Universidad Pablo de Olavide. <i>Villae Baeticae: Villas Y Paisaje Cultural Romano de La B\u00e9tica</i>. Sevilla, 2012\u20132014. http://www.villaebaeticae.es/index.php.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "villa-fuente-alamo",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2017-04-20T21:21:26Z",
+      "uri": "https://pleiades.stoa.org/places/570101218/villa-fuente-alamo",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Villa Fuente \u00c1lamo",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-24T10:48:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:23:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:21:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-04-20T21:21:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "570101218",
+  "subject": [],
+  "title": "Villa Fuente \u00c1lamo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa at Puente Genil in the province of C\u00f3rdoba in Spain.",
+  "reprPoint": [
+    -4.725225552141294,
+    37.417325118603685
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -4.7261792,
+    37.416192,
+    -4.7242748,
+    37.4184331
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-04-20T21:09:20Z",
+  "uri": "https://pleiades.stoa.org/places/570101218",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata Q43589960: Villa romana de Fuente \u00c1lamo",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-14T19:22:36Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-04-24T10:48:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2017-04-20T21:23:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2017-04-20T21:09:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2017-04-20T21:09:20Z"
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4794174,
+          40.7526867
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-laatelier-de-potier",
+      "properties": {
+        "snippet": "Production; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/119022475/osm-location-of-laatelier-de-potier",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of L\u2019atelier de potier"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7526685758",
+          "citationDetail": "Node 7526685758",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7526685758",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-laatelier-de-potier",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "end": 300,
+      "title": "OSM location of L\u2019atelier de potier",
+      "provenance": "OpenStreetMap (Node 7526685758, version 1, osm:changeset=85309714, 2020-05-16T16:18:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "production"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-05-16T16:18:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.4794174,
+          40.7526867
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/119022475/osm-location-of-laatelier-de-potier",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-19T07:10:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:42:13Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:19:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:18:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:18:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2020-05-16T16:20:25Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/119022475/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-19T07:10:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-19T07:10:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:42:13Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:20:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-05-16T16:20:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://journals.openedition.org/cefr/881",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Cavassa 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ENBGLMVL",
+          "formattedCitation": "<div class=\"csl-entry\">Cavassa, Laetitia, Bastien Lemaire, and John-Marc Piffeteau. \u201cPomp\u00e9i. L\u2019atelier de potier. Via dei Sepolcri, boutique NE, n. 29.\u201d <i>Chronique des activit\u00e9s arch\u00e9ologiques de l\u2019\u00c9cole fran\u00e7aise de Rome</i>, April 9, 2013. https://doi.org/10.4000/cefr.881.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/cefr/881",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cavassa 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ENBGLMVL",
+      "formattedCitation": "<div class=\"csl-entry\">Cavassa, Laetitia, Bastien Lemaire, and John-Marc Piffeteau. \u201cPomp\u00e9i. L\u2019atelier de potier. Via dei Sepolcri, boutique NE, n. 29.\u201d <i>Chronique des activit\u00e9s arch\u00e9ologiques de l\u2019\u00c9cole fran\u00e7aise de Rome</i>, April 9, 2013. https://doi.org/10.4000/cefr.881.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/cefr/1676",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zanella 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CLJ4YPZA",
+      "formattedCitation": "<div class=\"csl-entry\">Zanella, Sandra, Laetitia Cavassa, Nicolas Laubry, Nicolas Monteix, Guilhem Chapelin, Arnaud Coutelas, Audrey Delvigne Ryrko, et al. \u201cPomp\u00e9i, Porta Ercolano\u202f: organisation, gestion et transformations d\u2019une zone suburbaine. Campagne 2016.\u201d <i>Chronique des activit\u00e9s arch\u00e9ologiques de l\u2019\u00c9cole fran\u00e7aise de Rome</i>, March 8, 2017. https://doi.org/10.4000/cefr.1676.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "119022475",
+  "subject": [],
+  "title": "Potter's workshop",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/production"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Shop no. 29 located in the commercial area along the via dei Sepolcri outside the Porta Ercolano at the northwest corner of Pompeii. Archaeological excavation in 2012 and 2013 undertaken by the \u00c9cole fran\u00e7aise de Rome in coordination with Ministero per i Beni e le attivit\u00e0 cultural demonstrated that, at the time of its destruction, the shop was occupied by a potter.",
+  "reprPoint": [
+    14.4794174,
+    40.7526867
+  ],
+  "placeTypes": [
+    "production"
+  ],
+  "bbox": [
+    14.4794174,
+    40.7526867,
+    14.4794174,
+    40.7526867
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-16T16:18:10Z",
+  "uri": "https://pleiades.stoa.org/places/119022475",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-19T07:10:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-16T16:42:13Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-16T16:42:06Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-16T16:40:25Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-16T16:18:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-16T16:18:10Z"
+    }
+  ]
+}

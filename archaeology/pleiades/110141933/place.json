@@ -1,0 +1,388 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.3619574,
+            36.5280014
+          ],
+          [
+            9.3618021,
+            36.5279774
+          ],
+          [
+            9.3616761,
+            36.5279252
+          ],
+          [
+            9.3615663,
+            36.5278108
+          ],
+          [
+            9.3615501,
+            36.5276769
+          ],
+          [
+            9.3616192,
+            36.5275691
+          ],
+          [
+            9.3618753,
+            36.5275331
+          ],
+          [
+            9.3620867,
+            36.5276311
+          ],
+          [
+            9.3622321,
+            36.527736
+          ],
+          [
+            9.3622224,
+            36.5278829
+          ],
+          [
+            9.3621635,
+            36.52796
+          ],
+          [
+            9.3620998,
+            36.5280072
+          ],
+          [
+            9.3619574,
+            36.5280014
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-thignica-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/110141933/osm-location-of-thignica-amphitheater",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Thignica amphitheater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/278003848",
+          "citationDetail": "Way 278003848",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=278003848",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-thignica-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Thignica amphitheater",
+      "provenance": "OpenStreetMap (Way 278003848, version 5, osm:changeset=103845824, 2021-04-29T12:41:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-04-29T12:44:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.3619574,
+            36.5280014
+          ],
+          [
+            9.3618021,
+            36.5279774
+          ],
+          [
+            9.3616761,
+            36.5279252
+          ],
+          [
+            9.3615663,
+            36.5278108
+          ],
+          [
+            9.3615501,
+            36.5276769
+          ],
+          [
+            9.3616192,
+            36.5275691
+          ],
+          [
+            9.3618753,
+            36.5275331
+          ],
+          [
+            9.3620867,
+            36.5276311
+          ],
+          [
+            9.3622321,
+            36.527736
+          ],
+          [
+            9.3622224,
+            36.5278829
+          ],
+          [
+            9.3621635,
+            36.52796
+          ],
+          [
+            9.3620998,
+            36.5280072
+          ],
+          [
+            9.3619574,
+            36.5280014
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/110141933/osm-location-of-thignica-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-29T18:36:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-29T13:31:04Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-29T12:45:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-29T12:44:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-29T12:44:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-04-29T12:44:16Z",
+      "associationCertainty": "certain",
+      "title": "Thignica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/110141933/thignica",
+      "connectionType": "at",
+      "id": "thignica",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-29T18:36:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-29T13:31:04Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-29T12:44:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-29T12:44:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/315207",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://amphi-theatrum.de/1532.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "amphi-theatrum.de: 1532",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29002297",
+      "citationDetail": "Q29002297: Thignica amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "133 no. 116",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Golvin 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56QXVE6Y",
+      "formattedCitation": "<div class=\"csl-entry\">Golvin, Jean-Claude. <i>L\u2019Amphith\u00e9\u00e2tre romain: essai sur la th\u00e9orisation de sa forme et de ses fonctions</i>. Paris: Diffusion De Boccard, 1988.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/cefr/1028",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aounallah 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/375PYATM",
+      "formattedCitation": "<div class=\"csl-entry\">Aounallah, Samir, and Laurence Cavalier. \u201cThignica. Rapport sur les missions effectu\u00e9es en 2012.\u201d <i>Chronique des activit\u00e9s arch\u00e9ologiques de l\u2019\u00c9cole fran\u00e7aise de Rome</i>, December 12, 2013. https://doi.org/10.4000/cefr.1028.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "110141933",
+  "subject": [
+    "extant remains",
+    "amphitheater"
+  ],
+  "title": "Thignica amphitheater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman amphitheater at Thignica.",
+  "reprPoint": [
+    9.36189101360887,
+    36.527773957075084
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    9.3615501,
+    36.5275331,
+    9.3622321,
+    36.5280072
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/315207"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-04-29T12:43:32Z",
+  "uri": "https://pleiades.stoa.org/places/110141933",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-29T18:36:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-29T13:31:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-29T13:30:55Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-29T12:43:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-04-29T12:43:32Z"
+    }
+  ]
+}

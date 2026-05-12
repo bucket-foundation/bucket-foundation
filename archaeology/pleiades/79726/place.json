@@ -1,0 +1,513 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3067373,
+          51.6931392
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-west-hill",
+      "properties": {
+        "snippet": "Archaeological-site; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/79726/osm-location-of-west-hill",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of West Hill"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.305694,
+          51.695677
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-center-of-remains",
+      "properties": {
+        "snippet": "Temple-2; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/79726/imagery-location-center-of-remains",
+        "description": "Representative point of center of temple complex, after information in Woodward 1993, fig. 3, p. 6. Faint crop marks are visible in Google map imagery (2017)",
+        "location_precision": "precise",
+        "title": "Imagery Location: Center of remains"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    },
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/330372878",
+          "citationDetail": "Node 330372878",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=330372878",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-west-hill",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 410,
+      "title": "OSM location of West Hill",
+      "provenance": "OpenStreetMap (Node 330372878, version 2, osm:changeset=153079400, 2024-06-23T17:50:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-09-04T20:20:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.3067373,
+          51.6931392
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/79726/osm-location-of-west-hill",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-09-05T14:17:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T20:20:45Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T20:20:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T20:20:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-04T20:20:22Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://archaeologydataservice.ac.uk/catalogue/adsdata/arch-1416-1/dissemination/pdf/9781848022157_ALL_72.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Woodward 1993",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3WIXKM8T",
+          "formattedCitation": "<div class=\"csl-entry\">Woodward, Ann, J Bayley, and Peter Leach. <i>The Uley Shrines: Excavation of a Ritual Complex on West Hill, Uley, Gloucestershire, 1977-9</i>. Archaeological Report (English Heritage) 17. London: English Heritage in association with British Museum Press, 1993. http://archaeologydataservice.ac.uk/catalogue/adsdata/arch-1416-1/dissemination/pdf/9781848022157_ALL_72.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-center-of-remains",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 410,
+      "title": "Imagery Location: Center of remains",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative point of center of temple complex, after information in Woodward 1993, fig. 3, p. 6. Faint crop marks are visible in Google map imagery (2017)",
+      "created": "2017-09-25T17:54:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.305694,
+          51.695677
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/79726/imagery-location-center-of-remains",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T23:00:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T22:58:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-25T17:58:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-25T17:57:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-25T17:54:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-25T17:54:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-09-25T17:54:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "8 E3 Uley",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://archaeologydataservice.ac.uk/catalogue/adsdata/arch-1416-1/dissemination/pdf/9781848022157_ALL_72.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Woodward 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3WIXKM8T",
+      "formattedCitation": "<div class=\"csl-entry\">Woodward, Ann, J Bayley, and Peter Leach. <i>The Uley Shrines: Excavation of a Ritual Complex on West Hill, Uley, Gloucestershire, 1977-9</i>. Archaeological Report (English Heritage) 17. London: English Heritage in association with British Museum Press, 1993. http://archaeologydataservice.ac.uk/catalogue/adsdata/arch-1416-1/dissemination/pdf/9781848022157_ALL_72.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Uley",
+      "citationDetail": "Uley",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Uley.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/527031",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "King 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6TFUQC8K",
+      "formattedCitation": "<div class=\"csl-entry\">King, Anthony. \u201cReview of The Uley Shrines: Excavation of a Ritual Complex on West Hill, Uley: Gloucestershire, 1977-9; English Heritage Book of Shrines and Sacrifice, A. Woodward.\u201d <i>Britannia</i> 25 (1994): 347\u201349. https://doi.org/10.2307/527031.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://archaeologydataservice.ac.uk/archiveDS/archiveDownload?t=arch-1416-1/dissemination/pdf/9781848022157_ALL_72.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Woodward 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3WIXKM8T",
+      "formattedCitation": "<div class=\"csl-entry\">Woodward, Ann, J Bayley, and Peter Leach. <i>The Uley Shrines: Excavation of a Ritual Complex on West Hill, Uley, Gloucestershire, 1977-9</i>. Archaeological Report (English Heritage) 17. London: English Heritage in association with British Museum Press, 1993. http://archaeologydataservice.ac.uk/catalogue/adsdata/arch-1416-1/dissemination/pdf/9781848022157_ALL_72.pdf.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.pastscape.org.uk/hob.aspx?hob_id=205240",
+      "citationDetail": "West Hill Romano-Celtic Complex",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/14682",
+      "citationDetail": "GEO ID 14682: Uley",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "20674",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+      "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 20674.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://curses.csad.ox.ac.uk/sites/uley-temple.shtml",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Curse Tablets from Roman Britain: Uley temple",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17645666",
+      "citationDetail": "Romano-Celtic temple in Uley (Q17645666)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "79726",
+  "subject": [
+    "Mercury",
+    "dare:ancient=0",
+    "dare:major=0",
+    "dare:feature=temple"
+  ],
+  "title": "Uley",
+  "provenance": "Barrington Atlas: BAtlas 8 E3 Uley",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Uley</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "At West Hill, Uley, Gloucestershire, excavations revealed the remains of a multi-period ritual site. This site remained in use from the Neolithic period to the Middle Ages. An Iron Age sanctuary was replaced by a Romano-British temple dedicated to Mercury in the early second century A.D.",
+  "reprPoint": [
+    -2.30621565,
+    51.694408100000004
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "temple-2"
+  ],
+  "bbox": [
+    -2.3067373,
+    51.6931392,
+    -2.305694,
+    51.695677
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-09-25T17:30:28Z",
+  "uri": "https://pleiades.stoa.org/places/79726",
+  "creators": [
+    {
+      "username": null,
+      "name": "A.S. Esmonde Cleary"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Romano-Celtic temple in Uley (Q17645666)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-25T15:23:13Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-04T20:19:31Z"
+    },
+    {
+      "comment": "edited summary",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-06T23:11:47Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-06T23:00:09Z"
+    },
+    {
+      "comment": "TM GEO ID 14682",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-06T22:57:41Z"
+    },
+    {
+      "comment": "check in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-06T22:55:26Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-11T02:33:07Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:36:29Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:34:20Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T05:47:36Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:07:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-11-23T19:30:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:49:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-30T22:41:04Z"
+    }
+  ]
+}

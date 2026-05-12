@@ -1,0 +1,245 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.1158443,
+          36.3516938
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bastura-tunnel",
+      "properties": {
+        "snippet": "Tunnel; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/359792984/osm-location-of-bastura-tunnel",
+        "description": "Representative location based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Bastura Tunnel"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/4692651165",
+          "citationDetail": "Node 4692651165",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4692651165",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, Assyrische Wasserbauten, pp. 225-226 and pls. 70-71",
+          "bibliographicURI": "https://www.worldcat.org/title/assyrische-wasserbauten-landwirtschaftliche-wasserbauten-im-kernland-assyriens-zwischen-der-2-halfte-des-2-und-der-1-halfte-des-1-jahrtausends-v-chr/oclc/247043894&referer=brief_results",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-bastura-tunnel",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tunnel"
+      ],
+      "end": -540,
+      "title": "OSM location of Bastura Tunnel",
+      "provenance": "OpenStreetMap (Node 4692651165, version 1, osm:changeset=46200529, 2017-02-18T19:45:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tunnel"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tunnel"
+      ],
+      "description": "Representative location based on a node derived from OpenStreetMap.",
+      "created": "2017-12-07T09:44:10Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.1158443,
+          36.3516938
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/359792984/osm-location-of-bastura-tunnel",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-30T03:50:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-30T03:49:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2017-12-07T09:48:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2017-12-07T09:48:25Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jnovotny",
+          "modified": "2017-12-07T09:47:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2017-12-07T09:46:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2017-12-07T09:45:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2017-12-07T09:44:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2017-12-07T09:44:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "225-226 and pls. 70-71",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bagg 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WAD3786D",
+      "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M. \u201cAssyrische Wasserbauten: landwirtschaftliche Wasserbauten im Kernland Assyriens zwischen der 2. H\u00e4lfte des 2. und der 1. H\u00e4lfte des 1. Jahrtausends v. Chr.\u201d T\u00fcbingen, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "359792984",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Wadi Bastura Tunnel Inscription",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tunnel"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Several stone blocks forming the entrance to a tunnel make up part of an aqueduct that Sennacherib had built to divert water from the Bastura River (a tributary of the Upper Zab) to Arbela, a principal cult city of the goddess I\u0161tar. One ashlar block bears an eight-line inscription recording the construction of a (subterranean) watercourse.",
+  "reprPoint": [
+    44.1158443,
+    36.3516938
+  ],
+  "placeTypes": [
+    "tunnel"
+  ],
+  "bbox": [
+    44.1158443,
+    36.3516938,
+    44.1158443,
+    36.3516938
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-12-07T09:30:03Z",
+  "uri": "https://pleiades.stoa.org/places/359792984",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-30T03:49:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-30T03:48:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2017-12-07T09:46:49Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2017-12-07T09:30:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2017-12-07T09:30:03Z"
+    }
+  ]
+}

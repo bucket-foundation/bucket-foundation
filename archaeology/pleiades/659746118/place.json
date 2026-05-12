@@ -1,0 +1,465 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.9900373,
+            42.649969
+          ],
+          [
+            11.9902644,
+            42.6499428
+          ],
+          [
+            11.9904864,
+            42.6499597
+          ],
+          [
+            11.9906166,
+            42.6500779
+          ],
+          [
+            11.9906497,
+            42.6502412
+          ],
+          [
+            11.9905859,
+            42.6503988
+          ],
+          [
+            11.9904788,
+            42.6504993
+          ],
+          [
+            11.9903588,
+            42.6505828
+          ],
+          [
+            11.990207,
+            42.6506259
+          ],
+          [
+            11.9900399,
+            42.6506503
+          ],
+          [
+            11.989851,
+            42.6506034
+          ],
+          [
+            11.9897515,
+            42.650518
+          ],
+          [
+            11.9896877,
+            42.6503913
+          ],
+          [
+            11.9896826,
+            42.6502224
+          ],
+          [
+            11.9898319,
+            42.6500732
+          ],
+          [
+            11.9900373,
+            42.649969
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-volsinii-amphitheatre",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/659746118/osm-location-of-volsinii-amphitheatre",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Volsinii amphitheatre"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/995268614",
+          "citationDetail": "Way 995268614",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=995268614",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-volsinii-amphitheatre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Volsinii amphitheatre",
+      "provenance": "OpenStreetMap (Way 995268614, version 2, osm:changeset=132103630, 2023-02-05T10:30:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-04-24T15:50:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.9900373,
+            42.649969
+          ],
+          [
+            11.9902644,
+            42.6499428
+          ],
+          [
+            11.9904864,
+            42.6499597
+          ],
+          [
+            11.9906166,
+            42.6500779
+          ],
+          [
+            11.9906497,
+            42.6502412
+          ],
+          [
+            11.9905859,
+            42.6503988
+          ],
+          [
+            11.9904788,
+            42.6504993
+          ],
+          [
+            11.9903588,
+            42.6505828
+          ],
+          [
+            11.990207,
+            42.6506259
+          ],
+          [
+            11.9900399,
+            42.6506503
+          ],
+          [
+            11.989851,
+            42.6506034
+          ],
+          [
+            11.9897515,
+            42.650518
+          ],
+          [
+            11.9896877,
+            42.6503913
+          ],
+          [
+            11.9896826,
+            42.6502224
+          ],
+          [
+            11.9898319,
+            42.6500732
+          ],
+          [
+            11.9900373,
+            42.649969
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/659746118/osm-location-of-volsinii-amphitheatre",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-27T19:49:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-24T15:51:32Z"
+        },
+        {
+          "comment": "imported new OSM location. underlying OSM data for previously published location has been deleted. send back to drafting once this location has been published.",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-24T15:51:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-24T15:50:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-24T15:50:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-12T21:36:37Z",
+      "associationCertainty": "certain",
+      "title": "Volsinii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/659746118/3971570965",
+      "connectionType": "at",
+      "id": "3971570965",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-12T21:36:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-12T21:36:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-12T21:36:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413389",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.amphi-theatrum.de/1554.html",
+      "citationDetail": "1554",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Amphi-theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NTQZEIIX",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, Marin Buovac, and Maria Engracia Mu\u00f1oz-Santos. <i>Amphi-theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://amphi-theatrum.de/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.provincia.vt.it/turismo/SchedeDett.asp?Id=1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Area archeologica di Bolsena",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "157-163",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tosi et al. 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RZ3ST8TV",
+      "formattedCitation": "<div class=\"csl-entry\">Tosi, Giovanna. <i>Gli edifici per spettacoli nell\u2019Italia romana</i>. 2 vols. Roma: Quasar, 2003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "193",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Golvin 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56QXVE6Y",
+      "formattedCitation": "<div class=\"csl-entry\">Golvin, Jean-Claude. <i>L\u2019Amphith\u00e9\u00e2tre romain: essai sur la th\u00e9orisation de sa forme et de ses fonctions</i>. Paris: Diffusion De Boccard, 1988.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/8346140",
+      "citationDetail": "217",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "GAL Etruria",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CJ9CVXGI",
+      "formattedCitation": "<div class=\"csl-entry\">Torelli, Mario. <i>Guide archeologiche Laterza: Etruria</i>. Vol. 1. 1 vols. Guide archeologiche Laterza 3. Bari, Rome: Laterza, 1980. http://www.worldcat.org/oclc/8346140.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q28978001",
+      "citationDetail": "Volsinii amphitheatre (Q28978001)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/4276/",
+      "citationDetail": "4276",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "659746118",
+  "subject": [
+    "extant remains",
+    "amphitheater"
+  ],
+  "title": "Roman amphitheater at Volsinii",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman amphitheater at Volsinii dates to the second half of the first century A.D. It measures ca. 86 x 69 meters.",
+  "reprPoint": [
+    11.990163266029157,
+    42.65028535665011
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    11.9896826,
+    42.6499428,
+    11.9906497,
+    42.6506503
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413389"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-07-12T21:36:32Z",
+  "uri": "https://pleiades.stoa.org/places/659746118",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-06T01:48:54Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-20T20:13:18Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-13T04:16:25Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-12T23:21:04Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-12T23:20:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-12T21:37:22Z"
+    },
+    {
+      "comment": "title, summary",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-12T21:37:03Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-12T21:36:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-12T21:36:32Z"
+    }
+  ]
+}

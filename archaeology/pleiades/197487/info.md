@@ -1,0 +1,14 @@
+# Salon (river)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/197487
+- **ID**: 197487
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Salon
+
+## Description
+
+An ancient place, cited: BAtlas 20 D6 Salon fl.

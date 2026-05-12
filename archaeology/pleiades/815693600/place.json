@@ -1,0 +1,677 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7304095,
+            37.9672925
+          ],
+          [
+            23.7312978,
+            37.9665552
+          ],
+          [
+            23.7321413,
+            37.9671154
+          ],
+          [
+            23.7329526,
+            37.9674918
+          ],
+          [
+            23.7330212,
+            37.9676025
+          ],
+          [
+            23.7329807,
+            37.9676738
+          ],
+          [
+            23.7329068,
+            37.9677228
+          ],
+          [
+            23.7328434,
+            37.9677377
+          ],
+          [
+            23.7315012,
+            37.9681272
+          ],
+          [
+            23.7304095,
+            37.9672925
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-neigbourhood",
+      "properties": {
+        "snippet": "Unknown; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/815693600/osm-location-neigbourhood",
+        "description": "This location, based on OpenStreetMap, is identified by Binder as containing the Pythion.",
+        "location_precision": "precise",
+        "title": "OSM Location: Neigbourhood"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/233181442",
+          "citationDetail": "Way 233181442",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=233181442",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-neigbourhood",
+      "featureTypeURI": [],
+      "end": 2099,
+      "title": "OSM Location: Neigbourhood",
+      "provenance": "OpenStreetMap (Way 233181442, version 5, osm:changeset=101131633, 2021-03-16T15:58:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 2000,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "This location, based on OpenStreetMap, is identified by Binder as containing the Pythion.",
+      "created": "2024-04-16T22:32:49Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7304095,
+            37.9672925
+          ],
+          [
+            23.7312978,
+            37.9665552
+          ],
+          [
+            23.7321413,
+            37.9671154
+          ],
+          [
+            23.7329526,
+            37.9674918
+          ],
+          [
+            23.7330212,
+            37.9676025
+          ],
+          [
+            23.7329807,
+            37.9676738
+          ],
+          [
+            23.7329068,
+            37.9677228
+          ],
+          [
+            23.7328434,
+            37.9677377
+          ],
+          [
+            23.7315012,
+            37.9681272
+          ],
+          [
+            23.7304095,
+            37.9672925
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/815693600/osm-location-neigbourhood",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-17T16:58:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:44:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:34:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:32:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:32:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2024-04-16T22:38:45Z",
+      "associationCertainty": "certain",
+      "title": "Temple of Olympian Zeus, Athens",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/815693600/temple-of-olympian-zeus-athens",
+      "connectionType": "near",
+      "id": "temple-of-olympian-zeus-athens",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-17T16:58:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-17T16:57:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:44:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:38:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:38:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/659771158",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1:2.15.4",
+          "citationDetail": "2.15.4",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Thuc. Hist. (Jones; Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EFG24VXW",
+          "formattedCitation": "<div class=\"csl-entry\">Thucydides. <i>Thucydidis Historiae; recognovit brevique adnotatione critica instruxit Henricus Stuart Jones ..</i> Edited by Henry Stuart Jones and J. Enoch Powell. 2 vols. Oxonii: e typographeo Clarendoniano, 1942. http://data.perseus.org/texts/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:9.2.11",
+          "citationDetail": "9.2.11",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Str. (Meineke: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+          "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877. http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2024-04-16T22:42:23Z",
+      "associationCertainty": "less-certain",
+      "title": "Delphinion",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/815693600/delphinion",
+      "connectionType": "near",
+      "id": "delphinion",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-17T16:58:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-17T16:57:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:44:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:42:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:42:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/585725955",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.19.1",
+          "citationDetail": "1.19.1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Paus. (Spiro: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+          "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/de/title/epainos-luigi-beschi/oclc/814558892",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Matthaiou 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EW678MSZ",
+      "formattedCitation": "<div class=\"csl-entry\">\u03b5\u03c0\u03b9\u03c3\u03c4\u03b7\u03bc\u03bf\u03bd\u03b9\u03ba\u03b7 \u03b5\u03c0\u03b9\u03bc\u03ad\u03bb\u03b5\u03b9\u03b1, \u0391. \u0394\u03b5\u03bb\u03b7\u03b2\u03bf\u03c1\u03c1\u03b9\u03ac\u03c2, \u0393. \u0394\u03b5\u03c3\u03c0\u03af\u03bd\u03b7\u03c2, \u0391. \u0396\u03b1\u03c1\u03ba\u03ac\u03b4\u03b1\u03c2., and \u0391\u03b3\u03b3\u03b5\u03bb\u03bf\u03c2 \u0394\u03b5\u03bb\u03b7\u03b2\u03bf\u03c1\u03c1\u03b9\u03ac\u03c2. <i>E\u03c0\u03b1\u03b9\u03bd\u03bf\u03c2 Luigi Beschi</i>. Edited by \u0394\u03b5\u03bb\u03b7\u03b2\u03bf\u03c1\u03c1\u03b9\u03ac\u03c2, \u0391\u03b3\u03b3\u03b5\u03bb\u03bf\u03c2, \u0394\u03b5\u03c3\u03c0\u03af\u03bd\u03b7\u03c2, \u0393\u03b9\u03ce\u03c1\u03b3\u03bf\u03c2, and \u0396\u03b1\u03c1\u03ba\u03ac\u03b4\u03b1\u03c2, \u0391\u03b3\u03b3\u03b5\u03bb\u03bf\u03c2. Mouseio Benak\u0113. Ath\u0113na: \u039c\u03bf\u03c5\u03c3\u03b5\u03af\u03bf \u039c\u03c0\u03b5\u03bd\u03ac\u03ba\u03b7, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/162915",
+      "citationDetail": "100ff., 402, 578",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Travlos 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F5Q2AW7H",
+      "formattedCitation": "<div class=\"csl-entry\">Travlos, Ioannes N. <i>Pictorial Dictionary of Ancient Athens</i>. New York: Praeger, 1971. http://www.worldcat.org/oclc/162915.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/84150767",
+      "citationDetail": "153-163",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wilson 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BEBD4MYB",
+      "formattedCitation": "<div class=\"csl-entry\">Wilson, Peter. <i>The Greek Theatre and Festivals: Documentary Studies</i>. Oxford Studies in Ancient Documents. Oxford: Oxford University Press, 2007. http://catdir.loc.gov/catdir/toc/ecip0713/2007011345.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/en/title/758315518",
+      "citationDetail": "291-297",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Greco 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HJM96VEJ",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a5\u03c0\u03bf\u03c5\u03c1\u03b3\u03b5\u03af\u03bf \u03a0\u03bf\u03bb\u03b9\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd, \u039d\u03bf\u03bc\u03b9\u03c3\u03bc\u03b1\u03c4\u03b9\u03ba\u03cc \u039c\u03bf\u03c5\u03c3\u03b5\u03af\u03bf\u202f; \u03c3\u03c5\u03bd\u03c4\u03b1\u03ba\u03c4\u03b9\u03ba\u03ae \u03b5\u03c0\u03b9\u03c4\u03c1\u03bf\u03c0\u03ae \u03a3\u03c4\u03ad\u03bb\u03bb\u03b1 \u0394\u03c1\u03bf\u03cd\u03b3\u03bf\u03c5, \u0394\u03ad\u03c3\u03c0\u03bf\u03b9\u03bd\u03b1 \u0395\u03c5\u03b3\u03b5\u03bd\u03af\u03b4\u03bf\u03c5, \u03a7\u03b1\u03c1\u03ac\u03bb\u03b1\u03bc\u03c0\u03bf\u03c2 \u039a\u03c1\u03b9\u03c4\u03b6\u03ac\u03c2 ... [et al]., and \u03a3\u03c4\u03ad\u03bb\u03bb\u03b1. \u0394\u03c1\u03bf\u03cd\u03b3\u03bf\u03c5. <i>\u039a\u03b5\u03c1\u03bc\u03ac\u03c4\u03b9\u03b1 \u03c6\u03b9\u03bb\u03af\u03b1\u03c2 \u03c4\u03b9\u03bc\u03b7\u03c4\u03b9\u03ba\u03cc\u03c2 \u03c4\u03cc\u03bc\u03bf\u03c2 \u03b3\u03b9\u03b1 \u03c4\u03bf\u03bd \u0399\u03c9\u03ac\u03bd\u03bd\u03b7 \u03a4\u03bf\u03c5\u03c1\u03ac\u03c4\u03c3\u03bf\u03b3\u03bb\u03bf\u03c5</i>. Ath\u1e17na: \u03a5\u03c0\u03bf\u03c5\u03c1\u03b3\u03b5\u03af\u03bf \u03a0\u03bf\u03bb\u03b9\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd\u202f: \u039d\u03bf\u03bc\u03b9\u03c3\u03bc\u03b1\u03c4\u03b9\u03ba\u03cc \u039c\u03bf\u03c5\u03c3\u03b5\u03af\u03bf, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237SPth",
+      "citationDetail": "Pythion (Athens) 10 Kallirhois Blvd? - \u03a0\u03cd\u03b8\u03b9\u03bf\u03bd",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dipylon-judithbindersourcebook.org/sourcebook/NPP/NP311",
+      "citationDetail": "Apollo 70. Sanctuary of Apollo Pythios",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Judith Binder's Opus Magnum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITY365C",
+      "formattedCitation": "<div class=\"csl-entry\">www.dipylon.org. \u201cJudith Binder\u2019s Opus Magnum | Dipylon,\u201d May 7, 2018. https://dipylon.org/en/2018/05/07/judith-binders-opus-magnum/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q65243607",
+      "citationDetail": "Pythion (Q65243607)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.19.1",
+      "citationDetail": "1.19.1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/3585979",
+      "citationDetail": "Statue: Apollon Pythios (Paus. 1, 19, 1) Athen, (Athenae / Ath\u0113nai), Athen (Regionalbezirk)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "P\u00fathion, Pythion",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1:2.15.4",
+          "citationDetail": "2.15.4",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Thuc. Hist. (Jones; Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EFG24VXW",
+          "formattedCitation": "<div class=\"csl-entry\">Thucydides. <i>Thucydidis Historiae; recognovit brevique adnotatione critica instruxit Henricus Stuart Jones ..</i> Edited by Henry Stuart Jones and J. Enoch Powell. 2 vols. Oxonii: e typographeo Clarendoniano, 1942. http://data.perseus.org/texts/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "puthion",
+      "end": 300,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-04-16T22:36:24Z",
+      "uri": "https://pleiades.stoa.org/places/815693600/puthion",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u03a0\u03cd\u03b8\u03b9\u03bf\u03bd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-17T16:58:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-17T16:56:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-17T13:52:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:44:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:36:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-16T22:36:24Z"
+        }
+      ]
+    }
+  ],
+  "id": "815693600",
+  "subject": [
+    "Apollo"
+  ],
+  "title": "Pythion",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The sanctuary of Apollo Pythios in Athens, located south of the Temple of Olympian Zeus, probably near Ioseph ton Rogon street, where many inscriptions related to the cult have been found.",
+  "reprPoint": [
+    23.73168355684289,
+    37.96740788786613
+  ],
+  "placeTypes": [
+    "shrine"
+  ],
+  "bbox": [
+    23.7304095,
+    37.9665552,
+    23.7330212,
+    37.9681272
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/659771158",
+    "https://pleiades.stoa.org/places/585725955"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-16T22:30:23Z",
+  "uri": "https://pleiades.stoa.org/places/815693600",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-17T16:58:03Z"
+    },
+    {
+      "comment": "add arachne, add Paus. ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-17T14:06:19Z"
+    },
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-17T13:59:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-17T13:58:10Z"
+    },
+    {
+      "comment": "add new references to Zotero, update links to Zotero library",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-17T13:52:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-16T22:44:15Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-16T22:30:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2024-04-16T22:30:23Z"
+    }
+  ]
+}

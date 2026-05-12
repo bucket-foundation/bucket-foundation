@@ -1,0 +1,14 @@
+# Severianum
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/446291
+- **ID**: 446291
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Severianum
+
+## Description
+
+An ancient place, cited: BAtlas 45 unlocated Severianum

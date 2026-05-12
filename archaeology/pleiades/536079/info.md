@@ -1,0 +1,14 @@
+# Hedones
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/536079
+- **ID**: 536079
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Hedones
+
+## Description
+
+An ancient place, cited: BAtlas 54 unlocated Hedones

@@ -1,0 +1,740 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.346805,
+          41.711201
+        ]
+      },
+      "type": "Feature",
+      "id": "darmc-location-7888",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/423004/darmc-location-7888",
+        "description": "150K scale point location",
+        "location_precision": "precise",
+        "title": "DARMC location 7888"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.346675,
+            41.7113089
+          ],
+          [
+            12.3463291,
+            41.7111161
+          ],
+          [
+            12.3467432,
+            41.7108761
+          ],
+          [
+            12.3470404,
+            41.710567
+          ],
+          [
+            12.3472791,
+            41.7107307
+          ],
+          [
+            12.347737,
+            41.7107816
+          ],
+          [
+            12.3477418,
+            41.7108543
+          ],
+          [
+            12.3475421,
+            41.7109234
+          ],
+          [
+            12.3471573,
+            41.7107961
+          ],
+          [
+            12.3469673,
+            41.7108616
+          ],
+          [
+            12.3470501,
+            41.7109489
+          ],
+          [
+            12.3472596,
+            41.7110434
+          ],
+          [
+            12.3472693,
+            41.7111271
+          ],
+          [
+            12.3471329,
+            41.7111961
+          ],
+          [
+            12.3473229,
+            41.711258
+          ],
+          [
+            12.3472596,
+            41.7113562
+          ],
+          [
+            12.3470988,
+            41.7113671
+          ],
+          [
+            12.3470209,
+            41.7112543
+          ],
+          [
+            12.346675,
+            41.7113089
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/423004/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of so-called \"Villa di Plinio\""
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "DARMC, R. Talbert, T. Elliott, S. Gillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://darmc.harvard.edu/",
+          "citationDetail": "7888",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARMC",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+          "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 7888.",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "darmc-location-7888",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 640,
+      "title": "DARMC location 7888",
+      "provenance": "DARMC OBJECTID: 7888",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "DARMC OBJECTID: 7888",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/darmc-a",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "150K scale point location",
+      "created": "2011-01-21T23:07:59Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.346805,
+          41.711201
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423004/darmc-location-7888",
+      "creators": [
+        {
+          "username": null,
+          "name": "L. Quilici"
+        },
+        {
+          "username": null,
+          "name": "S. Quilici Gigli"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T04:56:29Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T23:23:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T23:08:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2011-01-21T23:07:59Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/54965714",
+          "citationDetail": "Way 54965714",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=54965714",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of so-called \"Villa di Plinio\"",
+      "provenance": "OpenStreetMap (Way 54965714, version 7, osm:changeset=73835306, 2019-08-28T11:02:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-07-10T03:27:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.346675,
+            41.7113089
+          ],
+          [
+            12.3463291,
+            41.7111161
+          ],
+          [
+            12.3467432,
+            41.7108761
+          ],
+          [
+            12.3470404,
+            41.710567
+          ],
+          [
+            12.3472791,
+            41.7107307
+          ],
+          [
+            12.347737,
+            41.7107816
+          ],
+          [
+            12.3477418,
+            41.7108543
+          ],
+          [
+            12.3475421,
+            41.7109234
+          ],
+          [
+            12.3471573,
+            41.7107961
+          ],
+          [
+            12.3469673,
+            41.7108616
+          ],
+          [
+            12.3470501,
+            41.7109489
+          ],
+          [
+            12.3472596,
+            41.7110434
+          ],
+          [
+            12.3472693,
+            41.7111271
+          ],
+          [
+            12.3471329,
+            41.7111961
+          ],
+          [
+            12.3473229,
+            41.711258
+          ],
+          [
+            12.3472596,
+            41.7113562
+          ],
+          [
+            12.3470988,
+            41.7113671
+          ],
+          [
+            12.3470209,
+            41.7112543
+          ],
+          [
+            12.346675,
+            41.7113089
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/423004/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T17:32:11Z"
+        },
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T17:32:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-08T19:49:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-02T03:02:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-07-02T03:02:28Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-10T03:27:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-10T03:27:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-10T03:27:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-23T20:20:08Z",
+      "associationCertainty": "certain",
+      "title": "Via Severiana",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/423004/via-severiana",
+      "connectionType": "on",
+      "id": "via-severiana",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T17:32:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-23T20:20:22Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-23T20:20:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-23T20:20:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/835948519",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "260-1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Franceschini 2005",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IWATNX33",
+          "formattedCitation": "<div class=\"csl-entry\">De Franceschini, Marina. <i>Ville dell\u2019Agro Romano</i>. Monografie della carta dell\u2019Agro romano 2. Roma: L\u2019Erma di Bretschneider, 2005.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 B3 Plinio",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ramieri 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q656SB4V",
+      "formattedCitation": "<div class=\"csl-entry\">A.M. Ramieri. \u201cLa Villa Di Plinio a Castel Fusano.\u201d <i>QuadAEI</i> 24 (1995): 407\u201316.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.ostia-antica.org/dict/south/pliny.htm",
+      "citationDetail": "Villa della Palombara (di Plinio)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ostia - Harbour City of Ancient Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+      "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://latin.packhum.org/loc/1318/1/0#40",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Plin. Epist. 2.17",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/949205965",
+      "citationDetail": "309",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marzano 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZN7DAZR",
+      "formattedCitation": "<div class=\"csl-entry\">Marzano, Annalisa. <i>Roman Villas in Central Italy: A Social and Economic History.</i> Leiden: E.J. Brill, 2007. http://www.worldcat.org/oclc/949205965.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "260-4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Franceschini 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IWATNX33",
+      "formattedCitation": "<div class=\"csl-entry\">De Franceschini, Marina. <i>Ville dell\u2019Agro Romano</i>. Monografie della carta dell\u2019Agro romano 2. Roma: L\u2019Erma di Bretschneider, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ramieri 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y5G2T5RJ",
+      "formattedCitation": "<div class=\"csl-entry\">Ramieri, Anna Maria. \u201cCastel Fusano. Villa di Plinio (Municipio 13).\u201d <i>Bullettino della Commissione Archeologica Comunale di Roma, Nuova Serie</i> 109 (2008): 380\u201388.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Mansuelli 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y78D8PWX",
+      "formattedCitation": "<div class=\"csl-entry\">Mansuelli, G. A. \u201cLa villa nelle \u2018Epistulae\u2019 di C. Plinio Cecilio Secondo.\u201d In <i>Studi romagnoli, 29.1978</i>, 59\u201376, 1978.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Camardo et al. 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/999KC58F",
+      "formattedCitation": "<div class=\"csl-entry\">Camardo, Carmelina, Stefano Buonaguro, and Elena Civitelli. \u201cI pavimenti della c.d. Villa di Plinio a Castel Fusano (Roma) - Campagna di scavo 2008.\u201d In <i>Atti del XV colloquio dell\u2019Associazione italiana per lo studio e la conservazione del mosaico con il patrocinio del Ministero per i Beni e le attivit\u00e0 culturali (Aquileia, 4-7 febbraio 2009)</i>, 395\u2013409. Tivoli (Roma): Edizioni Scripta, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Villa_della_Palombara",
+      "citationDetail": "Villa della Palombara",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "423004",
+  "subject": [
+    "dare:major=0",
+    "basis villae",
+    "dare:feature=villa",
+    "extant remains",
+    "dare:ancient=0",
+    "mosaics"
+  ],
+  "title": "Plinio",
+  "provenance": "Barrington Atlas: BAtlas 43 B3 Plinio",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Plinio, so-called Villa of Pliny</p>\r\n<p>The villa site is located along the Via Severiana in the location known as \"Tenuta Palombara\", within the grounds of the Tenuta di Castelfusano.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called villa of Pliny the Younger, also known as the Villa della Palombara. The villa's first phases date to the Iulio-Claudian period. It continues in use, and continues to undergo modifications, through the second century A.D.",
+  "reprPoint": [
+    12.346937145820428,
+    41.71109174292354
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    12.3463291,
+    41.710567,
+    12.3477418,
+    41.7113671
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/835948519"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:33:14Z",
+  "uri": "https://pleiades.stoa.org/places/423004",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-08T19:51:12Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-07T19:48:04Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-23T20:24:30Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-23T20:19:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-07-02T03:00:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-03-18T14:29:47Z"
+    },
+    {
+      "comment": "edited description, added references",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-26T05:35:28Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:45:36Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:56:29Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:08:00Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:44:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:13:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:39:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:33:14Z"
+    }
+  ]
+}

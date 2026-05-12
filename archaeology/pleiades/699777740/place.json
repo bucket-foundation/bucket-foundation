@@ -1,0 +1,448 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.4491277,
+            41.3134509
+          ],
+          [
+            -8.4494264,
+            41.313315
+          ],
+          [
+            -8.4494282,
+            41.3131869
+          ],
+          [
+            -8.4499277,
+            41.3127528
+          ],
+          [
+            -8.4501637,
+            41.3121787
+          ],
+          [
+            -8.4498111,
+            41.3118714
+          ],
+          [
+            -8.4495673,
+            41.3118131
+          ],
+          [
+            -8.4492454,
+            41.3118272
+          ],
+          [
+            -8.4489031,
+            41.3122431
+          ],
+          [
+            -8.4490898,
+            41.3123812
+          ],
+          [
+            -8.4488978,
+            41.3127317
+          ],
+          [
+            -8.4489825,
+            41.312765
+          ],
+          [
+            -8.448825,
+            41.3132138
+          ],
+          [
+            -8.4489903,
+            41.3134494
+          ],
+          [
+            -8.4491277,
+            41.3134509
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Fortified-settlement; 750 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/699777740/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Monte Padr\u00e3o"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-roman-early-empire",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-roman-early-empire",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/332277454",
+          "citationDetail": "Way 332277454",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=332277454",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "end": 300,
+      "title": "OSM location of Castro de Monte Padr\u00e3o",
+      "provenance": "OpenStreetMap (Way 332277454, version 17, osm:changeset=141758793, 2023-09-26T06:41:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fortified-settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2015-03-11T16:02:22Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.4491277,
+            41.3134509
+          ],
+          [
+            -8.4494264,
+            41.313315
+          ],
+          [
+            -8.4494282,
+            41.3131869
+          ],
+          [
+            -8.4499277,
+            41.3127528
+          ],
+          [
+            -8.4501637,
+            41.3121787
+          ],
+          [
+            -8.4498111,
+            41.3118714
+          ],
+          [
+            -8.4495673,
+            41.3118131
+          ],
+          [
+            -8.4492454,
+            41.3118272
+          ],
+          [
+            -8.4489031,
+            41.3122431
+          ],
+          [
+            -8.4490898,
+            41.3123812
+          ],
+          [
+            -8.4488978,
+            41.3127317
+          ],
+          [
+            -8.4489825,
+            41.312765
+          ],
+          [
+            -8.448825,
+            41.3132138
+          ],
+          [
+            -8.4489903,
+            41.3134494
+          ],
+          [
+            -8.4491277,
+            41.3134509
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/699777740/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T19:28:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:09:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T15:26:23Z"
+        },
+        {
+          "comment": "update",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T15:23:51Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-11T16:03:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-11T16:02:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-11T16:02:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.castrosdonoroeste.pt/castro-do-padrao/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Castro do Monte Padr\u00e3o",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pt.wikipedia.org/wiki/Castro_do_Monte_Padr%C3%A3o",
+      "citationDetail": "Castro do Monte Padr\u00e3o",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Portuguese)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/DT7TR55T",
+      "formattedCitation": "Wikip\u00e9dia: A enciclop\u00e9dia livre que todos podem editar (2001-), Castro do Monte Padr\u00e3o.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17390121",
+      "citationDetail": "Castro do Monte Padr\u00e3o (Q17390121)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Castro do Monte Padr\u00e3o",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://pt.wikipedia.org",
+          "citationDetail": "Castro do Monte Padr\u00e3o",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Portuguese)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DT7TR55T",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: A enciclop\u00e9dia livre que todos podem editar</i>. Wikimedia Foundation, 2001. https://pt.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "castro-do-monte-padrao",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "pt",
+      "created": "2022-05-21T15:24:36Z",
+      "uri": "https://pleiades.stoa.org/places/699777740/castro-do-monte-padrao",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Castro do Monte Padr\u00e3o",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:09:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T15:26:23Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T15:24:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T15:24:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "699777740",
+  "subject": [],
+  "title": "Castro do Monte Padr\u00e3o",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The remains of a multi-period fortified settlement located in modern Portugal's Porto district, that dates initially from the ninth century BCE.",
+  "reprPoint": [
+    -8.449399839742991,
+    41.31258567327829
+  ],
+  "placeTypes": [
+    "fortified-settlement"
+  ],
+  "bbox": [
+    -8.4501637,
+    41.3118131,
+    -8.448825,
+    41.3134509
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-03-11T15:52:59Z",
+  "uri": "https://pleiades.stoa.org/places/699777740",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Castro do Monte Padr\u00e3o (Q17390121)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T19:29:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-23T19:09:48Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-23T19:09:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-21T15:26:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-21T15:26:10Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-11T15:53:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-11T15:52:59Z"
+    }
+  ]
+}

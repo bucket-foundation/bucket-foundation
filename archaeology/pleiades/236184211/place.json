@@ -1,0 +1,333 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.1309505,
+            50.597678
+          ],
+          [
+            5.1309367,
+            50.5977254
+          ],
+          [
+            5.1308986,
+            50.597767
+          ],
+          [
+            5.1308405,
+            50.597798
+          ],
+          [
+            5.13079,
+            50.5977956
+          ],
+          [
+            5.1307205,
+            50.5977982
+          ],
+          [
+            5.1306569,
+            50.5977873
+          ],
+          [
+            5.1305759,
+            50.5977066
+          ],
+          [
+            5.1306333,
+            50.5976047
+          ],
+          [
+            5.1307278,
+            50.5975632
+          ],
+          [
+            5.1308076,
+            50.5975477
+          ],
+          [
+            5.1308447,
+            50.5975564
+          ],
+          [
+            5.1309017,
+            50.5975882
+          ],
+          [
+            5.1309384,
+            50.5976304
+          ],
+          [
+            5.1309505,
+            50.597678
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-tumulus-of-vissoul",
+      "properties": {
+        "snippet": "Tumulus, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/236184211/location-of-tumulus-of-vissoul",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "location of Tumulus of Vissoul"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/246546508",
+          "citationDetail": "Way 246546508",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=246546508",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-tumulus-of-vissoul",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "location of Tumulus of Vissoul",
+      "provenance": "OpenStreetMap (Way 246546508, version 5, osm:changeset=138540748, 2023-07-15T11:21:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-11-16T22:45:59Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.1309505,
+            50.597678
+          ],
+          [
+            5.1309367,
+            50.5977254
+          ],
+          [
+            5.1308986,
+            50.597767
+          ],
+          [
+            5.1308405,
+            50.597798
+          ],
+          [
+            5.13079,
+            50.5977956
+          ],
+          [
+            5.1307205,
+            50.5977982
+          ],
+          [
+            5.1306569,
+            50.5977873
+          ],
+          [
+            5.1305759,
+            50.5977066
+          ],
+          [
+            5.1306333,
+            50.5976047
+          ],
+          [
+            5.1307278,
+            50.5975632
+          ],
+          [
+            5.1308076,
+            50.5975477
+          ],
+          [
+            5.1308447,
+            50.5975564
+          ],
+          [
+            5.1309017,
+            50.5975882
+          ],
+          [
+            5.1309384,
+            50.5976304
+          ],
+          [
+            5.1309505,
+            50.597678
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/236184211/location-of-tumulus-of-vissoul",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T20:04:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-22T11:22:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-16T20:10:38Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-16T22:46:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-16T22:46:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-16T22:46:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://nl.wikipedia.org/wiki/Tumulus_van_Vissoul",
+      "citationDetail": "Tumulus van Vissoul",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Dutch)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/X8UQRPJW",
+      "formattedCitation": "Wikipedia: De vrije encyclopedie (2001-), Tumulus van Vissoul.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2595945",
+      "citationDetail": "Tumulus of Vissoul (Q2595945)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "236184211",
+  "subject": [],
+  "title": "Tumulus of Vissoul",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Gallo-Roman burial mound located near Vissoul in Belgium.",
+  "reprPoint": [
+    5.130768959691019,
+    50.59768051893165
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    5.1305759,
+    50.5975477,
+    5.1309505,
+    50.5977982
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-16T22:44:51Z",
+  "uri": "https://pleiades.stoa.org/places/236184211",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q2595945",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T20:05:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-22T11:22:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-05-16T20:08:47Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-16T22:44:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-16T22:44:52Z"
+    }
+  ]
+}

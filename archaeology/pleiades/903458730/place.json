@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.28117,
+          37.354969
+        ]
+      },
+      "type": "Feature",
+      "id": "basbuk-1",
+      "properties": {
+        "snippet": "Settlement-modern; 720 BC - AD 2099",
+        "link": "https://pleiades.stoa.org/places/903458730/basbuk-1",
+        "description": "Location based on OpenStreetMap. Dates after \u00d6nal 2022.",
+        "location_precision": "precise",
+        "title": "OSM Location of modern Ba\u015fb\u00fck"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "Thomas Mertens"
+    },
+    {
+      "username": null,
+      "name": "Christopher W. Jones"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1504801730",
+          "citationDetail": "Node 1504801730",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/an-assyrianised-rock-wall-panel-with-figures-at-basbuk-in-southeastern-turkey/82415CB88AF5392098777D2A1B27D008",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "\u00d6nal 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LGDEQPFG",
+          "formattedCitation": "<div class=\"csl-entry\">\u00d6nal, Mehmet, Celal Uluda\u011f, Yusuf Koyuncu, and Selim Ferruh Adal\u0131. \u201cAn Assyrianised Rock Wall Panel with Figures at Ba\u015fb\u00fck in South-Eastern Turkey.\u201d <i>Antiquity</i>, May 11, 2022, 1\u201317. https://doi.org/10.15184/aqy.2022.48.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "basbuk-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM Location of modern Ba\u015fb\u00fck",
+      "provenance": "OpenStreetMap (Node 1504801730, version 5, osm:changeset=90586247, 2020-09-08T12:01:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after \u00d6nal 2022.",
+      "created": "2025-12-03T18:58:28Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.28117,
+          37.354969
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/903458730/basbuk-1",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T18:58:29Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T18:58:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:39:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:39:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:37:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:35:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:35:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/an-assyrianised-rock-wall-panel-with-figures-at-basbuk-in-southeastern-turkey/82415CB88AF5392098777D2A1B27D008",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u00d6nal 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LGDEQPFG",
+      "formattedCitation": "<div class=\"csl-entry\">\u00d6nal, Mehmet, Celal Uluda\u011f, Yusuf Koyuncu, and Selim Ferruh Adal\u0131. \u201cAn Assyrianised Rock Wall Panel with Figures at Ba\u015fb\u00fck in South-Eastern Turkey.\u201d <i>Antiquity</i>, May 11, 2022, 1\u201317. https://doi.org/10.15184/aqy.2022.48.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ba\u015fb\u00fck, Basbuk",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/an-assyrianised-rock-wall-panel-with-figures-at-basbuk-in-southeastern-turkey/82415CB88AF5392098777D2A1B27D008",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "\u00d6nal 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LGDEQPFG",
+          "formattedCitation": "<div class=\"csl-entry\">\u00d6nal, Mehmet, Celal Uluda\u011f, Yusuf Koyuncu, and Selim Ferruh Adal\u0131. \u201cAn Assyrianised Rock Wall Panel with Figures at Ba\u015fb\u00fck in South-Eastern Turkey.\u201d <i>Antiquity</i>, May 11, 2022, 1\u201317. https://doi.org/10.15184/aqy.2022.48.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://tr.wikipedia.org/wiki/Ba%C5%9Fb%C3%BCk,_Siverek",
+          "citationDetail": "Ba\u015fb\u00fck, Siverek",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Turkish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "basbuk",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2025-12-03T19:02:27Z",
+      "uri": "https://pleiades.stoa.org/places/903458730/basbuk",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Ba\u015fb\u00fck",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:02:28Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-12-03T19:02:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:39:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:39:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:34:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-11T18:34:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "903458730",
+  "subject": [],
+  "title": "Ba\u015fb\u00fck",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "This modern village in Turkey's \u015eanl\u0131urfa province is the site of a subterranean complex discovered in 2017 and only partially excavated. The excavated portion of the complex can be dated to the Neo-ssyrian period, thanks to the presence of an unfinished, rock wall panel depicting a divine procession with some divine figures labeled in Aramaic.",
+  "reprPoint": [
+    39.28117,
+    37.354969
+  ],
+  "placeTypes": [
+    "building",
+    "settlement-modern"
+  ],
+  "bbox": [
+    39.28117,
+    37.354969,
+    39.28117,
+    37.354969
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-03T19:03:37Z",
+  "uri": "https://pleiades.stoa.org/places/903458730",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-03T19:03:38Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-12-03T19:03:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-11T18:39:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-11T18:39:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-11T18:38:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-11T18:37:32Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-11T18:32:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-11T18:32:03Z"
+    }
+  ]
+}

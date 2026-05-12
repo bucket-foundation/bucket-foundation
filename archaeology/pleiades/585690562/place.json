@@ -1,0 +1,549 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.1807081,
+            45.4652723
+          ],
+          [
+            9.1807071,
+            45.4653462
+          ],
+          [
+            9.1806809,
+            45.4653578
+          ],
+          [
+            9.1806073,
+            45.4653474
+          ],
+          [
+            9.1805231,
+            45.4653377
+          ],
+          [
+            9.1804101,
+            45.4652955
+          ],
+          [
+            9.1803857,
+            45.4649427
+          ],
+          [
+            9.1805899,
+            45.4649023
+          ],
+          [
+            9.1806013,
+            45.4649515
+          ],
+          [
+            9.1805897,
+            45.4650558
+          ],
+          [
+            9.180606,
+            45.4650751
+          ],
+          [
+            9.1806872,
+            45.4650557
+          ],
+          [
+            9.1807081,
+            45.4652723
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-villa-imperiale",
+      "properties": {
+        "snippet": "Architecturalcomplex, Villa, ; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/585690562/location-of-villa-imperiale",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Imperiale"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/4519679",
+          "citationDetail": "Way 4519679",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=4519679",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Palazzo_imperiale_romano_di_Milano",
+          "citationDetail": "Palazzo imperiale romano di Milano",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Palazzo imperiale romano di Milano.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-villa-imperiale",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa Imperiale",
+      "provenance": "OpenStreetMap (Way 4519679, version 11, osm:changeset=52058827, 2017-09-15T06:56:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "<p>A palatial villa built in the late third century AD by Maximian (<em>Marcus Aurelius Valerius Maximianus Herculius).</em></p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex",
+        "villa",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-09-12T13:50:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.1807081,
+            45.4652723
+          ],
+          [
+            9.1807071,
+            45.4653462
+          ],
+          [
+            9.1806809,
+            45.4653578
+          ],
+          [
+            9.1806073,
+            45.4653474
+          ],
+          [
+            9.1805231,
+            45.4653377
+          ],
+          [
+            9.1804101,
+            45.4652955
+          ],
+          [
+            9.1803857,
+            45.4649427
+          ],
+          [
+            9.1805899,
+            45.4649023
+          ],
+          [
+            9.1806013,
+            45.4649515
+          ],
+          [
+            9.1805897,
+            45.4650558
+          ],
+          [
+            9.180606,
+            45.4650751
+          ],
+          [
+            9.1806872,
+            45.4650557
+          ],
+          [
+            9.1807081,
+            45.4652723
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/585690562/location-of-villa-imperiale",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-20T15:00:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-06T13:29:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-13T16:12:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-12T13:54:03Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-12T13:53:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-12T13:50:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-09-12T13:50:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:58:23Z",
+      "associationCertainty": "certain",
+      "title": "Mediolan(i)um",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/585690562/383706",
+      "connectionType": "at",
+      "id": "383706",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-10T08:25:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/383706",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Palazzo_imperiale_romano_di_Milano",
+      "citationDetail": "Palazzo imperiale romano di Milano",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Palazzo imperiale romano di Milano.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/23168119",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Milano capitale",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KCUB9GCZ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Milano capitale dell\u2019Impero romano 286-402 d.c.</i> Milan: Silvana, 1990. http://www.worldcat.org/oclc/23168119.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "La Guardia 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S4T67SMU",
+      "formattedCitation": "<div class=\"csl-entry\">La Guardia, Rina, and Thea Tibiletti. <i>Milano in et\u00e0 imperiale, I-III secolo: atti del convegno di studi, 7 novembre 1992, Milano</i>. Comune di Milano: Settore cultura e spettacolo civiche raccolte archeologiche, 1996.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://milanoarcheologia.beniculturali.it/?page_id=4354",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Milano archeologia: il Palazzo Imperiale",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Piras 2012, 35\u201083",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M3MBDS9J",
+      "formattedCitation": "<div class=\"csl-entry\">Piras, F. \u201cL\u2019edificio romano di Via Brisa: un settore del palazzo imperiale di Milano.\u201d <i>Lanx</i> 11 (2012): 35\u201083.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3891628",
+      "citationDetail": "Ancient Roman imperial palace of Milan (Q3891628)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Palazzo imperiale romano di Milano",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Palazzo_imperiale_romano_di_Milano",
+          "citationDetail": "Palazzo imperiale romano di Milano",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Palazzo imperiale romano di Milano.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2016-07-06.9826565346",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-07-06T13:33:13Z",
+      "uri": "https://pleiades.stoa.org/places/585690562/name.2016-07-06.9826565346",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-01T20:39:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-01T20:29:13Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-01T20:29:04Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-06T13:33:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-06T13:33:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "585690562",
+  "subject": [
+    "extant remains",
+    "villa"
+  ],
+  "title": "Villa Imperiale of Milan",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>A palatial villa built in the late third century A.D. by Maximian (<em>Marcus Aurelius Valerius Maximianus Herculius).</em></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A palatial Roman villa dating to the reign of Maximian.",
+  "reprPoint": [
+    9.180547013096634,
+    45.46513455062987
+  ],
+  "placeTypes": [
+    "architecturalcomplex",
+    "villa"
+  ],
+  "bbox": [
+    9.1803857,
+    45.4649023,
+    9.1807081,
+    45.4653578
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/383706"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-06-24T20:42:24Z",
+  "uri": "https://pleiades.stoa.org/places/585690562",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-18T20:15:44Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-01T20:40:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-01T20:39:08Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-01T20:37:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-07T00:15:59Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-07T00:15:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-06T13:30:35Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-24T20:42:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-06-24T20:42:24Z"
+    }
+  ]
+}

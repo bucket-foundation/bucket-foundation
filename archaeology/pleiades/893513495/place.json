@@ -1,0 +1,473 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0976247,
+          41.9925872
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sorbo-necropolis-regolini-galassi",
+      "properties": {
+        "snippet": "Tomb; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/893513495/osm-location-of-sorbo-necropolis-regolini-galassi",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Sorbo Necropolis - Regolini-Galassi tomb"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/12894750279",
+          "citationDetail": "Node 12894750279",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=12894750279",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1877295",
+          "citationDetail": "Regolini-Galassi tomb (Q1877295)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-sorbo-necropolis-regolini-galassi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -550,
+      "title": "OSM location of Sorbo Necropolis - Regolini-Galassi tomb",
+      "provenance": "OpenStreetMap (Node 12894750279, version 1, osm:changeset=167307090, 2025-06-07T12:09:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-06-07T12:12:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0976247,
+          41.9925872
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/893513495/osm-location-of-sorbo-necropolis-regolini-galassi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-09T14:22:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T18:57:24Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:13:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:12:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:12:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-06-07T12:24:52Z",
+      "associationCertainty": "certain",
+      "title": "Cemeteries around Caere",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/893513495/0922735403",
+      "connectionType": "at",
+      "id": "0922735403",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:24:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:24:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:24:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/426577",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-06-07T12:25:26Z",
+      "associationCertainty": "certain",
+      "title": "Sorbo necropolis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/893513495/sorbo-necropolis",
+      "connectionType": "part_of_analytical",
+      "id": "sorbo-necropolis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-09T14:22:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T18:57:24Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:25:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:25:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893513494",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1877295",
+      "citationDetail": "Regolini-Galassi tomb (Q1877295)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Regolini-Galassi_tomb",
+      "citationDetail": "Regolini-Galassi tomb",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://riviste.unimi.it/index.php/aristonothos/article/view/21484",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Facchetti 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/26CYWQE7",
+      "formattedCitation": "<div class=\"csl-entry\">Facchetti, Giulio M. \u201cOsservazioni morfonologiche e formule di possesso della tomba Regolini-Galassi.\u201d <i>Aristonothos. Rivista di Studi sul Mediterraneo Antico</i> 19 (October 19, 2023): 113\u201322. https://doi.org/10.54103/2037-4488/21484.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sannibale 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VCI43FCM",
+      "formattedCitation": "<div class=\"csl-entry\">Sannibale, Maurizio. <i>La pisside white-on-red Regolini-Galassi restaurata: riscoperta di un documento pittorico dell\u2019orientalizzante etrusco</i>. Bollettino dei monumenti, musei e gallerie pontificie. Citt\u00e0 del Vaticano: Edizioni Musei Vaticani, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pareti 1947",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IURYCYCK",
+      "formattedCitation": "<div class=\"csl-entry\">Pareti, Luigi. <i>La tomba Regolini-Galassi del Museo gregoriano etrusco e la civilt\u00e0 dell\u2019Italia centrale nel sec. VII A.C</i>. Monumenti vaticani di archeologia e d\u2019arte. Citt\u00e0 del Vaticano: Tipografia poliglotta vaticana, 1947.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sannibale 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ASZBG2YY",
+      "formattedCitation": "<div class=\"csl-entry\">Sannibale, Maurizio, ed. <i>Principi etruschi in laboratorio: la tomba Regolini-Galassi analizzata</i>. Citt\u00e0 del Vaticano: Edizioni Musei Vaticani, 2022.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.degruyter.com/document/doi/10.1515/etst-2024-0003/html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Turfa 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q5MM5I29",
+      "formattedCitation": "<div class=\"csl-entry\">Turfa, Jean MacIntosh. \u201cMaurizio Sannibale: <i>Principi Etruschi in Laboratorio. La Tomba Regolini-Galassi Analizzata</i>.\u201d <i>Etruscan and Italic Studies</i> 27, no. 1\u20132 (November 26, 2024): 254\u201356. https://doi.org/10.1515/etst-2024-0003.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Grifi 1841",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RJ4GWT5E",
+      "formattedCitation": "<div class=\"csl-entry\">Grifi, Luigi. <i>Monumenti di Cere antica spiegati colle osservanze del culto di Mitra</i>. Presso Alessandro Monaldi, 1841.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Regolini-Galassi tomb",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1877295",
+          "citationDetail": "Regolini-Galassi tomb (Q1877295)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "regolini-galassi-tomb",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-06-07T12:28:49Z",
+      "uri": "https://pleiades.stoa.org/places/893513495/regolini-galassi-tomb",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Regolini-Galassi tomb",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-09T14:22:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T18:57:24Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:28:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-07T12:28:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "893513495",
+  "subject": [],
+  "title": "Sorbo Necropolis - Regolini-Galassi tomb",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The \"Regolini-Galassi tomb\" at Caere was discovered in 1836. The well-preserved tomb and its super-elite grave assemblage dates the tomb ca. 680/676-650 BCE. The objects in the assemblage are indicative of the so-called \"Orientalizing\" phenomenon in Etruria.",
+  "reprPoint": [
+    12.0976247,
+    41.9925872
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.0976247,
+    41.9925872,
+    12.0976247,
+    41.9925872
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/426577",
+    "https://pleiades.stoa.org/places/893513494"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-06-07T12:24:51Z",
+  "uri": "https://pleiades.stoa.org/places/893513495",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-09T14:22:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T18:57:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T18:57:24Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T18:57:04Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T13:04:19Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T12:28:04Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T12:24:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-07T12:24:51Z"
+    }
+  ]
+}

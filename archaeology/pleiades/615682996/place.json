@@ -1,0 +1,394 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.8041785,
+          35.1095186
+        ]
+      },
+      "type": "Feature",
+      "id": "pakhea-mmos",
+      "properties": {
+        "snippet": "Cemetery; 3100 BC - 1080 BC",
+        "link": "https://pleiades.stoa.org/places/615682996/pakhea-mmos",
+        "description": "Point based on an OpenStreetMap node representing the location of the modern village of Pachia Ammos, from which the Minoan burial site Pachia Ammos gets its name.",
+        "location_precision": "precise",
+        "title": "OSM location of Pachia Ammos (modern)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middleminoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middleminoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7644200348",
+          "citationDetail": "Node 7644200348",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7644200348",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/247279773",
+          "citationDetail": "Pages 5-10",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Seager 1916",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JNVYLLNB",
+          "formattedCitation": "<div class=\"csl-entry\">Seager, Richard B. <i>The Cemetery of Pachyammos, Crete</i>. University of Pennsylvania The University Museum Anthropological Publications, Vol.VII No.I. Philadelphia, Pa: The University Museum, 1916. http://www.worldcat.org/oclc/247279773.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "pakhea-mmos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1080,
+      "title": "OSM location of Pachia Ammos (modern)",
+      "provenance": "OpenStreetMap (Node 7644200348, version 2, osm:changeset=87208345, 2020-06-26T18:30:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "none",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point based on an OpenStreetMap node representing the location of the modern village of Pachia Ammos, from which the Minoan burial site Pachia Ammos gets its name.",
+      "created": "2022-07-06T20:44:16Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.8041785,
+          35.1095186
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/615682996/pakhea-mmos",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T20:54:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T20:47:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T20:46:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T20:44:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T20:44:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1080,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-28T16:54:45Z",
+      "associationCertainty": "certain",
+      "title": "Creta (island)",
+      "start": -3100,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/615682996/creta-island",
+      "connectionType": "on",
+      "id": "creta-island",
+      "attestations": [
+        {
+          "timePeriod": "early-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middleminoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middleminoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T20:54:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T20:47:36Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T17:06:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T16:54:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T16:54:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-28T16:54:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589748",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/247279773",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Seager 1916",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JNVYLLNB",
+          "formattedCitation": "<div class=\"csl-entry\">Seager, Richard B. <i>The Cemetery of Pachyammos, Crete</i>. University of Pennsylvania The University Museum Anthropological Publications, Vol.VII No.I. Philadelphia, Pa: The University Museum, 1916. http://www.worldcat.org/oclc/247279773.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-08-12T20:59:27Z",
+      "associationCertainty": "certain",
+      "title": "Minoa",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/615682996/minoa",
+      "connectionType": "at",
+      "id": "minoa",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T20:59:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T20:59:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T20:59:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T20:59:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589934",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/247279773",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Seager 1916",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JNVYLLNB",
+      "formattedCitation": "<div class=\"csl-entry\">Seager, Richard Berry. <i>The Cemetery of Pachyammos, Crete</i>. University of Pennsylvania The University Museum Anthropological Publications, Vol.VII No.I. Philadelphia, Pa: The University Museum, 1916. http://www.worldcat.org/oclc/247279773.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "615682996",
+  "subject": [],
+  "title": "Pachia Ammos Minoan Cemetery",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Minoan cemetery located on a sandy beach in use from very early times until the Late Minoan period.",
+  "reprPoint": [
+    25.8041785,
+    35.1095186
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    25.8041785,
+    35.1095186,
+    25.8041785,
+    35.1095186
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589748",
+    "https://pleiades.stoa.org/places/589934",
+    "https://pleiades.stoa.org/places/589934"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-28T16:49:23Z",
+  "uri": "https://pleiades.stoa.org/places/615682996",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-12T20:58:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-12T20:54:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-12T20:54:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-06T20:47:36Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T17:06:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T16:54:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T16:53:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T16:49:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-28T16:49:23Z"
+    }
+  ]
+}

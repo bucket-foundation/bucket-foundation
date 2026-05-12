@@ -1,0 +1,539 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.7314163,
+          35.1283411
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-priniatikos-pyrgos",
+      "properties": {
+        "snippet": "Settlement; 3000 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/55660936/osm-location-of-priniatikos-pyrgos",
+        "description": "Representative location based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Priniatikos Pyrgos"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "scosta",
+      "homepage": null,
+      "name": "Stefano Costa",
+      "uri": "https://pleiades.stoa.org/author/scosta"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2277141191",
+          "citationDetail": "Node 2277141191",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2277141191",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-priniatikos-pyrgos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 640,
+      "title": "OSM location of Priniatikos Pyrgos",
+      "provenance": "OpenStreetMap (Node 2277141191, version 2, osm:changeset=141821027, 2023-09-27T13:46:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on a node derived from OpenStreetMap.",
+      "created": "2017-02-13T21:39:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.7314163,
+          35.1283411
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/55660936/osm-location-of-priniatikos-pyrgos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-12T00:37:24Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:47:08Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:41:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:39:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:39:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-02-13T21:45:20Z",
+      "associationCertainty": "certain",
+      "title": "Creta (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/55660936/creta-island",
+      "connectionType": "connection",
+      "id": "creta-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:47:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:47:08Z"
+        },
+        {
+          "comment": "added cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:45:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:45:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589748",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Priniatikos_Pyrgos",
+      "citationDetail": "Priniatikos Pyrgos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Priniatikos Pyrgos.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.priniatikos.net/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "The Priniatikos Pyrgos Research Project (Irish Institute, Athens)",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://linkedarc.net/projects/project.php?project=la_pp",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "The Priniatikos Pyrgos dataset hosted by linkedarc.net",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.penn.museum/sites/hayden/index.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Priniatikos Pyrgos (Penn Museum Research)",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/10.2972/hesperia.81.4.0507",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hayden 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PYWA9HUJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hayden, Barbara J., and Metaxia Tsipopoulou. \u201cTHE PRINIATIKOS PYRGOS PROJECT: Preliminary Report on the Rescue Excavation of 2005\u20132006.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 81, no. 4 (2012): 507\u201384. https://doi.org/10.2972/hesperia.81.4.0507.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/880862024",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Molloy and Duckworth 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D52KNSSU",
+      "formattedCitation": "<div class=\"csl-entry\">Molloy, Barry, and Chloe\u0308 N. Duckworth. <i>A Cretan Landscape through Time: Priniatikos Pyrgos and Environs</i>. BAR International Series 2634. Oxford, England: Archaeopress, 2014. http://www.worldcat.org/oclc/880862024.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7245224",
+      "citationDetail": "Priniatikos Pyrgos (Q7245224",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/351257XPrP",
+      "citationDetail": "Priniatikos Pyrgos excavation (Crete)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Priniatikos Pyrgos",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.priniatikos.net/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Priniatikos Pyrgos Project website",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/880862024",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Molloy and Duckworth 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D52KNSSU",
+          "formattedCitation": "<div class=\"csl-entry\">Molloy, Barry, and Chloe\u0308 N. Duckworth. <i>A Cretan Landscape through Time: Priniatikos Pyrgos and Environs</i>. BAR International Series 2634. Oxford, England: Archaeopress, 2014. http://www.worldcat.org/oclc/880862024.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "priniatikos-pyrgos",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-04-08T18:11:50Z",
+      "uri": "https://pleiades.stoa.org/places/55660936/priniatikos-pyrgos",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Priniatikos Pyrgos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:47:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:47:07Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-13T21:44:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2015-04-08T18:11:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2015-04-08T18:11:52Z"
+        }
+      ]
+    }
+  ],
+  "id": "55660936",
+  "subject": [],
+  "title": "Priniatikos Pyrgos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>Priniatikos Pyrgos is an archaeological site near Istron, in the eastern Cretan regional unit of Lasithi, Greece. The site is situated on a coastal promontory. It appears to have been first settled in the Final Neolithic period, ca. 3000 BC. Activity on the site continued throughout the Minoan Bronze Age and the Classical Greek and Roman periods, spanning up to ca. 4,000 years. The site may have been a harbor settlement, an industrial area, a cult area, or any combination of such functions, which may have changed throughout its long occupation. Since 2007, Priniatikos Pyrgos has been undergoing excavation by an international team under the auspices of the Irish Institute of Hellenic Studies at Athens.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Priniatikos Pyrgos is located on a limestone headland jutting out into the southwest corner of the Gulf of Mirabello in East Crete. Ongoing survey and excavation in the vicinity is producing evidence of occupation from at least the Late Neolithic down through the Late Roman and Byzantine periods. Whatever ancient names may have been applied to these settlements are as yet unknown.",
+  "reprPoint": [
+    25.7314163,
+    35.1283411
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    25.7314163,
+    35.1283411,
+    25.7314163,
+    35.1283411
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589748"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-04-01T08:35:06Z",
+  "uri": "https://pleiades.stoa.org/places/55660936",
+  "creators": [
+    {
+      "username": "flynam",
+      "homepage": null,
+      "name": "Frank Lynam",
+      "uri": "https://pleiades.stoa.org/author/flynam"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-12T00:41:08Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-12T00:40:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-13T21:47:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-13T21:47:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-13T21:46:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-13T21:44:25Z"
+    },
+    {
+      "comment": "added a reference publication",
+      "modifiedBy": "scosta",
+      "modified": "2015-04-09T20:39:25Z"
+    },
+    {
+      "comment": "more references",
+      "modifiedBy": "thomase",
+      "modified": "2015-04-08T18:28:12Z"
+    },
+    {
+      "comment": "dataset reference merge",
+      "modifiedBy": "thomase",
+      "modified": "2015-04-08T18:23:06Z"
+    },
+    {
+      "comment": "description, type ",
+      "modifiedBy": "thomase",
+      "modified": "2015-04-08T18:12:53Z"
+    },
+    {
+      "comment": "details merge",
+      "modifiedBy": "thomase",
+      "modified": "2015-04-08T18:09:23Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2015-04-08T18:02:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2013-04-17T23:41:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2013-04-17T23:36:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "flynam",
+      "modified": "2013-04-01T08:58:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "flynam",
+      "modified": "2013-04-01T08:35:06Z"
+    }
+  ]
+}

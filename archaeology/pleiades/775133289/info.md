@@ -1,0 +1,14 @@
+# Ipogeo dell'Oplita
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/775133289
+- **ID**: 775133289
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+A hypogeum tomb of the fourth century BCE located at Canusium.

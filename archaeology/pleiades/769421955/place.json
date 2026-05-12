@@ -1,0 +1,401 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.5767506,
+          39.8740972
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-castle-of-oria",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 1453",
+        "link": "https://pleiades.stoa.org/places/769421955/osm-location-castle-of-oria",
+        "description": "",
+        "location_precision": "precise",
+        "title": "OSM Location Castle of Oria"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/8912891038#map=16/39.87142/22.57395",
+          "citationDetail": "Node: Castle of Oria (8912891038)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-castle-of-oria",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 1453,
+      "title": "OSM Location Castle of Oria",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2025-12-09T20:53:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.5767506,
+          39.8740972
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/769421955/osm-location-castle-of-oria",
+      "creators": [
+        {
+          "username": "elkon",
+          "homepage": null,
+          "name": "Eleftheria Konstantinidou",
+          "uri": "https://pleiades.stoa.org/author/elkon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:59:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-15T02:19:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-09T20:53:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-09T20:53:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-12-10T00:37:09Z",
+      "associationCertainty": "certain",
+      "title": "Tempe",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/769421955/tempe",
+      "connectionType": "at",
+      "id": "tempe",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:59:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-15T02:19:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T00:37:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T00:37:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/541131",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "elkon",
+          "homepage": null,
+          "name": "Eleftheria Konstantinidou",
+          "uri": "https://pleiades.stoa.org/author/elkon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17518662",
+      "citationDetail": "Kastro tis Orias (Q17518662)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.openstreetmap.org/node/8912891038",
+      "citationDetail": "Node: Castle of Oria (8912891038)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "OSM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.kastra.eu/castleen.php?kastro=oria",
+      "citationDetail": "Castle of Oria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kastrologos",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4ZQRL22T",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a0\u03b1\u03c0\u03b1\u03b8\u03b1\u03bd\u03b1\u03c3\u03af\u03bf\u03c5, \u039c\u03b1\u03bd\u03ce\u03bb\u03b7\u03c2. \u201c\u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2: \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac \u039a\u03ac\u03c3\u03c4\u03c1\u03b1.\u201d \u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2, 2012. https://www.kastra.eu/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vakalopoulos 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/USGVIPCP",
+      "formattedCitation": "<div class=\"csl-entry\">Vakalopoulos, Apostolos. <i>\u03a4\u03b1 \u039a\u03ac\u03c3\u03c4\u03c1\u03b1 \u03a4\u03bf\u03c5 \u03a0\u03bb\u03b1\u03c4\u03b1\u03bc\u03ce\u03bd\u03b1 \u039a\u03b1\u03b9 \u03a4\u03b7\u03c2 \u03a9\u03c1\u03b9\u03ac\u03c2 \u03a4\u03b5\u03bc\u03c0\u03ce\u03bd \u039a\u03b1\u03b9 \u03bf \u03a4\u03b5\u03ba\u03ad\u03c2 \u03a4\u03bf\u03c5 \u03a7\u03b1\u03c3\u03ac\u03bd \u039c\u03c0\u03b1\u03bc\u03c0\u03ac</i>. \u039c\u03b1\u03ba\u03b5\u03b4\u03bf\u03bd\u03b9\u03ba\u03ae \u0392\u03b9\u03b2\u03bb\u03b9\u03bf\u03b8\u03ae\u03ba\u03b7. \u0394\u03b7\u03bc\u03bf\u03c3\u03b9\u03b5\u03cd\u03bc\u03b1\u03c4\u03b1 \u03a4\u03b7\u03c2 \u0395\u03c4\u03b1\u03b9\u03c1\u03b5\u03af\u03b1\u03c2 \u039c\u03b1\u03ba\u03b5\u03b4\u03bf\u03bd\u03b9\u03ba\u03ce\u03bd \u03a3\u03c0\u03bf\u03c5\u03b4\u03ce\u03bd 37. \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03bf\u03bd\u03af\u03ba\u03b7: \u0395\u03c4\u03b1\u03b9\u03c1\u03b5\u03af\u03b1 \u039c\u03b1\u03ba\u03b5\u03b4\u03bf\u03bd\u03b9\u03ba\u03ce\u03bd \u03a3\u03c0\u03bf\u03c5\u03b4\u03ce\u03bd, 1972.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Theodoropoulos 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BK3UGLDA",
+      "formattedCitation": "<div class=\"csl-entry\">Theodoropoulos, Konstantinos. \u201c\u03a4\u03bf \u03a7\u03c1\u03bf\u03bd\u03b9\u03ba\u03cc \u03a4\u03c9\u03bd \u039f\u03c7\u03c5\u03c1\u03ce\u03c3\u03b5\u03c9\u03bd \u03a4\u03b7\u03c2 \u039a\u03bf\u03b9\u03bb\u03ac\u03b4\u03b1\u03c2 \u03a4\u03c9\u03bd \u03a4\u03b5\u03bc\u03c0\u03ce\u03bd.\u201d In <i>\u03a3\u03b5\u03bb\u03af\u03b4\u03b5\u03c2 \u0391\u03c0\u03cc \u03a4\u03b7\u03bd \u0399\u03c3\u03c4\u03bf\u03c1\u03af\u03b1 \u03a4\u03b7\u03c2 \u039b\u03ac\u03c1\u03b9\u03c3\u03b1\u03c2 - \u03a0\u03c1\u03b1\u03ba\u03c4\u03b9\u03ba\u03ac 5\u03bf\u03c5 (23.10.1999) \u039a\u03b1\u03b9 6\u03bf\u03c5 (8.5.2004) \u03a3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03bf\u03c5 \u039b\u03b1\u03c1\u03b9\u03c3\u03b1\u03ca\u03ba\u03ce\u03bd \u03a3\u03c0\u03bf\u03c5\u03b4\u03ce\u03bd</i>, edited by D. Ariantzi and I. Eichner, 19\u201332. \u039b\u03ac\u03c1\u03b9\u03c3\u03b1: \u038c\u03bc\u03b9\u03bb\u03bf\u03c2 \u03a6\u03af\u03bb\u03c9\u03bd \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03b9\u03ba\u03ae\u03c2 \u0399\u03c3\u03c4\u03bf\u03c1\u03af\u03b1\u03c2, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Castle of Oria",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/8912891038",
+          "citationDetail": "Node: Castle of Oria (8912891038)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "castle-of-oria",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2025-12-09T21:54:39Z",
+      "uri": "https://pleiades.stoa.org/places/769421955/castle-of-oria",
+      "creators": [
+        {
+          "username": "elkon",
+          "homepage": null,
+          "name": "Eleftheria Konstantinidou",
+          "uri": "https://pleiades.stoa.org/author/elkon"
+        }
+      ],
+      "attested": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03c4\u03b7\u03c2 \u03a9\u03c1\u03b9\u03ac\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:59:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-15T02:19:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-09T21:54:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-09T21:54:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "769421955",
+  "subject": [],
+  "title": "Castle of Oria",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive",
+    "https://pleiades.stoa.org/vocabularies/place-types/castle"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Castle of Oria is a fortification complex on the northern side of Tempe valley of Peneus river, between Mount Olympus and Mount Ossa, in Thessaly, Greece. It played a critical role in defending the region during the Byzantine period. Evidence for the fortifications\u2019 existence in the area can be traced back to a now lost inscription dated to 48 BC. The tower of Oria has traces from several construction periods during the Byzantine period.",
+  "reprPoint": [
+    22.5767506,
+    39.8740972
+  ],
+  "placeTypes": [
+    "tower-defensive",
+    "castle"
+  ],
+  "bbox": [
+    22.5767506,
+    39.8740972,
+    22.5767506,
+    39.8740972
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/541131"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-20T06:11:24Z",
+  "uri": "https://pleiades.stoa.org/places/769421955",
+  "creators": [
+    {
+      "username": "elkon",
+      "homepage": null,
+      "name": "Eleftheria Konstantinidou",
+      "uri": "https://pleiades.stoa.org/author/elkon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Added see further references by @elkon",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-20T18:27:07Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "elkon",
+      "modified": "2026-01-20T06:11:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-13T21:59:10Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-18T16:48:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-15T02:19:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-15T02:19:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-09T21:58:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-09T21:56:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-09T21:52:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-09T20:39:29Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-09T20:39:27Z"
+    }
+  ]
+}

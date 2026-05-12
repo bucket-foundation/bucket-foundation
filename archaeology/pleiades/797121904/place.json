@@ -1,0 +1,457 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.5247318,
+            37.8477202
+          ],
+          [
+            27.5251929,
+            37.847772
+          ],
+          [
+            27.5251991,
+            37.8476636
+          ],
+          [
+            27.5251798,
+            37.8475425
+          ],
+          [
+            27.5250905,
+            37.8474178
+          ],
+          [
+            27.5249461,
+            37.8473419
+          ],
+          [
+            27.5247318,
+            37.8472997
+          ],
+          [
+            27.5245032,
+            37.8473422
+          ],
+          [
+            27.5243808,
+            37.8474278
+          ],
+          [
+            27.524303,
+            37.8475495
+          ],
+          [
+            27.5242847,
+            37.8476609
+          ],
+          [
+            27.5242887,
+            37.8477714
+          ],
+          [
+            27.5247318,
+            37.8477202
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-magnesia-theater-2",
+      "properties": {
+        "snippet": "Theatre; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/797121904/osm-location-magnesia-theater-2",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Magnesia Theater 2"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/525654030",
+          "citationDetail": "Way 525654030",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=525654030",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-magnesia-theater-2",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM Location: Magnesia Theater 2",
+      "provenance": "OpenStreetMap (Way 525654030, version 5, osm:changeset=115588933, 2021-12-31T01:37:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-06-25T19:47:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.5247318,
+            37.8477202
+          ],
+          [
+            27.5251929,
+            37.847772
+          ],
+          [
+            27.5251991,
+            37.8476636
+          ],
+          [
+            27.5251798,
+            37.8475425
+          ],
+          [
+            27.5250905,
+            37.8474178
+          ],
+          [
+            27.5249461,
+            37.8473419
+          ],
+          [
+            27.5247318,
+            37.8472997
+          ],
+          [
+            27.5245032,
+            37.8473422
+          ],
+          [
+            27.5243808,
+            37.8474278
+          ],
+          [
+            27.524303,
+            37.8475495
+          ],
+          [
+            27.5242847,
+            37.8476609
+          ],
+          [
+            27.5242887,
+            37.8477714
+          ],
+          [
+            27.5247318,
+            37.8477202
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/797121904/osm-location-magnesia-theater-2",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-26T16:28:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T20:19:11Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T20:11:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T20:11:41Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T20:10:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T19:50:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T19:49:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T19:47:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T19:47:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-06-25T19:49:20Z",
+      "associationCertainty": "certain",
+      "title": "Magnesia ad Maeandrum/Leukophrys",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/797121904/9605635994",
+      "connectionType": "at",
+      "id": "9605635994",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-26T16:28:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T20:19:11Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T20:10:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T19:49:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T19:49:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-25T19:49:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599778",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://theatrum.de/846.html",
+      "citationDetail": "846: Magnesia am M\u00e4ander, Theater 2",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/abs/when-a-theatron-is-not-a-theater-a-place-for-viewing-in-magnesia-on-the-meander-orhan-bingol-transl-a-calik-ross-and-j-ross-theatron-magnesia-on-the-meander-magnesia-ad-meandrum-monografileri-1-homer-kitabevi-ve-yayrncilik-istanbul2005-pp-264-figs-252-isbn-9758293710-ytl-90-c63/0109CA3483B1777AF7C8A01B6F6F57E0#",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Yeg\u00fcl 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UHDDCHFA",
+      "formattedCitation": "<div class=\"csl-entry\">Yeg\u00fcl, Fikret. \u201cWhen a Theatron Is Not a Theater: \u2018a Place for Viewing\u2019 in Magnesia on the Meander - ORHAN BING\u00d6L (Transl. A. \u00c7ALIK ROSS and J. ROSS), THEATRON. MAGNESIA ON THE MEANDER (Magnesia Ad Meandrum Monografileri 1; Homer Kitabevi ve Yayrncilik, Istanbul2005). Pp. 264, Figs. 252. ISBN 975-8293-71-0. YTL 90 (c.$63).\u201d <i>Journal of Roman Archaeology</i> 20 (January 2007): 578\u201382. https://doi.org/10.1017/S104775940000595X.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bing\u00f6l 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2WBCUW6K",
+      "formattedCitation": "<div class=\"csl-entry\">Bing\u00f6l, Orhan, Ay\u015fe \u00c7al\u0131k. Ross, and Jonathan Ross. <i>Menderes Magnesias\u0131 Theatron = Theatron, Magnesia on the Meander</i>. 1. bas\u0131m. Homer Kitabevi (Series). \u0130stanbul: Homer Kitabevi, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dergipark.org.tr/en/pub/anatolia/issue/47620/601665",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vapur 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/P4M35TYM",
+      "formattedCitation": "<div class=\"csl-entry\">Vapur, \u00d6zlem. \u201cMenderes Magnesi\u0307asi Theatron Kazisi Serami\u0307k Buluntulari.\u201d <i>Anadolu</i>, no. 37 (May 1, 2011): 143\u201393. https://doi.org/10.1501/andl_0000000385.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "797121904",
+  "subject": [],
+  "title": "Magnesia Theater 2",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of two theaters found at Magnesia on the Maeander, this so-called \"theatron\" was built in the late Hellenistic or early Imperial period and was destroyed by a landslide in antiquity.",
+  "reprPoint": [
+    27.52474080406369,
+    37.847571582778514
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    27.5242847,
+    37.8472997,
+    27.5251991,
+    37.847772
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599778"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-06-25T19:49:20Z",
+  "uri": "https://pleiades.stoa.org/places/797121904",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-26T16:28:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-26T16:28:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T20:25:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T20:19:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T20:18:53Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T20:10:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T19:50:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T19:50:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T19:50:06Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T19:49:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-25T19:49:20Z"
+    }
+  ]
+}

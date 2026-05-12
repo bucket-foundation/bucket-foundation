@@ -1,0 +1,320 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4964638,
+            40.7499451
+          ],
+          [
+            14.4964874,
+            40.7499495
+          ],
+          [
+            14.4964738,
+            40.7499799
+          ],
+          [
+            14.4964502,
+            40.749975
+          ],
+          [
+            14.4964638,
+            40.7499451
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomb-of-caecilia-agathia",
+      "properties": {
+        "snippet": "Tomb; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/197672107/osm-location-of-tomb-of-caecilia-agathia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Caecilia Agathia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/506028484",
+          "citationDetail": "Way 506028484",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=506028484",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tomb-of-caecilia-agathia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 99,
+      "title": "OSM location of Tomb of Caecilia Agathia",
+      "provenance": "OpenStreetMap (Way 506028484, version 2, osm:changeset=164233217, 2025-03-29T03:12:44Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-29T13:53:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4964638,
+            40.7499451
+          ],
+          [
+            14.4964874,
+            40.7499495
+          ],
+          [
+            14.4964738,
+            40.7499799
+          ],
+          [
+            14.4964502,
+            40.749975
+          ],
+          [
+            14.4964638,
+            40.7499451
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/197672107/osm-location-of-tomb-of-caecilia-agathia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-30T13:59:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-30T01:04:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T23:40:38Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T13:53:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T13:53:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T13:53:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-29T14:15:23Z",
+      "associationCertainty": "certain",
+      "title": "Fondo Pacifico necropolis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/197672107/7236449643",
+      "connectionType": "at",
+      "id": "7236449643",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T14:15:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T14:15:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T14:15:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/437828318",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q133631186",
+      "citationDetail": "Tomb of Caecilia Agathia (Q133631186)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Campbell 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X53HU328",
+      "formattedCitation": "<div class=\"csl-entry\">Campbell, Virginia L. <i>The Tombs of Pompeii: Organization, Space, and Society</i>, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://catdir.loc.gov/catdir/toc/ecip048/2003020218.html",
+      "citationDetail": "221",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cooley and Cooley 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3PWM5RI6",
+      "formattedCitation": "<div class=\"csl-entry\">Cooley, Alison, and M. G. L. Cooley. <i>Pompeii and Herculaneum: A Sourcebook</i>. Second edition. Routledge Sourcebooks for the Ancient World. London: Routledge/Taylor &amp; Francis Group, 2014. http://catdir.loc.gov/catdir/toc/ecip048/2003020218.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/25607635?seq=17",
+      "citationDetail": "1990 (1993), 177a",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4EG4F7MC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>L\u2019Ann\u00e9e Epigraphique: Revue Des Publications \u00c9pigrafiques Relatives a l\u2019antiquit\u00e9 Romaine</i>. Paris: Presses Universitaires de France, 1889. https://www.jstor.org/journal/anneepig.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "197672107",
+  "subject": [],
+  "title": "Tomb of Caecilia Agathia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "The tomb's inscription reads \"Caecilia Agathia and Caecilius Dioscurides Caecilia Agathia, freedwoman of Lucius, in her lifetime constructed this for herself and for Lucius Caecilius Dioscurides, freedman of Lucius, her husband\". AE 1990 (1993), 177a.",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Tomb of Caecilia Agathia in the Fondo Pacifico necropolis of Pompeii.",
+  "reprPoint": [
+    14.496468841316725,
+    40.7499623970261
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    14.4964502,
+    40.7499451,
+    14.4964874,
+    40.7499799
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/437828318"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-29T14:15:22Z",
+  "uri": "https://pleiades.stoa.org/places/197672107",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-30T13:59:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-30T01:04:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-29T14:22:18Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-29T14:15:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-29T14:15:22Z"
+    }
+  ]
+}

@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4906171,
+            40.7479942
+          ],
+          [
+            14.4904926,
+            40.747971
+          ],
+          [
+            14.4905593,
+            40.7479026
+          ],
+          [
+            14.4906484,
+            40.7479072
+          ],
+          [
+            14.4906171,
+            40.7479942
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tomb-of-gnaeus-alleius-nigidius",
+      "properties": {
+        "snippet": "Tomb; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/495101026/osm-location-of-tomb-of-gnaeus-alleius-nigidius",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Gnaeus Alleius Nigidius Maius"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1301825771",
+          "citationDetail": "Way 1301825771",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1301825771",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tomb-of-gnaeus-alleius-nigidius",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 99,
+      "title": "OSM location of Tomb of Gnaeus Alleius Nigidius Maius",
+      "provenance": "OpenStreetMap (Way 1301825771, version 3, osm:changeset=154030507, 2024-07-16T19:36:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-07-17T19:19:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4906171,
+            40.7479942
+          ],
+          [
+            14.4904926,
+            40.747971
+          ],
+          [
+            14.4905593,
+            40.7479026
+          ],
+          [
+            14.4906484,
+            40.7479072
+          ],
+          [
+            14.4906171,
+            40.7479942
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/495101026/osm-location-of-tomb-of-gnaeus-alleius-nigidius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-18T19:28:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:52:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:50:30Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:19:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:19:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:19:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-07-17T19:51:11Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/495101026/pompeii",
+      "connectionType": "at",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-18T19:28:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:52:09Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:51:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:51:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/abs/games-banquets-handouts-and-the-population-of-pompeii-as-deduced-from-a-new-tomb-inscription/29B49DE6F95630C4BC00FE2DA3F69675",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Osanna 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JRQ9L7YV",
+          "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo. \u201cGames, Banquets, Handouts, and the Population of Pompeii as Deduced from a New Tomb Inscription.\u201d <i>Journal of Roman Archaeology</i> 31 (January 2018): 310\u201322. https://doi.org/10.1017/S1047759418001460.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-07-17T19:51:37Z",
+      "associationCertainty": "certain",
+      "title": "Stabian Gate",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/495101026/stabian-gate",
+      "connectionType": "at",
+      "id": "stabian-gate",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-18T19:28:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:52:09Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:51:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-17T19:51:37Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/260329425",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/abs/games-banquets-handouts-and-the-population-of-pompeii-as-deduced-from-a-new-tomb-inscription/29B49DE6F95630C4BC00FE2DA3F69675",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Osanna 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JRQ9L7YV",
+          "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo. \u201cGames, Banquets, Handouts, and the Population of Pompeii as Deduced from a New Tomb Inscription.\u201d <i>Journal of Roman Archaeology</i> 31 (January 2018): 310\u201322. https://doi.org/10.1017/S1047759418001460.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/44291757",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Emmerson 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LVBRF2WA",
+      "formattedCitation": "<div class=\"csl-entry\">Emmerson, Allison L.C. \u201cReconstructing the Funerary Landscape at Pompeii\u2019s Porta Stabia.\u201d <i>Rivista Di Studi Pompeiani</i> 21 (2010): 77\u201386. https://www.jstor.org/stable/44291757.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/abs/games-banquets-handouts-and-the-population-of-pompeii-as-deduced-from-a-new-tomb-inscription/29B49DE6F95630C4BC00FE2DA3F69675",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Osanna 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JRQ9L7YV",
+      "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo. \u201cGames, Banquets, Handouts, and the Population of Pompeii as Deduced from a New Tomb Inscription.\u201d <i>Journal of Roman Archaeology</i> 31 (January 2018): 310\u201322. https://doi.org/10.1017/S1047759418001460.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pompeiiinpictures.com/pompeiiinpictures/Tombs/tombs%20stabg6.htm",
+      "citationDetail": "SG6 Pompeii. Tombs at Stabian Gate or Porta Stabia. Tomb of Gnaeus Alleius Nigidius Maius.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q127510242",
+      "citationDetail": "Tomb of Gnaeus Alleius Nigidius Maius (Q127510242)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pompeiiinpictures.com/pompeiiinpictures/Tombs/tombs%20stabg7.htm",
+      "citationDetail": "SG7 Pompeii, Tombs at Stabian Gate or Porta Stabia.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "495101026",
+  "subject": [
+    "inscription",
+    "tomb",
+    "Latin",
+    "extant remains"
+  ],
+  "title": "Tomb of Nigidius Alleius Maius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Tomb of Nigidius Alleius Maius was excavated in 2017. The tomb includes a 'res gestae'-style inscription in Latin that describes the life, career, and patronage of the decedent. Although the name of the decedent is no longer extant, the tomb has been linked to prominent citizen Nigidius Alleius Maius.",
+  "reprPoint": [
+    14.49057667258938,
+    40.74794729714627
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    14.4904926,
+    40.7479026,
+    14.4906484,
+    40.7479942
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/260329425"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-07-17T19:18:22Z",
+  "uri": "https://pleiades.stoa.org/places/495101026",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-18T19:28:33Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-17T20:01:47Z"
+    },
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-17T19:54:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-17T19:52:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-17T19:52:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-17T19:50:10Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-17T19:36:55Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-17T19:18:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-17T19:18:22Z"
+    }
+  ]
+}

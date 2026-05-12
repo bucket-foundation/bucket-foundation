@@ -1,0 +1,316 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.5790531,
+            38.4467136
+          ],
+          [
+            16.5789002,
+            38.4462872
+          ],
+          [
+            16.5793454,
+            38.4461738
+          ],
+          [
+            16.5795149,
+            38.4466276
+          ],
+          [
+            16.5791302,
+            38.4466993
+          ],
+          [
+            16.5790531,
+            38.4467136
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-domus",
+      "properties": {
+        "snippet": "Townhouse; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/727508953/location-of-domus",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Una casa patrizia di Kaulon"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/154078533",
+          "citationDetail": "Way 154078533",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=154078533",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-domus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of Una casa patrizia di Kaulon",
+      "provenance": "OpenStreetMap (Way 154078533, version 2, osm:changeset=10915599, 2012-03-09T02:16:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-10-09T01:25:11Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.5790531,
+            38.4467136
+          ],
+          [
+            16.5789002,
+            38.4462872
+          ],
+          [
+            16.5793454,
+            38.4461738
+          ],
+          [
+            16.5795149,
+            38.4466276
+          ],
+          [
+            16.5791302,
+            38.4466993
+          ],
+          [
+            16.5790531,
+            38.4467136
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/727508953/location-of-domus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-10T21:59:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-17T15:28:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-09T02:21:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-09T01:26:13Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-09T01:26:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-09T01:25:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-09T01:25:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-12-17T15:28:40Z",
+      "associationCertainty": "certain",
+      "title": "Kaulonia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/727508953/5203965906",
+      "connectionType": "at",
+      "id": "5203965906",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-17T15:28:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-17T15:28:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-17T15:28:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/452352",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Iannelli 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/39WG54S4",
+      "formattedCitation": "<div class=\"csl-entry\">Iannelli, Maria Teresa, and Francesco A. Cuteri. \u201cKaulonia (Monasterace M., Calabria). Il grande mosaico ellenistico rinvenuto nel complesso termale nei pressi della \u2018Casa Matta.\u2019\u201d In <i>Atti del XIX Colloquio dell\u2019Associazione italiana per lo studio e la conservazione del mosaico\u202f: Isernia, 13-16 marzo 2013</i>, 167\u201378. Tivoli (Roma): Edizioni Scripta, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "727508953",
+  "subject": [],
+  "title": "Casa Matta at Kaulonia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Casa Matta\" at Kaulonia is an elite domestic building of the Hellenistic period that includes mosaics in the remains of its bathing rooms.",
+  "reprPoint": [
+    16.57920766609374,
+    38.44645093459917
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    16.5789002,
+    38.4461738,
+    16.5795149,
+    38.4467136
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/452352"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-12-17T15:28:35Z",
+  "uri": "https://pleiades.stoa.org/places/727508953",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-10T23:12:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-10T22:07:24Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-10T22:07:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-07T01:11:56Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-17T15:29:15Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-17T15:28:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-17T15:28:35Z"
+    }
+  ]
+}

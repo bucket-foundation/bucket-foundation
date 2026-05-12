@@ -1,0 +1,14 @@
+# Bacinora
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/30213
+- **ID**: 30213
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Bacinora
+
+## Description
+
+An ancient place, cited: BAtlas 3 unlocated ‘Bacinora’

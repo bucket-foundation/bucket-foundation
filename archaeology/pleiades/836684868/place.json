@@ -1,0 +1,637 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8755417,
+          13.4594059
+        ]
+      },
+      "type": "Feature",
+      "id": "dharma-location",
+      "properties": {
+        "snippet": "Temple-2",
+        "link": "https://pleiades.stoa.org/places/836684868/dharma-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "DHARMA Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              103.8717608,
+              13.464867
+            ],
+            [
+              103.8762414,
+              13.4649722
+            ],
+            [
+              103.8763146,
+              13.4622331
+            ]
+          ],
+          [
+            [
+              103.8713368,
+              13.4648568
+            ],
+            [
+              103.8717608,
+              13.464867
+            ]
+          ],
+          [
+            [
+              103.868522,
+              13.4620139
+            ],
+            [
+              103.8684892,
+              13.464786
+            ],
+            [
+              103.8713368,
+              13.4648568
+            ]
+          ],
+          [
+            [
+              103.8763146,
+              13.4622331
+            ],
+            [
+              103.8763256,
+              13.4618002
+            ]
+          ],
+          [
+            [
+              103.8763256,
+              13.4618002
+            ],
+            [
+              103.8763939,
+              13.4589236
+            ],
+            [
+              103.8720154,
+              13.4588916
+            ]
+          ],
+          [
+            [
+              103.8720154,
+              13.4588916
+            ],
+            [
+              103.8715273,
+              13.458888
+            ]
+          ],
+          [
+            [
+              103.8715273,
+              13.458888
+            ],
+            [
+              103.8685593,
+              13.4588663
+            ],
+            [
+              103.8685257,
+              13.4617009
+            ]
+          ],
+          [
+            [
+              103.8685257,
+              13.4617009
+            ],
+            [
+              103.868522,
+              13.4620139
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-perimeter-of-site",
+      "properties": {
+        "snippet": "Temple-2; AD 1100 - AD 1499",
+        "link": "https://pleiades.stoa.org/places/836684868/osm-location-of-perimeter-of-site",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of perimeter of site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "dharma-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": null,
+      "title": "DHARMA Location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "",
+      "created": "2020-06-19T01:58:53Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8755417,
+          13.4594059
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/836684868/dharma-location",
+      "creators": [
+        {
+          "username": "telliott",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/telliott"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T17:50:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-29T14:48:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "telliott",
+          "modified": "2020-06-19T02:03:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "telliott",
+          "modified": "2020-06-19T02:02:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "telliott",
+          "modified": "2020-06-19T01:58:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "telliott",
+          "modified": "2020-06-19T01:58:53Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twelfth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twelfth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "thirteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/thirteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/6644694",
+          "citationDetail": "Relation 6644694",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=6644694",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-perimeter-of-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 1499,
+      "title": "OSM Location of perimeter of site",
+      "provenance": "OpenStreetMap (Relation 6644694, version 10, osm:changeset=47129785, 2017-03-24T17:05:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-06-19T02:03:26Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              103.8717608,
+              13.464867
+            ],
+            [
+              103.8762414,
+              13.4649722
+            ],
+            [
+              103.8763146,
+              13.4622331
+            ]
+          ],
+          [
+            [
+              103.8713368,
+              13.4648568
+            ],
+            [
+              103.8717608,
+              13.464867
+            ]
+          ],
+          [
+            [
+              103.868522,
+              13.4620139
+            ],
+            [
+              103.8684892,
+              13.464786
+            ],
+            [
+              103.8713368,
+              13.4648568
+            ]
+          ],
+          [
+            [
+              103.8763146,
+              13.4622331
+            ],
+            [
+              103.8763256,
+              13.4618002
+            ]
+          ],
+          [
+            [
+              103.8763256,
+              13.4618002
+            ],
+            [
+              103.8763939,
+              13.4589236
+            ],
+            [
+              103.8720154,
+              13.4588916
+            ]
+          ],
+          [
+            [
+              103.8720154,
+              13.4588916
+            ],
+            [
+              103.8715273,
+              13.458888
+            ]
+          ],
+          [
+            [
+              103.8715273,
+              13.458888
+            ],
+            [
+              103.8685593,
+              13.4588663
+            ],
+            [
+              103.8685257,
+              13.4617009
+            ]
+          ],
+          [
+            [
+              103.8685257,
+              13.4617009
+            ],
+            [
+              103.868522,
+              13.4620139
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/836684868/osm-location-of-perimeter-of-site",
+      "creators": [
+        {
+          "username": "telliott",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/telliott"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T17:50:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-29T14:48:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-29T14:42:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "telliott",
+          "modified": "2020-06-19T02:04:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "telliott",
+          "modified": "2020-06-19T02:03:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "telliott",
+          "modified": "2020-06-19T02:03:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 1499,
+      "description": "",
+      "contributors": [],
+      "created": "2024-05-29T14:47:06Z",
+      "associationCertainty": "certain",
+      "title": "Angkor",
+      "start": 1100,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/836684868/angkor",
+      "connectionType": "at",
+      "id": "angkor",
+      "attestations": [
+        {
+          "timePeriod": "twelfth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twelfth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "thirteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/thirteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T17:50:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-29T14:48:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-29T14:47:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-05-29T14:47:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/531398484",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/oclc/910518175",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coe 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X4IT46TK",
+      "formattedCitation": "<div class=\"csl-entry\">Coe, Michael D., and John H. Stubbs, eds. <i>Preah Khan Monastic Complex: Angkor, Cambodia</i>. World Monuments Fund Series. London: Scala, 2011. https://worldcat.org/oclc/910518175.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Preah_Khan",
+      "citationDetail": "Preah Khan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q944217",
+      "citationDetail": "Preah Khan (Q944217)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "836684868",
+  "subject": [],
+  "title": "Preah Khan",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Temple at Angkor dedicated in 1191 CE under Jayavarman VII. The temple entered a period of decline beginning in the 15th century.",
+  "reprPoint": [
+    103.87399086564355,
+    13.46064242958711
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    103.8684892,
+    13.4588663,
+    103.8763939,
+    13.4649722
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/531398484"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-19T01:57:23Z",
+  "uri": "https://pleiades.stoa.org/places/836684868",
+  "creators": [
+    {
+      "username": "telliott",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/telliott"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q944217",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-24T03:38:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-29T17:50:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-05-29T14:48:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2024-05-29T14:46:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2024-05-29T14:44:28Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "telliott",
+      "modified": "2020-06-19T01:57:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "telliott",
+      "modified": "2020-06-19T01:57:23Z"
+    }
+  ]
+}

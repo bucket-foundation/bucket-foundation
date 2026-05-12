@@ -1,0 +1,424 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.2331422,
+            32.1295986
+          ],
+          [
+            45.2335181,
+            32.1290291
+          ],
+          [
+            45.2331749,
+            32.1288531
+          ],
+          [
+            45.2331422,
+            32.1288393
+          ],
+          [
+            45.2331118,
+            32.1288215
+          ],
+          [
+            45.2330838,
+            32.1288096
+          ],
+          [
+            45.2325678,
+            32.1285842
+          ],
+          [
+            45.2322059,
+            32.1291893
+          ],
+          [
+            45.2331422,
+            32.1295986
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "ziggurat",
+      "properties": {
+        "snippet": "Ziggurat; 2335 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/745146970/ziggurat",
+        "description": "Polygon representing the extent of the visible remains of the ziggurat at Nippur, derived from an OpenStreetMap Way after Schneider 2023.",
+        "location_precision": "precise",
+        "title": "OSM location of Ziggurat at Nippur"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1242952666",
+          "citationDetail": "Way 1242952666",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1242952666",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://worldcat.org/oclc/1402235211",
+          "citationDetail": "pages 28-33",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Schneider 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5CV2XTPJ",
+          "formattedCitation": "<div class=\"csl-entry\">Schneider, Bernhard. <i>Die Ziqqurrat von Nippur im 1. Jahrtausend v.Chr.</i> marru 12. M\u00fcnster: Zaphon, 2023. https://worldcat.org/oclc/1402235211.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ziggurat",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ziggurat"
+      ],
+      "end": -540,
+      "title": "OSM location of Ziggurat at Nippur",
+      "provenance": "OpenStreetMap (Way 1242952666, version 1, osm:changeset=146681246, 2024-01-25T16:54:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ziggurat"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "ziggurat"
+      ],
+      "description": "Polygon representing the extent of the visible remains of the ziggurat at Nippur, derived from an OpenStreetMap Way after Schneider 2023.",
+      "created": "2024-01-25T17:06:41Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.2331422,
+            32.1295986
+          ],
+          [
+            45.2335181,
+            32.1290291
+          ],
+          [
+            45.2331749,
+            32.1288531
+          ],
+          [
+            45.2331422,
+            32.1288393
+          ],
+          [
+            45.2331118,
+            32.1288215
+          ],
+          [
+            45.2330838,
+            32.1288096
+          ],
+          [
+            45.2325678,
+            32.1285842
+          ],
+          [
+            45.2322059,
+            32.1291893
+          ],
+          [
+            45.2331422,
+            32.1295986
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/745146970/ziggurat",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T18:58:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-25T17:11:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-25T17:09:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-25T17:08:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-25T17:06:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-25T17:06:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2024-01-25T17:10:47Z",
+      "associationCertainty": "certain",
+      "title": "Nippur/Nufar/\u2018Hippareni\u2019",
+      "start": -2335,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/745146970/nippur-nufar-2018hippareni2019",
+      "connectionType": "at",
+      "id": "nippur-nufar-2018hippareni2019",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-25T18:58:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-25T17:11:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-25T17:10:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-25T17:10:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912910",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/oclc/1402235211",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Schneider 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5CV2XTPJ",
+      "formattedCitation": "<div class=\"csl-entry\">Schneider, Bernhard. <i>Die Ziqqurrat von Nippur im 1. Jahrtausend v.Chr.</i> marru 12. M\u00fcnster: Zaphon, 2023. https://worldcat.org/oclc/1402235211.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.researchgate.net/publication/350670334",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Clayden 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F9T4FWY7",
+      "formattedCitation": "<div class=\"csl-entry\">Clayden, Tim, and Bernhard Schneider. \u201cAssurbanipal and the Ziggurat at Nippur\u201d 12 (January 1, 2015). https://www.researchgate.net/publication/350670334.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q124356253",
+      "citationDetail": "Ziggurat at Nippur (Q124356253)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "745146970",
+  "subject": [],
+  "title": "Ziggurat at Nippur",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/ziggurat"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Ziggurat in the city of Nippur that was constructed under Ur-Nammu during the 21st century BCE and renovated under Esarhaddon and Assurbanipal during the 7th century BCE.",
+  "reprPoint": [
+    45.23285792518379,
+    32.12909436826279
+  ],
+  "placeTypes": [
+    "ziggurat"
+  ],
+  "bbox": [
+    45.2322059,
+    32.1285842,
+    45.2335181,
+    32.1295986
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912910"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-01-25T17:05:25Z",
+  "uri": "https://pleiades.stoa.org/places/745146970",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Ziggurat at Nippur (Q124356253)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-25T19:01:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-25T18:58:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-01-25T17:11:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2024-01-25T17:06:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-01-25T17:05:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-01-25T17:05:25Z"
+    }
+  ]
+}

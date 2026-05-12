@@ -1,0 +1,14 @@
+# Soita
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/60060
+- **ID**: 60060
+- **Coords (lng, lat)**: [77.665795, 38.350807]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Soita
+
+## Description
+
+An ancient place, cited: BAtlas 6 D2 Soita

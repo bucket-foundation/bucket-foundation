@@ -1,0 +1,14 @@
+# Khalchayan
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/971791
+- **ID**: 971791
+- **Coords (lng, lat)**: [67.95405, 38.315459]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=settlement
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 99 B1 Khalchayan

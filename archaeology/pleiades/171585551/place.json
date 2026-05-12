@@ -1,0 +1,765 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.8742850623,
+          33.3391861956
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-tell-agrab",
+      "properties": {
+        "snippet": "Settlement; 2950 BC - 1600 BC",
+        "link": "https://pleiades.stoa.org/places/171585551/imagery-location-of-tell-agrab",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Tall Ajrab"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.8738448,
+          33.3395216
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-agrab",
+      "properties": {
+        "snippet": "Settlement; 2950 BC - 1600 BC",
+        "link": "https://pleiades.stoa.org/places/171585551/osm-location-of-tell-agrab",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Agrab"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-dynastic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-dynastic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/oip58.pdf.",
+          "citationDetail": "218-219",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Delougaz and Lloyd 1942",
+          "bibliographicURI": "",
+          "formattedCitation": "Delougaz, Pinhas, and Seton Lloyd. Pre-Sargonid Temples in the Diyala Region. Oriental Institute Publications (OIP) 58. Chicago: University of Chicago Press, 1942. ",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/703563648",
+          "citationDetail": "Map 19: Site 10",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Atlas of the archaeological sites in Iraq 1976",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6LTLKVYH",
+          "formattedCitation": "<div class=\"csl-entry\">Iraq, Mud\u012br\u012byat al-\u0100th\u0101r al\u02bb\u0100mmah, Iraq, and Mud\u012br\u012byat al-\u0100th\u0101r al-\u02bb\u0100mmah. <i>A\u1e6dlas Al-Mawaqi\u02bb, Al-Athar\u012byah F\u012b Al-\u02bbIr\u0101q.</i>, 1976.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-tell-agrab",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1600,
+      "title": "CIGS location of Tall Ajrab",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2950,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around site as identified on Google Earth base imagery in ArcGIS 10 (August 2018).</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "",
+      "created": "2018-11-07T09:52:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.8742850623,
+          33.3391861956
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/171585551/imagery-location-of-tell-agrab",
+      "creators": [
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-31T20:00:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T09:28:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T09:28:25Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T09:27:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T08:53:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T08:52:25Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T08:51:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:36:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-10T14:32:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-21T18:40:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-21T18:33:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-20T10:31:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T09:56:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T09:52:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T09:52:21Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-dynastic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-dynastic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6081065440",
+          "citationDetail": "Node 6081065440",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6081065440",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tell-agrab",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1600,
+      "title": "OSM location of Tell Agrab",
+      "provenance": "OpenStreetMap (Node 6081065440, version 2, osm:changeset=65336666, 2018-12-10T09:10:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2950,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-12-10T14:22:27Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.8738448,
+          33.3395216
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/171585551/osm-location-of-tell-agrab",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-31T20:00:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2023-03-31T09:30:35Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-10T14:23:49Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-10T14:22:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-10T14:22:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/oip58.pdf.",
+      "citationDetail": "218-286",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Delougaz and Lloyd 1942",
+      "bibliographicURI": "",
+      "formattedCitation": "Delougaz, Pinhas, and Seton Lloyd. Pre-Sargonid Temples in the Diyala Region. Oriental Institute Publications (OIP) 58. Chicago: University of Chicago Press, 1942. ",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Site 515",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Adams 1965",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AMT5W2FV",
+      "formattedCitation": "<div class=\"csl-entry\">Adams, Robert McCormick. <i>Land behind Baghdad: A History of Settlement on the Diyala Plains</i>. Chicago: University of Chicago Press, 1965.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/oip58.pdf.",
+      "citationDetail": "267-273",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Delougaz et al. 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/88KFQSFD",
+      "formattedCitation": "<div class=\"csl-entry\">Delougaz, Pinhas, Seton Lloyd, Thorkild Jacobsen, and Henri Frankfort. <i>Pre-Sargonid Temples in the Diyale Region</i>. University of Chicago Oriental Institute Publications 58. Chicago: University of Chicago Press, 1972. https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/oip58.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Tell_Agrab",
+      "citationDetail": "Tell Agrab",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "9-10",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Bryce 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZSXV8M2K",
+      "formattedCitation": "<div class=\"csl-entry\">Bryce, Trevor. <i>The Routledge Handbook of the Peoples and Places of Ancient Western Asia: The Near East from the Early Bronze Age to the Fall of the Persian Empire</i>. London; New York: Routledge, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/703563648",
+      "citationDetail": "Map 19: Site 10",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Atlas of the archaeological sites in Iraq 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6LTLKVYH",
+      "formattedCitation": "<div class=\"csl-entry\">Iraq, Mud\u012br\u012byat al-\u0100th\u0101r al\u02bb\u0100mmah, Iraq, and Mud\u012br\u012byat al-\u0100th\u0101r al-\u02bb\u0100mmah. <i>A\u1e6dlas Al-Mawaqi\u02bb, Al-Athar\u012byah F\u012b Al-\u02bbIr\u0101q.</i>, 1976.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tall Ajrab",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/703563648",
+          "citationDetail": "Map 19, Site 10",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Atlas of Archaeological Sites in Iraq 1976",
+          "bibliographicURI": "",
+          "formattedCitation": "Directorate General of Antiquities. Atlas of the Archaeological Sites in Iraq. Baghdad: Republic of Iraq Ministry of Information Directorate General of Antiquities/Al-Huria Printing, 1976.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tall-ajrab",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2018-11-07T10:38:52Z",
+      "uri": "https://pleiades.stoa.org/places/171585551/tall-ajrab",
+      "creators": [
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u062a\u0644 \u0627\u062c\u0631\u0628",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:36:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-21T18:40:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T10:38:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T10:38:52Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tell Agrab",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://oi.uchicago.edu/sites/oi.uchicago.edu/files/uploads/shared/docs/oip58.pdf.",
+          "citationDetail": "218-219",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Delougaz and Lloyd 1942",
+          "bibliographicURI": "",
+          "formattedCitation": "Delougaz, Pinhas, and Seton Lloyd. Pre-Sargonid Temples in the Diyala Region. Oriental Institute Publications (OIP) 58. Chicago: University of Chicago Press, 1942. ",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-11-07.3112984007",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-11-07T10:43:41Z",
+      "uri": "https://pleiades.stoa.org/places/171585551/name.2018-11-07.3112984007",
+      "creators": [
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:36:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-21T18:40:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T10:44:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T10:43:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T10:43:41Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tall Aghrab",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://ar.wikipedia.org/wiki/\u062a\u0644_\u0623\u063a\u0631\u0628",
+          "citationDetail": "\u062a\u0644 \u0623\u063a\u0631\u0628",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (Arabic)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GHHKA7KA",
+          "formattedCitation": "<div class=\"csl-entry\">\u201c\u0627\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629.\u201d <i>Wikipedia, the free encyclopedia</i>, September 20, 2018. https://ar.wikipedia.org/w/index.php?title=%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9&amp;oldid=30661407.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "tall-aghrab",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2018-11-07T10:52:15Z",
+      "uri": "https://pleiades.stoa.org/places/171585551/tall-aghrab",
+      "creators": [
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u062a\u0644 \u0622\u063a\u0631\u0628",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-14T22:36:32Z"
+        },
+        {
+          "comment": "references",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-23T05:27:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-21T18:40:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T10:52:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2018-11-07T10:52:15Z"
+        }
+      ]
+    }
+  ],
+  "id": "171585551",
+  "subject": [
+    "excavation",
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Tall Ajrab",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tell Agrab, or Ajrab, is a medium-sized archaeological mound in the Diyala Province of central Iraq, some forty kilometers east of Baghdad. The site was excavated by archaeologists from the Oriental Institute of the University of Chicago in 1936 and 1937. Tell Agrab seems to have been inhabited from the early 3rd millennium BCE until the beginning of the Old Babylonian Period (ca. 1800 BCE). In its early history, the site held a temple possibly dedicated to the god \u0160ara.",
+  "reprPoint": [
+    44.87406493115,
+    33.339353897799995
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    44.8738448,
+    33.3391861956,
+    44.8742850623,
+    33.3395216
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-07T09:42:51Z",
+  "uri": "https://pleiades.stoa.org/places/171585551",
+  "creators": [
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-31T20:00:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T10:07:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T10:07:16Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T10:06:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T09:30:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T09:29:39Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "rrattenborg",
+      "modified": "2023-03-31T09:29:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-14T22:36:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-22T01:29:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-21T18:40:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-21T18:35:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-21T18:33:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-20T10:26:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-07T11:10:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-07T11:01:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-07T10:58:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-07T10:41:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-07T10:41:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-07T09:42:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "rrattenborg",
+      "modified": "2018-11-07T09:42:51Z"
+    }
+  ]
+}

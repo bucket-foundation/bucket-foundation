@@ -1,0 +1,14 @@
+# ‘Bao’
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/206958
+- **ID**: 206958
+- **Coords (lng, lat)**: [21.442899, 44.324033]
+- **Subjects**: dare:ancient=1, dare:major=0, dare:feature=station
+- **Time periods**: 
+- **Names**: Bao
+
+## Description
+
+An ancient place, cited: BAtlas 21 D5 ‘Bao’

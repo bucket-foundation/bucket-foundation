@@ -1,0 +1,367 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.8612858,
+          43.4012921
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-etruscan-acropolis",
+      "properties": {
+        "snippet": "Temple-2, ; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/643029512/location-of-etruscan-acropolis",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Etruscan acropolis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/471087381",
+          "citationDetail": "Node 471087381",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=471087381",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/53340266",
+          "formattedCitation": "Bonamici, M. 2003. Volterra : l'acropoli e il suo santuario : scavi 1987-1995. 2 v. Pisa: Giardini.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-etruscan-acropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of Etruscan acropolis",
+      "provenance": "OpenStreetMap (Node 471087381, version 1, osm:changeset=2203268, 2009-08-19T17:48:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-02-24T16:06:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.8612858,
+          43.4012921
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/643029512/location-of-etruscan-acropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-23T03:37:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-18T11:51:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-24T16:18:39Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-24T16:08:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-24T16:06:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-24T16:06:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-02-09T18:26:20Z",
+      "associationCertainty": "certain",
+      "title": "Velathri/Volaterrae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/643029512/7802991562",
+      "connectionType": "at",
+      "id": "7802991562",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-09T18:26:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-09T18:26:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-09T18:26:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403292",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/record_view.php?fst_cd=AIAC_1035",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Fasti Online: Acropoli \u2013 Piano del Castello",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/875810071",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bonamici et al. 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F2WQHFNG",
+      "formattedCitation": "<div class=\"csl-entry\">Bonamici, Marisa, and S. Binachi. <i>Volterra\u202f: l\u2019acropoli e il suo santuario\u202f: scavi 1987-1995</i>. 2 vols. Terra Italia 6. Pisa: Giardini editori e stampatori, 2003. http://www.worldcat.org/oclc/875810071.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/cambridge-archaeological-journal/article/div-classtitleform-and-meaning-in-etruscan-ritual-spacediv/0E5C42343D121F7BD9C5FFAC82DC428B",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Izzet 2001, 185-200",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E3Q7TT72",
+      "formattedCitation": "<div class=\"csl-entry\">Izzet, Vedia. \u201cForm and Meaning in Etruscan Ritual Space.\u201d <i>Cambridge Archaeological Journal</i> 11, no. 2 (2001): 185\u2013200. doi:https://doi.org/10.1017/S0959774301000105.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/20066881",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Roth 2005, 313-315",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U5I7FAW6",
+      "formattedCitation": "<div class=\"csl-entry\">Roth, Roman. \u201cReviewed Work: Volterra: L\u2019acropoli E Il Suo Santuario: Scavi 1987-1995 by M. Bonamici.\u201d <i>Journal of Roman Studies</i> 95 (2005): 313\u201315. http://www.jstor.org/stable/20066881.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/10401267/parco-archeologico-%22enrico-fiumi%22.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "GeoNames 10401267",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bonamici 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/78CUBQUA",
+      "formattedCitation": "<div class=\"csl-entry\">Bonamici, Marisa, and Lisa Rosselli. \u201cIl Santuario Dell\u2019Acropoli Di Volterra.\u201d In <i>La Citt\u00e0 Etrusca e Il Sacro\u202f: Santuari e Istituzioni Politiche\u202f: Atti Del Convegno, Bologna 21-23 Gennaio 2016</i>, 51\u201374. Bologna: Bononia University Press, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "643029512",
+  "subject": [
+    "sanctuary",
+    "extant remains"
+  ],
+  "title": "Etruscan acropolis at Volaterrae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The multi-phase acropolis of Etruscan Volaterrae has numerous important phases, beginning in the Archaic period. The monumental site continued to develop and grow during the Hellenistic period. It was identified archaeologically only in the nineteenth century. In the twentieth century it was the subject of major investigations under M. Cristofani and, later, M. Bonamici.",
+  "reprPoint": [
+    10.8612858,
+    43.4012921
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    10.8612858,
+    43.4012921,
+    10.8612858,
+    43.4012921
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/403292"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-02-09T18:26:19Z",
+  "uri": "https://pleiades.stoa.org/places/643029512",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-29T14:20:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-03-09T19:04:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-09T20:23:10Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-09T20:22:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-09T20:18:41Z"
+    },
+    {
+      "comment": "edited summary",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-09T20:18:16Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-09T20:16:18Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-09T18:27:07Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-09T18:26:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-09T18:26:19Z"
+    }
+  ]
+}

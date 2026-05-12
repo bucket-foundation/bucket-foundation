@@ -1,0 +1,311 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.0607239,
+            39.6605587
+          ],
+          [
+            -4.05868,
+            39.6601334
+          ],
+          [
+            -4.0578378,
+            39.6598773
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "alcantarilla-roman-dam",
+      "properties": {
+        "snippet": "Dam; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/268784/alcantarilla-roman-dam",
+        "description": "Representative location based on a way derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Presa romana de Alcantarilla"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Warner"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/245376455",
+          "citationDetail": "Way 245376455",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=245376455",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Alcantarilla_Dam",
+          "citationDetail": "Alcantarilla Dam",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Alcantarilla Dam.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "alcantarilla-roman-dam",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/dam"
+      ],
+      "end": 300,
+      "title": "OSM location of Presa romana de Alcantarilla",
+      "provenance": "OpenStreetMap (Way 245376455, version 3, osm:changeset=143111076, 2023-10-25T11:46:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/dam"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "dam"
+      ],
+      "description": "Representative location based on a way derived from OpenStreetMap.",
+      "created": "2013-11-09T23:09:43Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.0607239,
+            39.6605587
+          ],
+          [
+            -4.05868,
+            39.6601334
+          ],
+          [
+            -4.0578378,
+            39.6598773
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/268784/alcantarilla-roman-dam",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-23T14:13:49Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-07T20:31:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-29T13:44:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-09T23:10:42Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-09T23:10:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-09T23:09:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-09T23:09:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "27 A2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "396",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caballero Zoreda 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6B6TJWQS",
+      "formattedCitation": "<div class=\"csl-entry\">L. Caballero Zoreda, F.J. S\u00e1nchez-Palencia Ramos with the collaboration of J.M. Rojas, and J. Ramos. \u201cPresas Romanas y Datos Sobre Poblamiento Romano y Medieval En La Provincia de Toledo.\u201d <i>Noticiario Arqueol\u00f3gico Hisp\u00e1nico</i> 14 (1982): 379\u2013433.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "230",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tovar 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RAF4W5MR",
+      "formattedCitation": "<div class=\"csl-entry\">Tovar, Antonio. <i>Tarraconensis</i>. Strasbourg: Heitz, 1989.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "268784",
+  "subject": [],
+  "title": "Alcantarilla Roman Dam",
+  "provenance": "Barrington Atlas: BAtlas 27 A2",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/dam"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: La Alcantarilla on R. Guajaraz.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "La Alcantarilla on R. Guajaraz.",
+  "reprPoint": [
+    -4.0607239,
+    39.6605587
+  ],
+  "placeTypes": [
+    "dam"
+  ],
+  "bbox": [
+    -4.0607239,
+    39.6605587,
+    -4.0607239,
+    39.6605587
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-04-07T20:33:37Z",
+  "uri": "https://pleiades.stoa.org/places/268784",
+  "creators": [
+    {
+      "username": null,
+      "name": "P.O. Spann"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "title; summary; details",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-08T01:28:39Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-07T20:33:36Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-07T20:31:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-29T13:43:51Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-09T23:11:47Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T03:53:43Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:23:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-24T19:33:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-24T19:09:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-24T18:59:23Z"
+    }
+  ]
+}

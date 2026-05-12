@@ -1,0 +1,379 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.0866222,
+            55.8950752
+          ],
+          [
+            -3.0868067,
+            55.8937513
+          ],
+          [
+            -3.0846292,
+            55.893657
+          ],
+          [
+            -3.0844982,
+            55.8949733
+          ],
+          [
+            -3.0866222,
+            55.8950752
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-elginhaugh-roman-fort",
+      "properties": {
+        "snippet": "Fort-2; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/217976835/osm-location-of-elginhaugh-roman-fort",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Elginhaugh Roman fort"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/739871880",
+          "citationDetail": "Way 739871880",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=739871880",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-elginhaugh-roman-fort",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 410,
+      "title": "OSM location of Elginhaugh Roman fort",
+      "provenance": "OpenStreetMap (Way 739871880, version 4, osm:changeset=138540530, 2023-07-15T11:12:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2019-10-29T23:17:31Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.0866222,
+            55.8950752
+          ],
+          [
+            -3.0868067,
+            55.8937513
+          ],
+          [
+            -3.0846292,
+            55.893657
+          ],
+          [
+            -3.0844982,
+            55.8949733
+          ],
+          [
+            -3.0866222,
+            55.8950752
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/217976835/osm-location-of-elginhaugh-roman-fort",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-11T15:20:37Z"
+        },
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-11T15:20:33Z"
+        },
+        {
+          "comment": "removed deprecated place type",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-16T22:38:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:19:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:18:06Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:18:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:17:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-29T23:17:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://canmore.org.uk/site/53492/elginhaugh",
+      "citationDetail": "53492: Elginhaugh",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Canmore",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9QC8C2K",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Canmore: National Record of the Historic Environment, Part of Historic Environment Scotland</i>, n.d. https://canmore.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://archaeologydataservice.ac.uk/library/browse/issue.xhtml?recordId=1161489&recordType=MonographSeries",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hanson 2007a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HC9UH6KC",
+      "formattedCitation": "<div class=\"csl-entry\">Hanson, W.S., K. Speller, P.A. Yeoman, and J. Terry. <i>Elginhaugh: A Flavian Fort and Its Annexe</i>. 2 vols. Britannia Monograph Series 23. London: Society for the Promotion of Roman Studies, 2007. https://archaeologydataservice.ac.uk/library/browse/issue.xhtml?recordId=1161489&amp;recordType=MonographSeries.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hanson 2007b",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EJ4BWWFH",
+      "formattedCitation": "<div class=\"csl-entry\">Hanson, W.S. <i>A Roman Frontier Fort in Scotland: Elginhaugh</i>. Stroud: Tempus, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Elginhaugh",
+      "citationDetail": "Elginhaugh",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dare.ht.lu.se/places/25373",
+      "citationDetail": "25373",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Lund, Sweden: Department of Archaeology and Ancient History, Lund University, Sweden, 2015. http://dare.ht.lu.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q56662510",
+      "citationDetail": "Q56662510",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "217976835",
+  "subject": [
+    "dare:feature=fort",
+    "fort"
+  ],
+  "title": "Elginhaugh Roman fort",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Site of the most completely excavated timber-built auxiliary fort (with annexe) in the Roman Empire, situated in present-day Midlothian, Scotland. Roman occupation was short-lived, having been established in the early 70s CE and abandoned in or shortly after 86. Now completely built over by the Royal Bank of Scotland Data Centre.",
+  "reprPoint": [
+    -3.0856418209448813,
+    55.89435926624869
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    -3.0868067,
+    55.893657,
+    -3.0844982,
+    55.8950752
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-26T18:41:53Z",
+  "uri": "https://pleiades.stoa.org/places/217976835",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-11T15:20:58Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-28T02:02:17Z"
+    },
+    {
+      "comment": "Added Wikidata reference by @maximeg",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-27T15:31:21Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2025-02-26T18:41:53Z"
+    },
+    {
+      "comment": "Edited type for fort @maximeg",
+      "modifiedBy": "thomase",
+      "modified": "2024-12-16T22:38:03Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-16T21:51:43Z"
+    },
+    {
+      "comment": "DARE ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:20:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:19:30Z"
+    },
+    {
+      "comment": "regularized reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-29T23:19:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-10-29T17:05:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-10-29T17:04:59Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-10-29T16:58:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-10-29T16:58:57Z"
+    }
+  ]
+}

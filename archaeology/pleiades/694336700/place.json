@@ -1,0 +1,304 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7724056,
+          23.5363125
+        ]
+      },
+      "type": "Feature",
+      "id": "cave-5-varaha-cave",
+      "properties": {
+        "snippet": "Cave, Temple-2; AD 200 - AD 499",
+        "link": "https://pleiades.stoa.org/places/694336700/cave-5-varaha-cave",
+        "description": "Point representing the location of Cave 5 at Udayagiri, derived from an OpenStreetMap node after Willis 2009.",
+        "location_precision": "precise",
+        "title": "OSM location of Cave 5 (Var\u0101ha Cave)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/11750780040",
+          "citationDetail": "Node 11750780040",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=11750780040",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://worldcat.org/oclc/235032277",
+          "citationDetail": "page 13",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Willis 2009",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HDBZHRDX",
+          "formattedCitation": "<div class=\"csl-entry\">Willis, Michael D. <i>The Archaeology of Hindu Ritual: Temples and the Establishment of the Gods</i>. Cambridge: Cambridge University Press, 2009. https://worldcat.org/oclc/235032277.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cave-5-varaha-cave",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 499,
+      "title": "OSM location of Cave 5 (Var\u0101ha Cave)",
+      "provenance": "OpenStreetMap (Node 11750780040, version 1, osm:changeset=148974304, 2024-03-21T17:01:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave",
+        "temple-2"
+      ],
+      "description": "Point representing the location of Cave 5 at Udayagiri, derived from an OpenStreetMap node after Willis 2009.",
+      "created": "2024-03-21T17:39:23Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.7724056,
+          23.5363125
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/694336700/cave-5-varaha-cave",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-22T19:01:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:41:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:40:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:39:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:39:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 499,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-21T17:41:14Z",
+      "associationCertainty": "certain",
+      "title": "Udayagiri Caves",
+      "start": 200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/694336700/udayagiri-caves",
+      "connectionType": "part_of_analytical",
+      "id": "udayagiri-caves",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-22T19:01:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:41:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:41:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-21T17:41:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/478135823",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/oclc/235032277",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Willis 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HDBZHRDX",
+      "formattedCitation": "<div class=\"csl-entry\">Willis, Michael D. <i>The Archaeology of Hindu Ritual: Temples and the Establishment of the Gods</i>. Cambridge: Cambridge University Press, 2009. https://worldcat.org/oclc/235032277.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Udayagiri_Caves",
+      "citationDetail": "Udayagiri Caves",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "694336700",
+  "subject": [],
+  "title": "Cave 5 at Udayagiri",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cave 5 at Udayagiri is dedicated to Vishnu and contains a monumental relief panel of Vishnu's Varaha avatar.",
+  "reprPoint": [
+    77.7724056,
+    23.5363125
+  ],
+  "placeTypes": [
+    "cave",
+    "temple-2"
+  ],
+  "bbox": [
+    77.7724056,
+    23.5363125,
+    77.7724056,
+    23.5363125
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/478135823"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-21T17:39:07Z",
+  "uri": "https://pleiades.stoa.org/places/694336700",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-03-22T19:01:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-21T17:41:30Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-21T17:39:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-21T17:39:07Z"
+    }
+  ]
+}

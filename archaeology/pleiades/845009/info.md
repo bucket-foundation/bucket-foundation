@@ -1,0 +1,14 @@
+# Malos
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/845009
+- **ID**: 845009
+- **Coords (lng, lat)**: [33.407989, 40.096997]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Malos
+
+## Description
+
+An ancient place, cited: BAtlas 86 D3 Malos

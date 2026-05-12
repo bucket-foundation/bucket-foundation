@@ -1,0 +1,369 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1655322,
+          31.209168
+        ]
+      },
+      "type": "Feature",
+      "id": "5d75d55e85d15ea-5e25d55d65d4",
+      "properties": {
+        "snippet": "Fort-2; 1200 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/389046313/5d75d55e85d15ea-5e25d55d65d4",
+        "description": "Point based on an OpenStreetMap node representing \u1e24orvat \u02bbUza.",
+        "location_precision": "precise",
+        "title": "OSM location of \u1e24orvat \u02bbUza"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2637228779",
+          "citationDetail": "Node 2637228779",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2637228779",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "5d75d55e85d15ea-5e25d55d65d4",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": -550,
+      "title": "OSM location of \u1e24orvat \u02bbUza",
+      "provenance": "OpenStreetMap (Node 2637228779, version 1, osm:changeset=20199026, 2014-01-25T19:29:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Point based on an OpenStreetMap node representing \u1e24orvat \u02bbUza.",
+      "created": "2022-07-05T13:24:41Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.1655322,
+          31.209168
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/389046313/5d75d55e85d15ea-5e25d55d65d4",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-11T17:21:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:27:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:25:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:24:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:24:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -550,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-05T13:26:07Z",
+      "associationCertainty": "certain",
+      "title": "Negev",
+      "start": -1200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/389046313/negev",
+      "connectionType": "at",
+      "id": "negev",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-11T17:21:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:27:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:26:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:26:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/687985",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/223782209",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Beit-Arieh 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BMMIR6MG",
+          "formattedCitation": "<div class=\"csl-entry\">Beit-Arieh, Itzhaq, Bruce Cresson, and Pirhiya Beck. <i>Horvat `Uza and Horvat Radum: Two Fortresses in the Biblical Negev</i>. Tel Aviv University Sonia and Marco Nadler Institute of Archaeology Monograph Series, No.25. Tel Aviv: Emery and Claire Yass Publications in Archaeology, 2007. http://www.worldcat.org/oclc/223782209.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -550,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-05T13:26:53Z",
+      "associationCertainty": "certain",
+      "title": "\u1e24orvat Radum",
+      "start": -1200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/389046313/horvat-radum",
+      "connectionType": "near",
+      "id": "horvat-radum",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-11T17:21:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:27:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:26:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T13:26:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/767930412",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/223782209",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Beit-Arieh 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BMMIR6MG",
+          "formattedCitation": "<div class=\"csl-entry\">Beit-Arieh, Itzhaq, Bruce Cresson, and Pirhiya Beck. <i>Horvat `Uza and Horvat Radum: Two Fortresses in the Biblical Negev</i>. Tel Aviv University Sonia and Marco Nadler Institute of Archaeology Monograph Series, No.25. Tel Aviv: Emery and Claire Yass Publications in Archaeology, 2007. http://www.worldcat.org/oclc/223782209.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/223782209",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Beit-Arieh 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BMMIR6MG",
+      "formattedCitation": "<div class=\"csl-entry\">Beit-Arieh, Itzhaq, Bruce Cresson, and Pirhiya Beck. <i>Horvat `Uza and Horvat Radum: Two Fortresses in the Biblical Negev</i>. Tel Aviv University Sonia and Marco Nadler Institute of Archaeology Monograph Series, No.25. Tel Aviv: Emery and Claire Yass Publications in Archaeology, 2007. http://www.worldcat.org/oclc/223782209.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Horvat_Uza",
+      "citationDetail": "Horvat Uza",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q12407393",
+      "citationDetail": "Q12407393: Horvat Uza",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "389046313",
+  "subject": [],
+  "title": "\u1e24orvat \u02bbUza",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Iron Age fortress in the Northern Negev Desert with a solid wall and ten towers. Inside the fortress are building complexes with streets between them.",
+  "reprPoint": [
+    35.1655322,
+    31.209168
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    35.1655322,
+    31.209168,
+    35.1655322,
+    31.209168
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/687985",
+    "https://pleiades.stoa.org/places/767930412"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-05T13:23:41Z",
+  "uri": "https://pleiades.stoa.org/places/389046313",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-11T17:21:25Z"
+    },
+    {
+      "comment": "add wikipedia, wikidata references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-11T17:21:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T13:27:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T13:23:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T13:23:41Z"
+    }
+  ]
+}

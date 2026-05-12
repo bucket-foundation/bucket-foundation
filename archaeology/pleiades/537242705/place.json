@@ -1,0 +1,392 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.8871832,
+            31.6671599
+          ],
+          [
+            45.8880979,
+            31.6674159
+          ],
+          [
+            45.8876344,
+            31.6685474
+          ],
+          [
+            45.8867685,
+            31.6682914
+          ],
+          [
+            45.8871832,
+            31.6671599
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-shara-temple-at-umma",
+      "properties": {
+        "snippet": "Temple-2; 2335 BC - 1600 BC",
+        "link": "https://pleiades.stoa.org/places/537242705/osm-location-shara-temple-at-umma",
+        "description": "Polygon representing the outer walls of the Shara Temple at Umma, derived from an OpenStreetMap Way after Mutawalli, Ismael, & Sallaberger 2019",
+        "location_precision": "precise",
+        "title": "OSM Location of Shara Temple at Umma"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/720254190",
+          "citationDetail": "Way 720254190",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=720254190",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1099462423",
+          "citationDetail": "pages 6-7",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mutawalli, Ismael, & Sallaberger 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CEY9QRDT",
+          "formattedCitation": "<div class=\"csl-entry\">Mutawall\u012b, Naw\u0101lah A\u1e25mad Ma\u1e25m\u016bd., Khalid Salim Isma\u02bbel, and Walther Sallaberger. <i>Bullae from the Shara Temple</i>. Cuneiform Texts from the Iraqi Excavations at Umma (Jokha) 2. Wiesbaden: Harrassowitz Verlag, 2019. http://www.worldcat.org/oclc/1099462423.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-shara-temple-at-umma",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -1600,
+      "title": "OSM Location of Shara Temple at Umma",
+      "provenance": "OpenStreetMap (Way 720254190, version 1, osm:changeset=73930123, 2019-08-30T15:50:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon representing the outer walls of the Shara Temple at Umma, derived from an OpenStreetMap Way after Mutawalli, Ismael, & Sallaberger 2019",
+      "created": "2019-08-30T15:55:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.8871832,
+            31.6671599
+          ],
+          [
+            45.8880979,
+            31.6674159
+          ],
+          [
+            45.8876344,
+            31.6685474
+          ],
+          [
+            45.8867685,
+            31.6682914
+          ],
+          [
+            45.8871832,
+            31.6671599
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/537242705/osm-location-shara-temple-at-umma",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-30T21:05:58Z"
+        },
+        {
+          "comment": "altered title for conformance with editorial guidelines",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-30T21:05:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-30T16:02:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-30T15:56:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-30T15:55:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-30T15:55:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1500,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2019-08-30T15:57:41Z",
+      "associationCertainty": "certain",
+      "title": "Umma",
+      "start": -2500,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/537242705/umma",
+      "connectionType": "at",
+      "id": "umma",
+      "attestations": [
+        {
+          "timePeriod": "early-middle-bronze-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-middle-bronze-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-18T21:58:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-08-30T21:05:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-30T16:02:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-30T16:01:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-30T15:57:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-08-30T15:57:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/44626252",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q130558770",
+          "citationDetail": "Shara Temple at Umma (Q130558770)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1099462423",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mutawalli, Ismael, & Sallaberger 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CEY9QRDT",
+      "formattedCitation": "<div class=\"csl-entry\">Mutawall\u012b, Naw\u0101lah A\u1e25mad Ma\u1e25m\u016bd., Khalid Salim Isma\u02bbel, and Walther Sallaberger. <i>Bullae from the Shara Temple</i>. Cuneiform Texts from the Iraqi Excavations at Umma (Jokha) 2. Wiesbaden: Harrassowitz Verlag, 2019. http://www.worldcat.org/oclc/1099462423.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130558770",
+      "citationDetail": "Shara Temple at Umma (Q130558770)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "537242705",
+  "subject": [],
+  "title": "Shara Temple at Umma",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Large temple at Tell Jokha/Umma dedicated to the Sumerian god Shara. The temple was constructed by king \u0160u-Suen of the Third Dynasty of Ur (2035-2027 BCE), and was used during the Ur III-Old Babylonian periods.",
+  "reprPoint": [
+    45.88742524100619,
+    31.66784797952578
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    45.8867685,
+    31.6671599,
+    45.8880979,
+    31.6685474
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/44626252"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-08-30T15:55:07Z",
+  "uri": "https://pleiades.stoa.org/places/537242705",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Shara Temple at Umma (Q130558770)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-18T21:57:46Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-08-30T21:05:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-08-30T16:02:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-08-30T16:02:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-08-30T16:01:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-08-30T15:55:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-08-30T15:55:07Z"
+    }
+  ]
+}

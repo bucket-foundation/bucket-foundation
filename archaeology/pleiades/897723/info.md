@@ -1,0 +1,14 @@
+# Auzara
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/897723
+- **ID**: 897723
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Auzara
+
+## Description
+
+An ancient place, cited: BAtlas 91 unlocated Auzara

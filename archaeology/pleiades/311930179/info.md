@@ -1,0 +1,14 @@
+# Roman amphitheater at Theveste
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/311930179
+- **ID**: 311930179
+- **Coords**: (no precise location)
+- **Subjects**: amphitheater
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+The Roman amphitheater at Theveste dates to the fourth century.

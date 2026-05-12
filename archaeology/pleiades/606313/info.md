@@ -1,0 +1,14 @@
+# Kalamoi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/606313
+- **ID**: 606313
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kalamoi
+
+## Description
+
+An ancient place, cited: BAtlas 61 unlocated Kalamoi

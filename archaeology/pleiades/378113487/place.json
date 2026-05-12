@@ -1,0 +1,345 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.8862368,
+            24.0848302
+          ],
+          [
+            32.8863709,
+            24.0849366
+          ],
+          [
+            32.88623,
+            24.0850847
+          ],
+          [
+            32.8860959,
+            24.0849783
+          ],
+          [
+            32.8862368,
+            24.0848302
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-sanctuary-of-heqaib",
+      "properties": {
+        "snippet": "Sanctuary; 2010 BC - 1640 BC",
+        "link": "https://pleiades.stoa.org/places/378113487/osm-location-sanctuary-of-heqaib",
+        "description": "Polygon based on OpenStreetMap representing the location of the Sanctuary of Heqaib after Habachi 1985.",
+        "location_precision": "precise",
+        "title": "OSM Location of Sanctuary of Heqaib"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1065673671",
+          "citationDetail": "Way 1065673671",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1065673671",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/elephantine-iv-the-sanctuary-of-heqaib/oclc/13543883&referer=brief_results",
+          "citationDetail": "page 15",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Habachi 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FDRTP2GH",
+          "formattedCitation": "<div class=\"csl-entry\">Habachi, Labib, Gerhard Haeny, and Friedrich Junge. <i>Elephantine IV: The Sanctuary of Heqaib</i>. Mainz am Rhein: P. von Zabern, 1985. https://www.worldcat.org/title/elephantine-iv-the-sanctuary-of-heqaib/oclc/13543883&amp;referer=brief_results.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-sanctuary-of-heqaib",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": -1640,
+      "title": "OSM Location of Sanctuary of Heqaib",
+      "provenance": "OpenStreetMap (Way 1065673671, version 5, osm:changeset=127745352, 2022-10-18T19:49:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Polygon based on OpenStreetMap representing the location of the Sanctuary of Heqaib after Habachi 1985.",
+      "created": "2022-05-31T18:08:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.8862368,
+            24.0848302
+          ],
+          [
+            32.8863709,
+            24.0849366
+          ],
+          [
+            32.88623,
+            24.0850847
+          ],
+          [
+            32.8860959,
+            24.0849783
+          ],
+          [
+            32.8862368,
+            24.0848302
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/378113487/osm-location-sanctuary-of-heqaib",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T22:34:24Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-31T20:22:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:12:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:10:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:09:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:08:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:08:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1640,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-31T18:11:16Z",
+      "associationCertainty": "certain",
+      "title": "Elephantine",
+      "start": -2010,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/378113487/elephantine",
+      "connectionType": "on",
+      "id": "elephantine",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-31T20:22:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:12:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:11:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:11:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/786021",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/elephantine-iv-the-sanctuary-of-heqaib/oclc/13543883&referer=brief_results",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Habachi 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FDRTP2GH",
+          "formattedCitation": "<div class=\"csl-entry\">Habachi, Labib, Gerhard Haeny, and Friedrich Junge. <i>Elephantine IV: The Sanctuary of Heqaib</i>. Mainz am Rhein: P. von Zabern, 1985. https://www.worldcat.org/title/elephantine-iv-the-sanctuary-of-heqaib/oclc/13543883&amp;referer=brief_results.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/elephantine-iv-the-sanctuary-of-heqaib/oclc/13543883&referer=brief_results",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Habachi 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FDRTP2GH",
+      "formattedCitation": "<div class=\"csl-entry\">Habachi, Labib, Gerhard Haeny, and Friedrich Junge. <i>Elephantine IV: The Sanctuary of Heqaib</i>. Mainz am Rhein: P. von Zabern, 1985. https://www.worldcat.org/title/elephantine-iv-the-sanctuary-of-heqaib/oclc/13543883&amp;referer=brief_results.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://escholarship.org/uc/item/2dp6m9bt",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Raue 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMZ8QZZV",
+      "formattedCitation": "<div class=\"csl-entry\">Raue, Dietrich. \u201cSanctuary of Heqaib.\u201d <i>UCLA Encyclopedia of Egyptology</i> 1, no. 1 (December 3, 2014). https://escholarship.org/uc/item/2dp6m9bt.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "378113487",
+  "subject": [],
+  "title": "Sanctuary of Heqaib (Elephantine)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Middle Kingdom sanctuary of Heqaib located on Elephantine Island near the Temples of Satis and Khnum.",
+  "reprPoint": [
+    32.88623918613536,
+    24.084959093098156
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    32.8860957,
+    24.08484,
+    32.8863853,
+    24.0850812
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/786021"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-31T18:08:16Z",
+  "uri": "https://pleiades.stoa.org/places/378113487",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Raue 2014",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-01T00:25:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-31T20:22:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T18:12:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T18:08:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T18:08:16Z"
+    }
+  ]
+}

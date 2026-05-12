@@ -1,0 +1,530 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.1839723,
+          39.1322192
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-library-of-pergamon",
+      "properties": {
+        "snippet": "Architecturalcomplex; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/117689032/osm-location-of-library-of-pergamon",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Library of Pergamon"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "Alexa Frazey"
+    },
+    {
+      "username": null,
+      "name": "Julia Doncaster"
+    },
+    {
+      "username": null,
+      "name": "Kayne Khoury"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/10788660502",
+          "citationDetail": "Node 10788660502",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=10788660502",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-library-of-pergamon",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": -30,
+      "title": "OSM location of Library of Pergamon",
+      "provenance": "OpenStreetMap (Node 10788660502, version 12, osm:changeset=140207753, 2023-08-22T03:54:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-04T00:56:32Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.1839723,
+          39.1322192
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/117689032/osm-location-of-library-of-pergamon",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-04T16:35:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-04T00:56:57Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-04T00:56:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-04T00:56:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-04T00:56:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "created": "2016-07-13T13:59:05Z",
+      "associationCertainty": "certain",
+      "title": "Pergamum",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/117689032/550812",
+      "connectionType": "at",
+      "id": "550812",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T21:42:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550812",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Canfora 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6QV46N39",
+      "formattedCitation": "<div class=\"csl-entry\">Canfora, Luciano. <i>The Vanished Library</i>. Berkeley: University of California Press, 1989.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Evans 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8I9SZE5D",
+      "formattedCitation": "<div class=\"csl-entry\">Evans, Richard J. <i>A History of Pergamum: Beyond Hellenistic Kingship</i>. London; New York: Continuum, 2012.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Gamble 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GVQUACWJ",
+      "formattedCitation": "<div class=\"csl-entry\">Gamble, Harry Y. <i>Books and Readers in the Early Church: A History of Early Christian Texts</i>. New Haven: Yale University Press, 1995.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Trumble and Marshall 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CE2IVAQW",
+      "formattedCitation": "<div class=\"csl-entry\">Trumble, Kelly, and Robina MacIntyre Marshall. <i>The Library of Alexandria</i>. New York: Clarion Books, 2003.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://catdir.loc.gov/catdir/toc/fy044/68031232.html",
+      "citationDetail": "Library of Pergamum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ELIS",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X48M75S5",
+      "formattedCitation": "<div class=\"csl-entry\">Kent, Allen, Harold Lancour, William Z. Nasri, and Jay Elwood Daily. <i>Encyclopedia of Library and Information Science</i>. New York: M. Dekker, 1968. http://catdir.loc.gov/catdir/toc/fy044/68031232.html.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Library_of_Pergamum",
+      "citationDetail": "Library of Pergamum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Stockwell 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CUWZ2SG6",
+      "formattedCitation": "<div class=\"csl-entry\">Stockwell, Foster. <i>A History of Information Storage and Retrieval</i>. Jefferson, N.C.: McFarland, 2001.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q856590",
+      "citationDetail": "Library of Pergamum (Q856590)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/j.ctt1njk54",
+      "citationDetail": "pages 49-52 and notes on pages 153-154",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Casson 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNXILTSL",
+      "formattedCitation": "<div class=\"csl-entry\">Casson, Lionel. <i>Libraries in the Ancient World</i>. Yale University Press, 2001. http://www.jstor.org/stable/j.ctt1njk54.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/books/ancient-libraries/wherewas-the-royal-library-of-pergamum/7D1058C27CB7B3D3007FB18F3646164D",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coqueugniot 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GXYG3A4T",
+      "formattedCitation": "<div class=\"csl-entry\">Coqueugniot, Ga\u00eblle. \u201cWhere Was the Royal Library of Pergamum?: An Institution Found and Lost Again.\u201d In <i>Ancient Libraries</i>, edited by Greg Woolf, Jason K\u00f6nig, and Katerina Oikonomopoulou, 109\u201323. Cambridge: Cambridge University Press, 2013. https://doi.org/10.1017/CBO9780511998386.009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Library of Pergamum",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/itemKey/CE2IVAQW",
+          "formattedCitation": "Trumble and Marshall, The Library of Alexandria",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2015-04-28.4074206349",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": null,
+          "name": "Kayne Khoury"
+        },
+        {
+          "username": null,
+          "name": "Alexa Frazey"
+        },
+        {
+          "username": null,
+          "name": "Julia Doncaster"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-04-29T00:18:31Z",
+      "uri": "https://pleiades.stoa.org/places/117689032/name.2015-04-28.4074206349",
+      "creators": [
+        {
+          "username": "cmartinez",
+          "homepage": null,
+          "name": "Carlos Martinez",
+          "uri": "https://pleiades.stoa.org/author/cmartinez"
+        }
+      ],
+      "attested": "Library of Pergamum",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T21:43:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T21:41:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2016-08-10T21:40:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cmartinez",
+          "modified": "2015-05-01T17:16:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cmartinez",
+          "modified": "2015-05-01T17:15:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cmartinez",
+          "modified": "2015-04-29T00:18:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cmartinez",
+          "modified": "2015-04-29T00:18:33Z"
+        }
+      ]
+    }
+  ],
+  "id": "117689032",
+  "subject": [
+    "dare:feature=manmade",
+    "Library"
+  ],
+  "title": "Library of Pergamum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Attalid ruler Eumenes ll built and filled a library at Pergamum between 197 and 159 BCE. Nineteenth century excavators argued for the identification of a series of rooms behind the north stoa of the temple of Athena on the acropolis as housing this library, but more recent scholarship has called this identification into significant doubt (Coqueugniot 2013).",
+  "reprPoint": [
+    27.1839723,
+    39.1322192
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    27.1839723,
+    39.1322192,
+    27.1839723,
+    39.1322192
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550812"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-04T16:36:38Z",
+  "uri": "https://pleiades.stoa.org/places/117689032",
+  "creators": [
+    {
+      "username": "cmartinez",
+      "homepage": null,
+      "name": "Carlos Martinez",
+      "uri": "https://pleiades.stoa.org/author/cmartinez"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references; added Cason reference; summary and Coqueugniot 2013. Recommend that association certainty on the published OSM Location be changed to uncertain and a reference to Coqueugniot 2013 added to its references.",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-17T14:30:26Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-04T16:36:36Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-04T00:55:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T21:43:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T21:41:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2016-08-10T21:21:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cmartinez",
+      "modified": "2015-05-03T21:21:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "cmartinez",
+      "modified": "2015-05-01T17:18:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cmartinez",
+      "modified": "2015-04-28T23:58:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cmartinez",
+      "modified": "2015-04-28T23:58:44Z"
+    }
+  ]
+}

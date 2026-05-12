@@ -1,0 +1,445 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.5172529,
+              41.8898121
+            ],
+            [
+              12.5171964,
+              41.8897402
+            ]
+          ],
+          [
+            [
+              12.5176121,
+              41.8896488
+            ],
+            [
+              12.5172529,
+              41.8898121
+            ]
+          ],
+          [
+            [
+              12.5171964,
+              41.8897402
+            ],
+            [
+              12.517209,
+              41.8897344
+            ],
+            [
+              12.5171855,
+              41.8897017
+            ],
+            [
+              12.5173995,
+              41.8896023
+            ],
+            [
+              12.5173827,
+              41.8895799
+            ],
+            [
+              12.5175074,
+              41.889525
+            ],
+            [
+              12.5176121,
+              41.8896488
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-domus-romana-detta-dei-ritratti",
+      "properties": {
+        "snippet": "Townhouse; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/624604511/osm-location-of-domus-romana-detta-dei-ritratti",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Domus Romana detta dei Ritratti"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/13394476",
+          "citationDetail": "Relation 13394476",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=13394476",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-domus-romana-detta-dei-ritratti",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 640,
+      "title": "OSM location of Domus Romana detta dei Ritratti",
+      "provenance": "OpenStreetMap (Relation 13394476, version 1, osm:changeset=113245158, 2021-11-01T16:29:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-17T23:09:24Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.5172529,
+              41.8898121
+            ],
+            [
+              12.5171964,
+              41.8897402
+            ]
+          ],
+          [
+            [
+              12.5176121,
+              41.8896488
+            ],
+            [
+              12.5172529,
+              41.8898121
+            ]
+          ],
+          [
+            [
+              12.5171964,
+              41.8897402
+            ],
+            [
+              12.517209,
+              41.8897344
+            ],
+            [
+              12.5171855,
+              41.8897017
+            ],
+            [
+              12.5173995,
+              41.8896023
+            ],
+            [
+              12.5173827,
+              41.8895799
+            ],
+            [
+              12.5175074,
+              41.889525
+            ],
+            [
+              12.5176121,
+              41.8896488
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/624604511/osm-location-of-domus-romana-detta-dei-ritratti",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-20T12:14:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T20:25:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T20:22:19Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-17T23:09:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-17T23:09:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-17T23:09:24Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-17T23:10:08Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/624604511/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-20T12:14:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T20:25:55Z"
+        },
+        {
+          "comment": "update reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T20:25:16Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-17T23:10:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-17T23:10:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=3427",
+          "citationDetail": "3427: domus romane presso Santa Croce in Gerusalemme",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Info.roma.it",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-17T23:10:30Z",
+      "associationCertainty": "certain",
+      "title": "Santa Croce in Gerusalemme",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/624604511/santa-croce-in-gerusalemme",
+      "connectionType": "near",
+      "id": "santa-croce-in-gerusalemme",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-20T12:14:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T20:25:55Z"
+        },
+        {
+          "comment": "update reference",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T20:24:19Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-17T23:10:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-17T23:10:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/18528486",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=3427",
+          "citationDetail": "3427: domus romane presso Santa Croce in Gerusalemme",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Info.roma.it",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=3427",
+      "citationDetail": "3427: domus romane presso Santa Croce in Gerusalemme",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "624604511",
+  "subject": [
+    "domus",
+    "wall painting"
+  ],
+  "title": "Domus dei Ritratti",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Domus dei Ritratti\" is located in the archaeological area surrounding Santa Croce in Gerusalemme in Rome. The domus dates to the later Roman Empire.",
+  "reprPoint": [
+    12.517393027586976,
+    41.889670436320785
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    12.5171855,
+    41.889525,
+    12.5176121,
+    41.8898121
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/18528486"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-17T23:08:56Z",
+  "uri": "https://pleiades.stoa.org/places/624604511",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-20T12:14:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-19T20:25:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-19T20:22:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-18T15:06:36Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-17T23:08:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-17T23:08:56Z"
+    }
+  ]
+}

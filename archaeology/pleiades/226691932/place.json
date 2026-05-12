@@ -1,0 +1,141 @@
+{
+  "features": [],
+  "contributors": [],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-14T21:37:34Z",
+      "associationCertainty": "certain",
+      "title": "Petra",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/226691932/petra",
+      "connectionType": "flows_into",
+      "id": "petra",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-15T00:20:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:51:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:37:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-14T21:37:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/697725",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1080/00758914.2023.2174671",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hamarneh 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5WHR634T",
+      "formattedCitation": "<div class=\"csl-entry\">Hamarneh, Catreena. \u201cTo Whom Does the Water Flow? A New Aqueduct Branch of Ayn Braq in Petra, Jordan.\u201d <i>Levant</i> 0, no. 0 (March 21, 2023): 1\u201312. https://doi.org/10.1080/00758914.2023.2174671.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://publication.doa.gov.jo/uploads/publications/24/SHAJ_9-315-324.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bellwald 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L58FTKGR",
+      "formattedCitation": "<div class=\"csl-entry\">Bellwald, Uli. \u201cThe Hydraulic Infrastructure of Petra\u2013A Model for Water Strategies in Arid Land.\u201d <i>Cura Aquarum in Jordanien</i> 12 (2008): 315\u201324. http://publication.doa.gov.jo/uploads/publications/24/SHAJ_9-315-324.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "226691932",
+  "subject": [],
+  "title": "Ayn Braq Aqueduct",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An aqueduct that supplied Petra with water drawn from the Ayn Braq spring, where a large sanctuary had been built.",
+  "reprPoint": null,
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": null,
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/697725",
+    "https://pleiades.stoa.org/places/487519333"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-14T21:26:22Z",
+  "uri": "https://pleiades.stoa.org/places/226691932",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-15T00:20:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-14T21:52:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-14T21:51:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-14T21:26:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-14T21:26:22Z"
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.2230149,
+          29.8751644
+        ]
+      },
+      "type": "Feature",
+      "id": "anubieion",
+      "properties": {
+        "snippet": "Architecturalcomplex; 664 BC - 332 BC",
+        "link": "https://pleiades.stoa.org/places/892575223/anubieion",
+        "description": "Point representing the location of the Anubieion, derived from an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location of Anubieion"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/7538663254",
+          "citationDetail": "Node 7538663254",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=7538663254",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "anubieion",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": -332,
+      "title": "OSM location of Anubieion",
+      "provenance": "OpenStreetMap (Node 7538663254, version 4, osm:changeset=123650946, 2022-07-15T12:17:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -664,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Point representing the location of the Anubieion, derived from an OpenStreetMap Node.",
+      "created": "2020-05-19T18:47:40Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.2230149,
+          29.8751644
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/892575223/anubieion",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-14T14:35:06Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-23T00:44:00Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-18T22:39:29Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-19T21:26:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-19T18:48:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-19T18:48:31Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-19T18:47:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-19T18:47:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -332,
+      "description": "",
+      "contributors": [],
+      "created": "2020-05-19T18:46:02Z",
+      "associationCertainty": "certain",
+      "title": "Saqqarah",
+      "start": -664,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/892575223/saqqarah",
+      "connectionType": "at",
+      "id": "saqqarah",
+      "attestations": [
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-19T21:26:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-19T18:48:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-19T18:46:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-05-19T18:46:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/796289136",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/769372644",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jeffreys & Smith 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7I9KHP9R",
+      "formattedCitation": "<div class=\"csl-entry\">Jeffreys, David Glenmor, and H.S Smith. <i>The Anubieion at Saqq\u00e2ra I\u202f: The Settlement and the Temple Precinct</i>. Excavation Memoir 54. London: Egypt Exploration Society, 1988. http://www.worldcat.org/oclc/769372644.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Giddy 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIW2CYAK",
+      "formattedCitation": "<div class=\"csl-entry\">Giddy, Lisa L. <i>The Anubieion at Saqq\u00e2ra. II: The Cemeteries</i>. Excavation Memoir / Egypt Exploration Society 56. London: Egypt Exploration Society, 1992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "French 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XAJXUP9G",
+      "formattedCitation": "<div class=\"csl-entry\">French, Peter, and Janine Bourriau. <i>The Anubieion at Saqqara. III: Pottery from the Archaic to the Third Intermediate Period</i>. Excavation Memoir 103. London: Egypt Exploration Society, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "French 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J6GPERXC",
+      "formattedCitation": "<div class=\"csl-entry\">French, Peter, and Janine Bourriau. <i>The Anubieion at Saqqara. IV: Pottery of the Late Dynastic Period with Comparative Material from the Sacred Animal Necropolis</i>. Excavation Memoir / Egypt Exploration Society 110. London: Egypt Exploration Society, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q612248",
+      "citationDetail": "Q612248: Anubieion",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Anubieion",
+      "citationDetail": "Anubieion",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "892575223",
+  "subject": [],
+  "title": "Anubieion at Saqqarah",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Late-period district of Saqqara, adjacent to the Teti Pyramid.",
+  "reprPoint": [
+    31.2230149,
+    29.8751644
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    31.2230149,
+    29.8751644,
+    31.2230149,
+    29.8751644
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/796289136"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-05-19T18:45:24Z",
+  "uri": "https://pleiades.stoa.org/places/892575223",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-14T14:35:57Z"
+    },
+    {
+      "comment": "added wikidata and wikipedia (de) links",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-20T14:33:53Z"
+    },
+    {
+      "comment": "added add'l excavation reports as references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-20T14:28:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-19T21:26:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2020-05-19T18:48:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-05-19T18:48:42Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2020-05-19T18:45:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2020-05-19T18:45:24Z"
+    }
+  ]
+}

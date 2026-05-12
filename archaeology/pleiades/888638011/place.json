@@ -1,0 +1,502 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.73250454234637,
+              34.74740612241181
+            ],
+            [
+              40.732453601152386,
+              34.747384619682364
+            ],
+            [
+              40.73253398766998,
+              34.7472042657484
+            ],
+            [
+              40.732471123606935,
+              34.74717598655981
+            ],
+            [
+              40.73258063569806,
+              34.74693964913633
+            ],
+            [
+              40.7329557020413,
+              34.74708851521804
+            ],
+            [
+              40.732739696015976,
+              34.74746390189278
+            ],
+            [
+              40.73252244146185,
+              34.74737669397958
+            ],
+            [
+              40.73250454234637,
+              34.74740612241181
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "total-station-and-photogrammetric-location-of-temple-of-zeus-megistos",
+      "properties": {
+        "snippet": "Temple-2; 100 BC - AD 199",
+        "link": "https://pleiades.stoa.org/places/888638011/total-station-and-photogrammetric-location-of-temple-of-zeus-megistos",
+        "description": "Total station data collected in 2008 by Jennifer Baird,\u00a0Ben Gourley, Simon James, and Dan Stewart, funded by the Leverhulme Trust and the Society for the Promotion of Roman Studies.",
+        "location_precision": "precise",
+        "title": "Total Station and Photogrammetric Location of Temple of Zeus Megistos"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "total-station-and-photogrammetric-location-of-temple-of-zeus-megistos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 199,
+      "title": "Total Station and Photogrammetric Location of Temple of Zeus Megistos",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/ydea-chen-nominal-5m",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Total station data collected in 2008 by Jennifer Baird,\u00a0Ben Gourley, Simon James, and Dan Stewart, funded by the Leverhulme Trust and the Society for the Promotion of Roman Studies.",
+      "created": "2022-12-05T22:54:31Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.73250454234637,
+              34.74740612241181
+            ],
+            [
+              40.732453601152386,
+              34.747384619682364
+            ],
+            [
+              40.73253398766998,
+              34.7472042657484
+            ],
+            [
+              40.732471123606935,
+              34.74717598655981
+            ],
+            [
+              40.73258063569806,
+              34.74693964913633
+            ],
+            [
+              40.7329557020413,
+              34.74708851521804
+            ],
+            [
+              40.732739696015976,
+              34.74746390189278
+            ],
+            [
+              40.73252244146185,
+              34.74737669397958
+            ],
+            [
+              40.73250454234637,
+              34.74740612241181
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/888638011/total-station-and-photogrammetric-location-of-temple-of-zeus-megistos",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T16:44:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T16:44:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T16:18:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2022-12-05T22:54:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-12-05T22:54:39Z",
+      "associationCertainty": "certain",
+      "title": "D(o)ura/Europos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/888638011/douraeuropos",
+      "connectionType": "at",
+      "id": "douraeuropos",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T16:44:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T16:44:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2022-12-05T22:54:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893990",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2022-12-05T22:54:39Z",
+      "associationCertainty": "certain",
+      "title": "Block C4",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/888638011/block-c4",
+      "connectionType": "part_of_physical",
+      "id": "block-c4",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T16:44:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-19T16:44:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2022-12-05T22:54:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/451190292",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1034731631",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baird 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QL32DCUE",
+      "formattedCitation": "<div class=\"csl-entry\">Baird, Jennifer A. <i>Dura-Europos</i>. London: Bloomsbury, 2018. http://www.worldcat.org/oclc/1034731631.</div>",
+      "otherIdentifier": "978-1-4725-2365-5; 978-1-4725-2673-1",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q107405579",
+      "citationDetail": "Temple of Zeus Megistos (Q107405579)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Tempel_des_Zeus_Megistos",
+      "citationDetail": "Tempel des Zeus Megistos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Zeus_Megistos",
+      "citationDetail": "Temple of Zeus Megistos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Zeus Megistos",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Zeus_Megistos",
+          "citationDetail": "Temple of Zeus Megistos",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-of-zeus-megistos",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-01-11T17:44:28Z",
+      "uri": "https://pleiades.stoa.org/places/888638011/temple-of-zeus-megistos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Zeus Megistos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-12T13:25:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-11T17:44:38Z"
+        },
+        {
+          "comment": "name added",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-11T17:44:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-11T17:44:28Z"
+        }
+      ]
+    }
+  ],
+  "id": "888638011",
+  "subject": [
+    "YDEA project"
+  ],
+  "title": "Temple of Zeus Megistos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Temple located in block C4 at Dura-Europos.",
+  "reprPoint": [
+    40.73268391161837,
+    34.747199259081995
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    40.732453601152386,
+    34.74693964913633,
+    40.7329557020413,
+    34.74746390189278
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893990",
+    "https://pleiades.stoa.org/places/451190292"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-12-05T22:54:31Z",
+  "uri": "https://pleiades.stoa.org/places/888638011",
+  "creators": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-11T17:43:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-19T16:44:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-19T16:44:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "achen",
+      "modified": "2022-12-05T22:54:31Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Belgica I
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/991336
+- **ID**: 991336
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Belgica I
+
+## Description
+
+An ancient place, cited: BAtlas 101 H2 Belgica I

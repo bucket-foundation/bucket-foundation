@@ -1,0 +1,281 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8204491,
+            32.4934447
+          ],
+          [
+            35.8206614,
+            32.4935282
+          ],
+          [
+            35.8211109,
+            32.4934656
+          ],
+          [
+            35.8213268,
+            32.4931372
+          ],
+          [
+            35.8211392,
+            32.4929849
+          ],
+          [
+            35.8210224,
+            32.4928685
+          ],
+          [
+            35.8207711,
+            32.4928715
+          ],
+          [
+            35.820626,
+            32.4929014
+          ],
+          [
+            35.8205057,
+            32.4930387
+          ],
+          [
+            35.8204526,
+            32.4932387
+          ],
+          [
+            35.8204491,
+            32.4934447
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "tell-johfiyeh",
+      "properties": {
+        "snippet": "Settlement",
+        "link": "https://pleiades.stoa.org/places/177903359/tell-johfiyeh",
+        "description": "Polygon representing the extent of the Tell Johfiyeh site, derived from an OpenStreetMap Way after Lamprichs 2007.",
+        "location_precision": "precise",
+        "title": "OSM location of Tell Johfiyeh"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1237374752",
+          "citationDetail": "Way 1237374752",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1237374752",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/213891912",
+          "citationDetail": "pages 323-327",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Lamprichs 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4BIV2PWD",
+          "formattedCitation": "<div class=\"csl-entry\">Lamprichs, Roland. <i>Tell Johfiyeh: ein arch\u00e4ologischer Fundplatz und seine Umgebung in Nordjordanien\u202f: Materialien zu einer Regionalstudie</i>. Alter Orient und Altes Testament, Bd. 344. M\u00fcnster: Ugarit-Verlag, 2007. https://www.worldcat.org/oclc/213891912.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tell-johfiyeh",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": null,
+      "title": "OSM location of Tell Johfiyeh",
+      "provenance": "OpenStreetMap (Way 1237374752, version 1, osm:changeset=145938318, 2024-01-05T21:41:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the extent of the Tell Johfiyeh site, derived from an OpenStreetMap Way after Lamprichs 2007.",
+      "created": "2024-01-05T21:46:41Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8204491,
+            32.4934447
+          ],
+          [
+            35.8206614,
+            32.4935282
+          ],
+          [
+            35.8211109,
+            32.4934656
+          ],
+          [
+            35.8213268,
+            32.4931372
+          ],
+          [
+            35.8211392,
+            32.4929849
+          ],
+          [
+            35.8210224,
+            32.4928685
+          ],
+          [
+            35.8207711,
+            32.4928715
+          ],
+          [
+            35.820626,
+            32.4929014
+          ],
+          [
+            35.8205057,
+            32.4930387
+          ],
+          [
+            35.8204526,
+            32.4932387
+          ],
+          [
+            35.8204491,
+            32.4934447
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/177903359/tell-johfiyeh",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-11T18:46:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-05T21:48:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-05T21:48:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-05T21:46:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-01-05T21:46:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/213891912",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lamprichs 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4BIV2PWD",
+      "formattedCitation": "<div class=\"csl-entry\">Lamprichs, Roland. <i>Tell Johfiyeh: ein arch\u00e4ologischer Fundplatz und seine Umgebung in Nordjordanien\u202f: Materialien zu einer Regionalstudie</i>. Alter Orient und Altes Testament, Bd. 344. M\u00fcnster: Ugarit-Verlag, 2008. https://www.worldcat.org/oclc/213891912.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "177903359",
+  "subject": [],
+  "title": "Tell Johfiyeh",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement in northern Jordan dated to the Iron Age.",
+  "reprPoint": [
+    35.820851291506244,
+    32.493202603687664
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    35.8204491,
+    32.4928685,
+    35.8213268,
+    32.4935282
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-01-05T21:46:12Z",
+  "uri": "https://pleiades.stoa.org/places/177903359",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-01-11T18:46:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-01-05T21:48:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-01-05T21:46:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-01-05T21:46:12Z"
+    }
+  ]
+}

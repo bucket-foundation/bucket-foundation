@@ -1,0 +1,398 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.5280996,
+            31.1314968
+          ],
+          [
+            35.5281907,
+            31.1313389
+          ],
+          [
+            35.5282724,
+            31.131227
+          ],
+          [
+            35.5284078,
+            31.1310911
+          ],
+          [
+            35.5288328,
+            31.1310511
+          ],
+          [
+            35.529099,
+            31.1311131
+          ],
+          [
+            35.5294586,
+            31.131231
+          ],
+          [
+            35.529608,
+            31.131309
+          ],
+          [
+            35.5295707,
+            31.1314749
+          ],
+          [
+            35.5292228,
+            31.1315768
+          ],
+          [
+            35.5289776,
+            31.1316188
+          ],
+          [
+            35.5287534,
+            31.1316547
+          ],
+          [
+            35.5284289,
+            31.1317227
+          ],
+          [
+            35.528102,
+            31.1316587
+          ],
+          [
+            35.5280996,
+            31.1314968
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "numeira",
+      "properties": {
+        "snippet": "Archaeological-site, Settlement; 3300 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/324395699/numeira",
+        "description": "Polygon representing the extent of the Numeira site, derived from an OpenStreetMap Way after Chesson 2021.",
+        "location_precision": "precise",
+        "title": "OSM location of Numeira"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1046568433",
+          "citationDetail": "Way 1046568433",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1046568433",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "numeira",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of Numeira",
+      "provenance": "OpenStreetMap (Way 1046568433, version 1, osm:changeset=119124365, 2022-03-30T16:39:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "settlement"
+      ],
+      "description": "Polygon representing the extent of the Numeira site, derived from an OpenStreetMap Way after Chesson 2021.",
+      "created": "2022-03-30T16:49:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.5280996,
+            31.1314968
+          ],
+          [
+            35.5281907,
+            31.1313389
+          ],
+          [
+            35.5282724,
+            31.131227
+          ],
+          [
+            35.5284078,
+            31.1310911
+          ],
+          [
+            35.5288328,
+            31.1310511
+          ],
+          [
+            35.529099,
+            31.1311131
+          ],
+          [
+            35.5294586,
+            31.131231
+          ],
+          [
+            35.529608,
+            31.131309
+          ],
+          [
+            35.5295707,
+            31.1314749
+          ],
+          [
+            35.5292228,
+            31.1315768
+          ],
+          [
+            35.5289776,
+            31.1316188
+          ],
+          [
+            35.5287534,
+            31.1316547
+          ],
+          [
+            35.5284289,
+            31.1317227
+          ],
+          [
+            35.528102,
+            31.1316587
+          ],
+          [
+            35.5280996,
+            31.1314968
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/324395699/numeira",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T10:35:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-30T16:54:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-30T16:52:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-30T16:49:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-30T16:49:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1179487011",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Chesson 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZFDR4UU6",
+      "formattedCitation": "<div class=\"csl-entry\">Chesson, Meredith S., R. Thomas Schaub, and Walter E. Rast. <i>Numayra: Excavations at the Early Bronze Age Townsite in Jordan, 1977-1983</i>. Reports of the Expedition to the Dead Sea Plain, Jordan, volume 4. University Park, Pennsylvania: Eisenbrauns, 2020. http://www.worldcat.org/oclc/1179487011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Numeira",
+      "citationDetail": "Numeira",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Numayra, Numeira, An-Numayra",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geonames.org/11184828/numeira-cemetery.html",
+          "citationDetail": "Numeira Cemetery",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "numayra",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Arabic name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2022-03-30T16:54:38Z",
+      "uri": "https://pleiades.stoa.org/places/324395699/numayra",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0646\u0645\u064a\u0631\u0629",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-31T10:35:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-30T16:54:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-30T16:54:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-03-30T16:54:38Z"
+        }
+      ]
+    }
+  ],
+  "id": "324395699",
+  "subject": [],
+  "title": "Numeira",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Archaeological site on the eastern shore of the Dead Sea with signs of habitation dated to the Early Bronze Age.",
+  "reprPoint": [
+    35.52881853853089,
+    31.131392739027852
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    35.5280996,
+    31.1310511,
+    35.529608,
+    31.1317227
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-30T16:48:34Z",
+  "uri": "https://pleiades.stoa.org/places/324395699",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-31T10:35:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-30T16:54:49Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-30T16:48:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-03-30T16:48:34Z"
+    }
+  ]
+}

@@ -1,0 +1,706 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.0949512,
+          43.6941505
+        ]
+      },
+      "type": "Feature",
+      "id": "molino-san-vincenzo",
+      "properties": {
+        "snippet": "Villa; 550 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/516051730/molino-san-vincenzo",
+        "description": "Representative location based on a node derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Molino San Vincenzo"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "G\u00fcnther Sch\u00f6rner"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": null,
+          "name": "G\u00fcnther Sch\u00f6rner"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/4281011061",
+          "citationDetail": "Node 4281011061",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4281011061",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://de.wikipedia.org/wiki/Molino_San_Vincenzo",
+          "citationDetail": "Molino San Vincenzo",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (German)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "molino-san-vincenzo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "OSM location of Molino San Vincenzo",
+      "provenance": "OpenStreetMap (Node 4281011061, version 8, osm:changeset=51955605, 2017-09-11T21:35:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on a node derived from OpenStreetMap.",
+      "created": "2018-02-21T11:42:59Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.0949512,
+          43.6941505
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/516051730/molino-san-vincenzo",
+      "creators": [
+        {
+          "username": "dhagmann",
+          "homepage": null,
+          "name": "Dominik Hagmann",
+          "uri": "https://pleiades.stoa.org/author/dhagmann"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-13T13:25:05Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-17T03:39:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-25T16:45:28Z"
+        },
+        {
+          "comment": "removed modern time period",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-25T16:44:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-22T18:01:08Z"
+        },
+        {
+          "comment": "edited title, summary per editorial conventions",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-22T18:00:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-02-21T12:02:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-02-21T12:00:15Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-02-21T11:54:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-02-21T11:52:46Z"
+        },
+        {
+          "comment": "additional information",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-02-21T11:50:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-02-21T11:43:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-02-21T11:42:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-05-02T16:41:28Z",
+      "associationCertainty": "certain",
+      "title": "Arnus (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/516051730/arnus-river",
+      "connectionType": "on",
+      "id": "arnus-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-02T17:24:03Z"
+        },
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-02T17:22:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:44:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:41:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:41:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403181",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "dhagmann",
+          "homepage": null,
+          "name": "Dominik Hagmann",
+          "uri": "https://pleiades.stoa.org/author/dhagmann"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-05-02T16:43:32Z",
+      "associationCertainty": "certain",
+      "title": "Etruria/Tuscia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/516051730/etruria-tuscia",
+      "connectionType": "part_of_regional",
+      "id": "etruria-tuscia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-02T17:24:03Z"
+        },
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-02T17:22:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:44:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:43:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:43:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413122",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "dhagmann",
+          "homepage": null,
+          "name": "Dominik Hagmann",
+          "uri": "https://pleiades.stoa.org/author/dhagmann"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-05-02T16:45:00Z",
+      "associationCertainty": "certain",
+      "title": "Italia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/516051730/italia",
+      "connectionType": "part_of_physical",
+      "id": "italia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-21T16:30:10Z"
+        },
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-02T17:23:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:45:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:45:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:45:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/1052",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "dhagmann",
+          "homepage": null,
+          "name": "Dominik Hagmann",
+          "uri": "https://pleiades.stoa.org/author/dhagmann"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2018-05-02T16:48:45Z",
+      "associationCertainty": "certain",
+      "title": "Florentia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/516051730/florentia",
+      "connectionType": "near",
+      "id": "florentia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-02T17:24:04Z"
+        },
+        {
+          "comment": "changed cnxn type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-02T17:23:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-02T17:23:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:48:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:48:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dhagmann",
+          "modified": "2018-05-02T16:48:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413138",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "dhagmann",
+          "homepage": null,
+          "name": "Dominik Hagmann",
+          "uri": "https://pleiades.stoa.org/author/dhagmann"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/excavation/site/AIAC_2991",
+      "citationDetail": "Molino San Vincenzo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FastiOnline (Excavation)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5MUH5XWP",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC), and Center for the Study of Ancient Italy of the University of Texas at Austin (CSAI). <i>FastiOnline (Excavation)</i>, 2004. http://www.fastionline.org/excavation/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikipedia.org/wiki/Molino_San_Vincenzo",
+      "citationDetail": "Molino San Vincenzo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (German)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QVRBJVTM",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: Die freie Enzyklop\u00e4die</i>. Wikimedia Foundation, 2001. https://de.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://uscholar.univie.ac.at/view/o:471843",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sch\u00f6rner, Hagmann, and Schreck 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SM9EWF63",
+      "formattedCitation": "<div class=\"csl-entry\">Sch\u00f6rner, G\u00fcnther, Dominik Hagmann, and Veronika Schreck. \u201cDie site Molino San Vincenzo.\u201d <i>HASH(0x7fc961be9910)</i>, no. 26/2 (2015): 56\u201359. https://uscholar.univie.ac.at/view/o:471843.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://rrl.univie.ac.at/forschung/msv/",
+      "citationDetail": "University of Vienna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Webpage Molino San Vincenzo",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "http://phaidra.univie.ac.at/o:467149",
+      "accessURI": "https://uscholar.univie.ac.at/view/o:467149",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hagmann and Schreck 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JW24EARR",
+      "formattedCitation": "<div class=\"csl-entry\">Hagmann, Dominik, and Veronika Schreck. \u201cNeue Forschungen zum l\u00e4ndlichen Fundplatz Molino San Vincenzo (Toskana, Italien).\u201d <i>HASH(0x7fc961a15560)</i>, no. 78/III (2016). https://doi.org/10.17613/M66K17.</div>",
+      "otherIdentifier": "DOI: 10.17613/M66K17",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29838047",
+      "citationDetail": "Q29838047",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/11821829/molino-san-vincenzo.html",
+      "citationDetail": "11821829: Molino San Vincenzo",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "516051730",
+  "subject": [],
+  "title": "Molino San Vincenzo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Field surveys, geophysical prospection, as well as targeted research and training excavations, have revealed the remains of a mid- to late- imperial rural settlement with evidence for agricultural activity. However, the earliest finds (e.g., bucchero) date to the sixth/fifth century B.C., indicating the likelihood of Etruscan settlement activities at this site. The entire site seems to have undergone severe recycling and reuse processes in late antiquity and the remaining structures have broken down systematically in modern times. Ongoing intensive agricultural activities affect the few archaeological structures that remain, resulting in a poor state of preservation.",
+  "reprPoint": [
+    11.0949512,
+    43.6941505
+  ],
+  "placeTypes": [
+    "settlement",
+    "villa"
+  ],
+  "bbox": [
+    11.0949512,
+    43.6941505,
+    11.0949512,
+    43.6941505
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/403181",
+    "https://pleiades.stoa.org/places/413122",
+    "https://pleiades.stoa.org/places/1052",
+    "https://pleiades.stoa.org/places/413138"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-02-21T11:41:27Z",
+  "uri": "https://pleiades.stoa.org/places/516051730",
+  "creators": [
+    {
+      "username": "dhagmann",
+      "homepage": null,
+      "name": "Dominik Hagmann",
+      "uri": "https://pleiades.stoa.org/author/dhagmann"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-01T15:44:43Z"
+    },
+    {
+      "comment": "ctype wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-04T16:35:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-02T17:24:03Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-02T17:22:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-05-02T17:13:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-05-02T17:13:27Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-05-02T17:10:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-25T16:47:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-25T16:45:27Z"
+    },
+    {
+      "comment": "added Hagmann and Schreck 2016 to zotero library",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-25T16:44:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-24T14:35:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-24T14:35:03Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-24T13:57:50Z"
+    },
+    {
+      "comment": "adjusted place types, edited summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-22T17:56:59Z"
+    },
+    {
+      "comment": "moved dhagmann username into creator field",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-21T17:26:00Z"
+    },
+    {
+      "comment": "added Sch\u00f6rner, Hagmann, and Schreck 2015 to zotero & performed fetch; cleaned up citation for Fasti Online reference.",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-21T17:25:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-21T16:01:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-21T16:01:19Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-21T15:43:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-21T15:22:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-21T15:21:38Z"
+    },
+    {
+      "comment": "First entry.",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-21T11:41:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "dhagmann",
+      "modified": "2018-02-21T11:41:27Z"
+    }
+  ]
+}

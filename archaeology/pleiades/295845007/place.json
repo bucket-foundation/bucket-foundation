@@ -1,0 +1,314 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7438578,
+            37.9222931
+          ],
+          [
+            23.7438417,
+            37.9219461
+          ],
+          [
+            23.7440107,
+            37.9219323
+          ],
+          [
+            23.7440563,
+            37.9219344
+          ],
+          [
+            23.7440818,
+            37.9219482
+          ],
+          [
+            23.7440791,
+            37.9220349
+          ],
+          [
+            23.7440536,
+            37.9221905
+          ],
+          [
+            23.7440443,
+            37.9222539
+          ],
+          [
+            23.7440416,
+            37.9222709
+          ],
+          [
+            23.7440241,
+            37.9222772
+          ],
+          [
+            23.7439946,
+            37.9222804
+          ],
+          [
+            23.7438578,
+            37.9222931
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kontopigado-site",
+      "properties": {
+        "snippet": "Production; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/295845007/osm-location-of-kontopigado-site",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kontopigado site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/826798749",
+          "citationDetail": "Way 826798749",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=826798749",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kontopigado-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "end": -1000,
+      "title": "OSM location of Kontopigado site",
+      "provenance": "OpenStreetMap (Way 826798749, version 1, osm:changeset=88056651, 2020-07-16T02:51:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "production"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-07-16T02:54:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7438578,
+            37.9222931
+          ],
+          [
+            23.7438417,
+            37.9219461
+          ],
+          [
+            23.7440107,
+            37.9219323
+          ],
+          [
+            23.7440563,
+            37.9219344
+          ],
+          [
+            23.7440818,
+            37.9219482
+          ],
+          [
+            23.7440791,
+            37.9220349
+          ],
+          [
+            23.7440536,
+            37.9221905
+          ],
+          [
+            23.7440443,
+            37.9222539
+          ],
+          [
+            23.7440416,
+            37.9222709
+          ],
+          [
+            23.7440241,
+            37.9222772
+          ],
+          [
+            23.7439946,
+            37.9222804
+          ],
+          [
+            23.7438578,
+            37.9222931
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/295845007/osm-location-of-kontopigado-site",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-07-16T08:28:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-16T02:55:54Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-16T02:55:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-16T02:54:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-16T02:54:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/379237XKon",
+      "citationDetail": "Kontopigado site (Attica) Trachones - \u039a\u03bf\u03bd\u03c4\u03bf\u03c0\u03ae\u03b3\u03b1\u03b4\u03bf",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kaza-Papageorgiou 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8JLEWKWM",
+      "formattedCitation": "<div class=\"csl-entry\">Kaza-Papageorgiou, Konstantina, and Eleftheria Kardamaki. \u201cA Late Helladic III A1 Deposit from Kontopigado, Alimos and Processes of Mycenaeanization at Athens.\u201d In <i>Mitteilungen Des Deutschen Arch\u00e4ologischen Instituts, Athenische Abteilung, 133 (2018)</i>, 1\u201358. Berlin: Gebr. Mann, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kardamaki 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SXHKTKFF",
+      "formattedCitation": "<div class=\"csl-entry\">Kardamaki, Eleftheria. \u201cA New Group of Figures and Rare Figurines from a Mycenaean Workshop Installation at Kontopigado, Alimos (Athens).\u201d In <i>Mitteilungen Des Deutschen Arch\u00e4ologischen Instituts, Athenische Abteilung, 127-128 (2012-2013)</i>, 47\u201390. Berlin: Gebr. Mann, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "295845007",
+  "subject": [],
+  "title": "Kontopigado, Alimos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/production"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Early Helladic workshop site.",
+  "reprPoint": [
+    23.743955473952067,
+    37.92210431140083
+  ],
+  "placeTypes": [
+    "production"
+  ],
+  "bbox": [
+    23.7438417,
+    37.9219323,
+    23.7440818,
+    37.9222931
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-07-16T02:54:25Z",
+  "uri": "https://pleiades.stoa.org/places/295845007",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-07-16T08:28:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-16T02:55:54Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-16T02:54:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-16T02:54:25Z"
+    }
+  ]
+}

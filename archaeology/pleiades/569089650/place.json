@@ -1,0 +1,395 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9942167,
+            42.8753575
+          ],
+          [
+            10.9940582,
+            42.8755591
+          ],
+          [
+            10.9939321,
+            42.8756814
+          ],
+          [
+            10.9939482,
+            42.8758913
+          ],
+          [
+            10.9940797,
+            42.8760505
+          ],
+          [
+            10.994246,
+            42.8761331
+          ],
+          [
+            10.99449,
+            42.8761468
+          ],
+          [
+            10.9946939,
+            42.8760509
+          ],
+          [
+            10.9947609,
+            42.8758996
+          ],
+          [
+            10.9948,
+            42.8757391
+          ],
+          [
+            10.9947508,
+            42.8756052
+          ],
+          [
+            10.9945151,
+            42.8754693
+          ],
+          [
+            10.9942167,
+            42.8753575
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-diavolino-ii-tomb",
+      "properties": {
+        "snippet": "Tomb, ; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/569089650/location-of-diavolino-ii-tomb",
+        "description": "An Etruscan tomb of the seventh century BC. Location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of 'Diavolino II' tomb"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/224866928",
+          "citationDetail": "Way 224866928",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=224866928",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.parcodeglietruschi.it/cda/pte/view/scheda.jsp?OTYPE_ID=1383&CAT_ID=10813&CAT_PARENT=10810&ID=10950&Lang=LANGIT",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Vetulonia, Tomba del Diavolino II (Castiglione della Pescaia)",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-diavolino-ii-tomb",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -550,
+      "title": "OSM location of 'Diavolino II' tomb",
+      "provenance": "OpenStreetMap (Way 224866928, version 4, osm:changeset=79095412, 2020-01-02T01:34:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "An Etruscan tomb of the seventh century BC. Location based on OpenStreetMap.",
+      "created": "2013-06-28T17:54:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9942167,
+            42.8753575
+          ],
+          [
+            10.9940582,
+            42.8755591
+          ],
+          [
+            10.9939321,
+            42.8756814
+          ],
+          [
+            10.9939482,
+            42.8758913
+          ],
+          [
+            10.9940797,
+            42.8760505
+          ],
+          [
+            10.994246,
+            42.8761331
+          ],
+          [
+            10.99449,
+            42.8761468
+          ],
+          [
+            10.9946939,
+            42.8760509
+          ],
+          [
+            10.9947609,
+            42.8758996
+          ],
+          [
+            10.9948,
+            42.8757391
+          ],
+          [
+            10.9947508,
+            42.8756052
+          ],
+          [
+            10.9945151,
+            42.8754693
+          ],
+          [
+            10.9942167,
+            42.8753575
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/569089650/location-of-diavolino-ii-tomb",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-14T16:03:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-29T16:37:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T03:48:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-28T17:57:21Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-28T17:55:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-28T17:54:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-28T17:54:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-01T15:48:11Z",
+      "associationCertainty": "certain",
+      "title": "Vatl/Vetulonia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/569089650/0917871675",
+      "connectionType": "at",
+      "id": "0917871675",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-01T15:48:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-01T15:48:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-01T15:48:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403291",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Tumulo_del_Diavolino_II",
+      "citationDetail": "Tumulo del Diavolino II",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3542035",
+      "citationDetail": "Q3542035: Diavolino II tomb",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "569089650",
+  "subject": [
+    "tomb",
+    "extant remains"
+  ],
+  "title": "Diavolino II tomb",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan tomb of the seventh century B.C.",
+  "reprPoint": [
+    10.9942084,
+    42.8754314
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    10.9942084,
+    42.8754314,
+    10.9942084,
+    42.8754314
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/403291"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-01T15:47:56Z",
+  "uri": "https://pleiades.stoa.org/places/569089650",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-20T16:01:39Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-01-02T01:33:02Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-05T21:10:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-01T15:50:31Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-01T15:50:15Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-01T15:48:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-01T15:47:56Z"
+    }
+  ]
+}

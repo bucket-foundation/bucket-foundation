@@ -1,0 +1,550 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.9765756,
+          42.4122179
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-musarna",
+      "properties": {
+        "snippet": "Settlement, ; 750 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/413217/location-of-musarna",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Musarna"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2673408627",
+          "citationDetail": "Node 2673408627",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2673408627",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Musarna",
+          "citationDetail": "Musarna",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Musarna.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-musarna",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of Musarna",
+      "provenance": "OpenStreetMap (Node 2673408627, version 1, osm:changeset=20584252, 2014-02-15T20:25:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-15T20:25:54Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.9765756,
+          42.4122179
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/413217/location-of-musarna",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-09-25T02:44:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-09-25T02:44:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-25T02:36:18Z"
+        },
+        {
+          "comment": "edited title",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-01T00:50:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T20:27:14Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T20:27:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T20:25:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T20:25:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "42 B4 Musarna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://studietruschi.org/pubblicazioni-2/studi-etruschi/1059-2",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Broise, H. and V. Jolivet. 1986 [1988]. \"Musarna.\" In \u201cScavi e scoperti,\u201d StEtr 54:365-66.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/163494486",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Andreau 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F6Z2XK88",
+      "formattedCitation": "<div class=\"csl-entry\">Andreau, Jean. <i>Musarna / 1 Les tr\u00e9sors mon\u00e9taires</i>. Collection de l\u2019\u00c9cole Fran\u00e7aise de Rome 304. Rome: Ecole fran\u00e7aise de Rome, 2002. http://www.worldcat.org/oclc/163494486.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Musarna",
+      "citationDetail": "Musarna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Musarna.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.provincia.vt.it/turismo/SchedeDett.asp?Id=17",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Provincia di Viterbo, Musarna",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/44743",
+      "citationDetail": "GEO ID 44743: Musarna",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/163494486",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Andreau 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F6Z2XK88",
+      "formattedCitation": "<div class=\"csl-entry\">Andreau, Jean. <i>Musarna / 1 Les tre\u0301sors mone\u0301taires</i>. Collection de l\u2019E\u0301cole Franc\u0327aise de Rome 304. Rome: Ecole fran\u00e7aise de Rome, 2002. http://www.worldcat.org/oclc/163494486.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/300144393",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Andreau and Broise 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VINH5BRJ",
+      "formattedCitation": "<div class=\"csl-entry\">Andreau, Jean, and Henri Broise. <i>Musarna / 2 Les bains helle\u0301nistiques</i>. Collection de l\u2019E\u0301cole Franc\u0327aise de Rome 344. Rome: Ecole fran\u00e7aise de Rome, 2004. http://www.worldcat.org/oclc/300144393.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/495419975",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rebillard 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IX35T22R",
+      "formattedCitation": "<div class=\"csl-entry\">Rebillard, Eric. <i>Musarna. / 3, La ne\u0301cropole impe\u0301riale</i>. Collection de l\u2019E\u0301cole Franc\u0327aise de Rome 415. Rome: Ecole fran\u00e7aise de Rome, 2009. http://www.worldcat.org/oclc/495419975.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.persee.fr/doc/mefr_0223-5102_1984_num_96_1_8062?q=musarna",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "de Cazanove and Jolivet 1984, 530-4",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7RWM3QHM",
+      "formattedCitation": "<div class=\"csl-entry\">Cazanove, Olivier de, and Vincent Jolivet. \u201cMusarna (Viterbe): la cit\u00e9 \u00e9trusque.\u201d <i>M\u00e9langes de l\u2019Ecole fran\u00e7aise de Rome. Antiquit\u00e9</i> 96, no. 1 (1984): 530\u201334. http://www.persee.fr/doc/mefr_0223-5102_1984_num_96_1_8062?q=musarna.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "18683",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q15313595",
+      "citationDetail": "Q15313595: Musarna",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Musarna",
+      "citationDetail": "Musarna",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/cefr/2801",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jolivet and Lovergne 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2DW5G54Y",
+      "formattedCitation": "<div class=\"csl-entry\">Jolivet, Vincent, and Edwige Lovergne. \u201cLa tombe monumentale de Grotte Scalina et la Tuscia viterbaise. Campagne de fouilles 2018.\u201d <i>Chronique des activit\u00e9s arch\u00e9ologiques de l\u2019\u00c9cole fran\u00e7aise de Rome</i>, May 9, 2019. https://doi.org/10.4000/cefr.2801.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "B\u00e9rard 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AFNXHIUT",
+      "formattedCitation": "<div class=\"csl-entry\">B\u00e9rard, Fran\u00e7ois, Henri Broise, and Vincent Jolivet. \u201cCivita Musarna (Viterbo): La cinta muraria ellenistica.\u201d In <i>Fortificazioni antiche in Italia\u202f: Et\u00e0 repubblicana</i>, edited by Lorenzo Quilici, 69\u201380. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broise 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEK67SKE",
+      "formattedCitation": "<div class=\"csl-entry\">Broise, Henri, and Vincent Jolivet. \u201cCivita Musarna: Pratique du bain et soci\u00e9t\u00e9 hell\u00e9nistique.\u201d In <i>Atlante tematico di topografia antica, 30 (2020)</i>, 19\u201328. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cinque 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9XG9CYX4",
+      "formattedCitation": "<div class=\"csl-entry\">Cinque, Giuseppina Enrica, Henri Broise, and Vincent Jolivet. \u201cCivita Musarna (VT), il suo territorio e la chora di Tarquinia in et\u00e0 ellenistica: uno spazio ritualmente suddiviso?\u201d In <i>Archeologia e calcolatori, 28 (2017)</i>, Fasc.2, 223-232. Firenze: All\u2019Insegna del Giglio, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/crai_0065-0536_1997_num_141_4_15820",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broise 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WE6WP25H",
+      "formattedCitation": "<div class=\"csl-entry\">Broise, Henri, and Vincent Jolivet. \u201cUne colonie \u00e9trusque en territoire tarquinien.\u201d <i>Comptes rendus des s\u00e9ances de l\u2019Acad\u00e9mie des Inscriptions et Belles-Lettres</i> 141, no. 4 (1997): 1327\u201350. https://doi.org/10.3406/crai.1997.15820.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.openedition.org/efr/9327",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Leone 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NR6Y74AK",
+      "formattedCitation": "<div class=\"csl-entry\">Leone, Julie. <i>Musarna 4\u202f: La c\u00e9ramique \u00e0 paroi fine</i>. Collection de l\u2019\u00c9cole fran\u00e7aise de Rome. Rome: Publications de l\u2019\u00c9cole fran\u00e7aise de Rome, 2021. http://books.openedition.org/efr/9327.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "413217",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "Musarna",
+  "provenance": "Barrington Atlas: BAtlas 42 B4 Musarna",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Musarna</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Musarna is an ancient Etruscan settlement discovered in 1849 just west of Viterbo, Italy. The \u00c9cole fran\u00e7aise de Rome has been conducting excavations at the site since 1983.",
+  "reprPoint": [
+    11.9765756,
+    42.4122179
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    11.9765756,
+    42.4122179,
+    11.9765756,
+    42.4122179
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-12T15:29:07Z",
+  "uri": "https://pleiades.stoa.org/places/413217",
+  "creators": [
+    {
+      "username": null,
+      "name": "W.V. Harris"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update wikidata, tm geo id",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-08T14:55:06Z"
+    },
+    {
+      "comment": "added Leone 2021",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-08T14:53:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-06T14:23:20Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-05T20:39:01Z"
+    },
+    {
+      "comment": "B\u00e9rard 2000 ADDED",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-05T20:36:50Z"
+    },
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-11T20:53:04Z"
+    },
+    {
+      "comment": "darmc 18683",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-17T14:37:08Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-23T15:05:52Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-23T15:01:20Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-23T14:59:25Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-15T20:25:04Z"
+    },
+    {
+      "comment": "edited description; added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-06-07T20:18:40Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:40:01Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:51:02Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T23:23:40Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:41:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-14T14:03:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-12T15:52:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-12T15:29:07Z"
+    }
+  ]
+}

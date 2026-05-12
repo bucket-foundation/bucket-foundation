@@ -1,0 +1,291 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -5.6251082,
+            37.4790146
+          ],
+          [
+            -5.625037,
+            37.4789651
+          ],
+          [
+            -5.6249659,
+            37.4787068
+          ],
+          [
+            -5.6250015,
+            37.4786108
+          ],
+          [
+            -5.6249153,
+            37.47861
+          ],
+          [
+            -5.6248449,
+            37.4786093
+          ],
+          [
+            -5.6248484,
+            37.4786799
+          ],
+          [
+            -5.6249107,
+            37.478711
+          ],
+          [
+            -5.6249908,
+            37.4789736
+          ],
+          [
+            -5.6248751,
+            37.4791247
+          ],
+          [
+            -5.62496,
+            37.4791615
+          ],
+          [
+            -5.6250086,
+            37.4791826
+          ],
+          [
+            -5.6251082,
+            37.4790146
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Bridge; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/387177192/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Puente Romano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/269810442",
+          "citationDetail": "Way 269810442",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=269810442",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 640,
+      "title": "OSM location of Puente Romano",
+      "provenance": "OpenStreetMap (Way 269810442, version 4, osm:changeset=152429082, 2024-06-08T19:22:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-07-04T17:29:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -5.6251082,
+            37.4790146
+          ],
+          [
+            -5.625037,
+            37.4789651
+          ],
+          [
+            -5.6249659,
+            37.4787068
+          ],
+          [
+            -5.6250015,
+            37.4786108
+          ],
+          [
+            -5.6249153,
+            37.47861
+          ],
+          [
+            -5.6248449,
+            37.4786093
+          ],
+          [
+            -5.6248484,
+            37.4786799
+          ],
+          [
+            -5.6249107,
+            37.478711
+          ],
+          [
+            -5.6249908,
+            37.4789736
+          ],
+          [
+            -5.6248751,
+            37.4791247
+          ],
+          [
+            -5.62496,
+            37.4791615
+          ],
+          [
+            -5.6250086,
+            37.4791826
+          ],
+          [
+            -5.6251082,
+            37.4790146
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/387177192/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T15:20:00Z"
+        },
+        {
+          "comment": "update title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-10T15:09:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T12:42:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-16T20:29:44Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-04T17:29:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-04T17:29:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-04T17:29:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [],
+  "names": [],
+  "id": "387177192",
+  "subject": [],
+  "title": "Cinco Puentes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman bridge",
+  "reprPoint": [
+    -5.6248449,
+    37.4786093
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    -5.6248449,
+    37.4786093,
+    -5.6248449,
+    37.4786093
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-07-04T17:28:38Z",
+  "uri": "https://pleiades.stoa.org/places/387177192",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T12:42:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-05-16T20:29:11Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-04T17:28:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-04T17:28:39Z"
+    }
+  ]
+}

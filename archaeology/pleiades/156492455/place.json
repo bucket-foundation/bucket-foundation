@@ -1,0 +1,314 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.1844516,
+            41.4901304
+          ],
+          [
+            13.1840915,
+            41.4901212
+          ],
+          [
+            13.1841134,
+            41.4896404
+          ],
+          [
+            13.1845318,
+            41.4896511
+          ],
+          [
+            13.184518,
+            41.4899531
+          ],
+          [
+            13.1844597,
+            41.4899516
+          ],
+          [
+            13.1844516,
+            41.4901304
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-domus-della-soglia-nilotica",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/156492455/osm-location-of-domus-della-soglia-nilotica",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Domus della Soglia nilotica"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1412627987",
+          "citationDetail": "Way 1412627987",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1412627987",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-domus-della-soglia-nilotica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of Domus della Soglia nilotica",
+      "provenance": "OpenStreetMap (Way 1412627987, version 1, osm:changeset=168543573, 2025-07-06T00:56:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-07-06T01:07:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.1844516,
+            41.4901304
+          ],
+          [
+            13.1840915,
+            41.4901212
+          ],
+          [
+            13.1841134,
+            41.4896404
+          ],
+          [
+            13.1845318,
+            41.4896511
+          ],
+          [
+            13.184518,
+            41.4899531
+          ],
+          [
+            13.1844597,
+            41.4899516
+          ],
+          [
+            13.1844516,
+            41.4901304
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/156492455/osm-location-of-domus-della-soglia-nilotica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:25:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-27T01:36:34Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T01:08:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T01:07:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T01:07:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-12-27T01:34:25Z",
+      "associationCertainty": "certain",
+      "title": "Privernum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/156492455/2651128453",
+      "connectionType": "at",
+      "id": "2651128453",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-27T01:34:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-27T01:34:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-27T01:34:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433052",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1080/11263504.2010.491981",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sadori 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/238DUGGE",
+      "formattedCitation": "<div class=\"csl-entry\">Sadori, L., M. Giardini, and F. Susanna. \u201cThe Plant Landscape as Inferred from a Basket of the Roman Town of Privernum (Latium, Central Italy).\u201d <i>Plant Biosystems - An International Journal Dealing with All Aspects of Plant Biology</i> 144, no. 4 (December 1, 2010): 874\u201387. https://doi.org/10.1080/11263504.2010.491981.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q135220229",
+      "citationDetail": "House of the Nilotic threshold (Q135220229)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "156492455",
+  "subject": [],
+  "title": "Domus della Soglia nilotica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A domus at Privernum dating to the early Imperial period and noted for its mosaic pavements.",
+  "reprPoint": [
+    13.184306108484058,
+    41.48988020538908
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    13.1840915,
+    41.4896404,
+    13.1845318,
+    41.4901304
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433052"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-27T01:34:24Z",
+  "uri": "https://pleiades.stoa.org/places/156492455",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-13T21:25:58Z"
+    },
+    {
+      "comment": "wikidata Q135220229",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-27T01:37:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-27T01:36:34Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-27T01:36:26Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-27T01:34:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-27T01:34:24Z"
+    }
+  ]
+}

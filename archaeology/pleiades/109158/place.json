@@ -1,0 +1,522 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.9113271,
+            48.3051749
+          ],
+          [
+            1.9116121,
+            48.3050899
+          ],
+          [
+            1.9106465,
+            48.303759
+          ],
+          [
+            1.9102673,
+            48.3038823
+          ],
+          [
+            1.9113271,
+            48.3051749
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Forest; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/109158/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of the Haie de Sampuy"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/644316693",
+          "citationDetail": "Way 644316693",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=644316693",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forest"
+      ],
+      "end": 2100,
+      "title": "OSM Location of the Haie de Sampuy",
+      "provenance": "OpenStreetMap (Way 644316693, version 1, osm:changeset=64474776, 2018-11-14T09:34:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/forest"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "forest"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2018-11-14T09:38:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.9113271,
+            48.3051749
+          ],
+          [
+            1.9116121,
+            48.3050899
+          ],
+          [
+            1.9106465,
+            48.303759
+          ],
+          [
+            1.9102673,
+            48.3038823
+          ],
+          [
+            1.9113271,
+            48.3051749
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/109158/osm-location",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-14T14:09:54Z"
+        },
+        {
+          "comment": "added 'forest' as feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-14T14:09:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T12:01:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T09:39:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T09:38:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T09:38:02Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "11 B4 M\u00e9rouville",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/758914364",
+      "citationDetail": "124",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Lutetia",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WJXDVUB3",
+      "formattedCitation": "<div class=\"csl-entry\">Chevallier, Raymond. <i>Lutetia\u2013Atuatuca\u2013Ulpia Noviomagus</i>. Tabula Imperii Romani, M 31. Paris: Picard, 1975. http://www.worldcat.org/oclc/758914364.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "432",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Horne 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C9UK4DQP",
+      "formattedCitation": "<div class=\"csl-entry\">Horne, P.D., and A.C. King. \u201cRomano-Celtic Temples in Continental Europe: A Gazetteer of Those with Known Plans.\u201d In <i>Temples, Churches, and Religion: Recent Research in Roman Britain\u202f: With a Gazetteer of Romano-Celtic Temples in Continental Europe</i>, by Warwick Rodwell, 369\u2013555. BAR British Series 77. Oxford: BAR, 1980.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "264",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CAG 28",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HU5S9BU2",
+      "formattedCitation": "<div class=\"csl-entry\">A Ollagnier, and D Joly. <i>Carte Arch\u00e9ologique de La Gaule 28 L\u2019Eure-et-Loir</i>. Paris, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gallica.bnf.fr/ark:/12148/bpt6k9769884d",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jalmain 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YL2T7JAF",
+      "formattedCitation": "<div class=\"csl-entry\">Jalmain, Daniel. \u201cLe vicus de Sampuy.\u201d <i>Bulletin de la Soci\u00e9t\u00e9 arch\u00e9ologique d\u2019Eure-et-Loir</i> 8 (1986): 1\u201313. https://gallica.bnf.fr/ark:/12148/bpt6k9769884d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/sracf_1159-7151_1999_ant_17_1_1044",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jalmain 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TH3APRCE",
+      "formattedCitation": "<div class=\"csl-entry\">Jalmain, Daniel. \u201cM\u00e9rouville (Eure-et-Loir) \u2018Sampuy.\u2019\u201d In <i>Agglom\u00e9rations secondaires antiques en R\u00e9gion Centre</i>, 69\u201373. Suppl\u00e9ment \u00e0 la Revue arch\u00e9ologique du centre de la France, 17.1. Tours: F\u00e9d\u00e9ration pour l\u2019\u00e9dition de la Revue arch\u00e9ologique du Centre de la France, 1999. https://www.persee.fr/doc/sracf_1159-7151_1999_ant_17_1_1044.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "13708",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sampuy",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.persee.fr/doc/sracf_1159-7151_1999_ant_17_1_1044",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Jalmain 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TH3APRCE",
+          "formattedCitation": "<div class=\"csl-entry\">Jalmain, Daniel. \u201cM\u00e9rouville (Eure-et-Loir) \u2018Sampuy.\u2019\u201d In <i>Agglom\u00e9rations secondaires antiques en R\u00e9gion Centre</i>, 69\u201373. Suppl\u00e9ment \u00e0 la Revue arch\u00e9ologique du centre de la France, 17.1. Tours: F\u00e9d\u00e9ration pour l\u2019\u00e9dition de la Revue arch\u00e9ologique du Centre de la France, 1999. https://www.persee.fr/doc/sracf_1159-7151_1999_ant_17_1_1044.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "sampuy",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2018-11-14T11:57:36Z",
+      "uri": "https://pleiades.stoa.org/places/109158/sampuy",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Sampuy",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-14T14:11:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T12:01:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T11:58:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T11:57:36Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "M\u00e9rouville",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://openlibrary.org/works/OL8327792W",
+          "citationDetail": "11 B4 M\u00e9rouville",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlas",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://openlibrary.org/works/OL8327792W.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "ma-c-rouville",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "BAtlas 11 B4 M\u00e9rouville",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2018-11-14T11:59:40Z",
+      "uri": "https://pleiades.stoa.org/places/109158/ma-c-rouville",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "M\u00e9rouville",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-11-14T14:11:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T12:01:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T11:59:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-11-14T11:59:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "109158",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "Unnamed settlement at Sampuy",
+  "provenance": "Barrington Atlas: BAtlas 11 B4 M\u00e9rouville",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/forest"
+  ],
+  "details": "<p>Although detected in the 19th century, it was \"aerial archaeology\" work in the 1960s-80s (see Jalmain 1986) that revealed the extent of the site and its relationship to presumed Roman roads intersecting there (Jalmain 1999). The site does not seem to be mentioned in ancient sources, although it may have coalesced around a road station. Field survey has produced significant coin finds (Jalmain 1999, CAG).</p>\r\n<p>The most visible manifestation of the site is the \"Haie de Sampuy,\" a rectangular, treed area overlying an ancient road along the edge of which (at least in this vicinity) the modern French D-142 runs northeast from M\u00e9rouville to intersect the \"Route de Chartes\" before arriving at Gommerville. An old road known as the \"Chemin de Saint-Mathurin\" intersects the D-142, bounding the short, northern edge of the \"Haie.\" It is from this wooded tract that the surrounding ancient settlement has acquired its common modern name in the literature, where it is styled \"vicus de Sampuy\" or simply \"Sampuy.\" The <em>Barrington Atlas</em> followed its standard practice of labeling sites whose ancient name is unknown simply with the name of nearest modern settlement or administrative district (i.e., \"M\u00e9rouville\").</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An extensive Roman-era settlement identified via aerial photography and archaeological survey in the modern French commune of M\u00e9rouville. ",
+  "reprPoint": [
+    1.9109493329338312,
+    48.304460311960504
+  ],
+  "placeTypes": [
+    "settlement",
+    "forest"
+  ],
+  "bbox": [
+    1.9102673,
+    48.303759,
+    1.9116121,
+    48.3051749
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-11-13T12:22:25Z",
+  "uri": "https://pleiades.stoa.org/places/109158",
+  "creators": [
+    {
+      "username": null,
+      "name": "C. Haselgrove"
+    },
+    {
+      "username": null,
+      "name": "J. Kunow"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added reference to DARMC 13708 as 'related'",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-14T14:10:59Z"
+    },
+    {
+      "comment": "reviewed new contributions to place resource; check in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-14T14:08:44Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-13T12:22:18Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:11:46Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:11:38Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-14T23:44:20Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T21:46:30Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:52:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-05-19T21:31:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T16:56:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T15:53:51Z"
+    }
+  ]
+}

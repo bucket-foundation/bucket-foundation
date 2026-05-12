@@ -1,0 +1,288 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.5864373,
+          34.7242496
+        ]
+      },
+      "type": "Feature",
+      "id": "souskiou-vathyrkakas-cemetery",
+      "properties": {
+        "snippet": "Cemetery; 3000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/89922848/souskiou-vathyrkakas-cemetery",
+        "description": "Point based on an OpenStreetMap node representing Souskiou-Vathyrkakas Cemetery after Peltenburg 2006.",
+        "location_precision": "precise",
+        "title": "OSM location of Souskiou-Vathyrkakas Cemetery"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9897731525",
+          "citationDetail": "Node 9897731525",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9897731525",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://catalog.hathitrust.org/api/volumes/oclc/236170167.html",
+          "citationDetail": "page 6, plate 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peltenburg 2006",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QFYY3Y9H",
+          "formattedCitation": "<div class=\"csl-entry\">Peltenburg, E. J. <i>The Chalcolithic Cemetery of Souskiou-Vathyrkakas, Cyprus: Investigations of Four Missions from 1950-1997</i>. Cyprus: Published for the Republic of Cyprus by the Department of Antiquities, Cyprus, 2006. http://catalog.hathitrust.org/api/volumes/oclc/236170167.html.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "souskiou-vathyrkakas-cemetery",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -2000,
+      "title": "OSM location of Souskiou-Vathyrkakas Cemetery",
+      "provenance": "OpenStreetMap (Node 9897731525, version 1, osm:changeset=123812812, 2022-07-19T15:09:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Souskiou-Vathyrkakas Cemetery after Peltenburg 2006.",
+      "created": "2022-07-19T15:16:39Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.5864373,
+          34.7242496
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/89922848/souskiou-vathyrkakas-cemetery",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-19T22:05:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-19T15:18:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-19T15:18:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-19T15:16:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-19T15:16:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -2000,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-19T15:16:24Z",
+      "associationCertainty": "certain",
+      "title": "Cyprus (island)",
+      "start": -3000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/89922848/cyprus-island",
+      "connectionType": "on",
+      "id": "cyprus-island",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-19T22:05:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-19T15:18:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-19T15:16:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-19T15:16:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707498",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://catalog.hathitrust.org/api/volumes/oclc/236170167.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Peltenburg 2006",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QFYY3Y9H",
+          "formattedCitation": "<div class=\"csl-entry\">Peltenburg, E. J. <i>The Chalcolithic Cemetery of Souskiou-Vathyrkakas, Cyprus: Investigations of Four Missions from 1950-1997</i>. Cyprus: Published for the Republic of Cyprus by the Department of Antiquities, Cyprus, 2006. http://catalog.hathitrust.org/api/volumes/oclc/236170167.html.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://catalog.hathitrust.org/api/volumes/oclc/236170167.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peltenburg 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QFYY3Y9H",
+      "formattedCitation": "<div class=\"csl-entry\">Peltenburg, E. J. <i>The Chalcolithic Cemetery of Souskiou-Vathyrkakas, Cyprus: Investigations of Four Missions from 1950-1997</i>. Cyprus: Published for the Republic of Cyprus by the Department of Antiquities, Cyprus, 2006. http://catalog.hathitrust.org/api/volumes/oclc/236170167.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "89922848",
+  "subject": [],
+  "title": "Souskiou-Vathyrkakas Cemetery",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cemetery site in southwest Cyprus lying 1.5km southwest of Souskiou Village with archaeological remains from the chalcolithic period.",
+  "reprPoint": [
+    32.5864373,
+    34.7242496
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    32.5864373,
+    34.7242496,
+    32.5864373,
+    34.7242496
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707498"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-19T15:15:13Z",
+  "uri": "https://pleiades.stoa.org/places/89922848",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-19T22:05:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-19T22:05:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-19T15:18:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-19T15:15:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-19T15:15:13Z"
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5550266,
+            41.8951035
+          ],
+          [
+            12.5549435,
+            41.8951434
+          ],
+          [
+            12.5549462,
+            41.8952033
+          ],
+          [
+            12.5549998,
+            41.8952592
+          ],
+          [
+            12.5550776,
+            41.8952692
+          ],
+          [
+            12.5551581,
+            41.8952512
+          ],
+          [
+            12.5552144,
+            41.8951913
+          ],
+          [
+            12.555209,
+            41.8951394
+          ],
+          [
+            12.5552618,
+            41.8950259
+          ],
+          [
+            12.5550839,
+            41.8949801
+          ],
+          [
+            12.5550266,
+            41.8951035
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mausoleo",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/472526695/osm-location-of-mausoleo",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mausoleo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/254502080",
+          "citationDetail": "Way 254502080",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=254502080",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mausoleo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 640,
+      "title": "OSM location of Mausoleo",
+      "provenance": "OpenStreetMap (Way 254502080, version 6, osm:changeset=152379434, 2024-06-07T14:31:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-06-07T14:32:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5550266,
+            41.8951035
+          ],
+          [
+            12.5549435,
+            41.8951434
+          ],
+          [
+            12.5549462,
+            41.8952033
+          ],
+          [
+            12.5549998,
+            41.8952592
+          ],
+          [
+            12.5550776,
+            41.8952692
+          ],
+          [
+            12.5551581,
+            41.8952512
+          ],
+          [
+            12.5552144,
+            41.8951913
+          ],
+          [
+            12.555209,
+            41.8951394
+          ],
+          [
+            12.5552618,
+            41.8950259
+          ],
+          [
+            12.5550839,
+            41.8949801
+          ],
+          [
+            12.5550266,
+            41.8951035
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/472526695/osm-location-of-mausoleo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-28T21:47:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:40:58Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:33:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:32:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:32:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-07T14:33:56Z",
+      "associationCertainty": "certain",
+      "title": "Villa Gordiani",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/472526695/8361191093",
+      "connectionType": "at",
+      "id": "8361191093",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:33:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:33:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-07T14:33:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422936",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/26331764",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Blanco and Nepi 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BM4IKCNN",
+      "formattedCitation": "<div class=\"csl-entry\">Blanco, Alessandro, Daniele Nepi, and Alessandro Vella. \u201cVia Prenestina / Via Casilina.\u201d <i>Bullettino della Commissione Archeologica Comunale di Roma</i> 114 (2013): 285\u201394. https://www.jstor.org/stable/26331764.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "472526695",
+  "subject": [
+    "opus latericium",
+    "mausoleum"
+  ],
+  "title": "Roman Mausoleum of Villa Gordiani",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman Mausoleum of Villa Gordiani is a two-storey cylindrical tomb with pronaos executed in opus latericium. It fronts on the ancient via Praenestina. The rotunda has a diameter of more than 19 meters. Based on brick stamps, chronology is potentially wide and likely should be assigned anywhere in the period from Constantine I to Theodoric.",
+  "reprPoint": [
+    12.55510421873016,
+    41.89512916675588
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.5549435,
+    41.8949801,
+    12.5552618,
+    41.8952692
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422936"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-06-07T14:33:55Z",
+  "uri": "https://pleiades.stoa.org/places/472526695",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-28T21:47:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:40:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:40:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:34:03Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:33:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-07T14:33:55Z"
+    }
+  ]
+}

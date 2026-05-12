@@ -1,0 +1,14 @@
+# Theater of Sagalassos
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/62651370
+- **ID**: 62651370
+- **Coords**: (no precise location)
+- **Subjects**: Theater
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+The Theater of Sagalassos dates to the later second century.

@@ -1,0 +1,14 @@
+# Iouernis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/21904
+- **ID**: 21904
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Iouernis
+
+## Description
+
+An ancient place, cited: BAtlas 2 unlocated Iouernis

@@ -1,0 +1,14 @@
+# Kerkopia
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/614697
+- **ID**: 614697
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kerkopia
+
+## Description
+
+An ancient place, cited: BAtlas 62 unlocated Kerkopia

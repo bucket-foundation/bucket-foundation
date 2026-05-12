@@ -1,0 +1,214 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.6560244,
+          48.6930813
+        ]
+      },
+      "type": "Feature",
+      "id": "noues",
+      "properties": {
+        "snippet": "Archaeological-site, Production; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/13037053/noues",
+        "description": "Point representing the imagery location of the Noues site, derived from an OpenStreetMap Node after Dufa\u00ff 1997.",
+        "location_precision": "precise",
+        "title": "Noues"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/10073437076",
+          "citationDetail": "Node 10073437076",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=10073437076",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://worldcat.org/oclc/263149246",
+          "citationDetail": "pages 21-23, 242",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Dufa\u00ff 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7BA5U2HB",
+          "formattedCitation": "<div class=\"csl-entry\">Dufa\u00ff, Bruno, Yvan Barat, and St\u00e9phanie Raux. <i>Fabriquer de la vaisselle \u00e0 l\u2019\u00e9poque romaine: arch\u00e9ologie d\u2019un centre de production c\u00e9ramique en Gaule\u202f: La Boissi\u00e8re-Ecole (Yvelines-France), (1er et IIIe si\u00e8cles apr\u00e8s J.C.)</i>. Versailles: Service arch\u00e9ologique d\u00e9partemental des Yvelines, 1997. https://worldcat.org/oclc/263149246.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "noues",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "end": 300,
+      "title": "Noues",
+      "provenance": "OpenStreetMap (Node 10073437076, version 1, osm:changeset=126951724, 2022-10-03T17:58:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "production"
+      ],
+      "description": "Point representing the imagery location of the Noues site, derived from an OpenStreetMap Node after Dufa\u00ff 1997.",
+      "created": "2022-10-03T18:02:00Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.6560244,
+          48.6930813
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/13037053/noues",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-10-03T20:36:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-03T18:04:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-03T18:03:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-03T18:02:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-10-03T18:02:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/oclc/263149246",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dufa\u00ff 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7BA5U2HB",
+      "formattedCitation": "<div class=\"csl-entry\">Dufa\u00ff, Bruno, Yvan Barat, and St\u00e9phanie Raux. <i>Fabriquer de la vaisselle \u00e0 l\u2019\u00e9poque romaine: arch\u00e9ologie d\u2019un centre de production c\u00e9ramique en Gaule\u202f: La Boissi\u00e8re-Ecole (Yvelines-France), (1er et IIIe si\u00e8cles apr\u00e8s J.C.)</i>. Versailles: Service arch\u00e9ologique d\u00e9partemental des Yvelines, 1997. https://worldcat.org/oclc/263149246.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "13037053",
+  "subject": [],
+  "title": "Noues",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/production",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Pottery workshop site in Gaul near the modern village of La Boissi\u00e8re-\u00c9cole containing several workshop sites used from the first-third centuries CE.",
+  "reprPoint": [
+    1.6560244,
+    48.6930813
+  ],
+  "placeTypes": [
+    "production",
+    "archaeological-site"
+  ],
+  "bbox": [
+    1.6560244,
+    48.6930813,
+    1.6560244,
+    48.6930813
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-10-03T18:01:42Z",
+  "uri": "https://pleiades.stoa.org/places/13037053",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-10-03T20:36:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-03T18:04:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-03T18:04:15Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-03T18:01:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-10-03T18:01:42Z"
+    }
+  ]
+}

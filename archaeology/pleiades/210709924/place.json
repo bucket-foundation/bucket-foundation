@@ -1,0 +1,468 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.1973748,
+            39.9769522
+          ],
+          [
+            26.1964551,
+            39.9766344
+          ],
+          [
+            26.1952469,
+            39.9768279
+          ],
+          [
+            26.1945797,
+            39.9779472
+          ],
+          [
+            26.1952469,
+            39.9794258
+          ],
+          [
+            26.1959502,
+            39.9796054
+          ],
+          [
+            26.1967076,
+            39.9794119
+          ],
+          [
+            26.1972486,
+            39.9782788
+          ],
+          [
+            26.1973748,
+            39.9769522
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-kumtepe",
+      "properties": {
+        "snippet": "Settlement; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/210709924/osm-location-of-kumtepe",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Kumtepe"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/217554471",
+          "citationDetail": "Way 217554471",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=217554471",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-kumtepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of Kumtepe",
+      "provenance": "OpenStreetMap (Way 217554471, version 2, osm:changeset=56073792, 2018-02-05T04:51:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2018-02-05T04:51:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.1973748,
+            39.9769522
+          ],
+          [
+            26.1964551,
+            39.9766344
+          ],
+          [
+            26.1952469,
+            39.9768279
+          ],
+          [
+            26.1945797,
+            39.9779472
+          ],
+          [
+            26.1952469,
+            39.9794258
+          ],
+          [
+            26.1959502,
+            39.9796054
+          ],
+          [
+            26.1967076,
+            39.9794119
+          ],
+          [
+            26.1972486,
+            39.9782788
+          ],
+          [
+            26.1973748,
+            39.9769522
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/210709924/osm-location-of-kumtepe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-14T14:55:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T13:56:09Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-05T04:51:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-05T04:51:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-05T04:51:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-14T17:33:04Z",
+      "associationCertainty": "certain",
+      "title": "Troas (region)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/210709924/troas",
+      "connectionType": "part_of_regional",
+      "id": "troas",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-03T19:46:37Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T20:22:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-22T01:41:04Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-14T17:33:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-14T17:33:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550944",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.jstor.org/stable/30103104",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cook 1988",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BJ8443ET",
+          "formattedCitation": "<div class=\"csl-entry\">Cook, J.M. \u201cCities in and around the Troad.\u201d <i>The Annual of the British School at Athens</i> 83 (1988): 7\u201319. http://www.jstor.org/stable/30103104.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Kumtepe",
+      "citationDetail": "Kumtepe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Kumtepe.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://luwianstudies.org/site/kumtepe/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Luwian Studies: Kumtepe",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/3642730",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Yakar 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XFGR98GZ",
+      "formattedCitation": "<div class=\"csl-entry\">Yakar, Jak. \u201cTroy and Anatolian Early Bronze Age Chronology.\u201d <i>Anatolian Studies</i> 29 (1979): 51\u201367. https://doi.org/10.2307/3642730.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/30103104",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cook 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BJ8443ET",
+      "formattedCitation": "<div class=\"csl-entry\">Cook, J.M. \u201cCities in and around the Troad.\u201d <i>The Annual of the British School at Athens</i> 83 (1988): 7\u201319. http://www.jstor.org/stable/30103104.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kumtepe",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1132958",
+          "citationDetail": "Q1132958",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-02-13.0864799014",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-02-13T13:55:45Z",
+      "uri": "https://pleiades.stoa.org/places/210709924/name.2018-02-13.0864799014",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-14T14:55:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T13:56:10Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T13:55:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-02-13T13:55:45Z"
+        }
+      ]
+    }
+  ],
+  "id": "210709924",
+  "subject": [],
+  "title": "Kumtepe (Troad)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>Four occupational horizons have been identified at Kumtepe (Kumtepe IA, IB, IC and II). The initial settlement was established ca. 4800 B.C. but then abandoned ca. 4500 B.C. The site was re-settled around 3700 B.C. This \"Kumtepe B\" culture used large houses that had multiple rooms and they practiced both animal husbandry and cultivation. There may be connections between Kumtepe and the settlement of\u00a0Yass\u0131tepe\u00a0and\u00a0Hisarl\u0131k\u00a0(Troy) around 3000 B.C.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The oldest permanent settlement in the Troad.",
+  "reprPoint": [
+    26.196051089719557,
+    39.97804527617476
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    26.1945797,
+    39.9766344,
+    26.1973748,
+    39.9796054
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550944"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-01-21T03:21:40Z",
+  "uri": "https://pleiades.stoa.org/places/210709924",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-14T17:32:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-14T14:55:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-13T14:00:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-13T14:00:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-13T13:58:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-13T13:56:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-05T04:50:06Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-21T03:21:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-21T03:21:41Z"
+    }
+  ]
+}

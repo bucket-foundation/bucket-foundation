@@ -1,0 +1,637 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5047763,
+            41.8868543
+          ],
+          [
+            12.5048112,
+            41.8868607
+          ],
+          [
+            12.5048202,
+            41.8868338
+          ],
+          [
+            12.5047853,
+            41.8868274
+          ],
+          [
+            12.5047763,
+            41.8868543
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-lateran-obelisk",
+      "properties": {
+        "snippet": "Monument; AD 1500 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/464741837/osm-location-of-lateran-obelisk",
+        "description": "",
+        "location_precision": "precise",
+        "title": "OSM location of Lateran Obelisk"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "sixteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/28273705",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Way 28273705",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-lateran-obelisk",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 2100,
+      "title": "OSM location of Lateran Obelisk",
+      "provenance": "OpenStreetMap (Way 28273705, version 15, osm:changeset=141515915, 2023-09-20T14:05:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1500,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "",
+      "created": "2022-08-30T16:59:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5047763,
+            41.8868543
+          ],
+          [
+            12.5048112,
+            41.8868607
+          ],
+          [
+            12.5048202,
+            41.8868338
+          ],
+          [
+            12.5047853,
+            41.8868274
+          ],
+          [
+            12.5047763,
+            41.8868543
+          ]
+        ]
+      },
+      "locationType": [
+        "relocated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/464741837/osm-location-of-lateran-obelisk",
+      "creators": [
+        {
+          "username": null,
+          "name": "Michael Quinn"
+        },
+        {
+          "username": null,
+          "name": "Elliot Rosenthal"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-04T17:23:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T22:31:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T22:31:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T20:26:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T17:46:25Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T16:59:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T16:59:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2022-08-30T16:48:09Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/464741837/roma",
+      "connectionType": "relocated_to",
+      "id": "roma",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T22:31:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T20:26:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T16:51:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T16:48:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T16:48:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/relocated_to"
+    },
+    {
+      "end": -1086,
+      "description": "",
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "created": "2022-08-30T16:49:43Z",
+      "associationCertainty": "certain",
+      "title": "Karnak",
+      "start": -1548,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/464741837/karnak",
+      "connectionType": "material_source",
+      "id": "karnak",
+      "attestations": [
+        {
+          "timePeriod": "new-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/new-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T22:31:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T20:26:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T18:06:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T16:49:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T16:49:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/786050",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "Michael Quinn"
+        },
+        {
+          "username": null,
+          "name": "Elliot Rosenthal"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/material_source"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Lateran_Obelisk",
+      "citationDetail": "Lateran Obelisk",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/768528944",
+      "citationDetail": "300",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Claridge 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SA3KX3U2",
+      "formattedCitation": "<div class=\"csl-entry\">Claridge, Amanda. <i>Rome: An Oxford Archaeological Guide</i>. 2nd ed. Oxford, England: Oxford University Press, 2010. http://www.worldcat.org/oclc/768528944.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "137-148",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Loar et al. 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QXPGQ8BU",
+      "formattedCitation": "<div class=\"csl-entry\">Loar, Matthew, Carolyn MacDonald, and Dan-el Padilla Peralta, eds. <i>Rome, Empire of Plunder: The Dynamics of Cultural Appropriation</i>. Cambridge, United Kingdom: Cambridge University Press, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/428429066",
+      "citationDetail": "70-71",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Roullet 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YUD7GHWG",
+      "formattedCitation": "<div class=\"csl-entry\">Roullet, Anne. <i>The Egyptian and Egyptianizing Monuments of Imperial Rome</i>. \u00c9tudes Pr\u00e9liminaires Aux Relitions Orientales Dans l\u2019empire Romain. Leiden: E.J. Brill, 1972.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1120630233",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Blyth 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L7MXPGZF",
+      "formattedCitation": "<div class=\"csl-entry\">Blyth, Elizabeth. <i>Karnak: Evolution of a Temple</i>. London: Routledge, 2006.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125AOLa",
+      "citationDetail": "Lateran Obelisk (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q645181",
+      "citationDetail": "Lateran Obelisk (Q645181)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=424",
+      "citationDetail": "424: Obelisco Lateranense",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Lateran Obelisk",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "seventeenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventeenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/991750891",
+          "citationDetail": "137-148",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Loar et al. 2018",
+          "bibliographicURI": "",
+          "formattedCitation": "Loar, Matthew, Carolyn MacDonald, and Dan-el Padilla Peralta. 2018. Rome, empire of plunder: the dynamics of cultural appropriation. Cambridge.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "lateran-obelisk",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1600,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-08-30T17:45:42Z",
+      "uri": "https://pleiades.stoa.org/places/464741837/lateran-obelisk",
+      "creators": [
+        {
+          "username": null,
+          "name": "Michael Quinn"
+        },
+        {
+          "username": null,
+          "name": "Elliot Rosenthal"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-30T22:31:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T20:26:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T18:03:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T17:46:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T17:45:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-08-30T17:45:42Z"
+        }
+      ]
+    }
+  ],
+  "id": "464741837",
+  "subject": [
+    "obelisk"
+  ],
+  "title": "Lateran Obelisk",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p dir=\"ltr\"><span>The Lateran Obelisk is the largest-standing Egyptian obelisk in the world, standing at just over 32 meters. Boats carried it and one other obelisk from Karnak, the Obelisk of Theodosius, up the Nile River from Karnak to Alexandria. Constantius II originally wanted to bring it to the new capital of the Roman Empire, Constantinople, but instead later brought the obelisk to Rome, where it stood in the Circus Maximus. Constantius intended it to represent his devotion to his father, Constantine. When he set up the obelisk in Rome, an inscription was made commemorating both Constantine's and Constantius' careers, including his victory over the usurper Magnentius, who led a revolt in the western provinces. In this way, the obelisk was a massive symbol of Roman power over their provinces. It was later excavated under the lead of Pope Sixtus V in 1587.\u00a0 Found in three pieces, it was restored and erected in Piazza San Giovanni in Laterano a year later.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Lateran Obelisk is a monumental Egyptian obelisk, completed during the reign of Thutmose IV (ca. 1400 BCE) and looted from Karnak in the early fourth century CE.",
+  "reprPoint": [
+    12.50479825,
+    41.88684405000001
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    12.5047763,
+    41.8868274,
+    12.5048202,
+    41.8868607
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/786050"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-30T16:44:34Z",
+  "uri": "https://pleiades.stoa.org/places/464741837",
+  "creators": [
+    {
+      "username": null,
+      "name": "Michael Quinn"
+    },
+    {
+      "username": null,
+      "name": "Elliot Rosenthal"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-04T17:37:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-04T17:27:36Z"
+    },
+    {
+      "comment": "add Info.roma.it, wikidata references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-04T17:26:31Z"
+    },
+    {
+      "comment": "add topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-31T00:17:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-30T22:31:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-08-30T20:26:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-08-30T18:06:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-08-30T17:26:57Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-08-30T16:44:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-08-30T16:44:34Z"
+    }
+  ]
+}

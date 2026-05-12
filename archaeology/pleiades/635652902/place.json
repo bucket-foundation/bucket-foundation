@@ -1,0 +1,370 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.1580241,
+            41.7414302
+          ],
+          [
+            13.1580007,
+            41.7413893
+          ],
+          [
+            13.1581868,
+            41.7413155
+          ],
+          [
+            13.1586813,
+            41.7410863
+          ],
+          [
+            13.1587781,
+            41.7410753
+          ],
+          [
+            13.1588643,
+            41.7410722
+          ],
+          [
+            13.1598454,
+            41.7410977
+          ],
+          [
+            13.1599245,
+            41.7411181
+          ],
+          [
+            13.1600007,
+            41.741145
+          ],
+          [
+            13.1600611,
+            41.7411535
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mura-serviane",
+      "properties": {
+        "snippet": "City-wall; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/635652902/osm-location-of-mura-serviane",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Mura Serviane"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/164051635",
+          "citationDetail": "Way 164051635",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=164051635",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mura-serviane",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "end": 300,
+      "title": "OSM location of Mura Serviane",
+      "provenance": "OpenStreetMap (Way 164051635, version 3, osm:changeset=76422293, 2019-10-31T01:21:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-wall"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-10-31T01:24:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.1580241,
+            41.7414302
+          ],
+          [
+            13.1580007,
+            41.7413893
+          ],
+          [
+            13.1581868,
+            41.7413155
+          ],
+          [
+            13.1586813,
+            41.7410863
+          ],
+          [
+            13.1587781,
+            41.7410753
+          ],
+          [
+            13.1588643,
+            41.7410722
+          ],
+          [
+            13.1598454,
+            41.7410977
+          ],
+          [
+            13.1599245,
+            41.7411181
+          ],
+          [
+            13.1600007,
+            41.741145
+          ],
+          [
+            13.1600611,
+            41.7411535
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/635652902/osm-location-of-mura-serviane",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-03T19:10:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-31T02:13:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-31T02:13:14Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-31T01:24:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-31T01:24:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-31T01:24:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-10-31T01:25:38Z",
+      "associationCertainty": "certain",
+      "title": "Anagnia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/635652902/anagnia",
+      "connectionType": "at",
+      "id": "anagnia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-03T19:10:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-31T02:13:22Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-31T01:25:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-31T01:25:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422833",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q56258623",
+      "citationDetail": "Q56258623: Mura Serviane",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/File:Mura_Serviane.jpg",
+      "citationDetail": "Mura Serviane",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cWikimedia Commons.\u201d Media file repository. Wikimedia Commons, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/252263860",
+      "citationDetail": "61",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Enea nel Lazio",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4UJAE2N5",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Enea nel Lazio: archeologia e mito: bimillenario virgiliano: Roma, 22 settembre-31 dicembre 1981, Campidoglio, Palazzo dei Conservatori</i>. Roma: F. Palombi, 1981. http://www.worldcat.org/oclc/252263860.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "635652902",
+  "subject": [],
+  "title": "Mura Serviane, Anagni",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient opus quadratum wall at Anagni referred to as \"Mura Serviane\" based on its construction technique.",
+  "reprPoint": [
+    13.158992219957486,
+    41.7411492506314
+  ],
+  "placeTypes": [
+    "city-wall"
+  ],
+  "bbox": [
+    13.1580007,
+    41.7410722,
+    13.1600611,
+    41.7414302
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422833"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-10-31T01:23:52Z",
+  "uri": "https://pleiades.stoa.org/places/635652902",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-13T02:28:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-03T19:10:32Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-31T02:20:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-31T02:13:21Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-31T02:12:42Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-31T01:23:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-31T01:23:52Z"
+    }
+  ]
+}

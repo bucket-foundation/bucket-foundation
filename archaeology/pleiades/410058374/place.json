@@ -1,0 +1,386 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -5.7666244,
+            36.1230963
+          ],
+          [
+            -5.76667,
+            36.1231158
+          ],
+          [
+            -5.76667,
+            36.1230681
+          ],
+          [
+            -5.766729,
+            36.1230811
+          ],
+          [
+            -5.7667049,
+            36.1232025
+          ],
+          [
+            -5.766485,
+            36.1232783
+          ],
+          [
+            -5.7663267,
+            36.1233736
+          ],
+          [
+            -5.7662677,
+            36.1232934
+          ],
+          [
+            -5.7662275,
+            36.1232674
+          ],
+          [
+            -5.7662677,
+            36.1231526
+          ],
+          [
+            -5.7663562,
+            36.1230443
+          ],
+          [
+            -5.7663535,
+            36.122988
+          ],
+          [
+            -5.766442,
+            36.1229858
+          ],
+          [
+            -5.7666244,
+            36.1230963
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-restos-de-la-iglesia-visiga3tica",
+      "properties": {
+        "snippet": "Church-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/410058374/osm-location-of-restos-de-la-iglesia-visiga3tica",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Restos de la iglesia visig\u00f3tica"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/943140881",
+          "citationDetail": "Way 943140881",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=943140881",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-restos-de-la-iglesia-visiga3tica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Restos de la iglesia visig\u00f3tica",
+      "provenance": "OpenStreetMap (Way 943140881, version 1, osm:changeset=104717175, 2021-05-15T06:18:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-06-18T01:20:47Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -5.7666244,
+            36.1230963
+          ],
+          [
+            -5.76667,
+            36.1231158
+          ],
+          [
+            -5.76667,
+            36.1230681
+          ],
+          [
+            -5.766729,
+            36.1230811
+          ],
+          [
+            -5.7667049,
+            36.1232025
+          ],
+          [
+            -5.766485,
+            36.1232783
+          ],
+          [
+            -5.7663267,
+            36.1233736
+          ],
+          [
+            -5.7662677,
+            36.1232934
+          ],
+          [
+            -5.7662275,
+            36.1232674
+          ],
+          [
+            -5.7662677,
+            36.1231526
+          ],
+          [
+            -5.7663562,
+            36.1230443
+          ],
+          [
+            -5.7663535,
+            36.122988
+          ],
+          [
+            -5.766442,
+            36.1229858
+          ],
+          [
+            -5.7666244,
+            36.1230963
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/410058374/osm-location-of-restos-de-la-iglesia-visiga3tica",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-29T08:20:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-19T14:23:33Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-18T01:21:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-18T01:20:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-18T01:20:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-18T01:31:39Z",
+      "associationCertainty": "certain",
+      "title": "Belleia (mountain)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/410058374/belleia-mountain",
+      "connectionType": "on",
+      "id": "belleia-mountain",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-29T08:20:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-19T14:23:34Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-18T01:31:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-18T01:31:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256022",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/mcv/7452",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Guti\u00e9rrez Lloret 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RZ92UHQW",
+      "formattedCitation": "<div class=\"csl-entry\">Guti\u00e9rrez Lloret, Sonia, Bastien Lefebvre, and Pierre Moret. \u201cLa iglesia altomedieval de la Silla del Papa (Tarifa, C\u00e1diz).\u201d <i>M\u00e9langes de la Casa de Vel\u00e1zquez. Nouvelle s\u00e9rie</i>, no. 47\u20131 (April 15, 2017): 201\u201314. https://doi.org/10.4000/mcv.7452.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Silla_del_Papa",
+      "citationDetail": "Silla del Papa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Guti\u00e9rrez Lloret 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5PKXZTN4",
+      "formattedCitation": "<div class=\"csl-entry\">Guti\u00e9rrez Lloret, Sonia, Bastien Lefebvre, and Pierre Moret. \u201cLa iglesia altomedieval de la Silla del Papa (Tarifa, C\u00e1diz).\u201d In <i>M\u00e9langes de la Casa de Vel\u00e1zquez, 47,1 (2017)\u202f: La ville antique de Baelo, cent ans apr\u00e8s Pierre Paris = The ancient city of Baelo, a hundred years after Pierre Paris</i>, 201\u201314. Paris: Editions E. de Boccard, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "410058374",
+  "subject": [],
+  "title": "Silla de Papa church",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The remains of a church belonging to the early Medieval period (perhaps the seventh century) that perhaps was a project of Pymenius, Bishop of Asidonia. This edifice is located on the hill that was the site of the oppidum referred to as Silla de Papa.",
+  "reprPoint": [
+    -5.766472422211116,
+    36.123165281693296
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    -5.766729,
+    36.1229858,
+    -5.7662275,
+    36.1233736
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256022"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-06-18T01:19:55Z",
+  "uri": "https://pleiades.stoa.org/places/410058374",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-29T08:20:35Z"
+    },
+    {
+      "comment": "ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-19T14:35:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-19T14:23:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-18T01:26:30Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-18T01:19:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-18T01:19:55Z"
+    }
+  ]
+}

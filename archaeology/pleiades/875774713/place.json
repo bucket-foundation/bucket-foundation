@@ -1,0 +1,328 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1359926,
+          29.9790508
+        ]
+      },
+      "type": "Feature",
+      "id": "tomb-of-hetepheres-i",
+      "properties": {
+        "snippet": "Tomb; 2670 BC - 2168 BC",
+        "link": "https://pleiades.stoa.org/places/875774713/tomb-of-hetepheres-i",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tomb of Hetepheres I"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2082231438",
+          "citationDetail": "Node 2082231438",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2082231438",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Hetepheres_I",
+          "citationDetail": "Hetepheres I",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Hetepheres I.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tomb-of-hetepheres-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -2168,
+      "title": "OSM location of Tomb of Hetepheres I",
+      "provenance": "OpenStreetMap (Node 2082231438, version 1, osm:changeset=14401388, 2012-12-25T14:16:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2670,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-02-19T21:59:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1359926,
+          29.9790508
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/875774713/tomb-of-hetepheres-i",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "adjusted title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-12T13:51:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-03-22T20:03:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-20T23:01:35Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-19T22:00:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-19T21:59:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-19T21:59:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-11T23:40:27Z",
+      "associationCertainty": "certain",
+      "title": "Giza",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/875774713/0275783726",
+      "connectionType": "at",
+      "id": "0275783726",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-11T23:40:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-11T23:40:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-11T23:40:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442962448",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Reisner 1955",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6N7LEVBS",
+      "formattedCitation": "<div class=\"csl-entry\">Reisner, George Andrew. <i>The Tomb of Hetep-Heres the Mother of Cheops; a Study of Egyptian Civilization in the Old Kingdom.</i> Cambridge, Mass.: Harvard University Press, 1955.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=jXByAAAAMAAJ",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lehner 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NGTGBUZG",
+      "formattedCitation": "<div class=\"csl-entry\">Lehner, Mark. <i>The Pyramid Tomb of Hetep-Heres and the Satellite Pyramid of Khufu</i>. Mainz am Rhein: P. von Zabern, 1985. http://books.google.com/books?id=jXByAAAAMAAJ.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dunham 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7JMW7J9C",
+      "formattedCitation": "<div class=\"csl-entry\">Dunham, Dows, and Mass.) Museum of Fine Arts (Boston. <i>The Tomb of Queen Hetep-Heres</i>. Boston, Mass.: Museum of Fine Arts, 1972.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/categorizing-archaeological-finds-the-funerary-material-of-queen-hetepheres-i-at-giza/523E9C7819B5B661D3BDAE50CA11E529",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00fcnch 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WHK4QX92",
+      "formattedCitation": "<div class=\"csl-entry\">M\u00fcnch, Hans-Hubertus. \u201cCategorizing Archaeological Finds: The Funerary Material of Queen Hetepheres I at Giza.\u201d <i>Antiquity</i> 74, no. 286 (December 2000): 898\u2013908. https://doi.org/10.1017/S0003598X00060543.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Hetepheres_I",
+      "citationDetail": "Hetepheres I",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q256515",
+      "citationDetail": "Q256515: Hetepheres I",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "875774713",
+  "subject": [],
+  "title": "Tomb of Hetepheres I",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "<p>The tomb was discovered by the archaeological team from the Museum of Fine Arts Boston led by George Reisner in 1925. The sarcophagus was found to be empty in 1927 although a number of grave goods were in a good state of preservation. The tomb itself seems to be a secondary burial for the queen, who may have been originally buried at Dahshur. Various scholarly interpretations of the tomb and the archaeological sequence exist in the published literature.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Hetepheres I was a 4th Dynasty queen of ancient Egypt (ca. 2600 B.C). She may have been a wife of the pharaoh Sneferu and the mother of Khufu.",
+  "reprPoint": [
+    31.1359926,
+    29.9790508
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    31.1359926,
+    29.9790508,
+    31.1359926,
+    29.9790508
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442962448"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-11T23:40:26Z",
+  "uri": "https://pleiades.stoa.org/places/875774713",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "ref. update",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-19T20:56:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-18T20:48:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-14T14:50:10Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-12T13:50:35Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-11T23:40:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-11T23:40:26Z"
+    }
+  ]
+}

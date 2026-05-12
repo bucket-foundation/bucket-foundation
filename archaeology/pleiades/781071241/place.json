@@ -1,0 +1,358 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.1900016,
+            12.6092467
+          ],
+          [
+            80.1895136,
+            12.608458
+          ],
+          [
+            80.1891786,
+            12.6086553
+          ],
+          [
+            80.1896666,
+            12.6094441
+          ],
+          [
+            80.1898475,
+            12.6093376
+          ],
+          [
+            80.1900016,
+            12.6092467
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-five-rathas",
+      "properties": {
+        "snippet": "Sanctuary",
+        "link": "https://pleiades.stoa.org/places/781071241/osm-location-of-five-rathas",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Five Rathas"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/103082949",
+          "citationDetail": "Way 103082949",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=103082949",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-five-rathas",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": null,
+      "title": "OSM location of Five Rathas",
+      "provenance": "OpenStreetMap (Way 103082949, version 9, osm:changeset=99048056, 2021-02-10T14:24:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-10-22T20:36:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            80.1900016,
+            12.6092467
+          ],
+          [
+            80.1895136,
+            12.608458
+          ],
+          [
+            80.1891786,
+            12.6086553
+          ],
+          [
+            80.1896666,
+            12.6094441
+          ],
+          [
+            80.1898475,
+            12.6093376
+          ],
+          [
+            80.1900016,
+            12.6092467
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/781071241/osm-location-of-five-rathas",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T10:54:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:43:11Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T20:37:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T20:36:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-22T20:36:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 699,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-23T20:38:08Z",
+      "associationCertainty": "certain",
+      "title": "Mahabalipuram",
+      "start": 600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/781071241/mahabalipuram",
+      "connectionType": "at",
+      "id": "mahabalipuram",
+      "attestations": [
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T10:54:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:43:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T20:38:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T20:38:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/835093310",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-06-23T20:41:48Z",
+      "associationCertainty": "certain",
+      "title": "Dharmaraja Ratha",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/781071241/dharmarajaratha",
+      "connectionType": "connection",
+      "id": "dharmarajaratha",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-31T10:54:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-31T02:43:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T20:41:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "efrancis",
+          "modified": "2020-06-23T20:41:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/536439049",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "efrancis",
+          "homepage": null,
+          "name": "Emmanuel Francis",
+          "uri": "https://pleiades.stoa.org/author/efrancis"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pancha_Rathas",
+      "citationDetail": "Pancha Rathas",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "781071241",
+  "subject": [],
+  "title": "Five Rathas",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Five Rathas is the modern name of a group of five seventh-century Pallava rock-cut temples at Mah\u0101balipuram.",
+  "reprPoint": [
+    80.18959010239806,
+    12.60895104105855
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "shrine",
+    "temple-2"
+  ],
+  "bbox": [
+    80.1891786,
+    12.608458,
+    80.1900016,
+    12.6094441
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/835093310",
+    "https://pleiades.stoa.org/places/536439049",
+    "https://pleiades.stoa.org/places/536439049"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-23T20:36:22Z",
+  "uri": "https://pleiades.stoa.org/places/781071241",
+  "creators": [
+    {
+      "username": "efrancis",
+      "homepage": null,
+      "name": "Emmanuel Francis",
+      "uri": "https://pleiades.stoa.org/author/efrancis"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-31T10:54:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-31T02:43:11Z"
+    },
+    {
+      "comment": "added wikipedia ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-22T20:36:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-23T20:36:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "efrancis",
+      "modified": "2020-06-23T20:36:22Z"
+    }
+  ]
+}

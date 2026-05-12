@@ -1,0 +1,416 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.9131236,
+            41.6417428
+          ],
+          [
+            12.9129917,
+            41.6416407
+          ],
+          [
+            12.9131262,
+            41.6415435
+          ],
+          [
+            12.9131856,
+            41.6415894
+          ],
+          [
+            12.9131666,
+            41.6416031
+          ],
+          [
+            12.9132393,
+            41.6416593
+          ],
+          [
+            12.9131236,
+            41.6417428
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tempio-di-castore-e-polluce",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/426309852/osm-location-of-tempio-di-castore-e-polluce",
+        "description": "Representative location of the temple's remains based on a polygon derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tempio di Castore e Polluce"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/439887583",
+          "citationDetail": "Way 439887583",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=439887583",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tempio-di-castore-e-polluce",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Tempio di Castore e Polluce",
+      "provenance": "OpenStreetMap (Way 439887583, version 1, osm:changeset=41802434, 2016-08-30T13:54:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location of the temple's remains based on a polygon derived from OpenStreetMap.",
+      "created": "2018-03-02T04:31:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.9131236,
+            41.6417428
+          ],
+          [
+            12.9129917,
+            41.6416407
+          ],
+          [
+            12.9131262,
+            41.6415435
+          ],
+          [
+            12.9131856,
+            41.6415894
+          ],
+          [
+            12.9131666,
+            41.6416031
+          ],
+          [
+            12.9132393,
+            41.6416593
+          ],
+          [
+            12.9131236,
+            41.6417428
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/426309852/osm-location-of-tempio-di-castore-e-polluce",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-12T03:24:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T12:38:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T14:02:55Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-02T04:32:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-02T04:31:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-02T04:31:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-03-02T04:31:31Z",
+      "associationCertainty": "certain",
+      "title": "Cora",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/426309852/cora",
+      "connectionType": "at",
+      "id": "cora",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T12:38:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T14:02:54Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-02T04:31:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-02T04:31:31Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422909",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.scoprirecori.it/home/scopri/da-non-perdere/tempio-dioscuri-cori/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "IL TEMPIO DEI DIOSCURI",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Templi_romani_di_Cori",
+      "citationDetail": "Templi romani di Cori",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hesberg 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DP9HJPXC",
+      "formattedCitation": "<div class=\"csl-entry\">Hesberg, Henner von. \u201cDie Statuengruppe im Tempel der Dioskuren von Cori. Bemerkungen zum Aufstellungskontext von Kultbildern in sp\u00e4trepublikanischer Zeit.\u201d <i>Mitteilungen des Deutschen Arch\u00e4ologischen Instituts, R\u00f6mische Abteilung</i> 113 (2007): 443\u201361.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/25010661",
+      "citationDetail": "14",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Abramson 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5SQERG49",
+      "formattedCitation": "<div class=\"csl-entry\">Abramson, Herbert. \u201cThe Olympieion in Athens and Its Connections with Rome.\u201d <i>California Studies in Classical Antiquity</i> 7 (1974): 1\u201325. https://doi.org/10.2307/25010661.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5774",
+      "citationDetail": "Tempel f\u00fcr Castor und Pollux Cori, Latina (Provinz)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/text/538961",
+      "citationDetail": "text 538961",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3983310",
+      "citationDetail": "Q3983310",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "426309852",
+  "subject": [
+    "extant remains",
+    "Castor",
+    "Temple",
+    "Corinthian order"
+  ],
+  "title": "Temple of Castor and Pollux, Cora",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>Epigraphic evidence indicates that the temple's patrons in the late second century B.C. are Marcus Calvius Publius, son of Publius, and Caius Geminius Mateiclus, son of Caius. Their names are recorded on a epistyle block as part of a dedicatory inscription.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Temple of Castor and Pollux at Cora was originally built between the fourth and the second centuries B.C. The partially extant architrave carries an inscription of the first century B.C.",
+  "reprPoint": [
+    12.913119802156487,
+    41.641643062793136
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    12.9129917,
+    41.6415435,
+    12.9132393,
+    41.6417428
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422909"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-02T04:31:09Z",
+  "uri": "https://pleiades.stoa.org/places/426309852",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q3983310",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-12T03:25:00Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-05T01:20:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-28T23:21:47Z"
+    },
+    {
+      "comment": "added Arachne 2100203: Tempel f\u00fcr Castor und Pollux Latina (Provinz)",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-28T20:41:12Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-03T05:20:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-04T12:38:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T14:02:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T14:02:36Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-02T04:36:32Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-02T04:31:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-02T04:31:09Z"
+    }
+  ]
+}

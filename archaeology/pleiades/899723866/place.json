@@ -1,0 +1,321 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.9020996,
+            37.8387807
+          ],
+          [
+            40.9013959,
+            37.8389951
+          ],
+          [
+            40.9010428,
+            37.8392442
+          ],
+          [
+            40.9008378,
+            37.8396024
+          ],
+          [
+            40.9011813,
+            37.8400381
+          ],
+          [
+            40.9016427,
+            37.8401958
+          ],
+          [
+            40.9022092,
+            37.8401682
+          ],
+          [
+            40.9026185,
+            37.840013
+          ],
+          [
+            40.9030562,
+            37.8396798
+          ],
+          [
+            40.9031327,
+            37.8395139
+          ],
+          [
+            40.9030608,
+            37.8391354
+          ],
+          [
+            40.9027597,
+            37.8387793
+          ],
+          [
+            40.9020996,
+            37.8387807
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "salat-tepe",
+      "properties": {
+        "snippet": "Settlement, Tell; 2000 BC - 1750 BC",
+        "link": "https://pleiades.stoa.org/places/899723866/salat-tepe",
+        "description": "Polygon representing the visible remains of Salat Tepe, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Salat Tepe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/94498771",
+          "citationDetail": "Way 94498771",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=94498771",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "salat-tepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -1750,
+      "title": "OSM location of Salat Tepe",
+      "provenance": "OpenStreetMap (Way 94498771, version 6, osm:changeset=22286051, 2014-05-12T08:13:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        "tell"
+      ],
+      "description": "Polygon representing the visible remains of Salat Tepe, derived from an OpenStreetMap Way.",
+      "created": "2025-12-15T18:56:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.9020996,
+            37.8387807
+          ],
+          [
+            40.9013959,
+            37.8389951
+          ],
+          [
+            40.9010428,
+            37.8392442
+          ],
+          [
+            40.9008378,
+            37.8396024
+          ],
+          [
+            40.9011813,
+            37.8400381
+          ],
+          [
+            40.9016427,
+            37.8401958
+          ],
+          [
+            40.9022092,
+            37.8401682
+          ],
+          [
+            40.9026185,
+            37.840013
+          ],
+          [
+            40.9030562,
+            37.8396798
+          ],
+          [
+            40.9031327,
+            37.8395139
+          ],
+          [
+            40.9030608,
+            37.8391354
+          ],
+          [
+            40.9027597,
+            37.8387793
+          ],
+          [
+            40.9020996,
+            37.8387807
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/899723866/salat-tepe",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-08T04:26:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-15T18:57:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-15T18:57:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-15T18:56:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-12-15T18:56:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1500471419",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u00d6kse 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B7R9BAWE",
+      "formattedCitation": "<div class=\"csl-entry\">\u00d6kse, Tuba, Ahmet G\u00f6rm\u00fc\u015f, and Emel Oybak D\u00f6nmez. <i>Salat Tepe I: yukar\u0131 Dicle havzas\u0131nda demir \u00e7a\u011f g\u00f6\u00e7erleri = Salat Tepe I\u202f: Iron Age nomads in the upper Tigris region</i>. Ankara: Bilgin K\u00fclt\u00fcr Sanat \u015eti. Ltd., 2024. https://www.worldcat.org/oclc/1500471419.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q6101059",
+      "citationDetail": "Salat H\u00f6y\u00fc\u011f\u00fc (Q6101059)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "899723866",
+  "subject": [],
+  "title": "Salat Tepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Archaeological site in the upper Tigris region inhabited in the early Bronze Age.",
+  "reprPoint": [
+    40.90202279720515,
+    37.8394812529122
+  ],
+  "placeTypes": [
+    "settlement",
+    "tell"
+  ],
+  "bbox": [
+    40.9008378,
+    37.8387793,
+    40.9031327,
+    37.8401958
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-12-15T18:56:18Z",
+  "uri": "https://pleiades.stoa.org/places/899723866",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-08T04:26:01Z"
+    },
+    {
+      "comment": "add wikidata Salat H\u00f6y\u00fc\u011f\u00fc (Q6101059)",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-08T04:25:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2025-12-15T18:57:37Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2025-12-15T18:56:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2025-12-15T18:56:18Z"
+    }
+  ]
+}

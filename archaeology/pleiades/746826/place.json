@@ -1,0 +1,886 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.975917,
+          28.555651
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Church; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/746826/dare-location",
+        "description": "Representative point location, site precision",
+        "location_precision": "precise",
+        "title": "DARE Location"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.9756583,
+            28.5558609
+          ],
+          [
+            33.9758258,
+            28.5561982
+          ],
+          [
+            33.9757831,
+            28.5562448
+          ],
+          [
+            33.9758328,
+            28.5563464
+          ],
+          [
+            33.97592,
+            28.5563021
+          ],
+          [
+            33.9759309,
+            28.5562785
+          ],
+          [
+            33.9760617,
+            28.5562096
+          ],
+          [
+            33.9760602,
+            28.5561446
+          ],
+          [
+            33.9761481,
+            28.5561431
+          ],
+          [
+            33.9761625,
+            28.5562016
+          ],
+          [
+            33.9761994,
+            28.5561867
+          ],
+          [
+            33.9761927,
+            28.5561628
+          ],
+          [
+            33.9764084,
+            28.5560758
+          ],
+          [
+            33.976435,
+            28.5561087
+          ],
+          [
+            33.9762118,
+            28.5562196
+          ],
+          [
+            33.975819,
+            28.5564129
+          ],
+          [
+            33.9754878,
+            28.5558419
+          ],
+          [
+            33.9754652,
+            28.5558029
+          ],
+          [
+            33.9755488,
+            28.5557524
+          ],
+          [
+            33.9755539,
+            28.5557614
+          ],
+          [
+            33.9758299,
+            28.55565
+          ],
+          [
+            33.9758289,
+            28.5556393
+          ],
+          [
+            33.9759015,
+            28.5556105
+          ],
+          [
+            33.9759066,
+            28.5556204
+          ],
+          [
+            33.9761683,
+            28.555519
+          ],
+          [
+            33.9761652,
+            28.5555082
+          ],
+          [
+            33.9762312,
+            28.5554815
+          ],
+          [
+            33.9762924,
+            28.555581
+          ],
+          [
+            33.9762819,
+            28.5555865
+          ],
+          [
+            33.9762468,
+            28.5555971
+          ],
+          [
+            33.9756381,
+            28.5558118
+          ],
+          [
+            33.9756583,
+            28.5558609
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-st-catherines-monastery",
+      "properties": {
+        "snippet": "Church-2; AD 640 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/746826/osm-location-of-st-catherines-monastery",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of St Catherine's Monastery"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://francia.ahlfeldt.se/imperium.php",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Johan \u00c5hlfeldt, Digital Atlas of the Roman Empire, 2012.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church"
+      ],
+      "end": 640,
+      "title": "DARE Location",
+      "provenance": "Digital Atlas of the Roman Empire (2012-10-15)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-3",
+      "featureType": [
+        "church"
+      ],
+      "description": "Representative point location, site precision",
+      "created": "2012-10-20T20:28:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.975917,
+          28.555651
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/746826/dare-location",
+      "creators": [
+        {
+          "username": "jahlfeldt",
+          "homepage": null,
+          "name": "Johan \u00c5hlfeldt",
+          "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T20:28:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T20:28:37Z"
+        },
+        {
+          "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T20:28:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2012-10-20T20:28:36Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/115392340",
+          "citationDetail": "Way 115392340",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=115392340",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-st-catherines-monastery",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 2100,
+      "title": "OSM location of St Catherine's Monastery",
+      "provenance": "OpenStreetMap (Way 115392340, version 13, osm:changeset=47104150, 2017-03-23T18:26:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-12-17T05:02:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            33.9756583,
+            28.5558609
+          ],
+          [
+            33.9758258,
+            28.5561982
+          ],
+          [
+            33.9757831,
+            28.5562448
+          ],
+          [
+            33.9758328,
+            28.5563464
+          ],
+          [
+            33.97592,
+            28.5563021
+          ],
+          [
+            33.9759309,
+            28.5562785
+          ],
+          [
+            33.9760617,
+            28.5562096
+          ],
+          [
+            33.9760602,
+            28.5561446
+          ],
+          [
+            33.9761481,
+            28.5561431
+          ],
+          [
+            33.9761625,
+            28.5562016
+          ],
+          [
+            33.9761994,
+            28.5561867
+          ],
+          [
+            33.9761927,
+            28.5561628
+          ],
+          [
+            33.9764084,
+            28.5560758
+          ],
+          [
+            33.976435,
+            28.5561087
+          ],
+          [
+            33.9762118,
+            28.5562196
+          ],
+          [
+            33.975819,
+            28.5564129
+          ],
+          [
+            33.9754878,
+            28.5558419
+          ],
+          [
+            33.9754652,
+            28.5558029
+          ],
+          [
+            33.9755488,
+            28.5557524
+          ],
+          [
+            33.9755539,
+            28.5557614
+          ],
+          [
+            33.9758299,
+            28.55565
+          ],
+          [
+            33.9758289,
+            28.5556393
+          ],
+          [
+            33.9759015,
+            28.5556105
+          ],
+          [
+            33.9759066,
+            28.5556204
+          ],
+          [
+            33.9761683,
+            28.555519
+          ],
+          [
+            33.9761652,
+            28.5555082
+          ],
+          [
+            33.9762312,
+            28.5554815
+          ],
+          [
+            33.9762924,
+            28.555581
+          ],
+          [
+            33.9762819,
+            28.5555865
+          ],
+          [
+            33.9762468,
+            28.5555971
+          ],
+          [
+            33.9756381,
+            28.5558118
+          ],
+          [
+            33.9756583,
+            28.5558609
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/746826/osm-location-of-st-catherines-monastery",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-28T23:22:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-17T05:26:10Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-17T05:03:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-17T05:02:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-17T05:02:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "76 E4 Tou Batou",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.oxford-byzantium.com/?authstatuscode=202",
+      "citationDetail": "Catherine, Monastery of Saint",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ODB",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FK9IQ2FN",
+      "formattedCitation": "<div class=\"csl-entry\">Kazhdan, A. P., Alice-Mary Maffry Talbot, Anthony Cutler, Timothy E. Gregory, and Nancy Patterson \u0160ev\u010denko, eds. <i>The Oxford Dictionary of Byzantium</i>. New York: Oxford University Press, 1991. http://www.oxford-byzantium.com/?authstatuscode=202.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "18100",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Saint_Catherine%27s_Monastery",
+      "citationDetail": "Saint Catherine's Monastery",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/350564/saint-catherine-s-monastery.html",
+      "citationDetail": "350564: Saint Catherine's Monastery",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brock 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TW36KT63",
+      "formattedCitation": "<div class=\"csl-entry\">Brock, Sebastian P. <i>Catalogue of Syriac Fragments (New Finds) in the Library of the Monastery of Saint Catherine, Mount Sinai</i>. Athens: Mount Sinai Foundation; Saint Catherine (Monastery\u202f: Mount Sinai), 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "The Monastery of Saint Catherine at Mount Sinai",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PBC4H6R3",
+      "formattedCitation": "<div class=\"csl-entry\">Forsyth, George H, and Kurt Weitzmann. <i>The Monastery of Saint Catherine at Mount Sinai: The Church and Fortress of Justinian. Plates.</i> Ann Arbor: University of Michigan Press, 1973.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://onlinelibrary.wiley.com/book/10.1002/9781444338386",
+      "citationDetail": "Hatlie, P. 2013. \"Sinai, Monastery of St. Catherine.\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EncAncHist",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J5X5SRY3",
+      "formattedCitation": "<div class=\"csl-entry\">Bagnall, Roger S., Kai Brodersen, Craige B. Champion, and Andrew Erskine, eds. <i>The Encyclopedia of Ancient History</i>. Accessed February 1, 2018. http://onlinelibrary.wiley.com/book/10.1002/9781444338386.</div>",
+      "otherIdentifier": "10.1002/9781444338386.wbeah03219",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tou Batou",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "tou-batou",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 76 E4 Tou Batou",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2009-09-22T08:53:53Z",
+      "uri": "https://pleiades.stoa.org/places/746826/tou-batou",
+      "creators": [
+        {
+          "username": null,
+          "name": "D.F. Graf"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:18:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2009-09-22T15:38:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-22T09:14:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-09-22T08:53:53Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Saint Catherine's Monastery",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/350564/saint-catherine-s-monastery.html",
+          "citationDetail": "350564: Saint Catherine's Monastery",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2017-12-17.2522054010",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-12-17T05:24:47Z",
+      "uri": "https://pleiades.stoa.org/places/746826/name.2017-12-17.2522054010",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Saint Catherine's Monastery",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-10-19T15:33:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-28T23:22:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-17T05:26:10Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-17T05:24:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-17T05:24:47Z"
+        }
+      ]
+    }
+  ],
+  "id": "746826",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=church",
+    "UWHS"
+  ],
+  "title": "Tou Batou",
+  "provenance": "Barrington Atlas: BAtlas 76 E4 Tou Batou",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/monastery",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "<p>See also: <a class=\"external-link\" href=\"http://en.wikipedia.org/wiki/Saint_Catherine%27s_Monastery\">Saint Catherine's Monastery</a>.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monastery built by order of Emperor Justinian I. St. Catherine's at the foot of Mount Sinai in modern Egypt.",
+  "reprPoint": [
+    33.97592161331971,
+    28.555812404030732
+  ],
+  "placeTypes": [
+    "church-2",
+    "monastery",
+    "church"
+  ],
+  "bbox": [
+    33.9754652,
+    28.5554815,
+    33.976435,
+    28.5564129
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-09-22T08:53:52Z",
+  "uri": "https://pleiades.stoa.org/places/746826",
+  "creators": [
+    {
+      "username": null,
+      "name": "D.F. Graf"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update ODB ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-02T23:35:53Z"
+    },
+    {
+      "comment": "summary; place type",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-02T22:22:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-10-19T15:37:51Z"
+    },
+    {
+      "comment": "remove duplicate darmc reference",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-28T23:24:39Z"
+    },
+    {
+      "comment": "references + darmc",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-28T23:24:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-17T05:23:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-17T05:18:57Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-17T05:13:34Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:28:38Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:18:27Z"
+    },
+    {
+      "comment": "Fixing modern/alt locations fumbled in intial import",
+      "modifiedBy": "sgillies",
+      "modified": "2011-12-20T22:36:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-17T20:51:51Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T23:11:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-09-22T15:38:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-22T09:14:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-09-22T08:53:53Z"
+    }
+  ]
+}

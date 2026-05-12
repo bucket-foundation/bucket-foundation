@@ -1,0 +1,14 @@
+# Sirakene
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/952104
+- **ID**: 952104
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Sirakene
+
+## Description
+
+An ancient place, cited: BAtlas 97 C3 Sirakene

@@ -1,0 +1,14 @@
+# Kerkesoucha
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/741493
+- **ID**: 741493
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kerkesoucha
+
+## Description
+
+An ancient place, cited: BAtlas 75 unlocated Kerkesoucha

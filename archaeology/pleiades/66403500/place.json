@@ -1,0 +1,378 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.122586,
+            35.2399035
+          ],
+          [
+            9.1227296,
+            35.2393712
+          ],
+          [
+            9.1225431,
+            35.2393245
+          ],
+          [
+            9.1224368,
+            35.2393178
+          ],
+          [
+            9.122333,
+            35.2393378
+          ],
+          [
+            9.1222415,
+            35.2393827
+          ],
+          [
+            9.1221712,
+            35.2394482
+          ],
+          [
+            9.1221285,
+            35.239528
+          ],
+          [
+            9.1221181,
+            35.2396203
+          ],
+          [
+            9.1221447,
+            35.2397103
+          ],
+          [
+            9.1222055,
+            35.2397885
+          ],
+          [
+            9.1222939,
+            35.2398465
+          ],
+          [
+            9.1224006,
+            35.239878
+          ],
+          [
+            9.122586,
+            35.2399035
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-theatre",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/66403500/osm-location-of-theatre",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of theatre"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/94817351",
+          "citationDetail": "Way 94817351",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=94817351",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-theatre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of theatre",
+      "provenance": "OpenStreetMap (Way 94817351, version 3, osm:changeset=146867065, 2024-01-30T14:44:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-07-21T13:36:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.122586,
+            35.2399035
+          ],
+          [
+            9.1227296,
+            35.2393712
+          ],
+          [
+            9.1225431,
+            35.2393245
+          ],
+          [
+            9.1224368,
+            35.2393178
+          ],
+          [
+            9.122333,
+            35.2393378
+          ],
+          [
+            9.1222415,
+            35.2393827
+          ],
+          [
+            9.1221712,
+            35.2394482
+          ],
+          [
+            9.1221285,
+            35.239528
+          ],
+          [
+            9.1221181,
+            35.2396203
+          ],
+          [
+            9.1221447,
+            35.2397103
+          ],
+          [
+            9.1222055,
+            35.2397885
+          ],
+          [
+            9.1222939,
+            35.2398465
+          ],
+          [
+            9.1224006,
+            35.239878
+          ],
+          [
+            9.122586,
+            35.2399035
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/66403500/osm-location-of-theatre",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-18T23:26:56Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-16T13:57:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T13:37:00Z"
+        },
+        {
+          "comment": "added osm location - previous location based on now-deprecated OSM data",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T13:36:54Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T13:36:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T13:36:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-01T20:31:17Z",
+      "associationCertainty": "certain",
+      "title": "Sufetula",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/66403500/6773426436",
+      "connectionType": "at",
+      "id": "6773426436",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:31:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:31:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:31:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/324816",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Theatre_of_Sbeitla",
+      "citationDetail": "Category:Theatre of Sbeitla",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q42760350",
+      "citationDetail": "Q42760350: Theatre of Sufutela",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "66403500",
+  "subject": [
+    "Theater",
+    "extant remains"
+  ],
+  "title": "Roman theater at Sufetula",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater at Sufetula.",
+  "reprPoint": [
+    9.122433777422136,
+    35.23959299679647
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    9.1221181,
+    35.2393178,
+    9.1227296,
+    35.2399035
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/324816"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-01T20:31:16Z",
+  "uri": "https://pleiades.stoa.org/places/66403500",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-28T10:53:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-26T00:00:39Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-26T00:00:33Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:31:33Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:31:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:31:16Z"
+    }
+  ]
+}

@@ -1,0 +1,683 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8724483,
+          44.5634276
+        ]
+      },
+      "type": "Feature",
+      "id": "monte-taccone",
+      "properties": {
+        "snippet": "Mountain, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/39486009/monte-taccone",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "location of Monte Leco"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1826313596",
+          "citationDetail": "Node 1826313596",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1826313596",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "monte-taccone",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "location of Monte Leco",
+      "provenance": "OpenStreetMap (Node 1826313596, version 3, osm:changeset=46372345, 2017-02-24T16:24:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "mountain",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-11-28T22:53:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8724483,
+          44.5634276
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/39486009/monte-taccone",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-05T23:54:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T22:25:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:50:15Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:50:08Z"
+        },
+        {
+          "comment": "correct coordinates - hand editing a bad idea",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:41:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:40:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T22:24:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T21:53:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T21:52:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:22:15Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:22:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2013-11-28T22:59:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "scosta",
+          "modified": "2013-11-28T22:54:23Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "scosta",
+          "modified": "2013-11-28T22:53:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2013-11-28T22:53:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pastorino 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M9NVZSAG",
+      "formattedCitation": "<div class=\"csl-entry\">AM Pastorino, ed. <i>La Tavola Di Polcevera Una Sentenza Incisa Nel Bronzo 2100 Anni Fa</i>. Genoa, 1995.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Monte_Leco",
+      "citationDetail": "Monte Leco",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Monte Leco.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monte Leco",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Monte_Leco",
+          "citationDetail": "Monte Leco",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Monte Leco.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2013-12-03.7433615860",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "modern name",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2013-12-03T21:23:01Z",
+      "uri": "https://pleiades.stoa.org/places/39486009/name.2013-12-03.7433615860",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T22:25:29Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T22:25:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:50:42Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:50:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:46:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T22:25:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:29:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:27:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:24:22Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:23:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:23:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:23:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-03T21:23:03Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tuledo",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Tavola_bronzea_di_Polcevera",
+          "citationDetail": "Tavola bronzea di Polcevera",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Tavola bronzea di Polcevera.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "boplo",
+      "end": -30,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "details": "\r\n<p>Quote from Sententia Minuciorum:</p>\r\n<blockquote>\r\n<p>in montem Tuledonem \r\n          ibei terminus stat inde deorsum iugo recto in flovium Veraglascam in \r\n          montem Berigiemam</p>\r\n</blockquote>\r\n",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2013-12-03T21:54:41Z",
+      "uri": "https://pleiades.stoa.org/places/39486009/boplo",
+      "creators": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "attested": "Tuledo",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T22:25:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:51:10Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:51:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:43:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T22:25:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T22:23:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T22:22:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T22:17:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T22:07:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T21:54:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-12-03T21:54:43Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monte Lecco",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Monte_Leco",
+          "citationDetail": "Monte Leco",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Monte Leco.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2013-12-13.0188663231",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Alternate modern name (Ligurian dialect).",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2013-12-13T09:47:52Z",
+      "uri": "https://pleiades.stoa.org/places/39486009/name.2013-12-13.0188663231",
+      "creators": [
+        {
+          "username": "scosta",
+          "homepage": null,
+          "name": "Stefano Costa",
+          "uri": "https://pleiades.stoa.org/author/scosta"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T22:25:27Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T22:24:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:51:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:47:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "scosta",
+          "modified": "2013-12-13T09:47:53Z"
+        }
+      ]
+    }
+  ],
+  "id": "39486009",
+  "subject": [],
+  "title": "Tuledo (mountain)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/mountain"
+  ],
+  "details": "<p>CIL V, 7749 mentions this place name: <em>in montem Apeninum quei vocatur Boplo.</em>\u00a0<em><br /></em></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A mountain in the Ligurian Apennines cited in the Sententia Minuciorum; the modern Monte Leco.",
+  "reprPoint": [
+    8.8724483,
+    44.5634276
+  ],
+  "placeTypes": [
+    "mountain"
+  ],
+  "bbox": [
+    8.8724483,
+    44.5634276,
+    8.8724483,
+    44.5634276
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-28T22:52:27Z",
+  "uri": "https://pleiades.stoa.org/places/39486009",
+  "creators": [
+    {
+      "username": "scosta",
+      "homepage": null,
+      "name": "Stefano Costa",
+      "uri": "https://pleiades.stoa.org/author/scosta"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-05T23:57:32Z"
+    },
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-05T23:55:24Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-19T22:23:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-19T22:23:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-19T22:20:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "scosta",
+      "modified": "2013-12-13T09:51:54Z"
+    },
+    {
+      "comment": "+ wikipedia",
+      "modifiedBy": "scosta",
+      "modified": "2013-12-13T09:49:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "scosta",
+      "modified": "2013-12-13T09:27:22Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "scosta",
+      "modified": "2013-12-13T09:18:19Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "arabinowitz",
+      "modified": "2013-12-03T22:24:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "scosta",
+      "modified": "2013-12-03T21:36:51Z"
+    },
+    {
+      "comment": "correct link",
+      "modifiedBy": "scosta",
+      "modified": "2013-12-03T21:28:28Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "scosta",
+      "modified": "2013-12-03T21:26:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2013-12-03T21:21:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2013-12-03T21:18:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2013-12-03T21:17:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "scosta",
+      "modified": "2013-11-28T22:58:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "scosta",
+      "modified": "2013-11-28T22:58:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "scosta",
+      "modified": "2013-11-28T22:56:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "scosta",
+      "modified": "2013-11-28T22:53:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "scosta",
+      "modified": "2013-11-28T22:52:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "scosta",
+      "modified": "2013-11-28T22:52:27Z"
+    }
+  ]
+}

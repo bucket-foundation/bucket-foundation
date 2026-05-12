@@ -1,0 +1,385 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.7380144,
+            43.4367229
+          ],
+          [
+            6.7379289,
+            43.4368031
+          ],
+          [
+            6.7378111,
+            43.4367443
+          ],
+          [
+            6.7377483,
+            43.4368271
+          ],
+          [
+            6.7377395,
+            43.4369428
+          ],
+          [
+            6.7377566,
+            43.4370361
+          ],
+          [
+            6.7378301,
+            43.4371293
+          ],
+          [
+            6.7379481,
+            43.4371922
+          ],
+          [
+            6.7380827,
+            43.4372291
+          ],
+          [
+            6.738223,
+            43.4372311
+          ],
+          [
+            6.7383343,
+            43.4372019
+          ],
+          [
+            6.7384517,
+            43.4371446
+          ],
+          [
+            6.7385011,
+            43.4371018
+          ],
+          [
+            6.7383984,
+            43.4370483
+          ],
+          [
+            6.7384733,
+            43.4369601
+          ],
+          [
+            6.7380144,
+            43.4367229
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/246534016/osm-location-of-roman-theater",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/190169945",
+          "citationDetail": "Way 190169945",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=190169945",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman theater",
+      "provenance": "OpenStreetMap (Way 190169945, version 5, osm:changeset=108711225, 2021-07-27T22:05:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-14T21:11:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.7380144,
+            43.4367229
+          ],
+          [
+            6.7379289,
+            43.4368031
+          ],
+          [
+            6.7378111,
+            43.4367443
+          ],
+          [
+            6.7377483,
+            43.4368271
+          ],
+          [
+            6.7377395,
+            43.4369428
+          ],
+          [
+            6.7377566,
+            43.4370361
+          ],
+          [
+            6.7378301,
+            43.4371293
+          ],
+          [
+            6.7379481,
+            43.4371922
+          ],
+          [
+            6.7380827,
+            43.4372291
+          ],
+          [
+            6.738223,
+            43.4372311
+          ],
+          [
+            6.7383343,
+            43.4372019
+          ],
+          [
+            6.7384517,
+            43.4371446
+          ],
+          [
+            6.7385011,
+            43.4371018
+          ],
+          [
+            6.7383984,
+            43.4370483
+          ],
+          [
+            6.7384733,
+            43.4369601
+          ],
+          [
+            6.7380144,
+            43.4367229
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/246534016/osm-location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-04T20:41:38Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-05T03:54:15Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:14:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:13:27Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:12:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:11:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:11:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-09-29T17:03:53Z",
+      "associationCertainty": "certain",
+      "title": "Col. Forum Iulii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/246534016/6334722289",
+      "connectionType": "at",
+      "id": "6334722289",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-29T17:03:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-29T17:03:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-29T17:03:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/157836",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Fr%C3%A9jus",
+      "citationDetail": "Fr\u00e9jus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "246534016",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Roman theater at Fr\u00e9jus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater at Fr\u00e9jus dates to the reign of Tiberius.",
+  "reprPoint": [
+    6.7380144,
+    43.4367229
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    6.7380144,
+    43.4367229,
+    6.7380144,
+    43.4367229
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/157836"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-09-29T17:03:52Z",
+  "uri": "https://pleiades.stoa.org/places/246534016",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-04T10:52:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-29T17:07:06Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-29T17:06:58Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-29T17:03:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-29T17:03:52Z"
+    }
+  ]
+}

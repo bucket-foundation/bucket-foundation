@@ -1,0 +1,329 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.5055027,
+            40.9368159
+          ],
+          [
+            9.5053887,
+            40.9367166
+          ],
+          [
+            9.5054706,
+            40.9366598
+          ],
+          [
+            9.5055899,
+            40.9367622
+          ],
+          [
+            9.5055027,
+            40.9368159
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-cistern",
+      "properties": {
+        "snippet": "Cistern, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/378979377/osm-location-of-cistern",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of cistern"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/285327755",
+          "citationDetail": "Way 285327755",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=285327755",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.archeolbia.it/monumenti/cisterna-romana/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Cisterna romana - ArcheOlbia.it",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-cistern",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of cistern",
+      "provenance": "OpenStreetMap (Way 285327755, version 1, osm:changeset=22646657, 2014-05-30T21:18:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cistern",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-05-30T21:18:57Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.5055027,
+            40.9368159
+          ],
+          [
+            9.5053887,
+            40.9367166
+          ],
+          [
+            9.5054706,
+            40.9366598
+          ],
+          [
+            9.5055899,
+            40.9367622
+          ],
+          [
+            9.5055027,
+            40.9368159
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/378979377/osm-location-of-cistern",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T15:41:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-22T11:30:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T20:56:35Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-30T21:19:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-30T21:18:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-30T21:18:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-17T20:41:59Z",
+      "associationCertainty": "certain",
+      "title": "Olbia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/378979377/1197311791",
+      "connectionType": "at",
+      "id": "1197311791",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T20:41:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T20:41:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T20:41:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/471987",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mezzolani 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A6LGEEC9",
+      "formattedCitation": "<div class=\"csl-entry\">Mezzolani, A. \u201cSistemi di raccolta idrica a Olbia: dati tipologici, strutturali e topografici sulle cisterne di et\u00e0 punica.\u201d In <i>L\u2019Africa Romana. Atti del 18 convegno di studio, Olbia, 11-14 dicembre 2008</i>, 1761\u201375. Roma: Carocci Editore, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gaudina 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J7CWSKBY",
+      "formattedCitation": "<div class=\"csl-entry\">Gaudina, Elisabetta. \u201cOlbia Nel Periodo Punico: Note Sull\u2019impianto Urbanistico.\u201d In <i>Architettura e Pianificazione Urbana Nell\u2019Italia Antica</i>, edited by Lorenzo Quilici and Stefania Quilici Gigli, 7\u201315. Roma: L\u2019Erma di Bretschneider, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "378979377",
+  "subject": [],
+  "title": "Cistern",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman period cistern of Olbia on Sardinia.",
+  "reprPoint": [
+    9.5055027,
+    40.9368159
+  ],
+  "placeTypes": [
+    "cistern"
+  ],
+  "bbox": [
+    9.5055027,
+    40.9368159,
+    9.5055027,
+    40.9368159
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/471987"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-17T20:41:58Z",
+  "uri": "https://pleiades.stoa.org/places/378979377",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-22T11:30:44Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-22T11:30:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T20:56:35Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T20:56:24Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T20:42:34Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T20:42:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T20:41:58Z"
+    }
+  ]
+}

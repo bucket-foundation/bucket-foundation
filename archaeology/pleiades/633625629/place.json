@@ -1,0 +1,397 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    },
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [],
+      "created": "2024-10-21T16:21:59Z",
+      "associationCertainty": "less-certain",
+      "title": "Columnae Herculis",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/633625629/columnae-herculis",
+      "connectionType": "west_of",
+      "id": "columnae-herculis",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-15T21:47:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:31:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:27:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:22:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:21:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275614",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://scaife.perseus.org/library/urn:cts:greekLit:tlg0059.tlg031.perseus-grc2:24-25/cts-api-xml/",
+          "citationDetail": "24e",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Plato Timaeus",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3LLK6AK3",
+          "formattedCitation": "Plato, <i>Timaeus</i> 24e",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gbodard",
+          "homepage": null,
+          "name": "Gabriel Bodard",
+          "uri": "https://pleiades.stoa.org/author/gbodard"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/west_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://scaife.perseus.org/library/urn:cts:greekLit:tlg0059.tlg031.perseus-grc2:24-25/cts-api-xml/",
+      "citationDetail": "24e\u201325d",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Plato, Timaeus",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3LLK6AK3",
+      "formattedCitation": "Plato, <i>Timaeus</i> 24e\u201325d",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://scaife.perseus.org/library/urn:cts:greekLit:tlg0059.tlg032.perseus-grc2:113-121/cts-api-xml/",
+      "citationDetail": "113b\u2013121c",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Plato, Critias",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3LLK6AK3",
+      "formattedCitation": "Plato, <i>Critias</i> 113b\u2013121c",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q25373",
+      "citationDetail": "Atlantis (Q25373)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/11331154",
+      "citationDetail": "11331154: Atlantis (Unlocatable)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Atlantis",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q25373",
+          "citationDetail": "Atlantis (Q25373)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "atlantis",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-10-21T16:16:35Z",
+      "uri": "https://pleiades.stoa.org/places/633625629/atlantis",
+      "creators": [
+        {
+          "username": "gbodard",
+          "homepage": null,
+          "name": "Gabriel Bodard",
+          "uri": "https://pleiades.stoa.org/author/gbodard"
+        }
+      ],
+      "attested": "Atlantis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-15T21:47:22Z"
+        },
+        {
+          "comment": "update wikidata Atlantis (Q25373)",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-15T01:03:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:31:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:16:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:16:35Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Atlantis Nesos",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://scaife.perseus.org/library/urn:cts:greekLit:tlg0059.tlg031.perseus-grc2:24-25/cts-api-xml/",
+          "citationDetail": "Timaeus 25a",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Plat. (Fowler et al: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3LLK6AK3",
+          "formattedCitation": "Plato, Timaeus 25a",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "atlantis-nesos",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2024-10-21T16:18:46Z",
+      "uri": "https://pleiades.stoa.org/places/633625629/atlantis-nesos",
+      "creators": [
+        {
+          "username": "gbodard",
+          "homepage": null,
+          "name": "Gabriel Bodard",
+          "uri": "https://pleiades.stoa.org/author/gbodard"
+        }
+      ],
+      "attested": "\u1f08\u03c4\u03bb\u03b1\u03bd\u03c4\u1f76\u03c2 \u03bd\u1fc6\u03c3\u03bf\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-12-15T21:47:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:31:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:18:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gbodard",
+          "modified": "2024-10-21T16:18:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "633625629",
+  "subject": [
+    "Mythical"
+  ],
+  "title": "Atlantis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/island",
+    "https://pleiades.stoa.org/vocabularies/place-types/state"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Atlantis is the mythical island state used by Plato in the Timaeus and Critias as an example of a powerful and hubristic nation. It has been used in later literature, speculation in pseudo-history, and conspiracy theory.",
+  "reprPoint": null,
+  "placeTypes": [
+    "island",
+    "state"
+  ],
+  "bbox": null,
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/275614"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-02-09T10:37:34Z",
+  "uri": "https://pleiades.stoa.org/places/633625629",
+  "creators": [
+    {
+      "username": "gbodard",
+      "homepage": null,
+      "name": "Gabriel Bodard",
+      "uri": "https://pleiades.stoa.org/author/gbodard"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited; Added correct MANTO URI; MANTO = related",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-13T03:04:16Z"
+    },
+    {
+      "comment": "wikidata Atlantis (Q25373) = related",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-09T18:27:13Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-12-15T21:47:22Z"
+    },
+    {
+      "comment": "update Wikidata Atlantis (Q25373)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-15T01:02:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gbodard",
+      "modified": "2024-10-21T16:31:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gbodard",
+      "modified": "2024-10-21T16:24:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gbodard",
+      "modified": "2024-10-21T16:23:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gbodard",
+      "modified": "2024-10-21T16:14:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gbodard",
+      "modified": "2024-10-21T16:12:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gbodard",
+      "modified": "2024-10-21T16:12:46Z"
+    }
+  ]
+}

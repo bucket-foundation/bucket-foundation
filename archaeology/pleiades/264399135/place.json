@@ -1,0 +1,242 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.21613,
+          55.60925
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location",
+      "properties": {
+        "snippet": "Unknown; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/264399135/dare-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "DARE location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "dare-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 410,
+      "title": "DARE location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 10.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-3",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2025-02-26T14:56:33Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.21613,
+          55.60925
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/264399135/dare-location",
+      "creators": [
+        {
+          "username": "maximeg",
+          "homepage": null,
+          "name": "Maxime Gu\u00e9nette",
+          "uri": "https://pleiades.stoa.org/author/maximeg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-26T15:55:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "maximeg",
+          "modified": "2025-02-26T14:57:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "maximeg",
+          "modified": "2025-02-26T14:56:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "maximeg",
+          "modified": "2025-02-26T14:56:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "maximeg",
+          "modified": "2025-02-26T14:56:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.roman-britain.co.uk/places/loudoun_hill/",
+      "citationDetail": "Loudoun Hill",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RBrit",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMV8NEDG",
+      "formattedCitation": "<div class=\"csl-entry\">White, Kevan, and Mike Haseler. <i>Roman Britain</i>, 2016. https://www.roman-britain.co.uk.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://canmore.org.uk/site/44771/",
+      "citationDetail": "44771",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Canmore",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9QC8C2K",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Canmore: National Record of the Historic Environment, Part of Historic Environment Scotland</i>, n.d. https://canmore.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/14976",
+      "citationDetail": "Geo ID 14976: Loudoun Hill",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q132775308",
+      "citationDetail": "Loudoun Hill (Q132775308)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-studies/article/abs/air-reconnaissance-in-britain-19515/C2EF8954CC520802CF7DAE0FB6AA1260",
+      "citationDetail": "p. 86",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Joseph 1955",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AH85N6NW",
+      "formattedCitation": "<div class=\"csl-entry\">Joseph, J. K. St. \u201cAir Reconnaissance in Britain, 1951\u20135.\u201d <i>The Journal of Roman Studies</i> 45, no. 1\u20132 (November 1955): 82\u201391. https://doi.org/10.2307/298747.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "264399135",
+  "subject": [],
+  "title": "Loudoun Hill",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Loudoun Hill was the site of a Flavian Auxiliary Fort (ca. A.D. 69\u201396) that had four occupational phases.",
+  "reprPoint": [
+    -4.21613,
+    55.60925
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    -4.21613,
+    55.60925,
+    -4.21613,
+    55.60925
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-26T14:45:21Z",
+  "uri": "https://pleiades.stoa.org/places/264399135",
+  "creators": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-26T15:55:07Z"
+    },
+    {
+      "comment": "add summary, update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-26T15:29:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "maximeg",
+      "modified": "2025-02-26T14:57:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "maximeg",
+      "modified": "2025-02-26T14:53:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "maximeg",
+      "modified": "2025-02-26T14:45:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "maximeg",
+      "modified": "2025-02-26T14:45:21Z"
+    }
+  ]
+}

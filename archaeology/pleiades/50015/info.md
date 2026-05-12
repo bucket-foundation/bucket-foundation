@@ -1,0 +1,14 @@
+# Kaineiton Nesos
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/50015
+- **ID**: 50015
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kaineiton Nesos
+
+## Description
+
+An ancient place, cited: BAtlas 5 C4 Kaineiton Nesos

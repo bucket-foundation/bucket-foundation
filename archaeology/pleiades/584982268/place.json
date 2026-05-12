@@ -1,0 +1,322 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.2689502,
+          45.2410193
+        ]
+      },
+      "type": "Feature",
+      "id": "dugali-alti-neolithic-site",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/584982268/dugali-alti-neolithic-site",
+        "description": "Point based on an OpenStreetMap node representing Dugali Alti after Biagi 1995.",
+        "location_precision": "precise",
+        "title": "OSM location of Dugali Alti Neolithic Site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9802672002",
+          "citationDetail": "Node 9802672002",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9802672002",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/638731036",
+          "citationDetail": "pages 9-13",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Biagi 1995",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D32ZBC7E",
+          "formattedCitation": "<div class=\"csl-entry\">Biagi, Paolo, and Museo Civico di Scienze Naturali di Brescia. <i>L\u2019insediamento neolitico di Ostiano-Dugali Alti (Cremona) nel suo contesto ambientale ed economico</i>. Monografie di \u201cNatura Bresciana,\u201d N.22. Brescia: Museo Civico di Scienze Naturali di Brescia, 1995. http://www.worldcat.org/oclc/638731036.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "dugali-alti-neolithic-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "OSM location of Dugali Alti Neolithic Site",
+      "provenance": "OpenStreetMap (Node 9802672002, version 1, osm:changeset=122090834, 2022-06-07T21:31:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Dugali Alti after Biagi 1995.",
+      "created": "2022-06-07T21:36:59Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.2689502,
+          45.2410193
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/584982268/dugali-alti-neolithic-site",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-08T23:26:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T21:39:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T21:39:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T21:36:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T21:36:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/638731036",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Biagi 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D32ZBC7E",
+      "formattedCitation": "<div class=\"csl-entry\">Biagi, Paolo, and Museo Civico di Scienze Naturali di Brescia. <i>L\u2019insediamento neolitico di Ostiano-Dugali Alti (Cremona) nel suo contesto ambientale ed economico</i>. Monografie di \u201cNatura Bresciana,\u201d N.22. Brescia: Museo Civico di Scienze Naturali di Brescia, 1995. http://www.worldcat.org/oclc/638731036.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.openedition.org/editionscnrs/1098",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Biagi 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HI95YTAF",
+      "formattedCitation": "<div class=\"csl-entry\">Biagi, Paolo, and Renato Nisbet. \u201cThe Earliest Farming Communities in Northern Italy.\u201d In <i>Premi\u00e8res Communaut\u00e9s Paysannes En M\u00e9diterran\u00e9e Occidentale\u202f: Actes Du Colloque International Du CNRS (Montpellier, 26-29 Avril 1983)</i>, edited by Jean Courtin, Jean Guilaine, Jean-Louis Roudil, and Jean-Louis Vernet, 447\u201353. Hors Collection. Paris: CNRS \u00c9ditions, 2014. http://books.openedition.org/editionscnrs/1098.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Biagi 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZKRZK6IE",
+      "formattedCitation": "<div class=\"csl-entry\">Biagi, Paolo. <i>Stazione neolitica a Ostiano (CR), localit?? Dugali Alti: scavi 1980</i>. Trento: Museo tridentino di scienze naturali, 1979.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dugali Alti di Ostiano",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.openedition.org/editionscnrs/1098",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Biagi 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HI95YTAF",
+          "formattedCitation": "<div class=\"csl-entry\">Biagi, Paolo, and Renato Nisbet. \u201cThe Earliest Farming Communities in Northern Italy.\u201d In <i>Premi\u00e8res Communaut\u00e9s Paysannes En M\u00e9diterran\u00e9e Occidentale\u202f: Actes Du Colloque International Du CNRS (Montpellier, 26-29 Avril 1983)</i>, edited by Jean Courtin, Jean Guilaine, Jean-Louis Roudil, and Jean-Louis Vernet, 447\u201353. Hors Collection. Paris: CNRS \u00c9ditions, 2014. http://books.openedition.org/editionscnrs/1098.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "dugali-alti-di-ostiano",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-06-15T13:02:40Z",
+      "uri": "https://pleiades.stoa.org/places/584982268/dugali-alti-di-ostiano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Dugali Alti di Ostiano",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T21:48:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-15T21:26:53Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-15T13:02:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-15T13:02:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "584982268",
+  "subject": [],
+  "title": "Dugali Alti",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Dugali Alti or Dugali Alti di Ostiano is an archaeological site located near Ostiano in Cremona, Italy, that has provided evidence of agricultural practices in the Neolithic period of northern Italy.",
+  "reprPoint": [
+    10.2689502,
+    45.2410193
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    10.2689502,
+    45.2410193,
+    10.2689502,
+    45.2410193
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-15T13:02:55Z",
+  "uri": "https://pleiades.stoa.org/places/584982268",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added references: Biagi 1979 and Biagi 1987, edited summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-15T21:48:26Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-15T13:02:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-08T23:26:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-07T21:39:32Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-07T21:36:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-07T21:36:41Z"
+    }
+  ]
+}

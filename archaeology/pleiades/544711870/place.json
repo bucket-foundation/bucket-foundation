@@ -1,0 +1,349 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.2376642,
+            38.208529
+          ],
+          [
+            16.2375248,
+            38.208411
+          ],
+          [
+            16.2375891,
+            38.2083351
+          ],
+          [
+            16.2371278,
+            38.2078335
+          ],
+          [
+            16.237852,
+            38.2074204
+          ],
+          [
+            16.238308,
+            38.2079431
+          ],
+          [
+            16.2378037,
+            38.2082129
+          ],
+          [
+            16.2379107,
+            38.2083806
+          ],
+          [
+            16.2376642,
+            38.208529
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "stoa",
+      "properties": {
+        "snippet": "Stoa; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/544711870/stoa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Locri - stoa ad U"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/248465453",
+          "citationDetail": "Way 248465453",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=248465453",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "stoa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+      ],
+      "end": -550,
+      "title": "OSM location of Locri - stoa ad U",
+      "provenance": "OpenStreetMap (Way 248465453, version 2, osm:changeset=19127656, 2013-11-26T14:24:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "stoa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2013-11-26T14:26:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.2376642,
+            38.208529
+          ],
+          [
+            16.2375248,
+            38.208411
+          ],
+          [
+            16.2375891,
+            38.2083351
+          ],
+          [
+            16.2371278,
+            38.2078335
+          ],
+          [
+            16.237852,
+            38.2074204
+          ],
+          [
+            16.238308,
+            38.2079431
+          ],
+          [
+            16.2378037,
+            38.2082129
+          ],
+          [
+            16.2379107,
+            38.2083806
+          ],
+          [
+            16.2376642,
+            38.208529
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/544711870/stoa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T00:53:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-17T11:43:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T00:38:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T00:37:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T00:36:42Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-03T16:03:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-08T18:12:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-08T18:10:30Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-26T14:26:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-26T14:26:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-26T14:26:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-17T16:10:26Z",
+      "associationCertainty": "certain",
+      "title": "Lokroi Epizephyrioi",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/544711870/8266763555",
+      "connectionType": "at",
+      "id": "8266763555",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T16:10:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T16:10:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T16:10:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/452369",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Schindler 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4ZBM8AC2",
+      "formattedCitation": "<div class=\"csl-entry\">Schindler, Rebecca K. \u201cAphrodite and the Colonization of Locri Epizephyrii.\u201d <i>Electronic Antiquity: Communicating The Classics</i> 11, no. 1 (2007).</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "544711870",
+  "subject": [],
+  "title": "Stoa at Lokroi Epizephyrioi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stoa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large U-shaped stoa dating to the seventh and sixth centuries BCE.",
+  "reprPoint": [
+    16.2376642,
+    38.208529
+  ],
+  "placeTypes": [
+    "stoa"
+  ],
+  "bbox": [
+    16.2376642,
+    38.208529,
+    16.2376642,
+    38.208529
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/452369"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-17T16:10:25Z",
+  "uri": "https://pleiades.stoa.org/places/544711870",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-17T11:43:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-16T00:38:28Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-16T00:38:24Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T16:11:02Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T16:10:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T16:10:25Z"
+    }
+  ]
+}

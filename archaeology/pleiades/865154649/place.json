@@ -1,0 +1,209 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.65563,
+          51.409828
+        ]
+      },
+      "type": "Feature",
+      "id": "pustinki",
+      "properties": {
+        "snippet": "Settlement; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/865154649/pustinki",
+        "description": "Point representing the associated modern location for Pustynka (Pustynky village) after Berezanskaja 1974.",
+        "location_precision": "precise",
+        "title": "Associated modern location for Pustynka (Pustynky village)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/337508445",
+          "citationDetail": "Node 337508445",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=337508445",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Fig.1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Berezanskaja 1974",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YXYHDWD8",
+          "formattedCitation": "<div class=\"csl-entry\">Berezanskaja, Sof\u2019ja Stanislavovna, and S. S Berezanskaja. <i>Pustynka: poselenie epochi bronzy na Dnepre</i>. Kiev: Nauk. dumka, 1974.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "pustinki",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1000,
+      "title": "Associated modern location for Pustynka (Pustynky village)",
+      "provenance": "OpenStreetMap (Node 337508445, version 7, osm:changeset=116121634, 2022-01-13T19:53:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point representing the associated modern location for Pustynka (Pustynky village) after Berezanskaja 1974.",
+      "created": "2022-07-21T15:21:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.65563,
+          51.409828
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/865154649/pustinki",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:37:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T15:26:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T15:24:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T15:21:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T15:21:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Berezanskaja 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YXYHDWD8",
+      "formattedCitation": "<div class=\"csl-entry\">Berezanskaja, Sof\u2019ja Stanislavovna, and S. S Berezanskaja. <i>Pustynka: poselenie epochi bronzy na Dnepre</i>. Kiev: Nauk. dumka, 1974.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "865154649",
+  "subject": [],
+  "title": "Pustynka",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Late Bronze Age settlement on the Dnieper River in Northwestern Ukraine covering over 30,000 square meters.",
+  "reprPoint": [
+    30.65563,
+    51.409828
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    30.65563,
+    51.409828,
+    30.65563,
+    51.409828
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-06T15:32:39Z",
+  "uri": "https://pleiades.stoa.org/places/865154649",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-21T19:37:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-21T15:26:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-21T15:26:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-06T15:32:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-06T15:32:39Z"
+    }
+  ]
+}

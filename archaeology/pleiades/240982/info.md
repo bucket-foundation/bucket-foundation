@@ -1,0 +1,14 @@
+# Ouerourion
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/240982
+- **ID**: 240982
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ouerourion
+
+## Description
+
+An ancient place, cited: BAtlas 24 unlocated Ouerourion

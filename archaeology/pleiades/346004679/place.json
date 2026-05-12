@@ -1,0 +1,707 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.652475,
+          37.937454
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-intersection-of-siraggiou-and-clemenceau",
+      "properties": {
+        "snippet": "Archaeological-site; AD 1800 - AD 1899",
+        "link": "https://pleiades.stoa.org/places/346004679/osm-intersection-of-siraggiou-and-clemenceau",
+        "description": "Rough site of 1880s excavations, according to Lamont 2015",
+        "location_precision": "precise",
+        "title": "OSM: intersection of Siraggiou and Clemenceau"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.6537247,
+            37.9363871
+          ],
+          [
+            23.65364,
+            37.936413
+          ],
+          [
+            23.6535661,
+            37.9365545
+          ],
+          [
+            23.653706,
+            37.9365999
+          ],
+          [
+            23.653723,
+            37.9366323
+          ],
+          [
+            23.6537572,
+            37.9366434
+          ],
+          [
+            23.6537831,
+            37.9365939
+          ],
+          [
+            23.6538494,
+            37.9366171
+          ],
+          [
+            23.6538643,
+            37.9365865
+          ],
+          [
+            23.6538859,
+            37.9365419
+          ],
+          [
+            23.6539347,
+            37.936441
+          ],
+          [
+            23.6537247,
+            37.9363871
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-2-4-leoforos-vasileos-pavlou",
+      "properties": {
+        "snippet": "Archaeological-site; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/346004679/osm-2-4-leoforos-vasileos-pavlou",
+        "description": "Location of 2000s excavations, based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM: 2-4 Leoforos Vasileos Pavlou"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://search.ebscohost.com/login.aspx?direct=true&scope=site&db=nlebk&db=nlabk&AN=1126450",
+          "citationDetail": "Lamont, pp. 37-50",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Miles 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XPDS6U4Z",
+          "formattedCitation": "<div class=\"csl-entry\">Miles, Margaret Melanie. <i>Autopsy in Athens: Recent Archaeological Research on Athens and Attica</i>, 2015. http://search.ebscohost.com/login.aspx?direct=true&amp;scope=site&amp;db=nlebk&amp;db=nlabk&amp;AN=1126450.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-intersection-of-siraggiou-and-clemenceau",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 1899,
+      "title": "OSM: intersection of Siraggiou and Clemenceau",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": 1800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Rough site of 1880s excavations, according to Lamont 2015",
+      "created": "2025-07-05T17:23:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.652475,
+          37.937454
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/346004679/osm-intersection-of-siraggiou-and-clemenceau",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T01:37:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:31:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:23:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:23:11Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/392388001",
+          "citationDetail": "Way 392388001",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=392388001",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://search.ebscohost.com/login.aspx?direct=true&scope=site&db=nlebk&db=nlabk&AN=1126450",
+          "citationDetail": "Lamont, pp. 37-50",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Miles 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XPDS6U4Z",
+          "formattedCitation": "<div class=\"csl-entry\">Miles, Margaret Melanie. <i>Autopsy in Athens: Recent Archaeological Research on Athens and Attica</i>, 2015. http://search.ebscohost.com/login.aspx?direct=true&amp;scope=site&amp;db=nlebk&amp;db=nlabk&amp;AN=1126450.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-2-4-leoforos-vasileos-pavlou",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 2099,
+      "title": "OSM: 2-4 Leoforos Vasileos Pavlou",
+      "provenance": "OpenStreetMap (Way 392388001, version 3, osm:changeset=152115060, 2024-06-01T10:38:32Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location of 2000s excavations, based on OpenStreetMap",
+      "created": "2025-07-05T17:25:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.6537247,
+            37.9363871
+          ],
+          [
+            23.65364,
+            37.936413
+          ],
+          [
+            23.6535661,
+            37.9365545
+          ],
+          [
+            23.653706,
+            37.9365999
+          ],
+          [
+            23.653723,
+            37.9366323
+          ],
+          [
+            23.6537572,
+            37.9366434
+          ],
+          [
+            23.6537831,
+            37.9365939
+          ],
+          [
+            23.6538494,
+            37.9366171
+          ],
+          [
+            23.6538643,
+            37.9365865
+          ],
+          [
+            23.6538859,
+            37.9365419
+          ],
+          [
+            23.6539347,
+            37.936441
+          ],
+          [
+            23.6537247,
+            37.9363871
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/346004679/osm-2-4-leoforos-vasileos-pavlou",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T01:37:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:31:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:27:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:26:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:25:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-07-05T17:15:05Z",
+      "associationCertainty": "certain",
+      "title": "Zea Limen",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/346004679/zea-limen",
+      "connectionType": "near",
+      "id": "zea-limen",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T01:37:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:31:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:15:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:15:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/580136",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://search.ebscohost.com/login.aspx?direct=true&scope=site&db=nlebk&db=nlabk&AN=1126450",
+          "citationDetail": "Lamont, pp. 37-50",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Miles 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XPDS6U4Z",
+          "formattedCitation": "<div class=\"csl-entry\">Miles, Margaret Melanie. <i>Autopsy in Athens: Recent Archaeological Research on Athens and Attica</i>, 2015. http://search.ebscohost.com/login.aspx?direct=true&amp;scope=site&amp;db=nlebk&amp;db=nlabk&amp;AN=1126450.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2025-07-05T17:16:07Z",
+      "associationCertainty": "certain",
+      "title": "Peiraieus/Piraeus",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/346004679/peiraieus-piraeus",
+      "connectionType": "in",
+      "id": "peiraieus-piraeus",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T01:37:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:31:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:16:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:16:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/580062",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://search.ebscohost.com/login.aspx?direct=true&scope=site&db=nlebk&db=nlabk&AN=1126450",
+          "citationDetail": "Lamont, pp. 37-50",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Miles 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XPDS6U4Z",
+          "formattedCitation": "<div class=\"csl-entry\">Miles, Margaret Melanie. <i>Autopsy in Athens: Recent Archaeological Research on Athens and Attica</i>, 2015. http://search.ebscohost.com/login.aspx?direct=true&amp;scope=site&amp;db=nlebk&amp;db=nlabk&amp;AN=1126450.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Eickstedt 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J7NEM628",
+      "formattedCitation": "<div class=\"csl-entry\">Eickstedt, Klaus-Valtin von. <i>To Askl\u0113pieion tou Peirai\u014ds</i>. Vivlioth\u0113k\u0113 t\u0113s en Ath\u0113nais Archaiologik\u0113s Hetaireias. Ath\u0113nai: H\u0113 en Ath\u0113nais Archaiologik\u0113 Hetaireia, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "Petritaki 2001-2004",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Petritaki 2001-2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TB89J4F2",
+      "formattedCitation": "<div class=\"csl-entry\">Petritaki, M. \u201c\u039f\u03b4\u03cc\u03c2 \u0392\u03b1\u03c3\u03b9\u03bb\u03ad\u03c9\u03c2 \u03a0\u03b1\u03cd\u03bb\u03bf\u03c5 2\u20134 (\u03b9\u03b4\u03b9\u03bf\u03ba\u03c4\u03b7\u03c3\u03af\u03b1 \u0395\u03c5\u03c3\u03c4\u03b1\u03b8\u03af\u03bf\u03c5).\u201d <i>Archaiologikon Deltion</i> 56\u201359, no. B1 (n.d.): 445\u201346.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://search.ebscohost.com/login.aspx?direct=true&scope=site&db=nlebk&db=nlabk&AN=1126450",
+      "citationDetail": "s.v. Lamont 2015",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Miles 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XPDS6U4Z",
+      "formattedCitation": "<div class=\"csl-entry\">Miles, Margaret Melanie. <i>Autopsy in Athens: Recent Archaeological Research on Athens and Attica</i>, 2015. http://search.ebscohost.com/login.aspx?direct=true&amp;scope=site&amp;db=nlebk&amp;db=nlabk&amp;AN=1126450.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237SAsP",
+      "citationDetail": "Asklepios sanctuary (Piraeus) Akti Kondouriotou",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Eickstedt 2001a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/59EW3C8M",
+      "formattedCitation": "<div class=\"csl-entry\">Eickstedt, Klaus-Valtin von. <i>Das Asklepieion im Pir\u00e4us</i>. Vivlioth\u0113k\u0113 t\u0113s en Ath\u0113nais Archaiologik\u0113s Hetaireias. Athen: Arch\u00e4ologische Gesellschaft zu Athen, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Askl\u0113pieion",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://epigraphy.packhum.org/text/2265",
+          "citationDetail": "IG II2 47, ll. 28-29",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "PHI Greek Inscriptions",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q4KKL8DB",
+          "formattedCitation": "<div class=\"csl-entry\">Packard Humanities Institute. \u201cPHI Greek Inscriptions.\u201d Accessed July 18, 2022. https://epigraphy.packhum.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "asklepieion",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2025-07-05T17:29:49Z",
+      "uri": "https://pleiades.stoa.org/places/346004679/asklepieion",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u1f08\u03c3\u03ba\u03bb\u03b7\u03c0\u03b9\u03b5\u1fd6\u03bf\u03bd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-06T01:37:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:31:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:29:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-07-05T17:29:49Z"
+        }
+      ]
+    }
+  ],
+  "id": "346004679",
+  "subject": [],
+  "title": "Asklepieion at Zea",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sanctuary of Asklepios above Zea harbour in Piraeus, founded in the late 5th century BC and active through the Imperial period. Sections of the sanctuary were explored archaeologically in the 1880s and 2000s.",
+  "reprPoint": [
+    23.653113988544803,
+    37.93698206991362
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "archaeological-site"
+  ],
+  "bbox": [
+    23.652475,
+    37.9363871,
+    23.6539347,
+    37.937454
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/580136",
+    "https://pleiades.stoa.org/places/580062"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-07-05T17:14:05Z",
+  "uri": "https://pleiades.stoa.org/places/346004679",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "auser",
+      "modified": "2025-07-14T19:45:32Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "elkon",
+      "modified": "2025-07-09T18:27:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-06T01:37:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-06T01:37:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-06T01:36:36Z"
+    },
+    {
+      "comment": "update references with Zotero links",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-06T01:36:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2025-07-05T17:31:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2025-07-05T17:14:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2025-07-05T17:14:05Z"
+    }
+  ]
+}

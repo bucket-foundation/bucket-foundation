@@ -1,0 +1,216 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.4384251,
+          38.948979
+        ]
+      },
+      "type": "Feature",
+      "id": "esparragalejo-dam",
+      "properties": {
+        "snippet": "Dam, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/582582484/esparragalejo-dam",
+        "description": "Representative point derived from an OpenStreetMap node.",
+        "location_precision": "precise",
+        "title": " OSM location of Esparragalejo dam"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "erobinson",
+      "homepage": null,
+      "name": "Elizabeth Robinson",
+      "uri": "https://pleiades.stoa.org/author/erobinson"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "erobinson",
+          "homepage": null,
+          "name": "Elizabeth Robinson",
+          "uri": "https://pleiades.stoa.org/author/erobinson"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/2525809613",
+          "citationDetail": "Node 2525809613",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2525809613",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "esparragalejo-dam",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/dam",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": " OSM location of Esparragalejo dam",
+      "provenance": "OpenStreetMap (Node 2525809613, version 1, osm:changeset=18807546, 2013-11-09T22:31:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/dam",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "dam",
+        ""
+      ],
+      "description": "Representative point derived from an OpenStreetMap node.",
+      "created": "2013-11-09T22:33:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.4384251,
+          38.948979
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/582582484/esparragalejo-dam",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "erobinson",
+          "modified": "2016-08-26T14:57:54Z"
+        },
+        {
+          "comment": "Edited title and summary to conform with editorial guidelines; added level of archaeological remains and location type.",
+          "modifiedBy": "erobinson",
+          "modified": "2016-08-26T14:57:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-13T19:21:03Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-09T22:34:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-09T22:33:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-09T22:33:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Esparragalejo_Dam",
+      "citationDetail": "Esparragalejo Dam",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Esparragalejo Dam.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "582582484",
+  "subject": [],
+  "title": "Esparragalejo dam",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/dam"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Dating to the first century AD, the Esparragalejo dam is the earliest known multiple arch buttress dam.",
+  "reprPoint": [
+    -6.4384251,
+    38.948979
+  ],
+  "placeTypes": [
+    "dam"
+  ],
+  "bbox": [
+    -6.4384251,
+    38.948979,
+    -6.4384251,
+    38.948979
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-09T22:32:52Z",
+  "uri": "https://pleiades.stoa.org/places/582582484",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2016-12-14T23:08:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-13T19:20:35Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-09T22:32:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-09T22:32:52Z"
+    }
+  ]
+}

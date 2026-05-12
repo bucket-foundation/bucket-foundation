@@ -1,0 +1,400 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.0619468,
+            39.8933471
+          ],
+          [
+            25.0617913,
+            39.8936434
+          ],
+          [
+            25.0619415,
+            39.8937957
+          ],
+          [
+            25.0621507,
+            39.8938369
+          ],
+          [
+            25.0622473,
+            39.8938328
+          ],
+          [
+            25.0623063,
+            39.8937093
+          ],
+          [
+            25.062376,
+            39.893734
+          ],
+          [
+            25.0624618,
+            39.8936681
+          ],
+          [
+            25.0625316,
+            39.893664
+          ],
+          [
+            25.0625584,
+            39.8935447
+          ],
+          [
+            25.0626549,
+            39.8934829
+          ],
+          [
+            25.0624677,
+            39.8933057
+          ],
+          [
+            25.0623674,
+            39.8932984
+          ],
+          [
+            25.0621292,
+            39.8934459
+          ],
+          [
+            25.0619468,
+            39.8933471
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sanctuary-of-artemis",
+      "properties": {
+        "snippet": "Archaeological-site, Sanctuary",
+        "link": "https://pleiades.stoa.org/places/581674476/osm-location-of-sanctuary-of-artemis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Sanctuary of Artemis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/228337731",
+          "citationDetail": "Way 228337731",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=228337731",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-sanctuary-of-artemis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": null,
+      "title": "OSM location of Sanctuary of Artemis",
+      "provenance": "OpenStreetMap (Way 228337731, version 4, osm:changeset=50614457, 2017-07-27T09:48:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-05-19T22:03:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.0619468,
+            39.8933471
+          ],
+          [
+            25.0617913,
+            39.8936434
+          ],
+          [
+            25.0619415,
+            39.8937957
+          ],
+          [
+            25.0621507,
+            39.8938369
+          ],
+          [
+            25.0622473,
+            39.8938328
+          ],
+          [
+            25.0623063,
+            39.8937093
+          ],
+          [
+            25.062376,
+            39.893734
+          ],
+          [
+            25.0624618,
+            39.8936681
+          ],
+          [
+            25.0625316,
+            39.893664
+          ],
+          [
+            25.0625584,
+            39.8935447
+          ],
+          [
+            25.0626549,
+            39.8934829
+          ],
+          [
+            25.0624677,
+            39.8933057
+          ],
+          [
+            25.0623674,
+            39.8932984
+          ],
+          [
+            25.0621292,
+            39.8934459
+          ],
+          [
+            25.0619468,
+            39.8933471
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/581674476/osm-location-of-sanctuary-of-artemis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-22T15:55:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T22:06:08Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T22:03:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T22:03:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T22:03:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-19T22:04:13Z",
+      "associationCertainty": "certain",
+      "title": "Lemnos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/581674476/lemnos-island",
+      "connectionType": "on",
+      "id": "lemnos-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-22T15:55:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T22:06:08Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T22:05:59Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T22:04:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-19T22:04:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550693",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://gazetteer.dainst.org/place/2361445",
+          "citationDetail": "Artemis Heiligtum",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "iDAI.gazetteer",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/",
+      "citationDetail": "Artemis? sanct. (Lemnos) Avlonas",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2361445",
+      "citationDetail": "Artemis Heiligtum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "581674476",
+  "subject": [],
+  "title": "Sanctuary of Artemis at Avlonas",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sanctuary possibly sacred to Artemis on the island of Lemnos.",
+  "reprPoint": [
+    25.062214626568434,
+    39.8935609132435
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "archaeological-site"
+  ],
+  "bbox": [
+    25.0617913,
+    39.8932984,
+    25.0626549,
+    39.8938369
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550693"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-19T22:03:10Z",
+  "uri": "https://pleiades.stoa.org/places/581674476",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-22T15:55:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-19T22:06:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-19T22:05:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-19T22:03:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-19T22:03:10Z"
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.407,
+          36.411
+        ]
+      },
+      "type": "Feature",
+      "id": "mikro-kameni",
+      "properties": {
+        "snippet": "Island, ; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/815794667/mikro-kameni",
+        "description": "Mikro Kameni is a non-extant island that was formed in the Santorini caldera some time before 1851, when it was attested, mapped and named in the Admiralty Chart of Thomas Graves, HMS Volgae. It was joined to Nea Kameni at some point after this, probably in the major period of volcanic activity in 1866-1870. ",
+        "location_precision": "precise",
+        "title": "Mikro Kameni"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "mikro-kameni",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/island",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 2100,
+      "title": "Mikro Kameni",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/island",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "island",
+        ""
+      ],
+      "description": "Mikro Kameni is a non-extant island that was formed in the Santorini caldera some time before 1851, when it was attested, mapped and named in the Admiralty Chart of Thomas Graves, HMS Volgae. It was joined to Nea Kameni at some point after this, probably in the major period of volcanic activity in 1866-1870. ",
+      "created": "2014-07-16T10:10:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.407,
+          36.411
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/815794667/mikro-kameni",
+      "creators": [
+        {
+          "username": "sdunn",
+          "homepage": null,
+          "name": "Stuart Dunn",
+          "uri": "https://pleiades.stoa.org/author/sdunn"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-08-16T18:51:39Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T17:54:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T17:49:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T11:27:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T10:12:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T10:10:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T10:10:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:36:54Z",
+      "associationCertainty": "certain",
+      "title": "Santorini Archipelago",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/815794667/808255902",
+      "connectionType": "connection",
+      "id": "808255902",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/808255902",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/1798015",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Leycester, E. M. 1850. \"Some Account of the Volcanic Group of Santorin or Thera, once Called Callist\u00ea, or the Most Beautiful.\" Journal of the Royal Geographical Society of London 20: 1-38.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "815794667",
+  "subject": [],
+  "title": "Mikro Kameni",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/island"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Mikro Kameni is a non-extant island that was formed in the Santorini caldera some time before 1851, when it was attested in the Admiralty Chart of Robert Graves, HMS Volgae. It was joined to Nea Kameni at some point after this, probably in the major period of volcanic activity in 1866-1870.",
+  "reprPoint": [
+    25.407,
+    36.411
+  ],
+  "placeTypes": [
+    "island"
+  ],
+  "bbox": [
+    25.407,
+    36.411,
+    25.407,
+    36.411
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/808255902",
+    "https://pleiades.stoa.org/places/905386158"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-07-16T10:08:22Z",
+  "uri": "https://pleiades.stoa.org/places/815794667",
+  "creators": [
+    {
+      "username": "sdunn",
+      "homepage": null,
+      "name": "Stuart Dunn",
+      "uri": "https://pleiades.stoa.org/author/sdunn"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-24T17:38:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-24T17:38:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-16T16:57:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T11:13:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T10:46:49Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T10:08:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T10:08:22Z"
+    }
+  ]
+}

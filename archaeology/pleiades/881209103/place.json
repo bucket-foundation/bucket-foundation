@@ -1,0 +1,982 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2606541,
+            35.4598626
+          ],
+          [
+            43.2613032,
+            35.4601403
+          ],
+          [
+            43.2616722,
+            35.4595773
+          ],
+          [
+            43.261023,
+            35.459254
+          ],
+          [
+            43.2606541,
+            35.4598626
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-way-of-the-ziggurat-of-aa-a-ur",
+      "properties": {
+        "snippet": "Ziggurat; 2000 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/881209103/osm-way-of-the-ziggurat-of-aa-a-ur",
+        "description": "Polygon representing the extent of the Ziggurat of A\u0161\u0161ur at Assur, derived from an OpenStreetMap Way after Gries 2017 plate 1.",
+        "location_precision": "precise",
+        "title": "OSM Way of the Ziggurat of A\u0161\u0161ur"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1065548653",
+          "citationDetail": "Way 1065548653",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1065548653",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/992438862",
+          "citationDetail": "plate 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gries 2017",
+          "bibliographicURI": "",
+          "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-way-of-the-ziggurat-of-aa-a-ur",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ziggurat"
+      ],
+      "end": -540,
+      "title": "OSM Way of the Ziggurat of A\u0161\u0161ur",
+      "provenance": "OpenStreetMap (Way 1065548653, version 1, osm:changeset=121770721, 2022-05-31T14:11:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ziggurat"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "ziggurat"
+      ],
+      "description": "Polygon representing the extent of the Ziggurat of A\u0161\u0161ur at Assur, derived from an OpenStreetMap Way after Gries 2017 plate 1.",
+      "created": "2022-06-03T10:04:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2606541,
+            35.4598626
+          ],
+          [
+            43.2613032,
+            35.4601403
+          ],
+          [
+            43.2616722,
+            35.4595773
+          ],
+          [
+            43.261023,
+            35.459254
+          ],
+          [
+            43.2606541,
+            35.4598626
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/881209103/osm-way-of-the-ziggurat-of-aa-a-ur",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-25T22:53:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:40:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:34:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:06:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:04:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:04:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "There is archaeological evidence of a ziggurat, a temple-tower, at Assur dedicated to the god A\u0161\u0161ur (and his manifestation as the god Enlil) from the first half of the second millennium BC, probably starting in the reign of the Old Assyrian ruler \u0160am\u0161\u012b-Adad I (ca. 1808\u20131776 BC), onwards.",
+      "contributors": [],
+      "created": "2022-06-03T09:58:20Z",
+      "associationCertainty": "certain",
+      "title": "Ashur/\u2018Lamban\u2019?/\u2018Liba(nai)\u2019?",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/881209103/ashur-2018lamban2019-2018liba-nai-2019",
+      "connectionType": "at",
+      "id": "ashur-2018lamban2019-2018liba-nai-2019",
+      "attestations": [
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:40:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:34:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T09:58:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T09:58:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893945",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Miglus 1985",
+          "bibliographicURI": "http://atlantides.org/bibliography/m.html#Miglus-1985",
+          "formattedCitation": "Miglus, P. 1985. \u201cZur Gro\u00dfen Ziqqurrat in Assur,\u201d Mitteilungen der Deutschen Orient-Gesellschaft 117 (1985): 21\u201345.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -540,
+      "description": "The \u201cgreat ziggurat of the god A\u0161\u0161ur\u201d was built west of the A\u0161\u0161ur temple.",
+      "contributors": [],
+      "created": "2022-06-03T10:01:43Z",
+      "associationCertainty": "certain",
+      "title": "Temple of A\u0161\u0161ur at Assur",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/881209103/temple-of-assur-at-assur",
+      "connectionType": "near",
+      "id": "temple-of-assur-at-assur",
+      "attestations": [
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:40:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:34:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:01:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:01:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/457530554",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/992438862",
+          "citationDetail": "plate 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gries 2017",
+          "bibliographicURI": "",
+          "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Miglus 1985",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C9VG6ASA",
+      "formattedCitation": "<div class=\"csl-entry\">Miglus, P. A. \u201cZur Grossen Ziqqurrat in Assur.\u201d In <i>Mitteilungen der Deutschen Orient-Gesellschaft zu Berlin, 117.1985</i>, 21\u201345, Abb, 1985.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/4661083",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Haller and Andrae 1955",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9CCT3ZT9",
+      "formattedCitation": "<div class=\"csl-entry\">Haller, Arndt, and Walter Andrae. <i>Die Heiligt\u00fcmer des Gottes Assur und der Sin-\u0160ama\u0161-Tempel in Assur</i>. Wissenschaftliche Ver\u00f6ffentlichung der Deutschen Orient-Gesellschaft. Berlin: Gebr. Mann, 1955.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "129\u2013136",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Andrae 1977",
+      "bibliographicURI": "http://atlantides.org/bibliography/a.html#Andrae-1977",
+      "formattedCitation": "Andrae, W. 1977. Das wiedererstandene Assur. Zweite, durchgesehene und erweiterte Auflage, herausgegeben von Barthel Hrouda. Munich: C. H. Beck.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883572295",
+      "citationDetail": "69 no. 90",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+      "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/btto/Q004803/",
+      "citationDetail": "GAB B",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "BTTo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005751/",
+      "citationDetail": "Adad-narari I 14",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005804/",
+      "citationDetail": "Shalmaneser I 16",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q005842/",
+      "citationDetail": "Tukulti-Ninurta I 06",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/992438862",
+      "citationDetail": "plate 1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gries 2017",
+      "bibliographicURI": "",
+      "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/btto/Q004802/",
+      "citationDetail": "GAB A",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "BTTo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q118296188",
+      "citationDetail": "Assur, Ziggurat of Ashur (Q118296188)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Earattaki\u0161arra",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q004803/",
+          "citationDetail": "GAB B",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "earattakisarra",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "According to Recension B of the G\u00f6tteradressbuch of Ashur, the Sumerian, ceremonial name of the ziggurat was Earattaki\u0161arra, which means \u201cHouse, Mountain/Noblest of the Universe.\u201d",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2022-06-03T10:12:46Z",
+      "uri": "https://pleiades.stoa.org/places/881209103/earattakisarra",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:40:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:34:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:32:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:12:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:12:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "siqqurratu rab\u012btu e\u0161\u0161etu \u0161a A\u0161\u0161ur",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q005751/",
+          "citationDetail": "Adad-narari I 14",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "siqurrete-rabiti-esseti-sa-assur",
+      "end": -1000,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "",
+      "review_state": "published",
+      "description": "The \u201cgreat, new ziggurat of the god A\u0161\u0161ur\u201d is mentioned in an Akkadian inscription of the Middle Assyrian king Adad-n\u0101r\u0101r\u012b I (1295\u20131264 BC).",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2022-06-03T10:17:37Z",
+      "uri": "https://pleiades.stoa.org/places/881209103/siqurrete-rabiti-esseti-sa-assur",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:40:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:34:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:27:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:20:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:17:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:17:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "siqqurratu rab\u012btu \u0161a A\u0161\u0161ur",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q005804/",
+          "citationDetail": "Shalmaneser I 16",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q005842/",
+          "citationDetail": "Tukulti-Ninurta I 06",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "siqurratu-rabitu-sa-assur",
+      "end": -1000,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "",
+      "review_state": "published",
+      "description": "The \u201cgreat ziggurat of the god A\u0161\u0161ur\u201d is mentioned in Akkadian inscriptions of the Middle Assyrian kings Shalmaneser I (1263\u20131234 BC) and Tukulti-Ninurta I (1233\u20131197 BC).",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2022-06-03T10:22:42Z",
+      "uri": "https://pleiades.stoa.org/places/881209103/siqurratu-rabitu-sa-assur",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:40:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:34:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:27:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:22:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:22:42Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "ziqqurrat Enlil",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q004802/",
+          "citationDetail": "GAB A",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ziqqurrat-enlil",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "details": "",
+      "review_state": "published",
+      "description": "Earattaki\u0161arra is referred to as the \"ziggurat of the god Enlil\" in Recension B of the G\u00f6tteradressbuch of Ashur.",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "akk",
+      "created": "2022-06-03T10:27:13Z",
+      "uri": "https://pleiades.stoa.org/places/881209103/ziqqurrat-enlil",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:40:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:34:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:27:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:27:13Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "ziqqurrat A\u0161\u0161ur",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q004802/",
+          "citationDetail": "GAB A",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "ziqqurrat-assur",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "Earattaki\u0161arra is referred to as the \"ziggurat of the god A\u0161\u0161ur\" in Recension A of the G\u00f6tteradressbuch of Ashur.",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "akk",
+      "created": "2022-06-03T10:29:48Z",
+      "uri": "https://pleiades.stoa.org/places/881209103/ziqqurrat-assur",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:40:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:34:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:29:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T10:29:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "881209103",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Great Ziggurat of A\u0161\u0161ur at Assur",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/ziggurat"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "From the first half of the second millennium BC until 614 BC, there was a ziggurat, a temple-tower, at Assur dedicated to the god A\u0161\u0161ur (and his manifestation as the god Enlil). This sacred building, which went by the Sumerian name Earattaki\u0161arra (\u201dHouse, Mountain/Noblest of the Universe\u201d) in the first millennium BC and referred to as the \u201cgreat ziggurat\u201d in Middle Assyrian royal inscriptions, was likely founded by the Old Assyrian ruler \u0160am\u0161\u012b-Adad I (ca. 1808\u20131776 BC).",
+  "reprPoint": [
+    43.26115994490807,
+    35.459704493485056
+  ],
+  "placeTypes": [
+    "ziggurat"
+  ],
+  "bbox": [
+    43.2606541,
+    35.459254,
+    43.2616722,
+    35.4601403
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893945",
+    "https://pleiades.stoa.org/places/457530554",
+    "https://pleiades.stoa.org/places/135066932",
+    "https://pleiades.stoa.org/places/62104825",
+    "https://pleiades.stoa.org/places/637947000"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-03T09:51:34Z",
+  "uri": "https://pleiades.stoa.org/places/881209103",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-25T22:57:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-03T12:40:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T10:34:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T10:33:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T10:30:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T10:03:25Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T09:51:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T09:51:34Z"
+    }
+  ]
+}

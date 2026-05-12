@@ -1,0 +1,14 @@
+# Untitled
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/661398
+- **ID**: 661398
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+Mallos → Issus → Alexandria ad Issum → Antiochia

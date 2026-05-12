@@ -1,0 +1,14 @@
+# Khontro Bigli
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/550638
+- **ID**: 550638
+- **Coords (lng, lat)**: [26.099211, 39.145427]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=temple
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 56 C3 Khontro Bigli

@@ -1,0 +1,1285 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.732014,
+          37.970169
+        ]
+      },
+      "type": "Feature",
+      "id": "arch-of-hadrian-at-athens",
+      "properties": {
+        "snippet": "Unknown; 550 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/235795850/arch-of-hadrian-at-athens",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery location of the Arch of Hadrian at Athens"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7319548,
+            37.9701369
+          ],
+          [
+            23.7319819,
+            37.9701236
+          ],
+          [
+            23.7320712,
+            37.9702369
+          ],
+          [
+            23.7320442,
+            37.9702501
+          ],
+          [
+            23.7319548,
+            37.9701369
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-arch-of-hadrian",
+      "properties": {
+        "snippet": "Unknown, Arch; AD 100 - AD 199",
+        "link": "https://pleiades.stoa.org/places/235795850/osm-location-of-arch-of-hadrian",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Arch of Hadrian"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "Jake Lipscomb"
+    },
+    {
+      "username": null,
+      "name": "Adria Hardy"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jlipscomb",
+      "homepage": null,
+      "name": "Jake Lipscomb",
+      "uri": "https://pleiades.stoa.org/author/jlipscomb"
+    },
+    {
+      "username": null,
+      "name": "Jonathan Mak"
+    },
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": null,
+          "name": "Adria Hardy"
+        },
+        {
+          "username": "jlipscomb",
+          "homepage": null,
+          "name": "Jake Lipscomb",
+          "uri": "https://pleiades.stoa.org/author/jlipscomb"
+        },
+        {
+          "username": null,
+          "name": "Jake Lipscomb"
+        },
+        {
+          "username": null,
+          "name": "Jonathan Mak"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/itemKey/5XQ8KDIN",
+          "formattedCitation": "Adams, A. 1989. \u201cThe Arch of Hadrian at Athens.\u201d Bulletin of the Institute of Classical Studies 36:10-16.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "arch-of-hadrian-at-athens",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": -330,
+      "title": "Imagery location of the Arch of Hadrian at Athens",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>Representative location for center of the Arch of Hadrian derived from comparison of Google Earth imagery to the information in Adams 1989.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2015",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2015-05-04T05:46:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.732014,
+          37.970169
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/235795850/arch-of-hadrian-at-athens",
+      "creators": [
+        {
+          "username": null,
+          "name": "Jennifer Garza"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:49:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:39:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T10:58:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T10:57:47Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T10:57:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:56:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:56:34Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:55:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:34:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:34:33Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:33:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:28:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:27:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:26:58Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:25:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T06:48:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T06:16:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T06:01:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T05:46:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T05:46:26Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/175107932",
+          "citationDetail": "Way 175107932",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=175107932",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-arch-of-hadrian",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown",
+        "https://pleiades.stoa.org/vocabularies/place-types/arch"
+      ],
+      "end": 199,
+      "title": "OSM location of Arch of Hadrian",
+      "provenance": "OpenStreetMap (Way 175107932, version 18, osm:changeset=140162727, 2023-08-21T06:03:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown",
+        "https://pleiades.stoa.org/vocabularies/place-types/arch"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown",
+        "arch"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-03-31T02:07:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.7319548,
+            37.9701369
+          ],
+          [
+            23.7319819,
+            37.9701236
+          ],
+          [
+            23.7320712,
+            37.9702369
+          ],
+          [
+            23.7320442,
+            37.9702501
+          ],
+          [
+            23.7319548,
+            37.9701369
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/235795850/osm-location-of-arch-of-hadrian",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-01T19:45:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-31T02:08:43Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-31T02:08:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-31T02:07:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-31T02:07:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "created": "2016-07-13T13:59:13Z",
+      "associationCertainty": "certain",
+      "title": "Athenae",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/235795850/579885",
+      "connectionType": "at",
+      "id": "579885",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-ottoman-empire",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-ottoman-empire",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-02T00:34:44Z"
+        },
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-27T14:14:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:48:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579885",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Arch_of_Hadrian_(Athens)",
+          "citationDetail": "Arch of Hadrian (Athens)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://academic.oup.com/bics/article-abstract/36/Supplement_55/10/5682272?redirectedFrom=fulltext",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Adams 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5XQ8KDIN",
+      "formattedCitation": "<div class=\"csl-entry\">Adams, Alison. \u201cThe Arch of Hadrian at Athens.\u201d <i>Bulletin of the Institute of Classical Studies</i> 36, no. S55 (1989): 10\u201316. https://doi.org/https://doi.org/10.1111/j.2041-5370.1989.tb02045.x.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Arch_of_Hadrian_(Athens)",
+      "citationDetail": "Arch of Hadrian (Athens)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Arch of Hadrian (Athens).",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1567576",
+      "citationDetail": "Q1567576: Arch of Hadrian",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/11808358/arch-of-hadrian.html",
+      "citationDetail": "11808358: Arch of Hadrian",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/380237FHGa",
+      "citationDetail": "Arch of Hadrian (Athens)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6799",
+      "citationDetail": "Hadriansbogen Athen, (Athenae / Ath\u0113nai), Athen (Regionalbezirk)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.4324/9781003178828-19",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kouremenos 2022a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8KGM2GAW",
+      "formattedCitation": "<div class=\"csl-entry\">Kouremenos, Anna. \u201c\u2018The City of Hadrian and Not of Theseus\u2019: A Cultural History of Hadrian\u2019s Arch.\u201d In <i>The Province of Achaea in the 2nd Century CE: The Past Present</i>, edited by Anna Kouremenos, 345\u201374. Routledge Monographs in Classical Studies. Abingdon, Oxon: Routledge, 2022. https://doi.org/10.4324/9781003178828-19.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.atticinscriptions.com/inscription/IGII2/5185",
+      "citationDetail": "IG II\u00b2 5185",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "AIO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZPCURT27",
+      "formattedCitation": "<div class=\"csl-entry\">Lambert, Stephen, Polly Low, Peter Liddel, and Chris de Lisle, eds. <i>Attic Inscriptions Online</i>. Athens: British School at Athens, 2012. https://www.atticinscriptions.com/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Arch of Hadrian at Athens",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://academic.oup.com/bics/article-abstract/36/Supplement_55/10/5682272?redirectedFrom=fulltext",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Adams 1989",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5XQ8KDIN",
+          "formattedCitation": "<div class=\"csl-entry\">Adams, Alison. \u201cThe Arch of Hadrian at Athens.\u201d <i>Bulletin of the Institute of Classical Studies</i> 36, no. S55 (1989): 10\u201316. https://doi.org/https://doi.org/10.1111/j.2041-5370.1989.tb02045.x.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/11808358/arch-of-hadrian.html",
+          "citationDetail": "11808358: Arch of Hadrian",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "name.2015-05-04.8590628209",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": null,
+          "name": "Jake Lipscomb"
+        },
+        {
+          "username": null,
+          "name": "Adria Hardy"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "jlipscomb",
+          "homepage": null,
+          "name": "Jake Lipscomb",
+          "uri": "https://pleiades.stoa.org/author/jlipscomb"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        },
+        {
+          "username": null,
+          "name": "Jonathan Mak"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-05-04T06:36:17Z",
+      "uri": "https://pleiades.stoa.org/places/235795850/name.2015-05-04.8590628209",
+      "creators": [
+        {
+          "username": null,
+          "name": "Jennifer Garza"
+        }
+      ],
+      "attested": "Arch of Hadrian at Athens",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-02T00:38:35Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-07-10T17:44:44Z"
+        },
+        {
+          "comment": "GeoNames 11808358",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-23T04:15:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:49:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:41:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T10:59:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T10:59:16Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T10:58:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:30:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:29:56Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T08:29:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T06:50:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T06:36:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jlipscomb",
+          "modified": "2015-05-04T06:36:19Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Pyle tou Adrianou",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Arch_of_Hadrian_(Athens)",
+          "citationDetail": "Arch of Hadrian (Athens)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Arch of Hadrian (Athens).",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "pyle-tou-adrianou",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2017-04-03T16:43:43Z",
+      "uri": "https://pleiades.stoa.org/places/235795850/pyle-tou-adrianou",
+      "creators": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "attested": "\u03a0\u03cd\u03bb\u03b7 \u03c4\u03bf\u03c5 \u0391\u03b4\u03c1\u03b9\u03b1\u03bd\u03bf\u03cd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:49:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:46:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:45:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:43:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "arabinowitz",
+          "modified": "2017-04-03T16:43:43Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Apsida tou Adrianou",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.4324/9781003178828-19",
+          "citationDetail": "345",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Kouremenos 2022a",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8KGM2GAW",
+          "formattedCitation": "<div class=\"csl-entry\">Kouremenos, Anna. \u201c\u2018The City of Hadrian and Not of Theseus\u2019: A Cultural History of Hadrian\u2019s Arch.\u201d In <i>The Province of Achaea in the 2nd Century CE: The Past Present</i>, edited by Anna Kouremenos. Routledge Monographs in Classical Studies. Abingdon, Oxon: Routledge, 2022. https://doi.org/10.4324/9781003178828-19.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "apsida-tou-adrianou",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2024-04-08T18:10:46Z",
+      "uri": "https://pleiades.stoa.org/places/235795850/apsida-tou-adrianou",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u0391\u03c8\u03af\u03b4\u03b1 \u03c4\u03bf\u03c5 \u0391\u03b4\u03c1\u03b9\u03b1\u03bd\u03bf\u03cd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-08T19:57:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-08T19:56:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T18:11:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T18:10:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T18:10:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Porta tis Vasilopoulas",
+      "attestations": [
+        {
+          "timePeriod": "eighteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eighteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.4324/9781003178828-19",
+          "citationDetail": "358",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Kouremenos 2022a",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8KGM2GAW",
+          "formattedCitation": "<div class=\"csl-entry\">Kouremenos, Anna. \u201c\u2018The City of Hadrian and Not of Theseus\u2019: A Cultural History of Hadrian\u2019s Arch.\u201d In <i>The Province of Achaea in the 2nd Century CE: The Past Present</i>, edited by Anna Kouremenos, 345\u201374. Routledge Monographs in Classical Studies. Abingdon, Oxon: Routledge, 2022. https://doi.org/10.4324/9781003178828-19.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "porta-tis-vasilopoulas",
+      "end": 1799,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2024-04-08T19:22:46Z",
+      "uri": "https://pleiades.stoa.org/places/235795850/porta-tis-vasilopoulas",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u03a0\u03cc\u03c1\u03c4\u03b1 \u03c4\u03b7\u03c2 \u0392\u03b1\u03c3\u03b9\u03bb\u03bf\u03c0\u03bf\u03cd\u03bb\u03b1\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-08T19:59:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-08T19:59:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-08T19:58:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T19:22:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T19:22:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T19:22:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kamaroporta",
+      "attestations": [
+        {
+          "timePeriod": "eighteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eighteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.4324/9781003178828-19",
+          "citationDetail": "358",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Kouremenos 2022a",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8KGM2GAW",
+          "formattedCitation": "<div class=\"csl-entry\">Kouremenos, Anna. \u201c\u2018The City of Hadrian and Not of Theseus\u2019: A Cultural History of Hadrian\u2019s Arch.\u201d In <i>The Province of Achaea in the 2nd Century CE: The Past Present</i>, edited by Anna Kouremenos. Routledge Monographs in Classical Studies. Abingdon, Oxon: Routledge, 2022. https://doi.org/10.4324/9781003178828-19.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "kamaroporta",
+      "end": 1799,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2024-04-08T19:23:53Z",
+      "uri": "https://pleiades.stoa.org/places/235795850/kamaroporta",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "attested": "\u039a\u03b1\u03bc\u03b1\u03c1\u03cc\u03c0\u03bf\u03c1\u03c4\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-08T19:57:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-08T19:57:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T19:24:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T19:23:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-04-08T19:23:53Z"
+        }
+      ]
+    }
+  ],
+  "id": "235795850",
+  "subject": [
+    "Arch",
+    "Hadrian"
+  ],
+  "title": "Arch of Hadrian at Athens",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/arch"
+  ],
+  "details": "<p>The Arch of Hadrian was built by the city of Athens to celebrate a visit by the Roman Emperor Hadrian in AD 131 or 132. Its structure is similar to that of a Roman triumphal arch with a single opening, but the attic of the arch is occupied by a series of Corinthian columns supporting a triangular pediment in the center and an entablature on each side.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Arch of Hadrian is a monument in the form of a Roman triumphal arch, constructed by the citizens of Athens in AD 131 or 132 to honor the Roman emperor Hadrian.",
+  "reprPoint": [
+    23.732013504251668,
+    37.97017792648077
+  ],
+  "placeTypes": [
+    "arch"
+  ],
+  "bbox": [
+    23.7319548,
+    37.9701236,
+    23.7320712,
+    37.9702501
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579885"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-08-25T08:33:22Z",
+  "uri": "https://pleiades.stoa.org/places/235795850",
+  "creators": [
+    {
+      "username": null,
+      "name": "Jennifer Garza"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited; Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-28T18:26:32Z"
+    },
+    {
+      "comment": "added Kouremenos 2022a",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-08T19:59:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-02T00:38:58Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-11T19:54:21Z"
+    },
+    {
+      "comment": "added Arachne 2103928: Hadriansbogen Athenae / Ath\u0113nai, Athen (Regionalbezirk)",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-24T20:39:56Z"
+    },
+    {
+      "comment": "added topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-13T00:59:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-07-10T17:44:16Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-23T04:15:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "arabinowitz",
+      "modified": "2017-04-03T16:49:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2017-04-03T16:47:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2017-04-03T16:46:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2017-04-03T16:35:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T10:56:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T10:56:21Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T10:54:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T08:31:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T08:31:33Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T08:30:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T06:47:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T06:46:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T06:44:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T05:09:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T04:44:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jlipscomb",
+      "modified": "2015-05-04T04:44:00Z"
+    }
+  ]
+}

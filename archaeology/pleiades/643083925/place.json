@@ -1,0 +1,487 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.7692887,
+            42.2473266
+          ],
+          [
+            11.7691332,
+            42.2474304
+          ],
+          [
+            11.76905,
+            42.2475487
+          ],
+          [
+            11.7689762,
+            42.247525
+          ],
+          [
+            11.7688219,
+            42.2476362
+          ],
+          [
+            11.7684222,
+            42.2477601
+          ],
+          [
+            11.7686524,
+            42.2479026
+          ],
+          [
+            11.7688637,
+            42.2481148
+          ],
+          [
+            11.769029,
+            42.2479522
+          ],
+          [
+            11.7689725,
+            42.2478902
+          ],
+          [
+            11.768824,
+            42.2478375
+          ],
+          [
+            11.7688445,
+            42.2478033
+          ],
+          [
+            11.7690566,
+            42.2479021
+          ],
+          [
+            11.7692055,
+            42.247753
+          ],
+          [
+            11.7691858,
+            42.2476395
+          ],
+          [
+            11.7693479,
+            42.2473607
+          ],
+          [
+            11.7692887,
+            42.2473266
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-necropoli-fondo-scataglini",
+      "properties": {
+        "snippet": "Cemetery",
+        "link": "https://pleiades.stoa.org/places/643083925/osm-location-of-necropoli-fondo-scataglini",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Necropoli Fondo Scataglini"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/102317740",
+          "citationDetail": "Way 102317740",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=102317740",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-necropoli-fondo-scataglini",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": null,
+      "title": "OSM location of Necropoli Fondo Scataglini",
+      "provenance": "OpenStreetMap (Way 102317740, version 7, osm:changeset=134994629, 2023-04-16T23:23:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2026-03-24T19:36:49Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.7692887,
+            42.2473266
+          ],
+          [
+            11.7691332,
+            42.2474304
+          ],
+          [
+            11.76905,
+            42.2475487
+          ],
+          [
+            11.7689762,
+            42.247525
+          ],
+          [
+            11.7688219,
+            42.2476362
+          ],
+          [
+            11.7684222,
+            42.2477601
+          ],
+          [
+            11.7686524,
+            42.2479026
+          ],
+          [
+            11.7688637,
+            42.2481148
+          ],
+          [
+            11.769029,
+            42.2479522
+          ],
+          [
+            11.7689725,
+            42.2478902
+          ],
+          [
+            11.768824,
+            42.2478375
+          ],
+          [
+            11.7688445,
+            42.2478033
+          ],
+          [
+            11.7690566,
+            42.2479021
+          ],
+          [
+            11.7692055,
+            42.247753
+          ],
+          [
+            11.7691858,
+            42.2476395
+          ],
+          [
+            11.7693479,
+            42.2473607
+          ],
+          [
+            11.7692887,
+            42.2473266
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/643083925/osm-location-of-necropoli-fondo-scataglini",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-30T10:10:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-28T14:46:19Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-24T19:37:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-24T19:36:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-24T19:36:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-03-24T20:43:13Z",
+      "associationCertainty": "certain",
+      "title": "Tarchna/Tarquinii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/643083925/tarchna-tarquinii",
+      "connectionType": "at",
+      "id": "tarchna-tarquinii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-30T10:10:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-28T14:46:19Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-24T20:43:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-24T20:43:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413332",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q129256339",
+      "citationDetail": "fondo Scataglini necropolis (Q129256339)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Necropoli_del_fondo_Scataglini",
+      "citationDetail": "Necropoli del fondo Scataglini",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://catalogo.beniculturali.it/detail/ArchaeologicalProperty/1201339304",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Necropoli cd. \"FONDO SCATAGLINI\" (necropoli, area ad uso funerario) Tarquinia, IV sec. a.C./ I sec. d.C fine/ met\u00e0",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Necropoli_del_fondo_Scataglini",
+      "citationDetail": "Category:Necropoli del fondo Scataglini",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "fondo Scataglini necropolis",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q129256339",
+          "citationDetail": "fondo Scataglini necropolis (Q129256339)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "fondo-scataglini-necropolis",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-03-28T14:46:09Z",
+      "uri": "https://pleiades.stoa.org/places/643083925/fondo-scataglini-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "fondo Scataglini necropolis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-30T10:10:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-28T14:46:19Z"
+        },
+        {
+          "comment": "name - fondo Scataglini necropolis",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-28T14:46:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-28T14:46:09Z"
+        }
+      ]
+    }
+  ],
+  "id": "643083925",
+  "subject": [],
+  "title": "Necropoli Fondo Scataglini",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etruscan necropolis at Tarquinia with more than 175 tombs.",
+  "reprPoint": [
+    11.768931185991793,
+    42.247733157841296
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    11.7684222,
+    42.2473266,
+    11.7693479,
+    42.2481148
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413332"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-03-24T19:36:33Z",
+  "uri": "https://pleiades.stoa.org/places/643083925",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-03-30T10:10:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-28T14:46:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-28T14:45:35Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-25T01:54:01Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-24T19:36:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2026-03-24T19:36:33Z"
+    }
+  ]
+}

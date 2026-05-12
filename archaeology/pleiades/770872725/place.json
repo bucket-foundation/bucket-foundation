@@ -1,0 +1,391 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.2989654,
+            47.3240051
+          ],
+          [
+            1.2991108,
+            47.3239587
+          ],
+          [
+            1.2991583,
+            47.3239558
+          ],
+          [
+            1.2991854,
+            47.3239649
+          ],
+          [
+            1.2991964,
+            47.3239752
+          ],
+          [
+            1.2992282,
+            47.3240494
+          ],
+          [
+            1.2992225,
+            47.3240793
+          ],
+          [
+            1.2992058,
+            47.3240996
+          ],
+          [
+            1.2991247,
+            47.3241317
+          ],
+          [
+            1.2991043,
+            47.3241345
+          ],
+          [
+            1.2990698,
+            47.3241248
+          ],
+          [
+            1.2990071,
+            47.3240875
+          ],
+          [
+            1.2989691,
+            47.3240637
+          ],
+          [
+            1.298954,
+            47.324044
+          ],
+          [
+            1.2989521,
+            47.3240226
+          ],
+          [
+            1.2989654,
+            47.3240051
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-site-gallo-romain-temple",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/770872725/osm-location-of-site-gallo-romain-temple",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Site Gallo-Romain temple"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/234714904",
+          "citationDetail": "Way 234714904",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=234714904",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-site-gallo-romain-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Site Gallo-Romain temple",
+      "provenance": "OpenStreetMap (Way 234714904, version 3, osm:changeset=17482470, 2013-08-24T11:15:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-07-01T20:20:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.2989654,
+            47.3240051
+          ],
+          [
+            1.2991108,
+            47.3239587
+          ],
+          [
+            1.2991583,
+            47.3239558
+          ],
+          [
+            1.2991854,
+            47.3239649
+          ],
+          [
+            1.2991964,
+            47.3239752
+          ],
+          [
+            1.2992282,
+            47.3240494
+          ],
+          [
+            1.2992225,
+            47.3240793
+          ],
+          [
+            1.2992058,
+            47.3240996
+          ],
+          [
+            1.2991247,
+            47.3241317
+          ],
+          [
+            1.2991043,
+            47.3241345
+          ],
+          [
+            1.2990698,
+            47.3241248
+          ],
+          [
+            1.2990071,
+            47.3240875
+          ],
+          [
+            1.2989691,
+            47.3240637
+          ],
+          [
+            1.298954,
+            47.324044
+          ],
+          [
+            1.2989521,
+            47.3240226
+          ],
+          [
+            1.2989654,
+            47.3240051
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/770872725/osm-location-of-site-gallo-romain-temple",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-01T17:46:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T18:04:07Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-01T20:20:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-01T20:20:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-01T20:20:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-07-01T20:20:57Z",
+      "associationCertainty": "certain",
+      "title": "Tasciaca?",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/770872725/8573636854",
+      "connectionType": "at",
+      "id": "8573636854",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-01T20:20:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-01T20:20:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-01T20:20:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/138608",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/8019/",
+      "citationDetail": "8019: Bassin du fanum de Pouill\u00e9",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/8017/",
+      "citationDetail": "8017: Tasciaca",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "770872725",
+  "subject": [],
+  "title": "Unnamed Gallo-Roman temple",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The site of an unnamed Gallo-Roman temple is situated in Th\u00e9s\u00e9e, Arrondissement of Romorantin-Lanthenay, Centre-Val de Loire, France. This temple site is located close to the ruins at B\u00e2timents des potiers de Pouill\u00e9.",
+  "reprPoint": [
+    1.29909693665355,
+    47.3240420307284
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    1.2989521,
+    47.3239558,
+    1.2992282,
+    47.3241345
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/138608"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-07-01T20:20:55Z",
+  "uri": "https://pleiades.stoa.org/places/770872725",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-01T17:46:56Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-29T21:22:28Z"
+    },
+    {
+      "comment": "references ",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T18:06:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T18:04:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T18:03:25Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-01T20:20:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-01T20:20:55Z"
+    }
+  ]
+}

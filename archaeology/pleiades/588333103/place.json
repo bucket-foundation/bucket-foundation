@@ -1,0 +1,522 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.1912537,
+            38.3045277
+          ],
+          [
+            31.1911646,
+            38.304376
+          ],
+          [
+            31.1908016,
+            38.3045073
+          ],
+          [
+            31.1905903,
+            38.3041474
+          ],
+          [
+            31.190958,
+            38.3040144
+          ],
+          [
+            31.1908667,
+            38.3038588
+          ],
+          [
+            31.1915379,
+            38.3036162
+          ],
+          [
+            31.1915826,
+            38.3036924
+          ],
+          [
+            31.1916193,
+            38.3037027
+          ],
+          [
+            31.191812,
+            38.3036941
+          ],
+          [
+            31.1919583,
+            38.3037571
+          ],
+          [
+            31.191982,
+            38.3037764
+          ],
+          [
+            31.1920777,
+            38.3038992
+          ],
+          [
+            31.1921042,
+            38.3040566
+          ],
+          [
+            31.1920534,
+            38.3041226
+          ],
+          [
+            31.1919308,
+            38.304167
+          ],
+          [
+            31.1919869,
+            38.3042624
+          ],
+          [
+            31.1912537,
+            38.3045277
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-augusteum-antioch-in-pisidia",
+      "properties": {
+        "snippet": "Temple-2, Architecturalcomplex; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/588333103/osm-location-of-augusteum-antioch-in-pisidia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Augusteum, Antioch in Pisidia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1163412220",
+          "citationDetail": "Way 1163412220",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1163412220",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-augusteum-antioch-in-pisidia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 300,
+      "title": "OSM location of Augusteum, Antioch in Pisidia",
+      "provenance": "OpenStreetMap (Way 1163412220, version 1, osm:changeset=135018495, 2023-04-17T14:47:58Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2",
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-04-17T14:48:44Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.1912537,
+            38.3045277
+          ],
+          [
+            31.1911646,
+            38.304376
+          ],
+          [
+            31.1908016,
+            38.3045073
+          ],
+          [
+            31.1905903,
+            38.3041474
+          ],
+          [
+            31.190958,
+            38.3040144
+          ],
+          [
+            31.1908667,
+            38.3038588
+          ],
+          [
+            31.1915379,
+            38.3036162
+          ],
+          [
+            31.1915826,
+            38.3036924
+          ],
+          [
+            31.1916193,
+            38.3037027
+          ],
+          [
+            31.191812,
+            38.3036941
+          ],
+          [
+            31.1919583,
+            38.3037571
+          ],
+          [
+            31.191982,
+            38.3037764
+          ],
+          [
+            31.1920777,
+            38.3038992
+          ],
+          [
+            31.1921042,
+            38.3040566
+          ],
+          [
+            31.1920534,
+            38.3041226
+          ],
+          [
+            31.1919308,
+            38.304167
+          ],
+          [
+            31.1919869,
+            38.3042624
+          ],
+          [
+            31.1912537,
+            38.3045277
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/588333103/osm-location-of-augusteum-antioch-in-pisidia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-02T00:34:01Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-02T20:52:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T19:01:32Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-17T14:49:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-17T14:48:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-17T14:48:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-17T14:49:13Z",
+      "associationCertainty": "certain",
+      "title": "Antiochia/Col. Caesarea",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/588333103/9530428837",
+      "connectionType": "at",
+      "id": "9530428837",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-17T14:49:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-17T14:49:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-17T14:49:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/609307",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/497542",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Robinson 1924",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DISV3Z35",
+      "formattedCitation": "<div class=\"csl-entry\">Robinson, David M. \u201cA Preliminary Report on the Excavations at Pisidian Antioch and at Sizma.\u201d <i>American Journal of Archaeology</i> 28, no. 4 (1924): 435\u201344. https://doi.org/10.2307/497542.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/290311",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rolfe 1927",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3WLP3AGS",
+      "formattedCitation": "<div class=\"csl-entry\">Rolfe, John C. \u201cMarks of Quantity in the Monumentum Antiochenum.\u201d <i>The American Journal of Philology</i> 48, no. 1 (1927): 1\u20139. https://doi.org/10.2307/290311.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/289847",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Robinson 1926",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IUUPI3PW",
+      "formattedCitation": "<div class=\"csl-entry\">Robinson, David M. \u201cThe Res Gestae Divi Augusti as Recorded on the Monumentum Antiochenum.\u201d <i>The American Journal of Philology</i> 47, no. 1 (1926): 1\u201354. https://doi.org/10.2307/289847.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q137183449",
+      "citationDetail": "Augusteum, Antioch in Pisidia (Q137183449)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Robinson 1926",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VF4EZFV4",
+      "formattedCitation": "<div class=\"csl-entry\">Augustus. <i>The Deeds of Augustus as Recorded on the Monumentum Antiochenum (with Seven Plates)</i>. Edited by David M. Robinson. Baltimore: Johns Hopkins Press, 1926.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/283004",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Robinson 1924a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WW2ZWJA9",
+      "formattedCitation": "<div class=\"csl-entry\">Robinson, David M. \u201cA New Latin Economic Edict from Pisidian Antioch.\u201d <i>Transactions and Proceedings of the American Philological Association</i> 55 (1924): 5\u201320. https://doi.org/10.2307/283004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monumentum Antiochenum",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/289847",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Robinson 1926",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IUUPI3PW",
+          "formattedCitation": "<div class=\"csl-entry\">Robinson, David M. \u201cThe Res Gestae Divi Augusti as Recorded on the Monumentum Antiochenum.\u201d <i>The American Journal of Philology</i> 47, no. 1 (1926): 1\u201354. https://doi.org/10.2307/289847.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "monumentum-antiochenum",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-12-02T00:43:20Z",
+      "uri": "https://pleiades.stoa.org/places/588333103/monumentum-antiochenum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Monumentum Antiochenum",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-12-07T18:57:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-02T00:43:30Z"
+        },
+        {
+          "comment": "name - Monumentum Antiochenum",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-02T00:43:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-02T00:43:20Z"
+        }
+      ]
+    }
+  ],
+  "id": "588333103",
+  "subject": [],
+  "title": "Augusteum, Antioch in Pisidia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Augusteum, or Sebasteion, at Antioch in Pisidia was a monumental architectural complex dedicated to the Roman Imperial cult. Its archaeological remains were first excavated in 1913. Approximately 60 fragments of the Res Gestae Divi Augusti were discovered at the site.",
+  "reprPoint": [
+    31.191350151959377,
+    38.304094852687406
+  ],
+  "placeTypes": [
+    "architecturalcomplex",
+    "temple-2"
+  ],
+  "bbox": [
+    31.1905903,
+    38.3036162,
+    31.1921042,
+    38.3045277
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/609307"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-17T14:49:12Z",
+  "uri": "https://pleiades.stoa.org/places/588333103",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-02T00:42:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-02T20:52:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-29T19:01:32Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-29T19:01:10Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-17T14:49:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-17T14:49:12Z"
+    }
+  ]
+}

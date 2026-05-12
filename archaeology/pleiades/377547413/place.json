@@ -1,0 +1,682 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.3262183,
+          30.5953354
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement; 5000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/377547413/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Shahr-e Sukhteh"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.328,
+          30.5961
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-sahr-i-sukhta",
+      "properties": {
+        "snippet": "Archaeological-site; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/377547413/cigs-location-of-sahr-i-sukhta",
+        "description": "Representative centroid location of \u0160ahr-i S\u016bkhta from Cuneiform Inscriptions Geographical Site Index (CIGS) .",
+        "location_precision": "precise",
+        "title": "CIGS location of \u0160ahr-i S\u016bkhta"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "chalcolithic-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/chalcolithic-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3304892108",
+          "citationDetail": "Node 3304892108",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3304892108",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1000,
+      "title": "OSM location of Shahr-e Sukhteh",
+      "provenance": "OpenStreetMap (Node 3304892108, version 5, osm:changeset=144195826, 2023-11-19T04:17:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -5000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2015-01-22T21:18:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.3262183,
+          30.5953354
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/377547413/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-25T18:17:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-25T15:11:19Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-25T15:11:03Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-27T19:01:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-10T14:41:22Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-04T01:14:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-04T01:14:00Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-22T21:20:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-22T21:18:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-01-22T21:18:23Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-bronze-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.taylorfrancis.com/books/oa-mono/10.4324/9781003224129/archaeology-iran-palaeolithic-achaemenid-empire-roger-matthews-hassan-fazeli-nashli-amy-richardson",
+          "citationDetail": "312-313",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Matthews et al. 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5E7SMD8J",
+          "formattedCitation": "<div class=\"csl-entry\">Matthews, Roger, Hassan Fazeli Nashli, and Amy Richardson. <i>The Archaeology of Iran from the Palaeolithic to the Achaemenid Empire</i>. London: Routledge, 2022. https://doi.org/10.4324/9781003224129.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.5281/zenodo.4960710",
+          "citationDetail": "SOK",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "CIGS",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4S3ZL8AB",
+          "formattedCitation": "<div class=\"csl-entry\">Rattenborg, Rune, Carolin Johansson, Seraina Nett, Gustav Ryberg Smidt, and Jakob Andersson. \u201cCuneiform Inscriptions Geographical Site Index (CIGS).\u201d Zenodo, 2021. https://doi.org/10.5281/zenodo.4960710.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q1025825",
+          "citationDetail": "Q1025825: Shahr-e Sukhteh",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Shahr-e_Sukhteh",
+          "citationDetail": "Shahr-e Sukhteh",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeAlso"
+        }
+      ],
+      "id": "cigs-location-of-sahr-i-sukhta",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -2000,
+      "title": "CIGS location of \u0160ahr-i S\u016bkhta",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p><span>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</span></p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative centroid location of \u0160ahr-i S\u016bkhta from Cuneiform Inscriptions Geographical Site Index (CIGS) .",
+      "created": "2022-06-24T10:32:57Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.328,
+          30.5961
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/377547413/cigs-location-of-sahr-i-sukhta",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-27T19:00:19Z"
+        },
+        {
+          "comment": "correct typo in wikipedia reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-27T14:29:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-27T09:27:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-27T09:22:57Z"
+        },
+        {
+          "comment": "Corrected links for Wikidata and Wikipedia.",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-27T09:09:19Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-24T12:23:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-24T10:46:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-24T10:46:10Z"
+        },
+        {
+          "comment": "Draft location",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-24T10:32:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-24T10:32:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "\u0160ahr-i S\u016bkhta is located on the lower course of the Helmand River",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2022-06-24T10:45:29Z",
+      "associationCertainty": "certain",
+      "title": "Erymandros (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/377547413/erymandros-river",
+      "connectionType": "on",
+      "id": "erymandros-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-24T12:22:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-24T12:22:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-24T10:46:39Z"
+        },
+        {
+          "comment": "Draft connection",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-24T10:45:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rrattenborg",
+          "modified": "2022-06-24T10:45:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/59810",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.taylorfrancis.com/books/oa-mono/10.4324/9781003224129/archaeology-iran-palaeolithic-achaemenid-empire-roger-matthews-hassan-fazeli-nashli-amy-richardson",
+          "citationDetail": "312-313",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Matthews et al. 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5E7SMD8J",
+          "formattedCitation": "<div class=\"csl-entry\">Matthews, Roger, Hassan Fazeli Nashli, and Amy Richardson. <i>The Archaeology of Iran from the Palaeolithic to the Achaemenid Empire</i>. London: Routledge, 2022. https://doi.org/10.4324/9781003224129.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/1456/",
+      "citationDetail": "1456: Shahr-i Sokhta",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Shahr-e_Sukhteh",
+      "citationDetail": "Shahr-e Sukhteh",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Shahr-e Sukhteh.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1025825",
+      "citationDetail": "Shahr-e Sukhteh (Q1025825)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Jiroft_culture",
+      "citationDetail": "Jiroft culture",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/21294/",
+      "citationDetail": "21294: Shahr-e Sukhteh",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Shahr-e Sukhteh, Shahr-e Sukhteh, Shahr-i Sh\u014dkhta",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://fa.wikipedia.org/wiki/%D8%B4%D9%87%D8%B1_%D8%B3%D9%88%D8%AE%D8%AA%D9%87",
+          "citationDetail": "\u0634\u0647\u0631 \u0633\u0648\u062e\u062a\u0647",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Persian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/FJ5B3YGU",
+          "formattedCitation": "\u0648\u06cc\u06a9\u06cc\u200c\u067e\u062f\u06cc\u0627\u060c \u062f\u0627\u0646\u0634\u0646\u0627\u0645\u0647\u0654 \u0622\u0632\u0627\u062f (2001-), \u0634\u0647\u0631 \u0633\u0648\u062e\u062a\u0647.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Shahr-e_Sukhteh",
+          "citationDetail": "Shahr-e Sukhteh",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Shahr-e Sukhteh.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "shahr-e-sukhteh",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fa",
+      "created": "2017-02-04T01:13:36Z",
+      "uri": "https://pleiades.stoa.org/places/377547413/shahr-e-sukhteh",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u0634\u0647\u0631 \u0633\u0648\u062e\u062a\u0647",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-04T01:14:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-04T01:14:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-04T01:13:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-04T01:13:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "377547413",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Shahr-e Sukhteh",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Bronze Age urban settlement, associated with the Jiroft culture, located in Sistan and Baluchistan provinces in the southeastern part of Iran. The site was added to the UNESCO World Heritage List in 2014.",
+  "reprPoint": [
+    61.32710915,
+    30.5957177
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    61.3262183,
+    30.5953354,
+    61.328,
+    30.5961
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/59810",
+    "https://pleiades.stoa.org/places/705861784"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-01-22T21:16:18Z",
+  "uri": "https://pleiades.stoa.org/places/377547413",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added vici.org reference",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-25T18:18:17Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-25T15:10:23Z"
+    },
+    {
+      "comment": "add wikidata Shahr-e Sukhteh (Q1025825)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-25T15:07:08Z"
+    },
+    {
+      "comment": "uwhs cleanup",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-10T14:40:50Z"
+    },
+    {
+      "comment": "description",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-04T01:14:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-04T01:14:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-04T01:13:59Z"
+    },
+    {
+      "comment": "wikipedia reference",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-04T01:08:29Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-04T01:06:08Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-22T21:16:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-01-22T21:16:19Z"
+    }
+  ]
+}

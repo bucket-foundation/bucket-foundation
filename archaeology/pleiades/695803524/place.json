@@ -1,0 +1,353 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.5181893,
+            37.6768393
+          ],
+          [
+            30.518302,
+            37.6766037
+          ],
+          [
+            30.5187177,
+            37.6767289
+          ],
+          [
+            30.5186131,
+            37.6769476
+          ],
+          [
+            30.5181893,
+            37.6768393
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-macellum",
+      "properties": {
+        "snippet": "Architecturalcomplex; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/695803524/osm-location-of-macellum",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Macellum"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/211483633",
+          "citationDetail": "Way 211483633",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=211483633",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-macellum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 300,
+      "title": "OSM location of Macellum",
+      "provenance": "OpenStreetMap (Way 211483633, version 2, osm:changeset=61594394, 2018-08-12T17:00:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-12-27T20:58:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.5181893,
+            37.6768393
+          ],
+          [
+            30.518302,
+            37.6766037
+          ],
+          [
+            30.5187177,
+            37.6767289
+          ],
+          [
+            30.5186131,
+            37.6769476
+          ],
+          [
+            30.5181893,
+            37.6768393
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/695803524/osm-location-of-macellum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-28T14:04:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-27T20:58:56Z"
+        },
+        {
+          "comment": "added better OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-27T20:58:49Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-27T20:58:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-27T20:58:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-07T14:09:58Z",
+      "associationCertainty": "certain",
+      "title": "Sagalassos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/695803524/9985590952",
+      "connectionType": "at",
+      "id": "9985590952",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:09:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:09:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:09:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/639087",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sagalassos",
+      "citationDetail": "Sagalassos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://interactive.archaeology.org/sagalassos/field06/macellum4.html",
+      "citationDetail": "Macellum: July 30-August 3, 2006",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Interactive Digs",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4G7MLVWM",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cArchaeological Institute of America and Archaeology Magazine\u2019s Interactive Digs.\u201d Accessed March 27, 2019. https://www.interactivedigs.com/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richard and Waelkens 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVTI4SIB",
+      "formattedCitation": "<div class=\"csl-entry\">Richard, Julian, and Marc Waelkens. \u201cLe Macellum de Sagalassos: Un March\u00e9 \u2018Romain\u2019 Dans Les Montagnes Du Taurus\u202f? Compte-Rendu Pr\u00e9liminaire Des Fouilles Arch\u00e9ologiques Men\u00e9es Depuis 2005.\u201d In <i>Tout Vendre, Tout Acheter</i>. Bordeaux\u202f;\u202f:\u00a0 Ath\u00e8nes: Ausonius,\u00a0 \u00c9cole Fran\u00e7aise d\u2019Ath\u00e8nes, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/macellum-roman-food-markets-in-asia-minor-and-the-levant/940BD98C4C0284A5BE9A4A31DBD6ADA6",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Richard 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PSAMTM8F",
+      "formattedCitation": "<div class=\"csl-entry\">Richard, Julian. \u201cMacellum / \u039c\u03ac\u03ba\u03b5\u03bb\u03bb\u03bf\u03bd: \u2018Roman\u2019 Food Markets in Asia Minor and the Levant.\u201d <i>Journal of Roman Archaeology</i> 27 (ed 2014): 255\u201374. https://doi.org/10.1017/S1047759414001238.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q129917971",
+      "citationDetail": "Macellum in Sagalassos (Q129917971)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "695803524",
+  "subject": [],
+  "title": "Macellum of Sagalassos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman Macellum of Sagalassos.",
+  "reprPoint": [
+    30.51845253544147,
+    37.67677934988678
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    30.5181893,
+    37.6766037,
+    30.5187177,
+    37.6769476
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/639087"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-07T14:09:57Z",
+  "uri": "https://pleiades.stoa.org/places/695803524",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q129917971",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-12T02:51:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-27T20:30:33Z"
+    },
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "thomase",
+      "modified": "2019-03-27T20:30:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-20T18:35:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-20T18:35:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-14T15:06:27Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:10:25Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:10:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:09:57Z"
+    }
+  ]
+}

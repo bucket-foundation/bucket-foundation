@@ -1,0 +1,371 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5989793,
+          50.663733
+        ]
+      },
+      "type": "Feature",
+      "id": "pastscape-location",
+      "properties": {
+        "snippet": "Abbey; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/571787445/pastscape-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Pastscape location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=450348",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pastscape: Abbotsbury Abbey",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "pastscape-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": 1453,
+      "title": "Pastscape location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 200.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-pastscape-coordinates",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "",
+      "created": "2017-05-18T16:21:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.5989793,
+          50.663733
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/571787445/pastscape-location",
+      "creators": [
+        {
+          "username": "ctupman",
+          "homepage": null,
+          "name": "Charlotte Tupman",
+          "uri": "https://pleiades.stoa.org/author/ctupman"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-19T16:05:58Z"
+        },
+        {
+          "comment": "added Generic Pastscape Coordinates accuracy assessment",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-23T19:41:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-05-23T15:50:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "ctupman",
+          "modified": "2017-05-23T13:51:37Z"
+        },
+        {
+          "comment": "added default, coordinates and references",
+          "modifiedBy": "ctupman",
+          "modified": "2017-05-18T16:21:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ctupman",
+          "modified": "2017-05-18T16:21:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=450348",
+      "citationDetail": "450348 Abbotsbury Abbey",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/492106157",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Knowles 1971",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/48FFN26T",
+      "formattedCitation": "<div class=\"csl-entry\">Knowles, David, and Richard Neville Hadcock. <i>Medieval Religious Houses\u202f: England and Wales</i>. 2nd ed. London: Longman, 1971. https://search.worldcat.org/title/492106157.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Abbotsbury Abbey",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=450348",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pastscape: Abbotsbury Abbey",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-05-18.2574158464",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-05-18T15:45:18Z",
+      "uri": "https://pleiades.stoa.org/places/571787445/name.2017-05-18.2574158464",
+      "creators": [
+        {
+          "username": "ctupman",
+          "homepage": null,
+          "name": "Charlotte Tupman",
+          "uri": "https://pleiades.stoa.org/author/ctupman"
+        }
+      ],
+      "attested": "Abbotsbury Abbey",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-05-23T15:50:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "ctupman",
+          "modified": "2017-05-23T13:51:24Z"
+        },
+        {
+          "comment": "added name and citation",
+          "modifiedBy": "ctupman",
+          "modified": "2017-05-18T15:47:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ctupman",
+          "modified": "2017-05-18T15:45:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ctupman",
+          "modified": "2017-05-18T15:45:18Z"
+        }
+      ]
+    }
+  ],
+  "id": "571787445",
+  "subject": [
+    "abbey"
+  ],
+  "title": "Abbotsbury Abbey",
+  "provenance": "D. Knowles & R.N. Hadcock, Medieval Religious Houses: England and Wales (1972)",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Abbotsbury Abbey is a Benedictine abbey located in Dorset, England. It was founded in ca. 1026 for secular canons, became a monastery of the Benedictine order in 1044, and was dissolved in 1539.",
+  "reprPoint": [
+    -2.5989793,
+    50.663733
+  ],
+  "placeTypes": [
+    "abbey"
+  ],
+  "bbox": [
+    -2.5989793,
+    50.663733,
+    -2.5989793,
+    50.663733
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-19T03:21:56Z",
+  "uri": "https://pleiades.stoa.org/places/571787445",
+  "creators": [
+    {
+      "username": "ctupman",
+      "homepage": null,
+      "name": "Charlotte Tupman",
+      "uri": "https://pleiades.stoa.org/author/ctupman"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for abbey; update references @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-19T16:05:39Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-19T03:21:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-05-23T15:50:26Z"
+    },
+    {
+      "comment": "deleted empty reference",
+      "modifiedBy": "thomase",
+      "modified": "2017-05-23T15:49:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-23T13:52:18Z"
+    },
+    {
+      "comment": "nothing was changed - just a test",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T16:14:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T16:11:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T16:10:35Z"
+    },
+    {
+      "comment": "improved short title",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T15:43:12Z"
+    },
+    {
+      "comment": "Added citation",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T15:42:24Z"
+    },
+    {
+      "comment": "added new tag",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T15:33:40Z"
+    },
+    {
+      "comment": "Added Pastscape ref",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T15:18:15Z"
+    },
+    {
+      "comment": "Entered title, summary, place type and initial provenance",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T15:15:31Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ctupman",
+      "modified": "2017-05-18T15:15:18Z"
+    }
+  ]
+}

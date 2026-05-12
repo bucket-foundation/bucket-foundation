@@ -1,0 +1,14 @@
+# Božica
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/481771
+- **ID**: 481771
+- **Coords (lng, lat)**: [22.40981, 42.643639]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 49 E1 Božica

@@ -1,0 +1,14 @@
+# Pherinum
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/543841
+- **ID**: 543841
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Pherinum
+
+## Description
+
+An ancient place, cited: BAtlas 55 unlocated Pherinum

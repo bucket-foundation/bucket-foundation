@@ -1,0 +1,427 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.294238,
+            38.961532
+          ],
+          [
+            -6.2960887,
+            38.9607228
+          ],
+          [
+            -6.2957937,
+            38.9597383
+          ],
+          [
+            -6.2952358,
+            38.9599969
+          ],
+          [
+            -6.2952733,
+            38.9600908
+          ],
+          [
+            -6.2938973,
+            38.9601805
+          ],
+          [
+            -6.294238,
+            38.961532
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basalica-casa-herrera",
+      "properties": {
+        "snippet": "Archaeological-site; AD 400 - AD 599",
+        "link": "https://pleiades.stoa.org/places/324534809/osm-location-of-basalica-casa-herrera",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bas\u00edlica Casa Herrera"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "sixth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/509714146",
+          "citationDetail": "Way 509714146",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=509714146",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basalica-casa-herrera",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 599,
+      "title": "OSM location of Bas\u00edlica Casa Herrera",
+      "provenance": "OpenStreetMap (Way 509714146, version 2, osm:changeset=119103080, 2022-03-30T07:51:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 400,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-08-09T22:06:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.294238,
+            38.961532
+          ],
+          [
+            -6.2960887,
+            38.9607228
+          ],
+          [
+            -6.2957937,
+            38.9597383
+          ],
+          [
+            -6.2952358,
+            38.9599969
+          ],
+          [
+            -6.2952733,
+            38.9600908
+          ],
+          [
+            -6.2938973,
+            38.9601805
+          ],
+          [
+            -6.294238,
+            38.961532
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/324534809/osm-location-of-basalica-casa-herrera",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-14T13:49:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-10T13:56:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-10T13:55:19Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-09T22:06:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-09T22:06:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-09T22:06:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2024-08-10T00:17:46Z",
+      "associationCertainty": "certain",
+      "title": "Emerita Augusta",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/324534809/0663235573",
+      "connectionType": "near",
+      "id": "0663235573",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "located near",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-14T13:49:35Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-10T00:17:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-10T00:17:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-10T00:17:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256155",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/664/",
+      "citationDetail": "664-008: Casa Herrera Basilica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/https://www.wikidata.org/wiki/Q64850540",
+      "citationDetail": "Casa Herrera Basilica (Q64850540)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caballero Zoreda 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F4529WEV",
+      "formattedCitation": "<div class=\"csl-entry\">Caballero Zoreda, Luis, Thilo Ulbert, and Tito Antonio Varela L\u00f3pez. <i>La Bas\u00edlica paleocristiana de Casa Herrera en las cercan\u00edas de M\u00e9rida (Badajoz)</i>. Excavaciones arqueol\u00f3gicas en Espa\u00f1a 89. Madrid: Ministerio de Educaci\u00f3n y Ciencia, Direcci\u00f3n General del Patrimonio Art\u00edstico y Cultural, Comisar\u00eda Nacional del Patrimonio Art\u00edstico, 1976.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Basilica paleocristiana de Casa Herrera",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Caballero Zoreda 1976",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F4529WEV",
+          "formattedCitation": "<div class=\"csl-entry\">Caballero Zoreda, Luis, Thilo Ulbert, and Tito Antonio Varela L\u00f3pez. <i>La Bas\u00edlica paleocristiana de Casa Herrera en las cercan\u00edas de M\u00e9rida (Badajoz)</i>. Excavaciones arqueol\u00f3gicas en Espa\u00f1a 89. Madrid: Ministerio de Educaci\u00f3n y Ciencia, Direcci\u00f3n General del Patrimonio Art\u00edstico y Cultural, Comisar\u00eda Nacional del Patrimonio Art\u00edstico, 1976.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "basilica-paleocristiana-de-casa-herrera",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2024-08-10T13:54:36Z",
+      "uri": "https://pleiades.stoa.org/places/324534809/basilica-paleocristiana-de-casa-herrera",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Bas\u00edlica paleocristiana de Casa Herrera",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-14T13:49:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-10T13:56:12Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-10T13:54:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-10T13:54:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "324534809",
+  "subject": [
+    "paleochristian",
+    "UWHS"
+  ],
+  "title": "Bas\u00edlica Casa Herrera",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Casa Herrera Basilica is part of the UNESCO World Heritage Site \"Archaeological Ensemble of M\u00e9rida\". The paleochristian basilica was built in either the late fifth or early sixth century CE.",
+  "reprPoint": [
+    -6.294964536710556,
+    38.96058406381058
+  ],
+  "placeTypes": [
+    "church-2",
+    "archaeological-site"
+  ],
+  "bbox": [
+    -6.2960887,
+    38.9597383,
+    -6.2938973,
+    38.961532
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256155"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-08-10T00:17:42Z",
+  "uri": "https://pleiades.stoa.org/places/324534809",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-08-14T13:49:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-10T13:56:12Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-10T13:53:29Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-10T00:17:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-10T00:17:42Z"
+    }
+  ]
+}

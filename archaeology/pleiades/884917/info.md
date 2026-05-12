@@ -1,0 +1,14 @@
+# Satara
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/884917
+- **ID**: 884917
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Satara
+
+## Description
+
+An ancient place, cited: BAtlas 90 unlocated Satara

@@ -1,0 +1,619 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.4201106,
+            37.4555597
+          ],
+          [
+            22.4206681,
+            37.4555874
+          ],
+          [
+            22.4206828,
+            37.4554006
+          ],
+          [
+            22.4201254,
+            37.4553728
+          ],
+          [
+            22.4201106,
+            37.4555597
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-athena-alea",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/372843530/osm-location-of-temple-of-athena-alea",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Athena Alea"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "jmuccigr",
+      "homepage": null,
+      "name": "John Muccigrosso",
+      "uri": "https://pleiades.stoa.org/author/jmuccigr"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "icristofaro",
+      "homepage": null,
+      "name": "Ilaria Cristofaro",
+      "uri": "https://pleiades.stoa.org/author/icristofaro"
+    },
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/318196910",
+          "citationDetail": "Way 318196910",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=318196910",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-athena-alea",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Temple of Athena Alea",
+      "provenance": "OpenStreetMap (Way 318196910, version 4, osm:changeset=156066169, 2024-09-01T17:54:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2019-04-17T19:28:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.4201106,
+            37.4555597
+          ],
+          [
+            22.4206681,
+            37.4555874
+          ],
+          [
+            22.4206828,
+            37.4554006
+          ],
+          [
+            22.4201254,
+            37.4553728
+          ],
+          [
+            22.4201106,
+            37.4555597
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/372843530/osm-location-of-temple-of-athena-alea",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-16T01:57:46Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-16T04:17:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-01T16:46:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-31T19:20:22Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T19:28:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T19:28:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T19:28:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-04-17T19:28:07Z",
+      "associationCertainty": "certain",
+      "title": "Tegea",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/372843530/2875077979",
+      "connectionType": "at",
+      "id": "2875077979",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T19:28:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T19:28:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-17T19:28:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570707",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-05-07T19:53:43Z",
+      "associationCertainty": "certain",
+      "title": "Archaic Temple of Athena Alea at Tegea",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/372843530/archaic-temple-of-athena-alea-at-tegea",
+      "connectionType": "succeeds",
+      "id": "archaic-temple-of-athena-alea-at-tegea",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-08T23:18:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-07T19:53:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-07T19:53:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-07T19:53:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/923923894",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://bora.uib.no/bora-xmlui/bitstream/handle/1956/24244/011-056%20%CE%A4%20I.i%20Ostby.pdf?sequence=1&isAllowed=y",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "\u00d8stby 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3UCNGE2R",
+          "formattedCitation": "<div class=\"csl-entry\">\u00d8stby, E. \u201c\u00d8stby_2014.\u201d In <i>Tegea I: Investigations In The Temple of Athena Alea 1991\u2013 94</i>, 11\u201356. Papers and Monographs from the Norwegian Institute at Athens 3. Athens: The Norwegian Institute at Athens, 2014. https://bora.uib.no/bora-xmlui/bitstream/handle/1956/24244/011-056%20%CE%A4%20I.i%20Ostby.pdf?sequence=1&amp;isAllowed=y.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/504994",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Norman 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AP49T57M",
+      "formattedCitation": "<div class=\"csl-entry\">Norman, Naomi J. \u201cThe Temple of Athena Alea at Tegea.\u201d <i>American Journal of Archaeology</i> 88, no. 2 (1984): 169\u201394. https://doi.org/10.2307/504994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Athena_Alea",
+      "citationDetail": "Temple of Athena Alea",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:8.45.4",
+      "citationDetail": "8.45.4",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.1.1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "24216",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/9614063",
+      "citationDetail": "9614063: the Sanctuary of Athena Alea (Tegea)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5681",
+      "citationDetail": "Tempel der Athena Alea Tegea, (\u03a4\u03b5\u03b3\u03ad\u03b1), Arkadien (Regionalbezirk)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3983230",
+      "citationDetail": "Temple of Athena Alea (Tegea) (Q3983230)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/375224SAth",
+      "citationDetail": "Athena Alea (Arkadia) 11 Alea - \u0391\u03b8\u03b7\u03bd\u03ac \u0391\u03bb\u03ad\u03b1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://romeresearchgroup.org/items/1001201",
+      "citationDetail": "1001201: Temple of Athena Alea",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TCW",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZV7SNRDS",
+      "formattedCitation": "<div class=\"csl-entry\">John D. Muccigrosso, and Louis I. Hamilton. <i>Temples of the Classical World</i>. Rome Research Group. Accessed October 15, 2024. https://romeresearchgroup.org/database-of-temples/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://romeresearchgroup.org/items/1001200",
+      "citationDetail": "1001200",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TCW",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZV7SNRDS",
+      "formattedCitation": "<div class=\"csl-entry\">John D. Muccigrosso, and Louis I. Hamilton. <i>Temples of the Classical World</i>. Rome Research Group. Accessed October 15, 2024. https://romeresearchgroup.org/database-of-temples/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Athena Alea (Tegea)",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3983230",
+          "citationDetail": "Temple of Athena Alea (Tegea) (Q3983230)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "temple-of-athena-alea-tegea",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2026-02-16T02:02:15Z",
+      "uri": "https://pleiades.stoa.org/places/372843530/temple-of-athena-alea-tegea",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Athena Alea (Tegea)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-30T10:11:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-16T02:02:22Z"
+        },
+        {
+          "comment": "name - Temple of Athena Alea (Tegea)",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-16T02:02:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-16T02:02:15Z"
+        }
+      ]
+    }
+  ],
+  "id": "372843530",
+  "subject": [
+    "extant remains",
+    "Athena"
+  ],
+  "title": "Temple of Athena Alea at Tegea",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>DARMC OBJECTID: 24216</p>\r\n<p class=\"p1\">In the late 8th and early 7th century BC, the first cult edifices were built.\u00a0They were huts, perhaps in the tradition of the \"laurel hut\" of Apollo at Delphi.\u00a0They were intended for the worship of the local deity, Alea.\u00a0Alea, a deity of vegetation and fertility, was associated with the annual cycle of death, decay, and rebirth - renovation of nature as well as prosperity - eueteria (good seasons - good harvest).\u00a0She was also associated with Auge, another fertility deity in Tegea, patroness of childbirth and pregnant women. The feminine substance, in combination with the emergence of martial attributes, led to her association with goddess Athena during the Archaic period. Thus, the name \"Alea\" describes certain qualities of Athena. Healing properties are counted among them.</p>\r\n<p class=\"p1\">At the end of the 7th century BC (625\u2013600 BC), a monumental Doric temple was built in their place, the first in Arcadia.\u00a0It was exastyle peripteral with eighteen columns at each side, pronaos, cella, and adyton. Its proportions were elongated. Marble, stone, and wood were used for its construction. The columns and the entablature of the building were made of wood. The interior has\u00a0a hypostyle in two stages.\u00a0A characteristic feature of the architecture of the early archaic temple (end of the 7th century BC) of Athena Alea was the adyton, i.e., a room accessible only from the cella. Precious votive offerings were kept there. The cult statue might have been held there.\u00a0The correlation of the adyton with the chthonic character of the cult and mystic rituals, which were particularly widespread in Arcadia, should not be excluded.\u00a0</p>\r\n<p class=\"p1\">In an inscribed bronze cauldron, we read for the first time in the 6th century BC the name of Athena. In the second half of the 6th century BC, the famous Athenian sculptor Endoios created her ivory cult statue. The finds from the 7th century BC, up to the destruction of the temple in the early 4th century BC\u00a0are far from numerous, maybe a result of the great interventions in the area during the construction of the Late Classical temple by Scopas.</p>\r\n<p class=\"p1\">Shortly after the middle of the 4th century BC, a new temple was built by the architect and sculptor Scopas. In the 4th century BC, the cult statue of the goddess was flanked by the statues of Asclepius and Hygeia.</p>\r\n<p class=\"p1\"><strong>Orientation:</strong></p>\r\n<p class=\"p1\">The orientation of the temple has been constant and perpetuated since the first construction phases. It faces east with a deviation of azimuth 86\u00b0 from Geographical North. The temple faces a mountain of about 4\u00b0 to 6\u00b0 skyline altitude, possibly part of the Parthenion mountains to the east of the Tegean plain.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient sanctuary at Tegea dedicated to Athena Alea. The extant phase of the temple is attributed to Skopas who was responsible for rebuilding following a fire in 394 B.C.",
+  "reprPoint": [
+    22.420396704425567,
+    37.45548012994524
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    22.4201106,
+    37.4553728,
+    22.4206828,
+    37.4555874
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570707",
+    "https://pleiades.stoa.org/places/923923894"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-02-07T17:41:48Z",
+  "uri": "https://pleiades.stoa.org/places/372843530",
+  "creators": [
+    {
+      "username": null,
+      "name": "G. Reger"
+    },
+    {
+      "username": null,
+      "name": "J. McK. Camp II"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-16T02:01:22Z"
+    },
+    {
+      "comment": "Added some more information on the temple and orientation data after a visit on the site and at the local museum.; Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-16T02:00:51Z"
+    },
+    {
+      "comment": "added reference to Temples of the Classical World provided by @jmuccigr",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-31T20:38:11Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-11T13:07:34Z"
+    },
+    {
+      "comment": "add MANTO 9614063: the Sanctuary of Athena Alea (Tegea)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-11T13:02:42Z"
+    },
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-23T21:07:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-01T16:46:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-31T19:20:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-17T19:33:09Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-17T19:32:14Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-17T19:28:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-17T19:28:06Z"
+    }
+  ]
+}

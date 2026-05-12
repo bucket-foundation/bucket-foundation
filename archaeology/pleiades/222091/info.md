@@ -1,0 +1,14 @@
+# Kotensioi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/222091
+- **ID**: 222091
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kotensioi
+
+## Description
+
+An ancient place, cited: BAtlas 22 unlocated Kotensioi

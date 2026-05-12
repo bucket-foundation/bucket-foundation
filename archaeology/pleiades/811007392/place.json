@@ -1,0 +1,576 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.4012915,
+          37.0040373
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tell-e-arada",
+      "properties": {
+        "snippet": "Settlement; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/811007392/osm-location-of-tell-e-arada",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tell \u02bfAr\u0101da"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "chorst",
+      "homepage": null,
+      "name": "Claudia Horst",
+      "uri": "https://pleiades.stoa.org/author/chorst"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "asquitieri",
+          "homepage": null,
+          "name": "Andrea Squitieri",
+          "uri": "https://pleiades.stoa.org/author/asquitieri"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/5316106927",
+          "citationDetail": "Node 5316106927",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5316106927",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/884661172",
+          "citationDetail": "page 6, map 3, grid D3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Helsinki Atlas 2001,",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+          "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1012402906",
+          "citationDetail": "page 751",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/2-2",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FREHICDX",
+          "formattedCitation": "<div class=\"csl-entry\">Bagg, Ariel M, and Wolfgang R\u00f6llig. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes VII/2, Teil 2, VII/2, Teil 2,</i>. Vol. 2. 2 vols. Beihefte zum T\u00fcbinger Atlas des Vorderen Orients. Reihe B, Geisteswissenschaften 7, 2017. http://www.worldcat.org/oclc/1012402906.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-tell-e-arada",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 2100,
+      "title": "OSM location of Tell \u02bfAr\u0101da",
+      "provenance": "OpenStreetMap (Node 5316106927, version 1, osm:changeset=55094672, 2018-01-02T09:11:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2018-01-02T09:12:33Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.4012915,
+          37.0040373
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/811007392/osm-location-of-tell-e-arada",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-28T15:49:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "asquitieri",
+          "modified": "2018-01-02T09:17:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "asquitieri",
+          "modified": "2018-01-02T09:16:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "asquitieri",
+          "modified": "2018-01-02T09:12:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "asquitieri",
+          "modified": "2018-01-02T09:12:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/884661172",
+      "citationDetail": "page 6, map 3 grid D3",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Helsinki Atlas 2001,",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+      "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1012580419",
+      "citationDetail": "page 62 sub Aridi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bagg, RGTC 7/2-1",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tell \u02bfAr\u0101da",
+      "attestations": [
+        {
+          "timePeriod": "modern-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/1012580419",
+          "citationDetail": "page 62 sub Aridi",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bagg, RGTC 7/2-1",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/884661172",
+          "citationDetail": "page 6, map 3 grid D3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Helsinki Atlas 2001,",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DD739AA9",
+          "formattedCitation": "<div class=\"csl-entry\">Parpola, Simo. <i>The Helsinki Atlas of the Near East in the Neo-Assyrian Period</i>. Casco Bay Assyriological Institute, 2001. http://www.worldcat.org/oclc/884661172.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2016-03-31.7531247519",
+      "end": 2000,
+      "contributors": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "provenance": "",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1918,
+      "details": "",
+      "review_state": "published",
+      "description": "The site is equated with Neo-Assyrian Aridi.",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2016-03-31T15:07:30Z",
+      "uri": "https://pleiades.stoa.org/places/811007392/name.2016-03-31.7531247519",
+      "creators": [
+        {
+          "username": "asquitieri",
+          "homepage": null,
+          "name": "Andrea Squitieri",
+          "uri": "https://pleiades.stoa.org/author/asquitieri"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-28T15:49:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "asquitieri",
+          "modified": "2018-01-02T09:17:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "asquitieri",
+          "modified": "2018-01-02T08:54:34Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "asquitieri",
+          "modified": "2018-01-02T08:43:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "asquitieri",
+          "modified": "2017-12-05T10:57:50Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "asquitieri",
+          "modified": "2017-12-05T10:57:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "asquitieri",
+          "modified": "2017-12-05T10:51:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "asquitieri",
+          "modified": "2017-12-05T10:50:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "asquitieri",
+          "modified": "2017-12-05T10:49:11Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-03T18:27:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "asquitieri",
+          "modified": "2016-03-31T15:21:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "asquitieri",
+          "modified": "2016-03-31T15:15:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "asquitieri",
+          "modified": "2016-03-31T15:08:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "asquitieri",
+          "modified": "2016-03-31T15:07:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "asquitieri",
+          "modified": "2016-03-31T15:07:32Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Aridi",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1006831066",
+          "citationDetail": "7/2-1 62",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RGTC",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VN3GQE7N",
+          "formattedCitation": "<div class=\"csl-entry\">Kupper, Jean Robert, and Wolfgang R\u00f6llig. <i>R\u00e9pertoire g\u00e9ographique des textes cun\u00e9iformes</i>. Wiesbaden: Reichert, 1974.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "aridi",
+      "end": -540,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-01-28T19:19:05Z",
+      "uri": "https://pleiades.stoa.org/places/811007392/aridi",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "reconnected RGTC reference to corresponding entry in Zotero library",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-07T18:23:28Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-29T16:33:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-28T19:19:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-28T19:19:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-01-28T19:19:05Z"
+        }
+      ]
+    }
+  ],
+  "id": "811007392",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Aridi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A town in the province of Guzana that is mentioned in Neo-Assyrian sources. Aridi is identified as modern Tell \u02bfAr\u0101da.",
+  "reprPoint": [
+    40.4012915,
+    37.0040373
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    40.4012915,
+    37.0040373,
+    40.4012915,
+    37.0040373
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-03T09:01:57Z",
+  "uri": "https://pleiades.stoa.org/places/811007392",
+  "creators": [
+    {
+      "username": "asquitieri",
+      "homepage": null,
+      "name": "Andrea Squitieri",
+      "uri": "https://pleiades.stoa.org/author/asquitieri"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-28T15:49:39Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-28T15:46:57Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "asquitieri",
+      "modified": "2018-01-03T09:01:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "asquitieri",
+      "modified": "2018-01-02T09:17:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "asquitieri",
+      "modified": "2018-01-02T08:51:15Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "asquitieri",
+      "modified": "2018-01-02T08:43:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "asquitieri",
+      "modified": "2017-12-05T10:57:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "asquitieri",
+      "modified": "2017-12-05T10:57:42Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "asquitieri",
+      "modified": "2017-12-05T10:57:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "asquitieri",
+      "modified": "2017-12-05T10:51:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "asquitieri",
+      "modified": "2017-12-05T10:45:43Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-03T18:27:50Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-03T18:26:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "asquitieri",
+      "modified": "2016-03-31T15:39:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "asquitieri",
+      "modified": "2016-03-31T15:39:36Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "asquitieri",
+      "modified": "2016-03-31T15:39:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "asquitieri",
+      "modified": "2016-03-31T15:21:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "asquitieri",
+      "modified": "2016-03-31T15:03:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "asquitieri",
+      "modified": "2016-03-31T15:00:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "asquitieri",
+      "modified": "2016-03-31T15:00:02Z"
+    }
+  ]
+}

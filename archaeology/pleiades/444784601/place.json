@@ -1,0 +1,418 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.7963166,
+            47.4496039
+          ],
+          [
+            6.7964985,
+            47.4495807
+          ],
+          [
+            6.7966211,
+            47.4495426
+          ],
+          [
+            6.7967304,
+            47.4495086
+          ],
+          [
+            6.7969056,
+            47.449422
+          ],
+          [
+            6.7970401,
+            47.4492974
+          ],
+          [
+            6.7971283,
+            47.4491534
+          ],
+          [
+            6.7971533,
+            47.4490141
+          ],
+          [
+            6.7971283,
+            47.448844
+          ],
+          [
+            6.7970348,
+            47.4486884
+          ],
+          [
+            6.7968718,
+            47.448555
+          ],
+          [
+            6.7967015,
+            47.4484454
+          ],
+          [
+            6.7964615,
+            47.4483755
+          ],
+          [
+            6.796326,
+            47.4483601
+          ],
+          [
+            6.7961463,
+            47.4483646
+          ],
+          [
+            6.7960535,
+            47.4491862
+          ],
+          [
+            6.7960066,
+            47.4496016
+          ],
+          [
+            6.7963166,
+            47.4496039
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/444784601/location-of-roman-theater",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Th\u00e9\u00e2tre antique de Mandeure"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/37846050",
+          "citationDetail": "Way 37846050",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=37846050",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Th\u00e9\u00e2tre antique de Mandeure",
+      "provenance": "OpenStreetMap (Way 37846050, version 9, osm:changeset=92315690, 2020-10-11T22:57:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-04-04T21:03:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            6.7963166,
+            47.4496039
+          ],
+          [
+            6.7964985,
+            47.4495807
+          ],
+          [
+            6.7966211,
+            47.4495426
+          ],
+          [
+            6.7967304,
+            47.4495086
+          ],
+          [
+            6.7969056,
+            47.449422
+          ],
+          [
+            6.7970401,
+            47.4492974
+          ],
+          [
+            6.7971283,
+            47.4491534
+          ],
+          [
+            6.7971533,
+            47.4490141
+          ],
+          [
+            6.7971283,
+            47.448844
+          ],
+          [
+            6.7970348,
+            47.4486884
+          ],
+          [
+            6.7968718,
+            47.448555
+          ],
+          [
+            6.7967015,
+            47.4484454
+          ],
+          [
+            6.7964615,
+            47.4483755
+          ],
+          [
+            6.796326,
+            47.4483601
+          ],
+          [
+            6.7961463,
+            47.4483646
+          ],
+          [
+            6.7960535,
+            47.4491862
+          ],
+          [
+            6.7960066,
+            47.4496016
+          ],
+          [
+            6.7963166,
+            47.4496039
+          ]
+        ]
+      },
+      "locationType": [],
+      "uri": "https://pleiades.stoa.org/places/444784601/location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "edit title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T00:13:41Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T00:11:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-04T03:44:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-06-10T14:18:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-09T18:39:09Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-09T18:38:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-09T18:38:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-09T18:38:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-05T00:13:10Z",
+      "associationCertainty": "certain",
+      "title": "Epamanduodurum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/444784601/5900983235",
+      "connectionType": "at",
+      "id": "5900983235",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T00:13:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T00:13:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-05T00:13:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/177516",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/fr:Th%C3%A9%C3%A2tre%20antique%20de%20Mandeure?uselang=en",
+      "citationDetail": "Th\u00e9\u00e2tre antique de Mandeure",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B4HPCZIK",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer</i>. Wikimedia Foundation, 2001. https://fr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1851628",
+      "citationDetail": "Gallo-Roman Theatre of Mandeure (Q1851628)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "444784601",
+  "subject": [
+    "theater",
+    "extant remains"
+  ],
+  "title": "Gallo-Roman theater of Mandeure",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater of Mandeure dates to the first century CE.",
+  "reprPoint": [
+    6.796511135123788,
+    47.449007432642006
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    6.7960066,
+    47.4483601,
+    6.7971533,
+    47.4496039
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/177516"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-05T00:13:09Z",
+  "uri": "https://pleiades.stoa.org/places/444784601",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1851628",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-17T15:46:41Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-04-05T18:40:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-05T00:19:20Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-05T00:19:17Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-05T00:13:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-05T00:13:09Z"
+    }
+  ]
+}

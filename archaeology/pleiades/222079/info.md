@@ -1,0 +1,14 @@
+# Kasianon
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/222079
+- **ID**: 222079
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kasianon
+
+## Description
+
+An ancient place, cited: BAtlas 22 unlocated *Kasianon

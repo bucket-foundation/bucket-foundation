@@ -1,0 +1,384 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.4094232,
+            53.3244156
+          ],
+          [
+            -3.4094581,
+            53.3245466
+          ],
+          [
+            -3.4097892,
+            53.3244966
+          ],
+          [
+            -3.4097704,
+            53.3244104
+          ],
+          [
+            -3.4097388,
+            53.3242994
+          ],
+          [
+            -3.4097104,
+            53.3242989
+          ],
+          [
+            -3.4094271,
+            53.3242936
+          ],
+          [
+            -3.409305,
+            53.3242913
+          ],
+          [
+            -3.4092373,
+            53.32429
+          ],
+          [
+            -3.409197,
+            53.3243549
+          ],
+          [
+            -3.4092701,
+            53.3243745
+          ],
+          [
+            -3.4094232,
+            53.3244156
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-bath-house",
+      "properties": {
+        "snippet": "Bath; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/851674695/osm-location-of-roman-bath-house",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman Bath House"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/314198247",
+          "citationDetail": "Way 314198247",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=314198247",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-bath-house",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 410,
+      "title": "OSM location of Roman Bath House",
+      "provenance": "OpenStreetMap (Way 314198247, version 4, osm:changeset=45592863, 2017-01-28T13:59:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-07-30T21:05:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.4094232,
+            53.3244156
+          ],
+          [
+            -3.4094581,
+            53.3245466
+          ],
+          [
+            -3.4097892,
+            53.3244966
+          ],
+          [
+            -3.4097704,
+            53.3244104
+          ],
+          [
+            -3.4097388,
+            53.3242994
+          ],
+          [
+            -3.4097104,
+            53.3242989
+          ],
+          [
+            -3.4094271,
+            53.3242936
+          ],
+          [
+            -3.409305,
+            53.3242913
+          ],
+          [
+            -3.4092373,
+            53.32429
+          ],
+          [
+            -3.409197,
+            53.3243549
+          ],
+          [
+            -3.4092701,
+            53.3243745
+          ],
+          [
+            -3.4094232,
+            53.3244156
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/851674695/osm-location-of-roman-bath-house",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-15T15:20:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T17:35:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-30T21:05:49Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-30T21:05:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-30T21:05:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-30T21:05:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-30T21:01:16Z",
+      "associationCertainty": "certain",
+      "title": "Prestatyn",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/851674695/8763956301",
+      "connectionType": "at",
+      "id": "8763956301",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-30T21:01:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-30T21:01:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-30T21:01:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/718938476",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://coflein.gov.uk/en/site/306722/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "coflien 306722: Prestatyn Roman Site",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.dailypost.co.uk/news/north-wales-news/mystery-hidden-jewel-roman-bathhouse-25582477",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Owen 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JBCR8TQY",
+      "formattedCitation": "<div class=\"csl-entry\">Owen, Annie. \u201cThe \u2018hidden Jewel\u2019 Ancient Roman Site Which Was Concealed for Almost 2000 Years.\u201d <i>North Wales Live</i>, November 26, 2022. https://www.dailypost.co.uk/news/north-wales-news/mystery-hidden-jewel-roman-bathhouse-25582477.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q122218015",
+      "citationDetail": "Prestatyn Roman Site (Q122218015)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "851674695",
+  "subject": [
+    "baths"
+  ],
+  "title": "Roman Bath House, Prestatyn",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "At the Prestatyn Roman Site, a bath complex was identified via excavation (1934-7; 1981). The bathhouse measures approximately 11.7 by 4.5 meters.",
+  "reprPoint": [
+    -3.4095103285838677,
+    53.324392630237185
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    -3.4097892,
+    53.32429,
+    -3.409197,
+    53.3245466
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/718938476"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-30T21:01:14Z",
+  "uri": "https://pleiades.stoa.org/places/851674695",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Prestatyn Roman Site (Q122218015)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-15T15:21:25Z"
+    },
+    {
+      "comment": "added Owen 2022",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-26T13:52:46Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-01T17:35:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-30T21:05:49Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-30T21:04:12Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-30T21:01:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-30T21:01:14Z"
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.2672075,
+            37.4020162
+          ],
+          [
+            25.267968,
+            37.4019379
+          ],
+          [
+            25.2679051,
+            37.4015016
+          ],
+          [
+            25.2671208,
+            37.4015317
+          ],
+          [
+            25.2672075,
+            37.4020162
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-agora-of-the-italians",
+      "properties": {
+        "snippet": "Architecturalcomplex; 330 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/394168051/osm-location-of-agora-of-the-italians",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Agora of the Italians"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/560777567",
+          "citationDetail": "Way 560777567",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=560777567",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-agora-of-the-italians",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 640,
+      "title": "OSM location of Agora of the Italians",
+      "provenance": "OpenStreetMap (Way 560777567, version 5, osm:changeset=153372536, 2024-06-30T14:42:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-02-06T01:55:11Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.2672075,
+            37.4020162
+          ],
+          [
+            25.267968,
+            37.4019379
+          ],
+          [
+            25.2679051,
+            37.4015016
+          ],
+          [
+            25.2671208,
+            37.4015317
+          ],
+          [
+            25.2672075,
+            37.4020162
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/394168051/osm-location-of-agora-of-the-italians",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-10T16:33:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-09T17:02:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-09T17:02:34Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-06T01:55:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-06T01:55:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-06T01:55:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-13T17:58:51Z",
+      "associationCertainty": "certain",
+      "title": "Delos (settlement)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/394168051/7312244147",
+      "connectionType": "at",
+      "id": "7312244147",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:58:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:58:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:58:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599587",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-03-17T17:00:11Z",
+      "associationCertainty": "certain",
+      "title": "Delos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/394168051/delos-island",
+      "connectionType": "on",
+      "id": "delos-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-17T19:41:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:00:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:00:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:00:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599588",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tr\u00fcmper 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K39S7TJT",
+      "formattedCitation": "<div class=\"csl-entry\">Tr\u00fcmper, Monika. \u201cDie \u2018Agora des Italiens\u2019 in Delos. Baugeschichte, Architektur, Ausstattung und Funktion einer sp\u00e4thellenistischen Porticus-Anlage [1], [2], [1], [2],.\u201d VML, M. Leidorf, 2008.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "http://www.perseus.tufts.edu/hopper/artifact?name=Delos%2C+Agora+of+the+Italians&object=Building",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/d.html#Delos",
+      "formattedCitation": "Delos, Agora of the Italians (Building)",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tr\u00fcmper 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J293EFVP",
+      "formattedCitation": "<div class=\"csl-entry\">Tr\u00fcmper, Monika. \u201cThe Honorific Practice of the \u2018Agora of the Italians\u2019 in Delos.\u201d In <i>Polis Und Portr\u00e4t\u202f: Standbilder Als Medien Der \u00d6ffentlichen Repr\u00e4sentation Im Hellenistischen Osten</i>, 69\u201385. Wiesbaden: Reichert, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/bch_0007-4217_1992_num_116_1_1707",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rauh 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W7VTMV8Y",
+      "formattedCitation": "<div class=\"csl-entry\">Rauh, N. K. \u201cWas the Agora of the Italians an \u00c9tablissement de Sport? -.\u201d In <i>Bulletin de Correspondance Hell\u00e9nique, 116.1992</i>, 293\u2013333, Abb, 1992. https://www.persee.fr/doc/bch_0007-4217_1992_num_116_1_1707.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/l-agora-des-italiens-lo-statarion-di-delo/F5E08C7990DC09B61A8C5E847C63322D",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coarelli 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F8JT636Z",
+      "formattedCitation": "<div class=\"csl-entry\">Coarelli, Filippo. \u201cL\u2019 \u2018Agora Des Italiens\u2019: Lo Statarion Di Delo?\u201d <i>Journal of Roman Archaeology</i> 18 (ed 2005): 196\u2013212. https://doi.org/10.1017/S1047759400007297.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27663965",
+      "citationDetail": "Q27663965: Agora of the Italians (Delos)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Agora of the Italians (Delos)",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q27663965",
+          "citationDetail": "Q27663965",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "agora-of-the-italians-delos",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-01-08T06:22:47Z",
+      "uri": "https://pleiades.stoa.org/places/394168051/agora-of-the-italians-delos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Agora of the Italians (Delos)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-01-30T22:14:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-01-08T06:23:13Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-01-08T06:22:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-01-08T06:22:47Z"
+        }
+      ]
+    }
+  ],
+  "id": "394168051",
+  "subject": [
+    "extant remains"
+  ],
+  "title": "Agora of the Italians",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Hellenistic and Roman complex on the island of Delos, the so-called \"Agora of the Italians\" was likely built by Roman merchants. Its precise function is debated.",
+  "reprPoint": [
+    25.26754204899897,
+    37.40174552319181
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    25.2671208,
+    37.4015016,
+    25.267968,
+    37.4020162
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599587",
+    "https://pleiades.stoa.org/places/599588"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-13T17:58:49Z",
+  "uri": "https://pleiades.stoa.org/places/394168051",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata Q27663965: Agora of the Italians (Delos) as reference",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-17T19:40:16Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-25T22:56:04Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T15:57:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T15:57:38Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T18:10:34Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T17:58:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T17:58:50Z"
+    }
+  ]
+}

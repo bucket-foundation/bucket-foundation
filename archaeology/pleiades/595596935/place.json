@@ -1,0 +1,307 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.5171462,
+            40.8797662
+          ],
+          [
+            25.517405,
+            40.87958
+          ],
+          [
+            25.5169425,
+            40.8792124
+          ],
+          [
+            25.5171626,
+            40.8790542
+          ],
+          [
+            25.5170521,
+            40.8789663
+          ],
+          [
+            25.5165732,
+            40.8793109
+          ],
+          [
+            25.5171462,
+            40.8797662
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-dionysus-sanctuary",
+      "properties": {
+        "snippet": "Sanctuary",
+        "link": "https://pleiades.stoa.org/places/595596935/osm-location-of-dionysus-sanctuary",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Dionysus Sanctuary"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/840955085",
+          "citationDetail": "Way 840955085",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=840955085",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-dionysus-sanctuary",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": null,
+      "title": "OSM location of Dionysus Sanctuary",
+      "provenance": "OpenStreetMap (Way 840955085, version 7, osm:changeset=143612276, 2023-11-04T12:51:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-04T12:43:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.5171462,
+            40.8797662
+          ],
+          [
+            25.517405,
+            40.87958
+          ],
+          [
+            25.5169425,
+            40.8792124
+          ],
+          [
+            25.5171626,
+            40.8790542
+          ],
+          [
+            25.5170521,
+            40.8789663
+          ],
+          [
+            25.5165732,
+            40.8793109
+          ],
+          [
+            25.5171462,
+            40.8797662
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/595596935/osm-location-of-dionysus-sanctuary",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-28T11:18:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T00:55:24Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T00:53:24Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T12:44:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T12:43:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T12:43:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-04T12:44:12Z",
+      "associationCertainty": "certain",
+      "title": "Maroneia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/595596935/8522644403",
+      "connectionType": "at",
+      "id": "8522644403",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T12:44:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T12:44:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-04T12:44:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/501507",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q12878111",
+      "citationDetail": "Maroneia Dionysus sanctuary (Q12878111)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://el.wikipedia.org/wiki/%CE%99%CE%B5%CF%81%CF%8C_%CE%94%CE%B9%CE%BF%CE%BD%CF%8D%CF%83%CE%BF%CF%85_%CE%9C%CE%B1%CF%81%CF%89%CE%BD%CE%B5%CE%AF%CE%B1%CF%82",
+      "citationDetail": "\u0399\u03b5\u03c1\u03cc \u0394\u03b9\u03bf\u03bd\u03cd\u03c3\u03bf\u03c5 \u039c\u03b1\u03c1\u03c9\u03bd\u03b5\u03af\u03b1\u03c2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Greek)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BUR4V79V",
+      "formattedCitation": "<div class=\"csl-entry\"><i>\u0392\u03b9\u03ba\u03b9\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1: \u03c4\u03b7\u03bd \u03b5\u03bb\u03b5\u03cd\u03b8\u03b5\u03c1\u03b7 \u03b5\u03b3\u03ba\u03c5\u03ba\u03bb\u03bf\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1 \u03c0\u03bf\u03c5 \u03b3\u03c1\u03ac\u03c6\u03bf\u03c5\u03bc\u03b5 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03bf\u03c7\u03b9\u03ba\u03ac</i>. Wikimedia Foundation, 2001. https://el.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "595596935",
+  "subject": [],
+  "title": "Dionysus Sanctuary",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient sanctuary located in Maroneia-Sapes Municipality, Greece.",
+  "reprPoint": [
+    25.517002535405247,
+    40.8793639442846
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    25.5165732,
+    40.8789663,
+    25.517405,
+    40.8797662
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/501507"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-04T12:44:10Z",
+  "uri": "https://pleiades.stoa.org/places/595596935",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-28T11:18:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T00:55:24Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T00:55:18Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-04T12:44:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-04T12:44:10Z"
+    }
+  ]
+}

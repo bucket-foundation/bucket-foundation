@@ -1,0 +1,431 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.8226349,
+            42.2129418
+          ],
+          [
+            12.8226513,
+            42.212961
+          ],
+          [
+            12.8226582,
+            42.2129832
+          ],
+          [
+            12.822655,
+            42.2130058
+          ],
+          [
+            12.8226421,
+            42.2130265
+          ],
+          [
+            12.8226208,
+            42.2130429
+          ],
+          [
+            12.8225934,
+            42.2130532
+          ],
+          [
+            12.822563,
+            42.2130564
+          ],
+          [
+            12.822533,
+            42.2130521
+          ],
+          [
+            12.8225065,
+            42.2130409
+          ],
+          [
+            12.8224863,
+            42.2130239
+          ],
+          [
+            12.8224747,
+            42.213003
+          ],
+          [
+            12.8224728,
+            42.2129805
+          ],
+          [
+            12.8224808,
+            42.2129587
+          ],
+          [
+            12.822498,
+            42.21294
+          ],
+          [
+            12.8225224,
+            42.2129264
+          ],
+          [
+            12.8225514,
+            42.2129194
+          ],
+          [
+            12.8225821,
+            42.2129197
+          ],
+          [
+            12.822611,
+            42.2129275
+          ],
+          [
+            12.8226349,
+            42.2129418
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Tomb, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/762843934/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Torraccio a Poggio Moiano"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/313006656",
+          "citationDetail": "Way 313006656",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=313006656",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Torraccio a Poggio Moiano",
+      "provenance": "OpenStreetMap (Way 313006656, version 3, osm:changeset=59576436, 2018-06-05T17:40:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-11-15T22:43:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.8226349,
+            42.2129418
+          ],
+          [
+            12.8226513,
+            42.212961
+          ],
+          [
+            12.8226582,
+            42.2129832
+          ],
+          [
+            12.822655,
+            42.2130058
+          ],
+          [
+            12.8226421,
+            42.2130265
+          ],
+          [
+            12.8226208,
+            42.2130429
+          ],
+          [
+            12.8225934,
+            42.2130532
+          ],
+          [
+            12.822563,
+            42.2130564
+          ],
+          [
+            12.822533,
+            42.2130521
+          ],
+          [
+            12.8225065,
+            42.2130409
+          ],
+          [
+            12.8224863,
+            42.2130239
+          ],
+          [
+            12.8224747,
+            42.213003
+          ],
+          [
+            12.8224728,
+            42.2129805
+          ],
+          [
+            12.8224808,
+            42.2129587
+          ],
+          [
+            12.822498,
+            42.21294
+          ],
+          [
+            12.8225224,
+            42.2129264
+          ],
+          [
+            12.8225514,
+            42.2129194
+          ],
+          [
+            12.8225821,
+            42.2129197
+          ],
+          [
+            12.822611,
+            42.2129275
+          ],
+          [
+            12.8226349,
+            42.2129418
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/762843934/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T04:23:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-20T11:56:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T20:28:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-02-06T17:52:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-10-09T21:10:35Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-15T22:43:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-15T22:43:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-15T22:43:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.signaromanorum.org/archives/9745",
+      "citationDetail": "NUSRMAU028: il Torraccio a Poggio Moiano (RI), the so called \u201cIl Torraccio\u201d mausoleum in Poggio Moiano , Italy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Signa Romanorum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DXMRAAYU",
+      "formattedCitation": "<div class=\"csl-entry\">Anselmi, Milko. <i>Signa Romanorum</i>, 2006. https://www.signaromanorum.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.unionecomunialtasabina.it/index.php?option=com_content&view=article&id=69:i-torracci-poggio-moiano&catid=41:arte-e-cultura&Itemid=76",
+      "citationDetail": "I torracci - Poggio Moiano ",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Unione Comuni Alta Sabina",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PADK3MT6",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cUnione Comuni Alta Sabina.\u201d Accessed May 13, 2022. https://www.unionecomunialtasabina.it/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Poggio_Moiano",
+      "citationDetail": "Poggio Moiano",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Poggio Moiano.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Poggio_Moiano",
+      "citationDetail": "Poggio Moiano",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Poggio Moiano.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "762843934",
+  "subject": [
+    "tomb",
+    "extant remains"
+  ],
+  "title": "Torraccio a Poggio Moiano",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman mausoleum of the second century A.D.",
+  "reprPoint": [
+    12.822563,
+    42.2130564
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.822563,
+    42.2130564,
+    12.822563,
+    42.2130564
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-13T16:38:23Z",
+  "uri": "https://pleiades.stoa.org/places/762843934",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-13T16:41:37Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-13T16:38:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-20T11:56:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-23T03:41:17Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-02-06T17:51:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-10-09T21:10:06Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-11-15T22:43:02Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-11-15T22:42:56Z"
+    }
+  ]
+}

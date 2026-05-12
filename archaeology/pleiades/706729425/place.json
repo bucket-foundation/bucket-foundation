@@ -1,0 +1,326 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.41193,
+            42.2020935
+          ],
+          [
+            12.4122097,
+            42.202115
+          ],
+          [
+            12.4123373,
+            42.2020259
+          ],
+          [
+            12.412306,
+            42.2017674
+          ],
+          [
+            12.4120181,
+            42.201805
+          ],
+          [
+            12.41193,
+            42.2020935
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-necropoli-del-cavone-di-monte-li",
+      "properties": {
+        "snippet": "Cemetery",
+        "link": "https://pleiades.stoa.org/places/706729425/osm-location-of-necropoli-del-cavone-di-monte-li",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Necropoli del Cavone di Monte Li santi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/481824492",
+          "citationDetail": "Way 481824492",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=481824492",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-necropoli-del-cavone-di-monte-li",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": null,
+      "title": "OSM location of Necropoli del Cavone di Monte Li santi",
+      "provenance": "OpenStreetMap (Way 481824492, version 7, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-07-28T01:21:44Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.41193,
+            42.2020935
+          ],
+          [
+            12.4122097,
+            42.202115
+          ],
+          [
+            12.4123373,
+            42.2020259
+          ],
+          [
+            12.412306,
+            42.2017674
+          ],
+          [
+            12.4120181,
+            42.201805
+          ],
+          [
+            12.41193,
+            42.2020935
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/706729425/osm-location-of-necropoli-del-cavone-di-monte-li",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-31T14:55:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T15:52:12Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T01:21:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T01:21:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T01:21:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-07-28T15:46:44Z",
+      "associationCertainty": "certain",
+      "title": "Fescennium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/706729425/fescennium",
+      "connectionType": "at",
+      "id": "fescennium",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-31T14:55:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T15:52:12Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T15:52:04Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T15:46:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T15:46:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413133",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://digitalcommons.wcupa.edu/anthrosoc_facpub/44",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "De Lucia Brolli et al. 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M2CUSKQ9",
+          "formattedCitation": "<div class=\"csl-entry\">De Lucia Brolli, Maria Anna, Jacopo Tabolli, Marco Pacifici, Marshall Becker, and Nicola Pagani. \u201cNuovi Dati Sulla Necropoli Del Cavone Di Monte Li Santi a Narce (Scavo 2015).\u201d <i>Bollettino Di Archeologia On Line</i> 7, no. 1 (January 1, 2016): 1\u201372. https://digitalcommons.wcupa.edu/anthrosoc_facpub/44.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://digitalcommons.wcupa.edu/anthrosoc_facpub/44",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Lucia Brolli et al. 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M2CUSKQ9",
+      "formattedCitation": "<div class=\"csl-entry\">De Lucia Brolli, Maria Anna, Jacopo Tabolli, Marco Pacifici, Marshall Becker, and Nicola Pagani. \u201cNuovi Dati Sulla Necropoli Del Cavone Di Monte Li Santi a Narce (Scavo 2015).\u201d <i>Bollettino Di Archeologia On Line</i> 7, no. 1 (January 1, 2016): 1\u201372. https://digitalcommons.wcupa.edu/anthrosoc_facpub/44.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q107901599",
+      "citationDetail": "Necropolis of Cavone di Monte Li Santi (Q107901599)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "706729425",
+  "subject": [],
+  "title": "Necropoli del Cavone di Monte Li Santi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monumental, rock-cut Faliscan necropolis of Narce in use from ca. 750 BCE until the fourth century BCE.",
+  "reprPoint": [
+    12.412143678722313,
+    42.20195026397672
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.41193,
+    42.2017674,
+    12.4123373,
+    42.202115
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413133"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-07-28T01:21:30Z",
+  "uri": "https://pleiades.stoa.org/places/706729425",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update wikidata reference Access URI",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-24T22:48:22Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-31T14:55:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T15:52:12Z"
+    },
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T15:50:24Z"
+    },
+    {
+      "comment": "update references, summarhy",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T15:49:03Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T01:21:32Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T01:21:30Z"
+    }
+  ]
+}

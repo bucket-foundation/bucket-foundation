@@ -1,0 +1,402 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.245292,
+            34.3661464
+          ],
+          [
+            38.2445361,
+            34.3653841
+          ],
+          [
+            38.2431145,
+            34.3663447
+          ],
+          [
+            38.2438703,
+            34.3671068
+          ],
+          [
+            38.245292,
+            34.3661464
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-avatha",
+      "properties": {
+        "snippet": "Fort-2",
+        "link": "https://pleiades.stoa.org/places/7591735/osm-location-of-avatha",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Avatha"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1229746026",
+          "citationDetail": "Way 1229746026",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1229746026",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-avatha",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": null,
+      "title": "OSM location of Avatha",
+      "provenance": "OpenStreetMap (Way 1229746026, version 1, osm:changeset=144915131, 2023-12-08T19:24:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-12-08T20:57:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            38.245292,
+            34.3661464
+          ],
+          [
+            38.2445361,
+            34.3653841
+          ],
+          [
+            38.2431145,
+            34.3663447
+          ],
+          [
+            38.2438703,
+            34.3671068
+          ],
+          [
+            38.245292,
+            34.3661464
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/7591735/osm-location-of-avatha",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-22T20:13:09Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-12T14:31:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-08T21:10:03Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-08T20:58:10Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-08T20:57:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-08T20:57:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/16612",
+      "citationDetail": "GEO ID 16612: Avatha (Bkhara)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edh.ub.uni-heidelberg.de/edh/geographie/G020153",
+      "citationDetail": "Geographic Database G020153: Avatha \u2013 Tadmur, bei (Al-Bakhra)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "EDH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PY3AZV8F",
+      "formattedCitation": "<div class=\"csl-entry\">Alf\u00f6ldy, G\u00e9za, and Christian Witschel, eds. <i>Epigraphic Database Heidelberg</i>. Heidelberg: Heidelberg Academy of Sciences and Humanities, 1997. http://edh-www.adw.uni-heidelberg.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edh.ub.uni-heidelberg.de/edh/inschrift/HD053031",
+      "citationDetail": "HD053031",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "EDH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PY3AZV8F",
+      "formattedCitation": "<div class=\"csl-entry\">Alf\u00f6ldy, G\u00e9za, and Christian Witschel, eds. <i>Epigraphic Database Heidelberg</i>. Heidelberg: Heidelberg Academy of Sciences and Humanities, 1997. http://edh-www.adw.uni-heidelberg.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "8.3, 1980, map 1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "IGLSyr",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GAJPHHXX",
+      "formattedCitation": "<div class=\"csl-entry\">Jalabert, Louis, and Ren\u00e9 Mouterde, eds. <i>Inscriptions grecques et latines de la Syrie</i>. Biblioth\u00e8que arch\u00e9ologique et historique. Paris: P. Geuthner, 1929.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/journal/anneepig",
+      "citationDetail": "1993, p. 482",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4EG4F7MC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>L\u2019Ann\u00e9e Epigraphique: Revue Des Publications \u00c9pigrafiques Relatives a l\u2019antiquit\u00e9 Romaine</i>. Paris: Presses Universitaires de France, 1889. https://www.jstor.org/journal/anneepig.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1179/lev.2004.36.1.225",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Genequand 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QB5XWPC",
+      "formattedCitation": "<div class=\"csl-entry\">Genequand, Denis. \u201cAl-Bakhra\u2019 (Avatha), from the Tetrarchic Fort to the Umayyad Castle.\u201d <i>Levant</i> 36, no. 1 (June 1, 2004): 225\u201342. https://doi.org/10.1179/lev.2004.36.1.225.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Genequand 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9V2WZKH",
+      "formattedCitation": "<div class=\"csl-entry\">Genequand, Denis. <i>Les \u00e9tablissements des \u00e9lites omeyyades en Palmyr\u00e8ne et au Proche-Orient</i>. Biblioth\u00e8que arch\u00e9ologique et historique 200. Beyrouth: Institut Fran\u00e7ais du Proche-Orient, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/34864/",
+      "citationDetail": "34864: Avatha",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Avatha",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://doi.org/10.1179/lev.2004.36.1.225",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Genequand 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QB5XWPC",
+          "formattedCitation": "<div class=\"csl-entry\">Genequand, Denis. \u201cAl-Bakhra\u2019 (Avatha), from the Tetrarchic Fort to the Umayyad Castle.\u201d <i>Levant</i> 36, no. 1 (June 1, 2004): 225\u201342. https://doi.org/10.1179/lev.2004.36.1.225.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "avatha",
+      "end": 640,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2023-12-08T21:08:56Z",
+      "uri": "https://pleiades.stoa.org/places/7591735/avatha",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Avatha",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-12-12T14:31:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-08T21:10:03Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-08T21:08:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-08T21:08:56Z"
+        }
+      ]
+    }
+  ],
+  "id": "7591735",
+  "subject": [],
+  "title": "Avatha",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Avatha (al-Bakhra') is the site of a Late Roman and early Islamic fort that is located south of Palmyra. The fort was originally a Tetrarchic establishment that housed an auxiliary cavalry unit. The fort was modified and expanded during the Umayyad period.",
+  "reprPoint": [
+    38.244203250097044,
+    34.366245479723254
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    38.2431145,
+    34.3653841,
+    38.245292,
+    34.3671068
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-12-08T20:57:20Z",
+  "uri": "https://pleiades.stoa.org/places/7591735",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-22T20:12:58Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-12-12T14:31:28Z"
+    },
+    {
+      "comment": "vici.org 34864: Avatha",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-08T21:11:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-08T21:10:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-08T21:10:03Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-08T21:08:14Z"
+    },
+    {
+      "comment": "references ",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-08T21:02:52Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-08T20:57:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-08T20:57:20Z"
+    }
+  ]
+}

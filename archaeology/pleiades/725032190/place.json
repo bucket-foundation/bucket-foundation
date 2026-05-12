@@ -1,0 +1,345 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.1245302,
+            36.8944072
+          ],
+          [
+            4.1245603,
+            36.8942233
+          ],
+          [
+            4.1249302,
+            36.8942728
+          ],
+          [
+            4.1249284,
+            36.8943209
+          ],
+          [
+            4.1249797,
+            36.8943336
+          ],
+          [
+            4.1249868,
+            36.8943605
+          ],
+          [
+            4.1249868,
+            36.894386
+          ],
+          [
+            4.124985,
+            36.8944044
+          ],
+          [
+            4.1249461,
+            36.8944171
+          ],
+          [
+            4.1249178,
+            36.8944171
+          ],
+          [
+            4.1248983,
+            36.8944525
+          ],
+          [
+            4.1245302,
+            36.8944072
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-great-basilica-of-iomnium",
+      "properties": {
+        "snippet": "Church-2",
+        "link": "https://pleiades.stoa.org/places/725032190/osm-location-of-great-basilica-of-iomnium",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of great basilica of Iomnium"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/625869478",
+          "citationDetail": "Way 625869478",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=625869478",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Iomnium#:~:text=The%20great%20basilica%20of%20Iomnium,by%20only%20a%20few%20metres.",
+          "citationDetail": "Iomnium s.v. \"Ruins\"",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-great-basilica-of-iomnium",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": null,
+      "title": "OSM location of great basilica of Iomnium",
+      "provenance": "OpenStreetMap (Way 625869478, version 2, osm:changeset=166199077, 2025-05-13T12:01:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-05-13T12:04:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.1245302,
+            36.8944072
+          ],
+          [
+            4.1245603,
+            36.8942233
+          ],
+          [
+            4.1249302,
+            36.8942728
+          ],
+          [
+            4.1249284,
+            36.8943209
+          ],
+          [
+            4.1249797,
+            36.8943336
+          ],
+          [
+            4.1249868,
+            36.8943605
+          ],
+          [
+            4.1249868,
+            36.894386
+          ],
+          [
+            4.124985,
+            36.8944044
+          ],
+          [
+            4.1249461,
+            36.8944171
+          ],
+          [
+            4.1249178,
+            36.8944171
+          ],
+          [
+            4.1248983,
+            36.8944525
+          ],
+          [
+            4.1245302,
+            36.8944072
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/725032190/osm-location-of-great-basilica-of-iomnium",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-16T15:47:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-15T23:57:45Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T12:05:00Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T12:04:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T12:04:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-05-14T20:10:05Z",
+      "associationCertainty": "certain",
+      "title": "Iomnium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/725032190/4058466272",
+      "connectionType": "at",
+      "id": "4058466272",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-14T20:10:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-14T20:10:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-14T20:10:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/295280",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Iomnium#:~:text=The%20great%20basilica%20of%20Iomnium,by%20only%20a%20few%20metres.",
+      "citationDetail": "Iomnium s.v. \"Ruins\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "725032190",
+  "subject": [
+    "basilica",
+    "paleochristian"
+  ],
+  "title": "Basilica of Iomnium",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The basilica of Iomnium (Tigzirt) likely dates to the fifth and sixth centuries CE.",
+  "reprPoint": [
+    4.124752864590058,
+    36.89434215848394
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    4.1245302,
+    36.8942233,
+    4.1249868,
+    36.8944525
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/295280"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-05-14T20:10:03Z",
+  "uri": "https://pleiades.stoa.org/places/725032190",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-16T15:47:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-15T23:57:45Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-15T23:57:39Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-14T20:10:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-14T20:10:03Z"
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.0511264,
+          22.6674125
+        ]
+      },
+      "type": "Feature",
+      "id": "al-khasbah",
+      "properties": {
+        "snippet": "Settlement; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/825405630/al-khasbah",
+        "description": "Point based on an OpenStreetMap node representing Al-Khasbah after Schmidt 2021.",
+        "location_precision": "precise",
+        "title": "OSM location of Al-Khasbah"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/10210503528",
+          "citationDetail": "Node 10210503528",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=10210503528",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "worldcat.org/oclc/1325654024",
+          "citationDetail": "Abb.1 and 9",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Schmidt 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MUKQNXT4",
+          "formattedCitation": "<div class=\"csl-entry\">Schmidt, Conrad. <i>Die Entstehung Komplexer Siedlungen Im Zentraloman\u202f: Arch\u00e4ologische Untersuchungen Zur Siedlungsgeschichte von Al-Khashbah</i>. Arabia Orientalis 5. Oxford: Archaeopress Publishing, 2021. worldcat.org/oclc/1325654024.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "al-khasbah",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM location of Al-Khasbah",
+      "provenance": "OpenStreetMap (Node 10210503528, version 1, osm:changeset=129253627, 2022-11-22T19:59:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Al-Khasbah after Schmidt 2021.",
+      "created": "2022-11-22T19:59:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.0511264,
+          22.6674125
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/825405630/al-khasbah",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-24T13:54:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-22T20:02:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-22T20:02:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-22T19:59:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-11-22T19:59:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "worldcat.org/oclc/1325654024",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Schmidt 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MUKQNXT4",
+      "formattedCitation": "<div class=\"csl-entry\">Schmidt, Conrad. <i>Die Entstehung Komplexer Siedlungen Im Zentraloman\u202f: Arch\u00e4ologische Untersuchungen Zur Siedlungsgeschichte von Al-Khashbah</i>. Arabia Orientalis 5. Oxford: Archaeopress Publishing, 2021. worldcat.org/oclc/1325654024.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "825405630",
+  "subject": [],
+  "title": "Al-Khasbah",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the largest Early Bronze Age sites in Oman. This site, located in central Oman, has monumental buildings and tombs from the 4th-3rd millennium BCE.",
+  "reprPoint": [
+    58.0511264,
+    22.6674125
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    58.0511264,
+    22.6674125,
+    58.0511264,
+    22.6674125
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-11-22T19:56:08Z",
+  "uri": "https://pleiades.stoa.org/places/825405630",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-24T13:54:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-22T20:02:40Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-22T19:56:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-11-22T19:56:08Z"
+    }
+  ]
+}

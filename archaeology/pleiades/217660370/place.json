@@ -1,0 +1,387 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.0416603,
+            37.4384842
+          ],
+          [
+            -6.0417737,
+            37.4384385
+          ],
+          [
+            -6.04191,
+            37.4383932
+          ],
+          [
+            -6.0419614,
+            37.4383761
+          ],
+          [
+            -6.0420043,
+            37.4383186
+          ],
+          [
+            -6.0418327,
+            37.4379417
+          ],
+          [
+            -6.0415725,
+            37.4380311
+          ],
+          [
+            -6.041602,
+            37.4380971
+          ],
+          [
+            -6.0414487,
+            37.4381289
+          ],
+          [
+            -6.0414682,
+            37.4381721
+          ],
+          [
+            -6.0414822,
+            37.4382028
+          ],
+          [
+            -6.0415008,
+            37.4382438
+          ],
+          [
+            -6.0415837,
+            37.4384265
+          ],
+          [
+            -6.0415937,
+            37.438442
+          ],
+          [
+            -6.0416327,
+            37.4384437
+          ],
+          [
+            -6.0416603,
+            37.4384842
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-termas-menores",
+      "properties": {
+        "snippet": "Bath",
+        "link": "https://pleiades.stoa.org/places/217660370/osm-location-of-termas-menores",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Termas menores"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/356963692",
+          "citationDetail": "Way 356963692",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=356963692",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-termas-menores",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": null,
+      "title": "OSM location of Termas menores",
+      "provenance": "OpenStreetMap (Way 356963692, version 8, osm:changeset=147273318, 2024-02-09T21:18:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-04-14T13:42:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.0416603,
+            37.4384842
+          ],
+          [
+            -6.0417737,
+            37.4384385
+          ],
+          [
+            -6.04191,
+            37.4383932
+          ],
+          [
+            -6.0419614,
+            37.4383761
+          ],
+          [
+            -6.0420043,
+            37.4383186
+          ],
+          [
+            -6.0418327,
+            37.4379417
+          ],
+          [
+            -6.0415725,
+            37.4380311
+          ],
+          [
+            -6.041602,
+            37.4380971
+          ],
+          [
+            -6.0414487,
+            37.4381289
+          ],
+          [
+            -6.0414682,
+            37.4381721
+          ],
+          [
+            -6.0414822,
+            37.4382028
+          ],
+          [
+            -6.0415008,
+            37.4382438
+          ],
+          [
+            -6.0415837,
+            37.4384265
+          ],
+          [
+            -6.0415937,
+            37.438442
+          ],
+          [
+            -6.0416327,
+            37.4384437
+          ],
+          [
+            -6.0416603,
+            37.4384842
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/217660370/osm-location-of-termas-menores",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-16T13:44:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-16T13:40:06Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-14T13:42:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-14T13:42:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-14T13:42:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-04-14T17:57:15Z",
+      "associationCertainty": "certain",
+      "title": "Italica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/217660370/4352473570",
+      "connectionType": "at",
+      "id": "4352473570",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-14T17:57:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-14T17:57:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-14T17:57:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256231",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Termas_romanas_de_It%C3%A1lica?",
+      "citationDetail": "Termas romanas de It\u00e1lica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q6142722",
+      "citationDetail": "Roman thermae of It\u00e1lica (Q6142722)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Minor%20baths%20of%20It%C3%A1lica?uselang=en",
+      "citationDetail": "Category:Minor baths of It\u00e1lica",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "217660370",
+  "subject": [
+    "baths"
+  ],
+  "title": "Minor baths of It\u00e1lica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Minor baths of It\u00e1lica date to the reign of Trajan. Under Hadrian, the bath complex was expanded to an area of some 1,500 m\u00b2.",
+  "reprPoint": [
+    -6.041724716373887,
+    37.4382140666467
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    -6.0420043,
+    37.4379417,
+    -6.0414487,
+    37.4384842
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256231"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-04-14T17:57:12Z",
+  "uri": "https://pleiades.stoa.org/places/217660370",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-16T13:44:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-16T13:40:06Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-16T13:39:48Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-14T17:57:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-14T17:57:12Z"
+    }
+  ]
+}

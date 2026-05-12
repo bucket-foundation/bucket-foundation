@@ -1,0 +1,352 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.1837065,
+            41.3858111
+          ],
+          [
+            -8.1833876,
+            41.3856404
+          ],
+          [
+            -8.1832996,
+            41.3856471
+          ],
+          [
+            -8.1832156,
+            41.3858429
+          ],
+          [
+            -8.1832331,
+            41.3859209
+          ],
+          [
+            -8.183262,
+            41.3859439
+          ],
+          [
+            -8.1833028,
+            41.385957
+          ],
+          [
+            -8.1834018,
+            41.386157
+          ],
+          [
+            -8.1835065,
+            41.3861698
+          ],
+          [
+            -8.183598,
+            41.38613
+          ],
+          [
+            -8.1837278,
+            41.386099
+          ],
+          [
+            -8.1838267,
+            41.3860712
+          ],
+          [
+            -8.1839017,
+            41.3860455
+          ],
+          [
+            -8.1840013,
+            41.3859063
+          ],
+          [
+            -8.1837065,
+            41.3858111
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana-de-sendim",
+      "properties": {
+        "snippet": "Villa, ; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/330899494/osm-location-of-villa-romana-de-sendim",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Romana de Sendim"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/236979607",
+          "citationDetail": "Way 236979607",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=236979607",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana-de-sendim",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa Romana de Sendim",
+      "provenance": "OpenStreetMap (Way 236979607, version 11, osm:changeset=147608907, 2024-02-18T13:25:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-04-03T15:21:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.1837065,
+            41.3858111
+          ],
+          [
+            -8.1833876,
+            41.3856404
+          ],
+          [
+            -8.1832996,
+            41.3856471
+          ],
+          [
+            -8.1832156,
+            41.3858429
+          ],
+          [
+            -8.1832331,
+            41.3859209
+          ],
+          [
+            -8.183262,
+            41.3859439
+          ],
+          [
+            -8.1833028,
+            41.385957
+          ],
+          [
+            -8.1834018,
+            41.386157
+          ],
+          [
+            -8.1835065,
+            41.3861698
+          ],
+          [
+            -8.183598,
+            41.38613
+          ],
+          [
+            -8.1837278,
+            41.386099
+          ],
+          [
+            -8.1838267,
+            41.3860712
+          ],
+          [
+            -8.1839017,
+            41.3860455
+          ],
+          [
+            -8.1840013,
+            41.3859063
+          ],
+          [
+            -8.1837065,
+            41.3858111
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/330899494/osm-location-of-villa-romana-de-sendim",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:39:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-27T02:12:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-04-03T15:25:52Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-04-03T15:24:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-04-03T15:21:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-04-03T15:21:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://pt.wikipedia.org/wiki/Villa_romana_de_Sendim",
+      "citationDetail": "Villa romana de Sendim",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Portuguese)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/DT7TR55T",
+      "formattedCitation": "Wikip\u00e9dia: A enciclop\u00e9dia livre que todos podem editar (2001-), Villa romana de Sendim.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://antigo.cm-felgueiras.pt/VSD/Felgueiras/vEN/Publica/OConcelho/PontosInteresse/PatrimonioArqueologico/villaromanasendim.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Roman Villa of Sendim",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q10391493",
+      "citationDetail": "Roman Villa of Sendim (Q10391493)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "330899494",
+  "subject": [
+    "extant remains",
+    "villa"
+  ],
+  "title": "Sendim Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Late Roman villa site dating to the fourth century A.D.",
+  "reprPoint": [
+    -8.183570479732625,
+    41.38591533077283
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -8.1840013,
+    41.3856404,
+    -8.1832156,
+    41.3861698
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-04-03T15:00:09Z",
+  "uri": "https://pleiades.stoa.org/places/330899494",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q10391493",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T21:40:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-22T11:07:25Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-27T13:42:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-04-03T15:27:02Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-04-03T15:00:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-04-03T15:00:11Z"
+    }
+  ]
+}

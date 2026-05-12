@@ -1,0 +1,603 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.47028,
+          35.217714
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-karphi",
+      "properties": {
+        "snippet": "Settlement; 2000 BC - 850 BC",
+        "link": "https://pleiades.stoa.org/places/589842/location-of-karphi",
+        "description": "visible remains of the archaeological site; verified in Google Earth 2013.",
+        "location_precision": "precise",
+        "title": "Imagery location of Karphi"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.4704536,
+            35.2177527
+          ],
+          [
+            25.470228,
+            35.2171873
+          ],
+          [
+            25.4705883,
+            35.2170878
+          ],
+          [
+            25.4706687,
+            35.2172783
+          ],
+          [
+            25.4709927,
+            35.2172021
+          ],
+          [
+            25.4711468,
+            35.2175969
+          ],
+          [
+            25.4704536,
+            35.2177527
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-karfi",
+      "properties": {
+        "snippet": "Settlement; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/589842/osm-location-of-karfi",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Karfi"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-geometric",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-geometric",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/23940288",
+          "formattedCitation": "Meyers, J. W. et al. 1992. The Aerial Atlas of Ancient Crete. Berkeley: University of California Press. p. 116.",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "location-of-karphi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -850,
+      "title": "Imagery location of Karphi",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "visible remains of the archaeological site; verified in Google Earth 2013.",
+      "created": "2013-02-09T18:36:28Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.47028,
+          35.217714
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/589842/location-of-karphi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-19T20:12:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-07-31T17:32:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-09T18:37:02Z"
+        },
+        {
+          "comment": "edited reference",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-09T18:36:55Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-09T18:36:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-02-09T18:36:28Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/370953116",
+          "citationDetail": "Way 370953116",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=370953116",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-karfi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -550,
+      "title": "OSM location of Karfi",
+      "provenance": "OpenStreetMap (Way 370953116, version 7, osm:changeset=138539769, 2023-07-15T10:49:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-11-19T20:13:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.4704536,
+            35.2177527
+          ],
+          [
+            25.470228,
+            35.2171873
+          ],
+          [
+            25.4705883,
+            35.2170878
+          ],
+          [
+            25.4706687,
+            35.2172783
+          ],
+          [
+            25.4709927,
+            35.2172021
+          ],
+          [
+            25.4711468,
+            35.2175969
+          ],
+          [
+            25.4704536,
+            35.2177527
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/589842/osm-location-of-karfi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-18T20:57:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2018-02-06T16:30:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-19T20:14:17Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-19T20:14:08Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-19T20:13:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-11-19T20:13:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:40:10Z",
+      "associationCertainty": "certain",
+      "title": "Creta (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/589842/589748",
+      "connectionType": "connection",
+      "id": "589748",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:40:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589748",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "60 D2 Karphi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "116-19",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Myers 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S8N66ZQW",
+      "formattedCitation": "<div class=\"csl-entry\">Myers, Eleanor Emlen, Gerald Cadogan, John A Gifford, and Stylianos Alexiou, eds. <i>The Aerial Atlas of Ancient Crete</i>. Berkeley: University of California Press, 1992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Karfi",
+      "citationDetail": "Karfi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1734354",
+      "citationDetail": "Karfi (Q1734354)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://darmc.harvard.edu/home",
+      "citationDetail": "13034",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/607352350",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Day 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVK5ZDQJ",
+      "formattedCitation": "<div class=\"csl-entry\">Day, Leslie Preston, Margaret S Mook, and James David Muhly, eds. <i>Crete beyond the Palaces: Proceedings of the Crete 2000 Conference</i>. Prehistory Monographs 10. Philadelphia: INSTAP Academic Press, 2004. http://www.worldcat.org/oclc/607352350.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/842836068",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Day 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4N4CWIWQ",
+      "formattedCitation": "<div class=\"csl-entry\">Day, Leslie Preston. <i>The Pottery from Karphi: A Re-Examination</i>. London: British School at Athens, 2011. http://www.worldcat.org/oclc/842836068.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/27759937",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Day 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GVNCQFC6",
+      "formattedCitation": "<div class=\"csl-entry\">Day, Leslie Preston. \u201cRitual Activity at Karphi: A Reappraisal.\u201d <i>Hesperia Supplements</i> 42 (2009): 137\u201351. http://www.jstor.org/stable/27759937.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/41363161",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Day 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B8HS7VGH",
+      "formattedCitation": "<div class=\"csl-entry\">Day, Leslie Preston. \u201cHousehold Assemblages in Late Minoan IIIC Crete: The Evidence from Karphi.\u201d <i>Hesperia Supplements</i> 44 (2011): 307\u201321. http://www.jstor.org/stable/41363161.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/annual-of-the-british-school-at-athens/article/mobility-and-metals-insights-on-manufacturing-consumption-knowledge-and-procurement-networks-at-the-bronzeiron-transition-from-the-karphi-assemblage/F1517D6EEC53430C9FF2AE35A4D2EF30",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wallace 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FHE3B4QL",
+      "formattedCitation": "<div class=\"csl-entry\">Wallace, Saro. \u201cMobility and Metals: Insights on Manufacturing, Consumption, Knowledge and Procurement Networks at the Bronze\u2013Iron Transition from the Karphi Assemblage.\u201d <i>Annual of the British School at Athens</i> 117 (December 2022): 101\u201335. https://doi.org/10.1017/S0068245421000149.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "589842",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=settlement"
+  ],
+  "title": "Karphi",
+  "provenance": "Barrington Atlas: BAtlas 60 D2 Karphi",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Karphi, Pinakiano</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological site in the Dikti Mountains of Crete that was the location of a post-Bronze Age 'refuge' settlement of Minoan and Mycenaean peoples.",
+  "reprPoint": [
+    25.470476610170927,
+    35.217564810550996
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    25.470228,
+    35.2170878,
+    25.4711468,
+    35.2177527
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589748"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-23T18:01:08Z",
+  "uri": "https://pleiades.stoa.org/places/589842",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Bennet"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "reconnected DARMC reference to Zotero",
+      "modifiedBy": "thomase",
+      "modified": "2025-05-05T19:54:24Z"
+    },
+    {
+      "comment": "cleaned up references; added Wallace 2022",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-23T18:03:56Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-23T18:01:07Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-19T20:06:57Z"
+    },
+    {
+      "comment": "darmc 13034",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-19T20:01:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-11-19T19:59:53Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-09T18:33:43Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:31:44Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:48:51Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T21:26:55Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:34:10Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-22T20:04:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:58:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:20:50Z"
+    }
+  ]
+}

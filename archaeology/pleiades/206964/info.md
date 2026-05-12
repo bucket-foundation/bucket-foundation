@@ -1,0 +1,14 @@
+# Biatorbágy
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/206964
+- **ID**: 206964
+- **Coords (lng, lat)**: [18.825224, 47.471208]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 21 A2 Biatorbágy

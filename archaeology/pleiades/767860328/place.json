@@ -1,0 +1,705 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.1536226,
+            36.3574792
+          ],
+          [
+            43.1526731,
+            36.3566713
+          ],
+          [
+            43.1510155,
+            36.3559671
+          ],
+          [
+            43.1488804,
+            36.3583864
+          ],
+          [
+            43.1498353,
+            36.3608575
+          ],
+          [
+            43.1510906,
+            36.3617042
+          ],
+          [
+            43.1525872,
+            36.362499
+          ],
+          [
+            43.1541268,
+            36.363052
+          ],
+          [
+            43.1544004,
+            36.3627409
+          ],
+          [
+            43.1545989,
+            36.3623349
+          ],
+          [
+            43.1545882,
+            36.3604773
+          ],
+          [
+            43.1548456,
+            36.3591122
+          ],
+          [
+            43.1536226,
+            36.3574792
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-citadel-wall",
+      "properties": {
+        "snippet": "City-wall; 2335 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/767860328/osm-location-of-the-citadel-wall",
+        "description": "Location based on OpenStreetMap way roughly tracing the outline of the upper surface of the mound of Kuyunjik, which corresponds with the assumed circuit of the citadel wall of Nineveh.",
+        "location_precision": "precise",
+        "title": "OSM Location of the Citadel Wall"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "acampbell",
+      "homepage": null,
+      "name": "Anika Campbell",
+      "uri": "https://pleiades.stoa.org/author/acampbell"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/559435626",
+          "citationDetail": "Way 559435626",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=559435626",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-citadel-wall",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "end": -540,
+      "title": "OSM Location of the Citadel Wall",
+      "provenance": "OpenStreetMap (Way 559435626, version 1, osm:changeset=56147784, 2018-02-07T12:38:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2335,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-wall"
+      ],
+      "description": "Location based on OpenStreetMap way roughly tracing the outline of the upper surface of the mound of Kuyunjik, which corresponds with the assumed circuit of the citadel wall of Nineveh.",
+      "created": "2018-02-07T12:40:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.1536226,
+            36.3574792
+          ],
+          [
+            43.1526731,
+            36.3566713
+          ],
+          [
+            43.1510155,
+            36.3559671
+          ],
+          [
+            43.1488804,
+            36.3583864
+          ],
+          [
+            43.1498353,
+            36.3608575
+          ],
+          [
+            43.1510906,
+            36.3617042
+          ],
+          [
+            43.1525872,
+            36.362499
+          ],
+          [
+            43.1541268,
+            36.363052
+          ],
+          [
+            43.1544004,
+            36.3627409
+          ],
+          [
+            43.1545989,
+            36.3623349
+          ],
+          [
+            43.1545882,
+            36.3604773
+          ],
+          [
+            43.1548456,
+            36.3591122
+          ],
+          [
+            43.1536226,
+            36.3574792
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/767860328/osm-location-of-the-citadel-wall",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:03:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:14:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:44:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:40:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-07T12:40:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T12:48:45Z",
+      "associationCertainty": "less-certain",
+      "title": "Badnigerimhuluha",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/767860328/badnigerimhuluha",
+      "connectionType": "part_of_physical",
+      "id": "badnigerimhuluha",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:03:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:13:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T12:48:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T12:48:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/882947620",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T12:49:26Z",
+      "associationCertainty": "less-certain",
+      "title": "Badnigalbilukura\u0161u\u0161u",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/767860328/badnigalbilukurasusu",
+      "connectionType": "part_of_physical",
+      "id": "badnigalbilukurasusu",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:03:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:13:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T12:49:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T12:49:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/945930916",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -540,
+      "description": "",
+      "contributors": [],
+      "created": "2018-02-03T12:51:38Z",
+      "associationCertainty": "certain",
+      "title": "Nineveh/Ninos",
+      "start": -2335,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/767860328/nineveh-ninos",
+      "connectionType": "part_of_physical",
+      "id": "nineveh-ninos",
+      "attestations": [
+        {
+          "timePeriod": "akkadian-ur-iii-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/akkadian-ur-iii-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "old-babylonian-assyrian-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-babylonian-assyrian-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:03:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:13:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T12:51:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T12:51:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/874621",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "397-298",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RLAss",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCUKSJKD",
+      "formattedCitation": "<div class=\"csl-entry\">Ebeling, Erich. <i>Reallexikon Der Assyriologie Und Vorderasiatischen Arch\u00e4ologie</i>. Berlin und Leipzig: W. de Gruyter &amp; Co., 1932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/Q003481",
+      "citationDetail": "Sennacherib 007 (Q003481)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 3",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap5/Q003703",
+      "citationDetail": "Ashurbanipal 004 (Q003703)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 5",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap3/rinap31introduction/buildingactivitiesatnineveh/part2/index.html#rinap31citadel",
+      "citationDetail": "21",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 3/1",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/11326372",
+      "citationDetail": "11326372: the Walls of Nineveh",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "d\u016br qabal \u0101li \u0161a Nin\u016ba",
+      "attestations": [
+        {
+          "timePeriod": "early-1st-millennium-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-1st-millennium-mesopotamia",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap5/Q003703",
+          "citationDetail": "Ashurbanipal 004 (Q003703)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 5",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2018-02-03.4030832165",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2018-02-03T14:50:39Z",
+      "uri": "https://pleiades.stoa.org/places/767860328/name.2018-02-03.4030832165",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-02-08T11:03:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-08T09:13:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-04T14:01:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T14:50:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2018-02-03T14:50:39Z"
+        }
+      ]
+    }
+  ],
+  "id": "767860328",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Citadel Wall of Nineveh",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+  ],
+  "details": "<p>The existence of a wall delimiting the main area of the citadel is presumed for many periods.\u00a0According to Julian Reade (RLA 9, 397), a \u201cstretch of wall of roughly Akkadian date has been\u00a0identified on the eastern edge of Kuyunjik, in Area KG north of the later East Gate (Stronach 1994, 93); it has a massive stone base, mudbrick superstructure, and stone reinforced\u00a0terrace or glacis in front.\u201d Thus, Nineveh appears to have had some sort of wall around its citadel as early as the Sargonic Period. The Middle Assyrian king Tiglath-pileser I records that he rebuilt the old wall with stone and earth. The early Neo-Assyrian king Ashurnasirpal II mention its existence. When Sennacherib made Nineveh his capital, he claims to have completely rebuilt and strengthen the citadel wall. His grandson Ashurbanipal not only made repairs to this wall, but also widened it and strengthened its base with large limestone blocks.</p>\r\n<p>A plan of Nineveh drawn by L.W. King (1903-04) seem to indicate visible stretches of the citadel wall on the east, south, and west sides of Kuyunjik; these presumably date to the 7th-century B.C., Neo-Assyrian wall. The western stretch of the wall is assumed to have been integrated in some way with the city walls Badnigalbilukura\u0161u\u0161u and Badnigerimhuluha.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The citadel of Nineveh was surrounded by a thick mud-brick wall. When the 7th-century B.C. king Sennacherib made Nineveh the capital of the Assyrian empire, that wall was rebuilt and strengthened; its base was reinforced with limestone blocks along its southern stretch.",
+  "reprPoint": [
+    43.15211880739855,
+    36.35954075405099
+  ],
+  "placeTypes": [
+    "city-wall"
+  ],
+  "bbox": [
+    43.1488804,
+    36.3559671,
+    43.1548456,
+    36.363052
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/882947620",
+    "https://pleiades.stoa.org/places/945930916",
+    "https://pleiades.stoa.org/places/874621",
+    "https://pleiades.stoa.org/places/301732141",
+    "https://pleiades.stoa.org/places/287060405",
+    "https://pleiades.stoa.org/places/828352080",
+    "https://pleiades.stoa.org/places/185814199",
+    "https://pleiades.stoa.org/places/331679526",
+    "https://pleiades.stoa.org/places/763257295",
+    "https://pleiades.stoa.org/places/179295730",
+    "https://pleiades.stoa.org/places/310869662",
+    "https://pleiades.stoa.org/places/516671863",
+    "https://pleiades.stoa.org/places/588149003"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-04-13T09:56:05Z",
+  "uri": "https://pleiades.stoa.org/places/767860328",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Added MANTO entity by @acampbell",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-13T15:30:07Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "acampbell",
+      "modified": "2026-04-13T09:56:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-08T11:03:24Z"
+    },
+    {
+      "comment": "fixed typo in summary",
+      "modifiedBy": "thomase",
+      "modified": "2018-02-08T11:02:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-08T09:13:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-08T09:12:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T15:27:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-07T13:47:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-04T13:58:54Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-03T08:47:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2018-02-03T08:47:22Z"
+    }
+  ]
+}

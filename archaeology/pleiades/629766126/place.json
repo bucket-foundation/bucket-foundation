@@ -1,0 +1,444 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.8279358,
+            53.2877408
+          ],
+          [
+            -2.8278966,
+            53.2878004
+          ],
+          [
+            -2.8276022,
+            53.2882482
+          ],
+          [
+            -2.8275596,
+            53.2883129
+          ],
+          [
+            -2.8276572,
+            53.2883358
+          ],
+          [
+            -2.8283051,
+            53.2884881
+          ],
+          [
+            -2.8283848,
+            53.2885068
+          ],
+          [
+            -2.8284173,
+            53.2884573
+          ],
+          [
+            -2.8287224,
+            53.2879936
+          ],
+          [
+            -2.8287611,
+            53.2879348
+          ],
+          [
+            -2.8286776,
+            53.2879152
+          ],
+          [
+            -2.8284111,
+            53.2878526
+          ],
+          [
+            -2.8283199,
+            53.2878311
+          ],
+          [
+            -2.8280258,
+            53.287762
+          ],
+          [
+            -2.8279358,
+            53.2877408
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-site-of-roman-fortlet",
+      "properties": {
+        "snippet": "Fort-2; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/629766126/osm-location-of-site-of-roman-fortlet",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Site of Roman Fortlet"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/963008135",
+          "citationDetail": "Way 963008135",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=963008135",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-site-of-roman-fortlet",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 410,
+      "title": "OSM location of Site of Roman Fortlet",
+      "provenance": "OpenStreetMap (Way 963008135, version 4, osm:changeset=138540530, 2023-07-15T11:12:14Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-06-28T01:43:35Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.8279358,
+            53.2877408
+          ],
+          [
+            -2.8278966,
+            53.2878004
+          ],
+          [
+            -2.8276022,
+            53.2882482
+          ],
+          [
+            -2.8275596,
+            53.2883129
+          ],
+          [
+            -2.8276572,
+            53.2883358
+          ],
+          [
+            -2.8283051,
+            53.2884881
+          ],
+          [
+            -2.8283848,
+            53.2885068
+          ],
+          [
+            -2.8284173,
+            53.2884573
+          ],
+          [
+            -2.8287224,
+            53.2879936
+          ],
+          [
+            -2.8287611,
+            53.2879348
+          ],
+          [
+            -2.8286776,
+            53.2879152
+          ],
+          [
+            -2.8284111,
+            53.2878526
+          ],
+          [
+            -2.8283199,
+            53.2878311
+          ],
+          [
+            -2.8280258,
+            53.287762
+          ],
+          [
+            -2.8279358,
+            53.2877408
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/629766126/osm-location-of-site-of-roman-fortlet",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T04:16:19Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-28T14:43:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T01:47:09Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T01:43:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T01:43:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T01:43:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17662482",
+      "citationDetail": "Roman fortlet at Ince, 150m north east of Hall Farm (Q17662482)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/57368/",
+      "citationDetail": "57368: Ince Fortlet",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1014723",
+      "citationDetail": "1014723: Roman fortlet at Ince, 150m north east of Hall Farm",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "HEListing",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KG4R9RD2",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. \u201cListing.\u201d HIstoric England. Accessed April 22, 2021. http://historicengland.org.uk/listing/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Roman fortlet at Ince",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1014723",
+          "citationDetail": "1014723: Roman fortlet at Ince, 150m north east of Hall Farm",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "HEListing",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KG4R9RD2",
+          "formattedCitation": "<div class=\"csl-entry\">Historic England. \u201cListing.\u201d HIstoric England. Accessed April 22, 2021. http://historicengland.org.uk/listing/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "roman-fortlet-at-ince",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-06-28T01:45:00Z",
+      "uri": "https://pleiades.stoa.org/places/629766126/roman-fortlet-at-ince",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Roman fortlet at Ince",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-28T14:43:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T01:47:09Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T01:45:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-28T01:45:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "629766126",
+  "subject": [],
+  "title": "Ince fortlet",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fortlet"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A double-ditched enclosure site located to the north of the modern village of Ince (Cheshire, England) has been identified as a Roman fortlet. The enclosure covers some 0.48 ha and was first identified via crop marks seen in aerial photographs in 1994.",
+  "reprPoint": [
+    -2.8281603240799593,
+    53.28812381951743
+  ],
+  "placeTypes": [
+    "fort-2",
+    "fortlet"
+  ],
+  "bbox": [
+    -2.8287611,
+    53.2877408,
+    -2.8275596,
+    53.2885068
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-16T17:00:33Z",
+  "uri": "https://pleiades.stoa.org/places/629766126",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for fortlet @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-17T04:16:33Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-16T17:00:30Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-28T14:43:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-28T14:43:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T01:47:09Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T01:46:50Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T01:42:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-28T01:42:57Z"
+    }
+  ]
+}

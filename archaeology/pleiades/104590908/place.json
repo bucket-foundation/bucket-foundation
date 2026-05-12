@@ -1,0 +1,922 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.5709731,
+            51.9756303
+          ],
+          [
+            -1.571014,
+            51.9755939
+          ],
+          [
+            -1.5710344,
+            51.9755535
+          ],
+          [
+            -1.5710342,
+            51.9755089
+          ],
+          [
+            -1.5710183,
+            51.9754752
+          ],
+          [
+            -1.5709829,
+            51.9754398
+          ],
+          [
+            -1.5709117,
+            51.9754047
+          ],
+          [
+            -1.570864,
+            51.9753934
+          ],
+          [
+            -1.5707844,
+            51.9753893
+          ],
+          [
+            -1.5707219,
+            51.9753982
+          ],
+          [
+            -1.5706684,
+            51.9754162
+          ],
+          [
+            -1.5706517,
+            51.9754386
+          ],
+          [
+            -1.5706321,
+            51.9754364
+          ],
+          [
+            -1.5706,
+            51.9754649
+          ],
+          [
+            -1.5705776,
+            51.975504
+          ],
+          [
+            -1.5705735,
+            51.9755396
+          ],
+          [
+            -1.5705866,
+            51.9755796
+          ],
+          [
+            -1.5706082,
+            51.9756071
+          ],
+          [
+            -1.5706517,
+            51.9756388
+          ],
+          [
+            -1.5707024,
+            51.9756597
+          ],
+          [
+            -1.5707553,
+            51.9756712
+          ],
+          [
+            -1.5708236,
+            51.9756741
+          ],
+          [
+            -1.5708915,
+            51.9756643
+          ],
+          [
+            -1.570934,
+            51.9756505
+          ],
+          [
+            -1.5709427,
+            51.975646
+          ],
+          [
+            -1.5709731,
+            51.9756303
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-kings-men",
+      "properties": {
+        "snippet": "Monument, ; 4000 BC - 800 BC",
+        "link": "https://pleiades.stoa.org/places/104590908/osm-location-of-the-kings-men",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of the King's Men"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5701616,
+          51.9762533
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-king-stone",
+      "properties": {
+        "snippet": "Monument, ; 4000 BC - 800 BC",
+        "link": "https://pleiades.stoa.org/places/104590908/osm-location-of-king-stone",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of King Stone"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5655811,
+          51.9752632
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-whispering-knights",
+      "properties": {
+        "snippet": "Monument, ; 4000 BC - 800 BC",
+        "link": "https://pleiades.stoa.org/places/104590908/osm-location-of-the-whispering-knights",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of the Whispering Knights"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-british",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-british",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "bronze-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/bronze-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/147776317",
+          "citationDetail": "Way 147776317",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=147776317",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-kings-men",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -800,
+      "title": "OSM location of the King's Men",
+      "provenance": "OpenStreetMap (Way 147776317, version 10, osm:changeset=138540530, 2023-07-15T11:12:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-10-05T19:07:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.5709731,
+            51.9756303
+          ],
+          [
+            -1.571014,
+            51.9755939
+          ],
+          [
+            -1.5710344,
+            51.9755535
+          ],
+          [
+            -1.5710342,
+            51.9755089
+          ],
+          [
+            -1.5710183,
+            51.9754752
+          ],
+          [
+            -1.5709829,
+            51.9754398
+          ],
+          [
+            -1.5709117,
+            51.9754047
+          ],
+          [
+            -1.570864,
+            51.9753934
+          ],
+          [
+            -1.5707844,
+            51.9753893
+          ],
+          [
+            -1.5707219,
+            51.9753982
+          ],
+          [
+            -1.5706684,
+            51.9754162
+          ],
+          [
+            -1.5706517,
+            51.9754386
+          ],
+          [
+            -1.5706321,
+            51.9754364
+          ],
+          [
+            -1.5706,
+            51.9754649
+          ],
+          [
+            -1.5705776,
+            51.975504
+          ],
+          [
+            -1.5705735,
+            51.9755396
+          ],
+          [
+            -1.5705866,
+            51.9755796
+          ],
+          [
+            -1.5706082,
+            51.9756071
+          ],
+          [
+            -1.5706517,
+            51.9756388
+          ],
+          [
+            -1.5707024,
+            51.9756597
+          ],
+          [
+            -1.5707553,
+            51.9756712
+          ],
+          [
+            -1.5708236,
+            51.9756741
+          ],
+          [
+            -1.5708915,
+            51.9756643
+          ],
+          [
+            -1.570934,
+            51.9756505
+          ],
+          [
+            -1.5709427,
+            51.975646
+          ],
+          [
+            -1.5709731,
+            51.9756303
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/104590908/osm-location-of-the-kings-men",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-10T15:35:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-26T15:48:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-26T15:48:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T14:54:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T13:34:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-18T15:53:08Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:07:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:07:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:07:16Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-british",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-british",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "bronze-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/bronze-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1609572713",
+          "citationDetail": "Node 1609572713",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1609572713",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-king-stone",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -800,
+      "title": "OSM location of King Stone",
+      "provenance": "OpenStreetMap (Node 1609572713, version 10, osm:changeset=138540530, 2023-07-15T11:12:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-10-05T19:08:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5701616,
+          51.9762533
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/104590908/osm-location-of-king-stone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-10T15:36:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-26T15:49:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-26T15:48:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-26T15:48:08Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T14:54:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T13:40:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-18T15:53:06Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:08:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:08:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:08:24Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-british",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-british",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "bronze-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/bronze-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/495560714",
+          "citationDetail": "Node 495560714",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=495560714",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-whispering-knights",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -800,
+      "title": "OSM location of the Whispering Knights",
+      "provenance": "OpenStreetMap (Node 495560714, version 13, osm:changeset=138540530, 2023-07-15T11:12:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-10-05T19:09:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5655811,
+          51.9752632
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/104590908/osm-location-of-the-whispering-knights",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-10T15:35:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-26T15:47:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T14:54:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T13:40:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-26T00:02:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-26T00:01:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-18T15:53:10Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:09:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:09:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-10-05T19:09:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Rollright_Stones",
+      "citationDetail": "Rollright Stones",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Rollright Stones.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.english-heritage.org.uk/daysout/properties/rollright-stones/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "English Heritage, ROLLRIGHT STONES",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.rollrightstones.co.uk/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Rollright Stones",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/5355160",
+      "formattedCitation": "Grinsell, L. V. 1977. The Rollright Stones and their folklore. Toucan Press.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/20130696",
+      "formattedCitation": "Lambrick, G. 1988. The Rollright Stones : megaliths, monuments, and settlement in the prehistoric landscape. London: istoric Buildings and Monuments Commission for England.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/12693650",
+      "formattedCitation": "Lambrick, G. 1983. The Rollright Stones : the archaeology and folklore of the Stones and their surroundings, a survey and review. Oxford.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/1253704",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Evans, Arthur J. 1895. \"The Rollright Stones and Their Folk-Lore.\" Folklore 6.1:6-53.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q7361310",
+      "citationDetail": "Q7361310: Rollright Stones",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Rollright Stones",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/2639202/rollright-stones.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 2639202",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "rollright-stones",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-07-26T13:31:48Z",
+      "uri": "https://pleiades.stoa.org/places/104590908/rollright-stones",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Rollright Stones",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-19T00:43:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T13:32:14Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T13:31:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T13:31:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "104590908",
+  "subject": [
+    "megalithic",
+    "extant remains"
+  ],
+  "title": "Rollright Stones",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A complex of three Neolithic and Bronze Age megalithic monuments dating from the fourth to second millennia B.C. located on the borders of Oxfordshire and Warwickshire in the English Midlands.",
+  "reprPoint": [
+    -1.5688490061497606,
+    51.97568263222009
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    -1.5710344,
+    51.9752632,
+    -1.5655811,
+    51.9762533
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-10-05T19:06:48Z",
+  "uri": "https://pleiades.stoa.org/places/104590908",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-10T15:38:11Z"
+    },
+    {
+      "comment": "added wikidata Q7361310: Rollright Stones",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-19T14:52:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-19T00:43:30Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-26T13:30:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-10-18T15:52:48Z"
+    },
+    {
+      "comment": "edited description",
+      "modifiedBy": "jbecker",
+      "modified": "2014-10-05T19:24:41Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-10-05T19:06:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-10-05T19:06:49Z"
+    }
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.1610836,
+          35.3499788
+        ]
+      },
+      "type": "Feature",
+      "id": "vrysi-tou-barba",
+      "properties": {
+        "snippet": "Cemetery; 3300 BC - 1400 BC",
+        "link": "https://pleiades.stoa.org/places/169253046/vrysi-tou-barba",
+        "description": "Point based on an OpenStreetMap node representing Vrysi tou Barba after Webb 2020.",
+        "location_precision": "precise",
+        "title": "OSM location of Vrysi tou Barba"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9838947427",
+          "citationDetail": "Node 9838947427",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9838947427",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1277138129",
+          "citationDetail": "Figs. 1.2, 1.4, 1.5, 1.6, and 1.7",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Webb 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IK3PYLKY",
+          "formattedCitation": "<div class=\"csl-entry\">Webb, Jennifer M. <i>Lapithos \u201cVrysi Tou Barba\u201d, Cyprus. Early &amp; Middle Bronze Age Tombs Excavated in 1913 (Tombs 1-47).</i> Studies in Mediterranean Archaeology, Vol. CLII. Nicosia: Astrom Editions, 2020. http://www.worldcat.org/oclc/1277138129.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "vrysi-tou-barba",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1400,
+      "title": "OSM location of Vrysi tou Barba",
+      "provenance": "OpenStreetMap (Node 9838947427, version 1, osm:changeset=122716037, 2022-06-22T14:52:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Vrysi tou Barba after Webb 2020.",
+      "created": "2022-06-22T15:03:53Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.1610836,
+          35.3499788
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/169253046/vrysi-tou-barba",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-22T16:48:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T15:06:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T15:05:24Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T15:03:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T15:03:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1400,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-22T15:06:06Z",
+      "associationCertainty": "certain",
+      "title": "Cyprus (island)",
+      "start": -3300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/169253046/cyprus-island",
+      "connectionType": "on",
+      "id": "cyprus-island",
+      "attestations": [
+        {
+          "timePeriod": "early-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-bronze-age-southern-levant",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-southern-levant",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-22T16:48:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T15:06:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T15:06:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-22T15:06:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707498",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1277138129",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Webb 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IK3PYLKY",
+          "formattedCitation": "<div class=\"csl-entry\">Webb, Jennifer M. <i>Lapithos \u201cVrysi Tou Barba\u201d, Cyprus. Early &amp; Middle Bronze Age Tombs Excavated in 1913 (Tombs 1-47).</i> Studies in Mediterranean Archaeology, Vol. CLII. Nicosia: Astrom Editions, 2020. http://www.worldcat.org/oclc/1277138129.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-22T17:45:34Z",
+      "associationCertainty": "certain",
+      "title": "Lapethos/Lepethis Phoinikon",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/169253046/lapethos-lepethis-phoinikon",
+      "connectionType": "at",
+      "id": "lapethos-lepethis-phoinikon",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-27T20:40:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-22T17:45:39Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-22T17:45:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-22T17:45:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707555",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1277138129",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Webb 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IK3PYLKY",
+          "formattedCitation": "<div class=\"csl-entry\">Webb, Jennifer M. <i>Lapithos \u201cVrysi Tou Barba\u201d, Cyprus. Early &amp; Middle Bronze Age Tombs Excavated in 1913 (Tombs 1-47).</i> Studies in Mediterranean Archaeology, Vol. CLII. Nicosia: Astrom Editions, 2020. http://www.worldcat.org/oclc/1277138129.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1277138129",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Webb 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IK3PYLKY",
+      "formattedCitation": "<div class=\"csl-entry\">Webb, Jennifer M. <i>Lapithos \u201cVrysi Tou Barba\u201d, Cyprus. Early &amp; Middle Bronze Age Tombs Excavated in 1913 (Tombs 1-47).</i> Studies in Mediterranean Archaeology, Vol. CLII. Nicosia: Astrom Editions, 2020. http://www.worldcat.org/oclc/1277138129.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "169253046",
+  "subject": [],
+  "title": "Vrysi tou Barba",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the few known coastal Early and Middle Bronze Age sites in Cyprus. This site is a cemetery located in modern Lapithos, Cyprus.",
+  "reprPoint": [
+    33.1610836,
+    35.3499788
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    33.1610836,
+    35.3499788,
+    33.1610836,
+    35.3499788
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707498",
+    "https://pleiades.stoa.org/places/707555"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-22T15:03:32Z",
+  "uri": "https://pleiades.stoa.org/places/169253046",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-22T16:48:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-22T15:06:17Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-22T15:03:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-22T15:03:32Z"
+    }
+  ]
+}

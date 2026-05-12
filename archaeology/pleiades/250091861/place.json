@@ -1,0 +1,437 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.0388808,
+            38.4885726
+          ],
+          [
+            28.0395638,
+            38.4895527
+          ],
+          [
+            28.0395898,
+            38.4896
+          ],
+          [
+            28.0411633,
+            38.4889697
+          ],
+          [
+            28.0414317,
+            38.4888649
+          ],
+          [
+            28.0407234,
+            38.4877655
+          ],
+          [
+            28.0388808,
+            38.4885726
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "bath-gymnasium-complex",
+      "properties": {
+        "snippet": "Bath, Gymnasium, Palaistra; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/250091861/bath-gymnasium-complex",
+        "description": "Polygon representing the location of the Bath-Gymnasium Complex, derived from OpenStreetMap after Yeg\u00fcl 1986",
+        "location_precision": "precise",
+        "title": "OSM location of Bath-Gymnasium Complex"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/874403217",
+          "citationDetail": "Way 874403217",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=874403217",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bath-gymnasium-complex",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath",
+        "https://pleiades.stoa.org/vocabularies/place-types/gymnasium",
+        "https://pleiades.stoa.org/vocabularies/place-types/palaistra"
+      ],
+      "end": 300,
+      "title": "OSM location of Bath-Gymnasium Complex",
+      "provenance": "OpenStreetMap (Way 874403217, version 1, osm:changeset=94394583, 2020-11-18T20:44:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath",
+        "https://pleiades.stoa.org/vocabularies/place-types/gymnasium",
+        "https://pleiades.stoa.org/vocabularies/place-types/palaistra"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath",
+        "gymnasium",
+        "palaistra"
+      ],
+      "description": "Polygon representing the location of the Bath-Gymnasium Complex, derived from OpenStreetMap after Yeg\u00fcl 1986",
+      "created": "2020-11-25T02:39:49Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.0388808,
+            38.4885726
+          ],
+          [
+            28.0395638,
+            38.4895527
+          ],
+          [
+            28.0395898,
+            38.4896
+          ],
+          [
+            28.0411633,
+            38.4889697
+          ],
+          [
+            28.0414317,
+            38.4888649
+          ],
+          [
+            28.0407234,
+            38.4877655
+          ],
+          [
+            28.0388808,
+            38.4885726
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/250091861/bath-gymnasium-complex",
+      "creators": [
+        {
+          "username": "alguan",
+          "homepage": null,
+          "name": "Annette Lei Guan",
+          "uri": "https://pleiades.stoa.org/author/alguan"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-13T17:35:38Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-24T20:20:17Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-02T11:45:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-25T02:49:37Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-25T02:46:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-25T02:39:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-25T02:39:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-12T05:44:25Z",
+      "associationCertainty": "certain",
+      "title": " Sardis/Hyde?",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/250091861/sardis-hyde",
+      "connectionType": "at",
+      "id": "sardis-hyde",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-02T11:45:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-25T02:49:37Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-25T01:25:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-12T05:45:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-12T05:44:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "alguan",
+          "modified": "2020-11-12T05:44:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550867",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "alguan",
+          "homepage": null,
+          "name": "Annette Lei Guan",
+          "uri": "https://pleiades.stoa.org/author/alguan"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/584433",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pedley 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WGK2CHLI",
+      "formattedCitation": "<div class=\"csl-entry\">Pedley, John Griffiths. <i>Ancient Literary Sources on Sardis</i>. Monograph (Archaeological Exploration of Sardis (Program)). Cambridge, Mass.: Harvard University Press, 1972.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Yeg\u00fcl 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I8XESU64",
+      "formattedCitation": "<div class=\"csl-entry\">Yeg\u00fcl, Fikret K, Mehmet C Bolgil, and Clive Foss. <i>The Bath-Gymnasium Complex at Sardis</i>. Cambridge, Mass.: Harvard University Press, 1986.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.2307/1356408",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Greenewalt et al. 1973",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ADIGWHCT",
+      "formattedCitation": "<div class=\"csl-entry\">Greenewalt, Crawford H., A. E. M. Johnston, and T. V. Buttrey. \u201cThe Fifteenth Campaign at Sardis (1972).\u201d <i>Bulletin of the American Schools of Oriental Research</i> 211 (October 1973): 14\u201336. https://doi.org/10.2307/1356408.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/2088",
+      "citationDetail": "Baukomplex Thermen-Gymnasien-Synagoge von Sardeis Manisa (Provinz), Republik T\u00fcrkei",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sardisexpedition.org/en/essays/about-bath-gym",
+      "citationDetail": "The Bath-Gymnasium Complex",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "250091861",
+  "subject": [
+    "synagogue",
+    "GardRomEmp"
+  ],
+  "title": "Bath-Gymnasium Complex at Sardis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/synagogue",
+    "https://pleiades.stoa.org/vocabularies/place-types/gymnasium",
+    "https://pleiades.stoa.org/vocabularies/place-types/palaistra",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Bath/gymnasium complex containing a palaestra and a synagogue that was developed in the 3rd century CE.",
+  "reprPoint": [
+    28.040163538335808,
+    38.48869437855936
+  ],
+  "placeTypes": [
+    "synagogue",
+    "gymnasium",
+    "palaistra",
+    "bath"
+  ],
+  "bbox": [
+    28.0388808,
+    38.4877655,
+    28.0414317,
+    38.4896
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550867"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-12T05:21:02Z",
+  "uri": "https://pleiades.stoa.org/places/250091861",
+  "creators": [
+    {
+      "username": "alguan",
+      "homepage": null,
+      "name": "Annette Lei Guan",
+      "uri": "https://pleiades.stoa.org/author/alguan"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-13T17:40:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-13T17:35:29Z"
+    },
+    {
+      "comment": "add arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-24T20:24:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-02T11:45:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "alguan",
+      "modified": "2020-11-25T02:49:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-11-25T02:48:25Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "alguan",
+      "modified": "2020-11-25T01:25:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-11-18T20:34:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "alguan",
+      "modified": "2020-11-12T05:45:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-11-12T05:45:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "alguan",
+      "modified": "2020-11-12T05:21:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "alguan",
+      "modified": "2020-11-12T05:21:02Z"
+    }
+  ]
+}

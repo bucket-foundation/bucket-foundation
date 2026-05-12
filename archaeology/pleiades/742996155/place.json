@@ -1,0 +1,411 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            17.3868874,
+            40.8853332
+          ],
+          [
+            17.3868055,
+            40.885312
+          ],
+          [
+            17.3867532,
+            40.8852755
+          ],
+          [
+            17.386709,
+            40.8852055
+          ],
+          [
+            17.3867358,
+            40.885098
+          ],
+          [
+            17.3867854,
+            40.8849723
+          ],
+          [
+            17.3868377,
+            40.8849064
+          ],
+          [
+            17.3870148,
+            40.8848212
+          ],
+          [
+            17.3870992,
+            40.8847949
+          ],
+          [
+            17.3871261,
+            40.8848466
+          ],
+          [
+            17.3870522,
+            40.8849465
+          ],
+          [
+            17.3870723,
+            40.8850806
+          ],
+          [
+            17.3870617,
+            40.8851338
+          ],
+          [
+            17.3869842,
+            40.8852086
+          ],
+          [
+            17.3869035,
+            40.8853366
+          ],
+          [
+            17.3868874,
+            40.8853332
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/742996155/location-of-necropolis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Western Necropolis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/256388632",
+          "citationDetail": "Way 256388632",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=256388632",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -30,
+      "title": "OSM location of Western Necropolis",
+      "provenance": "OpenStreetMap (Way 256388632, version 9, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-02-09T23:37:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            17.3868874,
+            40.8853332
+          ],
+          [
+            17.3868055,
+            40.885312
+          ],
+          [
+            17.3867532,
+            40.8852755
+          ],
+          [
+            17.386709,
+            40.8852055
+          ],
+          [
+            17.3867358,
+            40.885098
+          ],
+          [
+            17.3867854,
+            40.8849723
+          ],
+          [
+            17.3868377,
+            40.8849064
+          ],
+          [
+            17.3870148,
+            40.8848212
+          ],
+          [
+            17.3870992,
+            40.8847949
+          ],
+          [
+            17.3871261,
+            40.8848466
+          ],
+          [
+            17.3870522,
+            40.8849465
+          ],
+          [
+            17.3870723,
+            40.8850806
+          ],
+          [
+            17.3870617,
+            40.8851338
+          ],
+          [
+            17.3869842,
+            40.8852086
+          ],
+          [
+            17.3869035,
+            40.8853366
+          ],
+          [
+            17.3868874,
+            40.8853332
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/742996155/location-of-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-15T05:09:33Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-30T13:18:01Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-04T20:48:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-27T19:02:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-27T19:02:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-27T19:00:28Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T23:37:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T23:37:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T23:37:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-30T22:29:40Z",
+      "associationCertainty": "certain",
+      "title": "Egnatia/Gnathia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/742996155/3804981538",
+      "connectionType": "at",
+      "id": "3804981538",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T22:29:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T22:29:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-30T22:29:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/442573",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Redavid 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GV6MQXZ2",
+      "formattedCitation": "<div class=\"csl-entry\">Redavid, Viriana. <i>La Ceramica \u201cdi Gnathia\u201d Nella \u201cNecropoli Occidentale\u201d Di Egnazia</i>. Biblioteca Della Ricerca 1. Fasano (BR): Schena, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bevilacqua 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HJSQHCH5",
+      "formattedCitation": "<div class=\"csl-entry\">Bevilacqua, Gabriella, and Franca Ferrandini Troisi. \u201cDue amuleti funerari dalla necropoli occidentale di Egnazia.\u201d In <i>Annuario della Scuola archeologica di Atene e delle missioni italiane in Oriente, 85.2007</i>, 249\u201361. Roma: Scuola Archeologica Italiana di Atene, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "742996155",
+  "subject": [],
+  "title": "Western necropolis at Egnatia/Gnathia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The western necropolis at Egnatia/Gnathia includes some tombs of the Messapian culture dating from the middle of the fourth to the second centuries B.C.",
+  "reprPoint": [
+    17.3869067,
+    40.8853293
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    17.3869067,
+    40.8853293,
+    17.3869067,
+    40.8853293
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/442573"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-30T22:29:39Z",
+  "uri": "https://pleiades.stoa.org/places/742996155",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-04T20:48:17Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-27T19:04:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-27T19:02:16Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-27T19:01:54Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T22:29:58Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T22:29:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-30T22:29:39Z"
+    }
+  ]
+}

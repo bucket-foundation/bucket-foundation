@@ -1,0 +1,270 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": -201,
+      "description": "",
+      "contributors": [],
+      "created": "2025-01-26T20:31:58Z",
+      "associationCertainty": "certain",
+      "title": "Athenae",
+      "start": -750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/486617494/athenae",
+      "connectionType": "at",
+      "id": "athenae",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-27T16:30:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-01-26T20:36:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-01-26T20:31:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-01-26T20:31:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579885",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-01-26T20:35:27Z",
+      "associationCertainty": "uncertain",
+      "title": "Sanctuary of Eros and Aphrodite",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/486617494/sanctuary-of-eros-and-aphrodite",
+      "connectionType": "part_of_analytical",
+      "id": "sanctuary-of-eros-and-aphrodite",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-27T16:30:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-01-26T20:36:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-01-26T20:35:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2025-01-26T20:35:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/925585578",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "1.156",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "TdA",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4LQCPWUU",
+          "formattedCitation": "<div class=\"csl-entry\">Greco, Emanuele. <i>Topografia di Atene: sviluppo urbano e monumenti dalle origini al III sec. d.C.</i> SATAA. Atene, Paestum (Salerno): Scuola archeologica italiana di Atene\u202f; Pandemos, 2010. https://search.worldcat.org/title/747934765.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/747934765",
+      "citationDetail": "156",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TdA",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4LQCPWUU",
+      "formattedCitation": "<div class=\"csl-entry\">Greco, Emanuele. <i>Topografia di Atene: sviluppo urbano e monumenti dalle origini al III sec. d.C.</i> SATAA. Atene, Paestum (Salerno): Scuola archeologica italiana di Atene\u202f; Pandemos, 2010. https://search.worldcat.org/title/747934765.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journals.uchicago.edu/doi/abs/10.2307/499418",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broneer 1939",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ICQIXYK6",
+      "formattedCitation": "<div class=\"csl-entry\">Broneer, Oscar. \u201cExcavations on the Slopes of the Acropolis, 1939.\u201d <i>American Journal of Archaeology</i> 44, no. 2 (April 1940): 252\u201356. https://doi.org/10.2307/499418.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://hdl.handle.net/1969.1/1582024",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Glowacki 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/34NHVZEQ",
+      "formattedCitation": "<div class=\"csl-entry\">Glowacki, K. T., and S. I. Rotroff. \u201cThe \u2018Skyphos Sanctuary\u2019 from the North Slope of the Acropolis,\u201d 2005. http://hdl.handle.net/1969.1/1582024.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131920563",
+      "citationDetail": "Skyphos sanctuary (Q131920563)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "486617494",
+  "subject": [],
+  "title": "Skyphoi sanctuary",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A sanctuary north of the Acropolis of Athens, consisting of a platform of the Archaic period, and 200 miniature <i>skyphoi</i> from the 3rd century BC. It is disputed whether it was an independent sanctuary or part of the sanctuary of Eros and Aphrodite.",
+  "reprPoint": [
+    23.7270202,
+    37.9722492
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    23.7270202,
+    37.9722492,
+    23.7270202,
+    37.9722492
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579885",
+    "https://pleiades.stoa.org/places/925585578"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-01-26T20:30:25Z",
+  "uri": "https://pleiades.stoa.org/places/486617494",
+  "creators": [
+    {
+      "username": "cdlisle",
+      "homepage": null,
+      "name": "Chris de Lisle",
+      "uri": "https://pleiades.stoa.org/author/cdlisle"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-27T17:06:23Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-01-27T16:30:49Z"
+    },
+    {
+      "comment": "updated Broneer after adding to Zotero library",
+      "modifiedBy": "thomase",
+      "modified": "2025-01-27T16:30:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cdlisle",
+      "modified": "2025-01-26T20:36:02Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cdlisle",
+      "modified": "2025-01-26T20:30:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cdlisle",
+      "modified": "2025-01-26T20:30:25Z"
+    }
+  ]
+}

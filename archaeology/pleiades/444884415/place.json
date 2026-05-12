@@ -1,0 +1,290 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.3364733,
+            41.8249955
+          ],
+          [
+            1.3364619,
+            41.8250843
+          ],
+          [
+            1.3365982,
+            41.8250907
+          ],
+          [
+            1.3369141,
+            41.8261203
+          ],
+          [
+            1.338842,
+            41.8255781
+          ],
+          [
+            1.3386241,
+            41.8249885
+          ],
+          [
+            1.3374137,
+            41.824871
+          ],
+          [
+            1.3373667,
+            41.8248086
+          ],
+          [
+            1.3370885,
+            41.8247936
+          ],
+          [
+            1.3365855,
+            41.8249435
+          ],
+          [
+            1.3364733,
+            41.8249955
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-puig-castellar-biosca",
+      "properties": {
+        "snippet": "Archaeological-site; 200 BC - 101 BC",
+        "link": "https://pleiades.stoa.org/places/444884415/osm-location-of-puig-castellar-biosca",
+        "description": "Location based on OpenStreetMap. Dates after Vinci.",
+        "location_precision": "precise",
+        "title": "OSM Location of Puig Castellar (Biosca)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1148871313",
+          "citationDetail": "Way 1148871313",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1148871313",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/roman-republican-castellum-of-puig-castellar-biosca-the-earliest-evidence-for-military-headquarters-in-hispania-citerior-180120-bce/F0AA52BCFC326BC8157CFDB414791371",
+          "citationDetail": "Fig. 3",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Rodrigo 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4UKHR7II",
+          "formattedCitation": "<div class=\"csl-entry\">Rodrigo, Esther, N\u00faria Roman\u00ed, Cesar Carreras, Joaquim Pera, and Laia Catarineu. \u201cThe Roman Republican Castellum of Puig Castellar (Biosca): The Earliest Evidence for Military Headquarters in Hispania Citerior (180\u2013120 BCE).\u201d <i>Journal of Roman Archaeology</i> 35, no. 2 (December 2022): 818\u201347. https://doi.org/10.1017/S104775942200037X.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-puig-castellar-biosca",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -101,
+      "title": "OSM Location of Puig Castellar (Biosca)",
+      "provenance": "OpenStreetMap (Way 1148871313, version 1, osm:changeset=132931861, 2023-02-23T15:28:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after Vinci.",
+      "created": "2023-02-23T15:29:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            1.3364733,
+            41.8249955
+          ],
+          [
+            1.3364619,
+            41.8250843
+          ],
+          [
+            1.3365982,
+            41.8250907
+          ],
+          [
+            1.3369141,
+            41.8261203
+          ],
+          [
+            1.338842,
+            41.8255781
+          ],
+          [
+            1.3386241,
+            41.8249885
+          ],
+          [
+            1.3374137,
+            41.824871
+          ],
+          [
+            1.3373667,
+            41.8248086
+          ],
+          [
+            1.3370885,
+            41.8247936
+          ],
+          [
+            1.3365855,
+            41.8249435
+          ],
+          [
+            1.3364733,
+            41.8249955
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/444884415/osm-location-of-puig-castellar-biosca",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-23T20:01:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-23T15:30:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-23T15:30:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-23T15:29:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-23T15:29:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/roman-republican-castellum-of-puig-castellar-biosca-the-earliest-evidence-for-military-headquarters-in-hispania-citerior-180120-bce/F0AA52BCFC326BC8157CFDB414791371",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rodrigo 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4UKHR7II",
+      "formattedCitation": "<div class=\"csl-entry\">Rodrigo, Esther, N\u00faria Roman\u00ed, Cesar Carreras, Joaquim Pera, and Laia Catarineu. \u201cThe Roman Republican Castellum of Puig Castellar (Biosca): The Earliest Evidence for Military Headquarters in Hispania Citerior (180\u2013120 BCE).\u201d <i>Journal of Roman Archaeology</i> 35, no. 2 (December 2022): 818\u201347. https://doi.org/10.1017/S104775942200037X.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "444884415",
+  "subject": [],
+  "title": "Puig Castellar (Biosca)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/castellum",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A hilltop fortified site southwest of modern Biosca in Catalonia, Spain. The site exhibits architecture and pottery indicating its function as a Roman military castellum during the second century BCE.",
+  "reprPoint": [
+    1.3375950113046509,
+    41.82537693672932
+  ],
+  "placeTypes": [
+    "castellum",
+    "archaeological-site"
+  ],
+  "bbox": [
+    1.3364619,
+    41.8247936,
+    1.338842,
+    41.8261203
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-02-23T15:21:25Z",
+  "uri": "https://pleiades.stoa.org/places/444884415",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-02-23T20:01:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-23T15:30:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-23T15:21:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-02-23T15:21:25Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Gamla
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/897769
+- **ID**: 897769
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Gamla
+
+## Description
+
+An ancient place, cited: BAtlas 91 unlocated Gamla

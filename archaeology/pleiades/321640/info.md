@@ -1,0 +1,14 @@
+# Aquae Calidae Cirnensis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/321640
+- **ID**: 321640
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Aquae Calidae Cirnensis
+
+## Description
+
+An ancient place, cited: BAtlas 32 unlocated Aquae Calidae Cirnensis

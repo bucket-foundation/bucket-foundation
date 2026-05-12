@@ -1,0 +1,419 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2614132,
+            30.0503332
+          ],
+          [
+            31.2615658,
+            30.0508963
+          ],
+          [
+            31.2617007,
+            30.051274
+          ],
+          [
+            31.2619081,
+            30.0512359
+          ],
+          [
+            31.2625702,
+            30.0511889
+          ],
+          [
+            31.263329,
+            30.0507942
+          ],
+          [
+            31.263258,
+            30.0504567
+          ],
+          [
+            31.2633096,
+            30.0500917
+          ],
+          [
+            31.2631675,
+            30.0498326
+          ],
+          [
+            31.2630167,
+            30.0493779
+          ],
+          [
+            31.2627106,
+            30.049314
+          ],
+          [
+            31.2625211,
+            30.0488474
+          ],
+          [
+            31.2621189,
+            30.0489358
+          ],
+          [
+            31.2620004,
+            30.0490262
+          ],
+          [
+            31.2620245,
+            30.0493048
+          ],
+          [
+            31.2614559,
+            30.0493884
+          ],
+          [
+            31.2614318,
+            30.0493095
+          ],
+          [
+            31.2617161,
+            30.0491748
+          ],
+          [
+            31.2616302,
+            30.0490201
+          ],
+          [
+            31.261016,
+            30.048996
+          ],
+          [
+            31.2612584,
+            30.0499199
+          ],
+          [
+            31.2614132,
+            30.0503332
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "darb-qimriz",
+      "properties": {
+        "snippet": "District; AD 950 - AD 1923",
+        "link": "https://pleiades.stoa.org/places/58379543/darb-qimriz",
+        "description": "Polygon based on OpenStreetMap representing the Darb Qirmiz neighborhood of Cairo after Meinecke 1980.",
+        "location_precision": "precise",
+        "title": "OSM location of Darb Qirmiz"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fatimid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fatimid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1065681332",
+          "citationDetail": "Way 1065681332",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1065681332",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/restaurierung-der-madrasa-des-amirs-sabiq-ad-din-mitqal-al-anuki-und-die-sanierung-des-darb-qirmiz-in-kairo/oclc/610864558&referer=brief_results",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Meinecke 1980",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZG45I6M4",
+          "formattedCitation": "<div class=\"csl-entry\">Meinecke, Michael, Flemming Aalund, and Abteilung Kairo Deutsches Arch??ologisches Institut. <i>Die Restaurierung der Madrasa des Amirs Sabiq ad-Din Mitqal al-Anuki und die Sanierung des Darb Qirmiz in Kairo</i>. Mainz am Rheim: Philipp Von Zabern, 1980. https://www.worldcat.org/title/restaurierung-der-madrasa-des-amirs-sabiq-ad-din-mitqal-al-anuki-und-die-sanierung-des-darb-qirmiz-in-kairo/oclc/610864558&amp;referer=brief_results.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "darb-qimriz",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/district"
+      ],
+      "end": 1923,
+      "title": "OSM location of Darb Qirmiz",
+      "provenance": "OpenStreetMap (Way 1065681332, version 1, osm:changeset=121780294, 2022-05-31T18:37:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 950,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/district"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "district"
+      ],
+      "description": "Polygon based on OpenStreetMap representing the Darb Qirmiz neighborhood of Cairo after Meinecke 1980.",
+      "created": "2022-05-31T18:46:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.2614132,
+            30.0503332
+          ],
+          [
+            31.2615658,
+            30.0508963
+          ],
+          [
+            31.2617007,
+            30.051274
+          ],
+          [
+            31.2619081,
+            30.0512359
+          ],
+          [
+            31.2625702,
+            30.0511889
+          ],
+          [
+            31.263329,
+            30.0507942
+          ],
+          [
+            31.263258,
+            30.0504567
+          ],
+          [
+            31.2633096,
+            30.0500917
+          ],
+          [
+            31.2631675,
+            30.0498326
+          ],
+          [
+            31.2630167,
+            30.0493779
+          ],
+          [
+            31.2627106,
+            30.049314
+          ],
+          [
+            31.2625211,
+            30.0488474
+          ],
+          [
+            31.2621189,
+            30.0489358
+          ],
+          [
+            31.2620004,
+            30.0490262
+          ],
+          [
+            31.2620245,
+            30.0493048
+          ],
+          [
+            31.2614559,
+            30.0493884
+          ],
+          [
+            31.2614318,
+            30.0493095
+          ],
+          [
+            31.2617161,
+            30.0491748
+          ],
+          [
+            31.2616302,
+            30.0490201
+          ],
+          [
+            31.261016,
+            30.048996
+          ],
+          [
+            31.2612584,
+            30.0499199
+          ],
+          [
+            31.2614132,
+            30.0503332
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/58379543/darb-qimriz",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-11T14:53:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-06T20:31:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-03T15:46:09Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-31T20:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:52:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:50:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:46:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T18:46:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/restaurierung-der-madrasa-des-amirs-sabiq-ad-din-mitqal-al-anuki-und-die-sanierung-des-darb-qirmiz-in-kairo/oclc/610864558&referer=brief_results",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Meinecke 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZG45I6M4",
+      "formattedCitation": "<div class=\"csl-entry\">Meinecke, Michael, Flemming Aalund, and Abteilung Kairo Deutsches Arch??ologisches Institut. <i>Die Restaurierung der Madrasa des Amirs Sabiq ad-Din Mitqal al-Anuki und die Sanierung des Darb Qirmiz in Kairo</i>. Mainz am Rheim: Philipp Von Zabern, 1980. https://www.worldcat.org/title/restaurierung-der-madrasa-des-amirs-sabiq-ad-din-mitqal-al-anuki-und-die-sanierung-des-darb-qirmiz-in-kairo/oclc/610864558&amp;referer=brief_results.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "58379543",
+  "subject": [],
+  "title": "Darb Qirmiz",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/district"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Darb Qirmiz is a residential neighborhood in the tenth-century Fatimid quarter of Cairo, Egypt, with the oldest remaining monuments dating from the fourteenth century.",
+  "reprPoint": [
+    31.262121660170347,
+    30.049935659463806
+  ],
+  "placeTypes": [
+    "district"
+  ],
+  "bbox": [
+    31.261016,
+    30.0488474,
+    31.263329,
+    30.051274
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-31T18:46:11Z",
+  "uri": "https://pleiades.stoa.org/places/58379543",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-11T14:53:01Z"
+    },
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-11T14:52:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-06T20:31:31Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-31T20:03:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T18:52:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T18:46:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T18:46:11Z"
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.0875677,
+            40.0698696
+          ],
+          [
+            4.0874603,
+            40.0697403
+          ],
+          [
+            4.0873612,
+            40.0696171
+          ],
+          [
+            4.087329,
+            40.0695449
+          ],
+          [
+            4.0873659,
+            40.0694843
+          ],
+          [
+            4.0874555,
+            40.0694529
+          ],
+          [
+            4.0874577,
+            40.0694283
+          ],
+          [
+            4.0875918,
+            40.0693606
+          ],
+          [
+            4.0876482,
+            40.0693606
+          ],
+          [
+            4.0877447,
+            40.0695884
+          ],
+          [
+            4.0877569,
+            40.0696366
+          ],
+          [
+            4.0876883,
+            40.0697016
+          ],
+          [
+            4.0877099,
+            40.0698101
+          ],
+          [
+            4.0875677,
+            40.0698696
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Architecturalcomplex; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/609844633/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Ecclesiastical complex (Port of Sanitja, 6th century AD)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/293494233",
+          "citationDetail": "Way 293494233",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=293494233",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 640,
+      "title": "OSM location of Ecclesiastical complex (Port of Sanitja, 6th century AD)",
+      "provenance": "OpenStreetMap (Way 293494233, version 18, osm:changeset=141382596, 2023-09-17T13:43:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-07-20T03:17:45Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.0875677,
+            40.0698696
+          ],
+          [
+            4.0874603,
+            40.0697403
+          ],
+          [
+            4.0873612,
+            40.0696171
+          ],
+          [
+            4.087329,
+            40.0695449
+          ],
+          [
+            4.0873659,
+            40.0694843
+          ],
+          [
+            4.0874555,
+            40.0694529
+          ],
+          [
+            4.0874577,
+            40.0694283
+          ],
+          [
+            4.0875918,
+            40.0693606
+          ],
+          [
+            4.0876482,
+            40.0693606
+          ],
+          [
+            4.0877447,
+            40.0695884
+          ],
+          [
+            4.0877569,
+            40.0696366
+          ],
+          [
+            4.0876883,
+            40.0697016
+          ],
+          [
+            4.0877099,
+            40.0698101
+          ],
+          [
+            4.0875677,
+            40.0698696
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/609844633/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-21T18:06:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-23T14:15:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T15:08:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T15:08:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T14:18:10Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-20T03:18:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-20T03:17:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-20T03:17:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-19T14:18:16Z",
+      "associationCertainty": "certain",
+      "title": "Sanisera",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/609844633/8962397467",
+      "connectionType": "at",
+      "id": "8962397467",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T14:18:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T14:18:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T14:18:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/266026",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sanisera#3._Ecclesiastical_complex",
+      "citationDetail": "Sanisera #3. Ecclesiastical complex",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "609844633",
+  "subject": [],
+  "title": "Ecclesiastical complex, Port of Sanitja",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Archaeological excavations in 2008 and 2010 revealed an ecclesiastical complex at the west side of the port of Sanitja on the Spanish island of Menorca. This complex may date to the sixth century CE.",
+  "reprPoint": [
+    4.087562814476016,
+    40.069606070666126
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    4.087329,
+    40.0693606,
+    4.0877569,
+    40.0698696
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/266026"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-19T14:18:15Z",
+  "uri": "https://pleiades.stoa.org/places/609844633",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-21T18:07:28Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-23T14:15:57Z"
+    },
+    {
+      "comment": "sumary",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-23T14:15:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T15:08:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T15:08:30Z"
+    },
+    {
+      "comment": "reference, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T15:07:33Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T14:20:09Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T14:18:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T14:18:15Z"
+    }
+  ]
+}

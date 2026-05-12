@@ -1,0 +1,702 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2531154,
+            35.4611047
+          ],
+          [
+            43.2542124,
+            35.4608076
+          ],
+          [
+            43.2537779,
+            35.4599272
+          ],
+          [
+            43.2526675,
+            35.4603226
+          ],
+          [
+            43.2531154,
+            35.4611047
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-aka-tu-house-at-assur",
+      "properties": {
+        "snippet": "Temple-2; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/416772250/osm-location-of-the-aka-tu-house-at-assur",
+        "description": "Polygon representing the extent of the Ak\u012btu-house at Assur, derived from an OpenStreetMap Way after Gries 2017 plate 1.",
+        "location_precision": "precise",
+        "title": "OSM location of the Ak\u012btu-house at Assur"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1066310802",
+          "citationDetail": "Way 1066310802",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1066310802",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/4661083",
+          "citationDetail": "19 figure 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 3/2",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CAKUI9UC",
+          "formattedCitation": "<div class=\"csl-entry\">Grayson, Albert Kirk, and Jamie R Novotny. <i>The Royal Inscriptions of Sennacherib, King of Assyria</i>. Winona Lake, Ind.: Eisenbrauns, 2012. http://public.eblib.com/choice/publicfullrecord.aspx?p=3155654.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/992438862",
+          "citationDetail": "plate 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gries 2017",
+          "bibliographicURI": "",
+          "formattedCitation": "Gries, H. 2017. Der Assur-Tempel in Assur: Das assyrische Hauptheiligtum im Wandel der Zeit (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 149). Wiesbaden.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-the-aka-tu-house-at-assur",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -540,
+      "title": "OSM location of the Ak\u012btu-house at Assur",
+      "provenance": "OpenStreetMap (Way 1066310802, version 2, osm:changeset=121878084, 2022-06-03T06:39:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon representing the extent of the Ak\u012btu-house at Assur, derived from an OpenStreetMap Way after Gries 2017 plate 1.",
+      "created": "2022-06-03T07:24:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2531154,
+            35.4611047
+          ],
+          [
+            43.2542124,
+            35.4608076
+          ],
+          [
+            43.2537779,
+            35.4599272
+          ],
+          [
+            43.2526675,
+            35.4603226
+          ],
+          [
+            43.2531154,
+            35.4611047
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/416772250/osm-location-of-the-aka-tu-house-at-assur",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:38:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:53:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:32:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:24:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:24:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "As part of his post-689-BC reforms, the Neo-Assyrian king Sennacherib (704\u2013681 BC) had a new New Year's temple constructed outside the western wall of the city.",
+      "contributors": [],
+      "created": "2022-06-03T07:51:38Z",
+      "associationCertainty": "certain",
+      "title": "Ashur/\u2018Lamban\u2019?/\u2018Liba(nai)\u2019?",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/416772250/ashur-2018lamban2019-2018liba-nai-2019",
+      "connectionType": "near",
+      "id": "ashur-2018lamban2019-2018liba-nai-2019",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:38:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:53:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:51:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:51:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893945",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap3/rinap32introduction/buildingactivitiesatassur/index.html#rinap32akitu",
+          "citationDetail": "22",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "RINAP 3/1",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CAKUI9UC",
+          "formattedCitation": "<div class=\"csl-entry\">Grayson, Albert Kirk, and Jamie R Novotny. <i>The Royal Inscriptions of Sennacherib, King of Assyria</i>. Winona Lake, Ind.: Eisenbrauns, 2012. http://public.eblib.com/choice/publicfullrecord.aspx?p=3155654.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q003965/",
+      "citationDetail": "Sennacherib 160",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q003973/",
+      "citationDetail": "Sennacherib 168",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/rinap/rinap3/rinap32introduction/buildingactivitiesatassur/index.html#rinap32akitu",
+      "citationDetail": "22",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RINAP 3/2",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CAKUI9UC",
+      "formattedCitation": "<div class=\"csl-entry\">Grayson, Albert Kirk, and Jamie R Novotny. <i>The Royal Inscriptions of Sennacherib, King of Assyria</i>. Winona Lake, Ind.: Eisenbrauns, 2012. http://public.eblib.com/choice/publicfullrecord.aspx?p=3155654.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "173\u2013177",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Frahm 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5SREVWZI",
+      "formattedCitation": "<div class=\"csl-entry\">Frahm, Eckart. <i>Einleitung in die Sanherib-Inschriften</i>. Archiv fur Orientforschung. Beihefte, 26. Wien: Institut f\u00fcr Orientalistik der Universit\u00e4t Wien, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/4661083",
+      "citationDetail": "74\u201380",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Haller 1955",
+      "bibliographicURI": "",
+      "formattedCitation": "Haller, A. 1955. Die Heiligt\u00fcmer des Gottes Assur und der Sin-\u0160ama\u0161-Tempel in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient-Gesellschaft 67). Berlin, 1955",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://zenon.dainst.org/Record/000534312",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Miglus 1993",
+      "bibliographicURI": "",
+      "formattedCitation": "Miglus, P. 1993. \u201cArchitektur der Festh\u00e4user in Assur und Uruk sowie des A\u0161\u0161ur-Tempels in K\u0101r-Tukult\u012b-Ninurta,\u201d\u00a0Baghdader Mitteilungen 24 (1993): 193\u2013215.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Eabbaugga",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q003965/",
+          "citationDetail": "Sennacherib 160",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "eabbaugga",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "According to an Akkadian inscription of the Neo-Assyrian king Sennacherib (704\u2013681 BC), the Sumerian, ceremonial name of the New Year\u2019s temple at Assur was Eabbaugga (\"House Where Ti\u0101mat Is Put To Death\u201d).",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "sux",
+      "created": "2022-06-03T07:39:01Z",
+      "uri": "https://pleiades.stoa.org/places/416772250/eabbaugga",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:38:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:53:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:39:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:39:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:39:01Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Edubdubabba ",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q003965/",
+          "citationDetail": "Sennacherib 160",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "edubdubabba",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "According to an Akkadian inscription of the Neo-Assyrian king Sennacherib (704\u2013681 BC), the Sumerian, ceremonial name of the cella of New Year\u2019s temple at Assur was Edubdubabba (\"House That Makes Ti\u0101mat Tremble\u201d).",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "sux",
+      "created": "2022-06-03T07:41:07Z",
+      "uri": "https://pleiades.stoa.org/places/416772250/edubdubabba",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:38:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:53:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:41:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:41:07Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "b\u012bt ak\u012bti",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q003973/",
+          "citationDetail": "Sennacherib 168",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "bit-akiti",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "The \u201ceveryday,\u201d Akkadian name of the New Year\u2019s Temple, the ak\u012btu-house, at Assur.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2022-06-03T07:44:00Z",
+      "uri": "https://pleiades.stoa.org/places/416772250/bit-akiti",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:38:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:53:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:44:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:44:00Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "b\u012bt ak\u012bt \u1e63\u0113ri",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q003979/",
+          "citationDetail": "Sennacherib 174",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "bit-akit-seri",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "A longer, \u201ceveryday\u201d name of the New Year\u2019s Temple at Assur, meaning \"ak\u012btu-house of the steppe.\"",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2022-06-03T07:48:13Z",
+      "uri": "https://pleiades.stoa.org/places/416772250/bit-akit-seri",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-03T12:38:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:53:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:48:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-03T07:48:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "416772250",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "New Year's Festival House at Assur",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>Inscriptions of the Neo-Assyrian king Sennacherib (704\u2013681 BC) infer that the original New Year's temple at Assur had been situated outside the city and that its location had long been forgotten. That seventh-century BC ruler had the structure constructed from (inscribed) stone blocks. The planning of the temple proved difficult: The original ground plan was abandoned and replaced by a newer one with a moderately different plan. The building was surrounded by lush, well-irrigated gardens and fruit orchards; the species of plants and trees are not known. In the main entrance of the temple, Sennacherib had an ornate bronze door cast using a new bronze casting technique. That elaborate work of art depicted an epic battle, representing a scene from the Assyrian version of <i>En\u016bma eli\u0161</i>, the Babylonian poem of creation. In order to connect the New Year's temple to the <a class=\"external-link\" href=\"../457530554\" target=\"_self\" title=\"\">A\u0161\u0161ur temple</a>, Sennacherib had a new stone processional way constructed.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "As part of his post-689-BC religious reforms, the Neo-Assyrian king Sennacherib (704\u2013681 BC) had a new New Year\u2019s festival house (ak\u012btu-house) constructed outside the western wall of Assur. This was an attempt to replicate the cultic topography of Babylon. The Sumerian ceremonial names of that holy building and its cella are Eabbaugga (\"House Where Ti\u0101mat Is Put To Death\") and Edubdubabba (\"House That Makes Ti\u0101mat Tremble\u201d) respectively.",
+  "reprPoint": [
+    43.25345166615267,
+    35.46053302949843
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    43.2526675,
+    35.4599272,
+    43.2542124,
+    35.4611047
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893945"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-03T06:55:23Z",
+  "uri": "https://pleiades.stoa.org/places/416772250",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-03T12:38:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-03T12:38:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T07:53:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T07:36:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T07:23:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T07:22:52Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T06:55:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-03T06:55:23Z"
+    }
+  ]
+}

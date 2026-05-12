@@ -1,0 +1,380 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.237009,
+          37.402655
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-approximate-center-of-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/540461818/imagery-location-approximate-center-of-necropolis",
+        "description": "Location determined in Google Earth after Figure 11 (page 123) of Slawisch 2018.",
+        "location_precision": "precise",
+        "title": "Imagery Location: Approximate Center of Necropolis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.journals.uchicago.edu/doi/10.3764/aja.122.1.0101",
+          "citationDetail": "page 123 Figure 11",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Slawisch 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MUZ6BHN6",
+          "formattedCitation": "<div class=\"csl-entry\">Slawisch, Anja, and Toby Christopher Wilkinson. \u201cProcessions, Propaganda, and Pixels: Reconstructing the Sacred Way Between Miletos and Didyma.\u201d <i>American Journal of Archaeology</i> 122, no. 1 (January 2018): 101\u201343. https://doi.org/10.3764/aja.122.1.0101.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-approximate-center-of-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -550,
+      "title": "Imagery Location: Approximate Center of Necropolis",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Location determined in Google Earth after Figure 11 (page 123) of Slawisch 2018.",
+      "created": "2023-08-16T20:38:06Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.237009,
+          37.402655
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/540461818/imagery-location-approximate-center-of-necropolis",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-17T02:17:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:40:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:38:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:38:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-08-16T20:40:17Z",
+      "associationCertainty": "certain",
+      "title": "Panormos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/540461818/panormos",
+      "connectionType": "at",
+      "id": "panormos",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-17T02:17:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:40:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:40:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:40:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599863",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.panormos.de/pdfs/SlawischWilkinson2016_Panormos_eDAI-F2016-2_.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Slawisch 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PALM3JAB",
+          "formattedCitation": "<div class=\"csl-entry\">Anja Slawisch, and Toby C. Wilkinson. \u201cPANORMOS, T\u00dcRKEI: Die Arbeiten Der Jahre 2014 Und 2015.\u201d <i>E -FORSCHUNGSBERICHTE DES DAI</i>, no. Faszikel 2 (2016): 114\u201318. https://www.panormos.de/pdfs/SlawischWilkinson2016_Panormos_eDAI-F2016-2_.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X23003449",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Meiggs 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RCIRI4FE",
+      "formattedCitation": "<div class=\"csl-entry\">Meiggs, David, Anja Slawisch, and Toby Wilkinson. \u201cA Preliminary Assessment of Ancient Diet and Mobility in Archaic Period Asia Minor: A View from Panormos, near Didyma.\u201d <i>Journal of Archaeological Science: Reports</i> 51 (October 1, 2023): 104169. https://doi.org/10.1016/j.jasrep.2023.104169.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.panormos.de/pdfs/SlawischWilkinson2016_Panormos_eDAI-F2016-2_.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Slawisch 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PALM3JAB",
+      "formattedCitation": "<div class=\"csl-entry\">Anja Slawisch, and Toby C. Wilkinson. \u201cPANORMOS, T\u00dcRKEI: Die Arbeiten Der Jahre 2014 Und 2015.\u201d <i>E -FORSCHUNGSBERICHTE DES DAI</i>, no. Faszikel 2 (2016): 114\u201318. https://www.panormos.de/pdfs/SlawischWilkinson2016_Panormos_eDAI-F2016-2_.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.panormos.de/pdfs/SlawischBilici2013_dai-jahresheft_p15_DE.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Slawisch 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC6UKL4K",
+      "formattedCitation": "<div class=\"csl-entry\">Slawisch, Anja, and Mehmet Bilici. \u201cGrabungen in Der Nekropole von Panormos.\u201d <i>DAI Instanbul</i>, 2013, 15. https://www.panormos.de/pdfs/SlawischBilici2013_dai-jahresheft_p15_DE.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.panormos.de/pdfs/Slawisch2014_eFB14-3_Panormos.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Slawisch 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GDV4WBG7",
+      "formattedCitation": "<div class=\"csl-entry\">Slawisch, Anja. \u201cPANORMOS, T\u00dcRKEI: Die Arbeiten Der Jahre 2012 Und 2013.\u201d <i>E -FORSCHUNGSBERICHTE DES DAI</i>, no. Faszikel 3 (2014): 114\u201319. https://www.panormos.de/pdfs/Slawisch2014_eFB14-3_Panormos.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journals.uchicago.edu/doi/10.3764/aja.122.1.0101",
+      "citationDetail": "pages 118-123 and Figure 11",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Slawisch 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MUZ6BHN6",
+      "formattedCitation": "<div class=\"csl-entry\">Slawisch, Anja, and Toby Christopher Wilkinson. \u201cProcessions, Propaganda, and Pixels: Reconstructing the Sacred\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0  Way Between Miletos and Didyma.\u201d <i>American Journal of Archaeology</i> 122, no. 1 (January 2018): 101\u201343. https://doi.org/10.3764/aja.122.1.0101.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mavi\u015fehir",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.panormos.de/pdfs/SlawischWilkinson2016_Panormos_eDAI-F2016-2_.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Slawisch 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PALM3JAB",
+          "formattedCitation": "<div class=\"csl-entry\">Anja Slawisch, and Toby C. Wilkinson. \u201cPANORMOS, T\u00dcRKEI: Die Arbeiten Der Jahre 2014 Und 2015.\u201d <i>E -FORSCHUNGSBERICHTE DES DAI</i>, no. Faszikel 2 (2016): 114\u201318. https://www.panormos.de/pdfs/SlawischWilkinson2016_Panormos_eDAI-F2016-2_.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "mavisehir",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2023-08-16T20:39:21Z",
+      "uri": "https://pleiades.stoa.org/places/540461818/mavisehir",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Mavi\u015fehir",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-17T02:17:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:40:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:39:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T20:39:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "540461818",
+  "subject": [],
+  "title": "Mavi\u015fehir Archaic Necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An extensive archaic necropolis located on the eastern edge of modern Mavi\u015fehir in Turkey, which was associated with ancient Panormos, the port of Didyma.",
+  "reprPoint": [
+    27.237009,
+    37.402655
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    27.237009,
+    37.402655,
+    27.237009,
+    37.402655
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599863"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-16T20:10:46Z",
+  "uri": "https://pleiades.stoa.org/places/540461818",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-17T02:17:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T20:40:35Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T20:38:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T20:34:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T20:10:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T20:10:46Z"
+    }
+  ]
+}

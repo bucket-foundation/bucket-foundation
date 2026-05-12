@@ -1,0 +1,518 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.061005,
+          36.14945
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-habuba-kabira-south",
+      "properties": {
+        "snippet": "Settlement; 4000 BC - 2950 BC",
+        "link": "https://pleiades.stoa.org/places/494566507/imagery-location-of-habuba-kabira-south",
+        "description": "Point representing the Google Earth location of Habuba Kabira (South), after Strommenger et al. 2014",
+        "location_precision": "precise",
+        "title": "Imagery location of Habuba Kabira (South)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "uruk-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/uruk-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-of-habuba-kabira-south",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2950,
+      "title": "Imagery location of Habuba Kabira (South)",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point representing the Google Earth location of Habuba Kabira (South), after Strommenger et al. 2014",
+      "created": "2017-10-05T19:36:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.061005,
+          36.14945
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/494566507/imagery-location-of-habuba-kabira-south",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T01:48:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:42:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:36:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:36:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -2950,
+      "description": "",
+      "contributors": [],
+      "created": "2017-10-05T19:41:10Z",
+      "associationCertainty": "certain",
+      "title": "Euphrates",
+      "start": -4000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/494566507/euphrates",
+      "connectionType": "on",
+      "id": "euphrates",
+      "attestations": [
+        {
+          "timePeriod": "uruk-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/uruk-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T01:48:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:42:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:41:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:41:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912849",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Bd. 2, Beilage 3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Strommenger et al. 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T933STLI",
+          "formattedCitation": "<div class=\"csl-entry\">Strommenger, Eva, Kay Kohlmeyer, Dietrich S\u00fcrenhagen, Dessa Rittig, Eva Strommenger, Eva Strommenger, and Deutsche Orient-Gesellschaft. <i>Ausgrabungen in Habuba Kabira</i>. 4 vols. Wissenschaftliche Ver\u00f6ffentlichung der Deutschen Orient-Gesellschaft 141, 151, 2014\u20132017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": -2950,
+      "description": "",
+      "contributors": [],
+      "created": "2017-10-05T19:42:11Z",
+      "associationCertainty": "certain",
+      "title": "Tell Habuba Kabira",
+      "start": -4000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/494566507/tell-habuba-kabira",
+      "connectionType": "near",
+      "id": "tell-habuba-kabira",
+      "attestations": [
+        {
+          "timePeriod": "uruk-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/uruk-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T01:48:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:42:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:42:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:42:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/923122730",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Bd. 2, Beilage 3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Strommenger et al. 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T933STLI",
+          "formattedCitation": "<div class=\"csl-entry\">Strommenger, Eva, Kay Kohlmeyer, Dietrich S\u00fcrenhagen, Dessa Rittig, Eva Strommenger, Eva Strommenger, and Deutsche Orient-Gesellschaft. <i>Ausgrabungen in Habuba Kabira</i>. 4 vols. Wissenschaftliche Ver\u00f6ffentlichung der Deutschen Orient-Gesellschaft 141, 151, 2014\u20132017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kohlmeyer 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PNM9WUUE",
+      "formattedCitation": "<div class=\"csl-entry\">Kohlmeyer, Kay. \u201cHabuba Kabira.\u201d <i>The Oxford Encyclopedia of Archaeology in the Near East</i>. New York: Oxford University Press, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Strommenger et al. 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T933STLI",
+      "formattedCitation": "<div class=\"csl-entry\">Strommenger, Eva, Kay Kohlmeyer, Dietrich S\u00fcrenhagen, Dessa Rittig, Eva Strommenger, Eva Strommenger, and Deutsche Orient-Gesellschaft. <i>Ausgrabungen in Habuba Kabira</i>. 4 vols. Wissenschaftliche Ver\u00f6ffentlichung der Deutschen Orient-Gesellschaft 141, 151, 2014\u20132017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Habuba_Kabira",
+      "citationDetail": "Habuba Kabira",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Habuba Kabira.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Habuba Kabira (South), Habuba Kabira-S\u00fcd",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Strommenger et al. 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T933STLI",
+          "formattedCitation": "<div class=\"csl-entry\">Strommenger, Eva, Kay Kohlmeyer, Dietrich S\u00fcrenhagen, Dessa Rittig, Eva Strommenger, Eva Strommenger, and Deutsche Orient-Gesellschaft. <i>Ausgrabungen in Habuba Kabira</i>. 4 vols. Wissenschaftliche Ver\u00f6ffentlichung der Deutschen Orient-Gesellschaft 141, 151, 2014\u20132017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kohlmeyer 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PNM9WUUE",
+          "formattedCitation": "<div class=\"csl-entry\">Kohlmeyer, Kay. \u201cHabuba Kabira.\u201d <i>The Oxford Encyclopedia of Archaeology in the Near East</i>. New York: Oxford University Press, 1997.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Habuba_Kabira",
+          "citationDetail": "Habuba Kabira",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Habuba Kabira.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-10-05.2110340786",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2017-10-05T19:38:10Z",
+      "uri": "https://pleiades.stoa.org/places/494566507/name.2017-10-05.2110340786",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T01:48:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:42:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:38:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:38:10Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tell Qannas, Tell Qanas, Tall Qannas",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kohlmeyer 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PNM9WUUE",
+          "formattedCitation": "<div class=\"csl-entry\">Kohlmeyer, Kay. \u201cHabuba Kabira.\u201d <i>The Oxford Encyclopedia of Archaeology in the Near East</i>. New York: Oxford University Press, 1997.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Bd. 2, Beilage 3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Strommenger et al. 2014",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/T933STLI",
+          "formattedCitation": "<div class=\"csl-entry\">Strommenger, Eva, Kay Kohlmeyer, Dietrich S\u00fcrenhagen, Dessa Rittig, Eva Strommenger, Eva Strommenger, and Deutsche Orient-Gesellschaft. <i>Ausgrabungen in Habuba Kabira</i>. 4 vols. Wissenschaftliche Ver\u00f6ffentlichung der Deutschen Orient-Gesellschaft 141, 151, 2014\u20132017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-10-05.3339888116",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "arb",
+      "created": "2017-10-05T19:40:20Z",
+      "uri": "https://pleiades.stoa.org/places/494566507/name.2017-10-05.3339888116",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-06T01:48:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:42:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:40:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2017-10-05T19:40:20Z"
+        }
+      ]
+    }
+  ],
+  "id": "494566507",
+  "subject": [],
+  "title": "Habuba Kabira (South)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The southernmost of two associated settlements located on the western bank of the Euphrates, and one of the only examples of large-scale residential architecture from the Late Uruk period. Rescue excavations were conducted at the site before it was inundated by the Tabqa Dam Reservoir in the early 1970s.",
+  "reprPoint": [
+    38.061005,
+    36.14945
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    38.061005,
+    36.14945,
+    38.061005,
+    36.14945
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912849",
+    "https://pleiades.stoa.org/places/923122730"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-10-05T19:34:55Z",
+  "uri": "https://pleiades.stoa.org/places/494566507",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-06T01:48:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2017-10-05T19:42:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2017-10-05T19:35:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2017-10-05T19:34:55Z"
+    }
+  ]
+}

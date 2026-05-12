@@ -1,0 +1,339 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.3566426,
+            15.4052687
+          ],
+          [
+            45.3559559,
+            15.4054445
+          ],
+          [
+            45.3553176,
+            15.4052894
+          ],
+          [
+            45.3550708,
+            15.4049274
+          ],
+          [
+            45.3549421,
+            15.4045395
+          ],
+          [
+            45.3547543,
+            15.4037017
+          ],
+          [
+            45.3552586,
+            15.4034069
+          ],
+          [
+            45.3560096,
+            15.4030242
+          ],
+          [
+            45.3567123,
+            15.4032879
+          ],
+          [
+            45.3570396,
+            15.4035569
+          ],
+          [
+            45.3570986,
+            15.4036448
+          ],
+          [
+            45.3571093,
+            15.4037379
+          ],
+          [
+            45.3570557,
+            15.4048188
+          ],
+          [
+            45.3569698,
+            15.4049791
+          ],
+          [
+            45.3566426,
+            15.4052687
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "awam-tempel",
+      "properties": {
+        "snippet": "Cemetery, Temple-2; 1000 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/93794091/awam-tempel",
+        "description": "Polygon representing the location of the Awam temple and burial ground, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of Awam Tempel"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/97776842",
+          "citationDetail": "Way 97776842",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=97776842",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "awam-tempel",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -1,
+      "title": "OSM location of Awam Tempel",
+      "provenance": "OpenStreetMap (Way 97776842, version 2, osm:changeset=7179520, 2011-02-04T01:13:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        "temple-2"
+      ],
+      "description": "Polygon representing the location of the Awam temple and burial ground, derived from an OpenStreetMap Way.",
+      "created": "2021-05-20T17:46:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.3566426,
+            15.4052687
+          ],
+          [
+            45.3559559,
+            15.4054445
+          ],
+          [
+            45.3553176,
+            15.4052894
+          ],
+          [
+            45.3550708,
+            15.4049274
+          ],
+          [
+            45.3549421,
+            15.4045395
+          ],
+          [
+            45.3547543,
+            15.4037017
+          ],
+          [
+            45.3552586,
+            15.4034069
+          ],
+          [
+            45.3560096,
+            15.4030242
+          ],
+          [
+            45.3567123,
+            15.4032879
+          ],
+          [
+            45.3570396,
+            15.4035569
+          ],
+          [
+            45.3570986,
+            15.4036448
+          ],
+          [
+            45.3571093,
+            15.4037379
+          ],
+          [
+            45.3570557,
+            15.4048188
+          ],
+          [
+            45.3569698,
+            15.4049791
+          ],
+          [
+            45.3566426,
+            15.4052687
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/93794091/awam-tempel",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-20T18:29:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-05-20T17:49:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-05-20T17:48:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2021-05-20T17:46:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-05-20T17:46:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1202593341",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "O'Neill 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8VYG6CB6",
+      "formattedCitation": "<div class=\"csl-entry\">O\u2019Neill, D\u2019Arne. <i>The Stone and Metal Miniature Repertoire of the Aw\u0101m Cemetery M\u0101rib (Yemen)</i>. Arch\u00e4ologische Berichte Aus Dem Yemen, Bd. 15. Wiesbaden: Reichert Verlag, 2020. http://www.worldcat.org/oclc/1202593341.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Awwam",
+      "citationDetail": "Awwam",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "93794091",
+  "subject": [],
+  "title": "'Aw\u0101m",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ruins of the Sabaean temple dedicated to Almaqah and its associated burial ground are located near the town of M\u0101rib, Yemen.",
+  "reprPoint": [
+    45.35598723300711,
+    15.40424209746458
+  ],
+  "placeTypes": [
+    "cemetery",
+    "temple-2"
+  ],
+  "bbox": [
+    45.3547543,
+    15.4030242,
+    45.3571093,
+    15.4054445
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/39379"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-05-20T17:46:40Z",
+  "uri": "https://pleiades.stoa.org/places/93794091",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-20T19:11:13Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-20T18:29:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2021-05-20T17:49:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2021-05-20T17:46:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2021-05-20T17:46:40Z"
+    }
+  ]
+}

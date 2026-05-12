@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.5220919,
+            37.6778668
+          ],
+          [
+            30.522167,
+            37.6779538
+          ],
+          [
+            30.5222985,
+            37.6781215
+          ],
+          [
+            30.522328,
+            37.6781916
+          ],
+          [
+            30.5223253,
+            37.6782552
+          ],
+          [
+            30.5222958,
+            37.6783614
+          ],
+          [
+            30.5222394,
+            37.6784612
+          ],
+          [
+            30.5221509,
+            37.6785482
+          ],
+          [
+            30.5220866,
+            37.6785949
+          ],
+          [
+            30.52199,
+            37.6786374
+          ],
+          [
+            30.5219256,
+            37.6786543
+          ],
+          [
+            30.5218264,
+            37.6786734
+          ],
+          [
+            30.5216896,
+            37.6786756
+          ],
+          [
+            30.5215421,
+            37.6786586
+          ],
+          [
+            30.5214482,
+            37.6786331
+          ],
+          [
+            30.5213865,
+            37.6785864
+          ],
+          [
+            30.5213141,
+            37.6785015
+          ],
+          [
+            30.5211701,
+            37.6782316
+          ],
+          [
+            30.5220919,
+            37.6778668
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/62651370/osm-location-of-roman-theater",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/211483629",
+          "citationDetail": "Way 211483629",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=211483629",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM Location of Roman theater",
+      "provenance": "OpenStreetMap (Way 211483629, version 4, osm:changeset=61618930, 2018-08-13T09:15:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-31T16:45:04Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.5220919,
+            37.6778668
+          ],
+          [
+            30.522167,
+            37.6779538
+          ],
+          [
+            30.5222985,
+            37.6781215
+          ],
+          [
+            30.522328,
+            37.6781916
+          ],
+          [
+            30.5223253,
+            37.6782552
+          ],
+          [
+            30.5222958,
+            37.6783614
+          ],
+          [
+            30.5222394,
+            37.6784612
+          ],
+          [
+            30.5221509,
+            37.6785482
+          ],
+          [
+            30.5220866,
+            37.6785949
+          ],
+          [
+            30.52199,
+            37.6786374
+          ],
+          [
+            30.5219256,
+            37.6786543
+          ],
+          [
+            30.5218264,
+            37.6786734
+          ],
+          [
+            30.5216896,
+            37.6786756
+          ],
+          [
+            30.5215421,
+            37.6786586
+          ],
+          [
+            30.5214482,
+            37.6786331
+          ],
+          [
+            30.5213865,
+            37.6785864
+          ],
+          [
+            30.5213141,
+            37.6785015
+          ],
+          [
+            30.5211701,
+            37.6782316
+          ],
+          [
+            30.5220919,
+            37.6778668
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/62651370/osm-location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-05T04:01:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T17:00:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:59:45Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:46:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:45:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:45:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-07T14:05:13Z",
+      "associationCertainty": "certain",
+      "title": "Sagalassos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/62651370/7139260994",
+      "connectionType": "at",
+      "id": "7139260994",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:05:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:05:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T14:05:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/639087",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/8024/",
+      "citationDetail": "8024",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Sagalassos",
+      "citationDetail": "Sagalassos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/3642954",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vandeput 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KBACJV5W",
+      "formattedCitation": "<div class=\"csl-entry\">Vandeput, Lutgarde. \u201cThe Theatre-Fa\u00e7ade at Sagalassos.\u201d <i>Anatolian Studies</i> 42 (1992): 99\u2013117. https://doi.org/10.2307/3642954.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "62651370",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Theater of Sagalassos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Theater of Sagalassos dates to the later second century.",
+  "reprPoint": [
+    30.52178337177176,
+    37.67829987867659
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    30.5211701,
+    37.6778668,
+    30.522328,
+    37.6786756
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/639087"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-07T14:05:12Z",
+  "uri": "https://pleiades.stoa.org/places/62651370",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-05T04:01:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-14T18:28:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-14T15:04:35Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-14T15:04:24Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:09:42Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:05:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T14:05:12Z"
+    }
+  ]
+}

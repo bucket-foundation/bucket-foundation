@@ -1,0 +1,343 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0952017,
+          42.216757
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-modern-vejano",
+      "properties": {
+        "snippet": "Settlement-modern; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/765136701/osm-location-of-modern-vejano",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of modern Vejano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/72964345",
+          "citationDetail": "Node 72964345",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=72964345",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-modern-vejano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2100,
+      "title": "OSM location of modern Vejano",
+      "provenance": "OpenStreetMap (Node 72964345, version 5, osm:changeset=144111517, 2023-11-16T20:17:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2018-01-07T22:48:45Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.0952017,
+          42.216757
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/765136701/osm-location-of-modern-vejano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-13T02:05:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-10T08:06:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-08T15:57:08Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-07T22:49:06Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-07T22:48:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-07T22:48:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-08T14:27:57Z",
+      "associationCertainty": "certain",
+      "title": "Via Clodia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/765136701/via-clodia",
+      "connectionType": "on",
+      "id": "via-clodia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-10T08:06:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-08T15:57:09Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-08T14:28:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-08T14:27:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/737328394",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Vejano",
+          "citationDetail": "Vejano",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Vejano",
+      "citationDetail": "Vejano",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Di Gennaro 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z28TSTD5",
+      "formattedCitation": "<div class=\"csl-entry\">Di Gennaro, Francesco, Stefania Favorito, and Flavia Trucco. \u201cGiacimento dell\u2019et\u00e0 del bronzo alle falde della rupe di Vejano.\u201d In <i>L\u2019Etruria tra Italia, Europa e mondo mediterraneo\u202f: ricerche e scavi\u202f: atti del quarto incontro di studi, Manciano, Montalto di Castro, Valentano, 12-14 settembre 1997</i>, 437\u201346. Milano: Centro studi di preistoria e archeologia, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cosentino 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ND7JN2CX",
+      "formattedCitation": "<div class=\"csl-entry\">Cosentino, Silvia, and Jacopo De Grossi Mazzorin. \u201cArcheozoologia e paleobotanica dell\u2019insediamento protostorico del borgo di Vejano (VT).\u201d In <i>L\u2019Etruria tra Italia, Europa e mondo mediterraneo\u202f: ricerche e scavi\u202f: atti del quarto incontro di studi, Manciano, Montalto di Castro, Valentano, 12-14 settembre 1997</i>, 447\u201360. Milano: Centro studi di preistoria e archeologia, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lombardi 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/92UPR9NN",
+      "formattedCitation": "<div class=\"csl-entry\">Lombardi, L. \u201cIl complesso archeologico di Fontiloro.\u201d In <i>Informazioni, 2,8.1993</i>, 17\u201320, Abb, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "16",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Franciosini 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FFE34HZP",
+      "formattedCitation": "<div class=\"csl-entry\">Franciosini, Luigi. \u201cArcheologia e progetto: paesaggi antichi lungo la via Clodia\u202f: tesi di laurea nella facolt\u00e0 di Architettura.\u201d Gangemi, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Damiani 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/82MY3QGW",
+      "formattedCitation": "<div class=\"csl-entry\">Damiani, Isabella. <i>L\u2019et\u00e0 del bronzo recente nell\u2019Italia centro-meridionale</i>. 1 vols. Grandi contesti e problemi della protostoria italiana 12. Florence: Insegna del Giglio, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "765136701",
+  "subject": [],
+  "title": "Vejano",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>Evidence for Bronze Age settlement has been excavated in and around Vejano. Some scholars suggest that its name originally derives from the Etruscan city-state of Veii. By the first century B.C. the site was a Roman settlement along the Via Clodia.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Vejano, located in the Province of Viterbo, is located on the Mignone river approximately 60 km northwest of Rome. While the most visible monument on the site today is the fifteenth century castle known as \"La Rocca\", the site has a long settlement history reaching back to the Bronze Age.",
+  "reprPoint": [
+    12.0952017,
+    42.216757
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    12.0952017,
+    42.216757,
+    12.0952017,
+    42.216757
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/737328394",
+    "https://pleiades.stoa.org/places/675229373"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-07T22:44:41Z",
+  "uri": "https://pleiades.stoa.org/places/765136701",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-10T08:06:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-08T15:57:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-08T14:29:53Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-08T14:26:24Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-07T23:05:13Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-07T22:44:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-07T22:44:41Z"
+    }
+  ]
+}

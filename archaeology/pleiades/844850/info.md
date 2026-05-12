@@ -1,0 +1,14 @@
+# Aday
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/844850
+- **ID**: 844850
+- **Coords (lng, lat)**: [33.017529, 41.554234]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 86 D2 Aday

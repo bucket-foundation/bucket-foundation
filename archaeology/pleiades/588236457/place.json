@@ -1,0 +1,809 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.6484611,
+              49.7471434
+            ],
+            [
+              6.6483813,
+              49.7472509
+            ],
+            [
+              6.6484543,
+              49.7473687
+            ],
+            [
+              6.6482018,
+              49.7474849
+            ],
+            [
+              6.6477351,
+              49.7476555
+            ],
+            [
+              6.6477581,
+              49.7480436
+            ],
+            [
+              6.6479379,
+              49.7483686
+            ],
+            [
+              6.648167,
+              49.7487591
+            ],
+            [
+              6.6487544,
+              49.7490356
+            ],
+            [
+              6.6491587,
+              49.7489522
+            ],
+            [
+              6.6497326,
+              49.7488338
+            ],
+            [
+              6.6498997,
+              49.7482145
+            ],
+            [
+              6.649944,
+              49.7481301
+            ]
+          ],
+          [
+            [
+              6.6484611,
+              49.7471434
+            ],
+            [
+              6.6485514,
+              49.7471094
+            ],
+            [
+              6.6486213,
+              49.7470853
+            ],
+            [
+              6.648698,
+              49.7470703
+            ]
+          ],
+          [
+            [
+              6.649944,
+              49.7481301
+            ],
+            [
+              6.6497433,
+              49.7477121
+            ],
+            [
+              6.6496204,
+              49.7474816
+            ],
+            [
+              6.6494107,
+              49.7471436
+            ],
+            [
+              6.6493574,
+              49.7470653
+            ],
+            [
+              6.6493034,
+              49.7469859
+            ],
+            [
+              6.6492553,
+              49.7470348
+            ]
+          ],
+          [
+            [
+              6.648698,
+              49.7470703
+            ],
+            [
+              6.6488126,
+              49.7470495
+            ],
+            [
+              6.6489135,
+              49.7470347
+            ],
+            [
+              6.6489812,
+              49.7470297
+            ],
+            [
+              6.6490831,
+              49.7470268
+            ],
+            [
+              6.6491763,
+              49.7470298
+            ],
+            [
+              6.6492553,
+              49.7470348
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/588236457/location-of-roman-amphitheater",
+        "description": "Representative location based on an OpenStreetMap relation.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman amphitheater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/relation/4614126",
+          "citationDetail": "Relation 4614126",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=4614126",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Trier_Amphitheater",
+          "citationDetail": "Trier Amphitheater",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Trier Amphitheater.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.amphi-theatrum.de/1494.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "amphi-theatrum.de, 1494",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/",
+          "formattedCitation": "CIL 13.3708",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/",
+          "formattedCitation": "CIL 13.11330",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/",
+          "formattedCitation": "CIL 13.11331",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.roscheiderhof.de/kulturdb/client/einObjekt.php?id=3175",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Datenbank der Kulturg\u00fcter in der Region Trier, Amphitheater (2) Gartenfeld, Gemeinde Trier Olewigerstra\u00dfe",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-roman-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 640,
+      "title": "OSM location of Roman amphitheater",
+      "provenance": "OpenStreetMap (Relation 4614126, version 4, osm:changeset=42809479, 2016-10-11T18:10:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative location based on an OpenStreetMap relation.",
+      "created": "2014-02-09T16:27:45Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              6.6484611,
+              49.7471434
+            ],
+            [
+              6.6483813,
+              49.7472509
+            ],
+            [
+              6.6484543,
+              49.7473687
+            ],
+            [
+              6.6482018,
+              49.7474849
+            ],
+            [
+              6.6477351,
+              49.7476555
+            ],
+            [
+              6.6477581,
+              49.7480436
+            ],
+            [
+              6.6479379,
+              49.7483686
+            ],
+            [
+              6.648167,
+              49.7487591
+            ],
+            [
+              6.6487544,
+              49.7490356
+            ],
+            [
+              6.6491587,
+              49.7489522
+            ],
+            [
+              6.6497326,
+              49.7488338
+            ],
+            [
+              6.6498997,
+              49.7482145
+            ],
+            [
+              6.649944,
+              49.7481301
+            ]
+          ],
+          [
+            [
+              6.6484611,
+              49.7471434
+            ],
+            [
+              6.6485514,
+              49.7471094
+            ],
+            [
+              6.6486213,
+              49.7470853
+            ],
+            [
+              6.648698,
+              49.7470703
+            ]
+          ],
+          [
+            [
+              6.649944,
+              49.7481301
+            ],
+            [
+              6.6497433,
+              49.7477121
+            ],
+            [
+              6.6496204,
+              49.7474816
+            ],
+            [
+              6.6494107,
+              49.7471436
+            ],
+            [
+              6.6493574,
+              49.7470653
+            ],
+            [
+              6.6493034,
+              49.7469859
+            ],
+            [
+              6.6492553,
+              49.7470348
+            ]
+          ],
+          [
+            [
+              6.648698,
+              49.7470703
+            ],
+            [
+              6.6488126,
+              49.7470495
+            ],
+            [
+              6.6489135,
+              49.7470347
+            ],
+            [
+              6.6489812,
+              49.7470297
+            ],
+            [
+              6.6490831,
+              49.7470268
+            ],
+            [
+              6.6491763,
+              49.7470298
+            ],
+            [
+              6.6492553,
+              49.7470348
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/588236457/location-of-roman-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-03-09T19:24:19Z"
+        },
+        {
+          "comment": "updated with relation that replaced old point geometry",
+          "modifiedBy": "thomase",
+          "modified": "2017-03-09T19:23:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-21T15:50:10Z"
+        },
+        {
+          "comment": "added references",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T16:38:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T16:36:37Z"
+        },
+        {
+          "comment": "added references",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T16:36:28Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T16:28:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T16:27:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-09T16:27:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-02-24T19:29:44Z",
+      "associationCertainty": "certain",
+      "title": "Col. Augusta Treverorum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/588236457/5845637527",
+      "connectionType": "at",
+      "id": "5845637527",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T19:29:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T19:29:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-24T19:29:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/108894",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Trier_Amphitheater",
+      "citationDetail": "Trier Amphitheater",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Trier Amphitheater.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.amphi-theatrum.de/1494.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "amphi-theatrum.de, 1494",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/367",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "UNESCO World Heritage List, Roman Monuments, Cathedral of St Peter and Church of Our Lady in Trier",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.livius.org/articles/place/augusta-treverorum-trier/trier-photos/trier-amphitheater/?",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Livius.org: Trier, Amphitheater",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Amphitheatre in Trier",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Trier_Amphitheater",
+          "citationDetail": "Trier Amphitheater",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Trier Amphitheater.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.bcin.ca/Interface/openbcin.cgi?submit=submit&Chinkey=397142",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Otto and Fritz 1984, 106-115",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "trier-amphitheater",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-02-24T19:55:24Z",
+      "uri": "https://pleiades.stoa.org/places/588236457/trier-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Amphitheatre in Trier",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-03-09T19:24:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-24T20:17:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-24T19:55:32Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-24T19:55:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-24T19:55:24Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Das Amphitheater in Trier",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.bcin.ca/Interface/openbcin.cgi?submit=submit&Chinkey=397142",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Otto and Fritz 1984, 106-115",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "das-amphitheater-in-trier",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2017-02-24T20:18:19Z",
+      "uri": "https://pleiades.stoa.org/places/588236457/das-amphitheater-in-trier",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Das Amphitheater in Trier",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-03-09T19:24:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-24T20:18:28Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-24T20:18:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-24T20:18:19Z"
+        }
+      ]
+    }
+  ],
+  "id": "588236457",
+  "subject": [
+    "extant remains",
+    "amphitheater",
+    "UWHS"
+  ],
+  "title": "Roman amphitheater at Trier",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman amphitheater at Trier dates to the reign of Antoninus Pius and was renovated under Constantius Chlorus. The arena measures ca. 71 x 47.5 meters.",
+  "reprPoint": [
+    6.648860450005799,
+    49.74802080876646
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    6.6477351,
+    49.7469859,
+    6.649944,
+    49.7490356
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/108894"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-02-24T19:29:43Z",
+  "uri": "https://pleiades.stoa.org/places/588236457",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-03-09T19:24:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-24T19:50:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-24T19:50:00Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-24T19:29:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-24T19:29:43Z"
+    }
+  ]
+}

@@ -1,0 +1,420 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.3991071,
+            42.6258304
+          ],
+          [
+            25.3990936,
+            42.6257281
+          ],
+          [
+            25.3991066,
+            42.6257272
+          ],
+          [
+            25.3990952,
+            42.6256408
+          ],
+          [
+            25.3992116,
+            42.6256325
+          ],
+          [
+            25.3992235,
+            42.6257231
+          ],
+          [
+            25.3992365,
+            42.6257222
+          ],
+          [
+            25.3992494,
+            42.6258203
+          ],
+          [
+            25.3991071,
+            42.6258304
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-thracian-tomb-of-kazanlak",
+      "properties": {
+        "snippet": "Tomb, ; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/405244946/location-of-thracian-tomb-of-kazanlak",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Thracian Tomb of Kazanlak"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/212107109",
+          "citationDetail": "Way 212107109",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=212107109",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-thracian-tomb-of-kazanlak",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "OSM location of Thracian Tomb of Kazanlak",
+      "provenance": "OpenStreetMap (Way 212107109, version 15, osm:changeset=138539769, 2023-07-15T10:49:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-06-09T17:36:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.3991071,
+            42.6258304
+          ],
+          [
+            25.3990936,
+            42.6257281
+          ],
+          [
+            25.3991066,
+            42.6257272
+          ],
+          [
+            25.3990952,
+            42.6256408
+          ],
+          [
+            25.3992116,
+            42.6256325
+          ],
+          [
+            25.3992235,
+            42.6257231
+          ],
+          [
+            25.3992365,
+            42.6257222
+          ],
+          [
+            25.3992494,
+            42.6258203
+          ],
+          [
+            25.3991071,
+            42.6258304
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/405244946/location-of-thracian-tomb-of-kazanlak",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-25T19:48:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T23:07:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-06-10T14:30:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-09T17:38:01Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-09T17:37:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-09T17:36:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-09T17:36:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2019-08-25T12:42:56Z",
+      "associationCertainty": "certain",
+      "title": "Seuthopolis",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/405244946/seuthopolis",
+      "connectionType": "near",
+      "id": "seuthopolis",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-02T23:43:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-12T15:51:01Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-12T15:50:56Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-25T12:43:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-25T12:42:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/216981",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q301815",
+          "citationDetail": "Q301815",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/44",
+      "citationDetail": "44: Thracian Tomb of Kazanlak",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Thracian_Tomb_of_Kazanlak",
+      "citationDetail": "Thracian Tomb of Kazanlak",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Thracian Tomb of Kazanlak.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q301815",
+      "citationDetail": "Q301815: Thracian Tomb of Kazanlak",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "405244946",
+  "subject": [
+    "tomb",
+    "extant remains",
+    "UWHS"
+  ],
+  "title": "Thracian Tomb of Kazanlak",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "<p>Near the ancient site of <a class=\"internal-link\" href=\"../216981\" title=\"Seuthopolis\">Seuthopolis</a>.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fourth century BC Thracian tomb near the ancient city of Seuthopolis discovered in 1944 and inscribed as a UNESCO World Heritage Site in 1979.",
+  "reprPoint": [
+    25.3991457,
+    42.6258999
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    25.3991457,
+    42.6258999,
+    25.3991457,
+    42.6258999
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/216981"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2012-12-19T03:05:06Z",
+  "uri": "https://pleiades.stoa.org/places/405244946",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "updates, added wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-12T15:49:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-25T23:07:16Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-06-10T14:32:20Z"
+    },
+    {
+      "comment": "added link to Seuthopolis",
+      "modifiedBy": "thomase",
+      "modified": "2013-06-10T14:32:10Z"
+    },
+    {
+      "comment": "\"near\" is not same as \"connection\"; removing connection",
+      "modifiedBy": "thomase",
+      "modified": "2013-06-10T14:30:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-06-09T17:38:51Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "thomase",
+      "modified": "2013-04-17T22:28:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-04-17T22:26:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-19T03:08:36Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-19T03:05:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-19T03:05:06Z"
+    }
+  ]
+}

@@ -1,0 +1,802 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.178,
+          39.115
+        ]
+      },
+      "type": "Feature",
+      "id": "pergamon-digital-map-location-sudnekropole",
+      "properties": {
+        "snippet": "Archaeological-site; 900 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/956778056/pergamon-digital-map-location-sudnekropole",
+        "description": "Centerpoint of the more westerly of two thus-labeled polygonal features from Pergamon Digital Map. Dates after Pirson 2023.",
+        "location_precision": "precise",
+        "title": "Pergamon Digital Map Location: S\u00fcdnekropole"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.183,
+          39.116
+        ]
+      },
+      "type": "Feature",
+      "id": "pergamon-digital-map-location-sudnekropole-1",
+      "properties": {
+        "snippet": "Archaeological-site; 900 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/956778056/pergamon-digital-map-location-sudnekropole-1",
+        "description": "Centerpoint of the more easterly of two thus-labeled polygonal features from Pergamon Digital Map. Dates after Pirson 2023.",
+        "location_precision": "precise",
+        "title": "Pergamon Digital Map Location: S\u00fcdnekropole"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ninth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ninth-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://geoserver.dainst.org/catalogue/#/map/5548",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Pergamon Digital Map",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N4R4Z9SQ",
+          "formattedCitation": "<div class=\"csl-entry\">Ludwig, Bernhard. \u201cPergamon Digital Map.\u201d Deutsches Arch\u00e4ologisches Institut, last update 2023- -24 2020. https://geoserver.dainst.org/catalogue/#/map/5548.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://gazetteer.dainst.org/place/2767501",
+          "citationDetail": "2767501: S\u00fcdnekropole",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "iDAI.gazetteer",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.uni-koeln.de/",
+          "citationDetail": "1241949: Tumulus-Nekropole s\u00fcdwestlich vor der Stadt",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "pergamon-digital-map-location-sudnekropole",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "Pergamon Digital Map Location: S\u00fcdnekropole",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 1.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/pergamon-digital-map",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Centerpoint of the more westerly of two thus-labeled polygonal features from Pergamon Digital Map. Dates after Pirson 2023.",
+      "created": "2023-08-18T19:41:43Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.178,
+          39.115
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/956778056/pergamon-digital-map-location-sudnekropole",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-19T01:36:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T20:03:19Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:57:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:46:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:41:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:41:43Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ninth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ninth-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://geoserver.dainst.org/catalogue/#/map/5548",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Pergamon Digital Map",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N4R4Z9SQ",
+          "formattedCitation": "<div class=\"csl-entry\">Ludwig, Bernhard. \u201cPergamon Digital Map.\u201d Deutsches Arch\u00e4ologisches Institut, last update 2023- -24 2020. https://geoserver.dainst.org/catalogue/#/map/5548.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://gazetteer.dainst.org/place/2767501",
+          "citationDetail": "2767501: S\u00fcdnekropole",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "iDAI.gazetteer",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://arachne.uni-koeln.de/",
+          "citationDetail": "1241949: Tumulus-Nekropole s\u00fcdwestlich vor der Stadt",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Arachne",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+          "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "pergamon-digital-map-location-sudnekropole-1",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "Pergamon Digital Map Location: S\u00fcdnekropole",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 1.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/pergamon-digital-map",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Centerpoint of the more easterly of two thus-labeled polygonal features from Pergamon Digital Map. Dates after Pirson 2023.",
+      "created": "2023-08-18T19:47:34Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.183,
+          39.116
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/956778056/pergamon-digital-map-location-sudnekropole-1",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-19T01:36:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T20:03:19Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:56:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:48:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:47:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-08-18T19:54:32Z",
+      "associationCertainty": "certain",
+      "title": "Pergamum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/956778056/pergamon",
+      "connectionType": "at",
+      "id": "pergamon",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-19T01:36:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T20:03:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:59:18Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:54:42Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:54:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:54:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550812",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://publications.dainst.org/journals/istmitt/article/view/4103",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Pirson 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TVI7QWXV",
+          "formattedCitation": "<div class=\"csl-entry\">Pirson, Andrea, and Nilg\u00fcn Ustura. \u201cNeue Einblicke in die Fr\u00fchzeit Pergamons: Phrygische Fibeln aus zwei Notgrabungen des Museums Bergama im Bereich der modernen Stadt (Turabey Mahallesi, 191 ada, Parzelle 7 und 8).\u201d <i>Istanbuler Mitteilungen</i> 72 (July 13, 2023): 1-18 (\u00a7). https://doi.org/10.34780/v8ba-3cb7.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-08-18T20:03:02Z",
+      "associationCertainty": "certain",
+      "title": "Red Basilica",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/956778056/red-basilica",
+      "connectionType": "south_of",
+      "id": "red-basilica",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-19T01:36:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T20:03:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T20:03:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T20:03:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/923431995",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://publications.dainst.org/journals/istmitt/article/view/4103",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pirson 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TVI7QWXV",
+          "formattedCitation": "<div class=\"csl-entry\">Pirson, Andrea, and Nilg\u00fcn Ustura. \u201cNeue Einblicke in die Fr\u00fchzeit Pergamons: Phrygische Fibeln aus zwei Notgrabungen des Museums Bergama im Bereich der modernen Stadt (Turabey Mahallesi, 191 ada, Parzelle 7 und 8).\u201d <i>Istanbuler Mitteilungen</i> 72 (July 13, 2023): 1-18 (\u00a7). https://doi.org/10.34780/v8ba-3cb7.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/south_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2767501",
+      "citationDetail": "2767501: S\u00fcdnekropole",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://publications.dainst.org/journals/istmitt/article/view/4103",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pirson 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TVI7QWXV",
+      "formattedCitation": "<div class=\"csl-entry\">Pirson, Andrea, and Nilg\u00fcn Ustura. \u201cNeue Einblicke in die Fr\u00fchzeit Pergamons: Phrygische Fibeln aus zwei Notgrabungen des Museums Bergama im Bereich der modernen Stadt (Turabey Mahallesi, 191 ada, Parzelle 7 und 8).\u201d <i>Istanbuler Mitteilungen</i> 72 (July 13, 2023): 1-18 (\u00a7). https://doi.org/10.34780/v8ba-3cb7.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/1241949",
+      "citationDetail": "1241949: Tumulus-Nekropole s\u00fcdwestlich vor der Stadt",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131934430",
+      "citationDetail": "South Necropolis (Pergamon) (Q131934430)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "G\u00fcney Nekropol, Guney Nekropol",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://gazetteer.dainst.org/place/2767501",
+          "citationDetail": "2767501: S\u00fcdnekropole",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "iDAI.gazetteer",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "guney-nekropol",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2023-08-18T19:52:37Z",
+      "uri": "https://pleiades.stoa.org/places/956778056/guney-nekropol",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "G\u00fcney Nekropol",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-19T01:36:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T20:03:19Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:52:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:52:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "S\u00fcdnekropole, Sudnekropole",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://gazetteer.dainst.org/place/2767501",
+          "citationDetail": "2767501: S\u00fcdnekropole",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "iDAI.gazetteer",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "sudnekropole",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "de",
+      "created": "2023-08-18T19:53:29Z",
+      "uri": "https://pleiades.stoa.org/places/956778056/sudnekropole",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "S\u00fcdnekropole",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-19T01:36:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T20:03:19Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:58:19Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:53:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-18T19:53:29Z"
+        }
+      ]
+    }
+  ],
+  "id": "956778056",
+  "subject": [],
+  "title": "South Necropolis (Pergamon)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An extensive Roman necropolis, with burials stretching back to at least the Hellenistic age, lies south and southwest of the so-called \"Red Hall basilica\" beneath the modern Turabey Mahallesi neighborhood of Bergama, Turkey.",
+  "reprPoint": [
+    27.180500000000002,
+    39.1155
+  ],
+  "placeTypes": [
+    "cemetery",
+    "archaeological-site"
+  ],
+  "bbox": [
+    27.178,
+    39.115,
+    27.183,
+    39.116
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550812",
+    "https://pleiades.stoa.org/places/923431995"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-18T17:26:55Z",
+  "uri": "https://pleiades.stoa.org/places/956778056",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q131934430",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-29T17:04:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-19T01:36:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-18T20:03:19Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-18T19:58:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-18T19:58:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-18T19:50:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-18T19:36:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-18T17:26:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-18T17:26:55Z"
+    }
+  ]
+}

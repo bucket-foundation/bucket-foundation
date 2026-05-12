@@ -1,0 +1,292 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.270188,
+          37.397995
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-serapieion-b",
+      "properties": {
+        "snippet": "Unknown; 200 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/59196349/imagery-location-of-serapieion-b",
+        "description": "Location determined in Google Earth after Brun-Kyriakidis 2020 Figure 1",
+        "location_precision": "precise",
+        "title": "Imagery Location of Serapieion B"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        },
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-of-serapieion-b",
+      "featureTypeURI": [],
+      "end": -1,
+      "title": "Imagery Location of Serapieion B",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -200,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "Location determined in Google Earth after Brun-Kyriakidis 2020 Figure 1",
+      "created": "2023-03-01T20:55:37Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.270188,
+          37.397995
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/59196349/imagery-location-of-serapieion-b",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T19:50:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:56:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:55:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:55:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-01T20:56:09Z",
+      "associationCertainty": "certain",
+      "title": "Delos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/59196349/delos-island",
+      "connectionType": "on",
+      "id": "delos-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T19:50:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:56:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:56:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:56:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599588",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-01T20:56:26Z",
+      "associationCertainty": "certain",
+      "title": "Delos (settlement)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/59196349/delos-settlement",
+      "connectionType": "at",
+      "id": "delos-settlement",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-19T19:50:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:56:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:56:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:56:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599587",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/bch/1163",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brun-Kyriakidis 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6I8M39S",
+      "formattedCitation": "<div class=\"csl-entry\">Brun-Kyriakidis, H\u00e9l\u00e8ne, and Edyta Marzec. \u201cChronology of the Sarapieia A &amp; B on Delos.\u201d <i>Bulletin de Correspondance Hell\u00e9nique</i>, no. 144.2 (December 31, 2020). https://doi.org/10.4000/bch.1163.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "59196349",
+  "subject": [],
+  "title": "Serapieion B at Delos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of three shrines sacred to Serapis identified by archaeologists working at Delos in the nineteenth century.",
+  "reprPoint": [
+    25.270188,
+    37.397995
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    25.270188,
+    37.397995,
+    25.270188,
+    37.397995
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599588",
+    "https://pleiades.stoa.org/places/599587"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-01T20:54:14Z",
+  "uri": "https://pleiades.stoa.org/places/59196349",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-20T14:02:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-19T19:50:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-01T20:56:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-01T20:54:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-01T20:54:14Z"
+    }
+  ]
+}

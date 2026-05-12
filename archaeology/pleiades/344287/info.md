@@ -1,0 +1,14 @@
+# Ad Templum
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/344287
+- **ID**: 344287
+- **Coords (lng, lat)**: [9.016781, 33.583387]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Ad Templum
+
+## Description
+
+An ancient place, cited: BAtlas 35 B1 Ad Templum

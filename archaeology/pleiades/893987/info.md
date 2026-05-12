@@ -1,0 +1,14 @@
+# Dilbat
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/893987
+- **ID**: 893987
+- **Coords (lng, lat)**: [44.466967, 32.295211]
+- **Subjects**: ANE, dare:feature=major settlement, dare:major=1, dare:ancient=1, Babylonian
+- **Time periods**: 
+- **Names**: Dilbat, تل الدليم
+
+## Description
+
+Dilbat (modern Tell ed-Duleym), a small city southeast of Babylon on the eastern bank of the Euphrates River, was the cult center of the god Uraš and the goddess Ninegal. The site consists of two mounds of ruins: the larger, eastern mound contains the remains of earlier building phases (going back to the city’s founding in the Early Dynastic Period, ca. 2700 BC), while the smaller, western ruin hill contains the first-millennium-BC and later building occupations (down to the early Islamic Period). Little is known about the cultic topography of this small Babylonian city. Two first-millennium-BC ziggurat lists and a few Neo-Assyrian and Neo-Babylonian royal inscriptions record that Dilbat’s main temple was E-ibbi-Anum and its ziggurat was Eguba’anki, both were dedicated to Uraš. The temple of Ninegal (Bēlet-ēkalli) might have been named Esapar. Recent excavations on the eastern mound have unearthed the Kassite-Period remains of E-ibbi-Anum.

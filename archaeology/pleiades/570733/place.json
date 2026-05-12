@@ -1,0 +1,984 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0506864,
+          37.1100352
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-aioiiii-i-i-iiii-i-i-i-ii-iii-i-i",
+      "properties": {
+        "snippet": "Acropolis; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/570733/osm-location-of-aioiiii-i-i-iiii-i-i-i-ii-iii-i-i",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of A\u03ba\u03c1\u03cc\u03c0\u03bf\u03bb\u03b7 \u0391\u03c1\u03c7\u03b1\u03af\u03b1\u03c2 \u0398\u03bf\u03c5\u03c1\u03af\u03b1\u03c2"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "cbouras",
+      "homepage": null,
+      "name": "Catherine Bouras",
+      "uri": "https://pleiades.stoa.org/author/cbouras"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": null,
+      "name": "jfu"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6521877788",
+          "citationDetail": "Node 6521877788",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6521877788",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-aioiiii-i-i-iiii-i-i-i-ii-iii-i-i",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+      ],
+      "end": -330,
+      "title": "OSM location of A\u03ba\u03c1\u03cc\u03c0\u03bf\u03bb\u03b7 \u0391\u03c1\u03c7\u03b1\u03af\u03b1\u03c2 \u0398\u03bf\u03c5\u03c1\u03af\u03b1\u03c2",
+      "provenance": "OpenStreetMap (Node 6521877788, version 1, osm:changeset=70934697, 2019-06-04T19:07:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "acropolis"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-06-09T21:39:07Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.0506864,
+          37.1100352
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/570733/osm-location-of-aioiiii-i-i-iiii-i-i-i-ii-iii-i-i",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:40:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:39:47Z"
+        },
+        {
+          "comment": "added OSM location of acropolis ",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:39:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:39:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:39:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2020-06-09T20:07:26Z",
+      "associationCertainty": "less-certain",
+      "title": "Messenia",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/570733/messenia",
+      "connectionType": "part_of_regional",
+      "id": "messenia",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:41:10Z"
+        },
+        {
+          "comment": "updated details, changed certainty rating, pointed to Hansen 2004 no 322 as controlling reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:07:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-09T20:08:11Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-09T20:07:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-09T20:07:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570480",
+      "details": "<p>Hansen 2004 no. 322 discusses the uncertainty as to whether ancient Thouria is to be considered as having a regional relationship with Messenia or whether it is to be regarded as a\u00a0<em>polis\u00a0</em>in its own right, with its own dependent catchment.\u00a0</p>",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/252695579",
+          "citationDetail": "no. 322",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hansen 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WBM4X5NH",
+          "formattedCitation": "<div class=\"csl-entry\">Hansen, Mogens Herman, and Thomas Heine Nielsen. <i>An Inventory of Archaic and Classical Poleis</i>. Oxford: Oxford University Press, 2004. http://www.worldcat.org/oclc/252695579.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    },
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2020-05-30T00:29:20Z",
+      "associationCertainty": "certain",
+      "title": "Pamisos (river)",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/570733/antheia-thouria",
+      "connectionType": "near",
+      "id": "antheia-thouria",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:41:10Z"
+        },
+        {
+          "comment": "reference, time period",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:17:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:45:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:44:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:33:58Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:31:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:29:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:29:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570551",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Pamisos_(river)",
+          "citationDetail": "Pamisos (river)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    },
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2020-05-30T00:48:38Z",
+      "associationCertainty": "certain",
+      "title": "Peloponnesus/Peloponnesos/Peloponnese",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/570733/peloponnesus-peloponnesos-peloponnese",
+      "connectionType": "part_of_physical",
+      "id": "peloponnesus-peloponnesos-peloponnese",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:41:10Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T21:16:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:49:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:49:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:48:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jfu",
+          "modified": "2020-05-30T00:48:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570577",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q3990836",
+          "citationDetail": "Q3990836: Thouria, Messenia",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "58 C3 Thouria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "288 (n. 137)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McDonald 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W89RWP3D",
+      "formattedCitation": "<div class=\"csl-entry\">McDonald, William A, and George Robert Rapp. <i>The Minnesota Messenia Expedition: Reconstructing a Bronze Age Regional Environment</i>. Minneapolis: University of Minnesota Press, 1972.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/38486863",
+      "citationDetail": "236",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shipley 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C2A4KNIX",
+      "formattedCitation": "<div class=\"csl-entry\">Shipley, Graham. \u201cThe Other Lakedaimonians\u2019: The Dependent Perioikic Poleis of Laconia and Messenia.\u201d In <i>The Polis as an Urban Centre and as a Political Community. Symposium August 29-31, 1996</i>, 189\u2013281. Acts of the Copenhagen Polis Centre 415. Copenhagen: Det Kongelige Danske Videnskabernes Selskab, 1997. http://www.worldcat.org/oclc/38486863.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1:1.101.2",
+      "citationDetail": "1.101.2 ",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Thuc. Hist. (Jones; Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EFG24VXW",
+      "formattedCitation": "<div class=\"csl-entry\">Thucydides. <i>Thucydidis Historiae; recognovit brevique adnotatione critica instruxit Henricus Stuart Jones ..</i> Edited by Henry Stuart Jones and J. Enoch Powell. 2 vols. Oxonii: e typographeo Clarendoniano, 1942. http://data.perseus.org/texts/urn:cts:greekLit:tlg0003.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0543.tlg001.perseus-grc1:23.17",
+      "citationDetail": "23.17",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Polyb. (B\u00fcttner-Wobst: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QPGBM7G4",
+      "formattedCitation": "<div class=\"csl-entry\">Polybius. <i>Polybiou Historiai = Polybii Historiae</i>. Edited by Theodor B\u00fcttner-Wobst and Ludwig August Dindorf. 4 vols. Lipsiae: B.G. Teubneri, 1882. http://data.perseus.org/texts/urn:cts:greekLit:tlg0543.tlg001.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://anaskafesthourias.gr/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u0391\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03ae \u0391\u03c1\u03c7\u03b1\u03af\u03b1\u03c2 \u0398\u03bf\u03c5\u03c1\u03af\u03b1\u03c2",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HKH5LZZG",
+      "formattedCitation": "<div class=\"csl-entry\">\u0395\u03c4\u03b1\u03b9\u03c1\u03b5\u03af\u03b1 \u03c4\u03c9\u03bd \u03a6\u03af\u03bb\u03c9\u03bd \u03c4\u03b7\u03c2 \u0391\u03c1\u03c7\u03b1\u03af\u03b1\u03c2 \u0398\u03bf\u03c5\u03c1\u03af\u03b1\u03c2. \u201c\u0391\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03ae \u0391\u03c1\u03c7\u03b1\u03af\u03b1\u03c2 \u0398\u03bf\u03c5\u03c1\u03af\u03b1\u03c2,\u201d 2012. https://anaskafesthourias.gr/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Thuria_(Messenia)",
+      "citationDetail": "Thuria (Messenia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Luraghi 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DPR5SUSG",
+      "formattedCitation": "<div class=\"csl-entry\">Luraghi, Nino. <i>The Ancient Messenians: Constructions of Ethnicity and Memory</i>. Cambridge; New York: Cambridge University Press, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rambach 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9EBL9KE",
+      "formattedCitation": "<div class=\"csl-entry\">Rambach, J\u00f6rg. \u201cDie Ausgrabung von zwei mittelhelladisch I-Zeitlichen Grabtumuli in der Flur Kastroulia bei Ellinika (Alt-Thouria) in Messenien=The Excavation of Two Middle Helladic I Burial Mounds at Kastroulia Near Ellinika (Ancient Thouria) in Messenia.\u201d In <i>Ancestral landscapes</i>, 463\u201374. Lyon: Maison de l\u2019Orient et de la M\u00e9diterran\u00e9e, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "I, 354-6",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Leake 1830",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F884EUA7",
+      "formattedCitation": "<div class=\"csl-entry\">Leake, William Martin. <i>Travels in the Morea</i>. 3 vols. London: Murray, 1830.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/annual-of-the-british-school-at-athens/article/identifying-a-mycenaean-state/32D07D7B5218204739CDA82F934CB9D4",
+      "citationDetail": "243-45",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Simpson 1957",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H62QCDHP",
+      "formattedCitation": "<div class=\"csl-entry\">Simpson, R. Hope. \u201cIdentifying a Mycenaean State.\u201d <i>Annual of the British School at Athens</i> 52 (November 1957): 231\u201359. https://doi.org/10.1017/S0068245400013009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:4.31",
+      "citationDetail": "4.31",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/citations/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1:1.1.1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/252695579",
+      "citationDetail": "no. 322",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hansen 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WBM4X5NH",
+      "formattedCitation": "<div class=\"csl-entry\">Hansen, Mogens Herman, and Thomas Heine Nielsen. <i>An Inventory of Archaic and Classical Poleis</i>. Oxford: Oxford University Press, 2004. http://www.worldcat.org/oclc/252695579.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1:8.4.5",
+      "citationDetail": "8.4.5",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arapogiann\u0113 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IKKFH4FX",
+      "formattedCitation": "<div class=\"csl-entry\">Arapogiann\u0113, Xen\u0113. <i>\u0391\u03c1\u03c7\u03b1\u03af\u03b1 \u0398\u03bf\u03c5\u03c1\u03af\u03b1: \u03a4\u03bf \u0391\u03c3\u03ba\u03bb\u03b7\u03c0\u03b9\u03b5\u03af\u03bf</i>. \u039d\u03ad\u03bf \u0391\u03c1\u03c7\u03b5\u03af\u03bf. \u0391\u03b8\u03ae\u03bd\u03b1: \u0395\u03ba\u03b4\u03cc\u03c3\u03b5\u03b9\u03c2 \u0391\u03c1\u03c7\u03b5\u03af\u03bf, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arapogianne 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XMK3X8ZR",
+      "formattedCitation": "<div class=\"csl-entry\">Arapogianne, X. \u201c\u039d\u03b5\u03ba\u03c1\u03bf\u03c4\u03b1\u03c6\u03b5\u03af\u03bf \u03ba\u03bb\u03b1\u03c3\u03b9\u03ba\u03ce\u03bd \u03c7\u03c1\u03cc\u03bd\u03c9\u03bd \u03ba\u03b1\u03b9 \u03c4\u03b1\u03c6\u03b9\u03ba\u03cc\u03c2 \u03c4\u03cd\u03bc\u03b2\u03bf\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03bd\u03bf\u03bc\u03cc \u0397\u03bb\u03b5\u03af\u03b1\u03c2.\u201d In <i>\u03a0\u03c1\u03b1\u03ba\u03c4\u03b9\u03ba\u03ac \u03c4o\u03c5 \u0395\u2019 \u0394\u03b9\u03b5\u03b8\u03bd\u03bf\u03cd\u03c2 \u03a3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03bf\u03c5 \u03a0\u03b5\u03bb\u03bf\u03c0\u03bf\u03bd\u03bd\u03b7\u03c3\u03b9\u03b1\u03ba\u03ce\u03bd \u03a3\u03c0\u03bf\u03c5\u03b4\u03ce\u03bd, \u0386\u03c1\u03b3\u03bf\u03c2 - \u039d\u03b1\u03cd\u03c0\u03bb\u03b9\u03bf\u03bd 6 - 10 \u03a3\u03b5\u03c0\u03c4\u03b5\u03bc\u03b2\u03c1\u03af\u03bf\u03c5 1995, 1. \u039f\u03bb\u03bf\u03bc\u03ad\u03bb\u03b5\u03b9\u03b1</i>, 321\u201349, Abb, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arapogiann\u0113 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EX5XIBP5",
+      "formattedCitation": "<div class=\"csl-entry\">Arapogiann\u0113, Xen\u0113. \u201c\u0391\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03ae \u03c3\u03c4\u03ae\u03bd \u03b1\u03c1\u03c7\u03b1\u03af\u03b1 \u0398\u03bf\u03c5\u03c1\u03af\u03b1.\u201d In <i>Praktika tes en Athenais Archaiologikes Hetaireias, 168 (2013)</i>, 57\u201366, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arapogiann\u0113 2015a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C66CBCMX",
+      "formattedCitation": "<div class=\"csl-entry\">Arapogiann\u0113, Xen\u0113. \u201c\u0391\u03bd\u03b1\u03c3\u03ba\u03b1\u03c6\u03ae \u03a3\u03c4\u03ae\u03bd \u0391\u03c1\u03c7\u03b1\u03af\u03b1 \u0398\u03bf\u03c5\u03c1\u03af\u03b1.\u201d In <i>Praktika Tes En Athenais Archaiologikes Hetaireias, 2012(167) (2015)</i>, 27\u201331, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arapogiann\u0113 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TSYMFRZD",
+      "formattedCitation": "<div class=\"csl-entry\">Arapogiann\u0113, Xen\u0113. \u201c\u039f \u03b8\u03b7\u03c3\u03b1\u03c5\u03c1\u03cc\u03c2 \u03b1\u03c0\u03cc \u03c4\u03cc\u03bd \u03bd\u03b1\u03cc \u03c4\u03bf\u03c5 \u0391\u03c3\u03ba\u03bb\u03b7\u03c0\u03b9\u03bf\u03c5 \u03ba\u03b1\u03af \u03c4\u03b7\u03c2 \u03a5\u03b3\u03b9\u03b5\u03af\u03b1\u03c2 \u03c3\u03c4\u03ae\u03bd \u03b1\u03c1\u03c7\u03b1\u03af\u03b1 \u0398\u03bf\u03c5\u03c1\u03af\u03b1.\u201d In <i>\u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ae \u03b5\u03c6\u03b7\u03bc\u03b5\u03c1\u03af\u03c2, 153 (2014)</i>, 185\u201396. \u0391\u03b8\u03ae\u03bd\u03b1: \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03c2 \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ae \u0395\u03c4\u03b1\u03b9\u03c1\u03b5\u03af\u03b1, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3990836",
+      "citationDetail": "Q3990836: Thouria, Messenia",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/371220PTho",
+      "citationDetail": "Thouria (Messenia) 32 Aithaia/Hellenika - \u0398\u03bf\u03c5\u03c1\u03af\u03b1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/252891/thouria.html",
+      "citationDetail": "252891: Thouria",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dare.ht.lu.se/",
+      "citationDetail": "31086",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Lund, Sweden: Department of Archaeology and Ancient History, Lund University, Sweden, 2015. http://dare.ht.lu.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2362538",
+      "citationDetail": "Thouria",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/10113656",
+      "citationDetail": "10113656: Thouria (Messenia)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Greta Hawes, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "15155",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=70046",
+      "citationDetail": "Toponym 70046: Thouria antique",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=13571",
+      "citationDetail": "Toponyme 13571: Thouria",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Thouria",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0543.tlg001.perseus-grc1:23.17",
+          "citationDetail": "23.17.2",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Polyb. (B\u00fcttner-Wobst: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QPGBM7G4",
+          "formattedCitation": "<div class=\"csl-entry\">Polybius. <i>Polybiou Historiai = Polybii Historiae</i>. Edited by Theodor B\u00fcttner-Wobst and Ludwig August Dindorf. 4 vols. Lipsiae: B.G. Teubneri, 1882. http://data.perseus.org/texts/urn:cts:greekLit:tlg0543.tlg001.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "thouria",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 58 C3 Thouria",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2010-09-20T20:56:04Z",
+      "uri": "https://pleiades.stoa.org/places/570733/thouria",
+      "creators": [
+        {
+          "username": null,
+          "name": "G. Reger"
+        },
+        {
+          "username": null,
+          "name": "J. McK. Camp II"
+        }
+      ],
+      "attested": "\u0398\u03bf\u03c5\u03c1\u03af\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "connected Polybius reference to Zotero record",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-30T18:31:12Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-09T20:50:34Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:33:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-09-22T18:39:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-20T22:20:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-09-20T20:56:04Z"
+        }
+      ]
+    }
+  ],
+  "id": "570733",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0"
+  ],
+  "title": "Thouria",
+  "provenance": "Barrington Atlas: BAtlas 58 C3 Thouria",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Aithaia/Hellenika</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Thouria is a settlement of the Peloponnese, with archaeological evidence ranging in date from the Bronze Age to the Roman period. The nature of the archaic and classical polity is debated in the sources. The ancient site is located in the vicinity of modern Aithaia/Hellenika, about 3 kilometers north of modern Thouria.",
+  "reprPoint": [
+    22.0506864,
+    37.1100352
+  ],
+  "placeTypes": [
+    "settlement",
+    "acropolis"
+  ],
+  "bbox": [
+    22.0506864,
+    37.1100352,
+    22.0506864,
+    37.1100352
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570480",
+    "https://pleiades.stoa.org/places/570551",
+    "https://pleiades.stoa.org/places/570577"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-02-15T16:13:41Z",
+  "uri": "https://pleiades.stoa.org/places/570733",
+  "creators": [
+    {
+      "username": null,
+      "name": "G. Reger"
+    },
+    {
+      "username": null,
+      "name": "J. McK. Camp II"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "reconnected Thucydides reference to Zotero",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-30T18:30:33Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-22T20:19:56Z"
+    },
+    {
+      "comment": "added CFL/AGO reference (Toponyme 13571) provided by cbouras",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-22T20:17:33Z"
+    },
+    {
+      "comment": "cleaned up references; added CFL/AGO reference provided by cbouras",
+      "modifiedBy": "thomase",
+      "modified": "2024-02-15T16:20:24Z"
+    },
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2024-02-15T16:09:51Z"
+    },
+    {
+      "comment": "add MANTO",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-17T02:07:03Z"
+    },
+    {
+      "comment": "Initial revision; Added Several Citations Sourced from the Official Excavation Report; Edited; updated Connections; removed .com references; began cleanup of others; updated references to primary sources, linked to perseus digital library; references; references; topostext, geonames 252891: Thouria, addd bkiesling as contributor, summary, DARE, iDAI gas. Check-in of working copy.",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-09T21:40:43Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-09T19:52:17Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:52:55Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:33:56Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-25T18:29:07Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:25:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-22T18:39:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-20T22:20:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-20T20:56:04Z"
+    }
+  ]
+}

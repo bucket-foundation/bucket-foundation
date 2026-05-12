@@ -1,0 +1,679 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.7578481,
+            14.908014
+          ],
+          [
+            45.7579339,
+            14.9083976
+          ],
+          [
+            45.7580037,
+            14.9085324
+          ],
+          [
+            45.7580788,
+            14.9086724
+          ],
+          [
+            45.75817,
+            14.9087242
+          ],
+          [
+            45.7582397,
+            14.9088849
+          ],
+          [
+            45.7583738,
+            14.9090974
+          ],
+          [
+            45.7585776,
+            14.9093048
+          ],
+          [
+            45.7589371,
+            14.9096625
+          ],
+          [
+            45.7591087,
+            14.9096262
+          ],
+          [
+            45.7592214,
+            14.9095847
+          ],
+          [
+            45.7593555,
+            14.9094966
+          ],
+          [
+            45.7598168,
+            14.9093774
+          ],
+          [
+            45.7599617,
+            14.909253
+          ],
+          [
+            45.759967,
+            14.9090197
+          ],
+          [
+            45.7599617,
+            14.9089627
+          ],
+          [
+            45.7599134,
+            14.9088331
+          ],
+          [
+            45.7601387,
+            14.908605
+          ],
+          [
+            45.7601923,
+            14.9083665
+          ],
+          [
+            45.7601387,
+            14.9080451
+          ],
+          [
+            45.7600636,
+            14.9078326
+          ],
+          [
+            45.7597793,
+            14.9073298
+          ],
+          [
+            45.7596934,
+            14.9071691
+          ],
+          [
+            45.7595164,
+            14.9070239
+          ],
+          [
+            45.759334,
+            14.9070032
+          ],
+          [
+            45.7587922,
+            14.9070239
+          ],
+          [
+            45.7584328,
+            14.9070757
+          ],
+          [
+            45.7580519,
+            14.9074594
+          ],
+          [
+            45.7578695,
+            14.9076615
+          ],
+          [
+            45.7578481,
+            14.908014
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-hajar-bin-humeid",
+      "properties": {
+        "snippet": "Settlement, Tell; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/547560432/osm-location-hajar-bin-humeid",
+        "description": "Polygon based on OpenStreetMap representing Hajar Bin \u1e24umeid after Van Beek 1969.",
+        "location_precision": "precise",
+        "title": "OSM Location of Hajar Bin \u1e24umeid"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1069951542",
+          "citationDetail": "Way 1069951542",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1069951542",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/995570658",
+          "citationDetail": "pages 3-12",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Van Been 1969",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QZ76KXS",
+          "formattedCitation": "<div class=\"csl-entry\">Van Beek, Gus Willard. <i>Hajar Bin Humeid. Investigations at a Pre-Islamic Site in South Arabia.</i> Baltimore: Johns Hopkins Press, 1969. http://www.worldcat.org/oclc/995570658.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-hajar-bin-humeid",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -3300,
+      "title": "OSM Location of Hajar Bin \u1e24umeid",
+      "provenance": "OpenStreetMap (Way 1069951542, version 1, osm:changeset=122421321, 2022-06-15T14:17:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        "tell"
+      ],
+      "description": "Polygon based on OpenStreetMap representing Hajar Bin \u1e24umeid after Van Beek 1969.",
+      "created": "2022-06-15T14:34:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.7578481,
+            14.908014
+          ],
+          [
+            45.7579339,
+            14.9083976
+          ],
+          [
+            45.7580037,
+            14.9085324
+          ],
+          [
+            45.7580788,
+            14.9086724
+          ],
+          [
+            45.75817,
+            14.9087242
+          ],
+          [
+            45.7582397,
+            14.9088849
+          ],
+          [
+            45.7583738,
+            14.9090974
+          ],
+          [
+            45.7585776,
+            14.9093048
+          ],
+          [
+            45.7589371,
+            14.9096625
+          ],
+          [
+            45.7591087,
+            14.9096262
+          ],
+          [
+            45.7592214,
+            14.9095847
+          ],
+          [
+            45.7593555,
+            14.9094966
+          ],
+          [
+            45.7598168,
+            14.9093774
+          ],
+          [
+            45.7599617,
+            14.909253
+          ],
+          [
+            45.759967,
+            14.9090197
+          ],
+          [
+            45.7599617,
+            14.9089627
+          ],
+          [
+            45.7599134,
+            14.9088331
+          ],
+          [
+            45.7601387,
+            14.908605
+          ],
+          [
+            45.7601923,
+            14.9083665
+          ],
+          [
+            45.7601387,
+            14.9080451
+          ],
+          [
+            45.7600636,
+            14.9078326
+          ],
+          [
+            45.7597793,
+            14.9073298
+          ],
+          [
+            45.7596934,
+            14.9071691
+          ],
+          [
+            45.7595164,
+            14.9070239
+          ],
+          [
+            45.759334,
+            14.9070032
+          ],
+          [
+            45.7587922,
+            14.9070239
+          ],
+          [
+            45.7584328,
+            14.9070757
+          ],
+          [
+            45.7580519,
+            14.9074594
+          ],
+          [
+            45.7578695,
+            14.9076615
+          ],
+          [
+            45.7578481,
+            14.908014
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/547560432/osm-location-hajar-bin-humeid",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T18:28:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:39:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:37:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:34:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:34:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -3300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-15T14:38:46Z",
+      "associationCertainty": "certain",
+      "title": "Arabia",
+      "start": -10000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/547560432/arabia",
+      "connectionType": "part_of_physical",
+      "id": "arabia",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T18:28:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:39:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:38:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:38:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/29475",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/995570658",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Van Been 1969",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QZ76KXS",
+          "formattedCitation": "<div class=\"csl-entry\">Van Beek, Gus Willard. <i>Hajar Bin Humeid. Investigations at a Pre-Islamic Site in South Arabia.</i> Baltimore: Johns Hopkins Press, 1969. http://www.worldcat.org/oclc/995570658.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/995570658",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Van Been 1969",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QZ76KXS",
+      "formattedCitation": "<div class=\"csl-entry\">Van Beek, Gus Willard. <i>Hajar Bin Humeid. Investigations at a Pre-Islamic Site in South Arabia.</i> Baltimore: Johns Hopkins Press, 1969. http://www.worldcat.org/oclc/995570658.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Dh\u00fb Gahyl",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/995570658",
+          "citationDetail": "pages 4-5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Van Been 1969",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QZ76KXS",
+          "formattedCitation": "<div class=\"csl-entry\">Van Beek, Gus Willard. <i>Hajar Bin Humeid. Investigations at a Pre-Islamic Site in South Arabia.</i> Baltimore: Johns Hopkins Press, 1969. http://www.worldcat.org/oclc/995570658.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "dhu-gahyl",
+      "end": -3300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -10000,
+      "details": "",
+      "review_state": "published",
+      "description": "Possible ancient name for the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "osar",
+      "created": "2022-06-15T14:29:16Z",
+      "uri": "https://pleiades.stoa.org/places/547560432/dhu-gahyl",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T18:28:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:39:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:33:42Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:29:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:29:16Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Dh\u00fb Ghayl\u00e2n",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/995570658",
+          "citationDetail": "page 4-5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Van Been 1969",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QZ76KXS",
+          "formattedCitation": "<div class=\"csl-entry\">Van Beek, Gus Willard. <i>Hajar Bin Humeid. Investigations at a Pre-Islamic Site in South Arabia.</i> Baltimore: Johns Hopkins Press, 1969. http://www.worldcat.org/oclc/995570658.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "dhu-ghaylan",
+      "end": -3300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -10000,
+      "details": "",
+      "review_state": "published",
+      "description": "Possible ancient name for the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "osar",
+      "created": "2022-06-15T14:33:25Z",
+      "uri": "https://pleiades.stoa.org/places/547560432/dhu-ghaylan",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T18:28:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:39:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:33:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T14:33:25Z"
+        }
+      ]
+    }
+  ],
+  "id": "547560432",
+  "subject": [],
+  "title": "Hajar Bin \u1e24umeid",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tell in modern Yemen shaped roughly like an oval. The settlement on the mound was settled around the 11th century BCE and survived for 1400-1500 years.",
+  "reprPoint": [
+    45.759053644543265,
+    14.90826500706515
+  ],
+  "placeTypes": [
+    "settlement",
+    "tell"
+  ],
+  "bbox": [
+    45.7578481,
+    14.9070032,
+    45.7601923,
+    14.9096625
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/29475"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-15T14:26:20Z",
+  "uri": "https://pleiades.stoa.org/places/547560432",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-15T18:28:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-15T18:28:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T14:39:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T14:26:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T14:26:20Z"
+    }
+  ]
+}

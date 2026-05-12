@@ -1,0 +1,269 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.9228604,
+          42.4318845
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-madonna-del-passo",
+      "properties": {
+        "snippet": "Settlement-modern; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/403660414/osm-location-of-madonna-del-passo",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Madonna del Passo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/5569853836",
+          "citationDetail": "Node 5569853836",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5569853836",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-madonna-del-passo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2100,
+      "title": "OSM location of Madonna del Passo",
+      "provenance": "OpenStreetMap (Node 5569853836, version 1, osm:changeset=58298131, 2018-04-21T20:24:53Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-12-09T15:57:06Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.9228604,
+          42.4318845
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/403660414/osm-location-of-madonna-del-passo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-11T13:57:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-09T15:57:37Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-09T15:57:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-09T15:57:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-09T15:57:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-09T15:56:49Z",
+      "associationCertainty": "certain",
+      "title": "Rieti survey area",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/403660414/rieti-survey-area",
+      "connectionType": "part_of_analytical",
+      "id": "rieti-survey-area",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-02T21:33:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-09T15:57:37Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-09T15:56:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-09T15:56:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/151473898",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/papers-of-the-british-school-at-rome/article/settlement-history-environment-and-human-exploitation-of-an-intermontane-basin-in-the-central-apennines-the-rieti-survey-19881991-part-ii-landuse-patterns-and-gazetteer/225ABF23818BE816E0DF643138667899",
+          "citationDetail": "157",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Coccia 1995",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y6BZ6UXD",
+          "formattedCitation": "<div class=\"csl-entry\">Coccia, S., D. J. Mattingly, B. Brehm, H. Elton, P. Foss, I. George, T. Leggio, H. Patterson, P. Roberts, and T. Sudell. \u201cSettlement History, Environment and Human Exploitation of an Intermontane Basin in the Central Apennines: The Rieti Survey 1988\u20131991, Part II. Land-Use Patterns and Gazetteer.\u201d <i>Papers of the British School at Rome</i> 63 (November 1995): 105\u201358. https://doi.org/10.1017/S0068246200010217.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/papers-of-the-british-school-at-rome/article/settlement-history-environment-and-human-exploitation-of-an-intermontane-basin-in-the-central-apennines-the-rieti-survey-19881991-part-ii-landuse-patterns-and-gazetteer/225ABF23818BE816E0DF643138667899",
+      "citationDetail": "157",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coccia 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y6BZ6UXD",
+      "formattedCitation": "<div class=\"csl-entry\">Coccia, S., D. J. Mattingly, B. Brehm, H. Elton, P. Foss, I. George, T. Leggio, H. Patterson, P. Roberts, and T. Sudell. \u201cSettlement History, Environment and Human Exploitation of an Intermontane Basin in the Central Apennines: The Rieti Survey 1988\u20131991, Part II. Land-Use Patterns and Gazetteer.\u201d <i>Papers of the British School at Rome</i> 63 (November 1995): 105\u201358. https://doi.org/10.1017/S0068246200010217.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Coccia 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XN6N42RI",
+      "formattedCitation": "<div class=\"csl-entry\">Coccia, Stefano, and Stefano del Passo. \u201cVazia (Rieti). Madonna del Passo.\u201d In <i>Bollettino di archeologia, numero unico 2008</i>, Fasc.2, 311-314, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "403660414",
+  "subject": [],
+  "title": "Madonna del Passo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A modern comune located in the territory of Rieti, Lazio. The Rieti Survey identified this as a likely Roman-period settlement covering more than 5 ha. Material evidence suggests occupation from ca. the sixth century B.C. until the sixth century A.D.",
+  "reprPoint": [
+    12.9228604,
+    42.4318845
+  ],
+  "placeTypes": [
+    "settlement-modern"
+  ],
+  "bbox": [
+    12.9228604,
+    42.4318845,
+    12.9228604,
+    42.4318845
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/151473898"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-09T15:56:11Z",
+  "uri": "https://pleiades.stoa.org/places/403660414",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-11T13:57:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-09T15:57:37Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-09T15:56:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-09T15:56:11Z"
+    }
+  ]
+}

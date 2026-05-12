@@ -1,0 +1,287 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.1440359,
+          38.3623928
+        ]
+      },
+      "type": "Feature",
+      "id": "bouleuterion-2",
+      "properties": {
+        "snippet": "Temple-2, Architecturalcomplex, ; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/235166067/bouleuterion-2",
+        "description": "Center point of foundations of building identified as bouleuterion, adjacent to the Temple of Poseidon, visible in satellite imagery.",
+        "location_precision": "precise",
+        "title": "Bouleuterion"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "bouleuterion-2",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "Bouleuterion",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2013",
+      "featureType": [
+        "temple-2",
+        "architecturalcomplex",
+        ""
+      ],
+      "description": "Center point of foundations of building identified as bouleuterion, adjacent to the Temple of Poseidon, visible in satellite imagery.",
+      "created": "2016-08-21T16:57:22Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.1440359,
+          38.3623928
+        ]
+      },
+      "locationType": [
+        "central_point",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/235166067/bouleuterion-2",
+      "creators": [
+        {
+          "username": "diffenda",
+          "homepage": null,
+          "name": "Dan Diffendale",
+          "uri": "https://pleiades.stoa.org/author/diffenda"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-20T13:08:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-19T13:34:00Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:40:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T16:59:54Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T16:59:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T16:57:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "diffenda",
+          "modified": "2016-08-21T16:57:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-05-01T20:31:56Z",
+      "associationCertainty": "certain",
+      "title": "Onchestos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/235166067/7166724820",
+      "connectionType": "at",
+      "id": "7166724820",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:31:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:31:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-05-01T20:31:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540984",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://onchestos.mcah.columbia.edu/site-a",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Onchestos Excavation Project",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DO%3Aentry+group%3D2%3Aentry%3Donchestos",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "PECS (Perseus), ONCHESTOS Boiotia, Greece",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "235166067",
+  "subject": [],
+  "title": "Bouleuterion of Onchestos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Bouleuterion of Onchestos has been identified adjacent to the Temple of Poseidon.",
+  "reprPoint": [
+    23.1440359,
+    38.3623928
+  ],
+  "placeTypes": [
+    "architecturalcomplex",
+    "temple-2"
+  ],
+  "bbox": [
+    23.1440359,
+    38.3623928,
+    23.1440359,
+    38.3623928
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540984"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-01T20:31:54Z",
+  "uri": "https://pleiades.stoa.org/places/235166067",
+  "creators": [
+    {
+      "username": "diffenda",
+      "homepage": null,
+      "name": "Dan Diffendale",
+      "uri": "https://pleiades.stoa.org/author/diffenda"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-20T13:08:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T13:33:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T13:33:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:38:44Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:32:12Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:31:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-01T20:31:55Z"
+    }
+  ]
+}

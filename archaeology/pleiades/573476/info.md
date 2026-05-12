@@ -1,0 +1,14 @@
+# Porinas
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/573476
+- **ID**: 573476
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Porinas
+
+## Description
+
+An ancient place, cited: BAtlas 58 unlocated Porinas

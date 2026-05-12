@@ -1,0 +1,14 @@
+# Wimpole Lodge
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/79764
+- **ID**: 79764
+- **Coords (lng, lat)**: [-0.045918, 52.141053]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=settlement
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 8 G2 Wimpole Lodge

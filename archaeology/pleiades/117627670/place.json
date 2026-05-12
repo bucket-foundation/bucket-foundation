@@ -1,0 +1,462 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8922257,
+            37.2543886
+          ],
+          [
+            35.8922587,
+            37.2563786
+          ],
+          [
+            35.8934139,
+            37.2571208
+          ],
+          [
+            35.8934552,
+            37.2582241
+          ],
+          [
+            35.8936614,
+            37.258894
+          ],
+          [
+            35.8939172,
+            37.2593931
+          ],
+          [
+            35.8941483,
+            37.2597675
+          ],
+          [
+            35.8943381,
+            37.2599251
+          ],
+          [
+            35.8949734,
+            37.2597675
+          ],
+          [
+            35.897944,
+            37.2595507
+          ],
+          [
+            35.8999573,
+            37.2593668
+          ],
+          [
+            35.9002626,
+            37.2592815
+          ],
+          [
+            35.9032414,
+            37.2577841
+          ],
+          [
+            35.903489,
+            37.257679
+          ],
+          [
+            35.9039675,
+            37.2575608
+          ],
+          [
+            35.9042068,
+            37.2575148
+          ],
+          [
+            35.9044956,
+            37.2575674
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-city-wall",
+      "properties": {
+        "snippet": "City-wall; AD 900 - AD 999",
+        "link": "https://pleiades.stoa.org/places/117627670/location-of-city-wall",
+        "description": "Location based on OpenStreetMap. Dates after New Pauly.",
+        "location_precision": "precise",
+        "title": "OSM location of city wall"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "tenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/tenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/173061759",
+          "citationDetail": "Way 173061759",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=173061759",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-city-wall",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "end": 999,
+      "title": "OSM location of city wall",
+      "provenance": "OpenStreetMap (Way 173061759, version 2, osm:changeset=20077951, 2014-01-19T02:16:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-wall"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after New Pauly.",
+      "created": "2014-01-19T02:14:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8922257,
+            37.2543886
+          ],
+          [
+            35.8922587,
+            37.2563786
+          ],
+          [
+            35.8934139,
+            37.2571208
+          ],
+          [
+            35.8934552,
+            37.2582241
+          ],
+          [
+            35.8936614,
+            37.258894
+          ],
+          [
+            35.8939172,
+            37.2593931
+          ],
+          [
+            35.8941483,
+            37.2597675
+          ],
+          [
+            35.8943381,
+            37.2599251
+          ],
+          [
+            35.8949734,
+            37.2597675
+          ],
+          [
+            35.897944,
+            37.2595507
+          ],
+          [
+            35.8999573,
+            37.2593668
+          ],
+          [
+            35.9002626,
+            37.2592815
+          ],
+          [
+            35.9032414,
+            37.2577841
+          ],
+          [
+            35.903489,
+            37.257679
+          ],
+          [
+            35.9039675,
+            37.2575608
+          ],
+          [
+            35.9042068,
+            37.2575148
+          ],
+          [
+            35.9044956,
+            37.2575674
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/117627670/location-of-city-wall",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "time period; summary",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T09:57:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T09:32:48Z"
+        },
+        {
+          "comment": "updated provenance to reflect new import of geometry",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T09:32:04Z"
+        },
+        {
+          "comment": "re-imported polygon geometry",
+          "modifiedBy": "thomase",
+          "modified": "2020-10-27T09:31:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-23T18:33:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-02T13:29:01Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T02:14:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T02:14:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-19T02:14:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-19T14:11:57Z",
+      "associationCertainty": "certain",
+      "title": "Anazarbos/Caesarea/Ioustin(ian)oupolis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/117627670/5175545157",
+      "connectionType": "at",
+      "id": "5175545157",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T14:11:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T14:11:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-19T14:11:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/658378",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Anazarbus",
+      "citationDetail": "Anazarbus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/tentativelists/5910/",
+      "citationDetail": "Tentative 5910 - Ancient City of Anazarbos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHTL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QM4PHLAJ",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage Tentative Lists</i>. Accessed October 25, 2023. https://whc.unesco.org/en/tentativelists/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dx.doi.org/10.1163/1574-9347_bnp_e120710",
+      "citationDetail": "Anazarbus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brillonline.com/browse/brill-s-new-pauly.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "117627670",
+  "subject": [
+    "UWHS Submitted",
+    "extant remains"
+  ],
+  "title": "Anazarbos city wall",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Anazarbos city wall visible today was built in the 10th century of the current era.",
+  "reprPoint": [
+    35.89707153389299,
+    37.25833410477958
+  ],
+  "placeTypes": [
+    "city-wall"
+  ],
+  "bbox": [
+    35.8922257,
+    37.2543886,
+    35.9044956,
+    37.2599251
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/658378"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-19T14:11:52Z",
+  "uri": "https://pleiades.stoa.org/places/117627670",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-03T17:43:41Z"
+    },
+    {
+      "comment": "added New Pauly reference",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T09:56:29Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T09:54:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T09:32:48Z"
+    },
+    {
+      "comment": "fixed URL on WHL Tentative reference",
+      "modifiedBy": "thomase",
+      "modified": "2020-10-27T09:30:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-23T18:33:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T15:24:09Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T14:12:21Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T14:12:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-19T14:11:52Z"
+    }
+  ]
+}

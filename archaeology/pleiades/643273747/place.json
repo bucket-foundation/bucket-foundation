@@ -1,0 +1,831 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.8720501,
+            42.871179
+          ],
+          [
+            11.8720481,
+            42.8711056
+          ],
+          [
+            11.8719733,
+            42.8711067
+          ],
+          [
+            11.8719741,
+            42.8711358
+          ],
+          [
+            11.8720501,
+            42.871179
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-thermal-pool",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/643273747/osm-location-of-roman-thermal-pool",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bagno Grande"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.8717643,
+            42.8711075
+          ],
+          [
+            11.8717612,
+            42.8709076
+          ],
+          [
+            11.8721471,
+            42.8708705
+          ],
+          [
+            11.8722804,
+            42.8709372
+          ],
+          [
+            11.8722708,
+            42.8710687
+          ],
+          [
+            11.8721816,
+            42.8711065
+          ],
+          [
+            11.87208,
+            42.8710722
+          ],
+          [
+            11.8719737,
+            42.8710778
+          ],
+          [
+            11.8719244,
+            42.8711181
+          ],
+          [
+            11.8718096,
+            42.8711239
+          ],
+          [
+            11.8717643,
+            42.8711075
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-scavi-archeologici-di-san-casciano",
+      "properties": {
+        "snippet": "Archaeological-site; 1000 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/643273747/osm-location-of-scavi-archeologici-di-san-casciano",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Scavi archeologici di San Casciano dei Bagni"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/844788598",
+          "citationDetail": "Way 844788598",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=844788598",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-thermal-pool",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Bagno Grande",
+      "provenance": "OpenStreetMap (Way 844788598, version 7, osm:changeset=149182838, 2024-03-26T15:16:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-11-08T18:56:02Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.8720501,
+            42.871179
+          ],
+          [
+            11.8720481,
+            42.8711056
+          ],
+          [
+            11.8719733,
+            42.8711067
+          ],
+          [
+            11.8719741,
+            42.8711358
+          ],
+          [
+            11.8720501,
+            42.871179
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/643273747/osm-location-of-roman-thermal-pool",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-15T19:32:07Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-24T21:12:03Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-09T20:39:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-09T20:09:42Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-08T18:56:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-08T18:56:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-08T18:56:02Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1112231122",
+          "citationDetail": "Way 1112231122",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1112231122",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-scavi-archeologici-di-san-casciano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "OSM location of Scavi archeologici di San Casciano dei Bagni",
+      "provenance": "OpenStreetMap (Way 1112231122, version 4, osm:changeset=149183295, 2024-03-26T15:26:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-15T19:33:07Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.8717643,
+            42.8711075
+          ],
+          [
+            11.8717612,
+            42.8709076
+          ],
+          [
+            11.8721471,
+            42.8708705
+          ],
+          [
+            11.8722804,
+            42.8709372
+          ],
+          [
+            11.8722708,
+            42.8710687
+          ],
+          [
+            11.8721816,
+            42.8711065
+          ],
+          [
+            11.87208,
+            42.8710722
+          ],
+          [
+            11.8719737,
+            42.8710778
+          ],
+          [
+            11.8719244,
+            42.8711181
+          ],
+          [
+            11.8718096,
+            42.8711239
+          ],
+          [
+            11.8717643,
+            42.8711075
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/643273747/osm-location-of-scavi-archeologici-di-san-casciano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-17T16:58:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-15T19:33:39Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-15T19:33:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-15T19:33:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-15T19:33:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-11-08T18:57:09Z",
+      "associationCertainty": "certain",
+      "title": "S. Casciano dei Bagni",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/643273747/s-casciano-dei-bagni",
+      "connectionType": "at",
+      "id": "s-casciano-dei-bagni",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-09T20:39:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-09T20:09:42Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-08T18:57:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-08T18:57:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413296",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Archeo 37.440 s.v. \" San Casciano dei Bagni : nuove rivelazioni dalla vasca delle meraviglie\"",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X2J3Z5E3",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cArcheo: Attualit\u00e0 del Passato. 37 (2021).\u201d <i>Archeo</i> 37, no. 440 (2021).</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XIBJX8JB",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Mirjo. \u201cChiusi, San Casciano dei Bagni (SI). Carta del Potenziale Archeologico del territorio comunale.\u201d In <i>Notiziario della Soprintendenza per i Beni Archeologici della Toscana, 11 (2015)</i>, 363\u201375. Borgo S. Lorenzo: All\u2019Insegna del Giglio, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvini 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7GXUDXLH",
+      "formattedCitation": "<div class=\"csl-entry\">Salvini, Monica, ed. <i>Etruschi e Romani a San Casciano dei Bagni: le stanze Cassianensi</i>. Roma: Quasar Edizioni, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Iozzo 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YC5G6HDA",
+      "formattedCitation": "<div class=\"csl-entry\">Iozzo, Mario, Michele Asolati, Chantal Gabrielli, and Fernando Guerrini. <i>Iacta stips: il deposito votivo della sorgente di Doccia della Testa a San Casciano dei Bagni (Siena)</i>. Firenze: Ed. Polistampa, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/San_Casciano_dei_Bagni",
+      "citationDetail": "San Casciano dei Bagni",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.ansamed.info/ansamed/en/news/nations/italy/2022/08/04/sacred-treasure-found-in-san-casciano-roman-baths_f60b533f-812d-4dbd-813b-f08260426aac.html",
+      "citationDetail": "\"Sacred treasure found in San Casciano Roman baths - Italy\"",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lambertucci 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H7CQS5CH",
+      "formattedCitation": "<div class=\"csl-entry\">Lambertucci, Silvia. \u201cSacred Treasure Found in San Casciano Roman Baths - Italy.\u201d <i>ANSAMed</i>, August 4, 2022. http://www.ansamed.info/ansamed/en/news/nations/italy/2022/08/04/sacred-treasure-found-in-san-casciano-roman-baths_f60b533f-812d-4dbd-813b-f08260426aac.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.fastionline.org/docs/FOLDER-it-2023-556.pdf",
+      "citationDetail": "2023-it-556",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FOLD&R",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4672X3J",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC). \u201cFastiOnlineDocuments &amp; Research.\u201d Accessed December 1, 2023. https://www.fastionline.org/folder.php?view=home.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.loc.gov/catdir/toc/cassalini18/4841549.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mariotti and Tabolli 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9268QVAQ",
+      "formattedCitation": "<div class=\"csl-entry\">Mariotti, Emanuele, and Jacopo Tabolli, eds. <i>Il santuario ritrovato: nuovi scavi e ricerche al Bagno Grande di San Casciano dei Bagni</i>. Livorno: Sillabe, 2021. https://www.loc.gov/catdir/toc/cassalini18/4841549.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.loc.gov/catdir/toc/casalini19/5483001.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mariotti, Salvi, and Tabolli 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EPW38Q3J",
+      "formattedCitation": "<div class=\"csl-entry\">Mariotti, Emanuele, Ada Salvi, and Jacopo Tabolli, eds. <i>Il santuario ritrovato 2: dentro la vasca sacra, rapporto preliminare di scavo al bagno grande di San Casciano dei Bagni</i>. Livorno: Sillabe, 2023. https://www.loc.gov/catdir/toc/casalini19/5483001.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Scavi_archeologici_di_San_Casciano_dei_Bagni",
+      "citationDetail": "Scavi archeologici di San Casciano dei Bagni",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q107314116",
+      "citationDetail": "San Casciano archaeological excavations (Q107314116)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/80579/",
+      "citationDetail": "80579: Roman Baths San Casciano dei Bagni",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.fastionline.org/docs/FOLDER-it-2024-580.pdf",
+      "citationDetail": "2024-it-580: Mariotti et al. 2024",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FOLD&R",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4672X3J",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC). \u201cFastiOnlineDocuments &amp; Research.\u201d Accessed December 1, 2023. https://www.fastionline.org/folder.php?view=home.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "San Casciano dei Bagni",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org",
+          "citationDetail": "San Casciano dei Bagni",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "san-casciano-dei-bagni",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-08-06T13:08:14Z",
+      "uri": "https://pleiades.stoa.org/places/643273747/san-casciano-dei-bagni",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "San Casciano dei Bagni",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-09T20:39:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-09T20:09:42Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T13:10:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T13:08:24Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T13:08:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-06T13:08:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Monte Sacro",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.fastionline.org/docs/FOLDER-it-2023-556.pdf",
+          "citationDetail": "2023-it-556: p. 5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "FOLD&R",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I4672X3J",
+          "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC). \u201cFastiOnlineDocuments &amp; Research.\u201d Accessed December 1, 2023. https://www.fastionline.org/folder.php?view=home.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "monte-sacro",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2024-02-24T19:28:30Z",
+      "uri": "https://pleiades.stoa.org/places/643273747/monte-sacro",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Monte Sacro",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-25T22:47:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-24T19:28:40Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-24T19:28:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-24T19:28:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "643273747",
+  "subject": [],
+  "title": "Sanctuary at San Casciano dei Bagni",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient sanctuary located near the village of San Casciano dei Bagni, located south of Siena, Italy, has produced, following archaeological excavation, a large cache of metallic votive offerings - coins, figurines, statues, anatomical votives - dating to the late republican and early imperial periods. These votives were recovered from waterlogged mud deposits associated with the thermal springs at the site that have been frequented since at least the first millennium BCE.",
+  "reprPoint": [
+    11.87201349291723,
+    42.871066071514164
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "bath"
+  ],
+  "bbox": [
+    11.8717612,
+    42.8708705,
+    11.8722804,
+    42.871179
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413296"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-03T21:46:09Z",
+  "uri": "https://pleiades.stoa.org/places/643273747",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-15T19:40:14Z"
+    },
+    {
+      "comment": "add FOLD&R 2024-it-580: Mariotti et al. 2024",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-15T14:16:54Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-24T21:16:16Z"
+    },
+    {
+      "comment": "re-fetch link for Mariotti and Tabolli 2021",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-24T21:11:45Z"
+    },
+    {
+      "comment": "add Mariotti and Mariotti 2021 and Mariotti, Salvi, and Tabolli 2023 references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-24T21:10:47Z"
+    },
+    {
+      "comment": "add Fasti Online reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-24T19:27:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-09T20:39:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-09T20:09:42Z"
+    },
+    {
+      "comment": "update summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-09T20:09:38Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-08T18:56:53Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-06T13:10:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-06T13:08:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-06T13:07:28Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-03T21:46:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-03T21:46:09Z"
+    }
+  ]
+}

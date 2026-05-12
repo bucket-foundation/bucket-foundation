@@ -1,0 +1,470 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.7697099,
+            48.0760756
+          ],
+          [
+            16.7698504,
+            48.0759231
+          ],
+          [
+            16.7696917,
+            48.0758579
+          ],
+          [
+            16.7696859,
+            48.0758642
+          ],
+          [
+            16.7696296,
+            48.0758408
+          ],
+          [
+            16.7695899,
+            48.0758838
+          ],
+          [
+            16.7696463,
+            48.0759072
+          ],
+          [
+            16.7696071,
+            48.0759498
+          ],
+          [
+            16.7695848,
+            48.0759398
+          ],
+          [
+            16.769558,
+            48.0759398
+          ],
+          [
+            16.7695342,
+            48.0759533
+          ],
+          [
+            16.7695284,
+            48.0759736
+          ],
+          [
+            16.7695407,
+            48.0759895
+          ],
+          [
+            16.7695621,
+            48.0759986
+          ],
+          [
+            16.7695513,
+            48.0760103
+          ],
+          [
+            16.7697099,
+            48.0760756
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-rapmische-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/179179194/osm-location-of-rapmische-villa",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of R\u00f6mische Villa"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/39816284",
+          "citationDetail": "Way 39816284",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=39816284",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/13374/",
+          "citationDetail": "13374",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "osm-location-of-rapmische-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of R\u00f6mische Villa",
+      "provenance": "OpenStreetMap (Way 39816284, version 4, osm:changeset=62834619, 2018-09-22T19:28:54Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-06-05T21:29:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.7697099,
+            48.0760756
+          ],
+          [
+            16.7698504,
+            48.0759231
+          ],
+          [
+            16.7696917,
+            48.0758579
+          ],
+          [
+            16.7696859,
+            48.0758642
+          ],
+          [
+            16.7696296,
+            48.0758408
+          ],
+          [
+            16.7695899,
+            48.0758838
+          ],
+          [
+            16.7696463,
+            48.0759072
+          ],
+          [
+            16.7696071,
+            48.0759498
+          ],
+          [
+            16.7695848,
+            48.0759398
+          ],
+          [
+            16.769558,
+            48.0759398
+          ],
+          [
+            16.7695342,
+            48.0759533
+          ],
+          [
+            16.7695284,
+            48.0759736
+          ],
+          [
+            16.7695407,
+            48.0759895
+          ],
+          [
+            16.7695621,
+            48.0759986
+          ],
+          [
+            16.7695513,
+            48.0760103
+          ],
+          [
+            16.7697099,
+            48.0760756
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/179179194/osm-location-of-rapmische-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-06T14:19:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T08:35:37Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-05T21:30:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-05T21:29:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-05T21:29:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-06-05T21:32:13Z",
+      "associationCertainty": "certain",
+      "title": "H\u00f6flein",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/179179194/1332205041",
+      "connectionType": "at",
+      "id": "1332205041",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-05T21:32:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-05T21:32:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-05T21:32:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/128409",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/13374/",
+      "citationDetail": "13374",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q123860107",
+      "citationDetail": "Villa rustica (H\u00f6flein) (Q123860107)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa rustica (H\u00f6flein)",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q123860107",
+          "citationDetail": "Villa rustica (H\u00f6flein) (Q123860107)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "villa-rustica-hoflein",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-06-06T08:36:30Z",
+      "uri": "https://pleiades.stoa.org/places/179179194/villa-rustica-hoflein",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa rustica (H\u00f6flein)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-06T14:19:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T08:36:37Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T08:36:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-06T08:36:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "179179194",
+  "subject": [],
+  "title": "R\u00f6mische Villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A 'villa rustica' located to the west of H\u00f6flein, Austria, on the Danube frontier.",
+  "reprPoint": [
+    16.769675830407028,
+    48.07595195557017
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    16.7695284,
+    48.0758408,
+    16.7698504,
+    48.0760756
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/128409"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-06-05T21:32:10Z",
+  "uri": "https://pleiades.stoa.org/places/179179194",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-06T14:19:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-06T08:35:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-06T08:35:24Z"
+    },
+    {
+      "comment": "wikidata Q123860107",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-05T21:32:46Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-05T21:32:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-05T21:32:10Z"
+    }
+  ]
+}

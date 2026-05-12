@@ -1,0 +1,14 @@
+# Odorheiu Secuiesc
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/216905
+- **ID**: 216905
+- **Coords (lng, lat)**: [25.301186, 46.313132]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=fort
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 22 C2 Odorheiu Secuiesc

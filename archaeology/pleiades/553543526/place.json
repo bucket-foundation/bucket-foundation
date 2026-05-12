@@ -1,0 +1,373 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.35732,
+          44.388239
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-imagery-location-of-klady",
+      "properties": {
+        "snippet": "Cemetery; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/553543526/approximate-imagery-location-of-klady",
+        "description": "Approximate imagery location based on Google Earth representing Klady after Erlikh 1999 and Rezepkin 2000.",
+        "location_precision": "precise",
+        "title": "Approximate imagery location of Klady"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=N_lWAAAAMAAJ",
+          "citationDetail": "page 4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Erlikh 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z3EA7MBE",
+          "formattedCitation": "<div class=\"csl-entry\">Erlikh, V. R, and A. M Leskov. <i>Mogil\u2019nik Fars/Klady: pamiatnik perekhoda ot epokhi pozdnei bronzy k rannemu zheleznomu veku na Severo-Zapadnom Kavkaze</i>. Moskva: Gosudarstvennyi muzei Vostoka, 1999. http://books.google.com/books?id=N_lWAAAAMAAJ.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/999786745",
+          "citationDetail": "Tafel 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Rezepkin 2000",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7SVHPU9R",
+          "formattedCitation": "<div class=\"csl-entry\">Rezepkin, Aleksei D. <i>Das fr\u00fcbronzezeitliche Gr\u00e4berfeld von Klady und die Majkop-kultur in Nordwestkaukasien</i>. Arch\u00e4ologie in Eurasien, Bd. 10. Rahden/Westf.: Verlag Marie Leidorf GmbH, 2000. http://www.worldcat.org/oclc/999786745.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "approximate-imagery-location-of-klady",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1000,
+      "title": "Approximate imagery location of Klady",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Approximate imagery location based on Google Earth representing Klady after Erlikh 1999 and Rezepkin 2000.",
+      "created": "2022-07-05T17:47:06Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.35732,
+          44.388239
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/553543526/approximate-imagery-location-of-klady",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-06T21:00:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:47:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:47:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:47:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1000,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-05T17:42:11Z",
+      "associationCertainty": "certain",
+      "title": "Caucasus (mountain range)",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/553543526/caucasus-mountain-range",
+      "connectionType": "at",
+      "id": "caucasus-mountain-range",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-06T21:00:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:47:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:42:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:42:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/863766",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=N_lWAAAAMAAJ",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Erlikh 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z3EA7MBE",
+          "formattedCitation": "<div class=\"csl-entry\">Erlikh, V. R, and A. M Leskov. <i>Mogil\u2019nik Fars/Klady: pamiatnik perekhoda ot epokhi pozdnei bronzy k rannemu zheleznomu veku na Severo-Zapadnom Kavkaze</i>. Moskva: Gosudarstvennyi muzei Vostoka, 1999. http://books.google.com/books?id=N_lWAAAAMAAJ.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/999786745",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Rezepkin 2000",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7SVHPU9R",
+          "formattedCitation": "<div class=\"csl-entry\">Rezepkin, Aleksei D. <i>Das fr\u00fcbronzezeitliche Gr\u00e4berfeld von Klady und die Majkop-kultur in Nordwestkaukasien</i>. Arch\u00e4ologie in Eurasien, Bd. 10. Rahden/Westf.: Verlag Marie Leidorf GmbH, 2000. http://www.worldcat.org/oclc/999786745.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -1000,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-05T17:43:21Z",
+      "associationCertainty": "certain",
+      "title": "Tsarskaya",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/553543526/tsarskaya",
+      "connectionType": "near",
+      "id": "tsarskaya",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-06T21:00:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:47:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:43:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:43:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/825409",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=N_lWAAAAMAAJ",
+          "citationDetail": "page 4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Erlikh 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z3EA7MBE",
+          "formattedCitation": "<div class=\"csl-entry\">Erlikh, V. R, and A. M Leskov. <i>Mogil\u2019nik Fars/Klady: pamiatnik perekhoda ot epokhi pozdnei bronzy k rannemu zheleznomu veku na Severo-Zapadnom Kavkaze</i>. Moskva: Gosudarstvennyi muzei Vostoka, 1999. http://books.google.com/books?id=N_lWAAAAMAAJ.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/999786745",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rezepkin 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7SVHPU9R",
+      "formattedCitation": "<div class=\"csl-entry\">Rezepkin, Aleksei D. <i>Das fr\u00fcbronzezeitliche Gr\u00e4berfeld von Klady und die Majkop-kultur in Nordwestkaukasien</i>. Arch\u00e4ologie in Eurasien, Bd. 10. Rahden/Westf.: Verlag Marie Leidorf GmbH, 2000. http://www.worldcat.org/oclc/999786745.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=N_lWAAAAMAAJ",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Erlikh 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z3EA7MBE",
+      "formattedCitation": "<div class=\"csl-entry\">Erlikh, V. R, and A. M Leskov. <i>Mogil\u2019nik Fars/Klady: pamiatnik perekhoda ot epokhi pozdnei bronzy k rannemu zheleznomu veku na Severo-Zapadnom Kavkaze</i>. Moskva: Gosudarstvennyi muzei Vostoka, 1999. http://books.google.com/books?id=N_lWAAAAMAAJ.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "553543526",
+  "subject": [],
+  "title": "Klady",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Eneolithic and early Bronze Age burial ground in the Northwest Caucasus with about 40 mounds located 3km northwest of Tsarskaya.",
+  "reprPoint": [
+    40.35732,
+    44.388239
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    40.35732,
+    44.388239,
+    40.35732,
+    44.388239
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/863766",
+    "https://pleiades.stoa.org/places/825409"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-05T17:38:31Z",
+  "uri": "https://pleiades.stoa.org/places/553543526",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-06T21:00:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T17:47:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T17:43:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T17:38:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T17:38:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T17:38:31Z"
+    }
+  ]
+}

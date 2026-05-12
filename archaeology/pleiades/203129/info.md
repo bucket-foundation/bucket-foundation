@@ -1,0 +1,14 @@
+# Hadra
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/203129
+- **ID**: 203129
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Hadra
+
+## Description
+
+An ancient place, cited: BAtlas 20 unlocated Hadra

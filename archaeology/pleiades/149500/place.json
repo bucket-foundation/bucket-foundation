@@ -1,0 +1,483 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.3063112,
+            43.8631952
+          ],
+          [
+            5.3063455,
+            43.8632005
+          ],
+          [
+            5.3063796,
+            43.8632057
+          ],
+          [
+            5.3066614,
+            43.8622526
+          ],
+          [
+            5.3066272,
+            43.8622474
+          ],
+          [
+            5.306593,
+            43.8622421
+          ],
+          [
+            5.3063112,
+            43.8631952
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-pont-julien",
+      "properties": {
+        "snippet": "Bridge; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/149500/osm-location-pont-julien",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Pont Julien"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1192947719",
+          "citationDetail": "Way 1192947719",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1192947719",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-pont-julien",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 300,
+      "title": "OSM location: Pont Julien",
+      "provenance": "OpenStreetMap (Way 1192947719, version 5, osm:changeset=148041020, 2024-02-29T08:20:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-13T02:10:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.3063112,
+            43.8631952
+          ],
+          [
+            5.3063455,
+            43.8632005
+          ],
+          [
+            5.3063796,
+            43.8632057
+          ],
+          [
+            5.3066614,
+            43.8622526
+          ],
+          [
+            5.3066272,
+            43.8622474
+          ],
+          [
+            5.306593,
+            43.8622421
+          ],
+          [
+            5.3063112,
+            43.8631952
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/149500/osm-location-pont-julien",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-11T14:55:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-13T02:11:10Z"
+        },
+        {
+          "comment": "supersedes previously published location.",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-13T02:11:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-13T02:10:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-13T02:10:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:32:35Z",
+      "associationCertainty": "certain",
+      "title": "Calavon (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/149500/54430875",
+      "connectionType": "crosses",
+      "id": "54430875",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype -> crosses",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-07T10:29:39Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:32:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/54430875",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/crosses"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "15 E2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "27",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CAGR 7",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KRS6NQI6",
+      "formattedCitation": "<div class=\"csl-entry\">Sautel, J. <i>Vaucluse</i>. Carte Arch\u00e9ologique de La Gaule Romaine, VII. Paris, 1939.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "139",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Barruol 1962",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TQDVQIGD",
+      "formattedCitation": "<div class=\"csl-entry\">G. Barruol, and P. Martel. \u201cLa Voie Romaine de Cavaillon \u00e0 Sisteron Sous Le Haut-Empire.\u201d <i>Rivista Di Studi Liguri</i> 28 (1962): 125\u2013202.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Pont_Julien",
+      "citationDetail": "Pont Julien",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Pont Julien.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pop.culture.gouv.fr/notice/merimee/PA00081981",
+      "citationDetail": "PA00081981: Pont Julien - Provence-Alpes-C\u00f4te d'Azur ; Vaucluse ; Bonnieux",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "M\u00e9rim\u00e9e",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KQ7A48AA",
+      "formattedCitation": "Pont Julien - Provence-Alpes-C\u00f4te d'Azur ; Vaucluse ; Bonnieux",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "14382",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/9UD9W75C",
+      "formattedCitation": "Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds., The Digital Atlas of Roman and Medieval Civilizations (Cambridge (Massachusetts): Harvard University, 2007-), 14382.",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1780937",
+      "citationDetail": "Pont Julien (Q1780937)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "149500",
+  "subject": [
+    "dare:major=0",
+    "bridge",
+    "dare:feature=bridge",
+    "extant remains",
+    "dare:ancient=0"
+  ],
+  "title": "Pont Julien",
+  "provenance": "Barrington Atlas: BAtlas 15 E2",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "<p>This place appears in the Barrington Atlas as an unnamed bridge along a stretch of the Via Domitia in map 15 grid E2, spanning the <a class=\"external-link\" href=\"../54430875/\">Cavalon</a> river west of <a class=\"external-link\" href=\"../147993\">Apta Iulia</a>. In the modern era it is known as Pont Julien (French). Its ancient names are unknown.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A bridge that spans the river known as the Cavalon (French), once part of the Via Domitia.",
+  "reprPoint": [
+    5.306486299795836,
+    43.86272390133762
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    5.3063112,
+    43.8622421,
+    5.3066614,
+    43.8632057
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/54430875"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-21T03:26:27Z",
+  "uri": "https://pleiades.stoa.org/places/149500",
+  "creators": [
+    {
+      "username": null,
+      "name": "S. Loseby"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Added Wikidata reference; update references @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-21T03:50:23Z"
+    },
+    {
+      "comment": "update CAGR 7 reference",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-12T14:09:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-11T18:35:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-11T18:32:52Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-22T16:36:54Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:21:49Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:31:09Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:09:30Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-08-11T21:38:16Z"
+    },
+    {
+      "comment": "Add connection to the Cavalon River",
+      "modifiedBy": "sgillies",
+      "modified": "2011-06-16T19:43:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "sgillies",
+      "modified": "2011-04-08T04:15:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2011-04-08T04:15:01Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "sgillies",
+      "modified": "2011-04-08T04:14:55Z"
+    },
+    {
+      "comment": "Add link to new Cavalon resource",
+      "modifiedBy": "sgillies",
+      "modified": "2011-04-07T22:06:03Z"
+    },
+    {
+      "comment": "improves coordinates and descriptions for this bridge",
+      "modifiedBy": "thomase",
+      "modified": "2010-07-08T17:55:32Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-30T20:31:53Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-05-19T02:19:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-01T21:02:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-01T16:49:14Z"
+    }
+  ]
+}

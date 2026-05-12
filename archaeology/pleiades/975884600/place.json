@@ -1,0 +1,465 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.7377062,
+            51.2307607
+          ],
+          [
+            -3.7375704,
+            51.230824
+          ],
+          [
+            -3.7372163,
+            51.2308542
+          ],
+          [
+            -3.7367979,
+            51.2307904
+          ],
+          [
+            -3.736653,
+            51.2307098
+          ],
+          [
+            -3.7366155,
+            51.230646
+          ],
+          [
+            -3.736535,
+            51.230525
+          ],
+          [
+            -3.736535,
+            51.2303436
+          ],
+          [
+            -3.736594,
+            51.2302093
+          ],
+          [
+            -3.7366584,
+            51.2301085
+          ],
+          [
+            -3.7369481,
+            51.2299271
+          ],
+          [
+            -3.7372324,
+            51.2299237
+          ],
+          [
+            -3.7374738,
+            51.2299708
+          ],
+          [
+            -3.7376133,
+            51.2300245
+          ],
+          [
+            -3.7377277,
+            51.230109
+          ],
+          [
+            -3.7378457,
+            51.2302299
+          ],
+          [
+            -3.7378779,
+            51.2304247
+          ],
+          [
+            -3.7377921,
+            51.2305927
+          ],
+          [
+            -3.7377062,
+            51.2307607
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Fortlet; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/975884600/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Old Burrow fortlet"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/71851511",
+          "citationDetail": "Way 71851511",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortlet"
+      ],
+      "end": 410,
+      "title": "OSM location of Old Burrow fortlet",
+      "provenance": "OpenStreetMap (Way 71851511, version 4, osm:changeset=68302517, 2019-03-19T17:01:34Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortlet"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fortlet"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2025-12-09T13:32:40Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.7377062,
+            51.2307607
+          ],
+          [
+            -3.7375704,
+            51.230824
+          ],
+          [
+            -3.7372163,
+            51.2308542
+          ],
+          [
+            -3.7367979,
+            51.2307904
+          ],
+          [
+            -3.736653,
+            51.2307098
+          ],
+          [
+            -3.7366155,
+            51.230646
+          ],
+          [
+            -3.736535,
+            51.230525
+          ],
+          [
+            -3.736535,
+            51.2303436
+          ],
+          [
+            -3.736594,
+            51.2302093
+          ],
+          [
+            -3.7366584,
+            51.2301085
+          ],
+          [
+            -3.7369481,
+            51.2299271
+          ],
+          [
+            -3.7372324,
+            51.2299237
+          ],
+          [
+            -3.7374738,
+            51.2299708
+          ],
+          [
+            -3.7376133,
+            51.2300245
+          ],
+          [
+            -3.7377277,
+            51.230109
+          ],
+          [
+            -3.7378457,
+            51.2302299
+          ],
+          [
+            -3.7378779,
+            51.2304247
+          ],
+          [
+            -3.7377921,
+            51.2305927
+          ],
+          [
+            -3.7377062,
+            51.2307607
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/975884600/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-12-09T13:32:41Z"
+        },
+        {
+          "comment": "Feature type = fortlet",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-11T21:52:59Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-09T15:32:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-26T23:04:16Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-02-07T04:11:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-12-06T05:10:46Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-12-06T05:09:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-12-06T05:08:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-12-06T05:08:45Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1021356?section=official-list-entry",
+      "citationDetail": "Scheduled Monument 1021356: Old Barrow on Old Barrow Down",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DO%3Aentry+group%3D1%3Aentry%3Dold-burrow",
+      "citationDetail": "OLD BURROW Countisbury, N Devonshire, England",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://dx.doi.org/10.1017/S0003598X00039624",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fox and Ravenhill 1965",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2DFUCG8C",
+      "formattedCitation": "<div class=\"csl-entry\">Fox, Aileen, and William Ravenhill. \u201cOld Burrow and Martinhoe.\u201d <i>Antiquity</i> 39, no. 156 (December 1965): 253\u201358. https://doi.org/10.1017/S0003598X00039624.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17673205",
+      "citationDetail": "Old Burrow (Q17673205)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://historicengland.org.uk/listing/the-list/list-entry/1020809",
+      "citationDetail": "1020809: Old Burrow",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "975884600",
+  "subject": [],
+  "title": "Old Burrow",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortlet"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A first-century Roman fortlet measuring 44 by 85 meters.",
+  "reprPoint": [
+    -3.7372003284079165,
+    51.23039818529196
+  ],
+  "placeTypes": [
+    "fortlet"
+  ],
+  "bbox": [
+    -3.7378779,
+    51.2299237,
+    -3.736535,
+    51.2308542
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-28T14:48:00Z",
+  "uri": "https://pleiades.stoa.org/places/975884600",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "replaced vanished Pastscape entry with NHLE entry",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-28T14:59:30Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-28T14:47:59Z"
+    },
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-12-09T13:35:43Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-12-09T13:35:42Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-12T23:02:55Z"
+    },
+    {
+      "comment": "Edited type for fortlet; Edited @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-11T21:52:32Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-09T15:33:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-26T23:04:16Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-02-16T16:28:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-12-06T05:10:59Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-12-06T05:08:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-12-06T05:08:22Z"
+    }
+  ]
+}

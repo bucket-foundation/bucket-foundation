@@ -1,0 +1,291 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.6502812,
+          38.1015507
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-la-fonteta",
+      "properties": {
+        "snippet": "Archaeological-site; 800 BC - 601 BC",
+        "link": "https://pleiades.stoa.org/places/353701933/osm-location-la-fonteta",
+        "description": "Point representing the visible remains of the Phoenician port at La Fonteta, derived from an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location: La Fonteta"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "eighth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eighth-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "seventh-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1436595458",
+          "citationDetail": "Node 1436595458",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1436595458",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-la-fonteta",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -601,
+      "title": "OSM location: La Fonteta",
+      "provenance": "OpenStreetMap (Node 1436595458, version 7, osm:changeset=69782191, 2019-05-01T21:09:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Point representing the visible remains of the Phoenician port at La Fonteta, derived from an OpenStreetMap Node.",
+      "created": "2024-02-28T18:50:03Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.6502812,
+          38.1015507
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/353701933/osm-location-la-fonteta",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-28T19:09:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-28T18:58:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-28T18:51:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-28T18:50:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-28T18:50:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -601,
+      "description": "",
+      "contributors": [],
+      "created": "2024-02-28T18:58:28Z",
+      "associationCertainty": "certain",
+      "title": "Tader (river)",
+      "start": -800,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/353701933/tader-river",
+      "connectionType": "on",
+      "id": "tader-river",
+      "attestations": [
+        {
+          "timePeriod": "eighth-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eighth-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "seventh-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-28T19:09:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-28T18:58:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-28T18:58:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-02-28T18:58:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/266057",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/oclc/1419975334",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lorrio Alvarado 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V73Q5VVG",
+      "formattedCitation": "<div class=\"csl-entry\">Lorrio Alvarado, Alberto J., Raimon Graells i Fabregat, and Mariano Torres Ortiz, eds. <i>La Fonteta. 3, Las importaciones griegas e it\u00e1licas y su contexto mediterr\u00e1neo</i>. Studia Hispano-Phoenicia 10. Alicante: Universidad de Alicante, 2023.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/La_Fonteta_Phoenician_Port",
+      "citationDetail": "La Fonteta Phoenician Port",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "353701933",
+  "subject": [],
+  "title": "La Fonteta",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/port",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Phoenician port located at the mouth of the Segura River on Spain's Mediterranean coast.",
+  "reprPoint": [
+    -0.6502812,
+    38.1015507
+  ],
+  "placeTypes": [
+    "settlement",
+    "port",
+    "archaeological-site"
+  ],
+  "bbox": [
+    -0.6502812,
+    38.1015507,
+    -0.6502812,
+    38.1015507
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/266057"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-02-28T18:35:12Z",
+  "uri": "https://pleiades.stoa.org/places/353701933",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-02-28T19:09:58Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-28T18:58:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-28T18:57:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-28T18:35:51Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-28T18:35:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2024-02-28T18:35:12Z"
+    }
+  ]
+}

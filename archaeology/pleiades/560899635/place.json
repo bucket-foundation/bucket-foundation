@@ -1,0 +1,678 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4902388,
+            40.7509033
+          ],
+          [
+            14.4903507,
+            40.7507489
+          ],
+          [
+            14.4904237,
+            40.7506667
+          ],
+          [
+            14.4903327,
+            40.7506208
+          ],
+          [
+            14.4901964,
+            40.7507784
+          ],
+          [
+            14.490168,
+            40.7508219
+          ],
+          [
+            14.4901379,
+            40.7508575
+          ],
+          [
+            14.4902388,
+            40.7509033
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "thermopolium-of-vetutius-placidus",
+      "properties": {
+        "snippet": "Taberna-shop, Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/560899635/thermopolium-of-vetutius-placidus",
+        "description": "Approximate OpenStreetMap location of the so-called Thermopolium and House of Vetutius Placidus (I.8. 8-9)",
+        "location_precision": "precise",
+        "title": "OSM location of so-called \"Thermopolium and House of Vetutius Placidus\""
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/501856034",
+          "citationDetail": "Way 501856034",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=501856034",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "thermopolium-of-vetutius-placidus",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop",
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of so-called \"Thermopolium and House of Vetutius Placidus\"",
+      "provenance": "OpenStreetMap (Way 501856034, version 3, osm:changeset=124554979, 2022-08-06T10:01:37Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop",
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "taberna-shop",
+        "townhouse"
+      ],
+      "description": "Approximate OpenStreetMap location of the so-called Thermopolium and House of Vetutius Placidus (I.8. 8-9)",
+      "created": "2017-06-26T16:15:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4902388,
+            40.7509033
+          ],
+          [
+            14.4903507,
+            40.7507489
+          ],
+          [
+            14.4904237,
+            40.7506667
+          ],
+          [
+            14.4903327,
+            40.7506208
+          ],
+          [
+            14.4901964,
+            40.7507784
+          ],
+          [
+            14.490168,
+            40.7508219
+          ],
+          [
+            14.4901379,
+            40.7508575
+          ],
+          [
+            14.4902388,
+            40.7509033
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/560899635/thermopolium-of-vetutius-placidus",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T13:19:48Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:42:55Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:30:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:21:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:16:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:15:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:15:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2017-06-26T16:17:25Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/560899635/pompeii",
+      "connectionType": "connection",
+      "id": "pompeii",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:42:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:21:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:17:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:17:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-26T18:35:20Z",
+      "associationCertainty": "certain",
+      "title": "Regio I, Pompeii",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/560899635/regio-i-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-i-pompeii",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-28T14:07:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T18:35:24Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T18:35:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-26T18:35:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/222138654",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-02-07T22:39:41Z",
+      "associationCertainty": "certain",
+      "title": "Casa della statuetta indiana",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/560899635/casa-della-statuetta-indiana",
+      "connectionType": "abuts",
+      "id": "casa-della-statuetta-indiana",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-08T16:00:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-07T22:39:50Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-07T22:39:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-02-07T22:39:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/264408878",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/8667821",
+      "citationDetail": "230",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "VanderPoel et al. 1977-1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQBMM724",
+      "formattedCitation": "<div class=\"csl-entry\">VanderPoel, Halsted B. <i>Corpus Topographicum Pompeianum</i>. 5 vols. Rome: The University of Texas at Austin, 1977\u20131986. http://www.worldcat.org/oclc/8667821.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://pompeiiinpictures.com/pompeiiinpictures/R1/1%2008%2008.htm",
+      "citationDetail": "I.8.8 Pompeii. Caupona of Lucius Betutius (Vetutius) Placidus",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://pompeiiinpictures.com/pompeiiinpictures/R1/1%2008%2009.htm",
+      "citationDetail": "I.8.9 Pompeii. Side entrance to House of Lucius Betutius (Vetutius) Placidus.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/929255932",
+      "citationDetail": "Della Corte CIL IV 1952. No. 8193",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CIL 4: Inscriptiones parietariae Pompeianae, Herculanenses, Stabianae",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KJ6WCRV4",
+      "formattedCitation": "<div class=\"csl-entry\">Ritschl, Friedrich, Theodor Mommsen, Wilhelm Henzen, Ch Huelsen, Ernst Lommatzsch, Ernst Willibald Emil H\u00fcbner, Otto Hirschfeld, et al. <i>Corpus inscriptionum Latinarum. Inscriptiones parietariae Pompeianae, Herculanenses, Stabianae. Ediderunt: Karl Zangemeister et August Mau. (4 bind) 4 4</i>. Berolini: Apud W. de Gruyter, 1862. http://www.worldcat.org/oclc/929255932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/929255932",
+      "citationDetail": "Della Corte CIL 1963. Nos. 9614-9616",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CIL 4: Inscriptiones parietariae Pompeianae, Herculanenses, Stabianae",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KJ6WCRV4",
+      "formattedCitation": "<div class=\"csl-entry\">Ritschl, Friedrich, Theodor Mommsen, Wilhelm Henzen, Ch Huelsen, Ernst Lommatzsch, Ernst Willibald Emil H\u00fcbner, Otto Hirschfeld, et al. <i>Corpus inscriptionum Latinarum. Inscriptiones parietariae Pompeianae, Herculanenses, Stabianae. Ediderunt: Karl Zangemeister et August Mau. (4 bind) 4 4</i>. Berolini: Apud W. de Gruyter, 1862. http://www.worldcat.org/oclc/929255932.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/pompeii/regio-i/reg-i-ins-8",
+      "citationDetail": "Reg. I, Ins. 8",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "AD79",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+      "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Regio_I_degli_scavi_archeologici_di_Pompei#Insula_8",
+      "citationDetail": "Regio I degli scavi archeologici di Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Regio I degli scavi archeologici di Pompei.",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://ancientgraffiti.org/Graffiti/property/Pompeii/I.8/9",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Ancient Graffiti Project: Property 1.8.9",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Ancient Graffiti Project: Property 1.8.8",
+      "bibliographicURI": "http://atlantides.org/bibliography/a.html#Ancient-Graffiti-Project:-Property-1.8.8",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27070453",
+      "citationDetail": "Q27070453",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Caupona and Domus of L. Vetutius Placidus and Ascula",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/8667821",
+          "citationDetail": "230",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "VanderPoel et al. 1977-1986",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WQBMM724",
+          "formattedCitation": "<div class=\"csl-entry\">VanderPoel, Halsted B. <i>Corpus Topographicum Pompeianum</i>. 5 vols. Rome: The University of Texas at Austin, 1977\u20131986. http://www.worldcat.org/oclc/8667821.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "caupona-and-domus-of-l-vetutius-placidus-and",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-06-26T16:19:13Z",
+      "uri": "https://pleiades.stoa.org/places/560899635/caupona-and-domus-of-l-vetutius-placidus-and",
+      "creators": [
+        {
+          "username": "vvitale",
+          "homepage": null,
+          "name": "Valeria Vitale",
+          "uri": "https://pleiades.stoa.org/author/vvitale"
+        }
+      ],
+      "attested": "Caupona and Domus of L. Vetutius Placidus and Ascula",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:42:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-26T16:42:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:21:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:19:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "vvitale",
+          "modified": "2017-06-26T16:19:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "560899635",
+  "subject": [
+    "taberna",
+    "extant remains",
+    "caupona",
+    "domus",
+    "Third Style"
+  ],
+  "title": "Caupona and Domus of L. Vetutius Placidus and Ascula",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/taberna-shop",
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A thermopolium with a marble counter (I.8.8), connected to a private house (I.8.9) in Regio I, insula 8 in Pompeii. The walls of the house show extensive decoration in the Third style.",
+  "reprPoint": [
+    14.490277159988194,
+    40.75076652043177
+  ],
+  "placeTypes": [
+    "taberna-shop",
+    "townhouse"
+  ],
+  "bbox": [
+    14.4901325,
+    40.7506208,
+    14.4904237,
+    40.7509129
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/222138654",
+    "https://pleiades.stoa.org/places/264408878"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-06-26T16:14:41Z",
+  "uri": "https://pleiades.stoa.org/places/560899635",
+  "creators": [
+    {
+      "username": "vvitale",
+      "homepage": null,
+      "name": "Valeria Vitale",
+      "uri": "https://pleiades.stoa.org/author/vvitale"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "edited summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-07T23:31:23Z"
+    },
+    {
+      "comment": "added wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2021-02-07T16:11:59Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-11T18:56:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-26T16:42:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-26T16:41:54Z"
+    },
+    {
+      "comment": "references, categories",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-26T16:32:24Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "vvitale",
+      "modified": "2017-06-26T16:21:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "vvitale",
+      "modified": "2017-06-26T16:19:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "vvitale",
+      "modified": "2017-06-26T16:14:43Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "vvitale",
+      "modified": "2017-06-26T16:14:41Z"
+    }
+  ]
+}

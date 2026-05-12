@@ -1,0 +1,14 @@
+# *Nassa (river)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/89249
+- **ID**: 89249
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Nassa, Certinassa
+
+## Description
+
+An ancient place, cited: BAtlas 9 C3 *Nassa fl.

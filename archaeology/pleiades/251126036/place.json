@@ -1,0 +1,293 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.290342,
+          40.826347
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-archaeological-site",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/251126036/imagery-location-of-archaeological-site",
+        "description": "Coordinates following McCallum et al. 2011, 27",
+        "location_precision": "precise",
+        "title": "Imagery location of archaeological site"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "27",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "The Roman Villa at San Felice: Investigations, 2004\u20132010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3UR2JBM9",
+          "formattedCitation": "<div class=\"csl-entry\">McCallum, Myles, Hans vanderLeest, Robyn Veal, Anthony Taylor, Liam Cooney, Lisa Brown, and Matthew Munro. \u201cThe Roman Villa at San Felice: Investigations, 2004\u20132010.\u201d <i>Mouseion: Journal of the Classical Association of Canada</i> 11, no. 1 (n.d.).</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-archaeological-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "Imagery location of archaeological site",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Coordinates following McCallum et al. 2011, 27",
+      "created": "2019-12-11T14:03:14Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.290342,
+          40.826347
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/251126036/imagery-location-of-archaeological-site",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:39:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-05T17:52:40Z"
+        },
+        {
+          "comment": "added location resource",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-11T14:03:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-11T14:03:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-12-11T14:12:05Z",
+      "associationCertainty": "certain",
+      "title": "Via Appia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/251126036/via-appia",
+      "connectionType": "near",
+      "id": "via-appia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:39:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-12T10:39:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-05T17:52:40Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-11T14:12:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-12-11T14:12:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/356966898",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "The Roman Villa at San Felice: Investigations, 2004\u20132010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3UR2JBM9",
+          "formattedCitation": "<div class=\"csl-entry\">McCallum, Myles, Hans vanderLeest, Robyn Veal, Anthony Taylor, Liam Cooney, Lisa Brown, and Matthew Munro. \u201cThe Roman Villa at San Felice: Investigations, 2004\u20132010.\u201d <i>Mouseion: Journal of the Classical Association of Canada</i> 11, no. 1 (n.d.).</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://muse.jhu.edu/article/524420",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McCallum 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3UR2JBM9",
+      "formattedCitation": "<div class=\"csl-entry\">McCallum, Myles, Hans vanderLeest, Robyn Veal, Anthony Taylor, Liam Cooney, Lisa Brown, and Matthew Munro. \u201cThe Roman Villa at San Felice: Investigations, 2004\u20132010.\u201d <i>Mouseion: Journal of the Classical Association of Canada</i> 11, no. 1 (2011): 25\u2013108. https://muse.jhu.edu/article/524420.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q104787696",
+      "citationDetail": "San Felice Roman villa (Q104787696)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "251126036",
+  "subject": [],
+  "title": "San Felice Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The villa site is approximately 1 km south of the presumed ancient course of the Via Appia.",
+  "reprPoint": [
+    16.290342,
+    40.826347
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    16.290342,
+    40.826347,
+    16.290342,
+    40.826347
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/356966898"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-12-11T14:00:07Z",
+  "uri": "https://pleiades.stoa.org/places/251126036",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q104787696",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-12T03:15:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-12T10:39:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-05T17:52:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-11T14:11:10Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-11T14:00:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-12-11T14:00:07Z"
+    }
+  ]
+}

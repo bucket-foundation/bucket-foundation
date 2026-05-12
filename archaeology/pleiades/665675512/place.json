@@ -1,0 +1,347 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.0404062,
+            21.5418968
+          ],
+          [
+            31.0405045,
+            21.5417038
+          ],
+          [
+            31.0401231,
+            21.5414517
+          ],
+          [
+            31.039948,
+            21.5413485
+          ],
+          [
+            31.0398856,
+            21.5414377
+          ],
+          [
+            31.0399201,
+            21.5414744
+          ],
+          [
+            31.0398525,
+            21.5415561
+          ],
+          [
+            31.0398496,
+            21.5416752
+          ],
+          [
+            31.0400837,
+            21.5417674
+          ],
+          [
+            31.0402579,
+            21.5418369
+          ],
+          [
+            31.0404062,
+            21.5418968
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-shalfak",
+      "properties": {
+        "snippet": "Fort-2; 2010 BC - 1640 BC",
+        "link": "https://pleiades.stoa.org/places/665675512/osm-location-of-shalfak",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Shalfak"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "middle-kingdom-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-kingdom-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1127335826",
+          "citationDetail": "Way 1127335826",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1127335826",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-shalfak",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": -1640,
+      "title": "OSM location of Shalfak",
+      "provenance": "OpenStreetMap (Way 1127335826, version 1, osm:changeset=130881401, 2023-01-04T20:26:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2010,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-01-04T20:31:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.0404062,
+            21.5418968
+          ],
+          [
+            31.0405045,
+            21.5417038
+          ],
+          [
+            31.0401231,
+            21.5414517
+          ],
+          [
+            31.039948,
+            21.5413485
+          ],
+          [
+            31.0398856,
+            21.5414377
+          ],
+          [
+            31.0399201,
+            21.5414744
+          ],
+          [
+            31.0398525,
+            21.5415561
+          ],
+          [
+            31.0398496,
+            21.5416752
+          ],
+          [
+            31.0400837,
+            21.5417674
+          ],
+          [
+            31.0402579,
+            21.5418369
+          ],
+          [
+            31.0404062,
+            21.5418968
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/665675512/osm-location-of-shalfak",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-05T20:24:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-04T20:35:29Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-04T20:32:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-04T20:31:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-04T20:31:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Shalfak",
+      "citationDetail": "Shalfak",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "pp. 747-53; 1083-4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EAAE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7H5A3NS6",
+      "formattedCitation": "<div class=\"csl-entry\">Bard, Kathryn A., and Steven Blake Shubert, eds. <i>Encyclopedia of the Archaeology of Ancient Egypt</i>. London: Routledge, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/5112",
+      "citationDetail": "GEO ID 5112: Shalfak",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/26948563",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "N\u00e4ser et al. 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S7BCMGDP",
+      "formattedCitation": "<div class=\"csl-entry\">N\u00e4ser, Claudia, Peter Becker, Kay Kossatz, Osman Khaleel Elawad Karrar, and Wolfram Grajetzki. \u201cShalfak Archaeological Mission (SAM): The 2017 Field Season.\u201d <i>The Journal of Egyptian Archaeology</i> 103, no. 2 (2017): 153\u201371. https://doi.org/10.1177/0307513317749447.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/3853756",
+      "citationDetail": "p. 189",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gardiner 1916",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/653QI58G",
+      "formattedCitation": "<div class=\"csl-entry\">Gardiner, Alan H. \u201cAn Ancient List of the Fortresses of Nubia.\u201d <i>The Journal of Egyptian Archaeology</i> 3, no. 2/3 (1916): 184\u201392. https://doi.org/10.2307/3853756.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/82918/",
+      "citationDetail": "82918: Shalfak",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "665675512",
+  "subject": [],
+  "title": "Shalfak",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Middle Kingdom fortress that was originally located on the Nile's west bank at the Second Cataract of the Nile River. The ruins of the fortress are now situated on an island in Lake Nubia in northern Sudan.",
+  "reprPoint": [
+    31.040151738841022,
+    21.54163590278831
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    31.0398496,
+    21.5413485,
+    31.0405045,
+    21.5418968
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-01-04T20:31:12Z",
+  "uri": "https://pleiades.stoa.org/places/665675512",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "vici.org 82918: Shalfak",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-10T23:35:25Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-05T20:24:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-04T20:35:29Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-04T20:34:47Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-04T20:33:44Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-04T20:31:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-04T20:31:12Z"
+    }
+  ]
+}

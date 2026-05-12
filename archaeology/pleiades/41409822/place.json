@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.9527398,
+            32.7070059
+          ],
+          [
+            20.9529168,
+            32.7067351
+          ],
+          [
+            20.9530187,
+            32.7068028
+          ],
+          [
+            20.9530777,
+            32.706875
+          ],
+          [
+            20.9530938,
+            32.7069788
+          ],
+          [
+            20.9530294,
+            32.7070556
+          ],
+          [
+            20.9529382,
+            32.7070646
+          ],
+          [
+            20.9528631,
+            32.7070646
+          ],
+          [
+            20.9527398,
+            32.7070059
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-odeon-in-ptolemais",
+      "properties": {
+        "snippet": "Odeon; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/41409822/osm-location-of-odeon-in-ptolemais",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Odeon in Ptolemais"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/313447667",
+          "citationDetail": "Way 313447667",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=313447667",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-odeon-in-ptolemais",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+      ],
+      "end": 300,
+      "title": "OSM location of Odeon in Ptolemais",
+      "provenance": "OpenStreetMap (Way 313447667, version 6, osm:changeset=138684941, 2023-07-18T19:34:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "odeon"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-06T00:03:41Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.9527398,
+            32.7070059
+          ],
+          [
+            20.9529168,
+            32.7067351
+          ],
+          [
+            20.9530187,
+            32.7068028
+          ],
+          [
+            20.9530777,
+            32.706875
+          ],
+          [
+            20.9530938,
+            32.7069788
+          ],
+          [
+            20.9530294,
+            32.7070556
+          ],
+          [
+            20.9529382,
+            32.7070646
+          ],
+          [
+            20.9528631,
+            32.7070646
+          ],
+          [
+            20.9527398,
+            32.7070059
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/41409822/osm-location-of-odeon-in-ptolemais",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-07T20:25:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-06T00:45:51Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-06T00:16:14Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-06T00:04:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-06T00:03:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-06T00:03:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-05-06T00:04:13Z",
+      "associationCertainty": "certain",
+      "title": "Ptolemais/Barkes Limen",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/41409822/8539879765",
+      "connectionType": "at",
+      "id": "8539879765",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-06T00:04:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-06T00:04:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-06T00:04:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/373879",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/6065",
+      "citationDetail": "sog. Odeon Ptolemais",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q70772393",
+      "citationDetail": "Odeon in Ptolemais (Q70772393)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "41409822",
+  "subject": [],
+  "title": "Odeon in Ptolemais",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/odeon"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Odeon in ancient Ptolemais.",
+  "reprPoint": [
+    20.95292757510651,
+    32.70692749183193
+  ],
+  "placeTypes": [
+    "odeon"
+  ],
+  "bbox": [
+    20.9527398,
+    32.7067351,
+    20.9530938,
+    32.7070646
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/373879"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-05-06T00:04:12Z",
+  "uri": "https://pleiades.stoa.org/places/41409822",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-06-07T20:25:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-06T00:45:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-06T00:45:45Z"
+    },
+    {
+      "comment": "add Arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-06T00:15:50Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-06T00:04:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-05-06T00:04:12Z"
+    }
+  ]
+}

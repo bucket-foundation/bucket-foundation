@@ -1,0 +1,507 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.3683875,
+            35.9187013
+          ],
+          [
+            14.3684449,
+            35.9183554
+          ],
+          [
+            14.3685659,
+            35.9183709
+          ],
+          [
+            14.3687659,
+            35.9183786
+          ],
+          [
+            14.3687468,
+            35.9185367
+          ],
+          [
+            14.3687322,
+            35.918658
+          ],
+          [
+            14.3687053,
+            35.9186966
+          ],
+          [
+            14.3686927,
+            35.9187146
+          ],
+          [
+            14.3683875,
+            35.9187013
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ta-a-aa-rat-temple",
+      "properties": {
+        "snippet": "Sanctuary, ; 5000 BC - 2500 BC",
+        "link": "https://pleiades.stoa.org/places/826976465/osm-location-of-ta-a-aa-rat-temple",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Ta' \u0126a\u0121rat temple"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-malta",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-malta",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/294785412",
+          "citationDetail": "Way 294785412",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=294785412",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ta-a-aa-rat-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -2500,
+      "title": "OSM location of Ta' \u0126a\u0121rat temple",
+      "provenance": "OpenStreetMap (Way 294785412, version 10, osm:changeset=158705258, 2024-11-03T15:48:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -5000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2016-05-26T20:49:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.3683875,
+            35.9187013
+          ],
+          [
+            14.3684449,
+            35.9183554
+          ],
+          [
+            14.3685659,
+            35.9183709
+          ],
+          [
+            14.3687659,
+            35.9183786
+          ],
+          [
+            14.3687468,
+            35.9185367
+          ],
+          [
+            14.3687322,
+            35.918658
+          ],
+          [
+            14.3687053,
+            35.9186966
+          ],
+          [
+            14.3686927,
+            35.9187146
+          ],
+          [
+            14.3683875,
+            35.9187013
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/826976465/osm-location-of-ta-a-aa-rat-temple",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-04T13:34:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-08T09:29:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-01T01:55:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-26T20:54:47Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-26T20:50:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-26T20:49:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-26T20:49:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:50:02Z",
+      "associationCertainty": "certain",
+      "title": "Melita/Malta (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/826976465/462311",
+      "connectionType": "connection",
+      "id": "462311",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:50:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462311",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Ta%27_%C4%A6a%C4%A1rat_Temples",
+      "citationDetail": "Ta' \u0126a\u0121rat Temples",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Ta' \u0126a\u0121rat Temples.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/2562448/ta-hagrat-temples.html",
+      "citationDetail": "2562448: Ta\u2019 \u0126a\u0121rat Temples",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://heritagemalta.org/museums-sites/ta-hagrat/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Heritage Malta: Ta\u2019 \u0126a\u0121rat",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/132",
+      "citationDetail": "132: Megalithic Temples of Malta",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "G\u00e4rde 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7J7JI8IR",
+      "formattedCitation": "<div class=\"csl-entry\">G\u00e4rde, Marcus. <i>Megalithic Temples of Malta: UNESCO World Heritage Sites: GGantija, Hagar Qim, Mnajdra, Ta\u2019 Hagrat, Skorba, Tarxien</i>. Stockholm: Orosdi-Back, 2013.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.um.edu.mt/library/oar/bitstream/123456789/8209/1/The_lithic_toolkit_of_the_Late_Neolithic.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vella 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M8Z8X6LT",
+      "formattedCitation": "<div class=\"csl-entry\">Vella, Clive. \u201cThe Lithic Toolkit of Late Neolithic Ta\u2019 Hagrat, Malta.\u201d <i>Origini</i> 31, no. n.s. IV (2009): 85\u2013102. https://www.um.edu.mt/library/oar/bitstream/123456789/8209/1/The_lithic_toolkit_of_the_Late_Neolithic.pdf.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q991637",
+      "citationDetail": "Ta' \u0126a\u0121rat (Q991637)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ta\u2019 \u0126a\u0121rat Temples",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/2562448/ta-hagrat-temples.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoNames 2562448",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "taa-a-aa-rat-temples",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2016-05-26T20:52:02Z",
+      "uri": "https://pleiades.stoa.org/places/826976465/taa-a-aa-rat-temples",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Ta\u2019 \u0126a\u0121rat Temples",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-10-08T09:29:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-26T20:54:30Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-26T20:52:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-26T20:52:02Z"
+        }
+      ]
+    }
+  ],
+  "id": "826976465",
+  "subject": [
+    "megalithic",
+    "\u0120gantija phase",
+    "UWHS"
+  ],
+  "title": "Ta' \u0126a\u0121rat Temple Complex",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Ta' \u0126a\u0121rat is a megalithic temple complex on the island of Malta (ca. 3600-3000 B.C.), included in the UNESCO World Heritage List.",
+  "reprPoint": [
+    14.368576374945723,
+    35.91853741463438
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    14.3683875,
+    35.9183554,
+    14.3687659,
+    35.9187146
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462311"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-04-19T18:58:18Z",
+  "uri": "https://pleiades.stoa.org/places/826976465",
+  "creators": [
+    {
+      "username": "irisf",
+      "homepage": null,
+      "name": "Iris Fernandez",
+      "uri": "https://pleiades.stoa.org/author/irisf"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-04T13:40:39Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-08T12:50:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-08T09:29:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-01T01:55:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-26T20:54:39Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-26T20:40:51Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-26T20:36:38Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2016-05-26T15:25:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "irisf",
+      "modified": "2013-05-01T15:27:32Z"
+    },
+    {
+      "comment": "Entered title, description, place type, and connection. ",
+      "modifiedBy": "irisf",
+      "modified": "2013-04-19T18:58:30Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "irisf",
+      "modified": "2013-04-19T18:58:21Z"
+    }
+  ]
+}

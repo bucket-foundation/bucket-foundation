@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.0420334,
+            43.1159514
+          ],
+          [
+            -8.0424697,
+            43.1159062
+          ],
+          [
+            -8.0427647,
+            43.1157671
+          ],
+          [
+            -8.0428532,
+            43.1156164
+          ],
+          [
+            -8.0427379,
+            43.1154167
+          ],
+          [
+            -8.0425206,
+            43.1152228
+          ],
+          [
+            -8.0422014,
+            43.1149722
+          ],
+          [
+            -8.0420351,
+            43.114888
+          ],
+          [
+            -8.0417696,
+            43.1150466
+          ],
+          [
+            -8.0416147,
+            43.1152399
+          ],
+          [
+            -8.0414565,
+            43.1155512
+          ],
+          [
+            -8.0414129,
+            43.1158161
+          ],
+          [
+            -8.0416516,
+            43.1159336
+          ],
+          [
+            -8.0420334,
+            43.1159514
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement, ; 900 BC - 100 BC",
+        "link": "https://pleiades.stoa.org/places/104480434/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Santaia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "castro-culture-iron-age-ca.-900-bc-100-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/castro-culture-iron-age-ca.-900-bc-100-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/194192887",
+          "citationDetail": "Way 194192887",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=194192887",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -100,
+      "title": "OSM location of Castro de Santaia",
+      "provenance": "OpenStreetMap (Way 194192887, version 2, osm:changeset=40053266, 2016-06-16T06:09:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2015-03-12T16:36:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.0420334,
+            43.1159514
+          ],
+          [
+            -8.0424697,
+            43.1159062
+          ],
+          [
+            -8.0427647,
+            43.1157671
+          ],
+          [
+            -8.0428532,
+            43.1156164
+          ],
+          [
+            -8.0427379,
+            43.1154167
+          ],
+          [
+            -8.0425206,
+            43.1152228
+          ],
+          [
+            -8.0422014,
+            43.1149722
+          ],
+          [
+            -8.0420351,
+            43.114888
+          ],
+          [
+            -8.0417696,
+            43.1150466
+          ],
+          [
+            -8.0416147,
+            43.1152399
+          ],
+          [
+            -8.0414565,
+            43.1155512
+          ],
+          [
+            -8.0414129,
+            43.1158161
+          ],
+          [
+            -8.0416516,
+            43.1159336
+          ],
+          [
+            -8.0420334,
+            43.1159514
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/104480434/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-15T13:15:49Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2016-06-18T21:35:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-16T06:09:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-16T03:59:40Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T16:36:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T16:36:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T16:36:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://gl.wikipedia.org/wiki/Castro_de_Santaia",
+      "citationDetail": "Castro de Santaia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Galician)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/Q536PQ75",
+      "formattedCitation": "Galipedia: A enciclopedia libre que calquera pode editar (2001-), Castro de Santaia.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q20548691",
+      "citationDetail": "Castro de Santaia (Q20548691)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "104480434",
+  "subject": [],
+  "title": "Castro de Santaia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A settlement of the Castro Culture covering > 4 hectares near Santai in Spain.",
+  "reprPoint": [
+    -8.0420988616973,
+    43.11551076269772
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -8.0428532,
+    43.114888,
+    -8.0414129,
+    43.1159514
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-03-12T16:36:09Z",
+  "uri": "https://pleiades.stoa.org/places/104480434",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Castro de Santaia (Q20548691)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-18T13:37:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-31T21:32:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-16T06:09:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-05-16T03:59:20Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T16:36:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T16:36:09Z"
+    }
+  ]
+}

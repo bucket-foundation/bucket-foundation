@@ -1,0 +1,620 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.285884,
+            42.4107424
+          ],
+          [
+            11.2860729,
+            42.410637
+          ],
+          [
+            11.286125,
+            42.410611
+          ],
+          [
+            11.2866549,
+            42.4107164
+          ],
+          [
+            11.2872569,
+            42.4109225
+          ],
+          [
+            11.2876839,
+            42.4111151
+          ],
+          [
+            11.288751,
+            42.4115855
+          ],
+          [
+            11.2893832,
+            42.4118679
+          ],
+          [
+            11.2899233,
+            42.4122151
+          ],
+          [
+            11.2902352,
+            42.4126276
+          ],
+          [
+            11.2904028,
+            42.4129576
+          ],
+          [
+            11.2893925,
+            42.4132669
+          ],
+          [
+            11.2889502,
+            42.4134766
+          ],
+          [
+            11.2885909,
+            42.4136512
+          ],
+          [
+            11.2885135,
+            42.413588
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-city-wall",
+      "properties": {
+        "snippet": "City-wall, ; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/615923349/location-of-city-wall",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of city wall"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.2884296,
+            42.4136379
+          ],
+          [
+            11.2885036,
+            42.413712
+          ],
+          [
+            11.2880411,
+            42.4142479
+          ],
+          [
+            11.2876362,
+            42.41435
+          ],
+          [
+            11.2872115,
+            42.414367
+          ],
+          [
+            11.2868131,
+            42.4143342
+          ],
+          [
+            11.2863736,
+            42.4142382
+          ],
+          [
+            11.2858531,
+            42.4139723
+          ],
+          [
+            11.2858802,
+            42.4139447
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-city-wall-curtain",
+      "properties": {
+        "snippet": "City-wall; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/615923349/osm-location-of-city-wall-curtain",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of city wall curtain"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/174825753",
+          "citationDetail": "Way 174825753",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=174825753",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Mura_di_Cosa",
+          "citationDetail": "Mura di Cosa",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Mura di Cosa.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-city-wall",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of city wall",
+      "provenance": "OpenStreetMap (Way 174825753, version 6, osm:changeset=131522924, 2023-01-20T21:02:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Cosa's fortification wall, reinforced with interval towers, has a length of ca. 1500 meters. Traditionally the wall has been dated between ca. 273 and 264 B.C.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-wall",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-05-26T15:12:19Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.285884,
+            42.4107424
+          ],
+          [
+            11.2860729,
+            42.410637
+          ],
+          [
+            11.286125,
+            42.410611
+          ],
+          [
+            11.2866549,
+            42.4107164
+          ],
+          [
+            11.2872569,
+            42.4109225
+          ],
+          [
+            11.2876839,
+            42.4111151
+          ],
+          [
+            11.288751,
+            42.4115855
+          ],
+          [
+            11.2893832,
+            42.4118679
+          ],
+          [
+            11.2899233,
+            42.4122151
+          ],
+          [
+            11.2902352,
+            42.4126276
+          ],
+          [
+            11.2904028,
+            42.4129576
+          ],
+          [
+            11.2893925,
+            42.4132669
+          ],
+          [
+            11.2889502,
+            42.4134766
+          ],
+          [
+            11.2885909,
+            42.4136512
+          ],
+          [
+            11.2885135,
+            42.413588
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/615923349/location-of-city-wall",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T21:20:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-21T03:03:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-27T08:06:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-26T06:40:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-25T15:42:40Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T20:07:43Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-15T00:17:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-26T15:14:31Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-26T15:14:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-26T15:12:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-26T15:12:26Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/174825761",
+          "citationDetail": "Way 174825761",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=174825761",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-city-wall-curtain",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "end": 300,
+      "title": "OSM location of city wall curtain",
+      "provenance": "OpenStreetMap (Way 174825761, version 4, osm:changeset=115076569, 2021-12-18T00:48:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-wall"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-12-18T00:53:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.2884296,
+            42.4136379
+          ],
+          [
+            11.2885036,
+            42.413712
+          ],
+          [
+            11.2880411,
+            42.4142479
+          ],
+          [
+            11.2876362,
+            42.41435
+          ],
+          [
+            11.2872115,
+            42.414367
+          ],
+          [
+            11.2868131,
+            42.4143342
+          ],
+          [
+            11.2863736,
+            42.4142382
+          ],
+          [
+            11.2858531,
+            42.4139723
+          ],
+          [
+            11.2858802,
+            42.4139447
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/615923349/osm-location-of-city-wall-curtain",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T21:20:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-18T12:43:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-18T00:53:49Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-18T00:53:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-18T00:53:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-18T00:53:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-12-18T00:49:09Z",
+      "associationCertainty": "certain",
+      "title": "Cosa",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/615923349/5498278550",
+      "connectionType": "at",
+      "id": "5498278550",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-18T00:49:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-18T00:49:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-18T00:49:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413107",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Mura_di_Cosa",
+      "citationDetail": "Mura di Cosa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Mura di Cosa.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3867262",
+      "citationDetail": "Q3867262: City wall of Cosa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "615923349",
+  "subject": [
+    "megalithic",
+    "limestone",
+    "extant remains",
+    "polygonal masonry"
+  ],
+  "title": "City wall of Cosa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+  ],
+  "details": "<p>Cosa's fortification wall, reinforced with interval towers, has a length of ca. 1500 meters. Traditionally the wall has been dated between ca. 273 and 264 B.C.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cosa's polygonal masonry fortification wall, reinforced with interval towers, has a length of ca. 1500 meters. Traditionally the wall has been dated between ca. 273 and 264 B.C.",
+  "reprPoint": [
+    11.286557393580603,
+    42.41237171126858
+  ],
+  "placeTypes": [
+    "city-wall"
+  ],
+  "bbox": [
+    11.2858448,
+    42.4105651,
+    11.2885036,
+    42.414367
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413107"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-12-18T00:49:09Z",
+  "uri": "https://pleiades.stoa.org/places/615923349",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-12-18T12:43:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-18T00:53:49Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-18T00:52:38Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-18T00:49:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-18T00:49:09Z"
+    }
+  ]
+}

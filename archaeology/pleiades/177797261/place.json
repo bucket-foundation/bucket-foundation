@@ -1,0 +1,350 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.6120537,
+            36.5586489
+          ],
+          [
+            -4.6124265,
+            36.5586015
+          ],
+          [
+            -4.6124587,
+            36.5585412
+          ],
+          [
+            -4.6124399,
+            36.5585046
+          ],
+          [
+            -4.6124399,
+            36.5584421
+          ],
+          [
+            -4.6125258,
+            36.558427
+          ],
+          [
+            -4.6128128,
+            36.558231
+          ],
+          [
+            -4.6128771,
+            36.5580823
+          ],
+          [
+            -4.6128986,
+            36.5579272
+          ],
+          [
+            -4.6128825,
+            36.5577742
+          ],
+          [
+            -4.6127564,
+            36.5575674
+          ],
+          [
+            -4.6122865,
+            36.5582367
+          ],
+          [
+            -4.6122361,
+            36.5583085
+          ],
+          [
+            -4.6120349,
+            36.5585585
+          ],
+          [
+            -4.6120188,
+            36.558608
+          ],
+          [
+            -4.6120537,
+            36.5586489
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Production; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/177797261/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Yacimiento arqueol\u00f3gico Finca del Secretario (Fuengirola)"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/285596125",
+          "citationDetail": "Way 285596125",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=285596125",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "end": 300,
+      "title": "OSM location of Yacimiento arqueol\u00f3gico Finca del Secretario (Fuengirola)",
+      "provenance": "OpenStreetMap (Way 285596125, version 2, osm:changeset=131638148, 2023-01-24T07:52:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/production"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "production"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-06-01T00:26:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.6120537,
+            36.5586489
+          ],
+          [
+            -4.6124265,
+            36.5586015
+          ],
+          [
+            -4.6124587,
+            36.5585412
+          ],
+          [
+            -4.6124399,
+            36.5585046
+          ],
+          [
+            -4.6124399,
+            36.5584421
+          ],
+          [
+            -4.6125258,
+            36.558427
+          ],
+          [
+            -4.6128128,
+            36.558231
+          ],
+          [
+            -4.6128771,
+            36.5580823
+          ],
+          [
+            -4.6128986,
+            36.5579272
+          ],
+          [
+            -4.6128825,
+            36.5577742
+          ],
+          [
+            -4.6127564,
+            36.5575674
+          ],
+          [
+            -4.6122865,
+            36.5582367
+          ],
+          [
+            -4.6122361,
+            36.5583085
+          ],
+          [
+            -4.6120349,
+            36.5585585
+          ],
+          [
+            -4.6120188,
+            36.558608
+          ],
+          [
+            -4.6120537,
+            36.5586489
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/177797261/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-11T22:19:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-30T21:57:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-09T14:40:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-09T14:39:07Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-01T00:28:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-01T00:26:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-01T00:26:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://wikimapia.org/2364374/es/Yacimiento-arqueol\u00f3gico-Finca-del-Secretario",
+      "citationDetail": "Yacimiento arqueol\u00f3gico Finca del Secretario (Fuengirola)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimapia",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KQAFNXZX",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cWikimapia.\u201d 2012. http://wikimapia.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q97634235",
+      "citationDetail": "Finca del Secretario (Q97634235)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "177797261",
+  "subject": [],
+  "title": "Finca del Secretario",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/production",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological site that comprises remains of an urban area of the Roman period ranging in date from the first to the fifth centuries. Among the complexes in evidence are a salting factory, a pottery works, and thermal baths.",
+  "reprPoint": [
+    -4.61251123924261,
+    36.558180838087495
+  ],
+  "placeTypes": [
+    "production",
+    "bath"
+  ],
+  "bbox": [
+    -4.6128986,
+    36.5575674,
+    -4.6120188,
+    36.5586489
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-06-01T00:25:39Z",
+  "uri": "https://pleiades.stoa.org/places/177797261",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Finca del Secretario (Q97634235)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-11T22:20:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-30T21:57:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-09T14:40:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-09T14:40:32Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-01T00:25:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-01T00:25:40Z"
+    }
+  ]
+}

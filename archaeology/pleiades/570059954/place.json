@@ -1,0 +1,215 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.5152687,
+          55.7411571
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Cemetery; 1000 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/570059954/osm-location",
+        "description": "Point based on an OpenStreetMap node representing Sidorovka Burial Ground after Matiushchenko 1997.",
+        "location_precision": "precise",
+        "title": "OSM Location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9855960096",
+          "citationDetail": "Node 9855960096",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9855960096",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/43227507",
+          "citationDetail": "pages 4, 126 ",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Matiushchenko 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7DLGHUPH",
+          "formattedCitation": "<div class=\"csl-entry\">Matiushchenko, V. I, L. V Tataurova, and B. A Konikov. <i>Mogil\u2019nik Sidorovka v Omskom Priirtysh\u2019e</i>. Novosibirsk: \u201cNauka\u201d, Sibirskoe predpriiatie RAN, 1997. http://www.worldcat.org/oclc/43227507.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1,
+      "title": "OSM Location",
+      "provenance": "OpenStreetMap (Node 9855960096, version 1, osm:changeset=123007289, 2022-06-29T14:57:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Sidorovka Burial Ground after Matiushchenko 1997.",
+      "created": "2022-06-29T15:04:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.5152687,
+          55.7411571
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/570059954/osm-location",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T23:18:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T15:13:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T15:11:58Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T15:04:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-29T15:04:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43227507",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Matiushchenko 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7DLGHUPH",
+      "formattedCitation": "<div class=\"csl-entry\">Matiushchenko, V. I, L. V Tataurova, and B. A Konikov. <i>Mogil\u2019nik Sidorovka v Omskom Priirtysh\u2019e</i>. Novosibirsk: \u201cNauka\u201d, Sibirskoe predpriiatie RAN, 1997. http://www.worldcat.org/oclc/43227507.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Sargat_culture&oldid=1092655152",
+      "citationDetail": "Sargat culture",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "570059954",
+  "subject": [],
+  "title": "Sidorovka Burial Ground",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Burial ground in modern Omsk Oblast, Russia from the Sargat Culture with five burial mounds.",
+  "reprPoint": [
+    74.5152687,
+    55.7411571
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    74.5152687,
+    55.7411571,
+    74.5152687,
+    55.7411571
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-29T15:04:21Z",
+  "uri": "https://pleiades.stoa.org/places/570059954",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-12T23:18:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-29T15:13:14Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-29T15:04:21Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-29T15:04:21Z"
+    }
+  ]
+}

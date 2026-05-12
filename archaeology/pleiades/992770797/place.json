@@ -1,0 +1,548 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.6941686,
+            37.9402854
+          ],
+          [
+            23.6945602,
+            37.9399607
+          ],
+          [
+            23.6940076,
+            37.9395197
+          ],
+          [
+            23.6939751,
+            37.939523
+          ],
+          [
+            23.6937206,
+            37.9395493
+          ],
+          [
+            23.6934739,
+            37.9397556
+          ],
+          [
+            23.6941686,
+            37.9402854
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-archeological-excavation-site",
+      "properties": {
+        "snippet": "Cemetery; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/992770797/osm-location-of-archeological-excavation-site",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Archeological Excavation Site Faliro Delta"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/697890443",
+          "citationDetail": "Way 697890443",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-archeological-excavation-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -330,
+      "title": "OSM location of Archeological Excavation Site Faliro Delta",
+      "provenance": "OpenStreetMap (Way 697890443, version 3, osm:changeset=83091224, 2020-04-05T08:31:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-11-25T16:50:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.6941686,
+            37.9402854
+          ],
+          [
+            23.6945602,
+            37.9399607
+          ],
+          [
+            23.6940076,
+            37.9395197
+          ],
+          [
+            23.6939751,
+            37.939523
+          ],
+          [
+            23.6937206,
+            37.9395493
+          ],
+          [
+            23.6934739,
+            37.9397556
+          ],
+          [
+            23.6941686,
+            37.9402854
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/992770797/osm-location-of-archeological-excavation-site",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:50:13Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:50:12Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-10T11:43:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:59:35Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:40:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:40:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:40:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2025-11-25T16:47:58Z",
+      "associationCertainty": "certain",
+      "title": "Phaleron",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/992770797/phaleron",
+      "connectionType": "at",
+      "id": "phaleron",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:47:59Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:47:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-10T11:43:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:59:36Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:58:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:58:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/580072",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Chryssoulaki 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XMHIZ3EH",
+          "formattedCitation": "<div class=\"csl-entry\">Chryssoulaki, Stella. \u201cThe Excavations at Phaleron Cemetery 2012-2017: An Introduction.\u201d In <i>Rethinking Athens before the Persian Wars</i>, pages 103-113. M\u00fcnchen: GmbH, 2019.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/379237PhC",
+      "citationDetail": "Phaleron cemetery (Attica) Niarchos Center",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/43187051",
+      "citationDetail": "p. 8",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Archibald 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WWH2UYVK",
+      "formattedCitation": "<div class=\"csl-entry\">Archibald, Zosia, Catherine Morgan, David M. Smith, Helen Murphy-Smith, Robert Pitt, Chryssanthi Papadopoulou, Fabienne Marchand, Matthew Haysom, Alexandra Livarda, and Daniel Stewart. \u201cARCHAEOLOGY IN GREECE 2013-2014.\u201d <i>Archaeological Reports</i>, no. 60 (2013): 1\u2013135. https://www.jstor.org/stable/43187051.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/archaeological-reports/article/living-and-their-dead-in-classical-athens-new-evidence-from-acharnai-halai-aixonidai-phaleron/78A9C65F8B32DD4A9A21C6198AE18DE0",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Papadopoulou 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/92IBY9L8",
+      "formattedCitation": "<div class=\"csl-entry\">Papadopoulou, Chryssanthi. \u201cThe Living and Their Dead in Classical Athens: New Evidence from Acharnai, Halai Aixonidai &amp; Phaleron.\u201d <i>Archaeological Reports</i> 63 (November 2017): 151\u201366. https://doi.org/10.1017/S057060841800011X.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Alexandropoulou 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CPIU9TGL",
+      "formattedCitation": "<div class=\"csl-entry\">Alexandropoulou, Anna. \u201cDie Kindergr\u00e4ber in Phaleron (Attika).\u201d In <i>Griechische Nekropolen\u202f: neue Forschungen und Funde</i>, 261\u201385. M\u00f6hnesee: Bibliopolis, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ingvarsson-Sundstr\u00f6m 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7YR3ACJX",
+      "formattedCitation": "<div class=\"csl-entry\">Ingvarsson-Sundstr\u00f6m, Anne, and Ylva B\u00e4ckstr\u00f6m. \u201cBioarchaeological Field Analysis of Human Remains from the Mass Graves at Phaleron, Greece.\u201d In <i>Opuscula, 12 (2019)</i>, 7\u2013158. Sweden: Svenska Instituten vid Rom och Athen, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Chryssoulaki 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XMHIZ3EH",
+      "formattedCitation": "<div class=\"csl-entry\">Chryssoulaki, Stella. \u201cThe Excavations at Phaleron Cemetery 2012-2017: An Introduction.\u201d In <i>Rethinking Athens before the Persian Wars</i>, pages 103-113. M\u00fcnchen: GmbH, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "R\u00f6nnberg 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8XUPI6S4",
+      "formattedCitation": "<div class=\"csl-entry\">R\u00f6nnberg, Maximilian F. \u201cThe New Mass Grave(s) at Phaleron, Kylon and the Increase in Elite Competition in Early Archaic Athens.\u201d <i>BABESCH</i> 98 (2023): 11\u201330. https://doi.org/10.2143/BAB.98.0.3291700.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Phaleron cemetery",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Chryssoulaki 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XMHIZ3EH",
+          "formattedCitation": "<div class=\"csl-entry\">Chryssoulaki, Stella. \u201cThe Excavations at Phaleron Cemetery 2012-2017: An Introduction.\u201d In <i>Rethinking Athens before the Persian Wars</i>, pages 103-113. M\u00fcnchen: GmbH, 2019.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "phaleron-cemetery",
+      "end": 2099,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-11-25T16:47:56Z",
+      "uri": "https://pleiades.stoa.org/places/992770797/phaleron-cemetery",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Phaleron cemetery",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:47:56Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:47:55Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-10T11:43:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:59:36Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:58:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-09T15:58:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "992770797",
+  "subject": [
+    "cemetery",
+    "bioarchaeology"
+  ],
+  "title": "Phaleron cemetery (Attica)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "<p>The site of the\u00a0Phaleron cemetery in Attica, also referred to as \"Phaleron Delta\", was documented during construction works for the Stavros Niarchos Foundation Cultural Centre. During 2012-2013 an area of some 3,000 square meters was excavated, expanding upon a site first identified in the early twentieth century. Some 1,069 graves (eighth to fifth centuries B.C.) were documented.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A cemetery at Phaleron with burials ranging in date from the Archaic to the Classical period.",
+  "reprPoint": [
+    23.69402266702624,
+    37.93987062145432
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    23.6934739,
+    37.9395197,
+    23.6945602,
+    37.9402854
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/580072"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-25T16:46:53Z",
+  "uri": "https://pleiades.stoa.org/places/992770797",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:46:53Z"
+    },
+    {
+      "comment": "added R\u00f6nnberg 2023",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-21T23:47:25Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-10T11:43:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-09T15:59:35Z"
+    },
+    {
+      "comment": "added tags",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-09T15:59:19Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-09T15:57:01Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-09T15:38:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-09T15:38:52Z"
+    }
+  ]
+}

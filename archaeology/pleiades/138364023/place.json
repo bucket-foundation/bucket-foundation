@@ -1,0 +1,209 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.5609346,
+          34.9201402
+        ]
+      },
+      "type": "Feature",
+      "id": "ais-gorkis",
+      "properties": {
+        "snippet": "Archaeological-site, Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/138364023/ais-gorkis",
+        "description": "Point representing the approximate center point of the Ais Gorkis site, derived from an OpenStreetMap Node after Simmons 2023.",
+        "location_precision": "precise",
+        "title": "Ais Gorkis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/13184495986",
+          "citationDetail": "Node 13184495986",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=13184495986",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://worldcat.org/oclc/1430194208",
+          "citationDetail": "pages 4-5",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Simmons 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PQ8ZFMAJ",
+          "formattedCitation": "<div class=\"csl-entry\">Simmons, Alan H., ed. <i>From the Mountains to the Sea: Ais Giorkis, an Early Neolithic Hamlet in the Troodos Foothills of Western Cyprus</i>. Studies in Mediterranean Archaeology, vol. 146. Nicosia: Astrom Editions, 2023. http://worldcat.org/oclc/1430194208.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ais-gorkis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "Ais Gorkis",
+      "provenance": "OpenStreetMap (Node 13184495986, version 1, osm:changeset=172670769, 2025-09-30T17:12:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "settlement"
+      ],
+      "description": "Point representing the approximate center point of the Ais Gorkis site, derived from an OpenStreetMap Node after Simmons 2023.",
+      "created": "2025-09-30T17:15:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.5609346,
+          34.9201402
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/138364023/ais-gorkis",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-10-01T16:39:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T17:16:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T17:16:35Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T17:15:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2025-09-30T17:15:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://worldcat.org/oclc/1430194208",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Simmons 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PQ8ZFMAJ",
+      "formattedCitation": "<div class=\"csl-entry\">Simmons, Alan H., ed. <i>From the Mountains to the Sea: Ais Giorkis, an Early Neolithic Hamlet in the Troodos Foothills of Western Cyprus</i>. Studies in Mediterranean Archaeology, vol. 146. Nicosia: Astrom Editions, 2023. http://worldcat.org/oclc/1430194208.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "138364023",
+  "subject": [],
+  "title": "Ais Gorkis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement in western Cyprus inhabited during the Neolithic period.",
+  "reprPoint": [
+    32.5609346,
+    34.9201402
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    32.5609346,
+    34.9201402,
+    32.5609346,
+    34.9201402
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-30T17:14:53Z",
+  "uri": "https://pleiades.stoa.org/places/138364023",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-10-01T16:39:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-30T17:16:52Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-30T17:14:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2025-09-30T17:14:53Z"
+    }
+  ]
+}

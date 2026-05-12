@@ -1,0 +1,276 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.7678498,
+          38.358374
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-klazomenai-akropolis",
+      "properties": {
+        "snippet": "Acropolis; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/278163592/osm-location-of-klazomenai-akropolis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Klazomenai Akropolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4690985745",
+          "citationDetail": "Node 4690985745",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4690985745",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-klazomenai-akropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+      ],
+      "end": -330,
+      "title": "OSM location of Klazomenai Akropolis",
+      "provenance": "OpenStreetMap (Node 4690985745, version 1, osm:changeset=46172035, 2017-02-17T18:02:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "acropolis"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-12-06T16:11:30Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.7678498,
+          38.358374
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/278163592/osm-location-of-klazomenai-akropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-24T00:47:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-24T00:47:05Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-06T16:11:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-06T16:11:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-06T16:11:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-23T20:36:02Z",
+      "associationCertainty": "certain",
+      "title": "Klazomenai (earlier)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/278163592/7628609210",
+      "connectionType": "at",
+      "id": "7628609210",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Klazomenae earlier",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-29T15:44:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-23T20:36:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-23T20:36:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-23T20:36:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550650",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://brill.com/display/book/edcoll/9789004416659/BP000017.xml",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Klein 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPZGQ8P7",
+      "formattedCitation": "<div class=\"csl-entry\">Klein, Nancy L. \u201cThe Small Limestone Buildings on the Akropolis of Athenai.\u201d In <i>New Directions and Paradigms for the Study of Greek Architecture</i>, 91\u2013105. Brill, 2019. https://doi.org/10.1163/9789004416659_007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "278163592",
+  "subject": [],
+  "title": "Akropolis of Klazomenai",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall",
+    "https://pleiades.stoa.org/vocabularies/place-types/hill",
+    "https://pleiades.stoa.org/vocabularies/place-types/acropolis"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Akropolis of Klazomenai",
+  "reprPoint": [
+    26.7678498,
+    38.358374
+  ],
+  "placeTypes": [
+    "settlement",
+    "city-wall",
+    "hill",
+    "acropolis"
+  ],
+  "bbox": [
+    26.7678498,
+    38.358374,
+    26.7678498,
+    38.358374
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550650"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-23T20:35:58Z",
+  "uri": "https://pleiades.stoa.org/places/278163592",
+  "creators": [
+    {
+      "username": "cobbp",
+      "homepage": null,
+      "name": "Peter Cobb",
+      "uri": "https://pleiades.stoa.org/author/cobbp"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-24T00:47:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-24T00:47:05Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-24T00:46:56Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-23T20:36:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-23T20:35:58Z"
+    }
+  ]
+}

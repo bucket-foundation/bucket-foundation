@@ -1,0 +1,370 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.630097,
+          41.922505
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/746338295/imagery-location",
+        "description": "Imagery location derived from Google Earth following Angelelli 2021.",
+        "location_precision": "precise",
+        "title": "Imagery location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "p. 3 figure 2",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Angelelli 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q6DINYTZ",
+          "formattedCitation": "<div class=\"csl-entry\">Angelelli, Claudia. \u201cLa villa \u2018del Cavalcavia di Salone\u2019 alias \u2018villa del Giurista\u2019\u202f: il contesto archeologico.\u201d <i>Minima Epigraphica et Papyrologia</i> 24 (2021): 1\u201336.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "Imagery location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "<p>The position of the archaeological site presented here is based on C.\u00a0<span>Angelelli 2021 (esp. figure 2) derived from Google Earth with a camera height of 500 meters. The archaeological site is not visible in satellite photos as of 2025-04-02.</span></p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Imagery location derived from Google Earth following Angelelli 2021.",
+      "created": "2025-03-29T02:24:51Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.630097,
+          41.922505
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/746338295/imagery-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-02T18:49:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:37:54Z"
+        },
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:37:29Z"
+        },
+        {
+          "comment": "update references",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:04:05Z"
+        },
+        {
+          "comment": "add imagery location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T02:24:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-29T02:24:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Angelelli 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TFDGZCXS",
+      "formattedCitation": "<div class=\"csl-entry\">Angelelli, Claudia, and Stefano Musco. \u201cPitture Frammentarie Dallo Scavo Della Villa Del Cavalcavia Di Salone (Roma).\u201d <i>Scienze Dell\u2019antichit\u00e0</i> 25, no. 2 (2019): 129\u201333.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Falzone 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UNZI3CIK",
+      "formattedCitation": "<div class=\"csl-entry\">Falzone, Stella. \u201cGli affreschi frammentari dalla c.d. Villa del Giurista a Salone (Roma): inquadramento stilistico, contenuti, cronologia.\u201d <i>Minima Epigraphica et Papyrologica</i> 26 (2021). https://doi.org/10.48255/2283-3161.MEP.26.2021.02.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Angelelli 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q6DINYTZ",
+      "formattedCitation": "<div class=\"csl-entry\">Angelelli, Claudia. \u201cLa villa \u2018del Cavalcavia di Salone\u2019 alias \u2018villa del Giurista\u2019\u202f: il contesto archeologico.\u201d <i>Minima Epigraphica et Papyrologia</i> 24 (2021): 1\u201336.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "villa del Cavalcavia di Salone",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Angelelli 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TFDGZCXS",
+          "formattedCitation": "<div class=\"csl-entry\">Angelelli, Claudia, and Stefano Musco. \u201cPitture Frammentarie Dallo Scavo Della Villa Del Cavalcavia Di Salone (Roma).\u201d <i>Scienze Dell\u2019antichit\u00e0</i> 25, no. 2 (2019): 129\u201333.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "villa-del-cavalcavia-di-salone",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-04-02T17:32:09Z",
+      "uri": "https://pleiades.stoa.org/places/746338295/villa-del-cavalcavia-di-salone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "villa del Cavalcavia di Salone",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-02T18:49:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:37:54Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:32:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:32:09Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa del Giurista a Salone",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Falzone 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UNZI3CIK",
+          "formattedCitation": "<div class=\"csl-entry\">Falzone, Stella. \u201cGli affreschi frammentari dalla c.d. Villa del Giurista a Salone (Roma): inquadramento stilistico, contenuti, cronologia.\u201d <i>Minima Epigraphica et Papyrologica</i> 26 (2021). https://doi.org/10.48255/2283-3161.MEP.26.2021.02.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "villa-del-giurista-a-salone",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2025-04-02T17:33:43Z",
+      "uri": "https://pleiades.stoa.org/places/746338295/villa-del-giurista-a-salone",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa del Giurista a Salone",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-02T18:49:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:37:55Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:33:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-02T17:33:43Z"
+        }
+      ]
+    }
+  ],
+  "id": "746338295",
+  "subject": [],
+  "title": "villa del Cavalcavia di Salone",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Villa of the Jurist\" was discovered in 2013 during salvage excavations connected with the expansion of Italy's A24 motorway. A significant villa of the Late Republican period was documented and attributed to the jurist Quintus Mucius Scaevola.",
+  "reprPoint": [
+    12.630097,
+    41.922505
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    12.630097,
+    41.922505,
+    12.630097,
+    41.922505
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-29T02:21:09Z",
+  "uri": "https://pleiades.stoa.org/places/746338295",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-02T18:49:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-02T17:37:54Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-02T17:36:35Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-29T02:21:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-29T02:21:09Z"
+    }
+  ]
+}

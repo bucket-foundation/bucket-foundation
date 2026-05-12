@@ -1,0 +1,623 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.0916263,
+            51.5125264
+          ],
+          [
+            -0.0917497,
+            51.5125559
+          ],
+          [
+            -0.0917367,
+            51.5125802
+          ],
+          [
+            -0.0916665,
+            51.5127117
+          ],
+          [
+            -0.091519,
+            51.5127121
+          ],
+          [
+            -0.0915932,
+            51.5127292
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-mithras",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/17649950/osm-location-of-temple-of-mithras",
+        "description": "Representative location based on OpenStreetMap. The temple was relocated to this site shortly after its excavation from a nearby location.",
+        "location_precision": "precise",
+        "title": "OSM location of reassembled remains of Temple of Mithras"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.090588,
+          51.512332
+        ]
+      },
+      "type": "Feature",
+      "id": "centerpoint-of-the-ancient-site",
+      "properties": {
+        "snippet": "Findspot, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/17649950/centerpoint-of-the-ancient-site",
+        "description": "Findspot of temple. It was relocated shortly after its excavation to a nearby location.",
+        "location_precision": "precise",
+        "title": "Centerpoint of the ancient site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/126470937",
+          "citationDetail": "Way 126470937",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=126470937",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-mithras",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of reassembled remains of Temple of Mithras",
+      "provenance": "OpenStreetMap (Way 126470937, version 2, osm:changeset=25785445, 2014-10-01T09:11:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap. The temple was relocated to this site shortly after its excavation from a nearby location.",
+      "created": "2016-08-12T14:23:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -0.0916263,
+            51.5125264
+          ],
+          [
+            -0.0917497,
+            51.5125559
+          ],
+          [
+            -0.0917367,
+            51.5125802
+          ],
+          [
+            -0.0916665,
+            51.5127117
+          ],
+          [
+            -0.091519,
+            51.5127121
+          ],
+          [
+            -0.0915932,
+            51.5127292
+          ]
+        ]
+      },
+      "locationType": [
+        "relocated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/17649950/osm-location-of-temple-of-mithras",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-01T19:01:35Z"
+        },
+        {
+          "comment": "location type",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-15T09:47:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-15T09:45:35Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-15T09:43:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-12T14:47:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-12T14:23:28Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "centerpoint-of-the-ancient-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "Centerpoint of the ancient site",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2011",
+      "featureType": [
+        "findspot",
+        ""
+      ],
+      "description": "Findspot of temple. It was relocated shortly after its excavation to a nearby location.",
+      "created": "2012-01-19T19:24:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.090588,
+          51.512332
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/17649950/centerpoint-of-the-ancient-site",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "feature type (findspot); location type (representative location)",
+          "modifiedBy": "thomase",
+          "modified": "2016-08-15T09:49:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-02-15T20:48:03Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:38:04Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T00:17:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-01-19T19:24:36Z"
+        },
+        {
+          "comment": "Added.",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-01-19T19:24:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2012-01-19T19:24:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2016-07-13T13:47:06Z",
+      "associationCertainty": "certain",
+      "title": "Londinium/Augusta",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/17649950/79574",
+      "connectionType": "at",
+      "id": "79574",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "located at",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-30T21:37:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79574",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2019-02-07T10:19:04Z",
+      "associationCertainty": "certain",
+      "title": "Walbrook (stream)",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/17649950/walbrook-stream",
+      "connectionType": "near",
+      "id": "walbrook-stream",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-07T10:19:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-07T10:19:14Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-07T10:19:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-07T10:19:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/964504689",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/London_Mithraeum",
+      "citationDetail": "London Mithraeum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), London Mithraeum.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=404539",
+      "accessURI": "https://www.heritagegateway.org.uk/Gateway/Results_Single.aspx?uid=404539&resourceID=19191",
+      "citationDetail": "404539",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/39483596",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Shepherd 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H3XTFPUA",
+      "formattedCitation": "<div class=\"csl-entry\">Shepherd, J. D. <i>The Temple of Mithras, London: Excavations by W.F. Grimes and A. Williams at the Walbrook</i>. Archaeological Report (English Heritage) 12. London: English Heritage, 1998. http://www.worldcat.org/oclc/39483596.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.mithraeum.eu/monument/25",
+      "citationDetail": "25: Mithraeum of London",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NMithr",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BEPITUFQ",
+      "formattedCitation": "<div class=\"csl-entry\">Abu\u00edn L\u00f3pez, Andreu. <i>The New Mithraeum</i>. Accessed March 2, 2022. https://www.mithraeum.eu.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1408799",
+      "citationDetail": "London Mithraeum (Q1408799)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://periodicos.unifesp.br/index.php/herodoto/article/view/15474",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pinto 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5PCXX3L8",
+      "formattedCitation": "<div class=\"csl-entry\">Pinto, Renato. \u201cO Mitreu de Londinium e a escava\u00e7\u00e3o de dois imp\u00e9rios.\u201d <i>Her\u00f3doto: Revista do Grupo de Estudos e Pesquisas sobre a Antiguidade Cl\u00e1ssica e suas Conex\u00f5es Afro-asi\u00e1ticas</i> 7, no. 2 (2022): 53\u201378. https://doi.org/10.34024/herodoto.2022.v7.15474.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "17649950",
+  "subject": [
+    "dare:major=0",
+    "extant remains",
+    "Mithras",
+    "dare:feature=temple",
+    "dare:ancient=0",
+    "Temple"
+  ],
+  "title": "London Mithraeum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A temple sacred to Mithras in Londinium that was discovered in 1954. The visible remains of the temple do not sit on the original site, but have been reassembled at Temple Court, Queen Victoria Street, London.",
+  "reprPoint": [
+    -0.09111851355110735,
+    51.51248894856323
+  ],
+  "placeTypes": [
+    "findspot",
+    "temple-2"
+  ],
+  "bbox": [
+    -0.0917497,
+    51.512332,
+    -0.090588,
+    51.5127292
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79574",
+    "https://pleiades.stoa.org/places/964504689"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-03T14:45:31Z",
+  "uri": "https://pleiades.stoa.org/places/17649950",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Pinto 2022",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-30T21:38:25Z"
+    },
+    {
+      "comment": "cleaned up references; added New Mithraeum reference; wikidata London Mithraeum (Q1408799)",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-04T03:30:38Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-03T14:45:31Z"
+    },
+    {
+      "comment": "resolving draft doublet, adding OSM location",
+      "modifiedBy": "thomase",
+      "modified": "2016-08-15T09:42:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-10T22:40:59Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T21:20:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2012-02-15T20:48:02Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:38:04Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:17:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2012-01-19T19:31:42Z"
+    },
+    {
+      "comment": "Added.",
+      "modifiedBy": "sarcanon",
+      "modified": "2012-01-19T19:20:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2012-01-19T19:20:49Z"
+    }
+  ]
+}

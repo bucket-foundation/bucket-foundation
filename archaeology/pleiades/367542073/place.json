@@ -1,0 +1,400 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4521841,
+            41.8888626
+          ],
+          [
+            12.4520435,
+            41.8885522
+          ],
+          [
+            12.4516574,
+            41.8877051
+          ],
+          [
+            12.4515023,
+            41.8877053
+          ],
+          [
+            12.4509805,
+            41.8877128
+          ],
+          [
+            12.4509579,
+            41.8879773
+          ],
+          [
+            12.4508285,
+            41.8881041
+          ],
+          [
+            12.45059,
+            41.8881853
+          ],
+          [
+            12.4505809,
+            41.8884068
+          ],
+          [
+            12.4506172,
+            41.8885031
+          ],
+          [
+            12.4508059,
+            41.8888091
+          ],
+          [
+            12.4515794,
+            41.8888381
+          ],
+          [
+            12.4521841,
+            41.8888626
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Cemetery",
+        "link": "https://pleiades.stoa.org/places/367542073/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "less-certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1331102511",
+          "citationDetail": "Way 1331102511",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1331102511",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": null,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 1331102511, version 1, osm:changeset=158790769, 2024-11-05T18:46:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-02-16T17:15:00Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4521841,
+            41.8888626
+          ],
+          [
+            12.4520435,
+            41.8885522
+          ],
+          [
+            12.4516574,
+            41.8877051
+          ],
+          [
+            12.4515023,
+            41.8877053
+          ],
+          [
+            12.4509805,
+            41.8877128
+          ],
+          [
+            12.4509579,
+            41.8879773
+          ],
+          [
+            12.4508285,
+            41.8881041
+          ],
+          [
+            12.45059,
+            41.8881853
+          ],
+          [
+            12.4505809,
+            41.8884068
+          ],
+          [
+            12.4506172,
+            41.8885031
+          ],
+          [
+            12.4508059,
+            41.8888091
+          ],
+          [
+            12.4515794,
+            41.8888381
+          ],
+          [
+            12.4521841,
+            41.8888626
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/367542073/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-17T11:17:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T17:15:34Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T17:15:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T17:15:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T17:15:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-01-25T15:20:22Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/367542073/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-17T11:17:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-16T17:15:34Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T15:20:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-25T15:20:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q63526428",
+      "citationDetail": "Columbarium of Caius Scribonius Menophilus (Q63526428)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bendinelli 1941",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9RPLVQKT",
+      "formattedCitation": "<div class=\"csl-entry\">Bendinelli, Goffredo. <i>Le Pitture Del Colombario Di Villa Pamphili</i>. Monumenti Della Pittura Antica Scoperti in Italia. Sezione 3, La Pittura Ellenistico-Romana, [2] Roma, Fasc. 5. [Roma: Instituto poligrafico dello stato, 1941.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/10979",
+      "citationDetail": "Columbarium des Scribonius Menophilus Palazzo Doria\u2013Pamphili, Rom",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Colombario_di_Scribonio_Menofilo",
+      "citationDetail": "Colombario di Scribonio Menofilo",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=10317",
+      "citationDetail": "10317: Colombario di Scribonio Menofilo",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "367542073",
+  "subject": [],
+  "title": "Columbarium of Caius Scribonius Menophilus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "<p><span>The columbarium of Scribonius Menophilus was originally b</span>uilt during the Augustan period and continued in use until the second century CE. Construction on the grounds of the <span>Villa</span><span>\u00a0Doria\u00a0</span><span>Pamphili during the sixteenth century partially destroyed</span>\u00a0the upper level of the columbarium. The tomb came to be rediscovered in 1984.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Columbarium of Caius Scribonius Menophilus is located on the grounds of the Doria Pamphili in Rome. The well-preserved columbarium dates to the late republican and early imperial periods and is noted for its wall paintings.",
+  "reprPoint": [
+    12.451367741902692,
+    41.88835375935587
+  ],
+  "placeTypes": [
+    "tomb",
+    "cemetery"
+  ],
+  "bbox": [
+    12.4505809,
+    41.8877051,
+    12.4521841,
+    41.8888626
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-01-25T14:28:16Z",
+  "uri": "https://pleiades.stoa.org/places/367542073",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-17T11:17:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-16T17:15:34Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-25T16:04:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-25T15:48:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-25T15:20:00Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-25T14:28:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-25T14:28:16Z"
+    }
+  ]
+}

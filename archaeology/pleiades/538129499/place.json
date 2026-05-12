@@ -1,0 +1,448 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6566723,
+            47.741461
+          ],
+          [
+            16.6567803,
+            47.7414445
+          ],
+          [
+            16.6567535,
+            47.7413651
+          ],
+          [
+            16.6566455,
+            47.7413816
+          ],
+          [
+            16.6566723,
+            47.741461
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mithra-sz-szenta-c-ly",
+      "properties": {
+        "snippet": "Shrine; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/538129499/osm-location-of-mithra-sz-szenta-c-ly",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mithr\u00e1sz-szent\u00e9ly"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.656715,
+          47.741411
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-mithraeum-at-fertorakos-at-scarbantia",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/538129499/imagery-location-mithraeum-at-fertorakos-at-scarbantia",
+        "description": "Well preserved Mithraeum with modern stone vault above ground and site below in Fert\u0151r\u00e1kos, Hungary at the site of ancient Scarbantia",
+        "location_precision": "precise",
+        "title": "Imagery Location: Mithraeum at Fert\u0151r\u00e1kos at Scarbantia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/333209603",
+          "citationDetail": "Way 333209603",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=333209603",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-mithra-sz-szenta-c-ly",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "end": 300,
+      "title": "OSM location of Mithr\u00e1sz-szent\u00e9ly",
+      "provenance": "OpenStreetMap (Way 333209603, version 3, osm:changeset=85106729, 2020-05-12T21:34:43Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "shrine"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-04-26T21:50:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.6566723,
+            47.741461
+          ],
+          [
+            16.6567803,
+            47.7414445
+          ],
+          [
+            16.6567535,
+            47.7413651
+          ],
+          [
+            16.6566455,
+            47.7413816
+          ],
+          [
+            16.6566723,
+            47.741461
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/538129499/osm-location-of-mithra-sz-szenta-c-ly",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-28T14:42:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-26T21:50:43Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-26T21:50:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-26T21:50:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-26T21:50:15Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.mithras.hu/",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Mithras, Mithras sanctuary Fert\u0151r\u00e1kos, 2006",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-mithraeum-at-fertorakos-at-scarbantia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 300,
+      "title": "Imagery Location: Mithraeum at Fert\u0151r\u00e1kos at Scarbantia",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoimage-austria-imagery-2012",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Well preserved Mithraeum with modern stone vault above ground and site below in Fert\u0151r\u00e1kos, Hungary at the site of ancient Scarbantia",
+      "created": "2012-03-23T20:15:33Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.656715,
+          47.741411
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/538129499/imagery-location-mithraeum-at-fertorakos-at-scarbantia",
+      "creators": [
+        {
+          "username": "pscalfano",
+          "homepage": null,
+          "name": "Perry Scalfano",
+          "uri": "https://pleiades.stoa.org/author/pscalfano"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-03-27T10:21:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "pscalfano",
+          "modified": "2012-03-23T20:15:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "pscalfano",
+          "modified": "2012-03-23T20:15:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "pscalfano",
+          "modified": "2012-03-23T20:15:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-10-27T03:38:42Z",
+      "associationCertainty": "certain",
+      "title": "Scarbantia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/538129499/5221197544",
+      "connectionType": "at",
+      "id": "5221197544",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-27T03:38:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-27T03:38:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-10-27T03:38:42Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/197501",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.mithras.hu/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mithras-szent\u00e9ly Fert\u0151r\u00e1kos",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RPXASSYY",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Mithras-Szent\u00e9ly Fert\u0151r\u00e1kos</i>. Fert\u0151r\u00e1kos: Turistanavig\u00e1tor Kft., 2006. http://www.mithras.hu/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1177999",
+      "citationDetail": "Q1177999: Fert\u0151r\u00e1kos mithraeum",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.mithraeum.eu/monument/36",
+      "citationDetail": "36: Mithraeum of Fert\u0151r\u00e1kos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NMithr",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BEPITUFQ",
+      "formattedCitation": "<div class=\"csl-entry\">Abu\u00edn L\u00f3pez, Andreu. <i>The New Mithraeum</i>. Accessed March 2, 2022. https://www.mithraeum.eu.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "538129499",
+  "subject": [
+    "Mithras"
+  ],
+  "title": "Mithraeum at Fert\u0151r\u00e1kos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/shrine"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A well-preserved Mithraeum with modern stone vault above ground and site below in Fert\u0151r\u00e1kos, Hungary, at the site of ancient Scarbantia.",
+  "reprPoint": [
+    16.65671395,
+    47.741412025
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "shrine"
+  ],
+  "bbox": [
+    16.6566455,
+    47.7413651,
+    16.6567803,
+    47.741461
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/197501"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-03T00:21:04Z",
+  "uri": "https://pleiades.stoa.org/places/538129499",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "pscalfano",
+      "homepage": null,
+      "name": "Perry Scalfano",
+      "uri": "https://pleiades.stoa.org/author/pscalfano"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added New Mithraeum reference; updated reference: Mithras-szent\u00e9ly Fert\u0151r\u00e1kos; summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-03T01:42:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-11T02:17:52Z"
+    },
+    {
+      "comment": "wikidata Q1177999: Fert\u0151r\u00e1kos mithraeum",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-11T02:17:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-27T03:40:20Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-27T03:39:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-27T03:39:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-27T03:39:38Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-27T03:38:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-10-27T03:38:39Z"
+    }
+  ]
+}

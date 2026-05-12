@@ -1,0 +1,229 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.386243,
+          41.792038
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-casal-bernocchi",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/52385299/imagery-location-of-casal-bernocchi",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery location of Casal Bernocchi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "imagery-location-of-casal-bernocchi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "Imagery location of Casal Bernocchi",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2023-06-23T19:56:39Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.386243,
+          41.792038
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/52385299/imagery-location-of-casal-bernocchi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-27T20:52:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-24T00:50:18Z"
+        },
+        {
+          "comment": "add imagery location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-23T19:56:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-23T19:56:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-06-23T19:57:14Z",
+      "associationCertainty": "certain",
+      "title": "Via Ostiensis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/52385299/via-ostiensis",
+      "connectionType": "on",
+      "id": "via-ostiensis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-27T20:52:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-24T00:50:18Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-23T19:57:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-23T19:57:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/390205932",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/mefra/5586",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caldarini et al. 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/73HR6AV5",
+      "formattedCitation": "<div class=\"csl-entry\">Caldarini, Carla, Paola Catalano, Alessandro D\u2019Alessio, Cristian D\u2019Ammassa, Nicola Luciani, Antonio Manna, Renato Sebastiani, and Federica Zavaroni. \u201cMezzo millennio di storia romana a Casal Bernocchi-Malafede. I risultati degli scavi 2015.\u201d <i>M\u00e9langes de l\u2019\u00c9cole fran\u00e7aise de Rome - Antiquit\u00e9</i>, no. 130\u20132 (November 5, 2018): 289\u201394. https://doi.org/10.4000/mefra.5586.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "52385299",
+  "subject": [],
+  "title": "Casal Bernocchi-Malafede",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological area along the Via Ostiensis with evidence of human activity stretching from the Archaic period to the time of the Roman Empire. SIgnificant archaeological features include an extensive necropolis and a Roman bathing facility.",
+  "reprPoint": [
+    12.386243,
+    41.792038
+  ],
+  "placeTypes": [
+    "cemetery",
+    "archaeological-site"
+  ],
+  "bbox": [
+    12.386243,
+    41.792038,
+    12.386243,
+    41.792038
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/390205932"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-06-23T15:49:02Z",
+  "uri": "https://pleiades.stoa.org/places/52385299",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-27T20:52:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-24T00:50:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-23T19:45:49Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-23T15:49:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-23T15:49:02Z"
+    }
+  ]
+}

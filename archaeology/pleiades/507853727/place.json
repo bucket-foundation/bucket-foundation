@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5966727,
+            42.1301105
+          ],
+          [
+            12.5969114,
+            42.1301852
+          ],
+          [
+            12.5974772,
+            42.1292456
+          ],
+          [
+            12.5972196,
+            42.1291701
+          ],
+          [
+            12.597054,
+            42.1294409
+          ],
+          [
+            12.5966727,
+            42.1301105
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-forum-of-lucus-feroniae",
+      "properties": {
+        "snippet": "Plaza; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/507853727/osm-location-of-forum-of-lucus-feroniae",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Forum of Lucus Feroniae"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/215646507",
+          "citationDetail": "Way 215646507",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=215646507",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-forum-of-lucus-feroniae",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza"
+      ],
+      "end": 300,
+      "title": "OSM location of Forum of Lucus Feroniae",
+      "provenance": "OpenStreetMap (Way 215646507, version 7, osm:changeset=140870606, 2023-09-05T22:26:46Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "plaza"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-03-07T16:28:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5966727,
+            42.1301105
+          ],
+          [
+            12.5969114,
+            42.1301852
+          ],
+          [
+            12.5974772,
+            42.1292456
+          ],
+          [
+            12.5972196,
+            42.1291701
+          ],
+          [
+            12.597054,
+            42.1294409
+          ],
+          [
+            12.5966727,
+            42.1301105
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/507853727/osm-location-of-forum-of-lucus-feroniae",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T22:22:25Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-11T19:16:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-14T16:00:10Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-07T16:28:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-07T16:28:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-07T16:28:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-03-07T16:30:27Z",
+      "associationCertainty": "certain",
+      "title": "Lucus Feroniae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/507853727/lucus-feroniae",
+      "connectionType": "at",
+      "id": "lucus-feroniae",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-11T19:16:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-14T16:00:10Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-07T16:30:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-07T16:30:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413184",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stanco 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C4XPSZ4T",
+      "formattedCitation": "<div class=\"csl-entry\">Stanco, Enrico Angelo. \u201cDue Dediche Di Et\u00e0 Triumvirale a Ottaviano e Ottavia Da Lucus Feroniae.\u201d In <i>Zeitschrift F\u00fcr Papyrologie Und Epigraphik, 211 (2019)</i>, 305\u20139. Bonn: Habelt, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cristilli 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NE2JPG49",
+      "formattedCitation": "<div class=\"csl-entry\">Cristilli, Armando. \u201cFrom Nero to Vespasian. Two Re-Carved Marble Portraits in Lucus Feroniae.\u201d In <i>Analysis Archaeologica\u202f: An International Journal of Western Mediterranean Archaeology, 3 (2017)</i>, 37\u201344. Roma: Edizioni Quasar, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Russo Tagliente 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6LJ4A2MC",
+      "formattedCitation": "<div class=\"csl-entry\">Russo Tagliente, Alfonsina. \u201cIl santuario e la colonia: storia delle scoperte e degli studi.\u201d In <i>Lucus Feroniae\u202f: il santuario, la citt\u00e0, il territorio</i>, 3\u201310. Roma: Scienze e Lettere, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Russo Tagliente 2017a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QC2QD9M8",
+      "formattedCitation": "<div class=\"csl-entry\">Russo Tagliente, Alfonsina, Giuseppina Ghini, and Laura Caretta, eds. <i>Lucus Feroniae: Il Santuario, La Citt\u00e0, Il Territorio</i>. Roma: Scienze e Lettere, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "507853727",
+  "subject": [],
+  "title": "Forum of Lucus Feroniae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The forum of the Roman colony, Colonia Iulia felix Lucoferensis.",
+  "reprPoint": [
+    12.59707130001882,
+    42.12967406996581
+  ],
+  "placeTypes": [
+    "plaza"
+  ],
+  "bbox": [
+    12.5966727,
+    42.1291701,
+    12.5974772,
+    42.1301852
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413184",
+    "https://pleiades.stoa.org/places/741654509",
+    "https://pleiades.stoa.org/places/230559832"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-03-07T16:28:01Z",
+  "uri": "https://pleiades.stoa.org/places/507853727",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-11T19:16:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-14T16:00:10Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-14T15:59:57Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-07T16:28:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-07T16:28:01Z"
+    }
+  ]
+}

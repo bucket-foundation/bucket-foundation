@@ -1,0 +1,551 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.2028922,
+            34.0068804
+          ],
+          [
+            36.2037869,
+            34.0070774
+          ],
+          [
+            36.203931,
+            34.0066276
+          ],
+          [
+            36.2030363,
+            34.0064306
+          ],
+          [
+            36.2028922,
+            34.0068804
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-jupiter",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/758001563/osm-location-of-temple-of-jupiter",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Jupiter"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/244881408",
+          "citationDetail": "Way 244881408",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=244881408",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-jupiter",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Temple of Jupiter",
+      "provenance": "OpenStreetMap (Way 244881408, version 5, osm:changeset=66017156, 2019-01-04T10:59:58Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-06-12T18:27:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.2028922,
+            34.0068804
+          ],
+          [
+            36.2037869,
+            34.0070774
+          ],
+          [
+            36.203931,
+            34.0066276
+          ],
+          [
+            36.2030363,
+            34.0064306
+          ],
+          [
+            36.2028922,
+            34.0068804
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/758001563/osm-location-of-temple-of-jupiter",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-18T23:57:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T23:36:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T20:20:01Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:27:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:27:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T18:27:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "The Temple of Juppiter Baal is in Baalbek.",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2020-06-12T15:00:00Z",
+      "associationCertainty": "certain",
+      "title": "Heliopolis/Col. Iulia Augusta Felix",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/758001563/heliopolis-col-iulia-augusta-felix",
+      "connectionType": "at",
+      "id": "heliopolis-col-iulia-augusta-felix",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T23:36:33Z"
+        },
+        {
+          "comment": "changed type",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T20:18:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:02:06Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:00:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jfu",
+          "modified": "2020-06-12T15:00:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678179",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/930067952",
+          "citationDetail": "39",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ball 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TK5TAQSV",
+          "formattedCitation": "<div class=\"csl-entry\">Ball, Warwick. <i>Rome in the East: The Transformation of an Empire</i>. 2nd ed. 1 vols. London\u202f; New York: Routledge, Taylor &amp; Francis Group, 2016. http://www.worldcat.org/oclc/930067952.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "jfu"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Jupiter_(Roman_Heliopolis)",
+      "citationDetail": "Temple of Jupiter (Roman Heliopolis)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.livius.org/articles/place/heliopolis-baalbek/baalbek-photos/baalbek-temple-of-jupiter/",
+      "citationDetail": "Baalbek: Temple of Jupiter",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+      "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/294/",
+      "citationDetail": "294: Baalbek",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://pdfs.semanticscholar.org/ba1b/03a2ee89999e5525468570e742d436d13d2b.pdf?_ga=2.86592732.514709390.1591986027-732284090.1591986027",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lohmann 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RVLSRF4M",
+      "formattedCitation": "<div class=\"csl-entry\">Lohmann, Daniel. \u201cGiant Strides towards Monumentality. The Architecture of the Jupiter Sanctuary in Baalbek/ Heliopolis,\u201d 2011. https://pdfs.semanticscholar.org/ba1b/03a2ee89999e5525468570e742d436d13d2b.pdf?_ga=2.86592732.514709390.1591986027-732284090.1591986027.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.oxfordartonline.com/groveart/view/10.1093/gao/9781884446054.001.0001/oao-9781884446054-e-7000005505?mediaType=Article",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lyttleton 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WIHFENPI",
+      "formattedCitation": "<div class=\"csl-entry\">Lyttleton, Margaret. \u201cBaalbek [Heliopolis].\u201d <i>Grove Art Online</i>. Oxford University Press, 1996. https://www.oxfordartonline.com/groveart/view/10.1093/gao/9781884446054.001.0001/oao-9781884446054-e-7000005505?mediaType=Article.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/930067952",
+      "citationDetail": "39-40, 47, 482",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ball 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TK5TAQSV",
+      "formattedCitation": "<div class=\"csl-entry\">Ball, Warwick. <i>Rome in the East: The Transformation of an Empire</i>. 2nd ed. 1 vols. London\u202f; New York: Routledge, Taylor &amp; Francis Group, 2016. http://www.worldcat.org/oclc/930067952.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/16415/",
+      "citationDetail": "16415: Temple of Jupiter Heliopolitanus, Baalbek",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q21079381",
+      "citationDetail": "Q21079381: Temple of Jupiter",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5554",
+      "citationDetail": "270564: Tempel des Iuppiter Colonia Heliopolis, Baladiyyat Ba\u02bflabak",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://publications.dainst.org/journals/zora/article/view/4966",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wienholz 2026",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EGCTQRRV",
+      "formattedCitation": "<div class=\"csl-entry\">Wienholz, Holger. \u201cTempor\u00e4re Ausstattungen, Reparaturen und Farbigkeit am Jupitertempel von Baalbek.\u201d <i>Zeitschrift f\u00fcr Orient-Arch\u00e4ologie</i> 17 (March 24, 2026). https://doi.org/10.34780/z5dfym85.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Jupiter Heliopolitanus",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://brill.com/view/title/39559",
+          "citationDetail": "210",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Paturel 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GHB288AS",
+          "formattedCitation": "<div class=\"csl-entry\">Paturel, Simone. <i>Baalbek-Heliopolis, the Bekaa, and Berytus from 100 BCE to 400 CE: A Landscape Transformed</i>. Mnemosyne, Supplements 426. Brill, 2019. https://brill.com/view/title/39559.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "temple-of-jupiter-heliopolitanus",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-06-12T20:09:31Z",
+      "uri": "https://pleiades.stoa.org/places/758001563/temple-of-jupiter-heliopolitanus",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Jupiter Heliopolitanus",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T23:36:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T20:30:50Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T20:09:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T20:09:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "758001563",
+  "subject": [
+    "Jupiter",
+    "extant remains"
+  ],
+  "title": "Temple of Jupiter Heliopolitanus",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Temple of Jupiter Heliopolitanus at Baalbek is considered the largest temple of the Roman world. It served as an oracular shrine.",
+  "reprPoint": [
+    36.203411599999995,
+    34.006753999999994
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    36.2028922,
+    34.0064306,
+    36.203931,
+    34.0070774
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678179"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-12T14:54:53Z",
+  "uri": "https://pleiades.stoa.org/places/758001563",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "jfu"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Wienholz 2026",
+      "modifiedBy": "thomase",
+      "modified": "2026-03-30T15:17:05Z"
+    },
+    {
+      "comment": "Arachne 270564: Tempel des Iuppiter Colonia Heliopolis, Baladiyyat Ba\u02bflabak",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-10T16:10:18Z"
+    },
+    {
+      "comment": "update UWHS ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-30T02:00:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T23:36:33Z"
+    },
+    {
+      "comment": "wikidata Q21079381: Temple of Jupiter",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T20:32:00Z"
+    },
+    {
+      "comment": "vici.org 16415: Temple of Jupiter Heliopolitanus, Baalbek",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T20:22:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T20:19:51Z"
+    },
+    {
+      "comment": "Ball 2016",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T20:18:17Z"
+    },
+    {
+      "comment": "cleaned up references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T18:26:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T15:02:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T15:01:28Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T14:54:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jfu",
+      "modified": "2020-06-12T14:54:53Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Ormeleis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/639023
+- **ID**: 639023
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ormeleis
+
+## Description
+
+An ancient place, cited: BAtlas 65 C3 Ormeleis

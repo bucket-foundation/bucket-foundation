@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.727039274794656,
+              34.74784528374879
+            ],
+            [
+              40.72667435009896,
+              34.747702794346004
+            ],
+            [
+              40.7269876704624,
+              34.74706346597567
+            ],
+            [
+              40.72738968133842,
+              34.74722279901064
+            ],
+            [
+              40.727039274794656,
+              34.74784528374879
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "plan-location-of-block-l7",
+      "properties": {
+        "snippet": "City-block; 100 BC - AD 299",
+        "link": "https://pleiades.stoa.org/places/769637719/plan-location-of-block-l7",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Plan location of Block L7"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "plan-location-of-block-l7",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-block"
+      ],
+      "end": 299,
+      "title": "Plan location of Block L7",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-block"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dura-europos-walls-and-towers-baird-chen",
+      "featureType": [
+        "city-block"
+      ],
+      "description": "",
+      "created": "2021-02-09T18:54:56Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.727039274794656,
+              34.74784528374879
+            ],
+            [
+              40.72667435009896,
+              34.747702794346004
+            ],
+            [
+              40.7269876704624,
+              34.74706346597567
+            ],
+            [
+              40.72738968133842,
+              34.74722279901064
+            ],
+            [
+              40.727039274794656,
+              34.74784528374879
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/769637719/plan-location-of-block-l7",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:45:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:45:38Z"
+        },
+        {
+          "comment": "time periods",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-10T23:16:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2021-02-09T18:54:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-02-09T18:55:48Z",
+      "associationCertainty": "certain",
+      "title": "D(o)ura/Europos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/769637719/d-o-ura-europos",
+      "connectionType": "part_of_physical",
+      "id": "d-o-ura-europos",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:45:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:45:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-09T18:55:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-09T18:55:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893990",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1034731631",
+      "citationDetail": "p. 32-33, 108",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baird 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QL32DCUE",
+      "formattedCitation": "<div class=\"csl-entry\">Baird, Jennifer A. <i>Dura-Europos</i>. London: Bloomsbury, 2018. http://www.worldcat.org/oclc/1034731631.</div>",
+      "otherIdentifier": "978-1-4725-2365-5; 978-1-4725-2673-1",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1084757192",
+      "citationDetail": "p. xxxix",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "James 2019a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UM57GCTF",
+      "formattedCitation": "<div class=\"csl-entry\">James, Simon. <i>The Roman Military Base at Dura-Europos, Syria\u202f: An Archaeological Visualization</i>. Oxford, New York: Oxford University Press, 2019. https://www.worldcat.org/title/1369556517.</div>",
+      "otherIdentifier": "978-0-19-874356-9",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108076746",
+      "citationDetail": "Block L7, Dura-Europos (Q108076746)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Block L7, Dura-Europos",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q108076746",
+          "citationDetail": "Block L7, Dura-Europos (Q108076746)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "block-l7",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-11-18T15:31:50Z",
+      "uri": "https://pleiades.stoa.org/places/769637719/block-l7",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Block L7, Dura-Europos",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-21T18:32:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-18T15:31:59Z"
+        },
+        {
+          "comment": "add name - Block L7, Dura-Europos",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-18T15:31:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-18T15:31:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "769637719",
+  "subject": [
+    "YDEA project"
+  ],
+  "title": "Block L7",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-block"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "City block of Dura-Europos labeled according to modern excavators' scheme. The city's grid plan was established c. 150BCE and the site went out of use in 256 CE.",
+  "reprPoint": [
+    40.72702539510171,
+    34.74745332956111
+  ],
+  "placeTypes": [
+    "city-block"
+  ],
+  "bbox": [
+    40.72667435009896,
+    34.74706346597567,
+    40.72738968133842,
+    34.74784528374879
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893990",
+    "https://pleiades.stoa.org/places/769637720",
+    "https://pleiades.stoa.org/places/769637721",
+    "https://pleiades.stoa.org/places/769637722",
+    "https://pleiades.stoa.org/places/769637723",
+    "https://pleiades.stoa.org/places/451518249"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-02-09T18:54:55Z",
+  "uri": "https://pleiades.stoa.org/places/769637719",
+  "creators": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Block L7, Dura-Europos (Q108076746)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-07T04:21:52Z"
+    },
+    {
+      "comment": "remove erroneous tag",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-26T10:55:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "achen",
+      "modified": "2021-05-06T19:09:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-11T11:45:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-11T11:45:38Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-10T23:15:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "admin",
+      "modified": "2021-02-09T18:54:55Z"
+    }
+  ]
+}

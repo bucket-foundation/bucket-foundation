@@ -1,0 +1,408 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.6572801,
+            40.4928258
+          ],
+          [
+            25.6573664,
+            40.4927267
+          ],
+          [
+            25.6572541,
+            40.4926702
+          ],
+          [
+            25.6571679,
+            40.4927693
+          ],
+          [
+            25.6572801,
+            40.4928258
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-fonias-tower",
+      "properties": {
+        "snippet": "Tower-defensive; AD 1400 - AD 1499",
+        "link": "https://pleiades.stoa.org/places/113317586/osm-location-fonias-tower",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Fonias Tower"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fifteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1287033086",
+          "citationDetail": "Way 1287033086",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1287033086",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-fonias-tower",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "end": 1499,
+      "title": "OSM Location: Fonias Tower",
+      "provenance": "OpenStreetMap (Way 1287033086, version 2, osm:changeset=152759776, 2024-06-16T13:01:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1400,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tower-defensive"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-12-10T01:50:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.6572801,
+            40.4928258
+          ],
+          [
+            25.6573664,
+            40.4927267
+          ],
+          [
+            25.6572541,
+            40.4926702
+          ],
+          [
+            25.6571679,
+            40.4927693
+          ],
+          [
+            25.6572801,
+            40.4928258
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/113317586/osm-location-fonias-tower",
+      "creators": [
+        {
+          "username": "elkon",
+          "homepage": null,
+          "name": "Eleftheria Konstantinidou",
+          "uri": "https://pleiades.stoa.org/author/elkon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:48:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-15T02:18:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T01:51:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T01:50:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T01:50:28Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-12-10T01:52:47Z",
+      "associationCertainty": "certain",
+      "title": "Samothrace (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/113317586/samothrace-island",
+      "connectionType": "on",
+      "id": "samothrace-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:48:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-15T02:18:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T01:55:45Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T01:52:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T01:52:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/501597",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "elkon",
+          "homepage": null,
+          "name": "Eleftheria Konstantinidou",
+          "uri": "https://pleiades.stoa.org/author/elkon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q38283601",
+      "citationDetail": "Fonias Tower (Q38283601)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsDataSource"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.openstreetmap.org/way/1287033086#map=19/40.492553/25.656969",
+      "citationDetail": "Way: Fonias Tower (1287033086)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+      "shortTitle": "OSM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsDataSource"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.kastra.eu/castleen.php?kastro=fonia",
+      "citationDetail": "Fonias Tower",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kastrologos",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4ZQRL22T",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a0\u03b1\u03c0\u03b1\u03b8\u03b1\u03bd\u03b1\u03c3\u03af\u03bf\u03c5, \u039c\u03b1\u03bd\u03ce\u03bb\u03b7\u03c2. \u201c\u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2: \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac \u039a\u03ac\u03c3\u03c4\u03c1\u03b1.\u201d \u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2, 2012. https://www.kastra.eu/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mazarakis 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6LEY66TP",
+      "formattedCitation": "<div class=\"csl-entry\">Mazarakis, Andreas. \u201c\u039f \u03a0\u03cd\u03c1\u03b3\u03bf\u03c2 \u03a4\u03bf\u03c5 \u03a6\u03bf\u03bd\u03b9\u03ac. \u03a3\u03b1\u03bc\u03bf\u03b8\u03c1\u03ac\u03ba\u03b7, \u0395\u03bb\u03bb\u03ac\u03c2.\u201d In <i>\u039a\u03bf\u03c3\u03bc\u03b9\u03ba\u03ae \u039c\u03b5\u03c3\u03b1\u03b9\u03c9\u03bd\u03b9\u03ba\u03ae \u0391\u03c1\u03c7\u03b9\u03c4\u03b5\u03ba\u03c4\u03bf\u03bd\u03b9\u03ba\u03ae \u03a3\u03c4\u03b1 \u0392\u03b1\u03bb\u03ba\u03ac\u03bd\u03b9\u03b1 1300-1500 \u039a\u03b1\u03b9 \u03b7 \u0394\u03b9\u03b1\u03c4\u03ae\u03c1\u03b7\u03c3\u03ae \u03a4\u03b7\u03c2</i>, edited by S. \u0106ur\u010di\u0107 and E. Chatzitrifonos, 226\u201327. \u0398\u03b5\u03c3\u03c3\u03b1\u03bb\u03bf\u03bd\u03af\u03ba\u03b7: University Studio Press, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Pyrgos Fonia",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q38283601",
+          "citationDetail": "Fonias Tower (Q38283601)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "pyrgos-fonia",
+      "end": null,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2025-12-10T01:49:57Z",
+      "uri": "https://pleiades.stoa.org/places/113317586/pyrgos-fonia",
+      "creators": [
+        {
+          "username": "elkon",
+          "homepage": null,
+          "name": "Eleftheria Konstantinidou",
+          "uri": "https://pleiades.stoa.org/author/elkon"
+        }
+      ],
+      "attested": "\u03a0\u03cd\u03c1\u03b3\u03bf\u03c2 \u03a6\u03bf\u03bd\u03b9\u03ac",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-13T21:48:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-15T02:18:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T01:49:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "elkon",
+          "modified": "2025-12-10T01:49:57Z"
+        }
+      ]
+    }
+  ],
+  "id": "113317586",
+  "subject": [],
+  "title": "Fonias Tower",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Tower of Fonias (meaning \"murderer\" in Greek, named after the nearby river) is located on Samothrace island's northeastern coast and has been attributed to the military activity of the Genoese Gattilusi family.",
+  "reprPoint": [
+    25.657267139660334,
+    40.4927479949983
+  ],
+  "placeTypes": [
+    "tower-defensive"
+  ],
+  "bbox": [
+    25.6571679,
+    40.4926702,
+    25.6573664,
+    40.4928258
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/501597"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-20T06:13:38Z",
+  "uri": "https://pleiades.stoa.org/places/113317586",
+  "creators": [
+    {
+      "username": "elkon",
+      "homepage": null,
+      "name": "Eleftheria Konstantinidou",
+      "uri": "https://pleiades.stoa.org/author/elkon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Added see further reference by @elkon",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-20T18:27:45Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "elkon",
+      "modified": "2026-01-20T06:13:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-13T21:48:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-15T02:18:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-15T02:14:22Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-10T01:48:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "elkon",
+      "modified": "2025-12-10T01:48:39Z"
+    }
+  ]
+}

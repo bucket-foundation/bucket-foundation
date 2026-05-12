@@ -1,0 +1,281 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.12550935300004,
+              36.52159937600004
+            ],
+            [
+              34.12559353100005,
+              36.521660894000036
+            ],
+            [
+              34.12555903700007,
+              36.52169015900006
+            ],
+            [
+              34.125477842000066,
+              36.52175431000006
+            ],
+            [
+              34.125395817000026,
+              36.52168978200007
+            ],
+            [
+              34.12550935300004,
+              36.52159937600004
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-temple-of-hermes-at-catioren",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/403927880/imagery-location-temple-of-hermes-at-catioren",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location: Temple of Hermes at \u00c7at\u0131\u00f6ren"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "imagery-location-temple-of-hermes-at-catioren",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "Imagery Location: Temple of Hermes at \u00c7at\u0131\u00f6ren",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2024-06-28T20:44:55Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.12550935300004,
+              36.52159937600004
+            ],
+            [
+              34.125395817000026,
+              36.52168978200007
+            ],
+            [
+              34.125477842000066,
+              36.52175431000006
+            ],
+            [
+              34.12555903700007,
+              36.52169015900006
+            ],
+            [
+              34.12559353100005,
+              36.521660894000036
+            ],
+            [
+              34.12550935300004,
+              36.52159937600004
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/403927880/imagery-location-temple-of-hermes-at-catioren",
+      "creators": [
+        {
+          "username": "dbrowning",
+          "homepage": null,
+          "name": "Daniel C Browning Jr",
+          "uri": "https://pleiades.stoa.org/author/dbrowning"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-02T15:49:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-28T20:45:51Z"
+        },
+        {
+          "comment": "added polygon location for Hermes Temple",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-28T20:44:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-28T20:44:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2024-06-28T22:22:21Z",
+      "associationCertainty": "certain",
+      "title": "\u00c7at\u0131\u00f6ren",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/403927880/catioren",
+      "connectionType": "at",
+      "id": "catioren",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-02T15:49:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-28T22:22:39Z"
+        },
+        {
+          "comment": "added connection of Hermes Temple with \u00c7at\u0131\u00f6ren",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-28T22:22:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-28T22:22:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/779964391",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "dbrowning",
+          "homepage": null,
+          "name": "Daniel C Browning Jr",
+          "uri": "https://pleiades.stoa.org/author/dbrowning"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "pp. 210-211",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bent 1891",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NP7PLVWM",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "403927880",
+  "subject": [
+    "Hermes",
+    "polygonal masonry",
+    "temple"
+  ],
+  "title": "Temple of Hermes at \u00c7at\u0131\u00f6ren",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Temple of Hermes at \u00c7at\u0131\u00f6ren",
+  "reprPoint": [
+    34.12549449018279,
+    36.52167644195697
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    34.125395817000026,
+    36.52159937600004,
+    34.12559353100005,
+    36.52175431000006
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/779964391"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-06-28T20:06:55Z",
+  "uri": "https://pleiades.stoa.org/places/403927880",
+  "creators": [
+    {
+      "username": "dbrowning",
+      "homepage": null,
+      "name": "Daniel C Browning Jr",
+      "uri": "https://pleiades.stoa.org/author/dbrowning"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-02T15:49:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-06-28T21:01:44Z"
+    },
+    {
+      "comment": "added Temple of Hermes at \u00c7at\u0131\u00f6ren",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-06-28T20:06:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-06-28T20:06:55Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Turret 70B
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/967060387
+- **ID**: 967060387
+- **Coords (lng, lat)**: [-3.027356, 54.924091]
+- **Subjects**: dare:major=0, dare:ancient=2, dare:feature=tower
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+A turret situated on Hadrian's Wall.

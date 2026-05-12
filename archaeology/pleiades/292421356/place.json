@@ -1,0 +1,343 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.3701113,
+            45.7701863
+          ],
+          [
+            13.3701769,
+            45.7702014
+          ],
+          [
+            13.3702138,
+            45.770238
+          ],
+          [
+            13.3701491,
+            45.7703502
+          ],
+          [
+            13.3700711,
+            45.7704822
+          ],
+          [
+            13.3699001,
+            45.770432
+          ],
+          [
+            13.3699509,
+            45.7703462
+          ],
+          [
+            13.3700166,
+            45.7703649
+          ],
+          [
+            13.370046,
+            45.7703181
+          ],
+          [
+            13.3700818,
+            45.7702598
+          ],
+          [
+            13.3700662,
+            45.7702535
+          ],
+          [
+            13.3701113,
+            45.7701863
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-domus-e-palazzo-episcopale",
+      "properties": {
+        "snippet": "Archaeological-site; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/292421356/osm-location-of-domus-e-palazzo-episcopale",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Domus e Palazzo Episcopale"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1107965517",
+          "citationDetail": "Way 1107965517",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1107965517",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-domus-e-palazzo-episcopale",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 640,
+      "title": "OSM location of Domus e Palazzo Episcopale",
+      "provenance": "OpenStreetMap (Way 1107965517, version 1, osm:changeset=128211182, 2022-10-29T13:21:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-01-15T20:25:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.3701113,
+            45.7701863
+          ],
+          [
+            13.3701769,
+            45.7702014
+          ],
+          [
+            13.3702138,
+            45.770238
+          ],
+          [
+            13.3701491,
+            45.7703502
+          ],
+          [
+            13.3700711,
+            45.7704822
+          ],
+          [
+            13.3699001,
+            45.770432
+          ],
+          [
+            13.3699509,
+            45.7703462
+          ],
+          [
+            13.3700166,
+            45.7703649
+          ],
+          [
+            13.370046,
+            45.7703181
+          ],
+          [
+            13.3700818,
+            45.7702598
+          ],
+          [
+            13.3700662,
+            45.7702535
+          ],
+          [
+            13.3701113,
+            45.7701863
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/292421356/osm-location-of-domus-e-palazzo-episcopale",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-27T16:42:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T21:20:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T21:19:55Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-15T20:25:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-15T20:25:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-15T20:25:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-01-24T21:16:07Z",
+      "associationCertainty": "certain",
+      "title": "Aquileia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/292421356/3671814850",
+      "connectionType": "at",
+      "id": "3671814850",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T21:16:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T21:16:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-24T21:16:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/187290",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cuscito 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/D84VEHDC",
+      "formattedCitation": "<div class=\"csl-entry\">Cuscito, Giuseppe. \u201cIl Complesso Episcopale Di Aquileia.\u201d In <i>Neue Ergebnisse Zum Fr\u00fchen Kirchenbau Im Alpenraum\u202f: Akten Des Internationalen Kolloquiums Klagenfurt 6.-7. Dezember 2013</i>, 213\u201332. Wien: \u00d6sterreichische Gesellschaft f\u00fcr Arch\u00e4ologie im Selbstverlag, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "292421356",
+  "subject": [],
+  "title": "Domus and Episcopal Palace",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Domus and Episcopal Palace at Aquileia. The second phase of the Episcopal Palace at Aquileia belongs to the fourth and fifth centuries CE.",
+  "reprPoint": [
+    13.37006564146147,
+    45.77034200374949
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    13.3699001,
+    45.7701863,
+    13.3702138,
+    45.7704822
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/187290"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-01-24T21:16:05Z",
+  "uri": "https://pleiades.stoa.org/places/292421356",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-01-27T16:42:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-24T21:20:03Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-24T21:19:35Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-24T21:16:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-24T21:16:05Z"
+    }
+  ]
+}

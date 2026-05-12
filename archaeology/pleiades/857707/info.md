@@ -1,0 +1,14 @@
+# Hermisium
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/857707
+- **ID**: 857707
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Hermisium
+
+## Description
+
+An ancient place, cited: BAtlas 87 unlocated Hermisium

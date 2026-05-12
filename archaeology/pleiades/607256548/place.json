@@ -1,0 +1,325 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.3503304,
+          36.4132265
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-modern-ii-i1i1-4i-ii",
+      "properties": {
+        "snippet": "Unknown; 3000 BC - 1200 BC",
+        "link": "https://pleiades.stoa.org/places/607256548/osm-location-of-modern-ii-i1i1-4i-ii",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of \u039a\u03bf\u03b9\u03bc\u03b7\u03c3\u03b7"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-helladic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-helladic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-helladic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-helladic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-helladic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-helladic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1429293090",
+          "citationDetail": "Node 1429293090",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1429293090",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-modern-ii-i1i1-4i-ii",
+      "featureTypeURI": [],
+      "end": -1200,
+      "title": "OSM Location of \u039a\u03bf\u03b9\u03bc\u03b7\u03c3\u03b7",
+      "provenance": "OpenStreetMap (Node 1429293090, version 2, osm:changeset=12535146, 2012-07-29T13:50:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-08-21T23:15:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.3503304,
+          36.4132265
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/607256548/osm-location-of-modern-ii-i1i1-4i-ii",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-22T00:15:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:18:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:16:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:15:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:15:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-08-21T23:14:08Z",
+      "associationCertainty": "certain",
+      "title": "Therasia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/607256548/therasia-island",
+      "connectionType": "on",
+      "id": "therasia-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-22T00:15:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:18:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:14:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:14:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599974",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/annual-of-the-british-school-at-athens/article/early-and-middle-bronze-age-settlement-at-koimisis-therasia-periods-of-habitation-and-architecture/61C304337BDCDD9B17B0225D4614C8B3",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sbonias 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BP9AF6D2",
+      "formattedCitation": "<div class=\"csl-entry\">Sbonias, Kostas, Iris Tzachili, Maya Efstathiou, Clairy Palyvou, Costas Athanasiou, Emeri Farinetti, and Dorina Moullou. \u201cThe Early and Middle Bronze Age Settlement at Koimisis, Therasia: Periods of Habitation And Architecture.\u201d <i>Annual of the British School at Athens</i> 115 (December 2020): 105\u201332. https://doi.org/10.1017/S0068245420000039.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "\u039a\u03bf\u03b9\u03bc\u03b7\u03c3\u03b7",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/node/1429293090",
+          "citationDetail": "Node: \u039a\u03bf\u03b9\u03bc\u03b7\u03c3\u03b7 (1429293090)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "koimese",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2023-08-21T23:18:30Z",
+      "uri": "https://pleiades.stoa.org/places/607256548/koimese",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Koimisi",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-22T00:15:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:18:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:18:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-21T23:18:30Z"
+        }
+      ]
+    }
+  ],
+  "id": "607256548",
+  "subject": [],
+  "title": "Panaghia Koimisis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A prehistoric settlement at the south-east end of the present-day island of Therasia, inhabited from the early Bronze Age through the end of the Middle Cycladic period.",
+  "reprPoint": [
+    25.3503304,
+    36.4132265
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    25.3503304,
+    36.4132265,
+    25.3503304,
+    36.4132265
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599974"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-21T23:13:46Z",
+  "uri": "https://pleiades.stoa.org/places/607256548",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-22T00:15:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-21T23:18:53Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-21T23:13:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-21T23:13:46Z"
+    }
+  ]
+}

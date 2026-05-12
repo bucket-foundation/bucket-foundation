@@ -1,0 +1,850 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.0060072,
+            35.1695654
+          ],
+          [
+            25.0059031,
+            35.1687971
+          ],
+          [
+            25.0063534,
+            35.1686936
+          ],
+          [
+            25.0063787,
+            35.1684452
+          ],
+          [
+            25.0068036,
+            35.1684659
+          ],
+          [
+            25.0072341,
+            35.1685809
+          ],
+          [
+            25.0072622,
+            35.1689558
+          ],
+          [
+            25.0069358,
+            35.168988
+          ],
+          [
+            25.0066741,
+            35.1694987
+          ],
+          [
+            25.0060072,
+            35.1695654
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "rizenia",
+      "properties": {
+        "snippet": "Settlement; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/589981/rizenia",
+        "description": "Polygon representing the extent of the Rinias site, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of \u03a1\u03b9\u03b6\u03b7\u03bd\u03af\u03b1"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "diffenda",
+      "homepage": null,
+      "name": "Dan Diffendale",
+      "uri": "https://pleiades.stoa.org/author/diffenda"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/369696464",
+          "citationDetail": "Way 369696464",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=369696464",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "rizenia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -330,
+      "title": "OSM location of \u03a1\u03b9\u03b6\u03b7\u03bd\u03af\u03b1",
+      "provenance": "OpenStreetMap (Way 369696464, version 4, osm:changeset=141766675, 2023-09-26T10:07:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the extent of the Rinias site, derived from an OpenStreetMap Way.",
+      "created": "2023-10-06T13:54:12Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.0060072,
+            35.1695654
+          ],
+          [
+            25.0059031,
+            35.1687971
+          ],
+          [
+            25.0063534,
+            35.1686936
+          ],
+          [
+            25.0063787,
+            35.1684452
+          ],
+          [
+            25.0068036,
+            35.1684659
+          ],
+          [
+            25.0072341,
+            35.1685809
+          ],
+          [
+            25.0072622,
+            35.1689558
+          ],
+          [
+            25.0069358,
+            35.168988
+          ],
+          [
+            25.0066741,
+            35.1694987
+          ],
+          [
+            25.0060072,
+            35.1695654
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/589981/rizenia",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-28T16:07:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-06T20:49:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-06T13:57:06Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-06T13:57:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-06T13:55:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-06T13:54:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2023-10-06T13:54:12Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:53:22Z",
+      "associationCertainty": "certain",
+      "title": "Creta (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/589981/589748",
+      "connectionType": "connection",
+      "id": "589748",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589748",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "60 D2 Patela",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "226-56",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Creta antica 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TU4EILGK",
+      "formattedCitation": "<div class=\"csl-entry\">Scuola archeologica italiana di Atene, Italy, Soprintendenza archeologica di Roma, and Ethnikon Archaiologikon Mouseion (Greece). <i>Creta antica: cento anni di archeologia italiana, 1884-1984.</i> Roma: De Luca, 1984.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Prinias",
+      "citationDetail": "Prinias",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/artifact?object=Site&name=Prinias",
+      "citationDetail": "Prinias (Site)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Perseus AAAB",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HVMQVC96",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cPerseus Art and Archaeology Artifact Browser.\u201d Accessed August 23, 2023. https://www.perseus.tufts.edu/hopper/artifactBrowser.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rizza 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VHEPPNLZ",
+      "formattedCitation": "<div class=\"csl-entry\">Rizza, Giovanni, and Istituto per i beni archeologici e monumentali. <i>Prini\u00e0s: la citt\u00e0 arcaica sulla patela\u202f: scavi condotti negli anni 1969-2000</i>. Catania: Consiglio nazionale delle ricerche, IBAM, 2008.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rizza 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HHJFVLAV",
+      "formattedCitation": "<div class=\"csl-entry\">Rizza, Giovanni. <i>Identit\u00e0 culturale, etnicit\u00e0, processi di trasformazione a Creta fra Dark Age e Arcaismo: per i cento anni dello scavo di Prini\u00e0s 1906-2006 (Convegno di studi, Atene 9-12 novembre 2006)</i>. Catania, 2011.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40960146",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Watrous 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KG8E5PIY",
+      "formattedCitation": "<div class=\"csl-entry\">Watrous, L. Vance. \u201cCrete and Egypt in the Seventh Century BC: Temple A at Prinias.\u201d <i>British School at Athens Studies</i> 2 (1998): 75\u201379. https://www.jstor.org/stable/40960146.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DP%3Aentry+group%3D7%3Aentry%3Dprinias",
+      "citationDetail": "PRINIAS Malevizi, Crete",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "14147",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/350250URhi",
+      "citationDetail": "Rhizenia? Prinias (Crete) 1 Patela - \u03a1\u03b9\u03b6\u03b7\u03bd\u03af\u03b1",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1650066",
+      "citationDetail": "Rizinia (Q1650066)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/16081",
+      "citationDetail": "GEO ID 16081: Rizenia (Prinias)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.helladic.info/MAPC/pkey_report_wparam.php?place=C5126",
+      "citationDetail": "C5126: Prinias: Patela (Rizinia) Temple A",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MycAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCVZLMUJ",
+      "formattedCitation": "<div class=\"csl-entry\">Consoli, Robert H. <i>Mycenaean Atlas Project</i>, 2017. https://www.helladic.info.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://chronique.efa.gr/?kroute=topo_public&id=11466",
+      "citationDetail": "Toponyme 11466: Prinias",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "CFL/AGO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9KVQ7A64",
+      "formattedCitation": "<div class=\"csl-entry\">Veronique Chankowski, Am\u00e9lie Perrier, Catherine Bouras, Sabine Fourrier, John Bennet, Michaeol Loy, Kostis Christakis, L. Mulot, and G. Bejjaji. <i>Chronique Des Fouilles En Ligne = Archaeology in Greece Online</i>. Athens: Ecole fran\u00e7aise d\u2019Ath\u00e8nes and British School at Athens, 2018. https://chronique.efa.gr/?kroute=homepage.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://whgazetteer.org/places/7551962/detail",
+      "citationDetail": "7551962",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "WHG",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RHX229R6",
+      "formattedCitation": "<div class=\"csl-entry\">Mostern, Ruth, Alexandra Straub, Stephen Gadd, Karl Grossner, and David Ruvolo, eds. <i>World Historical Gazetteer: Linking Knowledge about the Past via Place</i>. Pittsburgh, PA: The World History Center at University of Pittsburgh, 2017. http://whgazetteer.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Patela,Patella",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://el.wikipedia.org/wiki/%CE%A0%CE%B1%CF%84%CE%AD%CE%BB%CE%BB%CE%B1_%CE%97%CF%81%CE%B1%CE%BA%CE%BB%CE%B5%CE%AF%CE%BF%CF%85",
+          "citationDetail": "\u03a0\u03b1\u03c4\u03ad\u03bb\u03bb\u03b1 \u0397\u03c1\u03b1\u03ba\u03bb\u03b5\u03af\u03bf\u03c5",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Greek)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/BUR4V79V",
+          "formattedCitation": "\u0392\u03b9\u03ba\u03b9\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1: \u03c4\u03b7\u03bd \u03b5\u03bb\u03b5\u03cd\u03b8\u03b5\u03c1\u03b7 \u03b5\u03b3\u03ba\u03c5\u03ba\u03bb\u03bf\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1 \u03c0\u03bf\u03c5 \u03b3\u03c1\u03ac\u03c6\u03bf\u03c5\u03bc\u03b5 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03bf\u03c7\u03b9\u03ba\u03ac (2001-), \u03a0\u03b1\u03c4\u03ad\u03bb\u03bb\u03b1 \u0397\u03c1\u03b1\u03ba\u03bb\u03b5\u03af\u03bf\u03c5.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "patela",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "The modern Greek name of the settlement plateau.",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2013-08-07T16:13:43Z",
+      "uri": "https://pleiades.stoa.org/places/589981/patela",
+      "creators": [
+        {
+          "username": "diffenda",
+          "homepage": null,
+          "name": "Dan Diffendale",
+          "uri": "https://pleiades.stoa.org/author/diffenda"
+        }
+      ],
+      "attested": "\u03a0\u03b1\u03c4\u03ad\u03bb\u03bb\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-09-23T13:38:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2016-09-23T13:35:54Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "diffenda",
+          "modified": "2013-08-07T16:13:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "diffenda",
+          "modified": "2013-08-07T16:13:45Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Prinias",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://el.wikipedia.org/wiki/%CE%A0%CF%81%CE%B9%CE%BD%CE%B9%CE%AC%CF%82_%CE%97%CF%81%CE%B1%CE%BA%CE%BB%CE%B5%CE%AF%CE%BF%CF%85",
+          "citationDetail": "\u03a0\u03c1\u03b9\u03bd\u03b9\u03ac\u03c2 \u0397\u03c1\u03b1\u03ba\u03bb\u03b5\u03af\u03bf\u03c5",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Greek)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/BUR4V79V",
+          "formattedCitation": "\u0392\u03b9\u03ba\u03b9\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1: \u03c4\u03b7\u03bd \u03b5\u03bb\u03b5\u03cd\u03b8\u03b5\u03c1\u03b7 \u03b5\u03b3\u03ba\u03c5\u03ba\u03bb\u03bf\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1 \u03c0\u03bf\u03c5 \u03b3\u03c1\u03ac\u03c6\u03bf\u03c5\u03bc\u03b5 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03bf\u03c7\u03b9\u03ba\u03ac (2001-), \u03a0\u03c1\u03b9\u03bd\u03b9\u03ac\u03c2 \u0397\u03c1\u03b1\u03ba\u03bb\u03b5\u03af\u03bf\u03c5.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "prinias",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "The Modern Greek name of the modern community in whose territory the ancient settlement is situated. ",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2013-08-07T16:25:36Z",
+      "uri": "https://pleiades.stoa.org/places/589981/prinias",
+      "creators": [
+        {
+          "username": "diffenda",
+          "homepage": null,
+          "name": "Dan Diffendale",
+          "uri": "https://pleiades.stoa.org/author/diffenda"
+        }
+      ],
+      "attested": "\u03a0\u03c1\u03b9\u03bd\u03b9\u03ac\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-09-23T13:38:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2016-09-23T13:35:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "diffenda",
+          "modified": "2013-08-07T16:25:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "diffenda",
+          "modified": "2013-08-07T16:25:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "uncertain",
+      "romanized": "Rhizenia,Rizenia,Rizinia,Rhyzenia",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "less-confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://epigraphy.packhum.org/inscriptions/oi?ikey=199656&bookid=290&region=7&subregion=26",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "IC I xxviii 2",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=Y10GAAAAQAAJ&pg=PA544#v=onepage&q&f=false",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "StByz \u1fec\u03b9\u03b6\u03b7\u03bd\u03af\u03b1",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.atlantides.org/bibliography/re.html",
+          "formattedCitation": "RE Rhizenia",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/706409465",
+          "formattedCitation": "Rizza 2008",
+          "otherIdentifier": " ",
+          "type": "seeAlso"
+        }
+      ],
+      "id": "rhizenia",
+      "end": -550,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/uncertain",
+      "start": -750,
+      "details": "",
+      "review_state": "published",
+      "description": "The name of a Cretan city listed by Stephanus and possibly reconstructable in an Archaic inscription from the site (IC I xxviii 2).",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "grc",
+      "created": "2013-08-07T17:58:12Z",
+      "uri": "https://pleiades.stoa.org/places/589981/rhizenia",
+      "creators": [
+        {
+          "username": "diffenda",
+          "homepage": null,
+          "name": "Dan Diffendale",
+          "uri": "https://pleiades.stoa.org/author/diffenda"
+        }
+      ],
+      "attested": "\u1fec\u03b9\u03b6\u03b7\u03bd\u03af\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-09-23T13:38:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2016-09-23T13:35:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "diffenda",
+          "modified": "2013-08-07T17:58:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "diffenda",
+          "modified": "2013-08-07T17:58:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "589981",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "extant remains",
+    "dare:feature=settlement"
+  ],
+  "title": "Prinias (Patela)",
+  "provenance": "Barrington Atlas: BAtlas 60 D2 Patela",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Patela, Prinias The ancient site at Prinias is situated in central Crete, controlling the passes between the area of Knossos to the north and the Mesara and Gortyn to the south. The settlement lies on a triangular plateau called the <em>Patela</em>, 680 masl, with steep, nearly impassable cliffs on all sides, with access from the west. Final Neolithic sherds are found throughout the area of the later settlement. There is evidence of Prepalatial Minoan settlement northwest of the Patela at Siderospilia, where the Late Bronze Age and Iron Age necropolis was located. Substantial occupation on the Patela at Prinias began at the end of the Bronze Age, in the Late Minoan IIIC period, perhaps as a refuge settlement. Habitation on the plateau continued into the 9th century BCE, although it is difficult to associate much architecture with this phase. Changes in the settlement toward the end of the 8th century include the construction of well-planned house-blocks with well laid out streets, open spaces, and possibly cult buildings. Most of the excavated architecture dates to this period, between the 8th and 6th centuries BCE. The site is known for its early monumental architecture, in the form of Buildings (or 'Temples') A and B. The settlement was destroyed or abandoned sometime in the middle of the 6th century BCE, since the latest datable pottery is early Middle Corinthian; the final burials in the necropolis also date to the mid 6th century. There is, however, evidence for some sort of occupation of the site in the Late Classical or Hellenistic period, in the fourth century BCE and following; a substantial square fortress was erected on the site around 200 BCE or a bit later. There are a handful of 1st century CE burials in the necropolis.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Iron Age settlement on the Patela plateau north of the modern village of Prinias; its ancient name is uncertain. The site is notable for its occupation from the end of the Bronze Age through to the Archaic period, as well as for the monumental architecture and Orientalizing sculpture of its Buildings ('Temples') A and B.",
+  "reprPoint": [
+    25.00654371870931,
+    35.168970113340045
+  ],
+  "placeTypes": [
+    "fort-2",
+    "settlement",
+    "cemetery",
+    "temple-2"
+  ],
+  "bbox": [
+    25.0059031,
+    35.1684452,
+    25.0072622,
+    35.1695654
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589748"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-10-06T20:49:49Z",
+  "uri": "https://pleiades.stoa.org/places/589981",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Bennet"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-28T16:07:26Z"
+    },
+    {
+      "comment": "cleaned up references; added ToposText reference; added Wikidata and Trismegistos references provided by bkiesling; added MycAtlas reference; added Chronique reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-06T21:01:12Z"
+    },
+    {
+      "comment": "create DARMC citation to preserve cross-project linkage after retracting DARMC location",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-06T20:49:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-24T15:22:41Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-23T13:44:43Z"
+    },
+    {
+      "comment": "Description, types, archaeology, details.",
+      "modifiedBy": "thomase",
+      "modified": "2016-09-23T13:37:27Z"
+    },
+    {
+      "comment": "added connection",
+      "modifiedBy": "jbecker",
+      "modified": "2013-10-20T16:15:55Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "diffenda",
+      "modified": "2013-08-07T16:05:37Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:32:40Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:50:17Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T21:59:40Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:35:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-22T20:04:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:58:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:24:02Z"
+    }
+  ]
+}

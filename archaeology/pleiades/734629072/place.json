@@ -1,0 +1,318 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8921167,
+            32.2805094
+          ],
+          [
+            35.8922193,
+            32.2806889
+          ],
+          [
+            35.8923176,
+            32.2806487
+          ],
+          [
+            35.892215,
+            32.2804692
+          ],
+          [
+            35.8921167,
+            32.2805094
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-nymphaeum",
+      "properties": {
+        "snippet": "Fountain; AD 100 - AD 799",
+        "link": "https://pleiades.stoa.org/places/734629072/osm-location-of-nymphaeum",
+        "description": "Location based on OpenStreetMap. Dates after Boyer 2022.",
+        "location_precision": "precise",
+        "title": "OSM Location of \"Nymphaeum\""
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fifth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fifth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "sixth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sixth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "seventh-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/seventh-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "eighth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/eighth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/616514873",
+          "citationDetail": "Way 616514873",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=616514873",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-nymphaeum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+      ],
+      "end": 799,
+      "title": "OSM Location of \"Nymphaeum\"",
+      "provenance": "OpenStreetMap (Way 616514873, version 6, osm:changeset=127502872, 2022-10-14T05:15:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fountain"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after Boyer 2022.",
+      "created": "2023-03-14T22:27:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.8921167,
+            32.2805094
+          ],
+          [
+            35.8922193,
+            32.2806889
+          ],
+          [
+            35.8923176,
+            32.2806487
+          ],
+          [
+            35.892215,
+            32.2804692
+          ],
+          [
+            35.8921167,
+            32.2805094
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/734629072/osm-location-of-nymphaeum",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-15T02:01:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-14T22:31:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-14T22:31:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-14T22:27:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-14T22:27:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-14T22:31:43Z",
+      "associationCertainty": "certain",
+      "title": "Gerasa/Antiochia ad Chrysorhoam",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/734629072/gerasa-antiochia-ad-chrysorhoam",
+      "connectionType": "at",
+      "id": "gerasa-antiochia-ad-chrysorhoam",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-15T02:01:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-14T22:31:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-14T22:31:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-14T22:31:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678158",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1080/00758914.2022.2107852",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Boyer 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/89ARL29R",
+      "formattedCitation": "<div class=\"csl-entry\">Boyer, David D. \u201cGerasa\u2019s \u2018Nymphaeum\u2019: A Reappraisal of Its History and Function.\u201d <i>Levant</i> 54, no. 3 (September 2, 2022): 406\u201329. https://doi.org/10.1080/00758914.2022.2107852.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "734629072",
+  "subject": [],
+  "title": "Gerasa Nymphaeum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fountain"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monumental fountain dating to the second century CE at Gerasa (modern Jerash in Jordan).",
+  "reprPoint": [
+    35.89221715,
+    32.28057905
+  ],
+  "placeTypes": [
+    "fountain"
+  ],
+  "bbox": [
+    35.8921167,
+    32.2804692,
+    35.8923176,
+    32.2806889
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678158"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-14T22:26:48Z",
+  "uri": "https://pleiades.stoa.org/places/734629072",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-15T02:01:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-14T22:31:53Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-14T22:26:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-14T22:26:48Z"
+    }
+  ]
+}

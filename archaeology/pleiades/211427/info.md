@@ -1,0 +1,14 @@
+# Demessus
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/211427
+- **ID**: 211427
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Demessus
+
+## Description
+
+An ancient place, cited: BAtlas 21 unlocated Demessus

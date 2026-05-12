@@ -1,0 +1,339 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.65132,
+          37.468785
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-elephant-tomb-at-carmona",
+      "properties": {
+        "snippet": "Garden-hortus, Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/521700443/imagery-location-of-elephant-tomb-at-carmona",
+        "description": "Point representing the approximate center point of the tomb",
+        "location_precision": "precise",
+        "title": "Imagery location of Elephant Tomb at Carmona"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/708379838",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Vaquerizo Gil 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/3IZ974KJ",
+          "formattedCitation": "<div class=\"csl-entry\">Vaquerizo Gil, Desiderio. <i>Necropolis Urbanas En Baetica</i>. Tarragona: Institut Catal\u00e0 d\u2019Arqueologia Cl\u00e0ssica, 2010. http://www.worldcat.org/oclc/708379838.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-elephant-tomb-at-carmona",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "Imagery location of Elephant Tomb at Carmona",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "garden-hortus",
+        "tomb"
+      ],
+      "description": "Point representing the approximate center point of the tomb",
+      "created": "2020-12-13T01:00:54Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.65132,
+          37.468785
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/521700443/imagery-location-of-elephant-tomb-at-carmona",
+      "creators": [
+        {
+          "username": "lctsui",
+          "homepage": null,
+          "name": "Lai Ching Tsui",
+          "uri": "https://pleiades.stoa.org/author/lctsui"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-21T19:50:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T16:38:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-13T01:05:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-13T01:00:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-13T01:00:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-13T01:04:35Z",
+      "associationCertainty": "certain",
+      "title": "Carmo",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/521700443/carmo",
+      "connectionType": "at",
+      "id": "carmo",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-21T19:50:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-13T01:05:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-13T01:04:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-13T01:04:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256058",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "lctsui",
+          "homepage": null,
+          "name": "Lai Ching Tsui",
+          "uri": "https://pleiades.stoa.org/author/lctsui"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://aespa.revistas.csic.es/index.php/aespa/article/view/200",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hern\u00e1ndez 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RULD7U3H",
+      "formattedCitation": "<div class=\"csl-entry\">Hern\u00e1ndez, Alejandro Jim\u00e9nez, and Inmaculada Carrasco G\u00f3mez. \u201cLa Tumba del Elefante de la Necr\u00f3polis Romana de Carmona. Una revisi\u00f3n necesaria desde la Arqueolog\u00eda de la Arquitectura y la Arqueoastronom\u00eda.\u201d <i>Archivo Espa\u00f1ol de Arqueolog\u00eda</i> 85 (December 30, 2012): 119\u201339. https://doi.org/10.3989/aespa.085.012.007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.livius.org/",
+      "citationDetail": "Carmona, Tomb of the Elephant (photo)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+      "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "History of Carmona, Spain",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q71990681",
+      "citationDetail": "Elephant tomb in Carmona (Q71990681)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "521700443",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "Elephant tomb at Carmona",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Structure in the the necropolis of Carmona (near Seville) named for a small sculpture of an elephant found inside it. Rather than a tomb, it may have been a sanctuary or temple.",
+  "reprPoint": [
+    -5.65132,
+    37.468785
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "tomb",
+    "sanctuary",
+    "temple-2"
+  ],
+  "bbox": [
+    -5.65132,
+    37.468785,
+    -5.65132,
+    37.468785
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256058"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-13T00:50:21Z",
+  "uri": "https://pleiades.stoa.org/places/521700443",
+  "creators": [
+    {
+      "username": "lctsui",
+      "homepage": null,
+      "name": "Lai Ching Tsui",
+      "uri": "https://pleiades.stoa.org/author/lctsui"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q71990681",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-08T21:23:44Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-21T19:50:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-21T19:48:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-12-14T16:52:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "lctsui",
+      "modified": "2020-12-13T01:05:09Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "lctsui",
+      "modified": "2020-12-13T00:50:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "lctsui",
+      "modified": "2020-12-13T00:50:21Z"
+    }
+  ]
+}

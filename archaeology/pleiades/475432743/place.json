@@ -1,0 +1,400 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.4412681,
+            35.9588527
+          ],
+          [
+            10.4409811,
+            35.9587767
+          ],
+          [
+            10.4408577,
+            35.9586856
+          ],
+          [
+            10.4407907,
+            35.9585466
+          ],
+          [
+            10.4407907,
+            35.9584142
+          ],
+          [
+            10.4408604,
+            35.9583165
+          ],
+          [
+            10.4409891,
+            35.9582644
+          ],
+          [
+            10.4411179,
+            35.9582557
+          ],
+          [
+            10.441311,
+            35.9582839
+          ],
+          [
+            10.4414639,
+            35.9583642
+          ],
+          [
+            10.4415336,
+            35.9585206
+          ],
+          [
+            10.441488,
+            35.9587398
+          ],
+          [
+            10.4414103,
+            35.9588375
+          ],
+          [
+            10.4412681,
+            35.9588527
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/475432743/osm-location-of-roman-amphitheater",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman amphitheater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/284326802",
+          "citationDetail": "Way 284326802",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=284326802",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman amphitheater",
+      "provenance": "OpenStreetMap (Way 284326802, version 2, osm:changeset=67119544, 2019-02-12T04:09:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-05-25T21:36:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.4412681,
+            35.9588527
+          ],
+          [
+            10.4409811,
+            35.9587767
+          ],
+          [
+            10.4408577,
+            35.9586856
+          ],
+          [
+            10.4407907,
+            35.9585466
+          ],
+          [
+            10.4407907,
+            35.9584142
+          ],
+          [
+            10.4408604,
+            35.9583165
+          ],
+          [
+            10.4409891,
+            35.9582644
+          ],
+          [
+            10.4411179,
+            35.9582557
+          ],
+          [
+            10.441311,
+            35.9582839
+          ],
+          [
+            10.4414639,
+            35.9583642
+          ],
+          [
+            10.4415336,
+            35.9585206
+          ],
+          [
+            10.441488,
+            35.9587398
+          ],
+          [
+            10.4414103,
+            35.9588375
+          ],
+          [
+            10.4412681,
+            35.9588527
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/475432743/osm-location-of-roman-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-12-05T04:04:04Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-22T11:12:19Z"
+        },
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-22T11:12:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-06-07T23:04:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-25T21:38:03Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-25T21:37:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-25T21:36:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-25T21:36:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-04-22T11:07:00Z",
+      "associationCertainty": "certain",
+      "title": "Uluzibbira",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/475432743/6206958700",
+      "connectionType": "at",
+      "id": "6206958700",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-22T11:07:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-22T11:07:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-22T11:07:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/324839",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://amphi-theatrum.de/1346.html",
+      "citationDetail": "1346: Ulissipara",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Amphi-theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NTQZEIIX",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, Marin Buovac, and Maria Engracia Mu\u00f1oz-Santos. <i>Amphi-theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://amphi-theatrum.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29002323",
+      "citationDetail": "Ulissipira amphitheatre (Q29002323)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "475432743",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Uluzibbira Roman amphitheater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman amphitheater located in the modern Essed-Nord village, west of Sidi Bou Ali in Tunisia's Sousse governorate.",
+  "reprPoint": [
+    10.441166261697822,
+    35.95854515295672
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    10.4407907,
+    35.9582557,
+    10.4415336,
+    35.9588527
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/324839"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-04-22T11:07:00Z",
+  "uri": "https://pleiades.stoa.org/places/475432743",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Ulissipira amphitheatre (Q29002323)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-12-05T04:05:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-22T11:12:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-22T11:12:09Z"
+    },
+    {
+      "comment": "title; summary; reference",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-22T11:10:45Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-22T11:07:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-22T11:07:00Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Disthis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/376773
+- **ID**: 376773
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Disthis
+
+## Description
+
+An ancient place, cited: BAtlas 38 unlocated Disthis

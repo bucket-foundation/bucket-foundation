@@ -1,0 +1,412 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.0561462,
+            39.9136049
+          ],
+          [
+            20.0560822,
+            39.9134898
+          ],
+          [
+            20.0564952,
+            39.9132878
+          ],
+          [
+            20.0566268,
+            39.9134092
+          ],
+          [
+            20.0572355,
+            39.9131777
+          ],
+          [
+            20.0573045,
+            39.9134346
+          ],
+          [
+            20.0572303,
+            39.9136982
+          ],
+          [
+            20.0570564,
+            39.9138747
+          ],
+          [
+            20.0568153,
+            39.9140131
+          ],
+          [
+            20.0566139,
+            39.9140732
+          ],
+          [
+            20.0563983,
+            39.9141006
+          ],
+          [
+            20.0561969,
+            39.9140728
+          ],
+          [
+            20.0560309,
+            39.9140069
+          ],
+          [
+            20.0558623,
+            39.9139116
+          ],
+          [
+            20.0557266,
+            39.91378
+          ],
+          [
+            20.0561462,
+            39.9136049
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-theater",
+      "properties": {
+        "snippet": "Theatre, ; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/622079673/osm-location-of-theater",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of theater"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-roman-early-empire",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-roman-early-empire",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/289835247",
+          "citationDetail": "Way 289835247",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=289835247",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of theater",
+      "provenance": "OpenStreetMap (Way 289835247, version 6, osm:changeset=131703490, 2023-01-25T16:47:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-06-26T04:42:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.0561462,
+            39.9136049
+          ],
+          [
+            20.0560822,
+            39.9134898
+          ],
+          [
+            20.0564952,
+            39.9132878
+          ],
+          [
+            20.0566268,
+            39.9134092
+          ],
+          [
+            20.0572355,
+            39.9131777
+          ],
+          [
+            20.0573045,
+            39.9134346
+          ],
+          [
+            20.0572303,
+            39.9136982
+          ],
+          [
+            20.0570564,
+            39.9138747
+          ],
+          [
+            20.0568153,
+            39.9140131
+          ],
+          [
+            20.0566139,
+            39.9140732
+          ],
+          [
+            20.0563983,
+            39.9141006
+          ],
+          [
+            20.0561969,
+            39.9140728
+          ],
+          [
+            20.0560309,
+            39.9140069
+          ],
+          [
+            20.0558623,
+            39.9139116
+          ],
+          [
+            20.0557266,
+            39.91378
+          ],
+          [
+            20.0561462,
+            39.9136049
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/622079673/osm-location-of-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-09T17:20:34Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-10T00:59:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-14T22:11:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-08-29T20:07:10Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-26T04:43:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-26T04:42:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-26T04:42:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-13T17:57:17Z",
+      "associationCertainty": "certain",
+      "title": "Phoinike",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/622079673/6372248261",
+      "connectionType": "at",
+      "id": "6372248261",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:57:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:57:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:57:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/531061",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.theatrum.de/198.html",
+      "citationDetail": "198",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/402066",
+      "citationDetail": "113; 664",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hammond 1967",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/48PB494F",
+      "formattedCitation": "<div class=\"csl-entry\">Hammond, N. G. L. <i>Epirus: The Geography, the Ancient Remains, the History and Topography of Epirus and Adjacent Areas</i>. Oxford: Clarendon Press, 1967. http://www.worldcat.org/oclc/402066.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "622079673",
+  "subject": [
+    "Theater",
+    "extant remains"
+  ],
+  "title": "Theater at Phoinike",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Greek Theater at Phoinike in Epirus.",
+  "reprPoint": [
+    20.056567441707855,
+    39.91365812048048
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    20.0557266,
+    39.9131777,
+    20.0573045,
+    39.9141006
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/531061"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-13T17:57:16Z",
+  "uri": "https://pleiades.stoa.org/places/622079673",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-09T17:20:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T22:11:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-01T18:06:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-01T18:06:38Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-18T23:37:45Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T17:57:42Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T17:57:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T17:57:16Z"
+    }
+  ]
+}

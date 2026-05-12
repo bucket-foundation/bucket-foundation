@@ -1,0 +1,318 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.9151593,
+            40.3649009
+          ],
+          [
+            23.9180042,
+            40.368382
+          ],
+          [
+            23.9228777,
+            40.3717386
+          ],
+          [
+            23.9240355,
+            40.3728394
+          ],
+          [
+            23.9262265,
+            40.376474
+          ],
+          [
+            23.9274755,
+            40.3783449
+          ],
+          [
+            23.9296327,
+            40.3815922
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-canal-of-xerxes",
+      "properties": {
+        "snippet": "Canal; 550 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/503587/osm-location-of-canal-of-xerxes",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Canal of Xerxes"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "G. Reger"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/353969431",
+          "citationDetail": "Way 353969431",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=353969431",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-canal-of-xerxes",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/canal"
+      ],
+      "end": -330,
+      "title": "OSM location of Canal of Xerxes",
+      "provenance": "OpenStreetMap (Way 353969431, version 3, osm:changeset=99522281, 2021-02-18T12:06:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/canal"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "canal"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-08-24T20:07:13Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.9151593,
+            40.3649009
+          ],
+          [
+            23.9180042,
+            40.368382
+          ],
+          [
+            23.9228777,
+            40.3717386
+          ],
+          [
+            23.9240355,
+            40.3728394
+          ],
+          [
+            23.9262265,
+            40.376474
+          ],
+          [
+            23.9274755,
+            40.3783449
+          ],
+          [
+            23.9296327,
+            40.3815922
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/503587/osm-location-of-canal-of-xerxes",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-24T21:20:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-24T20:07:37Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-24T20:07:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-24T20:07:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-24T20:07:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "51 B4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/30102874",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Isserlin 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5CVMDC5K",
+      "formattedCitation": "<div class=\"csl-entry\">Isserlin, B.S.J. \u201cThe Canal of Xerxes: Facts and Problems.\u201d <i>The Annual of the British School at Athens</i> 86 (1991): 83\u201391. https://www.jstor.org/stable/30102874.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.livius.org/articles/place/xerxes-canal-across-the-athos/",
+      "citationDetail": "Xerxes' canal across the Athos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Livius.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/726HWVKS",
+      "formattedCitation": "<div class=\"csl-entry\">Lendering, Jona. <i>Livius - Articles on Ancient History</i>, 1995. http://www.livius.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Xerxes_Canal",
+      "citationDetail": "Xerxes Canal",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "503587",
+  "subject": [],
+  "title": "Canal of Xerxes",
+  "provenance": "Barrington Atlas: BAtlas 51 B4",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/canal"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: \u201cXerxes\u2019 canal\u201d, at Nea Rhode</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called canal of Xerxes at Nea Rhode dates to the fifth century BCE. It was a navigable canal dug through the base of Mount Athos in Chalkidiki, northern Greece, as part of the invasion of Greece carried out by king Xerxes I of Persia.",
+  "reprPoint": [
+    23.922825504100615,
+    40.37286604114543
+  ],
+  "placeTypes": [
+    "canal"
+  ],
+  "bbox": [
+    23.9151593,
+    40.3649009,
+    23.9296327,
+    40.3815922
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-06-24T10:39:06Z",
+  "uri": "https://pleiades.stoa.org/places/503587",
+  "creators": [
+    {
+      "username": null,
+      "name": "E.N. Borza"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "updated URI for Livius article",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-24T21:21:38Z"
+    },
+    {
+      "comment": "edited title; Edited; update references, summary; updated Locations",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-24T21:20:23Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T05:47:19Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:08:35Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-06-24T13:29:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-24T10:55:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-06-24T10:39:06Z"
+    }
+  ]
+}

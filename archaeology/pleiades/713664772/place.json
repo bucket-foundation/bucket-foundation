@@ -1,0 +1,359 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.2869013,
+          34.9860459
+        ]
+      },
+      "type": "Feature",
+      "id": "cave-of-eileithyia",
+      "properties": {
+        "snippet": "Cave; 900 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/713664772/cave-of-eileithyia",
+        "description": "Point based on an OpenStreetMap node representing the Cave of Eileithyia (Inatos) after Kanta 2022.",
+        "location_precision": "precise",
+        "title": "OSM location of Cave of Eileithyia (Inatos)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-geometric",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-geometric",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-geometric",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-geometric",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9929699518",
+          "citationDetail": "Node 9929699518",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9929699518",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=6935397",
+          "citationDetail": "page xii",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kanta 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FALPD4J7",
+          "formattedCitation": "<div class=\"csl-entry\">Kanta, Athanasia, Costis Davaras, and Philip Betancourt. <i>Honors to Eileithyia at Ancient Inatos Highlights of the Collection.</i> Havertown: Institute for Aegean Prehistory Press, 2022. https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=6935397.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cave-of-eileithyia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "end": 300,
+      "title": "OSM location of Cave of Eileithyia (Inatos)",
+      "provenance": "OpenStreetMap (Node 9929699518, version 1, osm:changeset=124440050, 2022-08-03T14:30:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave"
+      ],
+      "description": "Point based on an OpenStreetMap node representing the Cave of Eileithyia (Inatos) after Kanta 2022.",
+      "created": "2022-08-03T14:36:55Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.2869013,
+          34.9860459
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/713664772/cave-of-eileithyia",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-03T15:59:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-03T14:43:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-03T14:41:41Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-03T14:36:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-03T14:36:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-08-03T14:43:07Z",
+      "associationCertainty": "certain",
+      "title": "Inatos",
+      "start": -900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/713664772/inatos",
+      "connectionType": "at",
+      "id": "inatos",
+      "attestations": [
+        {
+          "timePeriod": "early-geometric",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-geometric",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-geometric",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-geometric",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-03T15:59:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-03T14:43:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-03T14:43:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-03T14:43:07Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589819",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=6935397",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kanta 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FALPD4J7",
+          "formattedCitation": "<div class=\"csl-entry\">Kanta, Athanasia, Costis Davaras, and Philip Betancourt. <i>Honors to Eileithyia at Ancient Inatos Highlights of the Collection.</i> Havertown: Institute for Aegean Prehistory Press, 2022. https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=6935397.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=6935397",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kanta 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FALPD4J7",
+      "formattedCitation": "<div class=\"csl-entry\">Kanta, Athanasia, Costis Davaras, and Philip Betancourt. <i>Honors to Eileithyia at Ancient Inatos Highlights of the Collection.</i> Havertown: Institute for Aegean Prehistory Press, 2022. https://public.ebookcentral.proquest.com/choice/PublicFullRecord.aspx?p=6935397.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.ebscohost.com/login.aspx?direct=true&scope=site&db=nlebk&db=nlabk&AN=3304513",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "H\u00f6lbl et al. 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NFEJUZSX",
+      "formattedCitation": "<div class=\"csl-entry\">H\u00f6lbl, G\u00fcnther, and Konstantinos Chalikias. <i>The Shrine of Eileithyia, Minoan Goddess of Childbirth and Motherhood at the Inatos Cave in Southern Crete. Volume I, The Egyptian-Type Artifacts</i>. Edited by Philip P. Betancourt, Athanasia Kanta, and K\u014dst\u0113s Davaras. Prehistory Monographs. Philadelphia: INSTAP Academic Press, 2022. https://search.ebscohost.com/login.aspx?direct=true&amp;scope=site&amp;db=nlebk&amp;db=nlabk&amp;AN=3304513.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "713664772",
+  "subject": [],
+  "title": "Cave of Eileithyia (Inatos)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Sacred cave dedicated to the goddess of childbirth, Eileithyia, at Inatos, Crete. The site was in use from the Geometric period to the Roman period.",
+  "reprPoint": [
+    25.2869013,
+    34.9860459
+  ],
+  "placeTypes": [
+    "cave"
+  ],
+  "bbox": [
+    25.2869013,
+    34.9860459,
+    25.2869013,
+    34.9860459
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589819"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-03T14:36:39Z",
+  "uri": "https://pleiades.stoa.org/places/713664772",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "H\u00f6lbl et al. 2022",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-06T23:30:05Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-03T15:59:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-08-03T14:43:17Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-08-03T14:36:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-08-03T14:36:39Z"
+    }
+  ]
+}

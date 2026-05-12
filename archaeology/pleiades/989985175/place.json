@@ -1,0 +1,726 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.8876681,
+            53.1891906
+          ],
+          [
+            -2.8876411,
+            53.1891602
+          ],
+          [
+            -2.8870196,
+            53.1891345
+          ],
+          [
+            -2.8862672,
+            53.1891704
+          ],
+          [
+            -2.886287,
+            53.189236
+          ],
+          [
+            -2.8863309,
+            53.1892974
+          ],
+          [
+            -2.8864095,
+            53.1893655
+          ],
+          [
+            -2.8865264,
+            53.1894257
+          ],
+          [
+            -2.8866143,
+            53.189475
+          ],
+          [
+            -2.8867509,
+            53.1895211
+          ],
+          [
+            -2.8868315,
+            53.1895384
+          ],
+          [
+            -2.8869439,
+            53.1895542
+          ],
+          [
+            -2.8870295,
+            53.1895551
+          ],
+          [
+            -2.8871182,
+            53.1895503
+          ],
+          [
+            -2.8871836,
+            53.1895423
+          ],
+          [
+            -2.8872483,
+            53.1895298
+          ],
+          [
+            -2.8873275,
+            53.1895063
+          ],
+          [
+            -2.8874035,
+            53.1894722
+          ],
+          [
+            -2.8874558,
+            53.1894411
+          ],
+          [
+            -2.887513,
+            53.1894091
+          ],
+          [
+            -2.8875626,
+            53.1893619
+          ],
+          [
+            -2.8876122,
+            53.1893146
+          ],
+          [
+            -2.8876548,
+            53.1892709
+          ],
+          [
+            -2.8876714,
+            53.1892337
+          ],
+          [
+            -2.8876681,
+            53.1891906
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-amphitheater",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/989985175/location-of-roman-amphitheater",
+        "description": "The Roman amphitheater at Deva was the largest military amphitheater in Britain. Location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman amphitheater"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.886944,
+          53.189167
+        ]
+      },
+      "type": "Feature",
+      "id": "center-of-amphitheatre",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/989985175/center-of-amphitheatre",
+        "description": "Coordinates following GeoHack, verified in Google Earth 2016.",
+        "location_precision": "precise",
+        "title": "Imagery location of Centerpoint of amphitheatre"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/3025223",
+          "citationDetail": "Way 3025223",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Chester_Roman_Amphitheatre",
+          "citationDetail": "Chester Roman Amphitheatre",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Chester Roman Amphitheatre.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-roman-amphitheater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman amphitheater",
+      "provenance": "OpenStreetMap (Way 3025223, version 15, osm:changeset=146021909, 2024-01-08T09:55:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "The Roman amphitheater at Deva was the largest military amphitheater in Britain. Location based on OpenStreetMap.",
+      "created": "2026-01-14T18:54:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.8876681,
+            53.1891906
+          ],
+          [
+            -2.8876411,
+            53.1891602
+          ],
+          [
+            -2.8870196,
+            53.1891345
+          ],
+          [
+            -2.8862672,
+            53.1891704
+          ],
+          [
+            -2.886287,
+            53.189236
+          ],
+          [
+            -2.8863309,
+            53.1892974
+          ],
+          [
+            -2.8864095,
+            53.1893655
+          ],
+          [
+            -2.8865264,
+            53.1894257
+          ],
+          [
+            -2.8866143,
+            53.189475
+          ],
+          [
+            -2.8867509,
+            53.1895211
+          ],
+          [
+            -2.8868315,
+            53.1895384
+          ],
+          [
+            -2.8869439,
+            53.1895542
+          ],
+          [
+            -2.8870295,
+            53.1895551
+          ],
+          [
+            -2.8871182,
+            53.1895503
+          ],
+          [
+            -2.8871836,
+            53.1895423
+          ],
+          [
+            -2.8872483,
+            53.1895298
+          ],
+          [
+            -2.8873275,
+            53.1895063
+          ],
+          [
+            -2.8874035,
+            53.1894722
+          ],
+          [
+            -2.8874558,
+            53.1894411
+          ],
+          [
+            -2.887513,
+            53.1894091
+          ],
+          [
+            -2.8875626,
+            53.1893619
+          ],
+          [
+            -2.8876122,
+            53.1893146
+          ],
+          [
+            -2.8876548,
+            53.1892709
+          ],
+          [
+            -2.8876714,
+            53.1892337
+          ],
+          [
+            -2.8876681,
+            53.1891906
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/989985175/location-of-roman-amphitheater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:54:31Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:54:30Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-15T14:29:24Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-02T03:45:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-25T14:20:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-21T15:45:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-06-17T18:11:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-17T17:20:59Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-17T17:17:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-17T17:16:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-06-17T17:16:09Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://geohack.toolforge.org/geohack.php?pagename=Chester_Roman_Amphitheatre&params=53_11_21_N_2_53_13_W_type:landmark",
+          "citationDetail": "Chester Roman Amphitheatre",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoHack",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QABTLU6J",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cGeoHack.\u201d In <i>Wikipedia</i>. Wikimedia Foundation, 2009. https://geohack.toolforge.org/geohack.php.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "center-of-amphitheatre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "Imagery location of Centerpoint of amphitheatre",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2015",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Coordinates following GeoHack, verified in Google Earth 2016.",
+      "created": "2026-01-14T18:50:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.886944,
+          53.189167
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/989985175/center-of-amphitheatre",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:50:38Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2026-01-14T18:50:38Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-25T14:23:30Z"
+        },
+        {
+          "comment": "added GeoHack reference as data source, adjusted title and summary",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-25T14:23:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-01-24T22:44:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-01-24T22:41:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2017-01-24T22:40:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-01-23T18:39:14Z",
+      "associationCertainty": "certain",
+      "title": "Deva",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/989985175/7547539268",
+      "connectionType": "at",
+      "id": "7547539268",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-01-23T18:39:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-01-23T18:39:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-01-23T18:39:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79420",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Chester_Roman_Amphitheatre",
+      "citationDetail": "Chester Roman Amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Chester Roman Amphitheatre.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.english-heritage.org.uk/visit/places/chester-roman-amphitheatre/",
+      "citationDetail": "CHESTER ROMAN AMPHITHEATRE",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4S8IXLZE",
+      "formattedCitation": "<div class=\"csl-entry\">English Heritage. \u201cEnglish Heritage.\u201d Accessed December 9, 2025. https://www.english-heritage.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://web.archive.org/web/20120325001438/http://www.pastscape.org.uk/hob.aspx?hob_id=69224",
+      "citationDetail": "69224",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://web.archive.org/web/20200818051530/https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/25903719",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thompson 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MJSU8HNK",
+      "formattedCitation": "<div class=\"csl-entry\">Thompson, F. H. <i>The Excavation of the Roman Amphitheatre at Chester</i>. Oxford: Society of Antiquaries of London, 1976. http://www.worldcat.org/oclc/25903719.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2844408",
+      "citationDetail": "Chester Roman Amphitheatre (Q2844408)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "989985175",
+  "subject": [
+    "extant remains",
+    "amphitheater"
+  ],
+  "title": "Roman amphitheater at Deva",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The second-century A.D. Roman amphitheater at Deva Victrix (modern Chester, England) was the largest military amphitheater in Britain.",
+  "reprPoint": [
+    -2.8869592857087607,
+    53.1892360611332
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    -2.8876714,
+    53.1891345,
+    -2.8862672,
+    53.1895551
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79420"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-14T18:56:11Z",
+  "uri": "https://pleiades.stoa.org/places/989985175",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2026-01-14T18:56:12Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2026-01-14T18:56:11Z"
+    },
+    {
+      "comment": "wikidata Chester Roman Amphitheatre (Q2844408)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-15T14:30:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "sarcanon",
+      "modified": "2017-01-24T22:44:04Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-24T15:18:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-24T15:10:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-24T15:01:50Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-24T14:45:39Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-24T14:43:20Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2017-01-23T18:39:44Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2017-01-23T18:39:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2017-01-23T18:39:12Z"
+    }
+  ]
+}

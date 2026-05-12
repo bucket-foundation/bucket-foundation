@@ -1,0 +1,397 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.7674574,
+            45.8488517
+          ],
+          [
+            0.7674664,
+            45.8489028
+          ],
+          [
+            0.7676009,
+            45.8489754
+          ],
+          [
+            0.7677426,
+            45.8489527
+          ],
+          [
+            0.7677768,
+            45.8490951
+          ],
+          [
+            0.7676479,
+            45.8491145
+          ],
+          [
+            0.7675303,
+            45.8492326
+          ],
+          [
+            0.7675478,
+            45.8493058
+          ],
+          [
+            0.7673688,
+            45.849326
+          ],
+          [
+            0.7673511,
+            45.8492593
+          ],
+          [
+            0.7672227,
+            45.8491809
+          ],
+          [
+            0.767111,
+            45.8491953
+          ],
+          [
+            0.7670865,
+            45.8490442
+          ],
+          [
+            0.7672016,
+            45.8490305
+          ],
+          [
+            0.7672783,
+            45.8489371
+          ],
+          [
+            0.7672623,
+            45.848871
+          ],
+          [
+            0.7674574,
+            45.8488517
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-temple",
+      "properties": {
+        "snippet": "Sanctuary, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/514380156/location-of-temple",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of sanctuary of Mont\u00e9lu"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/132081568",
+          "citationDetail": "Way 132081568",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=132081568",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of sanctuary of Mont\u00e9lu",
+      "provenance": "OpenStreetMap (Way 132081568, version 4, osm:changeset=67789212, 2019-03-05T03:22:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>The sanctuary includes 49 ritual pits.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-04-13T05:25:28Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            0.7674574,
+            45.8488517
+          ],
+          [
+            0.7674664,
+            45.8489028
+          ],
+          [
+            0.7676009,
+            45.8489754
+          ],
+          [
+            0.7677426,
+            45.8489527
+          ],
+          [
+            0.7677768,
+            45.8490951
+          ],
+          [
+            0.7676479,
+            45.8491145
+          ],
+          [
+            0.7675303,
+            45.8492326
+          ],
+          [
+            0.7675478,
+            45.8493058
+          ],
+          [
+            0.7673688,
+            45.849326
+          ],
+          [
+            0.7673511,
+            45.8492593
+          ],
+          [
+            0.7672227,
+            45.8491809
+          ],
+          [
+            0.767111,
+            45.8491953
+          ],
+          [
+            0.7670865,
+            45.8490442
+          ],
+          [
+            0.7672016,
+            45.8490305
+          ],
+          [
+            0.7672783,
+            45.8489371
+          ],
+          [
+            0.7672623,
+            45.848871
+          ],
+          [
+            0.7674574,
+            45.8488517
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/514380156/location-of-temple",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T01:29:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-16T14:11:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-26T01:00:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-21T16:46:59Z"
+        },
+        {
+          "comment": "edited title and details",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-21T16:42:09Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-13T05:27:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-13T05:25:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-04-13T05:25:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-02-15T04:31:13Z",
+      "associationCertainty": "certain",
+      "title": "Cas(s)inomagus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/514380156/0738655065",
+      "connectionType": "at",
+      "id": "0738655065",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T04:31:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T04:31:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-15T04:31:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/138275",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/siecles/777",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hourcade 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L6NHSDGT",
+      "formattedCitation": "<div class=\"csl-entry\">Hourcade, David, C\u00e9cile Doulan, Laure La\u00fct, Gabriel Rocque, and Sandra Sicard. \u201c\u00c0 l\u2019ouest d\u2019Augustoritum, du nouveau sur Cassinomagus (Chassenon, Charente).\u201d <i>Si\u00e8cles. Cahiers du Centre d\u2019histoire \u00ab\u202fEspaces et Cultures\u202f\u00bb</i>, no. 33\u201334 (December 1, 2011). http://journals.openedition.org/siecles/777.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "514380156",
+  "subject": [],
+  "title": "Sanctuary of Mont\u00e9lu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "<p>The sanctuary includes 49 ritual pits.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Sanctuary of Mont\u00e9lu lies to the west of Chassenon. The building, only partially excavated, is of an octagonal plan and oriented to the cardinal points.",
+  "reprPoint": [
+    0.7674574,
+    45.8488517
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    0.7674574,
+    45.8488517,
+    0.7674574,
+    45.8488517
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/138275"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-02-15T04:31:13Z",
+  "uri": "https://pleiades.stoa.org/places/514380156",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-16T14:11:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-15T04:36:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-15T04:36:31Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-15T04:31:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-15T04:31:13Z"
+    }
+  ]
+}

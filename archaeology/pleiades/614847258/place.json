@@ -1,0 +1,418 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2308093,
+            36.3911438
+          ],
+          [
+            9.2306769,
+            36.3911779
+          ],
+          [
+            9.2304662,
+            36.3911734
+          ],
+          [
+            9.2303312,
+            36.3911549
+          ],
+          [
+            9.2302972,
+            36.3910756
+          ],
+          [
+            9.2303047,
+            36.3909535
+          ],
+          [
+            9.2303581,
+            36.3908608
+          ],
+          [
+            9.2304657,
+            36.3908095
+          ],
+          [
+            9.2305254,
+            36.390785
+          ],
+          [
+            9.2306381,
+            36.3907919
+          ],
+          [
+            9.2307926,
+            36.3908255
+          ],
+          [
+            9.2309341,
+            36.3908981
+          ],
+          [
+            9.2309217,
+            36.3909767
+          ],
+          [
+            9.2308956,
+            36.3910559
+          ],
+          [
+            9.2308093,
+            36.3911438
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ain-hedjah-amphitheatre-agbia",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/614847258/osm-location-of-ain-hedjah-amphitheatre-agbia",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ain Hedjah Amphitheatre - Agbia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1191239077",
+          "citationDetail": "Way 1191239077",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1191239077",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ain-hedjah-amphitheatre-agbia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Ain Hedjah Amphitheatre - Agbia",
+      "provenance": "OpenStreetMap (Way 1191239077, version 1, osm:changeset=138815507, 2023-07-21T14:03:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-07-21T14:04:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.2308093,
+            36.3911438
+          ],
+          [
+            9.2306769,
+            36.3911779
+          ],
+          [
+            9.2304662,
+            36.3911734
+          ],
+          [
+            9.2303312,
+            36.3911549
+          ],
+          [
+            9.2302972,
+            36.3910756
+          ],
+          [
+            9.2303047,
+            36.3909535
+          ],
+          [
+            9.2303581,
+            36.3908608
+          ],
+          [
+            9.2304657,
+            36.3908095
+          ],
+          [
+            9.2305254,
+            36.390785
+          ],
+          [
+            9.2306381,
+            36.3907919
+          ],
+          [
+            9.2307926,
+            36.3908255
+          ],
+          [
+            9.2309341,
+            36.3908981
+          ],
+          [
+            9.2309217,
+            36.3909767
+          ],
+          [
+            9.2308956,
+            36.3910559
+          ],
+          [
+            9.2308093,
+            36.3911438
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/614847258/osm-location-of-ain-hedjah-amphitheatre-agbia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-02-21T19:25:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-07-26T17:19:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-26T15:04:38Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T14:04:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T14:04:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T14:04:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-07-21T14:04:46Z",
+      "associationCertainty": "certain",
+      "title": "Agbia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/614847258/2867093472",
+      "connectionType": "at",
+      "id": "2867093472",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T14:04:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T14:04:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-21T14:04:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/314857",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/31169/",
+      "citationDetail": "31169: Ain Hedjah Amphitheatre - Agbia",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://amphi-theatrum.de/1312.html",
+      "citationDetail": "1312",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Amphi-theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NTQZEIIX",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, Marin Buovac, and Maria Engracia Mu\u00f1oz-Santos. <i>Amphi-theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://amphi-theatrum.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29002312",
+      "citationDetail": "Agbia amphitheatre (Q29002312)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.taylorfrancis.com/books/9780203187982",
+      "citationDetail": "157",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bomgardner 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QIIMLAJ9",
+      "formattedCitation": "<div class=\"csl-entry\">Bomgardner, D. L. <i>The Story of the Roman Amphitheatre</i>. London; New York: Routledge, 2000. http://www.taylorfrancis.com/books/9780203187982.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 98 no. 64",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Golvin 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56QXVE6Y",
+      "formattedCitation": "<div class=\"csl-entry\">Golvin, Jean-Claude. <i>L\u2019Amphith\u00e9\u00e2tre romain: essai sur la th\u00e9orisation de sa forme et de ses fonctions</i>. Paris: Diffusion De Boccard, 1988.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "614847258",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Agbia amphitheater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman amphitheater located at Agbia in what is now Tunisia (Henchir Ain Hedja).",
+  "reprPoint": [
+    9.230604700616778,
+    36.39098999497206
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    9.2302972,
+    36.390785,
+    9.2309341,
+    36.3911779
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/314857"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-07-21T14:04:46Z",
+  "uri": "https://pleiades.stoa.org/places/614847258",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-21T19:26:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-07-26T17:19:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-26T15:04:38Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-26T15:04:26Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-21T14:04:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-21T14:04:46Z"
+    }
+  ]
+}

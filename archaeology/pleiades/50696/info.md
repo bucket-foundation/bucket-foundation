@@ -1,0 +1,14 @@
+# Nakadouma
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/50696
+- **ID**: 50696
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Nakadouma
+
+## Description
+
+An ancient place, cited: BAtlas 5 unlocated Nakadouma

@@ -1,0 +1,443 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2848828,
+            41.7508459
+          ],
+          [
+            12.2847712,
+            41.7505538
+          ],
+          [
+            12.2851676,
+            41.7504729
+          ],
+          [
+            12.2852052,
+            41.7506409
+          ],
+          [
+            12.2852664,
+            41.7507639
+          ],
+          [
+            12.2848828,
+            41.7508459
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "house-of-the-thunderbolt",
+      "properties": {
+        "snippet": "Building; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/1554484/house-of-the-thunderbolt",
+        "description": "Polygon representing the location of the House of the Thunderbolt, derived from an OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM location of House of the Thunderbolt"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/955085928",
+          "citationDetail": "Way 955085928",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=955085928",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "house-of-the-thunderbolt",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/building"
+      ],
+      "end": 300,
+      "title": "OSM location of House of the Thunderbolt",
+      "provenance": "OpenStreetMap (Way 955085928, version 4, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/building"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "building"
+      ],
+      "description": "Polygon representing the location of the House of the Thunderbolt, derived from an OpenStreetMap way.",
+      "created": "2021-06-16T20:07:42Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.2848828,
+            41.7508459
+          ],
+          [
+            12.2847712,
+            41.7505538
+          ],
+          [
+            12.2851676,
+            41.7504729
+          ],
+          [
+            12.2852052,
+            41.7506409
+          ],
+          [
+            12.2852664,
+            41.7507639
+          ],
+          [
+            12.2848828,
+            41.7508459
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/1554484/house-of-the-thunderbolt",
+      "creators": [
+        {
+          "username": "jrosenheim",
+          "homepage": null,
+          "name": "Joshua Rosenheim",
+          "uri": "https://pleiades.stoa.org/author/jrosenheim"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-03T00:54:02Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-23T02:45:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-16T22:19:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T20:09:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T20:08:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T20:07:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T20:07:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-02T19:02:35Z",
+      "associationCertainty": "certain",
+      "title": "Ostia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/1554484/ostia",
+      "connectionType": "at",
+      "id": "ostia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-16T22:19:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T20:09:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-02T19:02:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-02T19:02:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422995",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jrosenheim",
+          "homepage": null,
+          "name": "Joshua Rosenheim",
+          "uri": "https://pleiades.stoa.org/author/jrosenheim"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-16T22:54:11Z",
+      "associationCertainty": "certain",
+      "title": "Regio III, Ostia Antica",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/1554484/regio-iii-ostia-antica",
+      "connectionType": "part_of_analytical",
+      "id": "regio-iii-ostia-antica",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-17T15:54:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T22:54:40Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T22:54:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T22:54:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/11101488",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.ostia-antica.org/regio3/7/7-3.htm",
+          "citationDetail": "Regio III - Insula VII - Domus Fulminata (III,VII,3-4)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ostia - Harbour City of Ancient Rome",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+          "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/801186023",
+      "citationDetail": "pages 108-111",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Ricciardi 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KERS88ZC",
+      "formattedCitation": "<div class=\"csl-entry\">Ricciardi, M.A., and V. Santa Maria Scrinari. <i>La Civilt\u00e0 Dell\u2019acqua in Ostia Antica</i>. Rome, 1996. http://www.worldcat.org/oclc/801186023.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/703562666",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "van der Meer 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/NIE9NJCQ",
+      "formattedCitation": "<div class=\"csl-entry\">Meer, L.B. van der, N.L.C. Stevens, and H. Stoeger. \u201cDomus Fulminata: The House of the Thunderbolt at Ostia (III, Vii, 3-5).\u201d <i>Bulletin Antieke Beschaving</i> 80 (2005): 91\u2013111. http://www.worldcat.org/oclc/703562666.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108511009",
+      "citationDetail": "Domus Fulminata (Q108511009)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Domus_Fulminata",
+      "citationDetail": "Domus Fulminata",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "1554484",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "House of the Thunderbolt",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+    "https://pleiades.stoa.org/vocabularies/place-types/building"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Vespasianic domus in Ostia Antica, built ca. 70-75 CE, situated outside the Porta Marina, and north of the continuation of the Decumanus Maximus. It had a slightly concave fa\u00e7ade, comprising six shops and an entrance corridor leading to an interior peristyle garden.",
+  "reprPoint": [
+    12.285019218505552,
+    41.750658622806384
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "townhouse",
+    "building"
+  ],
+  "bbox": [
+    12.2847712,
+    41.7504729,
+    12.2852664,
+    41.7508459
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422995",
+    "https://pleiades.stoa.org/places/11101488"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-06-02T18:58:57Z",
+  "uri": "https://pleiades.stoa.org/places/1554484",
+  "creators": [
+    {
+      "username": "jrosenheim",
+      "homepage": null,
+      "name": "Joshua Rosenheim",
+      "uri": "https://pleiades.stoa.org/author/jrosenheim"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-03T00:57:03Z"
+    },
+    {
+      "comment": "wikidata Q108511009",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-03T00:56:09Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-03T00:55:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-16T22:19:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-16T20:09:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-09T18:02:09Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-02T18:58:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-02T18:58:57Z"
+    }
+  ]
+}

@@ -1,0 +1,285 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5660699,
+            41.6973625
+          ],
+          [
+            12.565948,
+            41.697319
+          ],
+          [
+            12.5659955,
+            41.6972448
+          ],
+          [
+            12.5661173,
+            41.6972882
+          ],
+          [
+            12.5660699,
+            41.6973625
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-torre-maggiore",
+      "properties": {
+        "snippet": "Fort",
+        "link": "https://pleiades.stoa.org/places/98709292/osm-location-of-torre-maggiore",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Torre Maggiore"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/879314431",
+          "citationDetail": "Way 879314431",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=879314431",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-torre-maggiore",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": null,
+      "title": "OSM location of Torre Maggiore",
+      "provenance": "OpenStreetMap (Way 879314431, version 1, osm:changeset=95054706, 2020-11-30T15:49:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-11-30T15:50:33Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5660699,
+            41.6973625
+          ],
+          [
+            12.565948,
+            41.697319
+          ],
+          [
+            12.5659955,
+            41.6972448
+          ],
+          [
+            12.5661173,
+            41.6972882
+          ],
+          [
+            12.5660699,
+            41.6973625
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/98709292/osm-location-of-torre-maggiore",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-29T16:23:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-26T14:48:28Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-30T15:50:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-30T15:50:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-30T15:50:33Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-30T15:56:15Z",
+      "associationCertainty": "certain",
+      "title": "Via Ardeatina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/98709292/via-ardeatina",
+      "connectionType": "on",
+      "id": "via-ardeatina",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-29T16:23:52Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-26T14:48:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-26T14:48:28Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-30T15:56:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-30T15:56:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/587835546",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NVGSX63J",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo. \u201cTorre Maggiore sulla via Ardeatina.\u201d In <i>Bollettino della Unione storia ed arte, ser.3, 11.2016</i>, 111\u201321, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "98709292",
+  "subject": [],
+  "title": "Torre Maggiore",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A place located at the 21st km of the via Ardeatina, Torre Maggiore is likely built on the site of a domusculta and is connected to key Roman families, including the Savelli, Altieri, Capodiferro, Serlupi, and Maddaleni families. The tower has a square plan and rises to 34 meters.",
+  "reprPoint": [
+    12.56603267229047,
+    41.69730363742518
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    12.565948,
+    41.6972448,
+    12.5661173,
+    41.6973625
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/587835546"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-30T15:48:53Z",
+  "uri": "https://pleiades.stoa.org/places/98709292",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-29T16:23:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-26T14:48:28Z"
+    },
+    {
+      "comment": "summaey",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-26T14:48:18Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-30T15:48:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-30T15:48:53Z"
+    }
+  ]
+}

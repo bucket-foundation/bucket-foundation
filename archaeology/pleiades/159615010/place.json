@@ -1,0 +1,968 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            17.100061,
+            31.1315073
+          ],
+          [
+            17.1000159,
+            31.1319325
+          ],
+          [
+            17.0999965,
+            31.1320594
+          ],
+          [
+            17.1002997,
+            31.1325895
+          ],
+          [
+            17.101106,
+            31.1328822
+          ],
+          [
+            17.1017704,
+            31.1328822
+          ],
+          [
+            17.1031638,
+            31.1326226
+          ],
+          [
+            17.1036346,
+            31.1324736
+          ],
+          [
+            17.1047183,
+            31.1317613
+          ],
+          [
+            17.1047986,
+            31.131576
+          ],
+          [
+            17.1056868,
+            31.1285228
+          ],
+          [
+            17.1054894,
+            31.1284142
+          ],
+          [
+            17.1044814,
+            31.1284987
+          ],
+          [
+            17.1040585,
+            31.1281427
+          ],
+          [
+            17.102987,
+            31.1282513
+          ],
+          [
+            17.1025288,
+            31.1287944
+          ],
+          [
+            17.1005762,
+            31.1293797
+          ],
+          [
+            17.1002872,
+            31.1298443
+          ],
+          [
+            17.100061,
+            31.1315073
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-medieval-ruins",
+      "properties": {
+        "snippet": "Fortified-settlement; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/159615010/osm-location-of-medieval-ruins",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of medieval ruins"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.1023529,
+          31.1303878
+        ]
+      },
+      "type": "Feature",
+      "id": "surt",
+      "properties": {
+        "snippet": "Settlement; 30 BC - AD 1453",
+        "link": "https://pleiades.stoa.org/places/159615010/surt",
+        "description": "Point based on an OpenStreetMap node representing Surt after Mouton 2012.",
+        "location_precision": "precise",
+        "title": "OSM location of Surt"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1081633142",
+          "citationDetail": "Way 1081633142",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1081633142",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://journals.openedition.org/nda/1469#tocto1n1",
+          "citationDetail": "Fig. 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mouton 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JYRH7SIX",
+          "formattedCitation": "<div class=\"csl-entry\">Mouton, Jean-Michel, and Philippe Racinet. \u201cSurt\u202f: histoire et arch\u00e9ologie d\u2019une ville m\u00e9di\u00e9vale libyenne.\u201d <i>Les nouvelles de l\u2019arch\u00e9ologie</i>, no. 123 (March 30, 2011): 34\u201338. https://doi.org/10.4000/nda.1469.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-medieval-ruins",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "end": 1453,
+      "title": "OSM Location of medieval ruins",
+      "provenance": "OpenStreetMap (Way 1081633142, version 1, osm:changeset=124114656, 2022-07-26T21:58:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fortified-settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-07-26T22:00:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            17.100061,
+            31.1315073
+          ],
+          [
+            17.1000159,
+            31.1319325
+          ],
+          [
+            17.0999965,
+            31.1320594
+          ],
+          [
+            17.1002997,
+            31.1325895
+          ],
+          [
+            17.101106,
+            31.1328822
+          ],
+          [
+            17.1017704,
+            31.1328822
+          ],
+          [
+            17.1031638,
+            31.1326226
+          ],
+          [
+            17.1036346,
+            31.1324736
+          ],
+          [
+            17.1047183,
+            31.1317613
+          ],
+          [
+            17.1047986,
+            31.131576
+          ],
+          [
+            17.1056868,
+            31.1285228
+          ],
+          [
+            17.1054894,
+            31.1284142
+          ],
+          [
+            17.1044814,
+            31.1284987
+          ],
+          [
+            17.1040585,
+            31.1281427
+          ],
+          [
+            17.102987,
+            31.1282513
+          ],
+          [
+            17.1025288,
+            31.1287944
+          ],
+          [
+            17.1005762,
+            31.1293797
+          ],
+          [
+            17.1002872,
+            31.1298443
+          ],
+          [
+            17.100061,
+            31.1315073
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/159615010/osm-location-of-medieval-ruins",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-27T01:43:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:13:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:05:29Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:00:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:00:34Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9868636061",
+          "citationDetail": "Node 9868636061",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9868636061",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/852983694",
+          "citationDetail": "pages 99-108, page 138",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mouton 2012",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N9R784BJ",
+          "formattedCitation": "<div class=\"csl-entry\">Mouton, Jean-Michel, and Michel Zink, eds. <i>Actes de la 1re Journ\u00e9e d\u2019\u00e9tudes sur la Libye antique et m\u00e9di\u00e9vale: 30 janvier 2010, Sorbonne, Paris\u202f: hommage \u00e0 Andr\u00e9 Laronde, membre de l\u2019Acad\u00e9mie des inscriptions et belles-lettres, Institut de France, directeur de la Mission arch\u00e9ologique fran\u00e7aise en Libye</i>. Paris: Acad\u00e9mie des Inscriptions et Belles-Lettres, 2012. http://www.worldcat.org/oclc/852983694.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "surt",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 1453,
+      "title": "OSM location of Surt",
+      "provenance": "OpenStreetMap (Node 9868636061, version 1, osm:changeset=123243321, 2022-07-05T16:45:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point based on an OpenStreetMap node representing Surt after Mouton 2012.",
+      "created": "2022-07-05T16:55:01Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.1023529,
+          31.1303878
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/159615010/surt",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:11:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-20T15:55:27Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-06T01:38:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:01:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T16:58:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T16:55:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T16:55:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 1453,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-05T17:01:36Z",
+      "associationCertainty": "certain",
+      "title": "Internum Mare",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/159615010/internum-mare",
+      "connectionType": "on",
+      "id": "internum-mare",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:11:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-20T15:55:27Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-06T01:38:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:01:55Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:01:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-05T17:01:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/1043",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/852983694",
+          "citationDetail": "page 138",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mouton 2012",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N9R784BJ",
+          "formattedCitation": "<div class=\"csl-entry\">Mouton, Jean-Michel, and Michel Zink, eds. <i>Actes de la 1re Journ\u00e9e d\u2019\u00e9tudes sur la Libye antique et m\u00e9di\u00e9vale: 30 janvier 2010, Sorbonne, Paris\u202f: hommage \u00e0 Andr\u00e9 Laronde, membre de l\u2019Acad\u00e9mie des inscriptions et belles-lettres, Institut de France, directeur de la Mission arch\u00e9ologique fran\u00e7aise en Libye</i>. Paris: Acad\u00e9mie des Inscriptions et Belles-Lettres, 2012. http://www.worldcat.org/oclc/852983694.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": 1453,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-20T15:54:51Z",
+      "associationCertainty": "certain",
+      "title": "Euphranta/Macomades",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/159615010/euphranta-macomades",
+      "connectionType": "near",
+      "id": "euphranta-macomades",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:11:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-20T15:55:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-20T15:54:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-20T15:54:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/363959",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/w/index.php?title=Sirte&oldid=1095056942",
+          "citationDetail": "Sirte",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/852983694",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mouton 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N9R784BJ",
+      "formattedCitation": "<div class=\"csl-entry\">Mouton, Jean-Michel, and Michel Zink, eds. <i>Actes de la 1re Journ\u00e9e d\u2019\u00e9tudes sur la Libye antique et m\u00e9di\u00e9vale: 30 janvier 2010, Sorbonne, Paris\u202f: hommage \u00e0 Andr\u00e9 Laronde, membre de l\u2019Acad\u00e9mie des inscriptions et belles-lettres, Institut de France, directeur de la Mission arch\u00e9ologique fran\u00e7aise en Libye</i>. Paris: Acad\u00e9mie des Inscriptions et Belles-Lettres, 2012. http://www.worldcat.org/oclc/852983694.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/w/index.php?title=Sirte&oldid=1095056942",
+      "citationDetail": "Sirte",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/nda/1469#tocto1n1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mouton 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JYRH7SIX",
+      "formattedCitation": "<div class=\"csl-entry\">Mouton, Jean-Michel, and Philippe Racinet. \u201cSurt\u202f: histoire et arch\u00e9ologie d\u2019une ville m\u00e9di\u00e9vale libyenne.\u201d <i>Les nouvelles de l\u2019arch\u00e9ologie</i>, no. 123 (March 30, 2011): 34\u201338. https://doi.org/10.4000/nda.1469.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mdayna en Syrtique",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://journals.openedition.org/nda/1469#tocto1n1",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Mouton 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JYRH7SIX",
+          "formattedCitation": "<div class=\"csl-entry\">Mouton, Jean-Michel, and Philippe Racinet. \u201cSurt\u202f: histoire et arch\u00e9ologie d\u2019une ville m\u00e9di\u00e9vale libyenne.\u201d <i>Les nouvelles de l\u2019arch\u00e9ologie</i>, no. 123 (March 30, 2011): 34\u201338. https://doi.org/10.4000/nda.1469.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "mdayna-en-syrtique",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2022-07-26T22:10:18Z",
+      "uri": "https://pleiades.stoa.org/places/159615010/mdayna-en-syrtique",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Mdayna en Syrtique",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-27T01:51:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:13:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:10:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:10:18Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Medina Sultan",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 554 see \"Charax/\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "medina-sultan",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-07-26T22:12:37Z",
+      "uri": "https://pleiades.stoa.org/places/159615010/medina-sultan",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Medina Sultan",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-27T01:51:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:13:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:12:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:12:37Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sort",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 554 see \"Charax/\"",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "BAtlDir",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9377UUFB",
+          "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A. <i>Barrington Atlas of the Greek and Roman World\u202f: Map-by-Map Directory</i>. 2 vols. Princeton, N.J.: Princeton University Press, 2000.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "sort",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-07-26T22:13:13Z",
+      "uri": "https://pleiades.stoa.org/places/159615010/sort",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Sort",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-27T01:51:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:13:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:13:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-26T22:13:13Z"
+        }
+      ]
+    }
+  ],
+  "id": "159615010",
+  "subject": [],
+  "title": "Surt",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Medieval Arab settlement, located 55km east of modern Sirte, Libya. Roman-period spolia in the medieval settlement, as well as evidence from the Roman itineraries, place the ancient site of Charax/(I)Scina here or somewhere in the vicinity.",
+  "reprPoint": [
+    17.102578295300184,
+    31.13043652010618
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "settlement"
+  ],
+  "bbox": [
+    17.0999965,
+    31.1281427,
+    17.1056868,
+    31.1328822
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/1043",
+    "https://pleiades.stoa.org/places/363959",
+    "https://pleiades.stoa.org/places/363951"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-26T21:59:58Z",
+  "uri": "https://pleiades.stoa.org/places/159615010",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary; added Mouton 2011; updated Locations, Names",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-27T01:43:34Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-26T21:59:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-21T19:11:18Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-21T19:11:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-20T15:55:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-20T15:53:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-20T15:51:35Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-06T01:38:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T17:01:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T16:59:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T16:54:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-05T16:54:36Z"
+    }
+  ]
+}

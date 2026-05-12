@@ -1,0 +1,315 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.4903857,
+            37.1601876
+          ],
+          [
+            29.4905448,
+            37.1610615
+          ],
+          [
+            29.490816,
+            37.1619024
+          ],
+          [
+            29.4921129,
+            37.1615783
+          ],
+          [
+            29.4922367,
+            37.1608735
+          ],
+          [
+            29.4918948,
+            37.1598071
+          ],
+          [
+            29.4903857,
+            37.1601876
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-agora-at-kibyra",
+      "properties": {
+        "snippet": "Agora",
+        "link": "https://pleiades.stoa.org/places/703416438/osm-location-of-agora-at-kibyra",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Agora at Kibyra"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/215420812",
+          "citationDetail": "Way 215420812",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=215420812",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-agora-at-kibyra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/agora"
+      ],
+      "end": null,
+      "title": "OSM Location of Agora at Kibyra",
+      "provenance": "OpenStreetMap (Way 215420812, version 1, osm:changeset=15608156, 2013-04-04T13:59:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/agora"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "agora"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-02-09T12:36:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.4903857,
+            37.1601876
+          ],
+          [
+            29.4905448,
+            37.1610615
+          ],
+          [
+            29.490816,
+            37.1619024
+          ],
+          [
+            29.4921129,
+            37.1615783
+          ],
+          [
+            29.4922367,
+            37.1608735
+          ],
+          [
+            29.4918948,
+            37.1598071
+          ],
+          [
+            29.4903857,
+            37.1601876
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/703416438/osm-location-of-agora-at-kibyra",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-30T18:17:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-28T14:34:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-02-09T12:36:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2022-02-09T12:36:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-02-09T12:36:01Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-27T15:04:35Z",
+      "associationCertainty": "certain",
+      "title": "Cibyra",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/703416438/8752870781",
+      "connectionType": "at",
+      "id": "8752870781",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-27T15:04:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-27T15:04:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-27T15:04:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638804",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/tentativelists/6123/",
+      "citationDetail": "6123: Ancient city of Kibyra",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHTL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QM4PHLAJ",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage Tentative Lists</i>. Accessed October 25, 2023. https://whc.unesco.org/en/tentativelists/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Kibyra_agora_and_columned_street",
+      "citationDetail": "Category:Kibyra agora and columned street",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "703416438",
+  "subject": [
+    "UWHS Submitted"
+  ],
+  "title": "Agora at Kibyra",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/agora"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The agora of ancient Kibyra.",
+  "reprPoint": [
+    29.491325509356262,
+    37.1608376153372
+  ],
+  "placeTypes": [
+    "agora"
+  ],
+  "bbox": [
+    29.4903857,
+    37.1598071,
+    29.4922367,
+    37.1619024
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638804"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-27T15:04:33Z",
+  "uri": "https://pleiades.stoa.org/places/703416438",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-03T14:36:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-30T18:17:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-28T14:34:22Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-28T14:34:17Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-27T15:04:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-27T15:04:33Z"
+    }
+  ]
+}

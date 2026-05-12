@@ -1,0 +1,442 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              30.67617712345433,
+              24.57430538304177
+            ],
+            [
+              30.67678814874671,
+              24.57440183607308
+            ],
+            [
+              30.67673119784036,
+              24.57466953391087
+            ],
+            [
+              30.67611795199228,
+              24.57458025814564
+            ],
+            [
+              30.67617712345433,
+              24.57430538304177
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-ayn-manawir-temple",
+      "properties": {
+        "snippet": "Temple-2; 664 BC - 332 BC",
+        "link": "https://pleiades.stoa.org/places/556470727/imagery-location-ayn-manawir-temple",
+        "description": "Imagery Location: visible remains of Ayn-Manawir Temple",
+        "location_precision": "precise",
+        "title": "Imagery Location: Ayn-Manawir Temple"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-period-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-period-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-ayn-manawir-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -332,
+      "title": "Imagery Location: Ayn-Manawir Temple",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -664,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Imagery Location: visible remains of Ayn-Manawir Temple",
+      "created": "2025-03-09T06:42:16Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              30.67617712345433,
+              24.57430538304177
+            ],
+            [
+              30.67678814874671,
+              24.57440183607308
+            ],
+            [
+              30.67673119784036,
+              24.57466953391087
+            ],
+            [
+              30.67611795199228,
+              24.57458025814564
+            ],
+            [
+              30.67617712345433,
+              24.57430538304177
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/556470727/imagery-location-ayn-manawir-temple",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T21:06:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T14:55:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T06:46:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T06:42:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T06:42:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-03-27T13:41:59Z",
+      "associationCertainty": "certain",
+      "title": "Manawir el-Biyut",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/556470727/manawir-el-biyut",
+      "connectionType": "at",
+      "id": "manawir-el-biyut",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-27T13:42:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-27T13:42:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-27T13:42:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-27T13:41:59Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/776196",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ifao.egnet.net/bifao/96/19/",
+      "citationDetail": "pp. 392-402",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wuttmann 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6YZHQZCX",
+      "formattedCitation": "<div class=\"csl-entry\">Wuttmann, Michel, Bernard Bousquet, Michel Chauveau, Peter Dils, Sylvie Marchand, Annie Schweitzer, and Laurent Volay. \u201cPremier rapport pr\u00e9liminaire des travaux sur le site de \u2019Ayn Manawir (oasis de Kharga).\u201d <i>Bulletin de l\u2019Institut fran\u00e7ais d\u2019arch\u00e9ologie orientale</i> 96 (1996): 385\u2013451. https://www.ifao.egnet.net/bifao/96/19/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple d'Ayn Manawir",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "temple-dayn-manawir",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2025-03-09T06:37:20Z",
+      "uri": "https://pleiades.stoa.org/places/556470727/temple-dayn-manawir",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Temple d'Ayn Manawir",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T21:06:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T14:55:38Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T14:52:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T06:37:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T06:37:20Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ayn-Manawir Temple",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "ayn-manawir-temple",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-03-09T06:38:03Z",
+      "uri": "https://pleiades.stoa.org/places/556470727/ayn-manawir-temple",
+      "creators": [
+        {
+          "username": "nsouchon",
+          "homepage": null,
+          "name": "Nicolas Souchon",
+          "uri": "https://pleiades.stoa.org/author/nsouchon"
+        }
+      ],
+      "attested": "Ayn-Manawir Temple",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-11T21:06:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T14:55:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T14:52:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T06:38:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nsouchon",
+          "modified": "2025-03-09T06:38:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "556470727",
+  "subject": [
+    "temple"
+  ],
+  "title": "Ayn-Manawir Temple",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Temple dedicated to Osiris located 3km west of the modern village of Dush.",
+  "reprPoint": [
+    30.676452231781624,
+    24.574489069669244
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    30.67611795199228,
+    24.57430538304177,
+    30.67678814874671,
+    24.57466953391087
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/776196"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-24T13:00:45Z",
+  "uri": "https://pleiades.stoa.org/places/556470727",
+  "creators": [
+    {
+      "username": "nsouchon",
+      "homepage": null,
+      "name": "Nicolas Souchon",
+      "uri": "https://pleiades.stoa.org/author/nsouchon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Wuttman 1996 by @nsouchon",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-24T14:31:23Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-24T13:00:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-11T21:06:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-09T14:55:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-09T06:36:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nsouchon",
+      "modified": "2025-03-09T06:36:07Z"
+    }
+  ]
+}

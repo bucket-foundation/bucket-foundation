@@ -1,0 +1,14 @@
+# Bokana
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/50619
+- **ID**: 50619
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Bokana
+
+## Description
+
+An ancient place, cited: BAtlas 5 unlocated Bokana

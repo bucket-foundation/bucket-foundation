@@ -1,0 +1,328 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.3952676,
+            36.6693661
+          ],
+          [
+            43.3952176,
+            36.6692648
+          ],
+          [
+            43.3939224,
+            36.6696762
+          ],
+          [
+            43.3939724,
+            36.6697774
+          ],
+          [
+            43.3952676,
+            36.6693661
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-jerwan-aqueduct",
+      "properties": {
+        "snippet": "Aqueduct; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/10280471/osm-location-of-jerwan-aqueduct",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Jerwan Aqueduct"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/457043065",
+          "citationDetail": "Way 457043065",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=457043065",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-jerwan-aqueduct",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+      ],
+      "end": -540,
+      "title": "OSM location of Jerwan Aqueduct",
+      "provenance": "OpenStreetMap (Way 457043065, version 1, osm:changeset=44092771, 2016-12-01T18:01:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "aqueduct"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-12-06T15:27:05Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.3952676,
+            36.6693661
+          ],
+          [
+            43.3952176,
+            36.6692648
+          ],
+          [
+            43.3939224,
+            36.6696762
+          ],
+          [
+            43.3939724,
+            36.6697774
+          ],
+          [
+            43.3952676,
+            36.6693661
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/10280471/osm-location-of-jerwan-aqueduct",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:33:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:27:48Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:27:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:27:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:27:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-12-06T15:26:16Z",
+      "associationCertainty": "certain",
+      "title": "Girmua",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/10280471/girmua",
+      "connectionType": "part_of_physical",
+      "id": "girmua",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:33:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:33:37Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:26:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-06T15:26:16Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/248782116",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://oi.uchicago.edu/research/publications/oip/oip-24-sennacherib%E2%80%99s-aqueduct-jerwan",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jacobsen and Llyod 1935",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H9NKDDKY",
+      "formattedCitation": "<div class=\"csl-entry\">Jacobsen, Thorkild, and Seton Lloyd. <i>Sennacherib\u2019s Aqueduct at Jerwan</i>. Oriental Institute Publications 24. Chicago, Ill.: The University of Chicago Press, 1935. https://oi.uchicago.edu/research/publications/oip/oip-24-sennacherib%E2%80%99s-aqueduct-jerwan.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/4200585",
+      "citationDetail": "335-339 (with fig. 15)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ur 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FV86DJMB",
+      "formattedCitation": "<div class=\"csl-entry\">Ur, Jason. \u201cSennacherib\u2019s Northern Assyrian Canals: New Insights from Satellite Imagery and Aerial Photography.\u201d <i>Iraq</i> 67, no. 1 (2005): 317\u201345. http://www.jstor.org/stable/4200585.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org",
+      "citationDetail": "Jerwan",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "10280471",
+  "subject": [
+    "ANE"
+  ],
+  "title": "Jerwan Aqueduct",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Assyrian king Sennacherib had an aqueduct constructed between 703 and 690 B.C. near the ancient city of Girmua. The structure is part of the \"Khinnis [Canal] System.\" The identification of the structure's builder is confirmed by means of several inscriptions.",
+  "reprPoint": [
+    43.39459501946802,
+    36.66952111821483
+  ],
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": [
+    43.3939224,
+    36.6692648,
+    43.3952676,
+    36.6697774
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/248782116"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-12-06T13:21:20Z",
+  "uri": "https://pleiades.stoa.org/places/10280471",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-06T15:35:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-06T15:33:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-06T15:32:55Z"
+    },
+    {
+      "comment": "references, summary",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-06T15:20:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2017-12-06T13:29:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2017-12-06T13:21:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2017-12-06T13:21:20Z"
+    }
+  ]
+}

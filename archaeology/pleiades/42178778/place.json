@@ -1,0 +1,345 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.770148,
+            51.3079263
+          ],
+          [
+            -2.769861,
+            51.3078702
+          ],
+          [
+            -2.7695786,
+            51.3079661
+          ],
+          [
+            -2.7695271,
+            51.3081177
+          ],
+          [
+            -2.7696227,
+            51.308306
+          ],
+          [
+            -2.769881,
+            51.3084496
+          ],
+          [
+            -2.7702254,
+            51.3084047
+          ],
+          [
+            -2.7703546,
+            51.308306
+          ],
+          [
+            -2.7704264,
+            51.3081086
+          ],
+          [
+            -2.7703259,
+            51.307992
+          ],
+          [
+            -2.770148,
+            51.3079263
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Fort-2; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/42178778/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/48844216",
+          "citationDetail": "Way 48844216",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=48844216",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 100,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 48844216, version 1, osm:changeset=3708443, 2010-01-25T06:47:42Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-04-15T22:22:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.770148,
+            51.3079263
+          ],
+          [
+            -2.769861,
+            51.3078702
+          ],
+          [
+            -2.7695786,
+            51.3079661
+          ],
+          [
+            -2.7695271,
+            51.3081177
+          ],
+          [
+            -2.7696227,
+            51.308306
+          ],
+          [
+            -2.769881,
+            51.3084496
+          ],
+          [
+            -2.7702254,
+            51.3084047
+          ],
+          [
+            -2.7703546,
+            51.308306
+          ],
+          [
+            -2.7704264,
+            51.3081086
+          ],
+          [
+            -2.7703259,
+            51.307992
+          ],
+          [
+            -2.770148,
+            51.3079263
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/42178778/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-16T23:27:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-17T11:39:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T00:07:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-16T00:07:13Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-15T22:22:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-15T22:22:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-15T22:22:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pastscape.org.uk/hob.aspx?hob_id=194305",
+      "citationDetail": "no. 194305: ROWBERROW CAMP",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PastScape",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2GLEU38X",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>PastScape: Information on England\u2019s Archaeology and Architecture</i>, 2015. https://www.pastscape.org.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.english-heritage.org.uk/professional/research/landscapes-and-areas/national-mapping-programme/mendip-hills-aonb-nmp/iron-age-settlement-on-the-mendip-hills/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "English Heritage, Iron Age settlement on the Mendip Hills",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q17645814",
+      "citationDetail": "Rowberrow Camp: an Iron Age defended settlement north west of Tynings Farm (Q17645814)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "42178778",
+  "subject": [],
+  "title": "Rowberrow Camp",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Rowberrow Camp is the site of an Iron Age defended settlement.",
+  "reprPoint": [
+    -2.7699713658726317,
+    51.30815450240137
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "fort-2",
+    "hillfort"
+  ],
+  "bbox": [
+    -2.7704264,
+    51.3078702,
+    -2.7695271,
+    51.3084496
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-16T18:28:46Z",
+  "uri": "https://pleiades.stoa.org/places/42178778",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-16T23:28:52Z"
+    },
+    {
+      "comment": "Edited type @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-16T23:28:21Z"
+    },
+    {
+      "comment": "added Wikidata Q17645814: Rowberrow Camp: an Iron Age defended settlement north west of Tynings Farm",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-17T17:47:56Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-17T11:39:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-16T00:07:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-16T00:06:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-15T22:26:25Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T03:54:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-01T03:54:55Z"
+    }
+  ]
+}

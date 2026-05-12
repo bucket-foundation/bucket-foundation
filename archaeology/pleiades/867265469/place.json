@@ -1,0 +1,282 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.788523,
+          45.720155
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-excavation",
+      "properties": {
+        "snippet": "Archaeological-site; AD 100 - AD 399",
+        "link": "https://pleiades.stoa.org/places/867265469/imagery-location-of-excavation",
+        "description": "Location determined in Google Earth with reference to photographs in Ferber 2023, which depict adjacent structures and roads. The excavated remains cannot be seen in the imagery; a modern house and yard cover the site.",
+        "location_precision": "precise",
+        "title": "Imagery location of excavation"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.inrap.fr/des-thermes-antiques-yenne-savoie-17098",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ferber 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/38VLXDAC",
+          "formattedCitation": "<div class=\"csl-entry\">Ferber, Emmanuel. \u201cDes thermes antiques \u00e0 Yenne (Savoie).\u201d <i>Inrap: Institut national de recherches arch\u00e9ologiques pr\u00e9ventives</i> (blog), February 28, 2023. https://www.inrap.fr/des-thermes-antiques-yenne-savoie-17098.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-excavation",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 399,
+      "title": "Imagery location of excavation",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location determined in Google Earth with reference to photographs in Ferber 2023, which depict adjacent structures and roads. The excavated remains cannot be seen in the imagery; a modern house and yard cover the site.",
+      "created": "2023-03-02T23:09:14Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.788523,
+          45.720155
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/867265469/imagery-location-of-excavation",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:12:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:10:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:09:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:09:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:09:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-03-02T23:06:33Z",
+      "associationCertainty": "less-certain",
+      "title": "Etanna",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/867265469/etanna",
+      "connectionType": "at",
+      "id": "etanna",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:12:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:10:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:06:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-02T23:06:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/167759",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.inrap.fr/des-thermes-antiques-yenne-savoie-17098",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ferber 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/38VLXDAC",
+          "formattedCitation": "<div class=\"csl-entry\">Ferber, Emmanuel. \u201cDes thermes antiques \u00e0 Yenne (Savoie).\u201d <i>Inrap: Institut national de recherches arch\u00e9ologiques pr\u00e9ventives</i> (blog), February 28, 2023. https://www.inrap.fr/des-thermes-antiques-yenne-savoie-17098.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.inrap.fr/des-thermes-antiques-yenne-savoie-17098",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ferber 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/38VLXDAC",
+      "formattedCitation": "<div class=\"csl-entry\">Ferber, Emmanuel. \u201cDes thermes antiques \u00e0 Yenne (Savoie).\u201d <i>Inrap: Institut national de recherches arch\u00e9ologiques pr\u00e9ventives</i> (blog), February 28, 2023. https://www.inrap.fr/des-thermes-antiques-yenne-savoie-17098.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "867265469",
+  "subject": [],
+  "title": "Grand Lagneux Roman Bath",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "At Grand Lagneux, a small village in the French commune of Yenne, a rescue excavation in 2020 revealed part of a Roman-era bathing establishment. The excavated site is now buried under a modern home. This find constitutes another possible locality in the commune for attested ancient name \"Etanna\".",
+  "reprPoint": [
+    5.788523,
+    45.720155
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "bath"
+  ],
+  "bbox": [
+    5.788523,
+    45.720155,
+    5.788523,
+    45.720155
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/167759"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-03-02T23:05:11Z",
+  "uri": "https://pleiades.stoa.org/places/867265469",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:12:40Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:12:28Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:12:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:10:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:05:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-02T23:05:11Z"
+    }
+  ]
+}

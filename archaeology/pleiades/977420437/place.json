@@ -1,0 +1,352 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.72681552443891,
+              34.75105703810646
+            ],
+            [
+              40.72677101783168,
+              34.75104647621434
+            ],
+            [
+              40.726798389407584,
+              34.75099918350144
+            ],
+            [
+              40.72680385006317,
+              34.750994922455895
+            ],
+            [
+              40.72684264179529,
+              34.751008600066505
+            ],
+            [
+              40.726830723622,
+              34.751029055935504
+            ],
+            [
+              40.72681552443891,
+              34.75105703810646
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "total-station-coordinates",
+      "properties": {
+        "snippet": "Room; AD 100 - AD 299",
+        "link": "https://pleiades.stoa.org/places/977420437/total-station-coordinates",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Total Station Coordinates"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "total-station-coordinates",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/room"
+      ],
+      "end": 299,
+      "title": "Total Station Coordinates",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/room"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dura-europos-temple-of-artemis-coordinates",
+      "featureType": [
+        "room"
+      ],
+      "description": "",
+      "created": "2023-05-16T17:52:11Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.72681552443891,
+              34.75105703810646
+            ],
+            [
+              40.726830723622,
+              34.751029055935504
+            ],
+            [
+              40.72684264179529,
+              34.751008600066505
+            ],
+            [
+              40.72680385006317,
+              34.750994922455895
+            ],
+            [
+              40.726798389407584,
+              34.75099918350144
+            ],
+            [
+              40.72677101783168,
+              34.75104647621434
+            ],
+            [
+              40.72681552443891,
+              34.75105703810646
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/977420437/total-station-coordinates",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-17T07:37:03Z"
+        },
+        {
+          "comment": "added positional accuracy assessment",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-17T07:30:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "achen",
+          "modified": "2023-05-16T17:58:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "achen",
+          "modified": "2023-05-16T17:52:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2023-05-16T17:52:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 299,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-16T17:53:27Z",
+      "associationCertainty": "certain",
+      "title": "Military compound in the Temple of Artemis Azzanathkona",
+      "start": 100,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/977420437/military-compound-in-the-temple-of-artemis-azzanathkona",
+      "connectionType": "part_of_physical",
+      "id": "military-compound-in-the-temple-of-artemis-azzanathkona",
+      "attestations": [
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-17T07:37:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "achen",
+          "modified": "2023-05-16T17:58:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "achen",
+          "modified": "2023-05-16T17:53:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "achen",
+          "modified": "2023-05-16T17:53:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2023-05-16T17:53:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/747016480",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1084757192",
+      "citationDetail": "70-78",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "James 2019a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UM57GCTF",
+      "formattedCitation": "<div class=\"csl-entry\">James, Simon. <i>The Roman Military Base at Dura-Europos, Syria\u202f: An Archaeological Visualization</i>. Oxford, New York: Oxford University Press, 2019. https://www.worldcat.org/title/1369556517.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q118390423",
+      "citationDetail": "Room W13, Temple of Artemis Azzanathkona, Dura-Europos (Q118390423)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "977420437",
+  "subject": [
+    "YDEA project"
+  ],
+  "title": "Room W13, Military compound in the Temple of Artemis Azzanathkona",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/room"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Room requisitioned for military record keeping and administration, formerly belonging to the Temple of Artemis Azzanathkona in Dura-Europos.",
+  "reprPoint": [
+    40.72680720926586,
+    34.75102660316411
+  ],
+  "placeTypes": [
+    "room"
+  ],
+  "bbox": [
+    40.72677101783168,
+    34.750994922455895,
+    40.72684264179529,
+    34.75105703810646
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/747016480"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-16T17:50:12Z",
+  "uri": "https://pleiades.stoa.org/places/977420437",
+  "creators": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Room W13, Temple of Artemis Azzanathkona, Dura-Europos (Q118390423)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-11T02:22:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-17T07:37:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "achen",
+      "modified": "2023-05-16T17:58:36Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "achen",
+      "modified": "2023-05-16T17:50:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "achen",
+      "modified": "2023-05-16T17:50:12Z"
+    }
+  ]
+}

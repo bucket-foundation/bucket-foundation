@@ -1,0 +1,289 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            75.814479,
+            27.672728
+          ],
+          [
+            75.8151173,
+            27.674443
+          ],
+          [
+            75.816226,
+            27.6741746
+          ],
+          [
+            75.8156323,
+            27.6723764
+          ],
+          [
+            75.814479,
+            27.672728
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-ganeshwar-site",
+      "properties": {
+        "snippet": "Settlement; 4000 BC - 2000 BC",
+        "link": "https://pleiades.stoa.org/places/796757740/osm-location-ganeshwar-site",
+        "description": "Polygon representing the location of the Ganeshwar site, derived from an OpenStreetMap Way after Rizvi 2018.",
+        "location_precision": "precise",
+        "title": "OSM Location of Ganeshwar site"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/689724383",
+          "citationDetail": "Way 689724383",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=689724383",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 41",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Rizvi 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2YPNDJI5",
+          "formattedCitation": "<div class=\"csl-entry\">Uzma Z.\u00a0 Rizvi author. <i>The Affect of Crafting: Third Millennium BCE Copper Arrowheads from Ganeshwar, Rajasthan</i>. Archaeopress Archaeology. Oxford: Archaeopress Publishing, 2018.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-ganeshwar-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -2000,
+      "title": "OSM Location of Ganeshwar site",
+      "provenance": "OpenStreetMap (Way 689724383, version 1, osm:changeset=70203877, 2019-05-13T18:01:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the location of the Ganeshwar site, derived from an OpenStreetMap Way after Rizvi 2018.",
+      "created": "2019-05-13T18:04:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            75.814479,
+            27.672728
+          ],
+          [
+            75.8151173,
+            27.674443
+          ],
+          [
+            75.816226,
+            27.6741746
+          ],
+          [
+            75.8156323,
+            27.6723764
+          ],
+          [
+            75.814479,
+            27.672728
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/796757740/osm-location-ganeshwar-site",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-05-15T23:02:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-13T18:10:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-13T18:09:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-13T18:08:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-13T18:05:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-13T18:04:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-13T18:04:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1076557469",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rizvi 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2YPNDJI5",
+      "formattedCitation": "<div class=\"csl-entry\">Uzma Z.\u00a0 Rizvi author. <i>The Affect of Crafting: Third Millennium BCE Copper Arrowheads from Ganeshwar, Rajasthan</i>. Archaeopress Archaeology. Oxford: Archaeopress Publishing, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Ganeshwar",
+      "citationDetail": "Ganeshwar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "796757740",
+  "subject": [],
+  "title": "Ganeshwar",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Chalcolithic settlement in modern Rajasthan, India. The pre-Harappan settlement, located near copper mines and inhabited during the 4th-3rd millennia BCE, is one of two type-sites of the Ganeshwar-Jodhpura Cultural Complex.",
+  "reprPoint": [
+    75.81536629127508,
+    27.673419470197636
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    75.814479,
+    27.6723764,
+    75.816226,
+    27.674443
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-05-13T18:04:18Z",
+  "uri": "https://pleiades.stoa.org/places/796757740",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-05-15T23:02:11Z"
+    },
+    {
+      "comment": "regularized references",
+      "modifiedBy": "thomase",
+      "modified": "2019-05-15T23:00:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-13T18:10:13Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-13T18:10:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-13T18:09:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-13T18:04:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-13T18:04:18Z"
+    }
+  ]
+}

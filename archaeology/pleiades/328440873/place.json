@@ -1,0 +1,373 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.6980249,
+            45.0712175
+          ],
+          [
+            13.6970218,
+            45.0708311
+          ],
+          [
+            13.6964531,
+            45.0704788
+          ],
+          [
+            13.6964478,
+            45.0701795
+          ],
+          [
+            13.696555,
+            45.0698423
+          ],
+          [
+            13.6967589,
+            45.0697173
+          ],
+          [
+            13.6973275,
+            45.0696907
+          ],
+          [
+            13.6982502,
+            45.0698044
+          ],
+          [
+            13.6988778,
+            45.0700279
+          ],
+          [
+            13.6993982,
+            45.0704977
+          ],
+          [
+            13.6995162,
+            45.0708046
+          ],
+          [
+            13.6993714,
+            45.0710622
+          ],
+          [
+            13.6991622,
+            45.0712516
+          ],
+          [
+            13.6988135,
+            45.0713312
+          ],
+          [
+            13.6986043,
+            45.0713274
+          ],
+          [
+            13.6980249,
+            45.0712175
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-skip-to-content-skip-to-navigation",
+      "properties": {
+        "snippet": "Hillfort; 2000 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/328440873/location-of-skip-to-content-skip-to-navigation",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Monkodonja"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/252931144",
+          "citationDetail": "Way 252931144",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=252931144",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-skip-to-content-skip-to-navigation",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "end": -550,
+      "title": "OSM location of Monkodonja",
+      "provenance": "OpenStreetMap (Way 252931144, version 16, osm:changeset=140207800, 2023-08-22T03:58:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hillfort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-12-21T17:53:44Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            13.6980249,
+            45.0712175
+          ],
+          [
+            13.6970218,
+            45.0708311
+          ],
+          [
+            13.6964531,
+            45.0704788
+          ],
+          [
+            13.6964478,
+            45.0701795
+          ],
+          [
+            13.696555,
+            45.0698423
+          ],
+          [
+            13.6967589,
+            45.0697173
+          ],
+          [
+            13.6973275,
+            45.0696907
+          ],
+          [
+            13.6982502,
+            45.0698044
+          ],
+          [
+            13.6988778,
+            45.0700279
+          ],
+          [
+            13.6993982,
+            45.0704977
+          ],
+          [
+            13.6995162,
+            45.0708046
+          ],
+          [
+            13.6993714,
+            45.0710622
+          ],
+          [
+            13.6991622,
+            45.0712516
+          ],
+          [
+            13.6988135,
+            45.0713312
+          ],
+          [
+            13.6986043,
+            45.0713274
+          ],
+          [
+            13.6980249,
+            45.0712175
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/328440873/location-of-skip-to-content-skip-to-navigation",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:45:53Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:44:42Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T12:50:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-18T16:42:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-10-18T16:41:24Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T17:54:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T17:53:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-12-21T17:53:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Monkodonja",
+      "citationDetail": "Monkodonja",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Monkodonja.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Castellieri_culture",
+      "citationDetail": "Castellieri culture",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Castellieri culture.",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1537150",
+      "citationDetail": "Monkodonja (Q1537150)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "328440873",
+  "subject": [
+    "megalithic",
+    "error:mislocated"
+  ],
+  "title": "Monkodonja",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Bronze Age fort of the Castellieri culture in Istria with megalithic architecture.",
+  "reprPoint": [
+    13.697961774104746,
+    45.07047860953686
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    13.6964478,
+    45.0696907,
+    13.6995162,
+    45.0713312
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-12-21T17:53:06Z",
+  "uri": "https://pleiades.stoa.org/places/328440873",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q1537150",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T21:45:31Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T12:50:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-18T16:42:04Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-10-18T16:40:49Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-21T17:53:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-21T17:53:06Z"
+    }
+  ]
+}

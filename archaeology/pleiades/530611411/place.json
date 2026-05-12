@@ -1,0 +1,374 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.586207,
+            43.1456301
+          ],
+          [
+            10.5862821,
+            43.1456341
+          ],
+          [
+            10.5863885,
+            43.1455558
+          ],
+          [
+            10.5863196,
+            43.145506
+          ],
+          [
+            10.5861882,
+            43.1456027
+          ],
+          [
+            10.586207,
+            43.1456301
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-torre-di-donoratico",
+      "properties": {
+        "snippet": "Fort; 330 BC - AD 1453",
+        "link": "https://pleiades.stoa.org/places/530611411/location-of-torre-di-donoratico",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Torre di Donoratico"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/220766705",
+          "citationDetail": "Way 220766705",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=220766705",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-torre-di-donoratico",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": 1453,
+      "title": "OSM location of Torre di Donoratico",
+      "provenance": "OpenStreetMap (Way 220766705, version 5, osm:changeset=61087032, 2018-07-26T12:22:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-10-28T17:54:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.586207,
+            43.1456301
+          ],
+          [
+            10.5862821,
+            43.1456341
+          ],
+          [
+            10.5863885,
+            43.1455558
+          ],
+          [
+            10.5863196,
+            43.145506
+          ],
+          [
+            10.5861882,
+            43.1456027
+          ],
+          [
+            10.586207,
+            43.1456301
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/530611411/location-of-torre-di-donoratico",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T01:05:49Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T13:00:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-30T15:56:32Z"
+        },
+        {
+          "comment": "updated location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-09-30T15:54:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-28T17:54:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-28T17:54:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-10-28T17:54:22Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Castello_di_Donoratico",
+      "citationDetail": "Castello di Donoratico",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Castello di Donoratico.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.degruyter.com/view/j/etst.2002.9.1/etst.2002.9.1.85/etst.2002.9.1.85.xml?format=PAP",
+      "citationDetail": "85-96",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Becker 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5E6YWITX",
+      "formattedCitation": "<div class=\"csl-entry\">Becker, Hilary. \u201cThe Etruscan Castellum: Fortified Settlements and Regional Autonomy in Etruria.\u201d <i>Etruscan Studies</i> 9, no. 1 (2002): 85\u201396. https://doi.org/10.1515/etst.2002.9.1.85.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bianchi and Carducci 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QY48ZA5P",
+      "formattedCitation": "<div class=\"csl-entry\">Bianchi, Giovanna, and Castagneto Carducci. <i>Castello di Donoratico: i risultati delle prime campagne di scavo (2000-2002)</i>. Firenze: Ed. all\u2019Insegna del Giglio, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.degruyter.com/view/j/etst-2013-16-issue-2/etst-2013-0017/etst-2013-0017.xml",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cambi and Di Paola 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Z8BUI672",
+      "formattedCitation": "<div class=\"csl-entry\">Cambi, Franco, and Paola Giorgia Maria Francesca Di. \u201cEtruscan Strategies of Defense: Late Classical and Early Hellenistic Hilltop Fortresses in the Territory of Populonia.\u201d <i>Etruscan Studies</i> 16, no. 2 (2013): 190\u2013209. doi:10.1515/etst-2013-0017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1515/etst.2008.11.1.81",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gallone 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B3ZSUPFS",
+      "formattedCitation": "<div class=\"csl-entry\">Gallone, Anna, Marcello Megetta, and Daniele Sepio. \u201cAn Etruscan and Roman Hilltop Settlement. Excavations at the Torre Di Donoratico, Italy (2003-2004).\u201d <i>Etruscan Studies</i> 11, no. 1 (2008): 81\u201398. https://doi.org/10.1515/etst.2008.11.1.81.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/10376856/castle-donoratico.html",
+      "citationDetail": "10376856: Castle Donoratico",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3662596",
+      "citationDetail": "castle of Donoratico (Q3662596)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/6698405/donoratico.html",
+      "citationDetail": "6698405: Donoratico",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "530611411",
+  "subject": [
+    "extant remains"
+  ],
+  "title": "Torre di Donoratico",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Etrusco-Roman fortified hilltop settlement that later served as a fortress of the Della Gherardesca family from the twelfth to the fifteenth centuries.",
+  "reprPoint": [
+    10.586288058812073,
+    43.14557742976662
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    10.5861882,
+    43.145506,
+    10.5863885,
+    43.1456341
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-10-28T17:53:57Z",
+  "uri": "https://pleiades.stoa.org/places/530611411",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T01:07:32Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-10T16:22:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T13:00:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-30T15:56:32Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-30T15:56:12Z"
+    },
+    {
+      "comment": "GeoNames 10376856 (Castle Donoratico)",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-30T15:52:01Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-30T15:50:40Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-09-30T14:37:27Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-10-28T17:54:02Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-10-28T17:53:58Z"
+    }
+  ]
+}

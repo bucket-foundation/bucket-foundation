@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.333033,
+            38.3015081
+          ],
+          [
+            16.3330652,
+            38.3013503
+          ],
+          [
+            16.3327916,
+            38.3012345
+          ],
+          [
+            16.3327406,
+            38.3012808
+          ],
+          [
+            16.3326977,
+            38.3013629
+          ],
+          [
+            16.3326789,
+            38.3014197
+          ],
+          [
+            16.332695,
+            38.301485
+          ],
+          [
+            16.3327138,
+            38.3015039
+          ],
+          [
+            16.3327889,
+            38.3015397
+          ],
+          [
+            16.3328774,
+            38.3015513
+          ],
+          [
+            16.3329337,
+            38.301545
+          ],
+          [
+            16.332974,
+            38.3015313
+          ],
+          [
+            16.333033,
+            38.3015081
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-teatro-greco-romano",
+      "properties": {
+        "snippet": "Theatre; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/612060178/osm-location-of-teatro-greco-romano",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Teatro greco-romano"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/421565733",
+          "citationDetail": "Way 421565733",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=421565733",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-teatro-greco-romano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Teatro greco-romano",
+      "provenance": "OpenStreetMap (Way 421565733, version 2, osm:changeset=41327928, 2016-08-08T16:29:29Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-01-03T13:01:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            16.333033,
+            38.3015081
+          ],
+          [
+            16.3330652,
+            38.3013503
+          ],
+          [
+            16.3327916,
+            38.3012345
+          ],
+          [
+            16.3327406,
+            38.3012808
+          ],
+          [
+            16.3326977,
+            38.3013629
+          ],
+          [
+            16.3326789,
+            38.3014197
+          ],
+          [
+            16.332695,
+            38.301485
+          ],
+          [
+            16.3327138,
+            38.3015039
+          ],
+          [
+            16.3327889,
+            38.3015397
+          ],
+          [
+            16.3328774,
+            38.3015513
+          ],
+          [
+            16.3329337,
+            38.301545
+          ],
+          [
+            16.332974,
+            38.3015313
+          ],
+          [
+            16.333033,
+            38.3015081
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/612060178/osm-location-of-teatro-greco-romano",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-28T10:51:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-03T13:03:16Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-03T13:01:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-03T13:01:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-03T13:01:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2017-01-03T13:00:50Z",
+      "associationCertainty": "certain",
+      "title": "\u2018Subsicivo\u2019?",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/612060178/2018subsicivo2019",
+      "connectionType": "connection",
+      "id": "2018subsicivo2019",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-04-28T10:51:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-03T13:03:16Z"
+        },
+        {
+          "comment": "added cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-03T13:00:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-03T13:00:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/452456",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/it:Teatro%20greco-romano%20di%20Marina%20di%20Gioiosa%20Ionica?uselang=en-US",
+      "citationDetail": "Teatro greco-romano di Marina di Gioiosa Ionica",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Teatro greco-romano di Marina di Gioiosa Ionica.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "612060178",
+  "subject": [],
+  "title": "Graeco-Roman theater at Marina di Gioiosa Ionica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A second-century B.C. theater that represents a point of architectural transition from the Greek-style theater building to the Roman typology.",
+  "reprPoint": [
+    16.332868514830217,
+    38.30140558499945
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    16.3326789,
+    38.3012345,
+    16.3330652,
+    38.3015513
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/452456"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-01-03T13:00:14Z",
+  "uri": "https://pleiades.stoa.org/places/612060178",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-04-28T10:51:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-03T13:03:15Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-03T13:00:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-03T13:00:14Z"
+    }
+  ]
+}

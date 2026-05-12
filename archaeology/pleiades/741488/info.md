@@ -1,0 +1,14 @@
+# Kaminoi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/741488
+- **ID**: 741488
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kaminoi
+
+## Description
+
+An ancient place, cited: BAtlas 75 unlocated Kaminoi

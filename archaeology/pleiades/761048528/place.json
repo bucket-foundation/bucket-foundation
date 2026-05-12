@@ -1,0 +1,285 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.96956,
+          36.583194
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-olba-monastery",
+      "properties": {
+        "snippet": "Abbey; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/761048528/imagery-location-olba-monastery",
+        "description": "Google Earth location for Olba Monastery",
+        "location_precision": "precise",
+        "title": "Imagery Location: Olba Monastery"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-olba-monastery",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": 640,
+      "title": "Imagery Location: Olba Monastery",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "Google Earth location for Olba Monastery",
+      "created": "2024-10-20T23:24:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.96956,
+          36.583194
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/761048528/imagery-location-olba-monastery",
+      "creators": [
+        {
+          "username": "dbrowning",
+          "homepage": null,
+          "name": "Daniel C Browning Jr",
+          "uri": "https://pleiades.stoa.org/author/dbrowning"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-21T07:07:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:32:25Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:31:54Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:29:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:28:01Z"
+        },
+        {
+          "comment": "added location as Google Earth; coordinates from GPS visit Dec 2023 ",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:24:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:24:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [],
+      "created": "2024-10-20T23:26:35Z",
+      "associationCertainty": "certain",
+      "title": "Olba",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/761048528/olba",
+      "connectionType": "at",
+      "id": "olba",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-21T07:07:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:32:58Z"
+        },
+        {
+          "comment": "added connection of Olba Monastery with Olba",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:26:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-10-20T23:26:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/648725",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "dbrowning",
+          "homepage": null,
+          "name": "Daniel C Browning Jr",
+          "uri": "https://pleiades.stoa.org/author/dbrowning"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/24092023",
+      "citationDetail": "page 370",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIB 5: Kilikien",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AU4EVEK8",
+      "formattedCitation": "<div class=\"csl-entry\">Hild, Friedrich, and Hansgerd Hellenkemper. <i>Kilikien und Isaurien</i>. Tabula Imperii Byzantini 5. Vienna: Verlag der \u00d6sterreichischen Akademie der Wissenschaften, 1990. http://www.worldcat.org/oclc/24092023.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dergipark.org.tr/en/pub/seleucia/issue/61820/924842",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u00d6zy\u0131ld\u0131r\u0131m 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UAEZ95H",
+      "formattedCitation": "<div class=\"csl-entry\">\u00d6zy\u0131ld\u0131r\u0131m, Murat. \u201cOlba Manast\u0131r\u0131 Kaz\u0131lar\u0131 \u00dczerine De\u011ferlendirmeler.\u201d <i>Seleucia</i>, no. X (May 20, 2020): 375\u201388. https://dergipark.org.tr/en/pub/seleucia/issue/61820/924842.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/44200702/OLBA_MANASTIRI_DOKTORA_TEZ%C4%B0",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ye\u011fin 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X4ZDZYJW",
+      "formattedCitation": "<div class=\"csl-entry\">Ye\u011fin, Yavuz. \u201cOlba Manast\u0131r\u0131.\u201d Ph. D. Thesis, Gazi \u00dcniversitesi Sosyal Bilimler Enstit\u00fcs\u00fc, 2019. https://www.academia.edu/44200702/OLBA_MANASTIRI_DOKTORA_TEZ%C4%B0.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "761048528",
+  "subject": [],
+  "title": "Olba Monastery",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A walled monastery compound adjacent to the place Olba",
+  "reprPoint": [
+    33.96956,
+    36.583194
+  ],
+  "placeTypes": [
+    "abbey"
+  ],
+  "bbox": [
+    33.96956,
+    36.583194,
+    33.96956,
+    36.583194
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/648725"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-10-20T23:17:23Z",
+  "uri": "https://pleiades.stoa.org/places/761048528",
+  "creators": [
+    {
+      "username": "dbrowning",
+      "homepage": null,
+      "name": "Daniel C Browning Jr",
+      "uri": "https://pleiades.stoa.org/author/dbrowning"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-10-21T07:07:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2024-10-21T07:06:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-10-20T23:32:58Z"
+    },
+    {
+      "comment": "Created place with references",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-10-20T23:17:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-10-20T23:17:23Z"
+    }
+  ]
+}

@@ -1,0 +1,292 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.5209832,
+            41.1047627
+          ],
+          [
+            14.5209441,
+            41.1046756
+          ],
+          [
+            14.521175,
+            41.1046504
+          ],
+          [
+            14.5212067,
+            41.1047388
+          ],
+          [
+            14.5209832,
+            41.1047627
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-necropoli-sannita-di-saticula",
+      "properties": {
+        "snippet": "Cemetery; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/12006394/osm-location-of-necropoli-sannita-di-saticula",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Necropoli sannita di Saticula"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/273276985",
+          "citationDetail": "Way 273276985",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=273276985",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-necropoli-sannita-di-saticula",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -30,
+      "title": "OSM location of Necropoli sannita di Saticula",
+      "provenance": "OpenStreetMap (Way 273276985, version 1, osm:changeset=21608505, 2014-04-10T14:24:26Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-06-13T03:01:32Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.5209832,
+            41.1047627
+          ],
+          [
+            14.5209441,
+            41.1046756
+          ],
+          [
+            14.521175,
+            41.1046504
+          ],
+          [
+            14.5212067,
+            41.1047388
+          ],
+          [
+            14.5209832,
+            41.1047627
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/12006394/osm-location-of-necropoli-sannita-di-saticula",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-14T15:49:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T00:20:17Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T00:18:54Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-13T03:02:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-13T03:01:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-13T03:01:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-06-13T03:02:18Z",
+      "associationCertainty": "certain",
+      "title": "Saticula",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/12006394/3388728122",
+      "connectionType": "at",
+      "id": "3388728122",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-13T03:02:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-13T03:02:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-13T03:02:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433105",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/mefr_0223-5102_2003_num_115_1_10727",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Faustoferri 2003",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JNN5ISTF",
+      "formattedCitation": "<div class=\"csl-entry\">Faustoferri, Amalia. \u201cPrima dei Sanniti. Le necropoli dell\u2019Abruzzo meridionale.\u201d <i>M\u00e9langes de l\u2019\u00e9cole fran\u00e7aise de Rome</i> 115, no. 1 (2003): 85\u2013107. https://doi.org/10.3406/mefr.2003.10727.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "12006394",
+  "subject": [],
+  "title": "Samnite necropolis, Saticula",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An area of Samnite tombs near ancient Saticula.",
+  "reprPoint": [
+    14.521076770278366,
+    41.10470639582577
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    14.5209441,
+    41.1046504,
+    14.5212067,
+    41.1047627
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433105"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-06-13T03:02:17Z",
+  "uri": "https://pleiades.stoa.org/places/12006394",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-04-14T15:49:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-14T00:20:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-14T00:20:13Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-13T03:02:35Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-13T03:02:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-13T03:02:17Z"
+    }
+  ]
+}

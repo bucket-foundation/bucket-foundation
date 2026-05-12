@@ -1,0 +1,14 @@
+# Azapbaşlı
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/628940
+- **ID**: 628940
+- **Coords (lng, lat)**: [35.267058, 39.559362]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 64 B1 Azapbaşlı

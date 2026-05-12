@@ -1,0 +1,341 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.618715,
+          41.0527727
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-bridge-on-via-egnatia-over",
+      "properties": {
+        "snippet": "Bridge; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/7283642/osm-location-of-roman-bridge-on-via-egnatia-over",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman bridge on Via Egnatia over the Lissos River at modern Arisvi"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/13541799301",
+          "citationDetail": "Node 13541799301",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=13541799301",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://mareponticum.bscc.duth.gr/index_htm_files/avramidou_9.pdf",
+          "citationDetail": "p. 11",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Avramidou 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/C47F7CSK/library",
+          "formattedCitation": "Avramidou, Amalia. \u201cThe Protection of Antiquities during the Post-War Period: Insights from the General State Archives in Komotini.\u201d Mare Ponticum 9 (2021): 1\u201317",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-roman-bridge-on-via-egnatia-over",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 300,
+      "title": "OSM location of Roman bridge on Via Egnatia over the Lissos River at modern Arisvi",
+      "provenance": "OpenStreetMap (Node 13541799301, version 1, osm:changeset=178378915, 2026-02-10T21:04:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2026-02-10T21:08:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.618715,
+          41.0527727
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/7283642/osm-location-of-roman-bridge-on-via-egnatia-over",
+      "creators": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-14T13:39:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:26:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:15:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:12:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:09:12Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:08:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:08:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2026-02-10T21:21:17Z",
+      "associationCertainty": "less-certain",
+      "title": "Via Egnatia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/7283642/via-egnatia",
+      "connectionType": "on",
+      "id": "via-egnatia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident-inferred"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-14T13:39:48Z"
+        },
+        {
+          "comment": "see further",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-14T13:39:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-14T13:38:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:26:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:21:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:21:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nkaye",
+          "modified": "2026-02-10T21:21:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/196789404",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://mareponticum.bscc.duth.gr/index_htm_files/avramidou_9.pdf",
+          "citationDetail": "p. 11",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Avramidou 2021",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/C47F7CSK/library",
+          "formattedCitation": "Avramidou, Amalia. \u201cThe Protection of Antiquities during the Post-War Period: Insights from the General State Archives in Komotini.\u201d Mare Ponticum 9 (2021): 1\u201317.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://mareponticum.bscc.duth.gr/index_htm_files/avramidou_9.pdf",
+      "citationDetail": "p. 11",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Avramidou 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/C47F7CSK/library",
+      "formattedCitation": "Avramidou, Amalia. \u201cThe Protection of Antiquities during the Post-War Period: Insights from the General State Archives in Komotini.\u201d Mare Ponticum 9 (2021): 1\u201317.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://thracenews.gr/arisvi-rodopis-ktismeni-epano-se-agno/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gentzouridis 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X6MQ5CG3",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a0\u03b5\u03bd\u03c4\u03b6\u03bf\u03c5\u03c1\u03af\u03b4\u03b7\u03c2, \u03a0\u03b1\u03bd\u03b1\u03b3\u03b9\u03ce\u03c4\u03b7\u03c2. \u201c\u0391\u03c1\u03af\u03c3\u03b2\u03b7 \u03a1\u03bf\u03b4\u03cc\u03c0\u03b7\u03c2: \u039a\u03c4\u03b9\u03c3\u03bc\u03ad\u03bd\u03b7 \u0395\u03c0\u03ac\u03bd\u03c9 \u03a3\u03b5 \u0386\u03b3\u03bd\u03c9\u03c3\u03c4\u03bf \u0391\u03c1\u03c7\u03b1\u03af\u03bf \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03cc \u039f\u03b9\u03ba\u03b9\u03c3\u03bc\u03cc.\u201d <i>Thrace News</i>, November 28, 2020. https://thracenews.gr/arisvi-rodopis-ktismeni-epano-se-agno/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "7283642",
+  "subject": [],
+  "title": "Ancient bridge on Via Egnatia at modern Arisvi",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient bridge was reported at modern Arisvi, crossing the river Lissos, in documents in the general state archive of Komotini 1945-1961, which still seems to be known to local community and described as Roman. A modern bridge stands in its place today.",
+  "reprPoint": [
+    25.618715,
+    41.0527727
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    25.618715,
+    41.0527727,
+    25.618715,
+    41.0527727
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/196789404"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-02-10T20:57:22Z",
+  "uri": "https://pleiades.stoa.org/places/7283642",
+  "creators": [
+    {
+      "username": "nkaye",
+      "homepage": null,
+      "name": "Noah Kaye",
+      "uri": "https://pleiades.stoa.org/author/nkaye"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-02-14T13:39:48Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2026-02-14T13:36:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2026-02-13T22:05:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nkaye",
+      "modified": "2026-02-10T21:26:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "nkaye",
+      "modified": "2026-02-10T21:26:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "nkaye",
+      "modified": "2026-02-10T20:57:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nkaye",
+      "modified": "2026-02-10T20:57:22Z"
+    }
+  ]
+}

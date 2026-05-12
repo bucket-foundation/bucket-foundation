@@ -1,0 +1,374 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.4581155,
+            40.0400166
+          ],
+          [
+            -8.4571821,
+            40.0400186
+          ],
+          [
+            -8.4571525,
+            40.0380945
+          ],
+          [
+            -8.458086,
+            40.0380904
+          ],
+          [
+            -8.4581155,
+            40.0400166
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana-do-rabaassal",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/687529965/osm-location-of-villa-romana-do-rabaassal",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Romana do Raba\u00e7al"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/264978016",
+          "citationDetail": "Way 264978016",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=264978016",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana-do-rabaassal",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa Romana do Raba\u00e7al",
+      "provenance": "OpenStreetMap (Way 264978016, version 14, osm:changeset=138540398, 2023-07-15T11:07:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-02-03T03:09:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.4581155,
+            40.0400166
+          ],
+          [
+            -8.4571821,
+            40.0400186
+          ],
+          [
+            -8.4571525,
+            40.0380945
+          ],
+          [
+            -8.458086,
+            40.0380904
+          ],
+          [
+            -8.4581155,
+            40.0400166
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/687529965/osm-location-of-villa-romana-do-rabaassal",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T00:50:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-05T16:12:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-03T03:10:21Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-03T03:10:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-03T03:09:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-03T03:09:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:49:45Z",
+      "associationCertainty": "certain",
+      "title": "Conimbriga",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/687529965/236443",
+      "connectionType": "near",
+      "id": "236443",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-24T01:53:00Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/236443",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.wmf.org/project/roman-villa-raba%C3%A7al",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "WMF, ROMAN VILLA OF RABA\u00c7AL",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pessoa 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IULB6RKX",
+      "formattedCitation": "<div class=\"csl-entry\">Pessoa, Miguel. <i>Roman Villa of Raba\u00e7al: A Work of Art in the Landscape</i>. Penela: C\u00e2mara Municipal de Penela, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pessoa 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RSLD6WKK",
+      "formattedCitation": "<div class=\"csl-entry\">Pessoa, Miguel, and Sandra Steinert Santos. \u201cVilla romana do Raba\u00e7al, Penela, Portugal: contributo para o estudo dos baixo-relevos e outros elementos de escultura arquitect\u00f3nica.\u201d In <i>III Congresso de Arqueolog\u00eda Peninsular (Vila Real 1999), v. 6.: Arqueologia da Antiguidade na Pen\u00ednsula Ib\u00e9rica</i>, 709\u201339. Porto: ADECAP, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pessoa 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5ATE25GB",
+      "formattedCitation": "<div class=\"csl-entry\">Pessoa, Miguel, Jos\u00e9 Lu\u00eds Madeira, and Maria Cristina Nunes. \u201cLa villa de Raba\u00e7al (Penela, Coimbra, Portugal): une rencontre de cultures en architecture et mosaique.\u201d In <i>La mosa\u00efque antique gr\u00e9co-romaine VII\u202f: VII colloque international pour l\u2019etude de la mosa\u00efque antique (Tunis 1994)</i>, 575\u201383. Tunis: Institut National du Patrimoine, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Roman_villa_of_Raba%C3%A7al",
+      "citationDetail": "Roman villa of Raba\u00e7al",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2202565",
+      "citationDetail": "Roman Villa of Raba\u00e7al (Q2202565)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "687529965",
+  "subject": [
+    "villa",
+    "Mosaic"
+  ],
+  "title": "Raba\u00e7al Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fourth-century AD Roman villa located in Raba\u00e7al, Portugal, near the site of Conimbriga.",
+  "reprPoint": [
+    -8.457634195998462,
+    40.039055006450205
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -8.4581155,
+    40.0380904,
+    -8.4571525,
+    40.0400186
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/236443"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-28T17:46:06Z",
+  "uri": "https://pleiades.stoa.org/places/687529965",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-25T03:43:03Z"
+    },
+    {
+      "comment": "add reference x3",
+      "modifiedBy": "jbecker",
+      "modified": "2024-02-06T01:31:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-04-10T15:42:52Z"
+    },
+    {
+      "comment": "edited title",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-31T19:18:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-24T13:02:49Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-28T17:46:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-28T17:46:06Z"
+    }
+  ]
+}

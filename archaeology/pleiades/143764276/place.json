@@ -1,0 +1,282 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.3397896,
+            42.4258027
+          ],
+          [
+            12.3398218,
+            42.425775
+          ],
+          [
+            12.3397845,
+            42.4257514
+          ],
+          [
+            12.3397523,
+            42.4257792
+          ],
+          [
+            12.3397896,
+            42.4258027
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-la-torricella",
+      "properties": {
+        "snippet": "Tower-defensive; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/143764276/osm-location-of-la-torricella",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of La Torricella"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1061150402",
+          "citationDetail": "Way 1061150402",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1061150402",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-la-torricella",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "end": 1453,
+      "title": "OSM location of La Torricella",
+      "provenance": "OpenStreetMap (Way 1061150402, version 2, osm:changeset=121115419, 2022-05-17T19:39:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tower-defensive"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-05-18T03:22:50Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.3397896,
+            42.4258027
+          ],
+          [
+            12.3398218,
+            42.425775
+          ],
+          [
+            12.3397845,
+            42.4257514
+          ],
+          [
+            12.3397523,
+            42.4257792
+          ],
+          [
+            12.3397896,
+            42.4258027
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/143764276/osm-location-of-la-torricella",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-20T10:40:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-19T17:01:03Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-18T03:23:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-18T03:22:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-18T03:22:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-18T03:23:21Z",
+      "associationCertainty": "certain",
+      "title": "Vasanello",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/143764276/2017365476",
+      "connectionType": "at",
+      "id": "2017365476",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-18T03:23:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-18T03:23:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-18T03:23:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/20585718",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pastura 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GNRIJYAB",
+      "formattedCitation": "<div class=\"csl-entry\">Pastura, Giancarlo. <i>Il territorio di Vasanello in et\u00e0 medievale. I: La realt\u00e0 rupestre</i>. Archeologia Citt\u00e0 Territorio 1. Vetralla (VT): Davide Ghaleb editore, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "143764276",
+  "subject": [],
+  "title": "La Torricella",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-defensive"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Medieval watch tower (thirteenth to fourteenth centuries) that is part of a system that appears to follow the line of the ancient Via Amerina.",
+  "reprPoint": [
+    12.339787047933545,
+    42.425777066287026
+  ],
+  "placeTypes": [
+    "tower-defensive"
+  ],
+  "bbox": [
+    12.3397523,
+    42.4257514,
+    12.3398218,
+    42.4258027
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/20585718"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-18T03:23:21Z",
+  "uri": "https://pleiades.stoa.org/places/143764276",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-20T10:40:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-19T17:01:03Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-19T16:59:52Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-18T03:23:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-18T03:23:21Z"
+    }
+  ]
+}

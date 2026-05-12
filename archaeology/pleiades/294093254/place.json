@@ -1,0 +1,353 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.1844803,
+            39.1323523
+          ],
+          [
+            27.1848534,
+            39.1325027
+          ],
+          [
+            27.1850122,
+            39.1322657
+          ],
+          [
+            27.1846391,
+            39.1321153
+          ],
+          [
+            27.1844803,
+            39.1323523
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "v-sarayi",
+      "properties": {
+        "snippet": "Palace, Garden-hortus; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/294093254/v-sarayi",
+        "description": "Polygon representing the location of the Royal Palace V site, derived from an OpenStreetMap way",
+        "location_precision": "precise",
+        "title": "OSM Location of Royal Palace V"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/244982687",
+          "citationDetail": "Way 244982687",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=244982687",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "v-sarayi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace",
+        "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus"
+      ],
+      "end": 300,
+      "title": "OSM Location of Royal Palace V",
+      "provenance": "OpenStreetMap (Way 244982687, version 3, osm:changeset=36115880, 2015-12-22T23:14:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace",
+        "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "palace",
+        "garden-hortus"
+      ],
+      "description": "Polygon representing the location of the Royal Palace V site, derived from an OpenStreetMap way",
+      "created": "2020-12-21T19:53:48Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            27.1844803,
+            39.1323523
+          ],
+          [
+            27.1848534,
+            39.1325027
+          ],
+          [
+            27.1850122,
+            39.1322657
+          ],
+          [
+            27.1846391,
+            39.1321153
+          ],
+          [
+            27.1844803,
+            39.1323523
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/294093254/v-sarayi",
+      "creators": [
+        {
+          "username": "alguan",
+          "homepage": null,
+          "name": "Annette Lei Guan",
+          "uri": "https://pleiades.stoa.org/author/alguan"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-24T17:57:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-21T19:59:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-21T19:56:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-21T19:53:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-21T19:53:48Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-21T19:52:36Z",
+      "associationCertainty": "certain",
+      "title": "Pergamum",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/294093254/pergamum",
+      "connectionType": "at",
+      "id": "pergamum",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-24T17:57:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-21T19:59:53Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-21T19:52:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-21T19:52:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550812",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "alguan",
+          "homepage": null,
+          "name": "Annette Lei Guan",
+          "uri": "https://pleiades.stoa.org/author/alguan"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.2307/311304",
+      "citationDetail": "page 165",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kuttner 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/IFWBVVMV",
+      "formattedCitation": "<div class=\"csl-entry\">Kuttner, Ann. \u201cRepublican Rome Looks at Pergamon.\u201d <i>Harvard Studies in Classical Philology</i> 97 (1995): 157\u201378. https://doi.org/10.2307/311304.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://doi.org/10.1093/acref/9780195065121.001.0001",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ratte 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/2NKR924G",
+      "formattedCitation": "<div class=\"csl-entry\">Ratte, Christopher. \u201cPergamon.\u201d <i>The Oxford Encyclopedia of Archaeology in the Near East</i>, 1997. http://www.worldcat.org/oclc/5037183362.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/246604681",
+      "citationDetail": "pages 102-111",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nielsen 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/AE58NTXD",
+      "formattedCitation": "<div class=\"csl-entry\">Nielsen, Inge. <i>Hellenistic Palaces\u202f: Tradition and Renewal</i>. Studies in Hellenistic Civilization 5. \u00c5rhus: \u00c5rhus University Press, 1994. http://www.worldcat.org/oclc/246604681.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "294093254",
+  "subject": [
+    "GardRomEmp",
+    "extant remains",
+    "Mosaic"
+  ],
+  "title": "Royal Palace V at Pergamum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/palace"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Palace V has been interpreted as a royal residence at Pergamum containing a peristyle watered by cisterns. It is noted for its mosaic decoration.",
+  "reprPoint": [
+    27.184746250000003,
+    39.13230900000001
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "palace"
+  ],
+  "bbox": [
+    27.1844803,
+    39.1321153,
+    27.1850122,
+    39.1325027
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550812"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-21T19:51:55Z",
+  "uri": "https://pleiades.stoa.org/places/294093254",
+  "creators": [
+    {
+      "username": "alguan",
+      "homepage": null,
+      "name": "Annette Lei Guan",
+      "uri": "https://pleiades.stoa.org/author/alguan"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-24T17:57:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-24T17:57:19Z"
+    },
+    {
+      "comment": "update summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-24T16:49:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2021-05-24T14:19:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-21T19:59:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-21T19:58:41Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-21T19:51:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-21T19:51:55Z"
+    }
+  ]
+}

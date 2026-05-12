@@ -1,0 +1,463 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.1868224,
+          35.2587361
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-aqueduct-source-fundana-spring",
+      "properties": {
+        "snippet": "Spring",
+        "link": "https://pleiades.stoa.org/places/590414/osm-location-aqueduct-source-fundana-spring",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: aqueduct source: Fundana spring"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.1641453,
+            35.2839295
+          ],
+          [
+            25.1645869,
+            35.2841171
+          ],
+          [
+            25.1650069,
+            35.2843438
+          ],
+          [
+            25.1657399,
+            35.284516
+          ],
+          [
+            25.1662412,
+            35.2845652
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-19th-century-spilia-aqueduct-bridge",
+      "properties": {
+        "snippet": "Aqueduct, Bridge; AD 1800 - AD 1899",
+        "link": "https://pleiades.stoa.org/places/590414/osm-location-19th-century-spilia-aqueduct-bridge",
+        "description": "Location based on OpenStreetMap. Likely replaces a Roman aqueduct bridge at the same location.",
+        "location_precision": "precise",
+        "title": "OSM Location: 19th century Spilia Aqueduct Bridge"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2330621276",
+          "citationDetail": "Node 2330621276",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2330621276",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-aqueduct-source-fundana-spring",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/spring"
+      ],
+      "end": null,
+      "title": "OSM Location: aqueduct source: Fundana spring",
+      "provenance": "OpenStreetMap (Node 2330621276, version 1, osm:changeset=16406537, 2013-06-03T14:02:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/spring"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "spring"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-04-09T16:18:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.1868224,
+          35.2587361
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/590414/osm-location-aqueduct-source-fundana-spring",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-09T21:43:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T19:30:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T16:27:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T16:18:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T16:18:36Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "nineteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/nineteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/35779544",
+          "citationDetail": "Way 35779544",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=35779544",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-19th-century-spilia-aqueduct-bridge",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 1899,
+      "title": "OSM Location: 19th century Spilia Aqueduct Bridge",
+      "provenance": "OpenStreetMap (Way 35779544, version 9, osm:changeset=144541019, 2023-11-28T09:57:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "aqueduct",
+        "bridge"
+      ],
+      "description": "Location based on OpenStreetMap. Likely replaces a Roman aqueduct bridge at the same location.",
+      "created": "2024-04-09T16:29:20Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.1641453,
+            35.2839295
+          ],
+          [
+            25.1645869,
+            35.2841171
+          ],
+          [
+            25.1650069,
+            35.2843438
+          ],
+          [
+            25.1657399,
+            35.284516
+          ],
+          [
+            25.1662412,
+            35.2845652
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/590414/osm-location-19th-century-spilia-aqueduct-bridge",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-04-09T21:43:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T19:30:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T16:30:02Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T16:29:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T16:29:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-05-13T22:01:30Z",
+      "associationCertainty": "certain",
+      "title": "Knosos/Col. Iulia Nobilis Cnosos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/590414/knosos-col-iulia-nobilis-cnosos",
+      "connectionType": "flows_into",
+      "id": "knosos-col-iulia-nobilis-cnosos",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T19:31:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-09T19:31:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-13T22:01:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-13T22:01:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589872",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/flows_into"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "60 D2",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "23-24",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hood 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZTFAQUJH",
+      "formattedCitation": "<div class=\"csl-entry\">Hood, Sinclair, and David Smyth. <i>Archaeological Survey of the Knossos Area</i>. 2\u00a0 rev. and Expand. Supplementary Volume (British School at Athens) 14. London: Thames and Hudson, 1981.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/annual-of-the-british-school-at-athens/article/roman-aqueduct-of-knossos-a-model-for-nineteenthcentury-aqueduct-design/E8A90C60B965D1BB999C3B850E12321E",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kelly 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3I5BYM9N",
+      "formattedCitation": "<div class=\"csl-entry\">Kelly, Amanda, and Brendan O\u2019Neill. \u201cThe Roman Aqueduct of Knossos, A Model for Nineteenth-Century Aqueduct Design.\u201d <i>Annual of the British School at Athens</i> 118 (December 2023): 349\u201397. https://doi.org/10.1017/S0068245422000156.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "590414",
+  "subject": [
+    "KMPP"
+  ],
+  "title": "Roman Aqueduct of Knossos",
+  "provenance": "Barrington Atlas: BAtlas 60 D2",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+    "https://pleiades.stoa.org/vocabularies/place-types/spring",
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Knosos</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A roman contour-grade aqueduct, carrying water from the Fundana spring, south of Knossos, to an inverted siphon bridge at Spilia and thence to Knossos.",
+  "reprPoint": [
+    25.17599680739454,
+    35.2715300313304
+  ],
+  "placeTypes": [
+    "aqueduct",
+    "spring",
+    "bridge"
+  ],
+  "bbox": [
+    25.1641453,
+    35.2587361,
+    25.1868224,
+    35.2845652
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589872"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-04-09T16:03:22Z",
+  "uri": "https://pleiades.stoa.org/places/590414",
+  "creators": [
+    {
+      "username": null,
+      "name": "J. Bennet"
+    },
+    {
+      "username": null,
+      "name": "G. Reger"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary; cleaned up references; added Kelly 2023; added OSM locations for two key elements of the aqueduct course (after Kelly 2023).",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-09T21:42:59Z"
+    },
+    {
+      "comment": "added Knossos Minoan Palace Project (KMPP) tag",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-28T23:00:10Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-13T22:02:12Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:51:42Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:36:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-09-22T20:04:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:59:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-09-22T19:27:16Z"
+    }
+  ]
+}

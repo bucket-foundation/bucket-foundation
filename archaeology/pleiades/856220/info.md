@@ -1,0 +1,14 @@
+# 49
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/856220
+- **ID**: 856220
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 87 K2 no. 49 (Turkmen 2 UKR)

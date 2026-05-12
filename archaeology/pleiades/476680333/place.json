@@ -1,0 +1,268 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7550643,
+          42.0112486
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-casale-sinibalda",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/476680333/osm-location-of-casale-sinibalda",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Casale Sinibalda"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1893474089",
+          "citationDetail": "Node 1893474089",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1893474089",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-casale-sinibalda",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Casale Sinibalda",
+      "provenance": "OpenStreetMap (Node 1893474089, version 1, osm:changeset=12944578, 2012-09-01T17:28:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2021-06-14T20:52:41Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.7550643,
+          42.0112486
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/476680333/osm-location-of-casale-sinibalda",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-29T03:01:05Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-15T19:52:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-15T18:33:20Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-14T20:52:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-14T20:52:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-14T20:52:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-14T23:36:35Z",
+      "associationCertainty": "certain",
+      "title": "Fosso Saina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/476680333/fosso-saina",
+      "connectionType": "near",
+      "id": "fosso-saina",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-15T19:52:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-15T18:33:20Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-14T23:36:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-14T23:36:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/196365027",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/pdf/40310269.pdf",
+      "citationDetail": "180-1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ashby 1905",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A5WRVGPP",
+      "formattedCitation": "<div class=\"csl-entry\">Ashby, Thomas. \u201cThe Classical Topography of the Roman Campagna Part II.\u201d <i>Papers of the British School at Rome</i> 3, no. 1 (1905): 3\u2013212. https://www.jstor.org/stable/pdf/40310269.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=Pjc_AQAAIAAJ",
+      "citationDetail": "58",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fonteanive 1887",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JVL2TU69",
+      "formattedCitation": "<div class=\"csl-entry\">Fonteanive, Rodolfo, Club alpino italiano, and Sezione di Roma. <i>Sui munimenti ed altre costruzioni poligonie od epimonolite dette ciclopiche, saturnie o pelasgiche e sui resti di tali fabbriche esistenti nella provincia romana</i>. Roma: Tipografia I. Sciolla, 1887. http://books.google.com/books?id=Pjc_AQAAIAAJ.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "476680333",
+  "subject": [
+    "basis villae",
+    "polygonal masonry"
+  ],
+  "title": "Casale Sinibalda",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>Thomas Ashby notes this place as the findspot of at least two inscriptions,\u00a0<em>CIL\u00a0</em>14, 3923 and one other that he indicates was unpublished.\u00a0<em>CIL\u00a0</em>14, 3922 might also have come from the vicinity of this place, according to Ashby.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Casale Sinibalda is located on the western side of the Fosso Saina. Located to the north of the casale are the remains of a basis villae of the so-called fourth style, meaning it verges on opus quadratum.",
+  "reprPoint": [
+    12.7550643,
+    42.0112486
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    12.7550643,
+    42.0112486,
+    12.7550643,
+    42.0112486
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/196365027"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-06-14T20:52:15Z",
+  "uri": "https://pleiades.stoa.org/places/476680333",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-15T19:52:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-15T18:33:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-15T18:33:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-14T23:36:13Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-14T20:52:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-14T20:52:15Z"
+    }
+  ]
+}

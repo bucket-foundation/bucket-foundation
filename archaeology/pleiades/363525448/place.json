@@ -1,0 +1,340 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.3545316,
+            40.3315637
+          ],
+          [
+            -7.3546241,
+            40.3316025
+          ],
+          [
+            -7.3549403,
+            40.3317351
+          ],
+          [
+            -7.3552787,
+            40.3320084
+          ],
+          [
+            -7.3555046,
+            40.331872
+          ],
+          [
+            -7.355639,
+            40.3317188
+          ],
+          [
+            -7.3557219,
+            40.3315325
+          ],
+          [
+            -7.3557253,
+            40.3312871
+          ],
+          [
+            -7.3551935,
+            40.3310601
+          ],
+          [
+            -7.3548012,
+            40.3308961
+          ],
+          [
+            -7.3546369,
+            40.3311369
+          ],
+          [
+            -7.3548066,
+            40.3312028
+          ],
+          [
+            -7.3545316,
+            40.3315637
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/363525448/location-of-roman-villa",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Romana da Quinta da F\u00f3rnea"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/248878982",
+          "citationDetail": "Way 248878982",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=248878982",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa Romana da Quinta da F\u00f3rnea",
+      "provenance": "OpenStreetMap (Way 248878982, version 7, osm:changeset=78414485, 2019-12-14T18:23:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-11-28T18:08:52Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.3545316,
+            40.3315637
+          ],
+          [
+            -7.3546241,
+            40.3316025
+          ],
+          [
+            -7.3549403,
+            40.3317351
+          ],
+          [
+            -7.3552787,
+            40.3320084
+          ],
+          [
+            -7.3555046,
+            40.331872
+          ],
+          [
+            -7.355639,
+            40.3317188
+          ],
+          [
+            -7.3557219,
+            40.3315325
+          ],
+          [
+            -7.3557253,
+            40.3312871
+          ],
+          [
+            -7.3551935,
+            40.3310601
+          ],
+          [
+            -7.3548012,
+            40.3308961
+          ],
+          [
+            -7.3546369,
+            40.3311369
+          ],
+          [
+            -7.3548066,
+            40.3312028
+          ],
+          [
+            -7.3545316,
+            40.3315637
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/363525448/location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T16:10:31Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-05-22T11:04:01Z"
+        },
+        {
+          "comment": "title",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-15T15:39:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-19T16:52:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-19T16:51:40Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-28T18:09:12Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-28T18:08:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-28T18:08:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.portugalromano.com/2011/11/a-villa-romana-da-quinta-da-fornea-belmonte/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "VILLA ROMANA DA QUINTA DA F\u00d3RNEA",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/1742115/VILLA_ROMANA_DA_QUINTA_DA_FORNEA_I",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "A Villa  romana da Quinta da F\u00f3rnea I- BelmonteRelat\u00f3rio de Progresso",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q70106190",
+      "citationDetail": "F\u00f3rnea Roman villa (Q70106190)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "363525448",
+  "subject": [],
+  "title": "F\u00f3rnea Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An imperial villa, occupied between the second and fourth centuries AD.",
+  "reprPoint": [
+    -7.355120411960035,
+    40.33143105030358
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    -7.3557253,
+    40.3308961,
+    -7.3545316,
+    40.3320084
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-28T18:07:36Z",
+  "uri": "https://pleiades.stoa.org/places/363525448",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T16:12:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-05-22T11:04:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-15T15:40:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-19T16:45:13Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-28T18:07:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-28T18:07:37Z"
+    }
+  ]
+}

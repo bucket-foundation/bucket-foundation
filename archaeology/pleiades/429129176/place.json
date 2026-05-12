@@ -1,0 +1,330 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.696699,
+          31.314971
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-imagery-location-of-wadi-zoumayli-site",
+      "properties": {
+        "snippet": "Settlement; 6200 BC - 3750 BC",
+        "link": "https://pleiades.stoa.org/places/429129176/approximate-imagery-location-of-wadi-zoumayli-site",
+        "description": "Approximate imagery location based on Google Earth representing Wadi Zoumeyli Site after Commenge-Pellerin 1987.",
+        "location_precision": "precise",
+        "title": "Approximate imagery location of Wadi Zoumayli Site"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "chalcolithic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/chalcolithic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/29272887",
+          "citationDetail": "page 14",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Commenge-Pellerin 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RTKFTU3B",
+          "formattedCitation": "<div class=\"csl-entry\">Commenge-Pellerin, Catherine, and Jean Perrot. <i>La poterie d\u2019Abou Matar et de l\u2019Ouadi Zoumeili (Beersh\u00e9va) au IVe mill\u00e9naire avant l\u2019\u00e8re chr\u00e9tienne</i>. Les Cahiers du Centre de Recherche Fran\u00e7ais de J\u00e9rusalem, Vol.3. PARIS, France: Centre de recherche fran\u00e7ais de J\u00e9rusalem, 1987. http://www.worldcat.org/oclc/29272887.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "approximate-imagery-location-of-wadi-zoumayli-site",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3750,
+      "title": "Approximate imagery location of Wadi Zoumayli Site",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -6200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Approximate imagery location based on Google Earth representing Wadi Zoumeyli Site after Commenge-Pellerin 1987.",
+      "created": "2022-07-21T14:01:15Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.696699,
+          31.314971
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/429129176/approximate-imagery-location-of-wadi-zoumayli-site",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:12:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T14:01:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T14:01:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T14:01:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -3750,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-21T13:58:34Z",
+      "associationCertainty": "certain",
+      "title": "Negev",
+      "start": -6200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/429129176/negev",
+      "connectionType": "in",
+      "id": "negev",
+      "attestations": [
+        {
+          "timePeriod": "chalcolithic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/chalcolithic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:12:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T14:01:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T13:58:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T13:58:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/687985",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/29272887",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Commenge-Pellerin 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RTKFTU3B",
+          "formattedCitation": "<div class=\"csl-entry\">Commenge-Pellerin, Catherine, and Jean Perrot. <i>La poterie d\u2019Abou Matar et de l\u2019Ouadi Zoumeili (Beersh\u00e9va) au IVe mill\u00e9naire avant l\u2019\u00e8re chr\u00e9tienne</i>. Les Cahiers du Centre de Recherche Fran\u00e7ais de J\u00e9rusalem, Vol.3. PARIS, France: Centre de recherche fran\u00e7ais de J\u00e9rusalem, 1987. http://www.worldcat.org/oclc/29272887.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    },
+    {
+      "end": -3750,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-21T13:59:12Z",
+      "associationCertainty": "certain",
+      "title": "Beer Sheva/Berosaba",
+      "start": -6200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/429129176/beer-sheva-berosaba",
+      "connectionType": "near",
+      "id": "beer-sheva-berosaba",
+      "attestations": [
+        {
+          "timePeriod": "chalcolithic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/chalcolithic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-21T19:12:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T14:01:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T13:59:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-21T13:59:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/687846",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/29272887",
+          "citationDetail": "page 14",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Commenge-Pellerin 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RTKFTU3B",
+          "formattedCitation": "<div class=\"csl-entry\">Commenge-Pellerin, Catherine, and Jean Perrot. <i>La poterie d\u2019Abou Matar et de l\u2019Ouadi Zoumeili (Beersh\u00e9va) au IVe mill\u00e9naire avant l\u2019\u00e8re chr\u00e9tienne</i>. Les Cahiers du Centre de Recherche Fran\u00e7ais de J\u00e9rusalem, Vol.3. PARIS, France: Centre de recherche fran\u00e7ais de J\u00e9rusalem, 1987. http://www.worldcat.org/oclc/29272887.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/29272887",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Commenge-Pellerin 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RTKFTU3B",
+      "formattedCitation": "<div class=\"csl-entry\">Commenge-Pellerin, Catherine, and Jean Perrot. <i>La poterie d\u2019Abou Matar et de l\u2019Ouadi Zoumeili (Beersh\u00e9va) au IVe mill\u00e9naire avant l\u2019\u00e8re chr\u00e9tienne</i>. Les Cahiers du Centre de Recherche Fran\u00e7ais de J\u00e9rusalem, Vol.3. PARIS, France: Centre de recherche fran\u00e7ais de J\u00e9rusalem, 1987. http://www.worldcat.org/oclc/29272887.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "429129176",
+  "subject": [],
+  "title": "Wadi Zoumayli Site",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Settlement site between Gilat and Beer Sheva in the Negev in Israel. This site was inhabited during the Chalcolithic period.",
+  "reprPoint": [
+    34.696699,
+    31.314971
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    34.696699,
+    31.314971,
+    34.696699,
+    31.314971
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/687985",
+    "https://pleiades.stoa.org/places/687846"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-21T13:57:43Z",
+  "uri": "https://pleiades.stoa.org/places/429129176",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-21T19:12:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-21T14:01:33Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-21T13:57:45Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-21T13:57:43Z"
+    }
+  ]
+}

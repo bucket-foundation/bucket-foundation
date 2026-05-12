@@ -1,0 +1,921 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4806931,
+            41.8888054
+          ],
+          [
+            12.4807098,
+            41.8888135
+          ],
+          [
+            12.4807284,
+            41.8888193
+          ],
+          [
+            12.4807475,
+            41.8888225
+          ],
+          [
+            12.4807666,
+            41.8888232
+          ],
+          [
+            12.4807874,
+            41.8888211
+          ],
+          [
+            12.480806,
+            41.8888164
+          ],
+          [
+            12.4808242,
+            41.8888091
+          ],
+          [
+            12.4808395,
+            41.8887998
+          ],
+          [
+            12.4808516,
+            41.8887894
+          ],
+          [
+            12.4808602,
+            41.8887793
+          ],
+          [
+            12.4808637,
+            41.888773
+          ],
+          [
+            12.4808688,
+            41.8887747
+          ],
+          [
+            12.4808749,
+            41.8887768
+          ],
+          [
+            12.4808796,
+            41.8887684
+          ],
+          [
+            12.4808846,
+            41.8887502
+          ],
+          [
+            12.4808851,
+            41.8887344
+          ],
+          [
+            12.4808824,
+            41.8887197
+          ],
+          [
+            12.4808752,
+            41.8887027
+          ],
+          [
+            12.4808683,
+            41.888694
+          ],
+          [
+            12.4808629,
+            41.8886968
+          ],
+          [
+            12.4808577,
+            41.8886995
+          ],
+          [
+            12.4808534,
+            41.8886937
+          ],
+          [
+            12.4808403,
+            41.8886821
+          ],
+          [
+            12.4808226,
+            41.8886713
+          ],
+          [
+            12.480804,
+            41.8886642
+          ],
+          [
+            12.4807844,
+            41.8886597
+          ],
+          [
+            12.4807723,
+            41.8886585
+          ],
+          [
+            12.4807553,
+            41.8886582
+          ],
+          [
+            12.480738,
+            41.88866
+          ],
+          [
+            12.4807181,
+            41.8886648
+          ],
+          [
+            12.4807002,
+            41.888672
+          ],
+          [
+            12.4806844,
+            41.8886816
+          ],
+          [
+            12.4806711,
+            41.8886935
+          ],
+          [
+            12.4806614,
+            41.8887058
+          ],
+          [
+            12.4806548,
+            41.8887193
+          ],
+          [
+            12.4806512,
+            41.8887447
+          ],
+          [
+            12.4806539,
+            41.8887585
+          ],
+          [
+            12.4806609,
+            41.8887753
+          ],
+          [
+            12.4806743,
+            41.8887911
+          ],
+          [
+            12.4806931,
+            41.8888054
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-temple-of-hercules-victor",
+      "properties": {
+        "snippet": "Temple-2; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/825969667/osm-location-temple-of-hercules-victor",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Temple of Hercules Victor"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": null,
+      "name": "jfu"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/251342364",
+          "citationDetail": "Way 251342364",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=251342364",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-temple-of-hercules-victor",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location: Temple of Hercules Victor",
+      "provenance": "OpenStreetMap (Way 251342364, version 25, osm:changeset=141515915, 2023-09-20T14:05:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-12-17T03:33:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4806931,
+            41.8888054
+          ],
+          [
+            12.4807098,
+            41.8888135
+          ],
+          [
+            12.4807284,
+            41.8888193
+          ],
+          [
+            12.4807475,
+            41.8888225
+          ],
+          [
+            12.4807666,
+            41.8888232
+          ],
+          [
+            12.4807874,
+            41.8888211
+          ],
+          [
+            12.480806,
+            41.8888164
+          ],
+          [
+            12.4808242,
+            41.8888091
+          ],
+          [
+            12.4808395,
+            41.8887998
+          ],
+          [
+            12.4808516,
+            41.8887894
+          ],
+          [
+            12.4808602,
+            41.8887793
+          ],
+          [
+            12.4808637,
+            41.888773
+          ],
+          [
+            12.4808688,
+            41.8887747
+          ],
+          [
+            12.4808749,
+            41.8887768
+          ],
+          [
+            12.4808796,
+            41.8887684
+          ],
+          [
+            12.4808846,
+            41.8887502
+          ],
+          [
+            12.4808851,
+            41.8887344
+          ],
+          [
+            12.4808824,
+            41.8887197
+          ],
+          [
+            12.4808752,
+            41.8887027
+          ],
+          [
+            12.4808683,
+            41.888694
+          ],
+          [
+            12.4808629,
+            41.8886968
+          ],
+          [
+            12.4808577,
+            41.8886995
+          ],
+          [
+            12.4808534,
+            41.8886937
+          ],
+          [
+            12.4808403,
+            41.8886821
+          ],
+          [
+            12.4808226,
+            41.8886713
+          ],
+          [
+            12.480804,
+            41.8886642
+          ],
+          [
+            12.4807844,
+            41.8886597
+          ],
+          [
+            12.4807723,
+            41.8886585
+          ],
+          [
+            12.4807553,
+            41.8886582
+          ],
+          [
+            12.480738,
+            41.88866
+          ],
+          [
+            12.4807181,
+            41.8886648
+          ],
+          [
+            12.4807002,
+            41.888672
+          ],
+          [
+            12.4806844,
+            41.8886816
+          ],
+          [
+            12.4806711,
+            41.8886935
+          ],
+          [
+            12.4806614,
+            41.8887058
+          ],
+          [
+            12.4806548,
+            41.8887193
+          ],
+          [
+            12.4806512,
+            41.8887447
+          ],
+          [
+            12.4806539,
+            41.8887585
+          ],
+          [
+            12.4806609,
+            41.8887753
+          ],
+          [
+            12.4806743,
+            41.8887911
+          ],
+          [
+            12.4806931,
+            41.8888054
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/825969667/osm-location-temple-of-hercules-victor",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-02-28T17:05:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-27T22:37:14Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-27T22:37:11Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-02-27T22:36:51Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T03:33:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T03:33:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T03:33:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:47:53Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/825969667/423025",
+      "connectionType": "connection",
+      "id": "423025",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:47:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2019-03-31T15:11:52Z",
+      "associationCertainty": "certain",
+      "title": "Forum Boarium (at Rome)",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/825969667/forum-boarium",
+      "connectionType": "part_of_analytical",
+      "id": "forum-boarium",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-12T16:54:02Z"
+        },
+        {
+          "comment": "wikidata Q576929",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-22T13:21:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-04-01T18:11:31Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-31T15:11:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-03-31T15:11:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/207271756",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q576929",
+          "citationDetail": "Q576929",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-10-25T13:23:25Z",
+      "associationCertainty": "certain",
+      "title": "Regio XI (Circus Maximus)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/825969667/regio-xi-circus-maximus",
+      "connectionType": "part_of_analytical",
+      "id": "regio-xi-circus-maximus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-11-27T23:03:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-26T16:49:31Z"
+        },
+        {
+          "comment": "wikidata Q576929: Temple of Hercules Victor",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-26T16:49:27Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-25T13:23:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-25T13:23:25Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/418516191",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q576929",
+          "citationDetail": "Q576929: Temple of Hercules Victor",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Temple_of_Hercules_Victor",
+      "citationDetail": "Temple of Hercules Victor",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Temple of Hercules Victor.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Forum_Boarium",
+      "citationDetail": "Forum Boarium",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Forum Boarium.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=qSP4ovkOTpoC&printsec=frontcover&dq=The+architecture+of+Roman+temples+:+the+republic+to+the+middle+empire&hl=en&sa=X&ei=Y8xqUZ7JNI2E8ATp8oDYDQ&ved=0CDEQ6AEwAA",
+      "citationDetail": "70",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stamper 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QANGG72Q",
+      "formattedCitation": "<div class=\"csl-entry\">Stamper, John W. <i>The Architecture of Roman Temples: The Republic to the Middle Empire</i>. New York: Cambridge University Press, 2005.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/15006/",
+      "citationDetail": "15006: Temple of Hercules Victor",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/11979178/aedes-herculis-victoris.html",
+      "citationDetail": "11979178: Aedes Herculis Victoris",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q576929",
+      "citationDetail": "Q576929: Temple of Hercules Victor",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "97",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Davies 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UVEHC48U",
+      "formattedCitation": "<div class=\"csl-entry\">Davies, Penelope J. E. <i>Architecture and Politics in Republican Rome</i>. Cambridge, United Kingdom\u202f;\u00a0 New York, NY: Cambridge University Press, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40310611",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Strong 1960",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GAMQ5M9E",
+      "formattedCitation": "<div class=\"csl-entry\">Strong, D. E., and J. B. Ward-Perkins. \u201cThe Round Temple in the Forum Boarium.\u201d <i>Papers of the British School at Rome</i> 28 (1960): 7\u201332. https://www.jstor.org/stable/40310611.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/768528944",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Claridge 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SA3KX3U2",
+      "formattedCitation": "<div class=\"csl-entry\">Claridge, Amanda. <i>Rome: An Oxford Archaeological Guide</i>. 2nd ed. Oxford, England: Oxford University Press, 2010. http://www.worldcat.org/oclc/768528944.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journals.uchicago.edu/doi/10.1086/689726",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Loar 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HKS8CPZ4",
+      "formattedCitation": "<div class=\"csl-entry\">Loar, Matthew P. \u201cHercules, Mummius, and the Roman Triumph in Aeneid 8.\u201d <i>Classical Philology</i> 112, no. 1 (January 1, 2017): 45\u201362. https://doi.org/10.1086/689726.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/419125SHrc",
+      "citationDetail": "Hercules Olivarius temple (Rome)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/1088657",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zi\u00f3\u0142kowski 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E2HS7BP9",
+      "formattedCitation": "<div class=\"csl-entry\">Ziolkowski, Adam. \u201cMummius\u2019 Temple of Hercules Victor and the Round Temple on the Tiber.\u201d <i>Phoenix</i> 42, no. 4 (1988): 309\u201333. https://doi.org/10.2307/1088657.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/10771",
+      "citationDetail": "Rundtempel am Forum Boarium (Tempel des Hercules Victor?) Forum Boarium, Rom",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "825969667",
+  "subject": [
+    "Corinthian",
+    "extant remains",
+    "temple"
+  ],
+  "title": "Temple of Hercules Victor",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A monopteros in the Forum Boarium at Rome built in the late second century BC, perhaps by L. Mummius Achaicus.",
+  "reprPoint": [
+    12.480769229632628,
+    41.88874023919556
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    12.4806512,
+    41.8886582,
+    12.4808851,
+    41.8888232
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/207271756",
+    "https://pleiades.stoa.org/places/418516191"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-06-12T16:14:37Z",
+  "uri": "https://pleiades.stoa.org/places/825969667",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update Arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-10T12:47:00Z"
+    },
+    {
+      "comment": "added Arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-17T17:55:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-17T17:47:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-17T17:46:43Z"
+    },
+    {
+      "comment": "added topostext",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-26T16:21:36Z"
+    },
+    {
+      "comment": "Added Helpful Sources; updated references; revised those submitted with working copy - removed non-pertinent references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-12T16:54:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-04-03T15:17:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-03-31T20:15:46Z"
+    },
+    {
+      "comment": "changed feature type",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-11T22:51:42Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-15T20:09:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-04-14T15:35:18Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-04-14T15:34:38Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-23T18:06:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-02-23T18:06:12Z"
+    }
+  ]
+}

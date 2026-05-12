@@ -1,0 +1,14 @@
+# Fanum Minervae
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/114779
+- **ID**: 114779
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Fanum Minervae
+
+## Description
+
+An ancient place, cited: BAtlas 11 unlocated Fanum Minervae

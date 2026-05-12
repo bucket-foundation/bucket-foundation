@@ -1,0 +1,515 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.1124478,
+            40.8324381
+          ],
+          [
+            14.1127643,
+            40.8326045
+          ],
+          [
+            14.1129038,
+            40.8327831
+          ],
+          [
+            14.1126034,
+            40.8328967
+          ],
+          [
+            14.1123473,
+            40.8329428
+          ],
+          [
+            14.1121396,
+            40.8329801
+          ],
+          [
+            14.1119181,
+            40.8330317
+          ],
+          [
+            14.1118587,
+            40.8330391
+          ],
+          [
+            14.1117228,
+            40.8330562
+          ],
+          [
+            14.1117088,
+            40.8330579
+          ],
+          [
+            14.1116073,
+            40.8329954
+          ],
+          [
+            14.1114771,
+            40.8330631
+          ],
+          [
+            14.1124478,
+            40.8324381
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-stadium-of-antoninus-pius",
+      "properties": {
+        "snippet": "Stadion; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/468479783/location-of-stadium-of-antoninus-pius",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Stadium of Antoninus Pius"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/150544058",
+          "citationDetail": "Way 150544058",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=150544058",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Stadio_di_Antonino_Pio_(Pozzuoli)",
+          "citationDetail": "Stadio di Antonino Pio (Pozzuoli)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+          "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Stadio di Antonino Pio (Pozzuoli).",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "location-of-stadium-of-antoninus-pius",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+      ],
+      "end": 300,
+      "title": "OSM location of Stadium of Antoninus Pius",
+      "provenance": "OpenStreetMap (Way 150544058, version 6, osm:changeset=133727504, 2023-03-15T22:44:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "stadion"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-02-21T14:13:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.1124478,
+            40.8324381
+          ],
+          [
+            14.1127643,
+            40.8326045
+          ],
+          [
+            14.1129038,
+            40.8327831
+          ],
+          [
+            14.1126034,
+            40.8328967
+          ],
+          [
+            14.1123473,
+            40.8329428
+          ],
+          [
+            14.1121396,
+            40.8329801
+          ],
+          [
+            14.1119181,
+            40.8330317
+          ],
+          [
+            14.1118587,
+            40.8330391
+          ],
+          [
+            14.1117228,
+            40.8330562
+          ],
+          [
+            14.1117088,
+            40.8330579
+          ],
+          [
+            14.1116073,
+            40.8329954
+          ],
+          [
+            14.1114771,
+            40.8330631
+          ],
+          [
+            14.1124478,
+            40.8324381
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/468479783/location-of-stadium-of-antoninus-pius",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-09T13:37:19Z"
+        },
+        {
+          "comment": "add OSM PAA",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-04T00:40:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-30T00:50:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-18T14:50:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-18T14:50:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-18T14:49:21Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-18T14:48:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-14T18:46:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-21T14:13:59Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:58:49Z",
+      "associationCertainty": "certain",
+      "title": "Dikaiarcheia/Puteoli",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/468479783/432815",
+      "connectionType": "at",
+      "id": "432815",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-13T21:57:47Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:58:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432815",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Stadio_di_Antonino_Pio",
+      "citationDetail": "Stadio di Antonino Pio",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Stadio di Antonino Pio.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q16608446",
+      "citationDetail": "Stadium of Antoninus Pius (Q16608446)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/17439/",
+      "citationDetail": "17439: Roman Stadium Antoninus Pius",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Stadium of Antoninus Pius",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q16608446",
+          "citationDetail": "Q16608446",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "name.2018-08-30.4861035980",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2018-08-30T12:35:22Z",
+      "uri": "https://pleiades.stoa.org/places/468479783/name.2018-08-30.4861035980",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Stadium of Antoninus Pius",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-30T21:18:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-30T21:18:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-30T12:35:32Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-30T12:35:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-30T12:35:22Z"
+        }
+      ]
+    }
+  ],
+  "id": "468479783",
+  "subject": [
+    "extant remains"
+  ],
+  "title": "Stadium of Antoninus Pius (Puteoli)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A stadium of ancient Puteoli constructed under Antoninus Pius in the second century A.D. that was revealed by excavation in 2008.",
+  "reprPoint": [
+    14.112197420362838,
+    40.83281743576213
+  ],
+  "placeTypes": [
+    "stadion"
+  ],
+  "bbox": [
+    14.1114771,
+    40.8324381,
+    14.1129038,
+    40.8330631
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432815"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-03-18T14:48:31Z",
+  "uri": "https://pleiades.stoa.org/places/468479783",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add vici.org ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-13T21:57:26Z"
+    },
+    {
+      "comment": "wikidata Q16608446: Stadium of Antoninus Pius",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-04T01:19:33Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-30T00:50:50Z"
+    },
+    {
+      "comment": "updated feature type",
+      "modifiedBy": "thomase",
+      "modified": "2016-05-27T14:43:11Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-18T14:50:36Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-18T14:48:40Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-18T14:48:32Z"
+    }
+  ]
+}

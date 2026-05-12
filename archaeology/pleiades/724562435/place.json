@@ -1,0 +1,425 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.5043689,
+            39.1764931
+          ],
+          [
+            26.50416,
+            39.1767224
+          ],
+          [
+            26.5040075,
+            39.1769588
+          ],
+          [
+            26.5034296,
+            39.1774068
+          ],
+          [
+            26.5031307,
+            39.1775581
+          ],
+          [
+            26.502722,
+            39.1778371
+          ],
+          [
+            26.5021182,
+            39.1773075
+          ],
+          [
+            26.5028989,
+            39.1765227
+          ],
+          [
+            26.5033137,
+            39.1760593
+          ],
+          [
+            26.5039498,
+            39.1763006
+          ],
+          [
+            26.5042632,
+            39.1764421
+          ],
+          [
+            26.5043689,
+            39.1764931
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-archaeological-site-of-thermi",
+      "properties": {
+        "snippet": "Archaeological-site, Settlement; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/724562435/osm-location-of-archaeological-site-of-thermi",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Archaeological Site Of Thermi"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/349153603",
+          "citationDetail": "Way 349153603",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=349153603",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-archaeological-site-of-thermi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1000,
+      "title": "OSM location of Archaeological Site Of Thermi",
+      "provenance": "OpenStreetMap (Way 349153603, version 4, osm:changeset=141097007, 2023-09-11T07:54:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-19T14:05:55Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.5043689,
+            39.1764931
+          ],
+          [
+            26.50416,
+            39.1767224
+          ],
+          [
+            26.5040075,
+            39.1769588
+          ],
+          [
+            26.5034296,
+            39.1774068
+          ],
+          [
+            26.5031307,
+            39.1775581
+          ],
+          [
+            26.502722,
+            39.1778371
+          ],
+          [
+            26.5021182,
+            39.1773075
+          ],
+          [
+            26.5028989,
+            39.1765227
+          ],
+          [
+            26.5033137,
+            39.1760593
+          ],
+          [
+            26.5039498,
+            39.1763006
+          ],
+          [
+            26.5042632,
+            39.1764421
+          ],
+          [
+            26.5043689,
+            39.1764931
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/724562435/osm-location-of-archaeological-site-of-thermi",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-19T15:59:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T14:11:25Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T14:06:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T14:05:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T14:05:55Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-09-19T14:06:32Z",
+      "associationCertainty": "certain",
+      "title": "Lesbos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/724562435/lesbos-island",
+      "connectionType": "on",
+      "id": "lesbos-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-19T15:59:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T14:11:25Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T14:11:10Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T14:06:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-19T14:06:32Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550696",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Lamb 1936",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3IT9AYEM",
+          "formattedCitation": "<div class=\"csl-entry\">Lamb, Winifred. <i>Excavations at Thermi in Lesbos</i>. Cambridge [Eng.]: Cambridge University Press, 1936.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/4638805",
+      "citationDetail": "Thermi Lesbos, Griechenland, Europa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/30096590",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lamb 1928",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3C6SNH6Z",
+      "formattedCitation": "<div class=\"csl-entry\">Lamb, W., and R. W. Hutchinson. \u201cExcavations at Thermi in Lesbos.\u201d <i>The Annual of the British School at Athens</i> 30 (1928): 1\u201352. https://www.jstor.org/stable/30096590.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Lamb 1936",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3IT9AYEM",
+      "formattedCitation": "<div class=\"csl-entry\">Lamb, Winifred. <i>Excavations at Thermi in Lesbos</i>. Cambridge [Eng.]: Cambridge University Press, 1936.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1468-0092.1995.tb00389.x",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pernicka 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CJYCBLDD",
+      "formattedCitation": "<div class=\"csl-entry\">Begemann, F., E. Pernicka, and S. Schmitt-Strecker. \u201cThermi on Lesbos. A Case Study of Changing Trade Patterns.\u201d In <i>Oxford Journal of Archaeology, 14.1995</i>, 123\u201336, Abb, 1995. https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1468-0092.1995.tb00389.x.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q122704271",
+      "citationDetail": "Q122704271: Thermi",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "724562435",
+  "subject": [],
+  "title": "Thermi, Lesbos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>Winifred Lamb identified the site and carried out excavations from\u00a01929 to 1933. Additional excavation took place form 2004-2008.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Thermi, Lesbos, was a Bronze Age port-cum-settlement that flourished during the third millennium BCE.",
+  "reprPoint": [
+    26.50322330095632,
+    39.17692484629106
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    26.5021182,
+    39.1760593,
+    26.5043689,
+    39.1778371
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550696"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-19T14:05:35Z",
+  "uri": "https://pleiades.stoa.org/places/724562435",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-19T15:59:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-19T14:19:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-19T14:11:25Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-19T14:10:52Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-19T14:10:01Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-19T14:05:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-19T14:05:35Z"
+    }
+  ]
+}

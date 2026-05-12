@@ -1,0 +1,14 @@
+# Gala(a)ditis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/678143
+- **ID**: 678143
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**:  Galaaditis,  Galaditis
+
+## Description
+
+An ancient place, cited: BAtlas 69 C4 Gala(a)ditis

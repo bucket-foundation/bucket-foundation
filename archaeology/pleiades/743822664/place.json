@@ -1,0 +1,345 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            60.136262,
+            52.4324213
+          ],
+          [
+            60.1354214,
+            52.4334463
+          ],
+          [
+            60.1489271,
+            52.4378991
+          ],
+          [
+            60.1515796,
+            52.4364415
+          ],
+          [
+            60.137196,
+            52.4313507
+          ],
+          [
+            60.136262,
+            52.4324213
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "solenyi-dol",
+      "properties": {
+        "snippet": "Cemetery, Tumulus; AD 250 - AD 550",
+        "link": "https://pleiades.stoa.org/places/743822664/solenyi-dol",
+        "description": "Polygon representing the location of the Solenyi Dol site, derived from an OpenStreetMap Way after Li\u0361ubchanski\u012d 2017.",
+        "location_precision": "precise",
+        "title": "OSM location of Solenyi Dol"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antiquity-in-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antiquity-in-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/625120828",
+          "citationDetail": "Way 625120828",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=625120828",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 8-9",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Li\u0361ubchanski\u012d 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZDJNPKS",
+          "formattedCitation": "<div class=\"csl-entry\">Li\u0361ubchanski\u012d, I. \u0116. <i>Kurganny\u012d mogil\u02b9nik Soleny\u012d dol: itogi issledovani\u012d 2006-2010 godov</i>, 2017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "solenyi-dol",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": 550,
+      "title": "OSM location of Solenyi Dol",
+      "provenance": "OpenStreetMap (Way 625120828, version 1, osm:changeset=62528133, 2018-09-12T17:46:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 250,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        "tumulus"
+      ],
+      "description": "Polygon representing the location of the Solenyi Dol site, derived from an OpenStreetMap Way after Li\u0361ubchanski\u012d 2017.",
+      "created": "2018-09-12T17:54:41Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            60.136262,
+            52.4324213
+          ],
+          [
+            60.1354214,
+            52.4334463
+          ],
+          [
+            60.1489271,
+            52.4378991
+          ],
+          [
+            60.1515796,
+            52.4364415
+          ],
+          [
+            60.137196,
+            52.4313507
+          ],
+          [
+            60.136262,
+            52.4324213
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/743822664/solenyi-dol",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-12T18:14:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-12T18:13:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-12T17:57:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-12T17:56:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-12T17:54:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-12T17:54:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Li\u0361ubchanski\u012d 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZDJNPKS",
+      "formattedCitation": "<div class=\"csl-entry\">Li\u0361ubchanski\u012d, I. \u0116. <i>Kurganny\u012d mogil\u02b9nik Soleny\u012d dol: itogi issledovani\u012d 2006-2010 godov</i>, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Soleny\u012d dol",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Li\u0361ubchanski\u012d 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZDJNPKS",
+          "formattedCitation": "<div class=\"csl-entry\">Li\u0361ubchanski\u012d, I. \u0116. <i>Kurganny\u012d mogil\u02b9nik Soleny\u012d dol: itogi issledovani\u012d 2006-2010 godov</i>, 2017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "solenya-dol",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Russian name of the burial complex.",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2018-09-12T17:57:48Z",
+      "uri": "https://pleiades.stoa.org/places/743822664/solenya-dol",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0421\u043e\u043b\u0435\u043d\u044b\u0439 \u0414\u043e\u043b",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-12T18:14:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-12T17:57:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-12T17:57:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-09-12T17:57:48Z"
+        }
+      ]
+    }
+  ],
+  "id": "743822664",
+  "subject": [],
+  "title": "Soleny\u012d Dol",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Burial complex in the southern Ural Mountains region containing a number of Late Antique burials.",
+  "reprPoint": [
+    60.14336839422479,
+    52.434776707725284
+  ],
+  "placeTypes": [
+    "cemetery",
+    "tumulus"
+  ],
+  "bbox": [
+    60.1354214,
+    52.4313507,
+    60.1515796,
+    52.4378991
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-09-12T17:54:14Z",
+  "uri": "https://pleiades.stoa.org/places/743822664",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-12T18:14:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-12T17:57:58Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-12T17:54:16Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-09-12T17:54:14Z"
+    }
+  ]
+}

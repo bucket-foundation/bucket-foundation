@@ -1,0 +1,14 @@
+# Mordoula
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/50691
+- **ID**: 50691
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Mordoula
+
+## Description
+
+An ancient place, cited: BAtlas 5 unlocated Mordoula

@@ -1,0 +1,645 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.9971329,
+            37.9265842
+          ],
+          [
+            23.9972478,
+            37.9266125
+          ],
+          [
+            23.9976323,
+            37.9266324
+          ],
+          [
+            23.9980876,
+            37.9265526
+          ],
+          [
+            23.9984821,
+            37.9264808
+          ],
+          [
+            23.9986491,
+            37.9264369
+          ],
+          [
+            23.9988868,
+            37.9264129
+          ],
+          [
+            23.9990335,
+            37.9264688
+          ],
+          [
+            23.9992106,
+            37.9265127
+          ],
+          [
+            23.9993522,
+            37.9265207
+          ],
+          [
+            23.9994433,
+            37.9265606
+          ],
+          [
+            23.9995698,
+            37.9265566
+          ],
+          [
+            23.9997316,
+            37.9264888
+          ],
+          [
+            23.999848,
+            37.926401
+          ],
+          [
+            24.0000497,
+            37.9264573
+          ],
+          [
+            24.0002473,
+            37.9265259
+          ],
+          [
+            24.0004275,
+            37.9265047
+          ],
+          [
+            24.0004282,
+            37.9263827
+          ],
+          [
+            24.000489,
+            37.9262359
+          ],
+          [
+            24.0005213,
+            37.9260922
+          ],
+          [
+            24.0005475,
+            37.9260282
+          ],
+          [
+            24.0005624,
+            37.9259748
+          ],
+          [
+            24.0006251,
+            37.9258766
+          ],
+          [
+            24.0006683,
+            37.925823
+          ],
+          [
+            24.0007277,
+            37.9257762
+          ],
+          [
+            24.0008248,
+            37.9256772
+          ],
+          [
+            24.0009382,
+            37.9256517
+          ],
+          [
+            24.0010555,
+            37.9256421
+          ],
+          [
+            24.0011769,
+            37.9255942
+          ],
+          [
+            24.0013226,
+            37.9254889
+          ],
+          [
+            24.0013671,
+            37.9254506
+          ],
+          [
+            24.0013631,
+            37.9254027
+          ],
+          [
+            24.0014224,
+            37.9253815
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "River; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/579923/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u0395\u03c1\u03b1\u03c3\u03af\u03bd\u03bf\u03c2"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/130035932",
+          "citationDetail": "Way 130035932",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=130035932",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "end": 2100,
+      "title": "OSM location of \u0395\u03c1\u03b1\u03c3\u03af\u03bd\u03bf\u03c2",
+      "provenance": "OpenStreetMap (Way 130035932, version 2, osm:changeset=94865654, 2020-11-27T01:57:58Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/river"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "river"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2014-06-17T20:12:37Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.9971329,
+            37.9265842
+          ],
+          [
+            23.9972478,
+            37.9266125
+          ],
+          [
+            23.9976323,
+            37.9266324
+          ],
+          [
+            23.9980876,
+            37.9265526
+          ],
+          [
+            23.9984821,
+            37.9264808
+          ],
+          [
+            23.9986491,
+            37.9264369
+          ],
+          [
+            23.9988868,
+            37.9264129
+          ],
+          [
+            23.9990335,
+            37.9264688
+          ],
+          [
+            23.9992106,
+            37.9265127
+          ],
+          [
+            23.9993522,
+            37.9265207
+          ],
+          [
+            23.9994433,
+            37.9265606
+          ],
+          [
+            23.9995698,
+            37.9265566
+          ],
+          [
+            23.9997316,
+            37.9264888
+          ],
+          [
+            23.999848,
+            37.926401
+          ],
+          [
+            24.0000497,
+            37.9264573
+          ],
+          [
+            24.0002473,
+            37.9265259
+          ],
+          [
+            24.0004275,
+            37.9265047
+          ],
+          [
+            24.0004282,
+            37.9263827
+          ],
+          [
+            24.000489,
+            37.9262359
+          ],
+          [
+            24.0005213,
+            37.9260922
+          ],
+          [
+            24.0005475,
+            37.9260282
+          ],
+          [
+            24.0005624,
+            37.9259748
+          ],
+          [
+            24.0006251,
+            37.9258766
+          ],
+          [
+            24.0006683,
+            37.925823
+          ],
+          [
+            24.0007277,
+            37.9257762
+          ],
+          [
+            24.0008248,
+            37.9256772
+          ],
+          [
+            24.0009382,
+            37.9256517
+          ],
+          [
+            24.0010555,
+            37.9256421
+          ],
+          [
+            24.0011769,
+            37.9255942
+          ],
+          [
+            24.0013226,
+            37.9254889
+          ],
+          [
+            24.0013671,
+            37.9254506
+          ],
+          [
+            24.0013631,
+            37.9254027
+          ],
+          [
+            24.0014224,
+            37.9253815
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/579923/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-10-22T02:02:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-28T13:25:33Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-24T01:34:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-09-09T20:24:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-17T20:13:55Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-17T20:13:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-17T20:12:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-17T20:12:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "59 C3 Erasinos fl.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://de.wikisource.org/wiki/RE:Erasinos_1",
+      "citationDetail": "Erasinos 1 (Arthur Milchh\u00f6fer)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "RE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSGNAEBR",
+      "formattedCitation": "<div class=\"csl-entry\">Pauly, August Friedrich von, Georg Wissowa, Wilhelm Kroll, Kurt Witte, Karl Mittelhaus, and Konrat Ziegler, eds. <i>Real-Encyclopaedie der classischen Altertumswissenschaft</i>. 83 vols. Stuttgart: J. B. Metzler, 1894.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/379240WEra",
+      "citationDetail": "Erasinos river (Attica) Vravrona",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q12877266",
+      "citationDetail": "Erasinos (Q12877266)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/60733",
+      "citationDetail": "GEO ID 60733: Erasinos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Erasinos",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "erasinos",
+      "end": 300,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": null,
+          "name": "T. Elliott"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 59 C3 Erasinos fl.",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "",
+      "created": "2010-11-10T21:32:18Z",
+      "uri": "https://pleiades.stoa.org/places/579923/erasinos",
+      "creators": [
+        {
+          "username": null,
+          "name": "J.S. Traill"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T06:41:10Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-11-10T22:07:22Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T22:04:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2010-11-10T21:32:18Z"
+        }
+      ]
+    }
+  ],
+  "id": "579923",
+  "subject": [],
+  "title": "Erasinos (river)",
+  "provenance": "Barrington Atlas: BAtlas 59 C3 Erasinos fl.",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/river"
+  ],
+  "details": "The Barrington Atlas Directory notes: Erasinos",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient place, cited: BAtlas 59 C3 Erasinos fl.",
+  "reprPoint": [
+    23.999461583601388,
+    37.926299892897454
+  ],
+  "placeTypes": [
+    "river"
+  ],
+  "bbox": [
+    23.9971329,
+    37.9253815,
+    24.0014224,
+    37.9266324
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-10-27T20:52:10Z",
+  "uri": "https://pleiades.stoa.org/places/579923",
+  "creators": [
+    {
+      "username": null,
+      "name": "J.S. Traill"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add topostext, tm geo id, update RE entry with author information",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-22T02:01:06Z"
+    },
+    {
+      "comment": "replacing the abbreviation fl. with (river) to bring titles into conformance with Editorial Guidelines",
+      "modifiedBy": "admin",
+      "modified": "2017-10-27T20:52:12Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2017-10-27T20:52:10Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T06:41:09Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:30:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-10T22:07:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:04:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T21:32:18Z"
+    }
+  ]
+}

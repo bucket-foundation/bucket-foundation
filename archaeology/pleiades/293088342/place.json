@@ -1,0 +1,783 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.749919,
+          37.816986
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-node-1097701044",
+      "properties": {
+        "snippet": "Settlement; 6200 BC - AD 2100",
+        "link": "https://pleiades.stoa.org/places/293088342/osm-node-1097701044",
+        "description": "Representative location based on an OpenStreetMap way tracing the visible outline of the settlement.",
+        "location_precision": "precise",
+        "title": "OSM Location of Giricano H\u00f6y\u00fc\u011f\u00fc"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.7499,
+          37.8169
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-of-giricano",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/293088342/cigs-location-of-giricano",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS location of Giricano"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "chalcolithic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/chalcolithic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/94498834",
+          "citationDetail": "Way 94498834",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=94498834",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Karte 3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cancik-Kirschbaum 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GBKHF7IZ",
+          "formattedCitation": "<div class=\"csl-entry\">Cancik-Kirschbaum, Eva Christiane, Christian W. Hess, and Kristina Petrow. <i>Toponyme der mittelassyrischen Texte: der Westen des mittelassyrischen Reiches</i>. Materialien zu Toponymie und Topographie I: Obermesopotamien im 2. Jt. v.Chr, 1.2. Antony, France: SEPOA, 2016.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-node-1097701044",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 2100,
+      "title": "OSM Location of Giricano H\u00f6y\u00fc\u011f\u00fc",
+      "provenance": "OpenStreetMap (Node 1097701044, version 1, osm:changeset=6933491, 2011-01-11T05:27:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -6200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on an OpenStreetMap way tracing the visible outline of the settlement.",
+      "created": "2020-11-03T09:37:13Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.749919,
+          37.816986
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/293088342/osm-node-1097701044",
+      "creators": [
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-04T03:32:06Z"
+        },
+        {
+          "comment": "edited summary, updated reference to Cancik-Kirschbaum 2016",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-04T03:11:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T10:12:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T10:07:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:41:17Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:37:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:37:13Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 176-178, figures 1 and 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bartl 2012",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QFUJI36A",
+          "formattedCitation": "<div class=\"csl-entry\">Bartl, Peter Vinzenz. \u201cGiricano and Ziyaret Tepe: Two Middle Bronze Age Sites in the Upper Tigris Region.\u201d In <i>Looking North: The Socioeconomic Dynamics of Northern Mesopotamian and Anatolian Regions during the Late Third and Early Second Millennium BC</i>, edited by Nicola Laneri, Peter Pf\u00e4lzner, and Stefano Valentini, 175\u201391. Wiesbaden: Harrassowitz Verlag, 2012.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://tr.wikipedia.org",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Turkish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q6093972",
+          "citationDetail": "Q6093972",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>, Q6093972.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-of-giricano",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "CIGS location of Giricano",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "",
+      "created": "2023-04-14T11:20:07Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.7499,
+          37.8169
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/293088342/cigs-location-of-giricano",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-04-18T17:20:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-18T10:53:41Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-18T10:53:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-18T10:51:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-14T11:29:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-14T11:20:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2023-04-14T11:20:07Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-03T09:44:48Z",
+      "associationCertainty": "certain",
+      "title": "Tigris/Diglitus (river)",
+      "start": -6200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/293088342/tigris-diglitus-river",
+      "connectionType": "near",
+      "id": "tigris-diglitus-river",
+      "attestations": [
+        {
+          "timePeriod": "chalcolithic-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/chalcolithic-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-04T03:32:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T10:12:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:44:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:44:48Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/912964",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "Karte 3",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cancik-Kirschbaum 2016/2",
+          "bibliographicURI": "http://atlantides.org/bibliography/c.html#Cancik-Kirschbaum-2016/2",
+          "formattedCitation": "<div class=\"csl-entry\">Cancik-Kirschbaum, Eva, Hess, Christian, and Petrow, Kristina. <i>Toponyme der mittelassyrischen Texte: Der Westen des mittelassyrischen Reiches.</i> Materialien zu Toponymie und Topographie 1/2. Antony: S\u00e9poa, 2016.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.vorderas-archaeologie.uni-muenchen.de/forschung/abgeschl_projekte/projekt_giricano/index.html",
+      "citationDetail": "Giricano/T\u00fcrkei (2000-2005)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Schachner 2000-2005",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/145095464/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Radner 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZEZTL8VK",
+      "formattedCitation": "<div class=\"csl-entry\">Radner, Karen. <i>Das mittelassyrische Tontafelarchiv von Giricano/Dunnu-s\u0306a-Uzibi: Ausgrabungen in Giricano = excavations at Giricano = Giricano kaz\u0131lar\u0131</i>. Turnhout, Belgium: Brepols, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Schachner 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/77NS7CBV",
+      "formattedCitation": "<div class=\"csl-entry\">Schachner, Andreas. <i>Die chalkolithische Siedlung von Giricano am Oberen Tigris: Ausgrabungen in Giricano II</i>. Subartu, XLIV. Turnhout: Brepols, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.org/tcma/giricano/corpus",
+      "citationDetail": "Giricano",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TCMA",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "45 and Karte 3",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cancik-Kirschbaum 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GBKHF7IZ",
+      "formattedCitation": "<div class=\"csl-entry\">Cancik-Kirschbaum, Eva Christiane, Christian W. Hess, and Kristina Petrow. <i>Toponyme der mittelassyrischen Texte: der Westen des mittelassyrischen Reiches</i>. Materialien zu Toponymie und Topographie I: Obermesopotamien im 2. Jt. v.Chr, 1.2. Antony, France: SEPOA, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://tr.wikipedia.org/wiki/Giricano_H\u00f6y\u00fc\u011f\u00fc",
+      "citationDetail": "Giricano H\u00f6y\u00fc\u011f\u00fc",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Turkish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q6093972",
+      "citationDetail": "Q6093972",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dunnu-\u0161a-Uz\u012bbi",
+      "attestations": [
+        {
+          "timePeriod": "later-2nd-millennium-bc-mesopotamia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/later-2nd-millennium-bc-mesopotamia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Radner 2004",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZEZTL8VK",
+          "formattedCitation": "<div class=\"csl-entry\">Radner, Karen. <i>Das mittelassyrische Tontafelarchiv von Giricano/Dunnu-s\u0306a-Uzibi: Ausgrabungen in Giricano = excavations at Giricano = Giricano kaz\u0131lar\u0131</i>. Turnhout, Belgium: Brepols, 2004.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "45",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cancik-Kirschbaum 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GBKHF7IZ",
+          "formattedCitation": "<div class=\"csl-entry\">Cancik-Kirschbaum, Eva Christiane, Christian W. Hess, and Kristina Petrow. <i>Toponyme der mittelassyrischen Texte: der Westen des mittelassyrischen Reiches</i>. Materialien zu Toponymie und Topographie I: Obermesopotamien im 2. Jt. v.Chr, 1.2. Antony, France: SEPOA, 2016.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "dunnu-sa-uzibi",
+      "end": -1000,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "",
+      "review_state": "published",
+      "description": "Dunnu-\u0161a-Uz\u012bbi is the ancient name of Giricano.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2020-11-03T09:30:38Z",
+      "uri": "https://pleiades.stoa.org/places/293088342/dunnu-sa-uzibi",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-04T03:32:06Z"
+        },
+        {
+          "comment": "updated references",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-04T03:12:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T10:12:22Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T10:09:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:30:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:30:38Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Giricano H\u00f6y\u00fc\u011f\u00fc, Giricano",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "45",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cancik-Kirschbaum 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GBKHF7IZ",
+          "formattedCitation": "<div class=\"csl-entry\">Cancik-Kirschbaum, Eva Christiane, Christian W. Hess, and Kristina Petrow. <i>Toponyme der mittelassyrischen Texte: der Westen des mittelassyrischen Reiches</i>. Materialien zu Toponymie und Topographie I: Obermesopotamien im 2. Jt. v.Chr, 1.2. Antony, France: SEPOA, 2016.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://tr.wikipedia.org/wiki/Giricano_H\u00f6y\u00fc\u011f\u00fc",
+          "citationDetail": "Giricano H\u00f6y\u00fc\u011f\u00fc",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Turkish)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "giricano-hoyugu",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2020-11-03T09:34:44Z",
+      "uri": "https://pleiades.stoa.org/places/293088342/giricano-hoyugu",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-04T03:32:06Z"
+        },
+        {
+          "comment": "updated references",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-04T03:13:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T10:12:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:34:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2020-11-03T09:34:44Z"
+        }
+      ]
+    }
+  ],
+  "id": "293088342",
+  "subject": [
+    "ANE",
+    "Assyrian",
+    "Middle Assyrian"
+  ],
+  "title": "Giricano",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>The mound was excavated between 1999 and 2003; occupation levels from the Chalcolithic period until Middle Assyrian times were uncovered. Fifteen cuneiform tablets (written in the Akkadian language) dating to the reign of the Assyrian king A\u0161\u0161ur-b\u0113l-kala of Assyria (1073\u20131056 BCE) were discovered at Giricano, thus, establishing the city\u2019s ancient name as Dunnu-\u0161a-Uz\u012bbi.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Modern Giricano, site of the ancient Dunnu-\u0161a-Uz\u012bbiis, is located in the Upper Tigris region of south-eastern Turkey, in the province of Diyarbakir, about 11 km southeast of modern Bismil, ca. 5 km northwest of Ziyaret Tepe, on the north bank of the Tigris River.",
+  "reprPoint": [
+    40.7499095,
+    37.816942999999995
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    40.7499,
+    37.8169,
+    40.749919,
+    37.816986
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/912964"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-03T09:23:48Z",
+  "uri": "https://pleiades.stoa.org/places/293088342",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-04T03:32:06Z"
+    },
+    {
+      "comment": "added wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-04T03:31:48Z"
+    },
+    {
+      "comment": "edited summary; moved text to details",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-04T03:30:37Z"
+    },
+    {
+      "comment": "synced references to Pleiades Zotero library",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-04T03:05:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-11-03T10:12:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-11-03T10:06:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-11-03T09:47:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-11-03T09:35:23Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-11-03T09:23:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2020-11-03T09:23:48Z"
+    }
+  ]
+}

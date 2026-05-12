@@ -1,0 +1,14 @@
+# Meterkosa
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/240963
+- **ID**: 240963
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Meterkosa
+
+## Description
+
+An ancient place, cited: BAtlas 24 unlocated Meterkosa

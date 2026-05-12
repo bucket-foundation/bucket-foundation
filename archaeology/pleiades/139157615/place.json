@@ -1,0 +1,441 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.4585092,
+            38.2635189
+          ],
+          [
+            40.4584028,
+            38.2635307
+          ],
+          [
+            40.4576813,
+            38.2635466
+          ],
+          [
+            40.4576421,
+            38.2626819
+          ],
+          [
+            40.4582158,
+            38.2626716
+          ],
+          [
+            40.4583218,
+            38.26275
+          ],
+          [
+            40.4584536,
+            38.2628852
+          ],
+          [
+            40.4585682,
+            38.2630402
+          ],
+          [
+            40.4586069,
+            38.2631746
+          ],
+          [
+            40.4586136,
+            38.2632975
+          ],
+          [
+            40.4586239,
+            38.2633972
+          ],
+          [
+            40.4585603,
+            38.263412
+          ],
+          [
+            40.4585211,
+            38.2634503
+          ],
+          [
+            40.4585092,
+            38.2635189
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ambar-gre-filla",
+      "properties": {
+        "snippet": "Archaeological-site; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/139157615/osm-location-of-ambar-gre-filla",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ambar (Gre Filla)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1369377742",
+          "citationDetail": "Way 1369377742",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1369377742",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ambar-gre-filla",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": -3300,
+      "title": "OSM location of Ambar (Gre Filla)",
+      "provenance": "OpenStreetMap (Way 1369377742, version 1, osm:changeset=163836652, 2025-03-19T21:07:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-03-19T21:10:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.4585092,
+            38.2635189
+          ],
+          [
+            40.4584028,
+            38.2635307
+          ],
+          [
+            40.4576813,
+            38.2635466
+          ],
+          [
+            40.4576421,
+            38.2626819
+          ],
+          [
+            40.4582158,
+            38.2626716
+          ],
+          [
+            40.4583218,
+            38.26275
+          ],
+          [
+            40.4584536,
+            38.2628852
+          ],
+          [
+            40.4585682,
+            38.2630402
+          ],
+          [
+            40.4586069,
+            38.2631746
+          ],
+          [
+            40.4586136,
+            38.2632975
+          ],
+          [
+            40.4586239,
+            38.2633972
+          ],
+          [
+            40.4585603,
+            38.263412
+          ],
+          [
+            40.4585211,
+            38.2634503
+          ],
+          [
+            40.4585092,
+            38.2635189
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/139157615/osm-location-of-ambar-gre-filla",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-20T12:14:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T21:22:26Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T21:10:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T21:10:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T21:10:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X25000835",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mu\u015fkara 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3IJDPQHW",
+      "formattedCitation": "<div class=\"csl-entry\">Mu\u015fkara, \u00dcftade, Seda Karay\u00fcnl\u00fc Bozba\u015f, Mustafa B. Telli, and Ay\u015fin Konak. \u201cEarly Copper Production by the Last Hunter-Gatherers.\u201d <i>Journal of Archaeological Science: Reports</i> 62 (April 1, 2025): 105051. https://doi.org/10.1016/j.jasrep.2025.105051.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q133422846",
+      "citationDetail": "Ambar (Gre Filla) (Q133422846)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/64543",
+      "citationDetail": "64543: Ambar (Gre Filla)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/development-of-prepottery-neolithic-architecture-in-the-upper-tigris-region-evidence-from-gre-filla/5E25F70249D63F125CB7E7D0156C0902",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Can 2026",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HG5RFUY6",
+      "formattedCitation": "<div class=\"csl-entry\">Can, \u00d6zlem Ekinba\u015f. \u201cDevelopment of Pre-Pottery Neolithic Architecture in the Upper Tigris Region: Evidence from Gre F\u0131lla.\u201d <i>Antiquity</i>, January 29, 2026, 1\u201319. https://doi.org/10.15184/aqy.2026.10282.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ekinba\u015f Can 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FBS6WL9J",
+      "formattedCitation": "<div class=\"csl-entry\">Ekinba\u015f Can, \u00d6zlem. \u201cPreliminary Report on the 2020-2022 Excavations at Gre F\u0131lla in the Upper Tigris Region.\u201d <i>Anatolica</i> 51 (2025): 1\u201324. https://doi.org/10.2143/ANA.51.0.3294790.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Gre F\u0131lla",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "gre-filla",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2025-03-19T20:59:19Z",
+      "uri": "https://pleiades.stoa.org/places/139157615/gre-filla",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Gre F\u0131lla",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-20T12:14:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T21:22:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T21:22:13Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T20:59:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-19T20:59:19Z"
+        }
+      ]
+    }
+  ],
+  "id": "139157615",
+  "subject": [
+    "copper",
+    "Neolithic, aceramic"
+  ],
+  "title": "Gre F\u0131lla",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Gre F\u0131lla is a Pre-Pottery Neolithic B (PPNB) period site located in Turkey's Diyarbak\u0131r Province. The site has been compared to G\u00f6bekli Tepe in some respects. Gre F\u0131lla has produced evidence of very early copper working.",
+  "reprPoint": [
+    40.45808282043328,
+    38.26313233046183
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    40.4576421,
+    38.2626716,
+    40.4586239,
+    38.2635466
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-03-19T20:58:48Z",
+  "uri": "https://pleiades.stoa.org/places/139157615",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Ekinba\u015f Can 2025",
+      "modifiedBy": "thomase",
+      "modified": "2026-03-12T16:01:36Z"
+    },
+    {
+      "comment": "add Can 2026",
+      "modifiedBy": "jbecker",
+      "modified": "2026-02-10T16:57:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-20T12:14:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-19T21:22:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-19T21:21:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-19T21:09:48Z"
+    },
+    {
+      "comment": "Mu\u015fkara 2025",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-19T20:58:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-19T20:58:48Z"
+    }
+  ]
+}

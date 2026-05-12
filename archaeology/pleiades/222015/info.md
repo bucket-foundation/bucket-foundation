@@ -1,0 +1,14 @@
+# Bia
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/222015
+- **ID**: 222015
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Bia
+
+## Description
+
+An ancient place, cited: BAtlas 22 unlocated Bia

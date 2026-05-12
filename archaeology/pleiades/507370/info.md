@@ -1,0 +1,14 @@
+# Ascapos
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/507370
+- **ID**: 507370
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ascapos
+
+## Description
+
+An ancient island or island group, attested by literary or documentary sources, whose precise location cannot be determined today

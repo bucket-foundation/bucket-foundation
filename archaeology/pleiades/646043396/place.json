@@ -1,0 +1,432 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            7.4298667,
+            36.4672271
+          ],
+          [
+            7.4299549,
+            36.4672712
+          ],
+          [
+            7.429961,
+            36.4672632
+          ],
+          [
+            7.4302539,
+            36.4674035
+          ],
+          [
+            7.4302491,
+            36.4674094
+          ],
+          [
+            7.4303509,
+            36.4674614
+          ],
+          [
+            7.4304175,
+            36.4673834
+          ],
+          [
+            7.4304621,
+            36.4674126
+          ],
+          [
+            7.4305145,
+            36.4673013
+          ],
+          [
+            7.4305047,
+            36.4671954
+          ],
+          [
+            7.4304528,
+            36.4670912
+          ],
+          [
+            7.4303492,
+            36.4670118
+          ],
+          [
+            7.4302146,
+            36.4669693
+          ],
+          [
+            7.4300858,
+            36.4669771
+          ],
+          [
+            7.4299661,
+            36.4670372
+          ],
+          [
+            7.429885,
+            36.4671372
+          ],
+          [
+            7.4299202,
+            36.4671546
+          ],
+          [
+            7.4298667,
+            36.4672271
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tha-c-atre-romain",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/646043396/osm-location-of-tha-c-atre-romain",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Th\u00e9atre Romain"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/356635599",
+          "citationDetail": "Way 356635599",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=356635599",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tha-c-atre-romain",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Th\u00e9atre Romain",
+      "provenance": "OpenStreetMap (Way 356635599, version 9, osm:changeset=149065377, 2024-03-23T19:50:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-07-31T20:35:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            7.4298667,
+            36.4672271
+          ],
+          [
+            7.4299549,
+            36.4672712
+          ],
+          [
+            7.429961,
+            36.4672632
+          ],
+          [
+            7.4302539,
+            36.4674035
+          ],
+          [
+            7.4302491,
+            36.4674094
+          ],
+          [
+            7.4303509,
+            36.4674614
+          ],
+          [
+            7.4304175,
+            36.4673834
+          ],
+          [
+            7.4304621,
+            36.4674126
+          ],
+          [
+            7.4305145,
+            36.4673013
+          ],
+          [
+            7.4305047,
+            36.4671954
+          ],
+          [
+            7.4304528,
+            36.4670912
+          ],
+          [
+            7.4303492,
+            36.4670118
+          ],
+          [
+            7.4302146,
+            36.4669693
+          ],
+          [
+            7.4300858,
+            36.4669771
+          ],
+          [
+            7.4299661,
+            36.4670372
+          ],
+          [
+            7.429885,
+            36.4671372
+          ],
+          [
+            7.4299202,
+            36.4671546
+          ],
+          [
+            7.4298667,
+            36.4672271
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/646043396/osm-location-of-tha-c-atre-romain",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-05T17:15:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-07-31T20:59:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-31T20:38:11Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-31T20:36:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-31T20:35:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-31T20:35:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-07-31T20:36:23Z",
+      "associationCertainty": "certain",
+      "title": "Calama",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/646043396/7836245738",
+      "connectionType": "at",
+      "id": "7836245738",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-31T20:36:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-31T20:36:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-07-31T20:36:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/305039",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q101116126",
+      "citationDetail": "Q101116126: Roman theatre of Guelma",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Teatro_romano_di_Guelma",
+      "citationDetail": "Teatro romano di Guelma",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.theatrum.de/calama.html",
+      "citationDetail": "CALAMA, Guelma,  \u0642\u0627\u0644\u0645\u0629\u200e (Africa Proconsularis)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "646043396",
+  "subject": [
+    "Theater"
+  ],
+  "title": "Roman theater of Guelma",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater of ancient Calama (now Guelma) was built in the early third century CE and substantially restored in the twentieth century.",
+  "reprPoint": [
+    7.430209056871417,
+    36.46720378953093
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    7.4298667,
+    36.4669693,
+    7.4305145,
+    36.4674614
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/305039"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-07-31T20:36:23Z",
+  "uri": "https://pleiades.stoa.org/places/646043396",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-05T17:16:24Z"
+    },
+    {
+      "comment": "added theatrum.de reference",
+      "modifiedBy": "thomase",
+      "modified": "2023-07-31T21:02:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-07-31T20:59:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-31T20:38:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-31T20:38:01Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-31T20:36:24Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-31T20:36:23Z"
+    }
+  ]
+}

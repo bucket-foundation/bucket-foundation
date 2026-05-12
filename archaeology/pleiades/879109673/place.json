@@ -1,0 +1,442 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6988018,
+          41.6779167
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tempio-di-giunone-sospita",
+      "properties": {
+        "snippet": "Temple-2; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/879109673/osm-location-of-tempio-di-giunone-sospita",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tempio di Giunone Sospita"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/4058818493",
+          "citationDetail": "Node 4058818493",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4058818493",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tempio-di-giunone-sospita",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Tempio di Giunone Sospita",
+      "provenance": "OpenStreetMap (Node 4058818493, version 2, osm:changeset=134304305, 2023-03-30T13:09:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-05-01T20:52:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6988018,
+          41.6779167
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/879109673/osm-location-of-tempio-di-giunone-sospita",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-06T16:38:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-05T21:47:27Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-01T20:52:46Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-01T20:52:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-01T20:52:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-01T20:52:50Z",
+      "associationCertainty": "certain",
+      "title": "Lanuvium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/879109673/3705551555",
+      "connectionType": "at",
+      "id": "3705551555",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-01T20:52:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-01T20:52:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-01T20:52:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422956",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q117338124",
+      "citationDetail": "Temple of Iuno Sospita (Lanuvium) (Q117338124)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "285",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gell 1834",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DLTTWMAT",
+      "formattedCitation": "<div class=\"csl-entry\">Gell, William. <i>The Topography of Rome and Its Vicinity</i>. London: Saunders and Otley, 1834.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Santi 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R6P4NKPL",
+      "formattedCitation": "<div class=\"csl-entry\">Santi, Fabrizio. \u201cIl tempio di Giunone Sospita a Lanuvio: evidenze dell\u2019et\u00e0 del Ferro nell\u2019area del Pronao dell\u2019edificio templare medio-repubblicano.\u201d In <i>Res sacrae\u202f: santuari e luoghi di culto nei Colli Albani\u202f: atti del XXXI corso di Archeologia e Storia Antica del Museo Civico Albano</i>, 45\u201353. Albano Laziale: Museo civico, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pasqualini 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ULU2FMF6",
+      "formattedCitation": "<div class=\"csl-entry\">Pasqualini, Anna. \u201cGiunone sospita ed Ercole a Lanuvio.\u201d In <i>Latium Vetus et Adiectum\u202f: ricerche di storia, religione e antiquaria</i>, 495\u2013521. Tivoli (RM): Edizioni TORED, 2013.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Attenni et al. 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2R7Y67E6",
+      "formattedCitation": "<div class=\"csl-entry\">Attenni, Luca, Angelo Mele, and Giuseppe Granata. \u201cI sotterranei del santuario di Giunone Sospita a Lanuvio.\u201d In <i>Alle pendici dei Colli Albani\u202f: dinamiche insediative e cultura materiale = On the slopes of the Alban Hills\u202f: settlement dynamics and material culture on the confines of Rome</i>, 217\u201322. Groeningen: University of Groeningen / Groeningen Institute of Archaeology &amp; Barkhuis Publishing, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/914/1/411/380-387",
+      "citationDetail": "8.14.2.3",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Liv. (OCT: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MCDKGDL9",
+      "formattedCitation": "<div class=\"csl-entry\">Titus Livius. <i>Titi Livi Ab Urbe Condita</i>. 5 vols. Clarendon: Oxford U.P, 1908. https://latin.packhum.org/loc/914/1/0#0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "125",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Orlin 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZQIHX7LI",
+      "formattedCitation": "<div class=\"csl-entry\">Orlin, Eric. <i>Foreign Cults in Rome: Creating a Roman Empire</i>. Oxford University Press, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "38",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Herbert-Brown 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YBSAHCBW",
+      "formattedCitation": "<div class=\"csl-entry\">Herbert-Brown, Geraldine. <i>Ovid and the Fasti: An Historical Study</i>. Clarendon Press, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/61642/",
+      "citationDetail": "61642: Sanctuary of Juno Sospita",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Iuno Sospita (Lanuvium)",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q117338124",
+          "citationDetail": "Temple of Iuno Sospita (Lanuvium) (Q117338124)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "temple-of-iuno-sospita-lanuvium",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-08-15T01:19:33Z",
+      "uri": "https://pleiades.stoa.org/places/879109673/temple-of-iuno-sospita-lanuvium",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Iuno Sospita (Lanuvium)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-15T14:00:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T01:19:40Z"
+        },
+        {
+          "comment": "name - Temple of Iuno Sospita (Lanuvium)",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T01:19:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T01:19:33Z"
+        }
+      ]
+    }
+  ],
+  "id": "879109673",
+  "subject": [],
+  "title": "Temple of Iuno Sospita, Lanuvium",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A celebrated cult-place sacred to Iuno Sospita that retained its sacred significance even after a cult to the same divinity was dedicated in the Forum Holitorium in Rome in 194 BCE.",
+  "reprPoint": [
+    12.6988018,
+    41.6779167
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    12.6988018,
+    41.6779167,
+    12.6988018,
+    41.6779167
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422956"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-01T20:52:49Z",
+  "uri": "https://pleiades.stoa.org/places/879109673",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-15T01:18:49Z"
+    },
+    {
+      "comment": "vici.org 61642: Sanctuary of Juno Sospita",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-21T23:36:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-06T16:38:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-05T21:47:27Z"
+    },
+    {
+      "comment": "update",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-05T21:47:21Z"
+    },
+    {
+      "comment": "Orlin 2010",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-05T21:44:38Z"
+    },
+    {
+      "comment": "add Livy",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-05T21:39:35Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-05T21:35:03Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-05T21:26:31Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-01T20:53:09Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-01T20:52:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-01T20:52:49Z"
+    }
+  ]
+}

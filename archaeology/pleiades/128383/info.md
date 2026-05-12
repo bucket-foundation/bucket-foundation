@@ -1,0 +1,14 @@
+# Cífer-Pác
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/128383
+- **ID**: 128383
+- **Coords (lng, lat)**: [17.502715, 48.310632]
+- **Subjects**: dare:major=0, dare:feature=settlement, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 13 C4 Cífer-Pác

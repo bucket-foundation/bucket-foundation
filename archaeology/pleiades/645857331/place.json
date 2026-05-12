@@ -1,0 +1,328 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.9104681,
+          41.7281082
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-polygonal-masonry-fortifications",
+      "properties": {
+        "snippet": "City-wall; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/645857331/location-of-polygonal-masonry-fortifications",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of polygonal masonry fortifications"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/1956760220",
+          "citationDetail": "Node 1956760220",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1956760220",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-polygonal-masonry-fortifications",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "end": 300,
+      "title": "OSM location of polygonal masonry fortifications",
+      "provenance": "OpenStreetMap (Node 1956760220, version 1, osm:changeset=13441617, 2012-10-10T14:18:03Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-wall"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-03-23T02:14:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.9104681,
+          41.7281082
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/645857331/location-of-polygonal-masonry-fortifications",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-18T23:04:20Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-01-11T03:14:32Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-31T18:23:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-03-16T01:51:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-21T02:17:34Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-29T04:10:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-29T04:09:25Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-23T02:14:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-23T02:14:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-03-23T02:14:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-07-05T22:15:13Z",
+      "associationCertainty": "certain",
+      "title": "Civita di Artena",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/645857331/9131233304",
+      "connectionType": "at",
+      "id": "9131233304",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T22:15:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T22:15:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T22:15:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-05T22:15:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/795348768",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HW2IVPXM",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo. \u201cLa Civita di Artena, la prima e la seconda citt\u00e0.\u201d In <i>Orizzonti. Rassegna di archeologia, 12.2011</i>, 109\u201320. Pisa: Istituti editoriali e poligrafici internazionali, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Waele 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQTF4IS5",
+      "formattedCitation": "<div class=\"csl-entry\">De Waele, \u00c9ric, Universit\u00e9 catholique de Louvain, and Academia Belgica (Roma), eds. <i>La Civita Di Artena: Scavi Belgi 1979-1989, Artena, Granaio Borghese, 23 Dicembre 1989 - 14 Gennaio 1990. Roma, Accademia Belgica, 1-10 Febbraio 1990. Louvain-La-Neuve, Mus\u00e9e de l\u2019Institut Sup\u00e9rieur d\u2019arch\u00e9ologie et d\u2019histoire de l\u2019art de l\u2019UCL, 23 Febbraio - 8 Aprile 1990</i>. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 1989.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/13355572",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Quilici 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EDHA9FGI",
+      "formattedCitation": "<div class=\"csl-entry\">Quilici, Lorenzo. <i>La Civita di Artena</i>. Latium vetus 4. Roma: Consiglio nazionale delle ricerche, 1982. http://www.worldcat.org/oclc/13355572.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "645857331",
+  "subject": [
+    "fortification",
+    "extant remains",
+    "polygonal masonry"
+  ],
+  "title": "Fortifications at Civita di Artena",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The polygonal masonry fortifications of the ancient settlement now known as Civita di Artena. These fortifications today measure more than 2.5 km in length.",
+  "reprPoint": [
+    12.9104681,
+    41.7281082
+  ],
+  "placeTypes": [
+    "city-wall"
+  ],
+  "bbox": [
+    12.9104681,
+    41.7281082,
+    12.9104681,
+    41.7281082
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/795348768"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-07-05T22:15:11Z",
+  "uri": "https://pleiades.stoa.org/places/645857331",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-30T14:37:49Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-10T17:39:53Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-11-10T17:39:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T13:05:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T13:05:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-19T13:05:30Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T22:15:28Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T22:15:14Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-07-05T22:15:11Z"
+    }
+  ]
+}

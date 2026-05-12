@@ -1,0 +1,746 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.9122595,
+            25.5939434
+          ],
+          [
+            28.9120765,
+            25.5939434
+          ],
+          [
+            28.9118681,
+            25.5938849
+          ],
+          [
+            28.9117228,
+            25.593746
+          ],
+          [
+            28.9117579,
+            25.5935737
+          ],
+          [
+            28.9119188,
+            25.59352
+          ],
+          [
+            28.9122978,
+            25.5936401
+          ],
+          [
+            28.9123892,
+            25.5937623
+          ],
+          [
+            28.9123628,
+            25.5938896
+          ],
+          [
+            28.9122595,
+            25.5939434
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-deir-abu-matta",
+      "properties": {
+        "snippet": "Archaeological-site, Monastery; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/667956220/osm-location-of-deir-abu-matta",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Deir Abu Matta"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "auser",
+      "homepage": null,
+      "name": "Anne User",
+      "uri": "https://pleiades.stoa.org/author/auser"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1149043043",
+          "citationDetail": "Way 1149043043",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1149043043",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-deir-abu-matta",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/monastery"
+      ],
+      "end": 640,
+      "title": "OSM location of Deir Abu Matta",
+      "provenance": "OpenStreetMap (Way 1149043043, version 1, osm:changeset=132951469, 2023-02-24T04:59:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/monastery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "monastery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-02-24T05:00:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.9122595,
+            25.5939434
+          ],
+          [
+            28.9120765,
+            25.5939434
+          ],
+          [
+            28.9118681,
+            25.5938849
+          ],
+          [
+            28.9117228,
+            25.593746
+          ],
+          [
+            28.9117579,
+            25.5935737
+          ],
+          [
+            28.9119188,
+            25.59352
+          ],
+          [
+            28.9122978,
+            25.5936401
+          ],
+          [
+            28.9123892,
+            25.5937623
+          ],
+          [
+            28.9123628,
+            25.5938896
+          ],
+          [
+            28.9122595,
+            25.5939434
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/667956220/osm-location-of-deir-abu-matta",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T15:34:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-08T13:51:22Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-08T13:49:42Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T05:01:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T05:00:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-02-24T05:00:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-08-24T15:25:38Z",
+      "associationCertainty": "certain",
+      "title": "Esotero (Oasis)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/667956220/esotero-oasis",
+      "connectionType": "part_of_regional",
+      "id": "esotero-oasis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:25:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:25:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:25:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2017-08-24T15:25:38Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/776172",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q14207544",
+      "citationDetail": "Deir Abu Matta (Q14207544)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://atlas.paths-erc.eu/places/176",
+      "citationDetail": "176",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "PAThsAtl",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/USCS9QGQ",
+      "formattedCitation": "<div class=\"csl-entry\">Bogdani, Julian, and Paolo Rosati. <i>An Archaeological Atlas of Coptic Literature</i>. PAThs - Tracking Papyrus and Parchment Paths: An Archaeological Atlas of Coptic Literature. Literary Texts in Their Geographical Context: Production, Copying, Usage, Dissemination and Storage. Roma: Sapienza Universit\u00e0 di Roma, 2016. https://atlas.paths-erc.eu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bowen 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JPYDJMU8",
+      "formattedCitation": "<div class=\"csl-entry\">Bowen, Gillian E., Tosha Dupras, Rosanne Livingstone, and Peter Sheldrick. \u201cThe Late Antique Burials at Dayr Abu Matta.\u201d In <i>The Oasis Papers 7: Studies on Late Roman to Modern Egypt in Honour of Fred Leemhuis</i>, 23. Bicester: Archaeopress Publishing Ltd, 2025.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bowen 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IQ7PCFYY",
+      "formattedCitation": "<div class=\"csl-entry\">Bowen, Gillian E. \u201cThe Church of Dayr Abu Matta and Its Associated Structures: An Overview of Four Seasons of Excavation.\u201d In <i>The Oasis Papers 6: Proceedings of the Sixth International Conference of the Dakhleh Oasis Project</i>, 429\u201350. Monograph (Dakhleh Oasis Project). Oxford: Oxbow Books, 2012. https://doi.org/10.2307/jj.25465142.12.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://figshare.mq.edu.au/articles/journal_contribution/The_church_of_Deir_Abu_Metta_and_a_Christian_cemetery_in_Dakhleh_Oasis_a_brief_report/26868277/1/files/48872038.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bowen 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U3XHMSCJ",
+      "formattedCitation": "<div class=\"csl-entry\">Bowen, Gillian E. \u201cThe Church of Deir Abu Metta and a Christian Cemetery in Dakhleh Oasis: A Brief Report.\u201d <i>The Bulletin of the Australian Centre for Egyptology</i> 19 (2008): 7\u201316. https://figshare.mq.edu.au/articles/journal_contribution/The_church_of_Deir_Abu_Metta_and_a_Christian_cemetery_in_Dakhleh_Oasis_a_brief_report/26868277/1/files/48872038.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://figshare.mq.edu.au/articles/journal_contribution/The_church_of_Deir_Abu_Metta_Dakhleh_Oasis_a_report_on_the_2009_excavation/26876728/1/files/48891403.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bowen 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/93TDSQAK",
+      "formattedCitation": "<div class=\"csl-entry\">Bowen, Gillian E. \u201cThe Church of Deir Abu Metta, Dakhleh Oasis: A Report on the 2009 Excavation.\u201d <i>The Bulletin of the Australian Centre for Egyptology</i> 20 (2009): 7\u201326. https://figshare.mq.edu.au/articles/journal_contribution/The_church_of_Deir_Abu_Metta_Dakhleh_Oasis_a_report_on_the_2009_excavation/26876728/1/files/48891403.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bowen 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G8CDZ2FW",
+      "formattedCitation": "<div class=\"csl-entry\">Bowen, Gillian E. \u201cChristianity in Dakhleh Oasis: An Archaeological Overview.\u201d In <i>The Oasis Papers 9: A Tribute to Anthony J. Mills after Forty Years of Research in Dakhleh Oasis\u202f: Proceedings of the Ninth International Conference of the Dakhleh Oasis Project</i>, 9:367\u201380. Monograph (Dakhleh Oasis Project). Oxford: Oxbow Books, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "p. 135",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vivian 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ATTPQUPE",
+      "formattedCitation": "<div class=\"csl-entry\">Vivian, Cassandra. <i>The Western Desert of Egypt: An Explorer\u2019s Handbook</i>. Cairo: American University in Cairo Press, 2000.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "\u201cDayr Ab\u016b Matt\u0101,\u201d vol. 3: 706",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CoptEnc",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QTH7T3NR",
+      "formattedCitation": "<div class=\"csl-entry\">Atiya, AS, ed. <i>The Coptic Encyclopedia</i>. New York, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://bvbr.bib-bvb.de:8991/F?func=service&doc_library=BVB01&doc_number=009475064&line_number=0001&func_code=DB_RECORDS&service_type=MEDIA",
+      "citationDetail": "565-66; plan 180; pl. XVIa.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Grossmann 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AGAAFJUZ",
+      "formattedCitation": "<div class=\"csl-entry\">Grossmann, Peter. <i>Christliche Architektur in \u00c4gypten</i>. Handbuch der Orientalistik. Leiden: Brill, 2002. http://bvbr.bib-bvb.de:8991/F?func=service&amp;doc_library=BVB01&amp;doc_number=009475064&amp;line_number=0001&amp;func_code=DB_RECORDS&amp;service_type=MEDIA.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Dayr Abu Matta",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Bowen 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JPYDJMU8",
+          "formattedCitation": "<div class=\"csl-entry\">Bowen, Gillian E., Tosha Dupras, Rosanne Livingstone, and Peter Sheldrick. \u201cThe Late Antique Burials at Dayr Abu Matta.\u201d In <i>The Oasis Papers 7: Studies on Late Roman to Modern Egypt in Honour of Fred Leemhuis</i>, 23. Bicester: Archaeopress Publishing Ltd, 2025.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "dayr-abu-matta",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-07-08T17:44:24Z",
+      "uri": "https://pleiades.stoa.org/places/667956220/dayr-abu-matta",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-08T20:50:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:51:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:44:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:44:24Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Deir Abu Metta",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://figshare.mq.edu.au/articles/journal_contribution/The_church_of_Deir_Abu_Metta_and_a_Christian_cemetery_in_Dakhleh_Oasis_a_brief_report/26868277/1/files/48872038.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Bowen 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/U3XHMSCJ",
+          "formattedCitation": "<div class=\"csl-entry\">Bowen, Gillian E. \u201cThe Church of Deir Abu Metta and a Christian Cemetery in Dakhleh Oasis: A Brief Report.\u201d <i>The Bulletin of the Australian Centre for Egyptology</i> 19 (2008): 7\u201316. https://figshare.mq.edu.au/articles/journal_contribution/The_church_of_Deir_Abu_Metta_and_a_Christian_cemetery_in_Dakhleh_Oasis_a_brief_report/26868277/1/files/48872038.pdf.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "deir-abu-metta",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-07-08T17:45:15Z",
+      "uri": "https://pleiades.stoa.org/places/667956220/deir-abu-metta",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-08T20:50:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:51:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:45:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:45:15Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Deir Abu Matta",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://dlib.nyu.edu/awdl/isaw/oasis-city/chapter5.xhtml",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Aravecchia 2015",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G5MH2TUB",
+          "formattedCitation": "<div class=\"csl-entry\">Aravecchia, Nicola. \u201cChristianity at Trimithis and in the Dakhla Oasis.\u201d In <i>An Oasis City</i>, by Roger S. Bagnall, Nicola Aravecchia, Raffaella Cribiore, Paola Davoli, Olaf E. Kaper, and Susanna McFadden. New York: Institute for the Study of the Ancient World; NYU Press, 2015. https://dlib.nyu.edu/awdl/isaw/oasis-city/chapter5.xhtml.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "deir-abu-matta",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ar",
+      "created": "2025-07-08T17:50:26Z",
+      "uri": "https://pleiades.stoa.org/places/667956220/deir-abu-matta",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-08T20:50:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:51:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:50:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-08T17:50:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "667956220",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "dare:feature=church"
+  ],
+  "title": "Deir Abu Matta",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/monastery",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>Deir Abu Matta is located in the Dakhla Oasis of Upper Egypt, <em>ca.</em> 8 km southeast of the town of El-Qasr and <em>ca.</em> 6 km southeast of the archaeological site of <a class=\"external-link\" href=\"../776235\">Amheida (ancient Trimithis)</a>. The area of the visible archaeological remains is fairly limited and is surrounded to the north, west, and east by some desertic land, habitations, and cultivated fields, and to the southeast by a paved road.</p>\r\n<p class=\"MsoNoSpacing\">In 1908, H. E. Winlock briefly recorded and photographed the site of Deir Abu Matta during his trip from Kharga to Dakhla. In 1980, D.O.P. members surveyed the mound atop which the church is located and carried out test trenching inside the basilica. An archaeological project involving the investigation and documentation of the church and adjacent structures began at the end of 2007, under the direction of Gillian Bowen. Full excavation started in 2008.</p>\r\n<p class=\"MsoNoSpacing\">The <a class=\"external-link\" href=\"http://www.flickr.com/photos/isawnyu/4545335337/in/set-72157623791605389/\"><strong>church</strong></a> is the largest visible building of the site. It is oriented east-west and is rectangular in shape, measuring <em>ca.</em> 24 m east-west by 10.35 m north-south. The mud-brick <a class=\"external-link\" href=\"http://www.flickr.com/photos/isawnyu/4545967726/in/set-72157623791605389/\"><strong>walls</strong></a> are over 1 m thick and are still standing several meters above ground level. They were built in sections and originally supported a beamed roof, as suggested by holes piercing the south wall. A <a class=\"external-link\" href=\"http://www.flickr.com/photos/isawnyu/4545334547/in/set-72157623791605389/\"><strong>triconch</strong></a>, whose entrance is framed by two engaged pillars, is set inside the church along its east wall. To the sides of the lateral conches, against the northeast and southeast corners of the building, are L-shaped <em>pastophoria</em>. According to Grossmann\u2019s plan, the church was originally divided into a nave and two side aisles by two rows of six square pillars, with an additional L-shaped pillar at the west end. A return aisle along the west side of the building joined the two colonnades by means of two square pillars, forming an ambulatory around the central nave. A <em>mastaba</em> is still visible against the northern section of the west wall. Another bench \u2013no longer preserved\u2013 was once located against the south wall. Evidence of a relatively narrow door \u2013possibly a secondary entrance into the church\u2013 was detected toward the west end of the north wall. The main doorway may have been placed along the west wall.</p>\r\n<p class=\"MsoNoSpacing\">Test trenches were dug along the north wall of the church between 1979 and 1980 and then in 2008. These revealed numerous early Christian burials, although some of them, at least those excavated more recently, were found to have been disturbed.</p>\r\n<p class=\"MsoNoSpacing\">Considerable evidence of different construction phases in the area of the church has been documented since 2008. Architectural features predating the construction of the basilica are visible to the north of it, possibly extending further south. Other walls, later than the church, according to the excavators, were found to the north and to the west. A wide, tower-like building was also excavated to the west of the basilica. It is possible that at least some of the structures excavated in the proximity of the church were associated with a small-scale monastic establishment, whose existence in Late Antiquity is suggested by the modern name of the site (also known as Deir al-Saba Banat, \u201cMonastery of the Seven Virgins\u201d, following Cassandra Vivian).</p>\r\n<p class=\"MsoNoSpacing\">According to the D.O.P. report, fifth-century coins and ceramics datable from the fifth to the seventh century were collected during the survey and the test excavation. The finds collected during the 2008-2009 seasons, which include coins, ceramics, and an ostrakon, were all dated to the fourth/fifth century CE, with no evidence from earlier or later centuries. Hence, it is possible that the church of Deir Abu Matta was constructed a few centuries earlier than previously thought, roughly at the same time when several other churches were built in Dakhla, such as at Kellis and Ain el-Gedida.</p>\r\n<p align=\"right\" class=\"MsoNoSpacing\" style=\"text-align: right; \">Nicola Aravecchia</p>\r\n<p class=\"MsoNoSpacing\"><strong>\u00a0SELECTED BIBLIOGRAPHY:</strong></p>\r\n<p class=\"MsoNoSpacing\">Bowen, Gillian E. (2009). \u201cThe Church of Deir Abu Metta, Dakhleh Oasis: A Report on the 2009 Excavation,\u201d <em>The <em>Bulletin of the Australian Centre for Egyptology</em></em> 20: 7-36.</p>\r\n<p class=\"MsoNoSpacing\">\u2015 (2008a). \u201cThe Church of Deir Abu Metta and A Christian Cemetery in Dakhleh Oasis: A Brief Report,\u201d <em>The Bulletin of the Australian Centre for Egyptology</em> 19: 7-16.</p>\r\n<p class=\"MsoNoSpacing\">\u2015 (2008b). \u201cThe Survey and Testing at Deir Abu Metta and a Cemetery at Muzawwaqa.\u201d</p>\r\n<p class=\"MsoNoSpacing\"><a href=\"https://docs.google.com/viewer?url=http%3A%2F%2Farts.monash.edu.au%2Farchaeology%2Fexcavations%2Fdakhleh%2Fmetta-muzawwaqa%2Fassets%2Fdocuments%2Fmetta-muzawwaqa-report-2008.pdf\">http://arts.monash.edu.au/archaeology/excavations/dakhleh/metta-muzawwaqa/assets/documents/metta-muzawwaqa-report-2008.pdf</a></p>\r\n<p class=\"MsoNoSpacing\">Grossmann, Peter (2002a).<em> Christliche Architektur in \u00c4gypten</em>. Leiden; Boston; K\u00f6ln: Brill: 565-66; plan 180; pl. XVIa.</p>\r\n<p class=\"MsoNoSpacing\">\u2015 (1991). \u201cDayr Ab\u016b Matt\u0101,\u201d in <em>The Coptic Encyclopedia.</em> Edited by Aziz S. Atiya. New York: Macmillan. Vol. 3: 706.</p>\r\n<p class=\"MsoNoSpacing\">Mills, Anthony J. (1981). \u201cThe Dakhleh Oasis Project. Report on the Third Season of Survey. September-December, 1980,\u201d <em>Journal of the Society for the Study of Egyptian Antiquities</em> 11: 175-92 (in particular, 185).</p>\r\n<p class=\"MsoNoSpacing\">Vivian, Cassandra (2000). <em>The Western Desert of Egypt: An Explorer\u2019s Handbook</em>. Cairo: The American University in Cairo Press: 135.</p>\r\n<p>Winlock, Herbert E. (1936). <em>Ed Dakhleh Oasis, by H. E. Winlock. Journal of a Camel Trip Made in 1908</em>. New York: 24; pls. 12-13.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Late antique settlement, possibly monastic, with substantial remains of a church, mud-brick structures, and tombs.",
+  "reprPoint": [
+    28.91205230942322,
+    25.59374312528167
+  ],
+  "placeTypes": [
+    "church-2",
+    "monastery",
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    28.9117228,
+    25.59352,
+    28.9123892,
+    25.5939434
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/776172"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-07-08T17:38:54Z",
+  "uri": "https://pleiades.stoa.org/places/667956220",
+  "creators": [
+    {
+      "username": "naravecchia",
+      "homepage": null,
+      "name": "Nicola Aravecchia",
+      "uri": "https://pleiades.stoa.org/author/naravecchia"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added references; place type += church, monastery; added Arabic name romanization variants; Edited; update references @thomase",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-08T20:50:26Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-08T17:38:53Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-07-08T13:49:24Z"
+    },
+    {
+      "comment": "added Wikidata Q14207544: Deir Abu Matta reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-01T23:41:00Z"
+    },
+    {
+      "comment": "Recategorize for DARE",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-30T17:10:11Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:07:45Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:42:08Z"
+    },
+    {
+      "comment": "added link to pleiades entry for Trimithis (Amheida)",
+      "modifiedBy": "thomase",
+      "modified": "2011-04-08T22:07:25Z"
+    },
+    {
+      "comment": "removed errant copied text",
+      "modifiedBy": "thomase",
+      "modified": "2010-12-14T21:48:48Z"
+    },
+    {
+      "comment": "added erroneously omitted place type",
+      "modifiedBy": "thomase",
+      "modified": "2010-12-14T21:08:57Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-16T12:42:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-16T12:41:46Z"
+    },
+    {
+      "comment": "precise coordinates, extensive description",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-16T12:41:00Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "naravecchia",
+      "modified": "2010-07-22T18:42:55Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "auser",
+      "modified": "2010-07-21T21:18:48Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "auser",
+      "modified": "2010-07-21T17:03:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "auser",
+      "modified": "2010-07-21T17:03:08Z"
+    }
+  ]
+}

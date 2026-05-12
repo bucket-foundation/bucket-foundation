@@ -1,0 +1,254 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.249556,
+          40.8941154
+        ]
+      },
+      "type": "Feature",
+      "id": "karacamirli",
+      "properties": {
+        "snippet": "Palace; 720 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/163716294/karacamirli",
+        "description": "Point representing the location of the remains of the Achaemenid palace at Karacamirly, derived from an OpenStreetMap Node after Fassbinder 2016.",
+        "location_precision": "precise",
+        "title": "OSM location of Karacamirli"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "achaemenid-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/8372982169",
+          "citationDetail": "Node 8372982169",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=8372982169",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.researchgate.net/publication/314068837_Magnetometer_prospecting_of_a_major_Achaemenid_palatial_structure_at_Karacamirli_Azerbaijan_A_Persian_paradise_in_the_Caucasus",
+          "citationDetail": "figure 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Fassbinder 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FBEHCKFX",
+          "formattedCitation": "<div class=\"csl-entry\">Fassbinder, J\u00f6rg, Marion Scheiblecker, Florian Becker, Kai Kaniuth, Andrei As\u0103ndulesei, and Martin Gruber. \u201cMagnetometer Prospecting of a Major Achaemenid Palatial Structure at Karacamirli, (Azerbaijan). A Persian Paradise in the Caucasus.\u201d London, 2016. https://www.researchgate.net/publication/314068837_Magnetometer_prospecting_of_a_major_Achaemenid_palatial_structure_at_Karacamirli_Azerbaijan_A_Persian_paradise_in_the_Caucasus.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "karacamirli",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "end": 640,
+      "title": "OSM location of Karacamirli",
+      "provenance": "OpenStreetMap (Node 8372982169, version 2, osm:changeset=98315923, 2021-01-28T19:13:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/palace"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "palace"
+      ],
+      "description": "Point representing the location of the remains of the Achaemenid palace at Karacamirly, derived from an OpenStreetMap Node after Fassbinder 2016.",
+      "created": "2021-01-28T19:19:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.249556,
+          40.8941154
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/163716294/karacamirli",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-28T22:44:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-28T19:23:19Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-28T19:22:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-28T19:20:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-28T19:19:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-28T19:19:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.researchgate.net/publication/314068837_Magnetometer_prospecting_of_a_major_Achaemenid_palatial_structure_at_Karacamirli_Azerbaijan_A_Persian_paradise_in_the_Caucasus",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fassbinder 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FBEHCKFX",
+      "formattedCitation": "<div class=\"csl-entry\">Fassbinder, J\u00f6rg, Marion Scheiblecker, Florian Becker, Kai Kaniuth, Andrei As\u0103ndulesei, and Martin Gruber. \u201cMagnetometer Prospecting of a Major Achaemenid Palatial Structure at Karacamirli, (Azerbaijan). A Persian Paradise in the Caucasus.\u201d London, 2016. https://www.researchgate.net/publication/314068837_Magnetometer_prospecting_of_a_major_Achaemenid_palatial_structure_at_Karacamirli_Azerbaijan_A_Persian_paradise_in_the_Caucasus.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1202078130",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kaniuth 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JJ37TRDH",
+      "formattedCitation": "<div class=\"csl-entry\">Kaniuth, Kai. <i>Karacamirli - Tepe 5: A Multi-Period Necropolis in Western Azerbaijan.</i> M\u00fcnchener Abhandlungen Zum Alten Orient 6. Gladbeck: PeWe-Verlag, 2020. http://www.worldcat.org/oclc/1202078130.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "163716294",
+  "subject": [],
+  "title": "Gurban Tepe/Karacamirli",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/palace"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Archaelolgical site in Azerbaijan containing the remains of an Achaemenid palatial structure. The primary occupation of the site is dated from ca. 600 BCE-330 CE.",
+  "reprPoint": [
+    46.249556,
+    40.8941154
+  ],
+  "placeTypes": [
+    "palace"
+  ],
+  "bbox": [
+    46.249556,
+    40.8941154,
+    46.249556,
+    40.8941154
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-01-28T19:18:45Z",
+  "uri": "https://pleiades.stoa.org/places/163716294",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-29T18:42:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-28T22:44:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-28T19:23:19Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-28T19:23:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-28T19:18:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-28T19:18:45Z"
+    }
+  ]
+}

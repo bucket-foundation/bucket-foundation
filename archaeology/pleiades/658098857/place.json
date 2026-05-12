@@ -1,0 +1,344 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.5539453,
+            40.7201806
+          ],
+          [
+            14.5543303,
+            40.7202889
+          ],
+          [
+            14.5544122,
+            40.7201215
+          ],
+          [
+            14.5540272,
+            40.7200133
+          ],
+          [
+            14.5539453,
+            40.7201806
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-cuomo",
+      "properties": {
+        "snippet": "Villa; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/658098857/osm-location-of-villa-cuomo",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa Cuomo"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/294432748",
+          "citationDetail": "Way 294432748",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=294432748",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-cuomo",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 99,
+      "title": "OSM location of Villa Cuomo",
+      "provenance": "OpenStreetMap (Way 294432748, version 1, osm:changeset=24360162, 2014-07-25T23:50:02Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-02-01T18:41:44Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.5539453,
+            40.7201806
+          ],
+          [
+            14.5543303,
+            40.7202889
+          ],
+          [
+            14.5544122,
+            40.7201215
+          ],
+          [
+            14.5540272,
+            40.7200133
+          ],
+          [
+            14.5539453,
+            40.7201806
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/658098857/osm-location-of-villa-cuomo",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-02T12:48:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T20:33:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T20:33:14Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T18:42:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T18:41:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T18:41:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-02-01T18:42:15Z",
+      "associationCertainty": "certain",
+      "title": "Stabiae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/658098857/3352367897",
+      "connectionType": "east_of",
+      "id": "3352367897",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T20:32:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T18:42:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T18:42:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-01T18:42:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433128",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/east_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q132023028",
+      "citationDetail": "Q132023028",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ariano 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CPZVXJ33",
+      "formattedCitation": "<div class=\"csl-entry\">Ariano, Carmela. \u201cRicerche preliminari sui mosaici di Villa Cuomo a S. Antonio Abate.\u201d In <i>Rivista di Studi Pompeiani, 30 (2019)</i>, 248\u201352. Roma: \u201cL\u2019Erma\u201d di Bretschneider, 2019.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cuomo 1976",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6MALF6QG",
+      "formattedCitation": "<div class=\"csl-entry\">Cuomo, Carlo. <i>La villa rustica di S. Antonio Abate da me dissepolta</i>. Napoli: s.n., 1976.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/26203002",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Morelli 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ENRQ3RXU",
+      "formattedCitation": "<div class=\"csl-entry\">Morelli, Vincenzina Castiglione. \u201cReview of Ager Pompeianus et Ager Stabianus, L\u2019esempio Della Villa B Di Oplontis e Della Villa Cuomo a S.Antonio Abate.\u201d <i>Rivista Di Studi Pompeiani</i> 25 (2014): 214\u201315. https://www.jstor.org/stable/26203002.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "658098857",
+  "subject": [
+    "villa",
+    "Mosaic",
+    "wall painting"
+  ],
+  "title": "Villa Cuomo",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Villa Cuomo in the modern Italian comune of Sant'Antonio Abate in greater metropolitan Naples is a Roman villa rustica of the first century CE.",
+  "reprPoint": [
+    14.554178763801442,
+    40.720151081078
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    14.5539453,
+    40.7200133,
+    14.5544122,
+    40.7202889
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433128"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-02-01T18:42:13Z",
+  "uri": "https://pleiades.stoa.org/places/658098857",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-02-02T12:48:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-01T20:33:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-01T20:33:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-01T20:32:55Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-01T20:31:25Z"
+    },
+    {
+      "comment": "wikidata Q132023028",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-01T20:18:12Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-01T18:42:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-01T18:42:13Z"
+    }
+  ]
+}

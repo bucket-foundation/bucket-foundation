@@ -1,0 +1,256 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.262451,
+          45.824157
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-approximate-centerpoint",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/831153093/imagery-location-approximate-centerpoint",
+        "description": "Location determined in Google Earth with reference to plan in Loustaud 1993.",
+        "location_precision": "precise",
+        "title": "Imagery Location: Approximate Centerpoint"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.persee.fr/doc/aquit_0758-9670_1993_num_11_1_1108",
+          "citationDetail": "Figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Loustaud 1993",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZQ3QQCTA",
+          "formattedCitation": "<div class=\"csl-entry\">Loustaud, Jean-Pierre, Alix Barbet, and Florence Monier. \u201cLes peintures murales de la Maison des Nones de Mars \u00e0 Limoges.\u201d <i>Aquitania</i> 11, no. 1 (1993): 63\u2013111. https://doi.org/10.3406/aquit.1993.1108.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-approximate-centerpoint",
+      "featureTypeURI": [],
+      "end": 300,
+      "title": "Imagery Location: Approximate Centerpoint",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "Location determined in Google Earth with reference to plan in Loustaud 1993.",
+      "created": "2023-10-03T18:47:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.262451,
+          45.824157
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/831153093/imagery-location-approximate-centerpoint",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-04T00:35:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-03T18:50:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-03T18:47:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-03T18:47:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-10-03T18:47:45Z",
+      "associationCertainty": "certain",
+      "title": "Augustoritum",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/831153093/augustoritum",
+      "connectionType": "at",
+      "id": "augustoritum",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-04T00:35:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-03T18:50:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-03T18:47:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-10-03T18:47:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/138203",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/aquit_0758-9670_1993_num_11_1_1108",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Loustaud 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZQ3QQCTA",
+      "formattedCitation": "<div class=\"csl-entry\">Loustaud, Jean-Pierre, Alix Barbet, and Florence Monier. \u201cLes peintures murales de la Maison des Nones de Mars \u00e0 Limoges.\u201d <i>Aquitania</i> 11, no. 1 (1993): 63\u2013111. https://doi.org/10.3406/aquit.1993.1108.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.openedition.org/pallas/24668",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Daniaux 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H597CAH7",
+      "formattedCitation": "<div class=\"csl-entry\">Daniaux, Thomas, and Jean-Pierre Loustaud. \u201cUn d\u00e9 truqu\u00e9 dans la Maison des Nones de Mars (Limoges).\u201d <i>Pallas. Revue d\u2019\u00e9tudes antiques</i>, no. 119 (October 4, 2022): 129\u201346. https://doi.org/10.4000/pallas.24668.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "831153093",
+  "subject": [],
+  "title": "Maison des Nones de Mars",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large, centrally located Roman townhouse in Augustoritum (modern Limoges), built in the first century CE and decorated with elaborate wall paintings.",
+  "reprPoint": [
+    1.262451,
+    45.824157
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    1.262451,
+    45.824157,
+    1.262451,
+    45.824157
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/138203"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-10-03T18:41:53Z",
+  "uri": "https://pleiades.stoa.org/places/831153093",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-04T00:35:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-03T18:50:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-03T18:49:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-03T18:48:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-03T18:41:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-10-03T18:41:53Z"
+    }
+  ]
+}

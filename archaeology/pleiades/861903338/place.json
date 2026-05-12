@@ -1,0 +1,381 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.7002417,
+            36.4104332
+          ],
+          [
+            9.700151,
+            36.4104585
+          ],
+          [
+            9.7000609,
+            36.41046
+          ],
+          [
+            9.699971,
+            36.4103956
+          ],
+          [
+            9.6999265,
+            36.4102253
+          ],
+          [
+            9.6999941,
+            36.4101328
+          ],
+          [
+            9.7000703,
+            36.4100317
+          ],
+          [
+            9.7002086,
+            36.4100356
+          ],
+          [
+            9.7004183,
+            36.4101463
+          ],
+          [
+            9.7004529,
+            36.4101776
+          ],
+          [
+            9.7004555,
+            36.4102483
+          ],
+          [
+            9.7004249,
+            36.4103219
+          ],
+          [
+            9.7003792,
+            36.4103843
+          ],
+          [
+            9.7003183,
+            36.4104092
+          ],
+          [
+            9.7002417,
+            36.4104332
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-avitta-bibba-amphitheatre",
+      "properties": {
+        "snippet": "Amphitheatre; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/861903338/osm-location-of-avitta-bibba-amphitheatre",
+        "description": "Representative l.ocation based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Avitta Bibba amphitheatre"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/880432822",
+          "citationDetail": "Way 880432822",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=880432822",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-avitta-bibba-amphitheatre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "end": 300,
+      "title": "OSM location of Avitta Bibba amphitheatre",
+      "provenance": "OpenStreetMap (Way 880432822, version 4, osm:changeset=138538089, 2023-07-15T10:05:30Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "amphitheatre"
+      ],
+      "description": "Representative l.ocation based on OpenStreetMap.",
+      "created": "2020-12-03T00:59:29Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            9.7002417,
+            36.4104332
+          ],
+          [
+            9.700151,
+            36.4104585
+          ],
+          [
+            9.7000609,
+            36.41046
+          ],
+          [
+            9.699971,
+            36.4103956
+          ],
+          [
+            9.6999265,
+            36.4102253
+          ],
+          [
+            9.6999941,
+            36.4101328
+          ],
+          [
+            9.7000703,
+            36.4100317
+          ],
+          [
+            9.7002086,
+            36.4100356
+          ],
+          [
+            9.7004183,
+            36.4101463
+          ],
+          [
+            9.7004529,
+            36.4101776
+          ],
+          [
+            9.7004555,
+            36.4102483
+          ],
+          [
+            9.7004249,
+            36.4103219
+          ],
+          [
+            9.7003792,
+            36.4103843
+          ],
+          [
+            9.7003183,
+            36.4104092
+          ],
+          [
+            9.7002417,
+            36.4104332
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/861903338/osm-location-of-avitta-bibba-amphitheatre",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-23T18:41:16Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-02T03:46:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-07T17:50:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-03T01:07:06Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-03T00:59:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-03T00:59:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-03T00:59:29Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-03T01:01:29Z",
+      "associationCertainty": "certain",
+      "title": "Avitta Bibba",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/861903338/avitta-bibba",
+      "connectionType": "at",
+      "id": "avitta-bibba",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-07T17:50:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-03T01:01:35Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-03T01:01:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-03T01:01:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/314897",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q29002313",
+      "citationDetail": "Q29002313: Avitta Bibba amphitheatre",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "861903338",
+  "subject": [
+    "amphitheater"
+  ],
+  "title": "Avitta Bibba amphitheater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman amphitheater located in the modern Siliana Governorate of Tunisia.",
+  "reprPoint": [
+    9.700184337691539,
+    36.41024869167402
+  ],
+  "placeTypes": [
+    "amphitheatre"
+  ],
+  "bbox": [
+    9.6999265,
+    36.4100317,
+    9.7004555,
+    36.41046
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/314897"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-03T00:58:55Z",
+  "uri": "https://pleiades.stoa.org/places/861903338",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-07T17:50:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-03T01:07:06Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-03T00:58:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-03T00:58:55Z"
+    }
+  ]
+}

@@ -1,0 +1,639 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.3375,
+          32.5802
+        ]
+      },
+      "type": "Feature",
+      "id": "cigs-location-tapah-garan",
+      "properties": {
+        "snippet": "Findspot",
+        "link": "https://pleiades.stoa.org/places/39082013/cigs-location-tapah-garan",
+        "description": "",
+        "location_precision": "precise",
+        "title": "CIGS Location: Tapah G\u0101r\u0101n"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            47.3396597,
+            32.5813773
+          ],
+          [
+            47.3386127,
+            32.5819153
+          ],
+          [
+            47.3379332,
+            32.582374
+          ],
+          [
+            47.3376103,
+            32.582609
+          ],
+          [
+            47.336422,
+            32.5826194
+          ],
+          [
+            47.3362716,
+            32.5819278
+          ],
+          [
+            47.3358356,
+            32.5813706
+          ],
+          [
+            47.3353289,
+            32.5811282
+          ],
+          [
+            47.3351372,
+            32.5805766
+          ],
+          [
+            47.3351835,
+            32.5797664
+          ],
+          [
+            47.3353047,
+            32.5792524
+          ],
+          [
+            47.3357743,
+            32.5786448
+          ],
+          [
+            47.3360453,
+            32.5782823
+          ],
+          [
+            47.3364417,
+            32.5779219
+          ],
+          [
+            47.3367403,
+            32.5777461
+          ],
+          [
+            47.3371609,
+            32.5777725
+          ],
+          [
+            47.3377497,
+            32.5779607
+          ],
+          [
+            47.3383544,
+            32.5781288
+          ],
+          [
+            47.3386654,
+            32.5783878
+          ],
+          [
+            47.3390784,
+            32.5787647
+          ],
+          [
+            47.3390385,
+            32.5791414
+          ],
+          [
+            47.3399369,
+            32.5793944
+          ],
+          [
+            47.340184,
+            32.5795826
+          ],
+          [
+            47.3402474,
+            32.5804724
+          ],
+          [
+            47.3396597,
+            32.5813773
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tepe-garan",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/39082013/osm-location-of-tepe-garan",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tepe Garan"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 25, figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zeynivand 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/glow_rj/items/YZE8BFV6",
+          "formattedCitation": "<div class=\"csl-entry\">Zeynivand, Mohsen. \u201cTappeh G\u0101r\u0101n: The First Season of \u2018Deh Luran Archaeological Project.\u2019\u201d In <i>A Collection of Archaeological Finds from Excavations in 2018-2019</i>, 9\u201310. Annual Symposium in the Iranian Archaeology 17. Tehran: National Museum of Iran, 2020.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cigs-location-tapah-garan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "end": null,
+      "title": "CIGS Location: Tapah G\u0101r\u0101n",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/findspot"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>Centre point location extracted from polygon drawn around entire site as identified on Google Earth base imagery in QGIS 3.x.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "findspot"
+      ],
+      "description": "",
+      "created": "2024-01-08T16:19:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.3375,
+          32.5802
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/39082013/cigs-location-tapah-garan",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-11T21:29:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-08T16:25:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-08T16:19:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-08T16:19:38Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1280425131",
+          "citationDetail": "Way 1280425131",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1280425131",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/86029/",
+          "citationDetail": "86029: Tepe Garan (DL-34)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+          "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-tepe-garan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Tepe Garan",
+      "provenance": "OpenStreetMap (Way 1280425131, version 1, osm:changeset=150988271, 2024-05-07T02:27:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-05-07T02:28:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            47.3396597,
+            32.5813773
+          ],
+          [
+            47.3386127,
+            32.5819153
+          ],
+          [
+            47.3379332,
+            32.582374
+          ],
+          [
+            47.3376103,
+            32.582609
+          ],
+          [
+            47.336422,
+            32.5826194
+          ],
+          [
+            47.3362716,
+            32.5819278
+          ],
+          [
+            47.3358356,
+            32.5813706
+          ],
+          [
+            47.3353289,
+            32.5811282
+          ],
+          [
+            47.3351372,
+            32.5805766
+          ],
+          [
+            47.3351835,
+            32.5797664
+          ],
+          [
+            47.3353047,
+            32.5792524
+          ],
+          [
+            47.3357743,
+            32.5786448
+          ],
+          [
+            47.3360453,
+            32.5782823
+          ],
+          [
+            47.3364417,
+            32.5779219
+          ],
+          [
+            47.3367403,
+            32.5777461
+          ],
+          [
+            47.3371609,
+            32.5777725
+          ],
+          [
+            47.3377497,
+            32.5779607
+          ],
+          [
+            47.3383544,
+            32.5781288
+          ],
+          [
+            47.3386654,
+            32.5783878
+          ],
+          [
+            47.3390784,
+            32.5787647
+          ],
+          [
+            47.3390385,
+            32.5791414
+          ],
+          [
+            47.3399369,
+            32.5793944
+          ],
+          [
+            47.340184,
+            32.5795826
+          ],
+          [
+            47.3402474,
+            32.5804724
+          ],
+          [
+            47.3396597,
+            32.5813773
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/39082013/osm-location-of-tepe-garan",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-07T20:33:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-07T02:29:03Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-07T02:28:55Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-07T02:28:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-07T02:28:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "page 25, figure 1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zeynivand 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/glow_rj/items/YZE8BFV6",
+      "formattedCitation": "<div class=\"csl-entry\">Zeynivand, Mohsen. \u201cTappeh G\u0101r\u0101n: The First Season of \u2018Deh Luran Archaeological Project.\u2019\u201d In <i>A Collection of Archaeological Finds from Excavations in 2018-2019</i>, 9\u201310. Annual Symposium in the Iranian Archaeology 17. Tehran: National Museum of Iran, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/86029/",
+      "citationDetail": "86029: Tepe Garan (DL-34)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q136256384",
+      "citationDetail": "Tepe Garan (Q136256384)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Neely 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMWRPWRD",
+      "formattedCitation": "<div class=\"csl-entry\">Neely, James A., and Henry T. Wright. <i>Early Settlement and Irrigation on the Deh Luran Plain: Village and Early State Societies in Southwestern Iran</i>. Technical Reports (University of Michigan. Museum of Anthropology). Ann Arbor: University of Michigan, Museum of Anthropology, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tapah G\u0101r\u0101n",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 25, figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Zeynivand 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/glow_rj/items/YZE8BFV6",
+          "formattedCitation": "<div class=\"csl-entry\">Zeynivand, Mohsen. \u201cTappeh G\u0101r\u0101n: The First Season of \u2018Deh Luran Archaeological Project.\u2019\u201d In <i>A Collection of Archaeological Finds from Excavations in 2018-2019</i>, 9\u201310. Annual Symposium in the Iranian Archaeology 17. Tehran: National Museum of Iran, 2020.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "tapah-garan-1",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Romanization according to the ALA-LC specifications for Persian (2012) (https://www.loc.gov/catdir/cpso/roman.html).</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "fa",
+      "created": "2024-01-08T16:24:00Z",
+      "uri": "https://pleiades.stoa.org/places/39082013/tapah-garan-1",
+      "creators": [
+        {
+          "username": "cjohansson",
+          "homepage": null,
+          "name": "Carolin Johansson",
+          "uri": "https://pleiades.stoa.org/author/cjohansson"
+        },
+        {
+          "username": "rrattenborg",
+          "homepage": null,
+          "name": "Rune Rattenborg",
+          "uri": "https://pleiades.stoa.org/author/rrattenborg"
+        }
+      ],
+      "attested": "\u062a\u067e\u0647 \u06af\u0627\u0631\u0627\u0646",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-11T21:29:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-08T16:25:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-08T16:24:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cjohansson",
+          "modified": "2024-01-08T16:24:00Z"
+        }
+      ]
+    }
+  ],
+  "id": "39082013",
+  "subject": [
+    "ANE",
+    "Cuneiform"
+  ],
+  "title": "Tapah G\u0101r\u0101n",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Tapah G\u0101r\u0101n is an archaeological site located near Tappeh Qor\u2019\u0101n (Islamic Republic of Iran).",
+  "reprPoint": [
+    47.3375355170844,
+    32.580200417337934
+  ],
+  "placeTypes": [
+    "findspot",
+    "archaeological-site"
+  ],
+  "bbox": [
+    47.3351372,
+    32.5777461,
+    47.3402474,
+    32.5826194
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-09-13T14:20:26Z",
+  "uri": "https://pleiades.stoa.org/places/39082013",
+  "creators": [
+    {
+      "username": "cjohansson",
+      "homepage": null,
+      "name": "Carolin Johansson",
+      "uri": "https://pleiades.stoa.org/author/cjohansson"
+    },
+    {
+      "username": "rrattenborg",
+      "homepage": null,
+      "name": "Rune Rattenborg",
+      "uri": "https://pleiades.stoa.org/author/rrattenborg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add summary, add wikidata, vici.org, Neely 1994 by @jbecker",
+      "modifiedBy": "thomase",
+      "modified": "2025-09-13T21:02:13Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-09-13T14:20:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-01-11T21:29:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "cjohansson",
+      "modified": "2024-01-08T16:25:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "cjohansson",
+      "modified": "2024-01-08T16:11:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "cjohansson",
+      "modified": "2024-01-08T16:11:33Z"
+    }
+  ]
+}

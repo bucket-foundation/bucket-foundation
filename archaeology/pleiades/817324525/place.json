@@ -1,0 +1,342 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.8602182,
+          38.5622661
+        ]
+      },
+      "type": "Feature",
+      "id": "spelaio-agiou-galaktos",
+      "properties": {
+        "snippet": "Cave; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/817324525/spelaio-agiou-galaktos",
+        "description": "Point representing the location of the Ayio Gala cave site, derived from an an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location of \u03a3\u03c0\u03ae\u03bb\u03b1\u03b9\u03bf \u0391\u03b3\u03b9\u03bf\u03c5 \u0393\u03ac\u03bb\u03b1\u03ba\u03c4\u03bf\u03c2"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2991991495",
+          "citationDetail": "Node 2991991495",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2991991495",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "spelaio-agiou-galaktos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "end": -3300,
+      "title": "OSM location of \u03a3\u03c0\u03ae\u03bb\u03b1\u03b9\u03bf \u0391\u03b3\u03b9\u03bf\u03c5 \u0393\u03ac\u03bb\u03b1\u03ba\u03c4\u03bf\u03c2",
+      "provenance": "OpenStreetMap (Node 2991991495, version 2, osm:changeset=93654529, 2020-11-06T09:48:38Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cave"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cave"
+      ],
+      "description": "Point representing the location of the Ayio Gala cave site, derived from an an OpenStreetMap Node.",
+      "created": "2021-01-20T20:52:09Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.8602182,
+          38.5622661
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/817324525/spelaio-agiou-galaktos",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-21T12:16:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:55:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:52:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:52:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:52:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -3300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-01-20T20:55:24Z",
+      "associationCertainty": "certain",
+      "title": "Chios (island)",
+      "start": -10000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/817324525/chios-island",
+      "connectionType": "part_of_physical",
+      "id": "chios-island",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-21T12:16:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:55:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:55:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:55:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550497",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/40855998",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hood 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KZAVQYNG",
+      "formattedCitation": "<div class=\"csl-entry\">Hood, Sinclair. <i>Excavations in Chios 1938-1955: Prehistoric Emporio and Ayio Gala. Volume I</i>. British School at Athens. Supplementary Volumes 15. London: Thames &amp; Hudson, 1981. https://www.jstor.org/stable/40855998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/832873245",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hood 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WUTURABD",
+      "formattedCitation": "<div class=\"csl-entry\">Hood, Sinclair, and Juliet Clutton-Brock. <i>Excavations in Chios 1938 - 1955: Prehistoric Emporio and Ayio Gala Vol. 2</i>. Supplementary Volume / The British School of Archaeology at Athens 16. London: Thames and Hudson, 1982. http://www.worldcat.org/oclc/832873245.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ayio Gala, Agio Gala, Aghio Ghalas, \u00c1gion G\u00e1la, \u00c1yion G\u00e1la",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geonames.org/264050/agio-gala.html",
+          "citationDetail": "\u00c1gio G\u00e1la",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ayio-gala",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Greek name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2021-01-20T20:54:58Z",
+      "uri": "https://pleiades.stoa.org/places/817324525/ayio-gala",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0386\u03b3\u03b9\u03bf \u0393\u03ac\u03bb\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-21T12:16:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:55:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:54:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-01-20T20:54:58Z"
+        }
+      ]
+    }
+  ],
+  "id": "817324525",
+  "subject": [],
+  "title": "Ayio Gala",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cave"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Site in the northwestern corner of the island of Chios consisting of a two caves, both containing pottery and other remains dated to the Neolithic period. The entrance to the upper cave is located inside the Panayia Galactonosera chapel.",
+  "reprPoint": [
+    25.8602182,
+    38.5622661
+  ],
+  "placeTypes": [
+    "cave"
+  ],
+  "bbox": [
+    25.8602182,
+    38.5622661,
+    25.8602182,
+    38.5622661
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550497"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-01-20T20:49:51Z",
+  "uri": "https://pleiades.stoa.org/places/817324525",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-21T12:16:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-20T20:55:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-20T20:50:16Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-20T20:49:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2021-01-20T20:49:51Z"
+    }
+  ]
+}

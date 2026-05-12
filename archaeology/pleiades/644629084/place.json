@@ -1,0 +1,863 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4903363,
+            40.7502134
+          ],
+          [
+            14.4903911,
+            40.7502366
+          ],
+          [
+            14.4904171,
+            40.7502011
+          ],
+          [
+            14.4904476,
+            40.7502116
+          ],
+          [
+            14.49048,
+            40.7502259
+          ],
+          [
+            14.4905262,
+            40.7502469
+          ],
+          [
+            14.4905034,
+            40.7502761
+          ],
+          [
+            14.4905568,
+            40.7503001
+          ],
+          [
+            14.490537,
+            40.7503311
+          ],
+          [
+            14.4905065,
+            40.7503412
+          ],
+          [
+            14.4904757,
+            40.7503684
+          ],
+          [
+            14.4906242,
+            40.7504334
+          ],
+          [
+            14.4905555,
+            40.7505222
+          ],
+          [
+            14.4904228,
+            40.7504655
+          ],
+          [
+            14.490453,
+            40.7504241
+          ],
+          [
+            14.4903707,
+            40.7503897
+          ],
+          [
+            14.4902428,
+            40.7503342
+          ],
+          [
+            14.4903363,
+            40.7502134
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-so-called-house-of-the-four-styles",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/644629084/osm-location-of-so-called-house-of-the-four-styles",
+        "description": "Representative location based on a way derived from OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of so-called \"House of the Four Styles\""
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/501812057",
+          "citationDetail": "Way 501812057",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=501812057",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-so-called-house-of-the-four-styles",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of so-called \"House of the Four Styles\"",
+      "provenance": "OpenStreetMap (Way 501812057, version 3, osm:changeset=124555353, 2022-08-06T10:11:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on a way derived from OpenStreetMap.",
+      "created": "2017-06-27T00:19:49Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4903363,
+            40.7502134
+          ],
+          [
+            14.4903911,
+            40.7502366
+          ],
+          [
+            14.4904171,
+            40.7502011
+          ],
+          [
+            14.4904476,
+            40.7502116
+          ],
+          [
+            14.49048,
+            40.7502259
+          ],
+          [
+            14.4905262,
+            40.7502469
+          ],
+          [
+            14.4905034,
+            40.7502761
+          ],
+          [
+            14.4905568,
+            40.7503001
+          ],
+          [
+            14.490537,
+            40.7503311
+          ],
+          [
+            14.4905065,
+            40.7503412
+          ],
+          [
+            14.4904757,
+            40.7503684
+          ],
+          [
+            14.4906242,
+            40.7504334
+          ],
+          [
+            14.4905555,
+            40.7505222
+          ],
+          [
+            14.4904228,
+            40.7504655
+          ],
+          [
+            14.490453,
+            40.7504241
+          ],
+          [
+            14.4903707,
+            40.7503897
+          ],
+          [
+            14.4902428,
+            40.7503342
+          ],
+          [
+            14.4903363,
+            40.7502134
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/644629084/osm-location-of-so-called-house-of-the-four-styles",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T15:28:15Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:52:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:20:26Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:20:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:19:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:19:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-06-27T00:23:30Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/644629084/pompeii",
+      "connectionType": "part_of_physical",
+      "id": "pompeii",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:52:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:20:27Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:23:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:23:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-17T21:56:09Z",
+      "associationCertainty": "certain",
+      "title": "Regio I, Pompeii",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/644629084/regio-i-pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "regio-i-pompeii",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-18T09:31:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-17T21:56:15Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-17T21:56:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-17T21:56:09Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/222138654",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pompeiiinpictures.com/pompeiiinpictures/R1/1%2008%2017%20p5.htm",
+      "citationDetail": "I.8.17 Pompeii. Casa dei Quattro Stili.",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PompeiiinPictures",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JU2FIK6G",
+      "formattedCitation": "<div class=\"csl-entry\">Dunn, Jackie, and Bob Dunn. \u201cPompeiiinPictures Ancient Pompeii Herculaneum Oplontis Stabiae.\u201d PompeiiinPictures\u00a0 A complete photographic plan of ancient Pompeii as it is today, produced by Jackie and Bob Dunn for those as enthusiastic about Pompeii as we are., December 11, 2018. https://pompeiiinpictures.com/pompeiiinpictures/index.htm.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Regio_I_degli_scavi_archeologici_di_Pompei",
+      "citationDetail": "Regio I degli scavi archeologici di Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Regio I degli scavi archeologici di Pompei.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://ancientgraffiti.org/Graffiti/results?city=Pompeii&property=156&",
+      "citationDetail": "Casa dei Quattro Stili (I.8.17)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AGP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A2X652DK",
+      "formattedCitation": "<div class=\"csl-entry\">Benefiel, Rebecca, Sara Sprenkle, Holly Sypniewski, and Mackenzie Brooks. <i>Ancient Graffiti Project</i>, 2014. http://ancientgraffiti.org/Graffiti/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.pompeiisites.org/Sezione.jsp?titolo=amphitheater%20(ii,6)&idSezione=371",
+      "citationDetail": "Consolidamento e restauro alla Casa dei Quattro Stili in Pompei Scavi",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pompeii Sites",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQWYV366",
+      "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo, ed. <i>Pompeii Sites: Portale Ufficiale Parco Archeologico di Pompei</i>. Accessed January 10, 2020. http://pompeiisites.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/pompeii/regio-i/reg-i-ins-8/house-of-the-four-styles",
+      "citationDetail": "House of the Four Styles",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AD79",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+      "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/849221608",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Maiuri 1949",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N33RPXFT",
+      "formattedCitation": "<div class=\"csl-entry\">Maiuri, Amedeo. <i>La casa dei quattro stili</i>. Napoli, 1949. http://www.worldcat.org/oclc/849221608.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/165086163",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gallo 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8ZI5ISQP",
+      "formattedCitation": "<div class=\"csl-entry\">Gallo, Anna. <i>La Casa dei Quattro Stili</i>. Napoli: Arte Tip., 1989. http://www.worldcat.org/oclc/165086163.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/869889210",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Benefiel 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/J8NM3RT8",
+      "formattedCitation": "<div class=\"csl-entry\">Benefiel, Rebecca. \u201cDialogues of Graffiti in the House of the Four Styles at Pompeii (Casa Dei Quattro Stili, I.8.17, 11).\u201d In <i>Ancient Graffiti in Context</i>, edited by J. A. Baird and Claire Taylor, 20\u201348. Routledge Studies in Ancient History 2. London: Routledge, 2012. http://www.worldcat.org/oclc/869889210.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27070461",
+      "citationDetail": "Q27070461: House of the Four Styles",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/2443414",
+      "citationDetail": "Casa I 8, 17. Sog. Casa dei Quattro Stili Pompei, (Pompeii), Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/610535333",
+      "citationDetail": "I, 847-913",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pompei: pitture e mosaici.",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KJBIP7FC",
+      "formattedCitation": "<div class=\"csl-entry\">Istituto della Enciclopedia italiana. <i>Pompei: pitture e mosaici.</i> Vol. 6. Roma: Istituto della Enciclopedia italiana, 1990. http://www.worldcat.org/oclc/610535333.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "68-74",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Laidlaw 1986",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UB4URK2A",
+      "formattedCitation": "<div class=\"csl-entry\">Laidlaw, Anne. <i>The First Style in Pompeii: Painting and Architecture</i>. Rome: Giorgio Bretschneider, 1986.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/44291415",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Castiglione Morelli Del Franco 1989",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WCFLXLTX",
+      "formattedCitation": "<div class=\"csl-entry\">Castiglione Morelli Del Franco, V., and Rosa Vitale. \u201cL\u2019insula 8 della Regio I. Un campione d\u2019indagine socio-economica.\u201d In <i>Rivista di studi pompeiani, 3.1989</i>, 185\u2013221, Abb, 1989. https://www.jstor.org/stable/44291415.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "House of the Four Styles",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/165086163",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gallo 1989",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8ZI5ISQP",
+          "formattedCitation": "<div class=\"csl-entry\">Gallo, Anna. <i>La Casa dei Quattro Stili</i>. Napoli: Arte Tip., 1989. http://www.worldcat.org/oclc/165086163.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-06-26.8415095372",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-06-27T00:20:57Z",
+      "uri": "https://pleiades.stoa.org/places/644629084/name.2017-06-26.8415095372",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-28T15:33:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:52:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:20:26Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:18:38Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:20:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:20:57Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Casa dei Quattro Stili",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "3: 106",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Rivista di studi pompeiani",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3INP3SPH",
+          "formattedCitation": "<div class=\"csl-entry\">Associazione Internazionale Amici di Pompei. \u201cRivista di studi pompeiani.\u201d <i>Rivista di studi pompeiani</i>, 1934.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/165086163",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gallo 1989",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8ZI5ISQP",
+          "formattedCitation": "<div class=\"csl-entry\">Gallo, Anna. <i>La Casa dei Quattro Stili</i>. Napoli: Arte Tip., 1989. http://www.worldcat.org/oclc/165086163.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-06-26.8810025682",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2017-06-27T00:21:46Z",
+      "uri": "https://pleiades.stoa.org/places/644629084/name.2017-06-26.8810025682",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:52:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:20:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:18:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:09:47Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:21:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:21:46Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "I.8.17",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.pompeiiinpictures.com/pompeiiinpictures/R1/1%2008%2017%20p5.htm",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "pompeiiinpictures: I.8.17 Pompeii. Casa dei Quattro Stili.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2017-06-26.9327758904",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2017-06-27T00:22:31Z",
+      "uri": "https://pleiades.stoa.org/places/644629084/name.2017-06-26.9327758904",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-17T18:52:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:20:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T01:19:35Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:22:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-27T00:22:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "644629084",
+  "subject": [
+    "graffito",
+    "domus",
+    "extant remains"
+  ],
+  "title": "House of the Four Styles",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "<p>This house is linked to I, 8, 11. It was excavated in 1937/8 and 1951. Restorations in 1975-1978,</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The House of the Four Styles or Casa dei Quattro Stili (I.8.17) is noted for having examples of all four style of Pompeian wall paintings.",
+  "reprPoint": [
+    14.490449339358694,
+    40.75035519612983
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    14.4902428,
+    40.7502011,
+    14.4906242,
+    40.7505222
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/222138654"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-06-27T00:19:10Z",
+  "uri": "https://pleiades.stoa.org/places/644629084",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-07-28T15:32:39Z"
+    },
+    {
+      "comment": "added wikidata, arachne references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-26T19:49:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-17T18:52:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-01T00:40:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-27T01:20:26Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-27T01:17:15Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-27T01:11:59Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-27T00:19:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-27T00:19:10Z"
+    }
+  ]
+}

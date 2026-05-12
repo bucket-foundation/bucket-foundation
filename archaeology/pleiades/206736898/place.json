@@ -1,0 +1,330 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.9958797,
+          37.9174405
+        ]
+      },
+      "type": "Feature",
+      "id": "byzantine-fortress-of-isthmia",
+      "properties": {
+        "snippet": "Fort; AD 300 - AD 1923",
+        "link": "https://pleiades.stoa.org/places/206736898/byzantine-fortress-of-isthmia",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM Location of Byzantine Fortress of Isthmia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/5256410938",
+          "citationDetail": "Node 5256410938",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=5256410938",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "byzantine-fortress-of-isthmia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "end": 1923,
+      "title": "OSM Location of Byzantine Fortress of Isthmia",
+      "provenance": "OpenStreetMap (Node 5256410938, version 9, osm:changeset=140205998, 2023-08-22T02:05:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-11-30T19:42:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.9958797,
+          37.9174405
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/206736898/byzantine-fortress-of-isthmia",
+      "creators": [
+        {
+          "username": "lstylianopoulos",
+          "homepage": null,
+          "name": "Lucie Stylianopoulos",
+          "uri": "https://pleiades.stoa.org/author/lstylianopoulos"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-21T03:42:39Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-01T03:18:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2017-11-30T19:50:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "lstylianopoulos",
+          "modified": "2017-11-30T19:48:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "lstylianopoulos",
+          "modified": "2017-11-30T19:46:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "lstylianopoulos",
+          "modified": "2017-11-30T19:42:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "lstylianopoulos",
+          "modified": "2017-11-30T19:42:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2017-11-30T19:51:27Z",
+      "associationCertainty": "certain",
+      "title": "Isthmia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/206736898/isthmia",
+      "connectionType": "at",
+      "id": "isthmia",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "gmoss",
+          "modified": "2017-11-30T19:51:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmoss",
+          "modified": "2017-11-30T19:51:39Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmoss",
+          "modified": "2017-11-30T19:51:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmoss",
+          "modified": "2017-11-30T19:51:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570316",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmoss",
+          "homepage": null,
+          "name": "Gabriel Moss",
+          "uri": "https://pleiades.stoa.org/author/gmoss"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/10.2972/hesperia.85.3.0437",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Frey and Gregory 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C8CFNJPJ",
+      "formattedCitation": "<div class=\"csl-entry\">Frey, Jon M., and Timothy E. Gregory. \u201cOld Excavations, New Interpretations: The 2008\u20132013 Seasons of The Ohio State University Excavations at Isthmia.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 85, no. 3 (2016): 437\u201390. https://doi.org/10.2972/hesperia.85.3.0437.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/artifact?name=Isthmia&object=Site",
+      "citationDetail": "Isthmia (Site)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Perseus",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H6HMSFDS",
+      "formattedCitation": "<div class=\"csl-entry\">Crane, Gregory R., ed. <i>Perseus Digital Library</i>. Boston: Tufts University, 1985. http://www.perseus.tufts.edu/hopper/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/470552780",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Isthmia V",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SUR8TWBN",
+      "formattedCitation": "<div class=\"csl-entry\">Gregory, Timothy E. <i>Isthmia: Excavations by the University of California at Los Angeles and the Ohio State University under the Auspices of the American School of Classical Studies at Athens. Volume V, Volume V,</i>. Princeton (N.J.): American School of classical studies at Athens, 1993. http://www.worldcat.org/oclc/470552780.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "206736898",
+  "subject": [],
+  "title": "Isthmia Fortress",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Byzantine fortress erected in the fifth century CE that includes three gates and 21 towers.",
+  "reprPoint": [
+    22.9958797,
+    37.9174405
+  ],
+  "placeTypes": [
+    "fort"
+  ],
+  "bbox": [
+    22.9958797,
+    37.9174405,
+    22.9958797,
+    37.9174405
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570316"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-11-30T19:55:40Z",
+  "uri": "https://pleiades.stoa.org/places/206736898",
+  "creators": [
+    {
+      "username": "lstylianopoulos",
+      "homepage": null,
+      "name": "Lucie Stylianopoulos",
+      "uri": "https://pleiades.stoa.org/author/lstylianopoulos"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-21T03:44:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-21T03:44:04Z"
+    },
+    {
+      "comment": "check in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-01T03:19:24Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "lstylianopoulos",
+      "modified": "2017-11-30T19:55:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "gmoss",
+      "modified": "2017-11-30T19:50:23Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "lstylianopoulos",
+      "modified": "2017-11-30T19:48:08Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "lstylianopoulos",
+      "modified": "2017-11-30T19:28:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "lstylianopoulos",
+      "modified": "2017-11-30T19:28:31Z"
+    }
+  ]
+}

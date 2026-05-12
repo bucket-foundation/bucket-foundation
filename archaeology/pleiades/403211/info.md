@@ -1,0 +1,14 @@
+# La Fucinaia
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/403211
+- **ID**: 403211
+- **Coords (lng, lat)**: [10.612571, 43.078744]
+- **Subjects**: dare:major=0, copper, dare:feature=mine, dare:ancient=0
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 41 D3 La Fucinaia

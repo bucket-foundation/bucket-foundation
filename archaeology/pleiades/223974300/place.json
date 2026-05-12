@@ -1,0 +1,500 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.28913,
+            41.752862
+          ],
+          [
+            12.2894159,
+            41.7527767
+          ],
+          [
+            12.2893268,
+            41.7525784
+          ],
+          [
+            12.2890363,
+            41.7526631
+          ],
+          [
+            12.28913,
+            41.752862
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "house-of-the-fishes",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/223974300/house-of-the-fishes",
+        "description": "Polygon representing the location of the House of the Fishes, derived from an OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM location of House of the Fishes"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/955115181",
+          "citationDetail": "Way 955115181",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=955115181",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "house-of-the-fishes",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 640,
+      "title": "OSM location of House of the Fishes",
+      "provenance": "OpenStreetMap (Way 955115181, version 3, osm:changeset=138539870, 2023-07-15T10:52:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Polygon representing the location of the House of the Fishes, derived from an OpenStreetMap way.",
+      "created": "2021-06-16T20:39:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.28913,
+            41.752862
+          ],
+          [
+            12.2894159,
+            41.7527767
+          ],
+          [
+            12.2893268,
+            41.7525784
+          ],
+          [
+            12.2890363,
+            41.7526631
+          ],
+          [
+            12.28913,
+            41.752862
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/223974300/house-of-the-fishes",
+      "creators": [
+        {
+          "username": "jrosenheim",
+          "homepage": null,
+          "name": "Joshua Rosenheim",
+          "uri": "https://pleiades.stoa.org/author/jrosenheim"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-29T02:19:57Z"
+        },
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:11:50Z"
+        },
+        {
+          "comment": "added time period",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:11:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:10:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T23:06:15Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T20:41:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T20:39:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T20:39:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-02T20:02:33Z",
+      "associationCertainty": "certain",
+      "title": "Ostia",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/223974300/ostia",
+      "connectionType": "at",
+      "id": "ostia",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:10:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-16T23:06:14Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-02T20:02:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jrosenheim",
+          "modified": "2021-06-02T20:02:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422995",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jrosenheim",
+          "homepage": null,
+          "name": "Joshua Rosenheim",
+          "uri": "https://pleiades.stoa.org/author/jrosenheim"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-06-16T23:08:18Z",
+      "associationCertainty": "certain",
+      "title": "Regio IV, Ostia Antica",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/223974300/regio-iv-ostia-antica",
+      "connectionType": "part_of_analytical",
+      "id": "regio-iv-ostia-antica",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:10:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:10:44Z"
+        },
+        {
+          "comment": "added connection",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:08:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:08:18Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/11101489",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.ostia-antica.org/regio4/3/3-3.htm",
+          "citationDetail": "Regio IV - Insula III - Domus dei Pesci (IV,III,3)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ostia - Harbour City of Ancient Rome",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+          "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/case-ostiensi-del-tardo-impero/oclc/899106405",
+      "citationDetail": "18-20",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Becatti 1960",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3CUA7URI",
+      "formattedCitation": "<div class=\"csl-entry\">Becatti, Giovanni. <i>Case ostiensi del tardo impero</i>. Roma: La Lebreria dello Stato, 1960.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ostia-antica.org/regio4/3/3-3.htm",
+      "citationDetail": "Regio IV - Insula III - Domus dei Pesci (IV,III,3)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ostia - Harbour City of Ancient Rome",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+      "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Domus dei Pesci",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.ostia-antica.org/regio4/3/3-3.htm",
+          "citationDetail": "Regio IV - Insula III - Domus dei Pesci (IV,III,3)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Ostia - Harbour City of Ancient Rome",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRP829GI",
+          "formattedCitation": "<div class=\"csl-entry\">Bakker, Jan Theo. \u201cOstia - Harbour City of Ancient Rome.\u201d Accessed June 4, 2021. http://www.ostia-antica.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "domus-dei-pesci",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2021-06-16T23:10:21Z",
+      "uri": "https://pleiades.stoa.org/places/223974300/domus-dei-pesci",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Domus dei Pesci",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:10:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:10:27Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:10:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-16T23:10:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "223974300",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "House of the Fishes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building",
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A domus in Ostia Antica, whose two building phases have been dated, respectively, to the middle and last quarter of the third century CE.",
+  "reprPoint": [
+    12.289226720700416,
+    41.752719745272294
+  ],
+  "placeTypes": [
+    "building",
+    "townhouse",
+    "garden-hortus"
+  ],
+  "bbox": [
+    12.2890363,
+    41.7525784,
+    12.2894159,
+    41.752862
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422995",
+    "https://pleiades.stoa.org/places/11101489"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-06-02T19:58:53Z",
+  "uri": "https://pleiades.stoa.org/places/223974300",
+  "creators": [
+    {
+      "username": "jrosenheim",
+      "homepage": null,
+      "name": "Joshua Rosenheim",
+      "uri": "https://pleiades.stoa.org/author/jrosenheim"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-04-23T02:35:52Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T23:10:52Z"
+    },
+    {
+      "comment": "ctype --> townhouse; add ref.",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-16T23:09:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-16T23:06:14Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-02T19:58:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jrosenheim",
+      "modified": "2021-06-02T19:58:53Z"
+    }
+  ]
+}

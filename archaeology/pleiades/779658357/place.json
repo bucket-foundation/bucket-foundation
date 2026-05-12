@@ -1,0 +1,398 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6145946,
+          43.070005
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-domus-del-lararium",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/779658357/osm-location-of-domus-del-lararium",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Domus del Lararium"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3765152148",
+          "citationDetail": "Node 3765152148",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3765152148",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-domus-del-lararium",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of Domus del Lararium",
+      "provenance": "OpenStreetMap (Node 3765152148, version 1, osm:changeset=34344179, 2015-09-30T10:51:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-09-21T14:38:09Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6145946,
+          43.070005
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/779658357/osm-location-of-domus-del-lararium",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-25T14:29:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:44:02Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:38:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:38:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:38:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2019-09-21T14:43:46Z",
+      "associationCertainty": "certain",
+      "title": "Asisium",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/779658357/asisium",
+      "connectionType": "at",
+      "id": "asisium",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-25T14:29:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:43:55Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:43:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:43:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413037",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "La domus del lararium in Assisi",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RZL7BVUF",
+          "formattedCitation": "<div class=\"csl-entry\">Manca, Maria Laura, and Italy, eds. <i>La domus del lararium in Assisi</i>. San Sisto, Italy: EFFE, F. Fabbri, 2012.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/841761454",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Manca 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RZL7BVUF",
+      "formattedCitation": "<div class=\"csl-entry\">Manca, Maria Laura, ed. <i>La domus del lararium in Assisi</i>. San Sisto, Italy: EFFE, F. Fabbri, 2012. http://www.worldcat.org/oclc/841761454.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Manca 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QFWE98AY",
+      "formattedCitation": "<div class=\"csl-entry\">Manca, Maria Laura. \u201cLa nuova \u2018domus romana\u2019 in Assisi.\u201d In <i>Properzio nel genere elegiaco</i>, 77\u201395. Assisi: Accademia Properziana del Subasio, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Manca 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GWJ7QJIU",
+      "formattedCitation": "<div class=\"csl-entry\">Manca, Maria Laura, and Francesco Giorgi. \u201cDomus assisiate di et\u00e0 augustea: la Domus del Lararium.\u201d In <i>Properzio e l\u2019et\u00e0 augustea\u202f: cultura, storia, arte\u202f: proceedings of the nineteenth international conference on Propertius, Assisi-Perugia 25-27 may 2012</i>, 15\u201349. Turnhout: Brepols, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q72176597",
+      "citationDetail": "Domus del Lararium (Q72176597)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Domus del Lararium",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "La domus del lararium in Assisi",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RZL7BVUF",
+          "formattedCitation": "<div class=\"csl-entry\">Manca, Maria Laura, and Italy, eds. <i>La domus del lararium in Assisi</i>. San Sisto, Italy: EFFE, F. Fabbri, 2012.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "domus-del-lararium",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-09-21T14:42:51Z",
+      "uri": "https://pleiades.stoa.org/places/779658357/domus-del-lararium",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Domus del Lararium",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-25T14:29:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:44:02Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:42:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-21T14:42:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "779658357",
+  "subject": [
+    "wall painting",
+    "domus",
+    "Mosaic",
+    "extant remains"
+  ],
+  "title": "Domus of the Lararium",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called \"Domus of the Lararium\" in Assisi was discovered at a depth of 7 meters beneath the Palazzo Giamp\u00e8. The surviving remains are those of a well-appointed domus with floor mosaics and wall paintings. The domus, dating to the second half of the first century. B.C. and the first decades of the first century. A.D. was comprised of at least 13 rooms and a peristyle.",
+  "reprPoint": [
+    12.6145946,
+    43.070005
+  ],
+  "placeTypes": [
+    "townhouse"
+  ],
+  "bbox": [
+    12.6145946,
+    43.070005,
+    12.6145946,
+    43.070005
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413037"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-09-21T14:37:52Z",
+  "uri": "https://pleiades.stoa.org/places/779658357",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q72176597",
+      "modifiedBy": "jbecker",
+      "modified": "2025-06-26T20:14:17Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-25T14:29:12Z"
+    },
+    {
+      "comment": "summary; reference cleanup",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-25T14:28:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-21T14:44:02Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-21T14:42:13Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-21T14:37:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-21T14:37:52Z"
+    }
+  ]
+}

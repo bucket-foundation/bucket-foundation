@@ -1,0 +1,537 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.6645775,
+            39.7861775
+          ],
+          [
+            8.6645228,
+            39.7861059
+          ],
+          [
+            8.6644425,
+            39.7861421
+          ],
+          [
+            8.6644088,
+            39.7860979
+          ],
+          [
+            8.6644702,
+            39.7860702
+          ],
+          [
+            8.6644609,
+            39.786058
+          ],
+          [
+            8.6643872,
+            39.7860912
+          ],
+          [
+            8.6643378,
+            39.7860264
+          ],
+          [
+            8.6641963,
+            39.7860902
+          ],
+          [
+            8.6641266,
+            39.7859989
+          ],
+          [
+            8.6645409,
+            39.7858122
+          ],
+          [
+            8.6647577,
+            39.7860963
+          ],
+          [
+            8.6645775,
+            39.7861775
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-baths",
+      "properties": {
+        "snippet": "Bath; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/869750648/osm-location-of-roman-baths",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of terme romane"
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.6641231,
+            39.786172
+          ],
+          [
+            8.6642518,
+            39.7851826
+          ],
+          [
+            8.6645093,
+            39.7850837
+          ],
+          [
+            8.6669555,
+            39.7856443
+          ],
+          [
+            8.6670885,
+            39.7866303
+          ],
+          [
+            8.6641231,
+            39.786172
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-praetorium-e-terme-romane",
+      "properties": {
+        "snippet": "Archaeological-site; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/869750648/osm-location-of-praetorium-e-terme-romane",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Praetorium e terme romane"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/318619245",
+          "citationDetail": "Way 318619245",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=318619245",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-baths",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 640,
+      "title": "OSM location of terme romane",
+      "provenance": "OpenStreetMap (Way 318619245, version 1, osm:changeset=27659702, 2014-12-23T20:55:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-12-23T20:56:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.6645775,
+            39.7861775
+          ],
+          [
+            8.6645228,
+            39.7861059
+          ],
+          [
+            8.6644425,
+            39.7861421
+          ],
+          [
+            8.6644088,
+            39.7860979
+          ],
+          [
+            8.6644702,
+            39.7860702
+          ],
+          [
+            8.6644609,
+            39.786058
+          ],
+          [
+            8.6643872,
+            39.7860912
+          ],
+          [
+            8.6643378,
+            39.7860264
+          ],
+          [
+            8.6641963,
+            39.7860902
+          ],
+          [
+            8.6641266,
+            39.7859989
+          ],
+          [
+            8.6645409,
+            39.7858122
+          ],
+          [
+            8.6647577,
+            39.7860963
+          ],
+          [
+            8.6645775,
+            39.7861775
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/869750648/osm-location-of-roman-baths",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-15T18:02:30Z"
+        },
+        {
+          "comment": "update",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T21:37:52Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T21:37:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-23T20:58:08Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-23T20:57:38Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-23T20:56:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-12-23T20:56:58Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/203389392",
+          "citationDetail": "Way 203389392",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=203389392",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-praetorium-e-terme-romane",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 640,
+      "title": "OSM location of Praetorium e terme romane",
+      "provenance": "OpenStreetMap (Way 203389392, version 2, osm:changeset=14849715, 2013-01-30T16:41:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-08-16T19:26:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.6641231,
+            39.786172
+          ],
+          [
+            8.6642518,
+            39.7851826
+          ],
+          [
+            8.6645093,
+            39.7850837
+          ],
+          [
+            8.6669555,
+            39.7856443
+          ],
+          [
+            8.6670885,
+            39.7866303
+          ],
+          [
+            8.6641231,
+            39.786172
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/869750648/osm-location-of-praetorium-e-terme-romane",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-15T18:02:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-16T19:35:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-16T19:35:00Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-16T19:26:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-16T19:26:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-16T19:26:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-29T21:37:21Z",
+      "associationCertainty": "certain",
+      "title": "Is Bangius",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/869750648/2414178091",
+      "connectionType": "at",
+      "id": "2414178091",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T21:37:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T21:37:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-29T21:37:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/471954",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zucca 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5J72X54V",
+      "formattedCitation": "<div class=\"csl-entry\">Zucca, R. \u201cUn\u2019iscrizione monumentale dall\u2019Oristanese.\u201d In <i>L\u2019Africa romana. Atti del IX Convegno di studio, Nuoro 13 - 15 dicembre 1991</i>, 595\u2013636, Abb. Taf, 1992.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "869750648",
+  "subject": [
+    "baths"
+  ],
+  "title": "Roman baths at Is Bangius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Terme Romane di Is Bangius",
+  "reprPoint": [
+    8.665026408115413,
+    39.78595595993397
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "bath"
+  ],
+  "bbox": [
+    8.6641231,
+    39.7850837,
+    8.6670885,
+    39.7866303
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/471954"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-29T21:37:19Z",
+  "uri": "https://pleiades.stoa.org/places/869750648",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-15T18:02:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-16T19:25:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-16T19:23:20Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T22:25:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T22:24:46Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-29T21:37:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-29T21:37:19Z"
+    }
+  ]
+}

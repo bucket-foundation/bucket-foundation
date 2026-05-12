@@ -1,0 +1,359 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.752,
+          45.682
+        ]
+      },
+      "type": "Feature",
+      "id": "barcola",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/511009249/barcola",
+        "description": "",
+        "location_precision": "precise",
+        "title": "AdriAtlas Location of Barcola"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "barcola",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 640,
+      "title": "AdriAtlas Location of Barcola",
+      "provenance": "AdriAtlas",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 500.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-500m-horizontal-accuracy",
+      "featureType": [
+        "villa"
+      ],
+      "description": "",
+      "created": "2022-08-21T15:59:46Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.752,
+          45.682
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/511009249/barcola",
+      "creators": [
+        {
+          "username": "ftassaux",
+          "homepage": null,
+          "name": "Francis Tassaux",
+          "uri": "https://pleiades.stoa.org/author/ftassaux"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added PAA",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-13T21:33:37Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-29T15:18:03Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-29T15:17:55Z"
+        },
+        {
+          "comment": "update title, provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-27T03:04:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T14:51:56Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T14:51:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T14:46:29Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T14:30:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T09:56:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-08-21T15:59:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-08-21T15:59:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-09-12T09:52:47Z",
+      "associationCertainty": "certain",
+      "title": "Tergeste",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/511009249/tergeste",
+      "connectionType": "at",
+      "id": "tergeste",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-29T15:18:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T14:53:17Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T14:30:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T09:56:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T09:52:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ftassaux",
+          "modified": "2022-09-12T09:52:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/187578",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "ftassaux",
+          "homepage": null,
+          "name": "Francis Tassaux",
+          "uri": "https://pleiades.stoa.org/author/ftassaux"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://adriaticummare.org/adriatlas?idSite=45",
+      "citationDetail": "45 Barcola",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AdriAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FJVRSTA7",
+      "formattedCitation": "<div class=\"csl-entry\">The International Association of the Adriaticum Mare. \u201cAtlas of the Ancient Adriatic,\u201d 2010. http://adriaticummare.org/en/bdd.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Fontana 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/64VFESFL",
+      "formattedCitation": "<div class=\"csl-entry\">Fontana, Federica. <i>La villa romana di Barcola: a proposito delle villae maritimae della Regio X</i>. Studi e ricerche sulla Gallia Cisalpina 4. Roma: Quasar, 1993.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "511009249",
+  "subject": [],
+  "title": "Barcola",
+  "provenance": "AdriAtlas",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The villa, once fronting some 200 m on the seafront, was initially excavated by Alberto Puschi. The site's artifacts were reexamined by Federica Fontana.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A no-longer-visible villa maritima was identified north of Tergeste in 1887. According to AdriAtlas, a reanalysis by Fontana (1993) places the beginnings of the villa's occupational sequence in the third quarter of the first century BCE.",
+  "reprPoint": [
+    13.752,
+    45.682
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    13.752,
+    45.682,
+    13.752,
+    45.682
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/187578"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-21T15:56:32Z",
+  "uri": "https://pleiades.stoa.org/places/511009249",
+  "creators": [
+    {
+      "username": "ftassaux",
+      "homepage": null,
+      "name": "Francis Tassaux",
+      "uri": "https://pleiades.stoa.org/author/ftassaux"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-29T15:18:03Z"
+    },
+    {
+      "comment": "edit summary and details",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-27T03:03:04Z"
+    },
+    {
+      "comment": "regularized provenance, regularized reference, added Fontana 1993 reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-27T01:06:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-12T14:53:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-12T14:38:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-12T14:34:52Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-12T14:30:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-09-12T09:56:21Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-08-21T15:56:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ftassaux",
+      "modified": "2022-08-21T15:56:32Z"
+    }
+  ]
+}

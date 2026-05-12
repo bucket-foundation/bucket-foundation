@@ -1,0 +1,549 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -5.5554208,
+            34.0740961
+          ],
+          [
+            -5.5553871,
+            34.0741084
+          ],
+          [
+            -5.5553146,
+            34.0739717
+          ],
+          [
+            -5.5553484,
+            34.0739595
+          ],
+          [
+            -5.5554208,
+            34.0740961
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-arch-of-caracalla",
+      "properties": {
+        "snippet": "Unknown; AD 200 - AD 299",
+        "link": "https://pleiades.stoa.org/places/486718746/osm-location-arch-of-caracalla",
+        "description": "",
+        "location_precision": "precise",
+        "title": "OSM Location, Arch of Caracalla"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/750934912",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Way 750934912",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-arch-of-caracalla",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 299,
+      "title": "OSM Location, Arch of Caracalla",
+      "provenance": "OpenStreetMap (Way 750934912, version 3, osm:changeset=148434562, 2024-03-09T18:14:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2022-09-01T18:46:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -5.5554208,
+            34.0740961
+          ],
+          [
+            -5.5553871,
+            34.0741084
+          ],
+          [
+            -5.5553146,
+            34.0739717
+          ],
+          [
+            -5.5553484,
+            34.0739595
+          ],
+          [
+            -5.5554208,
+            34.0740961
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/486718746/osm-location-arch-of-caracalla",
+      "creators": [
+        {
+          "username": null,
+          "name": "Anna Wilson"
+        },
+        {
+          "username": null,
+          "name": "Alisa MacDonald"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-30T18:01:08Z"
+        },
+        {
+          "comment": "added Generic OSM PAA",
+          "modifiedBy": "thomase",
+          "modified": "2023-02-28T23:00:39Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-01T21:20:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:54:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:53:59Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:46:59Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:46:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 299,
+      "description": "",
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "created": "2022-09-01T18:48:01Z",
+      "associationCertainty": "certain",
+      "title": "Volubilis",
+      "start": 200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/486718746/volubilis",
+      "connectionType": "at",
+      "id": "volubilis",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-01T21:20:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:54:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:52:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:48:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:48:01Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275740",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": null,
+          "name": "Anna Wilson"
+        },
+        {
+          "username": null,
+          "name": "Alisa MacDonald"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Volubilis",
+      "citationDetail": "Volubilis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.scienceopen.com/document?vid=4dd43232-0ace-472b-b16b-cb6319585984",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Fentress et al. 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3U76IW39",
+      "formattedCitation": "<div class=\"csl-entry\">Fentress, Elizabeth, Hassan Limane, and Gaetano Palumbo. \u201cThe Volubilis Project, Morocco: Excavation, Conservation and Management Planning.\u201d <i>Archaeology International</i> 5 (December 8, 2012): 36\u201339. https://doi.org/10.5334/ai.0511.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLIV-M-1-2020/435/2020/isprs-archives-XLIV-M-1-2020-435-2020.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pancani 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3LAR4ZTF",
+      "formattedCitation": "<div class=\"csl-entry\">Pancani, G., S. Galassi, L. Rovero, L. Dipasquale, E. Fazzi, and G. Tempesta. \u201cSeismic Vulnerability Assessment of the Triumphal Arch of Caracalla in Volubilis (Morocco): Past Events and Provisions for the Future.\u201d <i>ISPRS - International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences</i> 44M1 (July 1, 2020): 435\u201342. https://doi.org/10.5194/isprs-archives-XLIV-M-1-2020-435-2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edh.ub.uni-heidelberg.de/edh/inschrift/HD026160",
+      "citationDetail": "390",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "IAM 2",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I77SX8U8",
+      "formattedCitation": "<div class=\"csl-entry\">Euzennat, M, ed. <i>Inscriptions Antiques Du Maroc, 2 Inscriptions Latines</i>. Paris, 1982.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edh.ub.uni-heidelberg.de/edh/inschrift/HD026521",
+      "citationDetail": "391",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "IAM 2",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I77SX8U8",
+      "formattedCitation": "<div class=\"csl-entry\">Euzennat, M, ed. <i>Inscriptions Antiques Du Maroc, 2 Inscriptions Latines</i>. Paris, 1982.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q20857116",
+      "citationDetail": "Arch of Caracalla (Q20857116)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/7896/",
+      "citationDetail": "7896: Arch of Caracalla at Volubilis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Arch of Caracalla",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Volubilis",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English): Volubilis",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "arch-of-caracalla",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-09-01T18:50:47Z",
+      "uri": "https://pleiades.stoa.org/places/486718746/arch-of-caracalla",
+      "creators": [
+        {
+          "username": null,
+          "name": "Anna Wilson"
+        },
+        {
+          "username": null,
+          "name": "Alisa MacDonald"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-01T21:20:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:54:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:51:48Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:50:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "tlandvatter",
+          "modified": "2022-09-01T18:50:47Z"
+        }
+      ]
+    }
+  ],
+  "id": "486718746",
+  "subject": [
+    "Arch"
+  ],
+  "title": "Arch of Caracalla",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/arch"
+  ],
+  "details": "<p><span id=\"docs-internal-guid-b11466ee-7fff-f067-21f0-69e68c2f0a07\"><span>The Triumphal Arch of Caracalla in Volubilis was erected in 217 CE at the intersection of the </span><span>Decumanus Maximus </span><span>(east)</span><span> </span><span>and</span><span> </span><span>the </span><span>Porte \u00e0 trios baies </span><span>(west) which led to the forum. The arch was constructed with compact limestone from the nearby Mount Zerhoun. </span><span>The front of the monument consists of a single arch, framed by two massive piers, each adorned with two pairs of pedestals that originally supported Corinthian columns. Between the columns are niches that functioned as fountains that poured water into basins below. Above the alcoves are tondos, within which some figures are hotly contested; some propose that the figures are members of the imperial family personified as the seasons while others propose that they are nymphs. </span><span>An inscription lies on the arch's eastern facade, which is the main source of information for the construction, and claims that the arch was topped with a chariot drawn by six horses in bronze. The Lisbon earthquake of 1775 nearly destroyed the arch, but in the 1930s the French reconstructed it by utilizing drawings from the English travelers Henry Boyde and John Windus thirty years before the seismic event. </span></span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Arch of Caracalla at Volubilis was constructed in 217 CE by the governor Marcus Aurelius Sebastenus in honor of the emperor Caracalla and his mother Domna Julia.",
+  "reprPoint": [
+    -5.555367713323156,
+    34.0740339164381
+  ],
+  "placeTypes": [
+    "arch"
+  ],
+  "bbox": [
+    -5.5554208,
+    34.0739595,
+    -5.5553146,
+    34.0741084
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/275740"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-01T17:59:24Z",
+  "uri": "https://pleiades.stoa.org/places/486718746",
+  "creators": [
+    {
+      "username": null,
+      "name": "Anna Wilson"
+    },
+    {
+      "username": null,
+      "name": "Alisa MacDonald"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-30T18:01:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-24T00:05:09Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-24T00:04:21Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-01T21:20:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T18:54:39Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T18:51:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T18:49:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T18:42:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T18:41:47Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T18:29:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T18:00:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T17:59:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "tlandvatter",
+      "modified": "2022-09-01T17:59:24Z"
+    }
+  ]
+}

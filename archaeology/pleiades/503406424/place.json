@@ -1,0 +1,388 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.2309753,
+            38.3488706
+          ],
+          [
+            34.2303764,
+            38.3487163
+          ],
+          [
+            34.2296345,
+            38.3486007
+          ],
+          [
+            34.2294647,
+            38.3486918
+          ],
+          [
+            34.2293375,
+            38.3488546
+          ],
+          [
+            34.2293172,
+            38.3490528
+          ],
+          [
+            34.2293351,
+            38.3496031
+          ],
+          [
+            34.2294334,
+            38.3497644
+          ],
+          [
+            34.2300636,
+            38.3498345
+          ],
+          [
+            34.2305507,
+            38.3499361
+          ],
+          [
+            34.2308413,
+            38.3500062
+          ],
+          [
+            34.2311362,
+            38.3499571
+          ],
+          [
+            34.2311854,
+            38.3496066
+          ],
+          [
+            34.2311094,
+            38.3491159
+          ],
+          [
+            34.2309753,
+            38.3488706
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/503406424/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of A\u015f\u0131kl\u0131 H\u00f6y\u00fck"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/168569016",
+          "citationDetail": "Way 168569016",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=168569016",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "OSM location of A\u015f\u0131kl\u0131 H\u00f6y\u00fck",
+      "provenance": "OpenStreetMap (Way 168569016, version 5, osm:changeset=32587799, 2015-07-12T19:40:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2015-07-31T02:39:16Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.2309753,
+            38.3488706
+          ],
+          [
+            34.2303764,
+            38.3487163
+          ],
+          [
+            34.2296345,
+            38.3486007
+          ],
+          [
+            34.2294647,
+            38.3486918
+          ],
+          [
+            34.2293375,
+            38.3488546
+          ],
+          [
+            34.2293172,
+            38.3490528
+          ],
+          [
+            34.2293351,
+            38.3496031
+          ],
+          [
+            34.2294334,
+            38.3497644
+          ],
+          [
+            34.2300636,
+            38.3498345
+          ],
+          [
+            34.2305507,
+            38.3499361
+          ],
+          [
+            34.2308413,
+            38.3500062
+          ],
+          [
+            34.2311362,
+            38.3499571
+          ],
+          [
+            34.2311854,
+            38.3496066
+          ],
+          [
+            34.2311094,
+            38.3491159
+          ],
+          [
+            34.2309753,
+            38.3488706
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/503406424/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-19T13:21:14Z"
+        },
+        {
+          "comment": "edit title",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-04T19:31:25Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-04T19:30:46Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-13T19:31:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-31T02:47:19Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-31T02:40:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-31T02:39:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-07-31T02:39:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/A%C5%9F%C4%B1kl%C4%B1_H%C3%B6y%C3%BCk",
+      "citationDetail": "A\u015f\u0131kl\u0131 H\u00f6y\u00fck",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), A\u015f\u0131kl\u0131 H\u00f6y\u00fck.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.megalithic.co.uk/article.php?sid=19533",
+      "citationDetail": "Asikli Hoyuk",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TMP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9YPQCWW2",
+      "formattedCitation": "<div class=\"csl-entry\">Burnham, Andy, ed. <i>The Megalithic Portal</i>, 2001. https://www.megalithic.co.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/23417542",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "van Zeist 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5LLT6LXS",
+      "formattedCitation": "<div class=\"csl-entry\">Zeist, Willem van, and Gerrit Jan de Roller. \u201cPlant Remains from Asikli H\u00f6y\u00fck, a Pre-Pottery Neolithic Site in Central Anatolia.\u201d <i>Vegetation History and Archaeobotany</i> 4, no. 3 (1995): 179\u201385. https://www.jstor.org/stable/23417542.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/variation-in-the-development-of-neolithic-societies-atop-the-central-anatolian-plateau-recent-results-from-balikli/146BBBAA71B7D604930162C37791112F",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goring-Morris 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4RH67TU",
+      "formattedCitation": "<div class=\"csl-entry\">Goring-Morris, A. Nigel, Natalie D. Munro, Mihriban \u00d6zba\u015faran, Nurcan Kayacan, M\u00fcge Ergun, Melis Uzdurum, Sera Yel\u00f6zer, Fatma Kalkan, and G\u00fcne\u015f Duru. \u201cVariation in the Development of Neolithic Societies atop the Central Anatolian Plateau: Recent Results from Bal\u0131kl\u0131.\u201d <i>Antiquity</i>, August 5, 2024, 1\u201318. https://doi.org/10.15184/aqy.2024.100.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q794830",
+      "citationDetail": "A\u015f\u0131kl\u0131 H\u00f6y\u00fck (Q794830)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "503406424",
+  "subject": [],
+  "title": "A\u015f\u0131kl\u0131 H\u00f6y\u00fck",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A\u015f\u0131kl\u0131 H\u00f6y\u00fck is an ancient settlement mound located in central Cappadocia that was first settled in the Aceramic Neolithic period, ca. 8000 B.C.",
+  "reprPoint": [
+    34.23024415905424,
+    38.34932095713312
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    34.2293172,
+    38.3486007,
+    34.2311854,
+    38.3500062
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-07-31T02:38:38Z",
+  "uri": "https://pleiades.stoa.org/places/503406424",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q794830",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-29T15:37:00Z"
+    },
+    {
+      "comment": "add Goring-Morris 2024",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-19T13:20:04Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-04T19:33:01Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-13T19:31:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-31T02:47:06Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-31T02:42:52Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-31T02:38:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-31T02:38:39Z"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.877216,
+          46.442931
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-imagery-location-of-excavated-area",
+      "properties": {
+        "snippet": "Archaeological-site; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/23214007/approximate-imagery-location-of-excavated-area",
+        "description": "Identified in Google Earth with reference to photographs in Inrap 2022 (Marigny \u00e0 Fleurville)",
+        "location_precision": "precise",
+        "title": "Approximate Imagery Location of excavated area"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "approximate-imagery-location-of-excavated-area",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 300,
+      "title": "Approximate Imagery Location of excavated area",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Identified in Google Earth with reference to photographs in Inrap 2022 (Marigny \u00e0 Fleurville)",
+      "created": "2022-09-09T19:31:04Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.877216,
+          46.442931
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/23214007/approximate-imagery-location-of-excavated-area",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-11T02:54:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-09T19:31:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-09T19:31:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-09T19:31:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.inrap.fr/la-villa-gallo-romaine-de-marigny-fleurville-saone-et-loire-16718",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Inrap 2022 (Marigny \u00e0 Fleurville)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W8DBRFCL",
+      "formattedCitation": "<div class=\"csl-entry\">Inrap. \u201cLa villa gallo-romaine de Marigny \u00e0 Fleurville (Sa\u00f4ne-et-Loire),\u201d September 9, 2022. https://www.inrap.fr/la-villa-gallo-romaine-de-marigny-fleurville-saone-et-loire-16718.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "23214007",
+  "subject": [],
+  "title": "Marigny \u00e0 Fleurville Gallo-Roman Villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of a Gallo-Roman Villa at modern Ch\u00e2teau de Marigny at Fleurville, France.",
+  "reprPoint": [
+    4.877216,
+    46.442931
+  ],
+  "placeTypes": [
+    "villa",
+    "archaeological-site"
+  ],
+  "bbox": [
+    4.877216,
+    46.442931,
+    4.877216,
+    46.442931
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-09T19:29:34Z",
+  "uri": "https://pleiades.stoa.org/places/23214007",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-11T02:54:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-09T19:31:23Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-09T19:29:35Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-09T19:29:34Z"
+    }
+  ]
+}

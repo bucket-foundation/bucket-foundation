@@ -1,0 +1,377 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.86671,
+            23.9608388
+          ],
+          [
+            32.8668421,
+            23.9608123
+          ],
+          [
+            32.8668332,
+            23.9607751
+          ],
+          [
+            32.8668204,
+            23.9607222
+          ],
+          [
+            32.8666887,
+            23.9607487
+          ],
+          [
+            32.8666961,
+            23.9607795
+          ],
+          [
+            32.866657,
+            23.9607873
+          ],
+          [
+            32.866664,
+            23.9608163
+          ],
+          [
+            32.8667027,
+            23.9608085
+          ],
+          [
+            32.86671,
+            23.9608388
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-temple-of-dedwen",
+      "properties": {
+        "snippet": "Temple-2; AD 1900 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/164886130/osm-location-of-temple-of-dedwen",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Dedwen"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/251383450",
+          "citationDetail": "Way 251383450",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=251383450",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-temple-of-dedwen",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 2099,
+      "title": "OSM location of Temple of Dedwen",
+      "provenance": "OpenStreetMap (Way 251383450, version 7, osm:changeset=123838432, 2022-07-20T08:12:18Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-07-28T14:49:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.86671,
+            23.9608388
+          ],
+          [
+            32.8668421,
+            23.9608123
+          ],
+          [
+            32.8668332,
+            23.9607751
+          ],
+          [
+            32.8668204,
+            23.9607222
+          ],
+          [
+            32.8666887,
+            23.9607487
+          ],
+          [
+            32.8666961,
+            23.9607795
+          ],
+          [
+            32.866657,
+            23.9607873
+          ],
+          [
+            32.866664,
+            23.9608163
+          ],
+          [
+            32.8667027,
+            23.9608085
+          ],
+          [
+            32.86671,
+            23.9608388
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        "relocated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/164886130/osm-location-of-temple-of-dedwen",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-19T20:47:44Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-16T23:22:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-01T16:48:54Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-23T22:29:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T16:53:21Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T14:49:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T14:49:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T14:49:18Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "created": "2021-07-28T14:49:54Z",
+      "associationCertainty": "certain",
+      "title": "New Kalabsha Island",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/164886130/new-kalabsha-island",
+      "connectionType": "relocated_to",
+      "id": "new-kalabsha-island",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-01T16:41:27Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-09-23T22:29:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T16:53:21Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T14:49:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-28T14:49:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/633872579",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/relocated_to"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://whc.unesco.org/en/list/88",
+      "citationDetail": "88-004: Nubian Monuments from Abu Simbel to Philae",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "164886130",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Temple of Dedwen",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An ancient Egyptian temple that was dedicated to Dedwen, the Nubian serpent goddess. It was inscribed as a UNESCO World Heritage Site in 1979, as part of \"Nubian Monuments from Abu Simbel to Philae\". It was relocated to its current location.",
+  "reprPoint": [
+    32.86675044741034,
+    23.960783544102
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    32.866657,
+    23.9607222,
+    32.8668421,
+    23.9608388
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/633872579"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-07-28T14:48:58Z",
+  "uri": "https://pleiades.stoa.org/places/164886130",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-09-23T22:29:08Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-28T16:53:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-28T16:53:16Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-28T14:48:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-28T14:48:58Z"
+    }
+  ]
+}

@@ -1,0 +1,507 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.4874211,
+              41.8935966
+            ],
+            [
+              12.4871658,
+              41.8934376
+            ]
+          ],
+          [
+            [
+              12.4871658,
+              41.8934376
+            ],
+            [
+              12.487124,
+              41.8934115
+            ]
+          ],
+          [
+            [
+              12.487124,
+              41.8934115
+            ],
+            [
+              12.4871137,
+              41.8934236
+            ]
+          ],
+          [
+            [
+              12.4871137,
+              41.8934236
+            ],
+            [
+              12.4871397,
+              41.8934376
+            ],
+            [
+              12.487126,
+              41.8934505
+            ],
+            [
+              12.4871455,
+              41.8934646
+            ],
+            [
+              12.4871622,
+              41.8934468
+            ],
+            [
+              12.4872049,
+              41.8934748
+            ],
+            [
+              12.4871875,
+              41.8934904
+            ],
+            [
+              12.4872085,
+              41.8935071
+            ],
+            [
+              12.4872252,
+              41.8934915
+            ],
+            [
+              12.4873743,
+              41.8935896
+            ],
+            [
+              12.4874054,
+              41.8936025
+            ],
+            [
+              12.4874211,
+              41.8935966
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-colonnacce",
+      "properties": {
+        "snippet": "Architecturalcomplex; AD 1 - AD 99",
+        "link": "https://pleiades.stoa.org/places/377181898/osm-location-of-colonnacce",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Colonnacce"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/1899637",
+          "citationDetail": "Relation 1899637",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=1899637",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-colonnacce",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 99,
+      "title": "OSM location of Colonnacce",
+      "provenance": "OpenStreetMap (Relation 1899637, version 2, osm:changeset=89322691, 2020-08-12T21:14:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-12-24T21:54:51Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              12.4874211,
+              41.8935966
+            ],
+            [
+              12.4871658,
+              41.8934376
+            ]
+          ],
+          [
+            [
+              12.4871658,
+              41.8934376
+            ],
+            [
+              12.487124,
+              41.8934115
+            ]
+          ],
+          [
+            [
+              12.487124,
+              41.8934115
+            ],
+            [
+              12.4871137,
+              41.8934236
+            ]
+          ],
+          [
+            [
+              12.4871137,
+              41.8934236
+            ],
+            [
+              12.4871397,
+              41.8934376
+            ],
+            [
+              12.487126,
+              41.8934505
+            ],
+            [
+              12.4871455,
+              41.8934646
+            ],
+            [
+              12.4871622,
+              41.8934468
+            ],
+            [
+              12.4872049,
+              41.8934748
+            ],
+            [
+              12.4871875,
+              41.8934904
+            ],
+            [
+              12.4872085,
+              41.8935071
+            ],
+            [
+              12.4872252,
+              41.8934915
+            ],
+            [
+              12.4873743,
+              41.8935896
+            ],
+            [
+              12.4874054,
+              41.8936025
+            ],
+            [
+              12.4874211,
+              41.8935966
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/377181898/osm-location-of-colonnacce",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full relation geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-15T02:10:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-04T16:27:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:40:52Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:55:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:54:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:54:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-24T21:55:41Z",
+      "associationCertainty": "certain",
+      "title": "Forum of Nerva",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/377181898/9418077913",
+      "connectionType": "bounds",
+      "id": "9418077913",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:40:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:55:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:55:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T21:55:41Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/984830239",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://catdir.loc.gov/catdir/toc/prin031/92011126.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "D'Ambra 1993",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3VZFD32R",
+          "formattedCitation": "<div class=\"csl-entry\">D\u2019Ambra, Eve. <i>Private Lives, Imperial Virtues: The Frieze of the Forum Transitorium in Rome</i>. Princeton, N.J.: Princeton University Press, 1993. http://catdir.loc.gov/catdir/toc/prin031/92011126.html.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/bounds"
+    },
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-24T22:40:19Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/377181898/roma",
+      "connectionType": "at",
+      "id": "roma",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-04T16:27:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:40:53Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:40:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:40:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://catdir.loc.gov/catdir/toc/prin031/92011126.html",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "D'Ambra 1993",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3VZFD32R",
+          "formattedCitation": "<div class=\"csl-entry\">D\u2019Ambra, Eve. <i>Private Lives, Imperial Virtues: The Frieze of the Forum Transitorium in Rome</i>. Princeton, N.J.: Princeton University Press, 1993. http://catdir.loc.gov/catdir/toc/prin031/92011126.html.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/26",
+      "citationDetail": "Forum Nervae (Forum Transitorium) Rom (Metropolitanstadt) (Roma), Italien",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://catdir.loc.gov/catdir/toc/prin031/92011126.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "D'Ambra 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3VZFD32R",
+      "formattedCitation": "<div class=\"csl-entry\">D\u2019Ambra, Eve. <i>Private Lives, Imperial Virtues: The Frieze of the Forum Transitorium in Rome</i>. Princeton, N.J.: Princeton University Press, 1993. http://catdir.loc.gov/catdir/toc/prin031/92011126.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "377181898",
+  "subject": [
+    "Corinthian"
+  ],
+  "title": "Colonnacce",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Le Colonnacce refers to preserved elements of the lateral, north-south Corinthian-order colonnades that flanked the Forum Transitorium.",
+  "reprPoint": [
+    12.487255376755146,
+    41.893505630069946
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    12.4871137,
+    41.8934115,
+    12.4874211,
+    41.8936025
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/984830239",
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-12-24T21:55:40Z",
+  "uri": "https://pleiades.stoa.org/places/377181898",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-01-04T16:27:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T22:40:52Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T22:39:41Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T21:55:42Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T21:55:40Z"
+    }
+  ]
+}

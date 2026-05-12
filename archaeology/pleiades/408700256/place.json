@@ -1,0 +1,860 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2583757,
+            35.4575495
+          ],
+          [
+            43.2584798,
+            35.4577803
+          ],
+          [
+            43.2586866,
+            35.4577226
+          ],
+          [
+            43.2590206,
+            35.4576276
+          ],
+          [
+            43.2590485,
+            35.4576198
+          ],
+          [
+            43.2588095,
+            35.4569374
+          ],
+          [
+            43.2580892,
+            35.4571615
+          ],
+          [
+            43.2583014,
+            35.4575714
+          ],
+          [
+            43.2583757,
+            35.4575495
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-temple-of-naba-of-the-a-ara-at",
+      "properties": {
+        "snippet": "Temple-2; 720 BC - 540 BC",
+        "link": "https://pleiades.stoa.org/places/408700256/osm-location-of-the-temple-of-naba-of-the-a-ara-at",
+        "description": "Polygon representing the extent of the Temple of Nab\u00fb of the \u1e2bar\u00fb at Assur built by the late Neo-Assyrian king S\u00een-\u0161arra-i\u0161kun (626\u2013612 BC), derived from an OpenStreetMap Way after Schmitt 2012 plate 1.",
+        "location_precision": "precise",
+        "title": "OSM location of the Temple of Nab\u00fb of the \u1e2bar\u00fb at Assur"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1065549075",
+          "citationDetail": "Way 1065549075",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1065549075",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/802287493",
+          "citationDetail": "plate 1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Schmitt 2012",
+          "bibliographicURI": "",
+          "formattedCitation": "Schmitt, A. 2012. Die j\u00fcngeren I\u0161tar-Tempel und der Nab\u00fb-Tempel in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient Gesellschaft 137). Wiesbaden: Harrassowitz.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "osm-location-of-the-temple-of-naba-of-the-a-ara-at",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -540,
+      "title": "OSM location of the Temple of Nab\u00fb of the \u1e2bar\u00fb at Assur",
+      "provenance": "OpenStreetMap (Way 1065549075, version 2, osm:changeset=121819361, 2022-06-01T16:21:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon representing the extent of the Temple of Nab\u00fb of the \u1e2bar\u00fb at Assur built by the late Neo-Assyrian king S\u00een-\u0161arra-i\u0161kun (626\u2013612 BC), derived from an OpenStreetMap Way after Schmitt 2012 plate 1.",
+      "created": "2022-06-02T07:28:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.2583757,
+            35.4575495
+          ],
+          [
+            43.2584798,
+            35.4577803
+          ],
+          [
+            43.2586866,
+            35.4577226
+          ],
+          [
+            43.2590206,
+            35.4576276
+          ],
+          [
+            43.2590485,
+            35.4576198
+          ],
+          [
+            43.2588095,
+            35.4569374
+          ],
+          [
+            43.2580892,
+            35.4571615
+          ],
+          [
+            43.2583014,
+            35.4575714
+          ],
+          [
+            43.2583757,
+            35.4575495
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/408700256/osm-location-of-the-temple-of-naba-of-the-a-ara-at",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:38:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:41:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:30:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:28:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:28:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -540,
+      "description": "The northern wall of Egidrukalamasumu, the temple of Nab\u00fb of the \u1e2bar\u00fb, abutted the southern wall of the still-in-use Assyrian I\u0161tar temple, which had been originally constructed by the Middle Assyrian king A\u0161\u0161ur-r\u0113\u0161\u012b-i\u0161i I (1132\u20131115 BC).",
+      "contributors": [],
+      "created": "2022-06-02T07:03:11Z",
+      "associationCertainty": "certain",
+      "title": "Temple of Ishtar at Assur",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/408700256/temple-of-ishtar-at-assur",
+      "connectionType": "abuts",
+      "id": "temple-of-ishtar-at-assur",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:38:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:41:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:03:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:03:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/299219557",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "plates 1\u20132, 12\u201313",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Schmitt 2012",
+          "bibliographicURI": "http://atlantides.org/bibliography/s.html#Schmitt-2012",
+          "formattedCitation": "Schmitt, A. 2012. Die j\u00fcngeren I\u0161tar-Tempel und der Nab\u00fb-Tempel in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient Gesellschaft 137). Wiesbaden: Harrassowitz.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    },
+    {
+      "end": -540,
+      "description": "The western part of this Nab\u00fb temple was constructed directly above I\u0161tar Temples H, G, GF, E, and D, and the I\u0161tar temple that had been built by Tukult\u012b-Ninurta I.",
+      "contributors": [],
+      "created": "2022-06-02T07:14:29Z",
+      "associationCertainty": "certain",
+      "title": "Temple of Ishtar at Assur",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/408700256/temple-of-ishtar-at-assur-1",
+      "connectionType": "succeeds",
+      "id": "temple-of-ishtar-at-assur-1",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:38:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:41:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:14:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:14:29Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/299219557",
+      "details": "<p>S\u00een-\u0161arra-i\u0161kun\u2019s scribes, at least according to the building account of the so-called \u201cCylinder A Inscription\u201d (for example, <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/riao/Q003871\" target=\"_self\" title=\"\">S\u00een-\u0161arra-i\u0161kun 10</a> lines 22b\u201327a), regarded the ruins to be the remains of earlier Nab\u00fb temples constructed by the Middle Assyrian kings Shalmaneser I (1273\u20131244 BC) and A\u0161\u0161ur-r\u0113\u0161\u012b-i\u0161i I (1132\u20131115 BC) and the Neo-Assyrian ruler Adad-n\u0101r\u0101r\u012b III (810\u2013783 BC). The relevant part of that inscription reads:</p>\r\n<p style=\"padding-left: 30px; \">At that time, the temple of the god Nab\u00fb that is inside B[altil (A\u0161\u0161ur), which Sha]lmaneser (I) \u2014 the builder of the temple of (the god) A\u0161\u0161ur \u2014 had built, became dilapidated and <em>A\u0161\u0161ur-r\u0113\u0161a-i\u0161i (I), son of Mu</em>[<em>takkil-Nusku,</em>\u00a0(re)built (it) (and)] it became dilapidated (again); and Adad-n\u0101r\u0101r\u012b (III), son of \u0160am\u0161\u012b-Adad (V) (re)built (it) and it became dilap[idated and old. For a lo]ng [time], it fell into disrepair and became level with the ground. [The god Nab\u00fb (and) the goddess Ta\u0161m\u0113tu] took up residence [in the temple of the Assyrian I\u0161tar] and (there) they received strewn offerings. [The kings, my ancestors who came before me], did not think about [(re)building] that temple and [they did not pay (it any) attention].\u00a0[I, S\u00een-\u0161arra-i\u0161kun, king of] the world, king of Assyria, the one who reveres the great gods, [who is assiduous towards their places (of worship)], conceived [in] my [hear]t [to (re)build that temple] and wanted (to carry it out).\u00a0</p>\r\n<p>That same inscription (line 29) claims that Egidrukalamasumu was erected \u201caccording to its original plan, [on its] former [site],\u201d which was not the case, according to the remains of previous buildings over which the new Nab\u00fb temple was constructed. <a class=\"external-link\" href=\"http://oracc.museum.upenn.edu/riao/Q003873\" target=\"_self\" title=\"\">S\u00een-\u0161arra-i\u0161kun 12</a>, a text engraved on a stone block, however, correctly states that the temple was built on an empty lot. For a brief study on the discrepancy between the textual and archaeological records, see <a class=\"external-link\" href=\"https://www.academia.edu/46445432/The_S\u00een_\u0161arra_i\u0161kun_Stone_Block_Inscription_in_the_Ashur_Site_Museum_A_Revised_Edition_and_Notes_on_the_Nab\u00fb_Temple_at_Ashur_In_Kaskal_Vol_11_pp_159_169\" target=\"_self\" title=\"\">Novotny, Kaskal 11</a> (2014) pp.\u00a0162\u2013165.</p>",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "plates 2, 12",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Schmitt 2012",
+          "bibliographicURI": "http://atlantides.org/bibliography/s.html#Schmitt-2012",
+          "formattedCitation": "Schmitt, A. 2012. Die j\u00fcngeren I\u0161tar-Tempel und der Nab\u00fb-Tempel in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient Gesellschaft 137). Wiesbaden: Harrassowitz.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    },
+    {
+      "end": -540,
+      "description": "S\u00een-\u0161arra-i\u0161kun (626\u2013612 BC), Assyria\u2019s penultimate king, built a new temple for the god Nab\u00fb of the \u1e2bar\u00fb at Assur.",
+      "contributors": [],
+      "created": "2022-06-02T07:17:08Z",
+      "associationCertainty": "certain",
+      "title": "Ashur/\u2018Lamban\u2019?/\u2018Liba(nai)\u2019?",
+      "start": -720,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/408700256/ashur-2018lamban2019-2018liba-nai-2019",
+      "connectionType": "at",
+      "id": "ashur-2018lamban2019-2018liba-nai-2019",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:38:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:41:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:17:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:17:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893945",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/oclc/802287493",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Schmitt 2012",
+          "bibliographicURI": "",
+          "formattedCitation": "Schmitt, A. 2012. Die j\u00fcngeren I\u0161tar-Tempel und der Nab\u00fb-Tempel in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient Gesellschaft 137). Wiesbaden: Harrassowitz.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/802287493",
+      "citationDetail": "82\u2013100",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Schmitt 2012",
+      "bibliographicURI": "",
+      "formattedCitation": "Schmitt, A. 2012. Die j\u00fcngeren I\u0161tar-Tempel und der Nab\u00fb-Tempel in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient Gesellschaft 137). Wiesbaden: Harrassowitz.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/77273166",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Andrae 1935",
+      "bibliographicURI": "",
+      "formattedCitation": "Andrae, W. 1935. Die j\u00fcngeren Ischtar-Tempel in Assur (Wissenschaftliche Ver\u00f6ffentlichungen der Deutschen Orient Gesellschaft 58). Leipzig: J. C. Hinrichs.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "232\u2013237",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Andrae 1977",
+      "bibliographicURI": "http://atlantides.org/bibliography/a.html#Andrae-1977",
+      "formattedCitation": "Andrae, W. 1977. Das wiedererstandene Assur. Zweite, durchgesehene und erweiterte Auflage, herausgegeben von Barthel Hrouda. Munich: C. H. Beck.",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/btto/Q004802/",
+      "citationDetail": "GAB A",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "BTTo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/btto/Q004803/",
+      "citationDetail": "GAB B",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "BTTo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/btto/Q004804/",
+      "citationDetail": "GAB C",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "BTTo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q003868/",
+      "citationDetail": "S\u00een-\u0161arru-i\u0161kun 07",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q003871/",
+      "citationDetail": "S\u00een-\u0161arru-i\u0161kun 10",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oracc.museum.upenn.edu/riao/Q003873/",
+      "citationDetail": "S\u00een-\u0161arru-i\u0161kun 12",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "RIAo",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+      "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/46445432/The_S\u00een_\u0161arra_i\u0161kun_Stone_Block_Inscription_in_the_Ashur_Site_Museum_A_Revised_Edition_and_Notes_on_the_Nab\u00fb_Temple_at_Ashur_In_Kaskal_Vol_11_pp_159_169",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Novotny 2014",
+      "bibliographicURI": "",
+      "formattedCitation": "Novotny, J. 2014. \"The S\u00een-\u0161arra-i\u0161kun Stone Block Inscription in the Ashur Site Museum. A Revised Edition and Notes on the Nab\u00fb Temple at Ashur,\" Kaskal 11 (2014): 159-169.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/883572295",
+      "citationDetail": "94 no. 397",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S9ZFQMFE",
+      "formattedCitation": "<div class=\"csl-entry\">George, Andrew R, and Eisenbrauns. <i>House most high: the temples of ancient Mesopotamia</i>. Winona Lake, Ind.: Eisenbrauns, 2004. http://www.worldcat.org/oclc/883572295.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/803804468",
+      "citationDetail": "461\u2013462",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "George 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GUZL9E89",
+      "formattedCitation": "<div class=\"csl-entry\">George, A. R, Katholieke Universiteit te Leuven (1970-), and Departement Ori\u00ebntalistiek. <i>Babylonian topographical texts</i>. Orientalia Lovaniensia analecta 40. Leuven: Departement Ori\u00ebntalistiek\u202f: Peeters, 1992. http://www.worldcat.org/oclc/803804468.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Egidrukalamasumu",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q004802/",
+          "citationDetail": "GAB A",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "egidrukalamasumu",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "The Sumerian ceremonial name of the temple of the god Nab\u00fb of the \u1e2bar\u00fb at Assur is Egidrukalamasumu, which means \u201cHouse Which Bestows the Scepter of the Land.\u201d The name is based on the Nab\u00fb of the \u1e2bar\u00fb temple at Babylon",
+      "transcriptionCompleteness": "complete",
+      "language": "sux",
+      "created": "2022-06-02T07:20:43Z",
+      "uri": "https://pleiades.stoa.org/places/408700256/egidrukalamasumu",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:38:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:41:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:20:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:20:43Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "b\u012bt Nab\u00fb \u0161a \u1e2bar\u00ea",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/btto/Q004802/",
+          "citationDetail": "GAB A",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "BTTo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/22XITAIJ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Babylonian Topographical Texts Online</i>. Oracc. Accessed January 28, 2021. http://oracc.museum.upenn.edu/btto/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "bit-nabu-sa-hare",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "\"Everyday\" Akkadian name of the temple of the god Nab\u00fb of the \u1e2bar\u00fb at Assur.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2022-06-02T07:24:15Z",
+      "uri": "https://pleiades.stoa.org/places/408700256/bit-nabu-sa-hare",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:38:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:41:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:24:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:24:15Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "b\u012bt Nab\u00fb",
+      "attestations": [
+        {
+          "timePeriod": "neo-assyrian-babylonian-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neo-assyrian-babylonian-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://oracc.museum.upenn.edu/riao/Q003871/",
+          "citationDetail": "S\u00een-\u0161arru-i\u0161kun 10",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "RIAo",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3ZEUGKC3",
+          "formattedCitation": "<div class=\"csl-entry\"><i>The Royal Inscriptions of Assyria Online (RIAo) Project</i>. Official Inscriptions of the Middle East in Antiquity (OIMEA). Open Richly Annotated Cuneiform Corpus, 2015. http://oracc.museum.upenn.edu/riao/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "bit-nabu",
+      "end": -540,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -720,
+      "details": "",
+      "review_state": "published",
+      "description": "\"Everyday\" Akkadian name of the temple of the god Nab\u00fb of the \u1e2bar\u00fb at Assur.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2022-06-02T07:26:50Z",
+      "uri": "https://pleiades.stoa.org/places/408700256/bit-nabu",
+      "creators": [
+        {
+          "username": "jnovotny",
+          "homepage": null,
+          "name": "Jamie Novotny",
+          "uri": "https://pleiades.stoa.org/author/jnovotny"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:38:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:41:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:26:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jnovotny",
+          "modified": "2022-06-02T07:26:50Z"
+        }
+      ]
+    }
+  ],
+  "id": "408700256",
+  "subject": [
+    "ANE",
+    "Assyrian"
+  ],
+  "title": "Temple of Nab\u00fb of the \u1e2bar\u00fb at Assur",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>In the Assyrian religious capital of Assur, Assyria\u2019s penultimate king, S\u00een-\u0161arra-i\u0161kun (626\u2013612 BC), had a new temple for the god Nab\u00fb built, since that god\u2019s place of worship was at the start of his reign inside the\u00a0<a class=\"external-link\" href=\"../299219557\" target=\"_self\" title=\"\">temple of the Assyrian I\u0161tar</a>. Egidrukalamasumu \u2014 whose Sumerian ceremonial name means \u201cHouse Which Bestows the Scepter of the Land\u201d) and which is based on the\u00a0<a class=\"external-link\" href=\"../568355929\" target=\"_self\" title=\"\">Nab\u00fb of the \u1e2bar\u00fb temple</a> at Babylon \u2014 was\u00a0 constructed on a vacant plot of land, which concealed the ruins of earlier, long-abandoned I\u0161tar temples. The new temple\u2019s plan was modelled on that the <a class=\"external-link\" href=\"../242008148\" target=\"_self\" title=\"\">Nab\u00fb temple</a> at Kalhu (Nimrud).\u00a0It took several years to complete the work and, once it was finished, the statues of the god of scribes and his wife Ta\u0161m\u0113tu were ushered into the temple during a grand ceremony in the course of which prize\u00a0bulls and fat-tailed\u00a0sheep were presented as\u00a0offerings. Although S\u00een-\u0161arra-i\u0161kun claims to have made Egidrukalamasumu \u201cshine like daylight,\u201d no details about that temple\u2019s sumptuous decoration are recorded in the extant texts of Assyria\u2019s penultimate king. We do know, however, that he dedicated to the temple (inscribed) reddish gold <i>kallu</i>-and\u00a0<i>\u0161ulpu</i>-bowls for Nab\u00fb, a silver spoon (<i>itq\u016bru</i>) for Ta\u0161m\u0113tu, and <i>musukkannu</i>-wood offering tables (<i>pa\u0161\u0161uru</i>) for the goddesses Antu and \u0160ala.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "S\u00een-\u0161arra-i\u0161kun (626\u2013612 BC), Assyria\u2019s penultimate king, built a new temple for the god Nab\u00fb of the \u1e2bar\u00fb at Assur. The temple was constructed in vacant lot that was next to the temple of the Assyrian I\u0161tar. That Neo-Assyrian king modelled the temple\u2019s plan on that the Nab\u00fb temple at Kalhu (Nimrud) and named it after the Nab\u00fb temple at Babylon. Egidrukalamasumu (\u201cHouse Which Bestows the Scepter of the Land\u201d) was destroyed in 614 BC, when Assur was destroyed by the Medes.",
+  "reprPoint": [
+    43.258589729129895,
+    35.457361287113756
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    43.2580892,
+    35.4569374,
+    43.2590485,
+    35.4577803
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/299219557",
+    "https://pleiades.stoa.org/places/299219557",
+    "https://pleiades.stoa.org/places/893945"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-02T06:24:16Z",
+  "uri": "https://pleiades.stoa.org/places/408700256",
+  "creators": [
+    {
+      "username": "jnovotny",
+      "homepage": null,
+      "name": "Jamie Novotny",
+      "uri": "https://pleiades.stoa.org/author/jnovotny"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-02T15:38:30Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T07:41:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T07:40:34Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T07:39:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T07:36:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T07:21:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T06:55:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T06:50:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T06:44:40Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T06:24:18Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jnovotny",
+      "modified": "2022-06-02T06:24:16Z"
+    }
+  ]
+}

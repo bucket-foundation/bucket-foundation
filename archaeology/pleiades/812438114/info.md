@@ -1,0 +1,14 @@
+# Caput Basensis
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/812438114
+- **ID**: 812438114
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Caput Basensis
+
+## Description
+
+A statio located in Pannonia Secunda.

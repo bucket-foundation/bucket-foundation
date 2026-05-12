@@ -1,0 +1,14 @@
+# Novas Fusciani/Noas Fusciani
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/311129
+- **ID**: 311129
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Novas Fusciani, Noas Fusciani, Nobas Fvsciani
+
+## Description
+
+An ancient place, cited: BAtlas 31 unlocated No(v)as Fusciani

@@ -1,0 +1,366 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.727714644826825,
+            34.74566457360419
+          ],
+          [
+            40.727717983606475,
+            34.7456655938583
+          ],
+          [
+            40.72771808950774,
+            34.7456667934311
+          ],
+          [
+            40.72771906574369,
+            34.74566704649853
+          ],
+          [
+            40.7277208428941,
+            34.74566301765656
+          ],
+          [
+            40.727728496735736,
+            34.74566531121444
+          ],
+          [
+            40.72772671958566,
+            34.74566934005652
+          ],
+          [
+            40.72773396344862,
+            34.74567137252791
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "total-station-coordinates",
+      "properties": {
+        "snippet": "Interior-wall; AD 200 - AD 299",
+        "link": "https://pleiades.stoa.org/places/851079254/total-station-coordinates",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Total Station Coordinates"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "total-station-coordinates",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/interior-wall"
+      ],
+      "end": 299,
+      "title": "Total Station Coordinates",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/interior-wall"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dura-europos-house-church-coordinates",
+      "featureType": [
+        "interior-wall"
+      ],
+      "description": "",
+      "created": "2023-05-15T19:51:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            40.727714644826825,
+            34.74566457360419
+          ],
+          [
+            40.727717983606475,
+            34.7456655938583
+          ],
+          [
+            40.72771808950774,
+            34.7456667934311
+          ],
+          [
+            40.72771906574369,
+            34.74566704649853
+          ],
+          [
+            40.7277208428941,
+            34.74566301765656
+          ],
+          [
+            40.727728496735736,
+            34.74566531121444
+          ],
+          [
+            40.72772671958566,
+            34.74566934005652
+          ],
+          [
+            40.72773396344862,
+            34.74567137252791
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/851079254/total-station-coordinates",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-15T20:58:34Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-15T20:58:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "achen",
+          "modified": "2023-05-15T20:04:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "achen",
+          "modified": "2023-05-15T19:53:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "achen",
+          "modified": "2023-05-15T19:51:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2023-05-15T19:51:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 299,
+      "description": "",
+      "contributors": [],
+      "created": "2023-05-15T19:52:46Z",
+      "associationCertainty": "certain",
+      "title": "Baptistery, Christian House Church, Dura-Europos",
+      "start": 200,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/851079254/baptistery-christian-house-church-dura-europos",
+      "connectionType": "part_of_physical",
+      "id": "baptistery-christian-house-church-dura-europos",
+      "attestations": [
+        {
+          "timePeriod": "third-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/third-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-15T20:58:35Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "achen",
+          "modified": "2023-05-15T20:04:12Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "achen",
+          "modified": "2023-05-15T19:52:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "achen",
+          "modified": "2023-05-15T19:52:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/486132829",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1034731631",
+      "citationDetail": "33, 108",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baird 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QL32DCUE",
+      "formattedCitation": "<div class=\"csl-entry\">Baird, Jennifer A. <i>Dura-Europos</i>. London: Bloomsbury, 2018. http://www.worldcat.org/oclc/1034731631.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1295968857",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Peppard 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9XXNNKFI",
+      "formattedCitation": "<div class=\"csl-entry\">Peppard, Michael. <i>The World\u2019s Oldest Church: Bible, Art, and Ritual at Dura-Europos, Syria</i>. Synkrisis. New Haven: Yale University Press, 2016. http://www.worldcat.org/oclc/1295968857.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kraeling 1967",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IR2MDI33",
+      "formattedCitation": "<div class=\"csl-entry\">Kraeling, Carl Hermann, Charles Bradford Welles, Acad\u00e9mie des inscriptions et belles-lettres (France), and Conn.) Yale university (New Haven. <i>The Excavations at Dura-Europos Final Report VIII. Part II, Final Report VIII. Part II,</i>. The Excavations at Dura Europas, VIII, pt. 2. New Haven: Dura-Europos Publications, 1967.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q116950457",
+      "citationDetail": "Wall0050 Baptistery, Christian house church (Q116950457)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "851079254",
+  "subject": [
+    "YDEA project"
+  ],
+  "title": "Wall0050, Christian house church (Dura-Europos)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/interior-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Wall portion between the doors on the southern interior wall (including niche) from the Baptistery, Christian House Church, Dura-Europos.",
+  "reprPoint": [
+    40.72772438814927,
+    34.745666587718844
+  ],
+  "placeTypes": [
+    "interior-wall"
+  ],
+  "bbox": [
+    40.727714644826825,
+    34.74566301765656,
+    40.72773396344862,
+    34.74567137252791
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/486132829"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-05-15T19:50:28Z",
+  "uri": "https://pleiades.stoa.org/places/851079254",
+  "creators": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Wall0050 Baptistery, Christian house church (Q116950457)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-26T02:01:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-15T20:58:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "achen",
+      "modified": "2023-05-15T20:04:11Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "achen",
+      "modified": "2023-05-15T19:50:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "achen",
+      "modified": "2023-05-15T19:50:28Z"
+    }
+  ]
+}

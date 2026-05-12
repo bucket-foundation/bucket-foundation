@@ -1,0 +1,328 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.7097223,
+            37.9851259
+          ],
+          [
+            22.7102018,
+            37.9847055
+          ],
+          [
+            22.7091829,
+            37.9839732
+          ],
+          [
+            22.709073,
+            37.9839123
+          ],
+          [
+            22.7089082,
+            37.983936
+          ],
+          [
+            22.7087624,
+            37.9840056
+          ],
+          [
+            22.7086851,
+            37.984084
+          ],
+          [
+            22.7086343,
+            37.9841867
+          ],
+          [
+            22.7086873,
+            37.9843051
+          ],
+          [
+            22.7089877,
+            37.9845297
+          ],
+          [
+            22.7097223,
+            37.9851259
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ancient-stadium",
+      "properties": {
+        "snippet": "Stadion",
+        "link": "https://pleiades.stoa.org/places/807215246/osm-location-of-ancient-stadium",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ancient Stadium of Sikyon"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/461979106",
+          "citationDetail": "Way 461979106",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=461979106",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ancient-stadium",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+      ],
+      "end": null,
+      "title": "OSM location of Ancient Stadium of Sikyon",
+      "provenance": "OpenStreetMap (Way 461979106, version 6, osm:changeset=159503916, 2024-11-23T15:10:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "stadion"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-11-12T03:51:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.7097223,
+            37.9851259
+          ],
+          [
+            22.7102018,
+            37.9847055
+          ],
+          [
+            22.7091829,
+            37.9839732
+          ],
+          [
+            22.709073,
+            37.9839123
+          ],
+          [
+            22.7089082,
+            37.983936
+          ],
+          [
+            22.7087624,
+            37.9840056
+          ],
+          [
+            22.7086851,
+            37.984084
+          ],
+          [
+            22.7086343,
+            37.9841867
+          ],
+          [
+            22.7086873,
+            37.9843051
+          ],
+          [
+            22.7089877,
+            37.9845297
+          ],
+          [
+            22.7097223,
+            37.9851259
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/807215246/osm-location-of-ancient-stadium",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-03-14T17:48:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-14T14:14:04Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-03-14T14:11:50Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-12T03:52:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-12T03:51:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-12T03:51:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-11-12T03:52:10Z",
+      "associationCertainty": "certain",
+      "title": "Sicyon/Demetrias",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/807215246/1305224296",
+      "connectionType": "at",
+      "id": "1305224296",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-12T03:52:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-12T03:52:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-12T03:52:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570668",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://odysseus.culture.gr/h/3/eh352.jsp?obj_id=2538",
+      "citationDetail": "2538: ARCHAEOLOGICAL SITE OF SIKYON",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Odysseus",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KADCFN2V",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a5\u03c0\u03bf\u03c5\u03c1\u03b3\u03b5\u03af\u03bf \u03a0\u03bf\u03bb\u03b9\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd \u03ba\u03b1\u03b9 \u0391\u03b8\u03bb\u03b7\u03c4\u03b9\u03c3\u03bc\u03bf\u03cd. <i>\u039f\u0394\u03a5\u03a3\u03a3\u0395Y\u03a3</i>, 2012. http://odysseus.culture.gr/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "807215246",
+  "subject": [],
+  "title": "Ancient Stadium of Sikyon",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/stadion"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The ancient stadium of Sikyon.",
+  "reprPoint": [
+    22.70940570520207,
+    37.98449164804185
+  ],
+  "placeTypes": [
+    "stadion"
+  ],
+  "bbox": [
+    22.7086343,
+    37.9839123,
+    22.7102018,
+    37.9851259
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570668"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-11-12T03:52:09Z",
+  "uri": "https://pleiades.stoa.org/places/807215246",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-03-14T17:48:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-14T14:14:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-14T14:13:59Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-12T03:52:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-12T03:52:09Z"
+    }
+  ]
+}

@@ -1,0 +1,359 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.4619036,
+            31.503751
+          ],
+          [
+            34.4618354,
+            31.5037938
+          ],
+          [
+            34.4616857,
+            31.5036235
+          ],
+          [
+            34.4617689,
+            31.503569
+          ],
+          [
+            34.4618006,
+            31.5035474
+          ],
+          [
+            34.4618157,
+            31.5035606
+          ],
+          [
+            34.4618576,
+            31.5036026
+          ],
+          [
+            34.4618932,
+            31.5036418
+          ],
+          [
+            34.4619224,
+            31.5036738
+          ],
+          [
+            34.4618638,
+            31.503704
+          ],
+          [
+            34.4619036,
+            31.503751
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Church-2; AD 1700 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/108879169/osm-location",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of S. Porphyrius in Gaza"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/297862470",
+          "citationDetail": "Way 297862470",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=297862470",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": 2100,
+      "title": "OSM location of S. Porphyrius in Gaza",
+      "provenance": "OpenStreetMap (Way 297862470, version 8, osm:changeset=142539636, 2023-10-13T19:55:56Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2018-06-17T16:00:44Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.4619036,
+            31.503751
+          ],
+          [
+            34.4618354,
+            31.5037938
+          ],
+          [
+            34.4616857,
+            31.5036235
+          ],
+          [
+            34.4617689,
+            31.503569
+          ],
+          [
+            34.4618006,
+            31.5035474
+          ],
+          [
+            34.4618157,
+            31.5035606
+          ],
+          [
+            34.4618576,
+            31.5036026
+          ],
+          [
+            34.4618932,
+            31.5036418
+          ],
+          [
+            34.4619224,
+            31.5036738
+          ],
+          [
+            34.4618638,
+            31.503704
+          ],
+          [
+            34.4619036,
+            31.503751
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/108879169/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-16T03:17:23Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-22T11:51:47Z"
+        },
+        {
+          "comment": "title",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-22T11:50:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T16:01:19Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T16:01:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T16:00:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-17T16:00:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:37:13Z",
+      "associationCertainty": "certain",
+      "title": "Gaza",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/108879169/687902",
+      "connectionType": "connection",
+      "id": "687902",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:37:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/687902",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Church_of_Saint_Porphyrius",
+      "citationDetail": "Church of Saint Porphyrius",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Church of Saint Porphyrius.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "108879169",
+  "subject": [],
+  "title": "S. Porphyrius",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The oldest Orthodox church in Gaza, sacred to the fifth century Saint Porphyrius whose tomb lies within the church.",
+  "reprPoint": [
+    34.46181487199307,
+    31.503669387110076
+  ],
+  "placeTypes": [
+    "church-2"
+  ],
+  "bbox": [
+    34.4616857,
+    31.5035474,
+    34.4619224,
+    31.5037938
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/687902"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-02-25T19:00:19Z",
+  "uri": "https://pleiades.stoa.org/places/108879169",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Update place type ",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-16T12:00:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-22T11:51:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-17T16:01:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-02-25T19:02:05Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-02-25T19:00:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-02-25T19:00:20Z"
+    }
+  ]
+}

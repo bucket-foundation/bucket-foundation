@@ -1,0 +1,910 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.2,
+          35.32
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-amnisos",
+      "properties": {
+        "snippet": "Port, Settlement, ; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/524143100/location-of-amnisos",
+        "description": "coordinates after GeoHack.",
+        "location_precision": "precise",
+        "title": "Imagery location of Amnisos"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "mgierhart",
+      "homepage": null,
+      "name": "Maija Gierhart",
+      "uri": "https://pleiades.stoa.org/author/mgierhart"
+    },
+    {
+      "username": "rssmith",
+      "homepage": null,
+      "name": "R. Scott Smith",
+      "uri": "https://pleiades.stoa.org/author/rssmith"
+    },
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    },
+    {
+      "username": "ghawes",
+      "homepage": null,
+      "name": "Greta Hawes",
+      "uri": "https://pleiades.stoa.org/author/ghawes"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://toolserver.org/~geohack/geohack.php?pagename=Amnisos&params=35.32_N_25.2_E_scale:1000",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "GeoHack - Amnisos",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Paus.%201.18.5&lang=original",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Paus. 1.18.5",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "location-of-amnisos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/port",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -1000,
+      "title": "Imagery location of Amnisos",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/port",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "port",
+        "settlement",
+        ""
+      ],
+      "description": "coordinates after GeoHack.",
+      "created": "2013-05-01T19:51:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.2,
+          35.32
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/524143100/location-of-amnisos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-07-26T23:41:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-01T19:53:46Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-01T19:51:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-05-01T19:51:52Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:59:13Z",
+      "associationCertainty": "certain",
+      "title": "Creta Ins.",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/524143100/589748",
+      "connectionType": "connection",
+      "id": "589748",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589748",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:59:14Z",
+      "associationCertainty": "certain",
+      "title": "Knosos/Col. Iulia Nobilis Cnosos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/524143100/589872",
+      "connectionType": "connection",
+      "id": "589872",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:59:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589872",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Amnisos",
+      "citationDetail": "Amnisos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DK%3Aentry+group%3D2%3Aentry%3Dkarteros",
+      "citationDetail": "KARTEROS (\u201cAmnisos\u201d) Pediada, Crete",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Strab.%2010.4.8&lang=original",
+      "citationDetail": "10.4.8",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Str. (Meineke: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+      "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877. http://data.perseus.org/texts/urn:cts:greekLit:tlg0099.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0012.tlg002.perseus-grc1:19.148-19.189",
+      "citationDetail": "Od. 19.188-89",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Hom. (Allen 1920; Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MTUPQA3P",
+      "formattedCitation": "<div class=\"csl-entry\">Homer. <i>Homeri Opera</i>. Edited by Thomas W Allen. Editio altera. 5 vols. Oxonii; New York: E Typographeo Clarendoniano; Oxford University Press, 1920. http://www.perseus.tufts.edu/hopper/text?doc=urn:cts:greekLit:tlg0012.tlg001.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0064%3Aalphabetic+letter%3DA%3Aentry+group%3D8%3Aentry%3Damnisus-geo",
+      "citationDetail": "AMNISUS",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Smith 1854 (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIA378QC",
+      "formattedCitation": "<div class=\"csl-entry\">Smith, William. <i>Dictionary of Greek and Roman Geography</i>. London: Murray, 1854. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0064.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1163/1574-9347_bnp_e118280",
+      "citationDetail": "Amnisus (H. Sonnabend)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "New Pauly",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DUTS58MJ",
+      "formattedCitation": "<div class=\"csl-entry\">Hubert Cancik, Helmuth Schneider, Manfred Landfester, Christine F. Salazar, and Francis G. Gentry, eds. <i>Brill\u2019s New Pauly: Encyclopaedia of the Ancient World.</i> Brill, 2015. https://referenceworks.brill.com/display/db/npoe.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://web.archive.org/web/20200514145616/http://minoancrete.com/amnisos.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "minoancrete.com: Amnisos",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q473766",
+      "citationDetail": "Amnisos (Q473766)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/33276",
+      "citationDetail": "GEO ID 33276: Amnisos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://resource.manto.unh.edu/10151060",
+      "citationDetail": "10151060: Amnisos (Crete)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "MANTO",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLCUI2TB",
+      "formattedCitation": "<div class=\"csl-entry\">Hawes, Greta, and Scott Smith. <i>MANTO</i>. Accessed February 17, 2023. https://www.manto-myth.org/manto.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1",
+      "citationDetail": "1.18.5",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Paus. (Spiro: Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GTGBFEI9",
+      "formattedCitation": "<div class=\"csl-entry\">Pausanias. <i>Pausaniae Graeciae descriptio</i>. Edited by Friedrich Spiro. 3 vols. Bibliotheca Teubneriana. Lipsiae: Teubner, 1903. http://data.perseus.org/texts/urn:cts:greekLit:tlg0525.tlg001.perseus-grc1.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/353252UAmn",
+      "citationDetail": "Amnissos exc. (Crete) Karteros",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/8224432/amnissos.html",
+      "citationDetail": "8224432: Amnissos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Amnis\u00f3s",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://data.perseus.org/citations/urn:cts:greekLit:tlg0099.tlg001.perseus-eng1:10.4.8",
+          "citationDetail": "10.4.8",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Str. (Meineke: Perseus)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FEVTVBA7",
+          "formattedCitation": "<div class=\"csl-entry\">Strabo. <i>Strabonis Geographica: recognovit Augustus Meineke.</i> Edited by August Meineke. 3 in 2 vols. Lipsiae, 1877.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "amnisos",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2015-05-25T02:02:27Z",
+      "uri": "https://pleiades.stoa.org/places/524143100/amnisos",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "\u1f08\u03bc\u03bd\u03b9\u03c3\u03cc\u03c2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-05-13T22:50:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2020-01-14T15:04:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-25T02:02:47Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-25T02:02:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-05-25T02:02:29Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "a-mi-ni-so",
+      "attestations": [
+        {
+          "timePeriod": "late-minoan",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-minoan",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.academia.edu/963845/The_Geography_of_the_Mycenaean_Kingdoms",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bennet 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7773UUPG",
+          "formattedCitation": "<div class=\"csl-entry\">Bennet, John. \u201cThe Geography of the Mycenaean Kingdoms.\u201d In <i>A Companion to Linear B: Mycenaean Greek Texts and Their World</i>, edited by Yves Duhoux and Anna Morpurgo Davies, 137\u201368. Louvain: Peeters, 2011.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wilson 1977",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NIXSP4NP",
+          "formattedCitation": "<div class=\"csl-entry\">Wilson, Anthony L. \u201cThe Place-Names in the Linear B Tablets from Knossos: Some Preliminary Considerations.\u201d <i>Minos</i> 16, no. 1 &amp; 2 (1977): 67\u2013125.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "p. 56-7",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Aura Jorro 1985",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H7LUBF9T",
+          "formattedCitation": "<div class=\"csl-entry\">Aura Jorro, Francisco. <i>Diccionario Mic\u00e9nico</i>. Vol. 1. Diccionario Griego-Espa\u00f1ol 1. Madrid: Consejo Superior de Investigaciones Cientif\u00edcas, Instituto de Filolog\u00eda, 1985.</div>",
+          "otherIdentifier": "ISBN: 84-00-06128-4",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://liber.cnr.it/tablet/list",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+          "shortTitle": "LiBER",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeAlso"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Ai(3) 1036.1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Ak(1) 638.C",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN As(3) 1520.1v",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Fp 1.7",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Gg 705.1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Lc 550.B",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN M 719.1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Nc 4484",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN V(1) 114.a1v",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Fp(1) 14.2",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Fp(1) 48.3",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Ga(3) 465.2",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN Ga(4) 953.3b",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN X 9015",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "KN X 410.a",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Melena 2019",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K48PCFR5",
+          "formattedCitation": "<div class=\"csl-entry\">Melena, Jos\u00e9 Luis, and Richard Firth, eds. <i>The Knossos Tablets</i>. Sixth edition. Philadelphia: INSTAP Academic Press, 2019.</div>",
+          "otherIdentifier": "ISBN: 978-1-931534-96-3",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "PY An(5) 233.2",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Olivier and Del Freo 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UCXIAZVC",
+          "formattedCitation": "<div class=\"csl-entry\">Olivier, Jean-Pierre, and Maurizio Del Freo. <i>The Pylos Tablets Transcribed</i>. 2nd ed. Padova, Italy: Libreriauniversitaria.it, 2020.</div>",
+          "otherIdentifier": "ISBN: 978-88-335-9205-3",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "a-mi-ni-so",
+      "end": -1080,
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "details": "",
+      "review_state": "published",
+      "description": "Toponym for Amnisos attested in Linear B tablets.",
+      "transcriptionCompleteness": "complete",
+      "language": "grc-Linb",
+      "created": "2022-05-05T00:41:15Z",
+      "uri": "https://pleiades.stoa.org/places/524143100/a-mi-ni-so",
+      "creators": [
+        {
+          "username": "mgierhart",
+          "homepage": null,
+          "name": "Maija Gierhart",
+          "uri": "https://pleiades.stoa.org/author/mgierhart"
+        }
+      ],
+      "attested": "\ud800\udc00\ud800\udc16\ud800\udc1b\ud800\udc30",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "reconnected Melena 2019 references to Zotero library entry",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-06T22:07:47Z"
+        },
+        {
+          "comment": "reconnected Bennet 2011 reference to Zotero",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-05T18:57:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-09T17:23:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-08T18:14:20Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-08T07:46:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-08T07:45:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-08T07:39:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-05T00:43:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-05T00:41:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mgierhart",
+          "modified": "2022-05-05T00:41:15Z"
+        }
+      ]
+    }
+  ],
+  "id": "524143100",
+  "subject": [
+    "KMPP",
+    "extant remains",
+    "Minoans"
+  ],
+  "title": "Amnisos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/port"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Bronze Age site on the north shore of Crete that may have served as a port for Knossos.",
+  "reprPoint": [
+    25.2,
+    35.32
+  ],
+  "placeTypes": [
+    "settlement",
+    "port"
+  ],
+  "bbox": [
+    25.2,
+    35.32,
+    25.2,
+    35.32
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589748",
+    "https://pleiades.stoa.org/places/589872",
+    "https://pleiades.stoa.org/places/202079426"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-05-01T19:49:47Z",
+  "uri": "https://pleiades.stoa.org/places/524143100",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-03T02:38:27Z"
+    },
+    {
+      "comment": "geonames 8224432: Amnissos",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-12T14:50:07Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-12T14:37:11Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-12T14:28:41Z"
+    },
+    {
+      "comment": "added Knossos Minoan Palace Project (KMPP) tag",
+      "modifiedBy": "thomase",
+      "modified": "2020-05-28T22:59:04Z"
+    },
+    {
+      "comment": "updated references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-14T15:02:45Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-09-23T15:50:52Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2015-05-25T02:01:19Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-24T03:29:46Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-07-26T23:41:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-05-01T22:49:13Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-05-01T19:49:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-05-01T19:49:48Z"
+    }
+  ]
+}

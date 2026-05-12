@@ -1,0 +1,398 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.7515352,
+            53.0708848
+          ],
+          [
+            -2.7515922,
+            53.0706993
+          ],
+          [
+            -2.7516017,
+            53.0705137
+          ],
+          [
+            -2.751559,
+            53.0703167
+          ],
+          [
+            -2.7513024,
+            53.070231
+          ],
+          [
+            -2.7508367,
+            53.070251
+          ],
+          [
+            -2.7505563,
+            53.0703766
+          ],
+          [
+            -2.7503663,
+            53.0705708
+          ],
+          [
+            -2.7503473,
+            53.0709562
+          ],
+          [
+            -2.7503924,
+            53.071206
+          ],
+          [
+            -2.750611,
+            53.0713017
+          ],
+          [
+            -2.7509222,
+            53.071276
+          ],
+          [
+            -2.7511955,
+            53.0712103
+          ],
+          [
+            -2.7513166,
+            53.0711575
+          ],
+          [
+            -2.7514164,
+            53.0710761
+          ],
+          [
+            -2.7515352,
+            53.0708848
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-maiden-castle-hill-fort",
+      "properties": {
+        "snippet": "Hillfort; 800 BC - AD 100",
+        "link": "https://pleiades.stoa.org/places/82240559/location-of-maiden-castle-hill-fort",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Maiden Castle hillfort"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "iron-age-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-age-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/214280847",
+          "citationDetail": "Way 214280847",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=214280847",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-maiden-castle-hill-fort",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "end": 100,
+      "title": "OSM location of Maiden Castle hillfort",
+      "provenance": "OpenStreetMap (Way 214280847, version 5, osm:changeset=147053437, 2024-02-04T13:12:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -800,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hillfort"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-08-12T22:30:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.7515352,
+            53.0708848
+          ],
+          [
+            -2.7515922,
+            53.0706993
+          ],
+          [
+            -2.7516017,
+            53.0705137
+          ],
+          [
+            -2.751559,
+            53.0703167
+          ],
+          [
+            -2.7513024,
+            53.070231
+          ],
+          [
+            -2.7508367,
+            53.070251
+          ],
+          [
+            -2.7505563,
+            53.0703766
+          ],
+          [
+            -2.7503663,
+            53.0705708
+          ],
+          [
+            -2.7503473,
+            53.0709562
+          ],
+          [
+            -2.7503924,
+            53.071206
+          ],
+          [
+            -2.750611,
+            53.0713017
+          ],
+          [
+            -2.7509222,
+            53.071276
+          ],
+          [
+            -2.7511955,
+            53.0712103
+          ],
+          [
+            -2.7513166,
+            53.0711575
+          ],
+          [
+            -2.7514164,
+            53.0710761
+          ],
+          [
+            -2.7515352,
+            53.0708848
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/82240559/location-of-maiden-castle-hill-fort",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T19:23:32Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T19:23:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-01-18T20:06:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-08-14T11:11:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-13T01:27:05Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-12T22:30:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-12T22:30:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-08-12T22:30:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Maiden_Castle,_Cheshire",
+      "citationDetail": "Maiden Castle, Cheshire",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Maiden Castle, Cheshire.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://list.english-heritage.org.uk/resultsingle.aspx?uid=1015775",
+      "citationDetail": "1015775",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "NHLE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4EG3E3S",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>The National Heritage List for England</i>. Accessed August 1, 2023. https://historicengland.org.uk/listing/the-list/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.megalithic.co.uk/article.php?sid=5579",
+      "citationDetail": "5579: Maiden Castle (Cheshire) - Hillfort in England in Cheshire",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TMP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9YPQCWW2",
+      "formattedCitation": "<div class=\"csl-entry\">Burnham, Andy, ed. <i>The Megalithic Portal</i>, 2001. https://www.megalithic.co.uk/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q6735359",
+      "citationDetail": "Maiden Castle (Q6735359)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "82240559",
+  "subject": [],
+  "title": "Maiden Castle, Cheshire",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Maiden Castle, Cheshire, is an Iron Age hillfort.",
+  "reprPoint": [
+    -2.7509614564659137,
+    53.070753026510154
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    -2.7516017,
+    53.070231,
+    -2.7503473,
+    53.0713017
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-12T13:42:12Z",
+  "uri": "https://pleiades.stoa.org/places/82240559",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for hillfort; update references @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T19:23:07Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "maximeg",
+      "modified": "2024-12-12T13:42:12Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-01-18T20:04:04Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-08-14T11:11:17Z"
+    },
+    {
+      "comment": "added english heritage list reference",
+      "modifiedBy": "thomase",
+      "modified": "2013-08-14T11:09:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-13T01:26:52Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-12T22:28:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-12T22:28:24Z"
+    }
+  ]
+}

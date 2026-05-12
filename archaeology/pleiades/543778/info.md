@@ -1,0 +1,14 @@
+# Mekistos
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/543778
+- **ID**: 543778
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Mekistos
+
+## Description
+
+An ancient place, cited: BAtlas 55 unlocated Mekistos

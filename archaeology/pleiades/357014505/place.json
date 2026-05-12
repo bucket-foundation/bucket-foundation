@@ -1,0 +1,357 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.8848632,
+            24.0839094
+          ],
+          [
+            32.8849329,
+            24.0838359
+          ],
+          [
+            32.8848229,
+            24.0837698
+          ],
+          [
+            32.88478,
+            24.0838408
+          ],
+          [
+            32.8848632,
+            24.0839094
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "kalabsha-sanctuary",
+      "properties": {
+        "snippet": "Sanctuary; AD 1900 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/357014505/kalabsha-sanctuary",
+        "description": "Polygon based on OpenStreetMap representing the Temple of Kalabsha on Elephantine Island after Wright 1987",
+        "location_precision": "precise",
+        "title": "OSM location of Kalabsha Sanctuary"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1065731407",
+          "citationDetail": "Way 1065731407",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1065731407",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.worldcat.org/title/kalabsha-iii-the-ptolemaic-sanctuary-of-kalabsha-its-reconstruction-on-elephantine-island/oclc/851146414&referer=brief_results",
+          "citationDetail": "page 21",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wright 1987",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NSWQ65K2",
+          "formattedCitation": "<div class=\"csl-entry\">Wright, G. R. H, Deutsches Arch??ologisches Institut, and Abteilung Kairo. <i>Kalabsha. Its Reconstruction on Elephantine Island III, III,</i>. Mainz am Rhein: Philipp von Zabern, 1987. https://www.worldcat.org/title/kalabsha-iii-the-ptolemaic-sanctuary-of-kalabsha-its-reconstruction-on-elephantine-island/oclc/851146414&amp;referer=brief_results.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kalabsha-sanctuary",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 2099,
+      "title": "OSM location of Kalabsha Sanctuary",
+      "provenance": "OpenStreetMap (Way 1065731407, version 2, osm:changeset=123852483, 2022-07-20T13:49:48Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Polygon based on OpenStreetMap representing the Temple of Kalabsha on Elephantine Island after Wright 1987",
+      "created": "2022-05-31T22:32:39Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.8848632,
+            24.0839094
+          ],
+          [
+            32.8849329,
+            24.0838359
+          ],
+          [
+            32.8848229,
+            24.0837698
+          ],
+          [
+            32.88478,
+            24.0838408
+          ],
+          [
+            32.8848632,
+            24.0839094
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        "relocated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/357014505/kalabsha-sanctuary",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-11-13T22:34:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T23:20:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-01T16:49:02Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-01T16:48:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2022-06-01T16:42:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T22:37:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T22:34:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T22:32:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T22:32:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2099,
+      "description": "",
+      "contributors": [],
+      "created": "2022-05-31T22:35:15Z",
+      "associationCertainty": "certain",
+      "title": "Elephantine",
+      "start": 1900,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/357014505/elephantine",
+      "connectionType": "relocated_to",
+      "id": "elephantine",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-12T23:20:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T22:37:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T22:36:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T22:35:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-05-31T22:35:15Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/786021",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/relocated_to"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/title/kalabsha-iii-the-ptolemaic-sanctuary-of-kalabsha-its-reconstruction-on-elephantine-island/oclc/851146414&referer=brief_results",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wright 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NSWQ65K2",
+      "formattedCitation": "<div class=\"csl-entry\">Wright, G. R. H, Deutsches Arch??ologisches Institut, and Abteilung Kairo. <i>Kalabsha. Its Reconstruction on Elephantine Island III, III,</i>. Mainz am Rhein: Philipp von Zabern, 1987. https://www.worldcat.org/title/kalabsha-iii-the-ptolemaic-sanctuary-of-kalabsha-its-reconstruction-on-elephantine-island/oclc/851146414&amp;referer=brief_results.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "357014505",
+  "subject": [],
+  "title": "Sanctuary of Kalabsha (Elephantine)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Ptolemaic sanctuary originally situated in Kalabsha, relocated to the southwestern tip of Elephantine Island in 1961.",
+  "reprPoint": [
+    32.88485322943563,
+    24.083838682592127
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    32.88478,
+    24.0837698,
+    32.8849329,
+    24.0839094
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/786021"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-05-31T22:32:24Z",
+  "uri": "https://pleiades.stoa.org/places/357014505",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-12T23:20:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2022-06-01T16:44:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T22:37:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T22:32:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-05-31T22:32:24Z"
+    }
+  ]
+}

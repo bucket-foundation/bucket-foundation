@@ -1,0 +1,14 @@
+# Orsoua
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/678318
+- **ID**: 678318
+- **Coords (lng, lat)**: [36.574028, 32.64215]
+- **Subjects**: dare:ancient=1, dare:feature=settlement, dare:major=0
+- **Time periods**: 
+- **Names**: Orsoua
+
+## Description
+
+An ancient place, cited: BAtlas 69 E4 Orsoua

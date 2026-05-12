@@ -1,0 +1,435 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6359785,
+            42.418745
+          ],
+          [
+            11.6361667,
+            42.4183951
+          ],
+          [
+            11.6363043,
+            42.4180887
+          ],
+          [
+            11.6364196,
+            42.418075
+          ],
+          [
+            11.6367471,
+            42.4181056
+          ],
+          [
+            11.6368175,
+            42.4181094
+          ],
+          [
+            11.6369409,
+            42.418141
+          ],
+          [
+            11.6370406,
+            42.4182104
+          ],
+          [
+            11.6370007,
+            42.4182593
+          ],
+          [
+            11.6371457,
+            42.4183227
+          ],
+          [
+            11.6371883,
+            42.4182773
+          ],
+          [
+            11.6376529,
+            42.4184915
+          ],
+          [
+            11.6380442,
+            42.4186384
+          ],
+          [
+            11.6379258,
+            42.4188601
+          ],
+          [
+            11.6378812,
+            42.418861
+          ],
+          [
+            11.6366582,
+            42.4189118
+          ],
+          [
+            11.6359785,
+            42.418745
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-ponte-rotto-necropolis",
+      "properties": {
+        "snippet": "Cemetery; 550 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/362248862/location-of-ponte-rotto-necropolis",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ponte Rotto necropolis"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/98124939",
+          "citationDetail": "Way 98124939",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=98124939",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-ponte-rotto-necropolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -30,
+      "title": "OSM location of Ponte Rotto necropolis",
+      "provenance": "OpenStreetMap (Way 98124939, version 3, osm:changeset=8780330, 2011-07-20T16:38:52Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-11T15:17:00Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6359785,
+            42.418745
+          ],
+          [
+            11.6361667,
+            42.4183951
+          ],
+          [
+            11.6363043,
+            42.4180887
+          ],
+          [
+            11.6364196,
+            42.418075
+          ],
+          [
+            11.6367471,
+            42.4181056
+          ],
+          [
+            11.6368175,
+            42.4181094
+          ],
+          [
+            11.6369409,
+            42.418141
+          ],
+          [
+            11.6370406,
+            42.4182104
+          ],
+          [
+            11.6370007,
+            42.4182593
+          ],
+          [
+            11.6371457,
+            42.4183227
+          ],
+          [
+            11.6371883,
+            42.4182773
+          ],
+          [
+            11.6376529,
+            42.4184915
+          ],
+          [
+            11.6380442,
+            42.4186384
+          ],
+          [
+            11.6379258,
+            42.4188601
+          ],
+          [
+            11.6378812,
+            42.418861
+          ],
+          [
+            11.6366582,
+            42.4189118
+          ],
+          [
+            11.6359785,
+            42.418745
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/362248862/location-of-ponte-rotto-necropolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-05-30T01:58:10Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T05:33:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-01-15T19:44:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-18T00:18:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:32:29Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:18:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:17:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:17:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:36:19Z",
+      "associationCertainty": "certain",
+      "title": "Vulci",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/362248862/413393",
+      "connectionType": "at",
+      "id": "413393",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-13T18:41:02Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:36:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413393",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sgubini Moretti 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/N4CCWEGB",
+      "formattedCitation": "<div class=\"csl-entry\">Sgubini Moretti, Anna Maria. <i>Veio, cerveteri, vulci: citta d\u2019Etruria a confronto\u202f; Roma, Museo Nazionale Etrusco di Villa Giulia Villa Poniatowski 1o ottobre- 30 dicembre 2001</i>. Roma: L\u2019Erma di Bretschneider, 2001.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q90415068",
+      "citationDetail": "Q90415068: Ponte Rotto necropolis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "362248862",
+  "subject": [],
+  "title": "Ponte Rotto necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Ponte Rotto necropolis is associated with the Etruscan city of Vulci.",
+  "reprPoint": [
+    11.6359812,
+    42.4187341
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    11.6359812,
+    42.4187341,
+    11.6359812,
+    42.4187341
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413393",
+    "https://pleiades.stoa.org/places/704548439",
+    "https://pleiades.stoa.org/places/942179195",
+    "https://pleiades.stoa.org/places/704548440"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-07-11T15:16:10Z",
+  "uri": "https://pleiades.stoa.org/places/362248862",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q90415068: Ponte Rotto necropolis",
+      "modifiedBy": "jbecker",
+      "modified": "2020-06-11T18:55:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-13T18:40:09Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-18T00:22:18Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-18T00:19:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-14T21:32:06Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-11T15:16:15Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-07-11T15:16:11Z"
+    }
+  ]
+}

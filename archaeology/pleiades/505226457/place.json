@@ -1,0 +1,352 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5294886,
+          41.8962074
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-necropolis-of-casal-bertone",
+      "properties": {
+        "snippet": "Cemetery, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/505226457/osm-location-of-necropolis-of-casal-bertone",
+        "description": "Representative location based on OpenStreetMap and confirmed in Musco et al. 2008.",
+        "location_precision": "precise",
+        "title": "OSM location of necropolis of Casal Bertone"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/4078260590",
+          "citationDetail": "Node 4078260590",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=4078260590",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-necropolis-of-casal-bertone",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of necropolis of Casal Bertone",
+      "provenance": "OpenStreetMap (Node 4078260590, version 1, osm:changeset=38063631, 2016-03-25T14:04:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap and confirmed in Musco et al. 2008.",
+      "created": "2016-03-25T14:06:52Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.5294886,
+          41.8962074
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/505226457/osm-location-of-necropolis-of-casal-bertone",
+      "creators": [
+        {
+          "username": "Jweiland",
+          "homepage": null,
+          "name": "Jonathan Weiland",
+          "uri": "https://pleiades.stoa.org/author/Jweiland"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-25T14:11:12Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-25T14:11:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-25T14:10:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-25T14:09:29Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-25T14:07:52Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-25T14:06:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-03-25T14:06:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:53:23Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/505226457/423025",
+      "connectionType": "connection",
+      "id": "423025",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/849905048",
+      "formattedCitation": "Killgrove, K. and R. H. Tykot. 2013. \"Food for Rome: a stable isotope investigation of diet in the Imperial period (1st\u20133rd centuries AD).\" Journal of Anthropological Archaeology 32.1: 28-38.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Casal_Bertone",
+      "citationDetail": "Casal Bertone",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/UMFZH98D",
+      "formattedCitation": "Wikipedia: L\u2019enciclopedia libera e collaborativa (2001-), Casal Bertone.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.plos.org/wp-content/uploads/2016/01/pone-11-02-Killgrove.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Killgrove, K. and J. Montgomery. 2016. \"All Roads Lead to Rome: Exploring Human Migration to the Eternal City through Biochemistry of Skeletons from Two ImperialEra Cemeteries (1st-3rd c AD).\" PLoS ONE 11(2): e0147585. doi:10.1371/journal. pone.0147585.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.academia.edu/245997/Le_complexe_archeologique_de_Casal_Bertone",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Musco, S. et al. 2008. \"Le complexe arch\u00e9ologique de Casal Bertone.\" Le Dossiers d'Archeologie 330",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.researchgate.net/profile/Kristina_Killgrove/publication/259741129_Migration_and_Mobility_in_Imperial_Rome/links/0deec52d83e7bb4270000000.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Killgrove, Kristina. \"Migration and mobility in Imperial Rome.\" PhD diss., University of North Carolina at Chapel Hill, 2010.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "505226457",
+  "subject": [],
+  "title": "Casal Bertone necropolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Casal Bertone is named for the modern Roman neighborhood where it was discovered, about 2 km east of the Porta Maggiore. The site of Casal Bertone covers more than 3,000 square meters. The eastern portion of the site comprised a residential area that was occupied from about the first century B.C. to the fifth to sixth centuries A.D.",
+  "reprPoint": [
+    12.5294886,
+    41.8962074
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.5294886,
+    41.8962074,
+    12.5294886,
+    41.8962074
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-04-27T16:58:27Z",
+  "uri": "https://pleiades.stoa.org/places/505226457",
+  "creators": [
+    {
+      "username": "Jweiland",
+      "homepage": null,
+      "name": "Jonathan Weiland",
+      "uri": "https://pleiades.stoa.org/author/Jweiland"
+    },
+    {
+      "username": "sbond",
+      "homepage": null,
+      "name": "Sarah Bond",
+      "uri": "https://pleiades.stoa.org/author/sbond"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added sbond contributor",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-24T16:24:19Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-25T14:11:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-25T14:11:40Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-25T14:05:41Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-25T13:34:06Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-25T00:38:49Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-25T00:35:16Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-22T17:00:16Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "Jweiland",
+      "modified": "2015-04-27T17:14:01Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "Jweiland",
+      "modified": "2015-04-27T16:58:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "Jweiland",
+      "modified": "2015-04-27T16:58:28Z"
+    }
+  ]
+}

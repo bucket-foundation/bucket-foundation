@@ -1,0 +1,304 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.2480121,
+            39.9821113
+          ],
+          [
+            26.2479697,
+            39.9812072
+          ],
+          [
+            26.2474094,
+            39.9805893
+          ],
+          [
+            26.2466709,
+            39.980173
+          ],
+          [
+            26.2460258,
+            39.9800689
+          ],
+          [
+            26.2453637,
+            39.980238
+          ],
+          [
+            26.2451769,
+            39.9805893
+          ],
+          [
+            26.2455334,
+            39.9816625
+          ],
+          [
+            26.2460513,
+            39.9822414
+          ],
+          [
+            26.2467134,
+            39.9825471
+          ],
+          [
+            26.2474774,
+            39.9826902
+          ],
+          [
+            26.2479018,
+            39.9824756
+          ],
+          [
+            26.2480121,
+            39.9821113
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-aobantepe",
+      "properties": {
+        "snippet": "Settlement; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/898419745/osm-location-of-aobantepe",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of \u00c7obantepe"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/217554569",
+          "citationDetail": "Way 217554569",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=217554569",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-aobantepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1000,
+      "title": "OSM location of \u00c7obantepe",
+      "provenance": "OpenStreetMap (Way 217554569, version 1, osm:changeset=15738717, 2013-04-15T15:43:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-02-07T00:32:34Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.2480121,
+            39.9821113
+          ],
+          [
+            26.2479697,
+            39.9812072
+          ],
+          [
+            26.2474094,
+            39.9805893
+          ],
+          [
+            26.2466709,
+            39.980173
+          ],
+          [
+            26.2460258,
+            39.9800689
+          ],
+          [
+            26.2453637,
+            39.980238
+          ],
+          [
+            26.2451769,
+            39.9805893
+          ],
+          [
+            26.2455334,
+            39.9816625
+          ],
+          [
+            26.2460513,
+            39.9822414
+          ],
+          [
+            26.2467134,
+            39.9825471
+          ],
+          [
+            26.2474774,
+            39.9826902
+          ],
+          [
+            26.2479018,
+            39.9824756
+          ],
+          [
+            26.2480121,
+            39.9821113
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/898419745/osm-location-of-aobantepe",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-11T19:18:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-06T17:56:15Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-07T00:32:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-07T00:32:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-02-07T00:32:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://luwianstudies.org/site/coban-tepe-tavolia/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "\u00c7obantepe (Tavolia)",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "898419745",
+  "subject": [],
+  "title": "\u00c7obantepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Early to Middle Bronze Age site located on the southern shore of the Dardanelles.",
+  "reprPoint": [
+    26.246652916646546,
+    39.98134949135062
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    26.2451769,
+    39.9800689,
+    26.2480121,
+    39.9826902
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-02-07T00:32:13Z",
+  "uri": "https://pleiades.stoa.org/places/898419745",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-11T19:18:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-06T17:56:14Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-07T00:34:00Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-07T00:32:17Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-07T00:32:13Z"
+    }
+  ]
+}

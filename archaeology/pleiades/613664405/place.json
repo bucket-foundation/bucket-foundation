@@ -1,0 +1,245 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.39315,
+          51.80342
+        ]
+      },
+      "type": "Feature",
+      "id": "dare-location-pleshey",
+      "properties": {
+        "snippet": "Unknown; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/613664405/dare-location-pleshey",
+        "description": "",
+        "location_precision": "precise",
+        "title": "DARE location: Pleshey"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "imperium.ahlfeldt.se/places/25943",
+          "citationDetail": "Pleshey: 25943",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "DARE",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+          "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "dare-location-pleshey",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": 410,
+      "title": "DARE location: Pleshey",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "none",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 100.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dare-2",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "",
+      "created": "2026-02-13T15:53:50Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.39315,
+          51.80342
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/613664405/dare-location-pleshey",
+      "creators": [
+        {
+          "username": "maximeg",
+          "homepage": null,
+          "name": "Maxime Gu\u00e9nette",
+          "uri": "https://pleiades.stoa.org/author/maximeg"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-13T18:13:07Z"
+        },
+        {
+          "comment": "fetched formatted citation from Zotero",
+          "modifiedBy": "thomase",
+          "modified": "2026-02-13T18:12:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "maximeg",
+          "modified": "2026-02-13T15:54:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "maximeg",
+          "modified": "2026-02-13T15:53:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "maximeg",
+          "modified": "2026-02-13T15:53:50Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "64",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Scott 1993",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EGWGRRDJ",
+      "formattedCitation": "<div class=\"csl-entry\">Scott, Eleanor. <i>A Gazetteer of Roman Villas in Britain</i>. Leicester: Leicester University Archaeological Research Centre, 1993. http://www.worldcat.org/oclc/624430910.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.wikidata.org/entity/Q17674049",
+      "citationDetail": "Roman villa 450m west of Bury Farm (Q17674049) ",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "imperium.ahlfeldt.se/places/25943",
+      "citationDetail": "Pleshey: 25943",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARE",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DJKMJPD7",
+      "formattedCitation": "<div class=\"csl-entry\">\u00c5hlfeldt, Johan. <i>Digital Atlas of the Roman Empire</i>. Gothenburg, Sweden: Centre for Digital Humanities University of Gothenburg, Sweden, 2012. https://imperium.ahlfeldt.se/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/6457/",
+      "citationDetail": "Villa at Pleshey: 6457",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "613664405",
+  "subject": [],
+  "title": "Pleshey",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A possible Roman courtyard villa has been identified at Pleshey, based on the discovery of mosaic pavements, burials, and coin finds, most of which were recorded by ploughing in the 18th century.",
+  "reprPoint": [
+    0.39315,
+    51.80342
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    0.39315,
+    51.80342,
+    0.39315,
+    51.80342
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-02-13T15:51:43Z",
+  "uri": "https://pleiades.stoa.org/places/613664405",
+  "creators": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-02-13T18:13:07Z"
+    },
+    {
+      "comment": "fetched formatted citation from Zotero",
+      "modifiedBy": "thomase",
+      "modified": "2026-02-13T18:12:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "maximeg",
+      "modified": "2026-02-13T15:54:17Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "maximeg",
+      "modified": "2026-02-13T15:51:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "maximeg",
+      "modified": "2026-02-13T15:51:43Z"
+    }
+  ]
+}

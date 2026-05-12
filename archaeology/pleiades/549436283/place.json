@@ -1,0 +1,201 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.5446033,
+          38.2546612
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-gaplla1-4-daa",
+      "properties": {
+        "snippet": "Volcano; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/549436283/osm-location-of-gaplla1-4-daa",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of G\u00f6ll\u00fc Da\u011f"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/200997114",
+          "citationDetail": "Node 200997114",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=200997114",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-gaplla1-4-daa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/volcano"
+      ],
+      "end": 2099,
+      "title": "OSM location of G\u00f6ll\u00fc Da\u011f",
+      "provenance": "OpenStreetMap (Node 200997114, version 9, osm:changeset=130549000, 2022-12-27T10:11:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/volcano"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "volcano"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2024-12-27T01:06:41Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.5446033,
+          38.2546612
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/549436283/osm-location-of-gaplla1-4-daa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-04-28T16:42:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-28T01:49:59Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-27T01:07:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-27T01:06:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-27T01:06:41Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1559343",
+      "citationDetail": "G\u00f6ll\u00fc Da\u011f (Q1559343)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "549436283",
+  "subject": [
+    "volcano",
+    "obsidian"
+  ],
+  "title": "G\u00f6ll\u00fc Da\u011f (volcano)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/volcano"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "G\u00f6ll\u00fc Da\u011f is an extinct volcano with a lava dome that contains rhyolite, dacite, and basalt. The formation dates to 1.33 to 0.84 million years. Obsidian at the site was exploited by humans beginning in the Lower Paleolithic period, approximately 800,000 years ago.",
+  "reprPoint": [
+    34.5446033,
+    38.2546612
+  ],
+  "placeTypes": [
+    "volcano"
+  ],
+  "bbox": [
+    34.5446033,
+    38.2546612,
+    34.5446033,
+    38.2546612
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-27T01:06:21Z",
+  "uri": "https://pleiades.stoa.org/places/549436283",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-04-28T16:42:44Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-28T01:49:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-27T01:10:13Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-27T01:06:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-27T01:06:21Z"
+    }
+  ]
+}

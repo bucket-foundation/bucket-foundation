@@ -1,0 +1,591 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.9316496,
+          36.8079328
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sese-grande",
+      "properties": {
+        "snippet": "Tomb; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/273840229/osm-location-of-sese-grande",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Sese Grande"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3928239873",
+          "citationDetail": "Node 3928239873",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3928239873",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-sese-grande",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -1000,
+      "title": "OSM location of Sese Grande",
+      "provenance": "OpenStreetMap (Node 3928239873, version 4, osm:changeset=76166678, 2019-10-24T17:03:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-09-22T13:42:47Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.9316496,
+          36.8079328
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/273840229/osm-location-of-sese-grande",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-30T02:17:52Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T12:27:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-28T12:07:42Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-22T13:43:14Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-22T13:42:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-22T13:42:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1400,
+      "description": "",
+      "contributors": [],
+      "created": "2019-09-29T15:09:45Z",
+      "associationCertainty": "certain",
+      "title": "Bronze Age Cemetery at Mursia",
+      "start": -1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/273840229/bronze-age-cemetery-at-mursia",
+      "connectionType": "part_of_physical",
+      "id": "bronze-age-cemetery-at-mursia",
+      "attestations": [
+        {
+          "timePeriod": "sicilian-bronze-advanced",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/sicilian-bronze-advanced",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-29T15:24:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T15:09:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T15:09:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T15:09:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/662780948",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.disci.unibo.it/it/ricerca/archeologia/missioni-archeologiche/missioni-archeologiche-in-italia/mursia-pantelleria-tp/descrizione-generale",
+          "citationDetail": "Descrizione generale",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Cattani 2019a",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6BRT4H4M",
+          "formattedCitation": "<div class=\"csl-entry\">Cattani, Maurizio, and Sebastiano Tusa. \u201cMursia (Pantelleria - TP),\u201d 2019. http://www.disci.unibo.it/it/ricerca/archeologia/missioni-archeologiche/missioni-archeologiche-in-italia/mursia-pantelleria-tp/index.html.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    },
+    {
+      "end": -1000,
+      "description": "",
+      "contributors": [],
+      "created": "2019-09-22T13:45:35Z",
+      "associationCertainty": "certain",
+      "title": "Pantelleria (island)",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/273840229/cossyra-island",
+      "connectionType": "part_of_physical",
+      "id": "cossyra-island",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T12:27:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-28T12:07:42Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-22T13:45:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-22T13:45:35Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462168",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Sese_Grande_or_Sese_del_Re_(Pantelleria)",
+      "citationDetail": "Sese Grande or Sese del Re (Pantelleria)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.geonames.org/11127939/parco-archeologico-dei-sesi.html",
+      "citationDetail": "11127939: Parco Archeologico dei Sesi",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/pantelleria-revisited/7A16FE4D422F4F42389AEF20031A87B6#",
+      "citationDetail": "pages 204-205",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Trump 1963",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y6BUBAHN",
+      "formattedCitation": "<div class=\"csl-entry\">Trump, David. \u201cPantelleria Revisited.\u201d <i>Antiquity</i> 37, no. 147 (September 1963): 203\u20136. https://doi.org/10.1017/S0003598X00029963.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.1177/002182869202301703",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tusa et al. 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M9NZJRUF",
+      "formattedCitation": "<div class=\"csl-entry\">Tusa, Sebastiano, Giorgia Foder\u00e0 Serio, and Michael Hoskin. \u201cOrientations of the SESI of Pantelleria.\u201d <i>Journal for the History of Astronomy</i> 23, no. 17 (February 1, 1992): S15\u201320. https://doi.org/10.1177/002182869202301703.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://proxy.library.nyu.edu/login?url=http://search.ebscohost.com/login.aspx?direct=true&db=a9h&AN=123009458&site=eds-live",
+      "citationDetail": "pages 236-238",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vella 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V47DNPL2",
+      "formattedCitation": "<div class=\"csl-entry\">Vella, Clive. \u201cConstructions of Consensus: Monument Building and the Fourth to First Millennium BC in the Central Mediterranean Islands.\u201d <i>Journal of Mediterranean Archaeology</i> 29, no. 2 (July 2016): 225\u201345. https://doi.org/10.1558/jmea.v29i2.32573.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "pages 17-18",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Nicoletti 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVRIG867",
+      "formattedCitation": "<div class=\"csl-entry\">Nicoletti, Fabrizio. \u201cMursia. Un emporio nel Canale di Sicilia alle soglie della Protostoria.\u201d In <i>Traffici, commerci e vie di distribuzione nel Mediterraneo tra protostoria e V. secolo a.C.: atti del Convegno internazionale, Gela, 27-28-29 maggio 2009</i>, by Rosalba Panvini, Carla Guzzone, and Lavinia Sole. Palermo: Regione Siciliana, Assessorato ai Beni Culturali, Ambientali e della Pubblica Istruzione, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sese Grande",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/pantelleria-revisited/7A16FE4D422F4F42389AEF20031A87B6#",
+          "citationDetail": "page 204",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Trump 1963",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Y6BUBAHN",
+          "formattedCitation": "<div class=\"csl-entry\">Trump, David. \u201cPantelleria Revisited.\u201d <i>Antiquity</i> 37, no. 147 (September 1963): 203\u20136. https://doi.org/10.1017/S0003598X00029963.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 17",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nicoletti 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVRIG867",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cMursia. Un emporio nel Canale di Sicilia alle soglie della Protostoria.\u201d In <i>Traffici, commerci e vie di distribuzione nel Mediterraneo tra protostoria e V. secolo a.C.: atti del Convegno internazionale, Gela, 27-28-29 maggio 2009</i>. Palermo: Regione Siciliana, Assessorato ai Beni Culturali, Ambientali e della Pubblica Istruzione, 2010.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sese-grande",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-09-29T12:52:18Z",
+      "uri": "https://pleiades.stoa.org/places/273840229/sese-grande",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Sese Grande",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-29T15:23:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T13:04:26Z"
+        },
+        {
+          "comment": "changed language  and added reference",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T13:03:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T12:52:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T12:52:18Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sese del Re",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 17",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Nicoletti 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVRIG867",
+          "formattedCitation": "<div class=\"csl-entry\">\u201cMursia. Un emporio nel Canale di Sicilia alle soglie della Protostoria.\u201d In <i>Traffici, commerci e vie di distribuzione nel Mediterraneo tra protostoria e V. secolo a.C.: atti del Convegno internazionale, Gela, 27-28-29 maggio 2009</i>. Palermo: Regione Siciliana, Assessorato ai Beni Culturali, Ambientali e della Pubblica Istruzione, 2010.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sese-del-re",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2019-09-29T13:02:38Z",
+      "uri": "https://pleiades.stoa.org/places/273840229/sese-del-re",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Sese del Re",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-09-29T15:24:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T13:04:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T13:02:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-29T13:02:38Z"
+        }
+      ]
+    }
+  ],
+  "id": "273840229",
+  "subject": [
+    "megalithic",
+    "tomb"
+  ],
+  "title": "Sese Grande",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The \"Sese Grande\" or \"Sese del Re\" is a prehistoric tomb on the island of Pantelleria. Sesi are megalithic tomb structures of the second millennium B.C. that are connected with the Sesiote culture.",
+  "reprPoint": [
+    11.9316496,
+    36.8079328
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    11.9316496,
+    36.8079328,
+    11.9316496,
+    36.8079328
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/662780948",
+    "https://pleiades.stoa.org/places/462168"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-09-29T12:44:57Z",
+  "uri": "https://pleiades.stoa.org/places/273840229",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-30T02:19:13Z"
+    },
+    {
+      "comment": "added additional references; updated Names\r\nchecked-in working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-29T15:23:30Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T12:44:54Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-29T12:27:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-28T12:07:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-28T12:07:33Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-22T13:46:57Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-22T13:42:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-09-22T13:42:29Z"
+    }
+  ]
+}

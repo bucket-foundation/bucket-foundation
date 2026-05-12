@@ -1,0 +1,14 @@
+# Ura
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/300354625
+- **ID**: 300354625
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ura
+
+## Description
+
+A place from the TAVO Index

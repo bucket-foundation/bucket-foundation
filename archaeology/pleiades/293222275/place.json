@@ -1,0 +1,266 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.429825,
+          32.542579
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-orchestra",
+      "properties": {
+        "snippet": "Theatre; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/293222275/imagery-location-orchestra",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location of the Reconstructed Orchestra"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location-orchestra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": -30,
+      "title": "Imagery Location of the Reconstructed Orchestra",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "restored",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 4.2,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-digitalglobe-imagery-2012",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "",
+      "created": "2012-07-11T22:59:43Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.429825,
+          32.542579
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/293222275/imagery-location-orchestra",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-25T17:27:40Z"
+        },
+        {
+          "comment": "type",
+          "modifiedBy": "thomase",
+          "modified": "2017-01-19T19:47:59Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-11T22:59:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-11T22:59:51Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-11T22:59:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2012-07-11T22:59:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-25T17:11:11Z",
+      "associationCertainty": "certain",
+      "title": "Babylon",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/293222275/2715750288",
+      "connectionType": "at",
+      "id": "2715750288",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-25T17:28:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-25T17:11:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-25T17:11:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-25T17:11:11Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/893951",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://archive.org/stream/ldpd_10797913_000#page/350/mode/2up/",
+      "citationDetail": "300-307",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Koldewey 1914",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3T9BGEQ9",
+      "formattedCitation": "<div class=\"csl-entry\">Koldewey, Robert. <i>The excavations at Babylon</i>. Translated by A. S Johns. London: Macmillan, 1914, pp. 300-307.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "293222275",
+  "subject": [],
+  "title": "Greek Theater",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of a mud-brick theater with building inscription in Greek were excavated at Babylon. The structure was substantively rebuilt in modern times.",
+  "reprPoint": [
+    44.429825,
+    32.542579
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    44.429825,
+    32.542579,
+    44.429825,
+    32.542579
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/893951"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-01-25T17:11:09Z",
+  "uri": "https://pleiades.stoa.org/places/293222275",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "description",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-25T18:43:16Z"
+    },
+    {
+      "comment": "description, title",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-25T18:42:50Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-25T17:28:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-25T17:28:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-25T17:26:07Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-25T17:25:12Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-25T17:11:13Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-25T17:11:09Z"
+    }
+  ]
+}

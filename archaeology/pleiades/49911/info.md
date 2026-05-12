@@ -1,0 +1,14 @@
+# Bazakata? (island)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/49911
+- **ID**: 49911
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Bazakata
+
+## Description
+
+An ancient place, cited: BAtlas 5 G3 Bazakata? Ins.

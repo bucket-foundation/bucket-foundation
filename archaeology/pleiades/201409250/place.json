@@ -1,0 +1,434 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.472699,
+          41.80281
+        ]
+      },
+      "type": "Feature",
+      "id": "castellaccio-europarco",
+      "properties": {
+        "snippet": "Cemetery, Villa, ; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/201409250/castellaccio-europarco",
+        "description": "A villa and some burials located along the Via Laurentina, dating from the 4th century BC to the 2nd century AD.",
+        "location_precision": "precise",
+        "title": "Castellaccio Europarco"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.researchgate.net/profile/Kristina_Killgrove/publication/259741129_Migration_and_Mobility_in_Imperial_Rome/links/0deec52d83e7bb4270000000.pdf",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Killgrove, K. 2010. \"Migration and mobility in Imperial Rome.\" PhD diss., University of North Carolina at Chapel Hill.",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "castellaccio-europarco",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "Castellaccio Europarco",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2015",
+      "featureType": [
+        "cemetery",
+        "villa",
+        ""
+      ],
+      "description": "A villa and some burials located along the Via Laurentina, dating from the 4th century BC to the 2nd century AD.",
+      "created": "2015-04-27T17:39:34Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.472699,
+          41.80281
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/201409250/castellaccio-europarco",
+      "creators": [
+        {
+          "username": "Jweiland",
+          "homepage": null,
+          "name": "Jonathan Weiland",
+          "uri": "https://pleiades.stoa.org/author/Jweiland"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-22T02:09:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-22T02:08:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "Jweiland",
+          "modified": "2015-04-27T17:56:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "Jweiland",
+          "modified": "2015-04-27T17:55:57Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "Jweiland",
+          "modified": "2015-04-27T17:51:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "Jweiland",
+          "modified": "2015-04-27T17:49:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "Jweiland",
+          "modified": "2015-04-27T17:48:16Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "Jweiland",
+          "modified": "2015-04-27T17:39:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "Jweiland",
+          "modified": "2015-04-27T17:39:36Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:41:23Z",
+      "associationCertainty": "certain",
+      "title": "Via Laurentina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/201409250/988280578",
+      "connectionType": "on",
+      "id": "988280578",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "ctype, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T02:14:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:41:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/988280578",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://cdr.lib.unc.edu/concern/dissertations/qn59q476k",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Killgrove 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITMK5S7",
+          "formattedCitation": "<div class=\"csl-entry\">Killgrove, Kristina. \u201cMigration and Mobility in Imperial Rome.\u201d Ph.D. Dissertation, The University of North Carolina at Chapel Hill, 2010. https://cdr.lib.unc.edu/concern/dissertations/qn59q476k.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-04-14T02:15:26Z",
+      "associationCertainty": "certain",
+      "title": "Roma",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/201409250/roma",
+      "connectionType": "east_of",
+      "id": "roma",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-04-14T15:47:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T02:15:34Z"
+        },
+        {
+          "comment": "cnxn, reference",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T02:15:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-04-14T02:15:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423025",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://cdr.lib.unc.edu/concern/dissertations/qn59q476k",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Killgrove 2010",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITMK5S7",
+          "formattedCitation": "<div class=\"csl-entry\">Killgrove, Kristina. \u201cMigration and Mobility in Imperial Rome.\u201d Ph.D. Dissertation, The University of North Carolina at Chapel Hill, 2010. https://cdr.lib.unc.edu/concern/dissertations/qn59q476k.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/east_of"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.sciencedirect.com/science/article/pii/S027841651200044X",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Killgrove 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F4MXATD8",
+      "formattedCitation": "<div class=\"csl-entry\">Killgrove, Kristina, and Robert H. Tykot. \u201cFood for Rome: A Stable Isotope Investigation of Diet in the Imperial Period (1st\u20133rd Centuries AD).\u201d <i>Journal of Anthropological Archaeology</i> 32, no. 1 (March 1, 2013): 28\u201338. https://doi.org/10.1016/j.jaa.2012.08.002.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://cdr.lib.unc.edu/concern/dissertations/qn59q476k",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Killgrove 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EITMK5S7",
+      "formattedCitation": "<div class=\"csl-entry\">Killgrove, Kristina. \u201cMigration and Mobility in Imperial Rome.\u201d Ph.D. Dissertation, The University of North Carolina at Chapel Hill, 2010. https://cdr.lib.unc.edu/concern/dissertations/qn59q476k.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.fastionline.org/record_view.php?fst_cd=AIAC_797",
+      "citationDetail": "Castellaccio Europarco",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FastiOnline (Excavation)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5MUH5XWP",
+      "formattedCitation": "<div class=\"csl-entry\">International Association of Classical Archaeology (AIAC), and Center for the Study of Ancient Italy of the University of Texas at Austin (CSAI). <i>FastiOnline (Excavation)</i>, 2004. http://www.fastionline.org/excavation/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0147585",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Killgrove and Montgomery 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W33UKXKF",
+      "formattedCitation": "<div class=\"csl-entry\">Killgrove, Kristina, and Janet Montgomery. \u201cAll Roads Lead to Rome: Exploring Human Migration to the Eternal City through Biochemistry of Skeletons from Two Imperial-Era Cemeteries (1st-3rd c AD).\u201d <i>PLOS ONE</i> 11, no. 2 (February 10, 2016): e0147585. https://doi.org/10.1371/journal.pone.0147585.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "201409250",
+  "subject": [
+    "bioarchaeology"
+  ],
+  "title": "Castellaccio Europarco",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A villa and a number of burials located along the Via Laurentina, dating from the fourth century BC to the second century AD.",
+  "reprPoint": [
+    12.472699,
+    41.80281
+  ],
+  "placeTypes": [
+    "cemetery",
+    "villa"
+  ],
+  "bbox": [
+    12.472699,
+    41.80281,
+    12.472699,
+    41.80281
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/988280578",
+    "https://pleiades.stoa.org/places/423025"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-04-27T17:28:57Z",
+  "uri": "https://pleiades.stoa.org/places/201409250",
+  "creators": [
+    {
+      "username": "Jweiland",
+      "homepage": null,
+      "name": "Jonathan Weiland",
+      "uri": "https://pleiades.stoa.org/author/Jweiland"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-14T02:14:25Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-25T23:37:55Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-20T02:52:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-22T02:08:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-22T02:06:29Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "Jweiland",
+      "modified": "2015-04-27T17:56:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "Jweiland",
+      "modified": "2015-04-27T17:37:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "Jweiland",
+      "modified": "2015-04-27T17:35:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "Jweiland",
+      "modified": "2015-04-27T17:29:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "Jweiland",
+      "modified": "2015-04-27T17:28:58Z"
+    }
+  ]
+}

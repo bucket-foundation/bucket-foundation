@@ -1,0 +1,211 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.206326,
+          36.609505
+        ]
+      },
+      "type": "Feature",
+      "id": "gps-location-koskerli",
+      "properties": {
+        "snippet": "Archaeological-site, Church-2",
+        "link": "https://pleiades.stoa.org/places/768684720/gps-location-koskerli",
+        "description": "",
+        "location_precision": "precise",
+        "title": "GPS Location: K\u00f6\u015fkerli"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "gps-location-koskerli",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "end": null,
+      "title": "GPS Location: K\u00f6\u015fkerli",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/church-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 15.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-handheld-gps",
+      "featureType": [
+        "archaeological-site",
+        "church-2"
+      ],
+      "description": "",
+      "created": "2024-06-29T21:39:11Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.206326,
+          36.609505
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/768684720/gps-location-koskerli",
+      "creators": [
+        {
+          "username": "dbrowning",
+          "homepage": null,
+          "name": "Daniel C Browning Jr",
+          "uri": "https://pleiades.stoa.org/author/dbrowning"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-07-03T15:27:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-29T21:39:39Z"
+        },
+        {
+          "comment": "added GPS location",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-29T21:39:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "dbrowning",
+          "modified": "2024-06-29T21:39:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/22517271",
+      "citationDetail": "p. 22; PL. VIII, 1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Eyi\u0307ce 1988",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2A4UKI9Z",
+      "formattedCitation": "<div class=\"csl-entry\">Eyi\u0307ce, Semavi. \u201cRicerche e scoperte nella regione di Silifke.\u201d In <i>Studi e ricerche d\u2019arte bizantina: atti della Giornata di studio, Roma, 4 dicembre 1986</i>, edited by Claudia Barsanti, Alessandra Guiglia Guidobaldi, and Antonio Iacobini, 15\u201333 and Pl. I-XXIII. Milion. Roma: Biblioteca di Storia Patria, 1988. https://search.worldcat.org/title/22517271.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dergipark.org.tr/en/pub/iuanadolu/issue/1154/13502",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Eyice 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/54HVBU9W",
+      "formattedCitation": "<div class=\"csl-entry\">Eyice, Semavi. \u201cG\u00fcney Anadolu\u2019da bir \u00d6ren Yen: K\u00f6\u015fkerli.\u201d <i>Anadolu Ara\u015ft\u0131rmalar\u0131</i>, no. 16 (January 1, 2011): 227\u201340. https://dergipark.org.tr/en/pub/iuanadolu/issue/1154/13502.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://search.worldcat.org/title/34116817",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hill 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TREBCIVF",
+      "formattedCitation": "<div class=\"csl-entry\">Hill, Stephen. <i>The Early Byzantine Churches of Cilicia and Isauria</i>. Birmingham Byzantine and Ottoman Monographs. Aldershot [England]: Variorum, 1996. https://search.worldcat.org/title/34116817.</div>",
+      "otherIdentifier": "ISBN: 978-0-86078-607-8",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "768684720",
+  "subject": [
+    "church"
+  ],
+  "title": "K\u00f6\u015fkerli",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Modern name for ruins of a Byzantine church and surrounding village in eastern Rough Cilicia",
+  "reprPoint": [
+    34.206326,
+    36.609505
+  ],
+  "placeTypes": [
+    "church-2",
+    "archaeological-site"
+  ],
+  "bbox": [
+    34.206326,
+    36.609505,
+    34.206326,
+    36.609505
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-06-29T21:35:25Z",
+  "uri": "https://pleiades.stoa.org/places/768684720",
+  "creators": [
+    {
+      "username": "dbrowning",
+      "homepage": null,
+      "name": "Daniel C Browning Jr",
+      "uri": "https://pleiades.stoa.org/author/dbrowning"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-03T15:27:21Z"
+    },
+    {
+      "comment": "reimported references from Zotero",
+      "modifiedBy": "thomase",
+      "modified": "2024-07-03T15:26:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-06-29T21:40:00Z"
+    },
+    {
+      "comment": "Place added",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-06-29T21:35:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "dbrowning",
+      "modified": "2024-06-29T21:35:25Z"
+    }
+  ]
+}

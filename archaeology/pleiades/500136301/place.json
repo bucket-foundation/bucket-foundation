@@ -1,0 +1,438 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.701305,
+            44.587735
+          ],
+          [
+            4.7014,
+            44.58773
+          ],
+          [
+            4.701399,
+            44.587738
+          ],
+          [
+            4.701454,
+            44.587736
+          ],
+          [
+            4.701456,
+            44.587726
+          ],
+          [
+            4.701475,
+            44.587724
+          ],
+          [
+            4.701478,
+            44.58773
+          ],
+          [
+            4.701561,
+            44.58774
+          ],
+          [
+            4.701595,
+            44.587756
+          ],
+          [
+            4.701578,
+            44.587775
+          ],
+          [
+            4.701584,
+            44.587847
+          ],
+          [
+            4.701556,
+            44.587848
+          ],
+          [
+            4.701556,
+            44.587885
+          ],
+          [
+            4.701494,
+            44.587886
+          ],
+          [
+            4.701492,
+            44.587866
+          ],
+          [
+            4.701417,
+            44.587866
+          ],
+          [
+            4.701417,
+            44.587872
+          ],
+          [
+            4.701336,
+            44.587874
+          ],
+          [
+            4.701305,
+            44.587735
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Monument; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/500136301/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Roman milestone"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "rmhorne",
+      "homepage": null,
+      "name": "Ryan Horne",
+      "uri": "https://pleiades.stoa.org/author/rmhorne"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "rmhorne",
+          "homepage": null,
+          "name": "Ryan Horne",
+          "uri": "https://pleiades.stoa.org/author/rmhorne"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/262886907",
+          "citationDetail": "Way 262886907",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=262886907",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": 640,
+      "title": "OSM location of Roman milestone",
+      "provenance": "OpenStreetMap (Way 262886907, version 3, osm:changeset=57117180, 2018-03-12T16:51:13Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2015-06-26T18:50:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            4.701305,
+            44.587735
+          ],
+          [
+            4.7014,
+            44.58773
+          ],
+          [
+            4.701399,
+            44.587738
+          ],
+          [
+            4.701454,
+            44.587736
+          ],
+          [
+            4.701456,
+            44.587726
+          ],
+          [
+            4.701475,
+            44.587724
+          ],
+          [
+            4.701478,
+            44.58773
+          ],
+          [
+            4.701561,
+            44.58774
+          ],
+          [
+            4.701595,
+            44.587756
+          ],
+          [
+            4.701578,
+            44.587775
+          ],
+          [
+            4.701584,
+            44.587847
+          ],
+          [
+            4.701556,
+            44.587848
+          ],
+          [
+            4.701556,
+            44.587885
+          ],
+          [
+            4.701494,
+            44.587886
+          ],
+          [
+            4.701492,
+            44.587866
+          ],
+          [
+            4.701417,
+            44.587866
+          ],
+          [
+            4.701417,
+            44.587872
+          ],
+          [
+            4.701336,
+            44.587874
+          ],
+          [
+            4.701305,
+            44.587735
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        "relocated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/500136301/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T01:40:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2018-02-06T16:32:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2018-02-06T16:32:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2018-02-06T16:31:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-07-27T02:10:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-19T22:42:07Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-19T22:42:01Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-26T18:52:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-26T18:50:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-06-26T18:50:16Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Borne_milliaire_de_Rochemaure",
+      "citationDetail": "Borne milliaire de Rochemaure",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+      "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Borne milliaire de Rochemaure.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Mausol%C3%A9e_gallo-romain_de_Rochemaure",
+      "citationDetail": "Mausol\u00e9e gallo-romain de Rochemaure",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+      "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Mausol\u00e9e gallo-romain de Rochemaure.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/2983246/rochemaure.html",
+      "citationDetail": "2983246: Rochemaure",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. <i>GeoNames</i>, 2005. https://www.geonames.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://db.edcs.eu/epigr/epi_einzel_fr.php?p_belegstelle=CIL+17-02%2C+00180&r_sortierung=Belegstelle",
+      "citationDetail": "09500348 = CIL 17-02, 00180",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "EDCS",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YG2BW6GH",
+      "formattedCitation": "<div class=\"csl-entry\">Clauss, Manfred, Anne Kolb, Wolfgang A. Slaby, and Barbara Woitas, eds. <i>Epigraphik-Datenbank\u00a0 Clauss / Slaby</i>. Eichst\u00e4tt: Universit\u00e4t Eichst\u00e4tt-Ingolstadt, n.d. http://www.manfredclauss.de/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2911166",
+      "citationDetail": "Borne milliaire gallo-romaine de Rochemaure (Q2911166)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "500136301",
+  "subject": [
+    "inscription",
+    "milestone"
+  ],
+  "title": "Rochemaure milestone",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "<p>A Hadrianic milestone in Gallia Narbonensis. The inscription reads: \"Imp(eratori) Caes(ari) / T(ito) Aelio Hadr(iano) / Aug(usto) Antonin(o) / Pio p(atri) p(atriae) / trib(unicia) pot(estate) VII / co(n)s(uli) IIII / m(ilia) p(assuum) VIIII\".</p>\r\n<p>\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman milestone of the second century A.D.",
+  "reprPoint": [
+    4.701451913149839,
+    44.587802336506556
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    4.701305,
+    44.587724,
+    4.701595,
+    44.587886
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-06-16T22:24:05Z",
+  "uri": "https://pleiades.stoa.org/places/500136301",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T01:42:08Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-07T00:30:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-26T01:24:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-19T22:40:49Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-16T22:24:11Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-16T22:24:05Z"
+    }
+  ]
+}

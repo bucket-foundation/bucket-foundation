@@ -1,0 +1,652 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.4,
+          36.4
+        ]
+      },
+      "type": "Feature",
+      "id": "santorini-archipelago",
+      "properties": {
+        "snippet": "Archipelago, ",
+        "link": "https://pleiades.stoa.org/places/808255902/santorini-archipelago",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Santorini Archipelago"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "santorini-archipelago",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archipelago",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": null,
+      "title": "Santorini Archipelago",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archipelago",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-geoeye-imagery-2012",
+      "featureType": [
+        "archipelago",
+        ""
+      ],
+      "description": "",
+      "created": "2014-07-16T09:10:41Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.4,
+          36.4
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/808255902/santorini-archipelago",
+      "creators": [
+        {
+          "username": "sdunn",
+          "homepage": null,
+          "name": "Stuart Dunn",
+          "uri": "https://pleiades.stoa.org/author/sdunn"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T18:10:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T17:57:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T11:26:34Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T09:10:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T09:10:43Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:39:12Z",
+      "associationCertainty": "certain",
+      "title": "Cyclades Inss.",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/808255902/560353",
+      "connectionType": "connection",
+      "id": "560353",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:12Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/560353",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:39:13Z",
+      "associationCertainty": "certain",
+      "title": "Aegaeum Mare",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/808255902/560221",
+      "connectionType": "connection",
+      "id": "560221",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:39:13Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/560221",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/16845695",
+      "formattedCitation": "Porcacchi, T. and G. Porro. 1620. L'isole piv famose del mondo. In Padova: Appresso Paolo et Francesco Galignani Fratelli.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Santorini",
+      "citationDetail": "Santorini",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Santorini.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Strongyle",
+      "attestations": [
+        {
+          "timePeriod": "modern-middle-east",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern-middle-east",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://www.worldcat.org/oclc/41090736",
+          "formattedCitation": "Friedrich, W. L. 2000. Fire in the Sea: The Santorini Volcano: Natural History and the Legend of Atlantis. trans. Alexander R. McBirney). Cambridge: Cambridge University Press.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2014-07-16.7746710792",
+      "end": 2000,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1918,
+      "details": "",
+      "review_state": "published",
+      "description": "Strongyle is the name given to the Santorini islands in their original form by modern scholars, before the eruption events that gave them their present footprints. It derives from the round shape of the land mass, and was not used in antiquity.",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2014-07-16T08:55:14Z",
+      "uri": "https://pleiades.stoa.org/places/808255902/name.2014-07-16.7746710792",
+      "creators": [
+        {
+          "username": "sdunn",
+          "homepage": null,
+          "name": "Stuart Dunn",
+          "uri": "https://pleiades.stoa.org/author/sdunn"
+        }
+      ],
+      "attested": "\u03a3\u03c4\u03c1\u03bf\u03b3\u03b3\u03cd\u03bb\u03b7",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T17:57:40Z"
+        },
+        {
+          "comment": "edited reference",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-16T18:25:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T11:26:18Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T09:03:09Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T08:59:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T08:55:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T08:55:16Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Calliste",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "name.2014-07-16.5059528222",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "The name in Classical Antiquity given to the Santorini Islands. ",
+      "transcriptionCompleteness": "complete",
+      "language": "grc",
+      "created": "2014-07-16T09:06:23Z",
+      "uri": "https://pleiades.stoa.org/places/808255902/name.2014-07-16.5059528222",
+      "creators": [
+        {
+          "username": "sdunn",
+          "homepage": null,
+          "name": "Stuart Dunn",
+          "uri": "https://pleiades.stoa.org/author/sdunn"
+        }
+      ],
+      "attested": "\u039a\u03b1\u03bb\u03bb\u03b9\u03c3\u03c4\u03b7",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T17:57:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T11:25:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T09:08:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T09:06:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T09:06:25Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hiera",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "name.2014-07-16.4529838518",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "The name given by Pliny to the Santorini islands, from which the modern name Thera derives.",
+      "transcriptionCompleteness": "complete",
+      "language": "akk",
+      "created": "2014-07-16T10:28:27Z",
+      "uri": "https://pleiades.stoa.org/places/808255902/name.2014-07-16.4529838518",
+      "creators": [
+        {
+          "username": "sdunn",
+          "homepage": null,
+          "name": "Stuart Dunn",
+          "uri": "https://pleiades.stoa.org/author/sdunn"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T17:57:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T11:26:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T10:28:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sdunn",
+          "modified": "2014-07-16T10:28:29Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Santorini Archipelago",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Santorini",
+          "citationDetail": "Santorini",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Santorini.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2014-07-16.5206301349",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2014-07-16T15:46:00Z",
+      "uri": "https://pleiades.stoa.org/places/808255902/name.2014-07-16.5206301349",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T17:57:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-24T17:18:43Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-16T15:46:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-16T15:46:03Z"
+        }
+      ]
+    }
+  ],
+  "id": "808255902",
+  "subject": [],
+  "title": "Santorini Archipelago",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archipelago"
+  ],
+  "details": "\r\n<p>The present-day Santorini archipelago is the result of millennia of volcanism. The present-day caldera is largely the result of the eruption in the Late Bronze Age, although traces of a much earlier massive eruption are visible in the southern part of it. This eruption marks the end of the Late Minoan IA/Late Cycladic I period in the region, as attested at the site of Akrotiri on present-day Thera, the largest island in the group. Before these, there was one island,\r\n      designated 'Stronghyle' by geographers, due to its round shape. In Classical antiquity the islands known as 'Hiera' or 'Calliste', although it is likely that these names were used to refer mainly to refer to Thera.&nbsp;</p>\r\n<p>The subsequent topography, including the development of the present-day islands of Nea Kameni and Palea Kameni in the central caldera, can be traced through historic cartography. In a 1620 map by Thomaso Porcacchi, a total of fifteen islands is depicted, although this might be cartographic license. Interestingly however, there is only *one* island in the central caldera, named 'Caimeni', and this is therefore given a separate attestation in Pleiades.&nbsp;</p>\r\n<p>A detailed survey was undertaken in the C19th by the British Royal Navy. This survey shows that before 1866, there were in fact six islands in the group. In addition to the present-day five, there was a small island named as 'Mikro Kameni' just off the north\r\n      east tip of what is now Nea Kameni. This was joined to the present-day Nea Kameni at some point after this, most probably in the major period of volcanic activity between 1866 and 1870. On this basis, Mikro Kameni also has its own Pleiades record.</p>\r\n<p>\r\n      <br /><br /></p>\r\n",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The islands of the Santorini archipelago, inhabited until the Late Bronze Age, were formed by modern and historic volcanism. ",
+  "reprPoint": [
+    25.4,
+    36.4
+  ],
+  "placeTypes": [
+    "archipelago"
+  ],
+  "bbox": [
+    25.4,
+    36.4,
+    25.4,
+    36.4
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/560353",
+    "https://pleiades.stoa.org/places/560221",
+    "https://pleiades.stoa.org/places/218806479",
+    "https://pleiades.stoa.org/places/199559843",
+    "https://pleiades.stoa.org/places/815794667",
+    "https://pleiades.stoa.org/places/905386158",
+    "https://pleiades.stoa.org/places/194521550",
+    "https://pleiades.stoa.org/places/599973",
+    "https://pleiades.stoa.org/places/599974",
+    "https://pleiades.stoa.org/places/599979"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-07-03T14:53:15Z",
+  "uri": "https://pleiades.stoa.org/places/808255902",
+  "creators": [
+    {
+      "username": "sdunn",
+      "homepage": null,
+      "name": "Stuart Dunn",
+      "uri": "https://pleiades.stoa.org/author/sdunn"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-24T18:05:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-24T17:18:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-16T18:26:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-16T17:07:44Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-16T17:05:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-16T17:01:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-16T17:00:37Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-16T16:54:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-16T16:39:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T11:12:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T11:12:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T10:54:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T10:35:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T10:34:02Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T10:02:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-16T09:51:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-03T14:53:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sdunn",
+      "modified": "2014-07-03T14:53:16Z"
+    }
+  ]
+}

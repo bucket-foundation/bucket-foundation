@@ -1,0 +1,540 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.9238278,
+            34.9325201
+          ],
+          [
+            24.9240585,
+            34.9323167
+          ],
+          [
+            24.9240303,
+            34.9320968
+          ],
+          [
+            24.9244393,
+            34.9320814
+          ],
+          [
+            24.9244729,
+            34.9321462
+          ],
+          [
+            24.9245117,
+            34.9321467
+          ],
+          [
+            24.9245587,
+            34.9321473
+          ],
+          [
+            24.9245761,
+            34.9323859
+          ],
+          [
+            24.9241255,
+            34.9325882
+          ],
+          [
+            24.9240719,
+            34.9326014
+          ],
+          [
+            24.9240303,
+            34.9326014
+          ],
+          [
+            24.923978,
+            34.9325882
+          ],
+          [
+            24.9239311,
+            34.9325673
+          ],
+          [
+            24.9238278,
+            34.9325201
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Archaeological-site, Sanctuary; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/238864239/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1254199388",
+          "citationDetail": "Way 1254199388",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1254199388",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 1254199388, version 1, osm:changeset=147836745, 2024-02-23T22:29:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-09-23T18:46:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.9238278,
+            34.9325201
+          ],
+          [
+            24.9240585,
+            34.9323167
+          ],
+          [
+            24.9240303,
+            34.9320968
+          ],
+          [
+            24.9244393,
+            34.9320814
+          ],
+          [
+            24.9244729,
+            34.9321462
+          ],
+          [
+            24.9245117,
+            34.9321467
+          ],
+          [
+            24.9245587,
+            34.9321473
+          ],
+          [
+            24.9245761,
+            34.9323859
+          ],
+          [
+            24.9241255,
+            34.9325882
+          ],
+          [
+            24.9240719,
+            34.9326014
+          ],
+          [
+            24.9240303,
+            34.9326014
+          ],
+          [
+            24.923978,
+            34.9325882
+          ],
+          [
+            24.9239311,
+            34.9325673
+          ],
+          [
+            24.9238278,
+            34.9325201
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/238864239/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-09-24T01:07:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-23T18:47:13Z"
+        },
+        {
+          "comment": "supersedes all other locations",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-23T18:47:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-23T18:46:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-09-23T18:46:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-13T17:51:10Z",
+      "associationCertainty": "certain",
+      "title": "Leben",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/238864239/2706865262",
+      "connectionType": "at",
+      "id": "2706865262",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:51:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:51:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-13T17:51:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/589901",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": -330,
+      "description": "",
+      "contributors": [],
+      "created": "2024-05-05T14:44:26Z",
+      "associationCertainty": "certain",
+      "title": "Sanctuary of Asklepios, Balagrae",
+      "start": -550,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/238864239/sanctuary-of-asklepios-balagrae",
+      "connectionType": "founded",
+      "id": "sanctuary-of-asklepios-balagrae",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-05T17:05:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-05-05T14:44:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-05-05T14:44:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "cdlisle",
+          "modified": "2024-05-05T14:44:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/54519385",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "116-117",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kenrick 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F7T27BND",
+          "formattedCitation": "<div class=\"csl-entry\">Kenrick, Philip M, and Ahmed Buzaian. <i>Cyrenaica</i>. London: Silphium Press, 2013.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "cdlisle",
+          "homepage": null,
+          "name": "Chris de Lisle",
+          "uri": "https://pleiades.stoa.org/author/cdlisle"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/founded"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.destinationcrete.gr/en/archaeological-sites/irakleio-archaeological-sites/archaia-levina",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Ancient Lebena",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Melfi 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L9AZBNQG",
+      "formattedCitation": "<div class=\"csl-entry\">Melfi, Milena. <i>Il santuario di Asclepio a Lebena</i>. Monografie della Scuola Archeologica di Atene e delle Missioni Italiane in Oriente 19. Atene: Scuola Archeologica Italiana di Atene, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "santuario di Asclepio a Lebena",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Melfi 2007",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L9AZBNQG",
+          "formattedCitation": "<div class=\"csl-entry\">Melfi, Milena. <i>Il santuario di Asclepio a Lebena</i>. Monografie della Scuola Archeologica di Atene e delle Missioni Italiane in Oriente 19. Atene: Scuola Archeologica Italiana di Atene, 2007.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "santuario-di-asclepio-a-lebena",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-03-06T16:09:31Z",
+      "uri": "https://pleiades.stoa.org/places/238864239/santuario-di-asclepio-a-lebena",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "santuario di Asclepio a Lebena",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-03-08T10:27:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-07T01:17:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-03-06T16:09:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "238864239",
+  "subject": [
+    "Asclepius"
+  ],
+  "title": "Sanctuary at Leben",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Leben is known for a sanctuary of Asklepios dating to the first and second centuries CE.",
+  "reprPoint": [
+    24.924217501317692,
+    34.93233435528632
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "archaeological-site",
+    "temple-2"
+  ],
+  "bbox": [
+    24.9238278,
+    34.9320814,
+    24.9245761,
+    34.9326014
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/589901",
+    "https://pleiades.stoa.org/places/54519385"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-13T17:51:09Z",
+  "uri": "https://pleiades.stoa.org/places/238864239",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2022-03-08T10:26:55Z"
+    },
+    {
+      "comment": "updates",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-06T16:10:16Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-05T10:57:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-01T18:03:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-09-01T18:02:50Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T17:51:30Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T17:51:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-13T17:51:09Z"
+    }
+  ]
+}

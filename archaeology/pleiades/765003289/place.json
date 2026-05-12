@@ -1,0 +1,376 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            90.7724192,
+            53.8944558
+          ],
+          [
+            90.7726921,
+            53.8938443
+          ],
+          [
+            90.7737292,
+            53.894005
+          ],
+          [
+            90.7736325,
+            53.8942218
+          ],
+          [
+            90.7737643,
+            53.8942423
+          ],
+          [
+            90.7736875,
+            53.8944144
+          ],
+          [
+            90.7735625,
+            53.894395
+          ],
+          [
+            90.7734632,
+            53.8946176
+          ],
+          [
+            90.7724192,
+            53.8944558
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "bolshoi-calbykskii-kurghan",
+      "properties": {
+        "snippet": "Pyramid, Tomb; 540 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/765003289/bolshoi-calbykskii-kurghan",
+        "description": "Polygon representing the location of the Great Salbyk Mound, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of \u0411\u043e\u043b\u044c\u0448\u043e\u0439 C\u0430\u043b\u0431\u044b\u043a\u0441\u043a\u0438\u0439 \u043a\u0443\u0440\u0433\u0430\u043d"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "achaemenid-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/338792318",
+          "citationDetail": "Way 338792318",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=338792318",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bolshoi-calbykskii-kurghan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": -330,
+      "title": "OSM location of \u0411\u043e\u043b\u044c\u0448\u043e\u0439 C\u0430\u043b\u0431\u044b\u043a\u0441\u043a\u0438\u0439 \u043a\u0443\u0440\u0433\u0430\u043d",
+      "provenance": "OpenStreetMap (Way 338792318, version 1, osm:changeset=30262793, 2015-04-16T12:31:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -540,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/pyramid",
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "pyramid",
+        "tomb"
+      ],
+      "description": "Polygon representing the location of the Great Salbyk Mound, derived from an OpenStreetMap Way.",
+      "created": "2018-08-13T16:51:54Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            90.7724192,
+            53.8944558
+          ],
+          [
+            90.7726921,
+            53.8938443
+          ],
+          [
+            90.7737292,
+            53.894005
+          ],
+          [
+            90.7736325,
+            53.8942218
+          ],
+          [
+            90.7737643,
+            53.8942423
+          ],
+          [
+            90.7736875,
+            53.8944144
+          ],
+          [
+            90.7735625,
+            53.894395
+          ],
+          [
+            90.7734632,
+            53.8946176
+          ],
+          [
+            90.7724192,
+            53.8944558
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/765003289/bolshoi-calbykskii-kurghan",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-14T18:18:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-13T17:03:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-13T16:58:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-13T16:54:36Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-13T16:51:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-13T16:51:54Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://aaatec.org/art/a_ml1",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marsadolov 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X2D4PH33",
+      "formattedCitation": "<div class=\"csl-entry\">Marsadolov, Leonid Sergeevich. \u201cThe Great Salbyk Barrow in Siberia (Archaeoastronomical Aspects of Its Studying).\u201d <i>Archaeoastronomy and Ancient Technologies</i> 2, no. 2 (2014): 59\u201365. http://aaatec.org/art/a_ml1.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u041c\u0430\u0440\u0441\u0430\u0434\u043e\u043b\u043e\u0432 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q8TPK5SU",
+      "formattedCitation": "<div class=\"csl-entry\">\u041c\u0430\u0440\u0441\u0430\u0434\u043e\u043b\u043e\u0432, \u041b. \u0421, \u0412\u0430\u043b\u0435\u043d\u0442\u0438\u043d\u0430 \u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432\u043d\u0430 \u0422\u0443\u0433\u0443\u0436\u0435\u043a\u043e\u0432\u0430, and literaturanyn\ufe20g\ufe21 paza istorii\ufe20a\ufe21nyn\ufe20g\ufe21 khakasii\ufe20a\ufe21daghy nauchno-issledovatel\u02b9ska\u012d institudy T\u012bln\u012bn\ufe20g\ufe21. <i>\u0411\u043e\u043b\u044c\u0448\u043e\u0439 \u0421\u0430\u043b\u0431\u044b\u043a\u0441\u043a\u0438\u0439 \u043a\u0443\u0440\u0433\u0430\u043d \u0438 \u0430\u0440\u0445\u0435\u043e\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u043f\u0430\u043c\u044f\u0442\u043d\u0438\u043a\u0438 \u0432 \u0435\u0433\u043e \u043e\u043a\u0440\u0435\u0441\u0442\u043d\u043e\u0441\u0442\u044f\u0445: \u043a\u043e\u043b\u043b\u0435\u043a\u0442\u0438\u0432\u043d\u0430\u044f\u0430 \u043c\u043e\u043d\u043e\u0433\u0440\u0430\u0444\u0438\u044f</i>. \u0410\u0431\u0430\u043a\u0430\u043d: \u0425a\u043a\u041d\u0418\u0418\u042f\u041b\u0418, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.megalithic.co.uk/article.php?sid=40170",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Megalithic Portal, Great Salbyk Kurgan",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "\u0411\u043e\u043b\u044c\u0448\u043e\u0439 \u0421\u0430\u043b\u0431\u044b\u043a\u0441\u043a\u0438\u0439 \u043a\u0443\u0440\u0433\u0430\u043d",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "\u041c\u0430\u0440\u0441\u0430\u0434\u043e\u043b\u043e\u0432 2016",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q8TPK5SU",
+          "formattedCitation": "<div class=\"csl-entry\">\u041c\u0430\u0440\u0441\u0430\u0434\u043e\u043b\u043e\u0432, \u041b. \u0421, \u0412\u0430\u043b\u0435\u043d\u0442\u0438\u043d\u0430 \u041d\u0438\u043a\u043e\u043b\u0430\u0435\u0432\u043d\u0430 \u0422\u0443\u0433\u0443\u0436\u0435\u043a\u043e\u0432\u0430, and literaturanyn\ufe20g\ufe21 paza istorii\ufe20a\ufe21nyn\ufe20g\ufe21 khakasii\ufe20a\ufe21daghy nauchno-issledovatel\u02b9ska\u012d institudy T\u012bln\u012bn\ufe20g\ufe21. <i>\u0411\u043e\u043b\u044c\u0448\u043e\u0439 \u0421\u0430\u043b\u0431\u044b\u043a\u0441\u043a\u0438\u0439 \u043a\u0443\u0440\u0433\u0430\u043d \u0438 \u0430\u0440\u0445\u0435\u043e\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u043f\u0430\u043c\u044f\u0442\u043d\u0438\u043a\u0438 \u0432 \u0435\u0433\u043e \u043e\u043a\u0440\u0435\u0441\u0442\u043d\u043e\u0441\u0442\u044f\u0445: \u043a\u043e\u043b\u043b\u0435\u043a\u0442\u0438\u0432\u043d\u0430\u044f\u0430 \u043c\u043e\u043d\u043e\u0433\u0440\u0430\u0444\u0438\u044f</i>. \u0410\u0431\u0430\u043a\u0430\u043d: \u0425a\u043a\u041d\u0418\u0418\u042f\u041b\u0418, 2016.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "dd3-4d-nnd3-4d1-d-ddegd-d-ndondod-d1-donnd3ddegd1",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2018-08-13T16:59:11Z",
+      "uri": "https://pleiades.stoa.org/places/765003289/dd3-4d-nnd3-4d1-d-ddegd-d-ndondod-d1-donnd3ddegd1",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0411\u043e\u043b\u044c\u0448\u043e\u0439 C\u0430\u043b\u0431\u044b\u043a\u0441\u043a\u0438\u0439 \u043a\u0443\u0440\u0433\u0430\u043d",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-08-14T18:18:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-13T17:03:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-13T16:59:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-08-13T16:59:11Z"
+        }
+      ]
+    }
+  ],
+  "id": "765003289",
+  "subject": [],
+  "title": "Bol\u02b9sho\u012d Salbykski\u012d kurgan",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb",
+    "https://pleiades.stoa.org/vocabularies/place-types/pyramid"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Great Salbyk Mound is the largest burial mound in the Khakassia region of Russia. The mastaba-like tomb, associated with the Bronze Age Tagar culture, was constructed in the 7th century BCE, and may have had an astronomical function.",
+  "reprPoint": [
+    90.77312335874188,
+    53.89423825820736
+  ],
+  "placeTypes": [
+    "tomb",
+    "pyramid"
+  ],
+  "bbox": [
+    90.7724192,
+    53.8938443,
+    90.7737643,
+    53.8946176
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-13T16:51:07Z",
+  "uri": "https://pleiades.stoa.org/places/765003289",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-14T18:18:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-13T17:03:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-13T17:03:10Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-13T16:51:38Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-13T16:51:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-08-13T16:51:07Z"
+    }
+  ]
+}

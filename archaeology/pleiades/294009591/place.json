@@ -1,0 +1,360 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.8298753,
+            41.9025847
+          ],
+          [
+            12.830515,
+            41.9035589
+          ],
+          [
+            12.8305012,
+            41.9035639
+          ],
+          [
+            12.830483,
+            41.9035705
+          ],
+          [
+            12.8304685,
+            41.9035758
+          ],
+          [
+            12.8298288,
+            41.9026016
+          ],
+          [
+            12.8298433,
+            41.9025964
+          ],
+          [
+            12.8298615,
+            41.9025897
+          ],
+          [
+            12.8298753,
+            41.9025847
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "ponte-san-antonio",
+      "properties": {
+        "snippet": "Aqueduct, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/294009591/ponte-san-antonio",
+        "description": "Representative location based on OpenStreetMap. Chronology following Barrington Atlas.",
+        "location_precision": "precise",
+        "title": "OSM location of Acquedotto Anio Novus Ponte S. Antonio"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/160933490",
+          "citationDetail": "Way 160933490",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=160933490",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=6010",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "info.roma.it, PONTE SAN ANTONIO",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ponte-san-antonio",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Acquedotto Anio Novus Ponte S. Antonio",
+      "provenance": "OpenStreetMap (Way 160933490, version 10, osm:changeset=153699255, 2024-07-08T11:26:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/aqueduct",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "aqueduct",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap. Chronology following Barrington Atlas.",
+      "created": "2014-02-15T04:03:41Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.8298753,
+            41.9025847
+          ],
+          [
+            12.830515,
+            41.9035589
+          ],
+          [
+            12.8305012,
+            41.9035639
+          ],
+          [
+            12.830483,
+            41.9035705
+          ],
+          [
+            12.8304685,
+            41.9035758
+          ],
+          [
+            12.8298288,
+            41.9026016
+          ],
+          [
+            12.8298433,
+            41.9025964
+          ],
+          [
+            12.8298615,
+            41.9025897
+          ],
+          [
+            12.8298753,
+            41.9025847
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/294009591/ponte-san-antonio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:05:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "rmhorne",
+          "modified": "2016-08-01T16:14:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-19T01:33:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-22T19:22:07Z"
+        },
+        {
+          "comment": "added reference",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T04:05:21Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T04:04:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T04:03:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-02-15T04:03:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-04-06T00:57:00Z",
+      "associationCertainty": "certain",
+      "title": "Aqua Anio Novus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/294009591/6207539378",
+      "connectionType": "at",
+      "id": "6207539378",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-06T00:57:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-06T00:57:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-06T00:57:00Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423559",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=6010",
+      "citationDetail": "6010: Ponte San Antonio",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "114",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aicher 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AMK9IJ5Z",
+      "formattedCitation": "<div class=\"csl-entry\">Aicher, Peter J. <i>Guide to the Aqueducts of Ancient Rome</i>. Bolchazy-Carducci Publishers, 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "294009591",
+  "subject": [],
+  "title": "Acquedotto Anio Novus Ponte S. Antonio",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/aqueduct"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Ponte S. Antonio carried the Anio Novus aqueduct.",
+  "reprPoint": [
+    12.83017189998459,
+    41.90308025000514
+  ],
+  "placeTypes": [
+    "aqueduct"
+  ],
+  "bbox": [
+    12.8298288,
+    41.9025847,
+    12.830515,
+    41.9035758
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423559"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-04-06T00:56:57Z",
+  "uri": "https://pleiades.stoa.org/places/294009591",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T21:06:30Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-06T02:05:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-06T02:05:49Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-06T02:05:43Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-06T00:57:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-06T00:56:57Z"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.8456729,
+          46.0945267
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-busa-delle-vette",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/139974470/osm-location-busa-delle-vette",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Busa delle Vette"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/9910663349",
+          "citationDetail": "Node 9910663349",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=9910663349",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-busa-delle-vette",
+      "featureTypeURI": [],
+      "end": null,
+      "title": "OSM Location: Busa delle Vette",
+      "provenance": "OpenStreetMap (Node 9910663349, version 1, osm:changeset=124072609, 2022-07-26T00:21:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-09-29T21:09:21Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.8456729,
+          46.0945267
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/139974470/osm-location-busa-delle-vette",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-10-01T01:01:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-29T21:10:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-29T21:09:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-29T21:09:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-29T21:09:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X23003759",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mileto 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BF38C6XC",
+      "formattedCitation": "<div class=\"csl-entry\">Mileto, Simona, Fabio Cavulli, Francesco Carrer, Erica Ferronato, and Alessandra Pecci. \u201cDiet and Subsistence in the Alps in Late Antiquity: Organic Residue Analysis of Pottery from an Upland Site in the Dolomites (Busa Delle Vette, Veneto, Italy).\u201d <i>Journal of Archaeological Science: Reports</i> 51 (October 1, 2023): 104200. https://doi.org/10.1016/j.jasrep.2023.104200.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://iris.unitn.it/handle/11572/207750",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cavulli 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B7M9SFIZ",
+      "formattedCitation": "<div class=\"csl-entry\">Cavulli, Fabio, Francesco Carrer, Piergiorgio Cesco Frare, and Annaluisa Pedrotti. \u201cArcheologia di montagna nelle Dolomiti bellunesi: il progetto UPLanD.\u201d <i>Frammenti: Conoscere e tutelare la natura Bellunese</i> 7 (2017): 17\u201326. https://iris.unitn.it/handle/11572/207750.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "139974470",
+  "subject": [],
+  "title": "Busa delle Vette",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/building",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A hut and some enclosures located in the Dolomites (Veneto, Italy), datable to between the 5th and 11th centuries CE.",
+  "reprPoint": [
+    11.8456729,
+    46.0945267
+  ],
+  "placeTypes": [
+    "building",
+    "archaeological-site"
+  ],
+  "bbox": [
+    11.8456729,
+    46.0945267,
+    11.8456729,
+    46.0945267
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-29T21:08:39Z",
+  "uri": "https://pleiades.stoa.org/places/139974470",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-10-01T01:01:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-29T21:10:13Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-29T21:08:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-29T21:08:39Z"
+    }
+  ]
+}

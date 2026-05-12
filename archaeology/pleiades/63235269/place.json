@@ -1,0 +1,338 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.6453,
+            41.0662023
+          ],
+          [
+            20.6453725,
+            41.0661558
+          ],
+          [
+            20.645013,
+            41.0657719
+          ],
+          [
+            20.6448999,
+            41.0656185
+          ],
+          [
+            20.6447388,
+            41.0653966
+          ],
+          [
+            20.6446723,
+            41.0654318
+          ],
+          [
+            20.6445167,
+            41.0655248
+          ],
+          [
+            20.6443317,
+            41.065638
+          ],
+          [
+            20.6443365,
+            41.0658233
+          ],
+          [
+            20.6443397,
+            41.0659454
+          ],
+          [
+            20.6445731,
+            41.0661477
+          ],
+          [
+            20.6447321,
+            41.0660731
+          ],
+          [
+            20.6451542,
+            41.0662008
+          ],
+          [
+            20.6453,
+            41.0662023
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Church; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/63235269/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Lin, Paleochristian Church"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/289832399",
+          "citationDetail": "Way 289832399",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=289832399",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church"
+      ],
+      "end": 640,
+      "title": "OSM location of Lin, Paleochristian Church",
+      "provenance": "OpenStreetMap (Way 289832399, version 7, osm:changeset=116337602, 2022-01-19T11:22:01Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/church"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "church"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2014-06-26T03:00:18Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            20.6453,
+            41.0662023
+          ],
+          [
+            20.6453725,
+            41.0661558
+          ],
+          [
+            20.645013,
+            41.0657719
+          ],
+          [
+            20.6448999,
+            41.0656185
+          ],
+          [
+            20.6447388,
+            41.0653966
+          ],
+          [
+            20.6446723,
+            41.0654318
+          ],
+          [
+            20.6445167,
+            41.0655248
+          ],
+          [
+            20.6443317,
+            41.065638
+          ],
+          [
+            20.6443365,
+            41.0658233
+          ],
+          [
+            20.6443397,
+            41.0659454
+          ],
+          [
+            20.6445731,
+            41.0661477
+          ],
+          [
+            20.6447321,
+            41.0660731
+          ],
+          [
+            20.6451542,
+            41.0662008
+          ],
+          [
+            20.6453,
+            41.0662023
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/63235269/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-19T11:12:18Z"
+        },
+        {
+          "comment": "reimported full Way geometry and updated provenance",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-19T11:12:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-18T23:11:36Z"
+        },
+        {
+          "comment": "update title, summary",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-18T23:10:07Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-26T03:00:42Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-26T03:00:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-06-26T03:00:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Paleochristian_Church,_Lin",
+      "citationDetail": "Paleochristian Church, Lin",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Paleochristian Church, Lin.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "63235269",
+  "subject": [
+    "paleochristian",
+    "Mosaic"
+  ],
+  "title": "Paleochristian Church, Lin",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A paleochristian church located in Lin, Kor\u00e7\u00eb County, Albania, with fourth- and fifth-century mosaics.",
+  "reprPoint": [
+    20.644804309094454,
+    41.065874821808215
+  ],
+  "placeTypes": [
+    "church"
+  ],
+  "bbox": [
+    20.6443317,
+    41.0653966,
+    20.6453725,
+    41.0662023
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-06-26T03:00:03Z",
+  "uri": "https://pleiades.stoa.org/places/63235269",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "tag",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-26T06:54:13Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-19T11:12:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-18T23:11:36Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-18T23:11:11Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-26T03:00:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-06-26T03:00:03Z"
+    }
+  ]
+}

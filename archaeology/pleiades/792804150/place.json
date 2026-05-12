@@ -1,0 +1,454 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.7250621,
+            37.7099934
+          ],
+          [
+            28.725051,
+            37.7101053
+          ],
+          [
+            28.7251889,
+            37.7101139
+          ],
+          [
+            28.7252,
+            37.7100019
+          ],
+          [
+            28.7250621,
+            37.7099934
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tetrapylon",
+      "properties": {
+        "snippet": "Gateway; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/792804150/osm-location-of-tetrapylon",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tetrapylon"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "cananac",
+      "homepage": null,
+      "name": "Canan Ar\u0131kan-Caba",
+      "uri": "https://pleiades.stoa.org/author/cananac"
+    },
+    {
+      "username": "kmccullough",
+      "homepage": null,
+      "name": "Katelin McCullough",
+      "uri": "https://pleiades.stoa.org/author/kmccullough"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/170645206",
+          "citationDetail": "Way 170645206",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=170645206",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tetrapylon",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+      ],
+      "end": 300,
+      "title": "OSM location of Tetrapylon",
+      "provenance": "OpenStreetMap (Way 170645206, version 2, osm:changeset=170155977, 2025-08-08T13:29:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "gateway"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-08-08T13:30:06Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.7250621,
+            37.7099934
+          ],
+          [
+            28.725051,
+            37.7101053
+          ],
+          [
+            28.7251889,
+            37.7101139
+          ],
+          [
+            28.7252,
+            37.7100019
+          ],
+          [
+            28.7250621,
+            37.7099934
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/792804150/osm-location-of-tetrapylon",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-10T16:07:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-08T14:58:19Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-08T13:30:26Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-08T13:30:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-08T13:30:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-12T00:06:46Z",
+      "associationCertainty": "certain",
+      "title": "Aphrodisias",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/792804150/6068724124",
+      "connectionType": "at",
+      "id": "6068724124",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-12T00:06:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-12T00:06:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-01-12T00:06:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/638753",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://aphrodisias.classics.ox.ac.uk/tetrapylon",
+      "citationDetail": "Tetrapylon",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aphrodisias Excavations",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/62RSHP77",
+      "formattedCitation": "<div class=\"csl-entry\">Smith, R.R.R., K. Welch, E. \u00d6\u011f\u00fc\u015f, and J. Lenaghan. \u201cAphrodisias: Aphrodisias Excavations,\u201d 2017. http://aphrodisias.classics.ox.ac.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q134728586",
+      "citationDetail": "Tetrapylon of Aphrodisias (Q134728586)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/11842",
+      "citationDetail": "11842",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/5666",
+      "citationDetail": "Tetrapylon Aphrodisias, Ayd\u0131n (Provinz)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "pp. 201-14",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Aphrodisias papers 3",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HDN64AMR",
+      "formattedCitation": "<div class=\"csl-entry\">Rouech\u00e9, Charlotte, and R. R. R. Smith. <i>Aphrodisias Papers 3: The Setting and Quarries, Mythological and Other Sculptural Decoration, Architectural Development, Portico of Tiberius, and Tetrapylon\u202f: Including the Papers given at the Fourth International Aphrodisias Colloquium Held at King\u2019s College, London on 14 March, 1992, in Memory of Kenan T. Erim</i>. Journal of Roman Archaeology. Ann Arbor, MI: Journal of Roman Archaeology, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Tetrapylon of Aphrodisias",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q134728586",
+          "citationDetail": "Tetrapylon of Aphrodisias (Q134728586)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "tetrapylon-of-aphrodisias",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-08-08T16:02:37Z",
+      "uri": "https://pleiades.stoa.org/places/792804150/tetrapylon-of-aphrodisias",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Tetrapylon of Aphrodisias",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-10T16:07:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-08T16:31:06Z"
+        },
+        {
+          "comment": "name - Tetrapylon of Aphrodisias",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-08T16:02:37Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-08T16:02:37Z"
+        }
+      ]
+    }
+  ],
+  "id": "792804150",
+  "subject": [
+    "extant remains"
+  ],
+  "title": "Tetrapylon at Aphrodisias",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/arch",
+    "https://pleiades.stoa.org/vocabularies/place-types/gateway"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The monumental columnar entrance to the sanctuary of Aphrodite",
+  "reprPoint": [
+    28.72512551361786,
+    37.71005362653952
+  ],
+  "placeTypes": [
+    "arch",
+    "gateway"
+  ],
+  "bbox": [
+    28.725051,
+    37.7099934,
+    28.7252,
+    37.7101139
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/638753"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-08-08T13:07:31Z",
+  "uri": "https://pleiades.stoa.org/places/792804150",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited; update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-08T16:30:40Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "cananac",
+      "modified": "2025-08-08T13:07:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-09T19:05:06Z"
+    },
+    {
+      "comment": "check in of working copy",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-09T19:04:16Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "kmccullough",
+      "modified": "2018-03-23T18:48:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-12T00:09:34Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-12T00:09:28Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-12T00:06:47Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2018-01-12T00:06:46Z"
+    }
+  ]
+}

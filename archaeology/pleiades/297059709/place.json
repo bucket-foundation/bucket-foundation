@@ -1,0 +1,292 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5545008,
+          34.0748792
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-house-of-the-tasks-of-hercules",
+      "properties": {
+        "snippet": "Townhouse; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/297059709/osm-location-of-house-of-the-tasks-of-hercules",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of House of the tasks of Hercules"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/2312523140",
+          "citationDetail": "Node 2312523140",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=2312523140",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-house-of-the-tasks-of-hercules",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": 300,
+      "title": "OSM location of House of the tasks of Hercules",
+      "provenance": "OpenStreetMap (Node 2312523140, version 3, osm:changeset=107843419, 2021-07-12T13:41:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-07-12T13:44:30Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.5545008,
+          34.0748792
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/297059709/osm-location-of-house-of-the-tasks-of-hercules",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-04-30T17:06:19Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:45:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:45:05Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:44:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:44:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:44:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-16T21:42:10Z",
+      "associationCertainty": "certain",
+      "title": "Volubilis",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/297059709/volubilis",
+      "connectionType": "at",
+      "id": "volubilis",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:45:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-07-12T13:45:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T21:43:40Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T21:42:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "bwilson",
+          "modified": "2020-11-16T21:42:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/275740",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "bwilson",
+          "homepage": null,
+          "name": "Brandon Wilson",
+          "uri": "https://pleiades.stoa.org/author/bwilson"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/458298683",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thouvenot 1948",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SLWSIXLI",
+      "formattedCitation": "<div class=\"csl-entry\">Thouvenot, Raymond. <i>La Maison aux Travaux d\u2019Hercule [\u00e0 Volubilis]</i>. Paris: Impr. de Daupeley-Gouverneur, 1948. http://catalogue.bnf.fr/ark:/12148/cb31466396k.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://catalog.hathitrust.org/Record/001605508",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Etienne 1960",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SCLZZEC3",
+      "formattedCitation": "<div class=\"csl-entry\">Etienne, Robert. <i>Le Quartier Nord-Est de Volubilis.</i> Paris: E. de Boccard, 1960. https://catalog.hathitrust.org/Record/001605508.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "297059709",
+  "subject": [],
+  "title": "House of the Labors of Hercules",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/garden-hortus",
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+    "https://pleiades.stoa.org/vocabularies/place-types/fountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/piscina-roman"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman peristyle house with an interior garden and a fountain.",
+  "reprPoint": [
+    -5.5545008,
+    34.0748792
+  ],
+  "placeTypes": [
+    "garden-hortus",
+    "townhouse",
+    "fountain",
+    "piscina-roman"
+  ],
+  "bbox": [
+    -5.5545008,
+    34.0748792,
+    -5.5545008,
+    34.0748792
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/275740"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-16T21:20:40Z",
+  "uri": "https://pleiades.stoa.org/places/297059709",
+  "creators": [
+    {
+      "username": "bwilson",
+      "homepage": null,
+      "name": "Brandon Wilson",
+      "uri": "https://pleiades.stoa.org/author/bwilson"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-04-30T17:06:13Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:45:10Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-07-12T13:45:05Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T21:20:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "bwilson",
+      "modified": "2020-11-16T21:20:40Z"
+    }
+  ]
+}

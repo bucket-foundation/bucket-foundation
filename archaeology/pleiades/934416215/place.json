@@ -1,0 +1,396 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.7605057,
+          38.663518
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-archaic-city-wall",
+      "properties": {
+        "snippet": "City-gate, Defensive-wall; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/934416215/osm-location-of-archaic-city-wall",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Archaic City Wall"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/11186590328",
+          "citationDetail": "Node 11186590328",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=11186590328",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-archaic-city-wall",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/defensive-wall"
+      ],
+      "end": -550,
+      "title": "OSM Location of Archaic City Wall",
+      "provenance": "OpenStreetMap (Node 11186590328, version 1, osm:changeset=141179941, 2023-09-12T20:04:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-gate",
+        "https://pleiades.stoa.org/vocabularies/place-types/defensive-wall"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "city-gate",
+        "defensive-wall"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2023-09-12T20:31:58Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.7605057,
+          38.663518
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/934416215/osm-location-of-archaic-city-wall",
+      "creators": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-13T15:37:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:44:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:32:53Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:31:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:31:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -3300,
+      "description": "",
+      "contributors": [],
+      "created": "2023-09-12T20:42:10Z",
+      "associationCertainty": "certain",
+      "title": "Phocaea",
+      "start": -10000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/934416215/phocaea",
+      "connectionType": "at",
+      "id": "phocaea",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-13T15:37:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:44:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:42:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:42:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550823",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.raco.cat/index.php/Empuries/article/download/327066/417555",
+      "citationDetail": "p. 27",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "\u00d6zygit 2009-2011",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/7MHKWCDH",
+      "formattedCitation": " \u00d6zygit, \u00d6mer. \u201cRecent Discoveries at Phocaea.\u201d Emp\u00faries: Revista de M\u00f3n Cl\u00e0ssic i Antiguitat Tardana 56 (2011 2009): 25\u201340.",
+      "otherIdentifier": "ISSN: 0213-9278",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/work/22",
+      "citationDetail": "1.163 ",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Hdt.",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Archaic City Wall and Gate of Phocaea",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": ". https://www.raco.cat/index.php/Empuries/article/download/327066/417555",
+          "citationDetail": "pp. 26-27",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "\u00d6zygit 2009-2011",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/7MHKWCDH",
+          "formattedCitation": "    \u00d6zygit, \u00d6mer. \u201cRecent Discoveries at Phocaea.\u201d Emp\u00faries: Revista de M\u00f3n Cl\u00e0ssic i Antiguitat Tardana 56 (2011 2009): 25\u201340.",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.erolsasmaz.com/?oku=759",
+          "citationDetail": "https://www.erolsasmaz.com/?oku=759",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tarihi Mekanlar Ki\u015fisel Ansiklopedi Erol \u015eA\u015eMAZ",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/search/erol/titleCreatorYear/items/YUZR89IZ/item-list",
+          "formattedCitation": "\"Tarihi Mekanlar Ki\u015fisel Ansiklopedi Erol \u015eA\u015eMAZ.\u201d Accessed September 12, 2023. https://www.erolsasmaz.com/?",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "archaic-city-wall-and-gate-of-phocaea",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "Archaic city wall and gate of Phocaea, which is also described on signage at the this archaeological site as Arkaik D\u00f6nem Kent Duvar\u0131 (Herodot Duvar\u0131).",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2023-09-12T20:22:17Z",
+      "uri": "https://pleiades.stoa.org/places/934416215/archaic-city-wall-and-gate-of-phocaea",
+      "creators": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "attested": "Archaic City Wall and Gate of Phocaea",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-13T15:37:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:44:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:30:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:27:13Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:23:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:22:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nkaye",
+          "modified": "2023-09-12T20:22:17Z"
+        }
+      ]
+    }
+  ],
+  "id": "934416215",
+  "subject": [
+    "gate",
+    "walls"
+  ],
+  "title": "Archaic City Wall and Gate of Phocaea",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/defensive-wall",
+    "https://pleiades.stoa.org/vocabularies/place-types/city-gate"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The archaic period city walls and gate of Phocaea excavated under the Maltepe tumulus.",
+  "reprPoint": [
+    26.7605057,
+    38.663518
+  ],
+  "placeTypes": [
+    "defensive-wall",
+    "city-gate"
+  ],
+  "bbox": [
+    26.7605057,
+    38.663518,
+    26.7605057,
+    38.663518
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550823"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-12T20:17:57Z",
+  "uri": "https://pleiades.stoa.org/places/934416215",
+  "creators": [
+    {
+      "username": "nkaye",
+      "homepage": null,
+      "name": "Noah Kaye",
+      "uri": "https://pleiades.stoa.org/author/nkaye"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-13T15:37:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nkaye",
+      "modified": "2023-09-12T20:44:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "nkaye",
+      "modified": "2023-09-12T20:39:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "nkaye",
+      "modified": "2023-09-12T20:23:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "nkaye",
+      "modified": "2023-09-12T20:22:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "nkaye",
+      "modified": "2023-09-12T20:19:03Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "nkaye",
+      "modified": "2023-09-12T20:18:34Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "nkaye",
+      "modified": "2023-09-12T20:17:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nkaye",
+      "modified": "2023-09-12T20:17:57Z"
+    }
+  ]
+}

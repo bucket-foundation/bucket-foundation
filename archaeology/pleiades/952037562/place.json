@@ -1,0 +1,410 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4791946,
+            41.6566091
+          ],
+          [
+            12.4790768,
+            41.6564775
+          ],
+          [
+            12.4792573,
+            41.6563873
+          ],
+          [
+            12.4793751,
+            41.6565189
+          ],
+          [
+            12.4791946,
+            41.6566091
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-heroon-of-aeneas",
+      "properties": {
+        "snippet": "Tumulus; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/952037562/osm-location-of-heroon-of-aeneas",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of heroon of Aeneas"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/374740261",
+          "citationDetail": "Way 374740261",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=374740261",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/12247466",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Torelli 1984",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9VC7CGFK",
+          "formattedCitation": "<div class=\"csl-entry\">Torelli, Mario. <i>Lavinio e Roma: riti iniziatici e matrimonio tra archeologia e storia</i>. Lectiones planetariae. Rome: Edizioni Quasar, 1984. http://www.worldcat.org/oclc/12247466.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-heroon-of-aeneas",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": 300,
+      "title": "OSM location of heroon of Aeneas",
+      "provenance": "OpenStreetMap (Way 374740261, version 5, osm:changeset=132103630, 2023-02-05T10:30:28Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-04-20T02:44:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4791946,
+            41.6566091
+          ],
+          [
+            12.4790768,
+            41.6564775
+          ],
+          [
+            12.4792573,
+            41.6563873
+          ],
+          [
+            12.4793751,
+            41.6565189
+          ],
+          [
+            12.4791946,
+            41.6566091
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/952037562/osm-location-of-heroon-of-aeneas",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-04T16:17:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:15:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:15:02Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-21T03:41:14Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-20T02:44:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-20T02:44:11Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-20T02:44:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-12T02:29:52Z",
+      "associationCertainty": "certain",
+      "title": "Tredici Altari",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/952037562/1921452920",
+      "connectionType": "at",
+      "id": "1921452920",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T02:29:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T02:29:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-12T02:29:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/423104",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-12-24T22:16:50Z",
+      "associationCertainty": "certain",
+      "title": "Lavinium",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/952037562/lavinium",
+      "connectionType": "at",
+      "id": "lavinium",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-01-04T16:17:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:16:56Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:16:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-24T22:16:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422960",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.jstor.org/stable/41591719",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Galinsky 1974",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8JMZGN6N",
+          "formattedCitation": "<div class=\"csl-entry\">GALINSKY, G. KARL. \u201cTHE \u2018TOMB OF AENEAS\u2019 AT LAVINIUM.\u201d <i>Vergilius (1959-)</i>, no. 20 (1974): 2\u201311. https://www.jstor.org/stable/41591719.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/12247466",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Torelli 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9VC7CGFK",
+      "formattedCitation": "<div class=\"csl-entry\">Torelli, Mario. <i>Lavinio e Roma: riti iniziatici e matrimonio tra archeologia e storia</i>. Lectiones planetariae. Rome: Edizioni Quasar, 1984. http://www.worldcat.org/oclc/12247466.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q21208538",
+      "citationDetail": "Heroon of Aeneas (Q21208538)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/21525/",
+      "citationDetail": "21525: Lavinium, Heroon of Aeneas",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/41591719",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Galinsky 1974",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8JMZGN6N",
+      "formattedCitation": "<div class=\"csl-entry\">GALINSKY, G. KARL. \u201cTHE \u2018TOMB OF AENEAS\u2019 AT LAVINIUM.\u201d <i>Vergilius (1959-)</i>, no. 20 (1974): 2\u201311. https://www.jstor.org/stable/41591719.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "952037562",
+  "subject": [],
+  "title": "heroon of Aeneas",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A tumulus at Lavinium located near the Latin federal sanctuary that has been associated with the tomb of Aeneas and/or a hero\u00f6n dedicated to him.",
+  "reprPoint": [
+    12.479225950000002,
+    41.6564982
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    12.4790768,
+    41.6563873,
+    12.4793751,
+    41.6566091
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/423104",
+    "https://pleiades.stoa.org/places/422960"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-12-12T02:29:50Z",
+  "uri": "https://pleiades.stoa.org/places/952037562",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-01-04T16:17:03Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T22:15:11Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-24T22:14:36Z"
+    },
+    {
+      "comment": "add wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-12T02:30:32Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-12T02:29:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-12-12T02:29:50Z"
+    }
+  ]
+}

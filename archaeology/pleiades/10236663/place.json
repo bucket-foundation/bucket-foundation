@@ -1,0 +1,216 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.3886657,
+            41.9520698
+          ],
+          [
+            12.3883392,
+            41.9523016
+          ],
+          [
+            12.3881244,
+            41.9524541
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-viale-giardino-di-ottavia",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/10236663/osm-location-of-viale-giardino-di-ottavia",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Viale Giardino di Ottavia"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/48820682",
+          "citationDetail": "Way 48820682",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=48820682",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-viale-giardino-di-ottavia",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location of Viale Giardino di Ottavia",
+      "provenance": "OpenStreetMap (Way 48820682, version 7, osm:changeset=113042887, 2021-10-27T15:24:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2022-07-27T15:52:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.3886657,
+            41.9520698
+          ],
+          [
+            12.3883392,
+            41.9523016
+          ],
+          [
+            12.3881244,
+            41.9524541
+          ]
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/10236663/osm-location-of-viale-giardino-di-ottavia",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-28T12:27:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-27T14:12:56Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-27T15:52:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-27T15:52:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-27T15:52:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://publications-prairial.fr/frontiere-s/index.php?id=1297",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arizza and Rossi 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FTYM6SXV",
+      "formattedCitation": "<div class=\"csl-entry\">Arizza, Marco, and Daniela Rossi. \u201cThe Territory between Veii and Rome in the Archaic Period: Rural Structures as Territorial Markers of Cultural Frontiers.\u201d <i>Fronti\u00e8re\u00b7s. Revue d\u2019arch\u00e9ologie, Histoire &amp; Histoire de l\u2019art</i>, no. 6 (July 22, 2022): 49\u201362. https://doi.org/10.35562/frontieres.1297.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "10236663",
+  "subject": [],
+  "title": "Tenuta della Lucchina",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An archaeological area in the suburbium of ancient Rome, now in the quartiere Ottavia, with multi-phase evidence for tombs of the Etruscan culture, a segment of a Roman road, and evidence for Roman villas.",
+  "reprPoint": [
+    12.38839504973403,
+    41.952261949625374
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    12.3881244,
+    41.9520698,
+    12.3886657,
+    41.9524541
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-27T15:36:43Z",
+  "uri": "https://pleiades.stoa.org/places/10236663",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-28T12:27:21Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-27T14:12:56Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-27T14:12:45Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-27T20:26:09Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-27T15:36:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-27T15:36:43Z"
+    }
+  ]
+}

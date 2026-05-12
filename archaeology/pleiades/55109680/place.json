@@ -1,0 +1,296 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.72136,
+          47.540665
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-excavation",
+      "properties": {
+        "snippet": "Archaeological-site; AD 300 - AD 399",
+        "link": "https://pleiades.stoa.org/places/55109680/imagery-location-of-excavation",
+        "description": "Location determined by analysis of imagery in Google Earth with reference to drone photos published in the Kanton Aargau press release showing the excavated area in the context of surrounding features.",
+        "location_precision": "precise",
+        "title": "Imagery location of excavation"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "sebs",
+      "homepage": null,
+      "name": "Sebastian Heath",
+      "uri": "https://pleiades.stoa.org/author/sebs"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.ag.ch/de/aktuelles/medienportal/medienmitteilung/medienmitteilungen/mediendetails_180549.jsp",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "R\u00f6misches Amphitheater in Kaiseraugst entdeckt",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YK3SSPZD",
+          "formattedCitation": "<div class=\"csl-entry\">Kanton Aargau: Medienmitteilungen. \u201cR\u00f6misches Amphitheater in Kaiseraugst Entdeckt,\u201d January 19, 2022. https://www.ag.ch/de/aktuelles/medienportal/medienmitteilung/medienmitteilungen/mediendetails_180549.jsp.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-excavation",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 399,
+      "title": "Imagery location of excavation",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location determined by analysis of imagery in Google Earth with reference to drone photos published in the Kanton Aargau press release showing the excavated area in the context of surrounding features.",
+      "created": "2022-01-26T19:16:17Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.72136,
+          47.540665
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/55109680/imagery-location-of-excavation",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-26T19:17:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-26T19:17:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-26T19:16:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-26T19:16:17Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 399,
+      "description": "",
+      "contributors": [],
+      "created": "2022-01-26T19:17:10Z",
+      "associationCertainty": "certain",
+      "title": "Castrum Rauracense",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/55109680/castrum-rauracense",
+      "connectionType": "at",
+      "id": "castrum-rauracense",
+      "attestations": [
+        {
+          "timePeriod": "fourth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/fourth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-26T19:17:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-26T19:17:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-26T19:17:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-01-26T19:17:10Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/81716458",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.ag.ch/de/aktuelles/medienportal/medienmitteilung/medienmitteilungen/mediendetails_180549.jsp",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "R\u00f6misches Amphitheater in Kaiseraugst entdeckt",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YK3SSPZD",
+          "formattedCitation": "<div class=\"csl-entry\">Kanton Aargau: Medienmitteilungen. \u201cR\u00f6misches Amphitheater in Kaiseraugst Entdeckt,\u201d January 19, 2022. https://www.ag.ch/de/aktuelles/medienportal/medienmitteilung/medienmitteilungen/mediendetails_180549.jsp.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.ag.ch/de/aktuelles/medienportal/medienmitteilung/medienmitteilungen/mediendetails_180549.jsp",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "R\u00f6misches Amphitheater in Kaiseraugst entdeckt",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YK3SSPZD",
+      "formattedCitation": "<div class=\"csl-entry\">Kanton Aargau: Medienmitteilungen. \u201cR\u00f6misches Amphitheater in Kaiseraugst Entdeckt,\u201d January 19, 2022. https://www.ag.ch/de/aktuelles/medienportal/medienmitteilung/medienmitteilungen/mediendetails_180549.jsp.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.livescience.com/roman-amphitheater-discovered-switzerland",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Geggel 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IATWB43F",
+      "formattedCitation": "<div class=\"csl-entry\">Geggel, Laura. \u201cLast Roman Gladiator Arena Ever Built Unearthed in Switzerland.\u201d <i>Live Science</i>, January 26, 2022. https://www.livescience.com/roman-amphitheater-discovered-switzerland.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://github.com/roman-amphitheaters/roman-amphitheaters",
+      "citationDetail": "ID = kaiseraugustAmphitheater",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Heath 2013",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HRWWZRJX",
+      "formattedCitation": "<div class=\"csl-entry\">Heath, Sebastian. <i>A Dataset of Roman Amphitheaters.</i> 2021. Reprint, GitHub, 2013. https://github.com/roman-amphitheaters/roman-amphitheaters.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "55109680",
+  "subject": [],
+  "title": "Amphitheater at Castrum Rauracense",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/amphitheatre",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Discovered in late 2021 on the site of the Basler Ruderclub in Augst, this amphitheater lies just west of the Roman fort of Castrum Rauracense. It seems to have been built in an abandoned quarry sometime in the 4th century CE.",
+  "reprPoint": [
+    7.72136,
+    47.540665
+  ],
+  "placeTypes": [
+    "amphitheatre",
+    "archaeological-site"
+  ],
+  "bbox": [
+    7.72136,
+    47.540665,
+    7.72136,
+    47.540665
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/81716458"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-01-26T19:13:00Z",
+  "uri": "https://pleiades.stoa.org/places/55109680",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-26T19:17:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-26T19:17:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-26T19:17:35Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-26T19:13:02Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-01-26T19:13:00Z"
+    }
+  ]
+}

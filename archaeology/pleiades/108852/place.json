@@ -1,0 +1,771 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.620882,
+          49.179131
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-sanctuary-centerpoint",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/108852/imagery-location-of-sanctuary-centerpoint",
+        "description": "Representative point location determined through analysis of imagery in Google Earth and maps in Babelon and Thierry.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Sanctuary Centerpoint"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "jahlfeldt",
+      "homepage": null,
+      "name": "Johan \u00c5hlfeldt",
+      "uri": "https://pleiades.stoa.org/author/jahlfeldt"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "bdturner",
+      "homepage": null,
+      "name": "Brian Turner",
+      "uri": "https://pleiades.stoa.org/author/bdturner"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "gmoss",
+      "homepage": null,
+      "name": "Gabriel Moss",
+      "uri": "https://pleiades.stoa.org/author/gmoss"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://gallica.bnf.fr/ark:/12148/btv1b531438375/f24.item",
+          "citationDetail": ", p. 2",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Babelon 1916",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4CAJPMJ9",
+          "formattedCitation": "<div class=\"csl-entry\">Babelon, Ernest. <i>Le Tr\u00e9sor d\u2019argenterie de Berthouville, pr\u00e8s Bernay (Eure)\u202f: conserv\u00e9 au d\u00e9partement des m\u00e9dailles et antiquit\u00e9s de la Biblioth\u00e8que Nationale</i>. Paris: Librairie centrale des beaux-arts, 1916. https://gallica.bnf.fr/ark:/12148/btv1b531438375.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://journals.openedition.org/adlfi/8033",
+          "citationDetail": "Fig. 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Thierry 2005",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WWBF7AXK",
+          "formattedCitation": "<div class=\"csl-entry\">Lepert, Thierry. \u201cBerthouville \u2013 Villeret.\u201d <i>Arch\u00e9ologie de la France - Informations</i>, March 1, 2005. http://journals.openedition.org/adlfi/8033.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-sanctuary-centerpoint",
+      "featureTypeURI": [],
+      "end": 300,
+      "title": "Imagery Location of Sanctuary Centerpoint",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "notvisible",
+      "details": "<p>To determine this location, which I believe to be accurate to within a few meters, I had reference to a 19th-century map and associated description in Babelon, a GIS map reflecting results of a 2005 resistivity survey published by Thierry, and aerial/satellite imagery in Google Earth. Although many roads/paths shown on the Babelon map are no longer visible today, a key intersection just south of the former hamlet of Villeret survives (minus a northeastward curved path visible only via crop marks). This intersection permits alignment of the Babelon map, Thierry map, and Google Earth.</p>",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "Representative point location determined through analysis of imagery in Google Earth and maps in Babelon and Thierry.",
+      "created": "2018-09-24T21:12:42Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.620882,
+          49.179131
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/108852/imagery-location-of-sanctuary-centerpoint",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T19:49:08Z"
+        },
+        {
+          "comment": "details",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T19:46:31Z"
+        },
+        {
+          "comment": "details",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T19:45:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T22:22:24Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T22:21:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T22:06:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T21:12:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T21:12:42Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "11 A3 Canetonum",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/758914364",
+      "citationDetail": "47",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "TIR Lutetia",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WJXDVUB3",
+      "formattedCitation": "<div class=\"csl-entry\">Chevallier, Raymond. <i>Lutetia\u2013Atuatuca\u2013Ulpia Noviomagus</i>. Tabula Imperii Romani, M 31. Paris: Picard, 1975. http://www.worldcat.org/oclc/758914364.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "386-387",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Horne 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C9UK4DQP",
+      "formattedCitation": "<div class=\"csl-entry\">Horne, P.D., and A.C. King. \u201cRomano-Celtic Temples in Continental Europe: A Gazetteer of Those with Known Plans.\u201d In <i>Temples, Churches, and Religion: Recent Research in Roman Britain\u202f: With a Gazetteer of Romano-Celtic Temples in Continental Europe</i>, by Warwick Rodwell, 369\u2013555. BAR British Series 77. Oxford: BAR, 1980.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://gallica.bnf.fr/ark:/12148/bd6t542084731",
+      "citationDetail": "151",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CAG 27",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JEFCNWSN",
+      "formattedCitation": "<div class=\"csl-entry\">Cliquet, Dominique. <i>Carte arch\u00e9ologique de la Gaule 27 L\u2019Eure</i>. Carte arch\u00e9ologique de la Gaule. [Nouvelle s\u00e9rie] 27. Paris: Acad\u00e9mie des inscriptions et belles-lettres diff. Fondation Maison des sciences de l\u2019homme, 1993. http://gallica.bnf.fr/ark:/12148/bd6t542084731.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Berthouville_Treasure",
+      "citationDetail": "Berthouville Treasure",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.theatrum.de/48.html",
+      "citationDetail": "48: CANETONUM, Berthouville (Gallia Lugdunensis)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://journals.openedition.org/adlfi/8033",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thierry 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WWBF7AXK",
+      "formattedCitation": "<div class=\"csl-entry\">Lepert, Thierry. \u201cBerthouville \u2013 Villeret.\u201d <i>Arch\u00e9ologie de la France - Informations</i>, March 1, 2005. http://journals.openedition.org/adlfi/8033.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Lapatin 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CF58LZEU",
+      "formattedCitation": "<div class=\"csl-entry\">Lapatin, Kenneth D. S. <i>The Berthouville Silver Treasure and Roman Luxury</i>. Los Angeles: J. Paul Getty Museum, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gallica.bnf.fr/ark:/12148/btv1b531438375",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Babelon 1916",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4CAJPMJ9",
+      "formattedCitation": "<div class=\"csl-entry\">Babelon, Ernest. <i>Le Tr\u00e9sor d\u2019argenterie de Berthouville, pr\u00e8s Bernay (Eure)\u202f: conserv\u00e9 au d\u00e9partement des m\u00e9dailles et antiquit\u00e9s de la Biblioth\u00e8que Nationale</i>. Paris: Librairie centrale des beaux-arts, 1916. https://gallica.bnf.fr/ark:/12148/btv1b531438375.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1003420613",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Avisseau 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NIHJFYAL",
+      "formattedCitation": "<div class=\"csl-entry\">Avisseau, Mathilde, and C\u00e9cile Colonna. <i>Le luxe dans l\u2019antiquit\u00e9: tr\u00e9sors de la Biblioth\u00e8que nationale de France</i>, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1046091253",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Nielsen 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q8W74KP7",
+      "formattedCitation": "<div class=\"csl-entry\">Nielsen, Anne Marie, and Anna Wirenfeldt Minor. <i>High on luxury: lost treasures from the Roman Empire.</i> Copenhagen: Ny Carlsberg Glyptothek, 2018. http://www.worldcat.org/oclc/1046091253.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/4313084",
+      "citationDetail": "Berthouville Eure, Frankreich, Europa",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/place/2081481",
+      "citationDetail": "2081481: Berthouville",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>iDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q472019",
+      "citationDetail": "Berthouville (Q472019)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Berthouville",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Berthouville_Treasure",
+          "citationDetail": "Berthouville Treasure",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "berthouville",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Name commonly used for the site and findspot of the treasure in modern scholarly and popular literature. Modern name of the French commune in which the sanctuary was discovered.",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2018-09-24T21:05:07Z",
+      "uri": "https://pleiades.stoa.org/places/108852/berthouville",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Berthouville",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T19:50:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T22:06:30Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T21:08:49Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T21:05:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T21:05:07Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villeret",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://gallica.bnf.fr/ark:/12148/btv1b531438375/f23.item",
+          "citationDetail": "chapter 1",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Babelon 1916",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4CAJPMJ9",
+          "formattedCitation": "<div class=\"csl-entry\">Babelon, Ernest. <i>Le Tr\u00e9sor d\u2019argenterie de Berthouville, pr\u00e8s Bernay (Eure)\u202f: conserv\u00e9 au d\u00e9partement des m\u00e9dailles et antiquit\u00e9s de la Biblioth\u00e8que Nationale</i>. Paris: Librairie centrale des beaux-arts, 1916. https://gallica.bnf.fr/ark:/12148/btv1b531438375.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "villeret",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name of the hamlet where the sanctuary was excavated.",
+      "transcriptionCompleteness": "complete",
+      "language": "fr",
+      "created": "2018-09-24T21:08:14Z",
+      "uri": "https://pleiades.stoa.org/places/108852/villeret",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Villeret",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T19:50:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T22:06:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T21:08:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T21:08:14Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "less-certain",
+      "romanized": "Canetonum",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://edh-www.adw.uni-heidelberg.de/edh/inschrift/HD068156",
+          "citationDetail": "HD068156",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "EDH",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PY3AZV8F",
+          "formattedCitation": "<div class=\"csl-entry\">Alf\u00f6ldy, G\u00e9za, and Christian Witschel, eds. <i>Epigraphic Database Heidelberg</i>. Heidelberg: Heidelberg Academy of Sciences and Humanities, 1997. http://edh-www.adw.uni-heidelberg.de/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://edh-www.adw.uni-heidelberg.de/edh/inschrift/HD068152",
+          "citationDetail": "HD068152",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "EDH",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PY3AZV8F",
+          "formattedCitation": "<div class=\"csl-entry\">Alf\u00f6ldy, G\u00e9za, and Christian Witschel, eds. <i>Epigraphic Database Heidelberg</i>. Heidelberg: Heidelberg Academy of Sciences and Humanities, 1997. http://edh-www.adw.uni-heidelberg.de/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "canetonum",
+      "end": 640,
+      "contributors": [
+        {
+          "username": null,
+          "name": "R. Talbert"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Barrington Atlas: BAtlas 11 A3 Canetonum",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/less-certain",
+      "start": -30,
+      "details": "<p>Inscriptions from objects in the \"Berthouville treasure\" include:</p>\r\n<ul>\r\n<li>DEO MERCVRIO KANETONNESSI = Deo Mercurio Kanetonnessi (sic)</li>\r\n<li>MERIO CANETO = Mer(cur)io Caneto(...?)</li>\r\n<li>DEO MERC CAN ... = Deo Merc(urio) Can(et...)</li>\r\n</ul>",
+      "review_state": "published",
+      "description": "Named inferred from the epithet of Mercury inscribed on various objects in the \"Berthouville treasure.\"",
+      "transcriptionCompleteness": "reconstructable",
+      "language": "la",
+      "created": "2018-09-24T22:06:48Z",
+      "uri": "https://pleiades.stoa.org/places/108852/canetonum",
+      "creators": [
+        {
+          "username": null,
+          "name": "J. Kunow"
+        },
+        {
+          "username": null,
+          "name": "C. Haselgrove"
+        }
+      ],
+      "attested": "Canetonum",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "association certainty, references",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-25T19:50:51Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "thomase",
+          "modified": "2018-09-24T22:06:47Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T02:09:21Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-14T23:41:18Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-05-19T21:31:00Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sgillies",
+          "modified": "2009-11-02T16:55:38Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sgillies",
+          "modified": "2009-11-02T15:48:53Z"
+        }
+      ]
+    }
+  ],
+  "id": "108852",
+  "subject": [
+    "dare:ancient=1",
+    "dare:major=0",
+    "Mercury Canetonensis",
+    "dare:feature=temple"
+  ],
+  "title": "Sanctuary of Mercury Canetonnessis",
+  "provenance": "Barrington Atlas: BAtlas 11 A3 Canetonum",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>The god's epithet, attested only on inscribed objects discovered at the site, presumably refers either to the sanctuary site itself or to a nearby, associated settlement (Canetonum). The excavators placed the settlement to the immediate northwest of the sanctuary, where they found a hypocaust and various \"substructures\" across a large area, but Thierry 2005 echoes twentieth-century scholars who think the site was a relatively isolated, extra-urban sanctuary without a large, attached settlement. Thierry also notes, based on the resistivity survey, that the sanctuary may have overlain an earlier, Iron Age site of as-yet-undetermined type.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Findspot of the so-called \"Berthouville Treasure,\" discovered in 1830 in the hamlet of Villeret in the French commune of Berthouville. A temple and a theater of presumed Roman imperial date were subsequently excavated in the late 19th century. The site is not visible today, but a resistivity survey conducted in 2005 (Thierry) verified the locations of these major structures and the general accuracy of Babelon's map, deriving from the original excavations. ",
+  "reprPoint": [
+    0.620882,
+    49.179131
+  ],
+  "placeTypes": [
+    "findspot",
+    "sanctuary",
+    "settlement-modern"
+  ],
+  "bbox": [
+    0.620882,
+    49.179131,
+    0.620882,
+    49.179131
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-09-24T19:35:48Z",
+  "uri": "https://pleiades.stoa.org/places/108852",
+  "creators": [
+    {
+      "username": null,
+      "name": "C. Haselgrove"
+    },
+    {
+      "username": null,
+      "name": "J. Kunow"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-15T14:49:56Z"
+    },
+    {
+      "comment": "updated pagination for Horne based on autopsy",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-12T14:46:30Z"
+    },
+    {
+      "comment": "updated bibliogaphic data for existing references",
+      "modifiedBy": "thomase",
+      "modified": "2018-11-12T14:27:11Z"
+    },
+    {
+      "comment": "added reference to Nielsen 2018 and some Worldcat links",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-02T18:52:56Z"
+    },
+    {
+      "comment": "added reference to Avisseau  2017",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-02T18:04:56Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-01T16:38:27Z"
+    },
+    {
+      "comment": "added reference to excavation report: Babelon 1916",
+      "modifiedBy": "thomase",
+      "modified": "2018-10-01T16:35:22Z"
+    },
+    {
+      "comment": "fixed typo in bdturner's username",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-25T19:55:20Z"
+    },
+    {
+      "comment": "added gmoss and bturner as contributors",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-25T19:52:39Z"
+    },
+    {
+      "comment": "fixed typo and lack of clarity in details",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-25T19:52:08Z"
+    },
+    {
+      "comment": "updated title, summary, details, location, references",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-25T19:48:43Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2018-09-24T19:35:41Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-07-31T00:59:24Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-21T00:06:43Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:09:20Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-14T23:41:17Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T22:47:03Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:51:54Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-05-19T21:31:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T16:55:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-02T15:48:53Z"
+    }
+  ]
+}

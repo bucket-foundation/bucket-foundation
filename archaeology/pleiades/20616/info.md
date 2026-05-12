@@ -1,0 +1,14 @@
+# Store-Dal
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/20616
+- **ID**: 20616
+- **Coords (lng, lat)**: [11.002715, 59.25387]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=cemetery
+- **Time periods**: 
+- **Names**: Store-Dal
+
+## Description
+
+An ancient place, cited: BAtlas 2 F2 Store-Dal

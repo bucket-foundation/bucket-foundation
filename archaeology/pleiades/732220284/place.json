@@ -1,0 +1,359 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.2703683,
+            37.3974776
+          ],
+          [
+            25.270578,
+            37.3974874
+          ],
+          [
+            25.2705816,
+            37.397438
+          ],
+          [
+            25.2706648,
+            37.3974419
+          ],
+          [
+            25.2706811,
+            37.3972214
+          ],
+          [
+            25.2703881,
+            37.3972078
+          ],
+          [
+            25.2703683,
+            37.3974776
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-sarapieion-c",
+      "properties": {
+        "snippet": "Temple-2",
+        "link": "https://pleiades.stoa.org/places/732220284/osm-location-of-sarapieion-c",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Sarapieion C"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/553035955",
+          "citationDetail": "Way 553035955",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=553035955",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-sarapieion-c",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": null,
+      "title": "OSM Location of Sarapieion C",
+      "provenance": "OpenStreetMap (Way 553035955, version 3, osm:changeset=57466427, 2018-03-23T18:45:55Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2021-03-17T17:29:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.2703683,
+            37.3974776
+          ],
+          [
+            25.270578,
+            37.3974874
+          ],
+          [
+            25.2705816,
+            37.397438
+          ],
+          [
+            25.2706648,
+            37.3974419
+          ],
+          [
+            25.2706811,
+            37.3972214
+          ],
+          [
+            25.2703881,
+            37.3972078
+          ],
+          [
+            25.2703683,
+            37.3974776
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/732220284/osm-location-of-sarapieion-c",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-20T14:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:51:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:30:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:29:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:29:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-03-17T17:15:46Z",
+      "associationCertainty": "certain",
+      "title": "Delos (settlement)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/732220284/delos-settlement",
+      "connectionType": "at",
+      "id": "delos-settlement",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-20T14:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:51:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:15:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:15:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599587",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-03-17T17:16:06Z",
+      "associationCertainty": "certain",
+      "title": "Delos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/732220284/delos-island",
+      "connectionType": "on",
+      "id": "delos-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-20T14:03:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-03-01T20:51:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:16:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:16:06Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599588",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://religiondatabase.org/browse/1048/#/",
+      "citationDetail": "1048: The Sanctuaries of the Egyptian Gods at Delos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "DRH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B8HQMAF4",
+      "formattedCitation": "<div class=\"csl-entry\">Edward Slingerland, Michael Muthukrishna, M. Willis Monroe, Rachel Spicer, Caroline Arbuckle, Matthew Hamm, and Ryan Johnson. <i>The Database of Religious History</i>, 2012. https://religiondatabase.org/landing.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "732220284",
+  "subject": [],
+  "title": "Sarapieion C at Delos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of three shrines sacred to Serapis identified by archaeologists working at Delos in the nineteenth century.",
+  "reprPoint": [
+    25.270521296302768,
+    37.39734569281252
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    25.2703683,
+    37.3972078,
+    25.2706811,
+    37.3974874
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599587",
+    "https://pleiades.stoa.org/places/599588"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-03-17T17:15:23Z",
+  "uri": "https://pleiades.stoa.org/places/732220284",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-20T14:03:43Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2023-03-20T14:03:39Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-03-01T20:51:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-17T17:16:55Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-17T17:15:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-17T17:15:23Z"
+    }
+  ]
+}

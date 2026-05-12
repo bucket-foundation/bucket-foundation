@@ -1,0 +1,14 @@
+# Kyta/Nar-Kute (river)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/897789
+- **ID**: 897789
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kyta, Nar-Kute
+
+## Description
+
+An ancient place, cited: BAtlas 91 unlocated Kyta fl./Nar-Kute fl.

@@ -1,0 +1,14 @@
+# Diodorou
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/759556
+- **ID**: 759556
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Diodorou
+
+## Description
+
+An ancient place, cited: BAtlas 77 unlocated Diodorou

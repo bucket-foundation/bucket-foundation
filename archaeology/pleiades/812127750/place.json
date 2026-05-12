@@ -1,0 +1,568 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.0799068,
+            40.7952336
+          ],
+          [
+            14.0799953,
+            40.7953991
+          ],
+          [
+            14.0800463,
+            40.79539
+          ],
+          [
+            14.0800725,
+            40.7954238
+          ],
+          [
+            14.0800824,
+            40.7954365
+          ],
+          [
+            14.0800999,
+            40.795459
+          ],
+          [
+            14.0806632,
+            40.7951727
+          ],
+          [
+            14.0806212,
+            40.7951148
+          ],
+          [
+            14.0805713,
+            40.7950658
+          ],
+          [
+            14.0806432,
+            40.7950236
+          ],
+          [
+            14.0805411,
+            40.7949037
+          ],
+          [
+            14.0799068,
+            40.7952336
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-piscina-mirabilis",
+      "properties": {
+        "snippet": "Cistern; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/812127750/osm-location-piscina-mirabilis",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Piscina Mirabilis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1241141330",
+          "citationDetail": "Way 1241141330",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1241141330",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-piscina-mirabilis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+      ],
+      "end": 300,
+      "title": "OSM location: Piscina Mirabilis",
+      "provenance": "OpenStreetMap (Way 1241141330, version 1, osm:changeset=146453865, 2024-01-19T18:31:50Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cistern"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2026-03-18T23:58:49Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.0799068,
+            40.7952336
+          ],
+          [
+            14.0799953,
+            40.7953991
+          ],
+          [
+            14.0800463,
+            40.79539
+          ],
+          [
+            14.0800725,
+            40.7954238
+          ],
+          [
+            14.0800824,
+            40.7954365
+          ],
+          [
+            14.0800999,
+            40.795459
+          ],
+          [
+            14.0806632,
+            40.7951727
+          ],
+          [
+            14.0806212,
+            40.7951148
+          ],
+          [
+            14.0805713,
+            40.7950658
+          ],
+          [
+            14.0806432,
+            40.7950236
+          ],
+          [
+            14.0805411,
+            40.7949037
+          ],
+          [
+            14.0799068,
+            40.7952336
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/812127750/osm-location-piscina-mirabilis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-03-19T14:32:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-18T23:59:18Z"
+        },
+        {
+          "comment": "supersedes prev publ loc which relies on now-deprecated OSM data.",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-18T23:59:12Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-18T23:58:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2026-03-18T23:58:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2099,
+      "description": "",
+      "contributors": [],
+      "created": "2021-12-10T15:11:57Z",
+      "associationCertainty": "certain",
+      "title": "Campi Phlegraei",
+      "start": 2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/812127750/campi-phlegraei",
+      "connectionType": "in",
+      "id": "campi-phlegraei",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-10T15:21:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-10T15:12:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-10T15:12:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-10T15:11:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432744",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://fupress.com/capitoli/the-coastal-lakes-of-campi-flegrei-between-biodiversity-and-anthropization/4570",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Giudici 2020",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PZH8H26S",
+          "formattedCitation": "<div class=\"csl-entry\">Giudici, Gabriella Nora Maria, Ferdinando Jannuzzi, Salvatore Patrizio, and Fabrizio Pisani Massamormile. \u201cThe coastal lakes of Campi Flegrei: between biodiversity and anthropization.\u201d In <i>Eighth International Symposium \u201cMonitoring of Mediterranean Coastal Areas. Problems and Measurement Techniques\u201d Livorno (Italy) June 2020</i>, edited by Laura Bonora, Donatella Carboni, and Matteo De Vincenzi, 250\u201358. Proceedings e report. 2020: Firenze University Press, 2020. https://doi.org/10.36253/978-88-5518-147-1.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/in"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Piscina_Mirabilis",
+      "citationDetail": "Piscina Mirabilis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Piscina Mirabilis.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Aqua_Augusta_(Naples)",
+      "citationDetail": "Aqua Augusta (Naples)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Aqua Augusta (Naples).",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.incampania.com/beniculturali.cfm?Menu_ID=200&Sub_ID=202&Info_ID=4321",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Piscina Mirabilis",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=xZVe8teAUkQC&lpg=PA509&dq=piscina%20mirabilis&pg=PA509#v=onepage&q=piscina%20mirabilis&f=false",
+      "citationDetail": "509",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Adam 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V2SW3SKD",
+      "formattedCitation": "<div class=\"csl-entry\">Adam, Jean-Pierre. <i>Roman Building: Materials and Techniques</i>. Routledge, 2005.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://dati.beniculturali.it/lodview/mibact/luoghi/resource/CulturalInstituteOrSite/20148.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "DBUnico.20148",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q222410",
+      "citationDetail": "Q222410: Piscina Mirabilis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/12262",
+      "citationDetail": "Zisterne Piscina mirabilis Misenum, (Misenum), Neapel (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://gazetteer.dainst.org/app/#!/show/2071623",
+      "citationDetail": "2071623: Miseno",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "iDAI.gazetteer",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KNGREWYQ",
+      "formattedCitation": "<div class=\"csl-entry\"><i>IDAI.Gazetteer</i>. Deutsches Arch\u00e4ologisches Institut. Accessed February 1, 2018. https://gazetteer.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bacoli",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1018009868",
+          "citationDetail": "page 509",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Adam 2005",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/V2SW3SKD",
+          "formattedCitation": "<div class=\"csl-entry\">Adam, Jean-Pierre. <i>Roman Building: Materials and Techniques</i>. Routledge, 2005. http://www.worldcat.org/oclc/1018009868.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/3182599/bacoli.html",
+          "citationDetail": "3182599: Bacoli",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "bacoli",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2021-12-10T15:10:23Z",
+      "uri": "https://pleiades.stoa.org/places/812127750/bacoli",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Bacoli",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-12-10T15:23:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-10T15:10:38Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-10T15:10:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-10T15:10:23Z"
+        }
+      ]
+    }
+  ],
+  "id": "812127750",
+  "subject": [
+    "tufo"
+  ],
+  "title": "Piscina Mirabilis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cistern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A freshwater cistern at Bacoli on the Gulf of Naples, the Piscina Mirabilis likely provided sailors of the Roman fleet with drinking water. Its capacity is estimated at 12,600 cubic meters.",
+  "reprPoint": [
+    14.080306904751799,
+    40.795184903263454
+  ],
+  "placeTypes": [
+    "cistern"
+  ],
+  "bbox": [
+    14.0799068,
+    40.7949037,
+    14.0806632,
+    40.795459
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432744",
+    "https://pleiades.stoa.org/places/662332233"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-12-08T00:00:39Z",
+  "uri": "https://pleiades.stoa.org/places/812127750",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-02T16:18:04Z"
+    },
+    {
+      "comment": "added references Arahne, iDAI gazetteer ",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-10T15:28:51Z"
+    },
+    {
+      "comment": "added wikidata Q222410: Piscina Mirabilis",
+      "modifiedBy": "jbecker",
+      "modified": "2021-12-10T15:23:10Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-05T03:22:44Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-08-03T21:31:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-08-03T16:01:35Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-07-21T21:29:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T17:58:57Z"
+    },
+    {
+      "comment": "edited description, added references",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T17:58:44Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T00:02:11Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T00:00:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-12-08T00:00:40Z"
+    }
+  ]
+}

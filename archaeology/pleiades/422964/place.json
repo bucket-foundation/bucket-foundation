@@ -1,0 +1,569 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4551076,
+          41.9564709
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Villa, ; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/422964/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa di Lucio Vero"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3781542085",
+          "citationDetail": "Node 3781542085",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3781542085",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Villa di Lucio Vero",
+      "provenance": "OpenStreetMap (Node 3781542085, version 9, osm:changeset=138539870, 2023-07-15T10:52:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2015-10-11T02:04:29Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.4551076,
+          41.9564709
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/422964/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-13T17:01:33Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-06T23:42:37Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-02T14:34:04Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-21T15:20:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-10-11T02:06:06Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-10-11T02:05:51Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-10-11T02:04:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-10-11T02:04:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T14:01:36Z",
+      "associationCertainty": "certain",
+      "title": "Via Cassia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/422964/447759107",
+      "connectionType": "connection",
+      "id": "447759107",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:01:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:01:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T14:01:36Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/447759107",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "43 B2 Lucio Vero",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Calci 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XZ4ZG8RA",
+      "formattedCitation": "<div class=\"csl-entry\">Calci, C., and Gaetano Messineo. \u201cVia Cassia: Villa di Lucio Vero.\u201d <i>Bullettino della Commissione archeologica comunale di Roma</i> 92 (88 1987): 499\u2013504.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/949205965",
+      "citationDetail": "465",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marzano 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CZN7DAZR",
+      "formattedCitation": "<div class=\"csl-entry\">Marzano, Annalisa. <i>Roman Villas in Central Italy: A Social and Economic History.</i> Leiden: E.J. Brill, 2007. http://www.worldcat.org/oclc/949205965.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.isvroma.it/public/New/index.php?option=com_content&view=article&id=106:roman-villas-around-the-urbs-interaction-with-landscape-and-environment&catid=40:on-line-publikationer&Itemid=106",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Messineo, G. 2005. \"Ville a Tor di Quinto e nelle Tenute di Grottarossa e Acquatraversa.\" In Roman villas around the Urbs. Interaction with landscape and environment Proceedings of a conference at the Swedish Institute in Rome, edited by B. Santillo Frize",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.geonames.org/9847662/villa-di-lucio-vero.html",
+      "citationDetail": "9847662: Villa di Lucio Vero",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "GeoNames",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+      "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+      "otherIdentifier": " ",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://books.google.com/books?id=gx2Fj7Rm80EC&lpg=PA69&ots=3iX6SExk8H&dq=Villa%20di%20Lucio%20Vero&pg=PA69#v=onepage&q=Villa%20di%20Lucio%20Vero&f=false",
+      "citationDetail": "69",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "De Franceschini 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IWATNX33",
+      "formattedCitation": "<div class=\"csl-entry\">De Franceschini, Marina. <i>Ville dell\u2019Agro Romano</i>. Monografie della carta dell\u2019Agro romano 2. Roma: L\u2019Erma di Bretschneider, 2005.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/la-villa-di-lucio-vero-sulla-via-cassia-a-roma-in-localita-acquatraversa/8E1835118F3FCADBEF97B7C7164305DB",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/la-villa-di-lucio-vero-sulla-via-cassia-a-roma-in-localita-acquatraversa/8E1835118F3FCADBEF97B7C7164305DB",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caserta 2015, 179-191",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9Q3PQD72",
+      "formattedCitation": "<div class=\"csl-entry\">Caserta, Emmanuela. \u201cLa Villa di Lucio Vero sulla Via Cassia a Roma in localit\u00e0 Acquatraversa.\u201d <i>Journal of Roman Archaeology</i> 28 (2015): 179\u201391. https://doi.org/http://dx.doi.org/10.1017/S1047759415002457.</div>",
+      "otherIdentifier": "http://dx.doi.org/10.1017/S1047759415002457",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/the-agonistic-mosaic-in-the-villa-of-lucius-verus-and-the-capitolia-of-rome/E4B8AF0B4CE655AB74BF05A23F92921C",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dunbabin 2015, 192-222",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/THDBFRU6",
+      "formattedCitation": "<div class=\"csl-entry\">Dunbabin, Katherine. \u201cThe Agonistic Mosaic in the Villa of Lucius Verus and the Capitolia of Rome.\u201d <i>Journal of Roman Archaeology</i> 28 (2015): 192\u2013222. https://doi.org/http://dx.doi.org/10.1017/S1047759415002469.</div>",
+      "otherIdentifier": "http://dx.doi.org/10.1017/S1047759415002469",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caserta 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H3VEPQPF",
+      "formattedCitation": "<div class=\"csl-entry\">Caserta, E. \u201cRoma (via Cassia): La villa di Lucio alla luce delle recenti indagini archeologiche.\u201d In <i>Notizie degli scavi di antichit\u00e0, ser.9, 21-22.2010-2011</i>, 53\u2013159, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/3350",
+      "citationDetail": "sog. Villa des Lucius Verus bei Acquatraversa Rom, Italien",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "20980",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Villa di Lucio Vero",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.geonames.org/9847662/villa-di-lucio-vero.html",
+          "citationDetail": "9847662: Villa di Lucio Vero",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "villa-di-lucio-vero",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern toponym for the archaeological site.",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2016-10-02T15:08:21Z",
+      "uri": "https://pleiades.stoa.org/places/422964/villa-di-lucio-vero",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Villa di Lucio Vero",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-06-13T17:02:53Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-12-06T23:42:22Z"
+        },
+        {
+          "comment": "ref. update",
+          "modifiedBy": "jbecker",
+          "modified": "2020-10-10T15:29:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-02T15:08:38Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-02T15:08:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2016-10-02T15:08:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "422964",
+  "subject": [
+    "dare:major=0",
+    "villa",
+    "portrait sculpture",
+    "dare:feature=villa",
+    "extant remains",
+    "opus caementicium",
+    "opus sectile",
+    "dare:ancient=0",
+    "tufo",
+    "Mosaic",
+    "opus incertum"
+  ],
+  "title": "Lucio Vero",
+  "provenance": "Barrington Atlas: BAtlas 43 B2 Lucio Vero",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Lucio Vero, so-called Villa of Lucius Verus</p>\r\n<p>The\u00a0<span>so-called \"Villa of Lucius Verus\" is located at Acqua Traversa along the Via Cassia, now within the grounds of the Villa Manzoni park. The first excavations of this luxury villa were undertaken at the direction of Paul V in 1585, with other excavations in 1650 and 1674. Gavin Hamilton excavated at the site in 1796 and a number of objects that ended up in the collections of the Torlonia and the Borghese family originated from this site.</span></p>\r\n<p><span>The villa begins as a republican period structure built in\u00a0<em>opus incertum</em>. The second phase (first century A.D.) included a cistern. Further expansion took place in the second century A.D.</span></p>\r\n<p><span>As a number of high quality sculptures of Antonine emperors, including Lucius Verus and Marcus Aurelius, were found on the site, the villa earned its toponym. As early as 1720 Winckelmann connects the villa with Lucius Verus.</span></p>\r\n<p>\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa located at Acquatraversa on the Via Cassia that is frequently attributed to Lucius Verus.",
+  "reprPoint": [
+    12.4551076,
+    41.9564709
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    12.4551076,
+    41.9564709,
+    12.4551076,
+    41.9564709
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/447759107"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-11-10T22:32:41Z",
+  "uri": "https://pleiades.stoa.org/places/422964",
+  "creators": [
+    {
+      "username": null,
+      "name": "L. Quilici"
+    },
+    {
+      "username": null,
+      "name": "S. Quilici Gigli"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-06-13T17:02:38Z"
+    },
+    {
+      "comment": "added DARMC reference to maintain linkage after retracting less precise location",
+      "modifiedBy": "thomase",
+      "modified": "2021-12-06T23:43:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-10-10T15:22:57Z"
+    },
+    {
+      "comment": "Arachne 8004745: sog. Villa des Lucius Verus bei Acquatraversa Rom",
+      "modifiedBy": "jbecker",
+      "modified": "2020-05-28T17:10:22Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-19T17:08:31Z"
+    },
+    {
+      "comment": "additional details",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-19T17:03:25Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-02-19T14:06:15Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-02T15:07:07Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-02T14:32:02Z"
+    },
+    {
+      "comment": "added categories",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-21T15:19:30Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-10-11T02:08:09Z"
+    },
+    {
+      "comment": "edited description, added references",
+      "modifiedBy": "jbecker",
+      "modified": "2014-02-22T20:38:55Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T23:45:11Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T04:56:06Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-21T23:15:14Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T19:44:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-11-11T05:12:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:39:03Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2010-11-10T22:32:41Z"
+    }
+  ]
+}

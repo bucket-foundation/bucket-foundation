@@ -1,0 +1,479 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.9784422,
+            40.6145167
+          ],
+          [
+            8.978579,
+            40.6144373
+          ],
+          [
+            8.9792522,
+            40.6139466
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pontezzu",
+      "properties": {
+        "snippet": "Bridge; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/257120882/osm-location-of-pontezzu",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of Pont'Ezzu"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "tlandvatter",
+      "homepage": null,
+      "name": "Thomas Landvatter",
+      "uri": "https://pleiades.stoa.org/author/tlandvatter"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/way/285328655",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM Way 285328655",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pontezzu",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "end": 300,
+      "title": "OSM Location of Pont'Ezzu",
+      "provenance": "OpenStreetMap (Way 285328655, version 4, osm:changeset=140581076, 2023-08-30T10:30:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bridge"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-09-09T15:06:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.9784422,
+            40.6145167
+          ],
+          [
+            8.978579,
+            40.6144373
+          ],
+          [
+            8.9792522,
+            40.6139466
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/257120882/osm-location-of-pontezzu",
+      "creators": [
+        {
+          "username": null,
+          "name": "Sterling White"
+        },
+        {
+          "username": null,
+          "name": "Maggie Britton"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2025-07-14T00:07:01Z"
+        },
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-02T01:14:57Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T15:06:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T15:06:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T15:06:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:49:05Z",
+      "associationCertainty": "certain",
+      "title": "Sardinia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/257120882/472014",
+      "connectionType": "connection",
+      "id": "472014",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:49:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/472014",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Pont'ezzu",
+      "citationDetail": "Pont'ezzu",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Ittireddu",
+      "citationDetail": "Ittireddu",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "s.v. Amucano, Marco Agostino. 2011. \u201cRestauro Architettonico e Scavi Presso Il Pont\u2019Ezzu Di Ozieri (SS). Note Preliminari per Una Rilettura Delle Stratigrafie Murarie e Nuovi Dati.\u201d",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Erentzias",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JVFFIY2B",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Erentzias: rivista della Soprintendenza per beni archeologici per le province di Sassari e Nuoro</i>. Sassari: Carlo Delfino editore, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Amucano 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QTRSNQEA",
+      "formattedCitation": "<div class=\"csl-entry\">Amucano, Marco Agostino. \u201cNuovi dati sul Pont\u2019Ezzu di Ozieri e ipotesi preliminari sulla viabilit\u00e0 antica nell\u2019area.\u201d In <i>L\u2019Africa romana</i>, 2795\u20132810. Roma: Carocci, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DT%3Aentry+group%3D7%3Aentry%3Dturris-libysonis",
+      "citationDetail": "TURRIS LIBYSONIS (Portocorres) Sardinia, Italy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/505191",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Balmuth 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YRAYSNTF",
+      "formattedCitation": "<div class=\"csl-entry\">Balmuth, Miriam S. \u201cArchaeology in Sardinia.\u201d <i>American Journal of Archaeology</i> 96, no. 4 (1992): 663\u201397. https://doi.org/10.2307/505191.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3907939",
+      "citationDetail": "Pont'ezzu (Q3907939)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Pont'Ezzu",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Pont%27ezzu",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian): Pont'ezzu",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "pontezzu",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": "tlandvatter",
+          "homepage": null,
+          "name": "Thomas Landvatter",
+          "uri": "https://pleiades.stoa.org/author/tlandvatter"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-09-09T14:59:35Z",
+      "uri": "https://pleiades.stoa.org/places/257120882/pontezzu",
+      "creators": [
+        {
+          "username": null,
+          "name": "Sterling White"
+        },
+        {
+          "username": null,
+          "name": "Maggie Britton"
+        }
+      ],
+      "attested": "Pont'Ezzu",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T15:05:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T15:04:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-09-09T14:59:34Z"
+        }
+      ]
+    }
+  ],
+  "id": "257120882",
+  "subject": [],
+  "title": "Ponte Ezzu",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bridge"
+  ],
+  "details": "<p><span>The Pont'ezzu is one of three Roman bridges for the crossing of the Rio Mannu in central Sardinia. Compared to much of the other Roman architecture in the area, the Pont\u2019ezzu is extremely well preserved. Through the Middle Ages and up until the mid-20th century, it was regularly used, and because of this, the Pont\u2019ezzu tells us a lot about both Roman construction techniques as well as their assertion of power abroad (Amucano, 2012). Since its annexation after the Punic Wars, Sardinia and its people have strongly resisted Romanization. The years leading up to Augustan rule were marked by famine, mismanagement, and multiple insurrection attempts (Wilson 1996). After Augustus rose to power in 27 BC, Sardinia underwent a large provincial reorganization to solve existing turmoil. However, the Romans were met with massive resistance, and a large military presence on the island was required. Because of the multiple military camps in the surrounding area (Balmuth, 1992), archaeologists believe this bridge was intended to be for the transportation of troops across the island. Beyond this functional aspect, this was also an assertion of power, as there were few existing Nuragic bridges (Balmuth, 1992). After its construction, Sardinians could only cross this major river via Roman bridges, further asserting power and strengthening the Romanization project. The Pont\u2019ezzu is a symbol of this Roman control over not just the physical landscape, but also the movement of people and transportation of goods.</span></p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Ponte Ezzu or Pont'Ezzu is a Roman bridge of the first century A.D. that crosses the Rio Mannu near Ozieri, Sardinia.",
+  "reprPoint": [
+    8.978850973293817,
+    40.614237436031104
+  ],
+  "placeTypes": [
+    "bridge"
+  ],
+  "bbox": [
+    8.9784422,
+    40.6139466,
+    8.9792522,
+    40.6145167
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/472014"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-09T14:58:16Z",
+  "uri": "https://pleiades.stoa.org/places/257120882",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Maggie Britton"
+    },
+    {
+      "username": null,
+      "name": "Sterling White"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-17T17:41:14Z"
+    },
+    {
+      "comment": "update references, add wikidata Q3907939",
+      "modifiedBy": "jbecker",
+      "modified": "2025-03-12T23:37:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-18T20:02:17Z"
+    },
+    {
+      "comment": "update summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-09T16:51:02Z"
+    },
+    {
+      "comment": "merge resources; add reference; references; updated Names. check-in of merged copy incorporating resource contributions from Reed College students",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-09T15:05:21Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-09-09T14:58:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-22T20:35:54Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-07T13:19:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T02:04:08Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-09-22T20:34:09Z"
+    },
+    {
+      "comment": "added connection",
+      "modifiedBy": "jbecker",
+      "modified": "2014-09-22T20:33:31Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-30T21:26:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-30T21:26:44Z"
+    }
+  ]
+}

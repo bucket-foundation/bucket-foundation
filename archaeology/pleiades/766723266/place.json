@@ -1,0 +1,366 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.8794674,
+            37.9044525
+          ],
+          [
+            22.8801784,
+            37.9046709
+          ],
+          [
+            22.8802527,
+            37.9045555
+          ],
+          [
+            22.8804134,
+            37.9045668
+          ],
+          [
+            22.8804374,
+            37.904283
+          ],
+          [
+            22.8794758,
+            37.9043526
+          ],
+          [
+            22.8794674,
+            37.9044525
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-forum-southwest",
+      "properties": {
+        "snippet": "Plaza; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/766723266/osm-location-of-forum-southwest",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Forum Southwest Corner"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/146857120",
+          "citationDetail": "Way 146857120",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=146857120",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-forum-southwest",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza"
+      ],
+      "end": 640,
+      "title": "OSM location of Forum Southwest Corner",
+      "provenance": "OpenStreetMap (Way 146857120, version 2, osm:changeset=28845879, 2015-02-14T16:40:45Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "plaza"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2017-02-01T21:23:06Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            22.8794674,
+            37.9044525
+          ],
+          [
+            22.8801784,
+            37.9046709
+          ],
+          [
+            22.8802527,
+            37.9045555
+          ],
+          [
+            22.8804134,
+            37.9045668
+          ],
+          [
+            22.8804374,
+            37.904283
+          ],
+          [
+            22.8794758,
+            37.9043526
+          ],
+          [
+            22.8794674,
+            37.9044525
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/766723266/osm-location-of-forum-southwest",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-02T22:42:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2017-02-02T22:42:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-01T21:31:07Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-01T21:25:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-01T21:23:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-02-01T21:23:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-11-04T16:33:46Z",
+      "associationCertainty": "certain",
+      "title": "Corinthus/Korinthos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/766723266/2264460713",
+      "connectionType": "at",
+      "id": "2264460713",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:33:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:33:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:33:46Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570182",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/147996",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Williams 1978",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X3TWV5K9",
+      "formattedCitation": "<div class=\"csl-entry\">Williams II, Charles K. \u201cCorinth 1977, Forum Southwest.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 47, no. 1 (1978): 1\u201339. http://www.jstor.org/stable/147996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/502364029",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Broneer 1954",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6WJNBPHK",
+      "formattedCitation": "<div class=\"csl-entry\">Broneer, Oscar. <i>Corinth. 1,4 The South Stoa and Its Roman Successors</i>. Princeton NJ: American School of Classical Studies at Athens, 1954. http://www.worldcat.org/oclc/502364029.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/6630978",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Williams 1978a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZD56WIH3",
+      "formattedCitation": "<div class=\"csl-entry\">Williams II, Charles K. \u201cPre-Roman Cults in the Area of the Forum of Ancient Corinth.\u201d Ph.D., University of Pennsylvania, 1978. http://www.worldcat.org/oclc/6630978.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "766723266",
+  "subject": [
+    "extant remains",
+    "forum"
+  ],
+  "title": "Forum of Roman Corinth",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+    "https://pleiades.stoa.org/vocabularies/place-types/forum"
+  ],
+  "details": "<p>Charles K. Williams conducted excavations in the southwest corner of the Roman Forum of Corinth during the 1970s. Those excavations revealed features of the Roman phase of the city as well as pre-Roman evidence. Structures found in this area include a long, rectangular building, an arch, the Punic Amphora Building, a pentagonal building, the Roman Cellar Building, a columnar hall, the Stele Shrine, and the Centaur Bath.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman forum of ancient Corinth.",
+  "reprPoint": [
+    22.87999073993361,
+    37.90444331930248
+  ],
+  "placeTypes": [
+    "plaza",
+    "forum"
+  ],
+  "bbox": [
+    22.8794674,
+    37.904283,
+    22.8804374,
+    37.9046709
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570182"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-11-04T16:33:45Z",
+  "uri": "https://pleiades.stoa.org/places/766723266",
+  "creators": [
+    {
+      "username": "jherbst",
+      "homepage": null,
+      "name": "James Herbst",
+      "uri": "https://pleiades.stoa.org/author/jherbst"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "ctype",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-06T20:36:15Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2017-02-24T16:52:21Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-03T03:11:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-01T21:31:07Z"
+    },
+    {
+      "comment": "edited summary, details, added references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-02-01T21:30:44Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-11-04T16:33:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-11-04T16:33:45Z"
+    }
+  ]
+}

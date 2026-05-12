@@ -1,0 +1,285 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.121265,
+          37.502691
+        ]
+      },
+      "type": "Feature",
+      "id": "city-walls",
+      "properties": {
+        "snippet": "City-wall, ; 550 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/221984496/city-walls",
+        "description": "Fortification walls of the Classical city.",
+        "location_precision": "precise",
+        "title": "City walls"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "http://atlantides.org/bibliography/",
+          "formattedCitation": "Panvini, Rosalba. 2005. \u201cRicchezza e societ\u00e0 in un centro indigeno dell\u2019entroterra della Sicilia. L\u2019esempio di Sabucina.\u201d In M\u03b5\u03b3\u03b1\u03bb\u03b1\u03b9 \u03bd\u03b7\u03c3o\u03b9, edited by Rossella Gigli, 29\u201345. Catania.",
+          "otherIdentifier": " ",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "city-walls",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -330,
+      "title": "City walls",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/city-wall",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2010",
+      "featureType": [
+        "city-wall",
+        ""
+      ],
+      "description": "Fortification walls of the Classical city.",
+      "created": "2013-01-07T00:35:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.121265,
+          37.502691
+        ]
+      },
+      "locationType": [
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/221984496/city-walls",
+      "creators": [
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-09-02T12:44:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2013-08-02T16:24:14Z"
+        },
+        {
+          "comment": "",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-08-02T15:11:01Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-02-22T18:07:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-01-07T00:46:53Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-01-07T00:44:17Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-01-07T00:36:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "arabinowitz",
+          "modified": "2013-01-07T00:35:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-12T17:13:33Z",
+      "associationCertainty": "certain",
+      "title": "Sabucina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/221984496/6139464934",
+      "connectionType": "at",
+      "id": "6139464934",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-12T17:13:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-12T17:13:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-12T17:13:33Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462483",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/",
+      "formattedCitation": "Panvini, Rosalba. 2005. \u201cRicchezza e societ\u00e0 in un centro indigeno dell\u2019entroterra della Sicilia. L\u2019esempio di Sabucina.\u201d In M\u03b5\u03b3\u03b1\u03bb\u03b1\u03b9 \u03bd\u03b7\u03c3o\u03b9, edited by Rossella Gigli, 29\u201345. Catania.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "221984496",
+  "subject": [
+    "fortification"
+  ],
+  "title": "City walls of Sabucina",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/city-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The fortification walls of the Classical city.",
+  "reprPoint": [
+    14.121265,
+    37.502691
+  ],
+  "placeTypes": [
+    "city-wall"
+  ],
+  "bbox": [
+    14.121265,
+    37.502691,
+    14.121265,
+    37.502691
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462483"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-06-12T17:13:31Z",
+  "uri": "https://pleiades.stoa.org/places/221984496",
+  "creators": [
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T17:14:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T17:14:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T17:14:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T17:14:14Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T17:13:34Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T17:13:31Z"
+    }
+  ]
+}

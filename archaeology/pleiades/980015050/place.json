@@ -1,0 +1,403 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.726311,
+              34.748361
+            ],
+            [
+              40.726287,
+              34.748421
+            ],
+            [
+              40.726177,
+              34.748384
+            ],
+            [
+              40.726114,
+              34.748363
+            ],
+            [
+              40.72623,
+              34.748146
+            ],
+            [
+              40.726392,
+              34.748201
+            ],
+            [
+              40.726361,
+              34.748263
+            ],
+            [
+              40.726382,
+              34.748271
+            ],
+            [
+              40.726334,
+              34.748369
+            ],
+            [
+              40.726311,
+              34.748361
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "plan-location-of-tower-20",
+      "properties": {
+        "snippet": "Tower-wall; 100 BC - AD 199",
+        "link": "https://pleiades.stoa.org/places/980015050/plan-location-of-tower-20",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Plan location of Tower 20"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "kcl",
+      "homepage": null,
+      "name": "Kyle Conrau-Lewis",
+      "uri": "https://pleiades.stoa.org/author/kcl"
+    },
+    {
+      "username": "kjenkins",
+      "homepage": null,
+      "name": "Keith Jenkins",
+      "uri": "https://pleiades.stoa.org/author/kjenkins"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "kcl",
+          "homepage": null,
+          "name": "Kyle Conrau-Lewis",
+          "uri": "https://pleiades.stoa.org/author/kcl"
+        },
+        {
+          "username": "kjenkins",
+          "homepage": null,
+          "name": "Keith Jenkins",
+          "uri": "https://pleiades.stoa.org/author/kjenkins"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "first-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "second-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/second-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "plan-location-of-tower-20",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-wall"
+      ],
+      "end": 199,
+      "title": "Plan location of Tower 20",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -100,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tower-wall"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/dura-europos-walls-and-towers-baird-chen",
+      "featureType": [
+        "tower-wall"
+      ],
+      "description": "",
+      "created": "2021-04-09T23:37:00Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              40.726311,
+              34.748361
+            ],
+            [
+              40.726287,
+              34.748421
+            ],
+            [
+              40.726177,
+              34.748384
+            ],
+            [
+              40.726114,
+              34.748363
+            ],
+            [
+              40.72623,
+              34.748146
+            ],
+            [
+              40.726392,
+              34.748201
+            ],
+            [
+              40.726361,
+              34.748263
+            ],
+            [
+              40.726382,
+              34.748271
+            ],
+            [
+              40.726334,
+              34.748369
+            ],
+            [
+              40.726311,
+              34.748361
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/980015050/plan-location-of-tower-20",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "coords corrected, from UTM Zone 37N, to WGS84 lon/lat",
+          "modifiedBy": "jbecker",
+          "modified": "2021-04-10T00:44:59Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "kjenkins",
+          "modified": "2021-04-09T23:37:00Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:52:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:52:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2021-02-09T15:54:49Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "kcl",
+          "homepage": null,
+          "name": "Kyle Conrau-Lewis",
+          "uri": "https://pleiades.stoa.org/author/kcl"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2021-02-09T15:54:52Z",
+      "associationCertainty": "certain",
+      "title": "City Wall of Dura-Europos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/980015050/city-wall-of-duraeuropos",
+      "connectionType": "part_of_physical",
+      "id": "city-wall-of-duraeuropos",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:52:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-11T11:52:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2021-02-09T15:54:52Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/15685985",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "achen",
+          "homepage": null,
+          "name": "Anne Chen",
+          "uri": "https://pleiades.stoa.org/author/achen"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1034731631",
+      "citationDetail": "p. 20",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Baird 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QL32DCUE",
+      "formattedCitation": "<div class=\"csl-entry\">Baird, Jennifer A. <i>Dura-Europos</i>. London: Bloomsbury, 2018. http://www.worldcat.org/oclc/1034731631.</div>",
+      "otherIdentifier": "978-1-4725-2365-5; 978-1-4725-2673-1",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108073720",
+      "citationDetail": "Tower 20, Dura-Europos (Q108073720)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "980015050",
+  "subject": [
+    "YDEA project"
+  ],
+  "title": "Tower 20",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tower-wall"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Rectangular defensive tower located on the western side of the defensive circuit walls around the city of Dura-Europos. Built ca. 150 BCE, the city's fortifications were breached in 256 CE and went out of use thereafter.",
+  "reprPoint": [
+    40.726259551534326,
+    34.748285228449575
+  ],
+  "placeTypes": [
+    "tower-wall"
+  ],
+  "bbox": [
+    40.726114,
+    34.748146,
+    40.726392,
+    34.748421
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/15685985"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-02-09T15:54:49Z",
+  "uri": "https://pleiades.stoa.org/places/980015050",
+  "creators": [
+    {
+      "username": "achen",
+      "homepage": null,
+      "name": "Anne Chen",
+      "uri": "https://pleiades.stoa.org/author/achen"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Tower 20, Dura-Europos (Q108073720)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-08T14:31:25Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-11T11:52:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-11T11:52:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "admin",
+      "modified": "2021-02-09T15:54:49Z"
+    }
+  ]
+}

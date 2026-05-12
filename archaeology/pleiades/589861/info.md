@@ -1,0 +1,14 @@
+# Kekoia
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/589861
+- **ID**: 589861
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Kekoia
+
+## Description
+
+An ancient place, cited: BAtlas 60 F3 Kekoia

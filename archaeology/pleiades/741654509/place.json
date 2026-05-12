@@ -1,0 +1,314 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5968309,
+            42.1303123
+          ],
+          [
+            12.5966056,
+            42.1302328
+          ],
+          [
+            12.59666,
+            42.130121
+          ],
+          [
+            12.5969037,
+            42.1301944
+          ],
+          [
+            12.5968309,
+            42.1303123
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-basilica-of-lucus-feroniae",
+      "properties": {
+        "snippet": "Basilica; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/741654509/osm-location-of-basilica-of-lucus-feroniae",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Basilica of Lucus Feroniae"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1267566390",
+          "citationDetail": "Way 1267566390",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1267566390",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-basilica-of-lucus-feroniae",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "end": 300,
+      "title": "OSM location of Basilica of Lucus Feroniae",
+      "provenance": "OpenStreetMap (Way 1267566390, version 1, osm:changeset=149331710, 2024-03-29T21:51:17Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "basilica"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-03-29T22:22:58Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.5968309,
+            42.1303123
+          ],
+          [
+            12.5966056,
+            42.1302328
+          ],
+          [
+            12.59666,
+            42.130121
+          ],
+          [
+            12.5969037,
+            42.1301944
+          ],
+          [
+            12.5968309,
+            42.1303123
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/741654509/osm-location-of-basilica-of-lucus-feroniae",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-04-01T18:52:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-30T00:37:49Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-30T00:37:42Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T22:23:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T22:22:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T22:22:58Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-29T22:23:19Z",
+      "associationCertainty": "certain",
+      "title": "Forum of Lucus Feroniae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/741654509/9994280887",
+      "connectionType": "at",
+      "id": "9994280887",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T22:23:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T22:23:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-03-29T22:23:19Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/507853727",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/9457",
+      "citationDetail": "Basilika am Forum von Lucus Feroniae Capena, Rom (Metropolitanstadt)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/295785",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Taylor 1920",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I9CDWFUS",
+      "formattedCitation": "<div class=\"csl-entry\">Taylor, L. R. \u201cThe Site of Lucus Feroniae.\u201d <i>The Journal of Roman Studies</i> 10 (1920): 29\u201336. https://doi.org/10.2307/295785.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Russo Tagliente 2017a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QC2QD9M8",
+      "formattedCitation": "<div class=\"csl-entry\">Russo Tagliente, Alfonsina, Giuseppina Ghini, and Laura Caretta, eds. <i>Lucus Feroniae: Il Santuario, La Citt\u00e0, Il Territorio</i>. Roma: Scienze e Lettere, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "741654509",
+  "subject": [],
+  "title": "Basilica of Lucus Feroniae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/basilica"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Basilica of Lucus Feroniae communicates with the forum and is linked to the apsidal space identified as the Augusteum.",
+  "reprPoint": [
+    12.596752912237834,
+    42.13021465994766
+  ],
+  "placeTypes": [
+    "basilica"
+  ],
+  "bbox": [
+    12.5966056,
+    42.130121,
+    12.5969037,
+    42.1303123
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/507853727"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-03-29T22:23:18Z",
+  "uri": "https://pleiades.stoa.org/places/741654509",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-04-01T18:52:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-30T00:37:49Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-30T00:37:25Z"
+    },
+    {
+      "comment": "add Arachne",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-29T22:23:49Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-29T22:23:20Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-03-29T22:23:18Z"
+    }
+  ]
+}

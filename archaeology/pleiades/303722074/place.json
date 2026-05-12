@@ -1,0 +1,412 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.3214048,
+            44.1948453
+          ],
+          [
+            8.3215106,
+            44.1948513
+          ],
+          [
+            8.321514,
+            44.1948239
+          ],
+          [
+            8.3215995,
+            44.1948279
+          ],
+          [
+            8.3215987,
+            44.1948009
+          ],
+          [
+            8.3215421,
+            44.1947957
+          ],
+          [
+            8.3215275,
+            44.1947856
+          ],
+          [
+            8.3214613,
+            44.1947798
+          ],
+          [
+            8.3214199,
+            44.1947798
+          ],
+          [
+            8.3214041,
+            44.1948003
+          ],
+          [
+            8.3214048,
+            44.1948453
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-castrum-perticae",
+      "properties": {
+        "snippet": "Archaeological-site",
+        "link": "https://pleiades.stoa.org/places/303722074/osm-location-of-castrum-perticae",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castrum Perticae"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/270881939",
+          "citationDetail": "Way 270881939",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=270881939",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-castrum-perticae",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": null,
+      "title": "OSM location of Castrum Perticae",
+      "provenance": "OpenStreetMap (Way 270881939, version 3, osm:changeset=30272984, 2015-04-16T19:34:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-07-10T01:44:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            8.3214048,
+            44.1948453
+          ],
+          [
+            8.3215106,
+            44.1948513
+          ],
+          [
+            8.321514,
+            44.1948239
+          ],
+          [
+            8.3215995,
+            44.1948279
+          ],
+          [
+            8.3215987,
+            44.1948009
+          ],
+          [
+            8.3215421,
+            44.1947957
+          ],
+          [
+            8.3215275,
+            44.1947856
+          ],
+          [
+            8.3214613,
+            44.1947798
+          ],
+          [
+            8.3214199,
+            44.1947798
+          ],
+          [
+            8.3214041,
+            44.1948003
+          ],
+          [
+            8.3214048,
+            44.1948453
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/303722074/osm-location-of-castrum-perticae",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-26T22:19:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-26T21:23:55Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-10T01:44:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-10T01:44:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-10T01:44:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-17T12:42:23Z",
+      "associationCertainty": "certain",
+      "title": "San Antonino di Perti",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/303722074/7429984236",
+      "connectionType": "at",
+      "id": "7429984236",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-17T12:42:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-17T12:42:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-07-17T12:42:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/334522083",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "59",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Delfino 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EDHTE8PI",
+      "formattedCitation": "<div class=\"csl-entry\">Delfino, Davide, Fernando Coimbra, Gon\u00e7alo P. C. Cruz, and Daniela Cardoso. <i>Late Prehistoric Fortifications in Europe: Defensive, Symbolic and Territorial Aspects from the Chalcolithic to the Iron Age: Proceedings of the International Colloquium \u2018FortMetalAges\u2019, Guimar\u00e3es, Portugal</i>. Archaeopress Publishing Ltd, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q114222079",
+      "citationDetail": "Castrum Perticae (Q114222079)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Castrum Perticae",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q114222079",
+          "citationDetail": "Castrum Perticae (Q114222079)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "castrum-perticae-1",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2025-08-28T00:48:52Z",
+      "uri": "https://pleiades.stoa.org/places/303722074/castrum-perticae-1",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Castrum Perticae",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-08-28T14:16:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T00:49:01Z"
+        },
+        {
+          "comment": "name - Castrum Perticae",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T00:48:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-28T00:48:52Z"
+        }
+      ]
+    }
+  ],
+  "id": "303722074",
+  "subject": [],
+  "title": "Castrum Perticae",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A fortified site of the later Byzantine period located at Finale Ligure.",
+  "reprPoint": [
+    8.32149720010152,
+    44.194814578824214
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    8.3214041,
+    44.1947798,
+    8.3215995,
+    44.1948513
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/334522083"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-17T12:42:21Z",
+  "uri": "https://pleiades.stoa.org/places/303722074",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-28T00:46:02Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-26T22:19:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-26T21:23:55Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-26T21:23:48Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-17T12:42:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-17T12:42:21Z"
+    }
+  ]
+}

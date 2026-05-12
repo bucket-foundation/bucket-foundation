@@ -1,0 +1,327 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          60.432421,
+          36.857748
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-location-of-ilgynly-depe",
+      "properties": {
+        "snippet": "Settlement; 5000 BC - 3000 BC",
+        "link": "https://pleiades.stoa.org/places/374540942/approximate-location-of-ilgynly-depe",
+        "description": "Point representing the approximate location of Ilgynly-Depe after Masson 1994 and Petrie 2013.",
+        "location_precision": "precise",
+        "title": "Approximate location of Ilgynly-Depe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "5th-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/5th-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/247182798",
+          "citationDetail": "pages 18-19",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Masson 1994",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GT8A4XPL",
+          "formattedCitation": "<div class=\"csl-entry\">Masson, Vadim M. <i>New Archaeological Discoveries in Asiatic Russia and Central Asia</i>. Archaeological Studies, Issue 16. Sankt-Petersburg: Institut of History of Material Culture: Russian Academy of Sciences World Archaeological Congress, 1994. http://www.worldcat.org/oclc/247182798.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/862041500",
+          "citationDetail": "Figure 9.4",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Petrie 2013",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QBWXFAXY",
+          "formattedCitation": "<div class=\"csl-entry\">Petrie, Cameron, and John R Alden. <i>Ancient Iran and Its Neighbours: Local Developments and Long-Range Interactions in the Fourth Millennium BC</i>. Oxford\u202f:\u00a0 Oakville, CT: OXBOW BOOKS, 2013. http://www.worldcat.org/oclc/862041500.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "approximate-location-of-ilgynly-depe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3000,
+      "title": "Approximate location of Ilgynly-Depe",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -5000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Point representing the approximate location of Ilgynly-Depe after Masson 1994 and Petrie 2013.",
+      "created": "2022-06-15T13:43:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          60.432421,
+          36.857748
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/374540942/approximate-location-of-ilgynly-depe",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T18:26:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T13:45:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T13:43:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T13:43:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -3000,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-15T13:45:02Z",
+      "associationCertainty": "certain",
+      "title": "Altyn-Depe",
+      "start": -5000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/374540942/altyn-depe",
+      "connectionType": "near",
+      "id": "altyn-depe",
+      "attestations": [
+        {
+          "timePeriod": "5th-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/5th-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-15T18:26:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T13:45:52Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T13:45:02Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-15T13:45:02Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/842000735",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/247182798",
+          "citationDetail": "page 18",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Masson 1994",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GT8A4XPL",
+          "formattedCitation": "<div class=\"csl-entry\">Masson, Vadim M. <i>New Archaeological Discoveries in Asiatic Russia and Central Asia</i>. Archaeological Studies, Issue 16. Sankt-Petersburg: Institut of History of Material Culture: Russian Academy of Sciences World Archaeological Congress, 1994. http://www.worldcat.org/oclc/247182798.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/247182798",
+      "citationDetail": "pages 18-38",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Masson 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GT8A4XPL",
+      "formattedCitation": "<div class=\"csl-entry\">Masson, Vadim M. <i>New Archaeological Discoveries in Asiatic Russia and Central Asia</i>. Archaeological Studies, Issue 16. Sankt-Petersburg: Institut of History of Material Culture: Russian Academy of Sciences World Archaeological Congress, 1994. http://www.worldcat.org/oclc/247182798.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.persee.fr/doc/paleo_0153-9345_2009_num_35_1_5277",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Salvatori 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LUVZXQML",
+      "formattedCitation": "<div class=\"csl-entry\">Salvatori, Sandro, Massimo Vidale, Giuseppe Guida, and Elisa Masioli. \u201cIlgynly-Depe (Turkmenistan) and the 4th Millennium BC Metallurgy of Central Asia,\u201d 2009. https://doi.org/10.3406/paleo.2009.5277.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130956881",
+      "citationDetail": "Ilgynly-depe (Q130956881)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "374540942",
+  "subject": [],
+  "title": "Ilgynly-Depe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Chalcolithic settlement near Chaacha, Turkmenistan. This site was initially settled in the fifth millennium BCE, flourished in the mid-fourth, and was subsequently abandoned.",
+  "reprPoint": [
+    60.432421,
+    36.857748
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    60.432421,
+    36.857748,
+    60.432421,
+    36.857748
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/842000735"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-15T13:36:25Z",
+  "uri": "https://pleiades.stoa.org/places/374540942",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Ilgynly-depe (Q130956881)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-06T04:10:35Z"
+    },
+    {
+      "comment": "Salvatori 2009",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-06T04:08:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-15T18:26:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T13:45:52Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T13:45:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T13:36:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-15T13:36:25Z"
+    }
+  ]
+}

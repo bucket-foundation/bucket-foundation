@@ -1,0 +1,541 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              14.6014121,
+              40.2859079
+            ],
+            [
+              15.3155234,
+              41.0027981
+            ],
+            [
+              12.6291117,
+              42.4566372
+            ],
+            [
+              11.8932823,
+              41.9963368
+            ],
+            [
+              12.6113222,
+              41.4153013
+            ],
+            [
+              14.6014121,
+              40.2859079
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "undetermined-location",
+      "properties": {
+        "snippet": "Region",
+        "link": "https://pleiades.stoa.org/places/441075550/undetermined-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Undetermined location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [],
+      "id": "undetermined-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/region"
+      ],
+      "end": null,
+      "title": "Undetermined location",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/region"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "region"
+      ],
+      "description": "",
+      "created": "2019-06-13T22:13:11Z",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              14.6014121,
+              40.2859079
+            ],
+            [
+              15.3155234,
+              41.0027981
+            ],
+            [
+              12.6291117,
+              42.4566372
+            ],
+            [
+              11.8932823,
+              41.9963368
+            ],
+            [
+              12.6113222,
+              41.4153013
+            ],
+            [
+              14.6014121,
+              40.2859079
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/441075550/undetermined-location",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-12T12:25:34Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:13:36Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:13:12Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:13:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-13T21:42:05Z",
+      "associationCertainty": "certain",
+      "title": "Latium (region)",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/441075550/latium",
+      "connectionType": "part_of_regional",
+      "id": "latium",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-12T12:25:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:36:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:34:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:13:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T21:42:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T21:42:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432900",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-06-13T21:42:26Z",
+      "associationCertainty": "certain",
+      "title": "Campania",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/441075550/campania",
+      "connectionType": "part_of_regional",
+      "id": "campania",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-12T12:25:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:34:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:13:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T21:42:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T21:42:26Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432742",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://latin.packhum.org/loc/978/1/0#234",
+      "citationDetail": "3.5.46ff.",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "Plin., NH (Mayhoff: PHI)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8AK7HSRG",
+      "formattedCitation": "<div class=\"csl-entry\">Plinius Secundus Maior, C. <i>Naturalis Historiae</i>. Edited by Karl Friedrich Theodor Mayhoff. Bibliotheca Scriptorum Graecorum et Romanorum Teubneriana. Lipsiae: Teubner, 1906. http://latin.packhum.org/loc/978/1/0.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thomsen 1966",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5RKIXLKU",
+      "formattedCitation": "<div class=\"csl-entry\">Thomsen, Rudi. <i>The Italic Regions from Augustus to the Lombard Invasion</i>. Rome: \u201cL\u2019ERMA\u201d di Bretschneider, 1966.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/43767660",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bispham 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3UEAWTRU",
+      "formattedCitation": "<div class=\"csl-entry\">BISPHAM, EDWARD. \u201cPLINY THE ELDER\u2019S ITALY.\u201d <i>Bulletin of the Institute of Classical Studies. Supplement</i>, no. 100 (2007): 41\u201367. https://www.jstor.org/stable/43767660.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q783107",
+      "citationDetail": "Regio I Latium and Campania (Q783107)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Regio_I_Latium_et_Campania",
+      "citationDetail": "Regio I Latium et Campania",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.trismegistos.org/place/33152",
+      "citationDetail": "GEO ID 33152: Latium et Campania (Regio I)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://edh.ub.uni-heidelberg.de/edh/geographie/900006",
+      "citationDetail": "Latium et Campania (Regio I)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "EDH",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PY3AZV8F",
+      "formattedCitation": "<div class=\"csl-entry\">Alf\u00f6ldy, G\u00e9za, and Christian Witschel, eds. <i>Epigraphic Database Heidelberg</i>. Heidelberg: Heidelberg Academy of Sciences and Humanities, 1997. http://edh-www.adw.uni-heidelberg.de/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Regio I",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "regio-i",
+      "end": 300,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2019-06-13T21:43:14Z",
+      "uri": "https://pleiades.stoa.org/places/441075550/regio-i",
+      "creators": [
+        {
+          "username": "sarcanon",
+          "homepage": null,
+          "name": "Scott Vanderbilt",
+          "uri": "https://pleiades.stoa.org/author/sarcanon"
+        }
+      ],
+      "attested": "Regio I",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-02-12T12:25:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:36:46Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:22:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T22:13:35Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T21:43:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "sarcanon",
+          "modified": "2019-06-13T21:43:14Z"
+        }
+      ]
+    }
+  ],
+  "id": "441075550",
+  "subject": [
+    "Augustan regiones"
+  ],
+  "title": "Italia, Regio I",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/region"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "One of the administrative regions from Augustus's division of Italy, comprising Latium and Campania. Described by Pliny the Elder in Book III of his Natural History.",
+  "reprPoint": [
+    13.622430012426932,
+    41.390186223893345
+  ],
+  "placeTypes": [
+    "region"
+  ],
+  "bbox": [
+    11.8932823,
+    40.2859079,
+    15.3155234,
+    42.4566372
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432900",
+    "https://pleiades.stoa.org/places/432742",
+    "https://pleiades.stoa.org/places/432734",
+    "https://pleiades.stoa.org/places/433127",
+    "https://pleiades.stoa.org/places/432839",
+    "https://pleiades.stoa.org/places/433143",
+    "https://pleiades.stoa.org/places/432985",
+    "https://pleiades.stoa.org/places/422843",
+    "https://pleiades.stoa.org/places/422995",
+    "https://pleiades.stoa.org/places/433122",
+    "https://pleiades.stoa.org/places/432941",
+    "https://pleiades.stoa.org/places/423025",
+    "https://pleiades.stoa.org/places/433014",
+    "https://pleiades.stoa.org/places/432940",
+    "https://pleiades.stoa.org/places/432846",
+    "https://pleiades.stoa.org/places/422837",
+    "https://pleiades.stoa.org/places/432855",
+    "https://pleiades.stoa.org/places/433132",
+    "https://pleiades.stoa.org/places/432664"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-06-13T21:40:25Z",
+  "uri": "https://pleiades.stoa.org/places/441075550",
+  "creators": [
+    {
+      "username": "sarcanon",
+      "homepage": null,
+      "name": "Scott Vanderbilt",
+      "uri": "https://pleiades.stoa.org/author/sarcanon"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "EDH Latium et Campania (Regio I)",
+      "modifiedBy": "jbecker",
+      "modified": "2025-05-06T15:35:30Z"
+    },
+    {
+      "comment": "TM GEO ID 33152: Latium et Campania (Regio I)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-29T17:01:00Z"
+    },
+    {
+      "comment": "update refs",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-08T21:31:45Z"
+    },
+    {
+      "comment": "added two references",
+      "modifiedBy": "jbecker",
+      "modified": "2020-02-12T19:23:40Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-12T12:25:33Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-06-13T22:56:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-06-13T22:56:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-06-13T22:38:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-06-13T22:13:35Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-06-13T21:40:26Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sarcanon",
+      "modified": "2019-06-13T21:40:25Z"
+    }
+  ]
+}

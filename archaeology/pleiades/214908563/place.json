@@ -1,0 +1,222 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.273928,
+          41.072914
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-curti",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/214908563/osm-location-of-curti",
+        "description": "Location of modern associated location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Curti"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/68580011",
+          "citationDetail": "Node 68580011",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=68580011",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-curti",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location of Curti",
+      "provenance": "OpenStreetMap (Node 68580011, version 2, osm:changeset=41879755, 2016-09-02T23:58:40Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location of modern associated location based on OpenStreetMap.",
+      "created": "2020-04-11T00:21:05Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.273928,
+          41.072914
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/214908563/osm-location-of-curti",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-01-09T12:00:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-07-05T01:48:25Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-11T00:21:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-11T00:21:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-11T00:21:05Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rescigno 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GR6ZTVVS",
+      "formattedCitation": "<div class=\"csl-entry\">Rescigno, Carlo. \u201cUn bosco di madri. Il santuario di fondo Patturelli tra documenti e contesti.\u201d In <i>Lungo l\u2019Appia\u202f: scritti su Capua antica e dintorni</i>, 31\u201342. Napoli: Giannini, 2009.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Maiorano 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YTDRYC58",
+      "formattedCitation": "<div class=\"csl-entry\">Maiorano, Daniela. \u201c\u2018Un\u2019arca \ufb01ttile\u2019 dal Santuario di Fondo Patturelli: una proposta di lettura.\u201d In <i>Dialoghi sull\u2019archeologia della Magna Grecia e del Mediterraneo\u202f: atti del 1. Convegno internazionale di studi, Paestum, 7-9 settembre 2016</i>, Fasc.5, 1283-1288. Paestum: Pandemos, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sampaolo 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UKJU4XWI",
+      "formattedCitation": "<div class=\"csl-entry\">Sampaolo, Valeria. \u201cI nuovi scavi del fondo patturelli. Elementi per una definizione topografica.\u201d <i>Acme</i> 64, no. 2 (2011): 7\u201320.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "214908563",
+  "subject": [],
+  "title": "Santuario di Fondo Patturelli",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Samnite sanctuary of ancient Capua that was initially discovered in 1845. Active from the sixth century B.C. until the first century B.C., the Santuario di Fondo Patturelli is noted for its architectural terracotta as well as for the presence of a sacred maternal cult.",
+  "reprPoint": [
+    14.273928,
+    41.072914
+  ],
+  "placeTypes": [
+    "sanctuary",
+    "settlement-modern"
+  ],
+  "bbox": [
+    14.273928,
+    41.072914,
+    14.273928,
+    41.072914
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-04-11T00:20:30Z",
+  "uri": "https://pleiades.stoa.org/places/214908563",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-01-09T12:00:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-05T01:48:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-11T00:25:36Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-11T00:20:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-11T00:20:30Z"
+    }
+  ]
+}

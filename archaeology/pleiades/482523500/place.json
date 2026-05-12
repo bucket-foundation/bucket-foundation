@@ -1,0 +1,473 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6378073,
+          41.8034555
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-ipogeo-delle-ghirlande",
+      "properties": {
+        "snippet": "Tomb; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/482523500/osm-location-of-ipogeo-delle-ghirlande",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Ipogeo delle Ghirlande"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/12140098813",
+          "citationDetail": "Node 12140098813",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=12140098813",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-ipogeo-delle-ghirlande",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "end": 300,
+      "title": "OSM location of Ipogeo delle Ghirlande",
+      "provenance": "OpenStreetMap (Node 12140098813, version 1, osm:changeset=155835286, 2024-08-27T14:32:22Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tomb"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-09-08T14:38:47Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.6378073,
+          41.8034555
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/482523500/osm-location-of-ipogeo-delle-ghirlande",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-11T15:31:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-11T13:36:08Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-08T14:41:32Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-08T14:38:47Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-08T14:38:47Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2024-09-09T19:04:03Z",
+      "associationCertainty": "certain",
+      "title": "Via Latina",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/482523500/via-latina",
+      "connectionType": "on",
+      "id": "via-latina",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-11T15:31:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-11T13:36:08Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-09T19:04:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-09-09T19:04:03Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/93042695",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.journalchc.com/2021/09/21/lipogeo-delle-ghirlande-al-x-miglio-dellantica-via-latina/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Humar 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CVNKM9HH",
+      "formattedCitation": "<div class=\"csl-entry\">Humar, Marina. \u201cL\u2019Ipogeo delle Ghirlande al X miglio dell\u2019antica via Latina.\u201d <i>The Journal of Cultural Heritage Crime</i> (blog), September 21, 2021. https://www.journalchc.com/2021/09/21/lipogeo-delle-ghirlande-al-x-miglio-dellantica-via-latina/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Zazzetta 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4KCVDN43",
+      "formattedCitation": "<div class=\"csl-entry\">Zazzetta, Francesca Wanda. <i>L\u2019Ipogeo delle Ghirlande a Grottaferrata: un esempio di sepoltura di et\u00e0 romana imperiale</i>. Antichit\u00e0 romane 40. Roma: Arbor Sapientiae Editore, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ghini 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LCXMHFJJ",
+      "formattedCitation": "<div class=\"csl-entry\">Ghini, Giuseppina, Maria Grazia Granino Cecere, and M. Rubini. \u201cL\u2019ipogeo delle Ghirlande a Grottaferata (Roma): una storia vissuta 2000 anni fa.\u201d In <i>Papers in Italian archaeology VI\u202f: communities and settlements from the Neolithic to the early Medieval period\u202f: proceedings of the 6th Conference of Italian Archaeology held at the University of Groningen, Groningen Institute of Archaeology, The Netherlands, April 15-17, 2003</i>, 246\u201357. Oxford: Archaeopress\u202f:,\u00a0 Available from Hadrian Books, 2005.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.openedition.org/pupvd/7078",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Meinecke 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/56SWAYMQ",
+      "formattedCitation": "<div class=\"csl-entry\">Meinecke, Katharina. \u201cFunerary Cult [and] Sarcophagi, Rome and Vicinity.\u201d In <i>Iconographie Fun\u00e9raire Romaine et Soci\u00e9t\u00e9\u202f: Corpus Antique, Approches Nouvelles</i>, edited by Fran\u00e7ois Baratte and Martin Galinier, 31\u201349. Histoire de l\u2019art. Perpignan: Presses universitaires de Perpignan, 2019. http://books.openedition.org/pupvd/7078.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q130266521",
+      "citationDetail": "Hypogeum of the Garlands (Q130266521)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.nature.com/articles/s41598-022-07689-0",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Festa et al. 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ECDRPJIM",
+      "formattedCitation": "<div class=\"csl-entry\">Festa, G., M. Rubini, P. Zaio, A. Gozzi, N. Libianchi, S. F. Parker, G. Romanelli, L. A. E. Batista de Carvalho, and M. P. M. Marques. \u201cVibrational Spectroscopy to Study Ancient Roman Funerary Practices at the \u2018Hypogeum of the Garlands\u2019 (Italy).\u201d <i>Scientific Reports</i> 12, no. 1 (March 8, 2022): 3707. https://doi.org/10.1038/s41598-022-07689-0.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Hypogeum of the Garlands",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.nature.com/articles/s41598-022-07689-0",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Festa et al. 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ECDRPJIM",
+          "formattedCitation": "<div class=\"csl-entry\">Festa, G., M. Rubini, P. Zaio, A. Gozzi, N. Libianchi, S. F. Parker, G. Romanelli, L. A. E. Batista de Carvalho, and M. P. M. Marques. \u201cVibrational Spectroscopy to Study Ancient Roman Funerary Practices at the \u2018Hypogeum of the Garlands\u2019 (Italy).\u201d <i>Scientific Reports</i> 12, no. 1 (March 8, 2022): 3707. https://doi.org/10.1038/s41598-022-07689-0.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "hypogeum-of-the-garlands",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2024-10-11T13:34:43Z",
+      "uri": "https://pleiades.stoa.org/places/482523500/hypogeum-of-the-garlands",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Hypogeum of the Garlands",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-11T15:31:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-11T13:36:08Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-11T13:34:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-11T13:34:43Z"
+        }
+      ]
+    },
+    {
+      "nameType": "associated_modern",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Ipogeo delle Ghirlande",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q130266521",
+          "citationDetail": "Hypogeum of the Garlands (Q130266521)",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "ipogeo-delle-ghirlande",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2024-10-11T13:35:29Z",
+      "uri": "https://pleiades.stoa.org/places/482523500/ipogeo-delle-ghirlande",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Ipogeo delle Ghirlande",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-10-11T15:31:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-11T13:36:08Z"
+        },
+        {
+          "comment": "name added",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-11T13:35:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-11T13:35:29Z"
+        }
+      ]
+    }
+  ],
+  "id": "482523500",
+  "subject": [],
+  "title": "Ipogeo delle Ghirlande",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tomb"
+  ],
+  "details": "<p>The so-called Hypogeum of the Garlands was discovered in 2000 in a remarkably well-preserved condition, with the original stone that sealed the sepulchral chamber still in situ. Inside the chamber were the remains of three humans in an unusually pristine state of preservation. Two of these individuals were entombed in stone sarcophagi. These individuals are identified by means of sepulchral inscription: a male of 18 years of age named Carvilius Gemellus and his mother, Aebutia Quarta.\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Hypogeum of the Garlands is an ancient tomb located at the tenth mile of the ancient Via Latina. The tomb dates to either the first or second century CE.",
+  "reprPoint": [
+    12.6378073,
+    41.8034555
+  ],
+  "placeTypes": [
+    "tomb"
+  ],
+  "bbox": [
+    12.6378073,
+    41.8034555,
+    12.6378073,
+    41.8034555
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/93042695"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-09-08T14:38:06Z",
+  "uri": "https://pleiades.stoa.org/places/482523500",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-10-11T15:31:18Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-11T13:36:07Z"
+    },
+    {
+      "comment": "Festa et al. 2022",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-11T13:33:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-11T13:31:51Z"
+    },
+    {
+      "comment": "wikidata Hypogeum of the Garlands (Q130266521)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-09T19:05:41Z"
+    },
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-09T14:09:43Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-08T14:38:07Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-09-08T14:38:06Z"
+    }
+  ]
+}

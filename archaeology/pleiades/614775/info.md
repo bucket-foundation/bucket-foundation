@@ -1,0 +1,14 @@
+# Notene
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/614775
+- **ID**: 614775
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Notene
+
+## Description
+
+An ancient place, cited: BAtlas 62 unlocated Notene

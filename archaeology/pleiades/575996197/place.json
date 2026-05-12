@@ -1,0 +1,331 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9446761,
+            45.5385795
+          ],
+          [
+            10.9450261,
+            45.5384818
+          ],
+          [
+            10.9453936,
+            45.5384828
+          ],
+          [
+            10.9457141,
+            45.5385767
+          ],
+          [
+            10.9457758,
+            45.5385091
+          ],
+          [
+            10.9456202,
+            45.538201
+          ],
+          [
+            10.9453936,
+            45.5379211
+          ],
+          [
+            10.9452058,
+            45.5377548
+          ],
+          [
+            10.9448089,
+            45.53803
+          ],
+          [
+            10.9446761,
+            45.5385795
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-romana",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/575996197/osm-location-of-villa-romana",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Villa romana"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1084037394",
+          "citationDetail": "Way 1084037394",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1084037394",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-romana",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa romana",
+      "provenance": "OpenStreetMap (Way 1084037394, version 2, osm:changeset=124527339, 2022-08-05T14:44:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-11-01T00:08:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.9446761,
+            45.5385795
+          ],
+          [
+            10.9450261,
+            45.5384818
+          ],
+          [
+            10.9453936,
+            45.5384828
+          ],
+          [
+            10.9457141,
+            45.5385767
+          ],
+          [
+            10.9457758,
+            45.5385091
+          ],
+          [
+            10.9456202,
+            45.538201
+          ],
+          [
+            10.9453936,
+            45.5379211
+          ],
+          [
+            10.9452058,
+            45.5377548
+          ],
+          [
+            10.9448089,
+            45.53803
+          ],
+          [
+            10.9446761,
+            45.5385795
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/575996197/osm-location-of-villa-romana",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-11-11T19:19:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-11T18:57:48Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-01T00:08:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-01T00:08:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-11-01T00:08:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rinaldi 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XUEGUMKE",
+      "formattedCitation": "<div class=\"csl-entry\">Rinaldi, Federica. \u201cMotivi geometrici e temi figurati nelle pavimentazioni musive della villa romana di Negrar.\u201d <i>Annuario Storico della Valpolicella, 2002/2003 (2002/03)</i>, 2002, 133\u201360.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Piacentin 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H52YG8PT",
+      "formattedCitation": "<div class=\"csl-entry\">Piacentin, Sofia. \u201cLa villa romana di Negrar: storia delle ricerche.\u201d In <i>Annuario Storico della Valpolicella, 2010/2011 (2011)</i>, 53\u201376, 2011.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q123046451",
+      "citationDetail": "Villa dei Mosaici (Q123046451)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Villa_romana_di_Negrar",
+      "citationDetail": "Villa romana di Negrar",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "575996197",
+  "subject": [
+    "Mosaic"
+  ],
+  "title": "Negrar Roman Villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of a Roman villa with mosaic pavements located near the modern comune of Negrar di Valpolicella were first discovered in 1922.",
+  "reprPoint": [
+    10.94520020031721,
+    45.538259706485825
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    10.9446761,
+    45.5377548,
+    10.9457758,
+    45.5385795
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-11-01T00:08:01Z",
+  "uri": "https://pleiades.stoa.org/places/575996197",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2025-02-05T03:15:47Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-11T19:19:43Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "thomase",
+      "modified": "2022-11-11T19:19:35Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-11T18:57:48Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-11T18:57:43Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-01T00:11:33Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-01T00:08:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-11-01T00:08:01Z"
+    }
+  ]
+}

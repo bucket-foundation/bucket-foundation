@@ -1,0 +1,420 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.6290045,
+            40.5198924
+          ],
+          [
+            43.6286877,
+            40.5198943
+          ],
+          [
+            43.6286848,
+            40.5196233
+          ],
+          [
+            43.6291102,
+            40.5196207
+          ],
+          [
+            43.6291121,
+            40.5197957
+          ],
+          [
+            43.6295501,
+            40.5197931
+          ],
+          [
+            43.6295535,
+            40.5201168
+          ],
+          [
+            43.6290069,
+            40.5201201
+          ],
+          [
+            43.6290045,
+            40.5198924
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-the-monastery-of-horomos",
+      "properties": {
+        "snippet": "Abbey; AD 850 - AD 2100",
+        "link": "https://pleiades.stoa.org/places/890816517/osm-location-of-the-monastery-of-horomos",
+        "description": "Polygron representing the central monastic complex of Horomos, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location of the Monastery of Horomos"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-medieval-caucasus",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-medieval-caucasus",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/103362490",
+          "citationDetail": "Way 103362490",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=103362490",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-the-monastery-of-horomos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "end": 2100,
+      "title": "OSM location of the Monastery of Horomos",
+      "provenance": "OpenStreetMap (Way 103362490, version 6, osm:changeset=56549895, 2018-02-21T13:40:27Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 850,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "abbey"
+      ],
+      "description": "Polygron representing the central monastic complex of Horomos, derived from an OpenStreetMap Way.",
+      "created": "2018-05-14T17:13:53Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            43.6290045,
+            40.5198924
+          ],
+          [
+            43.6286877,
+            40.5198943
+          ],
+          [
+            43.6286848,
+            40.5196233
+          ],
+          [
+            43.6291102,
+            40.5196207
+          ],
+          [
+            43.6291121,
+            40.5197957
+          ],
+          [
+            43.6295501,
+            40.5197931
+          ],
+          [
+            43.6295535,
+            40.5201168
+          ],
+          [
+            43.6290069,
+            40.5201201
+          ],
+          [
+            43.6290045,
+            40.5198924
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/890816517/osm-location-of-the-monastery-of-horomos",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-05-17T14:36:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-05-14T17:20:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-05-14T17:15:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-05-14T17:13:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-05-14T17:13:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/942726585",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vardanyan 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G7XX62ZR",
+      "formattedCitation": "<div class=\"csl-entry\">Mat\u02bbevosyan, Karen, Armen I\u0361Ur\u02b9evich, Jean-Pierre Mah\u00e9, and Sona Baloyan. <i>Ho\u1e59omos Monastery: Art and History</i>. Edited by Edda Vardanyan. Monographies (Centre de Recherche d\u2019histoire et Civilisation de Byzance (Paris, France)) 50. Paris: ACHCByz, 2015. http://www.worldcat.org/oclc/942726585.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Horomos",
+      "citationDetail": "Horomos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2727504",
+      "citationDetail": "Horomos (Q2727504)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Horomos, Ho\u1e5bomos, Ho\u1e59omos",
+      "attestations": [
+        {
+          "timePeriod": "early-medieval-caucasus",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-medieval-caucasus",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ottoman-empire-2",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ottoman-empire-2",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q2727504",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikidata, Horomos",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "horomos",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 850,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "hy",
+      "created": "2018-05-14T17:20:26Z",
+      "uri": "https://pleiades.stoa.org/places/890816517/horomos",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0540\u0578\u057c\u0578\u0574\u0578\u057d",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-05-17T14:36:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-05-14T17:20:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-05-14T17:20:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-05-14T17:20:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "890816517",
+  "subject": [],
+  "title": "Horomos",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/abbey"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Armenian monastery constructed in the 10th century CE. ",
+  "reprPoint": [
+    43.6291175244866,
+    40.51987171060865
+  ],
+  "placeTypes": [
+    "abbey"
+  ],
+  "bbox": [
+    43.6286848,
+    40.5196207,
+    43.6295535,
+    40.5201201
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-05-14T17:13:23Z",
+  "uri": "https://pleiades.stoa.org/places/890816517",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Wikidata Horomos (Q2727504)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-01-11T22:46:36Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-05-17T14:36:56Z"
+    },
+    {
+      "comment": "reloaded Vardanyan 2015 reference information after adjusting source Zotero record",
+      "modifiedBy": "thomase",
+      "modified": "2018-05-17T14:34:13Z"
+    },
+    {
+      "comment": "zotero fetch for wikipedia",
+      "modifiedBy": "jbecker",
+      "modified": "2018-05-14T17:56:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-05-14T17:20:47Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-05-14T17:13:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-05-14T17:13:23Z"
+    }
+  ]
+}

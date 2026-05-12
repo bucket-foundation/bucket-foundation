@@ -1,0 +1,206 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.2592853,
+          40.0619819
+        ]
+      },
+      "type": "Feature",
+      "id": "ilica",
+      "properties": {
+        "snippet": "Cemetery; 1650 BC - 1450 BC",
+        "link": "https://pleiades.stoa.org/places/582288341/ilica",
+        "description": "Point representing the location of the modern village from which the Il\u0131ca site (located about 200m to the south) is named, derived from an OpenStreetMap Node.",
+        "location_precision": "precise",
+        "title": "OSM location of Il\u0131ca"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "old-hittite-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/old-hittite-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1398169185",
+          "citationDetail": "Node 1398169185",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1398169185",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "ilica",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1450,
+      "title": "OSM location of Il\u0131ca",
+      "provenance": "OpenStreetMap (Node 1398169185, version 2, osm:changeset=125469931, 2022-08-28T09:51:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1650,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point representing the location of the modern village from which the Il\u0131ca site (located about 200m to the south) is named, derived from an OpenStreetMap Node.",
+      "created": "2022-09-07T18:57:26Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.2592853,
+          40.0619819
+        ]
+      },
+      "locationType": [
+        "representative",
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/582288341/ilica",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-09-07T20:19:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-07T18:59:00Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-07T18:58:47Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-07T18:57:26Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2022-09-07T18:57:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1178562",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Orthmann 1967",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TGUV4SSK",
+      "formattedCitation": "<div class=\"csl-entry\">Orthmann, Winfried. <i>Das Gr\u00e4berfeld bei Il\u0131ca</i>. Wiesbaden: F. Steiner, 1967. https://www.worldcat.org/oclc/1178562.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "582288341",
+  "subject": [],
+  "title": "Il\u0131ca (Ayas: cemetery)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cemetery site northwest of Ankara containing burials dated to the Hittite period (16th century BCE). The modern neighborhood of Il\u0131ca is in the Ayas district of Turkey's Ankara province.",
+  "reprPoint": [
+    32.2592853,
+    40.0619819
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    32.2592853,
+    40.0619819,
+    32.2592853,
+    40.0619819
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-09-07T18:56:54Z",
+  "uri": "https://pleiades.stoa.org/places/582288341",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-07T20:19:29Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-09-07T20:19:09Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2022-09-07T18:59:00Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2022-09-07T18:56:55Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2022-09-07T18:56:54Z"
+    }
+  ]
+}

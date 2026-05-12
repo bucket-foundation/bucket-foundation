@@ -1,0 +1,351 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.7617312,
+            41.5559432
+          ],
+          [
+            -8.7617738,
+            41.5559103
+          ],
+          [
+            -8.761797,
+            41.5559021
+          ],
+          [
+            -8.7618616,
+            41.555935
+          ],
+          [
+            -8.7619579,
+            41.555966
+          ],
+          [
+            -8.7620335,
+            41.5559942
+          ],
+          [
+            -8.7620493,
+            41.5560189
+          ],
+          [
+            -8.7620128,
+            41.556038
+          ],
+          [
+            -8.7619165,
+            41.5560143
+          ],
+          [
+            -8.7618202,
+            41.5560152
+          ],
+          [
+            -8.7617568,
+            41.5559906
+          ],
+          [
+            -8.7617312,
+            41.5559432
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement, ; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/175451017/osm-location",
+        "description": "Representative location of archaeological site of Castro de S\u00e3o Louren\u00e7o based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de S\u00e3o Louren\u00e7o"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/302847650",
+          "citationDetail": "Way 302847650",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=302847650",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Castro de S\u00e3o Louren\u00e7o",
+      "provenance": "OpenStreetMap (Way 302847650, version 5, osm:changeset=123265452, 2022-07-06T08:09:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location of archaeological site of Castro de S\u00e3o Louren\u00e7o based on OpenStreetMap.",
+      "created": "2015-03-12T01:13:56Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -8.7617312,
+            41.5559432
+          ],
+          [
+            -8.7617738,
+            41.5559103
+          ],
+          [
+            -8.761797,
+            41.5559021
+          ],
+          [
+            -8.7618616,
+            41.555935
+          ],
+          [
+            -8.7619579,
+            41.555966
+          ],
+          [
+            -8.7620335,
+            41.5559942
+          ],
+          [
+            -8.7620493,
+            41.5560189
+          ],
+          [
+            -8.7620128,
+            41.556038
+          ],
+          [
+            -8.7619165,
+            41.5560143
+          ],
+          [
+            -8.7618202,
+            41.5560152
+          ],
+          [
+            -8.7617568,
+            41.5559906
+          ],
+          [
+            -8.7617312,
+            41.5559432
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/175451017/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T19:26:07Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-17T19:43:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-28T22:58:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-28T22:55:53Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T01:20:32Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T01:20:14Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T01:19:54Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T01:18:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T01:14:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T01:14:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://pt.wikipedia.org/wiki/Castro_de_S%C3%A3o_Louren%C3%A7o",
+      "citationDetail": "Castro de S\u00e3o Louren\u00e7o",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Portuguese)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/DT7TR55T",
+      "formattedCitation": "Wikip\u00e9dia: A enciclop\u00e9dia livre que todos podem editar (2001-), Castro de S\u00e3o Louren\u00e7o.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.castrosdonoroeste.pt/castro-de-s-lourenco/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Castro de S\u00e3o Louren\u00e7o",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3396262",
+      "citationDetail": "Castro de S\u00e3o Louren\u00e7o (Q3396262)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "175451017",
+  "subject": [],
+  "title": "Castro de S\u00e3o Louren\u00e7o",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Bronze Age settlement.",
+  "reprPoint": [
+    -8.761885770357193,
+    41.555979217491284
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -8.7620493,
+    41.5559021,
+    -8.7617312,
+    41.556038
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-03-12T00:50:16Z",
+  "uri": "https://pleiades.stoa.org/places/175451017",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q3396262",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-22T19:27:00Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-17T19:43:50Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-28T22:57:55Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-28T22:57:46Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T00:50:22Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T00:50:16Z"
+    }
+  ]
+}

@@ -1,0 +1,395 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3589611,
+            51.3803515
+          ],
+          [
+            -2.3590348,
+            51.3803413
+          ],
+          [
+            -2.3590505,
+            51.3803378
+          ],
+          [
+            -2.3590571,
+            51.3803548
+          ],
+          [
+            -2.3591028,
+            51.3803479
+          ],
+          [
+            -2.3591077,
+            51.3803605
+          ],
+          [
+            -2.359115,
+            51.3803744
+          ],
+          [
+            -2.3589996,
+            51.3803956
+          ],
+          [
+            -2.3589841,
+            51.3803982
+          ],
+          [
+            -2.3589611,
+            51.3803515
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/181697035/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/373986062",
+          "citationDetail": "Way 373986062",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=373986062",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "end": null,
+      "title": "OSM location",
+      "provenance": "OpenStreetMap (Way 373986062, version 4, osm:changeset=76552533, 2019-11-03T14:16:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/unknown"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "unknown"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-06-21T14:17:53Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -2.3589611,
+            51.3803515
+          ],
+          [
+            -2.3590348,
+            51.3803413
+          ],
+          [
+            -2.3590505,
+            51.3803378
+          ],
+          [
+            -2.3590571,
+            51.3803548
+          ],
+          [
+            -2.3591028,
+            51.3803479
+          ],
+          [
+            -2.3591077,
+            51.3803605
+          ],
+          [
+            -2.359115,
+            51.3803744
+          ],
+          [
+            -2.3589996,
+            51.3803956
+          ],
+          [
+            -2.3589841,
+            51.3803982
+          ],
+          [
+            -2.3589611,
+            51.3803515
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/181697035/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:18:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:18:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:18:11Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:17:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:17:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2017-06-13T11:22:44Z",
+      "associationCertainty": "certain",
+      "title": "Aquae Sulis",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/181697035/aquae-sulis",
+      "connectionType": "at",
+      "id": "aquae-sulis",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:18:32Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-21T14:18:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "saloni",
+          "modified": "2017-06-13T11:22:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "saloni",
+          "modified": "2017-06-13T11:22:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/79299",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "saloni",
+          "homepage": null,
+          "name": "Syvanne Aloni",
+          "uri": "https://pleiades.stoa.org/author/saloni"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "La Trobe-Bateman, E., and Niblett, R. (2016) p.70",
+      "bibliographicURI": "http://www.worldcat.org/oclc/980071056",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cunliffe, B. (1969) p.156-7",
+      "bibliographicURI": "http://www.worldcat.org/oclc/871540901",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Cunliffe, B. (1971) p.160-3",
+      "bibliographicURI": "http://www.worldcat.org/oclc/260114183",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Davenport, P. (1991) p.97; 116-117 (fig.99)",
+      "bibliographicURI": "http://www.worldcat.org/oclc/612488974",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Heritage Gateway, Roman Building, Abbeygate Street",
+      "bibliographicURI": "http://www.heritagegateway.org.uk/Gateway/Results_Single.aspx?uid=MBN1934&resourceID=1036",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "181697035",
+  "subject": [
+    "Mosaic"
+  ],
+  "title": "So-called \"No.4 Abbeygate Street\"",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "<p>Two mosaic floors found during the nineteenth century. Excavations in 1971 at 7 Abbey Green uncovered a spread of gravel sealing a layer of dark mud, suggesting some sort of hard standing; it was covered by further layers of soil and silt. In 1984-5, further excavations at the corner of Abbeygate Street and Swallow Street exposed extensive deposits of dark mud, suggesting that the first and second centuries were largely unoccupied. There is evidence of alterations including internal partitions, a large hypocaust, and the raising of some of the floor levels in the fourth century.\u00a0</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Remains of large building found in the settlement of Aquae Sulis, modern Bath.",
+  "reprPoint": [
+    -2.3590366931141973,
+    51.380366321660844
+  ],
+  "placeTypes": [
+    "archaeological-site"
+  ],
+  "bbox": [
+    -2.359115,
+    51.3803378,
+    -2.3589611,
+    51.3803982
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/79299"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2017-06-13T11:11:16Z",
+  "uri": "https://pleiades.stoa.org/places/181697035",
+  "creators": [
+    {
+      "username": "saloni",
+      "homepage": null,
+      "name": "Syvanne Aloni",
+      "uri": "https://pleiades.stoa.org/author/saloni"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-21T14:18:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-21T14:18:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-21T14:17:05Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "saloni",
+      "modified": "2017-06-13T11:49:37Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "saloni",
+      "modified": "2017-06-13T11:35:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "saloni",
+      "modified": "2017-06-13T11:20:58Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "saloni",
+      "modified": "2017-06-13T11:11:37Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "saloni",
+      "modified": "2017-06-13T11:11:16Z"
+    }
+  ]
+}

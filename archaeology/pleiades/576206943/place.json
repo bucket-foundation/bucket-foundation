@@ -1,0 +1,638 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.2692004,
+            37.3964637
+          ],
+          [
+            25.2695922,
+            37.396484
+          ],
+          [
+            25.2696753,
+            37.3961702
+          ],
+          [
+            25.2696634,
+            37.3961132
+          ],
+          [
+            25.2694741,
+            37.3960813
+          ],
+          [
+            25.2692548,
+            37.3960659
+          ],
+          [
+            25.2692004,
+            37.3964637
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-house-with-the-masks",
+      "properties": {
+        "snippet": "Townhouse; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/576206943/osm-location-of-house-with-the-masks",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of House with the Masks"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "Elise Johnson"
+    },
+    {
+      "username": null,
+      "name": "Michael Horst"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Emily van Zanten"
+    },
+    {
+      "username": null,
+      "name": "Dalton Parish"
+    },
+    {
+      "username": "arabinowitz",
+      "homepage": null,
+      "name": "Adam Rabinowitz",
+      "uri": "https://pleiades.stoa.org/author/arabinowitz"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/568688263",
+          "citationDetail": "Way 568688263",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=568688263",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-house-with-the-masks",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "end": -30,
+      "title": "OSM location of House with the Masks",
+      "provenance": "OpenStreetMap (Way 568688263, version 3, osm:changeset=153372536, 2024-06-30T14:42:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/townhouse"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "townhouse"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-02-09T17:06:06Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            25.2692004,
+            37.3964637
+          ],
+          [
+            25.2695922,
+            37.396484
+          ],
+          [
+            25.2696753,
+            37.3961702
+          ],
+          [
+            25.2696634,
+            37.3961132
+          ],
+          [
+            25.2694741,
+            37.3960813
+          ],
+          [
+            25.2692548,
+            37.3960659
+          ],
+          [
+            25.2692004,
+            37.3964637
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/576206943/osm-location-of-house-with-the-masks",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-02-10T16:32:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-09T17:06:31Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-09T17:06:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-09T17:06:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-02-09T17:06:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -30,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:53:28Z",
+      "associationCertainty": "certain",
+      "title": "Delos (settlement)",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/576206943/599587",
+      "connectionType": "at",
+      "id": "599587",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "changed cnxn tyoe",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-29T14:07:11Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599587",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-03-17T17:02:51Z",
+      "associationCertainty": "certain",
+      "title": "Delos (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/576206943/delos-island",
+      "connectionType": "on",
+      "id": "delos-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-17T21:34:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:02:56Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:02:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-17T17:02:51Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/599588",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/903968255",
+      "citationDetail": "180",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Winter 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5IB3PBKI",
+      "formattedCitation": "<div class=\"csl-entry\">Winter, Frederick E. <i>Studies in Hellenistic Architecture</i>, 2006. http://www.worldcat.org/oclc/903968255.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Delos",
+      "citationDetail": "Delos",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Delos.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tang 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/96PJUS2D",
+      "formattedCitation": "<div class=\"csl-entry\">Tang, Birgit. <i>Delos, Carthage, Ampurias: The Housing of Three Mediterranean Trading Centres</i>. Roma: L\u2019Erma di Bretschneider, 2005.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://data.perseus.org/artifacts/building/Delos%2C+House+of+the+Masks",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Perseus: Delos, House of the Masks (Building)",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q27664014",
+      "citationDetail": "Q27664014: House of the Masks (Delos)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "The House of the Masks",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/903968255",
+          "citationDetail": "180",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Winter 2006",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/5IB3PBKI",
+          "formattedCitation": "<div class=\"csl-entry\">Winter, Frederick E. <i>Studies in Hellenistic Architecture</i>, 2006. http://www.worldcat.org/oclc/903968255.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "the-house-of-the-masks",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": null,
+          "name": "Elise Johnson"
+        },
+        {
+          "username": null,
+          "name": "Michael Horst"
+        },
+        {
+          "username": null,
+          "name": "Emily van Zanten"
+        },
+        {
+          "username": null,
+          "name": "Dalton Parish"
+        },
+        {
+          "username": "arabinowitz",
+          "homepage": null,
+          "name": "Adam Rabinowitz",
+          "uri": "https://pleiades.stoa.org/author/arabinowitz"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-05-03T18:01:49Z",
+      "uri": "https://pleiades.stoa.org/places/576206943/the-house-of-the-masks",
+      "creators": [
+        {
+          "username": "mhorst",
+          "homepage": null,
+          "name": "Michael Horst",
+          "uri": "https://pleiades.stoa.org/author/mhorst"
+        }
+      ],
+      "attested": "The House of the Masks",
+      "@type": "Name",
+      "history": [
+        {
+          "comment": "updated Winter citation with full details",
+          "modifiedBy": "thomase",
+          "modified": "2017-12-15T22:38:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-06-17T05:13:57Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "arabinowitz",
+          "modified": "2015-06-17T04:52:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "mhorst",
+          "modified": "2015-05-04T04:14:28Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "mhorst",
+          "modified": "2015-05-03T18:01:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "mhorst",
+          "modified": "2015-05-03T18:01:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "576206943",
+  "subject": [
+    "Delos",
+    "House",
+    "extant remains",
+    "Masks",
+    "Dionysus",
+    "Mosaic"
+  ],
+  "title": "The House of the Masks ",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/townhouse",
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "<p>The House of the Masks, sometimes referred to as House of the Comedians, served as a temporary housing complex for traveling theatrical groups performing at Delos. The house consists of several small rooms connected by a large, central courtyard. It is well known for its intricate mosaics, most notably one depicting Dionysus riding a leopard. Others depict theatrical masks. Built sometime between 150-100 BC, the house saw less frequent use after an attack on Delos by the troops of Mithridates VI of Pontus in 88 BC. By the 2nd century AD, the island was mostly abandoned and the House of Masks fell into ruin.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The House of the Masks (also known as the House of the Comedians), built around 150-100 BC, was a luxurious residential complex that may have housed traveling troops of actors performing at the theater in Delos.",
+  "reprPoint": [
+    25.269428626039602,
+    37.396277940508035
+  ],
+  "placeTypes": [
+    "townhouse",
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    25.2692004,
+    37.3960659,
+    25.2696753,
+    37.396484
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/599587",
+    "https://pleiades.stoa.org/places/599588"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-04-30T19:34:46Z",
+  "uri": "https://pleiades.stoa.org/places/576206943",
+  "creators": [
+    {
+      "username": "mhorst",
+      "homepage": null,
+      "name": "Michael Horst",
+      "uri": "https://pleiades.stoa.org/author/mhorst"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata Q27664014: House of the Masks (Delos)",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-17T21:36:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-26T13:36:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-26T13:36:07Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-05-26T13:35:36Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-07-13T21:52:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-07-13T21:50:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-06-17T22:05:43Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-06-17T05:13:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-06-17T05:13:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-06-17T05:10:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "arabinowitz",
+      "modified": "2015-06-17T05:09:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "mhorst",
+      "modified": "2015-05-04T04:14:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mhorst",
+      "modified": "2015-05-04T04:07:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mhorst",
+      "modified": "2015-05-03T18:28:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mhorst",
+      "modified": "2015-05-03T18:15:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mhorst",
+      "modified": "2015-04-30T20:19:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "mhorst",
+      "modified": "2015-04-30T19:38:43Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "mhorst",
+      "modified": "2015-04-30T19:34:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "mhorst",
+      "modified": "2015-04-30T19:34:46Z"
+    }
+  ]
+}

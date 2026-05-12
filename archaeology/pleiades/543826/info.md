@@ -1,0 +1,14 @@
+# Paracheloitai
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/543826
+- **ID**: 543826
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Paracheloitai
+
+## Description
+
+An ancient place, cited: BAtlas 55 unlocated Paracheloitai

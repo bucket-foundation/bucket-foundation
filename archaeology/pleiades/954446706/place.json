@@ -1,0 +1,354 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9712389,
+            51.9276453
+          ],
+          [
+            -1.9712338,
+            51.9276192
+          ],
+          [
+            -1.9712271,
+            51.9276042
+          ],
+          [
+            -1.9711638,
+            51.9273683
+          ],
+          [
+            -1.9709881,
+            51.9271629
+          ],
+          [
+            -1.9709444,
+            51.9271302
+          ],
+          [
+            -1.9709029,
+            51.9271165
+          ],
+          [
+            -1.9708566,
+            51.9271165
+          ],
+          [
+            -1.9708265,
+            51.9271266
+          ],
+          [
+            -1.9707965,
+            51.9271403
+          ],
+          [
+            -1.9707831,
+            51.9271711
+          ],
+          [
+            -1.9707628,
+            51.9273054
+          ],
+          [
+            -1.970761,
+            51.9274399
+          ],
+          [
+            -1.9708121,
+            51.9276798
+          ],
+          [
+            -1.9708121,
+            51.9276936
+          ],
+          [
+            -1.970865,
+            51.9276895
+          ],
+          [
+            -1.971,
+            51.9276735
+          ],
+          [
+            -1.9712389,
+            51.9276453
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-elas-knap-longbarrow",
+      "properties": {
+        "snippet": "Tumulus; 4000 BC - 3000 BC",
+        "link": "https://pleiades.stoa.org/places/954446706/osm-location-of-elas-knap-longbarrow",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of elas Knap Longbarrow"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/333503730",
+          "citationDetail": "Way 333503730",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=333503730",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-elas-knap-longbarrow",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "end": -3000,
+      "title": "OSM location of elas Knap Longbarrow",
+      "provenance": "OpenStreetMap (Way 333503730, version 8, osm:changeset=138540530, 2023-07-15T11:12:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -4000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tumulus"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-10T01:52:51Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -1.9712389,
+            51.9276453
+          ],
+          [
+            -1.9712338,
+            51.9276192
+          ],
+          [
+            -1.9712271,
+            51.9276042
+          ],
+          [
+            -1.9711638,
+            51.9273683
+          ],
+          [
+            -1.9709881,
+            51.9271629
+          ],
+          [
+            -1.9709444,
+            51.9271302
+          ],
+          [
+            -1.9709029,
+            51.9271165
+          ],
+          [
+            -1.9708566,
+            51.9271165
+          ],
+          [
+            -1.9708265,
+            51.9271266
+          ],
+          [
+            -1.9707965,
+            51.9271403
+          ],
+          [
+            -1.9707831,
+            51.9271711
+          ],
+          [
+            -1.9707628,
+            51.9273054
+          ],
+          [
+            -1.970761,
+            51.9274399
+          ],
+          [
+            -1.9708121,
+            51.9276798
+          ],
+          [
+            -1.9708121,
+            51.9276936
+          ],
+          [
+            -1.970865,
+            51.9276895
+          ],
+          [
+            -1.971,
+            51.9276735
+          ],
+          [
+            -1.9712389,
+            51.9276453
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/954446706/osm-location-of-elas-knap-longbarrow",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-13T15:33:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-10T01:53:25Z"
+        },
+        {
+          "comment": "supersedes previously published location.",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-10T01:53:22Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-10T01:52:51Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-10T01:52:51Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Belas_Knap",
+      "citationDetail": "Belas Knap",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Belas Knap.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.english-heritage.org.uk/daysout/properties/belas-knap-long-barrow/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "English Heritage, BELAS KNAP LONG BARROW",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "954446706",
+  "subject": [],
+  "title": "Belas Knap Longbarrow",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tumulus"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Belas Knap is a Neolithic chamber tomb located on Cleeve Hill in Gloucestershire, England. The tomb is dated ca. 3800 BC.",
+  "reprPoint": [
+    -1.970967297078158,
+    51.92743589793901
+  ],
+  "placeTypes": [
+    "tumulus"
+  ],
+  "bbox": [
+    -1.9712389,
+    51.9271165,
+    -1.970761,
+    51.9276936
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-08-08T04:27:45Z",
+  "uri": "https://pleiades.stoa.org/places/954446706",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2014-04-09T12:24:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-13T14:00:31Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2013-09-13T14:00:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-17T01:28:59Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-08T04:27:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-08T04:27:46Z"
+    }
+  ]
+}

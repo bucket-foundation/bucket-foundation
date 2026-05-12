@@ -1,0 +1,367 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.7373999,
+            36.320874
+          ],
+          [
+            5.7373829,
+            36.3207794
+          ],
+          [
+            5.7373802,
+            36.3206994
+          ],
+          [
+            5.737462,
+            36.3205892
+          ],
+          [
+            5.7375613,
+            36.3205363
+          ],
+          [
+            5.7376525,
+            36.3205255
+          ],
+          [
+            5.737741,
+            36.3205201
+          ],
+          [
+            5.7378362,
+            36.320546
+          ],
+          [
+            5.7379127,
+            36.3205709
+          ],
+          [
+            5.7380575,
+            36.3206541
+          ],
+          [
+            5.7373999,
+            36.320874
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-roman-theater",
+      "properties": {
+        "snippet": "Theatre; 30 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/697765430/osm-location-of-roman-theater",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Roman theater"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-early-empire-late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-early-empire-late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/209622851",
+          "citationDetail": "Way 209622851",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=209622851",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-roman-theater",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "end": 640,
+      "title": "OSM location of Roman theater",
+      "provenance": "OpenStreetMap (Way 209622851, version 3, osm:changeset=35266232, 2015-11-12T17:14:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "theatre"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2020-06-19T16:23:26Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            5.7373999,
+            36.320874
+          ],
+          [
+            5.7373829,
+            36.3207794
+          ],
+          [
+            5.7373802,
+            36.3206994
+          ],
+          [
+            5.737462,
+            36.3205892
+          ],
+          [
+            5.7375613,
+            36.3205363
+          ],
+          [
+            5.7376525,
+            36.3205255
+          ],
+          [
+            5.737741,
+            36.3205201
+          ],
+          [
+            5.7378362,
+            36.320546
+          ],
+          [
+            5.7379127,
+            36.3205709
+          ],
+          [
+            5.7380575,
+            36.3206541
+          ],
+          [
+            5.7373999,
+            36.320874
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/697765430/osm-location-of-roman-theater",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "force reindex",
+          "modifiedBy": "thomase",
+          "modified": "2025-05-16T02:17:57Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-24T14:57:50Z"
+        },
+        {
+          "comment": "Generic OSM Accuracy Assessment",
+          "modifiedBy": "jbecker",
+          "modified": "2023-03-02T02:29:32Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-06-19T16:42:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-19T16:23:33Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-06-19T16:23:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-08T15:01:58Z",
+      "associationCertainty": "certain",
+      "title": "Cuicul",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/697765430/1181545072",
+      "connectionType": "at",
+      "id": "1181545072",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-08T15:01:58Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-08T15:01:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-08T15:01:58Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/305068",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.theatrum.de/cuicul.html",
+      "citationDetail": "CUICUL, Djemila, Theater (Numidia)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Theatrum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NC5FZPQN",
+      "formattedCitation": "<div class=\"csl-entry\">Gogr\u00e4fe, R\u00fcdiger, and Hubertus Mikler. <i>Theatrum</i>. Mainz: Direktion Landesarch\u00e4ologie Mainz, 2011. http://www.theatrum.de.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "697765430",
+  "subject": [
+    "theater",
+    "extant remains"
+  ],
+  "title": "Roman theater at Cuicul",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/theatre"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Roman theater at Cuicul was built during the reign of Antoninus Pius.",
+  "reprPoint": [
+    5.737679847128537,
+    36.32067748623183
+  ],
+  "placeTypes": [
+    "theatre"
+  ],
+  "bbox": [
+    5.7373802,
+    36.3205201,
+    5.7380575,
+    36.320874
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/305068"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-08T15:01:57Z",
+  "uri": "https://pleiades.stoa.org/places/697765430",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-06-19T16:42:31Z"
+    },
+    {
+      "comment": "cleaned up Theatrum reference",
+      "modifiedBy": "thomase",
+      "modified": "2020-06-19T16:42:25Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-02T13:30:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T13:55:18Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-12T13:55:07Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-08T15:02:15Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-08T15:01:59Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-08T15:01:57Z"
+    }
+  ]
+}

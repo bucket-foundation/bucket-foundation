@@ -1,0 +1,426 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.499809,
+            42.0121148
+          ],
+          [
+            12.5008926,
+            42.0117162
+          ],
+          [
+            12.5008443,
+            42.0115767
+          ],
+          [
+            12.5006673,
+            42.0113256
+          ],
+          [
+            12.5006351,
+            42.0112658
+          ],
+          [
+            12.5003616,
+            42.0110865
+          ],
+          [
+            12.5002704,
+            42.0109948
+          ],
+          [
+            12.4996534,
+            42.0115528
+          ],
+          [
+            12.4994979,
+            42.0116883
+          ],
+          [
+            12.4994872,
+            42.0117641
+          ],
+          [
+            12.4995086,
+            42.0118876
+          ],
+          [
+            12.4996266,
+            42.0119873
+          ],
+          [
+            12.4996749,
+            42.0120391
+          ],
+          [
+            12.499809,
+            42.0121148
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-del-cimitero-flaminio",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/480714925/osm-location-of-villa-del-cimitero-flaminio",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa del Cimitero Flaminio"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/794852975",
+          "citationDetail": "Way 794852975",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=794852975",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-del-cimitero-flaminio",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa del Cimitero Flaminio",
+      "provenance": "OpenStreetMap (Way 794852975, version 1, osm:changeset=83950566, 2020-04-22T15:52:47Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2020-04-22T15:57:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.499809,
+            42.0121148
+          ],
+          [
+            12.5008926,
+            42.0117162
+          ],
+          [
+            12.5008443,
+            42.0115767
+          ],
+          [
+            12.5006673,
+            42.0113256
+          ],
+          [
+            12.5006351,
+            42.0112658
+          ],
+          [
+            12.5003616,
+            42.0110865
+          ],
+          [
+            12.5002704,
+            42.0109948
+          ],
+          [
+            12.4996534,
+            42.0115528
+          ],
+          [
+            12.4994979,
+            42.0116883
+          ],
+          [
+            12.4994872,
+            42.0117641
+          ],
+          [
+            12.4995086,
+            42.0118876
+          ],
+          [
+            12.4996266,
+            42.0119873
+          ],
+          [
+            12.4996749,
+            42.0120391
+          ],
+          [
+            12.499809,
+            42.0121148
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/480714925/osm-location-of-villa-del-cimitero-flaminio",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-24T18:40:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T15:58:25Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T15:57:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T15:57:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T15:57:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2020-04-22T16:49:43Z",
+      "associationCertainty": "certain",
+      "title": "Via Tiberina",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/480714925/via-tiberina",
+      "connectionType": "at",
+      "id": "via-tiberina",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-24T18:40:51Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-24T18:40:45Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2020-04-24T18:40:41Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T16:49:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-04-22T16:49:43Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/759079303",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Messineo 1998",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UPSFKE9J",
+          "formattedCitation": "<div class=\"csl-entry\">Messineo, G., M. C. Vittori, and R. Zaccagnini. \u201cVia Tiberina km 1300. Villa romana all\u2019interno del Cimitero Flaminio.\u201d In <i>Bullettino della Commissione archeologica comunale di Roma, 99.1998</i>, 330\u201346, 1998.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Messineo 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UPSFKE9J",
+      "formattedCitation": "<div class=\"csl-entry\">Messineo, G., M. C. Vittori, and R. Zaccagnini. \u201cVia Tiberina km 1300. Villa romana all\u2019interno del Cimitero Flaminio.\u201d In <i>Bullettino della Commissione archeologica comunale di Roma, 99.1998</i>, 330\u201346, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://web.archive.org/save/https://www.beniculturali.it/mibac/opencms/MiBAC/sito-MiBAC/Luogo/MibacUnif/Luoghi-della-Cultura/visualizza_asset.html?id=167458&pagename=57",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Villa del Cimitero Flaminio",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.isvroma.it/public/villa/print/griesbach.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Griesbach 2005",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WUM3674S",
+      "formattedCitation": "<div class=\"csl-entry\">Griesbach, Jochen. \u201cVilla e mausoleo: mutamenti nel concetto della memoria nel suburbio romano.\u201d <i>Roman villas around the Urbs\u202f: interaction with landscape and environment\u202f: proceedings of a conference at the Swedish Institute in Rome, 17-18 September 2004</i>, 2005, 1\u201311. http://www.isvroma.it/public/villa/print/griesbach.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.info.roma.it/monumenti_dettaglio.asp?ID_schede=5651",
+      "citationDetail": "5651: villa romana del Cimitero Flaminio",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Info.roma.it",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UC92I57E",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cInfo.roma.it: La meraviglie di roma.\u201d Accessed February 5, 2020. https://www.info.roma.it.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "480714925",
+  "subject": [],
+  "title": "Villa del Cimitero Flaminio",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "<p>The villa was discovered in 1942 during construction work connected to the\u00a0Camposanto. It is built on two sloping terraces with the residential area occupying the upper terrace. The lower terrace includes a bath complex. The complex dates to the later first century B.C., although there may have been an earlier phase. Many rooms have mosaic floor pavements.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman villa located at the 1.6 km post of the via Tiberina, positioned on a tuff bank, today inside the Prima Porta cemetery.",
+  "reprPoint": [
+    12.500176185236782,
+    42.01160518561787
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    12.4994872,
+    42.0109948,
+    12.5008926,
+    42.0121148
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/759079303"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-04-22T15:56:38Z",
+  "uri": "https://pleiades.stoa.org/places/480714925",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Info.roma.it",
+      "modifiedBy": "jbecker",
+      "modified": "2025-10-04T01:54:18Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-04-24T18:40:51Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:58:51Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:58:24Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:58:13Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:56:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-04-22T15:56:38Z"
+    }
+  ]
+}

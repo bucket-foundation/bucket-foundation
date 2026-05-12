@@ -1,0 +1,397 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.258297,
+          37.2792267
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-castle-of-chelmos",
+      "properties": {
+        "snippet": "Ruin; AD 1200 - AD 1299",
+        "link": "https://pleiades.stoa.org/places/21258154/osm-location-castle-of-chelmos",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Castle of Chelmos"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "thirteenth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/thirteenth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/8971849312",
+          "citationDetail": "Node 8971849312",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=8971849312",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.kastra.eu/castlegr.php?kastro=helmos",
+          "citationDetail": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03a7\u03b5\u03bb\u03bc\u03bf\u03cd \u03ae \u03a6\u03c1\u03bf\u03cd\u03c1\u03b9\u03bf \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03bf\u03bd ",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kastrologos",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4ZQRL22T",
+          "formattedCitation": "<div class=\"csl-entry\">\u03a0\u03b1\u03c0\u03b1\u03b8\u03b1\u03bd\u03b1\u03c3\u03af\u03bf\u03c5, \u039c\u03b1\u03bd\u03ce\u03bb\u03b7\u03c2. \u201c\u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2: \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac \u039a\u03ac\u03c3\u03c4\u03c1\u03b1.\u201d \u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2, 2012. https://www.kastra.eu/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-castle-of-chelmos",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ruin"
+      ],
+      "end": 1299,
+      "title": "OSM Location: Castle of Chelmos",
+      "provenance": "OpenStreetMap (Node 8971849312, version 2, osm:changeset=156065383, 2024-09-01T17:38:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1200,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/ruin"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "ruin"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-07-30T22:27:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.258297,
+          37.2792267
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/21258154/osm-location-castle-of-chelmos",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-01T00:02:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:29:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:28:40Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:27:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:27:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2025-07-30T22:10:47Z",
+      "associationCertainty": "certain",
+      "title": "Athenaion (fortification)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/21258154/athenaion-fortification",
+      "connectionType": "succeeds",
+      "id": "athenaion-fortification",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-01T00:02:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:29:10Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:10:48Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:10:47Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570138",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.kastra.eu/castlegr.php?kastro=helmos",
+          "citationDetail": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03a7\u03b5\u03bb\u03bc\u03bf\u03cd \u03ae \u03a6\u03c1\u03bf\u03cd\u03c1\u03b9\u03bf \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03bf\u03bd",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Kastrologos",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4ZQRL22T",
+          "formattedCitation": "<div class=\"csl-entry\">\u03a0\u03b1\u03c0\u03b1\u03b8\u03b1\u03bd\u03b1\u03c3\u03af\u03bf\u03c5, \u039c\u03b1\u03bd\u03ce\u03bb\u03b7\u03c2. \u201c\u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2: \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac \u039a\u03ac\u03c3\u03c4\u03c1\u03b1.\u201d \u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2, 2012. https://www.kastra.eu/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/succeeds"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.kastra.eu/castlegr.php?kastro=helmos",
+      "citationDetail": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03a7\u03b5\u03bb\u03bc\u03bf\u03cd \u03ae \u03a6\u03c1\u03bf\u03cd\u03c1\u03b9\u03bf \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03bf\u03bd",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Kastrologos",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4ZQRL22T",
+      "formattedCitation": "<div class=\"csl-entry\">\u03a0\u03b1\u03c0\u03b1\u03b8\u03b1\u03bd\u03b1\u03c3\u03af\u03bf\u03c5, \u039c\u03b1\u03bd\u03ce\u03bb\u03b7\u03c2. \u201c\u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2: \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac \u039a\u03ac\u03c3\u03c4\u03c1\u03b1.\u201d \u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2, 2012. https://www.kastra.eu/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://el.wikipedia.org/wiki/%CE%9A%CE%AC%CF%83%CF%84%CF%81%CE%BF_%CE%A7%CE%B5%CE%BB%CE%BC%CE%BF%CF%8D",
+      "citationDetail": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03a7\u03b5\u03bb\u03bc\u03bf\u03cd",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Greek)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BUR4V79V",
+      "formattedCitation": "<div class=\"csl-entry\"><i>\u0392\u03b9\u03ba\u03b9\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1: \u03c4\u03b7\u03bd \u03b5\u03bb\u03b5\u03cd\u03b8\u03b5\u03c1\u03b7 \u03b5\u03b3\u03ba\u03c5\u03ba\u03bb\u03bf\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1 \u03c0\u03bf\u03c5 \u03b3\u03c1\u03ac\u03c6\u03bf\u03c5\u03bc\u03b5 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03bf\u03c7\u03b9\u03ba\u03ac</i>. Wikimedia Foundation, 2001. https://el.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108885164",
+      "citationDetail": "Castle of Chelmos (Q108885164)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/33598/",
+      "citationDetail": "33598: Castle of Chelmos",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kastro Chelmou, Kastro Helmou",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.kastra.eu/castlegr.php?kastro=helmos",
+          "citationDetail": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03a7\u03b5\u03bb\u03bc\u03bf\u03cd \u03ae \u03a6\u03c1\u03bf\u03cd\u03c1\u03b9\u03bf \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03bf\u03bd",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Kastrologos",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4ZQRL22T",
+          "formattedCitation": "<div class=\"csl-entry\">\u03a0\u03b1\u03c0\u03b1\u03b8\u03b1\u03bd\u03b1\u03c3\u03af\u03bf\u03c5, \u039c\u03b1\u03bd\u03ce\u03bb\u03b7\u03c2. \u201c\u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2: \u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac \u039a\u03ac\u03c3\u03c4\u03c1\u03b1.\u201d \u039a\u03b1\u03c3\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03bf\u03c2, 2012. https://www.kastra.eu/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "kastro-chelmou",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2025-07-30T22:11:40Z",
+      "uri": "https://pleiades.stoa.org/places/21258154/kastro-chelmou",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03a7\u03b5\u03bb\u03bc\u03bf\u03cd",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-08-01T00:02:46Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:29:10Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:12:01Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:11:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-07-30T22:11:40Z"
+        }
+      ]
+    }
+  ],
+  "id": "21258154",
+  "subject": [],
+  "title": "Chelmos Castle",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/castle",
+    "https://pleiades.stoa.org/vocabularies/place-types/ruin"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Kastro Chelmou was a medieval castle, built probably in the 13th century of the modern era inside the ancient Athenaion fortress in Arcadia. It is located on the hill of Agios Konstantinos, southeast of the modern town of Skortsino.",
+  "reprPoint": [
+    22.258297,
+    37.2792267
+  ],
+  "placeTypes": [
+    "castle",
+    "ruin"
+  ],
+  "bbox": [
+    22.258297,
+    37.2792267,
+    22.258297,
+    37.2792267
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570138"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-07-30T22:09:32Z",
+  "uri": "https://pleiades.stoa.org/places/21258154",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-08-01T00:02:46Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-30T22:29:09Z"
+    },
+    {
+      "comment": "added vici.org reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-30T22:19:09Z"
+    },
+    {
+      "comment": "added Wikidata reference",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-30T22:16:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-30T22:12:58Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-30T22:09:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-07-30T22:09:32Z"
+    }
+  ]
+}

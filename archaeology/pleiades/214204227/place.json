@@ -1,0 +1,240 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            51.6764167,
+            29.4492887
+          ],
+          [
+            51.6766045,
+            29.4491427
+          ],
+          [
+            51.6763752,
+            29.4489489
+          ],
+          [
+            51.6762142,
+            29.4491229
+          ],
+          [
+            51.6764167,
+            29.4492887
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "puskan-castle",
+      "properties": {
+        "snippet": "Fort-2; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/214204227/puskan-castle",
+        "description": "Polygon based on OpenStreetMap representing Puskan Castle after Vanden Berghe 1990.",
+        "location_precision": "precise",
+        "title": "OSM location of Puskan Castle"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1083865631",
+          "citationDetail": "Way 1083865631",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1083865631",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/906616248",
+          "citationDetail": "page 43",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Vanden Berghe 1990",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K9HB63K7",
+          "formattedCitation": "<div class=\"csl-entry\">Vanden Berghe, Louis. <i>La d\u00e9couverte d\u2019un ch\u00e2teau-fort du d\u00e9but de l\u2019\u00e9poque islamique \u00e0 Puskan (Iran): survivance d\u2019\u00e9l\u00e9ments architecturaux sassanides</i>. Iranica antiqua, Suppl\u00e9ment 4. Gent: Peeters, 1990. http://www.worldcat.org/oclc/906616248.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "puskan-castle",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 640,
+      "title": "OSM location of Puskan Castle",
+      "provenance": "OpenStreetMap (Way 1083865631, version 1, osm:changeset=124494971, 2022-08-04T19:36:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Polygon based on OpenStreetMap representing Puskan Castle after Vanden Berghe 1990.",
+      "created": "2022-08-04T19:45:44Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            51.6764167,
+            29.4492887
+          ],
+          [
+            51.6766045,
+            29.4491427
+          ],
+          [
+            51.6763752,
+            29.4489489
+          ],
+          [
+            51.6762142,
+            29.4491229
+          ],
+          [
+            51.6764167,
+            29.4492887
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/214204227/puskan-castle",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-05T17:50:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-04T19:48:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-04T19:47:21Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-04T19:45:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-08-04T19:45:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/906616248",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vanden Berghe 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/K9HB63K7",
+      "formattedCitation": "<div class=\"csl-entry\">Vanden Berghe, Louis. <i>La d\u00e9couverte d\u2019un ch\u00e2teau-fort du d\u00e9but de l\u2019\u00e9poque islamique \u00e0 Puskan (Iran): survivance d\u2019\u00e9l\u00e9ments architecturaux sassanides</i>. Iranica antiqua, Suppl\u00e9ment 4. Gent: Peeters, 1990. http://www.worldcat.org/oclc/906616248.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "214204227",
+  "subject": [],
+  "title": "Puskan Castle",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Sassanid fort located about 3.5km south of the Iranian town Puskan. The fort is square shaped with a round tower at each corner.",
+  "reprPoint": [
+    51.67640597372807,
+    29.449122899509387
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    51.6762142,
+    29.4489489,
+    51.6766045,
+    29.4492887
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-04T19:45:24Z",
+  "uri": "https://pleiades.stoa.org/places/214204227",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-05T17:50:12Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-08-04T19:48:04Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-08-04T19:45:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-08-04T19:45:24Z"
+    }
+  ]
+}

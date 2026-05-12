@@ -1,0 +1,317 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.077894,
+          32.927364
+        ]
+      },
+      "type": "Feature",
+      "id": "hellenistic-temple-and-workshops",
+      "properties": {
+        "snippet": "Temple-2, ; 330 BC - 30 BC",
+        "link": "https://pleiades.stoa.org/places/534036732/hellenistic-temple-and-workshops",
+        "description": "Excavations on site of post office at 49 Ben Ami St. revealed Hellenistic remains, including a dedication to Zeus Soter on behalf of Antiochos VII by a courtier (SEG XIX 9094). This inscription was associated with Hellenistic architecture of a temple-like character. Nearby workshops also uncovered.",
+        "location_precision": "precise",
+        "title": "Location of Re-Buried Hellenistic Temple and Workshops"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.jstor.org/discover/10.2307/27924855?uid=2&uid=4&sid=21101799406367",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Landau 1961, 118",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.co.il/books/about/Hellenistic_Palestine.html?id=XztiQgAACAAJ&redir_esc=y",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Arav 1989, 19",
+          "otherIdentifier": " ",
+          "type": "cites"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.hadashot-esi.org.il/report_detail_eng.asp?id=2199&mag_id=119",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/cites",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "Abu Hamid 2012",
+          "otherIdentifier": " ",
+          "type": "cites"
+        }
+      ],
+      "id": "hellenistic-temple-and-workshops",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -30,
+      "title": "Location of Re-Buried Hellenistic Temple and Workshops",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-and-partners-imagery-2013",
+      "featureType": [
+        "temple-2",
+        ""
+      ],
+      "description": "Excavations on site of post office at 49 Ben Ami St. revealed Hellenistic remains, including a dedication to Zeus Soter on behalf of Antiochos VII by a courtier (SEG XIX 9094). This inscription was associated with Hellenistic architecture of a temple-like character. Nearby workshops also uncovered.",
+      "created": "2013-02-12T17:42:59Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.077894,
+          32.927364
+        ]
+      },
+      "locationType": [
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/534036732/hellenistic-temple-and-workshops",
+      "creators": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-08-13T13:33:30Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "sgillies",
+          "modified": "2013-02-19T17:04:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nkaye",
+          "modified": "2013-02-19T17:01:25Z"
+        },
+        {
+          "comment": "All three references describe Hellenistic architectural remains at the site of the current Post Office at 49 Ben Ami St. in Akko. The remains are buried. Abu Hamid 2012 summarizes further rescue excavations around that site. ",
+          "modifiedBy": "nkaye",
+          "modified": "2013-02-19T12:00:40Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "nkaye",
+          "modified": "2013-02-19T11:31:23Z"
+        },
+        {
+          "comment": "Add reference to the accuracy assessment doc",
+          "modifiedBy": "sgillies",
+          "modified": "2013-02-13T17:05:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nkaye",
+          "modified": "2013-02-12T18:13:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2013-02-12T18:12:13Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "nkaye",
+          "modified": "2013-02-12T17:43:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nkaye",
+          "modified": "2013-02-12T17:43:00Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-06-16T23:28:57Z",
+      "associationCertainty": "certain",
+      "title": "Ake/Ptolemais",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/534036732/7372175303",
+      "connectionType": "at",
+      "id": "7372175303",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-16T23:28:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-16T23:28:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-06-16T23:28:57Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678010",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [],
+  "names": [],
+  "id": "534036732",
+  "subject": [
+    "Zeus"
+  ],
+  "title": "Re-Buried Hellenistic Temple and Workshops",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Excavations on site of post office at 49 Ben Ami St. revealed Hellenistic remains, including a dedication to Zeus Soter on behalf of Antiochos VII by a courtier (SEG XIX 9094). This inscription was associated with Hellenistic architecture of a temple-like character. Nearby workshops also uncovered.",
+  "reprPoint": [
+    35.077894,
+    32.927364
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    35.077894,
+    32.927364,
+    35.077894,
+    32.927364
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678010"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-16T23:28:37Z",
+  "uri": "https://pleiades.stoa.org/places/534036732",
+  "creators": [
+    {
+      "username": "nkaye",
+      "homepage": null,
+      "name": "Noah Kaye",
+      "uri": "https://pleiades.stoa.org/author/nkaye"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-02-14T22:06:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nkaye",
+      "modified": "2020-01-26T23:35:09Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-16T23:30:19Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-16T23:29:23Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-16T23:29:00Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-06-16T23:28:37Z"
+    }
+  ]
+}

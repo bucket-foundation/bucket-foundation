@@ -1,0 +1,470 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4287172,
+          43.4522771
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-modern-saintes-maries-de-la-mer",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/631720472/osm-location-of-modern-saintes-maries-de-la-mer",
+        "description": "Location based on OpenStreetMap, with reference to Gosselin 2023, Figure 1.",
+        "location_precision": "precise",
+        "title": "OSM Location of modern Saintes-Maries-de-la-Mer"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.420147,
+          43.435109
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-approximate-centerpoint-of-wreck-scatter",
+      "properties": {
+        "snippet": "Unknown; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/631720472/imagery-location-approximate-centerpoint-of-wreck-scatter",
+        "description": "After Gosselin 2023, Figure 1 and Long 2011, Figure 1.",
+        "location_precision": "precise",
+        "title": "Imagery Location: Approximate Centerpoint of Wreck Scatter"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.444952,
+          43.456425
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-grau-de-la-fourcade-saintes-maries-de-la-mer",
+      "properties": {
+        "snippet": "Mouth; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/631720472/imagery-location-grau-de-la-fourcade-saintes-maries-de-la-mer",
+        "description": "The Grau de la Fourcade is the sea channel now occupying the point where the old Saint-Ferr\u00e9ol branch of the Rhone once debouched into the sea, a feature thought by the excavators to have been in place in Roman times.",
+        "location_precision": "precise",
+        "title": "Imagery Location: Grau de la Fourcade / Saintes-Maries-de-la-Mer"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/26696399",
+          "citationDetail": "Node 26696399",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=26696399",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-modern-saintes-maries-de-la-mer",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM Location of modern Saintes-Maries-de-la-Mer",
+      "provenance": "OpenStreetMap (Node 26696399, version 18, osm:changeset=79697186, 2020-01-17T12:37:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap, with reference to Gosselin 2023, Figure 1.",
+      "created": "2023-08-16T22:24:41Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.4287172,
+          43.4522771
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/631720472/osm-location-of-modern-saintes-maries-de-la-mer",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-17T02:22:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:55:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:25:33Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:24:41Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:24:41Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X23003164",
+          "citationDetail": "Figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Gosselin 2023",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XJIVIU6W",
+          "formattedCitation": "<div class=\"csl-entry\">Gosselin, Manon, Gaspard Pag\u00e8s, Philippe Dillmann, and Luc Long. \u201cTraded Raw Steel: The Roman Masses from the Saintes-Maries-de-La-Mer Wrecks.\u201d <i>Journal of Archaeological Science: Reports</i> 51 (October 1, 2023): 104141. https://doi.org/10.1016/j.jasrep.2023.104141.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://shs.hal.science/halshs-00748649",
+          "citationDetail": "Figure 1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Long 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WNXAZP39",
+          "formattedCitation": "<div class=\"csl-entry\">Long, Luc, and Guillaume Duperron. \u201cRecherches sous-marines au large des Saintes-Maries-de-la-Mer (Bouches-du-Rh\u00f4ne). Sur les traces de l\u2019avant-port maritime d\u2019Arles,\u201d 97. SFECAG, 2011. https://shs.hal.science/halshs-00748649.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-approximate-centerpoint-of-wreck-scatter",
+      "featureTypeURI": [],
+      "end": 300,
+      "title": "Imagery Location: Approximate Centerpoint of Wreck Scatter",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "After Gosselin 2023, Figure 1 and Long 2011, Figure 1.",
+      "created": "2023-08-16T22:41:08Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.420147,
+          43.435109
+        ]
+      },
+      "locationType": [
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/631720472/imagery-location-approximate-centerpoint-of-wreck-scatter",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-17T02:22:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:55:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:41:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:41:08Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://shs.hal.science/halshs-00748649",
+          "citationDetail": "pages 97-98",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Long 2011",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WNXAZP39",
+          "formattedCitation": "<div class=\"csl-entry\">Long, Luc, and Guillaume Duperron. \u201cRecherches sous-marines au large des Saintes-Maries-de-la-Mer (Bouches-du-Rh\u00f4ne). Sur les traces de l\u2019avant-port maritime d\u2019Arles,\u201d 97. SFECAG, 2011. https://shs.hal.science/halshs-00748649.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 80",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Alain 2008",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/34WHHQAE",
+          "formattedCitation": "<div class=\"csl-entry\">Alain, Crivelli, Ae Auphan, Philippe Chauvelon, Alain Sandoz, Jean-Yves Menella, and Ae Poizat. \u201cFish and Diadromy in Europe.\u201d <i>Hydrobiologia</i>, January 1, 2008.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-grau-de-la-fourcade-saintes-maries-de-la-mer",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mouth"
+      ],
+      "end": 2099,
+      "title": "Imagery Location: Grau de la Fourcade / Saintes-Maries-de-la-Mer",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mouth"
+      ],
+      "archaeologicalRemains": "notapplicable",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "mouth"
+      ],
+      "description": "The Grau de la Fourcade is the sea channel now occupying the point where the old Saint-Ferr\u00e9ol branch of the Rhone once debouched into the sea, a feature thought by the excavators to have been in place in Roman times.",
+      "created": "2023-08-16T22:54:35Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.444952,
+          43.456425
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/631720472/imagery-location-grau-de-la-fourcade-saintes-maries-de-la-mer",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-08-17T02:22:36Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:55:23Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:54:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-08-16T22:54:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Long 2021 (Camargue)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YU3VE73I",
+      "formattedCitation": "<div class=\"csl-entry\">Long, Luc. <i>Camargue maritime: d\u2019Art\u00e9mis \u00e0 Baroncelli\u202f: sur la trace des \u00e9paves et d\u2019un port antique aux Saintes-Maries-de-la-Mer</i>. Aventure du monde. Gen\u00e8ve: Georges Naef, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Long 2021 (Commercio)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/II3ATJNE",
+      "formattedCitation": "<div class=\"csl-entry\">Long, L., and G. Spada. \u201cCommercio di metalli e di marmo durante l\u2019Alto Impero alla foce del Rodano \u00ab\u202fSaint-Ferr\u00e9ol\u202f\u00bb (Saintes-Maries-de-la-Mer, Francia).\u201d In <i>Relitti e commercio romano nel Mediterraneo occidentale in epoca romana: alcuni contributi\u202f: atti della sessione RAC, Roman Archaeology Conference 12, 2016</i>, edited by Gloria Olcese and Domenico Michele Surace, 73\u201394. Per incerta maris. Roma: Edizioni Quasar, 2021.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2352409X23003164",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gosselin 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/XJIVIU6W",
+      "formattedCitation": "<div class=\"csl-entry\">Gosselin, Manon, Gaspard Pag\u00e8s, Philippe Dillmann, and Luc Long. \u201cTraded Raw Steel: The Roman Masses from the Saintes-Maries-de-La-Mer Wrecks.\u201d <i>Journal of Archaeological Science: Reports</i> 51 (October 1, 2023): 104141. https://doi.org/10.1016/j.jasrep.2023.104141.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://shs.hal.science/halshs-00748649",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Long 2011",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WNXAZP39",
+      "formattedCitation": "<div class=\"csl-entry\">Long, Luc, and Guillaume Duperron. \u201cRecherches sous-marines au large des Saintes-Maries-de-la-Mer (Bouches-du-Rh\u00f4ne). Sur les traces de l\u2019avant-port maritime d\u2019Arles,\u201d 97. SFECAG, 2011. https://shs.hal.science/halshs-00748649.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "631720472",
+  "subject": [],
+  "title": "Saintes-Marie-de-la-Mer Roman Port",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/mouth",
+    "https://pleiades.stoa.org/vocabularies/place-types/port",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman commercial port near the modern French town of Saintes-Maries-de-la-Mer is attested by over forty Roman-era shipwrecks discovered in the area since the 1990s, most carrying cargoes of metal. The excavators posit in Roman times a significantly different coastline (generally further south) and an old mouth of the Rhone (Ancien Rh\u00f4ne de Saint-Ferr\u00e9ol), located to the east of Saintes-Maries-de-la-Mer (Long 2011, Figure 1).",
+  "reprPoint": [
+    4.431272066666668,
+    43.44793703333334
+  ],
+  "placeTypes": [
+    "mouth",
+    "port",
+    "settlement-modern"
+  ],
+  "bbox": [
+    4.420147,
+    43.435109,
+    4.444952,
+    43.456425
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-08-16T22:21:26Z",
+  "uri": "https://pleiades.stoa.org/places/631720472",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2023-08-17T02:22:36Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T22:55:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T22:43:08Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T22:24:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T22:21:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2023-08-16T22:21:26Z"
+    }
+  ]
+}

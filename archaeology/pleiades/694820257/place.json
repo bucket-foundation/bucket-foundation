@@ -1,0 +1,371 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.3761774,
+            38.1894311
+          ],
+          [
+            32.3759897,
+            38.1892631
+          ],
+          [
+            32.3761086,
+            38.1891597
+          ],
+          [
+            32.3763064,
+            38.1893616
+          ],
+          [
+            32.3761774,
+            38.1894311
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-laodikeia-gymnasium",
+      "properties": {
+        "snippet": "Gymnasium; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/694820257/osm-location-laodikeia-gymnasium",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location: Laodikeia Gymnasium"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1466508323",
+          "citationDetail": "Way 1466508323",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1466508323",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "11\u201316",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "\u00d6zt\u00fcrk 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/877D3Z2K",
+          "formattedCitation": "<div class=\"csl-entry\">\u00d6zt\u00fcrk, H\u00fcseyin Sami, Ferit Baz, and Hasan U\u011fuz. <i>Laodicea Katakekaumene (Combusta) Volume ISaray\u00f6n\u00fc \u2013 Ladik Corpus of Greek and Latin Inscription</i>. Istanbul: Kabalc\u0131, 2025.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://vici.org/vici/86995/",
+          "citationDetail": "Laodikeia Gymnasion",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "vici.org",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CQWHNDIM",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-laodikeia-gymnasium",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+      ],
+      "end": 300,
+      "title": "OSM Location: Laodikeia Gymnasium",
+      "provenance": "OpenStreetMap (Way 1466508323, version 1, osm:changeset=177143684, 2026-01-12T15:43:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "gymnasium"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2026-01-12T15:44:31Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.3761774,
+            38.1894311
+          ],
+          [
+            32.3759897,
+            38.1892631
+          ],
+          [
+            32.3761086,
+            38.1891597
+          ],
+          [
+            32.3763064,
+            38.1893616
+          ],
+          [
+            32.3761774,
+            38.1894311
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/694820257/osm-location-laodikeia-gymnasium",
+      "creators": [
+        {
+          "username": "nkaye",
+          "homepage": null,
+          "name": "Noah Kaye",
+          "uri": "https://pleiades.stoa.org/author/nkaye"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2026-01-26T21:13:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-21T20:03:32Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-21T19:59:00Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2026-01-21T19:45:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2026-01-21T19:44:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nkaye",
+          "modified": "2026-01-12T15:48:48Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "nkaye",
+          "modified": "2026-01-12T15:48:40Z"
+        },
+        {
+          "comment": "https://www.kitapyurdu.com/kitap/laodikeia-katakekaumene-combusta-cilt-i-sarayonu-ladik-helence-ve-latince-yazitlar-corpusu/731599.html?srsltid=AfmBOoqgrGFDMs8v5pzrl5k7VFyLr9EIILtqRRzAaVpujkgJQF2tWbtR",
+          "modifiedBy": "nkaye",
+          "modified": "2026-01-12T15:48:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "nkaye",
+          "modified": "2026-01-12T15:44:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nkaye",
+          "modified": "2026-01-12T15:44:31Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2026-01-21T20:01:45Z",
+      "associationCertainty": "certain",
+      "title": "Laodikeia (Katakekaumene)/Claudiolaodicea",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/694820257/7051161384",
+      "connectionType": "at",
+      "id": "7051161384",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-21T20:01:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-21T20:01:45Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2026-01-21T20:01:45Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/619197",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "11\u201316",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "\u00d6zt\u00fcrk 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/877D3Z2K",
+      "formattedCitation": "<div class=\"csl-entry\">\u00d6zt\u00fcrk, H\u00fcseyin Sami, Ferit Baz, and Hasan U\u011fuz. <i>Laodicea Katakekaumene (Combusta) Volume ISaray\u00f6n\u00fc \u2013 Ladik Corpus of Greek and Latin Inscription</i>. Istanbul: Kabalc\u0131, 2025.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/86995/",
+      "citationDetail": "86995: Laodikeia Gymnasion",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "694820257",
+  "subject": [],
+  "title": "Laodikeia Gymnasium",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/gymnasium"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A gymnasium complex at Laodicea on the Lycus dedicated to Hadrian and Sabina.",
+  "reprPoint": [
+    32.376146528026425,
+    38.18930107309256
+  ],
+  "placeTypes": [
+    "gymnasium"
+  ],
+  "bbox": [
+    32.3759897,
+    38.1891597,
+    32.3763064,
+    38.1894311
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/619197"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2026-01-21T20:01:42Z",
+  "uri": "https://pleiades.stoa.org/places/694820257",
+  "creators": [
+    {
+      "username": "nkaye",
+      "homepage": null,
+      "name": "Noah Kaye",
+      "uri": "https://pleiades.stoa.org/author/nkaye"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2026-01-26T21:12:48Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-21T20:03:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-21T20:03:27Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-21T20:03:09Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-21T20:01:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2026-01-21T20:01:42Z"
+    }
+  ]
+}

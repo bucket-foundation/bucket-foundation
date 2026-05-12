@@ -1,0 +1,162 @@
+{
+  "features": [],
+  "contributors": [],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2021-05-23T14:03:21Z",
+      "associationCertainty": "certain",
+      "title": "Liris/Clanis (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/495078212/liris-clanis-river",
+      "connectionType": "near",
+      "id": "liris-clanis-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T12:31:21Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-09T14:51:29Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-23T14:03:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-05-23T14:03:21Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/432910",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/491405392",
+      "citationDetail": "228",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Carta archeologica e ricerche in Campania. Fascicolo 1",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UJI5Q2IX",
+      "formattedCitation": "<div class=\"csl-entry\">Cera, Giovanna, Stefania Quilici Gigli, and Giuseppina Renda. <i>Carta archeologica e ricerche in Campania. Fascicolo 1, Fascicolo 1,</i>. Roma: L\u2019Erma di Bretschneider, 2004. http://www.worldcat.org/oclc/491405392.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Villucci 1980",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8QSUHEJ8",
+      "formattedCitation": "<div class=\"csl-entry\">Villucci, Antonio Marcello. <i>I monumenti di Suessa Aurunca</i>. [s.l: Scauri], 1980.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "124",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Arthur 1991",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8ZNS9XCX",
+      "formattedCitation": "<div class=\"csl-entry\">Arthur, Paul. <i>Romans in Northern Campania: Settlement and Land-Use around the Massico and the Garigliano Basin</i>. Archaeological Monographs of the British School at Rome 1. London: British School at Rome, 1991.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "495078212",
+  "subject": [
+    "basis villae",
+    "polygonal masonry"
+  ],
+  "title": "Masseria Petrolio",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The substruction (basis) of a Roman villa rustica dating to the late republican period located near the course of the Garigliano river.",
+  "reprPoint": [
+    13.648527850662374,
+    41.549576317105696
+  ],
+  "placeTypes": [
+    "villa"
+  ],
+  "bbox": [
+    13.3775937,
+    41.2231091,
+    13.8947953,
+    41.9638555
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/432910"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-09-12T23:59:00Z",
+  "uri": "https://pleiades.stoa.org/places/495078212",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T12:31:38Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-09T14:51:28Z"
+    },
+    {
+      "comment": "added Arthur 1991",
+      "modifiedBy": "jbecker",
+      "modified": "2021-05-23T17:44:47Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-12T23:59:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-09-12T23:59:00Z"
+    }
+  ]
+}

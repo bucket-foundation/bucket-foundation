@@ -1,0 +1,301 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.9662477,
+            38.1290689
+          ],
+          [
+            23.9660104,
+            38.128624
+          ],
+          [
+            23.9663899,
+            38.1284619
+          ],
+          [
+            23.9666764,
+            38.1288722
+          ],
+          [
+            23.9662477,
+            38.1290689
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tsepi-early-helladic-cemetery",
+      "properties": {
+        "snippet": "Archaeological-site, Cemetery; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/877327047/osm-location-of-tsepi-early-helladic-cemetery",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tsepi Early Helladic cemetery"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "bkiesling",
+      "homepage": null,
+      "name": "Brady Kiesling",
+      "uri": "https://pleiades.stoa.org/author/bkiesling"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1178784769",
+          "citationDetail": "Way 1178784769",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1178784769",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tsepi-early-helladic-cemetery",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1000,
+      "title": "OSM location of Tsepi Early Helladic cemetery",
+      "provenance": "OpenStreetMap (Way 1178784769, version 1, osm:changeset=136937871, 2023-06-04T15:36:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-06-04T15:41:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.9662477,
+            38.1290689
+          ],
+          [
+            23.9660104,
+            38.128624
+          ],
+          [
+            23.9663899,
+            38.1284619
+          ],
+          [
+            23.9666764,
+            38.1288722
+          ],
+          [
+            23.9662477,
+            38.1290689
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/877327047/osm-location-of-tsepi-early-helladic-cemetery",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-05T15:43:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-04T15:41:58Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-04T15:41:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-04T15:41:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-04T15:41:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Prevedorou 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/S3ITSTD8",
+      "formattedCitation": "<div class=\"csl-entry\">Prevedorou, Eleni-Anna. \u201cBioarchaeological Approach to Early Helladic Attica: The Human Skeletal Remains from Tsepi at Marathon (1970-1973 Excavations).\u201d In <i>\u0391thens and Attica in Prehistory\u202f: Proceedings of the International Conference Athens, 27-31 May 2015</i>, pages 245-250. Oxford: Archaeopress Archaeology, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pomonis 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/W8RTE3GE",
+      "formattedCitation": "<div class=\"csl-entry\">Pomonis, Panagiotis. \u201cDeposit 39 of the Prehistoric Cemetery at Tsepi (Marathon, Greece): Preliminary Results from the Petrographic Analysis of the Pottery.\u201d In <i>\u0391thens and Attica in Prehistory\u202f: Proceedings of the International Conference Athens, 27-31 May 2015</i>, pages 251-255. Oxford: Archaeopress Archaeology, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pantelidou Gkopha 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QZYZRTJD",
+      "formattedCitation": "<div class=\"csl-entry\">Pantelidou Gkopha, Maria. \u201cThe EH I Deposit at Tsepi, Marathon: Features, Formation and the Breakage of the Finds.\u201d In <i>Horizon \u038c\u03c1\u03af\u03b6\u03c9\u03bd</i>, 281\u201389. Cambridge\u202f:\u00a0 Oxford: McDonald Institute for Archaeological Research\u202f;,\u00a0 Distributed by Oxbow Books, 2008.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pantelidou Gkopha 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BDB8QTKA",
+      "formattedCitation": "<div class=\"csl-entry\">Pantelidou Gkopha, Maria. <i>\u03a4\u03c3\u03ad\u03c0\u03b9 \u039c\u03b1\u03c1\u03b1\u03b8\u03ce\u03bd\u03bf\u03c2: \u03bf \u03b1\u03c0\u03bf\u03b8\u03ad\u03c4\u03b7\u03c2 39 \u03c4\u03bf\u03c5 \u03c0\u03c1\u03bf\u03ca\u03c3\u03c4\u03bf\u03c1\u03b9\u03ba\u03bf\u03cd \u03bd\u03b5\u03ba\u03c1\u03bf\u03c4\u03b1\u03c6\u03b5\u03af\u03bf\u03c5</i>. \u0392\u03b9\u03b2\u03bb\u03b9\u03bf\u03b8\u03ae\u03ba\u03b7 \u03c4\u03b7\u03c2 \u03b5\u03bd \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03c2 \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ae\u03c2 \u0395\u03c4\u03b1\u03b9\u03c1\u03b5\u03af\u03b1\u03c2 310. \u0391\u03b8\u03ae\u03bd\u03b1: \u0397 \u03b5\u03bd \u0391\u03b8\u03ae\u03bd\u03b1\u03b9\u03c2 \u0391\u03c1\u03c7\u03b1\u03b9\u03bf\u03bb\u03bf\u03b3\u03b9\u03ba\u03ae \u0395\u03c4\u03b1\u03b9\u03c1\u03b5\u03af\u03b1, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://topostext.org/place/381240GTse",
+      "citationDetail": "Tsepi Early Helladic cemetery (Attica) Vranas",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "ToposText",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MC9RGDVB",
+      "formattedCitation": "<div class=\"csl-entry\">Kiesling, Brady. <i>ToposText \u2013 a Reference Tool for Greek Civilization</i>. Version 2.0. Aikaterini Laskaridis Foundation, 2016. https://topostext.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q107498002",
+      "citationDetail": "Tsepi (Q107498002)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "877327047",
+  "subject": [],
+  "title": "Tsepi at Marathon",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large Early Helladic cemetery excavated at the Leoforos Plataion near Marathon, Attiki.",
+  "reprPoint": [
+    23.96633478356937,
+    38.12876360843887
+  ],
+  "placeTypes": [
+    "cemetery",
+    "archaeological-site"
+  ],
+  "bbox": [
+    23.9660104,
+    38.1284619,
+    23.9666764,
+    38.1290689
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-06-04T15:40:35Z",
+  "uri": "https://pleiades.stoa.org/places/877327047",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q107498002",
+      "modifiedBy": "jbecker",
+      "modified": "2026-04-14T00:18:27Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-05T15:43:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-04T15:41:58Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-04T15:40:36Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-04T15:40:35Z"
+    }
+  ]
+}

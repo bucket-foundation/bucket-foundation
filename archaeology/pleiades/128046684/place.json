@@ -1,0 +1,348 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.2989293,
+            43.6037885
+          ],
+          [
+            -7.2988613,
+            43.6037331
+          ],
+          [
+            -7.2987909,
+            43.6037029
+          ],
+          [
+            -7.2987454,
+            43.6037299
+          ],
+          [
+            -7.298744,
+            43.603752
+          ],
+          [
+            -7.2986846,
+            43.6037935
+          ],
+          [
+            -7.2986192,
+            43.6038226
+          ],
+          [
+            -7.2986045,
+            43.6038457
+          ],
+          [
+            -7.2986522,
+            43.6038851
+          ],
+          [
+            -7.2986709,
+            43.6038797
+          ],
+          [
+            -7.2987734,
+            43.6039739
+          ],
+          [
+            -7.2988473,
+            43.6039754
+          ],
+          [
+            -7.2989062,
+            43.6039117
+          ],
+          [
+            -7.2988419,
+            43.6038477
+          ],
+          [
+            -7.2989293,
+            43.6037885
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/128046684/osm-location",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Castro de Fazouro"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/255369937",
+          "citationDetail": "Way 255369937",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=255369937",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 300,
+      "title": "OSM location of Castro de Fazouro",
+      "provenance": "OpenStreetMap (Way 255369937, version 7, osm:changeset=104258709, 2021-05-06T14:11:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2015-03-12T19:34:11Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -7.2989293,
+            43.6037885
+          ],
+          [
+            -7.2988613,
+            43.6037331
+          ],
+          [
+            -7.2987909,
+            43.6037029
+          ],
+          [
+            -7.2987454,
+            43.6037299
+          ],
+          [
+            -7.298744,
+            43.603752
+          ],
+          [
+            -7.2986846,
+            43.6037935
+          ],
+          [
+            -7.2986192,
+            43.6038226
+          ],
+          [
+            -7.2986045,
+            43.6038457
+          ],
+          [
+            -7.2986522,
+            43.6038851
+          ],
+          [
+            -7.2986709,
+            43.6038797
+          ],
+          [
+            -7.2987734,
+            43.6039739
+          ],
+          [
+            -7.2988473,
+            43.6039754
+          ],
+          [
+            -7.2989062,
+            43.6039117
+          ],
+          [
+            -7.2988419,
+            43.6038477
+          ],
+          [
+            -7.2989293,
+            43.6037885
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/128046684/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-11T21:57:58Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-08T15:45:27Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-07T23:35:50Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-10-07T23:35:43Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T19:35:43Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T19:34:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-03-12T19:34:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Castro_de_Fazouro",
+      "citationDetail": "Castro de Fazouro",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+      "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Castro de Fazouro.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.rutasconhistoria.es/loc/castro-de-fozauro",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "rutasconhistoria.es: Castro de Fazouro",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q8342716",
+      "citationDetail": "Castro of Fazouro (Q8342716)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "128046684",
+  "subject": [],
+  "title": "Fazouro",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A first to third century AD castrum site on the Galician coast.",
+  "reprPoint": [
+    -7.29878432784335,
+    43.60384238913035
+  ],
+  "placeTypes": [
+    "hillfort",
+    "settlement"
+  ],
+  "bbox": [
+    -7.2989293,
+    43.6037029,
+    -7.2986045,
+    43.6039754
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-03-12T19:33:19Z",
+  "uri": "https://pleiades.stoa.org/places/128046684",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Castro of Fazouro (Q8342716)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-11T21:59:07Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-08T15:45:26Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-10-07T23:35:50Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T19:33:27Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2015-03-12T19:33:20Z"
+    }
+  ]
+}

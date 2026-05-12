@@ -1,0 +1,14 @@
+# Dur-Katlimmu Archive 2
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/673099595
+- **ID**: 673099595
+- **Coords**: (no precise location)
+- **Subjects**: ANE, Assyrian
+- **Time periods**: 
+- **Names**:  Dur-Katlimmu Archive 2
+
+## Description
+
+In the northeastern corner of Dur-Katlimmu stood a large building complex (Building F and W). While it has been described as a "palace", it was not a royal palace, as no royal inscriptions were found there. In Room B of Building F, an archive was discovered. It consists of 19 Aramaic dockets, previously attached to perishable material, one Aramaic tablet, five Neo-Assyrian tablets and an envelope, as well as a Neo-Babylonian letter in its envelope. More texts were found in nearby rooms, including another Neo-Babylonian tablet. The texts date between 676 BC and the end period of the empire.

@@ -1,0 +1,434 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.9249904,
+            45.3685117
+          ],
+          [
+            36.9241493,
+            45.3672935
+          ],
+          [
+            36.9241922,
+            45.3624692
+          ],
+          [
+            36.9244711,
+            45.3619415
+          ],
+          [
+            36.925867,
+            45.3592735
+          ],
+          [
+            36.9397752,
+            45.3593967
+          ],
+          [
+            36.9439535,
+            45.3621272
+          ],
+          [
+            36.9450054,
+            45.3662741
+          ],
+          [
+            36.9421419,
+            45.3690659
+          ],
+          [
+            36.9355677,
+            45.3694559
+          ],
+          [
+            36.9283214,
+            45.3685733
+          ],
+          [
+            36.9249904,
+            45.3685117
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-fontalovskaya",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/856266/osm-location-fontalovskaya",
+        "description": "Polygon representing the modern extent of the village of Fontalovskaya, derived from an OpenStreetMap Way.",
+        "location_precision": "precise",
+        "title": "OSM location: Fontalovskaya"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": null,
+      "name": "Diane Braund"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/46421742",
+          "citationDetail": "Way 46421742",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=46421742",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-fontalovskaya",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location: Fontalovskaya",
+      "provenance": "OpenStreetMap (Way 46421742, version 11, osm:changeset=140362904, 2023-08-25T09:48:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Polygon representing the modern extent of the village of Fontalovskaya, derived from an OpenStreetMap Way.",
+      "created": "2024-03-01T16:04:35Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            36.9249904,
+            45.3685117
+          ],
+          [
+            36.9241493,
+            45.3672935
+          ],
+          [
+            36.9241922,
+            45.3624692
+          ],
+          [
+            36.9244711,
+            45.3619415
+          ],
+          [
+            36.925867,
+            45.3592735
+          ],
+          [
+            36.9397752,
+            45.3593967
+          ],
+          [
+            36.9439535,
+            45.3621272
+          ],
+          [
+            36.9450054,
+            45.3662741
+          ],
+          [
+            36.9421419,
+            45.3690659
+          ],
+          [
+            36.9355677,
+            45.3694559
+          ],
+          [
+            36.9283214,
+            45.3685733
+          ],
+          [
+            36.9249904,
+            45.3685117
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/856266/osm-location-fontalovskaya",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-04T18:09:44Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-01T16:05:20Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-01T16:05:13Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-01T16:04:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-01T16:04:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "87 L2 95",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/p.html#Paromov-1989",
+      "formattedCitation": "Paromov 1989, 76-77",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://atlantides.org/bibliography/a.html#Abramov-1993",
+      "formattedCitation": "Abramov 1993, 51",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.worldcat.org/oclc/1392028449",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Abramzon 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VYLVZ8P9",
+      "formattedCitation": "<div class=\"csl-entry\">\u0410\u0431\u0440\u0430\u043c\u0437\u043e\u043d, \u041c.\u0413., \u0410. \u041c. \u041d\u043e\u0432\u0438\u0447\u0438\u0445\u0438\u043d, \u0422. \u041d. \u0421\u043c\u0435\u043a\u0430\u043b\u043e\u0432\u0430, and \u0418. \u0410. \u0421\u0430\u043f\u0440\u044b\u043a\u0438\u043d\u0430. <i>\u041a\u043b\u0430\u0434 \u0431\u043e\u0441\u043f\u043e\u0440\u0441\u043a\u0438\u0445 \u0434\u0438\u0434\u0440\u0430\u0445\u043c \u0438\u0437 \u0441\u0442\u0430\u043d\u0438\u0446\u044b \u0424\u043e\u043d\u0442\u0430\u043b\u043e\u0432\u0441\u043a\u0430\u044f (IGCH 1143): \u0436\u0430\u043b\u043e\u0432\u0430\u043d\u0438\u0435 \u043d\u0430\u0435\u043c\u043d\u0438\u043a\u043e\u0432 \u044d\u043f\u043e\u0445\u0438 \u041c\u0438\u0442\u0440\u0438\u0434\u0430\u0442\u043e\u0432\u044b\u0445 \u0432\u043e\u0439\u043d?</i> Serii\ufe20a\ufe21 \u201cArkheometrii\ufe20a\ufe21 Prichernomor\u02b9i\ufe20a\ufe21\u201d 5. Moskva: \u0418\u0410 \u0420\u0410\u041d, 2021. https://www.worldcat.org/oclc/1392028449.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Fontalovskaya, Fontalovskai\ufe20a\ufe21",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q4491746",
+          "citationDetail": "Fontalovskaya",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "fontalovskaya",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern name of the village.",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2024-03-01T16:07:15Z",
+      "uri": "https://pleiades.stoa.org/places/856266/fontalovskaya",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0424\u043e\u043d\u0442\u0430\u043b\u043e\u0432\u0441\u043a\u0430\u044f",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-04T18:10:07Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-01T16:07:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-01T16:07:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-01T16:07:15Z"
+        }
+      ]
+    }
+  ],
+  "id": "856266",
+  "subject": [],
+  "title": "Fontalovskaya",
+  "provenance": "Barrington Atlas: BAtlas 87 L2 95",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/findspot",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Fontalovskaya 6 RUS</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Modern village on the Taman Peninsula. It was the find-spot of a hoard of first-century didrachms.",
+  "reprPoint": [
+    36.93408719702203,
+    45.36436127213996
+  ],
+  "placeTypes": [
+    "findspot",
+    "settlement-modern"
+  ],
+  "bbox": [
+    36.9241493,
+    45.3592735,
+    36.9450054,
+    45.3694559
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2009-10-28T11:16:55Z",
+  "uri": "https://pleiades.stoa.org/places/856266",
+  "creators": [
+    {
+      "username": null,
+      "name": "David Braund"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-01T16:15:06Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2024-03-01T16:04:17Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:48:45Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T21:15:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-28T13:51:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-28T11:27:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-28T11:16:55Z"
+    }
+  ]
+}

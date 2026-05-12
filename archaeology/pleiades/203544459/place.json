@@ -1,0 +1,509 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.2082036,
+            58.9938888
+          ],
+          [
+            -3.2080604,
+            58.993876
+          ],
+          [
+            -3.2079581,
+            58.9938884
+          ],
+          [
+            -3.2078563,
+            58.9939251
+          ],
+          [
+            -3.2077988,
+            58.9939698
+          ],
+          [
+            -3.2077731,
+            58.9940321
+          ],
+          [
+            -3.2077954,
+            58.9940939
+          ],
+          [
+            -3.2078532,
+            58.9941415
+          ],
+          [
+            -3.2079259,
+            58.9941717
+          ],
+          [
+            -3.2080135,
+            58.9941888
+          ],
+          [
+            -3.2081381,
+            58.9941893
+          ],
+          [
+            -3.2082478,
+            58.9941669
+          ],
+          [
+            -3.2083269,
+            58.9941295
+          ],
+          [
+            -3.2083678,
+            58.9940915
+          ],
+          [
+            -3.2083868,
+            58.9940341
+          ],
+          [
+            -3.208351,
+            58.9939597
+          ],
+          [
+            -3.2082854,
+            58.9939155
+          ],
+          [
+            -3.2082036,
+            58.9938888
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-stones-of-stenness",
+      "properties": {
+        "snippet": "Monument; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/203544459/osm-location-stones-of-stenness",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location: Stones of Stenness"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/782724929",
+          "citationDetail": "Way 782724929",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=782724929",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-stones-of-stenness",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "end": -1000,
+      "title": "OSM location: Stones of Stenness",
+      "provenance": "OpenStreetMap (Way 782724929, version 3, osm:changeset=138540802, 2023-07-15T11:23:21Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/monument"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "monument"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-12-12T00:33:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -3.2082036,
+            58.9938888
+          ],
+          [
+            -3.2080604,
+            58.993876
+          ],
+          [
+            -3.2079581,
+            58.9938884
+          ],
+          [
+            -3.2078563,
+            58.9939251
+          ],
+          [
+            -3.2077988,
+            58.9939698
+          ],
+          [
+            -3.2077731,
+            58.9940321
+          ],
+          [
+            -3.2077954,
+            58.9940939
+          ],
+          [
+            -3.2078532,
+            58.9941415
+          ],
+          [
+            -3.2079259,
+            58.9941717
+          ],
+          [
+            -3.2080135,
+            58.9941888
+          ],
+          [
+            -3.2081381,
+            58.9941893
+          ],
+          [
+            -3.2082478,
+            58.9941669
+          ],
+          [
+            -3.2083269,
+            58.9941295
+          ],
+          [
+            -3.2083678,
+            58.9940915
+          ],
+          [
+            -3.2083868,
+            58.9940341
+          ],
+          [
+            -3.208351,
+            58.9939597
+          ],
+          [
+            -3.2082854,
+            58.9939155
+          ],
+          [
+            -3.2082036,
+            58.9938888
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/203544459/osm-location-stones-of-stenness",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-29T16:05:26Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T00:34:02Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T00:33:58Z"
+        },
+        {
+          "comment": "supersedes previously published location whose underlying OSM data is now deprecated",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T00:33:28Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T00:33:16Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-12T00:33:15Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:44:05Z",
+      "associationCertainty": "certain",
+      "title": "Orcades Inss.",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/203544459/89261",
+      "connectionType": "connection",
+      "id": "89261",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:44:05Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:44:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:44:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/89261",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Stones_of_Stenness",
+      "citationDetail": "Stones of Stenness",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Stones of Stenness.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/514",
+      "citationDetail": "514: Heart of Neolithic Orkney",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1478558",
+      "citationDetail": "Q1478558: Stones of Stenness",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Standing Stones of Stenness",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.geonames.org/7535370/standing-stones-of-stenness.html",
+          "citationDetail": "7535370: Standing Stones of Stenness",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "GeoNames",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IIFE4W6M",
+          "formattedCitation": "<div class=\"csl-entry\">Marc Wick, and Christophe Boutreux. \u201cGeoNames,\u201d 2005. http://www.geonames.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "standing-stones-of-stenness",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2020-11-21T15:09:11Z",
+      "uri": "https://pleiades.stoa.org/places/203544459/standing-stones-of-stenness",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Standing Stones of Stenness",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-11-24T02:46:57Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-21T15:09:24Z"
+        },
+        {
+          "comment": "added name",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-21T15:09:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-11-21T15:09:11Z"
+        }
+      ]
+    }
+  ],
+  "id": "203544459",
+  "subject": [
+    "UWHS"
+  ],
+  "title": "Standing Stones of Stenness",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/monument"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Standing Stones of Stenness is a Neolithic monument on the mainland of Orkney, Scotland, generally dated to the third millennium BC.",
+  "reprPoint": [
+    -3.208079922949631,
+    58.994034376423265
+  ],
+  "placeTypes": [
+    "monument"
+  ],
+  "bbox": [
+    -3.2083868,
+    58.993876,
+    -3.2077731,
+    58.9941893
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/89261"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-08-01T15:06:43Z",
+  "uri": "https://pleiades.stoa.org/places/203544459",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added wikidata Q1478558: Stones of Stenness",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-21T15:07:58Z"
+    },
+    {
+      "comment": "uwhs cleanup",
+      "modifiedBy": "jbecker",
+      "modified": "2020-07-10T00:27:50Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-08-04T02:31:37Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2013-08-07T15:47:18Z"
+    },
+    {
+      "comment": "added connection",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-01T15:22:43Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-01T15:09:30Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-01T15:06:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-08-01T15:06:43Z"
+    }
+  ]
+}

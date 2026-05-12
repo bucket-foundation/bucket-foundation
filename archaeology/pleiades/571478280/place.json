@@ -1,0 +1,233 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.2289635,
+          30.2738975
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-morghab",
+      "properties": {
+        "snippet": "Settlement-modern; AD 2000 - AD 2099",
+        "link": "https://pleiades.stoa.org/places/571478280/osm-location-of-morghab",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Morghab"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/814888851",
+          "citationDetail": "Node 814888851",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=814888851",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-morghab",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": 2099,
+      "title": "OSM location of Morghab",
+      "provenance": "OpenStreetMap (Node 814888851, version 7, osm:changeset=148801081, 2024-03-18T07:02:09Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "<p>Tol-e Sangi is located about 1 km south of Morghab town in Safashahr County, Iran.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2025-01-31T17:16:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.2289635,
+          30.2738975
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/571478280/osm-location-of-morghab",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-01-31T20:18:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-31T17:30:49Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-31T17:17:50Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-31T17:16:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-01-31T17:16:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/new-evidence-for-sealing-in-the-prepottery-neolithic-from-tole-sangi-iran/38BB1B87394ADC75B5CFF82498B947A2",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Khanipour 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/4BFJHWKT",
+      "formattedCitation": "<div class=\"csl-entry\">Khanipour, Morteza, and Sepideh Jamshidi Yeganeh. \u201cNew Evidence for Sealing in the Pre-Pottery Neolithic from Tol-e Sangi, Iran.\u201d <i>Antiquity</i>, January 16, 2025, 1\u20137. https://doi.org/10.15184/aqy.2024.234.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://doi.org/10.22034/pa.2021.134834",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Khanipour 2021",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UPXDCD64",
+      "formattedCitation": "<div class=\"csl-entry\">Khanipour, Morteza. \u201cExcavations at Tol-e Sangi Fars.\u201d <i>Persica Antiqua: The International Journal of Ancient Iranian Studies</i> 1, no. 1 (August 2021): 97\u2013104. https://doi.org/10.22034/pa.2021.134834.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/radiocarbon/article/dating-the-beginning-of-the-pottery-neolithic-in-south-iran-radiocarbon-dates-from-tole-sangi-the-fars/6AC7BFE17992E2FF37B917DA3FA1C622",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Khanipour 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X4TXW4XI",
+      "formattedCitation": "<div class=\"csl-entry\">Khanipour, Morteza, and Yoshihiro Nishiaki. \u201cDating the Beginning of the Pottery Neolithic in South Iran: Radiocarbon Dates from Tol-e Sangi, the Fars.\u201d <i>Radiocarbon</i> 66, no. 4 (August 2024): 637\u201349. https://doi.org/10.1017/RDC.2024.92.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q131986723",
+      "citationDetail": "Tol-e Sangi (Fars) (Q131986723)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "571478280",
+  "subject": [],
+  "title": "Tol-e Sangi (Fars)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Neolithic archaeological site in the Fars province of present-day Iran.",
+  "reprPoint": [
+    53.2289635,
+    30.2738975
+  ],
+  "placeTypes": [
+    "archaeological-site",
+    "settlement-modern"
+  ],
+  "bbox": [
+    53.2289635,
+    30.2738975,
+    53.2289635,
+    30.2738975
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-01-31T16:47:35Z",
+  "uri": "https://pleiades.stoa.org/places/571478280",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-01-31T20:18:15Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-31T17:30:49Z"
+    },
+    {
+      "comment": "wikidata Q131986723",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-31T17:18:35Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-31T16:47:38Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2025-01-31T16:47:35Z"
+    }
+  ]
+}

@@ -1,0 +1,572 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4861975,
+            40.7516158
+          ],
+          [
+            14.4891161,
+            40.7529236
+          ],
+          [
+            14.4891359,
+            40.7529325
+          ],
+          [
+            14.4895208,
+            40.7524601
+          ],
+          [
+            14.4898762,
+            40.752008
+          ],
+          [
+            14.490599,
+            40.7511139
+          ],
+          [
+            14.4880925,
+            40.7499689
+          ],
+          [
+            14.48708,
+            40.7508467
+          ],
+          [
+            14.4866294,
+            40.7512247
+          ],
+          [
+            14.4861975,
+            40.7516158
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-regio-ix",
+      "properties": {
+        "snippet": "Region",
+        "link": "https://pleiades.stoa.org/places/680072866/osm-location-of-regio-ix",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Regio IX"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/335245563",
+          "citationDetail": "Way 335245563",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=335245563",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-regio-ix",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/region"
+      ],
+      "end": null,
+      "title": "OSM location of Regio IX",
+      "provenance": "OpenStreetMap (Way 335245563, version 5, osm:changeset=139330329, 2023-08-02T06:47:00Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/region"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "region"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2025-06-15T16:20:35Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.4861975,
+            40.7516158
+          ],
+          [
+            14.4891161,
+            40.7529236
+          ],
+          [
+            14.4891359,
+            40.7529325
+          ],
+          [
+            14.4895208,
+            40.7524601
+          ],
+          [
+            14.4898762,
+            40.752008
+          ],
+          [
+            14.490599,
+            40.7511139
+          ],
+          [
+            14.4880925,
+            40.7499689
+          ],
+          [
+            14.48708,
+            40.7508467
+          ],
+          [
+            14.4866294,
+            40.7512247
+          ],
+          [
+            14.4861975,
+            40.7516158
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/680072866/osm-location-of-regio-ix",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-17T11:37:48Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-17T11:37:42Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-16T20:32:16Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-16T01:51:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-16T01:51:23Z"
+        },
+        {
+          "comment": "add osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-15T16:20:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-15T16:20:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-06-15T16:20:35Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 2100,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2020-12-14T20:12:17Z",
+      "associationCertainty": "certain",
+      "title": "Pompeii",
+      "start": 1700,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/680072866/pompeii",
+      "connectionType": "part_of_analytical",
+      "id": "pompeii",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-17T11:37:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-17T11:37:42Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-16T20:32:16Z"
+        },
+        {
+          "comment": "modified type and time period",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-15T17:23:36Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-15T10:06:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:14:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:12:17Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:12:17Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/433032",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://pompeiisites.org/en/regiones/regio-ix/",
+          "citationDetail": "Regio IX",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Pompeii Sites",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQWYV366",
+          "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo, ed. <i>Pompeii Sites: Portale Ufficiale Parco Archeologico di Pompei</i>. Accessed January 10, 2020. http://pompeiisites.org/.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_analytical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://digitalhumanities.umass.edu/pbmp/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PBMP",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AM687RVZ",
+      "formattedCitation": "<div class=\"csl-entry\">Poehler, Eric. \u201cPompeii Bibliography and Mapping Project.\u201d Pompeii Bibliography and Mapping Project, 2017. http://digitalhumanities.umass.edu/pbmp/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://pompeiisites.org/en/regiones/regio-ix/",
+      "citationDetail": "Regio IX",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pompeii Sites",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RQWYV366",
+      "formattedCitation": "<div class=\"csl-entry\">Osanna, Massimo, ed. <i>Pompeii Sites: Portale Ufficiale Parco Archeologico di Pompei</i>. Accessed January 10, 2020. http://pompeiisites.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://pompeiiperspectives.org/index.php/regio-ix-insula-1",
+      "citationDetail": "Regio IX, Insula 1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pompeii Perspectives",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B2QZZXUM",
+      "formattedCitation": "<div class=\"csl-entry\">Stephens, Jennifer F., and Arthur E. Stephens. <i>Pompeii Perspectives</i>, 2016. http://www.pompeiiperspectives.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://sites.google.com/site/ad79eruption/pompeii/regio-ix",
+      "citationDetail": "Regio IX",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AD79",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SAEEN7M7",
+      "formattedCitation": "<div class=\"csl-entry\">Clements, Peter. \u201cAD79: Destruction and Re-Discovery.\u201d Accessed September 10, 2017. https://sites.google.com/site/ad79eruption/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Regio_IX_degli_scavi_archeologici_di_Pompei",
+      "citationDetail": "Regio IX degli scavi archeologici di Pompei",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3931882",
+      "citationDetail": "Q3931882: region IX of the archaeological excavations of Pompeii",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://worldcat.org/title/863589467",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ynnil\u00e4 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HANAR6VK",
+      "formattedCitation": "<div class=\"csl-entry\">Ynnil\u00e4, Heini. \u201cPompeii, Insula IX. 3: A Case Study of Urban Infrastructure.\u201d D.Phil., Brasenose College (University of Oxford), 2012. https://worldcat.org/title/863589467.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Regio IX degli scavi archeologici di Pompei",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://it.wikipedia.org/wiki/Regio_IX_degli_scavi_archeologici_di_Pompei",
+          "citationDetail": "Regio IX degli scavi archeologici di Pompei",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Italian)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "regio-ix-degli-scavi-archeologici-di-pompei",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Italian name of the area",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2020-12-14T20:11:01Z",
+      "uri": "https://pleiades.stoa.org/places/680072866/regio-ix-degli-scavi-archeologici-di-pompei",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-17T11:37:47Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-17T11:37:40Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2025-06-16T20:32:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-15T10:06:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:14:29Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:11:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2020-12-14T20:11:01Z"
+        }
+      ]
+    }
+  ],
+  "id": "680072866",
+  "subject": [],
+  "title": "Regio IX, Pompeii",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/urban",
+    "https://pleiades.stoa.org/vocabularies/place-types/region"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The so-called Regio IX, an archaeological subdivision located in the central section of Pompeii, contains a mix of residential and commercial structures.",
+  "reprPoint": [
+    14.488447439729095,
+    40.7514343052683
+  ],
+  "placeTypes": [
+    "urban",
+    "region"
+  ],
+  "bbox": [
+    14.4861975,
+    40.7499689,
+    14.490599,
+    40.7529325
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/433032",
+    "https://pleiades.stoa.org/places/868835070",
+    "https://pleiades.stoa.org/places/383340065",
+    "https://pleiades.stoa.org/places/335494560",
+    "https://pleiades.stoa.org/places/23240266",
+    "https://pleiades.stoa.org/places/717810706",
+    "https://pleiades.stoa.org/places/452016171",
+    "https://pleiades.stoa.org/places/182931390",
+    "https://pleiades.stoa.org/places/746630758"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-14T20:09:58Z",
+  "uri": "https://pleiades.stoa.org/places/680072866",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-17T11:37:47Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-17T11:37:40Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2025-06-16T20:32:16Z"
+    },
+    {
+      "comment": "add Ynnil\u00e4 2012",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-28T14:23:19Z"
+    },
+    {
+      "comment": "added wkidata Q3931882: region IX of the archaeological excavations of Pompeii",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-15T17:23:11Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-15T10:06:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2020-12-14T20:14:29Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2020-12-14T20:09:58Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2020-12-14T20:09:58Z"
+    }
+  ]
+}

@@ -1,0 +1,408 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.3738764,
+            38.3985816
+          ],
+          [
+            34.3738604,
+            38.3983378
+          ],
+          [
+            34.3736887,
+            38.3981654
+          ],
+          [
+            34.3734795,
+            38.3980015
+          ],
+          [
+            34.3733293,
+            38.3977114
+          ],
+          [
+            34.3730557,
+            38.3976231
+          ],
+          [
+            34.3728036,
+            38.3976735
+          ],
+          [
+            34.3722564,
+            38.3983714
+          ],
+          [
+            34.372133,
+            38.3987498
+          ],
+          [
+            34.3722135,
+            38.3990231
+          ],
+          [
+            34.3726212,
+            38.3992291
+          ],
+          [
+            34.3734258,
+            38.3994519
+          ],
+          [
+            34.3737853,
+            38.3993762
+          ],
+          [
+            34.3741018,
+            38.3992165
+          ],
+          [
+            34.374091,
+            38.3990525
+          ],
+          [
+            34.3738979,
+            38.3986615
+          ],
+          [
+            34.3738764,
+            38.3985816
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-bala-kla",
+      "properties": {
+        "snippet": "Archaeological-site, Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/647051802/osm-location-of-bala-kla",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Bal\u0131kl\u0131"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/982231398",
+          "citationDetail": "Way 982231398",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=982231398",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-bala-kla",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "OSM location of Bal\u0131kl\u0131",
+      "provenance": "OpenStreetMap (Way 982231398, version 2, osm:changeset=155460881, 2024-08-19T13:27:04Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site",
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2024-08-19T13:27:30Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            34.3738764,
+            38.3985816
+          ],
+          [
+            34.3738604,
+            38.3983378
+          ],
+          [
+            34.3736887,
+            38.3981654
+          ],
+          [
+            34.3734795,
+            38.3980015
+          ],
+          [
+            34.3733293,
+            38.3977114
+          ],
+          [
+            34.3730557,
+            38.3976231
+          ],
+          [
+            34.3728036,
+            38.3976735
+          ],
+          [
+            34.3722564,
+            38.3983714
+          ],
+          [
+            34.372133,
+            38.3987498
+          ],
+          [
+            34.3722135,
+            38.3990231
+          ],
+          [
+            34.3726212,
+            38.3992291
+          ],
+          [
+            34.3734258,
+            38.3994519
+          ],
+          [
+            34.3737853,
+            38.3993762
+          ],
+          [
+            34.3741018,
+            38.3992165
+          ],
+          [
+            34.374091,
+            38.3990525
+          ],
+          [
+            34.3738979,
+            38.3986615
+          ],
+          [
+            34.3738764,
+            38.3985816
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/647051802/osm-location-of-bala-kla",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-19T17:53:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-19T13:32:19Z"
+        },
+        {
+          "comment": "add OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-19T13:27:56Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-19T13:27:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-19T13:27:30Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/variation-in-the-development-of-neolithic-societies-atop-the-central-anatolian-plateau-recent-results-from-balikli/146BBBAA71B7D604930162C37791112F",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goring-Morris 2024",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4RH67TU",
+      "formattedCitation": "<div class=\"csl-entry\">Goring-Morris, A. Nigel, Natalie D. Munro, Mihriban \u00d6zba\u015faran, Nurcan Kayacan, M\u00fcge Ergun, Melis Uzdurum, Sera Yel\u00f6zer, Fatma Kalkan, and G\u00fcne\u015f Duru. \u201cVariation in the Development of Neolithic Societies atop the Central Anatolian Plateau: Recent Results from Bal\u0131kl\u0131.\u201d <i>Antiquity</i>, August 5, 2024, 1\u201318. https://doi.org/10.15184/aqy.2024.100.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Bal\u0131kl\u0131",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/variation-in-the-development-of-neolithic-societies-atop-the-central-anatolian-plateau-recent-results-from-balikli/146BBBAA71B7D604930162C37791112F",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Goring-Morris 2024",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/M4RH67TU",
+          "formattedCitation": "<div class=\"csl-entry\">Goring-Morris, A. Nigel, Natalie D. Munro, Mihriban \u00d6zba\u015faran, Nurcan Kayacan, M\u00fcge Ergun, Melis Uzdurum, Sera Yel\u00f6zer, Fatma Kalkan, and G\u00fcne\u015f Duru. \u201cVariation in the Development of Neolithic Societies atop the Central Anatolian Plateau: Recent Results from Bal\u0131kl\u0131.\u201d <i>Antiquity</i>, August 5, 2024, 1\u201318. https://doi.org/10.15184/aqy.2024.100.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "balikli",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2024-08-19T13:28:26Z",
+      "uri": "https://pleiades.stoa.org/places/647051802/balikli",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Bal\u0131kl\u0131",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-08-19T17:53:56Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-19T13:32:19Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-19T13:28:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2024-08-19T13:28:26Z"
+        }
+      ]
+    }
+  ],
+  "id": "647051802",
+  "subject": [],
+  "title": "Bal\u0131kl\u0131",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Neolithic site that is a contemporary of A\u015f\u0131kl\u0131 H\u00f6y\u00fck and located 14km to its north-east. Occupied ca. 8300\u20137900 BCE, Bal\u0131kl\u0131 provides evidence for early sedentism in Central Anatolia.",
+  "reprPoint": [
+    34.37312731714357,
+    38.398625096955236
+  ],
+  "placeTypes": [
+    "settlement",
+    "archaeological-site"
+  ],
+  "bbox": [
+    34.372133,
+    38.3976231,
+    34.3741018,
+    38.3994519
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-08-19T13:26:50Z",
+  "uri": "https://pleiades.stoa.org/places/647051802",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2024-08-19T17:53:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-19T13:32:19Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-19T13:32:04Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-19T13:26:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2024-08-19T13:26:50Z"
+    }
+  ]
+}

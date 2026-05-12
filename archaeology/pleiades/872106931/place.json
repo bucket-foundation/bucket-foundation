@@ -1,0 +1,366 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.6943974,
+            33.2487371
+          ],
+          [
+            35.694556,
+            33.2486691
+          ],
+          [
+            35.6947635,
+            33.248508
+          ],
+          [
+            35.6949876,
+            33.2487284
+          ],
+          [
+            35.6949544,
+            33.2488357
+          ],
+          [
+            35.6945397,
+            33.2489853
+          ],
+          [
+            35.6943974,
+            33.2487371
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "sanctuary-of-pan",
+      "properties": {
+        "snippet": "Sanctuary; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/872106931/sanctuary-of-pan",
+        "description": "Polygon representing the boundaries of the sanctuary site at Paneas, derived from an OpenStreetMap Way after Friedland 2012",
+        "location_precision": "precise",
+        "title": "OSM location of Sanctuary of Pan"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/685707762",
+          "citationDetail": "Way 685707762",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=685707762",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 10-12 ",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Friedland 2012",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JD9VN3TI",
+          "formattedCitation": "<div class=\"csl-entry\">Elise A.\u00a0 Friedland. <i>The Roman Marble Sculptures from the Sanctuary of Pan at Caesarea Philippi/Panias (Israel)</i>. American Schools of Oriental Research Archaeological Reports 17. Boston: American Schools of Oriental Research, 2012.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sanctuary-of-pan",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": 300,
+      "title": "OSM location of Sanctuary of Pan",
+      "provenance": "OpenStreetMap (Way 685707762, version 1, osm:changeset=69536492, 2019-04-24T18:05:36Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Polygon representing the boundaries of the sanctuary site at Paneas, derived from an OpenStreetMap Way after Friedland 2012",
+      "created": "2019-04-24T18:11:53Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            35.6943974,
+            33.2487371
+          ],
+          [
+            35.694556,
+            33.2486691
+          ],
+          [
+            35.6947635,
+            33.248508
+          ],
+          [
+            35.6949876,
+            33.2487284
+          ],
+          [
+            35.6949544,
+            33.2488357
+          ],
+          [
+            35.6945397,
+            33.2489853
+          ],
+          [
+            35.6943974,
+            33.2487371
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/872106931/sanctuary-of-pan",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-04-24T18:29:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-24T18:13:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-24T18:13:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-24T18:11:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-24T18:11:53Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-04-24T18:11:20Z",
+      "associationCertainty": "certain",
+      "title": "Paneas/Caesarea Philippi",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/872106931/paneas-caesarea-philippi",
+      "connectionType": "at",
+      "id": "paneas-caesarea-philippi",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-04-24T18:29:04Z"
+        },
+        {
+          "comment": "ctype: at",
+          "modifiedBy": "thomase",
+          "modified": "2019-04-24T18:28:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-24T18:13:26Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-24T18:11:20Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-04-24T18:11:20Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/678324",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Friedland 2012",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JD9VN3TI",
+          "formattedCitation": "<div class=\"csl-entry\">Elise A.Friedland. <i>The Roman Marble Sculptures from the Sanctuary of Pan at Caesarea Philippi/Panias (Israel)</i>. ASOR Archaeological Reports 17. Boston: American Schools of Oriental Research, 2012.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Friedland 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JD9VN3TI",
+      "formattedCitation": "<div class=\"csl-entry\">Elise A.\u00a0 Friedland. <i>The Roman Marble Sculptures from the Sanctuary of Pan at Caesarea Philippi/Panias (Israel)</i>. American Schools of Oriental Research Archaeological Reports 17. Boston: American Schools of Oriental Research, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "872106931",
+  "subject": [
+    "Pan"
+  ],
+  "title": "Sanctuary of Pan at Paneas",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Paneion at Caesarea Philippi, a sanctuary site dedicated to Pan centered around a natural cave and spring site on the southwestern slopess of Mount Hermon. The sanctuary was first built in the Hellenistic period (before 200 BCE). A temple to Augustus was constructed in front of the cave during the reign of Herod the Great in 19 BCE, and the site was further expanded through 220 CE.",
+  "reprPoint": [
+    35.69469435773489,
+    33.248758961729344
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    35.6943974,
+    33.248508,
+    35.6949876,
+    33.2489853
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/678324"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-04-24T18:09:53Z",
+  "uri": "https://pleiades.stoa.org/places/872106931",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-04-24T18:29:04Z"
+    },
+    {
+      "comment": "tag: Pan",
+      "modifiedBy": "thomase",
+      "modified": "2019-04-24T18:28:59Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-04-24T18:13:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-04-24T18:09:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-04-24T18:09:53Z"
+    }
+  ]
+}

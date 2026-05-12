@@ -1,0 +1,469 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.6623058,
+            52.802866
+          ],
+          [
+            -6.6627035,
+            52.8029588
+          ],
+          [
+            -6.6631296,
+            52.8029667
+          ],
+          [
+            -6.6635214,
+            52.8028934
+          ],
+          [
+            -6.663653,
+            52.802836
+          ],
+          [
+            -6.663854,
+            52.8027484
+          ],
+          [
+            -6.6640928,
+            52.8025469
+          ],
+          [
+            -6.6642128,
+            52.8023098
+          ],
+          [
+            -6.6642015,
+            52.802062
+          ],
+          [
+            -6.6641495,
+            52.8018293
+          ],
+          [
+            -6.6638521,
+            52.8016163
+          ],
+          [
+            -6.663458,
+            52.8015023
+          ],
+          [
+            -6.6630765,
+            52.8014913
+          ],
+          [
+            -6.6626107,
+            52.8015159
+          ],
+          [
+            -6.6622686,
+            52.8016039
+          ],
+          [
+            -6.661948,
+            52.8017399
+          ],
+          [
+            -6.6617491,
+            52.8019679
+          ],
+          [
+            -6.6616863,
+            52.8022229
+          ],
+          [
+            -6.6617668,
+            52.802476
+          ],
+          [
+            -6.6619813,
+            52.8026988
+          ],
+          [
+            -6.6623058,
+            52.802866
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Hillfort; 2000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/799667224/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Rathgall Hillfort"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "maximeg",
+      "homepage": null,
+      "name": "Maxime Gu\u00e9nette",
+      "uri": "https://pleiades.stoa.org/author/maximeg"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/313734150",
+          "citationDetail": "Way 313734150",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=313734150",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "end": -1000,
+      "title": "OSM location of Rathgall Hillfort",
+      "provenance": "OpenStreetMap (Way 313734150, version 7, osm:changeset=132627538, 2023-02-16T12:38:41Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "hillfort"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-11-20T20:38:06Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.6623058,
+            52.802866
+          ],
+          [
+            -6.6627035,
+            52.8029588
+          ],
+          [
+            -6.6631296,
+            52.8029667
+          ],
+          [
+            -6.6635214,
+            52.8028934
+          ],
+          [
+            -6.663653,
+            52.802836
+          ],
+          [
+            -6.663854,
+            52.8027484
+          ],
+          [
+            -6.6640928,
+            52.8025469
+          ],
+          [
+            -6.6642128,
+            52.8023098
+          ],
+          [
+            -6.6642015,
+            52.802062
+          ],
+          [
+            -6.6641495,
+            52.8018293
+          ],
+          [
+            -6.6638521,
+            52.8016163
+          ],
+          [
+            -6.663458,
+            52.8015023
+          ],
+          [
+            -6.6630765,
+            52.8014913
+          ],
+          [
+            -6.6626107,
+            52.8015159
+          ],
+          [
+            -6.6622686,
+            52.8016039
+          ],
+          [
+            -6.661948,
+            52.8017399
+          ],
+          [
+            -6.6617491,
+            52.8019679
+          ],
+          [
+            -6.6616863,
+            52.8022229
+          ],
+          [
+            -6.6617668,
+            52.802476
+          ],
+          [
+            -6.6619813,
+            52.8026988
+          ],
+          [
+            -6.6623058,
+            52.802866
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/799667224/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T04:16:59Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-17T04:16:50Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-11-24T01:52:06Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-10-10T12:43:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-31T00:34:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-05-31T00:34:03Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-20T20:39:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-20T20:38:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-11-20T20:38:11Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:54:54Z",
+      "associationCertainty": "certain",
+      "title": "Hibernia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/799667224/20487",
+      "connectionType": "connection",
+      "id": "20487",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:54:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/20487",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Rathgall_Hillfort",
+      "citationDetail": "Rathgall Hillfort",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Rathgall Hillfort.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.megalithicireland.com/Rathgall.htm",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Rathgall Hill Fort",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q2132711",
+      "citationDetail": "Rathgall Hillfort (Q2132711)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "799667224",
+  "subject": [],
+  "title": "Rathgall Hillfort",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Rathgall Hillfort is a multivallate Bronze Age fort located in County Wicklow, Province of Leinster, Ireland.",
+  "reprPoint": [
+    -6.662969621235912,
+    52.80221046672828
+  ],
+  "placeTypes": [
+    "hillfort"
+  ],
+  "bbox": [
+    -6.6642128,
+    52.8014913,
+    -6.6616863,
+    52.8029667
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/20487"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2024-12-16T17:16:45Z",
+  "uri": "https://pleiades.stoa.org/places/799667224",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited type for hillfort @maximeg",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-17T04:17:14Z"
+    },
+    {
+      "comment": "wikidata Rathgall Hillfort (Q2132711)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-24T01:52:55Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-10-10T12:43:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-31T00:34:41Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-05-31T00:34:34Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-11-20T20:37:39Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-11-20T20:37:33Z"
+    }
+  ]
+}

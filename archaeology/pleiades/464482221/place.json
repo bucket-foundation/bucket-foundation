@@ -1,0 +1,586 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.1815881,
+            38.4857776
+          ],
+          [
+            23.1818121,
+            38.4858197
+          ],
+          [
+            23.1819243,
+            38.4858429
+          ],
+          [
+            23.1822891,
+            38.4858534
+          ],
+          [
+            23.1823857,
+            38.4858324
+          ],
+          [
+            23.1824054,
+            38.4856523
+          ],
+          [
+            23.1824339,
+            38.4854402
+          ],
+          [
+            23.1824707,
+            38.4852176
+          ],
+          [
+            23.1821748,
+            38.4851875
+          ],
+          [
+            23.182099,
+            38.4856415
+          ],
+          [
+            23.181998,
+            38.485631
+          ],
+          [
+            23.1818097,
+            38.4856027
+          ],
+          [
+            23.1816506,
+            38.4855731
+          ],
+          [
+            23.1815881,
+            38.4857776
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-l-shaped-palace-at-gla",
+      "properties": {
+        "snippet": "Architecturalcomplex; 1600 BC - 1200 BC",
+        "link": "https://pleiades.stoa.org/places/464482221/osm-location-of-l-shaped-palace-at-gla",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of L-shaped palace at Gla"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "Minh Do"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "Rio Mursinna"
+    },
+    {
+      "username": null,
+      "name": "Emily Fisher"
+    },
+    {
+      "username": null,
+      "name": "Joseph Leonard"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-helladic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-helladic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/546119741",
+          "citationDetail": "Way 546119741",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=546119741",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-l-shaped-palace-at-gla",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": -1200,
+      "title": "OSM location of L-shaped palace at Gla",
+      "provenance": "OpenStreetMap (Way 546119741, version 2, osm:changeset=54541333, 2017-12-11T14:17:25Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2017-12-11T14:18:09Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            23.1815881,
+            38.4857776
+          ],
+          [
+            23.1818121,
+            38.4858197
+          ],
+          [
+            23.1819243,
+            38.4858429
+          ],
+          [
+            23.1822891,
+            38.4858534
+          ],
+          [
+            23.1823857,
+            38.4858324
+          ],
+          [
+            23.1824054,
+            38.4856523
+          ],
+          [
+            23.1824339,
+            38.4854402
+          ],
+          [
+            23.1824707,
+            38.4852176
+          ],
+          [
+            23.1821748,
+            38.4851875
+          ],
+          [
+            23.182099,
+            38.4856415
+          ],
+          [
+            23.181998,
+            38.485631
+          ],
+          [
+            23.1818097,
+            38.4856027
+          ],
+          [
+            23.1816506,
+            38.4855731
+          ],
+          [
+            23.1815881,
+            38.4857776
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/464482221/osm-location-of-l-shaped-palace-at-gla",
+      "creators": [
+        {
+          "username": "rmursinna",
+          "homepage": null,
+          "name": "Rio Mursinna",
+          "uri": "https://pleiades.stoa.org/author/rmursinna"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-11T14:20:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-11T14:19:31Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-11T14:19:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-11T14:18:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-11T14:18:09Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1000,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2016-07-13T13:52:53Z",
+      "associationCertainty": "certain",
+      "title": "Gla",
+      "start": -2000,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/464482221/540789",
+      "connectionType": "at",
+      "id": "540789",
+      "attestations": [
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "changed cnxn type, add time period, add reference",
+          "modifiedBy": "jbecker",
+          "modified": "2019-10-16T16:06:35Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:53Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:53Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:52:53Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/540789",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.jstor.org/stable/630371",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Field 1984",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7E3CUKA6",
+          "formattedCitation": "<div class=\"csl-entry\">Field, Donald. \u201cReview of Late Helladic Citadels on Mainland Greece.\u201d <i>The Journal of Hellenic Studies</i> 104 (1984): 245\u201346. https://doi.org/10.2307/630371.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/30104523",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jones 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/X5JTPU4A",
+      "formattedCitation": "<div class=\"csl-entry\">Jones, Glynis. \u201cCharred Grain from Late Bronze Age Gla, Boiotia.\u201d <i>The Annual of the British School at Athens</i> 90 (1995): 235\u201338. http://www.jstor.org/stable/30104523.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/630371",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Field 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7E3CUKA6",
+      "formattedCitation": "<div class=\"csl-entry\">Field, Donald. \u201cReview of Late Helladic Citadels on Mainland Greece.\u201d <i>The Journal of Hellenic Studies</i> 104 (1984): 245\u201346. https://doi.org/10.2307/630371.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Gla#Palace",
+      "citationDetail": "Gla",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Gla.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/20619462",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Brysbaert 2006",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/NUMMIAK9",
+      "formattedCitation": "<div class=\"csl-entry\">Brysbaert, Ann. \u201cLapis Lazuli in an Enigmatic \u2018Purple\u2019 Pigment from a Thirteenth-Century BC Greek Wall Painting.\u201d <i>Studies in Conservation</i> 51, no. 4 (2006): 252\u201366. http://www.jstor.org/stable/20619462.</div>",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/9563888",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Iak\u014dvid\u0113s 1983",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6MEP4TDN",
+      "formattedCitation": "<div class=\"csl-entry\">Iak\u014dvid\u0113s, Spyros. <i>Late Helladic Citadels on Mainland Greece</i>. Leiden: E.J. Brill, 1983. http://www.worldcat.org/oclc/9563888.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "L-Shaped Palace at Gla",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/9563888",
+          "citationDetail": "99",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Iak\u014dvid\u0113s 1983",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6MEP4TDN",
+          "formattedCitation": "<div class=\"csl-entry\">Iak\u014dvid\u0113s, Spyros. <i>Late Helladic Citadels on Mainland Greece</i>. Leiden: E.J. Brill, 1983. http://www.worldcat.org/oclc/9563888.</div>",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "name.2015-05-03.5646786539",
+      "end": 2100,
+      "contributors": [
+        {
+          "username": null,
+          "name": "Minh Do"
+        },
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": null,
+          "name": "Rio Mursinna"
+        },
+        {
+          "username": null,
+          "name": "Emily Fisher"
+        },
+        {
+          "username": null,
+          "name": "Joseph Leonard"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "<p>Although the building contains two series of rooms that closely resemble traditional megarons, the lack of a circular hearth causes some archaeologists to refer to this building simply as an administrative and residential complex rather then a palace.</p>",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2015-05-04T01:46:17Z",
+      "uri": "https://pleiades.stoa.org/places/464482221/name.2015-05-03.5646786539",
+      "creators": [
+        {
+          "username": "rmursinna",
+          "homepage": null,
+          "name": "Rio Mursinna",
+          "uri": "https://pleiades.stoa.org/author/rmursinna"
+        }
+      ],
+      "attested": "",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-11T14:20:39Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2017-12-11T14:20:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "rmursinna",
+          "modified": "2015-05-04T03:58:32Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "rmursinna",
+          "modified": "2015-05-04T01:46:25Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "rmursinna",
+          "modified": "2015-05-04T01:46:21Z"
+        }
+      ]
+    }
+  ],
+  "id": "464482221",
+  "subject": [
+    "Palace",
+    "Gla",
+    "extant remains",
+    "Megaron",
+    "Complex"
+  ],
+  "title": "L-Shaped Palace at Gla",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "<p>The L-shaped palace at Gla is dated to the Late Helladic IIIB period, ca. 1300 BC. The <span class=\"trix-quote\">\u02ba</span>palace<span class=\"trix-quote\">\u02ba</span> complex consists of two wings joined at a right angle forming a courtyard. It was uncovered by T.A. de Ridder in 1893\u00a0and features two megarons, one on each end of the L. The absence of a circular hearth and a traditional palace bathroom cause some experts to question this building's use. The building is clearly residential in nature and contains many multifunctional rooms that had been decorated with frescoes. The palace is located on the north side of the site atop a 35m cliff, a place that was probably reserved for important buildings. The discovery of tiles implies that some buildings were covered with a pitched roof. The earliest evidence of occupation at the site dates to the Neolithic period, although at that time the plateau would have been an island surrounded by ancient Lake Kopias. Gla was destroyed by fire shortly before 1200 BC, roughly the same time as the destruction and subsequent abandonment of the complex Mycenean Lake Kopias drainage system. The most recent excavations and publications are from Sp. Iakovidis (1981-1983, 1990-1991).</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A complex of multifunctional rooms at Gla with two connected wings that extend from a right angle to form two \u02bamegarons\u02ba that lacked hearths and throne rooms. The palace was built around 1300 BCE.",
+  "reprPoint": [
+    23.18209567814862,
+    38.485584898060345
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    23.1815881,
+    38.4851875,
+    23.1824707,
+    38.4858534
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/540789"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2015-05-04T00:58:05Z",
+  "uri": "https://pleiades.stoa.org/places/464482221",
+  "creators": [
+    {
+      "username": "rmursinna",
+      "homepage": null,
+      "name": "Rio Mursinna",
+      "uri": "https://pleiades.stoa.org/author/rmursinna"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-15T21:29:01Z"
+    },
+    {
+      "comment": "reference cleanup",
+      "modifiedBy": "jbecker",
+      "modified": "2019-10-16T16:05:59Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-11T14:20:38Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-11T14:14:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-30T16:54:37Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "rmursinna",
+      "modified": "2015-05-04T04:03:15Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "rmursinna",
+      "modified": "2015-05-04T01:12:12Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "rmursinna",
+      "modified": "2015-05-04T00:58:12Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "rmursinna",
+      "modified": "2015-05-04T00:58:06Z"
+    }
+  ]
+}

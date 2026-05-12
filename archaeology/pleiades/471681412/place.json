@@ -1,0 +1,313 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.0013698,
+            42.2942298
+          ],
+          [
+            12.0014342,
+            42.2940947
+          ],
+          [
+            12.0016706,
+            42.2941424
+          ],
+          [
+            12.0015922,
+            42.2942853
+          ],
+          [
+            12.0013698,
+            42.2942298
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-grotta-porcina-altare-rupestre",
+      "properties": {
+        "snippet": "Sanctuary; 750 BC - 550 BC",
+        "link": "https://pleiades.stoa.org/places/471681412/osm-location-of-grotta-porcina-altare-rupestre",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Grotta Porcina - Altare rupestre etrusco"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/290496308",
+          "citationDetail": "Way 290496308",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=290496308",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-grotta-porcina-altare-rupestre",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "end": -550,
+      "title": "OSM location of Grotta Porcina - Altare rupestre etrusco",
+      "provenance": "OpenStreetMap (Way 290496308, version 1, osm:changeset=23324798, 2014-06-30T09:27:10Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-03-08T15:31:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.0013698,
+            42.2942298
+          ],
+          [
+            12.0014342,
+            42.2940947
+          ],
+          [
+            12.0016706,
+            42.2941424
+          ],
+          [
+            12.0015922,
+            42.2942853
+          ],
+          [
+            12.0013698,
+            42.2942298
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/471681412/osm-location-of-grotta-porcina-altare-rupestre",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-14T00:57:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-11T13:28:01Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-11T13:27:45Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-08T15:31:27Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-08T15:31:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-08T15:31:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-03-08T15:29:50Z",
+      "associationCertainty": "certain",
+      "title": "Grotta Porcina tumulus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/471681412/grotta-porcina-tumulus",
+      "connectionType": "near",
+      "id": "grotta-porcina-tumulus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-14T00:57:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-11T13:28:00Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-08T15:30:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-08T15:29:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/573378376",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Barbieri 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/37WM7TGV",
+      "formattedCitation": "<div class=\"csl-entry\">Barbieri, Gabriella. \u201cVetralla (Viterbo). Localit\u00e0 Grotta Porcina. Interventi di restauro e di scavo.\u201d <i>Bollettino di Archeologia</i> 51/52 (1998): 55\u201369.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Barbieri 1998a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYFABHK",
+      "formattedCitation": "<div class=\"csl-entry\">Barbieri, G. \u201cSoprintendenza per i beni archeologici dell\u2019Etruria meridionale. Vetralla, Viterbo. Localit\u00e0 Grotta Porcina.\u201d In <i>Bollettino di archeologia, 51.1998</i>, 55\u201370, 1998.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "471681412",
+  "subject": [],
+  "title": "Etruscan altar of Grotta Porcina",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A rock-cut altar dating to the first half of the sixth century B.C.",
+  "reprPoint": [
+    12.001519197055353,
+    42.29418742908953
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    12.0013698,
+    42.2940947,
+    12.0016706,
+    42.2942853
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/573378376"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-08T15:29:26Z",
+  "uri": "https://pleiades.stoa.org/places/471681412",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-14T00:57:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-11T13:27:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-11T13:26:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-08T15:51:07Z"
+    },
+    {
+      "comment": "summary, reference",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-08T15:48:32Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-08T15:29:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-08T15:29:26Z"
+    }
+  ]
+}

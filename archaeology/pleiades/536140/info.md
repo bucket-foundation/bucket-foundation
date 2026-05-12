@@ -1,0 +1,14 @@
+# Trana
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/536140
+- **ID**: 536140
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Trana
+
+## Description
+
+An ancient place, cited: BAtlas 54 unlocated Trana

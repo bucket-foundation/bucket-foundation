@@ -1,0 +1,233 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1092805,
+          43.7340053
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-baou-des-blancs",
+      "properties": {
+        "snippet": "Mountain",
+        "link": "https://pleiades.stoa.org/places/392088785/osm-location-of-baou-des-blancs",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Baou des Blancs"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1581196489",
+          "citationDetail": "Node 1581196489",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1581196489",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-baou-des-blancs",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain"
+      ],
+      "end": null,
+      "title": "OSM location of Baou des Blancs",
+      "provenance": "OpenStreetMap (Node 1581196489, version 6, osm:changeset=106842196, 2021-06-23T13:38:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/mountain"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "mountain"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-04-29T19:41:10Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1092805,
+          43.7340053
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/392088785/osm-location-of-baou-des-blancs",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-04-30T10:24:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-29T19:41:49Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-29T19:41:39Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-29T19:41:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-04-29T19:41:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://fr.wikipedia.org/wiki/Vence",
+      "citationDetail": "Vence",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (French)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/B4HPCZIK",
+      "formattedCitation": "Wikip\u00e9dia: L\u2019encyclop\u00e9die libre que chacun peut am\u00e9liorer (2001-), Vence.",
+      "otherIdentifier": " ",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.departement06.fr/documents/Import/decouvrir-les-am/rr85-1983-02.pdf",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Laporte 1983, unnumbered pages 1-2 and 8 (Fig. 1)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PMGJJ4S6",
+      "formattedCitation": "<div class=\"csl-entry\">Laporte, Ren\u00e9e. \u201cFortifications de Provence orientale \u00e0 l\u2019\u00e9poque romane.\u201d <i>Recherches r\u00e9gionales: Alpes Maritimes et contr\u00e9es limitrophes</i> 85 (September 1983). https://www.departement06.fr/documents/Import/decouvrir-les-am/rr85-1983-02.pdf.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "392088785",
+  "subject": [],
+  "title": "Baou des Blancs",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/mountain",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A rocky promontory that overlooks the modern town of Vence in the Alpes Maritimes department of France. Iron Age, Late Antique, and Medieval occupation and fortifications are attested there.",
+  "reprPoint": [
+    7.1092805,
+    43.7340053
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "mountain",
+    "settlement"
+  ],
+  "bbox": [
+    7.1092805,
+    43.7340053,
+    7.1092805,
+    43.7340053
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-03-22T15:42:00Z",
+  "uri": "https://pleiades.stoa.org/places/392088785",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-30T10:24:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-30T10:24:14Z"
+    },
+    {
+      "comment": "summary; place type",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-30T10:23:53Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-30T10:21:09Z"
+    },
+    {
+      "comment": "added laporte 1983",
+      "modifiedBy": "thomase",
+      "modified": "2022-04-30T10:17:41Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-29T19:41:49Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-04-29T19:39:38Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-22T15:42:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-03-22T15:42:01Z"
+    }
+  ]
+}

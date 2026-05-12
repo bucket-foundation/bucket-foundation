@@ -1,0 +1,329 @@
+{
+  "features": [],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-07-13T13:53:04Z",
+      "associationCertainty": "certain",
+      "title": "Athenae",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/720198157/579885",
+      "connectionType": "connection",
+      "id": "579885",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:04Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "admin",
+          "modified": "2016-07-13T13:53:04Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/579885",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "admin",
+          "homepage": null,
+          "name": "",
+          "uri": "https://pleiades.stoa.org/author/admin"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/connection"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-01-23T13:58:39Z",
+      "associationCertainty": "certain",
+      "title": "Agora of Athens",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/720198157/agora-of-athens",
+      "connectionType": "part_of_physical",
+      "id": "agora-of-athens",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-23T14:02:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-23T14:01:51Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-23T13:58:54Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-23T13:58:39Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/807514119",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/artifact?name=Athens,+Prytanikon&object=building",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Perseus Digital Library, Athens, Prytanikon (Building)",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.jstor.org/stable/146462",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vanderpool 1935",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SL2SCGHC",
+      "formattedCitation": "<div class=\"csl-entry\">Vanderpool, Eugene. \u201cTholos and Prytanikon.\u201d <i>Hesperia: The Journal of the American School of Classical Studies at Athens</i> 4, no. 3 (1935): 470\u201375. https://doi.org/10.2307/146462.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "41",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Thompson and Wycherley 1972",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CEEREY48",
+      "formattedCitation": "<div class=\"csl-entry\">Thompson, Homer A, and R. E Wycherley. <i>The Agora of Athens: The History, Shape and Uses of an Ancient City Center</i>. The Athenian Agora 14. Princeton, N.J.: The American School of Classical Studies at Athens, 1972.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Prytanikon",
+      "attestations": [
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "prytanikon",
+      "end": -330,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -550,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2016-06-12T10:34:56Z",
+      "uri": "https://pleiades.stoa.org/places/720198157/prytanikon",
+      "creators": [
+        {
+          "username": "ddzhigova",
+          "homepage": null,
+          "name": "Denitsa Dzhigova",
+          "uri": "https://pleiades.stoa.org/author/ddzhigova"
+        }
+      ],
+      "attested": "\u03a0\u03c1\u03c5\u03c4\u03b1\u03bd\u03b9\u03ba\u03cc\u03bd (Prytanikon; modern)",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-23T14:02:13Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-01-23T14:01:50Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "ddzhigova",
+          "modified": "2016-06-12T10:35:00Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "ddzhigova",
+          "modified": "2016-06-12T10:34:56Z"
+        }
+      ]
+    }
+  ],
+  "id": "720198157",
+  "subject": [],
+  "title": "Prytanikon at Athens",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Prytanikon was the seat of the Prytaneis and was located on the west side of the Agora in proximity to the Old Bouleuterion, with which it formed an architectural unit. This structure was supplanted by the later Tholos and its remains are referred to as \"Building F\". It dates to the later period of the Peisistratids, ca. 550-525 B.C.",
+  "reprPoint": [
+    23.722498470129434,
+    37.974743036993935
+  ],
+  "placeTypes": [
+    "architecturalcomplex"
+  ],
+  "bbox": [
+    23.7203413,
+    37.9728296,
+    23.7252726,
+    37.976599
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/579885",
+    "https://pleiades.stoa.org/places/807514119",
+    "https://pleiades.stoa.org/places/91288718"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-03-24T21:42:56Z",
+  "uri": "https://pleiades.stoa.org/places/720198157",
+  "creators": [
+    {
+      "username": "ddzhigova",
+      "homepage": null,
+      "name": "Denitsa Dzhigova",
+      "uri": "https://pleiades.stoa.org/author/ddzhigova"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-23T14:02:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-23T14:02:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-23T14:01:49Z"
+    },
+    {
+      "comment": "summary, references",
+      "modifiedBy": "jbecker",
+      "modified": "2018-01-23T13:58:12Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2016-10-30T02:44:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-06-16T19:57:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-06-16T19:53:54Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-06-16T17:09:12Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-06-16T16:51:50Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "jbecker",
+      "modified": "2016-06-15T20:17:33Z"
+    },
+    {
+      "comment": "edited references",
+      "modifiedBy": "jbecker",
+      "modified": "2016-03-24T22:13:01Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-03-24T21:59:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-03-24T21:58:58Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-03-24T21:46:03Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-03-24T21:43:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ddzhigova",
+      "modified": "2016-03-24T21:42:57Z"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+# Via Annia
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/438876
+- **ID**: 438876
+- **Coords**: (no precise location)
+- **Subjects**: Roman road
+- **Time periods**: 
+- **Names**: Via Annia
+
+## Description
+
+An ancient place, cited: BAtlas 44 unlocated Via Annia

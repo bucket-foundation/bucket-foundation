@@ -1,0 +1,355 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.6019759,
+            36.5645802
+          ],
+          [
+            -4.6024131,
+            36.5648947
+          ],
+          [
+            -4.6025257,
+            36.5648408
+          ],
+          [
+            -4.602802,
+            36.5646103
+          ],
+          [
+            -4.602971,
+            36.5644767
+          ],
+          [
+            -4.6028422,
+            36.5643647
+          ],
+          [
+            -4.6027296,
+            36.564285
+          ],
+          [
+            -4.6025445,
+            36.5643109
+          ],
+          [
+            -4.6023648,
+            36.5643712
+          ],
+          [
+            -4.6022146,
+            36.5644272
+          ],
+          [
+            -4.602059,
+            36.5645048
+          ],
+          [
+            -4.6019759,
+            36.5645802
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-roman-villa",
+      "properties": {
+        "snippet": "Villa; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/818101307/location-of-roman-villa",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa romana de Torreblanca del Sol"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/248891372",
+          "citationDetail": "Way 248891372",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=248891372",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-roman-villa",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa romana de Torreblanca del Sol",
+      "provenance": "OpenStreetMap (Way 248891372, version 6, osm:changeset=133732976, 2023-03-16T05:09:06Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2013-11-28T19:19:36Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -4.6019759,
+            36.5645802
+          ],
+          [
+            -4.6024131,
+            36.5648947
+          ],
+          [
+            -4.6025257,
+            36.5648408
+          ],
+          [
+            -4.602802,
+            36.5646103
+          ],
+          [
+            -4.602971,
+            36.5644767
+          ],
+          [
+            -4.6028422,
+            36.5643647
+          ],
+          [
+            -4.6027296,
+            36.564285
+          ],
+          [
+            -4.6025445,
+            36.5643109
+          ],
+          [
+            -4.6023648,
+            36.5643712
+          ],
+          [
+            -4.6022146,
+            36.5644272
+          ],
+          [
+            -4.602059,
+            36.5645048
+          ],
+          [
+            -4.6019759,
+            36.5645802
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/818101307/location-of-roman-villa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-21T03:09:49Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2020-12-20T12:27:30Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-08T04:31:29Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2018-12-08T04:24:40Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-28T19:19:57Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-28T19:19:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-11-28T19:19:37Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Puertas Tricas 1987",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JE3FISTE",
+      "formattedCitation": "<div class=\"csl-entry\">Puertas Tricas, Rafael. \u201cLos Hallazgos Arqueol\u00f3gicos de Torreblanca Del Sol (Fuengirola).\u201d In <i>Mainake, 8.1986-87</i>, 145\u201371. M\u00e1laga, 1987.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Teichner 2007",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3TTKEGY5",
+      "formattedCitation": "<div class=\"csl-entry\">Teichner, Felix. \u201cCasais Velho (Cascais), Cerro da Vila (Quarteira) y Torreblanca del Sol (Fuengirola): \u00bffactor\u00edas de transformaci\u00f3n de salsas y salazones de pescado o de tintes?\u201d In <i>CETARIAE 2005\u202f: salsas y salazones de pescado en Occidente durante la Antig\u00fcedad; actas del congreso internacional (C\u00e1diz, 7-9 de noviembre de 2005)</i>, 117\u201325. Oxford: British Archaeological Reports, 2007.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://es.wikipedia.org/wiki/Termas_romanas_de_Torreblanca_del_Sol",
+      "citationDetail": "Termas romanas de Torreblanca del Sol",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Spanish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LPYQ8SZL",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: la enciclopedia de contenido libre</i>. Wikimedia Foundation, 2001. https://es.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q9086161",
+      "citationDetail": "Termas romanas de Torreblanca del Sol (Q9086161)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "818101307",
+  "subject": [],
+  "title": "Torreblanca del Sol (Fuengirola)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/villa",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An imperial Roman bath site.",
+  "reprPoint": [
+    -4.602478363731131,
+    36.56455967142257
+  ],
+  "placeTypes": [
+    "villa",
+    "bath"
+  ],
+  "bbox": [
+    -4.602971,
+    36.564285,
+    -4.6019759,
+    36.5648947
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2013-11-28T19:18:44Z",
+  "uri": "https://pleiades.stoa.org/places/818101307",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Q9086161",
+      "modifiedBy": "jbecker",
+      "modified": "2024-12-21T03:11:03Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2020-12-20T12:27:30Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-08T04:31:53Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-08T04:31:28Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-08T04:31:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-08T04:27:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-12-08T04:23:16Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-28T19:18:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2013-11-28T19:18:45Z"
+    }
+  ]
+}

@@ -1,0 +1,329 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.05448,
+          52.576919
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-grandford",
+      "properties": {
+        "snippet": "Fort-2, Settlement; AD 43 - AD 410",
+        "link": "https://pleiades.stoa.org/places/65728677/imagery-location-of-grandford",
+        "description": "Coordinates following GeoHack",
+        "location_precision": "precise",
+        "title": "Imagery location of Grandford"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q103162783",
+          "citationDetail": "Q103162783: Grandford (Samian Ware Discovery Site)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "imagery-location-of-grandford",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": 410,
+      "title": "Imagery location of Grandford",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 43,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "notvisible",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 2000.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-geohack-accuracy-assessment",
+      "featureType": [
+        "fort-2",
+        "settlement"
+      ],
+      "description": "Coordinates following GeoHack",
+      "created": "2023-01-12T10:08:32Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.05448,
+          52.576919
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/65728677/imagery-location-of-grandford",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-01-13T21:58:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-12T10:09:48Z"
+        },
+        {
+          "comment": "added imagery location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-12T10:08:34Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-12T10:08:32Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 410,
+      "description": "",
+      "contributors": [],
+      "created": "2023-01-12T17:00:42Z",
+      "associationCertainty": "certain",
+      "title": "Fen Causeway",
+      "start": 43,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/65728677/fen-causeway",
+      "connectionType": "on",
+      "id": "fen-causeway",
+      "attestations": [
+        {
+          "timePeriod": "roman-britain",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman-britain",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-06-26T16:04:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T15:33:08Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2024-05-26T15:33:03Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-12T17:00:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-01-12T17:00:42Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/649485970",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Potter and Potter 1982",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IQP5US32",
+          "formattedCitation": "<div class=\"csl-entry\">Potter, T. W., and C. F. Potter. <i>A Romano-British Village at Grandford, March, Cambridgeshire</i>. The British Museum Occasional Papers 35. London: The British Museum, 1982.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/abs/new-roman-and-prehistoric-aerial-discoveries-at-grandford-cambridgeshire/89A45BCF5499E25F9FFD0FAD328554BE",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Potter and Robinson 2000",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/G5RE3HQK",
+      "formattedCitation": "<div class=\"csl-entry\">Potter, T. W., and B. Robinson. \u201cNew Roman and Prehistoric Aerial Discoveries at Grandford, Cambridgeshire.\u201d <i>Antiquity</i> 74, no. 283 (March 2000): 31\u201332. https://doi.org/10.1017/S0003598X00066072.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://heritagegateway.org.uk/Gateway/Results_Single.aspx?resourceID=19191&uid=2d293f3c-7289-45c7-a38c-7db94e55ac8f",
+      "citationDetail": "Monument Number 369675",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Heritage Gateway",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9X9FSWD3",
+      "formattedCitation": "<div class=\"csl-entry\">Historic England. <i>Heritage Gateway</i>, 2012. https://www.heritagegateway.org.uk/gateway/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q103162783",
+      "citationDetail": "Q103162783: Grandford (Samian Ware Discovery Site)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Potter and Potter 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/IQP5US32",
+      "formattedCitation": "<div class=\"csl-entry\">Potter, T. W., and C. F. Potter. <i>A Romano-British Village at Grandford, March, Cambridgeshire</i>. The British Museum Occasional Papers 35. London: The British Museum, 1982.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/526244",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Potter, et al. 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R3QHLKF4",
+      "formattedCitation": "<div class=\"csl-entry\">Potter, T. W., Catherine Johns, David Hall, Mark Hassall, and David Shotter. \u201cThe Roman Occupation of the Central Fenland.\u201d <i>Britannia</i> 12 (1981): 79\u2013133. https://doi.org/10.2307/526244.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "65728677",
+  "subject": [],
+  "title": "Grandford",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "<p>Aerial photographs published in 2000 led to the conclusion that the site preserves the remains of two superimposed forts. The larger of the two measures approximately 140 by 100 meters. The earlier fort, perhaps corresponding to the account of Tacitus, may date ca. 47 CE while the later fort is post-Boudiccan in date.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The remains of a Romano-British settlement at Grandford, Cambridgeshire, were identified by aerial photography. The site lies northwest of the modern town of March and likely lay along the Roman road conventionally known as the Fen Causeway that began at the Roman fort of Longthorpe. The site's extent may have been on the order of 40 acres.",
+  "reprPoint": [
+    0.05448,
+    52.576919
+  ],
+  "placeTypes": [
+    "fort-2",
+    "settlement"
+  ],
+  "bbox": [
+    0.05448,
+    52.576919,
+    0.05448,
+    52.576919
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/649485970"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-01-12T10:06:50Z",
+  "uri": "https://pleiades.stoa.org/places/65728677",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-01-13T21:58:42Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-12T17:59:10Z"
+    },
+    {
+      "comment": "add references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-12T17:37:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-12T10:09:48Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-12T10:09:39Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-12T10:06:52Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-01-12T10:06:50Z"
+    }
+  ]
+}

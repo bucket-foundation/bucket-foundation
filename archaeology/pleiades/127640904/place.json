@@ -1,0 +1,398 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            76.74424,
+            55.6253847
+          ],
+          [
+            76.7445855,
+            55.6247361
+          ],
+          [
+            76.744819,
+            55.6247678
+          ],
+          [
+            76.7454635,
+            55.623597
+          ],
+          [
+            76.7463882,
+            55.6238027
+          ],
+          [
+            76.7462854,
+            55.6240189
+          ],
+          [
+            76.746659,
+            55.6242931
+          ],
+          [
+            76.7451926,
+            55.6265607
+          ],
+          [
+            76.7446229,
+            55.626471
+          ],
+          [
+            76.7446322,
+            55.6263445
+          ],
+          [
+            76.7443987,
+            55.6263128
+          ],
+          [
+            76.7449405,
+            55.6255429
+          ],
+          [
+            76.74424,
+            55.6253847
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-sopka-2",
+      "properties": {
+        "snippet": "Cemetery; 3000 BC - 1000 BC",
+        "link": "https://pleiades.stoa.org/places/127640904/osm-sopka-2",
+        "description": "Polygon representing the location of the Sopka-2 site, derived from an OpenStreetMap Way after Molodin 2001.",
+        "location_precision": "precise",
+        "title": "OSM location of Sopka-2"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/594750616",
+          "citationDetail": "Way 594750616",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=594750616",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Molodin 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GSJJBVHS",
+          "formattedCitation": "<div class=\"csl-entry\">Molodin, V. I, and A. P Derevi\ufe20a\ufe21nko. <i>Pami\ufe20a\ufe21tnik Sopka-2 na reke Omi: kul\u02b9turno-khronologicheski\u012d analiz pogrebal\u02b9nykh kompleksov \u0117pokhi neolita i rannego metalla</i>. Novosibirsk: Izd-vo Instituta arkheologii i \u0117tnografii SO RAN, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-sopka-2",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -1000,
+      "title": "OSM location of Sopka-2",
+      "provenance": "OpenStreetMap (Way 594750616, version 1, osm:changeset=59614860, 2018-06-06T20:49:08Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Polygon representing the location of the Sopka-2 site, derived from an OpenStreetMap Way after Molodin 2001.",
+      "created": "2018-07-02T20:04:17Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            76.74424,
+            55.6253847
+          ],
+          [
+            76.7445855,
+            55.6247361
+          ],
+          [
+            76.744819,
+            55.6247678
+          ],
+          [
+            76.7454635,
+            55.623597
+          ],
+          [
+            76.7463882,
+            55.6238027
+          ],
+          [
+            76.7462854,
+            55.6240189
+          ],
+          [
+            76.746659,
+            55.6242931
+          ],
+          [
+            76.7451926,
+            55.6265607
+          ],
+          [
+            76.7446229,
+            55.626471
+          ],
+          [
+            76.7446322,
+            55.6263445
+          ],
+          [
+            76.7443987,
+            55.6263128
+          ],
+          [
+            76.7449405,
+            55.6255429
+          ],
+          [
+            76.74424,
+            55.6253847
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/127640904/osm-sopka-2",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "check in of working copy w/ added time periods",
+          "modifiedBy": "jbecker",
+          "modified": "2018-07-02T20:28:00Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "gmckee",
+          "modified": "2018-07-02T20:04:16Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-25T23:12:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-06-22T18:45:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-06-12T15:20:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-06-12T15:18:35Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-06-12T15:18:34Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Molodin 2001",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GSJJBVHS",
+      "formattedCitation": "<div class=\"csl-entry\">Molodin, V. I, and A. P Derevi\ufe20a\ufe21nko. <i>Pami\ufe20a\ufe21tnik Sopka-2 na reke Omi: kul\u02b9turno-khronologicheski\u012d analiz pogrebal\u02b9nykh kompleksov \u0117pokhi neolita i rannego metalla</i>. Novosibirsk: Izd-vo Instituta arkheologii i \u0117tnografii SO RAN, 2001.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Sopka-2",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Molodin 2001",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/GSJJBVHS",
+          "formattedCitation": "<div class=\"csl-entry\">Molodin, V. I, and A. P Derevi\ufe20a\ufe21nko. <i>Pami\ufe20a\ufe21tnik Sopka-2 na reke Omi: kul\u02b9turno-khronologicheski\u012d analiz pogrebal\u02b9nykh kompleksov \u0117pokhi neolita i rannego metalla</i>. Novosibirsk: Izd-vo Instituta arkheologii i \u0117tnografii SO RAN, 2001.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "sopka-2",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Russian name given to the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2018-06-07T14:04:38Z",
+      "uri": "https://pleiades.stoa.org/places/127640904/sopka-2",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u0421\u043e\u043f\u043a\u0430-2",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-06-25T23:12:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-06-22T18:45:57Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-06-07T14:04:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-06-07T14:04:38Z"
+        }
+      ]
+    }
+  ],
+  "id": "127640904",
+  "subject": [],
+  "title": "Sopka-2",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A burial site on the banks of the Om River in western Siberia containing a number of non-contemporaneous Bronze Age tombs.",
+  "reprPoint": [
+    76.74535073543103,
+    55.62507940334841
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    76.74424,
+    55.623597,
+    76.746659,
+    55.6265607
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-06-06T20:55:37Z",
+  "uri": "https://pleiades.stoa.org/places/127640904",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-06-25T23:12:32Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-06-22T18:45:56Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2018-06-07T13:58:14Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-06-06T20:55:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-06-06T20:55:37Z"
+    }
+  ]
+}

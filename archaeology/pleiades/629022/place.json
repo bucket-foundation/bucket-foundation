@@ -1,0 +1,658 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.871418,
+          39.805861
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-cengerli-kale",
+      "properties": {
+        "snippet": "Unknown",
+        "link": "https://pleiades.stoa.org/places/629022/imagery-location-of-cengerli-kale",
+        "description": "Coordinates determined in Google Earth, following description in Mitford 2018.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Cengerli Kale"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.876289,
+          39.815521
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-modern-cengerli-village",
+      "properties": {
+        "snippet": "Settlement-modern",
+        "link": "https://pleiades.stoa.org/places/629022/osm-location-of-modern-cengerli-village",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM Location of modern Cengerli Village"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "gtsolakis",
+      "homepage": null,
+      "name": "Georgios Tsolakis",
+      "uri": "https://pleiades.stoa.org/author/gtsolakis"
+    },
+    {
+      "username": "jordanp",
+      "homepage": null,
+      "name": "Jordan Pickett",
+      "uri": "https://pleiades.stoa.org/author/jordanp"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "315",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mitford 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F44C425T",
+          "formattedCitation": "<div class=\"csl-entry\">Mitford, Timothy Bruce. <i>East of Asia Minor: Rome\u2019s Hidden Frontier</i>. 2 vols. Oxford: Oxford University Press, 2018.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-cengerli-kale",
+      "featureTypeURI": [],
+      "end": null,
+      "title": "Imagery Location of Cengerli Kale",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [],
+      "description": "Coordinates determined in Google Earth, following description in Mitford 2018.",
+      "created": "2021-03-09T22:36:00Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.871418,
+          39.805861
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/629022/imagery-location-of-cengerli-kale",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-10T22:14:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-10T21:03:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T22:36:01Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T22:36:00Z"
+        }
+      ]
+    },
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/1502677072",
+          "citationDetail": "Node 1502677072",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=1502677072",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-modern-cengerli-village",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": null,
+      "title": "OSM Location of modern Cengerli Village",
+      "provenance": "OpenStreetMap (Node 1502677072, version 4, osm:changeset=51957123, 2017-09-11T23:13:11Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2021-03-09T22:36:44Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.876289,
+          39.815521
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/629022/osm-location-of-modern-cengerli-village",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-10T22:14:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-10T21:03:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T22:37:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T22:36:44Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T22:36:44Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-08-24T15:52:22Z",
+      "associationCertainty": "certain",
+      "title": "Capotes (mountain)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/629022/capotes-m",
+      "connectionType": "on",
+      "id": "capotes-m",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-10T22:14:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-10T21:04:40Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-10T21:04:32Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-24T15:52:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-08-24T15:52:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/628948",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "64 H1 Kurtlu Tepe",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mitford 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LUAAQ6JL",
+      "formattedCitation": "<div class=\"csl-entry\">Mitford, T. \u201cThe Roman Frontier on the Upper Euphrates.\u201d In <i>Ancient Anatolia. Fifty Years\u2019 Work by the British Institute of Archaeology at Ankara</i>, 255\u201372, n.d.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mitford 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/2BSCPKF8",
+      "formattedCitation": "<div class=\"csl-entry\">\u201cErzincan Survey 2000.\u201d In <i>19. Ara\u015ft\u0131rma Sonu\u00e7lar\u0131 Toplant\u0131s\u0131: 28 May\u0131s - 01 Haziran 2001, Ankara 2. 2.</i>, 37\u201338. Ankara: K\u00fclt\u00fcr Bakanl\u0131\u011f\u0131, 2002.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://tr.wikipedia.org/wiki/K%C4%B1rkbulak,_Refahiye",
+      "citationDetail": "K\u0131rkbulak, Refahiye",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Turkish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://hy.wikipedia.org/wiki/%D5%80%D5%B8%D5%BC%D5%B8%D6%83%D5%B8%D6%82%D5%AC",
+      "citationDetail": "\u0540\u0578\u057c\u0578\u0583\u0578\u0582\u056c",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Wikipedia (Armenian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FKNYXXQX",
+      "formattedCitation": "<div class=\"csl-entry\">\u0533\u056c\u056d\u0561\u057e\u0578\u0580 \u0567\u057b:\u00a0 \u0531\u0566\u0561\u057f \u0570\u0561\u0576\u0580\u0561\u0563\u056b\u057f\u0561\u0580\u0561\u0576, \u0578\u0580\u0568 \u056f\u0561\u0580\u0578\u0572 \u0567 \u056d\u0574\u0562\u0561\u0563\u0580\u0565\u056c \u0575\u0578\u0582\u0580\u0561\u0584\u0561\u0576\u0579\u0575\u0578\u0582\u0580 \u0578\u0584. Accessed August 30, 2019. https://hy.wikipedia.org/.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://tr.wikipedia.org/wiki/Cengerli,_Refahiye",
+      "citationDetail": "Cengerli, Refahiye",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Turkish)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RXT4VCZC",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Vikipedi, bedava ansiklopedi</i>. Wikimedia Foundation, 2001. https://tr.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "315-17, 533-4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mitford 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F44C425T",
+      "formattedCitation": "<div class=\"csl-entry\">Mitford, Timothy Bruce. <i>East of Asia Minor: Rome\u2019s Hidden Frontier</i>. 2 vols. Oxford: Oxford University Press, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "210-17",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Sinclair 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RP4IYVHL",
+      "formattedCitation": "<div class=\"csl-entry\">Sinclair, Thomas A. <i>Eastern Trade and the Mediterranean in the Middle Ages: Pegolotti\u2019s Ayas-Tabriz Itinerary and Its Commercial Context</i>. London, New York: Routledge, Taylor &amp; Francis Group, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "429-32",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "Bennett 2010",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FR9ZZGBT",
+      "formattedCitation": "<div class=\"csl-entry\">Bennett, Julian. \u201cAuxiliary Deployment during Trajan\u2019s Parthian War: Some Neglected Evidence from Asia Minor.\u201d In <i>Studies in Latin Literature and Roman History. 15.</i>, 423\u201345. Collection Latomus 323. Bruxelles: Latomus, 2010.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "6119",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "label",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kurtlu Tepe",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "kurtlu-tepe",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Map label used by the Barrington Atlas",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2021-03-09T14:36:18Z",
+      "uri": "https://pleiades.stoa.org/places/629022/kurtlu-tepe",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Kurtlu Tepe",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-10T22:14:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-10T21:03:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T14:36:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T14:36:18Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Cengerli",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "315",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Mitford 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/F44C425T",
+          "formattedCitation": "<div class=\"csl-entry\">Mitford, Timothy Bruce. <i>East of Asia Minor: Rome\u2019s Hidden Frontier</i>. 2 vols. Oxford: Oxford University Press, 2018.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "cengerli",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "tr",
+      "created": "2021-03-09T22:38:18Z",
+      "uri": "https://pleiades.stoa.org/places/629022/cengerli",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Cengerli",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-03-10T22:14:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-10T21:03:44Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T22:38:18Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2021-03-09T22:38:18Z"
+        }
+      ]
+    }
+  ],
+  "id": "629022",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=fort"
+  ],
+  "title": "Cengerli",
+  "provenance": "Barrington Atlas: BAtlas 64 H1 Kurtlu Tepe",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern",
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/fort"
+  ],
+  "details": "<p>Mitford (2018 pages 315-317) argues persuasively for a Roman fort at Cengerli. This view is echoed, based in part on Mitford's earlier publications, in Sinclair 2020 (p. 216). The fort was probably garrisoned, at least for a period, by the\u00a0<em>Cohors I Thracum Syriaca</em> as demonstrated by an inscription of one of its <em>decuriones</em> found there in the 1980s, seen by Mitford in 1989, and definitively published for the first time in Mitford 2018 (pp. 533-34 no. 54; <em>pace</em> Bennett 2010 pp. 429-432 whence AE 2010 1672, incorrectly reporting the findspot as nearby Horopol/K\u0131rkbulak).\u00a0 In the <em>Barrington Atlas</em> directory for Map 64 (published in 2000 but compiled in 1996), Mitford suggests the site might also have served as a \"signal station.\" He has more to say about this in 2018: Cengerli Kale, a large natural rock outcropping with extensive visibility down the valley, has cuttings (including stairs) that are consistent with use as a site for a \"Urartian fire temple\" and, possibly, for beacon fires in the Roman period (pp. 315-317 with figures 197 and 198). Cengerli's proximity to fragments of Roman roads, as well as subsequent caravan and multi-period salt-transport roads, highlight its value as a potential garrison site.</p>\r\n<p>For the <em>Barrington Atlas</em>, Mitford did not hazard a guess at an ancient name for Cengerli. In 2018 (p. 317), he rejects \"Carsaga\" and \"Olotoedariza.\" As candidates, he considers \"Caesarea\" (Pliny mentions three of them in Armenia), as well as Ptolemy's \"Charax\" and \"Chorsabia,\" before concluding: \"identification with Chorsabia is not entirely fanciful.\" He also, more tentatively, considers Ptolemy's \"Tapoura.\" Sinclair does not address these possibilities, theorizing instead that \"Haris\"/\"Haraz\" (possibly variant names for the same place from the Peutinger Map and the Antonine Itinerary) should be considered. Sinclair's argument hinges on seeing some linguistic relationship between \"Haris\"/\"Haraz\" and \"Horopol\" (the old Armenian name of a village near Cengerli) and on assuming a copy error as to the order of road connections in the Peutinger map or its lost sources (pp. 215-217).</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A likely Roman fort and possible Urartian fire temple at the modern village of Cengerli in the Refahiye district of Erzincan province, Turkey.",
+  "reprPoint": [
+    38.873853499999996,
+    39.810691
+  ],
+  "placeTypes": [
+    "settlement-modern",
+    "temple-2",
+    "fort"
+  ],
+  "bbox": [
+    38.871418,
+    39.805861,
+    38.876289,
+    39.815521
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/628948",
+    "https://pleiades.stoa.org/places/876636"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-03-08T18:13:41Z",
+  "uri": "https://pleiades.stoa.org/places/629022",
+  "creators": [
+    {
+      "username": null,
+      "name": "T.B. Mitford"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "updated contributors ",
+      "modifiedBy": "thomase",
+      "modified": "2021-03-11T11:53:25Z"
+    },
+    {
+      "comment": "DARMC 6119 = related",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-10T22:25:04Z"
+    },
+    {
+      "comment": "summary; details; details; details; details; details; Edited; Edited; details; title; Edited; Edited; Mitford 2002; details; summary; Edited; summary; wikipedia Turkish and Armenian (Horopul/K\u0131rkbulak); Wikipeda Turkish (Cengerli); summary; details; Edited; Edited; Edited; Edited; Edited; Edited; Edited; summary; place type; updated Names, Locations",
+      "modifiedBy": "jbecker",
+      "modified": "2021-03-10T22:13:22Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2019-08-24T15:52:06Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:44:58Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T07:22:45Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-09T19:23:09Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T20:44:51Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2009-10-19T13:38:40Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T10:49:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-10-19T10:40:38Z"
+    }
+  ]
+}

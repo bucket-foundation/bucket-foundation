@@ -1,0 +1,453 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.3449235,
+          34.7968951
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-choirokoitia-neolithic-settlement",
+      "properties": {
+        "snippet": "Settlement; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/755568222/osm-location-of-choirokoitia-neolithic-settlement",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Choirokoitia Neolithic Settlement"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.343543,
+          34.796806
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location",
+      "properties": {
+        "snippet": "Settlement, ; 10000 BC - 3300 BC",
+        "link": "https://pleiades.stoa.org/places/755568222/imagery-location",
+        "description": "",
+        "location_precision": "precise",
+        "title": "Imagery Location: Centerpoint of Choirokoitia"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/299518754",
+          "citationDetail": "Node 299518754",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=299518754",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-choirokoitia-neolithic-settlement",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -3300,
+      "title": "OSM location of Choirokoitia Neolithic Settlement",
+      "provenance": "OpenStreetMap (Node 299518754, version 11, osm:changeset=51836044, 2017-09-08T08:32:20Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2019-01-24T15:16:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.3449235,
+          34.7968951
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/755568222/osm-location-of-choirokoitia-neolithic-settlement",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-17T18:40:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-24T15:17:15Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-24T15:17:01Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-24T15:16:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-24T15:16:38Z"
+        }
+      ]
+    },
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "sgillies",
+          "homepage": null,
+          "name": "Sean Gillies",
+          "uri": "https://pleiades.stoa.org/author/sgillies"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "neolithic-eastern-med",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/neolithic-eastern-med",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [],
+      "id": "imagery-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": -3300,
+      "title": "Imagery Location: Centerpoint of Choirokoitia",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -10000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "\r\n<p>Points were digitized on 06 October 2010 by hand in Google Earth using 5.2.1.1329 (beta) at an \"eye altitude\" of 6000 ft.</p>\r\n",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-geoeye-2010",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "",
+      "created": "2010-10-06T18:42:24Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.343543,
+          34.796806
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/755568222/imagery-location",
+      "creators": [
+        {
+          "username": "nnagy",
+          "homepage": null,
+          "name": "Nate Nagy",
+          "uri": "https://pleiades.stoa.org/author/nnagy"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "added type, dates",
+          "modifiedBy": "jbecker",
+          "modified": "2012-12-19T03:19:39Z"
+        },
+        {
+          "comment": "Global migration and reindexing of citations and provenance, February 2012",
+          "modifiedBy": "admin",
+          "modified": "2012-02-15T08:18:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2010-10-07T01:41:59Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nnagy",
+          "modified": "2010-10-06T21:04:29Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "nnagy",
+          "modified": "2010-10-06T19:20:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "nnagy",
+          "modified": "2010-10-06T18:42:56Z"
+        },
+        {
+          "comment": "",
+          "modifiedBy": "nnagy",
+          "modified": "2010-10-06T18:42:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "nnagy",
+          "modified": "2010-10-06T18:42:25Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-01-24T15:13:44Z",
+      "associationCertainty": "certain",
+      "title": "Cyprus (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/755568222/cyprus-island",
+      "connectionType": "part_of_physical",
+      "id": "cyprus-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-17T18:41:43Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-17T18:41:28Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-24T15:16:21Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-24T15:14:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-01-24T15:13:44Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707498",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_physical"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://whc.unesco.org/en/list/848",
+      "citationDetail": "Choirokoitia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "WHL",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BIIFWTIR",
+      "formattedCitation": "<div class=\"csl-entry\">UNESCO World Heritage Centre. <i>World Heritage List</i>, 1978. http://whc.unesco.org/en/list/.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Khirokitia",
+      "citationDetail": "Khirokitia",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Khirokitia.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "755568222",
+  "subject": [
+    "dare:ancient=1",
+    "dare:feature=settlement",
+    "dare:major=0",
+    "UWHS"
+  ],
+  "title": "Choirokoitia",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The prehistoric settlement at Choirokoitia, in Cyprus. The site was inhabited from the seventh to the fourth millennium B.C. and was inscribed as a UNESCO World Heritage Site in 1998.",
+  "reprPoint": [
+    33.34423325,
+    34.79685055
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    33.343543,
+    34.796806,
+    33.3449235,
+    34.7968951
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707498"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2010-10-06T18:36:30Z",
+  "uri": "https://pleiades.stoa.org/places/755568222",
+  "creators": [
+    {
+      "username": "nnagy",
+      "homepage": null,
+      "name": "Nate Nagy",
+      "uri": "https://pleiades.stoa.org/author/nnagy"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-01-24T15:12:37Z"
+    },
+    {
+      "comment": "improved description, added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2012-12-19T03:18:48Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T20:28:47Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T08:18:39Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-10-07T01:41:57Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T21:04:04Z"
+    },
+    {
+      "comment": "added reference for UNESCO list",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T19:29:01Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T19:20:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T18:42:54Z"
+    },
+    {
+      "comment": "",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T18:37:06Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "nnagy",
+      "modified": "2010-10-06T18:36:30Z"
+    }
+  ]
+}

@@ -1,0 +1,331 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.6174597,
+          52.9628829
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-bursselstown-ring",
+      "properties": {
+        "snippet": "Archaeological-site; 2199 BC - AD 400",
+        "link": "https://pleiades.stoa.org/places/464027192/osm-location-bursselstown-ring",
+        "description": "Location based on OpenStreetMap. Dates after Brandherm 2025.",
+        "location_precision": "precise",
+        "title": "OSM Location: Bursselstown Ring"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "bronze-ireland",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/bronze-ireland",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "iron-ireland",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/iron-ireland",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3100693083",
+          "citationDetail": "Node 3100693083",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3100693083",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/brusselstown-ring-a-nucleated-settlement-agglomeration-in-prehistoric-ireland/C02CF0872F44AB918303D2A0474C9F9E",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Brandherm 2025",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AVK59J2K",
+          "formattedCitation": "<div class=\"csl-entry\">Brandherm, Dirk, Cherie Edwards, Linda Boutoille, and James O\u2019Driscoll. \u201cBrusselstown Ring: A Nucleated Settlement Agglomeration in Prehistoric Ireland.\u201d <i>Antiquity</i>, November 18, 2025, 1\u20138. https://doi.org/10.15184/aqy.2025.10247.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-bursselstown-ring",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "end": 400,
+      "title": "OSM Location: Bursselstown Ring",
+      "provenance": "OpenStreetMap (Node 3100693083, version 4, osm:changeset=160996894, 2025-01-04T18:20:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -2199,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "archaeological-site"
+      ],
+      "description": "Location based on OpenStreetMap. Dates after Brandherm 2025.",
+      "created": "2025-11-18T11:13:56Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.6174597,
+          52.9628829
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/464027192/osm-location-bursselstown-ring",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-18T15:26:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-18T11:29:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-18T11:23:30Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-18T11:17:03Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-18T11:13:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-18T11:13:56Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/brusselstown-ring-a-nucleated-settlement-agglomeration-in-prehistoric-ireland/C02CF0872F44AB918303D2A0474C9F9E",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Brandherm 2025",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AVK59J2K",
+      "formattedCitation": "<div class=\"csl-entry\">Brandherm, Dirk, Cherie Edwards, Linda Boutoille, and James O\u2019Driscoll. \u201cBrusselstown Ring: A Nucleated Settlement Agglomeration in Prehistoric Ireland.\u201d <i>Antiquity</i>, November 18, 2025, 1\u20138. https://doi.org/10.15184/aqy.2025.10247.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q994370",
+      "citationDetail": "Brusselstown Ring (Q994370)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://hillforts.arch.ox.ac.uk/records/IR0718.html",
+      "citationDetail": "IR0718 Brusselstown Ring, Wicklow (Castlequaters)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "AtlHillforts",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DR9PECMG",
+      "formattedCitation": "<div class=\"csl-entry\">Lock, Gary, and Ian Ralston. <i>Atlas of Hillforts of Britain and Ireland</i>, 2024. https://hillforts.arch.ox.ac.uk/.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Brusselstown Ring",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q994370",
+          "citationDetail": "Brusselstown Ring (Q994370)",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "brusselstown-ring",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2025-11-18T15:26:46Z",
+      "uri": "https://pleiades.stoa.org/places/464027192/brusselstown-ring",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Brusselstown Ring",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2025-11-21T18:32:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-18T15:27:01Z"
+        },
+        {
+          "comment": "name - Brusselstown Ring",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-18T15:26:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2025-11-18T15:26:46Z"
+        }
+      ]
+    }
+  ],
+  "id": "464027192",
+  "subject": [],
+  "title": "Brusselstown Ring",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fortified-settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/hillfort",
+    "https://pleiades.stoa.org/vocabularies/place-types/archaeological-site"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large fortified settlement in modern County Wicklow, Ireland, with evidence of occupation in the Late Bronze and Early Iron Ages.",
+  "reprPoint": [
+    -6.6174597,
+    52.9628829
+  ],
+  "placeTypes": [
+    "fortified-settlement",
+    "hillfort",
+    "archaeological-site"
+  ],
+  "bbox": [
+    -6.6174597,
+    52.9628829,
+    -6.6174597,
+    52.9628829
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-18T11:12:47Z",
+  "uri": "https://pleiades.stoa.org/places/464027192",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-18T15:26:08Z"
+    },
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2025-11-18T15:24:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-18T11:29:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-18T11:27:20Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-18T11:12:53Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2025-11-18T11:12:47Z"
+    }
+  ]
+}

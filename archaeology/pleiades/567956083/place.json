@@ -1,0 +1,310 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.132152,
+            55.4014232
+          ],
+          [
+            14.1321747,
+            55.4012944
+          ],
+          [
+            14.1324696,
+            55.4012944
+          ],
+          [
+            14.1324469,
+            55.401449
+          ],
+          [
+            14.132152,
+            55.4014232
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "roekillorna-spring",
+      "properties": {
+        "snippet": "Spring; 5000 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/567956083/roekillorna-spring",
+        "description": "Polygon based on OpenStreetMap representing R\u00f6ekillorna Spring after Stjernquist 1997.",
+        "location_precision": "precise",
+        "title": "R\u00f6ekillorna Spring"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "5th-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/5th-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "4th-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/4th-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "2nd-millenium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/2nd-millenium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1067630569",
+          "citationDetail": "Way 1067630569",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1067630569",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://books.google.com/books?id=SswqxkhU6-QC",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Stjernquist 1997",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H8LVRGTW",
+          "formattedCitation": "<div class=\"csl-entry\">Stjernquist, Berta, Tage Nilsson, and Ulrik M\u00f8hl. <i>The R\u00f6ekillorna Spring: Spring-Cults in Scandinavian Prehistory</i>. Stockholm: Almqvist &amp; Wiksell International, 1997. http://books.google.com/books?id=SswqxkhU6-QC.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.wikidata.org/entity/Q2179395",
+          "citationDetail": "Q2179395: R\u00f6ekillorna",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsRelated"
+        }
+      ],
+      "id": "roekillorna-spring",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/spring"
+      ],
+      "end": 300,
+      "title": "R\u00f6ekillorna Spring",
+      "provenance": "OpenStreetMap (Way 1067630569, version 1, osm:changeset=122077026, 2022-06-07T15:03:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -5000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/spring"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "spring"
+      ],
+      "description": "Polygon based on OpenStreetMap representing R\u00f6ekillorna Spring after Stjernquist 1997.",
+      "created": "2022-06-07T15:12:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            14.132152,
+            55.4014232
+          ],
+          [
+            14.1321747,
+            55.4012944
+          ],
+          [
+            14.1324696,
+            55.4012944
+          ],
+          [
+            14.1324469,
+            55.401449
+          ],
+          [
+            14.132152,
+            55.4014232
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/567956083/roekillorna-spring",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-08T01:00:53Z"
+        },
+        {
+          "comment": "standardize wikidata reference",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-07T23:14:03Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T15:18:31Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T15:18:09Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T15:14:34Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T15:12:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-07T15:12:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=SswqxkhU6-QC",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Stjernquist 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H8LVRGTW",
+      "formattedCitation": "<div class=\"csl-entry\">Stjernquist, Berta, Tage Nilsson, and Ulrik M\u00f8hl. <i>The R\u00f6ekillorna Spring: Spring-Cults in Scandinavian Prehistory</i>. Stockholm: Almqvist &amp; Wiksell International, 1997. http://books.google.com/books?id=SswqxkhU6-QC.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "567956083",
+  "subject": [],
+  "title": "R\u00f6ekillorna Spring",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/spring"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A spring that was a cult site used in the Early Neolithic, Middle Neolithic, Late Neolithic, Early Bronze Age, pre-Roman Iron Age, and Roman Iron Age, the R\u00f6ekillorna Spring is located in modern south-east Scania, Sweden.",
+  "reprPoint": [
+    14.132315063416362,
+    55.401365528034916
+  ],
+  "placeTypes": [
+    "spring"
+  ],
+  "bbox": [
+    14.132152,
+    55.4012944,
+    14.1324696,
+    55.401449
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-07T15:12:03Z",
+  "uri": "https://pleiades.stoa.org/places/567956083",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-08T01:00:53Z"
+    },
+    {
+      "comment": "edit summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-08T01:00:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-07T15:18:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-07T15:12:04Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-07T15:12:03Z"
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4257061,
+            42.2956226
+          ],
+          [
+            12.4255944,
+            42.2955848
+          ],
+          [
+            12.4255706,
+            42.2956426
+          ],
+          [
+            12.4255411,
+            42.2956355
+          ],
+          [
+            12.4254896,
+            42.2957526
+          ],
+          [
+            12.4256337,
+            42.2957873
+          ],
+          [
+            12.4257061,
+            42.2956226
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-necropoli-di-celle",
+      "properties": {
+        "snippet": "Cemetery",
+        "link": "https://pleiades.stoa.org/places/531323023/osm-location-of-necropoli-di-celle",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Necropoli di Celle"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1079443721",
+          "citationDetail": "Way 1079443721",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1079443721",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-necropoli-di-celle",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": null,
+      "title": "OSM location of Necropoli di Celle",
+      "provenance": "OpenStreetMap (Way 1079443721, version 4, osm:changeset=134819326, 2023-04-12T14:03:24Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-04-12T14:05:10Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.4257061,
+            42.2956226
+          ],
+          [
+            12.4255944,
+            42.2955848
+          ],
+          [
+            12.4255706,
+            42.2956426
+          ],
+          [
+            12.4255411,
+            42.2956355
+          ],
+          [
+            12.4254896,
+            42.2957526
+          ],
+          [
+            12.4256337,
+            42.2957873
+          ],
+          [
+            12.4257061,
+            42.2956226
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/531323023/osm-location-of-necropoli-di-celle",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-05-11T15:49:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-05-11T02:01:11Z"
+        },
+        {
+          "comment": "added osm location",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:05:30Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:05:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:05:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-04-12T14:05:50Z",
+      "associationCertainty": "certain",
+      "title": "Falerii Veteres",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/531323023/3504601594",
+      "connectionType": "at",
+      "id": "3504601594",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:05:50Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:05:50Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-04-12T14:05:50Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413126",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Harari 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JL53YAMD",
+      "formattedCitation": "<div class=\"csl-entry\">Harari, Maurizio. \u201cIl problema dell\u2019oikos \u03b1 nel santuario di Celle a Falerii.\u201d In <i>L\u2019Etruria meridionale rupestre\u202f: atti del Convegno internazionale \u201cL\u2019Etruria rupestre dalla protostoria al Medioevo\u202f: insediamenti, necropoli, monumenti, confronti\u201d\u202f: Barbarano Romano - Blera, 8-10 ottobre 2010</i>, 122\u201329. Roma: Palombi, 2014.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006:entry=falerii-veteres",
+      "citationDetail": "FALERII VETERES (Civita Castellana) Italy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "531323023",
+  "subject": [],
+  "title": "Necropoli di Celle",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Extensive areas of rock-cut tombs in the vicinity of Falerii Veteres (modern Civita Castellana in Italy)",
+  "reprPoint": [
+    12.42559933243443,
+    42.29568784927146
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    12.4254896,
+    42.2955848,
+    12.4257061,
+    42.2957873
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413126"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-04-12T14:05:50Z",
+  "uri": "https://pleiades.stoa.org/places/531323023",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-11T15:49:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2023-05-11T15:49:14Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-11T02:01:11Z"
+    },
+    {
+      "comment": "PECS",
+      "modifiedBy": "jbecker",
+      "modified": "2023-05-11T02:01:04Z"
+    },
+    {
+      "comment": "reference",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-12T14:06:04Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-12T14:05:51Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-04-12T14:05:50Z"
+    }
+  ]
+}

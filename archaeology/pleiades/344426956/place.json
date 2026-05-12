@@ -1,0 +1,365 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.6502641,
+            35.3613603
+          ],
+          [
+            45.650954,
+            35.3609584
+          ],
+          [
+            45.6513565,
+            35.3604962
+          ],
+          [
+            45.6516275,
+            35.359833
+          ],
+          [
+            45.6516768,
+            35.3592101
+          ],
+          [
+            45.6515454,
+            35.3589489
+          ],
+          [
+            45.6509376,
+            35.3586407
+          ],
+          [
+            45.6502887,
+            35.3585469
+          ],
+          [
+            45.6491552,
+            35.3587814
+          ],
+          [
+            45.6484571,
+            35.3591833
+          ],
+          [
+            45.6481039,
+            35.3595584
+          ],
+          [
+            45.6480628,
+            35.3600273
+          ],
+          [
+            45.6482025,
+            35.3604158
+          ],
+          [
+            45.6488924,
+            35.3609517
+          ],
+          [
+            45.6490813,
+            35.3611995
+          ],
+          [
+            45.6493688,
+            35.3612464
+          ],
+          [
+            45.649878,
+            35.3614138
+          ],
+          [
+            45.6502641,
+            35.3613603
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tepe-yasin",
+      "properties": {
+        "snippet": "Tell; 1000 BC - 1 BC",
+        "link": "https://pleiades.stoa.org/places/344426956/osm-location-of-tepe-yasin",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Tepe Yasin"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "1st-millennium-bce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/1st-millennium-bce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/346018297",
+          "citationDetail": "Way 346018297",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=346018297",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tepe-yasin",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "end": -1,
+      "title": "OSM location of Tepe Yasin",
+      "provenance": "OpenStreetMap (Way 346018297, version 2, osm:changeset=123024904, 2022-06-30T03:09:23Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/tell"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "tell"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2022-06-30T03:13:57Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            45.6502641,
+            35.3613603
+          ],
+          [
+            45.650954,
+            35.3609584
+          ],
+          [
+            45.6513565,
+            35.3604962
+          ],
+          [
+            45.6516275,
+            35.359833
+          ],
+          [
+            45.6516768,
+            35.3592101
+          ],
+          [
+            45.6515454,
+            35.3589489
+          ],
+          [
+            45.6509376,
+            35.3586407
+          ],
+          [
+            45.6502887,
+            35.3585469
+          ],
+          [
+            45.6491552,
+            35.3587814
+          ],
+          [
+            45.6484571,
+            35.3591833
+          ],
+          [
+            45.6481039,
+            35.3595584
+          ],
+          [
+            45.6480628,
+            35.3600273
+          ],
+          [
+            45.6482025,
+            35.3604158
+          ],
+          [
+            45.6488924,
+            35.3609517
+          ],
+          [
+            45.6490813,
+            35.3611995
+          ],
+          [
+            45.6493688,
+            35.3612464
+          ],
+          [
+            45.649878,
+            35.3614138
+          ],
+          [
+            45.6502641,
+            35.3613603
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/344426956/osm-location-of-tepe-yasin",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-22T18:27:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-22T16:20:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-22T16:19:59Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-30T03:14:18Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-30T03:13:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-30T03:13:57Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Yasin_Tepe",
+      "citationDetail": "Category:Yasin Tepe",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108128170",
+      "citationDetail": "Yasin Tepe (Q108128170)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hasegawa 2020",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/SQZMTGLV",
+      "formattedCitation": "<div class=\"csl-entry\">Hasegawa, Shuichi, and Karen Radner, eds. <i>The Reach of the Assyrian and Babylonian Empires: Case Studies in Eastern and Western Peripheries</i>. Studia Chaburensia 8. Wiesbaden: Harrassowitz Verlag, 2020.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "344426956",
+  "subject": [],
+  "title": "Yasin Tepe, Sualymaniayh",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/tell"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An anthropic mound or tell located in Iraq's Sulaymaniyah Governorate.",
+  "reprPoint": [
+    45.64991993502643,
+    35.359903814539315
+  ],
+  "placeTypes": [
+    "tell"
+  ],
+  "bbox": [
+    45.6480628,
+    35.3585469,
+    45.6516768,
+    35.3614138
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-30T03:13:30Z",
+  "uri": "https://pleiades.stoa.org/places/344426956",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-22T18:27:49Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-22T16:20:05Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-22T16:19:39Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-30T03:13:32Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-30T03:13:30Z"
+    }
+  ]
+}

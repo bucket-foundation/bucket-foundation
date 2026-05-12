@@ -1,0 +1,235 @@
+{
+  "features": [],
+  "contributors": [],
+  "locations": [],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-08-01T20:25:56Z",
+      "associationCertainty": "certain",
+      "title": "Argolis",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/116805959/argolis",
+      "connectionType": "part_of_regional",
+      "id": "argolis",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-02T04:04:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T21:07:41Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T21:07:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T20:44:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T20:25:57Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T20:25:56Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570104",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2022-08-01T20:27:08Z",
+      "associationCertainty": "certain",
+      "title": "Argolicus Sinus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/116805959/argolicus-sinus",
+      "connectionType": "abuts",
+      "id": "argolicus-sinus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2022-08-02T04:04:31Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T21:07:41Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T21:07:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T20:44:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T20:27:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2022-08-01T20:27:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570103",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/abuts"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0004:entry=argolid",
+      "citationDetail": "Argolid",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "PersEnc",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8ZYGESPW",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Perseus Encyclopedia</i>. Perseus Digital Library. Accessed August 1, 2022. https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3atext%3a1999.04.0004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0271548",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vignola 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/WSSYVNTA",
+      "formattedCitation": "<div class=\"csl-entry\">Vignola, Cristiano, Martina H\u00e4ttestrand, Anton Bonnier, Martin Finn\u00e9, Adam Izdebski, Christos Katrantsiotis, Katerina Kouli, et al. \u201cMid-Late Holocene Vegetation History of the Argive Plain (Peloponnese, Greece) as Inferred from a Pollen Record from Ancient Lake Lerna.\u201d <i>PLOS ONE</i> 17, no. 7 (July 15, 2022): e0271548. https://doi.org/10.1371/journal.pone.0271548.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "116805959",
+  "subject": [],
+  "title": "Argive Plain",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plain"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Adjacent to the Argolic Gulf and roughly centered on the ancient city of Argos, this alluvial plain covers some 250 square kilometers and is considered one of two major components of the ancient Argolis/Argolid region.",
+  "reprPoint": [
+    22.717066351632504,
+    37.59270698394078
+  ],
+  "placeTypes": [
+    "plain"
+  ],
+  "bbox": [
+    22.6879977,
+    37.5836219,
+    22.746365,
+    37.5995364
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570104",
+    "https://pleiades.stoa.org/places/570103",
+    "https://pleiades.stoa.org/places/570106",
+    "https://pleiades.stoa.org/places/570233",
+    "https://pleiades.stoa.org/places/570313",
+    "https://pleiades.stoa.org/places/570424",
+    "https://pleiades.stoa.org/places/570740",
+    "https://pleiades.stoa.org/places/570501"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-08-01T20:25:06Z",
+  "uri": "https://pleiades.stoa.org/places/116805959",
+  "creators": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2022-08-02T04:04:31Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-01T21:07:41Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-01T21:07:33Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-01T21:07:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-01T20:44:58Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-01T20:25:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2022-08-01T20:25:06Z"
+    }
+  ]
+}

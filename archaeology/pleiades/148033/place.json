@@ -1,0 +1,418 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.345122,
+          43.839419
+        ]
+      },
+      "type": "Feature",
+      "id": "imagery-location-of-roman-quarry",
+      "properties": {
+        "snippet": "Quarry; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/148033/imagery-location-of-roman-quarry",
+        "description": "This representative point location was determined through inspection of imagery in Google Earth and Google Street View with reference to maps in Monteil 1999.",
+        "location_precision": "precise",
+        "title": "Imagery Location of Roman Quarry"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": null,
+      "name": "DARMC"
+    },
+    {
+      "username": null,
+      "name": "R. Talbert"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "page 322 figure 278",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Monteil 1999",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TYIQIBLQ",
+          "formattedCitation": "<div class=\"csl-entry\">Monteil, Martial. <i>N\u00eemes antique et sa proche campagne: \u00e9tude de topographie urbaine et p\u00e9riurbaine (fin VIe s. av. J.-C. / VIe s. ap. J.-C.)</i>. Monographies d\u2019arch\u00e9ologie m\u00e9diterran\u00e9enne 3. Lattes: Centre de Documentation Arch\u00e9ologique R\u00e9gional, 1999.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "imagery-location-of-roman-quarry",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "end": 300,
+      "title": "Imagery Location of Roman Quarry",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "quarry"
+      ],
+      "description": "This representative point location was determined through inspection of imagery in Google Earth and Google Street View with reference to maps in Monteil 1999.",
+      "created": "2019-02-27T22:04:20Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.345122,
+          43.839419
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/148033/imagery-location-of-roman-quarry",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "ctype",
+          "modifiedBy": "jbecker",
+          "modified": "2021-01-28T23:06:41Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-27T22:48:08Z"
+        },
+        {
+          "comment": "added time period, added feature type",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-27T22:47:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T22:11:35Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T22:06:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T22:04:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T22:04:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T22:04:20Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2019-02-27T21:46:30Z",
+      "associationCertainty": "certain",
+      "title": "Nemausus",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/148033/nemausus",
+      "connectionType": "at",
+      "id": "nemausus",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-02-27T22:47:54Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T22:11:35Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T22:06:37Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T22:04:58Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T21:46:31Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2019-02-27T21:46:30Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/148142",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/43970336",
+      "citationDetail": "15 C2 Canteduc",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "BAtlas",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MIAGQ5C6",
+      "formattedCitation": "<div class=\"csl-entry\">Talbert, Richard J. A., ed. <i>Barrington Atlas of the Greek and Roman World</i>. Princeton, N.J.: Princeton University Press, 2000. http://www.worldcat.org/oclc/43970336.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bessac 1981",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HSFU438W",
+      "formattedCitation": "<div class=\"csl-entry\">J.-C. Bessac. \u201cLes Carri\u00e8res de N\u00eemes.\u201d <i>Dossiers, Histoire et Arch\u00e9ologie</i> 55 (1981): 59\u201367.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "page 322 figure 278",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Monteil 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TYIQIBLQ",
+      "formattedCitation": "<div class=\"csl-entry\">Monteil, Martial. <i>N\u00eemes antique et sa proche campagne: \u00e9tude de topographie urbaine et p\u00e9riurbaine (fin VIe s. av. J.-C. / VIe s. ap. J.-C.)</i>. Monographies d\u2019arch\u00e9ologie m\u00e9diterran\u00e9enne 3. Lattes: Centre de Documentation Arch\u00e9ologique R\u00e9gional, 1999.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/420603957",
+      "citationDetail": "30-31",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bedon 1984",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/8XD7BSXX",
+      "formattedCitation": "<div class=\"csl-entry\">Bedon, R. <i>Les Carri\u00e8res et Les Carriers de La Gaule Romaine</i>. Paris: Picard, 1984. http://www.worldcat.org/oclc/420603957.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://oxrep.classics.ox.ac.uk/databases/stone_quarries_database/records/3893/",
+      "citationDetail": "Canteduc (3893)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Stone Quarries Database",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/R9E44TD6",
+      "formattedCitation": "<div class=\"csl-entry\">Russell, Ben. <i>Stone Quarries Database</i>. Oxford Roman Economy Project, 2013. http://oxrep.classics.ox.ac.uk/databases/stone_quarries_database/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://darmc.harvard.edu/",
+      "citationDetail": "7248",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "DARMC",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/9UD9W75C",
+      "formattedCitation": "<div class=\"csl-entry\">Michael McCormick, Giovanni Zambotti, Leland Grigoli, and Kelly Gibson, eds. <i>The Digital Atlas of Roman and Medieval Civilizations</i>. Cambridge (Massachusetts): Harvard University, 2007. https://darmc.harvard.edu/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "148033",
+  "subject": [
+    "dare:major=0",
+    "dare:ancient=0",
+    "dare:feature=mine",
+    "limestone"
+  ],
+  "title": "Canteduc Roman Quarry",
+  "provenance": "Barrington Atlas: BAtlas 15 C2 Canteduc",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/quarry"
+  ],
+  "details": "<p>The Barrington Atlas Directory notes: Canteduc</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A limestone quarry at N\u00eemes that is often referred to by the name of the hill into which it was cut. It is located just west of the Temple of Diana and north of the terminus of the Rue de la C\u00e0rriere Romaine. Modern structures have been built in and around the quarry and access is gated, but some of the excavated cliff faces are still visible from the terminus of the Rue du Rempart Romain.",
+  "reprPoint": [
+    4.345122,
+    43.839419
+  ],
+  "placeTypes": [
+    "quarry"
+  ],
+  "bbox": [
+    4.345122,
+    43.839419,
+    4.345122,
+    43.839419
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/148142"
+  ],
+  "rights": "Copyright \u00a9 The Creators. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-02-27T21:18:29Z",
+  "uri": "https://pleiades.stoa.org/places/148033",
+  "creators": [
+    {
+      "username": null,
+      "name": "S. Loseby"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "ctype",
+      "modifiedBy": "jbecker",
+      "modified": "2021-01-28T23:06:18Z"
+    },
+    {
+      "comment": "DARMC 7248",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-27T22:52:26Z"
+    },
+    {
+      "comment": "check in of working copy with improved summary, references, and new location",
+      "modifiedBy": "jbecker",
+      "modified": "2019-02-27T22:47:38Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "thomase",
+      "modified": "2019-02-27T21:18:27Z"
+    },
+    {
+      "comment": "Location updates and tags from Johan Ahlfeldt's (jahlfeldt) Digital Atlas of the Roman Empire in October 2012",
+      "modifiedBy": "sgillies",
+      "modified": "2012-10-20T19:19:29Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T02:29:35Z"
+    },
+    {
+      "comment": "Global migration and reindexing of citations and provenance, February 2012",
+      "modifiedBy": "admin",
+      "modified": "2012-02-15T00:07:32Z"
+    },
+    {
+      "comment": "New locations, coordinates, and metadata from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-04T22:27:46Z"
+    },
+    {
+      "comment": "Mined or quarried materials from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-01T22:28:14Z"
+    },
+    {
+      "comment": "Mined or quarried materials from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-01T22:21:50Z"
+    },
+    {
+      "comment": "Mined or quarried materials from Harvard's DARMC project. See http://atlantides.org/trac/pleiades/wiki/PlaceUpgradesAndMigrations",
+      "modifiedBy": "sgillies",
+      "modified": "2011-03-01T22:15:49Z"
+    },
+    {
+      "comment": "Detail text updated from former modernLocation. See http://atlantides.org/trac/pleiades/wiki/PlaceDetailsUpgrade",
+      "modifiedBy": "sgillies",
+      "modified": "2011-01-14T18:58:12Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2010-05-19T02:19:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-01T21:02:54Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "sgillies",
+      "modified": "2009-11-01T16:50:52Z"
+    }
+  ]
+}

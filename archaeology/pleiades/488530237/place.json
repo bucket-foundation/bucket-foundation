@@ -1,0 +1,254 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.564085,
+          46.077878
+        ]
+      },
+      "type": "Feature",
+      "id": "google-earth-location-of-the-northern-necropolis-at-apulum",
+      "properties": {
+        "snippet": "Cemetery; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/488530237/google-earth-location-of-the-northern-necropolis-at-apulum",
+        "description": "Point locating the approximate centerpoint of the northern necropolis at Apulum, from Google Earth imagery after Bounegru 2017.",
+        "location_precision": "precise",
+        "title": "Google Earth location of the northern necropolis at Apulum"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1106119808",
+          "citationDetail": "pages 163-164",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Bounegru 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B9LIHHGY",
+          "formattedCitation": "<div class=\"csl-entry\">Bounegru, George Valentin. <i>The northern necropolis of Apulum \u201cAmbulance Station\u201d 1981-1985 = Necropola nordica de la Apulum \u201cStatia de salvare\u201d 1981-1985</i>. Cluj-Napoca: Editura Mega, 2017. http://www.worldcat.org/oclc/1106119808.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "google-earth-location-of-the-northern-necropolis-at-apulum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": 300,
+      "title": "Google Earth location of the northern necropolis at Apulum",
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 5.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/google-earth-2016ff",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point locating the approximate centerpoint of the northern necropolis at Apulum, from Google Earth imagery after Bounegru 2017.",
+      "created": "2021-11-10T19:58:38Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.564085,
+          46.077878
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/488530237/google-earth-location-of-the-northern-necropolis-at-apulum",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-11T00:41:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-10T19:59:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-10T19:58:39Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-10T19:58:38Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2021-11-10T19:59:14Z",
+      "associationCertainty": "certain",
+      "title": "Apulum",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/488530237/apulum",
+      "connectionType": "at",
+      "id": "apulum",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-11-11T00:41:25Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-10T19:59:22Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-10T19:59:14Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2021-11-10T19:59:14Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/206927",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1106119808",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Bounegru 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/B9LIHHGY",
+      "formattedCitation": "<div class=\"csl-entry\">Bounegru, George Valentin. <i>The northern necropolis of Apulum \u201cAmbulance Station\u201d 1981-1985 = Necropola nordica de la Apulum \u201cStatia de salvare\u201d 1981-1985</i>. Cluj-Napoca: Editura Mega, 2017. http://www.worldcat.org/oclc/1106119808.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "488530237",
+  "subject": [],
+  "title": "Northern necropolis at Apulum",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Cemetery site near the town of Apulum containing over a thousand burials dated to the late 1st-mid-3rd century CE.",
+  "reprPoint": [
+    23.564085,
+    46.077878
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    23.564085,
+    46.077878,
+    23.564085,
+    46.077878
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/206927"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-11-10T19:56:27Z",
+  "uri": "https://pleiades.stoa.org/places/488530237",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-11-11T00:41:25Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2021-11-10T19:59:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2021-11-10T19:58:50Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2021-11-10T19:56:28Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2021-11-10T19:56:27Z"
+    }
+  ]
+}

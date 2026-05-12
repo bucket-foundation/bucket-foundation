@@ -1,0 +1,689 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.8940678,
+          40.3209913
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-reccopolis",
+      "properties": {
+        "snippet": "Settlement, ; AD 300 - AD 640",
+        "link": "https://pleiades.stoa.org/places/668575405/osm-location-of-reccopolis",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Reccopolis"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/node/3238091527",
+          "citationDetail": "Node 3238091527",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3238091527",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-reccopolis",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 640,
+      "title": "OSM location of Reccopolis",
+      "provenance": "OpenStreetMap (Node 3238091527, version 8, osm:changeset=114007734, 2021-11-19T20:41:39Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2015-08-09T16:24:36Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.8940678,
+          40.3209913
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/668575405/osm-location-of-reccopolis",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-29T23:37:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-09T16:25:19Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-09T16:25:13Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-09T16:25:07Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-09T16:24:42Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-09T16:24:39Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2017-06-16T08:46:28Z",
+      "associationCertainty": "certain",
+      "title": "Celtiberia",
+      "start": 300,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/668575405/celtiberia",
+      "connectionType": "part_of_regional",
+      "id": "celtiberia",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "change cnxn type to regional",
+          "modifiedBy": "jbecker",
+          "modified": "2019-06-13T13:48:23Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-16T12:10:56Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-16T12:10:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jmartinez",
+          "modified": "2017-06-16T08:47:43Z"
+        },
+        {
+          "comment": "Reccopolis was capital of Visigothic celtiberia",
+          "modifiedBy": "jmartinez",
+          "modified": "2017-06-16T08:46:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jmartinez",
+          "modified": "2017-06-16T08:46:28Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/246322",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Reccopolis",
+          "citationDetail": "Reccopolis",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Reccopolis.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jmartinez",
+          "homepage": null,
+          "name": "Javier Mart\u00ednez Jim\u00e9nez",
+          "uri": "https://pleiades.stoa.org/author/jmartinez"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "created": "2017-06-16T08:46:55Z",
+      "associationCertainty": "certain",
+      "title": "Tagus (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/668575405/tagus-river",
+      "connectionType": "on",
+      "id": "tagus-river",
+      "attestations": [],
+      "history": [
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-16T12:11:26Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-16T12:10:08Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jmartinez",
+          "modified": "2017-06-16T08:47:07Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jmartinez",
+          "modified": "2017-06-16T08:46:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jmartinez",
+          "modified": "2017-06-16T08:46:55Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256463",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jmartinez",
+          "homepage": null,
+          "name": "Javier Mart\u00ednez Jim\u00e9nez",
+          "uri": "https://pleiades.stoa.org/author/jmartinez"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Reccopolis",
+      "citationDetail": "Reccopolis",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Reccopolis.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://onlinelibrary.wiley.com/doi/10.1111/ojoa.12060/abstract",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Mart\u00ednez Jim\u00e9nez 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/359J6NJC",
+      "formattedCitation": "<div class=\"csl-entry\">Mart\u00ednez Jim\u00e9nez, Javier. \u201cA Preliminary Study of the Aqueduct of Reccopolis.\u201d <i>Oxford Journal of Archaeology</i> 34, no. 3 (August 1, 2015): 301\u201320. doi:10.1111/ojoa.12060.</div>",
+      "otherIdentifier": "10.1111/ojoa.12060",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "http://www.worldcat.org/oclc/646812105",
+      "formattedCitation": "Olmo, L. 2007. \"The Royal Foundation of Rec\u00f3polis and the Urban Renewal in Iberia during the Second Half of the Sixth Century.\" In Post-Roman Towns and Trade in Europe and Byzantium, edited by J. Henning, I, 181-199. Berlin.",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/618229571",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Olmo Enciso et al. 2008",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/86QPACIH",
+      "formattedCitation": "<div class=\"csl-entry\">Olmo Enciso, Lauro, Lorenzo Abad Casal, Amaya G\u00f3mez de la Torre-Verdejo, and Juan L Bonor. <i>Rec\u00f3polis y la ciudad en la \u00e9poca visigoda</i>. Alcal\u00e1 de Hernares: Museo Arqueol\u00f3gico Regional, 2008. http://www.worldcat.org/oclc/618229571.</div>",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.recopolis.com/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Parque Arqueol\u00f3gico de Rec\u00f3polis",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/place/38529",
+      "citationDetail": "GEO ID 38529: Reccopolis (Zorita de los Canes)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/antiquity/article/reccopolis-revealed-the-first-geomagnetic-mapping-of-the-early-medieval-visigothic-royal-town/77961BE80B56E7F85F06F516B0E8C4C9",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Henning 2019",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/LBV9497G",
+      "formattedCitation": "<div class=\"csl-entry\">Henning, Joachim, Michael McCormick, Lauro Olmo Enciso, Knut Rassmann, and Eyub Fikrit Eyub. \u201cReccopolis Revealed: The First Geomagnetic Mapping of the Early Medieval Visigothic Royal Town.\u201d <i>Antiquity</i> 93, no. 369 (June 2019): 735\u201351. https://doi.org/10.15184/aqy.2019.66.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q1236430",
+      "citationDetail": "Q1236430: Reccopolis",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/journal-of-roman-archaeology/article/water-cycle-in-reccopolis/8C772E9CC616E5D7AC16B9442B1A1121",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jim\u00e9nez 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/VNZDU255",
+      "formattedCitation": "<div class=\"csl-entry\">Jim\u00e9nez, Javier Mart\u00ednez, and Joaqu\u00edn Checa Herr\u00e1iz. \u201cThe Water Cycle in Reccopolis.\u201d <i>Journal of Roman Archaeology</i> 36, no. 1 (June 2023): 157\u201385. https://doi.org/10.1017/S104775942300020X.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Rec\u00f3polis",
+      "attestations": [
+        {
+          "timePeriod": "modern",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/modern",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://es.wikipedia.org/wiki/Rec%C3%B3polis",
+          "citationDetail": "Rec\u00f3polis",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+          "shortTitle": "Wikipedia (Spanish)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/pleiades/items/itemKey/LPYQ8SZL",
+          "formattedCitation": "Wikipedia: la enciclopedia de contenido libre (2001-), Rec\u00f3polis.",
+          "otherIdentifier": " ",
+          "type": "citesAsEvidence"
+        }
+      ],
+      "id": "recopolis",
+      "end": 2100,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1700,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Spanish name for the site of Reccopolis.",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2012-11-17T15:19:28Z",
+      "uri": "https://pleiades.stoa.org/places/668575405/recopolis",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Rec\u00f3polis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-09T16:18:12Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2015-08-09T16:18:04Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2012-11-17T15:19:30Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2012-11-17T15:19:28Z"
+        }
+      ]
+    },
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Reccopolis",
+      "attestations": [
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://en.wikipedia.org/wiki/Reccopolis",
+          "citationDetail": "Reccopolis",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (English)",
+          "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+          "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Reccopolis.",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "name.2012-11-17.5911266064",
+      "end": 640,
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 300,
+      "details": "",
+      "review_state": "published",
+      "description": "Ancient Latin name.",
+      "transcriptionCompleteness": "complete",
+      "language": "la",
+      "created": "2012-11-17T15:21:07Z",
+      "uri": "https://pleiades.stoa.org/places/668575405/name.2012-11-17.5911266064",
+      "creators": [
+        {
+          "username": "jmartinez",
+          "homepage": null,
+          "name": "Javier Mart\u00ednez Jim\u00e9nez",
+          "uri": "https://pleiades.stoa.org/author/jmartinez"
+        }
+      ],
+      "attested": "Reccopolis",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-16T12:08:53Z"
+        },
+        {
+          "comment": "reference",
+          "modifiedBy": "jbecker",
+          "modified": "2017-06-16T12:08:39Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jmartinez",
+          "modified": "2017-01-10T14:08:36Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2012-11-17T15:22:02Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2012-11-17T15:21:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2012-11-17T15:21:07Z"
+        }
+      ]
+    }
+  ],
+  "id": "668575405",
+  "subject": [
+    "extant remains"
+  ],
+  "title": "Reccopolis",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/church"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Reccopolis is an urban, Visigothic, ex-novo foundation made under king Liuvigild in A.D. 578. The archaeological remains at the site include a palace complex, public area, basilica, walls, and aqueduct. The site is known today by the Spanish version of its Latin name (Rec\u00f3polis); it is located near the modern village of Zorita de los Canes in the Spanish province of Guadelajara.",
+  "reprPoint": [
+    -2.8940678,
+    40.3209913
+  ],
+  "placeTypes": [
+    "plaza",
+    "settlement",
+    "church"
+  ],
+  "bbox": [
+    -2.8940678,
+    40.3209913,
+    -2.8940678,
+    40.3209913
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/246322",
+    "https://pleiades.stoa.org/places/256463",
+    "https://pleiades.stoa.org/places/362454324"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2012-11-01T14:37:04Z",
+  "uri": "https://pleiades.stoa.org/places/668575405",
+  "creators": [
+    {
+      "username": "jmartinez",
+      "homepage": null,
+      "name": "Javier Mart\u00ednez Jim\u00e9nez",
+      "uri": "https://pleiades.stoa.org/author/jmartinez"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Jim\u00e9nez 2023",
+      "modifiedBy": "jbecker",
+      "modified": "2023-06-29T23:38:26Z"
+    },
+    {
+      "comment": "ref. updates",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-20T22:03:46Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2019-06-12T14:32:00Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2017-06-16T12:14:56Z"
+    },
+    {
+      "comment": "added references",
+      "modifiedBy": "jbecker",
+      "modified": "2017-01-10T14:23:36Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-09T16:12:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-09T16:11:54Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2015-08-09T15:57:07Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jmartinez",
+      "modified": "2013-07-24T10:46:12Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2013-06-29T16:01:14Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-17T15:23:38Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-17T15:15:13Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2012-11-17T15:12:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jmartinez",
+      "modified": "2012-11-01T14:50:49Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jmartinez",
+      "modified": "2012-11-01T14:37:05Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jmartinez",
+      "modified": "2012-11-01T14:37:04Z"
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.9401799,
+            38.6219923
+          ],
+          [
+            26.9404766,
+            38.622132
+          ],
+          [
+            26.9405701,
+            38.622132
+          ],
+          [
+            26.9411068,
+            38.6217699
+          ],
+          [
+            26.9412409,
+            38.6216905
+          ],
+          [
+            26.9410783,
+            38.6213793
+          ],
+          [
+            26.9404807,
+            38.6213094
+          ],
+          [
+            26.9401961,
+            38.6214491
+          ],
+          [
+            26.9400864,
+            38.6216683
+          ],
+          [
+            26.9400904,
+            38.6219192
+          ],
+          [
+            26.9401799,
+            38.6219923
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "panaztepe",
+      "properties": {
+        "snippet": "Settlement; 3000 BC - 700 BC",
+        "link": "https://pleiades.stoa.org/places/325069622/panaztepe",
+        "description": "Polygon representing the visible remains at Panaztepe, derived from an OpenStreetMap Way after Erkanal-\u00d6kt\u00fc 2018.",
+        "location_precision": "precise",
+        "title": "OSM location of Panaztepe"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "3rd-millennium-bc",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/3rd-millennium-bc",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "middle-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "early-iron-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-iron-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/689223310",
+          "citationDetail": "Way 689223310",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=689223310",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "plates 123-125",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Erkanal-\u00d6kt\u00fc 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/775HKH62",
+          "formattedCitation": "<div class=\"csl-entry\">Erkanal-\u00d6kt\u00fc, Arma\u011fan. <i>Panaztepe I: die Friedh\u00f6fe von Panaztepe</i>. 3 vols. T\u00fcrk Tarih Kurumu yay\u0131nlar\u0131, VI. dizi; sa. 51. Ankara: T\u00fcrk Tarih Kurumu, 2018.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "panaztepe",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -700,
+      "title": "OSM location of Panaztepe",
+      "provenance": "OpenStreetMap (Way 689223310, version 1, osm:changeset=70123705, 2019-05-10T20:21:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -3000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the visible remains at Panaztepe, derived from an OpenStreetMap Way after Erkanal-\u00d6kt\u00fc 2018.",
+      "created": "2019-05-10T20:23:03Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            26.9401799,
+            38.6219923
+          ],
+          [
+            26.9404766,
+            38.622132
+          ],
+          [
+            26.9405701,
+            38.622132
+          ],
+          [
+            26.9411068,
+            38.6217699
+          ],
+          [
+            26.9412409,
+            38.6216905
+          ],
+          [
+            26.9410783,
+            38.6213793
+          ],
+          [
+            26.9404807,
+            38.6213094
+          ],
+          [
+            26.9401961,
+            38.6214491
+          ],
+          [
+            26.9400864,
+            38.6216683
+          ],
+          [
+            26.9400904,
+            38.6219192
+          ],
+          [
+            26.9401799,
+            38.6219923
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/325069622/panaztepe",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-19T01:23:44Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-11T03:26:23Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T20:31:27Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T20:27:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T20:25:48Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T20:23:03Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-05-10T20:23:03Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1200,
+      "description": "",
+      "contributors": [],
+      "created": "2024-03-20T16:30:34Z",
+      "associationCertainty": "less-certain",
+      "title": "\u0160e\u1e2ba River Land",
+      "start": -1750,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/325069622/seha-river-land",
+      "connectionType": "part_of_regional",
+      "id": "seha-river-land",
+      "attestations": [
+        {
+          "timePeriod": "middle-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-anatolia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "middle-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-bronze-age-anatolia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "middle-hittite-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-hittite-anatolia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        },
+        {
+          "timePeriod": "middle-hittite-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/middle-hittite-anatolia",
+          "confidence": "less-confident-inferred",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/less-confident-inferred"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2024-03-20T18:01:44Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-20T16:33:55Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-20T16:30:42Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-20T16:30:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2024-03-20T16:30:34Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/415460394",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Erkanal-\u00d6kt\u00fc 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/775HKH62",
+      "formattedCitation": "<div class=\"csl-entry\">Erkanal-\u00d6kt\u00fc, Arma\u011fan. <i>Panaztepe I: die Friedh\u00f6fe von Panaztepe</i>. 3 vols. T\u00fcrk Tarih Kurumu yay\u0131nlar\u0131, VI. dizi; sa. 51. Ankara: T\u00fcrk Tarih Kurumu, 2018.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://luwianstudies.org/site/panaztepe/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Luwian Studies, Panaztepe",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/annual-of-the-british-school-at-athens/article/finds-from-menemenpanaztepe-in-the-manisa-museum/FE7D23062383A7F42039094804E33E94",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Finds from Menemen/Panaztepe in the Manisa Museum",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6CHP9MP6",
+      "formattedCitation": "<div class=\"csl-entry\">Ersoy, Y. E. \u201cFinds from Menemen/Panaztepe in the Manisa Museum.\u201d <i>Annual of the British School at Athens</i> 83 (November 1988): 55\u201382. https://doi.org/10.1017/S0068245400020645.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "325069622",
+  "subject": [],
+  "title": "Panaztepe",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A mound site located approximately 35 km northwest of modern Izmir, Turkey, with signs of habitation from the 3rd millennium BCE through the early Iron Age.",
+  "reprPoint": [
+    26.940623994840802,
+    38.62169070689045
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    26.9400864,
+    38.6213094,
+    26.9412409,
+    38.622132
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/415460394"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2016-10-07T16:41:43Z",
+  "uri": "https://pleiades.stoa.org/places/325069622",
+  "creators": [
+    {
+      "username": "ctiah",
+      "homepage": null,
+      "name": "Clifflena Tiah",
+      "uri": "https://pleiades.stoa.org/author/ctiah"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-11T03:26:23Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2019-05-11T03:25:48Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-10T20:31:26Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-05-10T20:30:20Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-07T16:41:44Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "ctiah",
+      "modified": "2016-10-07T16:41:43Z"
+    }
+  ]
+}

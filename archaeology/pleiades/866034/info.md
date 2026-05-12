@@ -1,0 +1,14 @@
+# Misia
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/866034
+- **ID**: 866034
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Misia
+
+## Description
+
+An ancient place, cited: BAtlas 88 unlocated Misia

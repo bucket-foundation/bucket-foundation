@@ -1,0 +1,434 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6299585,
+            42.4194343
+          ],
+          [
+            11.6303523,
+            42.4197839
+          ],
+          [
+            11.6304016,
+            42.4197396
+          ],
+          [
+            11.6304849,
+            42.4195788
+          ],
+          [
+            11.6307743,
+            42.4194314
+          ],
+          [
+            11.6306245,
+            42.4192933
+          ],
+          [
+            11.6304567,
+            42.4191572
+          ],
+          [
+            11.6303016,
+            42.4189994
+          ],
+          [
+            11.6298581,
+            42.4191268
+          ],
+          [
+            11.6300702,
+            42.4193684
+          ],
+          [
+            11.6299585,
+            42.4194343
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "location-of-mithraeum",
+      "properties": {
+        "snippet": "Sanctuary, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/570500583/location-of-mithraeum",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Mithraeum"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/97586098",
+          "citationDetail": "Way 97586098",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=97586098",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "location-of-mithraeum",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Mithraeum",
+      "provenance": "OpenStreetMap (Way 97586098, version 2, osm:changeset=7182734, 2011-02-04T12:38:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/sanctuary",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "sanctuary",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-11T15:47:38Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            11.6299585,
+            42.4194343
+          ],
+          [
+            11.6303523,
+            42.4197839
+          ],
+          [
+            11.6304016,
+            42.4197396
+          ],
+          [
+            11.6304849,
+            42.4195788
+          ],
+          [
+            11.6307743,
+            42.4194314
+          ],
+          [
+            11.6306245,
+            42.4192933
+          ],
+          [
+            11.6304567,
+            42.4191572
+          ],
+          [
+            11.6303016,
+            42.4189994
+          ],
+          [
+            11.6298581,
+            42.4191268
+          ],
+          [
+            11.6300702,
+            42.4193684
+          ],
+          [
+            11.6299585,
+            42.4194343
+          ]
+        ]
+      },
+      "locationType": [
+        "representative",
+        ""
+      ],
+      "uri": "https://pleiades.stoa.org/places/570500583/location-of-mithraeum",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-12-17T13:48:17Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-11-18T21:17:05Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-07-25T20:22:13Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-14T21:29:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-13T17:45:29Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:48:09Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:47:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-11T15:47:40Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2016-11-04T16:39:40Z",
+      "associationCertainty": "certain",
+      "title": "Vulci",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/570500583/5804147507",
+      "connectionType": "at",
+      "id": "5804147507",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:39:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:39:40Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2016-11-04T16:39:40Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/413393",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/793104554",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Moretti Sgubini 1979",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/48HREJ5K",
+      "formattedCitation": "<div class=\"csl-entry\">Moretti Sgubini, Anna Maria. \u201cNota preliminare su un mitreo scoperto a Vulci.\u201d In <i>Mysteria Mithrae: atti del seminario internazionale su \u201cla specificita\u0300 storico-religiosa dei Misteri di Mithra, con particolare riferimento alle fonti documentarie di Roma e Ostia, Roma e Ostia 28-31 Marzo 1978 = proceedings of the international seminar on the \u201dreligio-historical character of Roman Mithraism, with particular reference to Roman and Ostian sources\", Rome and Ostia 28-31 March 1978</i>, 259 \u2013 . Etudes pre\u0301liminaires aux religions orientales dans l\u2019empire romain 89. Leiden: E. J. Brill, 1979. http://www.worldcat.org/oclc/793104554.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Vulci",
+      "citationDetail": "Vulci",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/2533/items/CI6F6W7W",
+      "formattedCitation": "Wikipedia: the free encyclopedia that anyone can edit (2001-), Vulci.",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/849112126",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Moretti Sgubini 1998",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H95ZDW6Z",
+      "formattedCitation": "<div class=\"csl-entry\">Moretti Sgubini, Anna Maria. <i>L Mitreo Di Vulci\u202f: Montalto Di Castro\u202f: Palazzo Del Comune, 21 Giugno 1997-10 Gennaio 1998</i>. Viterbo, 1998. http://www.worldcat.org/oclc/849112126.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108509806",
+      "citationDetail": "Q108509806: Mithraeum at Vulci",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.mithraeum.eu/monument/20",
+      "citationDetail": "20: Mitreo di Vulci",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "NMithr",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BEPITUFQ",
+      "formattedCitation": "<div class=\"csl-entry\">Abu\u00edn L\u00f3pez, Andreu. <i>The New Mithraeum</i>. Accessed March 2, 2022. https://www.mithraeum.eu.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/16871",
+      "citationDetail": "Gruppe des stiert\u00f6tenden Mithras, Vulci",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "570500583",
+  "subject": [
+    "Mithras",
+    "Temple",
+    "extant remains"
+  ],
+  "title": "Mithraeum at Vulci",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/sanctuary"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A mithraeum was discovered at Vulci in 1975 during excavations of a Roman aristocratic house. The shrine was well preserved with two tauroctony scenes dating to the third century. The site was destroyed in the fourth century A.D.",
+  "reprPoint": [
+    11.6299585,
+    42.4194343
+  ],
+  "placeTypes": [
+    "sanctuary"
+  ],
+  "bbox": [
+    11.6299585,
+    42.4194343,
+    11.6299585,
+    42.4194343
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/413393"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-03-03T15:34:08Z",
+  "uri": "https://pleiades.stoa.org/places/570500583",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add Arachne Gruppe des stiert\u00f6tenden Mithras, Vulci",
+      "modifiedBy": "jbecker",
+      "modified": "2023-07-28T20:29:56Z"
+    },
+    {
+      "comment": "added New Mithraeum reference",
+      "modifiedBy": "jbecker",
+      "modified": "2022-03-03T16:21:45Z"
+    },
+    {
+      "comment": "wikidata Q108509806: Mithraeum at Vulci",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-11T14:47:34Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2017-12-12T03:30:45Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2016-11-18T14:35:21Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-11-18T14:34:26Z"
+    },
+    {
+      "comment": "added reference",
+      "modifiedBy": "jbecker",
+      "modified": "2016-11-18T14:28:24Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "thomase",
+      "modified": "2016-11-04T16:39:41Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "thomase",
+      "modified": "2016-11-04T16:39:39Z"
+    }
+  ]
+}

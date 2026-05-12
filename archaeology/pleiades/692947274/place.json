@@ -1,0 +1,493 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.9155999,
+            41.6426212
+          ],
+          [
+            12.9155892,
+            41.6424829
+          ],
+          [
+            12.9157555,
+            41.6424919
+          ],
+          [
+            12.9157528,
+            41.6425771
+          ],
+          [
+            12.9157072,
+            41.6425771
+          ],
+          [
+            12.9157019,
+            41.6426923
+          ],
+          [
+            12.9155999,
+            41.6426853
+          ],
+          [
+            12.9155999,
+            41.6426212
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-tempio-di-ercole",
+      "properties": {
+        "snippet": "Temple-2; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/692947274/osm-location-of-tempio-di-ercole",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Tempio di Ercole"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/440038892",
+          "citationDetail": "Way 440038892",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=440038892",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-tempio-di-ercole",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Tempio di Ercole",
+      "provenance": "OpenStreetMap (Way 440038892, version 2, osm:changeset=78167045, 2019-12-09T18:42:12Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2018-03-03T13:57:46Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.9155999,
+            41.6426212
+          ],
+          [
+            12.9155892,
+            41.6424829
+          ],
+          [
+            12.9157555,
+            41.6424919
+          ],
+          [
+            12.9157528,
+            41.6425771
+          ],
+          [
+            12.9157072,
+            41.6425771
+          ],
+          [
+            12.9157019,
+            41.6426923
+          ],
+          [
+            12.9155999,
+            41.6426853
+          ],
+          [
+            12.9155999,
+            41.6426212
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/692947274/osm-location-of-tempio-di-ercole",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-07-05T01:21:00Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T12:58:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T14:01:18Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T13:58:20Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T13:57:46Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T13:57:46Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2018-03-03T14:00:23Z",
+      "associationCertainty": "certain",
+      "title": "Cora",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/692947274/cora",
+      "connectionType": "at",
+      "id": "cora",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-03-04T12:58:10Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T14:01:18Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T14:00:29Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-03-03T14:00:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/422909",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DC%3Aentry+group%3D8%3Aentry%3Dcora",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "",
+          "bibliographicURI": "",
+          "formattedCitation": "PECS (Perseus), CORA (Cori a Valle) Latium, Italy",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://it.wikipedia.org/wiki/Templi_romani_di_Cori",
+      "citationDetail": "Templi romani di Cori",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Italian)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UMFZH98D",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: L\u2019enciclopedia libera e collaborativa</i>. Wikimedia Foundation, 2001. https://it.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/10100066",
+      "citationDetail": "262-4",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "GAL Lazio",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/77IID7PB",
+      "formattedCitation": "<div class=\"csl-entry\">Coarelli, Filippo. <i>Guide archeologiche Laterza: Lazio</i>. Bari, Rome: Laterza, 1982. http://www.worldcat.org/oclc/10100066.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Gerkan 1925",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/AA9FF5LZ",
+      "formattedCitation": "<div class=\"csl-entry\">Gerkan, Armin von. \u201cDie Kr\u00fcmmungen im Geb\u00e4lk des dorischen Tempels in Cori.\u201d In <i>Mitteilungen des Deutschen Arch\u00e4ologischen Instituts, R\u00f6mische Abteilung, 40.1925</i>, 167\u201380, 1925.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Attilj 1904",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/QRY9J3W4",
+      "formattedCitation": "<div class=\"csl-entry\">Attilj, Severino. \u201cIl Tempio d\u2019Ercole e gli altri monumenti di Cori: con accenno alle origini.\u201d In <i>Il Tempio d\u2019Ercole e gli altri monumenti di Cori (Online)</i>, 35 p., 8 l. of plates. Roma: E. Loescher, 1904.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0006%3Aalphabetic+letter%3DC%3Aentry+group%3D8%3Aentry%3Dcora",
+      "citationDetail": "CORA (Cori a Valle) Latium, Italy",
+      "citationTypeURI": "http://purl.org/spar/cito/seeAlso",
+      "shortTitle": "PECS (Perseus)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/PV9N7BQD",
+      "formattedCitation": "<div class=\"csl-entry\">Stillwell, Richard, William L MacDonald, and Marian Holland McAllister, eds. <i>The Princeton Encyclopedia of Classical Sites</i>. Princeton, N.J.: Princeton University Press, 1976. http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.04.0006.</div>",
+      "otherIdentifier": "",
+      "type": "seeAlso"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "II 29",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Delbrueck 1912",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/UZYS9LRZ",
+      "formattedCitation": "<div class=\"csl-entry\">Delbrueck, Richard. <i>Hellenistische Bauten in Latium</i>. 1. ed. Reprints di archeologia e storia dell\u2019arte 1. Perugia: Editrice Umbra Cooperativa, 1979.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/10943",
+      "citationDetail": "Tempel des Hercules Cori, Latina (Provinz)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: IDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute. Accessed February 5, 2020. https://arachne.uni-koeln.de/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/889399983",
+      "citationDetail": "77-96",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "FormIt Cora",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/Q3ARK5RN",
+      "formattedCitation": "<div class=\"csl-entry\">Vittucci, P. Brandizzi. <i>Forma Italiae: Cora (regio I, vol. 5)</i>. Forma Italiae, I, 5. Rome, 1968. http://www.worldcat.org/oclc/889399983.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.trismegistos.org/text/538974",
+      "citationDetail": "text 538974 = CIL X.1 6517",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsEvidence",
+      "shortTitle": "TM",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TN3GJAU8",
+      "formattedCitation": "<div class=\"csl-entry\">Depauw, Mark, Tom Gheldof, Herbert Verreth, Nico Dogaer, Willy Clarysse, Yanne Broux, Gert Baetens, and Heinz-Josef Thissen. <i>Trismegistos: An Interdisciplinary Portal of the Ancient World</i>. Leuven, 2006. http://www.trismegistos.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsEvidence"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "399-400",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Marroni 2012",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I6E7DIND",
+      "formattedCitation": "<div class=\"csl-entry\">Marroni, Elisa, ed. \u201cSacra Nominis Latini: i santuari del Lazio arcaico e repubblicano: atti del Convegno Internazionale, Palazzo Massimo, 19-21 febbraio 2009.\u201d In <i>Ostraka, Rivista di antichit\u00e0</i>, 2 v. Ostraka: rivista di antichit\u00e0, Volume speciale 2012. Napoli: Loffredo editore, 2012.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q102430582",
+      "citationDetail": "Q102430582: So-Called Temple of Hercules at Cori ",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "692947274",
+  "subject": [
+    "Herakles",
+    "Temple",
+    "extant remains"
+  ],
+  "title": "Temple of Herakles, Cora",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>The Christian church that eventually came to occupy the site of the temple was destroyed by means of aerial bombardment during the Second World War.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Temple of Herakles at Cora was built during the 80s B.C. The temple is tetrastyle in its plan and built following the Etrusco-Italic temple tradition.",
+  "reprPoint": [
+    12.915666339750828,
+    41.642578352370215
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    12.9155892,
+    41.6424829,
+    12.9157555,
+    41.6426923
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/422909"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-03-03T13:57:00Z",
+  "uri": "https://pleiades.stoa.org/places/692947274",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "update references",
+      "modifiedBy": "jbecker",
+      "modified": "2023-11-01T01:40:29Z"
+    },
+    {
+      "comment": "added Wikidata Q102430582: So-Called Temple of Hercules at Cori ",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-29T00:26:29Z"
+    },
+    {
+      "comment": "Marroni 2012",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-29T00:10:10Z"
+    },
+    {
+      "comment": "added Arachne 2108205: Tempel des Hercules Latina (Provinz)",
+      "modifiedBy": "jbecker",
+      "modified": "2020-11-28T20:43:06Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-04T12:58:06Z"
+    },
+    {
+      "comment": "connected pecs reference to zotero record; changed type to \"see also\"",
+      "modifiedBy": "thomase",
+      "modified": "2018-03-04T12:57:56Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T14:01:18Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T13:59:26Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T13:57:19Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-03-03T13:57:00Z"
+    }
+  ]
+}

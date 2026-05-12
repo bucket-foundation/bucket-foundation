@@ -1,0 +1,318 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.3302267,
+            37.5611787
+          ],
+          [
+            24.3302465,
+            37.5609677
+          ],
+          [
+            24.3303955,
+            37.5609764
+          ],
+          [
+            24.3303758,
+            37.5611875
+          ],
+          [
+            24.3302267,
+            37.5611787
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-karthaia-athena-temple",
+      "properties": {
+        "snippet": "Temple-2; 750 BC - 330 BC",
+        "link": "https://pleiades.stoa.org/places/372021189/osm-location-of-karthaia-athena-temple",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Karthaia, Athena Temple"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "archaic",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/archaic",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "classical",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/classical",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/1204688220",
+          "citationDetail": "Way 1204688220",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=1204688220",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "https://circe-antique.huma-num.fr/notice.php?ID_site=2424",
+          "citationDetail": "Mazarakis Ainian, A. \"Sanctuary of Athena'",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Circe:",
+          "bibliographicURI": "",
+          "formattedCitation": "",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-karthaia-athena-temple",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": -330,
+      "title": "OSM location of Karthaia, Athena Temple",
+      "provenance": "OpenStreetMap (Way 1204688220, version 2, osm:changeset=140762705, 2023-09-03T14:56:57Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -750,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "<p>An Archaic-period Doric temple sacred to Athena.</p>",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2023-09-03T14:57:21Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            24.3302267,
+            37.5611787
+          ],
+          [
+            24.3302465,
+            37.5609677
+          ],
+          [
+            24.3303955,
+            37.5609764
+          ],
+          [
+            24.3303758,
+            37.5611875
+          ],
+          [
+            24.3302267,
+            37.5611787
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/372021189/osm-location-of-karthaia-athena-temple",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2023-09-05T20:34:20Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-04T04:02:08Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-03T14:58:44Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-03T14:57:21Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-03T14:57:21Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2023-09-03T14:58:49Z",
+      "associationCertainty": "certain",
+      "title": "Karthaia",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/372021189/1297092029",
+      "connectionType": "at",
+      "id": "1297092029",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-03T14:58:49Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-03T14:58:49Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2023-09-03T14:58:49Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/570333",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://circe-antique.huma-num.fr/notice.php?ID_site=2424",
+      "citationDetail": "Mazarakis Ainian, A. \"Sanctuary of Athena'",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Circe:",
+      "bibliographicURI": "",
+      "formattedCitation": "",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/26382/",
+      "citationDetail": "26382: Karthaia, Athena Temple",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "372021189",
+  "subject": [
+    "Temple",
+    "Athena"
+  ],
+  "title": "Karthaia, Athena Temple",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "<p>An Archaic-period Doric temple sacred to Athena.</p>",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Doric-order temple, hexastyle in antis (23.20x11.10 m). The building utilizes stone from both Aegina and Paros.",
+  "reprPoint": [
+    24.330311132863784,
+    37.5610775909816
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    24.3302267,
+    37.5609677,
+    24.3303955,
+    37.5611875
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/570333"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2023-09-03T14:58:48Z",
+  "uri": "https://pleiades.stoa.org/places/372021189",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2023-09-05T20:34:20Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-04T04:02:08Z"
+    },
+    {
+      "comment": "add vici.org",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-03T15:00:49Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-03T14:59:44Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-03T14:58:50Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2023-09-03T14:58:48Z"
+    }
+  ]
+}

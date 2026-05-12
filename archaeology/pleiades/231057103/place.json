@@ -1,0 +1,268 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            62.0522128,
+            31.271335
+          ],
+          [
+            62.047077,
+            31.2688495
+          ],
+          [
+            62.0508917,
+            31.2643229
+          ],
+          [
+            62.0557546,
+            31.2670097
+          ],
+          [
+            62.0522128,
+            31.271335
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-pust-i-gau",
+      "properties": {
+        "snippet": "Fort-2; AD 250 - AD 550",
+        "link": "https://pleiades.stoa.org/places/231057103/osm-location-of-pust-i-gau",
+        "description": "Representative location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Pust-i Gau"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-antiquity-in-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antiquity-in-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/977385093",
+          "citationDetail": "Way 977385093",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=977385093",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-pust-i-gau",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 550,
+      "title": "OSM location of Pust-i Gau",
+      "provenance": "OpenStreetMap (Way 977385093, version 1, osm:changeset=110388573, 2021-08-28T17:15:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 250,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Representative location based on OpenStreetMap",
+      "created": "2021-08-28T17:17:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            62.0522128,
+            31.271335
+          ],
+          [
+            62.047077,
+            31.2688495
+          ],
+          [
+            62.0508917,
+            31.2643229
+          ],
+          [
+            62.0557546,
+            31.2670097
+          ],
+          [
+            62.0522128,
+            31.271335
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/231057103/osm-location-of-pust-i-gau",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-08-30T18:11:04Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-28T17:20:09Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-28T17:18:15Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-28T17:17:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2021-08-28T17:17:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.aiamilitarypanel.org/profiles/cptraining/afghanstart.html",
+      "citationDetail": "no. 163. Pust-i Gau",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "CENTCOM Afghanistan",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/KQP9AVP6",
+      "formattedCitation": "<div class=\"csl-entry\">CENTCOM Historical/Cultural Advisory Group. \u201cCultural Heritage Training - Afghanistan.\u201d Accessed August 2, 2017. https://www.aiamilitarypanel.org/profiles/cptraining/afghanstart.html.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q108308812",
+      "citationDetail": "Q108308812: Pust-i Gau",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "no. 824",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ball 1982",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/I5AVS237",
+      "formattedCitation": "<div class=\"csl-entry\">Ball, Warwick, and Jean Claude Gardin. <i>Archaeological Gazetteer of Afghanistan</i>. 2 vols. Synth\u00e8se (Editions Recherche Sur Les Civilisations) 8. Paris: Editions Recherche sur les civilisations, 1982.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "231057103",
+  "subject": [],
+  "title": "Pust-i Gau",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A large, multi-period site in modern Afghanistan. One of its key feature is a large, fortified enclosure with 48 towers.",
+  "reprPoint": [
+    62.05143578222548,
+    31.26787514175925
+  ],
+  "placeTypes": [
+    "fort-2"
+  ],
+  "bbox": [
+    62.047077,
+    31.2643229,
+    62.0557546,
+    31.271335
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2021-08-28T17:15:55Z",
+  "uri": "https://pleiades.stoa.org/places/231057103",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-30T18:11:04Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2021-08-30T18:11:00Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-28T17:20:09Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-28T17:19:59Z"
+    },
+    {
+      "comment": "place created",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-28T17:15:56Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2021-08-28T17:15:55Z"
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.9003143,
+            31.2009914
+          ],
+          [
+            29.899527,
+            31.2002873
+          ],
+          [
+            29.9006787,
+            31.1994589
+          ],
+          [
+            29.9008933,
+            31.1991686
+          ],
+          [
+            29.9011477,
+            31.1989906
+          ],
+          [
+            29.9019238,
+            31.199591
+          ],
+          [
+            29.9003143,
+            31.2009914
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "approximate-original-site-of-the-caesareum-at",
+      "properties": {
+        "snippet": "Temple-2; 304 BC - AD 640",
+        "link": "https://pleiades.stoa.org/places/464391493/approximate-original-site-of-the-caesareum-at",
+        "description": "Polygon representing the approximate ancient boundaries of the Caesareum, derived from an OpenStreetMap Way after Empereur 2017.",
+        "location_precision": "precise",
+        "title": "OSM location of approximate original site of the Caesareum at Alexandria"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/727880821",
+          "citationDetail": "Way 727880821",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=727880821",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1012845618",
+          "citationDetail": "page 8",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Empereur 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6TWUGWFK",
+          "formattedCitation": "<div class=\"csl-entry\">Empereur, J.-Y, ed. <i>Alexandrie, C\u00e9sar\u00e9um, les fouilles du cin\u00e9ma Majestic: la consommation c\u00e9ramique en milieu urbain \u00e0 la fin de l\u2019\u00e9poque hell\u00e9nistique</i>. Etudes alexandrines. Alexandrie: Centre d\u2019\u00e9tudes Alexandrines, 2017. http://www.worldcat.org/oclc/1012845618.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "approximate-original-site-of-the-caesareum-at",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 640,
+      "title": "OSM location of approximate original site of the Caesareum at Alexandria",
+      "provenance": "OpenStreetMap (Way 727880821, version 3, osm:changeset=95025678, 2020-11-30T07:52:15Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -304,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Polygon representing the approximate ancient boundaries of the Caesareum, derived from an OpenStreetMap Way after Empereur 2017.",
+      "created": "2019-09-24T19:38:23Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            29.9003143,
+            31.2009914
+          ],
+          [
+            29.899527,
+            31.2002873
+          ],
+          [
+            29.9006787,
+            31.1994589
+          ],
+          [
+            29.9008933,
+            31.1991686
+          ],
+          [
+            29.9011477,
+            31.1989906
+          ],
+          [
+            29.9019238,
+            31.199591
+          ],
+          [
+            29.9003143,
+            31.2009914
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/464391493/approximate-original-site-of-the-caesareum-at",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-10-26T21:01:29Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-25T18:26:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-09-24T19:44:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-09-24T19:41:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-09-24T19:38:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-09-24T19:38:23Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 640,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2019-09-24T19:43:54Z",
+      "associationCertainty": "certain",
+      "title": "Alexandria",
+      "start": -304,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/464391493/alexandria",
+      "connectionType": "at",
+      "id": "alexandria",
+      "attestations": [
+        {
+          "timePeriod": "ptolemaic-egypt",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/ptolemaic-egypt",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "late-antique",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-antique",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "comment": "changed ctype to \"at\"",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-25T18:26:49Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-09-25T18:26:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-09-24T19:44:18Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-09-24T19:43:58Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-09-24T19:43:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/727070",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1012845618",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Empereur 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/6TWUGWFK",
+      "formattedCitation": "<div class=\"csl-entry\">Empereur, J.-Y, ed. <i>Alexandrie, C\u00e9sar\u00e9um, les fouilles du cin\u00e9ma Majestic: la consommation c\u00e9ramique en milieu urbain \u00e0 la fin de l\u2019\u00e9poque hell\u00e9nistique</i>. Etudes alexandrines. Alexandrie: Centre d\u2019\u00e9tudes Alexandrines, 2017. http://www.worldcat.org/oclc/1012845618.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Caesareum_of_Alexandria",
+      "citationDetail": "Caesareum of Alexandria",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q5017025",
+      "citationDetail": "Caesareum of Alexandria (Q5017025)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "464391493",
+  "subject": [],
+  "title": "Caesareum of Alexandria",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Hellenistic temple constructed by Cleopatra VII and dedicated to Julius Caesar, and later rededicated by Augustus to himself. In 13 BCE Augustus relocated two obelisks from Heliopolis to the site. The temple was converted to a Christian church in the mid-4th century.",
+  "reprPoint": [
+    29.900727840753987,
+    31.199981971042178
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    29.899527,
+    31.1989906,
+    29.9019238,
+    31.2009914
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/727070"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-09-24T19:38:08Z",
+  "uri": "https://pleiades.stoa.org/places/464391493",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add wikidata Caesareum of Alexandria (Q5017025)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-10-26T21:02:26Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-09-25T18:26:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-09-24T19:44:17Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-09-24T19:42:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-09-24T19:38:09Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-09-24T19:38:08Z"
+    }
+  ]
+}

@@ -1,0 +1,714 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              33.2793739,
+              35.3125008
+            ],
+            [
+              33.2793233,
+              35.3127608
+            ],
+            [
+              33.2795064,
+              35.3130193
+            ],
+            [
+              33.2802895,
+              35.3129044
+            ],
+            [
+              33.2804826,
+              35.3127336
+            ],
+            [
+              33.2808284,
+              35.312832
+            ],
+            [
+              33.2811045,
+              35.3129806
+            ],
+            [
+              33.2812207,
+              35.3129529
+            ],
+            [
+              33.28132,
+              35.312815
+            ],
+            [
+              33.2814427,
+              35.3127103
+            ],
+            [
+              33.2818166,
+              35.3125846
+            ],
+            [
+              33.2817624,
+              35.312468
+            ]
+          ],
+          [
+            [
+              33.2817624,
+              35.312468
+            ],
+            [
+              33.2817953,
+              35.3123121
+            ],
+            [
+              33.2818426,
+              35.3121579
+            ],
+            [
+              33.2817953,
+              35.3118209
+            ],
+            [
+              33.2817556,
+              35.3117515
+            ],
+            [
+              33.2815892,
+              35.3116794
+            ],
+            [
+              33.2815697,
+              35.3116266
+            ]
+          ],
+          [
+            [
+              33.2814033,
+              35.3113631
+            ],
+            [
+              33.2814556,
+              35.3113939
+            ],
+            [
+              33.2816352,
+              35.3115796
+            ],
+            [
+              33.2815697,
+              35.3116266
+            ]
+          ],
+          [
+            [
+              33.2813014,
+              35.3114933
+            ],
+            [
+              33.2813589,
+              35.3114199
+            ],
+            [
+              33.2814033,
+              35.3113631
+            ]
+          ],
+          [
+            [
+              33.2813014,
+              35.3114933
+            ],
+            [
+              33.2808658,
+              35.3113971
+            ],
+            [
+              33.2808396,
+              35.3113464
+            ],
+            [
+              33.2804802,
+              35.3114274
+            ],
+            [
+              33.2803511,
+              35.3120123
+            ],
+            [
+              33.280308,
+              35.3122403
+            ],
+            [
+              33.2801743,
+              35.3123255
+            ],
+            [
+              33.2801311,
+              35.3124093
+            ],
+            [
+              33.2801517,
+              35.3124513
+            ]
+          ],
+          [
+            [
+              33.2801517,
+              35.3124513
+            ],
+            [
+              33.2798784,
+              35.3124513
+            ],
+            [
+              33.2797058,
+              35.3124881
+            ],
+            [
+              33.2795517,
+              35.3124261
+            ],
+            [
+              33.2793739,
+              35.3125008
+            ]
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "saint-hilarion-castle",
+      "properties": {
+        "snippet": "Fort-2; AD 640 - AD 1453",
+        "link": "https://pleiades.stoa.org/places/23023514/saint-hilarion-castle",
+        "description": "Polygon based on OpenStreetMap representing St. Hilarion Castle.",
+        "location_precision": "precise",
+        "title": "OSM location of St. Hilarion Castle"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/relation/2740924",
+          "citationDetail": "Relation 2740924",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:relation=2740924",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "saint-hilarion-castle",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "end": 1453,
+      "title": "OSM location of St. Hilarion Castle",
+      "provenance": "OpenStreetMap (Relation 2740924, version 4, osm:changeset=82577492, 2020-03-24T15:17:05Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 640,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/fort-2"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "fort-2"
+      ],
+      "description": "Polygon based on OpenStreetMap representing St. Hilarion Castle.",
+      "created": "2022-07-12T14:40:10Z",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              33.2793739,
+              35.3125008
+            ],
+            [
+              33.2793233,
+              35.3127608
+            ],
+            [
+              33.2795064,
+              35.3130193
+            ],
+            [
+              33.2802895,
+              35.3129044
+            ],
+            [
+              33.2804826,
+              35.3127336
+            ],
+            [
+              33.2808284,
+              35.312832
+            ],
+            [
+              33.2811045,
+              35.3129806
+            ],
+            [
+              33.2812207,
+              35.3129529
+            ],
+            [
+              33.28132,
+              35.312815
+            ],
+            [
+              33.2814427,
+              35.3127103
+            ],
+            [
+              33.2818166,
+              35.3125846
+            ],
+            [
+              33.2817624,
+              35.312468
+            ]
+          ],
+          [
+            [
+              33.2817624,
+              35.312468
+            ],
+            [
+              33.2817953,
+              35.3123121
+            ],
+            [
+              33.2818426,
+              35.3121579
+            ],
+            [
+              33.2817953,
+              35.3118209
+            ],
+            [
+              33.2817556,
+              35.3117515
+            ],
+            [
+              33.2815892,
+              35.3116794
+            ],
+            [
+              33.2815697,
+              35.3116266
+            ]
+          ],
+          [
+            [
+              33.2814033,
+              35.3113631
+            ],
+            [
+              33.2814556,
+              35.3113939
+            ],
+            [
+              33.2816352,
+              35.3115796
+            ],
+            [
+              33.2815697,
+              35.3116266
+            ]
+          ],
+          [
+            [
+              33.2813014,
+              35.3114933
+            ],
+            [
+              33.2813589,
+              35.3114199
+            ],
+            [
+              33.2814033,
+              35.3113631
+            ]
+          ],
+          [
+            [
+              33.2813014,
+              35.3114933
+            ],
+            [
+              33.2808658,
+              35.3113971
+            ],
+            [
+              33.2808396,
+              35.3113464
+            ],
+            [
+              33.2804802,
+              35.3114274
+            ],
+            [
+              33.2803511,
+              35.3120123
+            ],
+            [
+              33.280308,
+              35.3122403
+            ],
+            [
+              33.2801743,
+              35.3123255
+            ],
+            [
+              33.2801311,
+              35.3124093
+            ],
+            [
+              33.2801517,
+              35.3124513
+            ]
+          ],
+          [
+            [
+              33.2801517,
+              35.3124513
+            ],
+            [
+              33.2798784,
+              35.3124513
+            ],
+            [
+              33.2797058,
+              35.3124881
+            ],
+            [
+              33.2795517,
+              35.3124261
+            ],
+            [
+              33.2793739,
+              35.3125008
+            ]
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/23023514/saint-hilarion-castle",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-12T17:12:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:41:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:41:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:40:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:40:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 1453,
+      "description": "",
+      "contributors": [],
+      "created": "2022-07-12T14:39:54Z",
+      "associationCertainty": "certain",
+      "title": "Cyprus (island)",
+      "start": 640,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/23023514/cyprus-island",
+      "connectionType": "on",
+      "id": "cyprus-island",
+      "attestations": [
+        {
+          "timePeriod": "mediaeval-byzantine",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/mediaeval-byzantine",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-12T17:12:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:41:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:39:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:39:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707498",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/10500141",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Tmema Archaioteton 1963",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FBNAFFQW",
+          "formattedCitation": "<div class=\"csl-entry\">Cyprus, and Tmema Archaioteton. <i>A Brief History &amp; Description of St. Hilarion Castle.</i> Nicosia: Antiquities Dept. of Cyprus, 1963. http://www.worldcat.org/oclc/10500141.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/10500141",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Tmema Archaioteton 1963",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/FBNAFFQW",
+      "formattedCitation": "<div class=\"csl-entry\">Cyprus, and Tmema Archaioteton. <i>A Brief History &amp; Description of St. Hilarion Castle.</i> Nicosia: Antiquities Dept. of Cyprus, 1963. http://www.worldcat.org/oclc/10500141.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://el.wikipedia.org/w/index.php?title=\u039a\u03ac\u03c3\u03c4\u03c1\u03bf_\u03c4\u03bf\u03c5_\u0391\u03b3\u03af\u03bf\u03c5_\u0399\u03bb\u03b1\u03c1\u03af\u03c9\u03bd\u03b1&oldid=9041666",
+      "citationDetail": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03c4\u03bf\u03c5 \u0391\u03b3\u03af\u03bf\u03c5 \u0399\u03bb\u03b1\u03c1\u03af\u03c9\u03bd\u03b1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (Greek)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BUR4V79V",
+      "formattedCitation": "<div class=\"csl-entry\"><i>\u0392\u03b9\u03ba\u03b9\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1: \u03c4\u03b7\u03bd \u03b5\u03bb\u03b5\u03cd\u03b8\u03b5\u03c1\u03b7 \u03b5\u03b3\u03ba\u03c5\u03ba\u03bb\u03bf\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1 \u03c0\u03bf\u03c5 \u03b3\u03c1\u03ac\u03c6\u03bf\u03c5\u03bc\u03b5 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03bf\u03c7\u03b9\u03ba\u03ac</i>. Wikimedia Foundation, 2001. https://el.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Kastro tou Hagiou Hilariou",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://el.wikipedia.org/w/index.php?title=\u039a\u03ac\u03c3\u03c4\u03c1\u03bf_\u03c4\u03bf\u03c5_\u0391\u03b3\u03af\u03bf\u03c5_\u0399\u03bb\u03b1\u03c1\u03af\u03c9\u03bd\u03b1&oldid=9041666",
+          "citationDetail": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03c4\u03bf\u03c5 \u0391\u03b3\u03af\u03bf\u03c5 \u0399\u03bb\u03b1\u03c1\u03af\u03c9\u03bd\u03b1",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Wikipedia (Greek)",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BUR4V79V",
+          "formattedCitation": "<div class=\"csl-entry\"><i>\u0392\u03b9\u03ba\u03b9\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1: \u03c4\u03b7\u03bd \u03b5\u03bb\u03b5\u03cd\u03b8\u03b5\u03c1\u03b7 \u03b5\u03b3\u03ba\u03c5\u03ba\u03bb\u03bf\u03c0\u03b1\u03af\u03b4\u03b5\u03b9\u03b1 \u03c0\u03bf\u03c5 \u03b3\u03c1\u03ac\u03c6\u03bf\u03c5\u03bc\u03b5 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03bf\u03c7\u03b9\u03ba\u03ac</i>. Wikimedia Foundation, 2001. https://el.wikipedia.org.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "kastro-tou-hagiou-hilariou",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Greek name of the cite.",
+      "transcriptionCompleteness": "complete",
+      "language": "el",
+      "created": "2022-07-12T14:36:31Z",
+      "uri": "https://pleiades.stoa.org/places/23023514/kastro-tou-hagiou-hilariou",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "attested": "\u039a\u03ac\u03c3\u03c4\u03c1\u03bf \u03c4\u03bf\u03c5 \u0391\u03b3\u03af\u03bf\u03c5 \u0399\u03bb\u03b1\u03c1\u03af\u03c9\u03bd\u03b1",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-07-12T17:12:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:41:31Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:36:32Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-07-12T14:36:31Z"
+        }
+      ]
+    }
+  ],
+  "id": "23023514",
+  "subject": [],
+  "title": "St. Hilarion Castle",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/fort-2",
+    "https://pleiades.stoa.org/vocabularies/place-types/castle"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Byzantine castle in Cyprus likely in the late eleventh century. The site was a holiday retreat for Cyprus's Frankish rulers, and the Venetians destroyed it in the fourteenth century.",
+  "reprPoint": [
+    33.28067880621405,
+    35.31229266153108
+  ],
+  "placeTypes": [
+    "fort-2",
+    "castle"
+  ],
+  "bbox": [
+    33.2793233,
+    35.3113464,
+    33.2818426,
+    35.3130193
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707498"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-07-12T14:34:44Z",
+  "uri": "https://pleiades.stoa.org/places/23023514",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-12T17:12:32Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "thomase",
+      "modified": "2022-07-12T17:12:22Z"
+    },
+    {
+      "comment": "update summary",
+      "modifiedBy": "jbecker",
+      "modified": "2022-07-12T15:45:55Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-12T14:41:31Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-12T14:34:46Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-07-12T14:34:44Z"
+    }
+  ]
+}

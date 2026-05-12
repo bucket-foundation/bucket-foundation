@@ -1,0 +1,324 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -9.0256615,
+            39.5755135
+          ],
+          [
+            -9.0253718,
+            39.5750876
+          ],
+          [
+            -9.0253468,
+            39.5750595
+          ],
+          [
+            -9.0249213,
+            39.5749296
+          ],
+          [
+            -9.0245527,
+            39.574817
+          ],
+          [
+            -9.0243363,
+            39.5750544
+          ],
+          [
+            -9.0244182,
+            39.5752625
+          ],
+          [
+            -9.0244877,
+            39.575425
+          ],
+          [
+            -9.024728,
+            39.575406
+          ],
+          [
+            -9.0247976,
+            39.5754492
+          ],
+          [
+            -9.0248732,
+            39.5755011
+          ],
+          [
+            -9.024946,
+            39.5755683
+          ],
+          [
+            -9.0251031,
+            39.5757337
+          ],
+          [
+            -9.0256615,
+            39.5755135
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location",
+      "properties": {
+        "snippet": "Settlement, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/416019001/osm-location",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Esta\u00e7\u00e3o Arqueol\u00f3gica de Parreitas"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/249142187",
+          "citationDetail": "Way 249142187",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=249142187",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Esta\u00e7\u00e3o Arqueol\u00f3gica de Parreitas",
+      "provenance": "OpenStreetMap (Way 249142187, version 9, osm:changeset=154161714, 2024-07-19T23:06:07Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement",
+        ""
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2014-05-03T18:30:01Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -9.0256615,
+            39.5755135
+          ],
+          [
+            -9.0253718,
+            39.5750876
+          ],
+          [
+            -9.0253468,
+            39.5750595
+          ],
+          [
+            -9.0249213,
+            39.5749296
+          ],
+          [
+            -9.0245527,
+            39.574817
+          ],
+          [
+            -9.0243363,
+            39.5750544
+          ],
+          [
+            -9.0244182,
+            39.5752625
+          ],
+          [
+            -9.0244877,
+            39.575425
+          ],
+          [
+            -9.024728,
+            39.575406
+          ],
+          [
+            -9.0247976,
+            39.5754492
+          ],
+          [
+            -9.0248732,
+            39.5755011
+          ],
+          [
+            -9.024946,
+            39.5755683
+          ],
+          [
+            -9.0251031,
+            39.5757337
+          ],
+          [
+            -9.0256615,
+            39.5755135
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/416019001/osm-location",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T14:29:33Z"
+        },
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T14:28:08Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2018-07-17T19:42:28Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2016-02-07T17:26:18Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2014-07-05T02:44:26Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-03T18:30:37Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-03T18:30:05Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2014-05-03T18:30:04Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.portugalromano.com/2011/11/castro-romanizado-de-parreitas-%C2%ABvilla-romana%C2%BB-barrio-alcobaca/",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Portugal Romano, Castro Romanizado de Parreitas \u00abVilla Romana\u00bb",
+      "otherIdentifier": " ",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "416019001",
+  "subject": [],
+  "title": "Parreitas Roman villa",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A Roman village and villa.",
+  "reprPoint": [
+    -9.0256615,
+    39.5755135
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    -9.0256615,
+    39.5755135,
+    -9.0256615,
+    39.5755135
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2014-05-03T18:29:43Z",
+  "uri": "https://pleiades.stoa.org/places/416019001",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-07-17T19:42:27Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2016-02-07T17:35:27Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2014-07-05T02:44:09Z"
+    },
+    {
+      "comment": "created place",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-03T18:29:48Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2014-05-03T18:29:43Z"
+    }
+  ]
+}

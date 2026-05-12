@@ -1,0 +1,363 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.9215837,
+            34.7583191
+          ],
+          [
+            32.9217748,
+            34.7586303
+          ],
+          [
+            32.9222455,
+            34.7584529
+          ],
+          [
+            32.9221004,
+            34.7580545
+          ],
+          [
+            32.9218491,
+            34.7580633
+          ],
+          [
+            32.9217253,
+            34.7582174
+          ],
+          [
+            32.9215837,
+            34.7583191
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "paliotaverna",
+      "properties": {
+        "snippet": "Settlement; 1600 BC - 1200 BC",
+        "link": "https://pleiades.stoa.org/places/164241958/paliotaverna",
+        "description": "Polygon representing the location of the Paliotaverna site, dervied from an OpenStreetMap Way after Hadjisavvas 2017.",
+        "location_precision": "precise",
+        "title": "OSM location of Paliotaverna"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "late-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/576871086",
+          "citationDetail": "Way 576871086",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=576871086",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "pages 4-7, 129-131",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hadjisavvas 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A5UZB28Z",
+          "formattedCitation": "<div class=\"csl-entry\">Hadjisavvas, Sophocles. <i>Alassa: Excavations at the Late Bronze Age Sites of Pano Mantilaris and Paliotaverna 1984-2000</i>, 2017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "paliotaverna",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "end": -1200,
+      "title": "OSM location of Paliotaverna",
+      "provenance": "OpenStreetMap (Way 576871086, version 1, osm:changeset=57844491, 2018-04-05T18:41:35Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1600,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement"
+      ],
+      "description": "Polygon representing the location of the Paliotaverna site, dervied from an OpenStreetMap Way after Hadjisavvas 2017.",
+      "created": "2018-04-06T13:28:08Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.9215837,
+            34.7583191
+          ],
+          [
+            32.9217748,
+            34.7586303
+          ],
+          [
+            32.9222455,
+            34.7584529
+          ],
+          [
+            32.9221004,
+            34.7580545
+          ],
+          [
+            32.9218491,
+            34.7580633
+          ],
+          [
+            32.9217253,
+            34.7582174
+          ],
+          [
+            32.9215837,
+            34.7583191
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/164241958/paliotaverna",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-06T14:31:45Z"
+        },
+        {
+          "comment": "edited title",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-06T14:31:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-04-06T13:31:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-04-06T13:30:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2018-04-06T13:28:09Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-04-06T13:28:08Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": -1200,
+      "description": "",
+      "contributors": [],
+      "created": "2018-04-06T13:31:05Z",
+      "associationCertainty": "certain",
+      "title": "Cyprus (island)",
+      "start": -1600,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/164241958/cyprus-island",
+      "connectionType": "part_of_regional",
+      "id": "cyprus-island",
+      "attestations": [
+        {
+          "timePeriod": "late-bronze-age-anatolia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/late-bronze-age-anatolia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-04-06T14:31:45Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2018-04-06T13:31:27Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2018-04-06T13:31:06Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2018-04-06T13:31:05Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/707498",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Hadjisavvas 2017",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A5UZB28Z",
+          "formattedCitation": "<div class=\"csl-entry\">Hadjisavvas, Sophocles. <i>Alassa: Excavations at the Late Bronze Age Sites of Pano Mantilaris and Paliotaverna 1984-2000</i>, 2017.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/part_of_regional"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hadjisavvas 2017",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A5UZB28Z",
+      "formattedCitation": "<div class=\"csl-entry\">Hadjisavvas, Sophocles. <i>Alassa: Excavations at the Late Bronze Age Sites of Pano Mantilaris and Paliotaverna 1984-2000</i>, 2017.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://en.wikipedia.org/wiki/Alassa",
+      "citationDetail": "Alassa",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikipedia (English)",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CI6F6W7W",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikipedia: The Free Encyclopedia That Anyone Can Edit</i>. Wikimedia Foundation, 2001. https://en.wikipedia.org.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "164241958",
+  "subject": [],
+  "title": "Paliotaverna",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Site of a late Bronze Age settlement near the modern village of Alassa, southern Cyprus.",
+  "reprPoint": [
+    32.921923084302136,
+    34.75833548551084
+  ],
+  "placeTypes": [
+    "settlement"
+  ],
+  "bbox": [
+    32.9215837,
+    34.7580545,
+    32.9222455,
+    34.7586303
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/707498"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-04-06T13:27:48Z",
+  "uri": "https://pleiades.stoa.org/places/164241958",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-06T14:31:45Z"
+    },
+    {
+      "comment": "wikipedia reference --> zotero fetch",
+      "modifiedBy": "jbecker",
+      "modified": "2018-04-06T14:15:42Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2018-04-06T13:31:26Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2018-04-06T13:27:49Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2018-04-06T13:27:48Z"
+    }
+  ]
+}

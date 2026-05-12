@@ -1,0 +1,401 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3611888,
+            43.8372705
+          ],
+          [
+            10.3612599,
+            43.8372083
+          ],
+          [
+            10.3613779,
+            43.8371696
+          ],
+          [
+            10.3614082,
+            43.8371774
+          ],
+          [
+            10.3615209,
+            43.8370923
+          ],
+          [
+            10.3615906,
+            43.8370439
+          ],
+          [
+            10.3613975,
+            43.836895
+          ],
+          [
+            10.3612178,
+            43.8369956
+          ],
+          [
+            10.3612473,
+            43.8370362
+          ],
+          [
+            10.3611507,
+            43.8370981
+          ],
+          [
+            10.3611293,
+            43.8371561
+          ],
+          [
+            10.3612116,
+            43.8371367
+          ],
+          [
+            10.3611722,
+            43.8372413
+          ],
+          [
+            10.3611888,
+            43.8372705
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-villa-dei-venulei-terme-romane",
+      "properties": {
+        "snippet": "Bath; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/181167413/osm-location-of-villa-dei-venulei-terme-romane",
+        "description": "Representative location based on OpenStreetMap.",
+        "location_precision": "precise",
+        "title": "OSM location of Villa dei Venulei - Terme Romane"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/184807140",
+          "citationDetail": "Way 184807140",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=184807140",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-villa-dei-venulei-terme-romane",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 300,
+      "title": "OSM location of Villa dei Venulei - Terme Romane",
+      "provenance": "OpenStreetMap (Way 184807140, version 7, osm:changeset=63274226, 2018-10-07T09:46:31Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "bath"
+      ],
+      "description": "Representative location based on OpenStreetMap.",
+      "created": "2019-05-19T21:01:27Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            10.3611888,
+            43.8372705
+          ],
+          [
+            10.3612599,
+            43.8372083
+          ],
+          [
+            10.3613779,
+            43.8371696
+          ],
+          [
+            10.3614082,
+            43.8371774
+          ],
+          [
+            10.3615209,
+            43.8370923
+          ],
+          [
+            10.3615906,
+            43.8370439
+          ],
+          [
+            10.3613975,
+            43.836895
+          ],
+          [
+            10.3612178,
+            43.8369956
+          ],
+          [
+            10.3612473,
+            43.8370362
+          ],
+          [
+            10.3611507,
+            43.8370981
+          ],
+          [
+            10.3611293,
+            43.8371561
+          ],
+          [
+            10.3612116,
+            43.8371367
+          ],
+          [
+            10.3611722,
+            43.8372413
+          ],
+          [
+            10.3611888,
+            43.8372705
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/181167413/osm-location-of-villa-dei-venulei-terme-romane",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-06-29T13:26:06Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2021-06-20T03:15:38Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "thomase",
+          "modified": "2020-03-26T14:48:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T21:02:12Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T21:02:04Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T21:01:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2019-05-19T21:01:27Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2020-03-20T19:17:24Z",
+      "associationCertainty": "certain",
+      "title": "Massaciuccoli",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/181167413/8448511892",
+      "connectionType": "at",
+      "id": "8448511892",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-20T19:17:24Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-20T19:17:24Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-03-20T19:17:24Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/403241",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.beniculturali.it/mibac/export/MiBAC/sito-MiBAC/Contenuti/MibacUnif/Eventi/visualizza_asset.html_1644230063.html",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "",
+      "bibliographicURI": "",
+      "formattedCitation": "Visite guidate alla villa romana dei Venulei",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Ciampoltrini 1994",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L4TN5397",
+      "formattedCitation": "<div class=\"csl-entry\">Ciampoltrini, G. \u201cGli ozi dei Venulei. Considerazioni sulle Terme di Massaciuccoli.\u201d In <i>Prospettiva. Rivista di storia dell\u2019arte antica e moderna, 73.1994</i>, 119\u201330, Abb, 1994.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q3984401",
+      "citationDetail": "Baths of Massaciuccoli (Q3984401)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [],
+  "id": "181167413",
+  "subject": [],
+  "title": "Villa dei Venulei - Terme Romane",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A first-century A.D. Roman villa and bath complex located in Etruria.",
+  "reprPoint": [
+    10.36132895543571,
+    43.837083963278545
+  ],
+  "placeTypes": [
+    "bath"
+  ],
+  "bbox": [
+    10.3611293,
+    43.836895,
+    10.3615906,
+    43.8372705
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/403241"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-03-20T19:17:24Z",
+  "uri": "https://pleiades.stoa.org/places/181167413",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "wikidata Baths of Massaciuccoli (Q3984401)",
+      "modifiedBy": "jbecker",
+      "modified": "2024-11-18T15:12:32Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-06-29T13:26:06Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2021-06-20T03:15:37Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "thomase",
+      "modified": "2020-03-26T14:48:52Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-20T19:19:44Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-20T19:19:38Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-20T19:17:25Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-03-20T19:17:24Z"
+    }
+  ]
+}

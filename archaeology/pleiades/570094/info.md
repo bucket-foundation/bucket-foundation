@@ -1,0 +1,14 @@
+# Aphrodision (mountain)
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/570094
+- **ID**: 570094
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Ἀφροδίσιον
+
+## Description
+
+Aphrodision.

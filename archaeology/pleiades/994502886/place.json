@@ -1,0 +1,436 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.2151731,
+            36.4431812
+          ],
+          [
+            28.2151814,
+            36.4428172
+          ],
+          [
+            28.2152018,
+            36.4427862
+          ],
+          [
+            28.2152331,
+            36.4427726
+          ],
+          [
+            28.2156207,
+            36.4427736
+          ],
+          [
+            28.2156893,
+            36.4432219
+          ],
+          [
+            28.2151731,
+            36.4431812
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "hellenistischer-palastbau",
+      "properties": {
+        "snippet": "Architecturalcomplex, Bath; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/994502886/hellenistischer-palastbau",
+        "description": "Polygon representing the location of the Palatial House site, derived from an OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM location of Hellenistischer Palastbau"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "sgillies",
+      "homepage": null,
+      "name": "Sean Gillies",
+      "uri": "https://pleiades.stoa.org/author/sgillies"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        },
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/355567971",
+          "citationDetail": "Way 355567971",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BA93AHVQ",
+          "formattedCitation": "<div class=\"csl-entry\"><i>OpenStreetMap</i>. OpenStreetMap Foundation, 2004. http://www.openstreetmap.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "hellenistischer-palastbau",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "end": 300,
+      "title": "OSM location of Hellenistischer Palastbau",
+      "provenance": "OpenStreetMap (Way 355567971, version 2, osm:changeset=53560979, 2017-11-06T17:43:19Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+        "https://pleiades.stoa.org/vocabularies/place-types/bath"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "architecturalcomplex",
+        "bath"
+      ],
+      "description": "Polygon representing the location of the Palatial House site, derived from an OpenStreetMap way.",
+      "created": "2025-11-25T16:50:15Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            28.2151731,
+            36.4431812
+          ],
+          [
+            28.2151814,
+            36.4428172
+          ],
+          [
+            28.2152018,
+            36.4427862
+          ],
+          [
+            28.2152331,
+            36.4427726
+          ],
+          [
+            28.2156207,
+            36.4427736
+          ],
+          [
+            28.2156893,
+            36.4432219
+          ],
+          [
+            28.2151731,
+            36.4431812
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/994502886/hellenistischer-palastbau",
+      "creators": [
+        {
+          "username": "alguan",
+          "homepage": null,
+          "name": "Annette Lei Guan",
+          "uri": "https://pleiades.stoa.org/author/alguan"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "cleaned up references and connected them to Zotero library by @thomase",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:50:16Z"
+        },
+        {
+          "comment": "Baseline created",
+          "modifiedBy": "admin",
+          "modified": "2025-11-25T16:50:15Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-07T14:20:11Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-07T14:19:52Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-02T23:50:51Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-02T23:50:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-02T23:50:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-22T20:30:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-22T20:29:16Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-22T20:26:13Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-22T20:26:13Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-12-22T20:30:23Z",
+      "associationCertainty": "certain",
+      "title": "Rhodos (island)",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/994502886/rhodos-island",
+      "connectionType": "at",
+      "id": "rhodos-island",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-07T14:20:11Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-02T23:50:51Z"
+        },
+        {
+          "action": "Retract",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-02T23:50:45Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2021-02-02T23:50:17Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-22T20:30:43Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-22T20:30:23Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "alguan",
+          "modified": "2020-12-22T20:30:23Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/590031",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "alguan",
+          "homepage": null,
+          "name": "Annette Lei Guan",
+          "uri": "https://pleiades.stoa.org/author/alguan"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1068649655",
+      "citationDetail": "page 183, figure 1",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Dreliossi-Herakleidou 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/H5JNR383",
+      "formattedCitation": "<div class=\"csl-entry\">Dreliossi-Herakleidou, Anastasia. \u201cSp\u00e4thellenistische palastartige Geb\u00e4ude in der N\u00e4he der Akropolis von Rhodos.\u201d In <i>Basileia. Die Pal\u00e4ste der hellenistischen K\u00f6nige</i>, 183. Schriften des Seminars f\u00fcr Klassische Arch\u00e4ologie der Freien Universit\u00e4t Berlin. Mainz am Rhein von Zabern, 1996. http://www.worldcat.org/oclc/1068649655.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "994502886",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "Palatial House at Rhodes",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/bath"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A building at the foot of the Acropolis at Rhodes that occupied an entire insula and contained luxurious reception rooms and a large bath suite",
+  "reprPoint": [
+    28.21542628578937,
+    36.443000121069176
+  ],
+  "placeTypes": [
+    "architecturalcomplex",
+    "bath"
+  ],
+  "bbox": [
+    28.2151731,
+    36.4427726,
+    28.2156893,
+    36.4432219
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/590031"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2025-11-25T16:48:15Z",
+  "uri": "https://pleiades.stoa.org/places/994502886",
+  "creators": [
+    {
+      "username": "alguan",
+      "homepage": null,
+      "name": "Annette Lei Guan",
+      "uri": "https://pleiades.stoa.org/author/alguan"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "cleaned up references and connected them to Zotero library by @thomase",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:48:16Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "admin",
+      "modified": "2025-11-25T16:48:14Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-07T14:20:11Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-07T14:20:05Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-02T23:50:51Z"
+    },
+    {
+      "action": "Retract",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-02T23:50:45Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2021-02-02T23:50:17Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-22T20:30:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-22T20:29:35Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-22T20:25:23Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "alguan",
+      "modified": "2020-12-22T20:25:22Z"
+    }
+  ]
+}

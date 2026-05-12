@@ -1,0 +1,14 @@
+# Okondianoi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/614782
+- **ID**: 614782
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Okondianoi
+
+## Description
+
+An ancient place, cited: BAtlas 62 unlocated Okondianoi

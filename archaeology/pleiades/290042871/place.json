@@ -1,0 +1,333 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.5176128,
+            37.6773358
+          ],
+          [
+            30.5180928,
+            37.6774931
+          ],
+          [
+            30.5183797,
+            37.6769136
+          ],
+          [
+            30.5181437,
+            37.6768457
+          ],
+          [
+            30.5179452,
+            37.6768138
+          ],
+          [
+            30.5177949,
+            37.6768425
+          ],
+          [
+            30.5176128,
+            37.6773358
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-upper-agora",
+      "properties": {
+        "snippet": "Plaza, ; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/290042871/osm-location-of-upper-agora",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of Upper Agora"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.openstreetmap.org/browse/way/211483634",
+          "citationDetail": "Way 211483634",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=211483634",
+          "otherIdentifier": " ",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-upper-agora",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "end": 300,
+      "title": "OSM location of Upper Agora",
+      "provenance": "OpenStreetMap (Way 211483634, version 4, osm:changeset=148604572, 2024-03-13T17:17:16Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/plaza",
+        "https://pleiades.stoa.org/vocabularies/place-types/"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "plaza",
+        ""
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2013-07-31T16:39:25Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            30.5176128,
+            37.6773358
+          ],
+          [
+            30.5180928,
+            37.6774931
+          ],
+          [
+            30.5183797,
+            37.6769136
+          ],
+          [
+            30.5181437,
+            37.6768457
+          ],
+          [
+            30.5179452,
+            37.6768138
+          ],
+          [
+            30.5177949,
+            37.6768425
+          ],
+          [
+            30.5176128,
+            37.6773358
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/290042871/osm-location-of-upper-agora",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full way geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2024-12-22T21:03:40Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T17:00:14Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:59:44Z"
+        },
+        {
+          "comment": "added location",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:40:05Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:39:27Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2013-07-31T16:39:26Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [],
+      "created": "2018-08-07T13:35:08Z",
+      "associationCertainty": "certain",
+      "title": "Sagalassos",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/290042871/9087013770",
+      "connectionType": "at",
+      "id": "9087013770",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:35:09Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:35:08Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2018-08-07T13:35:08Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/639087",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Talloen 2016",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/RFX4A657",
+      "formattedCitation": "<div class=\"csl-entry\">Talloen, Peter, M\u00fccella Albayrak, and J. Poblome. \u201cSagalassos Yukar\u0131 Agora\u2019da 2015 Y\u0131l\u0131 Kontrol Kaz\u0131lar\u0131=The 2015 Control Excavations on the Upper Agora of Sagalassos.\u201d In <i>Anadolu Akdenizi Arkeoloji Haberleri, 14 (2016)</i>, 109\u201318. Antalya: Suna-\u0130nan K\u0131ra\u00e7 Akdeniz Medeniyetleri Ara\u015ft\u0131rma Enstit\u00fcs\u00fc, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Vandeput 1997",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/EA7BZNS4",
+      "formattedCitation": "<div class=\"csl-entry\">Vandeput, Lutgarde. \u201cAn Antonine Nymphaeum to the North of the Upper Agora at Sagalassos.\u201d In <i>Sagalassos\u202f: 4. Report on the Survey and Excavation Campaigns of 1994 and 1995</i>, 385\u2013403. Leuven: Leuven University Press, 1997.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Talloen 2016a",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/A74T64TY",
+      "formattedCitation": "<div class=\"csl-entry\">Talloen, Peter, and J. Poblome. \u201cThe 2014 and 2015 Control Excavations on and Around the Upper Agora of Sagalassos: The Structural Remains and General Phasing.\u201d In <i>Anatolica\u202f: Annuaire International Pour Les Civilisations de l\u2019Asie Ant\u00e9rieure, 42 (2016)</i>, 111\u201350. Leiden: Nederlands Instituut voor het Nabije Oosten, 2016.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [],
+  "id": "290042871",
+  "subject": [],
+  "title": "Upper Agora",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/plaza"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Upper Agora at Sagalassos is in use from the Hellenistic period onward.",
+  "reprPoint": [
+    30.5176234,
+    37.6773148
+  ],
+  "placeTypes": [
+    "plaza"
+  ],
+  "bbox": [
+    30.5176234,
+    37.6773148,
+    30.5176234,
+    37.6773148
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/639087"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2018-08-07T13:35:07Z",
+  "uri": "https://pleiades.stoa.org/places/290042871",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2018-08-20T19:14:22Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-18T12:49:57Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-18T12:49:36Z"
+    },
+    {
+      "comment": "title",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:35:24Z"
+    },
+    {
+      "comment": "Migrated from location",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:35:10Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2018-08-07T13:35:07Z"
+    }
+  ]
+}

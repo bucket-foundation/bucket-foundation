@@ -1,0 +1,14 @@
+# Artisiga/Artisica/Gypsaria
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/289925
+- **ID**: 289925
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Artisiga, Artisica, Gypsaria
+
+## Description
+
+An ancient place, cited: BAtlas 29 unlocated Artisiga/Artisica/Gypsaria

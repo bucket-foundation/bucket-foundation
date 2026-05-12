@@ -1,0 +1,317 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1541008,
+          55.5536032
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-mogilnik-ashpyl",
+      "properties": {
+        "snippet": "Cemetery; 1000 BC - 100 BC",
+        "link": "https://pleiades.stoa.org/places/253102125/osm-location-of-mogilnik-ashpyl",
+        "description": "Point representing the approximate center point of the Mogil'nik Ashpyl site, derived from an OpenStreetMap Node after Badetskaia 2018.",
+        "location_precision": "precise",
+        "title": "OSM location of Mogil'nik Ashpyl"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "early-iron-age-iran",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/early-iron-age-iran",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "achaemenid-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/achaemenid-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "hellenistic-central-asia",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-central-asia",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/6937979666",
+          "citationDetail": "Node 6937979666",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=6937979666",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        },
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1129596646",
+          "citationDetail": "pages 173-174",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Badetskaia 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7JZPREGP",
+          "formattedCitation": "<div class=\"csl-entry\">\u0412\u0430\u0434\u0435\u0446\u043a\u0430\u044f, \u042d. \u0411, \u0410. \u0412 \u0421\u0443\u0431\u0431\u043e\u0442\u0438\u043d, \u0421. \u0412 \u041a\u0440\u0430\u0441\u043d\u0438\u0435\u043d\u043a\u043e, and \u0418\u043d\u0441\u0442\u0438\u0442\u0443\u0442 \u0438\u0441\u0442\u043e\u0440\u0438\u0438 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044c\u043d\u043e\u0439 \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u044b (\u0420\u043e\u0441\u0441\u0438\u0439\u0441\u043a\u0430\u044f \u0430\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u043d\u0430\u0443\u043a). <i>\u0410\u0448\u043f\u044b\u043b: \u043d\u0435\u043a\u0440\u043e\u043f\u043e\u043b\u044c \u0434\u0440\u0435\u0432\u043d\u0435\u0433\u043e \u043f\u043e\u0441\u0435\u043b\u0435\u043d\u0438\u044f \u041c\u0438\u043d\u0443\u0441\u0438\u043d\u0441\u043a\u043e\u0439 \u043a\u043e\u0442\u043b\u043e\u0432\u0438\u043d\u044b</i>. \u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433: \u0420\u043e\u0441\u0441\u0438\u0439\u0441\u043a\u0430\u044f \u0430\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u043d\u0430\u0443\u043a, \u0418\u043d-\u0442 \u0438\u0441\u0442\u043e\u0440\u0438\u0438 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044c\u043d\u043e\u0439 \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u044b, 2018. http://www.worldcat.org/oclc/1129596646.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "osm-location-of-mogilnik-ashpyl",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "end": -100,
+      "title": "OSM location of Mogil'nik Ashpyl",
+      "provenance": "OpenStreetMap (Node 6937979666, version 2, osm:changeset=78538332, 2019-12-17T17:16:51Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -1000,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "cemetery"
+      ],
+      "description": "Point representing the approximate center point of the Mogil'nik Ashpyl site, derived from an OpenStreetMap Node after Badetskaia 2018.",
+      "created": "2019-12-17T17:29:06Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          89.1541008,
+          55.5536032
+        ]
+      },
+      "locationType": [
+        "representative",
+        "central_point"
+      ],
+      "uri": "https://pleiades.stoa.org/places/253102125/osm-location-of-mogilnik-ashpyl",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-12-17T22:05:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-17T17:32:47Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-17T17:32:33Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-17T17:31:19Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-17T17:29:07Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-17T17:29:06Z"
+        }
+      ]
+    }
+  ],
+  "connections": [],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/1129596646",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Badetskaia 2018",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7JZPREGP",
+      "formattedCitation": "<div class=\"csl-entry\">\u0412\u0430\u0434\u0435\u0446\u043a\u0430\u044f, \u042d. \u0411, \u0410. \u0412 \u0421\u0443\u0431\u0431\u043e\u0442\u0438\u043d, \u0421. \u0412 \u041a\u0440\u0430\u0441\u043d\u0438\u0435\u043d\u043a\u043e, and \u0418\u043d\u0441\u0442\u0438\u0442\u0443\u0442 \u0438\u0441\u0442\u043e\u0440\u0438\u0438 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044c\u043d\u043e\u0439 \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u044b (\u0420\u043e\u0441\u0441\u0438\u0439\u0441\u043a\u0430\u044f \u0430\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u043d\u0430\u0443\u043a). <i>\u0410\u0448\u043f\u044b\u043b: \u043d\u0435\u043a\u0440\u043e\u043f\u043e\u043b\u044c \u0434\u0440\u0435\u0432\u043d\u0435\u0433\u043e \u043f\u043e\u0441\u0435\u043b\u0435\u043d\u0438\u044f \u041c\u0438\u043d\u0443\u0441\u0438\u043d\u0441\u043a\u043e\u0439 \u043a\u043e\u0442\u043b\u043e\u0432\u0438\u043d\u044b</i>. \u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433: \u0420\u043e\u0441\u0441\u0438\u0439\u0441\u043a\u0430\u044f \u0430\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u043d\u0430\u0443\u043a, \u0418\u043d-\u0442 \u0438\u0441\u0442\u043e\u0440\u0438\u0438 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044c\u043d\u043e\u0439 \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u044b, 2018. http://www.worldcat.org/oclc/1129596646.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/journals/radiocarbon/article/new-radiocarbon-dates-and-a-review-of-the-chronology-of-prehistoric-populations-from-the-minusinsk-basin-southern-siberia-russia/7EEB3640F2AE465182A97B587B7D84C2",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Svyatko 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HQFLTZYD",
+      "formattedCitation": "<div class=\"csl-entry\">Svyatko, Svetlana V., James P. Mallory, Eileen M. Murphy, Andrey V. Polyakov, Paula J. Reimer, and Rick J. Schulting. \u201cNew Radiocarbon Dates and a Review of the Chronology of Prehistoric Populations from the Minusinsk Basin, Southern Siberia, Russia.\u201d <i>Radiocarbon</i> 51, no. 1 (ed 2009): 243\u201373. https://doi.org/10.1017/S0033822200033798.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Mogil'nik Ashpyl",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/1129596646",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Badetskaia 2018",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/7JZPREGP",
+          "formattedCitation": "<div class=\"csl-entry\">\u0412\u0430\u0434\u0435\u0446\u043a\u0430\u044f, \u042d. \u0411, \u0410. \u0412 \u0421\u0443\u0431\u0431\u043e\u0442\u0438\u043d, \u0421. \u0412 \u041a\u0440\u0430\u0441\u043d\u0438\u0435\u043d\u043a\u043e, and \u0418\u043d\u0441\u0442\u0438\u0442\u0443\u0442 \u0438\u0441\u0442\u043e\u0440\u0438\u0438 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044c\u043d\u043e\u0439 \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u044b (\u0420\u043e\u0441\u0441\u0438\u0439\u0441\u043a\u0430\u044f \u0430\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u043d\u0430\u0443\u043a). <i>\u0410\u0448\u043f\u044b\u043b: \u043d\u0435\u043a\u0440\u043e\u043f\u043e\u043b\u044c \u0434\u0440\u0435\u0432\u043d\u0435\u0433\u043e \u043f\u043e\u0441\u0435\u043b\u0435\u043d\u0438\u044f \u041c\u0438\u043d\u0443\u0441\u0438\u043d\u0441\u043a\u043e\u0439 \u043a\u043e\u0442\u043b\u043e\u0432\u0438\u043d\u044b</i>. \u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433: \u0420\u043e\u0441\u0441\u0438\u0439\u0441\u043a\u0430\u044f \u0430\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u043d\u0430\u0443\u043a, \u0418\u043d-\u0442 \u0438\u0441\u0442\u043e\u0440\u0438\u0438 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044c\u043d\u043e\u0439 \u043a\u0443\u043b\u044c\u0442\u0443\u0440\u044b, 2018. http://www.worldcat.org/oclc/1129596646.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "mogilnik-ashpyl",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "Modern Russian name of the site.",
+      "transcriptionCompleteness": "complete",
+      "language": "ru",
+      "created": "2019-12-17T17:27:54Z",
+      "uri": "https://pleiades.stoa.org/places/253102125/mogilnik-ashpyl",
+      "creators": [
+        {
+          "username": "gmckee",
+          "homepage": null,
+          "name": "Gabriel Mckee",
+          "uri": "https://pleiades.stoa.org/author/gmckee"
+        }
+      ],
+      "attested": "\u041c\u043e\u0433\u0438\u043b\u044c\u043d\u0438\u043a \u0410\u0448\u043f\u044b\u043b",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2019-12-17T22:05:02Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-17T17:32:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-17T17:27:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "gmckee",
+          "modified": "2019-12-17T17:27:54Z"
+        }
+      ]
+    }
+  ],
+  "id": "253102125",
+  "subject": [],
+  "title": "Mogil'nik Ashpyl",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/cemetery"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "Burial site in the Minusinsk Basin (southern Siberia) containing over 50 burials dated to the 1st millennium BCE.",
+  "reprPoint": [
+    89.1541008,
+    55.5536032
+  ],
+  "placeTypes": [
+    "cemetery"
+  ],
+  "bbox": [
+    89.1541008,
+    55.5536032,
+    89.1541008,
+    55.5536032
+  ],
+  "connectsWith": [],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2019-12-17T17:26:32Z",
+  "uri": "https://pleiades.stoa.org/places/253102125",
+  "creators": [
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2019-12-17T22:05:02Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-17T17:32:46Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-17T17:31:48Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-17T17:26:33Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "gmckee",
+      "modified": "2019-12-17T17:26:32Z"
+    }
+  ]
+}

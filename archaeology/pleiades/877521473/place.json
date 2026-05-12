@@ -1,0 +1,521 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.2392697,
+          39.9577625
+        ]
+      },
+      "type": "Feature",
+      "id": "athena-tapinagi",
+      "properties": {
+        "snippet": "Temple-2; 330 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/877521473/athena-tapinagi",
+        "description": "Point based on an OpenStreetMap node representing the temple of Athena at Ilium.",
+        "location_precision": "precise",
+        "title": "OSM location of Temple of Athena (Ilium)"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jmuccigr",
+      "homepage": null,
+      "name": "John Muccigrosso",
+      "uri": "https://pleiades.stoa.org/author/jmuccigr"
+    },
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/3592086466",
+          "citationDetail": "Node 3592086466",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=3592086466",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "athena-tapinagi",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "end": 300,
+      "title": "OSM location of Temple of Athena (Ilium)",
+      "provenance": "OpenStreetMap (Node 3592086466, version 4, osm:changeset=168101931, 2025-06-25T15:45:33Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -330,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+      ],
+      "archaeologicalRemains": "traces",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "temple-2"
+      ],
+      "description": "Point based on an OpenStreetMap node representing the temple of Athena at Ilium.",
+      "created": "2022-06-02T14:19:19Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.2392697,
+          39.9577625
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/877521473/athena-tapinagi",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2026-05-05T01:46:15Z"
+        },
+        {
+          "comment": "Reimported full node geometry and updated provenance",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-07T02:03:14Z"
+        },
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:47:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:22:46Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:21:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:19:19Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:19:19Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2022-06-02T14:22:22Z",
+      "associationCertainty": "certain",
+      "title": "Ilium/Troia",
+      "start": -330,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/877521473/ilium-troia",
+      "connectionType": "at",
+      "id": "ilium-troia",
+      "attestations": [
+        {
+          "timePeriod": "hellenistic-republican",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/hellenistic-republican",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        },
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:47:42Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:22:47Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:22:22Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "zrosalinsky",
+          "modified": "2022-06-02T14:22:22Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/550595",
+      "details": "",
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "http://www.worldcat.org/oclc/899065233",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Holden 1964",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JYSMCWW4",
+          "formattedCitation": "<div class=\"csl-entry\">Holden, Beatrice Mills, and Smith College. <i>The Metopes of the Temple of Athena at Ilion</i>. Northampton, Mass.: Smith College, 1964. http://www.worldcat.org/oclc/899065233.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "zrosalinsky",
+          "homepage": null,
+          "name": "Zachary Rosalinsky",
+          "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/899065233",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Holden 1964",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/JYSMCWW4",
+      "formattedCitation": "<div class=\"csl-entry\">Holden, Beatrice Mills, and Smith College. <i>The Metopes of the Temple of Athena at Ilion</i>. Northampton, Mass.: Smith College, 1964. http://www.worldcat.org/oclc/899065233.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.troyexcavations.com/athena-tapinagi/?l=en",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Troy Excavations: The Temple Of Athena",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/TFN95EUX",
+      "formattedCitation": "<div class=\"csl-entry\">Troy Excavations. \u201cThe Temple of Athena,\u201d August 3, 2019. https://www.troyexcavations.com/athena-tapinagi/?l=en.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "http://books.google.com/books?id=IzFoAAAAMAAJ",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Goethert 1962",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HAIMAATB",
+      "formattedCitation": "<div class=\"csl-entry\">Goethert, Friedrich Wilhelm, and Hans Schleif. <i>Der Athenatempel von Ilion</i>. Berlin: De Gruyter, 1962. http://books.google.com/books?id=IzFoAAAAMAAJ.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.cambridge.org/core/books/archaeology-of-greek-and-roman-troy/6EFCE946B7A7B5122708AD52A859EB69",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Rose 2014",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/3MNDDD98",
+      "formattedCitation": "<div class=\"csl-entry\">Rose, Charles Brian. <i>The Archaeology of Greek and Roman Troy</i>. New York: Cambridge University Press, 2014. https://www.cambridge.org/core/books/archaeology-of-greek-and-roman-troy/6EFCE946B7A7B5122708AD52A859EB69.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Pohl 2002",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C9IHXCCV",
+      "formattedCitation": "<div class=\"csl-entry\">Pohl, Daniela. <i>Kaiserzeitliche Tempel in Kleinasien unter besonderer Ber\u00fccksichtigung der hellenistischen Vorl\u00e4ufer</i>. Asia Minor Studien, Bd. 43. Bonn: R. Habelt, 2002.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Hertel 2004",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DVXP9VQL",
+      "formattedCitation": "<div class=\"csl-entry\">Hertel, Dieter. \u201cZum Heiligtum der Athena Ilias von Troia IX und zur fr\u00fchhellenistischen Stadtanlage von Ilion.\u201d In <i>Arch\u00e4ologischer Anzeiger, 2004,1 (2004)</i>, 177\u2013205. Berlin/New York, 2004.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://arachne.dainst.org/entity/7218",
+      "citationDetail": "Building 2104365: Tempel der Athena Ilia \u00c7anakkale",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Arachne",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/HUWENJCW",
+      "formattedCitation": "<div class=\"csl-entry\">Reinhard Foertsch, ed. <i>Arachne: iDAI Objects</i>. K\u00f6ln; Berlin: Archaeological Institute, University of Cologne; German Archaeological Institute, 2025. https://arachne.dainst.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.wikidata.org/wiki/Q112208753",
+      "citationDetail": "Temple of Athena at Ilion (Q112208753)",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "Wikidata",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+      "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://commons.wikimedia.org/wiki/Category:Athena_temple_(Troy)",
+      "citationDetail": "Category:Athena temple (Troy)",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Wikimedia Commons",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/L8RBW985",
+      "formattedCitation": "<div class=\"csl-entry\">Wikimedia Commons. \u201cWikimedia Commons.\u201d Media file repository, 2004. https://commons.wikimedia.org/wiki/Main_Page.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://vici.org/vici/24000/",
+      "citationDetail": "24000: Troy - Tevfikiye K\u00f6yu, Athenaion",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "vici.org",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/CQWHNDIM",
+      "formattedCitation": "<div class=\"csl-entry\">Voorburg, Ren\u00e9. <i>Vici.Org: Archaeological Atlas of Antiquity</i>, 2012. https://vici.org/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.sciencedirect.com/science/article/pii/S2212054823000279",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Denker 2023",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/E2HM5TMT",
+      "formattedCitation": "<div class=\"csl-entry\">Denker, Ahmet. \u201cReviving the Temple of Athena Ilias at Troy/Ilion.\u201d <i>Digital Applications in Archaeology and Cultural Heritage</i>, July 8, 2023, e00282. https://doi.org/10.1016/j.daach.2023.e00282.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://romeresearchgroup.org/items/1001334",
+      "citationDetail": "1001334",
+      "citationTypeURI": "http://purl.org/spar/cito/citesAsRelated",
+      "shortTitle": "TCW",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZV7SNRDS",
+      "formattedCitation": "<div class=\"csl-entry\">John D. Muccigrosso, and Louis I. Hamilton. <i>Temples of the Classical World</i>. Rome Research Group. Accessed October 15, 2024. https://romeresearchgroup.org/database-of-temples/.</div>",
+      "otherIdentifier": "",
+      "type": "citesAsRelated"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Temple of Athena at Ilion",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.wikidata.org/wiki/Q112208753",
+          "citationDetail": "Q112208753: Temple of Athena at Ilion",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Wikidata",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/BCQIKDKS",
+          "formattedCitation": "<div class=\"csl-entry\"><i>Wikidata: The Free Knowledge Base That Anyone Can Edit</i>. Wikimedia Foundation, 2014. https://www.wikidata.org/.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "temple-of-athena-at-ilion",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "en",
+      "created": "2022-06-02T15:30:36Z",
+      "uri": "https://pleiades.stoa.org/places/877521473/temple-of-athena-at-ilion",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "Temple of Athena at Ilion",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-06-04T13:47:41Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:36:02Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:30:36Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-06-02T15:30:36Z"
+        }
+      ]
+    }
+  ],
+  "id": "877521473",
+  "subject": [],
+  "title": "Temple of Athena (Ilium)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/temple-2"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "The Temple of Athena at Ilion was a peripteral temple executed in the Doric order with a 12 x 6 columnar arrangement. Its creation is traditionally ascribed to Lysimachus (ca. 301-281 BCE), though it was later restored under Roman influence, likely during the principate of Augustus. Little of the temple, save its forecourt, remains in situ. It is mostly known from membra disiecta, including metopes uncovered during Schliemann's excavations.",
+  "reprPoint": [
+    26.2392697,
+    39.9577625
+  ],
+  "placeTypes": [
+    "temple-2"
+  ],
+  "bbox": [
+    26.2392697,
+    39.9577625,
+    26.2392697,
+    39.9577625
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/550595",
+    "https://pleiades.stoa.org/places/989175579"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2022-06-02T15:15:28Z",
+  "uri": "https://pleiades.stoa.org/places/877521473",
+  "creators": [
+    {
+      "username": "zrosalinsky",
+      "homepage": null,
+      "name": "Zachary Rosalinsky",
+      "uri": "https://pleiades.stoa.org/author/zrosalinsky"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "add TCW 1001334",
+      "modifiedBy": "jbecker",
+      "modified": "2026-05-05T01:47:25Z"
+    },
+    {
+      "comment": "added Denker 2023",
+      "modifiedBy": "thomase",
+      "modified": "2023-07-10T23:23:06Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-04T13:47:41Z"
+    },
+    {
+      "comment": "update references; update summary, add wikimedia commons reference; vici.org; updated Names",
+      "modifiedBy": "thomase",
+      "modified": "2022-06-04T13:47:20Z"
+    },
+    {
+      "comment": "Baseline created",
+      "modifiedBy": "jbecker",
+      "modified": "2022-06-02T15:15:28Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T14:22:46Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T14:18:57Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "zrosalinsky",
+      "modified": "2022-06-02T14:18:56Z"
+    }
+  ]
+}

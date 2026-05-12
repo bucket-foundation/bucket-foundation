@@ -1,0 +1,459 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.1834889,
+          37.1903541
+        ]
+      },
+      "type": "Feature",
+      "id": "osm-location-of-modern-butera",
+      "properties": {
+        "snippet": "Settlement-modern",
+        "link": "https://pleiades.stoa.org/places/106443043/osm-location-of-modern-butera",
+        "description": "Location based on OpenStreetMap",
+        "location_precision": "precise",
+        "title": "OSM location of modern Butera"
+      }
+    }
+  ],
+  "contributors": [],
+  "locations": [
+    {
+      "contributors": [],
+      "associationCertainty": "certain",
+      "attestations": [],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/node/67254043",
+          "citationDetail": "Node 67254043",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:node=67254043",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "osm-location-of-modern-butera",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "end": null,
+      "title": "OSM location of modern Butera",
+      "provenance": "OpenStreetMap (Node 67254043, version 9, osm:changeset=86830972, 2020-06-18T14:38:59Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": null,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+      ],
+      "archaeologicalRemains": "unknown",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "settlement-modern"
+      ],
+      "description": "Location based on OpenStreetMap",
+      "created": "2020-12-23T04:46:10Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.1834889,
+          37.1903541
+        ]
+      },
+      "locationType": [
+        "associated_modern"
+      ],
+      "uri": "https://pleiades.stoa.org/places/106443043/osm-location-of-modern-butera",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:30:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T18:13:59Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T18:13:18Z"
+        },
+        {
+          "comment": "added OSM location",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-23T04:46:59Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-23T04:46:10Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-23T04:46:10Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2020-12-23T04:37:27Z",
+      "associationCertainty": "certain",
+      "title": "Sicilia (island)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/106443043/sicilia-island",
+      "connectionType": "on",
+      "id": "sicilia-island",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:30:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:30:29Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T18:13:59Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-23T04:37:28Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-23T04:37:27Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462492",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/on"
+    },
+    {
+      "end": null,
+      "description": "",
+      "contributors": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "created": "2020-12-23T04:39:54Z",
+      "associationCertainty": "certain",
+      "title": "Himeras (river)",
+      "start": null,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/106443043/himeras-river",
+      "connectionType": "near",
+      "id": "himeras-river",
+      "attestations": [],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:30:33Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:30:15Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T18:13:59Z"
+        },
+        {
+          "comment": "cnxn",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-23T04:39:55Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2020-12-23T04:39:54Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/462246",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/near"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "https://www.jstor.org/stable/505756",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "McConnell 1992",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YGGKUQ37",
+      "formattedCitation": "<div class=\"csl-entry\">McConnell, Brian E. \u201cThe Early Bronze Age Village of La Muculufa and Prehistoric Hut Architecture in Sicily.\u201d <i>American Journal of Archaeology</i> 96, no. 1 (1992): 23\u201344. https://doi.org/10.2307/505756.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Filippo 2009",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/47AZMYH2",
+      "formattedCitation": "<div class=\"csl-entry\">Filippo, Iann\u00ec. \u201cLa Muculufa Santuario: considerazioni tecnologiche, morfologiche e stilistiche sulle classi vascolari e lo Stile di Muculufa.\u201d <i>Rivista di Scienze Preistoriche</i> 59 (2009): 243\u201363.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Holloway 1996",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/C4HY4IKA",
+      "formattedCitation": "<div class=\"csl-entry\">Holloway, R. Ross, Susan S. Lukesh, and Laura Maniscalco. \u201cLa Muculufa: un centro abitato sul fiume Salso e il suo raggio di contatti.\u201d In <i>L\u2019antica et\u00e0 del bronzo in Italia. Atti del congresso di Viareggio, 9-12 gennaio 1995</i>, 291\u2013303. Firenze: OCTAVO, 1996.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "MacConnell 1995",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/ZZX8QQPS",
+      "formattedCitation": "<div class=\"csl-entry\">MacConnell, Brian Evans, and John Chervinsky. <i>La Muculufa II: Excavation and Survey 1988-1991\u202f; the Castelluccian Village and Other Areas</i>. Publications d\u2019histoire de l\u2019art et d\u2019arch\u00e9ologie de l\u2019Universit\u00e9 Catholique de Louvain 75. Louvain-La-Neuve\u202f:\u00a0 Providence, RI: Art and Archaology Publications, Coll\u00e8ge Erasme,\u00a0 Brown Univ, 1995.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Holloway et al. 1990",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DETEUH8G",
+      "formattedCitation": "<div class=\"csl-entry\">Holloway, R. Ross, Martha Joukowsky, and Susan S. Lukesh. <i>La Muculufa, the Early Bronze Age Sanctuary: The Early Bronze Age Village\u202f; Excavations of 1982 and 1983</i>. Providence, RI: Center for Old World Archaeology and Art, Brown University, 1990.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Jung and Weninger 2015",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/YIKVZB7N",
+      "formattedCitation": "<div class=\"csl-entry\">Jung, Reinhard, and Bernhard Weninger. \u201cArchaeological and Environmental Impact of the 4.2 Ka Cal BP Event in the Central and Eastern Mediterranean.\u201d In <i>2200 BC - Ein Klimasturz Als Ursache F\u00fcr Den Zerfall Der Alten Welt? = A Climatic Breakdown as a Cause for the Collapse of the Old World?\u202f: 7. Mitteldeutscher Arch\u00e4ologentag Vom 23. Bis 26. Oktober 2014 in Halle (Saale) =7th Archaeological Conference of Central Germany October 23-26, 2014 in Halle (Saale)</i>, 205\u201334. Halle (Saale): Landesamt f\u00fcr Denkmalpflege und Arch\u00e4ologie Sachsen-Anhalt, 2015.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "La Muculufa",
+      "attestations": [
+        {
+          "timePeriod": "twentieth-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twentieth-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+          "shortTitle": "Holloway et al. 1990",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/DETEUH8G",
+          "formattedCitation": "<div class=\"csl-entry\">Holloway, R. Ross, Martha Joukowsky, and Susan S. Lukesh. <i>La Muculufa, the Early Bronze Age Sanctuary: The Early Bronze Age Village\u202f; Excavations of 1982 and 1983</i>. Providence, RI: Center for Old World Archaeology and Art, Brown University, 1990.</div>",
+          "otherIdentifier": "",
+          "type": "seeFurther"
+        }
+      ],
+      "id": "la-muculufa",
+      "end": 1999,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 1900,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "it",
+      "created": "2022-05-21T18:13:51Z",
+      "uri": "https://pleiades.stoa.org/places/106443043/la-muculufa",
+      "creators": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "attested": "La Muculufa",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "thomase",
+          "modified": "2022-05-23T19:30:33Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T18:14:00Z"
+        },
+        {
+          "comment": "name",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T18:13:52Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "jbecker",
+          "modified": "2022-05-21T18:13:51Z"
+        }
+      ]
+    }
+  ],
+  "id": "106443043",
+  "subject": [],
+  "title": "La Muculufa (Butera)",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement",
+    "https://pleiades.stoa.org/vocabularies/place-types/settlement-modern"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "An Early Bronze Age village in Sicily.",
+  "reprPoint": [
+    14.1834889,
+    37.1903541
+  ],
+  "placeTypes": [
+    "settlement",
+    "settlement-modern"
+  ],
+  "bbox": [
+    14.1834889,
+    37.1903541,
+    14.1834889,
+    37.1903541
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/462492",
+    "https://pleiades.stoa.org/places/462246"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-12-23T04:33:00Z",
+  "uri": "https://pleiades.stoa.org/places/106443043",
+  "creators": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "action": "Publish externally",
+      "modifiedBy": "thomase",
+      "modified": "2022-05-23T19:30:33Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-21T18:13:59Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-21T18:13:01Z"
+    },
+    {
+      "comment": "references",
+      "modifiedBy": "jbecker",
+      "modified": "2022-05-21T18:07:40Z"
+    },
+    {
+      "comment": "created",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-23T04:33:01Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "jbecker",
+      "modified": "2020-12-23T04:33:00Z"
+    }
+  ]
+}

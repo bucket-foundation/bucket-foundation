@@ -1,0 +1,14 @@
+# Arcobriga
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/260490
+- **ID**: 260490
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Arcobriga
+
+## Description
+
+An ancient place, cited: BAtlas 26 unlocated Arcobriga

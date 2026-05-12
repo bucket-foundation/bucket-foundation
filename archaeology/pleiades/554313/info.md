@@ -1,0 +1,14 @@
+# Polichna
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/554313
+- **ID**: 554313
+- **Coords**: (no precise location)
+- **Subjects**: 
+- **Time periods**: 
+- **Names**: Polichna
+
+## Description
+
+An ancient settlement, attested by literary or documentary sources, whose precise location cannot be determined today

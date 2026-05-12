@@ -1,0 +1,14 @@
+# Mikhalitsi
+
+*Pleiades ancient place — CC BY 3.0*
+
+- **Pleiades URI**: https://pleiades.stoa.org/places/531002
+- **ID**: 531002
+- **Coords (lng, lat)**: [20.757327, 39.053694]
+- **Subjects**: dare:major=0, dare:ancient=0, dare:feature=settlement
+- **Time periods**: 
+- **Names**: 
+
+## Description
+
+An ancient place, cited: BAtlas 54 C3 Mikhalitsi

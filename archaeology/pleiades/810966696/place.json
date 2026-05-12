@@ -1,0 +1,469 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.0448122,
+            37.4429637
+          ],
+          [
+            -6.0446128,
+            37.4427049
+          ],
+          [
+            -6.0452955,
+            37.4423516
+          ],
+          [
+            -6.0455563,
+            37.4426774
+          ],
+          [
+            -6.0449925,
+            37.4429454
+          ],
+          [
+            -6.0448122,
+            37.4429637
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": "edificio-de-la-exedra",
+      "properties": {
+        "snippet": "Villa, Architecturalcomplex; 30 BC - AD 300",
+        "link": "https://pleiades.stoa.org/places/810966696/edificio-de-la-exedra",
+        "description": "Polygon representing the location of Collegium derived from OpenStreetMap way.",
+        "location_precision": "precise",
+        "title": "OSM location of Edificio de la Exedra"
+      }
+    }
+  ],
+  "contributors": [
+    {
+      "username": "jbecker",
+      "homepage": null,
+      "name": "Jeffrey Becker",
+      "uri": "https://pleiades.stoa.org/author/jbecker"
+    },
+    {
+      "username": "gmckee",
+      "homepage": null,
+      "name": "Gabriel Mckee",
+      "uri": "https://pleiades.stoa.org/author/gmckee"
+    },
+    {
+      "username": "thomase",
+      "homepage": null,
+      "name": "Tom Elliott",
+      "uri": "https://pleiades.stoa.org/author/thomase"
+    }
+  ],
+  "locations": [
+    {
+      "contributors": [
+        {
+          "username": "jbecker",
+          "homepage": null,
+          "name": "Jeffrey Becker",
+          "uri": "https://pleiades.stoa.org/author/jbecker"
+        }
+      ],
+      "associationCertainty": "certain",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://www.openstreetmap.org/browse/way/428812831",
+          "citationDetail": "Way 428812831",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "OSM",
+          "bibliographicURI": "",
+          "formattedCitation": "osm:way=428812831",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "edificio-de-la-exedra",
+      "featureTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "end": 300,
+      "title": "OSM location of Edificio de la Exedra",
+      "provenance": "OpenStreetMap (Way 428812831, version 1, osm:changeset=40449296, 2016-07-02T23:03:49Z)",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": -30,
+      "locationTypeURI": [
+        "https://pleiades.stoa.org/vocabularies/place-types/villa",
+        "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex"
+      ],
+      "archaeologicalRemains": "substantive",
+      "details": "",
+      "review_state": "published",
+      "accuracy_value": 20.0,
+      "accuracy": "https://pleiades.stoa.org/features/metadata/generic-osm-accuracy-assessment",
+      "featureType": [
+        "villa",
+        "architecturalcomplex"
+      ],
+      "description": "Polygon representing the location of Collegium derived from OpenStreetMap way.",
+      "created": "2020-12-19T22:40:14Z",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -6.0448122,
+            37.4429637
+          ],
+          [
+            -6.0446128,
+            37.4427049
+          ],
+          [
+            -6.0452955,
+            37.4423516
+          ],
+          [
+            -6.0455563,
+            37.4426774
+          ],
+          [
+            -6.0449925,
+            37.4429454
+          ],
+          [
+            -6.0448122,
+            37.4429637
+          ]
+        ]
+      },
+      "locationType": [
+        "representative"
+      ],
+      "uri": "https://pleiades.stoa.org/places/810966696/edificio-de-la-exedra",
+      "creators": [
+        {
+          "username": "lctsui",
+          "homepage": null,
+          "name": "Lai Ching Tsui",
+          "uri": "https://pleiades.stoa.org/author/lctsui"
+        }
+      ],
+      "@type": "Location",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-07T14:25:43Z"
+        },
+        {
+          "comment": "title",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-07T14:24:38Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-19T22:48:21Z"
+        },
+        {
+          "comment": "Edited",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-19T22:48:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-19T22:44:25Z"
+        },
+        {
+          "comment": "Location from OSM created by Products.PleiadesEntity.browser.osm.OSMLocationFactory",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-19T22:40:15Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-19T22:40:14Z"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "end": 300,
+      "description": "",
+      "contributors": [],
+      "created": "2020-11-20T05:30:42Z",
+      "associationCertainty": "certain",
+      "title": "Italica",
+      "start": -30,
+      "provenance": "Pleiades",
+      "uri": "https://pleiades.stoa.org/places/810966696/italica",
+      "connectionType": "at",
+      "id": "italica",
+      "attestations": [
+        {
+          "timePeriod": "roman",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/roman",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2021-09-07T14:25:43Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "lctsui",
+          "modified": "2020-12-19T22:48:21Z"
+        },
+        {
+          "action": "Send back",
+          "modifiedBy": "gmckee",
+          "modified": "2020-11-30T17:04:01Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "lctsui",
+          "modified": "2020-11-20T05:31:21Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "lctsui",
+          "modified": "2020-11-20T05:30:43Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "lctsui",
+          "modified": "2020-11-20T05:30:42Z"
+        }
+      ],
+      "connectsTo": "https://pleiades.stoa.org/places/256231",
+      "details": "",
+      "references": [],
+      "review_state": "published",
+      "creators": [
+        {
+          "username": "lctsui",
+          "homepage": null,
+          "name": "Lai Ching Tsui",
+          "uri": "https://pleiades.stoa.org/author/lctsui"
+        }
+      ],
+      "@type": "Connection",
+      "connectionTypeURI": "https://pleiades.stoa.org/vocabularies/relationship-types/at"
+    }
+  ],
+  "references": [
+    {
+      "alternateURI": "",
+      "accessURI": "http://www.worldcat.org/oclc/916989580",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Caballos 1999",
+      "bibliographicURI": "https://www.zotero.org/groups/grep_workshop_at_cornell_2020/items/QFV4T9NS",
+      "formattedCitation": "<div class=\"csl-entry\">Caballos, A., J. Mar\u00edn, and J. M Rodr\u00edguez. <i>Italica Arqueologica</i>. Sevilla: Universidad de Sevilla, 1999. http://www.worldcat.org/oclc/916989580.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    },
+    {
+      "alternateURI": "",
+      "accessURI": "https://journals.ub.uni-heidelberg.de/index.php/ak/article/view/96441",
+      "citationDetail": "",
+      "citationTypeURI": "http://purl.org/spar/cito/seeFurther",
+      "shortTitle": "Br\u00fchlmann 2022",
+      "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MR2J8QTU",
+      "formattedCitation": "<div class=\"csl-entry\">Br\u00fchlmann, Beate, Rafael Hidalgo-Prieto, Alexander von Sch\u00e9ele, Clara Tello-Mart\u00edn, Klaus Reicherter, and F\u00e9lix Teichner. \u201cGeological Hazards in Archaeological Heritage. Building Damage in the Roman Domus Casa de La Exedra at Italica (Santiponce, Prov. Sevilla/E).\u201d <i>Arch\u00e4ologisches Korrespondenzblatt</i> 52, no. 3 (2022): 429\u201350. https://doi.org/10.11588/ak.2022.3.96441.</div>",
+      "otherIdentifier": "",
+      "type": "seeFurther"
+    }
+  ],
+  "names": [
+    {
+      "nameType": "geographic",
+      "transcriptionAccuracy": "accurate",
+      "associationCertainty": "certain",
+      "romanized": "Casa de la Exedra",
+      "attestations": [
+        {
+          "timePeriod": "twenty-first-ce",
+          "timePeriodURI": "https://pleiades.stoa.org/vocabularies/time-periods/twenty-first-ce",
+          "confidence": "confident",
+          "confidenceURI": "https://pleiades.stoa.org/vocabularies/attestation-confidence/confident"
+        }
+      ],
+      "references": [
+        {
+          "alternateURI": "",
+          "accessURI": "https://journals.ub.uni-heidelberg.de/index.php/ak/article/view/96441",
+          "citationDetail": "",
+          "citationTypeURI": "http://purl.org/spar/cito/citesAsDataSource",
+          "shortTitle": "Br\u00fchlmann 2022",
+          "bibliographicURI": "https://www.zotero.org/groups/pleiades/items/MR2J8QTU",
+          "formattedCitation": "<div class=\"csl-entry\">Br\u00fchlmann, Beate, Rafael Hidalgo-Prieto, Alexander von Sch\u00e9ele, Clara Tello-Mart\u00edn, Klaus Reicherter, and F\u00e9lix Teichner. \u201cGeological Hazards in Archaeological Heritage. Building Damage in the Roman Domus Casa de La Exedra at Italica (Santiponce, Prov. Sevilla/E).\u201d <i>Arch\u00e4ologisches Korrespondenzblatt</i> 52, no. 3 (2022): 429\u201350. https://doi.org/10.11588/ak.2022.3.96441.</div>",
+          "otherIdentifier": "",
+          "type": "citesAsDataSource"
+        }
+      ],
+      "id": "casa-de-la-exedra",
+      "end": 2099,
+      "contributors": [],
+      "provenance": "Pleiades",
+      "associationCertaintyURI": "https://pleiades.stoa.org/vocabularies/association-certainty/certain",
+      "start": 2000,
+      "details": "",
+      "review_state": "published",
+      "description": "",
+      "transcriptionCompleteness": "complete",
+      "language": "es",
+      "created": "2023-06-20T21:28:55Z",
+      "uri": "https://pleiades.stoa.org/places/810966696/casa-de-la-exedra",
+      "creators": [
+        {
+          "username": "thomase",
+          "homepage": null,
+          "name": "Tom Elliott",
+          "uri": "https://pleiades.stoa.org/author/thomase"
+        }
+      ],
+      "attested": "Casa de la Exedra",
+      "@type": "Name",
+      "history": [
+        {
+          "action": "Publish externally",
+          "modifiedBy": "jbecker",
+          "modified": "2023-06-20T23:37:40Z"
+        },
+        {
+          "action": "Submit for review",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-20T21:29:05Z"
+        },
+        {
+          "comment": "Initial revision",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-20T21:28:56Z"
+        },
+        {
+          "action": "Create",
+          "modifiedBy": "thomase",
+          "modified": "2023-06-20T21:28:55Z"
+        }
+      ]
+    }
+  ],
+  "id": "810966696",
+  "subject": [
+    "GardRomEmp"
+  ],
+  "title": "Collegium at Italica",
+  "provenance": "Pleiades",
+  "placeTypeURIs": [
+    "https://pleiades.stoa.org/vocabularies/place-types/architecturalcomplex",
+    "https://pleiades.stoa.org/vocabularies/place-types/villa"
+  ],
+  "details": "",
+  "review_state": "published",
+  "type": "FeatureCollection",
+  "description": "A building that has been identified as the seat of a Collegium because of its internal structure and size, was previously known as the\"House of the Exedra\".",
+  "reprPoint": [
+    -6.0450872072585975,
+    37.44267847977785
+  ],
+  "placeTypes": [
+    "architecturalcomplex",
+    "villa"
+  ],
+  "bbox": [
+    -6.0455563,
+    37.4423516,
+    -6.0446128,
+    37.4429637
+  ],
+  "connectsWith": [
+    "https://pleiades.stoa.org/places/256231"
+  ],
+  "rights": "Copyright \u00a9 The Contributors. Sharing and remixing permitted under terms of the Creative Commons Attribution 3.0 License (cc-by).",
+  "created": "2020-11-20T05:27:08Z",
+  "uri": "https://pleiades.stoa.org/places/810966696",
+  "creators": [
+    {
+      "username": "lctsui",
+      "homepage": null,
+      "name": "Lai Ching Tsui",
+      "uri": "https://pleiades.stoa.org/author/lctsui"
+    }
+  ],
+  "@type": "Place",
+  "history": [
+    {
+      "comment": "added Br\u00fchlmann 2022",
+      "modifiedBy": "thomase",
+      "modified": "2023-06-20T21:27:38Z"
+    },
+    {
+      "action": "Publish externally",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-07T14:25:43Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-07T14:25:39Z"
+    },
+    {
+      "comment": "summary",
+      "modifiedBy": "jbecker",
+      "modified": "2021-09-07T14:25:13Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "lctsui",
+      "modified": "2020-12-19T22:48:21Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "lctsui",
+      "modified": "2020-12-19T22:47:40Z"
+    },
+    {
+      "action": "Send back",
+      "modifiedBy": "gmckee",
+      "modified": "2020-11-30T17:04:01Z"
+    },
+    {
+      "comment": "Edited",
+      "modifiedBy": "gmckee",
+      "modified": "2020-11-24T13:14:19Z"
+    },
+    {
+      "action": "Submit for review",
+      "modifiedBy": "lctsui",
+      "modified": "2020-11-20T05:31:20Z"
+    },
+    {
+      "comment": "Initial revision",
+      "modifiedBy": "lctsui",
+      "modified": "2020-11-20T05:27:08Z"
+    },
+    {
+      "action": "Create",
+      "modifiedBy": "lctsui",
+      "modified": "2020-11-20T05:27:08Z"
+    }
+  ]
+}
